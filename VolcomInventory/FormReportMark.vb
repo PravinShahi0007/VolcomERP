@@ -971,7 +971,6 @@
             'infoCustom("Status changed.")
             Try
                 FormSamplePurchaseDet.allow_status()
-                FormViewSamplePurchase.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePurchase.view_sample_purc()
             Catch ex As Exception
             End Try
@@ -5056,34 +5055,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 Dim qu_payment As String = "SELECT id_pay_type,report_mark_type FROM tb_payment py WHERE py.id_payment='" & id_report & "'"
                 Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
                 If data_payment.Rows.Count > 0 Then
-                    If data_payment.Rows(0)("id_pay_type").ToString = "1" Then 'DP
-                        'auto jurnal
-                        'Select user prepared
-                        Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
-                        Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
-                        Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
-                        Dim report_number As String = du.Rows(0)("report_number").ToString
-
-                        'main journal
-                        Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                        Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
-                        increase_inc_acc("1")
-
-                        'det journal
-                        Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                        SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159,py.id_payment, py.number
-                        FROM tb_payment py
-                        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                        WHERE py.id_payment=" + id_report + "
-                        UNION ALL
-                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, cc.id_comp,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_payment, py.number
-                        FROM tb_payment py
-                        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                        INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
-                        WHERE py.id_payment=" & id_report & ""
-                        execute_non_query(qjd, True, "", "", "", "")
-                    Else 'payment
+                    If data_payment.Rows(0)("report_mark_type").ToString = "189" Then  'if only one payment type (all payment)
                         'auto journal
                         Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                         Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -5098,6 +5070,61 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
 
                         'det journal
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                                            SELECT * FROM
+                                            (
+                                                /* hutang dagang total */
+                                                SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, cc.id_comp,  0 AS `qty`,SUM(pyd.total_dp + pyd.value) AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_payment, py.number
+                                                FROM tb_payment_det pyd
+                                                INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment
+                                                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
+                                                INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
+                                                WHERE py.id_payment=" & id_report & "
+                                                GROUP BY py.id_payment
+                                            )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                        execute_non_query(qjd, True, "", "", "", "")
+                    Else 'have distinct type of payment
+                        If data_payment.Rows(0)("id_pay_type").ToString = "1" Then 'DP
+                            'auto jurnal
+                            'Select user prepared
+                            Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                            Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                            Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                            Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                            'main journal
+                            Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                            Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                            increase_inc_acc("1")
+
+                            'det journal
+                            Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                        SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159,py.id_payment, py.number
+                        FROM tb_payment py
+                        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
+                        WHERE py.id_payment=" + id_report + "
+                        UNION ALL
+                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, cc.id_comp,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_payment, py.number
+                        FROM tb_payment py
+                        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
+                        INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
+                        WHERE py.id_payment=" & id_report & ""
+                            execute_non_query(qjd, True, "", "", "", "")
+                        Else 'payment
+                            'auto journal
+                            Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                            Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                            Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                            Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                            'main journal
+                            Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                            Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                            increase_inc_acc("1")
+
+                            'det journal
+                            Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                                             SELECT * FROM
                                             (
                                             /* uang keluar kalau ada */
@@ -5127,21 +5154,22 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                                             WHERE py.id_payment=" & id_report & "
                                             GROUP BY py.id_payment
                                             )trx WHERE trx.debit != 0 OR trx.credit != 0"
-                        execute_non_query(qjd, True, "", "", "", "")
-                        If data_payment.Rows(0)("report_mark_type").ToString = "139" Then
-                            'close pay in tb_purc_order
-                            Dim qc As String = "UPDATE tb_purc_order po
+                            execute_non_query(qjd, True, "", "", "", "")
+                            If data_payment.Rows(0)("report_mark_type").ToString = "139" Then
+                                'close pay in tb_purc_order
+                                Dim qc As String = "UPDATE tb_purc_order po
                                             INNER JOIN tb_payment_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_payment`=" & id_report & "
                                             SET po.is_close_pay='1'"
-                            execute_non_query(qc, True, "", "", "", "")
-                            FormBankWithdrawal.load_po()
-                        ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
-                            'close expense
-                            Dim qc As String = "UPDATE tb_item_expense e
+                                execute_non_query(qc, True, "", "", "", "")
+                                FormBankWithdrawal.load_po()
+                            ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
+                                'close expense
+                                Dim qc As String = "UPDATE tb_item_expense e
                                             INNER JOIN tb_payment_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_payment`=" & id_report & "
                                             SET e.is_open='2'"
-                            execute_non_query(qc, True, "", "", "", "")
-                            FormBankWithdrawal.load_expense()
+                                execute_non_query(qc, True, "", "", "", "")
+                                FormBankWithdrawal.load_expense()
+                            End If
                         End If
                     End If
                 End If
