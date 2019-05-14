@@ -37,6 +37,7 @@ Partial Class FormProdDemandRevDet
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCRevision = New DevExpress.XtraTab.XtraTabControl()
@@ -156,7 +157,7 @@ Partial Class FormProdDemandRevDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowBreakDown = New DevExpress.XtraEditors.CheckEdit()
         Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
-        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEChangeOrder = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,11 +188,13 @@ Partial Class FormProdDemandRevDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.CEShowBreakDown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.CEChangeOrder)
         Me.GroupControlHead.Controls.Add(Me.MENote)
         Me.GroupControlHead.Controls.Add(Me.LabelControl7)
         Me.GroupControlHead.Controls.Add(Me.LabelControl6)
@@ -202,7 +205,7 @@ Partial Class FormProdDemandRevDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(921, 126)
+        Me.GroupControlHead.Size = New System.Drawing.Size(921, 142)
         Me.GroupControlHead.TabIndex = 8
         '
         'MENote
@@ -270,7 +273,7 @@ Partial Class FormProdDemandRevDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(710, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(209, 122)
+        Me.PanelControl1.Size = New System.Drawing.Size(209, 138)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -370,6 +373,16 @@ Partial Class FormProdDemandRevDet
         Me.BtnMark.Text = "Mark"
         Me.BtnMark.Visible = False
         '
+        'BtnResetPropose
+        '
+        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(574, 2)
+        Me.BtnResetPropose.Name = "BtnResetPropose"
+        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
+        Me.BtnResetPropose.TabIndex = 10
+        Me.BtnResetPropose.Text = "Reset Propose"
+        '
         'BtnCancell
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
@@ -395,10 +408,10 @@ Partial Class FormProdDemandRevDet
         'XTCRevision
         '
         Me.XTCRevision.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCRevision.Location = New System.Drawing.Point(0, 126)
+        Me.XTCRevision.Location = New System.Drawing.Point(0, 142)
         Me.XTCRevision.Name = "XTCRevision"
         Me.XTCRevision.SelectedTabPage = Me.XTPRevision
-        Me.XTCRevision.Size = New System.Drawing.Size(921, 380)
+        Me.XTCRevision.Size = New System.Drawing.Size(921, 364)
         Me.XTCRevision.TabIndex = 14
         Me.XTCRevision.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRevision, Me.XTPDetail})
         '
@@ -408,7 +421,7 @@ Partial Class FormProdDemandRevDet
         Me.XTPRevision.Controls.Add(Me.PanelControl3)
         Me.XTPRevision.Controls.Add(Me.PanelControlNav)
         Me.XTPRevision.Name = "XTPRevision"
-        Me.XTPRevision.Size = New System.Drawing.Size(915, 352)
+        Me.XTPRevision.Size = New System.Drawing.Size(915, 336)
         Me.XTPRevision.Text = "Revision"
         '
         'GCRevision
@@ -418,7 +431,7 @@ Partial Class FormProdDemandRevDet
         Me.GCRevision.Location = New System.Drawing.Point(0, 42)
         Me.GCRevision.MainView = Me.GVRevision
         Me.GCRevision.Name = "GCRevision"
-        Me.GCRevision.Size = New System.Drawing.Size(915, 276)
+        Me.GCRevision.Size = New System.Drawing.Size(915, 260)
         Me.GCRevision.TabIndex = 1
         Me.GCRevision.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRevision})
         '
@@ -990,7 +1003,7 @@ Partial Class FormProdDemandRevDet
         '
         Me.PanelControl3.Controls.Add(Me.CEShowBreakdownRev)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 318)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 302)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(915, 34)
         Me.PanelControl3.TabIndex = 4
@@ -1642,15 +1655,13 @@ Partial Class FormProdDemandRevDet
         Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
         Me.CEShowHighlight.TabIndex = 0
         '
-        'BtnResetPropose
+        'CEChangeOrder
         '
-        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(574, 2)
-        Me.BtnResetPropose.Name = "BtnResetPropose"
-        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
-        Me.BtnResetPropose.TabIndex = 10
-        Me.BtnResetPropose.Text = "Reset Propose"
+        Me.CEChangeOrder.Location = New System.Drawing.Point(278, 111)
+        Me.CEChangeOrder.Name = "CEChangeOrder"
+        Me.CEChangeOrder.Properties.Caption = "Change Order Total"
+        Me.CEChangeOrder.Size = New System.Drawing.Size(116, 19)
+        Me.CEChangeOrder.TabIndex = 152
         '
         'FormProdDemandRevDet
         '
@@ -1696,6 +1707,7 @@ Partial Class FormProdDemandRevDet
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.CEShowBreakDown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1836,4 +1848,5 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEChangeOrder As DevExpress.XtraEditors.CheckEdit
 End Class

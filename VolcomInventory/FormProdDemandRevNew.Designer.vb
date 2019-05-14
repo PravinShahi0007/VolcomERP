@@ -25,6 +25,7 @@ Partial Class FormProdDemandRevNew
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEChangeOrder = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtProdDemandNumber = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -40,6 +41,8 @@ Partial Class FormProdDemandRevNew
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCProdDemand = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProdDemand = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnProdDemand = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -53,12 +56,11 @@ Partial Class FormProdDemandRevNew
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,8 +69,8 @@ Partial Class FormProdDemandRevNew
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -103,15 +105,24 @@ Partial Class FormProdDemandRevNew
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CEChangeOrder)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.TxtProdDemandNumber)
         Me.PanelControl2.Controls.Add(Me.MENote)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 321)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 303)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(684, 100)
+        Me.PanelControl2.Size = New System.Drawing.Size(684, 118)
         Me.PanelControl2.TabIndex = 1
+        '
+        'CEChangeOrder
+        '
+        Me.CEChangeOrder.Location = New System.Drawing.Point(537, 90)
+        Me.CEChangeOrder.Name = "CEChangeOrder"
+        Me.CEChangeOrder.Properties.Caption = "Change Order Total"
+        Me.CEChangeOrder.Size = New System.Drawing.Size(116, 19)
+        Me.CEChangeOrder.TabIndex = 5
         '
         'LabelControl4
         '
@@ -245,9 +256,21 @@ Partial Class FormProdDemandRevNew
         Me.GCProdDemand.Location = New System.Drawing.Point(0, 44)
         Me.GCProdDemand.MainView = Me.GVProdDemand
         Me.GCProdDemand.Name = "GCProdDemand"
-        Me.GCProdDemand.Size = New System.Drawing.Size(684, 277)
+        Me.GCProdDemand.Size = New System.Drawing.Size(684, 259)
         Me.GCProdDemand.TabIndex = 3
         Me.GCProdDemand.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdDemand})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "view detail"
         '
         'GVProdDemand
         '
@@ -342,18 +365,6 @@ Partial Class FormProdDemandRevNew
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 3
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "view detail"
-        '
         'FormProdDemandRevNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -374,6 +385,7 @@ Partial Class FormProdDemandRevNew
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -383,8 +395,8 @@ Partial Class FormProdDemandRevNew
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -423,4 +435,5 @@ Partial Class FormProdDemandRevNew
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CEChangeOrder As DevExpress.XtraEditors.CheckEdit
 End Class
