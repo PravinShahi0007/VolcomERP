@@ -147,12 +147,12 @@ LEFT JOIN
 )payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
 LEFT JOIN
 (
-	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	SELECT pyd.id_report, SUM(pyd.`value`+pyd.`vat`) AS `value` FROM `tb_payment_det` pyd
 	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='189'
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=pn.id_pn_fgpo
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE 1=1 " & where_string
+WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCFGPO.DataSource = data
