@@ -145,7 +145,7 @@ LEFT JOIN (
 	GROUP BY wo.id_prod_order_wo
 ) wo_price ON wo_price.id_prod_order= po.id_prod_order
 LEFT JOIN(
-    SELECT revtimes.id_prod_order,COUNT(DISTINCT revtimes.id_prod_order) AS revision_times FROM
+    SELECT revtimes.id_prod_order,COUNT(DISTINCT revtimes.revision) AS revision_times FROM
     (
 	    SELECT kod.id_prod_order,kod.revision FROM tb_prod_order_ko_det kod
 	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko`
