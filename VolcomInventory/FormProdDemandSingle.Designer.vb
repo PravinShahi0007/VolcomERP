@@ -202,7 +202,7 @@ Partial Class FormProdDemandSingle
         '
         'LESampleDivision
         '
-        Me.LESampleDivision.Location = New System.Drawing.Point(112, 112)
+        Me.LESampleDivision.Location = New System.Drawing.Point(112, 86)
         Me.LESampleDivision.Name = "LESampleDivision"
         Me.LESampleDivision.Properties.Appearance.Options.UseTextOptions = True
         Me.LESampleDivision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -216,7 +216,7 @@ Partial Class FormProdDemandSingle
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(27, 115)
+        Me.LabelControl4.Location = New System.Drawing.Point(27, 89)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 56
@@ -551,13 +551,13 @@ Partial Class FormProdDemandSingle
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 176)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 151)
         Me.GroupGeneralHeader.TabIndex = 185
         '
         'TxtRateCurrent
         '
         Me.TxtRateCurrent.Enabled = False
-        Me.TxtRateCurrent.Location = New System.Drawing.Point(112, 138)
+        Me.TxtRateCurrent.Location = New System.Drawing.Point(112, 112)
         Me.TxtRateCurrent.Name = "TxtRateCurrent"
         Me.TxtRateCurrent.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtRateCurrent.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -567,7 +567,7 @@ Partial Class FormProdDemandSingle
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(27, 141)
+        Me.LabelControl6.Location = New System.Drawing.Point(27, 115)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl6.TabIndex = 166
@@ -576,7 +576,7 @@ Partial Class FormProdDemandSingle
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(27, 63)
+        Me.LabelControl5.Location = New System.Drawing.Point(28, 259)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl5.TabIndex = 165
@@ -584,7 +584,7 @@ Partial Class FormProdDemandSingle
         '
         'LEBudget
         '
-        Me.LEBudget.Location = New System.Drawing.Point(112, 60)
+        Me.LEBudget.Location = New System.Drawing.Point(113, 256)
         Me.LEBudget.Name = "LEBudget"
         Me.LEBudget.Properties.Appearance.Options.UseTextOptions = True
         Me.LEBudget.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -640,7 +640,7 @@ Partial Class FormProdDemandSingle
         '
         'LECat
         '
-        Me.LECat.Location = New System.Drawing.Point(112, 86)
+        Me.LECat.Location = New System.Drawing.Point(112, 60)
         Me.LECat.Name = "LECat"
         Me.LECat.Properties.Appearance.Options.UseTextOptions = True
         Me.LECat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -654,7 +654,7 @@ Partial Class FormProdDemandSingle
         'LabelCategory
         '
         Me.LabelCategory.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCategory.Location = New System.Drawing.Point(27, 89)
+        Me.LabelCategory.Location = New System.Drawing.Point(27, 63)
         Me.LabelCategory.Name = "LabelCategory"
         Me.LabelCategory.Size = New System.Drawing.Size(29, 13)
         Me.LabelCategory.TabIndex = 162
@@ -670,7 +670,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(707, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(255, 172)
+        Me.PanelControl1.Size = New System.Drawing.Size(255, 147)
         Me.PanelControl1.TabIndex = 161
         '
         'DEForm
@@ -758,7 +758,7 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(958, 255)
+        Me.GroupControlList.Size = New System.Drawing.Size(958, 280)
         Me.GroupControlList.TabIndex = 188
         '
         'GCDesign
@@ -767,7 +767,7 @@ Partial Class FormProdDemandSingle
         Me.GCDesign.Location = New System.Drawing.Point(20, 37)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(936, 184)
+        Me.GCDesign.Size = New System.Drawing.Size(936, 209)
         Me.GCDesign.TabIndex = 42
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
         '
@@ -1407,7 +1407,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlCENONActive)
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlBreakSize)
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 221)
+        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 246)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
         Me.PanelControlCompleted.Size = New System.Drawing.Size(936, 32)
         Me.PanelControlCompleted.TabIndex = 41
@@ -1501,10 +1501,10 @@ Partial Class FormProdDemandSingle
         'XTCPD
         '
         Me.XTCPD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPD.Location = New System.Drawing.Point(0, 176)
+        Me.XTCPD.Location = New System.Drawing.Point(0, 151)
         Me.XTCPD.Name = "XTCPD"
         Me.XTCPD.SelectedTabPage = Me.XTPDetail
-        Me.XTCPD.Size = New System.Drawing.Size(964, 283)
+        Me.XTCPD.Size = New System.Drawing.Size(964, 308)
         Me.XTCPD.TabIndex = 189
         Me.XTCPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
         '
@@ -1512,7 +1512,7 @@ Partial Class FormProdDemandSingle
         '
         Me.XTPDetail.Controls.Add(Me.GroupControlList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(958, 255)
+        Me.XTPDetail.Size = New System.Drawing.Size(958, 280)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPRevision
