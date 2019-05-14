@@ -293,6 +293,7 @@ Partial Class FormMain
         Me.NBFGWHAlloc = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBFGWHAllocLog = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSalesOrder = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesOrderReport = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPrepareOrderUni = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSalesOrderList = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSalesOrderCat = New DevExpress.XtraNavBar.NavBarItem()
@@ -410,7 +411,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBSalesOrderReport = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2463,6 +2463,12 @@ Partial Class FormMain
         Me.NBSalesOrder.Name = "NBSalesOrder"
         Me.NBSalesOrder.SmallImageIndex = 25
         '
+        'NBSalesOrderReport
+        '
+        Me.NBSalesOrderReport.Caption = "Prepare Order Monitoring"
+        Me.NBSalesOrderReport.Name = "NBSalesOrderReport"
+        Me.NBSalesOrderReport.SmallImage = CType(resources.GetObject("NBSalesOrderReport.SmallImage"), System.Drawing.Image)
+        '
         'NBPrepareOrderUni
         '
         Me.NBPrepareOrderUni.Caption = "Prepare Uniform"
@@ -3246,12 +3252,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBSalesOrderReport
-        '
-        Me.NBSalesOrderReport.Caption = "Prepare Order - Compare"
-        Me.NBSalesOrderReport.Name = "NBSalesOrderReport"
-        Me.NBSalesOrderReport.SmallImage = CType(resources.GetObject("NBSalesOrderReport.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

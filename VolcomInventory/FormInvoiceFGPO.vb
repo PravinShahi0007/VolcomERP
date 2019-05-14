@@ -77,8 +77,7 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=wo.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
-WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_vendor & "
-GROUP BY wo.`id_prod_order_wo`"
+WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_vendor & " GROUP BY wo.`id_prod_order_wo`"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDPFGPO.DataSource = data
                 GVDPFGPO.BestFitColumns()

@@ -152,7 +152,7 @@ LEFT JOIN
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=pn.id_pn_fgpo
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE 1=1 " & where_string
+WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCFGPO.DataSource = data
