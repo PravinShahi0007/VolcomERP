@@ -2,6 +2,12 @@
     Public is_hrd As String = "-1"
 
     Private Sub FormEmpOvertimePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If is_hrd = "-1" Then
+            Text = "Propose Overtime Pick"
+        Else
+            Text = "Overtime Management Pick"
+        End If
+
         Dim notIncluded As String = ""
 
         For i = 0 To FormEmpOvertimeDet.GVEmployee.RowCount - 1

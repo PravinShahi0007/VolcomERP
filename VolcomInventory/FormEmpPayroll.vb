@@ -83,7 +83,7 @@
                 BGetEmployee.Enabled = True
                 BRemoveEmployee.Enabled = True
                 BMark.Enabled = False
-                BandedGridColumnCheck.OptionsColumn.AllowEdit = False
+                'BandedGridColumnCheck.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = True
                 BandedGridColumnCash.OptionsColumn.AllowEdit = True
                 BReport.Enabled = False
@@ -92,11 +92,12 @@
                 BReset.Visible = False
                 BSubmit.Visible = True
                 CheckEditSelAll.Enabled = False
+                CMDelEmp.Enabled = True
             Else
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
                 BMark.Enabled = True
-                BandedGridColumnCheck.OptionsColumn.AllowEdit = False
+                'BandedGridColumnCheck.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
                 BReport.Enabled = False
@@ -105,10 +106,11 @@
                 BReset.Visible = True
                 BSubmit.Visible = False
                 CheckEditSelAll.Enabled = False
+                CMDelEmp.Enabled = False
             End If
 
             If id_report_status = "6" Then
-                BandedGridColumnCheck.OptionsColumn.AllowEdit = True
+                'BandedGridColumnCheck.OptionsColumn.AllowEdit = True
                 BReport.Enabled = True
                 BPrintSlip.Enabled = True
                 BPrint.Enabled = True
@@ -130,12 +132,16 @@
     End Sub
 
     Private Sub CMDelEmp_Click(sender As Object, e As EventArgs) Handles CMDelEmp.Click
-        Dim id_employee As String = GVPayroll.GetFocusedRowCellValue("id_employee").ToString
-        Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-        '
-        Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_employee='" & id_employee & "' AND id_payroll='" & id_payroll & "'"
-        execute_non_query(query, True, "", "", "", "")
-        load_payroll_detail()
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this employee ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim id_employee As String = GVPayroll.GetFocusedRowCellValue("id_employee").ToString
+            Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+            '
+            Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_employee='" & id_employee & "' AND id_payroll='" & id_payroll & "'"
+            execute_non_query(query, True, "", "", "", "")
+            load_payroll_detail()
+        End If
     End Sub
 
     Private Sub BDeduction_Click(sender As Object, e As EventArgs) Handles BDeduction.Click
@@ -151,16 +157,28 @@
     End Sub
 
     Private Sub BRemoveEmployee_Click(sender As Object, e As EventArgs) Handles BRemoveEmployee.Click
+        GVPayroll.ActiveFilterString = "[is_check]='yes'"
+
         If GVPayroll.RowCount > 0 Then
             Dim confirm As DialogResult
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete selected employee ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
-                execute_non_query(query, True, "", "", "", "")
-                '
+                Cursor = Cursors.WaitCursor
+
+                For i = 0 To GVPayroll.RowCount - 1
+                    Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll_det='" & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+
                 load_payroll_detail()
+
+                Cursor = Cursors.Default
             End If
+        Else
+            stopCustom("Please choose employee first.")
         End If
+
+        GVPayroll.ActiveFilterString = ""
     End Sub
 
     Private Sub RICEPending_EditValueChanged(sender As Object, e As EventArgs) Handles RICEPending.EditValueChanged
@@ -359,5 +377,12 @@
         FormReportMark.id_report = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVPayrollPeriode_DoubleClick(sender As Object, e As EventArgs) Handles GVPayrollPeriode.DoubleClick
+        Try
+            XTCPayroll.SelectedTabPage = XTPSalaryFormat
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

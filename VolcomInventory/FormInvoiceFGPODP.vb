@@ -1,5 +1,6 @@
 ﻿Public Class FormInvoiceFGPODP
     Public id_dp As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -19,6 +20,9 @@
         load_det()
         '
         If id_dp = "-1" Then
+            BtnPrint.Visible = False
+            BtnViewJournal.Visible = False
+            BMark.Visible = False
             'new
             'vendor 
             SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
@@ -37,6 +41,10 @@
             calculate()
         Else
             'edit
+            BtnPrint.Visible = True
+            BtnViewJournal.Visible = True
+            BMark.Visible = True
+
             Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -57,10 +65,11 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pnd.`id_pn_fgpo`=" & id_dp
+WHERE pnd.`id_pn_fgpo`='" & id_dp & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
+        calculate()
     End Sub
 
     Sub calculate()
@@ -97,7 +106,6 @@ WHERE pnd.`id_pn_fgpo`=" & id_dp
         Next
 
         Dim is_dup As Boolean = False
-
         If is_ok Then
             'check on grid
             Dim inv_number As String = ""
@@ -150,7 +158,43 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
                 submit_who_prepared("189", id_dp, id_user)
             Else
                 'edit
+                Dim query As String = ""
             End If
         End If
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=189 AND ad.id_report=" + id_dp + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormInvoiceFGPODP_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "189"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_dp
+        FormReportMark.ShowDialog()
     End Sub
 End Class

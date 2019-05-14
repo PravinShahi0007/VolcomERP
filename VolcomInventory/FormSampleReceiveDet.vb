@@ -157,7 +157,7 @@
 
         TEPONumber.Text = data.Rows(0)("sample_purc_number").ToString
 
-        id_comp_to = data.Rows(0)("id_comp_contact_to").ToString
+        id_comp_to = data.Rows(0)("id_comp_contact_ship_to").ToString
         TECompName.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
         TECompShipToName.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_ship_to").ToString), "1")
 

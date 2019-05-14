@@ -146,7 +146,7 @@
         query += "(a.pl_prod_order_date) As pl_prod_order_date, a.id_report_status,c.report_status, "
         query += "d.id_design,b.id_delivery, e.delivery, f.season, e.id_season, "
         query += "a.id_comp_contact_from, a.id_comp_contact_to, (i.comp_name) As comp_name_to, (i.comp_number) As comp_number_to, (k.comp_name) As comp_name_from, (k.comp_number) As comp_number_from, "
-        query += "alloc.id_pd_alloc, alloc.pd_alloc "
+        query += "alloc.id_pd_alloc, alloc.pd_alloc, e.est_wh_date, IF(ISNULL(d.in_store_date_actual), e.delivery_date, d.in_store_date_actual) AS `est_in_store_date` "
         query += "FROM tb_pl_prod_order a 
         LEFT JOIN (
 	        SELECT pl.id_pl_prod_order, SUM(pld.pl_prod_order_det_qty) AS `total_qty`

@@ -383,20 +383,20 @@ Partial Public Class ReportSampleReceive
         '
         Me.LFromName.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LFromName.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.LFromName.LocationFloat = New DevExpress.Utils.PointFloat(79.08328!, 4.000003!)
+        Me.LFromName.LocationFloat = New DevExpress.Utils.PointFloat(79.08328!, 4.000008!)
         Me.LFromName.Name = "LFromName"
         Me.LFromName.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LFromName.SizeF = New System.Drawing.SizeF(247.9167!, 13.58335!)
+        Me.LFromName.SizeF = New System.Drawing.SizeF(560.9166!, 13.58335!)
         Me.LFromName.StylePriority.UseBorders = False
         Me.LFromName.StylePriority.UseFont = False
         '
         'LToName
         '
         Me.LToName.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LToName.LocationFloat = New DevExpress.Utils.PointFloat(79.08328!, 17.58337!)
+        Me.LToName.LocationFloat = New DevExpress.Utils.PointFloat(79.08328!, 17.58336!)
         Me.LToName.Name = "LToName"
         Me.LToName.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LToName.SizeF = New System.Drawing.SizeF(247.9167!, 13.58335!)
+        Me.LToName.SizeF = New System.Drawing.SizeF(560.9166!, 13.58335!)
         Me.LToName.StylePriority.UseBorders = False
         '
         'XrLabel2

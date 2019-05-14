@@ -63,6 +63,56 @@
         Return query
     End Function
 
+    Public Function queryMainLess(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT a.id_pl_sales_order_del, a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,(d.id_comp) AS `id_store`,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, CONCAT(d.comp_number, ' - ', d.comp_name) AS `store`, (d.address_primary) AS store_address_to, d.id_so_type, a.id_report_status, f.report_status, "
+        query += "a.pl_sales_order_del_note, a.pl_sales_order_del_date, DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, a.pl_sales_order_del_number, b.sales_order_number, b.sales_order_ol_shop_number, IFNULL(b.customer_name,'') AS `customer_name`, "
+        query += "DATE_FORMAT(a.pl_sales_order_del_date,'%d %M %Y') AS pl_sales_order_del_date, a.id_comp_contact_from,(wh.id_comp) AS `id_wh`, (wh.comp_number) AS `wh_number`,(wh.comp_name) AS `wh_name`, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, a.id_wh_drawer, drw.wh_drawer_code, drw.wh_drawer, cat.id_so_status, cat.so_status, "
+        query += "a.last_update, getUserEmp(a.last_update_by, 1) AS `last_user`, ('No') AS `is_select`, IFNULL(det.`total`,0) AS `total`, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.is_combine, IFNULL(a.id_combine,0) AS `id_combine`, IFNULL(comb.combine_number,'-') AS `combine_number`, b.sales_order_ol_shop_number, IFNULL(pb.prepared_by,'-') AS `prepared_by`, a.is_use_unique_code "
+        query += "FROM tb_pl_sales_order_del a "
+        query += "INNER JOIN tb_sales_order b ON a.id_sales_order = b.id_sales_order "
+        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
+        query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
+        query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
+        query += "INNER JOIN tb_m_comp_contact wh_cont ON wh_cont.id_comp_contact = a.id_comp_contact_from "
+        query += "INNER JOIN tb_m_comp wh ON wh.id_comp = wh_cont.id_comp "
+        query += "INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = b.id_so_status "
+        query += "LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer "
+        query += "LEFT JOIN( "
+        query += "SELECT del.id_pl_sales_order_del, SUM(det.pl_sales_order_del_det_qty) AS `total` "
+        query += "FROM tb_pl_sales_order_del del "
+        query += "INNER JOIN tb_pl_sales_order_del_det det ON del.id_pl_sales_order_del = det.id_pl_sales_order_del "
+        query += "GROUP BY del.id_pl_sales_order_del "
+        query += ") det ON det.id_pl_sales_order_del = a.id_pl_sales_order_del "
+        query += "LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=b.id_emp_uni_period 
+        LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = b.id_uni_type 
+        LEFT JOIN tb_emp_uni_budget ub ON ub.id_emp_uni_budget = b.id_emp_uni_budget
+        LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee 
+        LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = a.id_combine 
+        LEFT JOIN (
+            SELECT rm.id_report, e.employee_name AS `prepared_by` 
+            FROM tb_report_mark rm
+            INNER JOIN tb_m_employee e ON e.id_employee = rm.id_employee
+            WHERE rm.report_mark_type=43 AND rm.id_report_status=1
+            GROUP BY rm.id_report
+        ) pb ON pb.id_report = a.id_pl_sales_order_del "
+        query += "WHERE a.id_pl_sales_order_del>0 "
+        query += condition + " "
+        query += "ORDER BY a.id_pl_sales_order_del " + order_type
+        Return query
+    End Function
+
     Public Function queryCombine(ByVal condition As String, ByVal order_type As String) As String
         If order_type = "1" Then
             order_type = "ASC "

@@ -83,7 +83,8 @@ Public Class FormSalesDelOrderDet
 
             'query view based on edit id's
             Dim query_c As New ClassSalesDelOrder()
-            Dim query As String = query_c.queryMain("AND a.id_pl_sales_order_del=" + id_pl_sales_order_del + " ", "2")
+            Dim query As String = query_c.queryMainLess("AND a.id_pl_sales_order_del=" + id_pl_sales_order_del + " ", "2")
+
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store_contact_to = data.Rows(0)("id_store_contact_to").ToString
@@ -134,9 +135,32 @@ Public Class FormSalesDelOrderDet
         End If
     End Sub
     Sub viewSalesOrder()
-        Dim query_c As New ClassSalesOrder()
-        Dim query As String = query_c.queryMain("AND a.id_sales_order=" + id_sales_order + " ", "2")
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'Dim query_c As New ClassSalesOrder()
+        'Dim query As String = query_c.queryMain("AND a.id_sales_order=" + id_sales_order + " ", "2")
+        Dim qso As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,  
+        IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type, a.final_comment, a.final_date, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name 
+        FROM tb_sales_order a 
+        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
+        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+        INNER JOIN tb_m_comp_contact wh_c ON wh_c.id_comp_contact = a.id_warehouse_contact_to 
+        INNER JOIN tb_m_comp wh ON wh_c.id_comp = wh.id_comp 
+        INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status 
+        INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = a.id_prepare_status 
+        INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = a.id_so_status 
+        LEFT JOIN ( 
+            SELECT so_det.id_sales_order, SUM(so_det.sales_order_det_qty) AS tot_so  
+            FROM tb_sales_order_det so_det GROUP BY so_det.id_sales_order 
+        ) so_item ON so_item.id_sales_order = a.id_sales_order 
+        LEFT JOIN tb_fg_so_reff an On an.id_fg_so_reff = a.id_fg_so_reff 
+        LEFT JOIN tb_lookup_pd_alloc alloc On alloc.id_pd_alloc = d.id_pd_alloc 
+        LEFT JOIN tb_lookup_so_cat del_cat On del_cat.id_so_cat = alloc.id_so_cat 
+        LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = wh.id_drawer_def 
+        LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=a.id_emp_uni_period 
+        LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = a.id_uni_type 
+        LEFT JOIN tb_emp_uni_budget ub ON ub.id_emp_uni_budget = a.id_emp_uni_budget
+        LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee 
+        WHERE a.id_sales_order>0 AND a.id_sales_order=" + id_sales_order + "  ORDER BY a.id_sales_order DESC "
+        Dim data As DataTable = execute_query(qso, -1, True, "", "", "", "")
 
         'SO
         TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
@@ -218,7 +242,7 @@ Public Class FormSalesDelOrderDet
     Sub viewDetail()
         If action = "ins" Then
             'action
-            Dim query As String = "CALL view_sales_order_limit('" + id_sales_order + "', '0', '0')"
+            Dim query As String = "CALL view_sales_order_limit_less('" + id_sales_order + "', '0', '0')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         ElseIf action = "upd" Then
@@ -568,7 +592,7 @@ Public Class FormSalesDelOrderDet
         Dim cond_check_data As Boolean = True
         Dim dt_cek As DataTable
         If action = "ins" Then
-            dt_cek = execute_query("CALL view_sales_order_limit(" + id_sales_order + ", 0, 0)", -1, True, "", "", "", "")
+            dt_cek = execute_query("CALL view_sales_order_limit_less(" + id_sales_order + ", 0, 0)", -1, True, "", "", "", "")
         Else
             dt_cek = execute_query("CALL view_sales_order_limit(" + id_sales_order + ", 0, " + id_pl_sales_order_del + ")", -1, True, "", "", "", "")
         End If
@@ -691,8 +715,9 @@ Public Class FormSalesDelOrderDet
                     submit_who_prepared("43", id_pl_sales_order_del, id_user)
 
 
-                    FormSalesDelOrder.viewSalesDelOrder()
-                    FormSalesDelOrder.GVSalesDelOrder.FocusedRowHandle = find_row(FormSalesDelOrder.GVSalesDelOrder, "id_pl_sales_order_del", id_pl_sales_order_del)
+                    FormSalesDelOrder.GCSalesDelOrder.DataSource = Nothing
+                    'FormSalesDelOrder.viewSalesDelOrder()
+                    'FormSalesDelOrder.GVSalesDelOrder.FocusedRowHandle = find_row(FormSalesDelOrder.GVSalesDelOrder, "id_pl_sales_order_del", id_pl_sales_order_del)
                     action = "upd"
                     actionLoad()
                     exportToBOF(False)
@@ -874,14 +899,19 @@ Public Class FormSalesDelOrderDet
 
     Sub loadCodeDetail()
         Cursor = Cursors.WaitCursor
-        Dim id_product_param As String = ""
-        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
-            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
-                id_product_param += ";"
-            End If
-        Next
-        codeAvailableIns(id_product_param)
+        makeSafeGV(GVItemList)
+        GVItemList.ActiveFilterString = "[status]<>'0'"
+        If GVItemList.RowCount > 0 Then
+            Dim id_product_param As String = ""
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+                If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                    id_product_param += ";"
+                End If
+            Next
+            codeAvailableIns(id_product_param)
+        End If
+        GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 

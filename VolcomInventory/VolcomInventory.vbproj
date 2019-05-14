@@ -2185,6 +2185,12 @@
     <Compile Include="FormProdDebitNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandAdd.Designer.vb">
+      <DependentUpon>FormProdDemandAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDemandBreakSize.Designer.vb">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
     </Compile>
@@ -4021,6 +4027,24 @@
     <Compile Include="FormSalesOrderRef.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderReport.Designer.vb">
+      <DependentUpon>FormSalesOrderReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDet.Designer.vb">
+      <DependentUpon>FormSalesOrderReportDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDetNew.Designer.vb">
+      <DependentUpon>FormSalesOrderReportDetNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDetNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderSingleV2.Designer.vb">
       <DependentUpon>FormSalesOrderSingleV2.vb</DependentUpon>
     </Compile>
@@ -5015,6 +5039,12 @@
       <DependentUpon>FormTest.vb</DependentUpon>
     </Compile>
     <Compile Include="FormTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTestCheckvb.Designer.vb">
+      <DependentUpon>FormTestCheckvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTestCheckvb.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormTestImage.Designer.vb">
@@ -6338,6 +6368,12 @@
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportProductionFinalClear.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProductionHOAttachment.Designer.vb">
+      <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionHOAttachment.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportProductionKO.Designer.vb">
@@ -7742,6 +7778,9 @@
     <EmbeddedResource Include="FormProdDebitNoteDet.resx">
       <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandAdd.resx">
+      <DependentUpon>FormProdDemandAdd.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandBreakSize.resx">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
     </EmbeddedResource>
@@ -8893,6 +8932,15 @@
     <EmbeddedResource Include="FormSalesOrderRef.resx">
       <DependentUpon>FormSalesOrderRef.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReport.resx">
+      <DependentUpon>FormSalesOrderReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReportDet.resx">
+      <DependentUpon>FormSalesOrderReportDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReportDetNew.resx">
+      <DependentUpon>FormSalesOrderReportDetNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSingleV2.resx">
       <DependentUpon>FormSalesOrderSingleV2.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9506,6 +9554,9 @@
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTestCheckvb.resx">
+      <DependentUpon>FormTestCheckvb.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
@@ -10285,6 +10336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionHOAttachment.resx">
+      <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionKO.resx">
       <DependentUpon>ReportProductionKO.vb</DependentUpon>

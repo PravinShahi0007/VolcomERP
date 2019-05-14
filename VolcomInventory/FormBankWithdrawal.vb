@@ -26,10 +26,12 @@
         load_vendor()
         load_trans_type()
         load_status_payment()
-
+        '
         load_trans_type_po()
+        '
         load_vendor_po()
         load_vendor_expense()
+        load_vendor_fgpo()
     End Sub
 
     Sub load_status_payment()
@@ -60,6 +62,14 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 WHERE c.id_comp_cat='8'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
+    End Sub
+
+    Sub load_vendor_fgpo()
+        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
+                                WHERE c.id_comp_cat='1' "
+        viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
     Sub load_vendor_expense()
@@ -107,7 +117,48 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
         GCList.DataSource = data
         GVList.BestFitColumns()
     End Sub
+    '
+    Sub load_fgpo()
+        Dim where_string As String = ""
 
+        If Not SLEFGPOVendor.EditValue.ToString = "0" Then
+            where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT 'no' AS is_check,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS type,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,acc.`acc_name`,acc.`acc_description`
+,det.amount AS total 
+,IFNULL(payment.value,0) as total_paid
+,IFNULL(payment_pending.jml,0) as total_pending
+,(det.amount - IFNULL(payment.value,0)) as balance
+FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN `tb_a_acc` acc ON acc.`id_acc`=pn.`id_acc_payfrom`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+LEFT JOIN
+(
+	SELECT COUNT(pyd.id_report) as jml,pyd.id_report FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='189'
+	GROUP BY pyd.id_report
+)payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='189'
+	GROUP BY pyd.id_report
+)payment ON payment.id_report=pn.id_pn_fgpo
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCFGPO.DataSource = data
+        GVFGPO.BestFitColumns()
+    End Sub
+    '
     Sub load_po()
         Dim where_string As String = ""
         Dim having_string As String = ""
@@ -345,5 +396,30 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
             Catch ex As Exception
             End Try
         End If
+    End Sub
+
+    Private Sub BViewFGPOPay_Click(sender As Object, e As EventArgs) Handles BViewFGPOPay.Click
+        load_fgpo()
+    End Sub
+
+    Private Sub BCreatePaymentFGPO_Click(sender As Object, e As EventArgs) Handles BCreatePaymentFGPO.Click
+        GVFGPO.ActiveFilterString = ""
+        GVFGPO.ActiveFilterString = "[is_check]='yes'"
+
+        Dim is_pending As Boolean = False
+        'check
+        For i As Integer = 0 To GVFGPO.RowCount - 1
+            If GVFGPO.GetRowCellValue(i, "total_pending") > 0 Then
+                is_pending = True
+            End If
+        Next
+        If is_pending = True Then
+            warningCustom("Please process all pending payment for selected purchase")
+        Else
+            FormBankWithdrawalDet.report_mark_type = "189"
+            FormBankWithdrawalDet.ShowDialog()
+        End If
+
+        GVFGPO.ActiveFilterString = ""
     End Sub
 End Class

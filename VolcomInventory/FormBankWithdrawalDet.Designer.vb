@@ -209,7 +209,7 @@ Partial Class FormBankWithdrawalDet
         '
         'SLEReportType
         '
-        Me.SLEReportType.Location = New System.Drawing.Point(207, 38)
+        Me.SLEReportType.Location = New System.Drawing.Point(90, 38)
         Me.SLEReportType.Name = "SLEReportType"
         Me.SLEReportType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEReportType.Properties.ReadOnly = True
@@ -241,7 +241,7 @@ Partial Class FormBankWithdrawalDet
         '
         'SLEPayType
         '
-        Me.SLEPayType.Location = New System.Drawing.Point(90, 38)
+        Me.SLEPayType.Location = New System.Drawing.Point(293, 38)
         Me.SLEPayType.Name = "SLEPayType"
         Me.SLEPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPayType.Properties.ReadOnly = True
@@ -589,7 +589,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "DP Already Paid"
+        Me.GridColumn2.Caption = "Already Paid"
         Me.GridColumn2.DisplayFormat.FormatString = "N2"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.FieldName = "total_dp"
