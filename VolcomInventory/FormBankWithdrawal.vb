@@ -147,7 +147,7 @@ LEFT JOIN
 )payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
 LEFT JOIN
 (
-	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	SELECT pyd.id_report, SUM(pyd.`value`+pyd.`vat`) AS `value` FROM `tb_payment_det` pyd
 	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='189'
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=pn.id_pn_fgpo
