@@ -8,6 +8,7 @@
     Dim season As String = ""
     Dim is_load_break_size_rev As Boolean = False
     Dim is_load_break_size As Boolean = False
+    Dim is_revise_qty_order As String = "-1"
 
     Private Sub FormProdDemandRevDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -33,12 +34,30 @@
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
         season = data.Rows(0)("season").ToString
+        is_revise_qty_order = data.Rows(0)("is_revise_qty_order").ToString
+        If is_revise_qty_order = "1" Then
+            CEChangeOrder.EditValue = True
+        Else
+            CEChangeOrder.EditValue = False
+        End If
         If data.Rows(0)("id_pd_kind").ToString = "1" Then
-            rmt = "143"
+            If is_revise_qty_order = "1" Then
+                rmt = "143"
+            Else
+                rmt = "194"
+            End If
         ElseIf data.Rows(0)("id_pd_kind").ToString = "2" Then
-            rmt = "144"
+            If is_revise_qty_order = "1" Then
+                rmt = "144"
+            Else
+                rmt = "195"
+            End If
         ElseIf data.Rows(0)("id_pd_kind").ToString = "3" Then
-            rmt = "145"
+            If is_revise_qty_order = "1" Then
+                rmt = "145"
+            Else
+                rmt = "196"
+            End If
         End If
         viewDetail()
         allow_status()
@@ -70,15 +89,19 @@
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            MENote.Enabled = False
+            MENote.Enabled = True
             PanelControlNav.Visible = True
             BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
+            CEChangeOrder.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
             PanelControlNav.Visible = False
             BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+            CEChangeOrder.Enabled = False
         End If
 
         'reset propose
@@ -98,6 +121,8 @@
             MENote.Enabled = False
             BtnPrint.Visible = False
             PanelControlNav.Visible = False
+            BtnSaveChanges.Visible = False
+            CEChangeOrder.Enabled = False
         End If
     End Sub
 
@@ -191,16 +216,56 @@
         '    cond_exist_file = False
         'End If
 
+        'cek tipe
+        makeSafeGV(GVRevision)
+        Dim cond_cek_tipe As Boolean = True
+        Dim err_stt As String = ""
+        If CEChangeOrder.EditValue = True Then
+            GVRevision.ActiveFilterString = "[TOTAL QTY]=[TOTAL QTY PD REF]"
+            If GVRevision.RowCount > 0 Then
+                err_stt += "Total qty revised still the same as before, please make sure first for these design : " + System.Environment.NewLine
+                For i As Integer = 0 To GVRevision.RowCount - 1
+                    If i > 0 Then
+                        err_stt += System.Environment.NewLine
+                    End If
+                    err_stt += "(" + (i + 1).ToString + ") " + GVRevision.GetRowCellValue(i, "CODE").ToString + " - " + GVRevision.GetRowCellValue(i, "DESCRIPTION").ToString
+                Next
+                cond_cek_tipe = False
+            End If
+        Else
+            GVRevision.ActiveFilterString = "[TOTAL QTY]<>[TOTAL QTY PD REF]"
+            If GVRevision.RowCount > 0 Then
+                err_stt += "Total qty revised must be the same as the previous one, please make sure for these design : " + System.Environment.NewLine
+                For i As Integer = 0 To GVRevision.RowCount - 1
+                    If i > 0 Then
+                        err_stt += System.Environment.NewLine
+                    End If
+                    err_stt += "(" + (i + 1).ToString + ") " + GVRevision.GetRowCellValue(i, "CODE").ToString + " - " + GVRevision.GetRowCellValue(i, "DESCRIPTION").ToString
+                Next
+                cond_cek_tipe = False
+            End If
+        End If
+        GVRevision.ActiveFilterString = ""
+
         If Not cond_exist_file Then
             stopCustom("Please attach document first")
+        ElseIf Not cond_cek_tipe Then
+            stopCustom(err_stt)
         ElseIf GVRevision.RowCount <= 0 Then
             stopCustom("No revisions were made. If you want to cancel this revision, please click 'Cancel Propose'")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm PD revision ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
+                Dim is_revise_qty_order_input As String = ""
+                If CEChangeOrder.EditValue = True Then
+                    is_revise_qty_order_input = "1"
+                Else
+                    is_revise_qty_order_input = "2"
+                End If
+
                 'update confirm
-                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1 WHERE id_prod_demand_rev='" + id + "'"
+                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1, note='" + addSlashes(MENote.Text) + "', is_revise_qty_order=" + is_revise_qty_order_input + " WHERE id_prod_demand_rev='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
 
                 'submit approval 
@@ -645,6 +710,28 @@
             End If
         Else
             stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            'head
+            Dim is_revise_qty_order_input As String = ""
+            If CEChangeOrder.EditValue = True Then
+                is_revise_qty_order_input = "1"
+            Else
+                is_revise_qty_order_input = "2"
+            End If
+            Dim query As String = "UPDATE tb_prod_demand_rev SET note='" + addSlashes(MENote.Text) + "', is_revise_qty_order=" + is_revise_qty_order_input + " WHERE id_prod_demand_rev='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+
+            FormProdDemandRev.viewData()
+            FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)
+            actionLoad()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
