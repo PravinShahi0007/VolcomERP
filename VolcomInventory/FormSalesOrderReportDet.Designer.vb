@@ -21,10 +21,11 @@ Partial Class FormSalesOrderReportDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderReportDet))
         Me.PanelControlHead = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.TxtTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -47,12 +48,13 @@ Partial Class FormSalesOrderReportDet
         Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlHead.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,8 +63,6 @@ Partial Class FormSalesOrderReportDet
         CType(Me.GVNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlHead
@@ -78,6 +78,27 @@ Partial Class FormSalesOrderReportDet
         Me.PanelControlHead.Size = New System.Drawing.Size(794, 73)
         Me.PanelControlHead.TabIndex = 0
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.TxtNumber)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.DECreated)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(528, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(264, 69)
+        Me.PanelControl2.TabIndex = 8
+        '
+        'TxtNumber
+        '
+        Me.TxtNumber.Enabled = False
+        Me.TxtNumber.Location = New System.Drawing.Point(87, 7)
+        Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Size = New System.Drawing.Size(165, 20)
+        Me.TxtNumber.TabIndex = 4
+        '
         'LabelControl4
         '
         Me.LabelControl4.Location = New System.Drawing.Point(16, 36)
@@ -85,6 +106,14 @@ Partial Class FormSalesOrderReportDet
         Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 7
         Me.LabelControl4.Text = "Created Date"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(16, 10)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl3.TabIndex = 5
+        Me.LabelControl3.Text = "Number"
         '
         'DECreated
         '
@@ -98,22 +127,6 @@ Partial Class FormSalesOrderReportDet
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreated.Size = New System.Drawing.Size(165, 20)
         Me.DECreated.TabIndex = 6
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(16, 10)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl3.TabIndex = 5
-        Me.LabelControl3.Text = "Number"
-        '
-        'TxtNumber
-        '
-        Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(87, 7)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Size = New System.Drawing.Size(165, 20)
-        Me.TxtNumber.TabIndex = 4
         '
         'TxtTo
         '
@@ -247,7 +260,10 @@ Partial Class FormSalesOrderReportDet
         '
         'RepositoryItemProgressBar
         '
+        Me.RepositoryItemProgressBar.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBar.Name = "RepositoryItemProgressBar"
+        Me.RepositoryItemProgressBar.PercentView = False
         Me.RepositoryItemProgressBar.ShowTitle = True
         '
         'GridColumnpros_del
@@ -316,19 +332,6 @@ Partial Class FormSalesOrderReportDet
         Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
         Me.RepositoryItemProgressBarScan.ShowTitle = True
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.TxtNumber)
-        Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Controls.Add(Me.DECreated)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(528, 2)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(264, 69)
-        Me.PanelControl2.TabIndex = 8
-        '
         'FormSalesOrderReportDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -345,9 +348,12 @@ Partial Class FormSalesOrderReportDet
         CType(Me.PanelControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlHead.ResumeLayout(False)
         Me.PanelControlHead.PerformLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -356,9 +362,6 @@ Partial Class FormSalesOrderReportDet
         CType(Me.GVNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

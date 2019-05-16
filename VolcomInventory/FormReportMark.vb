@@ -3648,7 +3648,6 @@
                                 FROM tb_emp_leave lve WHERE lve.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'"
                         execute_non_query(query_pot, True, "", "", "", "")
                     End If
-
                 End If
 
                 'complete

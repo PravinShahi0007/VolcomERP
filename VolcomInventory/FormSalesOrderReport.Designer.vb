@@ -35,6 +35,7 @@ Partial Class FormSalesOrderReport
         Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnNewpros_completed = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
@@ -69,7 +70,6 @@ Partial Class FormSalesOrderReport
         Me.DEFromAll = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSO.SuspendLayout()
         Me.XTPNew.SuspendLayout()
@@ -78,6 +78,7 @@ Partial Class FormSalesOrderReport
         CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +94,6 @@ Partial Class FormSalesOrderReport
         CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSO
@@ -131,7 +131,6 @@ Partial Class FormSalesOrderReport
         Me.GVNew.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNewid_sales_order_gen, Me.GridColumnNewid_so_status, Me.GridColumnNewsales_order_gen_reff, Me.GridColumnNewsales_order_gen_date, Me.GridColumnNewsales_order_gen_note, Me.GridColumnNewtotal_order, Me.GridColumnNew, Me.GridColumnNewtotal_completed, Me.GridColumnNewProsScan, Me.GridColumnNewpros_completed})
         Me.GVNew.GridControl = Me.GCNew
         Me.GVNew.Name = "GVNew"
-        Me.GVNew.OptionsBehavior.ReadOnly = True
         Me.GVNew.OptionsFind.AlwaysVisible = True
         Me.GVNew.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVNew.OptionsView.ColumnAutoWidth = False
@@ -223,7 +222,10 @@ Partial Class FormSalesOrderReport
         '
         'RepositoryItemProgressBarScan
         '
+        Me.RepositoryItemProgressBarScan.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBarScan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
+        Me.RepositoryItemProgressBarScan.PercentView = False
         Me.RepositoryItemProgressBarScan.ShowTitle = True
         '
         'GridColumnNewpros_completed
@@ -252,6 +254,15 @@ Partial Class FormSalesOrderReport
         Me.GCFilter.Name = "GCFilter"
         Me.GCFilter.Size = New System.Drawing.Size(871, 39)
         Me.GCFilter.TabIndex = 4
+        '
+        'CEShowHighlight
+        '
+        Me.CEShowHighlight.Enabled = False
+        Me.CEShowHighlight.Location = New System.Drawing.Point(398, 9)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "show highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
+        Me.CEShowHighlight.TabIndex = 8899
         '
         'BtnView
         '
@@ -448,7 +459,10 @@ Partial Class FormSalesOrderReport
         '
         'RepositoryItemProgressBar
         '
+        Me.RepositoryItemProgressBar.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBar.Name = "RepositoryItemProgressBar"
+        Me.RepositoryItemProgressBar.PercentView = False
         Me.RepositoryItemProgressBar.ShowTitle = True
         '
         'GridColumnpros_del
@@ -577,15 +591,6 @@ Partial Class FormSalesOrderReport
         Me.LabelControl4.TabIndex = 8892
         Me.LabelControl4.Text = "From"
         '
-        'CEShowHighlight
-        '
-        Me.CEShowHighlight.Enabled = False
-        Me.CEShowHighlight.Location = New System.Drawing.Point(398, 9)
-        Me.CEShowHighlight.Name = "CEShowHighlight"
-        Me.CEShowHighlight.Properties.Caption = "show highlight"
-        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
-        Me.CEShowHighlight.TabIndex = 8899
-        '
         'FormSalesOrderReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -604,6 +609,7 @@ Partial Class FormSalesOrderReport
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -620,7 +626,6 @@ Partial Class FormSalesOrderReport
         CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

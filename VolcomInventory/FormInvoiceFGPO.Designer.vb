@@ -95,6 +95,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnDPAmountVAT = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPPrePayment.SuspendLayout()
@@ -336,7 +337,7 @@ Partial Class FormInvoiceFGPO
         '
         'GVDPFGPO
         '
-        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GCDPListFGPODPAmount, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
+        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GCDPListFGPODPAmount, Me.GridColumnDPAmountVAT, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
         Me.GVDPFGPO.GridControl = Me.GCDPFGPO
         Me.GVDPFGPO.Name = "GVDPFGPO"
         Me.GVDPFGPO.OptionsView.ShowGroupPanel = False
@@ -412,22 +413,32 @@ Partial Class FormInvoiceFGPO
         '
         'GCDPListFGPODPAmount
         '
+        Me.GCDPListFGPODPAmount.AppearanceCell.Options.UseTextOptions = True
+        Me.GCDPListFGPODPAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCDPListFGPODPAmount.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCDPListFGPODPAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GCDPListFGPODPAmount.Caption = "DP Amount"
         Me.GCDPListFGPODPAmount.DisplayFormat.FormatString = "N2"
         Me.GCDPListFGPODPAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPODPAmount.FieldName = "dp_amount"
         Me.GCDPListFGPODPAmount.Name = "GCDPListFGPODPAmount"
+        Me.GCDPListFGPODPAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount", "{0:N2}")})
         Me.GCDPListFGPODPAmount.Visible = True
         Me.GCDPListFGPODPAmount.VisibleIndex = 7
         Me.GCDPListFGPODPAmount.Width = 212
         '
         'GCDPListFGPOAmount
         '
+        Me.GCDPListFGPOAmount.AppearanceCell.Options.UseTextOptions = True
+        Me.GCDPListFGPOAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCDPListFGPOAmount.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCDPListFGPOAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GCDPListFGPOAmount.Caption = "FGPO Amount"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatString = "N2"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPOAmount.FieldName = "po_amount"
         Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
+        Me.GCDPListFGPOAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
         Me.GCDPListFGPOAmount.Visible = True
         Me.GCDPListFGPOAmount.VisibleIndex = 6
         Me.GCDPListFGPOAmount.Width = 226
@@ -773,6 +784,21 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
+        'GridColumnDPAmountVAT
+        '
+        Me.GridColumnDPAmountVAT.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDPAmountVAT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDPAmountVAT.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnDPAmountVAT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDPAmountVAT.Caption = "DP VAT Amount"
+        Me.GridColumnDPAmountVAT.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDPAmountVAT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDPAmountVAT.FieldName = "dp_amount_vat"
+        Me.GridColumnDPAmountVAT.Name = "GridColumnDPAmountVAT"
+        Me.GridColumnDPAmountVAT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount_vat", "{0:N2}")})
+        Me.GridColumnDPAmountVAT.Visible = True
+        Me.GridColumnDPAmountVAT.VisibleIndex = 8
+        '
         'FormInvoiceFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -906,4 +932,5 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDPAmountVAT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

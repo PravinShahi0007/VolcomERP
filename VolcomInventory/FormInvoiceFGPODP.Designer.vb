@@ -73,7 +73,12 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -108,6 +113,8 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -445,6 +452,10 @@ Partial Class FormInvoiceFGPODP
         'PanelControl9
         '
         Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl9.Controls.Add(Me.TextEdit2)
+        Me.PanelControl9.Controls.Add(Me.LabelControl8)
+        Me.PanelControl9.Controls.Add(Me.TextEdit1)
+        Me.PanelControl9.Controls.Add(Me.LabelControl4)
         Me.PanelControl9.Controls.Add(Me.TETotal)
         Me.PanelControl9.Controls.Add(Me.LabelControl6)
         Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Right
@@ -472,9 +483,9 @@ Partial Class FormInvoiceFGPODP
         '
         Me.LabelControl6.Location = New System.Drawing.Point(13, 11)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl6.Size = New System.Drawing.Size(64, 13)
         Me.LabelControl6.TabIndex = 8905
-        Me.LabelControl6.Text = "Total Payment"
+        Me.LabelControl6.Text = "Total Amount"
         '
         'PanelControl10
         '
@@ -517,7 +528,7 @@ Partial Class FormInvoiceFGPODP
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn12, Me.GridColumn4, Me.GridColumn3, Me.GridColumnNumber, Me.GridColumn11, Me.GridColumnNote, Me.GridColumn2, Me.GridColumnBBaldue, Me.GridColumnPayment})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn12, Me.GridColumn4, Me.GridColumn3, Me.GridColumnNumber, Me.GridColumn11, Me.GridColumnNote, Me.GridColumn2, Me.GridColumnBBaldue, Me.GridColumnPayment, Me.GridColumn9})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -546,7 +557,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 179
+        Me.GridColumn4.Width = 171
         '
         'GridColumn3
         '
@@ -556,7 +567,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 378
+        Me.GridColumn3.Width = 361
         '
         'GridColumnNumber
         '
@@ -566,7 +577,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 0
-        Me.GridColumnNumber.Width = 238
+        Me.GridColumnNumber.Width = 227
         '
         'GridColumn11
         '
@@ -574,8 +585,8 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn11.FieldName = "inv_number"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
-        Me.GridColumn11.Width = 163
+        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.Width = 179
         '
         'GridColumnNote
         '
@@ -583,8 +594,8 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 5
-        Me.GridColumnNote.Width = 296
+        Me.GridColumnNote.VisibleIndex = 6
+        Me.GridColumnNote.Width = 332
         '
         'GridColumn2
         '
@@ -620,7 +631,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnPayment.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnPayment.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnPayment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnPayment.Caption = "Pay Amount"
+        Me.GridColumnPayment.Caption = "Amount"
         Me.GridColumnPayment.ColumnEdit = Me.RITEDecimal
         Me.GridColumnPayment.DisplayFormat.FormatString = "N2"
         Me.GridColumnPayment.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -630,7 +641,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnPayment.Visible = True
         Me.GridColumnPayment.VisibleIndex = 3
-        Me.GridColumnPayment.Width = 378
+        Me.GridColumnPayment.Width = 222
         '
         'RITEDecimal
         '
@@ -639,12 +650,74 @@ Partial Class FormInvoiceFGPODP
         Me.RITEDecimal.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEDecimal.Name = "RITEDecimal"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.Caption = "VAT"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "vat"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat", "{0:N2}")})
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 4
+        Me.GridColumn9.Width = 140
+        '
         'RICECheckReceive
         '
         Me.RICECheckReceive.AutoHeight = False
         Me.RICECheckReceive.Name = "RICECheckReceive"
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(88, 34)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TextEdit1.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TextEdit1.Properties.DisplayFormat.FormatString = "N2"
+        Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Properties.ReadOnly = True
+        Me.TextEdit1.Size = New System.Drawing.Size(251, 20)
+        Me.TextEdit1.TabIndex = 8908
+        Me.TextEdit1.TabStop = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(13, 37)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl4.TabIndex = 8907
+        Me.LabelControl4.Text = "Total VAT"
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.EditValue = ""
+        Me.TextEdit2.Location = New System.Drawing.Point(88, 60)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TextEdit2.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TextEdit2.Properties.DisplayFormat.FormatString = "N2"
+        Me.TextEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TextEdit2.Properties.EditValueChangedDelay = 1
+        Me.TextEdit2.Properties.ReadOnly = True
+        Me.TextEdit2.Size = New System.Drawing.Size(251, 20)
+        Me.TextEdit2.TabIndex = 8910
+        Me.TextEdit2.TabStop = False
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(13, 63)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl8.TabIndex = 8909
+        Me.LabelControl8.Text = "Grand Total"
         '
         'FormInvoiceFGPODP
         '
@@ -701,6 +774,8 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -758,4 +833,9 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class
