@@ -1,5 +1,6 @@
 ﻿Public Class FormInvoiceFGPODP
     Public id_dp As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -33,6 +34,7 @@
                 newRow("description") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
                 newRow("code") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_code").ToString
                 newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount").ToString
+                newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat").ToString
                 newRow("inv_number") = ""
                 newRow("note") = ""
                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
@@ -60,11 +62,11 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
     End Sub
 
     Sub load_det()
-        Dim query As String = "Select pnd.`id_report` As id_report, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
+        Dim query As String = "Select pnd.`id_report` As id_report, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pnd.`id_pn_fgpo`=" & id_dp
+WHERE pnd.`id_pn_fgpo`='" & id_dp & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
@@ -147,8 +149,8 @@ VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & add
                 'detail
                 query = ""
                 For i = 0 To GVList.RowCount - 1
-                    query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`inv_number`,`note`)
-VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','22','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                    query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
+VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','22','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                 Next
                 execute_non_query(query, True, "", "", "", "")
                 '
@@ -163,10 +165,37 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
     End Sub
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=189 AND ad.id_report=" + id_dp + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
 
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormInvoiceFGPODP_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "189"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_dp
+        FormReportMark.ShowDialog()
     End Sub
 End Class

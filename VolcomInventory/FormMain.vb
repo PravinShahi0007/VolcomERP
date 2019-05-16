@@ -283,7 +283,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Then
             RGAreaManage.Visible = False
         End If
 
@@ -413,7 +413,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Then
             RGAreaManage.Visible = True
         End If
 
@@ -7508,8 +7508,14 @@ Public Class FormMain
             ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 1 Then
                 print_raw(FormProductionHO.GCDetail, "")
             End If
+        ElseIf formName = "FormSalesOrderReport" Then
+            If FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 0 Then
+                print_raw(FormSalesOrderReport.GCNew, "")
+            ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
+                print_raw(FormSalesOrderReport.GCAll, "")
+            End If
         Else
-                RPSubMenu.Visible = False
+            RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -8255,6 +8261,9 @@ Public Class FormMain
         ElseIf formName = "FormProductionHO" Then
             FormProductionHO.Close()
             FormProductionHO.Dispose()
+        ElseIf formName = "FormSalesOrderReport" Then
+            FormSalesOrderReport.Close()
+            FormSalesOrderReport.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9065,6 +9074,12 @@ Public Class FormMain
             End If
         ElseIf formName = "FormReportEstWHInQty" Then
             FormReportEstWHInQty.load_data()
+        ElseIf formName = "FormSalesOrderReport" Then
+            If FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 0 Then
+                FormSalesOrderReport.viewNewOrder()
+            ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
+                FormSalesOrderReport.viewAllOrder()
+            End If
         End If
     End Sub
     'Switch
@@ -13007,6 +13022,20 @@ Public Class FormMain
             FormProductionHO.Show()
             FormProductionHO.WindowState = FormWindowState.Maximized
             FormProductionHO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSalesOrderReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesOrderReport.LinkClicked
+        ' compare prepare order
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesOrderReport.MdiParent = Me
+            FormSalesOrderReport.Show()
+            FormSalesOrderReport.WindowState = FormWindowState.Maximized
+            FormSalesOrderReport.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

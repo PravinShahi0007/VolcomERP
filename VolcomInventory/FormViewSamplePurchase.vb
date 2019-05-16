@@ -10,7 +10,6 @@
         view_po_type(LEPOType)
         viewSeason(LESeason)
         view_payment_type(LEpayment)
-        view_report_status(LEReportStatus)
 
         Dim query As String = String.Format("SELECT id_comp_contact_courier,courier_comm,id_report_status,sample_purc_vat,id_season_orign,sample_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,DATE_FORMAT(sample_purc_date,'%Y-%m-%d') as sample_purc_datex,sample_purc_lead_time,sample_purc_top,id_currency,sample_purc_note FROM tb_sample_purc WHERE id_sample_purc = '{0}'", id_sample_purc)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -22,9 +21,6 @@
 
         'LEpayment.EditValue = Nothing
         LEpayment.ItemIndex = LEpayment.Properties.GetDataSourceRowIndex("id_payment", data.Rows(0)("id_payment").ToString)
-
-        LEReportStatus.EditValue = Nothing
-        LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
 
         LESeason.EditValue = data.Rows(0)("id_season_orign").ToString
         LEPOType.EditValue = data.Rows(0)("id_po_type").ToString()
@@ -125,7 +121,17 @@
     End Sub
     Sub calculate()
         Dim total, sub_tot, gross_tot, vat, discount As Decimal
-
+        '
+        Dim commision_percent, total_comision As Decimal
+        '
+        commision_percent = TEComm.EditValue
+        'search commision
+        total_comision = 0.00
+        For i As Integer = 0 To GVListPurchase.RowCount - 1
+            total_comision += Math.Round(GVListPurchase.GetRowCellValue(i, "total") * (commision_percent / 100), 2)
+        Next
+        TECommValue.EditValue = total_comision
+        '
         Try
             sub_tot = Decimal.Parse(GVListPurchase.Columns("total").SummaryText.ToString)
             vat = (Decimal.Parse(TEVat.Text) / 100) * Decimal.Parse(GVListPurchase.Columns("total").SummaryText.ToString)

@@ -4027,6 +4027,24 @@
     <Compile Include="FormSalesOrderRef.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderReport.Designer.vb">
+      <DependentUpon>FormSalesOrderReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDet.Designer.vb">
+      <DependentUpon>FormSalesOrderReportDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDetNew.Designer.vb">
+      <DependentUpon>FormSalesOrderReportDetNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDetNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderSingleV2.Designer.vb">
       <DependentUpon>FormSalesOrderSingleV2.vb</DependentUpon>
     </Compile>
@@ -8913,6 +8931,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderRef.resx">
       <DependentUpon>FormSalesOrderRef.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReport.resx">
+      <DependentUpon>FormSalesOrderReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReportDet.resx">
+      <DependentUpon>FormSalesOrderReportDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReportDetNew.resx">
+      <DependentUpon>FormSalesOrderReportDetNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSingleV2.resx">
       <DependentUpon>FormSalesOrderSingleV2.vb</DependentUpon>

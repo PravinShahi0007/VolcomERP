@@ -51,6 +51,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnContractStart = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnContractEnd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -142,8 +143,6 @@ Partial Class FormEmpPayroll
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetting = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnContractStart = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.CMViewEmp = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
@@ -308,9 +307,9 @@ Partial Class FormEmpPayroll
         '
         'ViewPopWorksheet
         '
-        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMViewEmp, Me.CMDelEmp})
+        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp})
         Me.ViewPopWorksheet.Name = "ViewPreDel"
-        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 70)
+        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 26)
         '
         'CMDelEmp
         '
@@ -440,6 +439,16 @@ Partial Class FormEmpPayroll
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.OptionsColumn.ReadOnly = True
         Me.GridColumnStatus.Visible = True
+        '
+        'GridColumnContractStart
+        '
+        Me.GridColumnContractStart.Caption = "Start"
+        Me.GridColumnContractStart.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnContractStart.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnContractStart.FieldName = "start_period"
+        Me.GridColumnContractStart.Name = "GridColumnContractStart"
+        Me.GridColumnContractStart.OptionsColumn.ReadOnly = True
+        Me.GridColumnContractStart.Visible = True
         '
         'GridColumnContractEnd
         '
@@ -1568,22 +1577,6 @@ Partial Class FormEmpPayroll
         Me.BSetting.TabIndex = 0
         Me.BSetting.Text = "Setting"
         '
-        'GridColumnContractStart
-        '
-        Me.GridColumnContractStart.Caption = "Start"
-        Me.GridColumnContractStart.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnContractStart.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnContractStart.FieldName = "start_period"
-        Me.GridColumnContractStart.Name = "GridColumnContractStart"
-        Me.GridColumnContractStart.OptionsColumn.ReadOnly = True
-        Me.GridColumnContractStart.Visible = True
-        '
-        'CMViewEmp
-        '
-        Me.CMViewEmp.Name = "CMViewEmp"
-        Me.CMViewEmp.Size = New System.Drawing.Size(172, 22)
-        Me.CMViewEmp.Text = "View Employee"
-        '
         'FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1749,5 +1742,4 @@ Partial Class FormEmpPayroll
     Friend WithEvents RICESelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GCStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnContractStart As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents CMViewEmp As ToolStripMenuItem
 End Class
