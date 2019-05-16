@@ -52,11 +52,10 @@
         ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
             If XTCDP.SelectedTabPageIndex = 0 Then
                 'list DP
-                Dim query As String = "SELECT pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,acc.`acc_name`,acc.`acc_description`,det.amount FROM tb_pn_fgpo pn
+                Dim query As String = "SELECT pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
-INNER JOIN `tb_a_acc` acc ON acc.`id_acc`=pn.`id_acc_payfrom`
 INNER JOIN (
 	SELECT id_pn_fgpo,SUM(`value`) AS amount FROM tb_pn_fgpo_det pnd 
 	GROUP BY pnd.`id_pn_fgpo`

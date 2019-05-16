@@ -12,6 +12,7 @@
     End Sub
 
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'check 
         DEDateCreated.EditValue = Now
         '
         TETotal.EditValue = 0.00
@@ -19,7 +20,6 @@
         TEGrandTotal.EditValue = 0.00
         '
         TENumber.Text = "[auto generate]"
-        load_pay_from()
         load_vendor()
         load_trans_type()
         load_det()
@@ -61,7 +61,8 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
                 DEDateCreated.EditValue = data.Rows(0)("created_date")
                 SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
                 SLEPayType.EditValue = data.Rows(0)("type").ToString
-                SLEPayFrom.EditValue = data.Rows(0)("id_acc_payfrom").ToString
+                '
+                MENote.Text = data.Rows(0)("note").ToString
             End If
         End If
     End Sub
@@ -93,11 +94,6 @@ WHERE pnd.`id_pn_fgpo`='" & id_dp & "'"
         Catch ex As Exception
 
         End Try
-    End Sub
-
-    Sub load_pay_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Sub load_vendor()

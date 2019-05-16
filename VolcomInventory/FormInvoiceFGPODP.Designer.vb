@@ -28,14 +28,6 @@ Partial Class FormInvoiceFGPODP
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEPayType = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -82,12 +74,6 @@ Partial Class FormInvoiceFGPODP
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,83 +196,12 @@ Partial Class FormInvoiceFGPODP
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Save"
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.PanelControl4)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(940, 59)
-        Me.PanelControl1.TabIndex = 4
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.SLEPayFrom)
-        Me.PanelControl4.Controls.Add(Me.Label1)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(470, 55)
-        Me.PanelControl4.TabIndex = 166
-        '
-        'SLEPayFrom
-        '
-        Me.SLEPayFrom.Location = New System.Drawing.Point(88, 11)
-        Me.SLEPayFrom.Name = "SLEPayFrom"
-        Me.SLEPayFrom.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.SLEPayFrom.Properties.Appearance.Options.UseFont = True
-        Me.SLEPayFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEPayFrom.Properties.View = Me.SearchLookUpEdit2View
-        Me.SLEPayFrom.Size = New System.Drawing.Size(366, 28)
-        Me.SLEPayFrom.TabIndex = 167
-        '
-        'SearchLookUpEdit2View
-        '
-        Me.SearchLookUpEdit2View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
-        Me.SearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit2View.Name = "SearchLookUpEdit2View"
-        Me.SearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit2View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ID Acc"
-        Me.GridColumn6.FieldName = "id_acc"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Account"
-        Me.GridColumn7.FieldName = "acc_name"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Description"
-        Me.GridColumn8.FieldName = "acc_description"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.Label1.Location = New System.Drawing.Point(6, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 21)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Pay From"
-        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.PanelControl6)
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 59)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(940, 70)
         Me.PanelControl2.TabIndex = 5
@@ -564,11 +479,11 @@ Partial Class FormInvoiceFGPODP
         'GCList
         '
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 129)
+        Me.GCList.Location = New System.Drawing.Point(0, 70)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
-        Me.GCList.Size = New System.Drawing.Size(940, 298)
+        Me.GCList.Size = New System.Drawing.Size(940, 357)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -737,7 +652,6 @@ Partial Class FormInvoiceFGPODP
         Me.Controls.Add(Me.GCList)
         Me.Controls.Add(Me.PanelControl8)
         Me.Controls.Add(Me.PanelControl2)
-        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl7)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
@@ -748,13 +662,6 @@ Partial Class FormInvoiceFGPODP
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
-        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -797,14 +704,6 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SLEPayFrom As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit2View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Label1 As Label
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
