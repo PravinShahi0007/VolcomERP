@@ -973,6 +973,12 @@
     <Compile Include="FormEmployeePpsList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmployeePpsProgress.Designer.vb">
+      <DependentUpon>FormEmployeePpsProgress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeePpsProgress.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmployeePpsWebcam.Designer.vb">
       <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
     </Compile>
@@ -7150,6 +7156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployeePpsList.resx">
       <DependentUpon>FormEmployeePpsList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeePpsProgress.resx">
+      <DependentUpon>FormEmployeePpsProgress.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployeePpsWebcam.resx">
       <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
