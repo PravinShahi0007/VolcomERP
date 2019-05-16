@@ -951,4 +951,13 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        Cursor = Cursors.WaitCursor
+        If GVSalesReturn.FocusedRowHandle >= 0 And GVSalesReturn.RowCount > 0 Then
+            FormUniqueSalesReturn.id_sales_return = GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+            FormUniqueSalesReturn.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
