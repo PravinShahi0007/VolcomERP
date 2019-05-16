@@ -5648,6 +5648,10 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             ' update tb_m_employee
             If id_status_reportx = "6" Then
+                Dim progress As FormEmployeePpsProgress = New FormEmployeePpsProgress()
+
+                progress.Show()
+
                 Dim query_pps As String = "SELECT id_type, id_employee FROM tb_employee_pps WHERE id_employee_pps = '" + id_report + "'"
                 Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
 
@@ -5655,15 +5659,18 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 FormEmployeePpsDet.is_new = If(data_pps.Rows(0)("id_type").ToString = "1", "-1", "1")
                 FormEmployeePpsDet.id_employee = If(data_pps.Rows(0)("id_employee").ToString = "", "-1", data_pps.Rows(0)("id_employee").ToString)
 
-                FormEmployeePpsDet.updateChanges()
+                progress.ProgressBarControl.EditValue = 10
+
+                FormEmployeePpsDet.updateChanges(progress)
+
+                progress.ProgressBarControl.EditValue = 100
+
+                progress.Close()
             End If
 
             'update
             query = String.Format("UPDATE tb_employee_pps SET id_report_status='{0}' WHERE id_employee_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-            'refresh view
-            FormEmployeePpsDet.initLoad()
         ElseIf report_mark_type = "183" Then
             'invoice different margin
             If id_status_reportx = "3" Then
