@@ -199,7 +199,10 @@ Partial Class FormSalesOrderReportDetNew
         '
         'RepositoryItemProgressBar
         '
+        Me.RepositoryItemProgressBar.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBar.Name = "RepositoryItemProgressBar"
+        Me.RepositoryItemProgressBar.PercentView = False
         Me.RepositoryItemProgressBar.ShowTitle = True
         '
         'GridColumnpros_del
