@@ -13,6 +13,11 @@
 
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateCreated.EditValue = Now
+        '
+        TETotal.EditValue = 0.00
+        TEVat.EditValue = 0.00
+        TEGrandTotal.EditValue = 0.00
+        '
         TENumber.Text = "[auto generate]"
         load_pay_from()
         load_vendor()
@@ -75,10 +80,16 @@ WHERE pnd.`id_pn_fgpo`='" & id_dp & "'"
 
     Sub calculate()
         Dim tot As Decimal = 0.0
+        Dim tot_vat As Decimal = 0.0
+        Dim grand_tot As Decimal = 0.0
 
         Try
             tot = GVList.Columns("value").SummaryItem.SummaryValue
             TETotal.EditValue = tot
+            tot_vat = GVList.Columns("vat").SummaryItem.SummaryValue
+            TEVat.EditValue = tot_vat
+            grand_tot = tot + tot_vat
+            TEGrandTotal.EditValue = grand_tot
         Catch ex As Exception
 
         End Try
@@ -157,6 +168,9 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
                 query = "CALL gen_number('" & id_dp & "','189')"
                 execute_non_query(query, True, "", "", "", "")
                 submit_who_prepared("189", id_dp, id_user)
+                '
+                infoCustom("BPL Created")
+                Close()
             Else
                 'edit
                 Dim query As String = ""
