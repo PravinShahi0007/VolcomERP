@@ -5065,6 +5065,12 @@
     <Compile Include="FormUniqueDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormUniqueRevProduct.Designer.vb">
+      <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueRevProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormUpload.Designer.vb">
       <DependentUpon>FormUpload.vb</DependentUpon>
     </Compile>
@@ -9569,6 +9575,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueRevProduct.resx">
+      <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpload.resx">
       <DependentUpon>FormUpload.vb</DependentUpon>

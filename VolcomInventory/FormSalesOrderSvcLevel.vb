@@ -942,4 +942,13 @@
             Return True
         End If
     End Function
+
+    Private Sub PrintUniqueCodeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PrintUniqueCodeToolStripMenuItem1.Click
+        Cursor = Cursors.WaitCursor
+        If GVPL.FocusedRowHandle >= 0 And GVPL.RowCount > 0 Then
+            FormUniqueRevProduct.id_pl_prod_order_rec = GVPL.GetFocusedRowCellValue("id_pl_prod_order_rec").ToString
+            FormUniqueRevProduct.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
