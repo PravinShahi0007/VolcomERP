@@ -12,9 +12,14 @@
     End Sub
 
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'check 
         DEDateCreated.EditValue = Now
+        '
+        TETotal.EditValue = 0.00
+        TEVat.EditValue = 0.00
+        TEGrandTotal.EditValue = 0.00
+        '
         TENumber.Text = "[auto generate]"
-        load_pay_from()
         load_vendor()
         load_trans_type()
         load_det()
@@ -56,7 +61,8 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
                 DEDateCreated.EditValue = data.Rows(0)("created_date")
                 SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
                 SLEPayType.EditValue = data.Rows(0)("type").ToString
-                SLEPayFrom.EditValue = data.Rows(0)("id_acc_payfrom").ToString
+                '
+                MENote.Text = data.Rows(0)("note").ToString
             End If
         End If
     End Sub
@@ -75,18 +81,19 @@ WHERE pnd.`id_pn_fgpo`='" & id_dp & "'"
 
     Sub calculate()
         Dim tot As Decimal = 0.0
+        Dim tot_vat As Decimal = 0.0
+        Dim grand_tot As Decimal = 0.0
 
         Try
             tot = GVList.Columns("value").SummaryItem.SummaryValue
             TETotal.EditValue = tot
+            tot_vat = GVList.Columns("vat").SummaryItem.SummaryValue
+            TEVat.EditValue = tot_vat
+            grand_tot = tot + tot_vat
+            TEGrandTotal.EditValue = grand_tot
         Catch ex As Exception
 
         End Try
-    End Sub
-
-    Sub load_pay_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Sub load_vendor()
@@ -157,6 +164,9 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
                 query = "CALL gen_number('" & id_dp & "','189')"
                 execute_non_query(query, True, "", "", "", "")
                 submit_who_prepared("189", id_dp, id_user)
+                '
+                infoCustom("BPL Created")
+                Close()
             Else
                 'edit
                 Dim query As String = ""
