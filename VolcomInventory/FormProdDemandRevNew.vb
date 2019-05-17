@@ -47,12 +47,6 @@
 
     Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles BtnOK.Click
         Cursor = Cursors.WaitCursor
-        Dim is_revise_qty_order As String = ""
-        If CEChangeOrder.EditValue = True Then
-            is_revise_qty_order = "1"
-        Else
-            is_revise_qty_order = "2"
-        End If
         Dim cond_process As Boolean = False
         Dim query_cek As String = "SELECT * FROM tb_prod_demand_rev r WHERE r.id_prod_demand=" + id_prod_demand + " AND r.id_report_status<5 "
         Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
@@ -70,8 +64,8 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create PD revison for " + TxtProdDemandNumber.Text + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim note As String = addSlashes(MENote.Text)
-                Dim query As String = "INSERT INTO tb_prod_demand_rev(id_prod_demand, rev_count, id_report_status, created_date,note, is_revise_qty_order) 
-                VALUES('" + id_prod_demand + "', getRevPD(" + id_prod_demand + "),1, NOW(),'" + note + "', '" + is_revise_qty_order + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_prod_demand_rev(id_prod_demand, rev_count, id_report_status, created_date,note) 
+                VALUES('" + id_prod_demand + "', getRevPD(" + id_prod_demand + "),1, NOW(),'" + note + "'); SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
                 FormProdDemandRev.viewData()
                 FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)

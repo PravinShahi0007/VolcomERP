@@ -22,7 +22,6 @@ Partial Class FormProdDemandRevDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDemandRevDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
-        Me.CEChangeOrder = New DevExpress.XtraEditors.CheckEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -137,6 +136,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllDev = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -166,10 +166,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEShowBreakDown = New DevExpress.XtraEditors.CheckEdit()
-        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumnAllDev = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllTOTALCOSTMKT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllTOTALAMOUNTMKT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllTOTALCOSTBUFFER = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -178,9 +174,11 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTDEV = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllTOTALCOSTACTORDERSALES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEShowBreakDown = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
-        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRevision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,7 +212,6 @@ Partial Class FormProdDemandRevDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.CEChangeOrder)
         Me.GroupControlHead.Controls.Add(Me.MENote)
         Me.GroupControlHead.Controls.Add(Me.LabelControl7)
         Me.GroupControlHead.Controls.Add(Me.LabelControl6)
@@ -225,16 +222,8 @@ Partial Class FormProdDemandRevDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(921, 142)
+        Me.GroupControlHead.Size = New System.Drawing.Size(921, 125)
         Me.GroupControlHead.TabIndex = 8
-        '
-        'CEChangeOrder
-        '
-        Me.CEChangeOrder.Location = New System.Drawing.Point(278, 111)
-        Me.CEChangeOrder.Name = "CEChangeOrder"
-        Me.CEChangeOrder.Properties.Caption = "Change Order Total"
-        Me.CEChangeOrder.Size = New System.Drawing.Size(116, 19)
-        Me.CEChangeOrder.TabIndex = 152
         '
         'MENote
         '
@@ -301,7 +290,7 @@ Partial Class FormProdDemandRevDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(710, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(209, 138)
+        Me.PanelControl1.Size = New System.Drawing.Size(209, 121)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -448,10 +437,10 @@ Partial Class FormProdDemandRevDet
         'XTCRevision
         '
         Me.XTCRevision.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCRevision.Location = New System.Drawing.Point(0, 142)
+        Me.XTCRevision.Location = New System.Drawing.Point(0, 125)
         Me.XTCRevision.Name = "XTCRevision"
         Me.XTCRevision.SelectedTabPage = Me.XTPRevision
-        Me.XTCRevision.Size = New System.Drawing.Size(921, 364)
+        Me.XTCRevision.Size = New System.Drawing.Size(921, 381)
         Me.XTCRevision.TabIndex = 14
         Me.XTCRevision.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRevision, Me.XTPDetail})
         '
@@ -461,7 +450,7 @@ Partial Class FormProdDemandRevDet
         Me.XTPRevision.Controls.Add(Me.PanelControl3)
         Me.XTPRevision.Controls.Add(Me.PanelControlNav)
         Me.XTPRevision.Name = "XTPRevision"
-        Me.XTPRevision.Size = New System.Drawing.Size(915, 336)
+        Me.XTPRevision.Size = New System.Drawing.Size(915, 353)
         Me.XTPRevision.Text = "Revision"
         '
         'GCRevision
@@ -471,7 +460,7 @@ Partial Class FormProdDemandRevDet
         Me.GCRevision.Location = New System.Drawing.Point(0, 42)
         Me.GCRevision.MainView = Me.GVRevision
         Me.GCRevision.Name = "GCRevision"
-        Me.GCRevision.Size = New System.Drawing.Size(915, 260)
+        Me.GCRevision.Size = New System.Drawing.Size(915, 277)
         Me.GCRevision.TabIndex = 1
         Me.GCRevision.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRevision})
         '
@@ -1146,7 +1135,7 @@ Partial Class FormProdDemandRevDet
         '
         Me.PanelControl3.Controls.Add(Me.CEShowBreakdownRev)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 302)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 319)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(915, 34)
         Me.PanelControl3.TabIndex = 4
@@ -1444,6 +1433,17 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 13
         Me.GridColumn20.Width = 49
+        '
+        'GridColumnAllDev
+        '
+        Me.GridColumnAllDev.Caption = "DEV"
+        Me.GridColumnAllDev.DisplayFormat.FormatString = "N0"
+        Me.GridColumnAllDev.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAllDev.FieldName = "DEVELOPMENT"
+        Me.GridColumnAllDev.Name = "GridColumnAllDev"
+        Me.GridColumnAllDev.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DEVELOPMENT", "{0:N0}")})
+        Me.GridColumnAllDev.Visible = True
+        Me.GridColumnAllDev.VisibleIndex = 14
         '
         'GridColumn21
         '
@@ -1772,43 +1772,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn49.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty10", "{0:N0}")})
         Me.GridColumn49.Width = 40
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.CEShowBreakDown)
-        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 302)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
-        Me.PanelControl2.TabIndex = 3
-        '
-        'CEShowBreakDown
-        '
-        Me.CEShowBreakDown.Location = New System.Drawing.Point(104, 8)
-        Me.CEShowBreakDown.Name = "CEShowBreakDown"
-        Me.CEShowBreakDown.Properties.Caption = "show breakdown size"
-        Me.CEShowBreakDown.Size = New System.Drawing.Size(124, 19)
-        Me.CEShowBreakDown.TabIndex = 1
-        '
-        'CEShowHighlight
-        '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
-        Me.CEShowHighlight.Name = "CEShowHighlight"
-        Me.CEShowHighlight.Properties.Caption = "show highlight"
-        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
-        Me.CEShowHighlight.TabIndex = 0
-        '
-        'GridColumnAllDev
-        '
-        Me.GridColumnAllDev.Caption = "DEV"
-        Me.GridColumnAllDev.DisplayFormat.FormatString = "N0"
-        Me.GridColumnAllDev.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAllDev.FieldName = "DEVELOPMENT"
-        Me.GridColumnAllDev.Name = "GridColumnAllDev"
-        Me.GridColumnAllDev.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DEVELOPMENT", "{0:N0}")})
-        Me.GridColumnAllDev.Visible = True
-        Me.GridColumnAllDev.VisibleIndex = 14
-        '
         'GridColumnAllTOTALCOSTMKT
         '
         Me.GridColumnAllTOTALCOSTMKT.Caption = "TOTAL COST MKT"
@@ -1897,6 +1860,32 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES.Visible = True
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES.VisibleIndex = 37
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.CEShowBreakDown)
+        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 302)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
+        Me.PanelControl2.TabIndex = 3
+        '
+        'CEShowBreakDown
+        '
+        Me.CEShowBreakDown.Location = New System.Drawing.Point(104, 8)
+        Me.CEShowBreakDown.Name = "CEShowBreakDown"
+        Me.CEShowBreakDown.Properties.Caption = "show breakdown size"
+        Me.CEShowBreakDown.Size = New System.Drawing.Size(124, 19)
+        Me.CEShowBreakDown.TabIndex = 1
+        '
+        'CEShowHighlight
+        '
+        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "show highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
+        Me.CEShowHighlight.TabIndex = 0
+        '
         'FormProdDemandRevDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1912,7 +1901,6 @@ Partial Class FormProdDemandRevDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
-        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRevision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2082,7 +2070,6 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents CEChangeOrder As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnDEVELOPMENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTOTALQTYPDREF As DevExpress.XtraGrid.Columns.GridColumn

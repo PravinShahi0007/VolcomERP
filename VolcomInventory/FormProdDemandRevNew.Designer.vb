@@ -25,7 +25,6 @@ Partial Class FormProdDemandRevNew
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEChangeOrder = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtProdDemandNumber = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -60,7 +59,6 @@ Partial Class FormProdDemandRevNew
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,24 +103,15 @@ Partial Class FormProdDemandRevNew
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.CEChangeOrder)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.TxtProdDemandNumber)
         Me.PanelControl2.Controls.Add(Me.MENote)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 303)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 325)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(684, 118)
+        Me.PanelControl2.Size = New System.Drawing.Size(684, 96)
         Me.PanelControl2.TabIndex = 1
-        '
-        'CEChangeOrder
-        '
-        Me.CEChangeOrder.Location = New System.Drawing.Point(537, 90)
-        Me.CEChangeOrder.Name = "CEChangeOrder"
-        Me.CEChangeOrder.Properties.Caption = "Change Order Total"
-        Me.CEChangeOrder.Size = New System.Drawing.Size(116, 19)
-        Me.CEChangeOrder.TabIndex = 5
         '
         'LabelControl4
         '
@@ -256,7 +245,7 @@ Partial Class FormProdDemandRevNew
         Me.GCProdDemand.Location = New System.Drawing.Point(0, 44)
         Me.GCProdDemand.MainView = Me.GVProdDemand
         Me.GCProdDemand.Name = "GCProdDemand"
-        Me.GCProdDemand.Size = New System.Drawing.Size(684, 259)
+        Me.GCProdDemand.Size = New System.Drawing.Size(684, 281)
         Me.GCProdDemand.TabIndex = 3
         Me.GCProdDemand.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdDemand})
         '
@@ -385,7 +374,6 @@ Partial Class FormProdDemandRevNew
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.CEChangeOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -435,5 +423,4 @@ Partial Class FormProdDemandRevNew
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CEChangeOrder As DevExpress.XtraEditors.CheckEdit
 End Class

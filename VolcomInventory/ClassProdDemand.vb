@@ -518,7 +518,7 @@
         End If
 
         Dim query As String = "SELECT r.id_prod_demand_rev, r.id_prod_demand, pd.prod_demand_number, pd.id_pd_kind, r.rev_count, r.id_report_status, stt.report_status, r.created_date, r.note, r.is_confirm, pd.id_season, s.season, 
-        la.employee_name AS `last_approved_by`, r.is_revise_qty_order
+        la.employee_name AS `last_approved_by`, IFNULL(r.report_mark_type,0) AS `report_mark_type`
         FROM tb_prod_demand_rev r
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = r.id_prod_demand
         INNER JOIN tb_season s ON s.id_season = pd.id_season
