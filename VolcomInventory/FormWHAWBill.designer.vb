@@ -167,6 +167,7 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
+        Me.BImportAwb = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -911,7 +912,7 @@ Partial Class FormWHAWBill
         Me.BAWBRec.Name = "BAWBRec"
         Me.BAWBRec.Size = New System.Drawing.Size(140, 35)
         Me.BAWBRec.TabIndex = 108
-        Me.BAWBRec.Text = "Import AWB Receive Data"
+        Me.BAWBRec.Text = "Import AWB Data"
         '
         'BtnManifest
         '
@@ -1616,6 +1617,7 @@ Partial Class FormWHAWBill
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BImportAwb)
         Me.PanelControl2.Controls.Add(Me.CERO)
         Me.PanelControl2.Controls.Add(Me.BInView)
         Me.PanelControl2.Controls.Add(Me.CEInCompare)
@@ -1739,6 +1741,15 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
+        '
+        'BImportAwb
+        '
+        Me.BImportAwb.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BImportAwb.Location = New System.Drawing.Point(1131, 2)
+        Me.BImportAwb.Name = "BImportAwb"
+        Me.BImportAwb.Size = New System.Drawing.Size(140, 35)
+        Me.BImportAwb.TabIndex = 109
+        Me.BImportAwb.Text = "Import AWB Data"
         '
         'FormWHAWBill
         '
@@ -1942,4 +1953,5 @@ Partial Class FormWHAWBill
     Friend WithEvents gbAirport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BReportInvoice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BImportAwb As DevExpress.XtraEditors.SimpleButton
 End Class

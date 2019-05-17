@@ -110,6 +110,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='')", oledbconn)
         ElseIf id_pop_up = "43" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([SEX]='')", oledbconn)
+        ElseIf id_pop_up = "44" Then
+            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -2745,6 +2747,64 @@ Public Class FormImportExcel
             'bestfit
             GVData.OptionsView.ColumnAutoWidth = False
             GVData.BestFitColumns()
+        ElseIf id_pop_up = "44" Then 'import awb receiving data inbound
+            Try
+                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,a_weight,a_tot_price FROM tb_wh_awbill 
+                                        WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2'"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                                On table1("awb_no").ToString.ToLower Equals table_tmp("awbill_no").ToString.ToLower Into awb = Group
+                            From result_awb In awb.DefaultIfEmpty()
+                            Select New With
+                                {
+                                    .IdAwb = If(result_awb Is Nothing, "0", result_awb("id_awbill")),
+                                    .AWB = If(result_awb Is Nothing, table1("awb_no"), result_awb("awbill_no")),
+                                    .inv_no_old = If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")),
+                                    .a_weight_old = If(result_awb Is Nothing, "0", result_awb("a_weight")),
+                                    .a_tot_price_old = If(result_awb Is Nothing, "0", result_awb("a_tot_price")),
+                                    .inv_no_new = If(table1("inv_no").ToString = "", If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")), table1("inv_no")),
+                                    .a_weight_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_weight")), table1("a_weight")),
+                                    .a_tot_price_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_tot_price")), If(result_awb Is Nothing, table1("a_weight"), If(table1("a_weight") < result_awb("cargo_min_weight"), result_awb("cargo_min_weight"), table1("a_weight"))) * If(result_awb Is Nothing, 0, result_awb("cargo_rate"))),
+                                    .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdAwb").Visible = False
+                GVData.Columns("AWB").Caption = "AWB Number"
+                GVData.Columns("inv_no_old").Caption = "(Old) Invoice Number"
+                GVData.Columns("inv_no_new").Caption = "Invoice Number"
+                GVData.Columns("note").Caption = "Note"
+
+                GVData.Columns("a_weight_old").Caption = "(Old) Cargo Weight"
+                GVData.Columns("a_tot_price_old").Caption = "(Old) Invoice Amount"
+                GVData.Columns("a_weight_new").Caption = "Cargo Weight"
+                GVData.Columns("a_tot_price_new").Caption = "Invoice Amount"
+
+                GVData.Columns("a_weight_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_weight_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_new").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatString = "N2"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2805,7 +2865,7 @@ Public Class FormImportExcel
                     e.Appearance.BackColor2 = Color.Salmon
                 End If
             End If
-        ElseIf id_pop_up = "35" Then
+        ElseIf id_pop_up = "35" Or id_pop_up = "44" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("note")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -4235,7 +4295,6 @@ Public Class FormImportExcel
                         PBC.Update()
                     Next
                     infoCustom("Import Success")
-                    FormMasterEmployee.viewEmployee("-1")
                     Close()
                 End If
             ElseIf id_pop_up = "36" Then 'import koperasi pinjaman
@@ -4714,6 +4773,35 @@ Public Class FormImportExcel
                         makeSafeGV(GVData)
                     End If
                     Cursor = Cursors.Default
+                End If
+            ElseIf id_pop_up = "44" Then 'import awb receiving inbound
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? Only 'OK' data will updated.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdAwb").ToString = "0" Then
+                            Dim date_new As String = ""
+                            '
+                            If GVData.GetRowCellValue(i, "rec_date_new").ToString = "" Then
+                                date_new = "NULL"
+                            Else
+                                date_new = "'" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "'"
+                            End If
+                            '
+                            Dim query_exec As String = "UPDATE tb_wh_awbill SET awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    Close()
                 End If
             End If
         End If
