@@ -1183,7 +1183,7 @@ Partial Class FormProdDemandRevDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControl2)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(915, 336)
+        Me.XTPDetail.Size = New System.Drawing.Size(915, 353)
         Me.XTPDetail.Text = "PD Detail"
         '
         'GCData
@@ -1192,7 +1192,7 @@ Partial Class FormProdDemandRevDet
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(915, 302)
+        Me.GCData.Size = New System.Drawing.Size(915, 319)
         Me.GCData.TabIndex = 4
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1648,7 +1648,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn37.FieldName = "pd_status_rev"
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 29
+        Me.GridColumn37.VisibleIndex = 37
         '
         'GridColumn38
         '
@@ -1781,7 +1781,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALCOSTMKT.Name = "GridColumnAllTOTALCOSTMKT"
         Me.GridColumnAllTOTALCOSTMKT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST MKT", "{0:N0}")})
         Me.GridColumnAllTOTALCOSTMKT.Visible = True
-        Me.GridColumnAllTOTALCOSTMKT.VisibleIndex = 30
+        Me.GridColumnAllTOTALCOSTMKT.VisibleIndex = 29
         '
         'GridColumnAllTOTALAMOUNTMKT
         '
@@ -1792,7 +1792,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTMKT.Name = "GridColumnAllTOTALAMOUNTMKT"
         Me.GridColumnAllTOTALAMOUNTMKT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT MKT", "{0:N0}")})
         Me.GridColumnAllTOTALAMOUNTMKT.Visible = True
-        Me.GridColumnAllTOTALAMOUNTMKT.VisibleIndex = 31
+        Me.GridColumnAllTOTALAMOUNTMKT.VisibleIndex = 30
         '
         'GridColumnAllTOTALCOSTBUFFER
         '
@@ -1803,7 +1803,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALCOSTBUFFER.Name = "GridColumnAllTOTALCOSTBUFFER"
         Me.GridColumnAllTOTALCOSTBUFFER.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST BUFFER", "{0:N0}")})
         Me.GridColumnAllTOTALCOSTBUFFER.Visible = True
-        Me.GridColumnAllTOTALCOSTBUFFER.VisibleIndex = 32
+        Me.GridColumnAllTOTALCOSTBUFFER.VisibleIndex = 31
         '
         'GridColumnAllTOTALAMOUNTBUFFER
         '
@@ -1814,7 +1814,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTBUFFER.Name = "GridColumnAllTOTALAMOUNTBUFFER"
         Me.GridColumnAllTOTALAMOUNTBUFFER.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT BUFFER", "{0:N0}")})
         Me.GridColumnAllTOTALAMOUNTBUFFER.Visible = True
-        Me.GridColumnAllTOTALAMOUNTBUFFER.VisibleIndex = 33
+        Me.GridColumnAllTOTALAMOUNTBUFFER.VisibleIndex = 32
         '
         'GridColumnAllTOTALCOSTDEV
         '
@@ -1825,7 +1825,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALCOSTDEV.Name = "GridColumnAllTOTALCOSTDEV"
         Me.GridColumnAllTOTALCOSTDEV.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST DEV", "{0:N0}")})
         Me.GridColumnAllTOTALCOSTDEV.Visible = True
-        Me.GridColumnAllTOTALCOSTDEV.VisibleIndex = 34
+        Me.GridColumnAllTOTALCOSTDEV.VisibleIndex = 33
         '
         'GridColumnAllTOTALAMOUNTDEV
         '
@@ -1836,7 +1836,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTDEV.Name = "GridColumnAllTOTALAMOUNTDEV"
         Me.GridColumnAllTOTALAMOUNTDEV.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT DEV", "{0:N0}")})
         Me.GridColumnAllTOTALAMOUNTDEV.Visible = True
-        Me.GridColumnAllTOTALAMOUNTDEV.VisibleIndex = 35
+        Me.GridColumnAllTOTALAMOUNTDEV.VisibleIndex = 34
         '
         'GridColumnAllTOTALCOSTACTORDERSALES
         '
@@ -1847,7 +1847,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALCOSTACTORDERSALES.Name = "GridColumnAllTOTALCOSTACTORDERSALES"
         Me.GridColumnAllTOTALCOSTACTORDERSALES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST ACT ORDER SALES", "{0:N0}")})
         Me.GridColumnAllTOTALCOSTACTORDERSALES.Visible = True
-        Me.GridColumnAllTOTALCOSTACTORDERSALES.VisibleIndex = 36
+        Me.GridColumnAllTOTALCOSTACTORDERSALES.VisibleIndex = 35
         '
         'GridColumnAllTOTALAMOUNTACTORDERSALES
         '
@@ -1858,14 +1858,14 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES.Name = "GridColumnAllTOTALAMOUNTACTORDERSALES"
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT ACT ORDER SALES", "{0:N0}")})
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES.Visible = True
-        Me.GridColumnAllTOTALAMOUNTACTORDERSALES.VisibleIndex = 37
+        Me.GridColumnAllTOTALAMOUNTACTORDERSALES.VisibleIndex = 36
         '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.CEShowBreakDown)
         Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 302)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 319)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
         Me.PanelControl2.TabIndex = 3

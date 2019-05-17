@@ -67,9 +67,6 @@
     Sub ok(ByVal is_drop As Boolean)
         Cursor = Cursors.WaitCursor
         If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
-            'get total & cost di line list
-            Dim 
-
             If GVDesign.GetFocusedRowCellValue("received") > 0 Then
                 stopCustom("Can't revise because " + GVDesign.GetFocusedRowCellValue("name").ToString + " already received in QC")
             Else
