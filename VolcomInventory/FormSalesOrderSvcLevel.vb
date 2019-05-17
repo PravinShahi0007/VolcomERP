@@ -942,4 +942,41 @@
             Return True
         End If
     End Function
+
+    Private Sub PrintUniqueCodeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PrintUniqueCodeToolStripMenuItem1.Click
+        Cursor = Cursors.WaitCursor
+        If GVPL.FocusedRowHandle >= 0 And GVPL.RowCount > 0 Then
+            FormUniqueRevProduct.id_pl_prod_order_rec = GVPL.GetFocusedRowCellValue("id_pl_prod_order_rec").ToString
+            FormUniqueRevProduct.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        Cursor = Cursors.WaitCursor
+        If GVSalesReturn.FocusedRowHandle >= 0 And GVSalesReturn.RowCount > 0 Then
+            FormUniqueSalesReturn.id_sales_return = GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+            FormUniqueSalesReturn.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        Cursor = Cursors.WaitCursor
+        If GVSalesReturnQC.FocusedRowHandle >= 0 And GVSalesReturnQC.RowCount > 0 Then
+            FormUniqueSalesReturnQC.id_sales_return_qc = GVSalesReturnQC.GetFocusedRowCellValue("id_sales_return_qc").ToString
+            FormUniqueSalesReturnQC.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        Cursor = Cursors.WaitCursor
+        If GVFGTrf.FocusedRowHandle >= 0 And GVFGTrf.RowCount > 0 Then
+            FormUniqueFGTrf.id_fg_trf = GVFGTrf.GetFocusedRowCellValue("id_fg_trf").ToString
+            FormUniqueFGTrf.fg_trf_number = GVFGTrf.GetFocusedRowCellValue("fg_trf_number").ToString
+            FormUniqueFGTrf.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

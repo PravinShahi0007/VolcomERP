@@ -52,6 +52,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOPaymentType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPODPAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDPAmountVAT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
@@ -336,7 +337,7 @@ Partial Class FormInvoiceFGPO
         '
         'GVDPFGPO
         '
-        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GCDPListFGPODPAmount, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
+        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GCDPListFGPODPAmount, Me.GridColumnDPAmountVAT, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
         Me.GVDPFGPO.GridControl = Me.GCDPFGPO
         Me.GVDPFGPO.Name = "GVDPFGPO"
         Me.GVDPFGPO.OptionsView.ShowGroupPanel = False
@@ -364,12 +365,14 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOID.Caption = "Id FGPO"
         Me.GCDPListFGPOID.FieldName = "id_prod_order"
         Me.GCDPListFGPOID.Name = "GCDPListFGPOID"
+        Me.GCDPListFGPOID.OptionsColumn.AllowEdit = False
         '
         'GCDPListFGPONumber
         '
         Me.GCDPListFGPONumber.Caption = "FGPO Number"
         Me.GCDPListFGPONumber.FieldName = "prod_order_number"
         Me.GCDPListFGPONumber.Name = "GCDPListFGPONumber"
+        Me.GCDPListFGPONumber.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPONumber.Visible = True
         Me.GCDPListFGPONumber.VisibleIndex = 3
         Me.GCDPListFGPONumber.Width = 92
@@ -379,6 +382,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendorCode.Caption = "Vendor Code"
         Me.GCDPListFGPOVendorCode.FieldName = "comp_number"
         Me.GCDPListFGPOVendorCode.Name = "GCDPListFGPOVendorCode"
+        Me.GCDPListFGPOVendorCode.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOVendorCode.Visible = True
         Me.GCDPListFGPOVendorCode.VisibleIndex = 1
         Me.GCDPListFGPOVendorCode.Width = 76
@@ -388,6 +392,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendor.Caption = "Vendor"
         Me.GCDPListFGPOVendor.FieldName = "comp_name"
         Me.GCDPListFGPOVendor.Name = "GCDPListFGPOVendor"
+        Me.GCDPListFGPOVendor.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOVendor.Visible = True
         Me.GCDPListFGPOVendor.VisibleIndex = 2
         Me.GCDPListFGPOVendor.Width = 178
@@ -397,6 +402,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODesign.Caption = "Design"
         Me.GCDPListFGPODesign.FieldName = "design_display_name"
         Me.GCDPListFGPODesign.Name = "GCDPListFGPODesign"
+        Me.GCDPListFGPODesign.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPODesign.Visible = True
         Me.GCDPListFGPODesign.VisibleIndex = 4
         Me.GCDPListFGPODesign.Width = 208
@@ -406,28 +412,57 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOPaymentType.Caption = "Payment Type"
         Me.GCDPListFGPOPaymentType.FieldName = "payment"
         Me.GCDPListFGPOPaymentType.Name = "GCDPListFGPOPaymentType"
+        Me.GCDPListFGPOPaymentType.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOPaymentType.Visible = True
         Me.GCDPListFGPOPaymentType.VisibleIndex = 5
         Me.GCDPListFGPOPaymentType.Width = 90
         '
         'GCDPListFGPODPAmount
         '
+        Me.GCDPListFGPODPAmount.AppearanceCell.Options.UseTextOptions = True
+        Me.GCDPListFGPODPAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCDPListFGPODPAmount.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCDPListFGPODPAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GCDPListFGPODPAmount.Caption = "DP Amount"
         Me.GCDPListFGPODPAmount.DisplayFormat.FormatString = "N2"
         Me.GCDPListFGPODPAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPODPAmount.FieldName = "dp_amount"
         Me.GCDPListFGPODPAmount.Name = "GCDPListFGPODPAmount"
+        Me.GCDPListFGPODPAmount.OptionsColumn.AllowEdit = False
+        Me.GCDPListFGPODPAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount", "{0:N2}")})
         Me.GCDPListFGPODPAmount.Visible = True
         Me.GCDPListFGPODPAmount.VisibleIndex = 7
         Me.GCDPListFGPODPAmount.Width = 212
         '
+        'GridColumnDPAmountVAT
+        '
+        Me.GridColumnDPAmountVAT.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDPAmountVAT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDPAmountVAT.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnDPAmountVAT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDPAmountVAT.Caption = "DP VAT Amount"
+        Me.GridColumnDPAmountVAT.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDPAmountVAT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDPAmountVAT.FieldName = "dp_amount_vat"
+        Me.GridColumnDPAmountVAT.Name = "GridColumnDPAmountVAT"
+        Me.GridColumnDPAmountVAT.OptionsColumn.AllowEdit = False
+        Me.GridColumnDPAmountVAT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount_vat", "{0:N2}")})
+        Me.GridColumnDPAmountVAT.Visible = True
+        Me.GridColumnDPAmountVAT.VisibleIndex = 8
+        '
         'GCDPListFGPOAmount
         '
+        Me.GCDPListFGPOAmount.AppearanceCell.Options.UseTextOptions = True
+        Me.GCDPListFGPOAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCDPListFGPOAmount.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCDPListFGPOAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GCDPListFGPOAmount.Caption = "FGPO Amount"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatString = "N2"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPOAmount.FieldName = "po_amount"
         Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
+        Me.GCDPListFGPOAmount.OptionsColumn.AllowEdit = False
+        Me.GCDPListFGPOAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
         Me.GCDPListFGPOAmount.Visible = True
         Me.GCDPListFGPOAmount.VisibleIndex = 6
         Me.GCDPListFGPOAmount.Width = 226
@@ -439,6 +474,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPOQty.FieldName = "prod_order_qty"
         Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
+        Me.GCDPListFGPOQty.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOQty.Width = 49
         '
         'PCDPFGPO
@@ -906,4 +942,5 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDPAmountVAT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

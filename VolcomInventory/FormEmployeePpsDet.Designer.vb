@@ -19,11 +19,10 @@ Partial Class FormEmployeePpsDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmployeePpsDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSaveDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
@@ -384,8 +383,8 @@ Partial Class FormEmployeePpsDet
         Me.Label72 = New System.Windows.Forms.Label()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.ChangesProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider()
+        Me.ChangesProvider1 = New System.Windows.Forms.ErrorProvider()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2642,9 +2641,9 @@ Partial Class FormEmployeePpsDet
         Me.GCAttB.Controls.Add(Me.PCKkAttB)
         Me.GCAttB.Controls.Add(Me.PCKtpAttB)
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCAttB.Location = New System.Drawing.Point(0, 1684)
+        Me.GCAttB.Location = New System.Drawing.Point(0, 1685)
         Me.GCAttB.Name = "GCAttB"
-        Me.GCAttB.Size = New System.Drawing.Size(790, 150)
+        Me.GCAttB.Size = New System.Drawing.Size(773, 150)
         Me.GCAttB.TabIndex = 8967
         Me.GCAttB.Text = "Attachment"
         Me.GCAttB.Visible = False
@@ -2715,7 +2714,6 @@ Partial Class FormEmployeePpsDet
         '
         Me.GCPayrollProposeB.Controls.Add(Me.LabelControl32)
         Me.GCPayrollProposeB.Controls.Add(Me.DESalaryB)
-        Me.GCPayrollProposeB.Controls.Add(Me.SBRekAttB)
         Me.GCPayrollProposeB.Controls.Add(Me.TETotalB)
         Me.GCPayrollProposeB.Controls.Add(Me.LabelControl9)
         Me.GCPayrollProposeB.Controls.Add(Me.TxtAllowCarB)
@@ -2730,21 +2728,17 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.Controls.Add(Me.TxtBasicSalaryB)
         Me.GCPayrollProposeB.Controls.Add(Me.LabelControl14)
         Me.GCPayrollProposeB.Controls.Add(Me.LabelControl15)
-        Me.GCPayrollProposeB.Controls.Add(Me.TERekeningNameB)
-        Me.GCPayrollProposeB.Controls.Add(Me.Label40)
-        Me.GCPayrollProposeB.Controls.Add(Me.TENoRekB)
-        Me.GCPayrollProposeB.Controls.Add(Me.Label74)
         Me.GCPayrollProposeB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1371)
+        Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1393)
         Me.GCPayrollProposeB.Name = "GCPayrollProposeB"
-        Me.GCPayrollProposeB.Size = New System.Drawing.Size(790, 313)
+        Me.GCPayrollProposeB.Size = New System.Drawing.Size(773, 292)
         Me.GCPayrollProposeB.TabIndex = 80
         Me.GCPayrollProposeB.Text = "Payroll"
         Me.GCPayrollProposeB.Visible = False
         '
         'LabelControl32
         '
-        Me.LabelControl32.Location = New System.Drawing.Point(16, 283)
+        Me.LabelControl32.Location = New System.Drawing.Point(16, 258)
         Me.LabelControl32.Name = "LabelControl32"
         Me.LabelControl32.Size = New System.Drawing.Size(109, 13)
         Me.LabelControl32.TabIndex = 8970
@@ -2753,7 +2747,7 @@ Partial Class FormEmployeePpsDet
         'DESalaryB
         '
         Me.DESalaryB.EditValue = Nothing
-        Me.DESalaryB.Location = New System.Drawing.Point(132, 280)
+        Me.DESalaryB.Location = New System.Drawing.Point(132, 255)
         Me.DESalaryB.Name = "DESalaryB"
         Me.DESalaryB.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DESalaryB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -2769,16 +2763,16 @@ Partial Class FormEmployeePpsDet
         '
         Me.SBRekAttB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBRekAttB.Image = CType(resources.GetObject("SBRekAttB.Image"), System.Drawing.Image)
-        Me.SBRekAttB.Location = New System.Drawing.Point(668, 33)
+        Me.SBRekAttB.Location = New System.Drawing.Point(653, 437)
         Me.SBRekAttB.Name = "SBRekAttB"
-        Me.SBRekAttB.Size = New System.Drawing.Size(88, 20)
+        Me.SBRekAttB.Size = New System.Drawing.Size(103, 20)
         Me.SBRekAttB.TabIndex = 8967
         Me.SBRekAttB.TabStop = False
         Me.SBRekAttB.Text = "Attachment"
         '
         'TETotalB
         '
-        Me.TETotalB.Location = New System.Drawing.Point(132, 250)
+        Me.TETotalB.Location = New System.Drawing.Point(132, 225)
         Me.TETotalB.Name = "TETotalB"
         Me.TETotalB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TETotalB.Properties.Appearance.Options.UseFont = True
@@ -2795,7 +2789,7 @@ Partial Class FormEmployeePpsDet
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(17, 253)
+        Me.LabelControl9.Location = New System.Drawing.Point(17, 228)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl9.TabIndex = 8965
@@ -2803,7 +2797,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtAllowCarB
         '
-        Me.TxtAllowCarB.Location = New System.Drawing.Point(132, 219)
+        Me.TxtAllowCarB.Location = New System.Drawing.Point(132, 194)
         Me.TxtAllowCarB.Name = "TxtAllowCarB"
         Me.TxtAllowCarB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtAllowCarB.Properties.Appearance.Options.UseFont = True
@@ -2820,7 +2814,7 @@ Partial Class FormEmployeePpsDet
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(17, 222)
+        Me.LabelControl10.Location = New System.Drawing.Point(17, 197)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(107, 13)
         Me.LabelControl10.TabIndex = 8963
@@ -2828,7 +2822,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtAllowHouseB
         '
-        Me.TxtAllowHouseB.Location = New System.Drawing.Point(132, 182)
+        Me.TxtAllowHouseB.Location = New System.Drawing.Point(132, 157)
         Me.TxtAllowHouseB.Name = "TxtAllowHouseB"
         Me.TxtAllowHouseB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtAllowHouseB.Properties.Appearance.Options.UseFont = True
@@ -2845,7 +2839,7 @@ Partial Class FormEmployeePpsDet
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(17, 185)
+        Me.LabelControl11.Location = New System.Drawing.Point(17, 160)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(81, 13)
         Me.LabelControl11.TabIndex = 8962
@@ -2853,7 +2847,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtAllowTransB
         '
-        Me.TxtAllowTransB.Location = New System.Drawing.Point(132, 151)
+        Me.TxtAllowTransB.Location = New System.Drawing.Point(132, 126)
         Me.TxtAllowTransB.Name = "TxtAllowTransB"
         Me.TxtAllowTransB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtAllowTransB.Properties.Appearance.Options.UseFont = True
@@ -2870,7 +2864,7 @@ Partial Class FormEmployeePpsDet
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(17, 154)
+        Me.LabelControl12.Location = New System.Drawing.Point(17, 129)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(98, 13)
         Me.LabelControl12.TabIndex = 8961
@@ -2878,7 +2872,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtAllowMealB
         '
-        Me.TxtAllowMealB.Location = New System.Drawing.Point(132, 120)
+        Me.TxtAllowMealB.Location = New System.Drawing.Point(132, 95)
         Me.TxtAllowMealB.Name = "TxtAllowMealB"
         Me.TxtAllowMealB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtAllowMealB.Properties.Appearance.Options.UseFont = True
@@ -2895,7 +2889,7 @@ Partial Class FormEmployeePpsDet
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(17, 123)
+        Me.LabelControl13.Location = New System.Drawing.Point(17, 98)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(73, 13)
         Me.LabelControl13.TabIndex = 8960
@@ -2903,7 +2897,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtAllowJobB
         '
-        Me.TxtAllowJobB.Location = New System.Drawing.Point(132, 90)
+        Me.TxtAllowJobB.Location = New System.Drawing.Point(132, 65)
         Me.TxtAllowJobB.Name = "TxtAllowJobB"
         Me.TxtAllowJobB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtAllowJobB.Properties.Appearance.Options.UseFont = True
@@ -2920,7 +2914,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtBasicSalaryB
         '
-        Me.TxtBasicSalaryB.Location = New System.Drawing.Point(132, 59)
+        Me.TxtBasicSalaryB.Location = New System.Drawing.Point(132, 34)
         Me.TxtBasicSalaryB.Name = "TxtBasicSalaryB"
         Me.TxtBasicSalaryB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtBasicSalaryB.Properties.Appearance.Options.UseFont = True
@@ -2937,7 +2931,7 @@ Partial Class FormEmployeePpsDet
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(17, 93)
+        Me.LabelControl14.Location = New System.Drawing.Point(17, 68)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(68, 13)
         Me.LabelControl14.TabIndex = 8957
@@ -2945,7 +2939,7 @@ Partial Class FormEmployeePpsDet
         '
         'LabelControl15
         '
-        Me.LabelControl15.Location = New System.Drawing.Point(17, 62)
+        Me.LabelControl15.Location = New System.Drawing.Point(17, 37)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl15.TabIndex = 8955
@@ -2953,16 +2947,16 @@ Partial Class FormEmployeePpsDet
         '
         'TERekeningNameB
         '
-        Me.TERekeningNameB.Location = New System.Drawing.Point(413, 33)
+        Me.TERekeningNameB.Location = New System.Drawing.Point(379, 437)
         Me.TERekeningNameB.Name = "TERekeningNameB"
         Me.TERekeningNameB.Properties.ReadOnly = True
-        Me.TERekeningNameB.Size = New System.Drawing.Size(236, 20)
+        Me.TERekeningNameB.Size = New System.Drawing.Size(245, 20)
         Me.TERekeningNameB.TabIndex = 8940
         '
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(373, 36)
+        Me.Label40.Location = New System.Drawing.Point(303, 440)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(34, 13)
         Me.Label40.TabIndex = 8939
@@ -2970,16 +2964,16 @@ Partial Class FormEmployeePpsDet
         '
         'TENoRekB
         '
-        Me.TENoRekB.Location = New System.Drawing.Point(132, 33)
+        Me.TENoRekB.Location = New System.Drawing.Point(107, 437)
         Me.TENoRekB.Name = "TENoRekB"
         Me.TENoRekB.Properties.ReadOnly = True
-        Me.TENoRekB.Size = New System.Drawing.Size(225, 20)
+        Me.TENoRekB.Size = New System.Drawing.Size(179, 20)
         Me.TENoRekB.TabIndex = 8938
         '
         'Label74
         '
         Me.Label74.AutoSize = True
-        Me.Label74.Location = New System.Drawing.Point(14, 36)
+        Me.Label74.Location = New System.Drawing.Point(11, 440)
         Me.Label74.Name = "Label74"
         Me.Label74.Size = New System.Drawing.Size(67, 13)
         Me.Label74.TabIndex = 8937
@@ -3005,9 +2999,9 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Controls.Add(Me.LELevelB)
         Me.GCContractProposeB.Controls.Add(Me.LEDepartementB)
         Me.GCContractProposeB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCContractProposeB.Location = New System.Drawing.Point(0, 1105)
+        Me.GCContractProposeB.Location = New System.Drawing.Point(0, 1127)
         Me.GCContractProposeB.Name = "GCContractProposeB"
-        Me.GCContractProposeB.Size = New System.Drawing.Size(790, 266)
+        Me.GCContractProposeB.Size = New System.Drawing.Size(773, 266)
         Me.GCContractProposeB.TabIndex = 4
         Me.GCContractProposeB.Text = "Status Contract And Position"
         '
@@ -3193,9 +3187,9 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentProposeB.Controls.Add(Me.Label36)
         Me.GCDependentProposeB.Controls.Add(Me.LEMarriageStatusB)
         Me.GCDependentProposeB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 781)
+        Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 803)
         Me.GCDependentProposeB.Name = "GCDependentProposeB"
-        Me.GCDependentProposeB.Size = New System.Drawing.Size(790, 324)
+        Me.GCDependentProposeB.Size = New System.Drawing.Size(773, 324)
         Me.GCDependentProposeB.TabIndex = 3
         Me.GCDependentProposeB.Text = "Dependent"
         '
@@ -3328,6 +3322,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.GCDetailProposeB.Controls.Add(Me.TxtPersonalEmailB)
         Me.GCDetailProposeB.Controls.Add(Me.Label105)
+        Me.GCDetailProposeB.Controls.Add(Me.SBRekAttB)
         Me.GCDetailProposeB.Controls.Add(Me.Label98)
         Me.GCDetailProposeB.Controls.Add(Me.Label99)
         Me.GCDetailProposeB.Controls.Add(Me.Label100)
@@ -3338,9 +3333,13 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Controls.Add(Me.LEBPJSStatusChild3B)
         Me.GCDetailProposeB.Controls.Add(Me.DERegBPJSKesChild3B)
         Me.GCDetailProposeB.Controls.Add(Me.CEBPJSChild3B)
+        Me.GCDetailProposeB.Controls.Add(Me.TENoRekB)
         Me.GCDetailProposeB.Controls.Add(Me.TxtBPJSSehatChild3B)
+        Me.GCDetailProposeB.Controls.Add(Me.Label74)
         Me.GCDetailProposeB.Controls.Add(Me.Label96)
+        Me.GCDetailProposeB.Controls.Add(Me.Label40)
         Me.GCDetailProposeB.Controls.Add(Me.LEBPJSStatusChild2B)
+        Me.GCDetailProposeB.Controls.Add(Me.TERekeningNameB)
         Me.GCDetailProposeB.Controls.Add(Me.DERegBPJSKesChild2B)
         Me.GCDetailProposeB.Controls.Add(Me.CEBPJSChild2B)
         Me.GCDetailProposeB.Controls.Add(Me.TxtBPJSSehatChild2B)
@@ -3418,22 +3417,22 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailProposeB.Name = "GCDetailProposeB"
-        Me.GCDetailProposeB.Size = New System.Drawing.Size(790, 583)
+        Me.GCDetailProposeB.Size = New System.Drawing.Size(773, 605)
         Me.GCDetailProposeB.TabIndex = 2
         Me.GCDetailProposeB.Text = "Detail"
         '
         'TxtPersonalEmailB
         '
-        Me.TxtPersonalEmailB.Location = New System.Drawing.Point(616, 437)
+        Me.TxtPersonalEmailB.Location = New System.Drawing.Point(621, 463)
         Me.TxtPersonalEmailB.Name = "TxtPersonalEmailB"
         Me.TxtPersonalEmailB.Properties.ReadOnly = True
-        Me.TxtPersonalEmailB.Size = New System.Drawing.Size(140, 20)
+        Me.TxtPersonalEmailB.Size = New System.Drawing.Size(135, 20)
         Me.TxtPersonalEmailB.TabIndex = 9035
         '
         'Label105
         '
         Me.Label105.AutoSize = True
-        Me.Label105.Location = New System.Drawing.Point(535, 440)
+        Me.Label105.Location = New System.Drawing.Point(542, 466)
         Me.Label105.Name = "Label105"
         Me.Label105.Size = New System.Drawing.Size(75, 13)
         Me.Label105.TabIndex = 9034
@@ -3807,7 +3806,7 @@ Partial Class FormEmployeePpsDet
         Me.LENPWPStatusB.Name = "LENPWPStatusB"
         Me.LENPWPStatusB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LENPWPStatusB.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_npwp_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("npwp_status", "NPWP Status")})
-        Me.LENPWPStatusB.Size = New System.Drawing.Size(140, 20)
+        Me.LENPWPStatusB.Size = New System.Drawing.Size(245, 20)
         Me.LENPWPStatusB.TabIndex = 8939
         '
         'Label77
@@ -3934,7 +3933,7 @@ Partial Class FormEmployeePpsDet
         'CEKoperasiB
         '
         Me.CEKoperasiB.EditValue = "no"
-        Me.CEKoperasiB.Location = New System.Drawing.Point(536, 411)
+        Me.CEKoperasiB.Location = New System.Drawing.Point(653, 411)
         Me.CEKoperasiB.Name = "CEKoperasiB"
         Me.CEKoperasiB.Properties.Caption = "Koperasi Member"
         Me.CEKoperasiB.Properties.ReadOnly = True
@@ -3960,7 +3959,7 @@ Partial Class FormEmployeePpsDet
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(10, 518)
+        Me.Label13.Location = New System.Drawing.Point(10, 544)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(77, 13)
         Me.Label13.TabIndex = 8929
@@ -3978,7 +3977,7 @@ Partial Class FormEmployeePpsDet
         '
         'MEAddressBoardingB
         '
-        Me.MEAddressBoardingB.Location = New System.Drawing.Point(107, 517)
+        Me.MEAddressBoardingB.Location = New System.Drawing.Point(107, 543)
         Me.MEAddressBoardingB.Name = "MEAddressBoardingB"
         Me.MEAddressBoardingB.Properties.ReadOnly = True
         Me.MEAddressBoardingB.Size = New System.Drawing.Size(649, 48)
@@ -4021,7 +4020,7 @@ Partial Class FormEmployeePpsDet
         '
         'MEAddressB
         '
-        Me.MEAddressB.Location = New System.Drawing.Point(107, 463)
+        Me.MEAddressB.Location = New System.Drawing.Point(107, 489)
         Me.MEAddressB.Name = "MEAddressB"
         Me.MEAddressB.Properties.ReadOnly = True
         Me.MEAddressB.Size = New System.Drawing.Size(649, 48)
@@ -4077,7 +4076,7 @@ Partial Class FormEmployeePpsDet
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(10, 465)
+        Me.Label16.Location = New System.Drawing.Point(10, 491)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(71, 13)
         Me.Label16.TabIndex = 8928
@@ -4140,7 +4139,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtMobilePhoneB
         '
-        Me.TxtMobilePhoneB.Location = New System.Drawing.Point(379, 437)
+        Me.TxtMobilePhoneB.Location = New System.Drawing.Point(379, 463)
         Me.TxtMobilePhoneB.Name = "TxtMobilePhoneB"
         Me.TxtMobilePhoneB.Properties.ReadOnly = True
         Me.TxtMobilePhoneB.Size = New System.Drawing.Size(140, 20)
@@ -4149,7 +4148,7 @@ Partial Class FormEmployeePpsDet
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(303, 440)
+        Me.Label19.Location = New System.Drawing.Point(303, 466)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(70, 13)
         Me.Label19.TabIndex = 8927
@@ -4158,7 +4157,7 @@ Partial Class FormEmployeePpsDet
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(11, 440)
+        Me.Label20.Location = New System.Drawing.Point(11, 466)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(37, 13)
         Me.Label20.TabIndex = 8926
@@ -4166,7 +4165,7 @@ Partial Class FormEmployeePpsDet
         '
         'TxtPhoneB
         '
-        Me.TxtPhoneB.Location = New System.Drawing.Point(107, 437)
+        Me.TxtPhoneB.Location = New System.Drawing.Point(107, 463)
         Me.TxtPhoneB.Name = "TxtPhoneB"
         Me.TxtPhoneB.Properties.ReadOnly = True
         Me.TxtPhoneB.Size = New System.Drawing.Size(179, 20)
@@ -4316,7 +4315,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralProposeB.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralProposeB.Name = "GCGeneralProposeB"
-        Me.GCGeneralProposeB.Size = New System.Drawing.Size(790, 198)
+        Me.GCGeneralProposeB.Size = New System.Drawing.Size(773, 198)
         Me.GCGeneralProposeB.TabIndex = 1
         Me.GCGeneralProposeB.Text = "Employee"
         '

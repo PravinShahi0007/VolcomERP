@@ -12,9 +12,14 @@
     End Sub
 
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'check 
         DEDateCreated.EditValue = Now
+        '
+        TETotal.EditValue = 0.00
+        TEVat.EditValue = 0.00
+        TEGrandTotal.EditValue = 0.00
+        '
         TENumber.Text = "[auto generate]"
-        load_pay_from()
         load_vendor()
         load_trans_type()
         load_det()
@@ -34,6 +39,7 @@
                 newRow("description") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
                 newRow("code") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_code").ToString
                 newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount").ToString
+                newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat").ToString
                 newRow("inv_number") = ""
                 newRow("note") = ""
                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
@@ -55,13 +61,14 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
                 DEDateCreated.EditValue = data.Rows(0)("created_date")
                 SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
                 SLEPayType.EditValue = data.Rows(0)("type").ToString
-                SLEPayFrom.EditValue = data.Rows(0)("id_acc_payfrom").ToString
+                '
+                MENote.Text = data.Rows(0)("note").ToString
             End If
         End If
     End Sub
 
     Sub load_det()
-        Dim query As String = "Select pnd.`id_report` As id_report, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
+        Dim query As String = "Select pnd.`id_report` As id_report, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -74,18 +81,19 @@ WHERE pnd.`id_pn_fgpo`='" & id_dp & "'"
 
     Sub calculate()
         Dim tot As Decimal = 0.0
+        Dim tot_vat As Decimal = 0.0
+        Dim grand_tot As Decimal = 0.0
 
         Try
             tot = GVList.Columns("value").SummaryItem.SummaryValue
             TETotal.EditValue = tot
+            tot_vat = GVList.Columns("vat").SummaryItem.SummaryValue
+            TEVat.EditValue = tot_vat
+            grand_tot = tot + tot_vat
+            TEGrandTotal.EditValue = grand_tot
         Catch ex As Exception
 
         End Try
-    End Sub
-
-    Sub load_pay_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Sub load_vendor()
@@ -148,14 +156,17 @@ VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & add
                 'detail
                 query = ""
                 For i = 0 To GVList.RowCount - 1
-                    query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`inv_number`,`note`)
-VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','22','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                    query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
+VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','22','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                 Next
                 execute_non_query(query, True, "", "", "", "")
                 '
                 query = "CALL gen_number('" & id_dp & "','189')"
                 execute_non_query(query, True, "", "", "", "")
                 submit_who_prepared("189", id_dp, id_user)
+                '
+                infoCustom("BPL Created")
+                Close()
             Else
                 'edit
                 Dim query As String = ""
