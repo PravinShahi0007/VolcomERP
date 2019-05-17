@@ -59,7 +59,7 @@
 ,SUM(recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS amount_rec
 ,SUM((wod.prod_order_wo_vat/100)*recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS vat_rec
 ,rec.`delivery_order_date`,rec.`delivery_order_number`,c.`comp_name`,c.`comp_number` 
-,dsg.`design_display_name`
+,dsg.`design_display_name`,dsg.design_code
 ,po.`prod_order_number`,po.`id_prod_order`
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
@@ -153,9 +153,9 @@ WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_vendor & " GROUP
             Next
             '
             Dim query_check As String = "SELECT * FROM tb_pn_fgpo_det pnd
-INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5
+INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5 
 LEFT JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
-WHERE pnd.`id_report` IN (" & id & ")"
+WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
             Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
             If data_check.Rows.Count > 0 Then
                 Dim number_already_dp As String = ""
@@ -178,5 +178,39 @@ WHERE pnd.`id_report` IN (" & id & ")"
             FormInvoiceFGPODP.id_dp = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
             FormInvoiceFGPODP.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BCreateBPLRec_Click(sender As Object, e As EventArgs) Handles BCreateBPLRec.Click
+        GVRecFGPO.ActiveFilterString = "[is_check]='yes'"
+        If GVRecFGPO.RowCount > 0 Then
+            'check if already DP
+            Dim id As String = ""
+            For i = 0 To GVRecFGPO.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += "'" & GVRecFGPO.GetRowCellValue(i, "id_prod_order_rec").ToString & "'"
+            Next
+            '
+            Dim query_check As String = "SELECT * FROM tb_pn_fgpo_det pnd
+INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5
+LEFT JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=pnd.`id_report` 
+WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='28'"
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows.Count > 0 Then
+                Dim number_already_dp As String = ""
+                For i = 0 To data_check.Rows.Count - 1
+                    If Not i = 0 Then
+                        number_already_dp += ","
+                    End If
+                    number_already_dp += "'" & data_check.Rows(i)("prod_order_rec_number").ToString & "'"
+                Next
+                warningCustom("Receiving with number : " & number_already_dp & " already process.")
+            Else
+                FormInvoiceFGPODP.type = "2"
+                FormInvoiceFGPODP.ShowDialog()
+            End If
+        End If
+        GVRecFGPO.ActiveFilterString = ""
     End Sub
 End Class
