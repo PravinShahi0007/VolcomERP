@@ -40,6 +40,8 @@ Partial Class FormProdDemandRevNew
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCProdDemand = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProdDemand = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnProdDemand = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -53,8 +55,6 @@ Partial Class FormProdDemandRevNew
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,8 +67,8 @@ Partial Class FormProdDemandRevNew
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -108,9 +108,9 @@ Partial Class FormProdDemandRevNew
         Me.PanelControl2.Controls.Add(Me.MENote)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 321)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 325)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(684, 100)
+        Me.PanelControl2.Size = New System.Drawing.Size(684, 96)
         Me.PanelControl2.TabIndex = 1
         '
         'LabelControl4
@@ -245,9 +245,21 @@ Partial Class FormProdDemandRevNew
         Me.GCProdDemand.Location = New System.Drawing.Point(0, 44)
         Me.GCProdDemand.MainView = Me.GVProdDemand
         Me.GCProdDemand.Name = "GCProdDemand"
-        Me.GCProdDemand.Size = New System.Drawing.Size(684, 277)
+        Me.GCProdDemand.Size = New System.Drawing.Size(684, 281)
         Me.GCProdDemand.TabIndex = 3
         Me.GCProdDemand.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdDemand})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "view detail"
         '
         'GVProdDemand
         '
@@ -342,18 +354,6 @@ Partial Class FormProdDemandRevNew
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 3
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "view detail"
-        '
         'FormProdDemandRevNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -383,8 +383,8 @@ Partial Class FormProdDemandRevNew
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
