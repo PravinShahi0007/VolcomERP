@@ -54,7 +54,40 @@
 
             ElseIf XTCPelunasan.SelectedTabPageIndex = 1 Then
                 'list Receiving
-
+                Dim query As String = "SELECT 'no' AS is_check,rec.`id_prod_order_rec`,rec.`prod_order_rec_number`
+,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec
+,SUM(recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS amount_rec
+,SUM((wod.prod_order_wo_vat/100)*recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS vat_rec
+,rec.`delivery_order_date`,rec.`delivery_order_number`,c.`comp_name`,c.`comp_number` 
+,dsg.`design_display_name`
+,po.`prod_order_number`,po.`id_prod_order`
+FROM tb_prod_order_rec_det recd
+INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
+INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
+INNER JOIN 
+(
+	SELECT pod.`id_prod_order_det`,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,wo.id_ovh_price FROM tb_prod_order_wo_det wod
+	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+	INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=wod.`id_prod_order_det`
+	WHERE wo.`is_main_vendor`='1'
+	GROUP BY wod.`id_prod_order_det`
+) wod ON wod.id_prod_order_det=pod.`id_prod_order_det`
+INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wod.id_ovh_price
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp 
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.`id_prod_order` 
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+WHERE 1=1 " & query_vendor & "
+GROUP BY rec.`id_prod_order_rec`"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCRecFGPO.DataSource = data
+                GVRecFGPO.BestFitColumns()
+                If SLEVendorPayment.EditValue.ToString = "0" Then
+                    BCreateBPLRec.Visible = False
+                Else
+                    BCreateBPLRec.Visible = True
+                End If
             End If
         ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
             If XTCDP.SelectedTabPageIndex = 0 Then
