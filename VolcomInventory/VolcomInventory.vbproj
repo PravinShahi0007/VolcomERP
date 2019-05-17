@@ -973,6 +973,12 @@
     <Compile Include="FormEmployeePpsList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmployeePpsProgress.Designer.vb">
+      <DependentUpon>FormEmployeePpsProgress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeePpsProgress.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmployeePpsWebcam.Designer.vb">
       <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
     </Compile>
@@ -5059,6 +5065,18 @@
     <Compile Include="FormUniqueDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormUniqueRevProduct.Designer.vb">
+      <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueRevProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturn.Designer.vb">
+      <DependentUpon>FormUniqueSalesReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormUpload.Designer.vb">
       <DependentUpon>FormUpload.vb</DependentUpon>
     </Compile>
@@ -7150,6 +7168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployeePpsList.resx">
       <DependentUpon>FormEmployeePpsList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeePpsProgress.resx">
+      <DependentUpon>FormEmployeePpsProgress.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployeePpsWebcam.resx">
       <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
@@ -9560,6 +9581,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueRevProduct.resx">
+      <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueSalesReturn.resx">
+      <DependentUpon>FormUniqueSalesReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpload.resx">
       <DependentUpon>FormUpload.vb</DependentUpon>

@@ -5058,15 +5058,15 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
                 If data_payment.Rows.Count > 0 Then
                     If data_payment.Rows(0)("report_mark_type").ToString = "189" Then  'if only one payment type (all payment)
-                        'auto journal
+                        ''auto journal
                         'Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                         'Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
                         'Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                         'Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                        ''main journal
+                        '''main journal
                         'Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        'VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                        'VALUES('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                         'Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                         'increase_inc_acc("1")
 
@@ -5074,14 +5074,29 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                         'Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                         '                    SELECT * FROM
                         '                    (
+                        '                        /* DP vendor */
+                        '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                        '                        FROM tb_pn_fgpo_det pnd
+                        '                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                        '                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                        '                        WHERE pn.id_pn_fgpo=" & id_report & "
+                        '                        GROUP BY pn.id_pn_fgpo
+                        '                        UNION ALL
+                        '                        /* uang muka PPN WIP */
+                        '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                        '                        FROM tb_pn_fgpo_det pnd
+                        '                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                        '                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                        '                        WHERE pn.id_pn_fgpo=" & id_report & "
+                        '                        GROUP BY pn.id_pn_fgpo
+                        '                        UNION ALL
                         '                        /* hutang dagang total */
-                        '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, cc.id_comp,  0 AS `qty`,SUM(pyd.total_dp + pyd.value) AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_payment, py.number
-                        '                        FROM tb_payment_det pyd
-                        '                        INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment
-                        '                        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                        '                        INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
-                        '                        WHERE py.id_payment=" & id_report & "
-                        '                        GROUP BY py.id_payment
+                        '                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(pnd.value + pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                        '                        FROM tb_pn_fgpo_det pnd
+                        '                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                        '                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                        '                        WHERE pn.id_pn_fgpo=" & id_report & "
+                        '                        GROUP BY pn.id_pn_fgpo
                         '                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
                         'execute_non_query(qjd, True, "", "", "", "")
                         'check if can close
@@ -5647,6 +5662,10 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             ' update tb_m_employee
             If id_status_reportx = "6" Then
+                Dim progress As FormEmployeePpsProgress = New FormEmployeePpsProgress()
+
+                progress.Show()
+
                 Dim query_pps As String = "SELECT id_type, id_employee FROM tb_employee_pps WHERE id_employee_pps = '" + id_report + "'"
                 Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
 
@@ -5654,15 +5673,18 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 FormEmployeePpsDet.is_new = If(data_pps.Rows(0)("id_type").ToString = "1", "-1", "1")
                 FormEmployeePpsDet.id_employee = If(data_pps.Rows(0)("id_employee").ToString = "", "-1", data_pps.Rows(0)("id_employee").ToString)
 
-                FormEmployeePpsDet.updateChanges()
+                progress.ProgressBarControl.EditValue = 10
+
+                FormEmployeePpsDet.updateChanges(progress)
+
+                progress.ProgressBarControl.EditValue = 100
+
+                progress.Close()
             End If
 
             'update
             query = String.Format("UPDATE tb_employee_pps SET id_report_status='{0}' WHERE id_employee_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-            'refresh view
-            FormEmployeePpsDet.initLoad()
         ElseIf report_mark_type = "183" Then
             'invoice different margin
             If id_status_reportx = "3" Then
@@ -5876,36 +5898,46 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             If id_status_reportx = "6" Then
                 'Select user prepared
-                'Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
-                'Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
-                'Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
-                'Dim report_number As String = du.Rows(0)("report_number").ToString
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                ''main journal
-                'Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                '        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                'Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
-                'increase_inc_acc("1")
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
 
-                ''det journal
-                'Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                '                    -- dp
-                '                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, NULL,  0 AS `qty`,0 AS `debit`,ca.val_ca AS `credit`,'Cash Advance' AS `note`,174,ca.id_cash_advance,ca.number
-                '                    FROM tb_cash_advance ca
-                '                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
-                '                    -- hutang dagang
-                '                    UNION ALL
-                '                    SELECT '" & id_acc_trans & "' AS id_acc_trans,car.id_acc AS `id_acc`, NULL,  0 AS `qty`, car.value AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
-                '                    FROM tb_cash_advance ca
-                '                    INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
-                '                    WHERE ca.id_cash_advance=" & id_report & " AND car.`value` > 0
-                '                    --
-                '                    UNION ALL
-                '                    SELECT '" & id_acc_trans & "' AS id_acc_trans,card.id_acc AS `id_acc`, NULL,  0 AS `qty`, IF(card.id_bill_type = 21, card.value, 0) AS `debit`, IF(card.id_bill_type = 21, 0, card.value)  AS `credit`,card.description AS `note`,174,ca.id_cash_advance,ca.number
-                '                FROM tb_cash_advance ca
-                '                INNER JOIN tb_cash_advance_report_det card ON ca.id_cash_advance = card.id_cash_advance
-                '                WHERE ca.id_cash_advance=" & id_report & " AND card.`value` > 0"
-                'execute_non_query(qjd, True, "", "", "", "")
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                                    SELECT * FROM
+                                    (
+                                        /* DP vendor */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                        UNION ALL
+                                        /* uang muka PPN WIP */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                        UNION ALL
+                                        /* hutang dagang total */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(pnd.value + pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                execute_non_query(qjd, True, "", "", "", "")
             End If
 
             'update

@@ -125,29 +125,28 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
             where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS type,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,acc.`acc_name`,acc.`acc_description`
+        Dim query As String = "SELECT 'no' AS is_check,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS TYPE,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
 ,det.amount AS total 
-,IFNULL(payment.value,0) as total_paid
-,IFNULL(payment_pending.jml,0) as total_pending
-,(det.amount - IFNULL(payment.value,0)) as balance
+,IFNULL(payment.value,0) AS total_paid
+,IFNULL(payment_pending.jml,0) AS total_pending
+,(det.amount - IFNULL(payment.value,0)) AS balance
 FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
-INNER JOIN `tb_a_acc` acc ON acc.`id_acc`=pn.`id_acc_payfrom`
 INNER JOIN (
 	SELECT id_pn_fgpo,SUM(`value`) AS amount FROM tb_pn_fgpo_det pnd 
 	GROUP BY pnd.`id_pn_fgpo`
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 LEFT JOIN
 (
-	SELECT COUNT(pyd.id_report) as jml,pyd.id_report FROM `tb_payment_det` pyd
+	SELECT COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_payment_det` pyd
 	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='189'
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
 LEFT JOIN
 (
-	SELECT pyd.id_report, SUM(pyd.`value`+pyd.`vat`) AS `value` FROM `tb_payment_det` pyd
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
 	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='189'
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=pn.id_pn_fgpo

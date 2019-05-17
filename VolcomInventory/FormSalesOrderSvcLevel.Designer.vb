@@ -19,7 +19,6 @@ Partial Class FormSalesOrderSvcLevel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -63,7 +62,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewDetailOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintPrepareOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -117,6 +116,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPRec = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPL = New DevExpress.XtraGrid.GridControl()
+        Me.ViewRevProduct = New System.Windows.Forms.ContextMenuStrip()
+        Me.PrintUniqueCodeToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPL = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPLSample = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -159,7 +160,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPDelOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesDelOrder = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CancellCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -185,6 +186,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPreparedDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUseUniqueCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnidcommercetype = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateDO = New DevExpress.XtraEditors.SimpleButton()
@@ -323,7 +325,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnidcommercetype = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewPreReturn = New System.Windows.Forms.ContextMenuStrip()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -366,6 +369,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEFromRet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPRec.SuspendLayout()
         CType(Me.GCPL, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewRevProduct.SuspendLayout()
         CType(Me.GVPL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilterRec, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -440,6 +444,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewPreReturn.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -1348,6 +1353,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GCPL
         '
+        Me.GCPL.ContextMenuStrip = Me.ViewRevProduct
         Me.GCPL.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCPL.Location = New System.Drawing.Point(0, 39)
         Me.GCPL.MainView = Me.GVPL
@@ -1356,6 +1362,18 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCPL.Size = New System.Drawing.Size(1024, 349)
         Me.GCPL.TabIndex = 4
         Me.GCPL.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPL})
+        '
+        'ViewRevProduct
+        '
+        Me.ViewRevProduct.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintUniqueCodeToolStripMenuItem1})
+        Me.ViewRevProduct.Name = "ViewRevProduct"
+        Me.ViewRevProduct.Size = New System.Drawing.Size(172, 26)
+        '
+        'PrintUniqueCodeToolStripMenuItem1
+        '
+        Me.PrintUniqueCodeToolStripMenuItem1.Name = "PrintUniqueCodeToolStripMenuItem1"
+        Me.PrintUniqueCodeToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
+        Me.PrintUniqueCodeToolStripMenuItem1.Text = "Print Unique Code"
         '
         'GVPL
         '
@@ -2013,6 +2031,12 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnIdStore.Name = "GridColumnIdStore"
         Me.GridColumnIdStore.OptionsColumn.AllowEdit = False
         '
+        'GridColumnidcommercetype
+        '
+        Me.GridColumnidcommercetype.Caption = "id commerce type"
+        Me.GridColumnidcommercetype.FieldName = "id_commerce_type"
+        Me.GridColumnidcommercetype.Name = "GridColumnidcommercetype"
+        '
         'GridView6
         '
         Me.GridView6.GridControl = Me.GCSalesDelOrder
@@ -2166,6 +2190,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GCSalesReturn
         '
+        Me.GCSalesReturn.ContextMenuStrip = Me.ViewPreReturn
         Me.GCSalesReturn.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSalesReturn.Location = New System.Drawing.Point(0, 39)
         Me.GCSalesReturn.MainView = Me.GVSalesReturn
@@ -3356,11 +3381,17 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
-        'GridColumnidcommercetype
+        'ViewPreReturn
         '
-        Me.GridColumnidcommercetype.Caption = "id commerce type"
-        Me.GridColumnidcommercetype.FieldName = "id_commerce_type"
-        Me.GridColumnidcommercetype.Name = "GridColumnidcommercetype"
+        Me.ViewPreReturn.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ViewPreReturn.Name = "ViewRevProduct"
+        Me.ViewPreReturn.Size = New System.Drawing.Size(172, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
+        Me.ToolStripMenuItem1.Text = "Print Unique Code"
         '
         'FormSalesOrderSvcLevel
         '
@@ -3416,6 +3447,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEFromRet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPRec.ResumeLayout(False)
         CType(Me.GCPL, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewRevProduct.ResumeLayout(False)
         CType(Me.GVPL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFilterRec, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3496,6 +3528,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewPreReturn.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -3804,4 +3837,8 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnIdStore As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnidcommercetype As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewRevProduct As ContextMenuStrip
+    Friend WithEvents PrintUniqueCodeToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ViewPreReturn As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 End Class
