@@ -5065,6 +5065,12 @@
     <Compile Include="FormUniqueDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormUniqueFGTrf.Designer.vb">
+      <DependentUpon>FormUniqueFGTrf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueFGTrf.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormUniqueRevProduct.Designer.vb">
       <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
     </Compile>
@@ -5075,6 +5081,12 @@
       <DependentUpon>FormUniqueSalesReturn.vb</DependentUpon>
     </Compile>
     <Compile Include="FormUniqueSalesReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturnQC.Designer.vb">
+      <DependentUpon>FormUniqueSalesReturnQC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturnQC.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormUpload.Designer.vb">
@@ -9582,11 +9594,17 @@
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueFGTrf.resx">
+      <DependentUpon>FormUniqueFGTrf.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueRevProduct.resx">
       <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueSalesReturn.resx">
       <DependentUpon>FormUniqueSalesReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueSalesReturnQC.resx">
+      <DependentUpon>FormUniqueSalesReturnQC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpload.resx">
       <DependentUpon>FormUpload.vb</DependentUpon>

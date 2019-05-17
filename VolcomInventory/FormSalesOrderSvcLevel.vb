@@ -960,4 +960,23 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        Cursor = Cursors.WaitCursor
+        If GVSalesReturnQC.FocusedRowHandle >= 0 And GVSalesReturnQC.RowCount > 0 Then
+            FormUniqueSalesReturnQC.id_sales_return_qc = GVSalesReturnQC.GetFocusedRowCellValue("id_sales_return_qc").ToString
+            FormUniqueSalesReturnQC.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        Cursor = Cursors.WaitCursor
+        If GVFGTrf.FocusedRowHandle >= 0 And GVFGTrf.RowCount > 0 Then
+            FormUniqueFGTrf.id_fg_trf = GVFGTrf.GetFocusedRowCellValue("id_fg_trf").ToString
+            FormUniqueFGTrf.fg_trf_number = GVFGTrf.GetFocusedRowCellValue("fg_trf_number").ToString
+            FormUniqueFGTrf.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
