@@ -406,8 +406,8 @@
                 band_break.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
 
                 'size position
-                Dim data_filter As DataRow() = data_band_break.Select("[display_name]='" + data.Columns(i).ColumnName.ToString + "'")
-                BGVParam.SetColumnPosition(BGVParam.Columns(data.Columns(i).ColumnName.ToString), data_filter(0)("code_row_index").ToString, data_filter(0)("code_col_index").ToString)
+                'Dim data_filter As DataRow() = data_band_break.Select("[display_name]='" + data.Columns(i).ColumnName.ToString + "'")
+                'BGVParam.SetColumnPosition(BGVParam.Columns(data.Columns(i).ColumnName.ToString), data_filter(0)("code_row_index").ToString, data_filter(0)("code_col_index").ToString)
 
                 'properties
                 BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
@@ -556,20 +556,24 @@
 
 
         'hide band
-        band_break.Visible = False
-        If show_breakdown_par Then
-            For j As Integer = 0 To band_alloc_break.Length - 1
-                band_alloc_break(j).Visible = False
-            Next
-        End If
+        band_break.Visible = True
+        'If show_breakdown_par Then
+        '    For j As Integer = 0 To band_alloc_break.Length - 1
+        '        band_alloc_break(j).Visible = False
+        '    Next
+        'End If
+
+        'caption break size
+
 
 
         'order BAND
         BGVParam.Bands.MoveTo(1, band_desc_freeze)
         BGVParam.Bands.MoveTo(2, band_desc)
         BGVParam.Bands.MoveTo(97, band_break_total)
-        BGVParam.Bands.MoveTo(98, band_prc)
-        BGVParam.Bands.MoveTo(99, band_sel)
+        BGVParam.Bands.MoveTo(98, band_break)
+        BGVParam.Bands.MoveTo(99, band_prc)
+        BGVParam.Bands.MoveTo(100, band_sel)
 
         'create repository
         Dim riCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit

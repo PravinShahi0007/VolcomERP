@@ -184,7 +184,7 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         nothingLineList()
         CheckEditOpt.EditValue = False
-        PanelOpt.Visible = True
+        'PanelOpt.Visible = True
         PanelImg.Visible = False
         Cursor = Cursors.Default
     End Sub
@@ -193,7 +193,7 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         nothingLineList()
         CheckEditOpt.EditValue = False
-        PanelOpt.Visible = True
+        'PanelOpt.Visible = True
         PanelImg.Visible = False
 
 
@@ -1328,5 +1328,9 @@ Public Class FormFGLineList
         End If
         BGVLineList.ActiveFilterString = ""
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEditOpt_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditOpt.CheckedChanged
+
     End Sub
 End Class
