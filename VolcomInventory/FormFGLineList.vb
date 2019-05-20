@@ -109,6 +109,8 @@ Public Class FormFGLineList
 
     Private Sub BtnView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnView.Click
         Cursor = Cursors.WaitCursor
+        BGVLineList.ColumnPanelRowHeight = 40
+        CheckEditOpt.EditValue = False
         CheckImg.EditValue = False
         BtnView.Text = "Loading..."
         BtnView.Enabled = False
@@ -122,7 +124,7 @@ Public Class FormFGLineList
 
         BtnView.Text = "View Line List"
         BtnView.Enabled = True
-        PanelOpt.Visible = False
+        PanelOpt.Visible = True
         PanelImg.Visible = True
         BGVLineList.RowHeight = 10
         Cursor = Cursors.Default
@@ -184,7 +186,7 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         nothingLineList()
         CheckEditOpt.EditValue = False
-        'PanelOpt.Visible = True
+        PanelOpt.Visible = False
         PanelImg.Visible = False
         Cursor = Cursors.Default
     End Sub
@@ -193,7 +195,7 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         nothingLineList()
         CheckEditOpt.EditValue = False
-        'PanelOpt.Visible = True
+        PanelOpt.Visible = False
         PanelImg.Visible = False
 
 
@@ -1331,6 +1333,26 @@ Public Class FormFGLineList
     End Sub
 
     Private Sub CheckEditOpt_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditOpt.CheckedChanged
-
+        If CheckEditOpt.EditValue = True Then
+            BGVLineList.ColumnPanelRowHeight = 80
+            Dim idx As Integer = 0
+            For b As Integer = 0 To BGVLineList.Bands.VisibleBandCount - 1
+                If BGVLineList.Bands(b).Caption = "TOTAL QTY DESIGN" Then
+                    idx = BGVLineList.Bands(b).VisibleIndex
+                ElseIf BGVLineList.Bands(b).Caption = "TOTAL QTY BREAKDOWN SIZE" Then
+                    BGVLineList.Bands(b).Visible = True
+                    BGVLineList.Bands(b).VisibleIndex = idx + 1
+                    Exit For
+                End If
+            Next
+        Else
+            BGVLineList.ColumnPanelRowHeight = 40
+            For b As Integer = 0 To BGVLineList.Bands.VisibleBandCount - 1
+                If BGVLineList.Bands(b).Caption = "TOTAL QTY BREAKDOWN SIZE" Then
+                    BGVLineList.Bands(b).Visible = False
+                    Exit For
+                End If
+            Next
+        End If
     End Sub
 End Class
