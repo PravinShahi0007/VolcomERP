@@ -49,7 +49,7 @@
         Cursor = Cursors.WaitCursor
         Try
             Dim webClient As New Net.WebClient
-            Dim result As String = webClient.DownloadString("http://www.fiskal.kemenkeu.go.id/dw-kurs-db.asp")
+            Dim result As String = webClient.DownloadString("http://fiskal.kemenkeu.go.id/dw-kurs-db.asp")
             Dim str_kurs_dec As String = Between(result, "Dolar Amerika Serikat (USD)</td><td class='text-right'>", " <img src='data/aimages").Replace(",", "").Replace(" ", "")
             '
             Dim query_sel As String = "SELECT CAST('" & str_kurs_dec & "' AS DECIMAL(13,2)) as kurs"
