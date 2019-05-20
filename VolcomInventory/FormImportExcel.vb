@@ -4785,13 +4785,6 @@ Public Class FormImportExcel
                     '
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdAwb").ToString = "0" Then
-                            Dim date_new As String = ""
-                            '
-                            If GVData.GetRowCellValue(i, "rec_date_new").ToString = "" Then
-                                date_new = "NULL"
-                            Else
-                                date_new = "'" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "'"
-                            End If
                             '
                             Dim query_exec As String = "UPDATE tb_wh_awbill SET awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
