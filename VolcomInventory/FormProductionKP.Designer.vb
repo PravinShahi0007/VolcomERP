@@ -44,26 +44,15 @@ Partial Class FormProductionKP
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.SLERevision = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.ImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrintKO = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.BLock = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEVatTot = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-        Me.TETot = New DevExpress.XtraEditors.TextEdit()
-        Me.TEVat = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.PCDel = New DevExpress.XtraEditors.PanelControl()
         Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
@@ -99,6 +88,7 @@ Partial Class FormProductionKP
         Me.GridColumnPOKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,16 +110,6 @@ Partial Class FormProductionKP
         CType(Me.ImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl7.SuspendLayout()
-        CType(Me.TEVatTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TETot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl6.SuspendLayout()
-        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCDel.SuspendLayout()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -380,14 +360,6 @@ Partial Class FormProductionKP
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(14, 10)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(40, 13)
-        Me.LabelControl4.TabIndex = 3
-        Me.LabelControl4.Text = "Revision"
-        '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Id Ko"
@@ -407,6 +379,14 @@ Partial Class FormProductionKP
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 0
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(14, 10)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(40, 13)
+        Me.LabelControl4.TabIndex = 3
+        Me.LabelControl4.Text = "Revision"
         '
         'ImageCollection
         '
@@ -475,130 +455,6 @@ Partial Class FormProductionKP
         Me.BLock.TabIndex = 8909
         Me.BLock.Text = "Lock"
         '
-        'PanelControl5
-        '
-        Me.PanelControl5.Controls.Add(Me.PanelControl7)
-        Me.PanelControl5.Controls.Add(Me.PanelControl6)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 444)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(875, 70)
-        Me.PanelControl5.TabIndex = 6
-        '
-        'PanelControl7
-        '
-        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl7.Controls.Add(Me.LabelControl14)
-        Me.PanelControl7.Controls.Add(Me.TEVatTot)
-        Me.PanelControl7.Controls.Add(Me.LabelControl22)
-        Me.PanelControl7.Controls.Add(Me.TETot)
-        Me.PanelControl7.Controls.Add(Me.TEVat)
-        Me.PanelControl7.Controls.Add(Me.LabelControl15)
-        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl7.Location = New System.Drawing.Point(586, 2)
-        Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(287, 66)
-        Me.PanelControl7.TabIndex = 154
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(6, 12)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(16, 13)
-        Me.LabelControl14.TabIndex = 147
-        Me.LabelControl14.Text = "Vat"
-        '
-        'TEVatTot
-        '
-        Me.TEVatTot.EditValue = ""
-        Me.TEVatTot.Location = New System.Drawing.Point(137, 9)
-        Me.TEVatTot.Name = "TEVatTot"
-        Me.TEVatTot.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEVatTot.Properties.EditValueChangedDelay = 1
-        Me.TEVatTot.Properties.Mask.EditMask = "N2"
-        Me.TEVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEVatTot.Properties.Mask.SaveLiteral = False
-        Me.TEVatTot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEVatTot.Properties.ReadOnly = True
-        Me.TEVatTot.Size = New System.Drawing.Size(140, 20)
-        Me.TEVatTot.TabIndex = 145
-        '
-        'LabelControl22
-        '
-        Me.LabelControl22.Location = New System.Drawing.Point(120, 12)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl22.TabIndex = 150
-        Me.LabelControl22.Text = "%"
-        '
-        'TETot
-        '
-        Me.TETot.EditValue = ""
-        Me.TETot.Location = New System.Drawing.Point(68, 36)
-        Me.TETot.Name = "TETot"
-        Me.TETot.Properties.Appearance.Options.UseTextOptions = True
-        Me.TETot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TETot.Properties.EditValueChangedDelay = 1
-        Me.TETot.Properties.Mask.EditMask = "N2"
-        Me.TETot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TETot.Properties.Mask.SaveLiteral = False
-        Me.TETot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TETot.Properties.ReadOnly = True
-        Me.TETot.Size = New System.Drawing.Size(209, 20)
-        Me.TETot.TabIndex = 146
-        '
-        'TEVat
-        '
-        Me.TEVat.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TEVat.Location = New System.Drawing.Point(68, 7)
-        Me.TEVat.Name = "TEVat"
-        Me.TEVat.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEVat.Properties.Appearance.Options.UseFont = True
-        Me.TEVat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TEVat.Properties.IsFloatValue = False
-        Me.TEVat.Properties.Mask.EditMask = "N00"
-        Me.TEVat.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.TEVat.Properties.ReadOnly = True
-        Me.TEVat.Size = New System.Drawing.Size(46, 22)
-        Me.TEVat.TabIndex = 149
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(6, 39)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(56, 13)
-        Me.LabelControl15.TabIndex = 148
-        Me.LabelControl15.Text = "Grand Total"
-        '
-        'PanelControl6
-        '
-        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl6.Controls.Add(Me.METotSay)
-        Me.PanelControl6.Controls.Add(Me.LabelControl19)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl6.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(468, 66)
-        Me.PanelControl6.TabIndex = 153
-        '
-        'METotSay
-        '
-        Me.METotSay.Location = New System.Drawing.Point(33, 11)
-        Me.METotSay.Name = "METotSay"
-        Me.METotSay.Properties.MaxLength = 100
-        Me.METotSay.Properties.ReadOnly = True
-        Me.METotSay.Size = New System.Drawing.Size(419, 46)
-        Me.METotSay.TabIndex = 151
-        '
-        'LabelControl19
-        '
-        Me.LabelControl19.Location = New System.Drawing.Point(9, 14)
-        Me.LabelControl19.Name = "LabelControl19"
-        Me.LabelControl19.Size = New System.Drawing.Size(18, 13)
-        Me.LabelControl19.TabIndex = 152
-        Me.LabelControl19.Text = "Say"
-        '
         'PCDel
         '
         Me.PCDel.Appearance.BackColor = System.Drawing.Color.Transparent
@@ -630,7 +486,7 @@ Partial Class FormProductionKP
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(875, 234)
+        Me.GCProd.Size = New System.Drawing.Size(875, 304)
         Me.GCProd.TabIndex = 21
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -643,7 +499,7 @@ Partial Class FormProductionKP
         Me.GVProd.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVProd.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVProd.ColumnPanelRowHeight = 50
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13, Me.GridColumn3})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsSelection.EnableAppearanceFocusedRow = False
@@ -701,7 +557,7 @@ Partial Class FormProductionKP
         Me.GridColumnProdNo.OptionsColumn.AllowEdit = False
         Me.GridColumnProdNo.Visible = True
         Me.GridColumnProdNo.VisibleIndex = 0
-        Me.GridColumnProdNo.Width = 100
+        Me.GridColumnProdNo.Width = 255
         '
         'GridColumnTerm
         '
@@ -741,7 +597,7 @@ Partial Class FormProductionKP
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 1
-        Me.GridColumnDescription.Width = 269
+        Me.GridColumnDescription.Width = 454
         '
         'GridColumnColor
         '
@@ -755,7 +611,7 @@ Partial Class FormProductionKP
         Me.GridColumnColor.OptionsColumn.AllowEdit = False
         Me.GridColumnColor.Visible = True
         Me.GridColumnColor.VisibleIndex = 2
-        Me.GridColumnColor.Width = 89
+        Me.GridColumnColor.Width = 312
         '
         'GridColumnOrderQty
         '
@@ -772,7 +628,7 @@ Partial Class FormProductionKP
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 3
-        Me.GridColumnOrderQty.Width = 92
+        Me.GridColumnOrderQty.Width = 323
         '
         'GridColumnRecQty
         '
@@ -825,8 +681,6 @@ Partial Class FormProductionKP
         Me.GridColumn17.FieldName = "prod_order_wo_del_date"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.AllowEdit = False
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 6
         '
         'GridColumnLeadTime
         '
@@ -835,8 +689,6 @@ Partial Class FormProductionKP
         Me.GridColumnLeadTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnLeadTime.FieldName = "lead_time"
         Me.GridColumnLeadTime.Name = "GridColumnLeadTime"
-        Me.GridColumnLeadTime.Visible = True
-        Me.GridColumnLeadTime.VisibleIndex = 7
         '
         'GridColumn2
         '
@@ -849,8 +701,8 @@ Partial Class FormProductionKP
         Me.GridColumn2.UnboundExpression = "AddDays([prod_order_wo_del_date], [lead_time])"
         Me.GridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 8
-        Me.GridColumn2.Width = 60
+        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.Width = 163
         '
         'GridColumn11
         '
@@ -891,8 +743,6 @@ Partial Class FormProductionKP
         Me.GridColumn7.FieldName = "bom_unit"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
         Me.GridColumn7.Width = 136
         '
         'GridColumn12
@@ -944,14 +794,23 @@ Partial Class FormProductionKP
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount_rp", "{0:N2}")})
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 5
         Me.GridColumn13.Width = 171
         '
         'RIPictureEdit
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
         Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Proto 2 Date"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "sample_proto_2"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 5
+        Me.GridColumn3.Width = 125
         '
         'FormProductionKP
         '
@@ -960,7 +819,6 @@ Partial Class FormProductionKP
         Me.ClientSize = New System.Drawing.Size(875, 555)
         Me.Controls.Add(Me.GCProd)
         Me.Controls.Add(Me.PCDel)
-        Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -992,18 +850,6 @@ Partial Class FormProductionKP
         CType(Me.ImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl7.ResumeLayout(False)
-        Me.PanelControl7.PerformLayout()
-        CType(Me.TEVatTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TETot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl6.ResumeLayout(False)
-        Me.PanelControl6.PerformLayout()
-        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCDel.ResumeLayout(False)
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1045,17 +891,6 @@ Partial Class FormProductionKP
     Friend WithEvents BPrintKO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BUpdate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BLock As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEVatTot As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TETot As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEVat As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents METotSay As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PCDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents Bdel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCProd As DevExpress.XtraGrid.GridControl
@@ -1091,4 +926,5 @@ Partial Class FormProductionKP
     Friend WithEvents GridColumnPOKurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIPictureEdit As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

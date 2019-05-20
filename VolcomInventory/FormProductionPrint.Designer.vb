@@ -23,6 +23,7 @@ Partial Class FormProductionPrint
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionPrint))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BToggleView = New DevExpress.XtraEditors.SimpleButton()
         Me.BGenKO = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -39,6 +40,8 @@ Partial Class FormProductionPrint
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDesignCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -66,9 +69,7 @@ Partial Class FormProductionPrint
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDesignCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BToggleView = New DevExpress.XtraEditors.SimpleButton()
+        Me.BGenKP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -106,6 +107,7 @@ Partial Class FormProductionPrint
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BGenKP)
         Me.PanelControl3.Controls.Add(Me.BToggleView)
         Me.PanelControl3.Controls.Add(Me.BGenKO)
         Me.PanelControl3.Controls.Add(Me.BCancel)
@@ -113,8 +115,19 @@ Partial Class FormProductionPrint
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 368)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(685, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(904, 37)
         Me.PanelControl3.TabIndex = 10
+        '
+        'BToggleView
+        '
+        Me.BToggleView.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BToggleView.ImageIndex = 12
+        Me.BToggleView.ImageList = Me.LargeImageCollection
+        Me.BToggleView.Location = New System.Drawing.Point(653, 2)
+        Me.BToggleView.Name = "BToggleView"
+        Me.BToggleView.Size = New System.Drawing.Size(103, 33)
+        Me.BToggleView.TabIndex = 5
+        Me.BToggleView.Text = "Toggle View"
         '
         'BGenKO
         '
@@ -123,16 +136,16 @@ Partial Class FormProductionPrint
         Me.BGenKO.ImageList = Me.LargeImageCollection
         Me.BGenKO.Location = New System.Drawing.Point(2, 2)
         Me.BGenKO.Name = "BGenKO"
-        Me.BGenKO.Size = New System.Drawing.Size(169, 33)
+        Me.BGenKO.Size = New System.Drawing.Size(206, 33)
         Me.BGenKO.TabIndex = 4
-        Me.BGenKO.Text = "Generate Konfirmasi Order"
+        Me.BGenKO.Text = "Generate Konfirmasi Order (SKO)"
         '
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(537, 2)
+        Me.BCancel.Location = New System.Drawing.Point(756, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 1
@@ -143,7 +156,7 @@ Partial Class FormProductionPrint
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.ImageIndex = 6
         Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(610, 2)
+        Me.BPrint.Location = New System.Drawing.Point(829, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(73, 33)
         Me.BPrint.TabIndex = 3
@@ -156,7 +169,7 @@ Partial Class FormProductionPrint
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(685, 292)
+        Me.GCProd.Size = New System.Drawing.Size(904, 292)
         Me.GCProd.TabIndex = 3
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -266,6 +279,18 @@ Partial Class FormProductionPrint
         Me.GridColumnDesign.FieldName = "design_display_name"
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.Width = 121
+        '
+        'GCDesignCodeImport
+        '
+        Me.GCDesignCodeImport.Caption = "Code Import"
+        Me.GCDesignCodeImport.FieldName = "design_code_import"
+        Me.GCDesignCodeImport.Name = "GCDesignCodeImport"
+        '
+        'GCDesignCode
+        '
+        Me.GCDesignCode.Caption = "Design Code"
+        Me.GCDesignCode.FieldName = "design_code"
+        Me.GCDesignCode.Name = "GCDesignCode"
         '
         'GridColumnDescription
         '
@@ -465,7 +490,7 @@ Partial Class FormProductionPrint
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(685, 76)
+        Me.PanelControl1.Size = New System.Drawing.Size(904, 76)
         Me.PanelControl1.TabIndex = 12
         '
         'LPeriod
@@ -518,34 +543,22 @@ Partial Class FormProductionPrint
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Season"
         '
-        'GCDesignCode
+        'BGenKP
         '
-        Me.GCDesignCode.Caption = "Design Code"
-        Me.GCDesignCode.FieldName = "design_code"
-        Me.GCDesignCode.Name = "GCDesignCode"
-        '
-        'GCDesignCodeImport
-        '
-        Me.GCDesignCodeImport.Caption = "Code Import"
-        Me.GCDesignCodeImport.FieldName = "design_code_import"
-        Me.GCDesignCodeImport.Name = "GCDesignCodeImport"
-        '
-        'BToggleView
-        '
-        Me.BToggleView.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BToggleView.ImageIndex = 12
-        Me.BToggleView.ImageList = Me.LargeImageCollection
-        Me.BToggleView.Location = New System.Drawing.Point(434, 2)
-        Me.BToggleView.Name = "BToggleView"
-        Me.BToggleView.Size = New System.Drawing.Size(103, 33)
-        Me.BToggleView.TabIndex = 5
-        Me.BToggleView.Text = "Toggle View"
+        Me.BGenKP.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BGenKP.ImageIndex = 19
+        Me.BGenKP.ImageList = Me.LargeImageCollection
+        Me.BGenKP.Location = New System.Drawing.Point(208, 2)
+        Me.BGenKP.Name = "BGenKP"
+        Me.BGenKP.Size = New System.Drawing.Size(212, 33)
+        Me.BGenKP.TabIndex = 6
+        Me.BGenKP.Text = "Generate Konfirmasi Produksi (SKP)"
         '
         'FormProductionPrint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(685, 405)
+        Me.ClientSize = New System.Drawing.Size(904, 405)
         Me.Controls.Add(Me.GCProd)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -616,4 +629,5 @@ Partial Class FormProductionPrint
     Friend WithEvents GCDesignCodeImport As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BToggleView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BGenKP As DevExpress.XtraEditors.SimpleButton
 End Class
