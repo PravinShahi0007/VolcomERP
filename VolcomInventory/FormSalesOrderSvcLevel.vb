@@ -961,6 +961,14 @@
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub GVSalesReturn_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVSalesReturn.PopupMenuShowing
+        If GVSalesReturn.GetFocusedRowCellValue("id_ret_type").ToString = "2" Then
+            ToolStripMenuItem1.Visible = False
+        Else
+            ToolStripMenuItem1.Visible = True
+        End If
+    End Sub
+
     Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
         Cursor = Cursors.WaitCursor
         If GVSalesReturnQC.FocusedRowHandle >= 0 And GVSalesReturnQC.RowCount > 0 Then
