@@ -960,4 +960,31 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVSalesReturn_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVSalesReturn.PopupMenuShowing
+        If GVSalesReturn.GetFocusedRowCellValue("id_ret_type").ToString = "2" Then
+            ToolStripMenuItem1.Visible = False
+        Else
+            ToolStripMenuItem1.Visible = True
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        Cursor = Cursors.WaitCursor
+        If GVSalesReturnQC.FocusedRowHandle >= 0 And GVSalesReturnQC.RowCount > 0 Then
+            FormUniqueSalesReturnQC.id_sales_return_qc = GVSalesReturnQC.GetFocusedRowCellValue("id_sales_return_qc").ToString
+            FormUniqueSalesReturnQC.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        Cursor = Cursors.WaitCursor
+        If GVFGTrf.FocusedRowHandle >= 0 And GVFGTrf.RowCount > 0 Then
+            FormUniqueFGTrf.id_fg_trf = GVFGTrf.GetFocusedRowCellValue("id_fg_trf").ToString
+            FormUniqueFGTrf.fg_trf_number = GVFGTrf.GetFocusedRowCellValue("fg_trf_number").ToString
+            FormUniqueFGTrf.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
