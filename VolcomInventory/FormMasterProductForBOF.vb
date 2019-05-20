@@ -33,7 +33,7 @@ Public Class FormMasterProductForBOF
             BtnPrint.Visible = True
             BtnGenerate.Visible = True
         End If
-        GVData.Columns("id_design").Visible = False
+        'GVData.Columns("id_design").Visible = False
         GVData.Columns("final_cost").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         GVData.Columns("final_cost").DisplayFormat.FormatString = "{0:n2}"
         GVData.Columns("normal_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
