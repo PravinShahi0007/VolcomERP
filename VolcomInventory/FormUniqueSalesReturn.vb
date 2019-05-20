@@ -4,7 +4,7 @@
     Private Sub FormUniqueSalesReturn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         Dim query As String = "
-            SELECT CONCAT(cmf.comp_number, ' - ', cmf.comp_name) AS `From`, CONCAT(cmt.comp_number, ' - ', cmt.comp_name) AS `To`, s.sales_return_number AS `Return`, CONCAT(c.product_full_code, a.sales_return_det_counting) AS `Unique Code`, c.product_name AS `Description`, cd.code_detail_name AS `Size`
+            SELECT 1 AS `#`, CONCAT(cmf.comp_number, ' - ', cmf.comp_name) AS `From`, CONCAT(cmt.comp_number, ' - ', cmt.comp_name) AS `To`, s.sales_return_number AS `Return`, CONCAT(c.product_full_code, a.sales_return_det_counting) AS `Unique Code`, c.product_name AS `Description`, cd.code_detail_name AS `Size`
             FROM tb_sales_return_det_counting a 
             INNER JOIN tb_sales_return_det b ON a.id_sales_return_det = b.id_sales_return_det 
             INNER JOIN tb_sales_return s ON b.id_sales_return = s.id_sales_return
@@ -21,9 +21,16 @@
         "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GVData.Columns.ColumnByFieldName("#").MaxWidth = 30
         GVData.Columns.ColumnByFieldName("From").MaxWidth = 300
         GVData.Columns.ColumnByFieldName("To").MaxWidth = 300
         GVData.Columns.ColumnByFieldName("Size").MaxWidth = 50
+
+        'number
+        For i = 0 To GVData.RowCount - 1
+            GVData.SetRowCellValue(i, "#", i + 1)
+        Next
+
         print(GCData, GVData.GetFocusedRowCellValue("Return").ToString)
         Close()
         Cursor = Cursors.Default

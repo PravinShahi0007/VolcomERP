@@ -5,7 +5,7 @@
     Private Sub FormUniqueFGTrf_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         Dim query As String = "
-            SELECT CONCAT(cmf.comp_number, ' - ', cmf.comp_name) AS `From`, CONCAT(cmt.comp_number, ' - ', cmt.comp_name) AS `To`, s.fg_trf_number AS `Transfer`, CONCAT(c.product_full_code, a.fg_trf_det_counting) AS `Unique Code`, c.product_name AS `Description`, cd.code_detail_name AS `Size`
+            SELECT 1 AS `#`, CONCAT(cmf.comp_number, ' - ', cmf.comp_name) AS `From`, CONCAT(cmt.comp_number, ' - ', cmt.comp_name) AS `To`, s.fg_trf_number AS `Transfer`, CONCAT(c.product_full_code, a.fg_trf_det_counting) AS `Unique Code`, c.product_name AS `Description`, cd.code_detail_name AS `Size`
             FROM tb_fg_trf_det_counting a 
             INNER JOIN tb_fg_trf_det b ON a.id_fg_trf_det = b.id_fg_trf_det 
             INNER JOIN tb_fg_trf s ON b.id_fg_trf = s.id_fg_trf
@@ -20,9 +20,16 @@
         "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GVData.Columns.ColumnByFieldName("#").MaxWidth = 30
         GVData.Columns.ColumnByFieldName("From").MaxWidth = 325
         GVData.Columns.ColumnByFieldName("To").MaxWidth = 325
         GVData.Columns.ColumnByFieldName("Size").MaxWidth = 50
+
+        'number
+        For i = 0 To GVData.RowCount - 1
+            GVData.SetRowCellValue(i, "#", i + 1)
+        Next
+
         print(GCData, fg_trf_number)
         Close()
         Cursor = Cursors.Default
