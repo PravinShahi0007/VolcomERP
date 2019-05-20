@@ -225,6 +225,8 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEReff = New DevExpress.XtraEditors.TextEdit()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -311,6 +313,7 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdOrder
@@ -1530,7 +1533,7 @@ Partial Class FormProductionDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl6.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(370, 131)
+        Me.PanelControl6.Size = New System.Drawing.Size(287, 131)
         Me.PanelControl6.TabIndex = 177
         '
         'TEVendorName
@@ -1538,11 +1541,11 @@ Partial Class FormProductionDet
         Me.TEVendorName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEVendorName.EditValue = ""
-        Me.TEVendorName.Location = New System.Drawing.Point(70, 95)
+        Me.TEVendorName.Location = New System.Drawing.Point(70, 94)
         Me.TEVendorName.Name = "TEVendorName"
         Me.TEVendorName.Properties.EditValueChangedDelay = 1
         Me.TEVendorName.Properties.ReadOnly = True
-        Me.TEVendorName.Size = New System.Drawing.Size(294, 20)
+        Me.TEVendorName.Size = New System.Drawing.Size(211, 20)
         Me.TEVendorName.TabIndex = 159
         Me.TEVendorName.TabStop = False
         '
@@ -1579,7 +1582,7 @@ Partial Class FormProductionDet
         Me.TEDesign.Name = "TEDesign"
         Me.TEDesign.Properties.EditValueChangedDelay = 1
         Me.TEDesign.Properties.ReadOnly = True
-        Me.TEDesign.Size = New System.Drawing.Size(266, 20)
+        Me.TEDesign.Size = New System.Drawing.Size(183, 20)
         Me.TEDesign.TabIndex = 0
         Me.TEDesign.TabStop = False
         '
@@ -1598,7 +1601,7 @@ Partial Class FormProductionDet
         '
         Me.BPickDesign.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BPickDesign.Enabled = False
-        Me.BPickDesign.Location = New System.Drawing.Point(341, 37)
+        Me.BPickDesign.Location = New System.Drawing.Point(258, 37)
         Me.BPickDesign.Name = "BPickDesign"
         Me.BPickDesign.Size = New System.Drawing.Size(23, 20)
         Me.BPickDesign.TabIndex = 1
@@ -1623,7 +1626,7 @@ Partial Class FormProductionDet
         'BPickPD
         '
         Me.BPickPD.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BPickPD.Location = New System.Drawing.Point(341, 7)
+        Me.BPickPD.Location = New System.Drawing.Point(258, 7)
         Me.BPickPD.Name = "BPickPD"
         Me.BPickPD.Size = New System.Drawing.Size(23, 20)
         Me.BPickPD.TabIndex = 152
@@ -1638,7 +1641,7 @@ Partial Class FormProductionDet
         Me.TEUSCOde.Name = "TEUSCOde"
         Me.TEUSCOde.Properties.EditValueChangedDelay = 1
         Me.TEUSCOde.Properties.ReadOnly = True
-        Me.TEUSCOde.Size = New System.Drawing.Size(126, 20)
+        Me.TEUSCOde.Size = New System.Drawing.Size(43, 20)
         Me.TEUSCOde.TabIndex = 150
         Me.TEUSCOde.TabStop = False
         '
@@ -1651,7 +1654,7 @@ Partial Class FormProductionDet
         Me.TEPDNo.Name = "TEPDNo"
         Me.TEPDNo.Properties.EditValueChangedDelay = 1
         Me.TEPDNo.Properties.ReadOnly = True
-        Me.TEPDNo.Size = New System.Drawing.Size(266, 20)
+        Me.TEPDNo.Size = New System.Drawing.Size(183, 20)
         Me.TEPDNo.TabIndex = 151
         Me.TEPDNo.TabStop = False
         '
@@ -1669,7 +1672,7 @@ Partial Class FormProductionDet
         Me.PanelControl5.Controls.Add(Me.LabelControl5)
         Me.PanelControl5.Controls.Add(Me.LECategory)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl5.Location = New System.Drawing.Point(390, 2)
+        Me.PanelControl5.Location = New System.Drawing.Point(307, 2)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(301, 131)
         Me.PanelControl5.TabIndex = 176
@@ -1798,6 +1801,8 @@ Partial Class FormProductionDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TEReff)
+        Me.PanelControl4.Controls.Add(Me.LabelControl15)
         Me.PanelControl4.Controls.Add(Me.LabelControl6)
         Me.PanelControl4.Controls.Add(Me.DEDate)
         Me.PanelControl4.Controls.Add(Me.LabelControl3)
@@ -1807,9 +1812,9 @@ Partial Class FormProductionDet
         Me.PanelControl4.Controls.Add(Me.LabelControl1)
         Me.PanelControl4.Controls.Add(Me.LEPOType)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl4.Location = New System.Drawing.Point(691, 2)
+        Me.PanelControl4.Location = New System.Drawing.Point(608, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(278, 131)
+        Me.PanelControl4.Size = New System.Drawing.Size(361, 131)
         Me.PanelControl4.TabIndex = 175
         '
         'LabelControl6
@@ -1832,7 +1837,7 @@ Partial Class FormProductionDet
         Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDate.Size = New System.Drawing.Size(169, 20)
+        Me.DEDate.Size = New System.Drawing.Size(262, 20)
         Me.DEDate.TabIndex = 174
         '
         'LabelControl3
@@ -1854,7 +1859,7 @@ Partial Class FormProductionDet
         Me.DERecDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DERecDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DERecDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DERecDate.Size = New System.Drawing.Size(169, 20)
+        Me.DERecDate.Size = New System.Drawing.Size(262, 20)
         Me.DERecDate.TabIndex = 173
         '
         'TEPONumber
@@ -1864,7 +1869,7 @@ Partial Class FormProductionDet
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(169, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(115, 20)
         Me.TEPONumber.TabIndex = 3
         '
         'LabelControl11
@@ -1895,7 +1900,7 @@ Partial Class FormProductionDet
         Me.LEPOType.Properties.NullText = ""
         Me.LEPOType.Properties.ShowFooter = False
         Me.LEPOType.Properties.View = Me.GridView3
-        Me.LEPOType.Size = New System.Drawing.Size(169, 20)
+        Me.LEPOType.Size = New System.Drawing.Size(262, 20)
         Me.LEPOType.TabIndex = 2
         '
         'GridView3
@@ -2353,6 +2358,23 @@ Partial Class FormProductionDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(215, 40)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl15.TabIndex = 175
+        Me.LabelControl15.Text = "Reff"
+        '
+        'TEReff
+        '
+        Me.TEReff.EditValue = ""
+        Me.TEReff.Location = New System.Drawing.Point(243, 37)
+        Me.TEReff.Name = "TEReff"
+        Me.TEReff.Properties.EditValueChangedDelay = 1
+        Me.TEReff.Size = New System.Drawing.Size(113, 20)
+        Me.TEReff.TabIndex = 176
+        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2462,6 +2484,7 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2670,4 +2693,6 @@ Partial Class FormProductionDet
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents TEReff As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
 End Class
