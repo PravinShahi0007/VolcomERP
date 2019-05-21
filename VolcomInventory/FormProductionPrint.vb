@@ -176,15 +176,12 @@ FROM tb_m_departement dep
 INNER JOIN tb_m_user usr ON usr.`id_user`=dep.id_user_head
 WHERE dep.id_departement=4", 0, True, "", "", "", "")
             '
-            Dim id_emp_asst_prod_mngr As String = execute_query("SELECT usr.id_employee 
-FROM tb_m_departement_sub sub
-INNER JOIN tb_m_user usr ON usr.`id_user`=sub.id_usr_head_sub_dept
-WHERE sub.id_departement_sub=3", 0, True, "", "", "", "")
+            Dim id_emp_asst_prod_mngr As String = get_emp(get_opt_prod_field("id_user_ast_mngr_prod"), "4")
 
             Dim query_kp As String = "INSERT INTO tb_prod_order_kp(`revision`,`id_comp_contact`,`date_created`,`created_by`,id_emp_purc_mngr,id_emp_asst_prod_mngr) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "',NOW(),'" & id_user & "','" & id_emp_purc_mngr & "','" & id_emp_asst_prod_mngr & "'); SELECT LAST_INSERT_ID(); "
             Dim id_kp As String = execute_query(query_kp, 0, True, "", "", "", "")
             'insert po
-            Dim query_kpd As String = "INSERT INTO tb_prod_order_kp_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`lead_time_prod`,`sample_proto_2`) VALUES"
+            Dim query_kpd As String = "INSERT INTO tb_prod_order_kp_det(`id_prod_order_kp`,`revision`,`id_prod_order`,`lead_time_prod`,`sample_proto_2`) VALUES"
             For i As Integer = 0 To GVProd.RowCount - 1
                 If Not i = 0 Then
                     query_kpd += ","
