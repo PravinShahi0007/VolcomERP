@@ -89,6 +89,7 @@ Partial Class FormProductionKP
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.RIDESampleProto2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +116,8 @@ Partial Class FormProductionKP
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDESampleProto2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDESampleProto2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -485,7 +488,7 @@ Partial Class FormProductionKP
         Me.GCProd.Location = New System.Drawing.Point(0, 210)
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
-        Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
+        Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RIDESampleProto2})
         Me.GCProd.Size = New System.Drawing.Size(875, 304)
         Me.GCProd.TabIndex = 21
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
@@ -799,6 +802,7 @@ Partial Class FormProductionKP
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Sample Proto 2 Date"
+        Me.GridColumn3.ColumnEdit = Me.RIDESampleProto2
         Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn3.FieldName = "sample_proto_2"
@@ -811,6 +815,13 @@ Partial Class FormProductionKP
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
         Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        '
+        'RIDESampleProto2
+        '
+        Me.RIDESampleProto2.AutoHeight = False
+        Me.RIDESampleProto2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDESampleProto2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDESampleProto2.Name = "RIDESampleProto2"
         '
         'FormProductionKP
         '
@@ -855,6 +866,8 @@ Partial Class FormProductionKP
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDESampleProto2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDESampleProto2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -927,4 +940,5 @@ Partial Class FormProductionKP
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIPictureEdit As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIDESampleProto2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class
