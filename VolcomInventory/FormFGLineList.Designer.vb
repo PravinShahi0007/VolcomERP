@@ -258,6 +258,7 @@ Partial Class FormFGLineList
         Me.PanelOpt.Name = "PanelOpt"
         Me.PanelOpt.Size = New System.Drawing.Size(137, 35)
         Me.PanelOpt.TabIndex = 107
+        Me.PanelOpt.Visible = False
         '
         'CheckEditOpt
         '
