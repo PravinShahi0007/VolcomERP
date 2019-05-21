@@ -186,6 +186,12 @@ WHERE dep.id_departement=4", 0, True, "", "", "", "")
                 If Not i = 0 Then
                     query_kpd += ","
                 End If
+                'get latest leadtime from KO
+                Dim lead_time As String = ""
+                Dim sample_proto_2 As String = ""
+                '
+
+                '
                 query_kpd += "('" & id_kp & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time_pay").ToString & "')"
             Next
             execute_non_query(query_kpd, True, "", "", "", "")
@@ -198,7 +204,7 @@ WHERE kp.id_prod_order_kp_reff < '" & id_kp & "' AND kp.id_prod_order_kp_reff !=
 SELECT CONCAT(LPAD(@number_report,3,'0'),'/EXT/PRL-SR/',convert_romawi(DATE_FORMAT(NOW(),'%m')),'/',DATE_FORMAT(NOW(),'%y')) INTO @report_number;
 UPDATE tb_prod_order_kp SET `id_prod_order_kp_reff`='" & id_kp & "',number=@report_number WHERE id_prod_order_kp='" & id_kp & "'"
             execute_non_query(query_kp, True, "", "", "", "")
-            'show KO form
+            'show KP form
             FormProductionKP.id_kp = id_kp
             FormProductionKP.ShowDialog()
         End If

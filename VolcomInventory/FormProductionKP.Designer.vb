@@ -28,7 +28,7 @@ Partial Class FormProductionKP
         Me.TETelp = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TECompAttn = New DevExpress.XtraEditors.TextEdit()
-        Me.TEKONumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TEKPNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.MECompAddress = New DevExpress.XtraEditors.MemoEdit()
         Me.TECompCode = New DevExpress.XtraEditors.TextEdit()
@@ -87,8 +87,8 @@ Partial Class FormProductionKP
         Me.GridColumnPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +96,7 @@ Partial Class FormProductionKP
         CType(Me.TEFax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETelp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompAttn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEKONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKPNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MECompAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,7 +135,7 @@ Partial Class FormProductionKP
         Me.PanelControl4.Controls.Add(Me.TETelp)
         Me.PanelControl4.Controls.Add(Me.LabelControl8)
         Me.PanelControl4.Controls.Add(Me.TECompAttn)
-        Me.PanelControl4.Controls.Add(Me.TEKONumber)
+        Me.PanelControl4.Controls.Add(Me.TEKPNumber)
         Me.PanelControl4.Controls.Add(Me.LabelControl3)
         Me.PanelControl4.Controls.Add(Me.MECompAddress)
         Me.PanelControl4.Controls.Add(Me.TECompCode)
@@ -198,16 +198,16 @@ Partial Class FormProductionKP
         Me.TECompAttn.TabIndex = 10
         Me.TECompAttn.TabStop = False
         '
-        'TEKONumber
+        'TEKPNumber
         '
-        Me.TEKONumber.EditValue = ""
-        Me.TEKONumber.Location = New System.Drawing.Point(82, 7)
-        Me.TEKONumber.Name = "TEKONumber"
-        Me.TEKONumber.Properties.EditValueChangedDelay = 1
-        Me.TEKONumber.Properties.ReadOnly = True
-        Me.TEKONumber.Size = New System.Drawing.Size(285, 20)
-        Me.TEKONumber.TabIndex = 8
-        Me.TEKONumber.TabStop = False
+        Me.TEKPNumber.EditValue = ""
+        Me.TEKPNumber.Location = New System.Drawing.Point(82, 7)
+        Me.TEKPNumber.Name = "TEKPNumber"
+        Me.TEKPNumber.Properties.EditValueChangedDelay = 1
+        Me.TEKPNumber.Properties.ReadOnly = True
+        Me.TEKPNumber.Size = New System.Drawing.Size(285, 20)
+        Me.TEKPNumber.TabIndex = 8
+        Me.TEKPNumber.TabStop = False
         '
         'LabelControl3
         '
@@ -557,7 +557,7 @@ Partial Class FormProductionKP
         Me.GridColumnProdNo.OptionsColumn.AllowEdit = False
         Me.GridColumnProdNo.Visible = True
         Me.GridColumnProdNo.VisibleIndex = 0
-        Me.GridColumnProdNo.Width = 255
+        Me.GridColumnProdNo.Width = 133
         '
         'GridColumnTerm
         '
@@ -597,7 +597,7 @@ Partial Class FormProductionKP
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 1
-        Me.GridColumnDescription.Width = 454
+        Me.GridColumnDescription.Width = 238
         '
         'GridColumnColor
         '
@@ -611,7 +611,7 @@ Partial Class FormProductionKP
         Me.GridColumnColor.OptionsColumn.AllowEdit = False
         Me.GridColumnColor.Visible = True
         Me.GridColumnColor.VisibleIndex = 2
-        Me.GridColumnColor.Width = 312
+        Me.GridColumnColor.Width = 97
         '
         'GridColumnOrderQty
         '
@@ -628,7 +628,7 @@ Partial Class FormProductionKP
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 3
-        Me.GridColumnOrderQty.Width = 323
+        Me.GridColumnOrderQty.Width = 93
         '
         'GridColumnRecQty
         '
@@ -702,7 +702,7 @@ Partial Class FormProductionKP
         Me.GridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 163
+        Me.GridColumn2.Width = 161
         '
         'GridColumn11
         '
@@ -796,21 +796,21 @@ Partial Class FormProductionKP
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount_rp", "{0:N2}")})
         Me.GridColumn13.Width = 171
         '
-        'RIPictureEdit
-        '
-        Me.RIPictureEdit.Name = "RIPictureEdit"
-        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Proto 2 Date"
+        Me.GridColumn3.Caption = "Sample Proto 2 Date"
         Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn3.FieldName = "sample_proto_2"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 5
-        Me.GridColumn3.Width = 125
+        Me.GridColumn3.Width = 135
+        '
+        'RIPictureEdit
+        '
+        Me.RIPictureEdit.Name = "RIPictureEdit"
+        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
         'FormProductionKP
         '
@@ -835,7 +835,7 @@ Partial Class FormProductionKP
         CType(Me.TEFax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETelp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompAttn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEKONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKPNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MECompAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -866,7 +866,7 @@ Partial Class FormProductionKP
     Friend WithEvents TETelp As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECompAttn As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEKONumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEKPNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MECompAddress As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TECompCode As DevExpress.XtraEditors.TextEdit
