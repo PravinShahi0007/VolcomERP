@@ -148,7 +148,7 @@ Partial Public Class ReportMatRetInProd
         Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 153
+        Me.GridColumnName.Width = 630
         '
         'GridColumnCode
         '
@@ -157,7 +157,7 @@ Partial Public Class ReportMatRetInProd
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 0
-        Me.GridColumnCode.Width = 90
+        Me.GridColumnCode.Width = 188
         '
         'GridColumnSize
         '
@@ -171,7 +171,7 @@ Partial Public Class ReportMatRetInProd
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 2
-        Me.GridColumnSize.Width = 46
+        Me.GridColumnSize.Width = 80
         '
         'GridColumnUOM
         '
@@ -185,7 +185,7 @@ Partial Public Class ReportMatRetInProd
         Me.GridColumnUOM.OptionsColumn.AllowEdit = False
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 5
-        Me.GridColumnUOM.Width = 64
+        Me.GridColumnUOM.Width = 74
         '
         'GridColumnQty
         '
@@ -199,7 +199,7 @@ Partial Public Class ReportMatRetInProd
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 77
+        Me.GridColumnQty.Width = 101
         '
         'RepositoryItemSpinEdit1
         '
@@ -217,7 +217,7 @@ Partial Public Class ReportMatRetInProd
         Me.GridColumnRemark.OptionsColumn.ReadOnly = True
         Me.GridColumnRemark.Visible = True
         Me.GridColumnRemark.VisibleIndex = 6
-        Me.GridColumnRemark.Width = 146
+        Me.GridColumnRemark.Width = 415
         '
         'GridColumnIdPLMRSDet
         '
@@ -238,7 +238,7 @@ Partial Public Class ReportMatRetInProd
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 3
-        Me.GridColumnPrice.Width = 120
+        Me.GridColumnPrice.Width = 144
         '
         'TopMargin
         '
