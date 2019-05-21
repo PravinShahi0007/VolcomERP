@@ -5,6 +5,7 @@
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
     Dim rmt As String = ""
+    Dim rmt_appr As String = ""
     Dim season As String = ""
     Dim is_load_break_size_rev As Boolean = False
     Dim is_load_break_size As Boolean = False
@@ -40,6 +41,7 @@
         ElseIf data.Rows(0)("id_pd_kind").ToString = "3" Then
             rmt = "145"
         End If
+        rmt_appr = data.Rows(0)("report_mark_type").ToString
         viewDetail()
         allow_status()
     End Sub
@@ -194,6 +196,18 @@
         '    cond_exist_file = False
         'End If
 
+        'cek rmt untuk approval
+        makeSafeGV(GVRevision)
+        GVRevision.ActiveFilterString = "[is_cancel_po]=1"
+        If GVRevision.RowCount > 0 Then
+            'batal po
+            rmt_appr = rmt
+        Else
+            'ubah alokasi/price aja => lokal MD
+            rmt_appr = "194"
+        End If
+        GVRevision.ActiveFilterString = ""
+
         If Not cond_exist_file Then
             stopCustom("Please attach document first")
         ElseIf GVRevision.RowCount <= 0 Then
@@ -204,11 +218,11 @@
                 Cursor = Cursors.WaitCursor
 
                 'update confirm
-                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1, note='" + addSlashes(MENote.Text) + "' WHERE id_prod_demand_rev='" + id + "'"
+                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1, report_mark_type=" + rmt_appr + ", note='" + addSlashes(MENote.Text) + "' WHERE id_prod_demand_rev='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
 
                 'submit approval 
-                submit_who_prepared(rmt, id, id_user)
+                submit_who_prepared(rmt_appr, id, id_user)
                 BtnConfirm.Visible = False
                 actionLoad()
                 infoCustom("PD Revision submitted. Waiting for approval.")
@@ -310,7 +324,7 @@
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = rmt
+        FormReportMark.report_mark_type = rmt_appr
         FormReportMark.id_report = id
         FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
@@ -639,7 +653,7 @@
                 Dim query_upd As String = "-- delete report mark
                 DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
                 -- reset confirm
-                UPDATE tb_prod_demand_rev SET is_confirm=2 WHERE id_prod_demand_rev=" + id + "; "
+                UPDATE tb_prod_demand_rev SET is_confirm=2, report_mark_type=NULL WHERE id_prod_demand_rev=" + id + "; "
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'refresh

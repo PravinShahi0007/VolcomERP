@@ -110,14 +110,14 @@
                     stopCustom("Can't revise because " + GVDesign.GetFocusedRowCellValue("name").ToString + " already received in QC")
                 Else
                     'insert detail
-                    Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', is_cancel_po)"
+                    Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ")"
                     execute_non_query(query_det_new, True, "", "", "", "")
                     FormProdDemandRevDet.viewDetail()
                     actionLoad()
                 End If
             ElseIf is_cancel_po = "2" Then
                 'insert detail
-                Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', is_cancel_po)"
+                Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ")"
                 execute_non_query(query_det_new, True, "", "", "", "")
                 FormProdDemandRevDet.viewDetail()
                 actionLoad()
