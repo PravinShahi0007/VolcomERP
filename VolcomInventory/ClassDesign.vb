@@ -406,8 +406,8 @@
                 band_break.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
 
                 'size position
-                Dim data_filter As DataRow() = data_band_break.Select("[display_name]='" + data.Columns(i).ColumnName.ToString + "'")
-                BGVParam.SetColumnPosition(BGVParam.Columns(data.Columns(i).ColumnName.ToString), data_filter(0)("code_row_index").ToString, data_filter(0)("code_col_index").ToString)
+                'Dim data_filter As DataRow() = data_band_break.Select("[display_name]='" + data.Columns(i).ColumnName.ToString + "'")
+                'BGVParam.SetColumnPosition(BGVParam.Columns(data.Columns(i).ColumnName.ToString), data_filter(0)("code_row_index").ToString, data_filter(0)("code_col_index").ToString)
 
                 'properties
                 BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
@@ -557,19 +557,58 @@
 
         'hide band
         band_break.Visible = False
-        If show_breakdown_par Then
-            For j As Integer = 0 To band_alloc_break.Length - 1
-                band_alloc_break(j).Visible = False
-            Next
-        End If
+        'If show_breakdown_par Then
+        '    For j As Integer = 0 To band_alloc_break.Length - 1
+        '        band_alloc_break(j).Visible = False
+        '    Next
+        'End If
 
+        'caption break size
+        Dim typ As String = ""
+        If id_type_param = "1" Then
+            typ = "pdd.id_prod_demand_design = d.id_prod_demand_design_line "
+        ElseIf id_type_param = "2" Then
+            typ = "pdd.id_prod_demand_design = d.id_prod_demand_design_line_upd "
+        Else
+            typ = "pdd.id_prod_demand_design = d.id_prod_demand_design_line_final "
+        End If
+        Dim query_caption As String = "SELECT cd.index_size,CONCAT('qty',cd.index_size,'_Breakdown') AS `col`,GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.code_detail_name ASC SEPARATOR '\n') AS `caption` FROM tb_m_code_detail cd
+         WHERE cd.id_code='33'
+         AND cd.`index_size` IN (
+             SELECT cd.`index_size` FROM tb_prod_demand_design pdd 
+             INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
+             INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+             INNER JOIN tb_m_design d ON d.id_design = p.id_design AND " + typ + "
+             WHERE (d.id_season =" + id_season_param + " OR d.id_season_move =" + id_season_param + ")
+	          AND pdp.prod_demand_product_qty>0
+             GROUP BY cd.`index_size`
+         )
+         AND cd.`size_type` IN (
+             SELECT cd.`size_type` FROM tb_prod_demand_design pdd 
+             INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
+             INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+             INNER JOIN tb_m_design d ON d.id_design = p.id_design AND " + typ + "
+             WHERE (d.id_season =" + id_season_param + " OR d.id_season_move =" + id_season_param + ")
+	         AND pdp.prod_demand_product_qty>0
+             GROUP BY cd.`size_type`
+         )
+         GROUP BY cd.index_size "
+        Dim data_caption As DataTable = execute_query(query_caption, -1, True, "", "", "", "")
+        For c As Integer = 0 To data_caption.Rows.Count - 1
+            BGVParam.Columns(data_caption.Rows(c)("col").ToString).Caption = data_caption.Rows(c)("caption").ToString
+        Next
 
         'order BAND
         BGVParam.Bands.MoveTo(1, band_desc_freeze)
         BGVParam.Bands.MoveTo(2, band_desc)
         BGVParam.Bands.MoveTo(97, band_break_total)
-        BGVParam.Bands.MoveTo(98, band_prc)
-        BGVParam.Bands.MoveTo(99, band_sel)
+        BGVParam.Bands.MoveTo(98, band_break)
+        BGVParam.Bands.MoveTo(99, band_prc)
+        BGVParam.Bands.MoveTo(100, band_sel)
 
         'create repository
         Dim riCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
