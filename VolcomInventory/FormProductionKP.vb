@@ -41,7 +41,6 @@ WHERE id_prod_order_kp='" & id_kp & "'"
             TECompAttn.Text = data.Rows(0)("contact_person").ToString
             '
             DEDateCreated.EditValue = data.Rows(0)("date_created")
-            TETermOrder.Text = data.Rows(0)("term_production").ToString
             '
             TETelp.EditValue = data.Rows(0)("phone")
             TEFax.EditValue = data.Rows(0)("fax")
@@ -76,12 +75,12 @@ WHERE id_prod_order_kp='" & id_kp & "'"
         Dim query As String = ""
 
         If is_purc_mat = "1" Then
-            query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
+            query = "SELECT kpd.sample_proto_2,kpd.revision,kpd.id_prod_order_kp_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
 ,SUM(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty) AS po_amount_rp
-,kod.lead_time_prod AS lead_time,kod.lead_time_payment,po.mat_purc_date AS prod_order_wo_del_date,DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
+,kpd.lead_time_prod AS lead_time,po.mat_purc_date AS prod_order_wo_del_date,DATE_ADD(po.mat_purc_date,INTERVAL kpd.lead_time_prod DAY) AS esti_del_date
 ,IFNULL(revtimes.revision_times,0) AS revision_times
-FROM `tb_prod_order_ko_det` kod
-INNER JOIN tb_mat_purc po ON po.id_mat_purc=kod.id_purc_order
+FROM `tb_prod_order_kp_det` kpd
+INNER JOIN tb_mat_purc po ON po.id_mat_purc=kpd.id_purc_order
 INNER JOIN  tb_mat_purc_det pod ON po.id_mat_purc=pod.id_mat_purc
 INNER JOIN tb_m_mat_det_price mdp ON mdp.`id_mat_det_price`=pod.`id_mat_det_price`
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=mdp.`id_mat_det`
@@ -90,22 +89,22 @@ INNER JOIN `tb_m_code_detail` cd ON cd.id_code_detail=mdc.id_code_detail AND cd.
 LEFT JOIN(
     SELECT revtimes.id_purc_order,COUNT(DISTINCT revtimes.revision) AS revision_times FROM
     (
-	    SELECT kod.id_purc_order,kod.revision FROM tb_prod_order_ko_det kod
-	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko`
-	    WHERE kod.revision!=0 AND kod.id_prod_order_ko<='" & id_kp & "' AND ko.`id_prod_order_ko_reff`=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_kp & "' LIMIT 1)
-	    GROUP BY kod.id_purc_order,kod.revision
+	    SELECT kpd.id_purc_order,kpd.revision FROM tb_prod_order_kp_det kpd
+	    INNER JOIN tb_prod_order_kp kp ON kp.`id_prod_order_kp`=kpd.`id_prod_order_kp`
+	    WHERE kpd.revision!=0 AND kpd.id_prod_order_kp<='" & id_kp & "' AND kp.`id_prod_order_kp_reff`=(SELECT id_prod_order_kp_reff FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "' LIMIT 1)
+	    GROUP BY kpd.id_purc_order,kpd.revision
     ) revtimes GROUP BY revtimes.id_purc_order
 )revtimes ON revtimes.id_purc_order=po.id_mat_purc
-WHERE kod.id_prod_order_ko='" & id_kp & "'
+WHERE kpd.id_prod_order_kp='" & id_kp & "'
 GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
         Else
-            query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
+            query = "SELECT kpd.sample_proto_2,kpd.revision,kpd.id_prod_order_kp_det,'' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
-,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
+,kpd.lead_time_prod AS lead_time,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kpd.lead_time_prod DAY) AS esti_del_date
 ,IFNULL(revtimes.revision_times,0) AS revision_times
-FROM `tb_prod_order_ko_det` kod
-INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
+FROM `tb_prod_order_kp_det` kpd
+INNER JOIN tb_prod_order po ON po.id_prod_order=kpd.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 LEFT JOIN (
@@ -125,13 +124,13 @@ LEFT JOIN (
 LEFT JOIN(
     SELECT revtimes.id_prod_order,COUNT(DISTINCT revtimes.revision) AS revision_times FROM
     (
-	    SELECT kod.id_prod_order,kod.revision FROM tb_prod_order_ko_det kod
-	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko`
-	    WHERE kod.revision!=0 AND kod.id_prod_order_ko<='" & id_kp & "' AND ko.`id_prod_order_ko_reff`=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_kp & "' LIMIT 1)
-	    GROUP BY kod.id_prod_order,kod.revision
+	    SELECT kpd.id_prod_order,kpd.revision FROM tb_prod_order_kp_det kpd
+	    INNER JOIN tb_prod_order_kp kp ON kp.`id_prod_order_kp`=kpd.`id_prod_order_kp`
+	    WHERE kpd.revision!=0 AND kpd.id_prod_order_kp<='3' AND kp.`id_prod_order_kp_reff`=(SELECT id_prod_order_kp_reff FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "' LIMIT 1)
+	    GROUP BY kpd.id_prod_order,kpd.revision
     ) revtimes GROUP BY revtimes.id_prod_order
 )revtimes ON revtimes.id_prod_order=po.id_prod_order
-WHERE kod.id_prod_order_ko='" & id_kp & "'
+WHERE kpd.id_prod_order_kp='" & id_kp & "'
 ORDER BY po.`id_prod_order` ASC"
         End If
 
