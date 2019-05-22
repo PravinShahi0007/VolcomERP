@@ -1,5 +1,7 @@
 ﻿Public Class FormFGLinePlan
     Public is_view As String = "-1"
+    Public id_pop_up As String = "-1"
+
     Private Sub FormFGLinePlan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
 
@@ -9,6 +11,16 @@
             BtnImport.Visible = False
             GridColumnis_select.Visible = False
             GCData.ContextMenuStrip = Nothing
+        End If
+
+        If id_pop_up = "1" Then
+            GridColumntarget_price.Visible = False
+            GridColumnmark_up.Visible = False
+            GridColumntotal_value.Visible = False
+
+            GridColumntarget_price.OptionsColumn.ShowInCustomizationForm = False
+            GridColumnmark_up.OptionsColumn.ShowInCustomizationForm = False
+            GridColumntotal_value.OptionsColumn.ShowInCustomizationForm = False
         End If
     End Sub
 
