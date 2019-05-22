@@ -267,6 +267,8 @@ GROUP BY m_ovh_p.id_ovh_price"
             'new
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
+            ElseIf get_setup_field("is_must_reff_bof").ToString = "1" And TEReff.Text = "" Then
+                warningCustom("Please insert BOF FGPO number on Reff !")
             Else
                 'check if local or import
                 Dim tolerance_over_def As String = ""
@@ -284,7 +286,7 @@ GROUP BY m_ovh_p.id_ovh_price"
                 End If
                 '
                 Dim po_number As String = header_number_prod(1)
-                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def)
+                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount,reff_number) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}','{10}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def, addSlashes(TEReff.Text))
                 Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
                 '
                 If GVListProduct.RowCount > 0 Then
@@ -313,7 +315,7 @@ GROUP BY m_ovh_p.id_ovh_price"
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
             Else
-                query = String.Format("UPDATE tb_prod_order SET id_prod_demand_design='{0}',prod_order_number='{1}',id_po_type='{2}',id_term_production='{3}',prod_order_note='{4}',id_delivery='{6}',prod_order_lead_time='{7}' WHERE id_prod_order='{5}'", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue, LECategory.EditValue, MENote.Text, id_prod_order, id_delivery, TELeadTime.Text)
+                query = String.Format("UPDATE tb_prod_order SET id_prod_demand_design='{0}',prod_order_number='{1}',id_po_type='{2}',id_term_production='{3}',prod_order_note='{4}',id_delivery='{6}',prod_order_lead_time='{7}',reff_number='{8}' WHERE id_prod_order='{5}'", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue, LECategory.EditValue, MENote.Text, id_prod_order, id_delivery, TELeadTime.Text, addSlashes(TEReff.Text))
                 execute_non_query(query, True, "", "", "", "")
                 'update mark
                 query = String.Format("UPDATE tb_report_mark SET info='{0}' WHERE id_report='{1}' AND report_mark_type='22'", LEPOType.Text, id_prod_order)

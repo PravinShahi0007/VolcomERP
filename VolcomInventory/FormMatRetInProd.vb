@@ -108,12 +108,6 @@
             SLELocator.Enabled = False
             SLEStorage.Enabled = False
         End If
-
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
-        Else
-            BtnPrint.Enabled = False
-        End If
     End Sub
     Sub check_but()
         If GVRetDetail.RowCount > 0 Then
@@ -333,6 +327,11 @@
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         ReportMatRetInProd.id_mat_prod_ret_in = id_mat_prod_ret_in
         Dim Report As New ReportMatRetInProd()
+        If check_print_report_status(id_report_status) Then
+            Report.is_pre = "2"
+        Else
+            Report.is_pre = "1"
+        End If
         'Show the report's preview 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
