@@ -1,0 +1,74 @@
+﻿Public Class FormProposeEmpSalaryPick
+    Public not_included As String = ""
+
+    Private Sub FormProposeEmpSalaryPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim where_not_include As String = ""
+
+        If Not not_included = "" Then
+            where_not_include = "AND emp.id_employee NOT IN (" + not_included + ")"
+        End If
+
+        Dim query As String = "
+            SELECT emp.id_employee, 'No' AS is_checked, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, emp.id_employee_level, lv.employee_level, emp.id_employee_active, act.employee_active, emp.id_employee_status, sts.employee_status
+            FROM tb_m_employee AS emp
+            LEFT JOIN tb_m_departement AS dp ON emp.id_departement = dp.id_departement
+            LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
+            LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
+            LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+            WHERE 1 = 1 " + where_not_include + "
+            ORDER BY emp.id_employee_level ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCEmployee.DataSource = data
+
+        GVEmployee.BestFitColumns()
+
+        'filter employee_active
+        GVEmployee.ActiveFilterString = "[employee_active] = 'Active'"
+    End Sub
+
+    Private Sub FormProposeEmpSalaryPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
+        Close()
+    End Sub
+
+    Private Sub SBInsert_Click(sender As Object, e As EventArgs) Handles SBInsert.Click
+        GVEmployee.ApplyFindFilter("")
+
+        GVEmployee.ActiveFilterString = "[is_checked] = 'Yes'"
+
+        If GVEmployee.RowCount > 0 Then
+            Dim data As DataTable = FormProposeEmpSalaryDet.GCEmployee.DataSource
+
+            For i = 0 To GVEmployee.RowCount - 1
+                If GVEmployee.IsValidRowHandle(i) Then
+                    Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
+                    Dim employee_code As String = GVEmployee.GetRowCellValue(i, "employee_code").ToString
+                    Dim employee_name As String = GVEmployee.GetRowCellValue(i, "employee_name").ToString
+                    Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
+                    Dim departement As String = GVEmployee.GetRowCellValue(i, "departement").ToString
+                    Dim employee_position As String = GVEmployee.GetRowCellValue(i, "employee_position").ToString
+                    Dim id_employee_level As String = GVEmployee.GetRowCellValue(i, "id_employee_level").ToString
+                    Dim employee_level As String = GVEmployee.GetRowCellValue(i, "employee_level").ToString
+                    Dim id_employee_status As String = GVEmployee.GetRowCellValue(i, "id_employee_status").ToString
+                    Dim employee_status As String = GVEmployee.GetRowCellValue(i, "employee_status").ToString
+
+                    data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, employee_position, id_employee_level, employee_level, id_employee_status, employee_status, 0, 0, 0, 0, 0, 0)
+                End If
+            Next
+
+            FormProposeEmpSalaryDet.GVEmployee.BestFitColumns()
+
+            Close()
+        Else
+            errorCustom("No employee selected.")
+
+            GVEmployee.ActiveFilterString = "[employee_active] = 'Active'"
+        End If
+    End Sub
+End Class
