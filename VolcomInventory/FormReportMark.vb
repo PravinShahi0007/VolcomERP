@@ -427,7 +427,7 @@
         ElseIf report_mark_type = "139" Then
             'Purchase Order
             query = String.Format("SELECT id_report_status,purc_order_number as report_number FROM tb_purc_order WHERE id_purc_order = '{0}'", id_report)
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "194" Then
             'PD REVISION
             query = String.Format("SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number FROM tb_prod_demand_rev INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand WHERE id_prod_demand_rev = '{0}'", id_report)
         ElseIf report_mark_type = "142" Then
@@ -4384,7 +4384,7 @@
             'update status
             query = String.Format("UPDATE tb_purc_order SET id_report_status='{0}' WHERE id_purc_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "194" Then
             Cursor = Cursors.WaitCursor
             'pd revision
             'auto completed
@@ -4407,7 +4407,7 @@
 	                FROM tb_prod_demand_design_rev rd
 	                INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design AND po.id_report_status!=5
-	                WHERE rd.id_prod_demand_rev=" + id_report + "
+	                WHERE rd.id_prod_demand_rev=" + id_report + " AND rd.is_cancel_po=1
                 ) src ON src.id_prod_order = main.id_prod_order
                 SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note;
                 UPDATE tb_report_mark main
@@ -4416,7 +4416,7 @@
 	                FROM tb_prod_demand_design_rev rd
 	                INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design
-	                WHERE rd.id_prod_demand_rev=" + id_report + "
+	                WHERE rd.id_prod_demand_rev=" + id_report + " AND rd.is_cancel_po=1
                 ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
                 SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; "
                 execute_non_query(query_void, True, "", "", "", "")
@@ -4468,6 +4468,12 @@
                     '" + dpr.Rows(i)("id_prod_demand_design").ToString + "'
                     ); SELECT LAST_INSERT_ID();"
                     Dim id_prod_demand_design As String = execute_query(qins, 0, True, "", "", "", "")
+                    If dpr.Rows(i)("is_cancel_po").ToString = "2" Then
+                        'change reference pdd
+                        Dim qpo As String = "UPDATE tb_prod_order SET id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + " 
+                        WHERE id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design").ToString + " "
+                        execute_non_query(qpo, True, "", "", "", "")
+                    End If
 
                     'insert new pdp
                     Dim qins_pdp As String = "INSERT INTO tb_prod_demand_product (
