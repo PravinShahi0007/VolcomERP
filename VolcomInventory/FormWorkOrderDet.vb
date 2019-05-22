@@ -12,7 +12,7 @@
         load_work_order_type()
         load_urgency()
         TEReqNUmber.Text = "[auto_generate]"
-        TEReqBy.Text = get_emp(id_user, "4")
+        TEReqBy.Text = get_emp(id_user, "3")
         TEDep.Text = get_emp(id_user, "5")
         DEDateCreated.EditValue = Now
 

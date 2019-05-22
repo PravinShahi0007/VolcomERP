@@ -27,7 +27,7 @@
     Sub viewSeason()
         Dim query As String = "SELECT '-1' AS id_season, 'All Season' as season UNION "
         query += "(SELECT id_season,season FROM tb_season a "
-        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
+        query += "INNER JOIN tb_range b ON a.id_range = b.id_range AND id_departement !=8 "
         query += "ORDER BY b.range ASC)"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
