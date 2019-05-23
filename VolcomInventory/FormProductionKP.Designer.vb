@@ -50,7 +50,7 @@ Partial Class FormProductionKP
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.ImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrintKO = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintKP = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.BLock = New DevExpress.XtraEditors.SimpleButton()
         Me.PCDel = New DevExpress.XtraEditors.PanelControl()
@@ -87,9 +87,9 @@ Partial Class FormProductionKP
         Me.GridColumnPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.GridColumnProto2Sample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIDESampleProto2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,9 +115,9 @@ Partial Class FormProductionKP
         Me.PCDel.SuspendLayout()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDESampleProto2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDESampleProto2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -416,7 +416,7 @@ Partial Class FormProductionKP
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BPrintKO)
+        Me.PanelControl2.Controls.Add(Me.BPrintKP)
         Me.PanelControl2.Controls.Add(Me.BUpdate)
         Me.PanelControl2.Controls.Add(Me.BLock)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -425,16 +425,16 @@ Partial Class FormProductionKP
         Me.PanelControl2.Size = New System.Drawing.Size(875, 41)
         Me.PanelControl2.TabIndex = 2
         '
-        'BPrintKO
+        'BPrintKP
         '
-        Me.BPrintKO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintKO.ImageIndex = 6
-        Me.BPrintKO.ImageList = Me.ImageCollection
-        Me.BPrintKO.Location = New System.Drawing.Point(571, 2)
-        Me.BPrintKO.Name = "BPrintKO"
-        Me.BPrintKO.Size = New System.Drawing.Size(96, 37)
-        Me.BPrintKO.TabIndex = 8910
-        Me.BPrintKO.Text = "Print"
+        Me.BPrintKP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintKP.ImageIndex = 6
+        Me.BPrintKP.ImageList = Me.ImageCollection
+        Me.BPrintKP.Location = New System.Drawing.Point(571, 2)
+        Me.BPrintKP.Name = "BPrintKP"
+        Me.BPrintKP.Size = New System.Drawing.Size(96, 37)
+        Me.BPrintKP.TabIndex = 8910
+        Me.BPrintKP.Text = "Print"
         '
         'BUpdate
         '
@@ -502,7 +502,7 @@ Partial Class FormProductionKP
         Me.GVProd.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVProd.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVProd.ColumnPanelRowHeight = 50
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13, Me.GridColumn3})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13, Me.GridColumnProto2Sample})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsSelection.EnableAppearanceFocusedRow = False
@@ -513,7 +513,7 @@ Partial Class FormProductionKP
         'GridColumn18
         '
         Me.GridColumn18.Caption = "ID Ko Det"
-        Me.GridColumn18.FieldName = "id_prod_order_ko_det"
+        Me.GridColumn18.FieldName = "id_prod_order_kp_det"
         Me.GridColumn18.Name = "GridColumn18"
         '
         'GridColumnNo
@@ -799,22 +799,17 @@ Partial Class FormProductionKP
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount_rp", "{0:N2}")})
         Me.GridColumn13.Width = 171
         '
-        'GridColumn3
+        'GridColumnProto2Sample
         '
-        Me.GridColumn3.Caption = "Sample Proto 2 Date"
-        Me.GridColumn3.ColumnEdit = Me.RIDESampleProto2
-        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn3.FieldName = "sample_proto_2"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
-        Me.GridColumn3.Width = 135
-        '
-        'RIPictureEdit
-        '
-        Me.RIPictureEdit.Name = "RIPictureEdit"
-        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.GridColumnProto2Sample.Caption = "Sample Proto 2 Date"
+        Me.GridColumnProto2Sample.ColumnEdit = Me.RIDESampleProto2
+        Me.GridColumnProto2Sample.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnProto2Sample.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnProto2Sample.FieldName = "sample_proto_2"
+        Me.GridColumnProto2Sample.Name = "GridColumnProto2Sample"
+        Me.GridColumnProto2Sample.Visible = True
+        Me.GridColumnProto2Sample.VisibleIndex = 5
+        Me.GridColumnProto2Sample.Width = 135
         '
         'RIDESampleProto2
         '
@@ -822,6 +817,11 @@ Partial Class FormProductionKP
         Me.RIDESampleProto2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RIDESampleProto2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RIDESampleProto2.Name = "RIDESampleProto2"
+        '
+        'RIPictureEdit
+        '
+        Me.RIPictureEdit.Name = "RIPictureEdit"
+        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
         'FormProductionKP
         '
@@ -865,9 +865,9 @@ Partial Class FormProductionKP
         Me.PCDel.ResumeLayout(False)
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDESampleProto2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDESampleProto2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -901,7 +901,7 @@ Partial Class FormProductionKP
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Public WithEvents ImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BPrintKO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrintKP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BUpdate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BLock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PCDel As DevExpress.XtraEditors.PanelControl
@@ -939,6 +939,6 @@ Partial Class FormProductionKP
     Friend WithEvents GridColumnPOKurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIPictureEdit As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnProto2Sample As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIDESampleProto2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class

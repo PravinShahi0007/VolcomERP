@@ -1051,6 +1051,7 @@
         ElseIf report_mark_type = "197" Then
             'sample material purchase
             FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
+            FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
         Else
             'MsgBox(id_report)

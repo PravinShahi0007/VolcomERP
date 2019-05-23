@@ -1,5 +1,6 @@
 ﻿Public Class FormProposeEmpSalaryDet
     Public id_employee_sal_pps As String = "-1"
+    Public is_duplicate As String = "-1"
 
     Private Sub FormProposeEmpSalaryDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
@@ -55,6 +56,11 @@
         GCEmployee.DataSource = data_detail
 
         GVEmployee.BestFitColumns()
+
+        'duplicate
+        If is_duplicate = "1" Then
+            TENumber.EditValue = "[autogenerate]"
+        End If
     End Sub
 
     Sub permission_load()
@@ -73,11 +79,55 @@
             RemoveEmployeeToolStripMenuItem.Visible = False
         End If
 
-        'Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_employee_sal_pps WHERE id_employee_sal_pps = " + id_employee_sal_pps + "", 0, True, "", "", "", "")
+        'duplicate
+        If is_duplicate = "1" Then
+            SBMark.Enabled = False
+            SBPrint.Enabled = False
 
-        'If id_report_status = "6" Then
+            SBSubmit.Enabled = True
+            SBInsertEmployee.Enabled = True
+            SBRemoveEmployee.Enabled = True
 
-        'End If
+            DEEffectiveDate.ReadOnly = False
+            MENote.ReadOnly = False
+            RITESalary.ReadOnly = False
+
+            RemoveEmployeeToolStripMenuItem.Visible = True
+        End If
+    End Sub
+
+    Sub update_changes()
+        Dim query As String = "
+            SELECT pps_det.id_employee
+            FROM tb_employee_sal_pps_det AS pps_det
+            LEFT JOIN tb_employee_sal_pps AS pps ON pps_det.id_employee_sal_pps = pps.id_employee_sal_pps
+            WHERE pps.id_employee_sal_pps = " + id_employee_sal_pps + "
+        "
+
+        Dim pps_salary As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To pps_salary.Rows.Count - 1
+            Dim id_employee As String = pps_salary.Rows(i)("id_employee").ToString
+
+            execute_non_query("
+                UPDATE tb_m_employee SET 
+                    basic_salary = (SELECT basic_salary FROM tb_employee_sal_pps_det WHERE id_employee_sal_pps = " + id_employee_sal_pps + " AND id_employee = " + id_employee + "),
+                    allow_job = (SELECT allow_job FROM tb_employee_sal_pps_det WHERE id_employee_sal_pps = " + id_employee_sal_pps + " AND id_employee = " + id_employee + "),
+                    allow_meal = (SELECT allow_meal FROM tb_employee_sal_pps_det WHERE id_employee_sal_pps = " + id_employee_sal_pps + " AND id_employee = " + id_employee + "),
+                    allow_trans = (SELECT allow_trans FROM tb_employee_sal_pps_det WHERE id_employee_sal_pps = " + id_employee_sal_pps + " AND id_employee = " + id_employee + "),
+                    allow_house = (SELECT allow_house FROM tb_employee_sal_pps_det WHERE id_employee_sal_pps = " + id_employee_sal_pps + " AND id_employee = " + id_employee + "),
+                    allow_car = (SELECT allow_car FROM tb_employee_sal_pps_det WHERE id_employee_sal_pps = " + id_employee_sal_pps + " AND id_employee = " + id_employee + ")
+                WHERE id_employee = " + id_employee + "
+            ", True, "", "", "", "")
+
+            execute_non_query("
+                INSERT INTO tb_m_employee_salary (id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date)
+                SELECT id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date 
+                FROM tb_employee_sal_pps_det AS pps_det
+                LEFT JOIN tb_employee_sal_pps AS pps ON pps_det.id_employee_sal_pps = pps.id_employee_sal_pps 
+                WHERE pps.id_employee_sal_pps = " + id_employee_sal_pps + " AND id_employee = " + id_employee + "
+            ", True, "", "", "", "")
+        Next
     End Sub
 
     Sub remove_employee()
@@ -133,21 +183,11 @@
                 Dim effective_date As String = DateTime.Parse(DEEffectiveDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim note As String = addSlashes(MENote.Text)
 
-                If id_employee_sal_pps = "-1" Then
-                    'new
-                    query = "
-                        INSERT INTO tb_employee_sal_pps (effective_date, id_report_status, note, created_by, created_at) 
-                        VALUES ('" + effective_date + "', 1, '" + note + "', " + id_employee_user + ", NOW());
-                        SELECT LAST_INSERT_ID();
-                    "
-                Else
-                    'update
-                    query = "
-                        UPDATE tb_employee_sal_pps
-                        SET effective_date = '" + effective_date + "', id_report_status = 1, note = '" + note + "';
-                        SELECT " + id_employee_sal_pps + ";
-                    "
-                End If
+                query = "
+                    INSERT INTO tb_employee_sal_pps (effective_date, id_report_status, note, created_by, created_at) 
+                    VALUES ('" + effective_date + "', 1, '" + note + "', " + id_employee_user + ", NOW());
+                    SELECT LAST_INSERT_ID();
+                "
 
                 id_employee_sal_pps = execute_query(query, 0, True, "", "", "", "")
 
@@ -194,7 +234,21 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_employee_sal_pps WHERE id_employee_sal_pps = " + id_employee_sal_pps + "", 0, True, "", "", "", "")
 
+        Dim report As ReportProposeEmpSalary = New ReportProposeEmpSalary
+
+        report.id_employee_sal_pps = id_employee_sal_pps
+        report.data = GCEmployee.DataSource
+        report.is_pre = If(id_report_status = "6", "-1", "1")
+
+        report.XLNumber.Text = TENumber.Text
+        report.XLEffectiveDate.Text = DEEffectiveDate.Text
+        report.XLNote.Text = MENote.Text
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        Tool.ShowPreviewDialog()
     End Sub
 
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
