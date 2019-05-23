@@ -95,19 +95,23 @@ Partial Public Class ReportProposeEmpSalary
         '
         Me.GVEmployee.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVEmployee.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.GVEmployee.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseForeColor = True
         Me.GVEmployee.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVEmployee.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.GVEmployee.AppearancePrint.GroupFooter.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseFont = True
         Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseForeColor = True
         Me.GVEmployee.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVEmployee.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.GVEmployee.AppearancePrint.GroupRow.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBorderColor = True
@@ -115,7 +119,7 @@ Partial Public Class ReportProposeEmpSalary
         Me.GVEmployee.AppearancePrint.GroupRow.Options.UseForeColor = True
         Me.GVEmployee.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVEmployee.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.GVEmployee.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
@@ -123,10 +127,13 @@ Partial Public Class ReportProposeEmpSalary
         Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseForeColor = True
         Me.GVEmployee.AppearancePrint.Row.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVEmployee.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.GVEmployee.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseForeColor = True
+        Me.GVEmployee.ColumnPanelRowHeight = 32
         Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCEmployeeId, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCBasicSalary, Me.GCJobAllowance, Me.GCMealAllowance, Me.GCTransportAllowance, Me.GCHouseAllowance, Me.GCAttendanceAllowance, Me.GCTotalSalary})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
@@ -134,6 +141,7 @@ Partial Public Class ReportProposeEmpSalary
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
+        Me.GVEmployee.OptionsPrint.AllowMultilineHeaders = True
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowFooter = True
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
@@ -207,6 +215,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCEmployeeStatus
         '
+        Me.GCEmployeeStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCEmployeeStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployeeStatus.Caption = "Employee Status"
         Me.GCEmployeeStatus.FieldName = "employee_status"
         Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
@@ -216,6 +226,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCBasicSalary
         '
+        Me.GCBasicSalary.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCBasicSalary.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCBasicSalary.Caption = "Basic Salary"
         Me.GCBasicSalary.ColumnEdit = Me.RITESalary
         Me.GCBasicSalary.DisplayFormat.FormatString = "N0"
@@ -234,6 +246,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCJobAllowance
         '
+        Me.GCJobAllowance.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCJobAllowance.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCJobAllowance.Caption = "Job Allowance"
         Me.GCJobAllowance.ColumnEdit = Me.RITESalary
         Me.GCJobAllowance.DisplayFormat.FormatString = "N0"
@@ -247,6 +261,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCMealAllowance
         '
+        Me.GCMealAllowance.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCMealAllowance.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCMealAllowance.Caption = "Meal Allowance"
         Me.GCMealAllowance.ColumnEdit = Me.RITESalary
         Me.GCMealAllowance.DisplayFormat.FormatString = "N0"
@@ -260,6 +276,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCTransportAllowance
         '
+        Me.GCTransportAllowance.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCTransportAllowance.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCTransportAllowance.Caption = "Transport Allowance"
         Me.GCTransportAllowance.ColumnEdit = Me.RITESalary
         Me.GCTransportAllowance.DisplayFormat.FormatString = "N0"
@@ -273,6 +291,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCHouseAllowance
         '
+        Me.GCHouseAllowance.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCHouseAllowance.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCHouseAllowance.Caption = "House Allowance"
         Me.GCHouseAllowance.ColumnEdit = Me.RITESalary
         Me.GCHouseAllowance.DisplayFormat.FormatString = "N0"
@@ -286,6 +306,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCAttendanceAllowance
         '
+        Me.GCAttendanceAllowance.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAttendanceAllowance.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCAttendanceAllowance.Caption = "Attendance Allowance"
         Me.GCAttendanceAllowance.ColumnEdit = Me.RITESalary
         Me.GCAttendanceAllowance.DisplayFormat.FormatString = "N0"
@@ -299,6 +321,8 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCTotalSalary
         '
+        Me.GCTotalSalary.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCTotalSalary.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCTotalSalary.Caption = "Total Salary"
         Me.GCTotalSalary.DisplayFormat.FormatString = "N0"
         Me.GCTotalSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -331,7 +355,7 @@ Partial Public Class ReportProposeEmpSalary
         '
         'XrLabel2
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 12.75!, System.Drawing.FontStyle.Bold)
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 20.00001!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -344,7 +368,7 @@ Partial Public Class ReportProposeEmpSalary
         'XLNumber
         '
         Me.XLNumber.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right
-        Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 12.25!, System.Drawing.FontStyle.Bold)
+        Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 10.75!, System.Drawing.FontStyle.Bold)
         Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(780.0001!, 20.00001!)
         Me.XLNumber.Name = "XLNumber"
         Me.XLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -389,19 +413,19 @@ Partial Public Class ReportProposeEmpSalary
         '
         'XLEffectiveDate
         '
-        Me.XLEffectiveDate.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLEffectiveDate.LocationFloat = New DevExpress.Utils.PointFloat(825.0001!, 0!)
+        Me.XLEffectiveDate.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XLEffectiveDate.LocationFloat = New DevExpress.Utils.PointFloat(900.0001!, 0!)
         Me.XLEffectiveDate.Name = "XLEffectiveDate"
         Me.XLEffectiveDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLEffectiveDate.SizeF = New System.Drawing.SizeF(175.0!, 23.0!)
+        Me.XLEffectiveDate.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
         Me.XLEffectiveDate.StylePriority.UseFont = False
         Me.XLEffectiveDate.StylePriority.UseTextAlignment = False
         Me.XLEffectiveDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel4
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(810.0001!, 0!)
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(885.0002!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -412,11 +436,11 @@ Partial Public Class ReportProposeEmpSalary
         '
         'XrLabel3
         '
-        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(660.0001!, 0!)
+        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(795.0002!, 0.2083302!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(90.0!, 23.0!)
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
         Me.XrLabel3.Text = "Effective Date"
@@ -454,19 +478,19 @@ Partial Public Class ReportProposeEmpSalary
         '
         'XLNote
         '
-        Me.XLNote.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLNote.LocationFloat = New DevExpress.Utils.PointFloat(165.0!, 0!)
+        Me.XLNote.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XLNote.LocationFloat = New DevExpress.Utils.PointFloat(105.0!, 0!)
         Me.XLNote.Name = "XLNote"
         Me.XLNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLNote.SizeF = New System.Drawing.SizeF(835.0!, 46.0!)
+        Me.XLNote.SizeF = New System.Drawing.SizeF(895.0!, 46.0!)
         Me.XLNote.StylePriority.UseFont = False
         Me.XLNote.StylePriority.UseTextAlignment = False
         Me.XLNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel7
         '
-        Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(150.0!, 0!)
+        Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(89.99999!, 0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -477,11 +501,11 @@ Partial Public Class ReportProposeEmpSalary
         '
         'XrLabel6
         '
-        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 8.75!)
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(90.0!, 23.0!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.StylePriority.UseTextAlignment = False
         Me.XrLabel6.Text = "Note"
