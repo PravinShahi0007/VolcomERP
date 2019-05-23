@@ -100,6 +100,28 @@
                 If dcek.Rows(0)("add_cost") <> GVDesign.GetFocusedRowCellValue("current_add_cost") Then
                     is_cancel_po = "1"
                 End If
+
+                'cek qty per size
+                If is_cancel_po = "2" Then
+                    Dim qcp As String = "SELECT pdp.id_product, SUM(pdp.prod_demand_product_qty) AS `qty`, IFNULL(pdc.qty,0) AS `current_qty`
+                    FROM tb_m_design d 
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
+                    INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
+                    LEFT JOIN (
+	                    SELECT pdp.id_product, SUM(pdp.prod_demand_product_qty) AS `qty`
+	                    FROM tb_prod_demand_design pdd
+	                    INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
+	                    WHERE pdd.id_prod_demand=" + FormProdDemandRevDet.id_prod_demand + " AND pdd.id_design=" + id_design + " AND pdp.prod_demand_product_qty>0
+	                    GROUP BY pdp.id_product
+                    ) pdc ON pdc.id_product = pdp.id_product
+                    WHERE d.id_design=" + id_design + " AND pdp.prod_demand_product_qty>0 
+                    GROUP BY pdp.id_product
+                    HAVING qty<>current_qty "
+                    Dim dcp As DataTable = execute_query(qcp, -1, True, "", "", "", "")
+                    If dcp.Rows.Count > 0 Then
+                        is_cancel_po = "1"
+                    End If
+                End If
             Else
                 stopCustom("This product not found on line list")
                 Exit Sub
