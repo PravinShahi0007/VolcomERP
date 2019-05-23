@@ -35,6 +35,7 @@
 
     Private Sub GCList_DoubleClick(sender As Object, e As EventArgs) Handles GCList.DoubleClick
         FormProposeEmpSalaryDet.id_employee_sal_pps = GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+        FormProposeEmpSalaryDet.is_duplicate = "-1"
         FormProposeEmpSalaryDet.ShowDialog()
     End Sub
 End Class

@@ -365,6 +365,10 @@ Public Class FormMain
         If formName = "FormBarcodeProduct" Then
             RGAreaManage.Visible = False
         End If
+
+        If formName = "FormProposeEmpSalary" Then
+            BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
     End Sub
     'Hide Ribbon
     Sub hide_rb()
@@ -1710,6 +1714,7 @@ Public Class FormMain
         ElseIf formName = "FormProposeEmpSalary" Then
             'propose employee salary
             FormProposeEmpSalaryDet.id_employee_sal_pps = "-1"
+            FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
@@ -2768,8 +2773,11 @@ Public Class FormMain
                 End If
             ElseIf formName = "FormProposeEmpSalary" Then
                 'propose employee salary
-                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
-                FormProposeEmpSalaryDet.ShowDialog()
+                If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                    FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                    FormProposeEmpSalaryDet.is_duplicate = "-1"
+                    FormProposeEmpSalaryDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8355,6 +8363,12 @@ Public Class FormMain
             End Try
             FormMasterDesignSingle.id_design = id_dsg_param
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormProposeEmpSalary" Then
+            If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                FormProposeEmpSalaryDet.is_duplicate = "1"
+                FormProposeEmpSalaryDet.ShowDialog()
+            End If
         End If
     End Sub
     'Contact 

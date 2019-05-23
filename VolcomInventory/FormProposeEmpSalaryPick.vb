@@ -9,7 +9,7 @@
         End If
 
         Dim query As String = "
-            SELECT emp.id_employee, 'No' AS is_checked, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, emp.id_employee_level, lv.employee_level, emp.id_employee_active, act.employee_active, emp.id_employee_status, sts.employee_status
+            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status
             FROM tb_m_employee AS emp
             LEFT JOIN tb_m_departement AS dp ON emp.id_departement = dp.id_departement
             LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
@@ -40,23 +40,25 @@
     Private Sub SBInsert_Click(sender As Object, e As EventArgs) Handles SBInsert.Click
         GVEmployee.ApplyFindFilter("")
 
-        GVEmployee.ActiveFilterString = "[is_checked] = 'Yes'"
-
-        If GVEmployee.RowCount > 0 Then
+        If GVEmployee.SelectedRowsCount > 0 Then
             Dim data As DataTable = FormProposeEmpSalaryDet.GCEmployee.DataSource
 
-            For i = 0 To GVEmployee.RowCount - 1
-                If GVEmployee.IsValidRowHandle(i) Then
-                    Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
-                    Dim employee_code As String = GVEmployee.GetRowCellValue(i, "employee_code").ToString
-                    Dim employee_name As String = GVEmployee.GetRowCellValue(i, "employee_name").ToString
-                    Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
-                    Dim departement As String = GVEmployee.GetRowCellValue(i, "departement").ToString
-                    Dim employee_position As String = GVEmployee.GetRowCellValue(i, "employee_position").ToString
-                    Dim id_employee_level As String = GVEmployee.GetRowCellValue(i, "id_employee_level").ToString
-                    Dim employee_level As String = GVEmployee.GetRowCellValue(i, "employee_level").ToString
-                    Dim id_employee_status As String = GVEmployee.GetRowCellValue(i, "id_employee_status").ToString
-                    Dim employee_status As String = GVEmployee.GetRowCellValue(i, "employee_status").ToString
+            Dim selected_rows As Integer() = GVEmployee.GetSelectedRows()
+
+            For i = 0 To selected_rows.Length - 1
+                Dim selected_row As Integer = selected_rows(i)
+
+                If selected_row >= 0 Then
+                    Dim id_employee As String = GVEmployee.GetRowCellValue(selected_row, "id_employee").ToString
+                    Dim employee_code As String = GVEmployee.GetRowCellValue(selected_row, "employee_code").ToString
+                    Dim employee_name As String = GVEmployee.GetRowCellValue(selected_row, "employee_name").ToString
+                    Dim id_departement As String = GVEmployee.GetRowCellValue(selected_row, "id_departement").ToString
+                    Dim departement As String = GVEmployee.GetRowCellValue(selected_row, "departement").ToString
+                    Dim employee_position As String = GVEmployee.GetRowCellValue(selected_row, "employee_position").ToString
+                    Dim id_employee_level As String = GVEmployee.GetRowCellValue(selected_row, "id_employee_level").ToString
+                    Dim employee_level As String = GVEmployee.GetRowCellValue(selected_row, "employee_level").ToString
+                    Dim id_employee_status As String = GVEmployee.GetRowCellValue(selected_row, "id_employee_status").ToString
+                    Dim employee_status As String = GVEmployee.GetRowCellValue(selected_row, "employee_status").ToString
 
                     data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, employee_position, id_employee_level, employee_level, id_employee_status, employee_status, 0, 0, 0, 0, 0, 0)
                 End If

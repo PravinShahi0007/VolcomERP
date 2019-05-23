@@ -178,8 +178,8 @@
         initLoad()
 
         If show_payroll Then
-            GCPayrollPropose.Visible = True
-            GCPayrollProposeB.Visible = True
+            'GCPayrollPropose.Visible = True
+            'GCPayrollProposeB.Visible = True
             SBPosAtt.Visible = True
             SBPosAttB.Visible = True
             LEEmployeeStatus.Size = New Size(512, 20)
@@ -793,9 +793,9 @@
         EP_ME_cant_blank(ErrorProvider1, MEAddress)
         EP_DE_cant_blank(ErrorProvider1, DEEmployeeStatusStart)
         EP_DE_cant_blank(ErrorProvider1, DEEffectiveDate)
-        If show_payroll Then
-            EP_DE_cant_blank(ErrorProvider1, DESalary)
-        End If
+        'If show_payroll Then
+        '    EP_DE_cant_blank(ErrorProvider1, DESalary)
+        'End If
         If LEActive.EditValue.ToString > 1 Then
             EP_DE_cant_blank(ErrorProvider1, DELastDay)
         Else
@@ -1588,7 +1588,7 @@
             If changes.Rows.Count > 0 Then
                 For i = 0 To changes.Rows.Count - 1
                     ' skip employee_position_date & salary_date
-                    Dim skip() As String = {"employee_position_date", "salary_date"}
+                    Dim skip() As String = {"employee_position_date", "basic_salary", "allow_job", "allow_meal", "allow_trans", "allow_house", "allow_car", "salary_date"}
 
                     If Not skip.Contains(changes.Rows(i)("name")) Then
                         query += changes.Rows(i)("name") + " = (SELECT " + changes.Rows(i)("name") + " FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'), "
@@ -1602,9 +1602,9 @@
                         position_changed = True
                     End If
 
-                    If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
-                        salary_changed = True
-                    End If
+                    'If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
+                    '    salary_changed = True
+                    'End If
                 Next
 
                 progress.ProgressBarControl.EditValue = 30
@@ -1649,16 +1649,16 @@
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
-                If salary_changed Then
-                    query = "
-                        INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
-                        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
-                        FROM tb_employee_pps 
-                        WHERE id_employee_pps = '" + id_pps + "'
-                    "
+                'If salary_changed Then
+                '    query = "
+                '        INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
+                '        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
+                '        FROM tb_employee_pps 
+                '        WHERE id_employee_pps = '" + id_pps + "'
+                '    "
 
-                    execute_non_query(query, True, "", "", "", "")
-                End If
+                '    execute_non_query(query, True, "", "", "", "")
+                'End If
 
                 progress.ProgressBarControl.EditValue = 40
             End If
@@ -1700,19 +1700,19 @@
             progress.ProgressBarControl.EditValue = 35
 
             ' salary
-            query = "SELECT salary_date FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
-            Dim check_salary_date As String = execute_query(query, 0, True, "", "", "", "")
+            'query = "SELECT salary_date FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
+            'Dim check_salary_date As String = execute_query(query, 0, True, "", "", "", "")
 
-            If Not check_salary_date = "" Then
-                query = "
-                    INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
-                    SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
-                    FROM tb_employee_pps 
-                    WHERE id_employee_pps = '" + id_pps + "'
-                "
+            'If Not check_salary_date = "" Then
+            '    query = "
+            '        INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
+            '        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
+            '        FROM tb_employee_pps 
+            '        WHERE id_employee_pps = '" + id_pps + "'
+            '    "
 
-                execute_non_query(query, True, "", "", "", "")
-            End If
+            '    execute_non_query(query, True, "", "", "", "")
+            'End If
 
             progress.ProgressBarControl.EditValue = 40
         End If
@@ -1808,9 +1808,9 @@
     End Sub
 
     Private Sub DESalary_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DESalary.Validating
-        If show_payroll Then
-            EP_DE_cant_blank(ErrorProvider1, DESalary)
-        End If
+        'If show_payroll Then
+        '    EP_DE_cant_blank(ErrorProvider1, DESalary)
+        'End If
     End Sub
 
     Private Sub DELastDay_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DELastDay.Validating

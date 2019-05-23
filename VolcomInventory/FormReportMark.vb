@@ -5991,7 +5991,10 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             ' update to tb_m_employee and tb_m_employee_salary
             If id_status_reportx = "6" Then
+                FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
+                FormProposeEmpSalaryDet.is_duplicate = "-1"
 
+                FormProposeEmpSalaryDet.update_changes()
             End If
 
             'update
