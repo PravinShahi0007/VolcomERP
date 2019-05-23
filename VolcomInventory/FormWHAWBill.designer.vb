@@ -156,6 +156,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportAwb = New DevExpress.XtraEditors.SimpleButton()
         Me.CERO = New DevExpress.XtraEditors.CheckEdit()
         Me.BInView = New DevExpress.XtraEditors.SimpleButton()
         Me.CEInCompare = New DevExpress.XtraEditors.CheckEdit()
@@ -911,7 +912,7 @@ Partial Class FormWHAWBill
         Me.BAWBRec.Name = "BAWBRec"
         Me.BAWBRec.Size = New System.Drawing.Size(140, 35)
         Me.BAWBRec.TabIndex = 108
-        Me.BAWBRec.Text = "Import AWB Receive Data"
+        Me.BAWBRec.Text = "Import AWB Data"
         '
         'BtnManifest
         '
@@ -1523,6 +1524,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn17.FieldName = "a_weight"
         Me.BandedGridColumn17.Name = "BandedGridColumn17"
         Me.BandedGridColumn17.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_weight", "{0:N0}")})
         Me.BandedGridColumn17.Visible = True
         Me.BandedGridColumn17.Width = 96
         '
@@ -1538,6 +1540,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn18.FieldName = "a_tot_price"
         Me.BandedGridColumn18.Name = "BandedGridColumn18"
         Me.BandedGridColumn18.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_tot_price", "{0:N2}")})
         Me.BandedGridColumn18.Visible = True
         Me.BandedGridColumn18.Width = 87
         '
@@ -1616,6 +1619,7 @@ Partial Class FormWHAWBill
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BImportAwb)
         Me.PanelControl2.Controls.Add(Me.CERO)
         Me.PanelControl2.Controls.Add(Me.BInView)
         Me.PanelControl2.Controls.Add(Me.CEInCompare)
@@ -1632,6 +1636,15 @@ Partial Class FormWHAWBill
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1273, 39)
         Me.PanelControl2.TabIndex = 3
+        '
+        'BImportAwb
+        '
+        Me.BImportAwb.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BImportAwb.Location = New System.Drawing.Point(1131, 2)
+        Me.BImportAwb.Name = "BImportAwb"
+        Me.BImportAwb.Size = New System.Drawing.Size(140, 35)
+        Me.BImportAwb.TabIndex = 109
+        Me.BImportAwb.Text = "Import AWB Data"
         '
         'CERO
         '
@@ -1942,4 +1955,5 @@ Partial Class FormWHAWBill
     Friend WithEvents gbAirport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BReportInvoice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BImportAwb As DevExpress.XtraEditors.SimpleButton
 End Class

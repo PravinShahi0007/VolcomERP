@@ -12,9 +12,18 @@
         viewLineType()
         Dim query As String = "SELECT  dp.id_prod_demand_design_rev, pdd.id_prod_demand_design, pdd.id_design,d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number,
         IFNULL(po.ordered,0) AS `ordered`,
-        IFNULL(rec.received,0) AS `received`, 'No' AS `is_select`
+        IFNULL(rec.received,0) AS `received`,
+        pd_det.current_qty, pd_det.current_cost, pd_det.current_add_cost,'No' AS `is_select`
         FROM tb_prod_demand_design pdd
         INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+        LEFT JOIN (
+	        SELECT pdd.id_prod_demand_design, pdd.id_design, SUM(pdp.prod_demand_product_qty) AS `current_qty`, pdd.prod_demand_design_total_cost AS `current_cost`, 
+	        pdd.additional_cost AS `current_add_cost`
+	        FROM tb_prod_demand_product pdp
+	        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = pdp.id_prod_demand_design
+	        WHERE pdd.id_prod_demand=" + FormProdDemandRevDet.id_prod_demand + " 
+	        GROUP BY pdd.id_prod_demand_design
+        ) pd_det ON pd_det.id_prod_demand_design = pdd.id_prod_demand_design
         LEFT JOIN (
 	        SELECT po.id_prod_demand_design, po.prod_order_number, SUM(pod.prod_order_qty) AS `ordered`
 	        FROM tb_prod_order po 

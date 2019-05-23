@@ -3,7 +3,7 @@
 
     Private Sub FormUniqueDel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT w.comp_number AS `WH Account`, w.comp_name AS `WH`,c.comp_number AS `Store Account`, c.comp_name AS `Store`,
+        Dim query As String = "SELECT 1 AS `#`, w.comp_number AS `WH Account`, w.comp_name AS `WH`,c.comp_number AS `Store Account`, c.comp_name AS `Store`,
         del.pl_sales_order_del_number AS `Delivery`,
         CONCAT(p.product_full_code,detc.pl_sales_order_del_det_counting) AS `Unique Code`, 
         d.design_display_name AS `Description`, cd.code_detail_name AS `Size`
@@ -22,6 +22,13 @@
         ORDER BY del.id_pl_sales_order_del, p.id_product "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GVData.Columns.ColumnByFieldName("#").MaxWidth = 30
+
+        'number
+        For i = 0 To GVData.RowCount - 1
+            GVData.SetRowCellValue(i, "#", i + 1)
+        Next
+
         print(GCData, GVData.GetFocusedRowCellValue("Delivery").ToString)
         Close()
         Cursor = Cursors.Default

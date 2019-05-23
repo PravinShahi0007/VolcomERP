@@ -1,6 +1,7 @@
 ﻿Public Class FormInvoiceFGPODP
     Public id_dp As String = "-1"
     Public is_view As String = "-1"
+    Public type As String = "1"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -12,51 +13,100 @@
     End Sub
 
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'check 
         DEDateCreated.EditValue = Now
+        '
+        TETotal.EditValue = 0.00
+        TEVat.EditValue = 0.00
+        TEGrandTotal.EditValue = 0.00
+        '
         TENumber.Text = "[auto generate]"
-        load_pay_from()
         load_vendor()
         load_trans_type()
         load_det()
         '
-        If id_dp = "-1" Then
-            BtnPrint.Visible = False
-            BtnViewJournal.Visible = False
-            BMark.Visible = False
-            'new
-            'vendor 
-            SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
-            'detail
-            For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
-                Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
-                newRow("number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
-                newRow("description") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
-                newRow("code") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_code").ToString
-                newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount").ToString
-                newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat").ToString
-                newRow("inv_number") = ""
-                newRow("note") = ""
-                TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-            Next
-            calculate()
-        Else
-            'edit
-            BtnPrint.Visible = True
-            BtnViewJournal.Visible = True
-            BMark.Visible = True
+        If type = "1" Then
+            If id_dp = "-1" Then
+                BtnPrint.Visible = False
+                BtnViewJournal.Visible = False
+                BMark.Visible = False
+                'new
+                'vendor 
+                SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
+                'detail
+                For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
+                    newRow("number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
+                    newRow("description") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
+                    newRow("code") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_code").ToString
+                    newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount").ToString
+                    newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat").ToString
+                    newRow("inv_number") = ""
+                    newRow("note") = ""
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate()
+            Else
+                'edit
+                BtnPrint.Visible = True
+                BtnViewJournal.Visible = True
+                BMark.Visible = True
 
-            Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
+                Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count > 0 Then
-                TENumber.Text = data.Rows(0)("number").ToString
-                DEDateCreated.EditValue = data.Rows(0)("created_date")
-                SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
-                SLEPayType.EditValue = data.Rows(0)("type").ToString
-                SLEPayFrom.EditValue = data.Rows(0)("id_acc_payfrom").ToString
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data.Rows.Count > 0 Then
+                    TENumber.Text = data.Rows(0)("number").ToString
+                    DEDateCreated.EditValue = data.Rows(0)("created_date")
+                    SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
+                    SLEPayType.EditValue = data.Rows(0)("type").ToString
+                    '
+                    MENote.Text = data.Rows(0)("note").ToString
+                End If
+            End If
+        ElseIf type = "2" Then
+            If id_dp = "-1" Then 'new
+                BtnPrint.Visible = False
+                BtnViewJournal.Visible = False
+                BMark.Visible = False
+                'vendor
+                SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
+                'detail
+                For i = 0 To FormInvoiceFGPO.GVRecFGPO.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "id_prod_order_rec").ToString
+                    newRow("number") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "prod_order_rec_number").ToString
+                    newRow("description") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "design_display_name").ToString
+                    newRow("code") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "design_code").ToString
+                    newRow("value") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "amount_rec").ToString
+                    newRow("vat") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "vat_rec").ToString
+                    newRow("inv_number") = ""
+                    newRow("note") = ""
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate()
+            Else
+                'edit
+                BtnPrint.Visible = True
+                BtnViewJournal.Visible = True
+                BMark.Visible = True
+
+                Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data.Rows.Count > 0 Then
+                    TENumber.Text = data.Rows(0)("number").ToString
+                    DEDateCreated.EditValue = data.Rows(0)("created_date")
+                    SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
+                    SLEPayType.EditValue = data.Rows(0)("type").ToString
+                    '
+                    MENote.Text = data.Rows(0)("note").ToString
+                End If
             End If
         End If
     End Sub
@@ -75,18 +125,19 @@ WHERE pnd.`id_pn_fgpo`='" & id_dp & "'"
 
     Sub calculate()
         Dim tot As Decimal = 0.0
+        Dim tot_vat As Decimal = 0.0
+        Dim grand_tot As Decimal = 0.0
 
         Try
             tot = GVList.Columns("value").SummaryItem.SummaryValue
             TETotal.EditValue = tot
+            tot_vat = GVList.Columns("vat").SummaryItem.SummaryValue
+            TEVat.EditValue = tot_vat
+            grand_tot = tot + tot_vat
+            TEGrandTotal.EditValue = grand_tot
         Catch ex As Exception
 
         End Try
-    End Sub
-
-    Sub load_pay_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Sub load_vendor()
@@ -157,6 +208,9 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
                 query = "CALL gen_number('" & id_dp & "','189')"
                 execute_non_query(query, True, "", "", "", "")
                 submit_who_prepared("189", id_dp, id_user)
+                '
+                infoCustom("BPL Created")
+                Close()
             Else
                 'edit
                 Dim query As String = ""

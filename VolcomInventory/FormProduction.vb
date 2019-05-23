@@ -686,6 +686,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " ORDER BY k
         query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
         query += "WHERE comp.id_comp_cat='1'"
         viewSearchLookupQuery(SLEVendorKO, query, "id_comp", "comp_name_label", "id_comp")
+        viewSearchLookupQuery(SLEVendorKP, query, "id_comp", "comp_name_label", "id_comp")
     End Sub
 
     Sub view_ko()
@@ -695,5 +696,38 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " ORDER BY k
 
     Private Sub BEditKO_Click(sender As Object, e As EventArgs) Handles BEditKO.Click
         view_ko()
+    End Sub
+
+    Private Sub BViewKP_Click(sender As Object, e As EventArgs) Handles BViewKP.Click
+        Dim query_where As String = ""
+        '
+        If Not SLEVendorKP.EditValue.ToString = "0" Then
+            query_where += " AND c.id_comp='" & SLEVendorKP.EditValue.ToString & "'"
+        End If
+        '
+        Dim query As String = "SELECT kp.*,IF(kp.is_void='1','Void','-') AS status,c.`comp_name` FROM tb_prod_order_kp kp
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=kp.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE kp.id_prod_order_kp 
+IN (SELECT MAX(id_prod_order_kp) AS id FROM `tb_prod_order_kp`
+GROUP BY id_prod_order_kp_reff) AND is_purc_mat=2 " & query_where & " ORDER BY kp.id_prod_order_kp DESC"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCKP.DataSource = data
+        If GVKP.RowCount > 0 Then
+            BEditKP.Visible = True
+        Else
+            BEditKP.Visible = False
+        End If
+        GVKP.BestFitColumns()
+    End Sub
+
+    Sub view_kp()
+        FormProductionKP.id_kp = GVKP.GetFocusedRowCellValue("id_prod_order_kp").ToString
+        FormProductionKP.ShowDialog()
+    End Sub
+
+    Private Sub BEditKP_Click(sender As Object, e As EventArgs) Handles BEditKP.Click
+        view_kp()
     End Sub
 End Class

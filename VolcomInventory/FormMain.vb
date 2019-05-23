@@ -365,6 +365,10 @@ Public Class FormMain
         If formName = "FormBarcodeProduct" Then
             RGAreaManage.Visible = False
         End If
+
+        If formName = "FormProposeEmpSalary" Then
+            BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
     End Sub
     'Hide Ribbon
     Sub hide_rb()
@@ -1707,6 +1711,11 @@ Public Class FormMain
             ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
             End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            'propose employee salary
+            FormProposeEmpSalaryDet.id_employee_sal_pps = "-1"
+            FormProposeEmpSalaryDet.is_duplicate = "-1"
+            FormProposeEmpSalaryDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2762,6 +2771,11 @@ Public Class FormMain
                 ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
                 End If
+            ElseIf formName = "FormProposeEmpSalary" Then
+                'propose employee salary
+                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                FormProposeEmpSalaryDet.is_duplicate = "-1"
+                FormProposeEmpSalaryDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7514,6 +7528,9 @@ Public Class FormMain
             ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
                 print_raw(FormSalesOrderReport.GCAll, "")
             End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            'employee propose
+            print(FormProposeEmpSalary.GCList, "List Propose Employee Salary")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8264,6 +8281,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesOrderReport" Then
             FormSalesOrderReport.Close()
             FormSalesOrderReport.Dispose()
+        ElseIf formName = "FormProposeEmpSalary" Then
+            FormProposeEmpSalary.Close()
+            FormProposeEmpSalary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8341,6 +8361,10 @@ Public Class FormMain
             End Try
             FormMasterDesignSingle.id_design = id_dsg_param
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormProposeEmpSalary" Then
+            FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+            FormProposeEmpSalaryDet.is_duplicate = "1"
+            FormProposeEmpSalaryDet.ShowDialog()
         End If
     End Sub
     'Contact 
@@ -9080,6 +9104,8 @@ Public Class FormMain
             ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
                 FormSalesOrderReport.viewAllOrder()
             End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            FormProposeEmpSalary.load_pps()
         End If
     End Sub
     'Switch
@@ -13036,6 +13062,41 @@ Public Class FormMain
             FormSalesOrderReport.Show()
             FormSalesOrderReport.WindowState = FormWindowState.Maximized
             FormSalesOrderReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLinePlanProduction_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLinePlanProduction.LinkClicked
+        'line plan production   
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGLinePlan.Close()
+            FormFGLinePlan.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormFGLinePlan.MdiParent = Me
+            FormFGLinePlan.is_view = "1"
+            FormFGLinePlan.id_pop_up = "1"
+            FormFGLinePlan.Show()
+            FormFGLinePlan.WindowState = FormWindowState.Maximized
+            FormFGLinePlan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmpSalary_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmpSalary.LinkClicked
+        'propose employee salary
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposeEmpSalary.MdiParent = Me
+            FormProposeEmpSalary.Show()
+            FormProposeEmpSalary.WindowState = FormWindowState.Maximized
+            FormProposeEmpSalary.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

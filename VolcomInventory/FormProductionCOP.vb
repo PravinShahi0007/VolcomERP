@@ -537,11 +537,14 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 If Not GVCostMan.GetRowCellValue(i, "id_currency").ToString = "1" Then
                     actual_price = GVCostMan.GetRowCellValue(i, "actual_price")
                     price = kurs * actual_price
-                    '
-                    qty = GVCostMan.GetRowCellValue(i, "qty")
-                    total += qty * price
                 Else
                     price = GVCostMan.GetRowCellValue(i, "actual_price")
+                End If
+
+                If GVCostMan.GetRowCellValue(i, "id_category").ToString = "3" Then
+                    qty = GVCostMan.GetRowCellValue(i, "qty")
+                    total = total - (qty * price)
+                Else
                     qty = GVCostMan.GetRowCellValue(i, "qty")
                     total += qty * price
                 End If
@@ -596,11 +599,14 @@ WHERE `id_design`='" & id_design & "' "
                 If Not GVCostMan.GetRowCellValue(i, "id_currency").ToString = "1" Then
                     actual_price = GVCostMan.GetRowCellValue(i, "actual_price")
                     price = kurs * actual_price
-                    '
-                    qty = GVCostMan.GetRowCellValue(i, "qty")
-                    total += qty * price
                 Else
                     price = GVCostMan.GetRowCellValue(i, "actual_price")
+                End If
+
+                If GVCostMan.GetRowCellValue(i, "id_category").ToString = "3" Then
+                    qty = GVCostMan.GetRowCellValue(i, "qty")
+                    total = total - (qty * price)
+                Else
                     qty = GVCostMan.GetRowCellValue(i, "qty")
                     total += qty * price
                 End If
