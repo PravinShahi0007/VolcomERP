@@ -288,6 +288,9 @@
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             FormSampleExpenseDet.Close()
+        ElseIf report_mark_type = "197" Then
+            'propose employee salary
+            FormProposeEmpSalaryDet.Close()
         End If
     End Sub
     Sub show()
@@ -1045,6 +1048,11 @@
             'sample material purchase
             FormSampleExpenseDet.id_purc = id_report
             FormSampleExpenseDet.ShowDialog()
+        ElseIf report_mark_type = "197" Then
+            'sample material purchase
+            FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
+            FormProposeEmpSalaryDet.is_duplicate = "-1"
+            FormProposeEmpSalaryDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
