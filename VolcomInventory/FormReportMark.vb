@@ -4472,35 +4472,52 @@
                     ); SELECT LAST_INSERT_ID();"
                     Dim id_prod_demand_design As String = execute_query(qins, 0, True, "", "", "", "")
                     If dpr.Rows(i)("is_cancel_po").ToString = "2" Then
+                        'select PO
+                        'Dim id_po As String = execute_query("SELECT id_prod_order FROM tb_prod_order WHERE id_report_status!=5 AND id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design").ToString + "", 0, True, "", "", "", "")
+
                         'change reference pdd
-                        Dim qpo As String = "UPDATE tb_prod_order SET id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + " 
-                        WHERE id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design").ToString + " "
+                        Dim qpo As String = "UPDATE tb_prod_order SET id_prod_demand_design=" + id_prod_demand_design + " 
+                        WHERE id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design").ToString + " AND id_report_status!=5 "
                         execute_non_query(qpo, True, "", "", "", "")
                     End If
 
                     'insert new pdp
-                    Dim qins_pdp As String = "INSERT INTO tb_prod_demand_product (
-	                `id_prod_demand_design`,
-	                `id_product`,
-	                `id_bom`,
-	                `prod_demand_product_qty`
-                    )
-                    SELECT '" + id_prod_demand_design + "', pdp.id_product, pdp.id_bom, pdp.prod_demand_product_qty
-                    FROM tb_prod_demand_product_rev pdp
-                    WHERE pdp.id_prod_demand_design_rev=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + "; SELECT LAST_INSERT_ID();"
-                    Dim id_prod_demand_product As String = execute_query(qins_pdp, 0, True, "", "", "", "")
-
-                    'insert new pdp alloc
-                    Dim qins_alloc As String = "INSERT INTO tb_prod_demand_alloc (
-                    `id_prod_demand_product`,
-                    `id_pd_alloc`,
-                    `prod_demand_alloc_qty`
-                    )
-                    SELECT '" + id_prod_demand_product + "', a.id_pd_alloc, a.prod_demand_alloc_qty
-                    FROM tb_prod_demand_alloc_rev a
-                    INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_product_rev = a.id_prod_demand_product_rev
+                    Dim qprev As String = "SELECT * FROM tb_prod_demand_product_rev pdp 
                     WHERE pdp.id_prod_demand_design_rev=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + "; "
-                    execute_non_query(qins_alloc, True, "", "", "", "")
+                    Dim dprev As DataTable = execute_query(qprev, -1, True, "", "", "", "")
+                    For p As Integer = 0 To dprev.Rows.Count - 1
+                        Dim id_bom As String = dprev.Rows(p)("id_bom").ToString
+                        If id_bom = "" Then
+                            id_bom = "NULL "
+                        End If
+                        Dim qins_pdp As String = "INSERT INTO tb_prod_demand_product (
+	                    `id_prod_demand_design`,
+	                    `id_product`,
+	                    `id_bom`,
+	                    `prod_demand_product_qty`
+                        ) VALUES(
+                        " + id_prod_demand_design + " ,
+                        " + dprev.Rows(p)("id_product").ToString + " ,
+                        " + id_bom + " ,
+                        " + decimalSQL(dprev.Rows(p)("prod_demand_product_qty").ToString) + " 
+                        ); SELECT LAST_INSERT_ID(); "
+                        Dim id_prod_demand_product As String = execute_query(qins_pdp, 0, True, "", "", "", "")
+                        If dpr.Rows(i)("is_cancel_po").ToString = "2" Then
+
+                        End If
+
+                        'insert new pdp alloc
+                        Dim qins_alloc As String = "INSERT INTO tb_prod_demand_alloc (
+                        `id_prod_demand_product`,
+                        `id_pd_alloc`,
+                        `prod_demand_alloc_qty`
+                        )
+                        SELECT '" + id_prod_demand_product + "', a.id_pd_alloc, a.prod_demand_alloc_qty
+                        FROM tb_prod_demand_alloc_rev a
+                        WHERE a.id_prod_demand_product_rev=" + dprev.Rows(i)("id_prod_demand_product_rev").ToString + "; "
+                        execute_non_query(qins_alloc, True, "", "", "", "")
+                    Next
+
                 Next
             End If
 
