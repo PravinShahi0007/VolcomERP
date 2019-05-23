@@ -2773,9 +2773,11 @@ Public Class FormMain
                 End If
             ElseIf formName = "FormProposeEmpSalary" Then
                 'propose employee salary
-                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
-                FormProposeEmpSalaryDet.is_duplicate = "-1"
-                FormProposeEmpSalaryDet.ShowDialog()
+                If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                    FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                    FormProposeEmpSalaryDet.is_duplicate = "-1"
+                    FormProposeEmpSalaryDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8362,9 +8364,11 @@ Public Class FormMain
             FormMasterDesignSingle.id_design = id_dsg_param
             FormMasterDesignSingle.ShowDialog()
         ElseIf formName = "FormProposeEmpSalary" Then
-            FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
-            FormProposeEmpSalaryDet.is_duplicate = "1"
-            FormProposeEmpSalaryDet.ShowDialog()
+            If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                FormProposeEmpSalaryDet.is_duplicate = "1"
+                FormProposeEmpSalaryDet.ShowDialog()
+            End If
         End If
     End Sub
     'Contact 
