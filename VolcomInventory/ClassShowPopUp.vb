@@ -1899,6 +1899,12 @@
             field_id = "id_work_order"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "197" Then
+            'propose employee salary
+            table_name = "tb_employee_sal_pps"
+            field_id = "id_employee_sal_pps"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
