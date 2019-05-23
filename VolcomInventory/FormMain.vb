@@ -1707,6 +1707,10 @@ Public Class FormMain
             ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
             End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            'propose employee salary
+            FormProposeEmpSalaryDet.id_employee_sal_pps = "-1"
+            FormProposeEmpSalaryDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2762,6 +2766,10 @@ Public Class FormMain
                 ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
                 End If
+            ElseIf formName = "FormProposeEmpSalary" Then
+                'propose employee salary
+                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                FormProposeEmpSalaryDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7514,6 +7522,9 @@ Public Class FormMain
             ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
                 print_raw(FormSalesOrderReport.GCAll, "")
             End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            'employee propose
+            print(FormProposeEmpSalary.GCList, "List Propose Employee Salary")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8264,6 +8275,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesOrderReport" Then
             FormSalesOrderReport.Close()
             FormSalesOrderReport.Dispose()
+        ElseIf formName = "FormProposeEmpSalary" Then
+            FormProposeEmpSalary.Close()
+            FormProposeEmpSalary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9080,6 +9094,8 @@ Public Class FormMain
             ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
                 FormSalesOrderReport.viewAllOrder()
             End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            FormProposeEmpSalary.load_pps()
         End If
     End Sub
     'Switch
@@ -13057,6 +13073,20 @@ Public Class FormMain
             FormFGLinePlan.Show()
             FormFGLinePlan.WindowState = FormWindowState.Maximized
             FormFGLinePlan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmpSalary_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmpSalary.LinkClicked
+        'propose employee salary
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposeEmpSalary.MdiParent = Me
+            FormProposeEmpSalary.Show()
+            FormProposeEmpSalary.WindowState = FormWindowState.Maximized
+            FormProposeEmpSalary.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
