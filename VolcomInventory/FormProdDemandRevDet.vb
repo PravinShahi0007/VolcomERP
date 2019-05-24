@@ -70,15 +70,17 @@
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            MENote.Enabled = False
+            MENote.Enabled = True
             PanelControlNav.Visible = True
             BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
             PanelControlNav.Visible = False
             BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
         End If
 
         'reset propose
@@ -98,6 +100,7 @@
             MENote.Enabled = False
             BtnPrint.Visible = False
             PanelControlNav.Visible = False
+            BtnSaveChanges.Visible = False
         End If
     End Sub
 
@@ -199,8 +202,9 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm PD revision ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
+
                 'update confirm
-                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1 WHERE id_prod_demand_rev='" + id + "'"
+                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1, note='" + addSlashes(MENote.Text) + "' WHERE id_prod_demand_rev='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
 
                 'submit approval 
@@ -645,6 +649,22 @@
             End If
         Else
             stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            'head
+            Dim query As String = "UPDATE tb_prod_demand_rev SET note='" + addSlashes(MENote.Text) + "' WHERE id_prod_demand_rev='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+
+            FormProdDemandRev.viewData()
+            FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)
+            actionLoad()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

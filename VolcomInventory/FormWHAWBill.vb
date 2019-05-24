@@ -565,4 +565,9 @@
     Private Sub BReportInvoice_Click(sender As Object, e As EventArgs) Handles BReportInvoice.Click
         FormAWBInvoiceReport.ShowDialog()
     End Sub
+
+    Private Sub BImportAwb_Click(sender As Object, e As EventArgs) Handles BImportAwb.Click
+        FormImportExcel.id_pop_up = "44"
+        FormImportExcel.ShowDialog()
+    End Sub
 End Class

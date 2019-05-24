@@ -973,6 +973,12 @@
     <Compile Include="FormEmployeePpsList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmployeePpsProgress.Designer.vb">
+      <DependentUpon>FormEmployeePpsProgress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeePpsProgress.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmployeePpsWebcam.Designer.vb">
       <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
     </Compile>
@@ -2365,6 +2371,12 @@
     <Compile Include="FormProductionKO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionKP.Designer.vb">
+      <DependentUpon>FormProductionKP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionKP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionPrint.Designer.vb">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </Compile>
@@ -2399,6 +2411,24 @@
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionWOList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposeEmpSalary.Designer.vb">
+      <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposeEmpSalary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposeEmpSalaryDet.Designer.vb">
+      <DependentUpon>FormProposeEmpSalaryDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposeEmpSalaryDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposeEmpSalaryPick.Designer.vb">
+      <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposeEmpSalaryPick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcAsset.Designer.vb">
@@ -4027,6 +4057,24 @@
     <Compile Include="FormSalesOrderRef.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderReport.Designer.vb">
+      <DependentUpon>FormSalesOrderReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDet.Designer.vb">
+      <DependentUpon>FormSalesOrderReportDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDetNew.Designer.vb">
+      <DependentUpon>FormSalesOrderReportDetNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderReportDetNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderSingleV2.Designer.vb">
       <DependentUpon>FormSalesOrderSingleV2.vb</DependentUpon>
     </Compile>
@@ -4975,6 +5023,12 @@
     <Compile Include="FormSOHSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockUniS78New.Designer.vb">
+      <DependentUpon>FormStockUniS78New.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockUniS78New.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSUMockMark.Designer.vb">
       <DependentUpon>FormSUMockMark.vb</DependentUpon>
     </Compile>
@@ -5039,6 +5093,30 @@
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormUniqueDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUniqueFGTrf.Designer.vb">
+      <DependentUpon>FormUniqueFGTrf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueFGTrf.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUniqueRevProduct.Designer.vb">
+      <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueRevProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturn.Designer.vb">
+      <DependentUpon>FormUniqueSalesReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturnQC.Designer.vb">
+      <DependentUpon>FormUniqueSalesReturnQC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUniqueSalesReturnQC.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormUpload.Designer.vb">
@@ -6364,6 +6442,12 @@
     <Compile Include="ReportProductionKO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionKP.Designer.vb">
+      <DependentUpon>ReportProductionKP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionKP.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionMRS.Designer.vb">
       <DependentUpon>ReportProductionMRS.vb</DependentUpon>
     </Compile>
@@ -6404,6 +6488,12 @@
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportProductionWO.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProposeEmpSalary.Designer.vb">
+      <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProposeEmpSalary.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportPurcOrder.Designer.vb">
@@ -7133,6 +7223,9 @@
     <EmbeddedResource Include="FormEmployeePpsList.resx">
       <DependentUpon>FormEmployeePpsList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeePpsProgress.resx">
+      <DependentUpon>FormEmployeePpsProgress.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmployeePpsWebcam.resx">
       <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
     </EmbeddedResource>
@@ -7850,6 +7943,9 @@
     <EmbeddedResource Include="FormProductionKO.resx">
       <DependentUpon>FormProductionKO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionKP.resx">
+      <DependentUpon>FormProductionKP.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionPrint.resx">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </EmbeddedResource>
@@ -7867,6 +7963,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposeEmpSalary.resx">
+      <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposeEmpSalaryDet.resx">
+      <DependentUpon>FormProposeEmpSalaryDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposeEmpSalaryPick.resx">
+      <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAsset.resx">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
@@ -8914,6 +9019,15 @@
     <EmbeddedResource Include="FormSalesOrderRef.resx">
       <DependentUpon>FormSalesOrderRef.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReport.resx">
+      <DependentUpon>FormSalesOrderReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReportDet.resx">
+      <DependentUpon>FormSalesOrderReportDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderReportDetNew.resx">
+      <DependentUpon>FormSalesOrderReportDetNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSingleV2.resx">
       <DependentUpon>FormSalesOrderSingleV2.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9500,6 +9614,9 @@
       <DependentUpon>FormSOHSum.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockUniS78New.resx">
+      <DependentUpon>FormStockUniS78New.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSUMockMark.resx">
       <DependentUpon>FormSUMockMark.vb</DependentUpon>
     </EmbeddedResource>
@@ -9533,6 +9650,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueFGTrf.resx">
+      <DependentUpon>FormUniqueFGTrf.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueRevProduct.resx">
+      <DependentUpon>FormUniqueRevProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueSalesReturn.resx">
+      <DependentUpon>FormUniqueSalesReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUniqueSalesReturnQC.resx">
+      <DependentUpon>FormUniqueSalesReturnQC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpload.resx">
       <DependentUpon>FormUpload.vb</DependentUpon>
@@ -10316,6 +10445,9 @@
     <EmbeddedResource Include="ReportProductionKO.resx">
       <DependentUpon>ReportProductionKO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionKP.resx">
+      <DependentUpon>ReportProductionKP.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionMRS.resx">
       <DependentUpon>ReportProductionMRS.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -10343,6 +10475,9 @@
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProposeEmpSalary.resx">
+      <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcOrder.resx">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>

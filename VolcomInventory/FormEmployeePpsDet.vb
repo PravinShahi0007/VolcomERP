@@ -2,7 +2,7 @@
     Public id_pps As String = "-1"
     Public is_new As String = "-1"
     Public id_employee As String = "-1"
-    Public pps_path As String = "\\192.168.1.2\dataapp$\emp_pps\"
+    Public pps_path As String = get_setup_field("pic_path_emp_pps") & "\"
     Public show_payroll As Boolean = False
     Public id_report_status As String = "-1"
 
@@ -178,8 +178,8 @@
         initLoad()
 
         If show_payroll Then
-            GCPayrollPropose.Visible = True
-            GCPayrollProposeB.Visible = True
+            'GCPayrollPropose.Visible = True
+            'GCPayrollProposeB.Visible = True
             SBPosAtt.Visible = True
             SBPosAttB.Visible = True
             LEEmployeeStatus.Size = New Size(512, 20)
@@ -793,8 +793,13 @@
         EP_ME_cant_blank(ErrorProvider1, MEAddress)
         EP_DE_cant_blank(ErrorProvider1, DEEmployeeStatusStart)
         EP_DE_cant_blank(ErrorProvider1, DEEffectiveDate)
-        If show_payroll Then
-            EP_DE_cant_blank(ErrorProvider1, DESalary)
+        'If show_payroll Then
+        '    EP_DE_cant_blank(ErrorProvider1, DESalary)
+        'End If
+        If LEActive.EditValue.ToString > 1 Then
+            EP_DE_cant_blank(ErrorProvider1, DELastDay)
+        Else
+            ErrorProvider1.SetError(DELastDay, String.Empty)
         End If
 
         ' Check employee code
@@ -1567,7 +1572,7 @@
         End If
     End Sub
 
-    Sub updateChanges()
+    Sub updateChanges(progress As FormEmployeePpsProgress)
         Dim query As String = ""
 
         Dim status_changed As Boolean = False
@@ -1578,10 +1583,12 @@
         If is_new = "-1" Then
             Dim changes As DataTable = checkChanges()
 
+            progress.ProgressBarControl.EditValue = 20
+
             If changes.Rows.Count > 0 Then
                 For i = 0 To changes.Rows.Count - 1
                     ' skip employee_position_date & salary_date
-                    Dim skip() As String = {"employee_position_date", "salary_date"}
+                    Dim skip() As String = {"employee_position_date", "basic_salary", "allow_job", "allow_meal", "allow_trans", "allow_house", "allow_car", "salary_date"}
 
                     If Not skip.Contains(changes.Rows(i)("name")) Then
                         query += changes.Rows(i)("name") + " = (SELECT " + changes.Rows(i)("name") + " FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'), "
@@ -1595,10 +1602,12 @@
                         position_changed = True
                     End If
 
-                    If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
-                        salary_changed = True
-                    End If
+                    'If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
+                    '    salary_changed = True
+                    'End If
                 Next
+
+                progress.ProgressBarControl.EditValue = 30
 
                 If Not query = "" Then
                     ' trim last ,
@@ -1627,6 +1636,8 @@
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
+                progress.ProgressBarControl.EditValue = 35
+
                 If position_changed Then
                     query = "
                         INSERT INTO tb_m_employee_position(id_employee, id_departement_origin, id_departement_sub_origin, id_employee_level_origin, employee_position_origin, id_departement, id_departement_sub, id_employee_level, employee_position, employee_position_date)
@@ -1638,16 +1649,18 @@
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
-                If salary_changed Then
-                    query = "
-                        INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
-                        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
-                        FROM tb_employee_pps 
-                        WHERE id_employee_pps = '" + id_pps + "'
-                    "
+                'If salary_changed Then
+                '    query = "
+                '        INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
+                '        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
+                '        FROM tb_employee_pps 
+                '        WHERE id_employee_pps = '" + id_pps + "'
+                '    "
 
-                    execute_non_query(query, True, "", "", "", "")
-                End If
+                '    execute_non_query(query, True, "", "", "", "")
+                'End If
+
+                progress.ProgressBarControl.EditValue = 40
             End If
         Else
             query = "
@@ -1660,6 +1673,8 @@
 
             id_employee = execute_query(query, 0, True, "", "", "", "")
 
+            progress.ProgressBarControl.EditValue = 25
+
             ' status
             query = "
                 INSERT INTO tb_m_employee_status_det(id_employee, id_employee_status, start_period, end_period) 
@@ -1669,6 +1684,8 @@
             "
 
             execute_non_query(query, True, "", "", "", "")
+
+            progress.ProgressBarControl.EditValue = 30
 
             ' position
             query = "
@@ -1680,20 +1697,24 @@
 
             execute_non_query(query, True, "", "", "", "")
 
+            progress.ProgressBarControl.EditValue = 35
+
             ' salary
-            query = "SELECT salary_date FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
-            Dim check_salary_date As String = execute_query(query, 0, True, "", "", "", "")
+            'query = "SELECT salary_date FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
+            'Dim check_salary_date As String = execute_query(query, 0, True, "", "", "", "")
 
-            If Not check_salary_date = "" Then
-                query = "
-                    INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
-                    SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
-                    FROM tb_employee_pps 
-                    WHERE id_employee_pps = '" + id_pps + "'
-                "
+            'If Not check_salary_date = "" Then
+            '    query = "
+            '        INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
+            '        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
+            '        FROM tb_employee_pps 
+            '        WHERE id_employee_pps = '" + id_pps + "'
+            '    "
 
-                execute_non_query(query, True, "", "", "", "")
-            End If
+            '    execute_non_query(query, True, "", "", "", "")
+            'End If
+
+            progress.ProgressBarControl.EditValue = 40
         End If
 
         ' update id_employee_status_det
@@ -1711,10 +1732,14 @@
             execute_non_query(query, True, "", "", "", "")
         End If
 
+        progress.ProgressBarControl.EditValue = 50
+
         ' image
         If System.IO.File.Exists(pps_path + id_pps + "_ava.jpg") Then
             System.IO.File.Copy(pps_path + id_pps + "_ava.jpg", emp_image_path + id_employee + ".jpg", True)
         End If
+
+        progress.ProgressBarControl.EditValue = 60
 
         ' att
         If System.IO.File.Exists(pps_path + id_pps + "_ktp.jpg") Then
@@ -1728,6 +1753,8 @@
         If System.IO.File.Exists(pps_path + id_pps + "_rek.jpg") Then
             System.IO.File.Copy(pps_path + id_pps + "_rek.jpg", emp_image_path + id_employee + "_rek.jpg", True)
         End If
+
+        progress.ProgressBarControl.EditValue = 70
 
         For i = 1 To 100
             If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
@@ -1744,6 +1771,8 @@
                 Exit For
             End If
         Next
+
+        progress.ProgressBarControl.EditValue = 90
 
         'Dim data_employee As DataTable = execute_query("SELECT employee_code, employee_name, id_employee_active FROM tb_m_employee WHERE id_employee = " + id_employee + "", -1, True, "", "", "", "")
 
@@ -1779,8 +1808,16 @@
     End Sub
 
     Private Sub DESalary_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DESalary.Validating
-        If show_payroll Then
-            EP_DE_cant_blank(ErrorProvider1, DESalary)
+        'If show_payroll Then
+        '    EP_DE_cant_blank(ErrorProvider1, DESalary)
+        'End If
+    End Sub
+
+    Private Sub DELastDay_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DELastDay.Validating
+        If LEActive.EditValue.ToString > 1 Then
+            EP_DE_cant_blank(ErrorProvider1, DELastDay)
+        Else
+            ErrorProvider1.SetError(DELastDay, String.Empty)
         End If
     End Sub
 

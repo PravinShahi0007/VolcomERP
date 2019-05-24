@@ -283,7 +283,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Then
             RGAreaManage.Visible = False
         End If
 
@@ -365,6 +365,10 @@ Public Class FormMain
         If formName = "FormBarcodeProduct" Then
             RGAreaManage.Visible = False
         End If
+
+        If formName = "FormProposeEmpSalary" Then
+            BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
     End Sub
     'Hide Ribbon
     Sub hide_rb()
@@ -413,7 +417,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Then
             RGAreaManage.Visible = True
         End If
 
@@ -1707,6 +1711,11 @@ Public Class FormMain
             ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
             End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            'propose employee salary
+            FormProposeEmpSalaryDet.id_employee_sal_pps = "-1"
+            FormProposeEmpSalaryDet.is_duplicate = "-1"
+            FormProposeEmpSalaryDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2761,6 +2770,13 @@ Public Class FormMain
                     FormSalesTargetProposeDet.ShowDialog()
                 ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
+                End If
+            ElseIf formName = "FormProposeEmpSalary" Then
+                'propose employee salary
+                If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                    FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                    FormProposeEmpSalaryDet.is_duplicate = "-1"
+                    FormProposeEmpSalaryDet.ShowDialog()
                 End If
             Else
                 RPSubMenu.Visible = False
@@ -7508,8 +7524,17 @@ Public Class FormMain
             ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 1 Then
                 print_raw(FormProductionHO.GCDetail, "")
             End If
+        ElseIf formName = "FormSalesOrderReport" Then
+            If FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 0 Then
+                print_raw(FormSalesOrderReport.GCNew, "")
+            ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
+                print_raw(FormSalesOrderReport.GCAll, "")
+            End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            'employee propose
+            print(FormProposeEmpSalary.GCList, "List Propose Employee Salary")
         Else
-                RPSubMenu.Visible = False
+            RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -8255,6 +8280,12 @@ Public Class FormMain
         ElseIf formName = "FormProductionHO" Then
             FormProductionHO.Close()
             FormProductionHO.Dispose()
+        ElseIf formName = "FormSalesOrderReport" Then
+            FormSalesOrderReport.Close()
+            FormSalesOrderReport.Dispose()
+        ElseIf formName = "FormProposeEmpSalary" Then
+            FormProposeEmpSalary.Close()
+            FormProposeEmpSalary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8332,6 +8363,12 @@ Public Class FormMain
             End Try
             FormMasterDesignSingle.id_design = id_dsg_param
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormProposeEmpSalary" Then
+            If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                FormProposeEmpSalaryDet.is_duplicate = "1"
+                FormProposeEmpSalaryDet.ShowDialog()
+            End If
         End If
     End Sub
     'Contact 
@@ -9065,6 +9102,14 @@ Public Class FormMain
             End If
         ElseIf formName = "FormReportEstWHInQty" Then
             FormReportEstWHInQty.load_data()
+        ElseIf formName = "FormSalesOrderReport" Then
+            If FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 0 Then
+                FormSalesOrderReport.viewNewOrder()
+            ElseIf FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 1 Then
+                FormSalesOrderReport.viewAllOrder()
+            End If
+        ElseIf formName = "FormProposeEmpSalary" Then
+            FormProposeEmpSalary.load_pps()
         End If
     End Sub
     'Switch
@@ -13007,6 +13052,55 @@ Public Class FormMain
             FormProductionHO.Show()
             FormProductionHO.WindowState = FormWindowState.Maximized
             FormProductionHO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSalesOrderReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesOrderReport.LinkClicked
+        ' compare prepare order
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesOrderReport.MdiParent = Me
+            FormSalesOrderReport.Show()
+            FormSalesOrderReport.WindowState = FormWindowState.Maximized
+            FormSalesOrderReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLinePlanProduction_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLinePlanProduction.LinkClicked
+        'line plan production   
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGLinePlan.Close()
+            FormFGLinePlan.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormFGLinePlan.MdiParent = Me
+            FormFGLinePlan.is_view = "1"
+            FormFGLinePlan.id_pop_up = "1"
+            FormFGLinePlan.Show()
+            FormFGLinePlan.WindowState = FormWindowState.Maximized
+            FormFGLinePlan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmpSalary_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmpSalary.LinkClicked
+        'propose employee salary
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposeEmpSalary.MdiParent = Me
+            FormProposeEmpSalary.Show()
+            FormProposeEmpSalary.WindowState = FormWindowState.Maximized
+            FormProposeEmpSalary.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

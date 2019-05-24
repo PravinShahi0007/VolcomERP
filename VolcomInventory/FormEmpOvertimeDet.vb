@@ -4,6 +4,12 @@
     Public id As String = "0"
 
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If is_hrd = "-1" Then
+            Text = "Propose Overtime Detail"
+        Else
+            Text = "Overtime Management Detail"
+        End If
+
         form_load()
     End Sub
 
@@ -290,9 +296,9 @@
                     End If
                 Next
 
-                submit_who_prepared("184", id, id_user)
-
                 execute_non_query("CALL gen_number(" + id + ", '184')", True, "", "", "", "")
+
+                submit_who_prepared("184", id, id_user)
 
                 ' load overtime
                 FormEmpOvertime.DEStart.EditValue = Date.Parse(DEOvertimeDate.EditValue.ToString)
