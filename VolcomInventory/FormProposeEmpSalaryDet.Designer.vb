@@ -63,6 +63,7 @@ Partial Class FormProposeEmpSalaryDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,6 +195,7 @@ Partial Class FormProposeEmpSalaryDet
         Me.PanelControl3.Controls.Add(Me.SBPrint)
         Me.PanelControl3.Controls.Add(Me.SBClose)
         Me.PanelControl3.Controls.Add(Me.SBMark)
+        Me.PanelControl3.Controls.Add(Me.SBSave)
         Me.PanelControl3.Controls.Add(Me.SBSubmit)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 681)
@@ -205,7 +207,7 @@ Partial Class FormProposeEmpSalaryDet
         '
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(721, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(626, 2)
         Me.SBPrint.Name = "SBPrint"
         Me.SBPrint.Size = New System.Drawing.Size(95, 44)
         Me.SBPrint.TabIndex = 3
@@ -215,7 +217,7 @@ Partial Class FormProposeEmpSalaryDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(816, 2)
+        Me.SBClose.Location = New System.Drawing.Point(721, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(95, 44)
         Me.SBClose.TabIndex = 4
@@ -510,6 +512,16 @@ Partial Class FormProposeEmpSalaryDet
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Note"
         '
+        'SBSave
+        '
+        Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
+        Me.SBSave.Location = New System.Drawing.Point(816, 2)
+        Me.SBSave.Name = "SBSave"
+        Me.SBSave.Size = New System.Drawing.Size(95, 44)
+        Me.SBSave.TabIndex = 5
+        Me.SBSave.Text = "Save"
+        '
         'FormProposeEmpSalaryDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -592,4 +604,5 @@ Partial Class FormProposeEmpSalaryDet
     Friend WithEvents GCHouseAllowance As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCAttendanceAllowance As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCTotalSalary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
 End Class

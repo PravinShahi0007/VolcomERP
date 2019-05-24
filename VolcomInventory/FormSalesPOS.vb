@@ -269,7 +269,12 @@
     Private Sub GVSalesPOS_DoubleClick(sender As Object, e As EventArgs) Handles GVSalesPOS.DoubleClick
         If GVSalesPOS.RowCount > 0 And GVSalesPOS.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            FormMain.but_edit()
+            If FormMain.BBEdit.Enabled = False Then
+                FormViewSalesPOS.id_sales_pos = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
+                FormViewSalesPOS.ShowDialog()
+            Else
+                FormMain.but_edit()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub

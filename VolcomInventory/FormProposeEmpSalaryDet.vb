@@ -49,6 +49,7 @@
             LEFT JOIN tb_lookup_employee_level AS lv ON det.id_employee_level = lv.id_employee_level
             LEFT JOIN tb_lookup_employee_status AS sts ON det.id_employee_status = sts.id_employee_status
             WHERE det.id_employee_sal_pps = " + id_employee_sal_pps + "
+            ORDER BY det.id_employee_level ASC
         "
 
         Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
@@ -60,15 +61,21 @@
         'duplicate
         If is_duplicate = "1" Then
             TENumber.EditValue = "[autogenerate]"
+
+            id_employee_sal_pps = "-1"
         End If
     End Sub
 
     Sub permission_load()
-        If id_employee_sal_pps = "-1" Then
+        Dim id_report_status As String = If(id_employee_sal_pps = "-1", "0", execute_query("SELECT id_report_status FROM tb_employee_sal_pps WHERE id_employee_sal_pps = " + id_employee_sal_pps + "", 0, True, "", "", "", ""))
+
+        If id_report_status = "0" Then
             SBMark.Enabled = False
             SBPrint.Enabled = False
         Else
             SBSubmit.Enabled = False
+            SBSave.Enabled = False
+
             SBInsertEmployee.Enabled = False
             SBRemoveEmployee.Enabled = False
 
@@ -78,22 +85,72 @@
 
             RemoveEmployeeToolStripMenuItem.Visible = False
         End If
+    End Sub
 
-        'duplicate
-        If is_duplicate = "1" Then
-            SBMark.Enabled = False
-            SBPrint.Enabled = False
+    Sub save(ByVal type As String)
+        Cursor = Cursors.WaitCursor
 
-            SBSubmit.Enabled = True
-            SBInsertEmployee.Enabled = True
-            SBRemoveEmployee.Enabled = True
+        Dim query As String = ""
 
-            DEEffectiveDate.ReadOnly = False
-            MENote.ReadOnly = False
-            RITESalary.ReadOnly = False
+        'insert tb_employee_sal_pps
+        Dim effective_date As String = DateTime.Parse(DEEffectiveDate.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim id_report_status As String = If(type = "submit", "1", "0")
+        Dim note As String = addSlashes(MENote.Text)
 
-            RemoveEmployeeToolStripMenuItem.Visible = True
+        If id_employee_sal_pps = "-1" Then
+            query = "
+                INSERT INTO tb_employee_sal_pps (effective_date, id_report_status, note, created_by, created_at) 
+                VALUES ('" + effective_date + "', " + id_report_status + ", '" + note + "', " + id_employee_user + ", NOW());
+                SELECT LAST_INSERT_ID();
+            "
+
+            id_employee_sal_pps = execute_query(query, 0, True, "", "", "", "")
+        Else
+            query = "UPDATE tb_employee_sal_pps SET effective_date = '" + effective_date + "', id_report_status = " + id_report_status + ", note = '" + note + "' WHERE id_employee_sal_pps = " + id_employee_sal_pps + ""
+
+            execute_non_query(query, True, "", "", "", "")
         End If
+
+        'insert tb_employee_sal_pps_det
+        If Not id_employee_sal_pps = "-1" Then
+            execute_non_query("DELETE FROM tb_employee_sal_pps_det WHERE id_employee_sal_pps = " + id_employee_sal_pps + "", True, "", "", "", "")
+        End If
+
+        Dim values As String = ""
+
+        For i = 0 To GVEmployee.RowCount - 1
+            If GVEmployee.IsValidRowHandle(i) Then
+                Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
+                Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
+                Dim employee_position As String = addSlashes(GVEmployee.GetRowCellValue(i, "employee_position").ToString)
+                Dim id_employee_level As String = GVEmployee.GetRowCellValue(i, "id_employee_level").ToString
+                Dim id_employee_status As String = GVEmployee.GetRowCellValue(i, "id_employee_status").ToString
+                Dim basic_salary As String = GVEmployee.GetRowCellValue(i, "basic_salary").ToString
+                Dim allow_job As String = GVEmployee.GetRowCellValue(i, "allow_job").ToString
+                Dim allow_meal As String = GVEmployee.GetRowCellValue(i, "allow_meal").ToString
+                Dim allow_trans As String = GVEmployee.GetRowCellValue(i, "allow_trans").ToString
+                Dim allow_house As String = GVEmployee.GetRowCellValue(i, "allow_house").ToString
+                Dim allow_car As String = GVEmployee.GetRowCellValue(i, "allow_car").ToString
+
+                values += "(" + id_employee_sal_pps + ", " + id_employee + ", " + id_departement + ", '" + employee_position + "', " + id_employee_level + ", " + id_employee_status + ", " + basic_salary + ", " + allow_job + ", " + allow_meal + ", " + allow_trans + ", " + allow_house + ", " + allow_car + "), "
+            End If
+        Next
+
+        If Not values = "" Then
+            values = values.Substring(0, values.Length - 2)
+
+            query = "INSERT INTO tb_employee_sal_pps_det (id_employee_sal_pps, id_employee, id_departement, employee_position, id_employee_level, id_employee_status, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car) VALUES " + values + ""
+
+            execute_non_query(query, True, "", "", "", "")
+        End If
+
+        execute_non_query("CALL gen_number(" + id_employee_sal_pps + ", 197)", True, "", "", "", "")
+
+        If type = "submit" Then
+            submit_who_prepared("197", id_employee_sal_pps, id_user)
+        End If
+
+        Cursor = Cursors.Default
     End Sub
 
     Sub update_changes()
@@ -175,58 +232,19 @@
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit propose employee salary?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-
-                Dim query As String = ""
-
-                'insert tb_employee_sal_pps
-                Dim effective_date As String = DateTime.Parse(DEEffectiveDate.EditValue.ToString).ToString("yyyy-MM-dd")
-                Dim note As String = addSlashes(MENote.Text)
-
-                query = "
-                    INSERT INTO tb_employee_sal_pps (effective_date, id_report_status, note, created_by, created_at) 
-                    VALUES ('" + effective_date + "', 1, '" + note + "', " + id_employee_user + ", NOW());
-                    SELECT LAST_INSERT_ID();
-                "
-
-                id_employee_sal_pps = execute_query(query, 0, True, "", "", "", "")
-
-                'insert tb_employee_sal_pps_det
-                Dim values As String = ""
-
-                For i = 0 To GVEmployee.RowCount - 1
-                    If GVEmployee.IsValidRowHandle(i) Then
-                        Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
-                        Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
-                        Dim employee_position As String = addSlashes(GVEmployee.GetRowCellValue(i, "employee_position").ToString)
-                        Dim id_employee_level As String = GVEmployee.GetRowCellValue(i, "id_employee_level").ToString
-                        Dim id_employee_status As String = GVEmployee.GetRowCellValue(i, "id_employee_status").ToString
-                        Dim basic_salary As String = GVEmployee.GetRowCellValue(i, "basic_salary").ToString
-                        Dim allow_job As String = GVEmployee.GetRowCellValue(i, "allow_job").ToString
-                        Dim allow_meal As String = GVEmployee.GetRowCellValue(i, "allow_meal").ToString
-                        Dim allow_trans As String = GVEmployee.GetRowCellValue(i, "allow_trans").ToString
-                        Dim allow_house As String = GVEmployee.GetRowCellValue(i, "allow_house").ToString
-                        Dim allow_car As String = GVEmployee.GetRowCellValue(i, "allow_car").ToString
-
-                        values += "(" + id_employee_sal_pps + ", " + id_employee + ", " + id_departement + ", '" + employee_position + "', " + id_employee_level + ", " + id_employee_status + ", " + basic_salary + ", " + allow_job + ", " + allow_meal + ", " + allow_trans + ", " + allow_house + ", " + allow_car + "), "
-                    End If
-                Next
-
-                values = values.Substring(0, values.Length - 2)
-
-                query = "INSERT INTO tb_employee_sal_pps_det (id_employee_sal_pps, id_employee, id_departement, employee_position, id_employee_level, id_employee_status, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car) VALUES " + values + ""
-
-                execute_non_query(query, True, "", "", "", "")
-
-                execute_non_query("CALL gen_number(" + id_employee_sal_pps + ", 197)", True, "", "", "", "")
-
-                submit_who_prepared("197", id_employee_sal_pps, id_user)
-
-                Cursor = Cursors.Default
+                save("submit")
 
                 Close()
             End If
         End If
+    End Sub
+
+    Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
+        GVEmployee.ApplyFindFilter("")
+
+        save("save")
+
+        Close()
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
