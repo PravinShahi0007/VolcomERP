@@ -1905,6 +1905,18 @@
             field_id = "id_employee_sal_pps"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "184" Then
+            'Overtime employee
+            table_name = "tb_ot"
+            field_id = "id_ot"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "187" Then
+            'Overtime employee report
+            table_name = "tb_ot"
+            field_id = "id_ot"
+            field_number = "number"
+            field_date = "NOW()"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
