@@ -72,7 +72,7 @@
         Dim query As String = "SELECT nsd.id_sales_pos_no_stock_det, nsd.id_sales_pos_no_stock, 
         ns.`number`, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, ns.created_date, ns.created_by, nsemp.employee_name AS `created_by_name`, ns.period_from, ns.period_until,
         nsd.id_product, prod.product_full_code AS `code`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`,
-        nsd.qty, nsd.id_design_price, nsd.design_price, nsd.note, nsd.is_verified, nsd.verified_by, vemp.employee_name AS `verified_by_name`, nsd.verified_date, nsd.verified_note, 'No' AS `is_select`
+        nsd.qty, nsd.id_design_price, nsd.design_price, nsd.note, nsd.is_verified, nsd.verified_by, vemp.employee_name AS `verified_by_name`, nsd.verified_date, IF(nsd.is_verified = 2, 0, IFNULL(nsd.verified_qty, 0)) AS verified_qty, nsd.verified_note, 'No' AS `is_select`
         FROM tb_sales_pos_no_stock_det nsd
         INNER JOIN tb_sales_pos_no_stock ns ON ns.id_sales_pos_no_stock = nsd.id_sales_pos_no_stock
         INNER JOIN tb_m_product prod ON prod.id_product = nsd.id_product

@@ -246,9 +246,9 @@ Partial Class FormMasterDesignCOPPD
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Location = New System.Drawing.Point(12, 129)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(120, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(99, 13)
         Me.LabelControl4.TabIndex = 8903
-        Me.LabelControl4.Text = "ECOP (include additional)"
+        Me.LabelControl4.Text = "ECOP (no additional)"
         '
         'TEEcop
         '
