@@ -331,19 +331,69 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        Dim query As String = "
-            SELECt ot.id_report_status
+        'load data
+        Dim query_ot As String = "
+            SELECT DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, ot.id_report_status, ot.id_check_status, ot.hrd_check
             FROM tb_ot AS ot
             WHERE ot.id_ot = " + id + "
         "
 
-        Dim report_status As String = execute_query(query, 0, True, "", "", "", "")
+        Dim data_ot As DataTable = execute_query(query_ot, -1, True, "", "", "", "")
+
+        ' load employee
+        ' column
+        Dim whereCheckColumn As String = "TIME_FORMAT(IF(sch.id_schedule_type = 1, ot.ot_start_time, att_in.datetime), '%h:%i:%s %p') AS start_work, TIME_FORMAT(att_out.datetime, '%h:%i:%s %p') AS end_work, ot.ot_break AS break_hours, (TIMESTAMPDIFF(HOUR, IF(sch.id_schedule_type = 1, ot.ot_start_time, att_in.datetime), att_out.datetime) - ot.ot_break) AS total_hours"
+
+        If data_ot.Rows(0)("hrd_check").ToString = "1" Then
+            whereCheckColumn = "TIME_FORMAT(ot_det.start_work, '%h:%i:%s %p') AS start_work, TIME_FORMAT(ot_det.end_work, '%h:%i:%s %p') AS end_work, ot_det.break_hours, (TIMESTAMPDIFF(HOUR, ot_det.start_work, ot_det.end_work) - ot_det.break_hours) AS total_hours"
+        End If
+
+        ' table join
+        Dim whereCheckJoin As String = "
+            LEFT JOIN (
+                SELECT id_employee, TIME(MIN(`datetime`)) AS `datetime` 
+                FROM tb_emp_attn
+                WHERE type_log = 1 AND DATE(`datetime`) = '" + Date.Parse(data_ot.Rows(0)("ot_date").ToString).ToString("yyyy-MM-dd") + "' 
+                GROUP BY id_employee
+            ) att_in ON ot_det.id_employee = att_in.id_employee
+            LEFT JOIN (
+                SELECT id_employee, TIME(MAX(`datetime`)) AS `datetime` 
+                FROM tb_emp_attn
+                WHERE type_log = 2 AND DATE(`datetime`) = '" + Date.Parse(data_ot.Rows(0)("ot_date").ToString).ToString("yyyy-MM-dd") + "'
+                GROUP BY id_employee
+            ) att_out ON ot_det.id_employee = att_out.id_employee
+            LEFT JOIN (
+                SELECT id_employee, id_schedule_type FROM tb_emp_schedule WHERE date = '" + Date.Parse(data_ot.Rows(0)("ot_date").ToString).ToString("yyyy-MM-dd") + "'
+            ) sch ON ot_det.id_employee = sch.id_employee
+        "
+
+        If data_ot.Rows(0)("hrd_check").ToString = "1" Then
+            whereCheckJoin = ""
+        End If
+
+        Dim query_ot_det As String = "
+            SELECT departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, employee_level.employee_level, IF(ot_det.conversion_type = 1, 'Salary', 'DP') AS conversion_type, " + whereCheckColumn + ", IF(is_valid = 1, 'Yes', 'No') AS valid
+            FROM tb_ot_det AS ot_det
+            LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
+            LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
+            LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
+            LEFT JOIN tb_lookup_employee_level AS employee_level ON ot_det.id_employee_level = employee_level.id_employee_level
+            " + whereCheckJoin + "
+            WHERE ot_det.id_ot = " + id + "
+        "
+
+        Dim data_ot_det As DataTable = execute_query(query_ot_det, -1, True, "", "", "", "")
 
         Dim Report As New ReportEmpOvertime()
 
         Report.id = id
-        Report.data = GCEmployee.DataSource
-        Report.id_pre = If(report_status = "6", "-1", "1")
+        Report.data = data_ot_det
+        Report.is_check = is_check
+        If is_check = "-1" Then
+            Report.id_pre = If(data_ot.Rows(0)("id_report_status").ToString = "6", "-1", "1")
+        Else
+            Report.id_pre = If(data_ot.Rows(0)("id_check_status").ToString = "6", "-1", "1")
+        End If
 
         Report.XLNumber.Text = TENumber.Text.ToString
         Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
