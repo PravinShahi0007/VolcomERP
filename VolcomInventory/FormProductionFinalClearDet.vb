@@ -115,6 +115,14 @@ Public Class FormProductionFinalClearDet
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
 
+
+        'preprint
+        If id_report_status <> "5" Then
+            BtnPrePrinting.Enabled = True
+        Else
+            BtnPrePrinting.Enabled = False
+        End If
+
         'ATTACH
         If check_attach_report_status(id_report_status, "105", id_prod_fc) Then
             BtnAttachment.Enabled = True
@@ -407,7 +415,7 @@ Public Class FormProductionFinalClearDet
         End Try
     End Sub
 
-    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+    Sub print()
         Cursor = Cursors.WaitCursor
         ReportProductionFinalClear.id_prod_fc = id_prod_fc
         ReportProductionFinalClear.dt = GCItemList.DataSource
@@ -441,6 +449,10 @@ Public Class FormProductionFinalClearDet
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print()
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
@@ -548,5 +560,15 @@ Public Class FormProductionFinalClearDet
         ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
             e.Value = TxtNumber.Text.ToString
         End If
+    End Sub
+
+    Private Sub BtnPrePrinting_Click(sender As Object, e As EventArgs) Handles BtnPrePrinting.Click
+        'If id_report_status = "1" Then
+        FormProdDemandPrintOpt.id = id_prod_fc
+        FormProdDemandPrintOpt.rmt = "105"
+        FormProdDemandPrintOpt.ShowDialog()
+        ' End If
+        ReportProductionFinalClear.is_pre_print = "1"
+        print()
     End Sub
 End Class
