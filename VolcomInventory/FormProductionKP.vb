@@ -64,10 +64,10 @@ WHERE id_prod_order_kp='" & id_kp & "'"
             PCDel.Visible = True
         End If
         'prevent edit lead time
-        If SLERevision.Text = "00" Or is_locked = "1" Then
-            GridColumnLeadTime.OptionsColumn.ReadOnly = True
+        If is_locked = "1" Then
+            GridColumnProto2Sample.OptionsColumn.ReadOnly = True
         Else
-            GridColumnLeadTime.OptionsColumn.ReadOnly = False
+            GridColumnProto2Sample.OptionsColumn.ReadOnly = False
         End If
     End Sub
 
@@ -137,5 +137,111 @@ ORDER BY po.`id_prod_order` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
         GCProd.DataSource = data
         GVProd.BestFitColumns()
+    End Sub
+
+    Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
+        'update lead time
+        Dim query As String = ""
+        For i As Integer = 0 To GVProd.RowCount - 1
+            Dim date_proto_2 As String = Date.Parse(GVProd.GetRowCellValue(i, "sample_proto_2").ToString).ToString("yyyy-MM-dd")
+            query = "UPDATE tb_prod_order_kp_det SET sample_proto_2='" & date_proto_2 & "' WHERE id_prod_order_kp_det='" & GVProd.GetRowCellValue(i, "id_prod_order_kp_det").ToString & "'"
+            execute_non_query(query, True, "", "", "", "")
+        Next
+        infoCustom("KP updated")
+        load_head()
+    End Sub
+
+    Private Sub Bdel_Click(sender As Object, e As EventArgs) Handles Bdel.Click
+        If is_locked = "2" Then
+            Dim query As String = "DELETE FROM tb_prod_order_kp_det WHERE id_prod_order_kp_det='" & GVProd.GetFocusedRowCellValue("id_prod_order_kp_det").ToString & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("KP updated")
+            load_head()
+        Else
+            warningCustom("KP locked")
+        End If
+    End Sub
+
+    Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
+        Dim query As String = "UPDATE tb_prod_order_kp SET is_locked='1' WHERE id_prod_order_kp='" & id_kp & "'"
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom("KP locked")
+        load_head()
+    End Sub
+
+    Private Sub BPrintkp_Click(sender As Object, e As EventArgs) Handles BPrintKP.Click
+        Dim query As String = "SELECT c.phone,c.fax,kp.number,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,DATE_FORMAT(kp.`date_created`,'%d %M %Y') AS date_created,LPAD(kp.`revision`,2,'0') AS revision
+,emp_created.employee_name AS emp_name_created,emp_created.`employee_position` AS created_pos
+,emp_purc_mngr.employee_name AS emp_name_purc_mngr,emp_purc_mngr.`employee_position` AS purc_mngr_pos
+,emp_ast_mngr.employee_name AS emp_name_asst_prod_mngr,emp_ast_mngr.`employee_position` AS asst_prod_mngr_pos
+FROM tb_prod_order_kp kp
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=kp.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=kp.`created_by`
+INNER JOIN tb_m_employee emp_created ON emp_created.`id_employee`=usr_created.`id_employee`
+INNER JOIN tb_m_employee emp_purc_mngr ON emp_purc_mngr.`id_employee`=kp.`id_emp_purc_mngr`
+INNER JOIN tb_m_employee emp_ast_mngr ON emp_ast_mngr.`id_employee`=kp.`id_emp_asst_prod_mngr`
+WHERE id_prod_order_kp='" & SLERevision.EditValue.ToString & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        ReportProductionKP.dt_head = data
+        '
+        ReportProductionKP.dt_det = GCProd.DataSource
+
+        Dim Report As New ReportProductionKP()
+        '
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        If Not is_locked = "1" Then
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.Print, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintDirect, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+        End If
+        Tool.ShowPreview()
+    End Sub
+
+    Private Sub BRevise_Click(sender As Object, e As EventArgs) Handles BRevise.Click
+        Dim check As String = "SELECT * FROM tb_prod_order_kp WHERE number='" & addSlashes(TEKPNumber.Text) & "' ORDER BY id_prod_order_kp DESC"
+        Dim data_check As DataTable = execute_query(check, -1, True, "", "", "", "")
+        If id_kp = data_check.Rows(0)("id_prod_order_kp").ToString Then
+            Dim query As String = "INSERT INTO tb_prod_order_kp(`id_prod_order_kp_reff`,`number`,`revision`,`id_comp_contact`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_asst_prod_mngr`,`is_purc_mat`)
+SELECT `id_prod_order_kp_reff`,`number`,(SELECT COUNT(id_prod_order_kp) FROM tb_prod_order_kp WHERE id_prod_order_kp_reff=(SELECT id_prod_order_kp_reff FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "')),`id_comp_contact`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_asst_prod_mngr`,`is_purc_mat` FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "'; SELECT LAST_INSERT_ID(); "
+            Dim new_id_kp As String = execute_query(query, 0, True, "", "", "", "")
+            'det
+            'loop
+            Dim q_det As String = "SELECT kpd.`revision`,kpd.`id_prod_order`,kpd.`id_purc_order`,IF(ISNULL(kpd.id_prod_order),IFNULL(kopurc.lead_time_prod,kpd.lead_time_prod),IFNULL(koprod.lead_time_prod,kpd.lead_time_prod)) AS lead_time_prod,kpd.`sample_proto_2`
+FROM tb_prod_order_kp_det kpd
+LEFT JOIN (
+	SELECT lead_time_prod,id_prod_order FROM (
+	    SELECT * FROM tb_prod_order_ko_det
+	    ORDER BY id_prod_order_ko_det DESC
+	)ko GROUP BY ko.id_prod_order
+)koprod ON koprod.id_prod_order=kpd.id_prod_order
+LEFT JOIN (
+	SELECT lead_time_prod,id_purc_order FROM (
+	    SELECT * FROM tb_prod_order_ko_det
+	    ORDER BY id_prod_order_ko_det DESC
+	)ko GROUP BY ko.id_purc_order
+)kopurc ON kopurc.id_purc_order=kpd.id_purc_order
+WHERE id_prod_order_kp='" & id_kp & "'"
+            Dim data_det As DataTable = execute_query(q_det, -1, True, "", "", "", "")
+            query = ""
+            For i As Integer = 0 To data_det.Rows.Count - 1
+                If Not i = 0 Then
+                    query += ","
+                End If
+                query += "('" & new_id_kp & "','" & data_det.Rows(0)("revision").ToString & "','" & data_det.Rows(0)("id_prod_order").ToString & "','" & data_det.Rows(0)("id_purc_order").ToString & "','" & data_det.Rows(0)("lead_time_prod").ToString & "','" & data_det.Rows(0)("sample_proto_2").ToString & "')"
+            Next
+
+            If Not query = "" Then
+                query = "INSERT INTO tb_prod_order_kp_det(`id_prod_order_kp`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`sample_proto_2`)
+VALUES" + query
+                execute_non_query(query, True, "", "", "", "")
+            End If
+            '
+            infoCustom("kp revised")
+            id_kp = new_id_kp
+            action_load()
+        Else
+            warningCustom("This is not the latest revision")
+        End If
     End Sub
 End Class
