@@ -188,11 +188,20 @@ WHERE dep.id_departement=4", 0, True, "", "", "", "")
                 End If
                 'get latest leadtime from KO
                 Dim lead_time As String = ""
-                Dim sample_proto_2 As String = ""
                 '
-
+                Dim q_lead_time As String = "SELECT lead_time_prod FROM (
+                                                SELECT * FROM tb_prod_order_ko_det
+                                                WHERE id_prod_order='" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "'
+                                                ORDER BY id_prod_order_ko_det DESC
+                                            )ko GROUP BY ko.id_prod_order"
+                Dim data_lead_time As DataTable = execute_query(q_lead_time, -1, True, "", "", "", "")
+                If data_lead_time.Rows.Count > 0 Then
+                    lead_time = data_lead_time.Rows(0)("lead_time_prod").ToString
+                Else
+                    lead_time = GVProd.GetRowCellValue(i, "lead_time").ToString
+                End If
                 '
-                query_kpd += "('" & id_kp & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time_pay").ToString & "')"
+                query_kpd += "('" & id_kp & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & lead_time & "',NULL)"
             Next
             execute_non_query(query_kpd, True, "", "", "", "")
             'generate KP number

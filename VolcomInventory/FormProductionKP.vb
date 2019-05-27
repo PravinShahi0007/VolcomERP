@@ -206,9 +206,36 @@ WHERE id_prod_order_kp='" & SLERevision.EditValue.ToString & "'"
 SELECT `id_prod_order_kp_reff`,`number`,(SELECT COUNT(id_prod_order_kp) FROM tb_prod_order_kp WHERE id_prod_order_kp_reff=(SELECT id_prod_order_kp_reff FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "')),`id_comp_contact`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_asst_prod_mngr`,`is_purc_mat` FROM tb_prod_order_kp WHERE id_prod_order_kp='" & id_kp & "'; SELECT LAST_INSERT_ID(); "
             Dim new_id_kp As String = execute_query(query, 0, True, "", "", "", "")
             'det
-            query = "INSERT INTO tb_prod_order_kp_det(`id_prod_order_kp`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`sample_proto_2`)
-SELECT '" & new_id_kp & "' AS id_kp,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`sample_proto_2` FROM tb_prod_order_kp_det WHERE id_prod_order_kp='" & id_kp & "'"
-            execute_non_query(query, True, "", "", "", "")
+            'loop
+            Dim q_det As String = "SELECT kpd.`revision`,kpd.`id_prod_order`,kpd.`id_purc_order`,IF(ISNULL(kpd.id_prod_order),IFNULL(kopurc.lead_time_prod,kpd.lead_time_prod),IFNULL(koprod.lead_time_prod,kpd.lead_time_prod)) AS lead_time_prod,kpd.`sample_proto_2`
+FROM tb_prod_order_kp_det kpd
+LEFT JOIN (
+	SELECT lead_time_prod,id_prod_order FROM (
+	    SELECT * FROM tb_prod_order_ko_det
+	    ORDER BY id_prod_order_ko_det DESC
+	)ko GROUP BY ko.id_prod_order
+)koprod ON koprod.id_prod_order=kpd.id_prod_order
+LEFT JOIN (
+	SELECT lead_time_prod,id_purc_order FROM (
+	    SELECT * FROM tb_prod_order_ko_det
+	    ORDER BY id_prod_order_ko_det DESC
+	)ko GROUP BY ko.id_purc_order
+)kopurc ON kopurc.id_purc_order=kpd.id_purc_order
+WHERE id_prod_order_kp='" & id_kp & "'"
+            Dim data_det As DataTable = execute_query(q_det, -1, True, "", "", "", "")
+            query = ""
+            For i As Integer = 0 To data_det.Rows.Count - 1
+                If Not i = 0 Then
+                    query += ","
+                End If
+                query += "('" & new_id_kp & "','" & data_det.Rows(0)("revision").ToString & "','" & data_det.Rows(0)("id_prod_order").ToString & "','" & data_det.Rows(0)("id_purc_order").ToString & "','" & data_det.Rows(0)("lead_time_prod").ToString & "','" & data_det.Rows(0)("sample_proto_2").ToString & "')"
+            Next
+
+            If Not query = "" Then
+                query = "INSERT INTO tb_prod_order_kp_det(`id_prod_order_kp`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`sample_proto_2`)
+VALUES" + query
+                execute_non_query(query, True, "", "", "", "")
+            End If
             '
             infoCustom("kp revised")
             id_kp = new_id_kp
