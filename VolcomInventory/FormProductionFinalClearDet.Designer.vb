@@ -81,6 +81,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnPrePrinting = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -515,6 +516,7 @@ Partial Class FormProductionFinalClearDet
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
+        Me.PanelControl3.Controls.Add(Me.BtnPrePrinting)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -531,7 +533,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
         Me.BtnXlsBOF.ImageIndex = 11
         Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(391, 2)
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(298, 2)
         Me.BtnXlsBOF.Name = "BtnXlsBOF"
         Me.BtnXlsBOF.Size = New System.Drawing.Size(115, 36)
         Me.BtnXlsBOF.TabIndex = 19
@@ -543,7 +545,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(506, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(413, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(101, 36)
         Me.BtnAttachment.TabIndex = 13
@@ -554,7 +556,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(607, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(514, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 12
@@ -793,6 +795,17 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
+        'BtnPrePrinting
+        '
+        Me.BtnPrePrinting.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrePrinting.ImageIndex = 6
+        Me.BtnPrePrinting.ImageList = Me.LargeImageCollection
+        Me.BtnPrePrinting.Location = New System.Drawing.Point(589, 2)
+        Me.BtnPrePrinting.Name = "BtnPrePrinting"
+        Me.BtnPrePrinting.Size = New System.Drawing.Size(93, 36)
+        Me.BtnPrePrinting.TabIndex = 20
+        Me.BtnPrePrinting.Text = "Pre Printing"
+        '
         'FormProductionFinalClearDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -909,4 +922,5 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnPrePrinting As DevExpress.XtraEditors.SimpleButton
 End Class
