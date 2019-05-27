@@ -4514,7 +4514,7 @@
                         )
                         SELECT '" + id_prod_demand_product + "', a.id_pd_alloc, a.prod_demand_alloc_qty
                         FROM tb_prod_demand_alloc_rev a
-                        WHERE a.id_prod_demand_product_rev=" + dprev.Rows(i)("id_prod_demand_product_rev").ToString + "; "
+                        WHERE a.id_prod_demand_product_rev=" + dprev.Rows(p)("id_prod_demand_product_rev").ToString + "; "
                         execute_non_query(qins_alloc, True, "", "", "", "")
                     Next
 
