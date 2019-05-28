@@ -153,10 +153,10 @@ Partial Class FormEmpOvertimeDet
         'TENumber
         '
         Me.TENumber.EditValue = "[autogenerate]"
-        Me.TENumber.Location = New System.Drawing.Point(124, 12)
+        Me.TENumber.Location = New System.Drawing.Point(125, 12)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(260, 20)
+        Me.TENumber.Size = New System.Drawing.Size(259, 20)
         Me.TENumber.TabIndex = 2
         '
         'LabelControl1
@@ -517,11 +517,11 @@ Partial Class FormEmpOvertimeDet
         '
         'LUEOvertimeType
         '
-        Me.LUEOvertimeType.Location = New System.Drawing.Point(124, 38)
+        Me.LUEOvertimeType.Location = New System.Drawing.Point(125, 38)
         Me.LUEOvertimeType.Name = "LUEOvertimeType"
         Me.LUEOvertimeType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LUEOvertimeType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_type", "Overtime Type")})
-        Me.LUEOvertimeType.Size = New System.Drawing.Size(260, 20)
+        Me.LUEOvertimeType.Size = New System.Drawing.Size(259, 20)
         Me.LUEOvertimeType.TabIndex = 15
         '
         'LabelControl9
@@ -567,14 +567,14 @@ Partial Class FormEmpOvertimeDet
         'DEOvertimeDate
         '
         Me.DEOvertimeDate.EditValue = Nothing
-        Me.DEOvertimeDate.Location = New System.Drawing.Point(124, 64)
+        Me.DEOvertimeDate.Location = New System.Drawing.Point(125, 64)
         Me.DEOvertimeDate.Name = "DEOvertimeDate"
         Me.DEOvertimeDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEOvertimeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEOvertimeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEOvertimeDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEOvertimeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEOvertimeDate.Size = New System.Drawing.Size(260, 20)
+        Me.DEOvertimeDate.Size = New System.Drawing.Size(259, 20)
         Me.DEOvertimeDate.TabIndex = 7
         '
         'LabelControl3
@@ -597,9 +597,9 @@ Partial Class FormEmpOvertimeDet
         '
         Me.LabelControl6.Location = New System.Drawing.Point(13, 13)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(70, 13)
+        Me.LabelControl6.Size = New System.Drawing.Size(86, 13)
         Me.LabelControl6.TabIndex = 11
-        Me.LabelControl6.Text = "Overtime Note"
+        Me.LabelControl6.Text = "Overtime Purpose"
         '
         'PanelControl3
         '
@@ -691,9 +691,9 @@ Partial Class FormEmpOvertimeDet
         '
         'MEOvertimeNote
         '
-        Me.MEOvertimeNote.Location = New System.Drawing.Point(103, 11)
+        Me.MEOvertimeNote.Location = New System.Drawing.Point(105, 11)
         Me.MEOvertimeNote.Name = "MEOvertimeNote"
-        Me.MEOvertimeNote.Size = New System.Drawing.Size(643, 70)
+        Me.MEOvertimeNote.Size = New System.Drawing.Size(641, 70)
         Me.MEOvertimeNote.TabIndex = 12
         '
         'PanelControl6
@@ -721,11 +721,11 @@ Partial Class FormEmpOvertimeDet
         '
         'SLUEPayrollPeriod
         '
-        Me.SLUEPayrollPeriod.Location = New System.Drawing.Point(104, 5)
+        Me.SLUEPayrollPeriod.Location = New System.Drawing.Point(105, 5)
         Me.SLUEPayrollPeriod.Name = "SLUEPayrollPeriod"
         Me.SLUEPayrollPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEPayrollPeriod.Properties.View = Me.SLUEPayrollPeriodView
-        Me.SLUEPayrollPeriod.Size = New System.Drawing.Size(242, 20)
+        Me.SLUEPayrollPeriod.Size = New System.Drawing.Size(241, 20)
         Me.SLUEPayrollPeriod.TabIndex = 17
         '
         'SLUEPayrollPeriodView
