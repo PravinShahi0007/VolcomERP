@@ -65,6 +65,7 @@
         Cursor = Cursors.WaitCursor
         If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
             'cek
+            Dim cancel_po_note As String = ""
             Dim is_cancel_po As String = "2"
             Dim id_design As String = GVDesign.GetFocusedRowCellValue("id_design").ToString
             Dim qcek As String = "SELECT d.id_design, d.design_code AS `code`, d.design_display_name AS `name`,  
@@ -84,21 +85,25 @@
                 'total qty
                 If dcek.Rows(0)("total_qty") <> GVDesign.GetFocusedRowCellValue("current_qty") Then
                     is_cancel_po = "1"
+                    cancel_po_note = "total qty; "
                 End If
 
                 'size chart
                 If dcek.Rows(0)("size_chart") <> GVDesign.GetFocusedRowCellValue("current_size_chart") Then
                     is_cancel_po = "1"
+                    cancel_po_note = "size chart; "
                 End If
 
                 'cop
                 If dcek.Rows(0)("cost") <> GVDesign.GetFocusedRowCellValue("current_cost") Then
                     is_cancel_po = "1"
+                    cancel_po_note = "cost; "
                 End If
 
                 'add cop
                 If dcek.Rows(0)("add_cost") <> GVDesign.GetFocusedRowCellValue("current_add_cost") Then
                     is_cancel_po = "1"
+                    cancel_po_note = "additional cost; "
                 End If
 
                 'cek qty per size
@@ -111,7 +116,7 @@
 	                    SELECT pdp.id_product, SUM(pdp.prod_demand_product_qty) AS `qty`
 	                    FROM tb_prod_demand_design pdd
 	                    INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
-	                    WHERE pdd.id_prod_demand=" + FormProdDemandRevDet.id_prod_demand + " AND pdd.id_design=" + id_design + " AND pdp.prod_demand_product_qty>0
+	                    WHERE pdd.id_prod_demand=" + FormProdDemandRevDet.id_prod_demand + " AND pdd.id_design=" + id_design + " AND pdp.prod_demand_product_qty>0 AND pdd.is_void=2
 	                    GROUP BY pdp.id_product
                     ) pdc ON pdc.id_product = pdp.id_product
                     WHERE d.id_design=" + id_design + " AND pdp.prod_demand_product_qty>0 
@@ -120,6 +125,7 @@
                     Dim dcp As DataTable = execute_query(qcp, -1, True, "", "", "", "")
                     If dcp.Rows.Count > 0 Then
                         is_cancel_po = "1"
+                        cancel_po_note = "qty per size; "
                     End If
                 End If
             Else
@@ -132,14 +138,14 @@
                     stopCustom("Can't revise because " + GVDesign.GetFocusedRowCellValue("name").ToString + " already received in QC")
                 Else
                     'insert detail
-                    Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ")"
+                    Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ", '" + cancel_po_note + "')"
                     execute_non_query(query_det_new, True, "", "", "", "")
                     FormProdDemandRevDet.viewDetail()
                     actionLoad()
                 End If
             ElseIf is_cancel_po = "2" Then
                 'insert detail
-                Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ")"
+                Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ", '" + cancel_po_note + "')"
                 execute_non_query(query_det_new, True, "", "", "", "")
                 FormProdDemandRevDet.viewDetail()
                 actionLoad()
