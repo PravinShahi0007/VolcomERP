@@ -4503,7 +4503,16 @@
                         ); SELECT LAST_INSERT_ID(); "
                         Dim id_prod_demand_product As String = execute_query(qins_pdp, 0, True, "", "", "", "")
                         If dpr.Rows(i)("is_cancel_po").ToString = "2" Then
-
+                            Dim qpdp_cr As String = "UPDATE tb_prod_order_det main 
+                            INNER JOIN (
+	                            SELECT pod.id_prod_order_det 
+	                            FROM tb_prod_order_det pod
+	                            INNER JOIN tb_prod_order po ON po.id_prod_order = pod.id_prod_order
+	                            INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+	                            WHERE po.id_prod_demand_design=" + id_prod_demand_design + " AND po.id_report_status!=5 AND pdp.id_product=" + dprev.Rows(p)("id_product").ToString + "
+                            ) src ON src.id_prod_order_det = main.id_prod_order_det
+                            SET main.id_prod_demand_product=" + id_prod_demand_product + " "
+                            execute_non_query(qpdp_cr, True, "", "", "", "")
                         End If
 
                         'insert new pdp alloc
