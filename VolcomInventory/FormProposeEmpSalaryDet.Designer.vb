@@ -34,6 +34,7 @@ Partial Class FormProposeEmpSalaryDet
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.CMSGCEmployee = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -58,12 +59,13 @@ Partial Class FormProposeEmpSalaryDet
         Me.GCAttendanceAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCTotalSalary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LUEType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.SBInsertEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.SBRemoveEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +82,7 @@ Partial Class FormProposeEmpSalaryDet
         CType(Me.RITESalary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -232,6 +235,16 @@ Partial Class FormProposeEmpSalaryDet
         Me.SBMark.Size = New System.Drawing.Size(95, 44)
         Me.SBMark.TabIndex = 2
         Me.SBMark.Text = "Mark"
+        '
+        'SBSave
+        '
+        Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
+        Me.SBSave.Location = New System.Drawing.Point(816, 2)
+        Me.SBSave.Name = "SBSave"
+        Me.SBSave.Size = New System.Drawing.Size(95, 44)
+        Me.SBSave.TabIndex = 5
+        Me.SBSave.Text = "Save"
         '
         'SBSubmit
         '
@@ -456,6 +469,8 @@ Partial Class FormProposeEmpSalaryDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LUEType)
+        Me.PanelControl2.Controls.Add(Me.Label6)
         Me.PanelControl2.Controls.Add(Me.SBInsertEmployee)
         Me.PanelControl2.Controls.Add(Me.SBRemoveEmployee)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -463,6 +478,24 @@ Partial Class FormProposeEmpSalaryDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 49)
         Me.PanelControl2.TabIndex = 3
+        '
+        'LUEType
+        '
+        Me.LUEType.Location = New System.Drawing.Point(105, 15)
+        Me.LUEType.Name = "LUEType"
+        Me.LUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LUEType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_sal_pps_type", "", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sal_pps_type", "Type")})
+        Me.LUEType.Size = New System.Drawing.Size(203, 20)
+        Me.LUEType.TabIndex = 4
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(15, 18)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(31, 13)
+        Me.Label6.TabIndex = 3
+        Me.Label6.Text = "Type"
         '
         'SBInsertEmployee
         '
@@ -512,16 +545,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Note"
         '
-        'SBSave
-        '
-        Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(816, 2)
-        Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(95, 44)
-        Me.SBSave.TabIndex = 5
-        Me.SBSave.Text = "Save"
-        '
         'FormProposeEmpSalaryDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -554,6 +577,8 @@ Partial Class FormProposeEmpSalaryDet
         CType(Me.RITESalary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.LUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
@@ -603,6 +628,8 @@ Partial Class FormProposeEmpSalaryDet
     Friend WithEvents GCTransportAllowance As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHouseAllowance As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCAttendanceAllowance As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCTotalSalary As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label6 As Label
+    Friend WithEvents LUEType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GCTotalSalary As DevExpress.XtraGrid.Columns.GridColumn
 End Class
