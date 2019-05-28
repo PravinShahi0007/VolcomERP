@@ -63,6 +63,7 @@ WHERE id_prod_order_kp='" & id_kp & "'"
             BRevise.Visible = False
             PCDel.Visible = True
         End If
+
         'prevent edit lead time
         If is_locked = "1" Then
             GridColumnProto2Sample.OptionsColumn.ReadOnly = True
@@ -187,7 +188,9 @@ WHERE id_prod_order_kp='" & SLERevision.EditValue.ToString & "'"
         '
         ReportProductionKP.dt_det = GCProd.DataSource
 
+
         Dim Report As New ReportProductionKP()
+        Report.LQtyOrder.Text = Decimal.Parse(GVProd.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0")
         '
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         If Not is_locked = "1" Then
@@ -228,7 +231,7 @@ WHERE id_prod_order_kp='" & id_kp & "'"
                 If Not i = 0 Then
                     query += ","
                 End If
-                query += "('" & new_id_kp & "','" & data_det.Rows(0)("revision").ToString & "','" & data_det.Rows(0)("id_prod_order").ToString & "','" & data_det.Rows(0)("id_purc_order").ToString & "','" & data_det.Rows(0)("lead_time_prod").ToString & "','" & data_det.Rows(0)("sample_proto_2").ToString & "')"
+                query += "('" & new_id_kp & "','" & data_det.Rows(i)("revision").ToString & "','" & data_det.Rows(i)("id_prod_order").ToString & "','" & data_det.Rows(i)("id_purc_order").ToString & "','" & data_det.Rows(i)("lead_time_prod").ToString & "','" & Date.Parse(data_det.Rows(i)("sample_proto_2").ToString).ToString("yyyy-MM-dd") & "')"
             Next
 
             If Not query = "" Then
@@ -243,5 +246,11 @@ VALUES" + query
         Else
             warningCustom("This is not the latest revision")
         End If
+    End Sub
+
+    Private Sub SLERevision_EditValueChanged(sender As Object, e As EventArgs) Handles SLERevision.EditValueChanged
+        SLERevision.Refresh()
+        id_kp = SLERevision.EditValue.ToString
+        load_head()
     End Sub
 End Class

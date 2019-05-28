@@ -3,6 +3,8 @@
     Public is_duplicate As String = "-1"
 
     Private Sub FormProposeEmpSalaryDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_type()
+
         form_load()
 
         permission_load()
@@ -18,10 +20,18 @@
         Dispose()
     End Sub
 
+    Sub view_type()
+        Dim query As String = "
+            SELECT id_sal_pps_type, sal_pps_type FROM tb_lookup_employee_sal_pps_type
+        "
+
+        viewLookupQuery(LUEType, query, 0, "sal_pps_type", "id_sal_pps_type")
+    End Sub
+
     Sub form_load()
         'load
         Dim query As String = "
-            SELECT sal.id_employee_sal_pps, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date, sal.id_report_status, sal.number, sal.note, emp.employee_name AS created_by, DATE_FORMAT(sal.created_at, '%d %M %Y %H:%i:%s') AS created_at
+            SELECT sal.id_employee_sal_pps, sal.id_sal_pps_type, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date, sal.id_report_status, sal.number, sal.note, emp.employee_name AS created_by, DATE_FORMAT(sal.created_at, '%d %M %Y %H:%i:%s') AS created_at
             FROM tb_employee_sal_pps AS sal
             LEFT JOIN tb_m_employee AS emp ON sal.created_by = emp.id_employee
             WHERE sal.id_employee_sal_pps = " + id_employee_sal_pps + "
@@ -29,7 +39,7 @@
             UNION ALL
             
             #default value
-            SELECT -1 AS id_employee_sal_pps, DATE_FORMAT(NOW(), '%d %M %Y') AS effective_date, -1 AS id_report_status, '[autogenerate]' AS number, '' AS note, (SELECT employee_name FROM tb_m_employee WHERE id_employee = " + id_employee_user + ") AS created_by, DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_at
+            SELECT -1 AS id_employee_sal_pps, 1 AS id_sal_pps_type, DATE_FORMAT(NOW(), '%d %M %Y') AS effective_date, -1 AS id_report_status, '[autogenerate]' AS number, '' AS note, (SELECT employee_name FROM tb_m_employee WHERE id_employee = " + id_employee_user + ") AS created_by, DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_at
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -39,6 +49,7 @@
         DEEffectiveDate.EditValue = data.Rows(0)("effective_date")
         TECreatedBy.EditValue = data.Rows(0)("created_by").ToString
         DECreatedAt.EditValue = data.Rows(0)("created_at")
+        LUEType.ItemIndex = LUEType.Properties.GetDataSourceRowIndex("id_sal_pps_type", data.Rows(0)("id_sal_pps_type").ToString)
 
         'load detail
         Dim query_detail As String = "
@@ -82,6 +93,7 @@
             DEEffectiveDate.ReadOnly = True
             MENote.ReadOnly = True
             RITESalary.ReadOnly = True
+            LUEType.ReadOnly = True
 
             RemoveEmployeeToolStripMenuItem.Visible = False
         End If
@@ -93,20 +105,21 @@
         Dim query As String = ""
 
         'insert tb_employee_sal_pps
+        Dim id_sal_pps_type As String = LUEType.EditValue.ToString
         Dim effective_date As String = DateTime.Parse(DEEffectiveDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim id_report_status As String = If(type = "submit", "1", "0")
         Dim note As String = addSlashes(MENote.Text)
 
         If id_employee_sal_pps = "-1" Then
             query = "
-                INSERT INTO tb_employee_sal_pps (effective_date, id_report_status, note, created_by, created_at) 
-                VALUES ('" + effective_date + "', " + id_report_status + ", '" + note + "', " + id_employee_user + ", NOW());
+                INSERT INTO tb_employee_sal_pps (id_sal_pps_type, effective_date, id_report_status, note, created_by, created_at) 
+                VALUES (" + id_sal_pps_type + ", '" + effective_date + "', " + id_report_status + ", '" + note + "', " + id_employee_user + ", NOW());
                 SELECT LAST_INSERT_ID();
             "
 
             id_employee_sal_pps = execute_query(query, 0, True, "", "", "", "")
         Else
-            query = "UPDATE tb_employee_sal_pps SET effective_date = '" + effective_date + "', id_report_status = " + id_report_status + ", note = '" + note + "' WHERE id_employee_sal_pps = " + id_employee_sal_pps + ""
+            query = "UPDATE tb_employee_sal_pps SET id_sal_pps_type = " + id_sal_pps_type + ", effective_date = '" + effective_date + "', id_report_status = " + id_report_status + ", note = '" + note + "' WHERE id_employee_sal_pps = " + id_employee_sal_pps + ""
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -212,6 +225,7 @@
         End If
 
         'form pick employee
+        FormProposeEmpSalaryPick.id_sal_pps_type = LUEType.EditValue.ToString
         FormProposeEmpSalaryPick.not_included = not_included
 
         FormProposeEmpSalaryPick.ShowDialog()
@@ -286,5 +300,44 @@
 
     Private Sub RITESalary_EditValueChanged(sender As Object, e As EventArgs) Handles RITESalary.EditValueChanged
         GCEmployee.Refresh()
+    End Sub
+
+    Private Sub LUEType_EditValueChanged(sender As Object, e As EventArgs) Handles LUEType.EditValueChanged
+        'reset datasource
+        Dim query As String = "
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car
+            FROM tb_employee_sal_pps_det AS det
+            LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
+            LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
+            LEFT JOIN tb_lookup_employee_level AS lv ON det.id_employee_level = lv.id_employee_level
+            LEFT JOIN tb_lookup_employee_status AS sts ON det.id_employee_status = sts.id_employee_status
+            WHERE det.id_employee_sal_pps = -1
+            ORDER BY det.id_employee_level ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCEmployee.DataSource = data
+
+        'hide/show column
+        If LUEType.EditValue.ToString = "1" Then
+            GCBasicSalary.Caption = "Basic Salary"
+
+            GCJobAllowance.VisibleIndex = 6
+            GCMealAllowance.VisibleIndex = 7
+            GCTransportAllowance.VisibleIndex = 8
+            GCHouseAllowance.VisibleIndex = 9
+            GCAttendanceAllowance.VisibleIndex = 10
+            GCTotalSalary.VisibleIndex = 11
+        ElseIf LUEType.EditValue.ToString = "2" Then
+            GCBasicSalary.Caption = "Daily Salary"
+
+            GCJobAllowance.VisibleIndex = -1
+            GCMealAllowance.VisibleIndex = -1
+            GCTransportAllowance.VisibleIndex = -1
+            GCHouseAllowance.VisibleIndex = -1
+            GCAttendanceAllowance.VisibleIndex = -1
+            GCTotalSalary.VisibleIndex = -1
+        End If
     End Sub
 End Class
