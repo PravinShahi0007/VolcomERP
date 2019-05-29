@@ -34,6 +34,7 @@ Partial Class FormFGTrfNew
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalTrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpreparedby = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
@@ -76,7 +77,6 @@ Partial Class FormFGTrfNew
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumnpreparedby = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -224,6 +224,14 @@ Partial Class FormFGTrfNew
         Me.GridColumnTotalTrf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_trf", "{0:N0}")})
         Me.GridColumnTotalTrf.Visible = True
         Me.GridColumnTotalTrf.VisibleIndex = 4
+        '
+        'GridColumnpreparedby
+        '
+        Me.GridColumnpreparedby.Caption = "Prepared By"
+        Me.GridColumnpreparedby.FieldName = "prepared_by"
+        Me.GridColumnpreparedby.Name = "GridColumnpreparedby"
+        Me.GridColumnpreparedby.Visible = True
+        Me.GridColumnpreparedby.VisibleIndex = 6
         '
         'ViewMenu
         '
@@ -603,14 +611,6 @@ Partial Class FormFGTrfNew
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'GridColumnpreparedby
-        '
-        Me.GridColumnpreparedby.Caption = "Prepared By"
-        Me.GridColumnpreparedby.FieldName = "prepared_by"
-        Me.GridColumnpreparedby.Name = "GridColumnpreparedby"
-        Me.GridColumnpreparedby.Visible = True
-        Me.GridColumnpreparedby.VisibleIndex = 6
         '
         'FormFGTrfNew
         '

@@ -131,7 +131,7 @@ Public Class FormFGTrfNewDet
         Dim query As String = "SELECT a.id_so_type, a.id_so_status, a.id_sales_order, a.id_store_contact_to, d.id_wh_type, (d.comp_name) AS store_name_to,a.id_report_status, f.report_status, "
         query += "a.sales_order_note,a.sales_order_date, a.sales_order_note, a.sales_order_number, "
         query += "DATE_FORMAT(a.sales_order_date,'%d %M %Y') AS sales_order_date, (SELECT COUNT(id_pl_sales_order_del) FROM tb_pl_sales_order_del WHERE tb_pl_sales_order_del.id_sales_order = a.id_sales_order) AS pl_created, "
-        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name` "
+        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name`, a.id_prepare_status "
         query += "FROM tb_sales_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -141,6 +141,13 @@ Public Class FormFGTrfNewDet
         query += "WHERE a.id_sales_order = '" + id_sales_order + "' "
         query += "ORDER BY a.id_sales_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'cek masi open ato close
+        If data.Rows(0)("id_prepare_status") = "2" Then
+            stopCustom("This order already closed")
+            FormFGTrfNew.viewSalesOrder()
+            Close()
+        End If
 
         'SO
         TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
