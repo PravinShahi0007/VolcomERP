@@ -1,7 +1,16 @@
 ﻿Public Class FormProposeEmpSalaryPick
+    Public id_sal_pps_type As String = "1"
     Public not_included As String = ""
 
     Private Sub FormProposeEmpSalaryPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim where_type As String = ""
+
+        If id_sal_pps_type = "1" Then
+            where_type = "AND emp.id_employee_status IN (1, 2)"
+        ElseIf id_sal_pps_type = "2" Then
+            where_type = "AND emp.id_employee_status IN (3)"
+        End If
+
         Dim where_not_include As String = ""
 
         If Not not_included = "" Then
@@ -15,7 +24,7 @@
             LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
             LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
             LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
-            WHERE 1 = 1 " + where_not_include + "
+            WHERE 1 = 1 " + where_not_include + " " + where_type + "
             ORDER BY emp.id_employee_level ASC
         "
 

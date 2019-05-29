@@ -99,6 +99,8 @@
             BGVProduct.Columns("TOTAL AMOUNT ACT ORDER SALES_add_report_column").Visible = False
             BGVProduct.Columns("COST NON ADDITIONAL_add_report_column").Visible = False
             BGVProduct.Columns("TOTAL COST NON ADDITIONAL_add_report_column").Visible = False
+            BGVProduct.Columns("TOTAL COST CORE_add_report_column").Visible = False
+            BGVProduct.Columns("TOTAL AMOUNT CORE_add_report_column").Visible = False
 
             BGVProduct.Columns("ADDITIONAL COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("PROPOSE PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
@@ -117,6 +119,8 @@
             BGVProduct.Columns("TOTAL COST ACT ORDER SALES_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("TOTAL AMOUNT ACT ORDER SALES_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("DEVELOPMENT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("TOTAL COST CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("TOTAL AMOUNT CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             CEBreakSize.EditValue = True
         End If
     End Sub
