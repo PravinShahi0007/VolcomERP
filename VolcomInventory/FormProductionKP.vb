@@ -173,15 +173,19 @@ ORDER BY po.`id_prod_order` ASC"
     Private Sub BPrintkp_Click(sender As Object, e As EventArgs) Handles BPrintKP.Click
         Dim query As String = "SELECT c.phone,c.fax,kp.number,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,DATE_FORMAT(kp.`date_created`,'%d %M %Y') AS date_created,LPAD(kp.`revision`,2,'0') AS revision
 ,emp_created.employee_name AS emp_name_created,emp_created.`employee_position` AS created_pos
-,emp_purc_mngr.employee_name AS emp_name_purc_mngr,emp_purc_mngr.`employee_position` AS purc_mngr_pos
-,emp_ast_mngr.employee_name AS emp_name_asst_prod_mngr,emp_ast_mngr.`employee_position` AS asst_prod_mngr_pos
+,emp_purc_mngr.employee_name AS emp_name_purc_mngr,rl_purc_mngr.`role` AS purc_mngr_pos
+,emp_ast_mngr.employee_name AS emp_name_asst_prod_mngr,rl_asst_mngr.`role` AS asst_prod_mngr_pos
 FROM tb_prod_order_kp kp
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=kp.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=kp.`created_by`
+INNER JOIN tb_m_user usr_purc_mngr ON usr_purc_mngr.`id_user`=kp.`id_user_purc_mngr`
+INNER JOIN tb_m_user usr_ast_mngr ON usr_ast_mngr.`id_user`=kp.`id_user_asst_prod_mngr`
 INNER JOIN tb_m_employee emp_created ON emp_created.`id_employee`=usr_created.`id_employee`
-INNER JOIN tb_m_employee emp_purc_mngr ON emp_purc_mngr.`id_employee`=kp.`id_emp_purc_mngr`
-INNER JOIN tb_m_employee emp_ast_mngr ON emp_ast_mngr.`id_employee`=kp.`id_emp_asst_prod_mngr`
+INNER JOIN tb_m_employee emp_purc_mngr ON emp_purc_mngr.`id_employee`=usr_purc_mngr.`id_employee`
+INNER JOIN tb_m_employee emp_ast_mngr ON emp_ast_mngr.`id_employee`=usr_ast_mngr.`id_employee`
+INNER JOIN tb_m_role rl_purc_mngr ON rl_purc_mngr.id_role=usr_purc_mngr.id_role
+INNER JOIN tb_m_role rl_asst_mngr ON rl_asst_mngr.id_role=usr_ast_mngr.id_role
 WHERE id_prod_order_kp='" & SLERevision.EditValue.ToString & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         ReportProductionKP.dt_head = data
