@@ -12,7 +12,6 @@
         '
         viewVendorKO()
         'GVMatPurchase.ActiveFilterString = "[id_mat_purc] > 1 AND [id_mat_purc] < 6"
-        viewProdDemand()
     End Sub
 
     Sub viewVendorKO()
@@ -181,7 +180,7 @@ GROUP BY mpd.`id_mat_purc`"
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
-    Private Sub GVProdDemand_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProdDemand.FocusedRowChanged
+    Private Sub GVProdDemand_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs)
         Dim focusedRowHandle As Integer = -1
         If e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle OrElse e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle Then
             Return
@@ -215,7 +214,7 @@ GROUP BY mpd.`id_mat_purc`"
         End If
     End Sub
     'Row Click Number
-    Private Sub GVProdDemand_RowClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVProdDemand.RowClick
+    Private Sub GVProdDemand_RowClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs)
         view_product()
         'checkPrintStatus()
     End Sub
@@ -239,12 +238,6 @@ GROUP BY mpd.`id_mat_purc`"
         Catch ex As Exception
             errorConnection()
         End Try
-    End Sub
-
-    Private Sub BCreate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCreate.Click
-        FormProdDemandMat.id_prod_demand = GVProdDemand.GetFocusedRowCellDisplayText("id_prod_demand").ToString
-        FormProdDemandMat.is_in_mat = "1"
-        FormProdDemandMat.ShowDialog()
     End Sub
 
     Private Sub GVMatPurchase_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVMatPurchase.DoubleClick
