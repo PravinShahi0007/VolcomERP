@@ -7777,6 +7777,9 @@
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurchasePD.resx">
+      <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcSum.resx">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
     </EmbeddedResource>

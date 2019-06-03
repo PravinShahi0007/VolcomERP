@@ -24,6 +24,7 @@
     End Sub
 
     Sub viewSalesOrder()
+        Cursor = Cursors.WaitCursor
         Dim query_c As ClassSalesOrder = New ClassSalesOrder()
         Dim query As String = query_c.queryMain("AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -31,6 +32,7 @@
         GVSalesOrder.BestFitColumns()
         GridColumnEmpCode.Visible = False
         GridColumnEmpName.Visible = False
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewUniformOrder()

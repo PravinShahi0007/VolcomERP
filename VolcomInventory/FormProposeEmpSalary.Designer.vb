@@ -28,6 +28,7 @@ Partial Class FormProposeEmpSalary
         Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedAt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -44,7 +45,7 @@ Partial Class FormProposeEmpSalary
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployeeSalPps, Me.GCNumber, Me.GCEffectiveDate, Me.GCNote, Me.GCStatus, Me.GCCreatedBy, Me.GCCreatedAt})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployeeSalPps, Me.GCNumber, Me.GCType, Me.GCEffectiveDate, Me.GCNote, Me.GCStatus, Me.GCCreatedBy, Me.GCCreatedAt})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.Editable = False
@@ -70,7 +71,7 @@ Partial Class FormProposeEmpSalary
         Me.GCEffectiveDate.FieldName = "effective_date"
         Me.GCEffectiveDate.Name = "GCEffectiveDate"
         Me.GCEffectiveDate.Visible = True
-        Me.GCEffectiveDate.VisibleIndex = 1
+        Me.GCEffectiveDate.VisibleIndex = 2
         '
         'GCNote
         '
@@ -78,7 +79,7 @@ Partial Class FormProposeEmpSalary
         Me.GCNote.FieldName = "note"
         Me.GCNote.Name = "GCNote"
         Me.GCNote.Visible = True
-        Me.GCNote.VisibleIndex = 2
+        Me.GCNote.VisibleIndex = 3
         '
         'GCStatus
         '
@@ -86,7 +87,7 @@ Partial Class FormProposeEmpSalary
         Me.GCStatus.FieldName = "report_status"
         Me.GCStatus.Name = "GCStatus"
         Me.GCStatus.Visible = True
-        Me.GCStatus.VisibleIndex = 3
+        Me.GCStatus.VisibleIndex = 4
         '
         'GCCreatedBy
         '
@@ -94,7 +95,7 @@ Partial Class FormProposeEmpSalary
         Me.GCCreatedBy.FieldName = "created_by"
         Me.GCCreatedBy.Name = "GCCreatedBy"
         Me.GCCreatedBy.Visible = True
-        Me.GCCreatedBy.VisibleIndex = 4
+        Me.GCCreatedBy.VisibleIndex = 5
         '
         'GCCreatedAt
         '
@@ -102,7 +103,15 @@ Partial Class FormProposeEmpSalary
         Me.GCCreatedAt.FieldName = "created_at"
         Me.GCCreatedAt.Name = "GCCreatedAt"
         Me.GCCreatedAt.Visible = True
-        Me.GCCreatedAt.VisibleIndex = 5
+        Me.GCCreatedAt.VisibleIndex = 6
+        '
+        'GCType
+        '
+        Me.GCType.Caption = "Type"
+        Me.GCType.FieldName = "sal_pps_type"
+        Me.GCType.Name = "GCType"
+        Me.GCType.Visible = True
+        Me.GCType.VisibleIndex = 1
         '
         'FormProposeEmpSalary
         '
@@ -127,4 +136,5 @@ Partial Class FormProposeEmpSalary
     Friend WithEvents GCStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCreatedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCreatedAt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
