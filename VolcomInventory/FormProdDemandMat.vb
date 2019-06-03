@@ -5,7 +5,6 @@
     Private Sub FormProdDemandMat_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'load
         If is_in_mat = "1" Then
-            LProdDemand.Text = FormMatPurchase.GVProdDemand.GetFocusedRowCellDisplayText("prod_demand_number").ToString
         Else
             LProdDemand.Text = FormProdDemand.GVProdDemand.GetFocusedRowCellDisplayText("prod_demand_number").ToString
         End If
@@ -72,8 +71,8 @@
             Dim id_vendor_prev As String = "-1"
             Dim id_vendor As String = "-1"
             Dim query, id_comp_to, notex, id_delivery, po_number, id_purc_new, po_created, string_filter As String 'for po
+            id_delivery = ""
             If is_in_mat = "1" Then
-                id_delivery = execute_query("SELECT id_delivery FROM tb_season_delivery WHERE id_season='" & FormMatPurchase.GVProdDemand.GetFocusedRowCellValue("id_season") & "' LIMIT 1", 0, True, "", "", "", "")
             Else
                 id_delivery = execute_query("SELECT id_delivery FROM tb_season_delivery WHERE id_season='" & FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_season") & "' LIMIT 1", 0, True, "", "", "", "")
             End If
