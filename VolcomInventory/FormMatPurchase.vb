@@ -260,4 +260,8 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
         FormProductionKO.id_ko = GVKO.GetFocusedRowCellValue("id_prod_order_ko").ToString
         FormProductionKO.ShowDialog()
     End Sub
+
+    Private Sub BGenerateFromPD_Click(sender As Object, e As EventArgs) Handles BGenerateFromPD.Click
+        FormMatPurchasePD.ShowDialog()
+    End Sub
 End Class

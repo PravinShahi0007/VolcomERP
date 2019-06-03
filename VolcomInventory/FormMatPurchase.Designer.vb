@@ -67,7 +67,7 @@ Partial Class FormMatPurchase
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEMatDet = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -112,7 +112,7 @@ Partial Class FormMatPurchase
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEMatDet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrderConfirmation.SuspendLayout()
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -524,7 +524,7 @@ Partial Class FormMatPurchase
         Me.PanelControl1.Controls.Add(Me.BGenerateFromPD)
         Me.PanelControl1.Controls.Add(Me.SimpleButton2)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.SLEMatDet)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -568,20 +568,20 @@ Partial Class FormMatPurchase
         Me.LabelControl1.TabIndex = 141
         Me.LabelControl1.Text = "Material"
         '
-        'SearchLookUpEdit1
+        'SLEMatDet
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(55, 11)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.Options.UseForeColor = True
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.NullText = ""
-        Me.SearchLookUpEdit1.Properties.ShowFooter = False
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView3
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(156, 20)
-        Me.SearchLookUpEdit1.TabIndex = 140
+        Me.SLEMatDet.Location = New System.Drawing.Point(55, 11)
+        Me.SLEMatDet.Name = "SLEMatDet"
+        Me.SLEMatDet.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.SLEMatDet.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.SLEMatDet.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.SLEMatDet.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.SLEMatDet.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMatDet.Properties.NullText = ""
+        Me.SLEMatDet.Properties.ShowFooter = False
+        Me.SLEMatDet.Properties.View = Me.GridView3
+        Me.SLEMatDet.Size = New System.Drawing.Size(156, 20)
+        Me.SLEMatDet.TabIndex = 140
         '
         'GridView3
         '
@@ -809,7 +809,7 @@ Partial Class FormMatPurchase
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEMatDet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrderConfirmation.ResumeLayout(False)
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).EndInit()
@@ -887,7 +887,7 @@ Partial Class FormMatPurchase
     Friend WithEvents BGenerateFromPD As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEMatDet As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
