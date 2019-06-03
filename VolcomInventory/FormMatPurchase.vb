@@ -12,7 +12,6 @@
         '
         viewVendorKO()
         'GVMatPurchase.ActiveFilterString = "[id_mat_purc] > 1 AND [id_mat_purc] < 6"
-        viewProdDemand()
     End Sub
 
     Sub viewVendorKO()
@@ -157,31 +156,8 @@ GROUP BY mpd.`id_mat_purc`"
         End If
     End Sub
     '========= from PD =============
-    Sub viewProdDemand()
-        Dim query As String = "SELECT *,c.report_status FROM tb_prod_demand a "
-        query += "INNER JOIN tb_season b ON a.id_season = b.id_season "
-        query += "INNER JOIN tb_lookup_report_status c ON c.id_report_status = a.id_report_status "
-        query += "ORDER BY a.id_prod_demand DESC "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCProdDemand.DataSource = data
-        GVProdDemand.Columns("season").GroupIndex = 0
-        If data.Rows.Count > 0 Then
-            GVProdDemand.FocusedRowHandle = 0
-            view_product()
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-        Else
-            'hide all except new
-            bnew_active = "1"
-            bedit_active = "0"
-            bdel_active = "0"
-        End If
-        checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
-    End Sub
-    Private Sub GVProdDemand_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProdDemand.FocusedRowChanged
+
+    Private Sub GVProdDemand_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs)
         Dim focusedRowHandle As Integer = -1
         If e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle OrElse e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle Then
             Return
@@ -213,38 +189,6 @@ GROUP BY mpd.`id_mat_purc`"
                 view.FocusedRowHandle = focusedRowHandle
             End If
         End If
-    End Sub
-    'Row Click Number
-    Private Sub GVProdDemand_RowClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVProdDemand.RowClick
-        view_product()
-        'checkPrintStatus()
-    End Sub
-
-    Sub view_product()
-        Try
-            Dim id_prod_demand As String = GVProdDemand.GetFocusedRowCellDisplayText("id_prod_demand").ToString
-            Dim query As String = "CALL view_prod_demand('" & id_prod_demand & "', 0)"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCProduct.DataSource = data
-            GVProduct.ClearGrouping()
-            GVProduct.Columns("category").GroupIndex = 0
-            GVProduct.Columns("design_name").GroupIndex = 1
-            GVProduct.ExpandAllGroups()
-            '
-            If check_print_report_status(GVProdDemand.GetFocusedRowCellDisplayText("id_report_status").ToString) Then
-                BCreate.Enabled = True
-            Else
-                BCreate.Enabled = False
-            End If
-        Catch ex As Exception
-            errorConnection()
-        End Try
-    End Sub
-
-    Private Sub BCreate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCreate.Click
-        FormProdDemandMat.id_prod_demand = GVProdDemand.GetFocusedRowCellDisplayText("id_prod_demand").ToString
-        FormProdDemandMat.is_in_mat = "1"
-        FormProdDemandMat.ShowDialog()
     End Sub
 
     Private Sub GVMatPurchase_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVMatPurchase.DoubleClick

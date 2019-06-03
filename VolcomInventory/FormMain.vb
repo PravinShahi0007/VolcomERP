@@ -8472,7 +8472,6 @@ Public Class FormMain
             If FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 0 Then 'purchase order
                 FormMatPurchase.view_mat_purc()
             ElseIf FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 1 Then 'prod demand
-                FormMatPurchase.viewProdDemand()
             End If
         ElseIf formName = "FormMatWO" Then
             'Material WO
