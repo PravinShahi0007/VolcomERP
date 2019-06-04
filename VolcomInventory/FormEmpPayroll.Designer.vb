@@ -1516,22 +1516,22 @@ Partial Class FormEmpPayroll
         Me.BBonusAdjustment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BBonusAdjustment.ImageIndex = 14
         Me.BBonusAdjustment.ImageList = Me.LargeImageCollection
-        Me.BBonusAdjustment.Location = New System.Drawing.Point(661, 2)
+        Me.BBonusAdjustment.Location = New System.Drawing.Point(632, 2)
         Me.BBonusAdjustment.Name = "BBonusAdjustment"
-        Me.BBonusAdjustment.Size = New System.Drawing.Size(147, 35)
+        Me.BBonusAdjustment.Size = New System.Drawing.Size(137, 35)
         Me.BBonusAdjustment.TabIndex = 5
-        Me.BBonusAdjustment.Text = "Bonus / Adjustment"
+        Me.BBonusAdjustment.Text = "Additional Income"
         '
         'BDeduction
         '
         Me.BDeduction.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDeduction.ImageIndex = 14
         Me.BDeduction.ImageList = Me.LargeImageCollection
-        Me.BDeduction.Location = New System.Drawing.Point(808, 2)
+        Me.BDeduction.Location = New System.Drawing.Point(769, 2)
         Me.BDeduction.Name = "BDeduction"
-        Me.BDeduction.Size = New System.Drawing.Size(101, 35)
+        Me.BDeduction.Size = New System.Drawing.Size(140, 35)
         Me.BDeduction.TabIndex = 4
-        Me.BDeduction.Text = "Deduction"
+        Me.BDeduction.Text = "Deduction Income"
         '
         'BRemoveEmployee
         '

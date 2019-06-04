@@ -1,32 +1,50 @@
 ﻿Public Class FormEmpPayrollDeductionDet
-    Public id_payroll_deduction As String = "-1"
-    Public id_employee As String = "-1"
-
-    Private Sub FormEmpPayrollDeductionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TEDeduction.EditValue = 0
-        load_deduction()
-        '
-        If Not id_payroll_deduction = "-1" Then 'edit
-            Dim query As String = "SELECT pyd.*,emp.employee_code,emp.employee_name FROM tb_emp_payroll_deduction pyd 
-                                    INNER JOIN tb_m_employee emp ON emp.id_employee=pyd.id_employee
-                                    WHERE pyd.id_payroll_deduction='" & id_payroll_deduction & "'"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count > 0 Then
-                id_employee = data.Rows(0)("id_employee").ToString
-                TEEmployeeCode.Text = data.Rows(0)("employee_code").ToString
-                TEEmployeeName.Text = data.Rows(0)("employee_name").ToString
-                '
-                LEDeductionType.ItemIndex = LEDeductionType.Properties.GetDataSourceRowIndex("id_salary_deduction", data.Rows(0)("id_salary_deduction").ToString)
-                TEDeduction.EditValue = data.Rows(0)("deduction")
-                MENote.Text = data.Rows(0)("note").ToString
-                '
-            End If
-        End If
-    End Sub
+    '1 Deduction, 2 Adjustment
+    Public id_popup As String = "1"
+    Public id_payroll As String = "-1"
 
     Sub load_deduction()
-        Dim query As String = "SELECT id_salary_deduction,description FROM `tb_lookup_salary_deduction`"
-        viewLookupQuery(LEDeductionType, query, 0, "description", "id_salary_deduction")
+        Dim column As String = "deduction"
+
+        If id_popup = "1" Then
+            column = "deduction"
+        ElseIf id_popup = "2" Then
+            column = "adjustment"
+        End If
+
+        Dim query_type As String = "SELECT id_salary_" + column + "_cat AS id_salary_deduction_cat, salary_" + column + "_cat AS salary_deduction_cat FROM tb_lookup_salary_" + column + "_cat"
+        viewSearchLookupQuery(SLUEType, query_type, "id_salary_deduction_cat", "salary_deduction_cat", "id_salary_deduction_cat")
+
+        Dim query_category As String = "SELECT id_salary_" + column + " AS id_salary_deduction, id_salary_" + column + "_cat AS id_salary_deduction_cat, salary_" + column + " AS salary_deduction, use_days FROM tb_lookup_salary_" + column + ""
+        viewSearchLookupQuery(SLUECategory, query_category, "id_salary_deduction", "salary_deduction", "id_salary_deduction")
+
+        SLUECategory.EditValue = Nothing
+    End Sub
+
+    Private Sub FormEmpPayrollDeductionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If id_popup = "1" Then
+            Text = "Deduction Income Detail"
+        ElseIf id_popup = "2" Then
+            Text = "Additional Income Detail"
+        End If
+
+        load_deduction()
+
+        Dim data As DataTable = New DataTable()
+
+        data.Columns.Add("id_employee", GetType(Integer))
+        data.Columns.Add("departement", GetType(String))
+        data.Columns.Add("employee_code", GetType(String))
+        data.Columns.Add("employee_name", GetType(String))
+        data.Columns.Add("employee_position", GetType(String))
+        data.Columns.Add("employee_level", GetType(String))
+        data.Columns.Add("workdays", GetType(String))
+        data.Columns.Add("actual_workdays", GetType(Integer))
+        data.Columns.Add("total_salary", GetType(Integer))
+        data.Columns.Add("total_days", GetType(Integer))
+        data.Columns.Add("value", GetType(Integer))
+
+        GCDeduction.DataSource = data
     End Sub
 
     Private Sub FormEmpPayrollDeductionDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -38,57 +56,116 @@
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        Dim id_sal_deduction, deduction, note, id_payroll As String
+        EP_SLE_cant_blank(ErrorProvider, SLUECategory)
 
-        id_sal_deduction = LEDeductionType.EditValue.ToString
-        deduction = TEDeduction.EditValue.ToString
-        note = addSlashes(MENote.Text)
-        id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        If formIsValidInPanel(ErrorProvider, PanelControl1) Then
+            If GVDeduction.RowCount > 0 Then
+                Dim id_salary_dadj As String = SLUECategory.EditValue.ToString
+                Dim note As String = MENote.Text.ToString
 
-        If id_payroll_deduction = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_emp_payroll_deduction(id_payroll,id_employee,id_salary_deduction,deduction,note) VALUES('" & id_payroll & "','" & id_employee & "','" & id_sal_deduction & "','" & deduction & "','" & note & "')"
-            execute_non_query(query, True, "", "", "", "")
-            Console.WriteLine(query)
-            '
-            FormEmpPayrollDeduction.load_deduction()
-            Close()
+                For i = 0 To GVDeduction.RowCount - 1
+                    If GVDeduction.IsValidRowHandle(i) Then
+                        Dim id_employee As String = GVDeduction.GetRowCellValue(i, "id_employee").ToString
+                        Dim value As String = GVDeduction.GetRowCellValue(i, "value").ToString
+
+                        Dim query As String = ""
+
+                        If id_popup = "1" Then
+                            query = "
+                                INSERT INTO tb_emp_payroll_deduction (id_payroll, id_salary_deduction, id_employee, deduction, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
+                            "
+                        ElseIf id_popup = "2" Then
+                            Dim total_days As String = "0"
+                            Dim increase As String = "0"
+
+                            query = "
+                                INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, value, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(total_days) + ", " + increase + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
+                            "
+                        End If
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                Next
+
+                If id_popup = "1" Then
+                    FormEmpPayrollDeduction.load_deduction()
+                ElseIf id_popup = "2" Then
+                    FormEmpPayrollAdjustment.load_adjustment()
+                End If
+
+                Close()
+            Else
+                errorCustom("No employee inserted.")
+            End If
         Else
-            Dim query As String = "UPDATE tb_emp_payroll_deduction SET id_employee='" & id_employee & "',id_salary_deduction='" & id_sal_deduction & "',deduction='" & deduction & "',note='" & note & "' WHERE id_payroll_deduction='" & id_payroll_deduction & "'"
-            execute_non_query(query, True, "", "", "", "")
-            Close()
-            '
-            FormEmpPayrollDeduction.load_deduction()
-            Close()
+            errorCustom("Please check your input.")
         End If
     End Sub
 
-    Private Sub BPickEmployee_Click(sender As Object, e As EventArgs) Handles BPickEmployee.Click
-        FormPopUpEmployee.id_popup = "6"
-        FormPopUpEmployee.ShowDialog()
-        If Not id_employee = "-1" Then
-            LEDeductionType.Focus()
-        End If
+    Private Sub SBInsert_Click(sender As Object, e As EventArgs) Handles SBInsert.Click
+        FormEmpPayrollADPick.id_payroll = id_payroll
+
+        FormEmpPayrollADPick.ShowDialog()
     End Sub
 
-    Private Sub TEEmployeeCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEmployeeCode.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            load_emp_detail()
-            LEDeductionType.Focus()
-        End If
+    Private Sub SBRemove_Click(sender As Object, e As EventArgs) Handles SBRemove.Click
+        GVDeduction.DeleteSelectedRows()
     End Sub
 
-    Sub load_emp_detail()
-        Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp 
-                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement 
-                                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level  
-                                WHERE employee_code='" & TEEmployeeCode.Text & "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+    Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEType.EditValueChanged
+        SLUECategory.EditValue = Nothing
+    End Sub
 
-        If data.Rows.Count > 0 Then
-            TEEmployeeName.Text = data.Rows(0)("employee_name").ToString
-            id_employee = data.Rows(0)("id_employee").ToString
+    Private Sub SLUECategory_Click(sender As Object, e As EventArgs) Handles SLUECategory.Click
+        SLUECategory.Properties.View.ActiveFilterString = "id_salary_deduction_cat = " + SLUEType.EditValue.ToString
+    End Sub
+
+    Private Sub SLUECategory_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SLUECategory.Validating
+        If SLUECategory.EditValue = Nothing Then
+            ErrorProvider.SetError(SLUECategory, "Don't leave it blank.")
         Else
-            stopCustom("Karyawan tidak ditemukan.")
+            ErrorProvider.SetError(SLUECategory, String.Empty)
+        End If
+    End Sub
+
+    Private Sub SLUECategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECategory.EditValueChanged
+        Dim row As Integer = SLUECategory.Properties.GetIndexByKeyValue(SLUECategory.EditValue)
+
+        If row < 0 Then
+            GCNIP.VisibleIndex = 0
+            GCEmployee.VisibleIndex = 1
+            GCEmployeePosition.VisibleIndex = 2
+            GCEmployeeLevel.VisibleIndex = 3
+            GCValue.VisibleIndex = 4
+            GCWorkingDays.VisibleIndex = -1
+            GCActualWorkingDays.VisibleIndex = -1
+            GCTotalSalary.VisibleIndex = -1
+            GCTotalDays.VisibleIndex = -1
+        Else
+            Try
+                If SLUECategory.Properties.View.GetRowCellValue(row, "use_days").ToString = "1" Then
+                    GCNIP.VisibleIndex = 0
+                    GCEmployee.VisibleIndex = 1
+                    GCEmployeePosition.VisibleIndex = 2
+                    GCEmployeeLevel.VisibleIndex = 3
+                    GCWorkingDays.VisibleIndex = 4
+                    GCActualWorkingDays.VisibleIndex = 5
+                    GCTotalSalary.VisibleIndex = 6
+                    GCTotalDays.VisibleIndex = 7
+                    GCValue.VisibleIndex = 8
+                Else
+                    GCNIP.VisibleIndex = 0
+                    GCEmployee.VisibleIndex = 1
+                    GCEmployeePosition.VisibleIndex = 2
+                    GCEmployeeLevel.VisibleIndex = 3
+                    GCValue.VisibleIndex = 4
+                    GCWorkingDays.VisibleIndex = -1
+                    GCActualWorkingDays.VisibleIndex = -1
+                    GCTotalSalary.VisibleIndex = -1
+                    GCTotalDays.VisibleIndex = -1
+                End If
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 End Class

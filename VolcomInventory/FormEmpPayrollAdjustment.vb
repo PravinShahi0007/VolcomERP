@@ -5,13 +5,14 @@
         load_adjustment()
     End Sub
     Sub load_adjustment()
-        Dim query As String = "SELECT pya.*,emp.`employee_name`,emp.`employee_code`,emp.`employee_position`,dep.`departement`,adj.`description`,lvl.`employee_level` FROM tb_emp_payroll_adj pya
+        Dim query As String = "SELECT pya.*,emp.`employee_name`,emp.`employee_code`,emp.`employee_position`,dep.`departement`,adj.`salary_adjustment`,adjc.salary_adjustment_cat,lvl.`employee_level` FROM tb_emp_payroll_adj pya
                                 INNER JOIN tb_m_employee emp ON pya.id_employee=emp.`id_employee`
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=emp.`id_departement`
                                 INNER JOIN `tb_lookup_employee_level` lvl ON lvl.`id_employee_level`=emp.`id_employee_level`
                                 INNER JOIN `tb_lookup_salary_adjustment` adj ON adj.`id_salary_adjustment`=pya.`id_salary_adj`
+                                INNER JOIN tb_lookup_salary_adjustment_cat adjc ON adjc.id_salary_adjustment_cat = adj.id_salary_adjustment_cat
                                 WHERE pya.`id_payroll`='" & id_payroll & "'
-                                ORDER BY pya.id_employee ASC, pya.id_salary_adj ASC"
+                                ORDER BY emp.id_employee_level ASC, emp.`employee_code` ASC, pya.id_salary_adj ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCDeduction.DataSource = data
@@ -22,30 +23,34 @@
 
         If id_report_status = "0" Then
             BAdd.Enabled = True
-            BEdit.Enabled = True
+            'BEdit.Enabled = True
             BDel.Enabled = True
         Else
             BAdd.Enabled = False
-            BEdit.Enabled = False
+            'BEdit.Enabled = False
             BDel.Enabled = False
         End If
     End Sub
 
     Private Sub FormEmpPayrollAdjustment_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         FormEmpPayroll.load_payroll_detail()
+
         Dispose()
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-        FormEmpPayrollAdjustmentDet.ShowDialog()
+        FormEmpPayrollDeductionDet.id_popup = "2"
+        FormEmpPayrollDeductionDet.id_payroll = id_payroll
+
+        FormEmpPayrollDeductionDet.ShowDialog()
     End Sub
 
-    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
-        If GVDeduction.RowCount > 0 Then
-            FormEmpPayrollAdjustmentDet.id_payroll_adj = GVDeduction.GetFocusedRowCellValue("id_payroll_adj").ToString
-            FormEmpPayrollAdjustmentDet.ShowDialog()
-        End If
-    End Sub
+    'Private Sub BEdit_Click(sender As Object, e As EventArgs)
+    '    If GVDeduction.RowCount > 0 Then
+    '        FormEmpPayrollAdjustmentDet.id_payroll_adj = GVDeduction.GetFocusedRowCellValue("id_payroll_adj").ToString
+    '        FormEmpPayrollAdjustmentDet.ShowDialog()
+    '    End If
+    'End Sub
 
     Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
         If GVDeduction.RowCount > 0 Then
