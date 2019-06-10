@@ -28,11 +28,18 @@ Partial Class FormMatPurchasePD
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SLEMaterial = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPD = New DevExpress.XtraGrid.GridControl()
         Me.GVPD = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnCheck = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,6 +47,9 @@ Partial Class FormMatPurchasePD
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
         Me.TEToleransi = New DevExpress.XtraEditors.TextEdit()
         Me.TETotalAmount = New DevExpress.XtraEditors.TextEdit()
@@ -49,12 +59,6 @@ Partial Class FormMatPurchasePD
         Me.TEToleransiAmount = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.BCalculate = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,15 +69,18 @@ Partial Class FormMatPurchasePD
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl9.SuspendLayout()
         CType(Me.TEToleransi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEToleransiAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -142,11 +149,54 @@ Partial Class FormMatPurchasePD
         '
         'SearchLookUpEdit1View
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID Det"
+        Me.GridColumn7.FieldName = "id_mat_det"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID mat"
+        Me.GridColumn8.FieldName = "id_mat"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Material Code"
+        Me.GridColumn9.FieldName = "mat_det_code"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 331
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Material"
+        Me.GridColumn10.FieldName = "mat_det_display_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 1109
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "UOM"
+        Me.GridColumn12.FieldName = "uom"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.Width = 192
         '
         'PanelControl2
         '
@@ -162,7 +212,7 @@ Partial Class FormMatPurchasePD
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
-        Me.BCancel.Location = New System.Drawing.Point(838, 2)
+        Me.BCancel.Location = New System.Drawing.Point(809, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(104, 36)
         Me.BCancel.TabIndex = 1
@@ -172,11 +222,11 @@ Partial Class FormMatPurchasePD
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(942, 2)
+        Me.BSave.Location = New System.Drawing.Point(913, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(107, 36)
+        Me.BSave.Size = New System.Drawing.Size(136, 36)
         Me.BSave.TabIndex = 0
-        Me.BSave.Text = "Save"
+        Me.BSave.Text = "Generate List"
         '
         'GCPD
         '
@@ -191,11 +241,29 @@ Partial Class FormMatPurchasePD
         '
         'GVPD
         '
-        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4})
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCheck, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4})
         Me.GVPD.GridControl = Me.GCPD
         Me.GVPD.Name = "GVPD"
         Me.GVPD.OptionsView.ShowFooter = True
         Me.GVPD.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnCheck
+        '
+        Me.GridColumnCheck.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCheck.Caption = "*"
+        Me.GridColumnCheck.ColumnEdit = Me.RICEPD
+        Me.GridColumnCheck.FieldName = "is_check"
+        Me.GridColumnCheck.Name = "GridColumnCheck"
+        Me.GridColumnCheck.Visible = True
+        Me.GridColumnCheck.VisibleIndex = 0
+        '
+        'RICEPD
+        '
+        Me.RICEPD.AutoHeight = False
+        Me.RICEPD.Name = "RICEPD"
+        Me.RICEPD.ValueChecked = "yes"
+        Me.RICEPD.ValueUnchecked = "no"
         '
         'GridColumn1
         '
@@ -264,12 +332,39 @@ Partial Class FormMatPurchasePD
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.PanelControl9)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 337)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1051, 102)
         Me.PanelControl3.TabIndex = 3
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.MENote)
+        Me.PanelControl4.Controls.Add(Me.LabelControl1)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(710, 98)
+        Me.PanelControl4.TabIndex = 163
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(39, 14)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(652, 71)
+        Me.MENote.TabIndex = 153
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(10, 20)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.TabIndex = 152
+        Me.LabelControl1.Text = "Note"
         '
         'PanelControl9
         '
@@ -314,6 +409,7 @@ Partial Class FormMatPurchasePD
         Me.TETotalAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETotalAmount.Properties.Mask.SaveLiteral = False
         Me.TETotalAmount.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TETotalAmount.Properties.ReadOnly = True
         Me.TETotalAmount.Size = New System.Drawing.Size(212, 20)
         Me.TETotalAmount.TabIndex = 161
         '
@@ -361,6 +457,7 @@ Partial Class FormMatPurchasePD
         Me.TEToleransiAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEToleransiAmount.Properties.Mask.SaveLiteral = False
         Me.TEToleransiAmount.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEToleransiAmount.Properties.ReadOnly = True
         Me.TEToleransiAmount.Size = New System.Drawing.Size(140, 20)
         Me.TEToleransiAmount.TabIndex = 146
         '
@@ -380,54 +477,6 @@ Partial Class FormMatPurchasePD
         Me.BCalculate.Size = New System.Drawing.Size(1051, 27)
         Me.BCalculate.TabIndex = 4
         Me.BCalculate.Text = "Calculate"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "ID Det"
-        Me.GridColumn7.FieldName = "id_mat_det"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "ID mat"
-        Me.GridColumn8.FieldName = "id_mat"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Material Code"
-        Me.GridColumn9.FieldName = "mat_det_code"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
-        Me.GridColumn9.Width = 347
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Material"
-        Me.GridColumn10.FieldName = "mat_det_display_name"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
-        Me.GridColumn10.Width = 1285
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "*"
-        Me.GridColumn11.ColumnEdit = Me.RICEPD
-        Me.GridColumn11.FieldName = "is_check"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        '
-        'RICEPD
-        '
-        Me.RICEPD.AutoHeight = False
-        Me.RICEPD.Name = "RICEPD"
-        Me.RICEPD.ValueChecked = "yes"
-        Me.RICEPD.ValueUnchecked = "no"
         '
         'FormMatPurchasePD
         '
@@ -455,8 +504,13 @@ Partial Class FormMatPurchasePD
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl9.ResumeLayout(False)
         Me.PanelControl9.PerformLayout()
@@ -464,7 +518,6 @@ Partial Class FormMatPurchasePD
         CType(Me.TETotalAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEToleransiAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -502,6 +555,10 @@ Partial Class FormMatPurchasePD
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCheck As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEPD As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class
