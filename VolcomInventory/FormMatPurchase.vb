@@ -9,9 +9,20 @@
         '
         viewSeason()
         view_mat_purc()
+        view_mat_det_pd()
         '
         viewVendorKO()
         'GVMatPurchase.ActiveFilterString = "[id_mat_purc] > 1 AND [id_mat_purc] < 6"
+    End Sub
+
+    Sub view_mat_det_pd()
+        Dim query As String = "SELECT '0' AS id_mat_det, '0' AS id_mat, 'ALL' AS mat_det_code, 'ALL' AS mat_det_display_name , '-' AS uom
+UNION
+SELECT md.`id_mat_det`,md.`id_mat`,md.`mat_det_code`,md.`mat_det_display_name` ,uom.`uom`
+FROM tb_m_mat_det md
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
+        viewSearchLookupQuery(SLEMatDet, query, "id_mat_det", "mat_det_display_name", "id_mat_det")
     End Sub
 
     Sub viewVendorKO()
@@ -263,5 +274,32 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
 
     Private Sub BGenerateFromPD_Click(sender As Object, e As EventArgs) Handles BGenerateFromPD.Click
         FormMatPurchasePD.ShowDialog()
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        Dim query As String = ""
+        Dim query_where = ""
+        If Not SLEMatDet.EditValue.ToString = "0" Then
+            query_where = " WHERE md.id_mat_det='" & SLEMatDet.EditValue.ToString & "'"
+        End If
+
+        query = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)*((100+pl.`tolerance`)/100) AS total_qty_order 
+,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
+FROM `tb_mat_purc_list` pl
+INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
+LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
+" & query_where & "
+GROUP BY pl.`id_mat_purc_list`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCListMatPD.DataSource = data
+        GVListMatPD.BestFitColumns()
+    End Sub
+
+    Private Sub GVListMatPD_DoubleClick(sender As Object, e As EventArgs) Handles GVListMatPD.DoubleClick
+        If GVListMatPD.RowCount > 0 Then
+            FormMatPurchasePD.id_list = GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString
+            FormMatPurchasePD.ShowDialog()
+        End If
     End Sub
 End Class
