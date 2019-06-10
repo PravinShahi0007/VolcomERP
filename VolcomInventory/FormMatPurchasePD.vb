@@ -1,4 +1,6 @@
 ﻿Public Class FormMatPurchasePD
+    Dim id_list As String = "-1"
+
     Private Sub FormMatPurchasePD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
         load_mat()
@@ -22,7 +24,7 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
     End Sub
 
     Sub load_pd()
-        Dim query As String = "SELECT 'no' AS is_check,pdd.id_prod_demand_design,pdd.id_design,pdd.qty,dsg.design_display_name,dsg.design_code,pdd.prod_demand_number,pdd.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order FROM (
+        Dim query As String = "SELECT '' AS note,'no' AS is_check,pdd.id_prod_demand_design,pdd.id_design,pdd.qty,dsg.design_display_name,dsg.design_code,pdd.prod_demand_number,pdd.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
 	pd_dsg.prod_demand_design_propose_price, pd_dsg.prod_demand_design_total_cost, pd_dsg.msrp,
 	(SUM(pd_prd.prod_demand_product_qty)) AS qty
@@ -127,11 +129,28 @@ WHERE l.`is_cancel`=2 AND lp.`id_prod_demand_design`='" & GVPD.GetRowCellValue(i
 
         If already = True Then
             warningCustom(pd_note)
+        ElseIf GVPD.RowCount <= 0 Then
+            warningCustom("Please select at least 1 PD Design")
         Else
             'header
             query = "INSERT INTO tb_mat_purc_list(id_mat_det,created_by,created_date,qty_consumption,tolerance,note) VALUES
-('" & SLEMaterial.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TEConsumption.EditValue.ToString) & "','" & decimalSQL(TEToleransi.EditValue.ToString) & "','')"
+('" & SLEMaterial.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TEConsumption.EditValue.ToString) & "','" & decimalSQL(TEToleransi.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "'); SELECT LAST_INSERT_ID()"
+            id_list = execute_query(query, 0, True, "", "", "", "")
+
             'pd list
+            query = ""
+            For i As Integer = 0 To GVPD.RowCount - 1
+                If Not i = 0 Then
+                    query += ","
+                End If
+
+                query += "('" & id_list & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "qty").ToString) & "','" & GVPD.GetRowCellValue(i, "note").ToString & "')"
+            Next
+
+            query = "INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,total_qty_pd,note) VALUES " & query
+            execute_non_query(query, True, "", "", "", "")
+
+            Close()
         End If
     End Sub
 End Class
