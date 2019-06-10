@@ -65,7 +65,7 @@ ORDER BY pdd.id_prod_demand_design DESC"
         Dim query As String = "SELECT 'yes' AS is_check,lp.id_prod_demand_design,pdd.id_design,lp.total_qty_pd AS qty,dsg.design_display_name,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
 FROM tb_mat_purc_list_pd lp
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=lp.id_prod_demand_design
-INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pd_dsg.id_prod_demand
+INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 WHERE lp.id_mat_purc_list='" & id_list & "'
 ORDER BY pdd.id_prod_demand_design DESC"
