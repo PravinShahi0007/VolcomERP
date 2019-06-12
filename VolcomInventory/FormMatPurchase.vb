@@ -283,12 +283,18 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
             query_where = " WHERE md.id_mat_det='" & SLEMatDet.EditValue.ToString & "'"
         End If
 
-        query = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)*((100+pl.`tolerance`)/100) AS total_qty_order 
+        query = "SELECT 'no' AS is_check,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)*((100+pl.`tolerance`)/100) AS total_qty_order 
 ,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
+,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
+,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
 LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
+INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_cost='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 " & query_where & "
 GROUP BY pl.`id_mat_purc_list`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -301,5 +307,37 @@ GROUP BY pl.`id_mat_purc_list`"
             FormMatPurchasePD.id_list = GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString
             FormMatPurchasePD.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        GVListMatPD.ActiveFilterString = "[is_check]='yes'"
+        If GVListMatPD.RowCount > 0 Then
+            'create PO
+            'check vendor,id_currency must same
+            Dim id_comp_contact As String = ""
+            Dim id_currency As String = ""
+            Dim not_same As Boolean = False
+            For i As Integer = 0 To GVListMatPD.RowCount - 1
+                If id_comp_contact = "" And id_currency = "" Then
+                    id_comp_contact = GVListMatPD.GetRowCellValue(i, "id_comp_contact").ToString
+                    id_currency = GVListMatPD.GetRowCellValue(i, "id_currency").ToString
+                Else
+                    If Not id_comp_contact = GVListMatPD.GetRowCellValue(i, "id_comp_contact").ToString Or Not id_currency = GVListMatPD.GetRowCellValue(i, "id_currency").ToString Then
+                        not_same = True
+                        Exit For
+                    End If
+                End If
+            Next
+            '
+            If not_same = True Then
+                warningCustom("Make sure only material with same vendor and same currency selected.")
+            Else
+                FormMatPurchaseDet.is_from_list = "1"
+                FormMatPurchaseDet.ShowDialog()
+            End If
+        Else
+            warningCustom("Please choose list first")
+        End If
+        GVListMatPD.ActiveFilterString = ""
     End Sub
 End Class

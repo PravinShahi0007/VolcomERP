@@ -5,7 +5,9 @@
     Public date_created As String = ""
     Public id_report_status_g As String = "1"
     Public id_rev As String = "-1"
-
+    '
+    Public is_from_list As String = "-1"
+    '
     Private Sub FormSamplePurchaseDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         action_load()
     End Sub
@@ -47,6 +49,27 @@
             BMark.Visible = False
             BtnAttachment.Visible = False
             BPrePrint.Visible = False
+            '
+            If is_from_list = "1" Then
+                'get all list
+                'header vendor,etc
+                id_comp_to = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "id_comp_contact").ToString
+                TECompCode.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "comp_number").ToString
+                TECompName.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "comp_name").ToString
+                MECompAddress.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "address_primary").ToString
+                TECompAttn.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "contact_person").ToString
+
+                For i As Integer = 0 To FormMatPurchase.GVListMatPD.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCListMatPD.DataSource, DataTable)).NewRow()
+                    newRow("id_mat_purc_list") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString
+                    newRow("mat_det_display_name") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_display_name").ToString
+                    newRow("number") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "number").ToString
+                    newRow("total_qty_order") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order").ToString
+
+                    TryCast(GCListMatPD.DataSource, DataTable).Rows.Add(newRow)
+                    GCListMatPD.RefreshDataSource()
+                Next
+            End If
             '
         Else
             BPrePrint.Visible = True
