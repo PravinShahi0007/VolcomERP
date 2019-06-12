@@ -60,6 +60,16 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.GConListPurchase = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.XTCList = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCListMatPD = New DevExpress.XtraGrid.GridControl()
+        Me.GVListMatPD = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -115,16 +125,6 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTCList = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCListMatPD = New DevExpress.XtraGrid.GridControl()
-        Me.GVListMatPD = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMatPurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,6 +148,13 @@ Partial Class FormMatPurchaseDet
         Me.GConListPurchase.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.XTCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCList.SuspendLayout()
+        Me.XTPList.SuspendLayout()
+        CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPOrderList.SuspendLayout()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCButton, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,13 +178,6 @@ Partial Class FormMatPurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XTCList, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCList.SuspendLayout()
-        Me.XTPList.SuspendLayout()
-        Me.XTPOrderList.SuspendLayout()
-        CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -605,6 +605,98 @@ Partial Class FormMatPurchaseDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(887, 182)
         Me.PanelControl1.TabIndex = 19
+        '
+        'XTCList
+        '
+        Me.XTCList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCList.Location = New System.Drawing.Point(0, 0)
+        Me.XTCList.Name = "XTCList"
+        Me.XTCList.SelectedTabPage = Me.XTPList
+        Me.XTCList.Size = New System.Drawing.Size(887, 182)
+        Me.XTCList.TabIndex = 1
+        Me.XTCList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPOrderList})
+        '
+        'XTPList
+        '
+        Me.XTPList.Controls.Add(Me.GCListMatPD)
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(881, 154)
+        Me.XTPList.Text = "Material List From PD"
+        '
+        'GCListMatPD
+        '
+        Me.GCListMatPD.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListMatPD.Location = New System.Drawing.Point(0, 0)
+        Me.GCListMatPD.MainView = Me.GVListMatPD
+        Me.GCListMatPD.Name = "GCListMatPD"
+        Me.GCListMatPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPD})
+        Me.GCListMatPD.Size = New System.Drawing.Size(881, 154)
+        Me.GCListMatPD.TabIndex = 8
+        Me.GCListMatPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListMatPD})
+        '
+        'GVListMatPD
+        '
+        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GVListMatPD.GridControl = Me.GCListMatPD
+        Me.GVListMatPD.Name = "GVListMatPD"
+        Me.GVListMatPD.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID"
+        Me.GridColumn8.FieldName = "id_mat_purc_list"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Number"
+        Me.GridColumn9.FieldName = "number"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 172
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Material"
+        Me.GridColumn10.FieldName = "mat_det_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 383
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Total Qty Order"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "total_qty_order"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.Width = 147
+        '
+        'RICEPD
+        '
+        Me.RICEPD.AutoHeight = False
+        Me.RICEPD.Name = "RICEPD"
+        Me.RICEPD.ValueChecked = "yes"
+        Me.RICEPD.ValueUnchecked = "no"
+        '
+        'XTPOrderList
+        '
+        Me.XTPOrderList.Controls.Add(Me.GCListPurchase)
+        Me.XTPOrderList.Name = "XTPOrderList"
+        Me.XTPOrderList.Size = New System.Drawing.Size(881, 154)
+        Me.XTPOrderList.Text = "Order List"
         '
         'GCListPurchase
         '
@@ -1198,98 +1290,6 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
-        'XTCList
-        '
-        Me.XTCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCList.Location = New System.Drawing.Point(0, 0)
-        Me.XTCList.Name = "XTCList"
-        Me.XTCList.SelectedTabPage = Me.XTPList
-        Me.XTCList.Size = New System.Drawing.Size(887, 182)
-        Me.XTCList.TabIndex = 1
-        Me.XTCList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPOrderList})
-        '
-        'XTPList
-        '
-        Me.XTPList.Controls.Add(Me.GCListMatPD)
-        Me.XTPList.Name = "XTPList"
-        Me.XTPList.Size = New System.Drawing.Size(881, 154)
-        Me.XTPList.Text = "Material List From PD"
-        '
-        'XTPOrderList
-        '
-        Me.XTPOrderList.Controls.Add(Me.GCListPurchase)
-        Me.XTPOrderList.Name = "XTPOrderList"
-        Me.XTPOrderList.Size = New System.Drawing.Size(881, 154)
-        Me.XTPOrderList.Text = "Order List"
-        '
-        'GCListMatPD
-        '
-        Me.GCListMatPD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCListMatPD.Location = New System.Drawing.Point(0, 0)
-        Me.GCListMatPD.MainView = Me.GVListMatPD
-        Me.GCListMatPD.Name = "GCListMatPD"
-        Me.GCListMatPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPD})
-        Me.GCListMatPD.Size = New System.Drawing.Size(881, 154)
-        Me.GCListMatPD.TabIndex = 8
-        Me.GCListMatPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListMatPD})
-        '
-        'GVListMatPD
-        '
-        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
-        Me.GVListMatPD.GridControl = Me.GCListMatPD
-        Me.GVListMatPD.Name = "GVListMatPD"
-        Me.GVListMatPD.OptionsView.ShowGroupPanel = False
-        '
-        'RICEPD
-        '
-        Me.RICEPD.AutoHeight = False
-        Me.RICEPD.Name = "RICEPD"
-        Me.RICEPD.ValueChecked = "yes"
-        Me.RICEPD.ValueUnchecked = "no"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "ID"
-        Me.GridColumn8.FieldName = "id_mat_purc_list"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Number"
-        Me.GridColumn9.FieldName = "number"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.ReadOnly = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
-        Me.GridColumn9.Width = 172
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Material"
-        Me.GridColumn10.FieldName = "mat_det_display_name"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
-        Me.GridColumn10.Width = 383
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Total Qty Order"
-        Me.GridColumn11.DisplayFormat.FormatString = "N2"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "total_qty_order"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.OptionsColumn.ReadOnly = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 2
-        Me.GridColumn11.Width = 147
-        '
         'FormMatPurchaseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1330,6 +1330,13 @@ Partial Class FormMatPurchaseDet
         Me.GConListPurchase.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.XTCList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCList.ResumeLayout(False)
+        Me.XTPList.ResumeLayout(False)
+        CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPOrderList.ResumeLayout(False)
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCButton, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1354,13 +1361,6 @@ Partial Class FormMatPurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XTCList, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCList.ResumeLayout(False)
-        Me.XTPList.ResumeLayout(False)
-        Me.XTPOrderList.ResumeLayout(False)
-        CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

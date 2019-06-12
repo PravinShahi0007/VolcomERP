@@ -51,7 +51,8 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
     End Sub
 
     Sub load_pd()
-        Dim query As String = "SELECT '' AS note,'no' AS is_check,pdd.id_prod_demand_design,pdd.id_design,pdd.qty,dsg.design_display_name,dsg.design_code,pdd.prod_demand_number,pdd.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order FROM (
+        Dim query As String = "SELECT '' AS note,'no' AS is_check,pdd.id_prod_demand_design,pdd.id_design,pdd.qty,dsg.design_display_name,dsg.design_code,pdd.prod_demand_number,pdd.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order 
+FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
 	pd_dsg.prod_demand_design_propose_price, pd_dsg.prod_demand_design_total_cost, pd_dsg.msrp,
 	(SUM(pd_prd.prod_demand_product_qty)) AS qty
@@ -63,6 +64,13 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
 	ORDER BY pd_dsg.id_prod_demand_design DESC
 ) pdd
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+LEFT JOIN
+(
+	SELECT id_prod_demand_design FROM `tb_mat_purc_list_pd` plp
+	INNER JOIN tb_mat_purc_list pl ON pl.`id_mat_purc_list`=plp.`id_mat_purc_list` AND pl.`is_cancel`=2
+	INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det` AND md.`id_mat`=(SELECT id_mat FROM tb_m_mat_det WHERE id_mat_det='" & SLEMaterial.EditValue.ToString & "')
+) pl ON pl.id_prod_demand_design=pdd.id_prod_demand_design
+WHERE ISNULL(pl.id_prod_demand_design)
 GROUP BY pdd.id_design
 ORDER BY pdd.id_prod_demand_design DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -156,46 +164,48 @@ ORDER BY pdd.id_prod_demand_design DESC"
         Dim already As Boolean = False
         Dim pd_note As String = ""
 
-        For i As Integer = 0 To GVPD.RowCount - 1
-            Dim query_cek As String = "SELECT dsg.`design_code`,dsg.`design_display_name`,LPAD(l.`id_mat_purc`,6,'0') AS number FROM `tb_mat_purc_list_pd` lp
+        If Not BCalculate.Text = "Unlock" Then
+            warningCustom("Please press calculate")
+        Else
+            For i As Integer = 0 To GVPD.RowCount - 1
+                Dim query_cek As String = "SELECT dsg.`design_code`,dsg.`design_display_name`,LPAD(l.`id_mat_purc`,6,'0') AS number FROM `tb_mat_purc_list_pd` lp
 INNER JOIN `tb_mat_purc_list` l ON l.`id_mat_purc_list`=lp.`id_mat_purc_list`
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=lp.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE l.`is_cancel`=2 AND lp.`id_prod_demand_design`='" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "'"
-            Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
-            If data_cek.Rows.Count > 0 Then
-                pd_note = data_cek.Rows(0)("design_code").ToString & " - " & data_cek.Rows(0)("design_display_name").ToString & " already listed on list no : " & data_cek.Rows(0)("number").ToString
-                already = False
-                Exit For
-            End If
-        Next
-
-        If already = True Then
-            warningCustom(pd_note)
-        ElseIf GVPD.RowCount <= 0 Then
-            warningCustom("Please select at least 1 PD Design")
-        ElseIf Not BCalculate.Text = "Unlock" Then
-            warningCustom("Please press calculate")
-        Else
-            'header
-            query = "INSERT INTO tb_mat_purc_list(id_mat_det,created_by,created_date,qty_consumption,tolerance,note) VALUES
-('" & SLEMaterial.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TEConsumption.EditValue.ToString) & "','" & decimalSQL(TEToleransi.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "'); SELECT LAST_INSERT_ID()"
-            id_list = execute_query(query, 0, True, "", "", "", "")
-
-            'pd list
-            query = ""
-            For i As Integer = 0 To GVPD.RowCount - 1
-                If Not i = 0 Then
-                    query += ","
+                Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+                If data_cek.Rows.Count > 0 Then
+                    pd_note = data_cek.Rows(0)("design_code").ToString & " - " & data_cek.Rows(0)("design_display_name").ToString & " already listed on list no : " & data_cek.Rows(0)("number").ToString
+                    already = False
+                    Exit For
                 End If
-
-                query += "('" & id_list & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "qty").ToString) & "','" & GVPD.GetRowCellValue(i, "note").ToString & "')"
             Next
 
-            query = "INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,total_qty_pd,note) VALUES " & query
-            execute_non_query(query, True, "", "", "", "")
+            If already = True Then
+                warningCustom(pd_note)
+            ElseIf GVPD.RowCount <= 0 Then
+                warningCustom("Please select at least 1 PD Design")
+            Else
+                'header
+                query = "INSERT INTO tb_mat_purc_list(id_mat_det,created_by,created_date,qty_consumption,tolerance,note) VALUES
+('" & SLEMaterial.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TEConsumption.EditValue.ToString) & "','" & decimalSQL(TEToleransi.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "'); SELECT LAST_INSERT_ID()"
+                id_list = execute_query(query, 0, True, "", "", "", "")
 
-            Close()
+                'pd list
+                query = ""
+                For i As Integer = 0 To GVPD.RowCount - 1
+                    If Not i = 0 Then
+                        query += ","
+                    End If
+
+                    query += "('" & id_list & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "qty").ToString) & "','" & GVPD.GetRowCellValue(i, "note").ToString & "')"
+                Next
+
+                query = "INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,total_qty_pd,note) VALUES " & query
+                execute_non_query(query, True, "", "", "", "")
+
+                Close()
+            End If
         End If
     End Sub
 End Class

@@ -29,6 +29,36 @@
         End If
     End Sub
 
+    Sub load_list_pd()
+        Dim query As String = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)*((100+pl.`tolerance`)/100) AS total_qty_order 
+,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
+,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
+,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
+,md.mat_det_name,color.display_name AS color,size.display_name AS size
+FROM `tb_mat_purc_list` pl
+INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
+LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
+INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_cost='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=1
+) color ON color.id_mat_det=md.id_mat_det
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=13
+) size ON size.id_mat_det=md.id_mat_det
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+WHERE pl.id_mat_purc='" & id_purc & "'
+GROUP BY pl.`id_mat_purc_list`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCListMatPD.DataSource = data
+    End Sub
+
     Sub action_load()
         view_currency(LECurrency)
         view_po_type(LEPOType)
@@ -51,6 +81,7 @@
             BPrePrint.Visible = False
             '
             If is_from_list = "1" Then
+                load_list_pd()
                 'get all list
                 'header vendor,etc
                 id_comp_to = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "id_comp_contact").ToString
@@ -59,16 +90,58 @@
                 MECompAddress.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "address_primary").ToString
                 TECompAttn.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "contact_person").ToString
 
-                For i As Integer = 0 To FormMatPurchase.GVListMatPD.RowCount - 1
-                    Dim newRow As DataRow = (TryCast(GCListMatPD.DataSource, DataTable)).NewRow()
-                    newRow("id_mat_purc_list") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString
-                    newRow("mat_det_display_name") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_display_name").ToString
-                    newRow("number") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "number").ToString
-                    newRow("total_qty_order") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order").ToString
+                Try
+                    For i As Integer = 0 To FormMatPurchase.GVListMatPD.RowCount - 1
+                        Dim newRow As DataRow = (TryCast(GCListMatPD.DataSource, DataTable)).NewRow()
+                        newRow("id_mat_purc_list") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString
+                        newRow("mat_det_name") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_name").ToString
+                        newRow("number") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "number").ToString
+                        newRow("total_qty_order") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order").ToString
 
-                    TryCast(GCListMatPD.DataSource, DataTable).Rows.Add(newRow)
-                    GCListMatPD.RefreshDataSource()
-                Next
+                        TryCast(GCListMatPD.DataSource, DataTable).Rows.Add(newRow)
+                        GCListMatPD.RefreshDataSource()
+                    Next
+
+                    For i As Integer = 0 To FormMatPurchase.GVListMatPD.RowCount - 1
+                        'check if already
+                        Dim found As Boolean = False
+                        If GVListPurchase.RowCount > 0 Then
+                            For j As Integer = 0 To GVListPurchase.RowCount - 1
+                                If FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_det_price") = GVListPurchase.GetRowCellValue(j, "id_mat_det_price").ToString Then
+                                    found = True
+                                    'add qty
+                                    GVListPurchase.SetRowCellValue(j, "qty", GVListPurchase.GetRowCellValue(j, "qty") + FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order"))
+                                    GVListPurchase.SetRowCellValue(j, "total", GVListPurchase.GetRowCellValue(j, "qty") * GVListPurchase.GetRowCellValue(j, "price") - GVListPurchase.GetRowCellValue(j, "discount"))
+                                    '
+                                End If
+                            Next
+                        End If
+                        '
+                        If found = False Then
+                            'insert
+                            Dim newRow As DataRow = (TryCast(GCListPurchase.DataSource, DataTable)).NewRow()
+                            newRow("id_mat_det_price") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_det_price")
+                            newRow("name") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_name").ToString
+                            newRow("code") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_code").ToString
+                            newRow("color") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "color").ToString
+                            newRow("size") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "size").ToString
+                            newRow("price") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_price")
+                            newRow("qty") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order")
+                            newRow("discount") = 0
+                            newRow("total") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order") * FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_price")
+                            newRow("note") = ""
+
+                            TryCast(GCListPurchase.DataSource, DataTable).Rows.Add(newRow)
+                            GCListPurchase.RefreshDataSource()
+                        End If
+                    Next
+                    calculate()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+                PCButton.Visible = False
+            Else
+                XTPList.PageVisible = False
             End If
             '
         Else
@@ -350,7 +423,7 @@
                     id_purc_new = execute_query(query, 0, True, "", "", "", "")
                     '
                     insert_who_prepared("13", id_purc_new, id_user)
-
+                    '
                     increase_inc_mat("1")
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         If Not GVListPurchase.GetRowCellValue(i, "id_mat_det_price").ToString = "" Then
@@ -359,6 +432,13 @@
                             execute_non_query(query, True, "", "", "", "")
                         End If
                     Next
+
+                    'update list if any
+                    For i As Integer = 0 To GVListMatPD.RowCount - 1
+                        query = String.Format("UPDATE tb_mat_purc_list SET id_mat_purc='" & id_purc_new & "' WHERE id_mat_purc_list='" & GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString & "'")
+                        execute_non_query(query, True, "", "", "", "")
+                    Next
+                    '
                     FormMatPurchase.view_mat_purc()
                     FormMatPurchase.GVMatPurchase.ExpandAllGroups()
                     FormMatPurchase.GVMatPurchase.FocusedRowHandle = find_row(FormMatPurchase.GVMatPurchase, "id_mat_purc", id_purc_new)

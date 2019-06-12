@@ -287,6 +287,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
 ,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
+,md.mat_det_name,color.display_name AS color,size.display_name AS size
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
@@ -294,6 +295,16 @@ LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
 INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_cost='1' AND mdp.id_mat_det=pl.id_mat_det
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=1
+) color ON color.id_mat_det=md.id_mat_det
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=13
+) size ON size.id_mat_det=md.id_mat_det
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 " & query_where & "
 GROUP BY pl.`id_mat_purc_list`"
