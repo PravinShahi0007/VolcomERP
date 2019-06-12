@@ -15,7 +15,7 @@
 	        INNER JOIN tb_item_coa_propose cpm ON cpm.id_item_coa_propose = cp.id_item_coa_propose 
 	        WHERE cp.id_item_cat=" + SLECat.EditValue.ToString + " AND cpm.id_report_status!=5
         ) cp ON cp.id_departement = d.id_departement
-        WHERE d.is_office_dept=1 AND d.is_kk_unit=2 
+        WHERE ((d.is_office_dept=1 AND d.is_kk_unit=2) OR d.is_store='1') 
         AND ISNULL(cp.id_item_coa_propose_det) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data

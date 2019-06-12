@@ -2029,6 +2029,12 @@
     <Compile Include="FormMasterSampleNR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurchasePD.Designer.vb">
+      <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurchasePD.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMatPurcSum.Designer.vb">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
     </Compile>
@@ -7770,6 +7776,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurchasePD.resx">
+      <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcSum.resx">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
