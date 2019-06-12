@@ -23,9 +23,9 @@
 
     Private Sub FormEmpPayrollDeductionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_popup = "1" Then
-            Text = "Deduction Income Detail"
+            Text = "Deduction Detail"
         ElseIf id_popup = "2" Then
-            Text = "Additional Income Detail"
+            Text = "Bonus / Adjustment Detail"
         End If
 
         load_deduction()
@@ -38,10 +38,10 @@
         data.Columns.Add("employee_name", GetType(String))
         data.Columns.Add("employee_position", GetType(String))
         data.Columns.Add("employee_level", GetType(String))
-        data.Columns.Add("workdays", GetType(String))
-        data.Columns.Add("actual_workdays", GetType(Integer))
+        data.Columns.Add("workdays", GetType(Decimal))
+        data.Columns.Add("actual_workdays", GetType(Decimal))
         data.Columns.Add("total_salary", GetType(Integer))
-        data.Columns.Add("total_days", GetType(Integer))
+        data.Columns.Add("total_days", GetType(Decimal))
         data.Columns.Add("value", GetType(Integer))
 
         GCDeduction.DataSource = data
@@ -67,19 +67,18 @@
                     If GVDeduction.IsValidRowHandle(i) Then
                         Dim id_employee As String = GVDeduction.GetRowCellValue(i, "id_employee").ToString
                         Dim value As String = GVDeduction.GetRowCellValue(i, "value").ToString
+                        Dim total_days As String = GVDeduction.GetRowCellValue(i, "total_days").ToString
+                        Dim increase As String = GVDeduction.GetRowCellValue(i, "total_salary").ToString
 
                         Dim query As String = ""
 
                         If id_popup = "1" Then
                             query = "
-                                INSERT INTO tb_emp_payroll_deduction (id_payroll, id_salary_deduction, id_employee, deduction, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
+                                INSERT INTO tb_emp_payroll_deduction (id_payroll, id_salary_deduction, id_employee, total_days, increase, deduction, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(total_days) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
                             "
                         ElseIf id_popup = "2" Then
-                            Dim total_days As String = "0"
-                            Dim increase As String = "0"
-
                             query = "
-                                INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, value, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(total_days) + ", " + increase + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
+                                INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, value, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(total_days) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
                             "
                         End If
 
@@ -144,6 +143,8 @@
         Else
             Try
                 If SLUECategory.Properties.View.GetRowCellValue(row, "use_days").ToString = "1" Then
+                    GCTotalDays.OptionsColumn.AllowEdit = True
+
                     GCNIP.VisibleIndex = 0
                     GCEmployee.VisibleIndex = 1
                     GCEmployeePosition.VisibleIndex = 2
@@ -154,6 +155,8 @@
                     GCTotalDays.VisibleIndex = 7
                     GCValue.VisibleIndex = 8
                 Else
+                    GCTotalDays.OptionsColumn.AllowEdit = False
+
                     GCNIP.VisibleIndex = 0
                     GCEmployee.VisibleIndex = 1
                     GCEmployeePosition.VisibleIndex = 2
@@ -166,6 +169,33 @@
                 End If
             Catch ex As Exception
             End Try
+        End If
+    End Sub
+
+    Sub calculate_value()
+        For i = 0 To GVDeduction.RowCount - 1
+            If GVDeduction.IsValidRowHandle(i) Then
+                Dim value As Integer = 0
+
+                Try
+                    Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
+                    Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
+                    Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
+
+                    value = (total_days / workdays) * total_salary
+                Catch ex As Exception
+                End Try
+
+                GVDeduction.SetRowCellValue(i, "value", value)
+            End If
+        Next
+    End Sub
+
+    Private Sub GVDeduction_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVDeduction.CellValueChanged
+        If e.Column.FieldName.ToString = "total_days" Then
+            calculate_value()
+
+            GVDeduction.BestFitColumns()
         End If
     End Sub
 End Class

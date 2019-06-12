@@ -19,9 +19,8 @@ Partial Class FormEmpPayrollDeductionDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollDeductionDet))
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -57,7 +56,7 @@ Partial Class FormEmpPayrollDeductionDet
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
         Me.SBInsert = New DevExpress.XtraEditors.SimpleButton()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -224,7 +223,7 @@ Partial Class FormEmpPayrollDeductionDet
         'GCWorkingDays
         '
         Me.GCWorkingDays.Caption = "Working Days"
-        Me.GCWorkingDays.DisplayFormat.FormatString = "N0"
+        Me.GCWorkingDays.DisplayFormat.FormatString = "N2"
         Me.GCWorkingDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCWorkingDays.FieldName = "workdays"
         Me.GCWorkingDays.Name = "GCWorkingDays"
@@ -235,7 +234,7 @@ Partial Class FormEmpPayrollDeductionDet
         'GCActualWorkingDays
         '
         Me.GCActualWorkingDays.Caption = "Actual Working Days"
-        Me.GCActualWorkingDays.DisplayFormat.FormatString = "N0"
+        Me.GCActualWorkingDays.DisplayFormat.FormatString = "N2"
         Me.GCActualWorkingDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCActualWorkingDays.FieldName = "actual_workdays"
         Me.GCActualWorkingDays.Name = "GCActualWorkingDays"
@@ -258,7 +257,7 @@ Partial Class FormEmpPayrollDeductionDet
         '
         Me.GCTotalDays.Caption = "Total Days"
         Me.GCTotalDays.ColumnEdit = Me.RITETotalDays
-        Me.GCTotalDays.DisplayFormat.FormatString = "N0"
+        Me.GCTotalDays.DisplayFormat.FormatString = "N2"
         Me.GCTotalDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCTotalDays.FieldName = "total_days"
         Me.GCTotalDays.Name = "GCTotalDays"
@@ -268,6 +267,10 @@ Partial Class FormEmpPayrollDeductionDet
         'RITETotalDays
         '
         Me.RITETotalDays.AutoHeight = False
+        Me.RITETotalDays.DisplayFormat.FormatString = "N2"
+        Me.RITETotalDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITETotalDays.EditFormat.FormatString = "N2"
+        Me.RITETotalDays.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RITETotalDays.Name = "RITETotalDays"
         '
         'GCValue

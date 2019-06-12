@@ -38,8 +38,8 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIncrease = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -74,6 +74,7 @@ Partial Class FormEmpPayrollAdjustment
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBPrint)
         Me.PanelControl1.Controls.Add(Me.BDel)
         Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -116,10 +117,10 @@ Partial Class FormEmpPayrollAdjustment
         '
         'GVDeduction
         '
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnType, Me.GridColumnCategory, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnIncrease, Me.GridColumnNote})
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnType, Me.GridColumnCategory, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnNote})
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 1
-        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", Me.GridColumnValue, "{0:N0}")})
+        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", Me.GridColumnValue, "{0:N2}")})
         Me.GVDeduction.Name = "GVDeduction"
         Me.GVDeduction.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDeduction.OptionsBehavior.Editable = False
@@ -177,7 +178,7 @@ Partial Class FormEmpPayrollAdjustment
         '
         'GridColumnEmpLvl
         '
-        Me.GridColumnEmpLvl.Caption = "Employee level"
+        Me.GridColumnEmpLvl.Caption = "Employee Level"
         Me.GridColumnEmpLvl.FieldName = "employee_level"
         Me.GridColumnEmpLvl.Name = "GridColumnEmpLvl"
         Me.GridColumnEmpLvl.Visible = True
@@ -186,20 +187,20 @@ Partial Class FormEmpPayrollAdjustment
         '
         'GridColumnType
         '
-        Me.GridColumnType.Caption = "Category"
-        Me.GridColumnType.FieldName = "salary_adjustment"
+        Me.GridColumnType.Caption = "Type"
+        Me.GridColumnType.FieldName = "salary_adjustment_cat"
         Me.GridColumnType.Name = "GridColumnType"
         Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 5
+        Me.GridColumnType.VisibleIndex = 4
         Me.GridColumnType.Width = 86
         '
         'GridColumnCategory
         '
-        Me.GridColumnCategory.Caption = "Type"
-        Me.GridColumnCategory.FieldName = "salary_adjustment_cat"
+        Me.GridColumnCategory.Caption = "Category"
+        Me.GridColumnCategory.FieldName = "salary_adjustment"
         Me.GridColumnCategory.Name = "GridColumnCategory"
         Me.GridColumnCategory.Visible = True
-        Me.GridColumnCategory.VisibleIndex = 4
+        Me.GridColumnCategory.VisibleIndex = 5
         '
         'GridColumnTotDays
         '
@@ -208,7 +209,7 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnTotDays.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnTotDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnTotDays.Caption = "Total Days"
-        Me.GridColumnTotDays.DisplayFormat.FormatString = "N1"
+        Me.GridColumnTotDays.DisplayFormat.FormatString = "N2"
         Me.GridColumnTotDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotDays.FieldName = "total_days"
         Me.GridColumnTotDays.Name = "GridColumnTotDays"
@@ -222,22 +223,14 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnValue.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnValue.Caption = "Value"
-        Me.GridColumnValue.DisplayFormat.FormatString = "N0"
+        Me.GridColumnValue.DisplayFormat.FormatString = "N2"
         Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValue.FieldName = "value"
         Me.GridColumnValue.Name = "GridColumnValue"
-        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N0}")})
+        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnValue.Visible = True
         Me.GridColumnValue.VisibleIndex = 7
         Me.GridColumnValue.Width = 86
-        '
-        'GridColumnIncrease
-        '
-        Me.GridColumnIncrease.Caption = "Increase"
-        Me.GridColumnIncrease.DisplayFormat.FormatString = "N0"
-        Me.GridColumnIncrease.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnIncrease.FieldName = "increase"
-        Me.GridColumnIncrease.Name = "GridColumnIncrease"
         '
         'GridColumnNote
         '
@@ -247,6 +240,18 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 8
         Me.GridColumnNote.Width = 101
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Enabled = False
+        Me.SBPrint.ImageIndex = 6
+        Me.SBPrint.ImageList = Me.LargeImageCollection
+        Me.SBPrint.Location = New System.Drawing.Point(807, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(81, 34)
+        Me.SBPrint.TabIndex = 112
+        Me.SBPrint.Text = "Print"
         '
         'FormEmpPayrollAdjustment
         '
@@ -259,7 +264,7 @@ Partial Class FormEmpPayrollAdjustment
         Me.MinimizeBox = False
         Me.Name = "FormEmpPayrollAdjustment"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Additional Income"
+        Me.Text = "Bonus / Adjustment"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -287,6 +292,6 @@ Partial Class FormEmpPayrollAdjustment
     Friend WithEvents GridColumnValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotDays As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIncrease As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
 End Class
