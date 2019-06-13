@@ -34,6 +34,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCTotalHours = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCValid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
@@ -67,9 +68,15 @@ Partial Public Class ReportEmpOvertime
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.RISLUEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -92,6 +99,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployee.Location = New System.Drawing.Point(2, 2)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType})
         Me.GCEmployee.Size = New System.Drawing.Size(698, 200)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
@@ -129,7 +137,7 @@ Partial Public Class ReportEmpOvertime
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GCConversionType, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCValid})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GCConversionType, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCPoint, Me.GCValid})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -189,6 +197,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCConversionType.AppearanceHeader.Options.UseTextOptions = True
         Me.GCConversionType.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCConversionType.Caption = "Conversion Type"
+        Me.GCConversionType.ColumnEdit = Me.RISLUEType
         Me.GCConversionType.FieldName = "conversion_type"
         Me.GCConversionType.Name = "GCConversionType"
         Me.GCConversionType.Visible = True
@@ -245,6 +254,16 @@ Partial Public Class ReportEmpOvertime
         Me.GCTotalHours.VisibleIndex = 8
         Me.GCTotalHours.Width = 55
         '
+        'GCPoint
+        '
+        Me.GCPoint.Caption = "Point"
+        Me.GCPoint.DisplayFormat.FormatString = "N1"
+        Me.GCPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCPoint.FieldName = "point"
+        Me.GCPoint.Name = "GCPoint"
+        Me.GCPoint.Visible = True
+        Me.GCPoint.VisibleIndex = 9
+        '
         'GCValid
         '
         Me.GCValid.Caption = "Valid"
@@ -252,7 +271,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCValid.MaxWidth = 55
         Me.GCValid.Name = "GCValid"
         Me.GCValid.Visible = True
-        Me.GCValid.VisibleIndex = 9
+        Me.GCValid.VisibleIndex = 10
         Me.GCValid.Width = 55
         '
         'XrLabel16
@@ -473,7 +492,7 @@ Partial Public Class ReportEmpOvertime
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
         Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.Text = "Created At"
+        Me.XrLabel5.Text = "Created By"
         '
         'XrLabel6
         '
@@ -483,7 +502,7 @@ Partial Public Class ReportEmpOvertime
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
         Me.XrLabel6.StylePriority.UseFont = False
-        Me.XrLabel6.Text = "Created By"
+        Me.XrLabel6.Text = "Created At"
         '
         'XrLabel7
         '
@@ -560,6 +579,35 @@ Partial Public Class ReportEmpOvertime
         Me.ReportFooter.HeightF = 96.54169!
         Me.ReportFooter.Name = "ReportFooter"
         '
+        'RISLUEType
+        '
+        Me.RISLUEType.AutoHeight = False
+        Me.RISLUEType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLUEType.Name = "RISLUEType"
+        Me.RISLUEType.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_type"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Conversion Type"
+        Me.GridColumn6.FieldName = "type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
         'ReportEmpOvertime
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -572,6 +620,8 @@ Partial Public Class ReportEmpOvertime
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -622,4 +672,9 @@ Partial Public Class ReportEmpOvertime
     Friend WithEvents GCValid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPoint As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLUEType As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
