@@ -63,6 +63,8 @@ Partial Class FormMatPurchaseDet
         Me.XTCList = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListMatPD = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVListMatPD = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -125,8 +127,6 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMatPurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +154,7 @@ Partial Class FormMatPurchaseDet
         Me.XTCList.SuspendLayout()
         Me.XTPList.SuspendLayout()
         CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrderList.SuspendLayout()
@@ -180,7 +181,6 @@ Partial Class FormMatPurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -637,6 +637,18 @@ Partial Class FormMatPurchaseDet
         Me.GCListMatPD.Size = New System.Drawing.Size(881, 154)
         Me.GCListMatPD.TabIndex = 8
         Me.GCListMatPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListMatPD})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'SMView
+        '
+        Me.SMView.Name = "SMView"
+        Me.SMView.Size = New System.Drawing.Size(152, 22)
+        Me.SMView.Text = "Print List"
         '
         'GVListMatPD
         '
@@ -1294,18 +1306,6 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
-        '
-        'SMView
-        '
-        Me.SMView.Name = "SMView"
-        Me.SMView.Size = New System.Drawing.Size(152, 22)
-        Me.SMView.Text = "View List"
-        '
         'FormMatPurchaseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1350,6 +1350,7 @@ Partial Class FormMatPurchaseDet
         Me.XTCList.ResumeLayout(False)
         Me.XTPList.ResumeLayout(False)
         CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrderList.ResumeLayout(False)
@@ -1377,7 +1378,6 @@ Partial Class FormMatPurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
