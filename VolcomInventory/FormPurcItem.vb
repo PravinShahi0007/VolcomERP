@@ -73,6 +73,7 @@
                                 WHERE cat.id_expense_type LIKE " & q_type & " AND item.id_item_cat LIKE " & q_cat & " AND item.is_active LIKE " & q_active
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItem.DataSource = data
+        check_menu()
     End Sub
 
     Private Sub FormPurcItem_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
