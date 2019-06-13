@@ -805,7 +805,11 @@ GROUP BY pl.`id_mat_purc_list`"
 
     Private Sub SMView_Click(sender As Object, e As EventArgs) Handles SMView.Click
         If GVListMatPD.RowCount > 0 Then
+            Dim rpt As New ReportMatPD
+            rpt.id_purc = id_purc
+            'head
 
+            'detail
         End If
     End Sub
 End Class

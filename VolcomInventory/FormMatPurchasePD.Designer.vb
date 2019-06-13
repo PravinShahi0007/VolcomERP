@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMatPurchasePD
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormMatPurchasePD
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMatPurchasePD))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -34,7 +34,6 @@ Partial Class FormMatPurchasePD
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPD = New DevExpress.XtraGrid.GridControl()
@@ -202,24 +201,13 @@ Partial Class FormMatPurchasePD
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 439)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 450)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1051, 40)
         Me.PanelControl2.TabIndex = 1
-        '
-        'BPrint
-        '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(2, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(104, 36)
-        Me.BPrint.TabIndex = 2
-        Me.BPrint.Text = "Print"
         '
         'BCancel
         '
@@ -248,7 +236,7 @@ Partial Class FormMatPurchasePD
         Me.GCPD.MainView = Me.GVPD
         Me.GCPD.Name = "GCPD"
         Me.GCPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPD})
-        Me.GCPD.Size = New System.Drawing.Size(1051, 256)
+        Me.GCPD.Size = New System.Drawing.Size(1051, 267)
         Me.GCPD.TabIndex = 2
         Me.GCPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPD})
         '
@@ -358,7 +346,7 @@ Partial Class FormMatPurchasePD
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.PanelControl9)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 337)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 348)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1051, 102)
         Me.PanelControl3.TabIndex = 3
@@ -495,7 +483,7 @@ Partial Class FormMatPurchasePD
         'BCalculate
         '
         Me.BCalculate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCalculate.Location = New System.Drawing.Point(0, 310)
+        Me.BCalculate.Location = New System.Drawing.Point(0, 321)
         Me.BCalculate.Name = "BCalculate"
         Me.BCalculate.Size = New System.Drawing.Size(1051, 27)
         Me.BCalculate.TabIndex = 4
@@ -505,7 +493,7 @@ Partial Class FormMatPurchasePD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1051, 479)
+        Me.ClientSize = New System.Drawing.Size(1051, 490)
         Me.Controls.Add(Me.GCPD)
         Me.Controls.Add(Me.BCalculate)
         Me.Controls.Add(Me.PanelControl3)
@@ -585,5 +573,4 @@ Partial Class FormMatPurchasePD
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class
