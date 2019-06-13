@@ -89,6 +89,7 @@ GROUP BY pl.`id_mat_purc_list`"
                 TECompName.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "comp_name").ToString
                 MECompAddress.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "address_primary").ToString
                 TECompAttn.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "contact_person").ToString
+                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMatPurchase.GVListMatPD.GetRowCellValue(0, "id_currency").ToString)
 
                 Try
                     For i As Integer = 0 To FormMatPurchase.GVListMatPD.RowCount - 1
@@ -135,6 +136,8 @@ GROUP BY pl.`id_mat_purc_list`"
                             GCListPurchase.RefreshDataSource()
                         End If
                     Next
+                    GVListMatPD.BestFitColumns()
+                    GVListPurchase.BestFitColumns()
                     calculate()
                 Catch ex As Exception
                     MsgBox(ex.ToString)
