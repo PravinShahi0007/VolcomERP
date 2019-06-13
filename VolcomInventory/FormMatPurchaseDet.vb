@@ -802,4 +802,10 @@ GROUP BY pl.`id_mat_purc_list`"
         load_kurs()
         calculate()
     End Sub
+
+    Private Sub SMView_Click(sender As Object, e As EventArgs) Handles SMView.Click
+        If GVListMatPD.RowCount > 0 Then
+
+        End If
+    End Sub
 End Class

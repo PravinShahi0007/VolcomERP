@@ -29,7 +29,11 @@ WHERE p.id_mat_purc_list='" & id_list & "'"
                 TEToleransi.Enabled = False
                 '
                 BSave.Visible = False
+                BPrint.Visible = False
             End If
+        Else
+            BPrint.Visible = True
+            BSave.Visible = True
         End If
     End Sub
 
