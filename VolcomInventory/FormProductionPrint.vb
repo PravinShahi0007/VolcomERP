@@ -171,14 +171,14 @@ UPDATE tb_prod_order_ko SET `id_prod_order_ko_reff`='" & id_ko & "',number=@repo
         '
         If is_ok Then
             '
-            Dim id_emp_purc_mngr As String = execute_query("SELECT usr.id_employee 
+            Dim id_user_purc_mngr As String = execute_query("SELECT usr.id_user 
 FROM tb_m_departement dep
 INNER JOIN tb_m_user usr ON usr.`id_user`=dep.id_user_head
 WHERE dep.id_departement=4", 0, True, "", "", "", "")
             '
-            Dim id_emp_asst_prod_mngr As String = get_emp(get_opt_prod_field("id_user_ast_mngr_prod"), "4")
+            Dim id_user_asst_prod_mngr As String = get_opt_prod_field("id_user_ast_mngr_prod")
 
-            Dim query_kp As String = "INSERT INTO tb_prod_order_kp(`revision`,`id_comp_contact`,`date_created`,`created_by`,id_emp_purc_mngr,id_emp_asst_prod_mngr) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "',NOW(),'" & id_user & "','" & id_emp_purc_mngr & "','" & id_emp_asst_prod_mngr & "'); SELECT LAST_INSERT_ID(); "
+            Dim query_kp As String = "INSERT INTO tb_prod_order_kp(`revision`,`id_comp_contact`,`date_created`,`created_by`,id_user_purc_mngr,id_user_asst_prod_mngr) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "',NOW(),'" & id_user & "','" & id_user_purc_mngr & "','" & id_user_asst_prod_mngr & "'); SELECT LAST_INSERT_ID(); "
             Dim id_kp As String = execute_query(query_kp, 0, True, "", "", "", "")
             'insert po
             Dim query_kpd As String = "INSERT INTO tb_prod_order_kp_det(`id_prod_order_kp`,`revision`,`id_prod_order`,`lead_time_prod`,`sample_proto_2`) VALUES"
