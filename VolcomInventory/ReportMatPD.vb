@@ -1,6 +1,6 @@
 ﻿Public Class ReportMatPD
-    Public Shared dt_head As DataTable
-    Public Shared dt_det As DataTable
+    Public dt_head As DataTable
+    Public dt_det As DataTable
     '
     Public id_purc As String = "-1"
 
@@ -61,7 +61,7 @@
             'column qty pd
             Dim tb_qty_pd As New DevExpress.XtraReports.UI.XRLabel
 
-            tb_qty_pd.Text = dt_det.Rows(i)("qty_pd").ToString
+            tb_qty_pd.Text = dt_det.Rows(i)("total_qty_pd").ToString
             tb_qty_pd.SizeF = New Size(55, 20)
             tb_qty_pd.LocationF = New Point(370, po_height)
             tb_qty_pd.Font = New Font("Calibri", 10, FontStyle.Bold)
@@ -73,7 +73,7 @@
             'column consumption
             Dim tb_cons As New DevExpress.XtraReports.UI.XRLabel
 
-            tb_cons.Text = dt_det.Rows(i)("consumption").ToString
+            tb_cons.Text = dt_det.Rows(i)("qty_consumption").ToString
             tb_cons.SizeF = New Size(70, 20)
             tb_cons.LocationF = New Point(425, po_height)
             tb_cons.Font = New Font("Calibri", 10, FontStyle.Bold)

@@ -127,6 +127,7 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMatPurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -642,17 +643,17 @@ Partial Class FormMatPurchaseDet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(121, 26)
         '
         'SMView
         '
         Me.SMView.Name = "SMView"
-        Me.SMView.Size = New System.Drawing.Size(152, 22)
+        Me.SMView.Size = New System.Drawing.Size(120, 22)
         Me.SMView.Text = "Print List"
         '
         'GVListMatPD
         '
-        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn5})
         Me.GVListMatPD.GridControl = Me.GCListMatPD
         Me.GVListMatPD.Name = "GVListMatPD"
         Me.GVListMatPD.OptionsView.ShowGroupPanel = False
@@ -1306,6 +1307,12 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Mat Det Price"
+        Me.GridColumn5.FieldName = "mat_det_price"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
         'FormMatPurchaseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1487,4 +1494,5 @@ Partial Class FormMatPurchaseDet
     Friend WithEvents RICEPD As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMView As ToolStripMenuItem
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
