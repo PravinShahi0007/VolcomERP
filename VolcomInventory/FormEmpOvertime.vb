@@ -50,7 +50,7 @@
             End If
 
             Dim query As String = "
-                SELECT ot.id_ot, ot_det.id_departement, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, IF(ot_det.conversion_type = 1, 'Salary', 'DP') AS conversion_type, IF(ot_det.is_valid = 1, 'Yes', IF(ot_det.is_valid = 2, 'No', '-')) AS valid, ot.number, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, ot.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot.ot_start_time, ot.ot_end_time) / 60) - ot.ot_break, 1) AS total_hours, DATE_FORMAT(ot_det.start_work, '%l:%i:%s %p') AS ot_det_start_time, DATE_FORMAT(ot_det.end_work, '%l:%i:%s %p') AS ot_det_end_time, ot_det.break_hours AS ot_det_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS ot_det_total_hours, ot.ot_note, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, emp.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
+                SELECT ot.id_ot, ot_det.id_departement, departement.departement, departement.is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, IF(ot_det.conversion_type = 1, 'Salary', 'DP') AS conversion_type, IF(ot_det.is_valid = 1, 'Yes', IF(ot_det.is_valid = 2, 'No', '-')) AS valid, ot.number, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, ot.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot.ot_start_time, ot.ot_end_time) / 60) - ot.ot_break, 1) AS total_hours, DATE_FORMAT(ot_det.start_work, '%l:%i:%s %p') AS ot_det_start_time, DATE_FORMAT(ot_det.end_work, '%l:%i:%s %p') AS ot_det_end_time, ot_det.break_hours AS ot_det_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS ot_det_total_hours, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1, 2, 1)) AS is_day_off, NULL AS point, ot.ot_note, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, emp.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -68,6 +68,8 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             GCEmployee.DataSource = data
+
+            calculatePoint()
 
             GVEmployee.BestFitColumns()
         Else
@@ -213,5 +215,30 @@
 
     Private Sub FormEmpOvertime_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Sub calculatePoint()
+        For i = 0 To GVEmployee.RowCount - 1
+            If GVEmployee.IsValidRowHandle(i) Then
+                Dim ot_det_start_time As String = GVEmployee.GetRowCellValue(i, "ot_det_start_time").ToString
+                Dim ot_det_end_time As String = GVEmployee.GetRowCellValue(i, "ot_det_end_time").ToString
+
+                If Not ot_det_start_time = "" And Not ot_det_end_time = "" Then
+                    Dim total_hours As Decimal = GVEmployee.GetRowCellValue(i, "ot_det_total_hours")
+                    Dim is_day_off As String = GVEmployee.GetRowCellValue(i, "is_day_off").ToString
+                    Dim is_store As String = GVEmployee.GetRowCellValue(i, "is_day_off").ToString
+
+                    GVEmployee.SetRowCellValue(i, "point", FormEmpOvertimeDet.calc_point(total_hours, is_day_off, is_store))
+                Else
+                    GVEmployee.SetRowCellValue(i, "point", "")
+                End If
+
+                Dim conversion_type As String = GVEmployee.GetRowCellValue(i, "conversion_type").ToString
+
+                If conversion_type = "2" Then
+                    GVEmployee.SetRowCellValue(i, "point", "")
+                End If
+            End If
+        Next
     End Sub
 End Class
