@@ -79,6 +79,9 @@ Partial Class FormEmpOvertime
         Me.GCECheckStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlCheck = New DevExpress.XtraEditors.PanelControl()
         Me.SBCheck = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
@@ -141,7 +144,7 @@ Partial Class FormEmpOvertime
         '
         Me.GVOvertime.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn38, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn40, Me.GridColumn10, Me.GCCheckStatus, Me.GridColumn11, Me.GridColumn12})
         Me.GVOvertime.GridControl = Me.GCOvertime
-        Me.GVOvertime.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Me.GridColumn7, "{0:N0}")})
+        Me.GVOvertime.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Me.GridColumn7, "{0:N1}")})
         Me.GVOvertime.Name = "GVOvertime"
         Me.GVOvertime.OptionsBehavior.Editable = False
         Me.GVOvertime.OptionsFind.AlwaysVisible = True
@@ -218,7 +221,7 @@ Partial Class FormEmpOvertime
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Overtime Note"
+        Me.GridColumn8.Caption = "Overtime Purpose"
         Me.GridColumn8.FieldName = "ot_note"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
@@ -407,10 +410,10 @@ Partial Class FormEmpOvertime
         'GVEmployee
         '
         Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.GBEActual, Me.gridBand4})
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn28, Me.GridColumn30, Me.GridColumn31, Me.GridColumn33, Me.GridColumn29, Me.GridColumn32, Me.GridColumn34, Me.GCEValid, Me.GridColumn35, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn39, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn41, Me.GridColumn27, Me.GCECheckStatus, Me.GridColumn36, Me.GridColumn37, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn28, Me.BandedGridColumn6, Me.GridColumn30, Me.GridColumn31, Me.GridColumn33, Me.GridColumn29, Me.GridColumn32, Me.GridColumn34, Me.GCEValid, Me.GridColumn35, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn39, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn41, Me.GridColumn27, Me.GCECheckStatus, Me.GridColumn36, Me.GridColumn37, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn7, Me.BandedGridColumn5})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
-        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Me.GridColumn24, "{0:N0}")})
+        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Me.GridColumn24, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ot_det_total_hours", Me.BandedGridColumn4, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "point", Me.BandedGridColumn5, "{0:N1}")})
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsBehavior.Editable = False
@@ -586,7 +589,7 @@ Partial Class FormEmpOvertime
         '
         'GridColumn25
         '
-        Me.GridColumn25.Caption = "Overtime Note"
+        Me.GridColumn25.Caption = "Overtime Purpose"
         Me.GridColumn25.FieldName = "ot_note"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
@@ -626,6 +629,28 @@ Partial Class FormEmpOvertime
         Me.GridColumn37.FieldName = "created_by"
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
+        '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "BandedGridColumn6"
+        Me.BandedGridColumn6.FieldName = "is_store"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "BandedGridColumn7"
+        Me.BandedGridColumn7.FieldName = "is_day_off"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "Point"
+        Me.BandedGridColumn5.DisplayFormat.FormatString = "N1"
+        Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn5.FieldName = "point"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "point", "{0:N1}")})
+        Me.BandedGridColumn5.Visible = True
         '
         'PanelControlCheck
         '
@@ -799,9 +824,10 @@ Partial Class FormEmpOvertime
         Me.GBEActual.Columns.Add(Me.BandedGridColumn2)
         Me.GBEActual.Columns.Add(Me.BandedGridColumn3)
         Me.GBEActual.Columns.Add(Me.BandedGridColumn4)
+        Me.GBEActual.Columns.Add(Me.BandedGridColumn5)
         Me.GBEActual.Name = "GBEActual"
         Me.GBEActual.VisibleIndex = 2
-        Me.GBEActual.Width = 300
+        Me.GBEActual.Width = 375
         '
         'gridBand4
         '
@@ -931,6 +957,9 @@ Partial Class FormEmpOvertime
     Friend WithEvents GCECheckStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBEActual As DevExpress.XtraGrid.Views.BandedGrid.GridBand

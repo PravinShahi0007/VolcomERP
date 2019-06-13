@@ -6262,6 +6262,12 @@
     <Compile Include="ReportMatMRS.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMatPD.Designer.vb">
+      <DependentUpon>ReportMatPD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMatPD.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMatPRWO.Designer.vb">
       <DependentUpon>ReportMatPRWO.vb</DependentUpon>
     </Compile>
@@ -10349,6 +10355,9 @@
     <EmbeddedResource Include="ReportMatMRS.resx">
       <DependentUpon>ReportMatMRS.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMatPD.resx">
+      <DependentUpon>ReportMatPD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMatPR.resx">
       <DependentUpon>ReportMatPR.vb</DependentUpon>
