@@ -110,6 +110,8 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALAMOUNTACTORDERSALES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTOTALCOSTCORE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTOTALAMOUNTCORE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_cancel_po = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncancel_po_note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowBreakdownRev = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
@@ -176,13 +178,11 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTDEV = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllTOTALCOSTACTORDERSALES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTOTALCOSTCOREAll = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTOTALAMOUNTCOREAll = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowBreakDown = New DevExpress.XtraEditors.CheckEdit()
         Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumnis_cancel_po = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncancel_po_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTOTALCOSTCOREAll = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTOTALAMOUNTCOREAll = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1159,6 +1159,18 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALAMOUNTCORE.Visible = True
         Me.GridColumnTOTALAMOUNTCORE.VisibleIndex = 35
         '
+        'GridColumnis_cancel_po
+        '
+        Me.GridColumnis_cancel_po.Caption = "Is Cancel PO"
+        Me.GridColumnis_cancel_po.FieldName = "is_cancel_po"
+        Me.GridColumnis_cancel_po.Name = "GridColumnis_cancel_po"
+        '
+        'GridColumncancel_po_note
+        '
+        Me.GridColumncancel_po_note.Caption = "Cancel PO Note"
+        Me.GridColumncancel_po_note.FieldName = "cancel_po_note"
+        Me.GridColumncancel_po_note.Name = "GridColumncancel_po_note"
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.CEShowBreakdownRev)
@@ -1888,28 +1900,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES.Visible = True
         Me.GridColumnAllTOTALAMOUNTACTORDERSALES.VisibleIndex = 38
         '
-        'GridColumnTOTALCOSTCOREAll
-        '
-        Me.GridColumnTOTALCOSTCOREAll.Caption = "TOTAL COST CORE"
-        Me.GridColumnTOTALCOSTCOREAll.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTOTALCOSTCOREAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTOTALCOSTCOREAll.FieldName = "TOTAL COST CORE"
-        Me.GridColumnTOTALCOSTCOREAll.Name = "GridColumnTOTALCOSTCOREAll"
-        Me.GridColumnTOTALCOSTCOREAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST CORE", "{0:N0}")})
-        Me.GridColumnTOTALCOSTCOREAll.Visible = True
-        Me.GridColumnTOTALCOSTCOREAll.VisibleIndex = 33
-        '
-        'GridColumnTOTALAMOUNTCOREAll
-        '
-        Me.GridColumnTOTALAMOUNTCOREAll.Caption = "TOTAL AMOUNT CORE"
-        Me.GridColumnTOTALAMOUNTCOREAll.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTOTALAMOUNTCOREAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTOTALAMOUNTCOREAll.FieldName = "TOTAL AMOUNT CORE"
-        Me.GridColumnTOTALAMOUNTCOREAll.Name = "GridColumnTOTALAMOUNTCOREAll"
-        Me.GridColumnTOTALAMOUNTCOREAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT CORE", "{0:N0}")})
-        Me.GridColumnTOTALAMOUNTCOREAll.Visible = True
-        Me.GridColumnTOTALAMOUNTCOREAll.VisibleIndex = 34
-        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.CEShowBreakDown)
@@ -1936,17 +1926,27 @@ Partial Class FormProdDemandRevDet
         Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
         Me.CEShowHighlight.TabIndex = 0
         '
-        'GridColumnis_cancel_po
+        'GridColumnTOTALCOSTCOREAll
         '
-        Me.GridColumnis_cancel_po.Caption = "Is Cancel PO"
-        Me.GridColumnis_cancel_po.FieldName = "is_cancel_po"
-        Me.GridColumnis_cancel_po.Name = "GridColumnis_cancel_po"
+        Me.GridColumnTOTALCOSTCOREAll.Caption = "TOTAL COST CORE"
+        Me.GridColumnTOTALCOSTCOREAll.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTOTALCOSTCOREAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTOTALCOSTCOREAll.FieldName = "TOTAL COST CORE"
+        Me.GridColumnTOTALCOSTCOREAll.Name = "GridColumnTOTALCOSTCOREAll"
+        Me.GridColumnTOTALCOSTCOREAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST CORE", "{0:N0}")})
+        Me.GridColumnTOTALCOSTCOREAll.Visible = True
+        Me.GridColumnTOTALCOSTCOREAll.VisibleIndex = 33
         '
-        'GridColumncancel_po_note
+        'GridColumnTOTALAMOUNTCOREAll
         '
-        Me.GridColumncancel_po_note.Caption = "Cancel PO Note"
-        Me.GridColumncancel_po_note.FieldName = "cancel_po_note"
-        Me.GridColumncancel_po_note.Name = "GridColumncancel_po_note"
+        Me.GridColumnTOTALAMOUNTCOREAll.Caption = "TOTAL AMOUNT CORE"
+        Me.GridColumnTOTALAMOUNTCOREAll.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTOTALAMOUNTCOREAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTOTALAMOUNTCOREAll.FieldName = "TOTAL AMOUNT CORE"
+        Me.GridColumnTOTALAMOUNTCOREAll.Name = "GridColumnTOTALAMOUNTCOREAll"
+        Me.GridColumnTOTALAMOUNTCOREAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT CORE", "{0:N0}")})
+        Me.GridColumnTOTALAMOUNTCOREAll.Visible = True
+        Me.GridColumnTOTALAMOUNTCOREAll.VisibleIndex = 34
         '
         'FormProdDemandRevDet
         '
@@ -2154,8 +2154,8 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents GridColumnAllTOTALAMOUNTACTORDERSALES As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTOTALCOSTCORE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTOTALAMOUNTCORE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnTOTALCOSTCOREAll As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnTOTALAMOUNTCOREAll As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_cancel_po As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncancel_po_note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTOTALCOSTCOREAll As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTOTALAMOUNTCOREAll As DevExpress.XtraGrid.Columns.GridColumn
 End Class
