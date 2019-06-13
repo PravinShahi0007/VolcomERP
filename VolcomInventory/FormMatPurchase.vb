@@ -324,10 +324,11 @@ GROUP BY pl.`id_mat_purc_list`"
         GVListMatPD.ActiveFilterString = "[is_check]='yes'"
         If GVListMatPD.RowCount > 0 Then
             'create PO
-            'check vendor,id_currency must same
+            'check vendor, id_currency must same
             Dim id_comp_contact As String = ""
             Dim id_currency As String = ""
             Dim not_same As Boolean = False
+            Dim po_created As Boolean = False
             For i As Integer = 0 To GVListMatPD.RowCount - 1
                 If id_comp_contact = "" And id_currency = "" Then
                     id_comp_contact = GVListMatPD.GetRowCellValue(i, "id_comp_contact").ToString
@@ -338,10 +339,18 @@ GROUP BY pl.`id_mat_purc_list`"
                         Exit For
                     End If
                 End If
+                Dim query_check As String = "SELECT id_mat_purc FROM tb_mat_purc_list WHERE id_mat_purc_list='" & GVListMatPD.GetRowCellValue(i, "id_mat_purc_list") & "'"
+                Dim id_cek As String = execute_query(query_check, 0, True, "", "", "", "")
+                '
+                If Not id_cek = "" Then
+                    po_created = True
+                End If
             Next
             '
             If not_same = True Then
                 warningCustom("Make sure only material with same vendor and same currency selected.")
+            ElseIf po_created = True Then
+                warningCustom("Make sure PO not already created.")
             Else
                 FormMatPurchaseDet.is_from_list = "1"
                 FormMatPurchaseDet.ShowDialog()
