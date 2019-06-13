@@ -62,15 +62,34 @@ Partial Class FormMatPurchase
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPProdDemand = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCListMatPD = New DevExpress.XtraGrid.GridControl()
+        Me.GVListMatPD = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BGenerateFromPD = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEMatDet = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPOrderConfirmation = New DevExpress.XtraTab.XtraTabPage()
         Me.GCKO = New DevExpress.XtraGrid.GridControl()
         Me.GVKO = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -89,6 +108,7 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -109,10 +129,13 @@ Partial Class FormMatPurchase
         CType(Me.LESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPProdDemand.SuspendLayout()
+        CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEMatDet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrderConfirmation.SuspendLayout()
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -514,17 +537,171 @@ Partial Class FormMatPurchase
         '
         'XTPProdDemand
         '
+        Me.XTPProdDemand.Controls.Add(Me.GCListMatPD)
+        Me.XTPProdDemand.Controls.Add(Me.BCreatePO)
         Me.XTPProdDemand.Controls.Add(Me.PanelControl1)
         Me.XTPProdDemand.Name = "XTPProdDemand"
         Me.XTPProdDemand.Size = New System.Drawing.Size(790, 347)
         Me.XTPProdDemand.Text = "Generate From PD"
         '
+        'GCListMatPD
+        '
+        Me.GCListMatPD.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListMatPD.Location = New System.Drawing.Point(0, 44)
+        Me.GCListMatPD.MainView = Me.GVListMatPD
+        Me.GCListMatPD.Name = "GCListMatPD"
+        Me.GCListMatPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPD})
+        Me.GCListMatPD.Size = New System.Drawing.Size(790, 269)
+        Me.GCListMatPD.TabIndex = 7
+        Me.GCListMatPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListMatPD})
+        '
+        'GVListMatPD
+        '
+        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn17, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn13, Me.GridColumn22, Me.GridColumn19, Me.GridColumn21, Me.GridColumn18, Me.GridColumn23, Me.GridColumn20, Me.GridColumn14})
+        Me.GVListMatPD.GridControl = Me.GCListMatPD
+        Me.GVListMatPD.Name = "GVListMatPD"
+        Me.GVListMatPD.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.Caption = "*"
+        Me.GridColumn17.ColumnEdit = Me.RICEPD
+        Me.GridColumn17.FieldName = "is_check"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        Me.GridColumn17.Width = 114
+        '
+        'RICEPD
+        '
+        Me.RICEPD.AutoHeight = False
+        Me.RICEPD.Name = "RICEPD"
+        Me.RICEPD.ValueChecked = "yes"
+        Me.RICEPD.ValueUnchecked = "no"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID"
+        Me.GridColumn8.FieldName = "id_mat_purc_list"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Number"
+        Me.GridColumn9.FieldName = "number"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.Width = 172
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Material"
+        Me.GridColumn10.FieldName = "mat_det_display_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 383
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Total Qty Order"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "total_qty_order"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 3
+        Me.GridColumn11.Width = 147
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "PO Number"
+        Me.GridColumn13.FieldName = "mat_purc_number"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 8
+        Me.GridColumn13.Width = 148
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "ID Comp Contact"
+        Me.GridColumn22.FieldName = "id_comp_contact"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Vendor"
+        Me.GridColumn19.FieldName = "comp_name"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 5
+        Me.GridColumn19.Width = 223
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "ID Currency"
+        Me.GridColumn21.FieldName = "id_currency"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Currency"
+        Me.GridColumn18.FieldName = "currency"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.Width = 87
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Price (Default)"
+        Me.GridColumn20.FieldName = "mat_det_price"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 7
+        Me.GridColumn20.Width = 119
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Status"
+        Me.GridColumn14.FieldName = "status"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 239
+        '
+        'BCreatePO
+        '
+        Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePO.Location = New System.Drawing.Point(0, 313)
+        Me.BCreatePO.Name = "BCreatePO"
+        Me.BCreatePO.Size = New System.Drawing.Size(790, 34)
+        Me.BCreatePO.TabIndex = 8905
+        Me.BCreatePO.Text = "Create PO"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BGenerateFromPD)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.SLEMatDet)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -552,13 +729,13 @@ Partial Class FormMatPurchase
         Me.LargeImageCollection.Images.SetKeyName(3, "safari (4).png")
         Me.LargeImageCollection.Images.SetKeyName(4, "31-Document_32x32.png")
         '
-        'SimpleButton2
+        'BView
         '
-        Me.SimpleButton2.Location = New System.Drawing.Point(217, 9)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(59, 23)
-        Me.SimpleButton2.TabIndex = 8904
-        Me.SimpleButton2.Text = "Search"
+        Me.BView.Location = New System.Drawing.Point(217, 9)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(59, 23)
+        Me.BView.TabIndex = 8904
+        Me.BView.Text = "View"
         '
         'LabelControl1
         '
@@ -568,24 +745,24 @@ Partial Class FormMatPurchase
         Me.LabelControl1.TabIndex = 141
         Me.LabelControl1.Text = "Material"
         '
-        'SearchLookUpEdit1
+        'SLEMatDet
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(55, 11)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.Options.UseForeColor = True
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.NullText = ""
-        Me.SearchLookUpEdit1.Properties.ShowFooter = False
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView3
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(156, 20)
-        Me.SearchLookUpEdit1.TabIndex = 140
+        Me.SLEMatDet.Location = New System.Drawing.Point(55, 11)
+        Me.SLEMatDet.Name = "SLEMatDet"
+        Me.SLEMatDet.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.SLEMatDet.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.SLEMatDet.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.SLEMatDet.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.SLEMatDet.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMatDet.Properties.NullText = ""
+        Me.SLEMatDet.Properties.ShowFooter = False
+        Me.SLEMatDet.Properties.View = Me.GridView3
+        Me.SLEMatDet.Size = New System.Drawing.Size(156, 20)
+        Me.SLEMatDet.TabIndex = 140
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn12, Me.GridColumn7, Me.GridColumn15, Me.GridColumn16})
         Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -593,17 +770,46 @@ Partial Class FormMatPurchase
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Id Season"
-        Me.GridColumn6.FieldName = "id_season"
+        Me.GridColumn6.Caption = "Id"
+        Me.GridColumn6.FieldName = "id_mat_det"
         Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID Mat"
+        Me.GridColumn12.FieldName = "id_mat"
+        Me.GridColumn12.Name = "GridColumn12"
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Season"
-        Me.GridColumn7.FieldName = "season"
+        Me.GridColumn7.Caption = "Material Code"
+        Me.GridColumn7.FieldName = "mat_det_code"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 319
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Material"
+        Me.GridColumn15.FieldName = "mat_det_display_name"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn15.Width = 1028
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn16.Caption = "UOM"
+        Me.GridColumn16.FieldName = "uom"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn16.Width = 285
         '
         'XTPOrderConfirmation
         '
@@ -770,6 +976,12 @@ Partial Class FormMatPurchase
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Price"
+        Me.GridColumn23.FieldName = "id_mat_det_price"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
         'FormMatPurchase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -805,11 +1017,14 @@ Partial Class FormMatPurchase
         CType(Me.LESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPProdDemand.ResumeLayout(False)
+        CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEMatDet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrderConfirmation.ResumeLayout(False)
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).EndInit()
@@ -885,10 +1100,30 @@ Partial Class FormMatPurchase
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BGenerateFromPD As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEMatDet As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCListMatPD As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVListMatPD As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEPD As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BCreatePO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
