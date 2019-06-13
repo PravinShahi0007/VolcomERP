@@ -5,6 +5,8 @@
     Public id_pre As String = "-1"
 
     Private Sub ReportEmpOvertime_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT 1 AS id_type, 'Salary' AS type UNION SELECT 2 AS id_type, 'DP' AS type", 0, "type", "id_type")
+
         GCEmployee.DataSource = data
 
         GCConversionType.Caption = GCConversionType.Caption.Replace(" ", Environment.NewLine)
@@ -20,6 +22,7 @@
             GCEndWork.Visible = False
             GCBreakHours.Visible = False
             GCTotalHours.Visible = False
+            GCPoint.Visible = False
             GCValid.Visible = False
         End If
 
