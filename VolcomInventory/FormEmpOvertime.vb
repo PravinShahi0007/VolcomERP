@@ -153,7 +153,7 @@
             FormEmpOvertimeDet.is_hrd = is_hrd
             FormEmpOvertimeDet.is_check = "-1"
 
-            FormEmpOvertimeDet.Show()
+            FormEmpOvertimeDet.ShowDialog()
         Catch ex As Exception
         End Try
     End Sub
@@ -164,7 +164,7 @@
             FormEmpOvertimeDet.is_hrd = is_hrd
             FormEmpOvertimeDet.is_check = "-1"
 
-            FormEmpOvertimeDet.Show()
+            FormEmpOvertimeDet.ShowDialog()
         Catch ex As Exception
         End Try
     End Sub
@@ -177,7 +177,7 @@
                     FormEmpOvertimeDet.is_hrd = is_hrd
                     FormEmpOvertimeDet.is_check = "1"
 
-                    FormEmpOvertimeDet.Show()
+                    FormEmpOvertimeDet.ShowDialog()
                 Else
                     errorCustom("Overtime must be approved first.")
                 End If
@@ -190,7 +190,7 @@
                     FormEmpOvertimeDet.is_hrd = is_hrd
                     FormEmpOvertimeDet.is_check = "1"
 
-                    FormEmpOvertimeDet.Show()
+                    FormEmpOvertimeDet.ShowDialog()
                 Else
                     errorCustom("Overtime must be approved first.")
                 End If
