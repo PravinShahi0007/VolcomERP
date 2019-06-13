@@ -41,6 +41,7 @@ Partial Class FormProdDemandRevSingle
         Me.GridColumncurrent_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrent_cost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrent_add_cost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrent_size_chart = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,7 +160,7 @@ Partial Class FormProdDemandRevSingle
         '
         'GVDesign
         '
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumncode, Me.GridColumnName, Me.GridColumnOrderNumber, Me.GridColumnOrder, Me.GridColumnRevdobe, Me.GridColumncurrent_qty, Me.GridColumncurrent_cost, Me.GridColumncurrent_add_cost})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumncode, Me.GridColumnName, Me.GridColumnOrderNumber, Me.GridColumnOrder, Me.GridColumnRevdobe, Me.GridColumncurrent_qty, Me.GridColumncurrent_cost, Me.GridColumncurrent_add_cost, Me.GridColumncurrent_size_chart})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
@@ -270,6 +271,12 @@ Partial Class FormProdDemandRevSingle
         Me.GridColumncurrent_add_cost.Name = "GridColumncurrent_add_cost"
         Me.GridColumncurrent_add_cost.Width = 130
         '
+        'GridColumncurrent_size_chart
+        '
+        Me.GridColumncurrent_size_chart.Caption = "Current Size Chart"
+        Me.GridColumncurrent_size_chart.FieldName = "current_size_chart"
+        Me.GridColumncurrent_size_chart.Name = "GridColumncurrent_size_chart"
+        '
         'FormProdDemandRevSingle
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -316,4 +323,5 @@ Partial Class FormProdDemandRevSingle
     Friend WithEvents GridColumncurrent_qty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncurrent_cost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncurrent_add_cost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncurrent_size_chart As DevExpress.XtraGrid.Columns.GridColumn
 End Class
