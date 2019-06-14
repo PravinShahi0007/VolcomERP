@@ -30,7 +30,7 @@
     End Sub
 
     Sub load_list_pd()
-        Dim query As String = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)*((100+pl.`tolerance`)/100) AS total_qty_order 
+        Dim query As String = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_order 
 ,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
@@ -140,15 +140,11 @@ GROUP BY pl.`id_mat_purc_list`"
                     Next
                     GVListMatPD.BestFitColumns()
                     GVListPurchase.BestFitColumns()
-                    BPickPORev.Enabled = False
-                    BSearchCompTo.Enabled = False
-                    LECurrency.Enabled = False
+
                     calculate()
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
-
-                PCButton.Visible = False
             Else
                 XTPList.PageVisible = False
             End If
@@ -203,6 +199,14 @@ GROUP BY pl.`id_mat_purc_list`"
             view_list_purchase(id_purc)
             TEVat.Text = data.Rows(0)("mat_purc_vat").ToString
             calculate()
+            'check if any list
+            Dim query_list As String = "SELECT * FROM tb_mat_purc_list WHERE id_mat_purc='" & id_purc & "'"
+            Dim data_list As DataTable = execute_query(query_list, -1, True, "", "", "", "")
+            If data_list.Rows.Count > 0 Then
+                load_list_pd()
+            Else
+                XTPList.PageVisible = False
+            End If
         End If
 
         allow_status()
@@ -701,6 +705,13 @@ GROUP BY pl.`id_mat_purc_list`"
         Else
             BPrint.Enabled = False
         End If
+        '
+        If GVListMatPD.RowCount > 0 Then
+            BPickPORev.Enabled = False
+            BSearchCompTo.Enabled = False
+            LECurrency.Enabled = False
+            PCButton.Visible = False
+        End If
     End Sub
     Sub show_but()
         If GVListPurchase.RowCount > 0 Then
@@ -814,18 +825,18 @@ GROUP BY pl.`id_mat_purc_list`"
             Dim rpt As New ReportMatPD
             rpt.id_purc = id_purc
             'head
-            Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,pl.mat_det_price,md.mat_det_display_name,SUM(plp.total_qty_pd) AS total_qty_pd,SUM(plp.total_qty_pd*pl.`qty_consumption`) AS total_qty_order,
-SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100) AS total_toleransi,
-SUM(plp.total_qty_pd*pl.`qty_consumption`)*((100+pl.tolerance)/100) AS total 
+            Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,pl.mat_det_price,md.mat_det_display_name,SUM(plp.total_qty_pd) AS total_qty_pd,CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)) AS total_qty_order,
+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_toleransi,
+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))) AS total 
 FROM `tb_mat_purc_list` pl
-INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & id_purc & "'
+INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString & "'
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.id_mat_det"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             rpt.dt_head = data
             'detail
-            query = "SELECT class.display_name AS class,dsg.`design_name`,color.display_name AS color,plp.total_qty_pd,pl.`qty_consumption`,(plp.total_qty_pd*pl.`qty_consumption`) AS qty_order
+            query = "SELECT class.display_name AS class,dsg.`design_name`,color.display_name AS color,plp.total_qty_pd,CEIL(pl.`qty_consumption`) AS qty_consumption,CEIL(plp.total_qty_pd*pl.`qty_consumption`) AS qty_order
 FROM `tb_mat_purc_list` pl
-INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & id_purc & "'
+INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString & "'
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=plp.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 LEFT JOIN
