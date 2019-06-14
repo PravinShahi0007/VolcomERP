@@ -36,8 +36,9 @@
         If LookUpEdit1.EditValue.ToString = "5" Then
             'cek limit qty
             Dim id_ror As String = FormSalesReturn.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
-            Dim query As String = "SELECT rod.id_sales_return_order_det, rod.sales_return_order_det_qty, r.qty, (rod.sales_return_order_det_qty-IFNULL(r.qty,0)) AS `limit_qty`
+            Dim query As String = "SELECT ro.id_store_contact_to,rod.id_sales_return_order_det, rod.sales_return_order_det_qty, r.qty, (rod.sales_return_order_det_qty-IFNULL(r.qty,0)) AS `limit_qty`
             FROM tb_sales_return_order_det rod
+            INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order
             LEFT JOIN(
 	            SELECT rd.id_sales_return_order_det, SUM(rd.sales_return_det_qty) AS `qty` 
 	            FROM tb_sales_return_det rd
@@ -50,10 +51,25 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 'create non list return
+                Dim id_store_cc As String = data.Rows(0)("id_store_contact_to").ToString
+                Dim id_comp As String = get_setup_field("wh_temp")
+                Dim qcomp As String = "SELECT c.id_comp, c.id_drawer_def, cc.id_comp_contact, c.is_use_unique_code
+                FROM tb_m_comp c 
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp 
+                WHERE c.id_comp=" + id_comp + " AND cc.is_default=1 "
+                Dim dcomp As DataTable = execute_query(qcomp, -1, True, "", "", "", "")
+                Dim id_comp_cc As String = dcomp.Rows(0)("id_comp_contact").ToString
+                Dim id_drawer As String = dcomp.Rows(0)("id_drawer_def").ToString
+                Dim is_use_unique_code As String = dcomp.Rows(0)("is_use_unique_code").ToString
                 Dim sales_return_number As String = header_number_sales("5")
                 Dim query_main As String = "INSERT tb_sales_return(id_store_contact_from, id_comp_contact_to, id_sales_return_order, sales_return_number, sales_return_store_number, sales_return_date, sales_return_note,id_wh_drawer ,id_report_status, last_update, last_update_by, id_ret_type, is_use_unique_code) "
-                query_main += "VALUES('" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + id_ror + "', '" + sales_return_number + "', '', NOW(), '','" + id_drawer + "', '1', NOW(), " + id_user + ",'5', '" + is_use_unique_code + "');SELECT LAST_INSERT_ID(); "
-                id_sales_return = execute_query(query_main, 0, True, "", "", "", "")
+                query_main += "VALUES('" + id_store_cc + "', '" + id_comp_cc + "', '" + id_ror + "', '" + sales_return_number + "', '', NOW(), '','" + id_drawer + "', '1', NOW(), " + id_user + ",'5', '" + is_use_unique_code + "');SELECT LAST_INSERT_ID(); "
+                Dim id As String = execute_query(query_main, 0, True, "", "", "", "")
+
+                'submit_who_prepared("198", id, id_user)
+                Close()
+                FormSalesReturnNonListDet.id = "1"
+                FormSalesReturnNonListDet.ShowDialog()
             Else
                 Cursor = Cursors.Default
                 stopCustom("Please complete the regular process first")

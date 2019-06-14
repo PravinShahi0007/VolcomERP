@@ -22,25 +22,6 @@ Partial Class FormSalesReturnNonListDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnNonListDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
-        Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtSalesReturnOrderNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
@@ -48,6 +29,25 @@ Partial Class FormSalesReturnNonListDet
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtSalesReturnOrderNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControlListItem = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
@@ -99,29 +99,29 @@ Partial Class FormSalesReturnNonListDet
         Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
         Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtSalesReturnOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.TxtSalesReturnOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupControlListItem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,216 +159,6 @@ Partial Class FormSalesReturnNonListDet
         Me.GroupControlHead.Name = "GroupControlHead"
         Me.GroupControlHead.Size = New System.Drawing.Size(911, 104)
         Me.GroupControlHead.TabIndex = 10
-        '
-        'MENote
-        '
-        Me.MENote.Location = New System.Drawing.Point(47, 10)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(313, 41)
-        Me.MENote.TabIndex = 151
-        Me.MENote.TabStop = False
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(15, 11)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl7.TabIndex = 150
-        Me.LabelControl7.Text = "Note"
-        '
-        'TxtNumber
-        '
-        Me.TxtNumber.Location = New System.Drawing.Point(56, 38)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Properties.ReadOnly = True
-        Me.TxtNumber.Size = New System.Drawing.Size(136, 20)
-        Me.TxtNumber.TabIndex = 147
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 41)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl2.TabIndex = 147
-        Me.LabelControl2.Text = "Number"
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl1.Controls.Add(Me.LabelControl4)
-        Me.PanelControl1.Controls.Add(Me.DECreated)
-        Me.PanelControl1.Controls.Add(Me.TxtNumber)
-        Me.PanelControl1.Controls.Add(Me.LabelControl2)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(707, 2)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(202, 100)
-        Me.PanelControl1.TabIndex = 4
-        '
-        'LabelControl21
-        '
-        Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(13, 10)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 144
-        Me.LabelControl21.Text = "Status"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(10, 15)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl4.TabIndex = 7
-        Me.LabelControl4.Text = "Date"
-        '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(59, 7)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(168, 20)
-        Me.LEReportStatus.TabIndex = 7
-        '
-        'DECreated
-        '
-        Me.DECreated.EditValue = Nothing
-        Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(56, 12)
-        Me.DECreated.Name = "DECreated"
-        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DECreated.Properties.Appearance.Options.UseFont = True
-        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(136, 20)
-        Me.DECreated.TabIndex = 6
-        '
-        'PanelControlBottom
-        '
-        Me.PanelControlBottom.Controls.Add(Me.BtnXlsBOF)
-        Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
-        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
-        Me.PanelControlBottom.Controls.Add(Me.BtnMark)
-        Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
-        Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 616)
-        Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(911, 44)
-        Me.PanelControlBottom.TabIndex = 15
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(596, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
-        Me.BtnPrint.TabIndex = 3
-        Me.BtnPrint.Text = "Print"
-        '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(683, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
-        Me.BtnAttachment.TabIndex = 4
-        Me.BtnAttachment.Text = "Attachment"
-        Me.BtnAttachment.Visible = False
-        '
-        'BtnMark
-        '
-        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
-        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
-        Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(89, 40)
-        Me.BtnMark.TabIndex = 5
-        Me.BtnMark.Text = "Mark"
-        Me.BtnMark.Visible = False
-        '
-        'BtnSaveChanges
-        '
-        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(789, 2)
-        Me.BtnSaveChanges.Name = "BtnSaveChanges"
-        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
-        Me.BtnSaveChanges.TabIndex = 8
-        Me.BtnSaveChanges.Text = "Save Changes"
-        Me.BtnSaveChanges.Visible = False
-        '
-        'BtnXlsBOF
-        '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(480, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 40)
-        Me.BtnXlsBOF.TabIndex = 25
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.PanelControl3)
-        Me.PanelControl2.Controls.Add(Me.MENote)
-        Me.PanelControl2.Controls.Add(Me.LabelControl7)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 553)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(911, 63)
-        Me.PanelControl2.TabIndex = 16
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.LabelControl21)
-        Me.PanelControl3.Controls.Add(Me.LEReportStatus)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(674, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(235, 59)
-        Me.PanelControl3.TabIndex = 152
-        '
-        'TxtSalesReturnOrderNumber
-        '
-        Me.TxtSalesReturnOrderNumber.EditValue = ""
-        Me.TxtSalesReturnOrderNumber.Location = New System.Drawing.Point(108, 14)
-        Me.TxtSalesReturnOrderNumber.Name = "TxtSalesReturnOrderNumber"
-        Me.TxtSalesReturnOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSalesReturnOrderNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtSalesReturnOrderNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtSalesReturnOrderNumber.Properties.ReadOnly = True
-        Me.TxtSalesReturnOrderNumber.Size = New System.Drawing.Size(309, 20)
-        Me.TxtSalesReturnOrderNumber.TabIndex = 8901
-        Me.TxtSalesReturnOrderNumber.TabStop = False
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(27, 17)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(64, 13)
-        Me.LabelControl9.TabIndex = 8902
-        Me.LabelControl9.Text = "Return Order"
         '
         'LabelControl1
         '
@@ -449,6 +239,216 @@ Partial Class FormSalesReturnNonListDet
         Me.TxtCodeCompTo.Size = New System.Drawing.Size(68, 20)
         Me.TxtCodeCompTo.TabIndex = 8908
         Me.TxtCodeCompTo.TabStop = False
+        '
+        'TxtSalesReturnOrderNumber
+        '
+        Me.TxtSalesReturnOrderNumber.EditValue = ""
+        Me.TxtSalesReturnOrderNumber.Location = New System.Drawing.Point(108, 14)
+        Me.TxtSalesReturnOrderNumber.Name = "TxtSalesReturnOrderNumber"
+        Me.TxtSalesReturnOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtSalesReturnOrderNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtSalesReturnOrderNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtSalesReturnOrderNumber.Properties.ReadOnly = True
+        Me.TxtSalesReturnOrderNumber.Size = New System.Drawing.Size(309, 20)
+        Me.TxtSalesReturnOrderNumber.TabIndex = 8901
+        Me.TxtSalesReturnOrderNumber.TabStop = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(27, 17)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl9.TabIndex = 8902
+        Me.LabelControl9.Text = "Return Order"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
+        Me.PanelControl1.Controls.Add(Me.DECreated)
+        Me.PanelControl1.Controls.Add(Me.TxtNumber)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(707, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(202, 100)
+        Me.PanelControl1.TabIndex = 4
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(10, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl4.TabIndex = 7
+        Me.LabelControl4.Text = "Date"
+        '
+        'DECreated
+        '
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(56, 12)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DECreated.Properties.Appearance.Options.UseFont = True
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreated.Size = New System.Drawing.Size(136, 20)
+        Me.DECreated.TabIndex = 6
+        '
+        'TxtNumber
+        '
+        Me.TxtNumber.Location = New System.Drawing.Point(56, 38)
+        Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtNumber.Properties.ReadOnly = True
+        Me.TxtNumber.Size = New System.Drawing.Size(136, 20)
+        Me.TxtNumber.TabIndex = 147
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 41)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl2.TabIndex = 147
+        Me.LabelControl2.Text = "Number"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(47, 10)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(313, 41)
+        Me.MENote.TabIndex = 151
+        Me.MENote.TabStop = False
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(15, 11)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl7.TabIndex = 150
+        Me.LabelControl7.Text = "Note"
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl21.Location = New System.Drawing.Point(13, 10)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 144
+        Me.LabelControl21.Text = "Status"
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(59, 7)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(168, 20)
+        Me.LEReportStatus.TabIndex = 7
+        '
+        'PanelControlBottom
+        '
+        Me.PanelControlBottom.Controls.Add(Me.BtnXlsBOF)
+        Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
+        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
+        Me.PanelControlBottom.Controls.Add(Me.BtnMark)
+        Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
+        Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 616)
+        Me.PanelControlBottom.Name = "PanelControlBottom"
+        Me.PanelControlBottom.Size = New System.Drawing.Size(911, 44)
+        Me.PanelControlBottom.TabIndex = 15
+        '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(480, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 40)
+        Me.BtnXlsBOF.TabIndex = 25
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(596, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
+        Me.BtnPrint.TabIndex = 3
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.Location = New System.Drawing.Point(683, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
+        Me.BtnAttachment.TabIndex = 4
+        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
+        '
+        'BtnMark
+        '
+        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
+        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
+        Me.BtnMark.Name = "BtnMark"
+        Me.BtnMark.Size = New System.Drawing.Size(89, 40)
+        Me.BtnMark.TabIndex = 5
+        Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
+        '
+        'BtnSaveChanges
+        '
+        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(789, 2)
+        Me.BtnSaveChanges.Name = "BtnSaveChanges"
+        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
+        Me.BtnSaveChanges.TabIndex = 8
+        Me.BtnSaveChanges.Text = "Save Changes"
+        Me.BtnSaveChanges.Visible = False
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.PanelControl3)
+        Me.PanelControl2.Controls.Add(Me.MENote)
+        Me.PanelControl2.Controls.Add(Me.LabelControl7)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 553)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(911, 63)
+        Me.PanelControl2.TabIndex = 16
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LabelControl21)
+        Me.PanelControl3.Controls.Add(Me.LEReportStatus)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(674, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(235, 59)
+        Me.PanelControl3.TabIndex = 152
         '
         'SplitContainerControl1
         '
@@ -978,6 +978,22 @@ Partial Class FormSalesReturnNonListDet
         Me.BDelete.TabIndex = 8
         Me.BDelete.Text = "Delete Scan"
         '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
+        '
         'BStop
         '
         Me.BStop.Dock = System.Windows.Forms.DockStyle.Right
@@ -1001,22 +1017,6 @@ Partial Class FormSalesReturnNonListDet
         Me.BScan.TabIndex = 6
         Me.BScan.Text = "Start Scan"
         '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
-        '
         'FormSalesReturnNonListDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1033,14 +1033,19 @@ Partial Class FormSalesReturnNonListDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtSalesReturnOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1049,11 +1054,6 @@ Partial Class FormSalesReturnNonListDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.TxtSalesReturnOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.GroupControlListItem, System.ComponentModel.ISupportInitialize).EndInit()
