@@ -1825,6 +1825,18 @@
     <Compile Include="FormItemReqDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemSubCat.Designer.vb">
+      <DependentUpon>FormItemSubCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemSubCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemSubCatDet.Designer.vb">
+      <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemSubCatDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </Compile>
@@ -2027,6 +2039,12 @@
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterSampleNR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMatPurchasePD.Designer.vb">
+      <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurchasePD.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMatPurcSum.Designer.vb">
@@ -6244,6 +6262,12 @@
     <Compile Include="ReportMatMRS.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMatPD.Designer.vb">
+      <DependentUpon>ReportMatPD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMatPD.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMatPRWO.Designer.vb">
       <DependentUpon>ReportMatPRWO.vb</DependentUpon>
     </Compile>
@@ -7669,6 +7693,12 @@
     <EmbeddedResource Include="FormItemReqDet.resx">
       <DependentUpon>FormItemReqDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemSubCat.resx">
+      <DependentUpon>FormItemSubCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemSubCatDet.resx">
+      <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </EmbeddedResource>
@@ -7770,6 +7800,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurchasePD.resx">
+      <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcSum.resx">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
@@ -10322,6 +10355,9 @@
     <EmbeddedResource Include="ReportMatMRS.resx">
       <DependentUpon>ReportMatMRS.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMatPD.resx">
+      <DependentUpon>ReportMatPD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMatPR.resx">
       <DependentUpon>ReportMatPR.vb</DependentUpon>

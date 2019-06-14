@@ -82,6 +82,8 @@ Partial Class FormViewProdDemand
         Me.GridColumnTotalAmountDev = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalCostActOrderSales = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalAmountACTOrderSales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTOTALCOSTCORE_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
         Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
@@ -99,8 +101,6 @@ Partial Class FormViewProdDemand
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTOTALCOSTCORE_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,22 +135,23 @@ Partial Class FormViewProdDemand
         Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(830, 117)
+        Me.PanelControl1.Size = New System.Drawing.Size(830, 95)
         Me.PanelControl1.TabIndex = 35
         '
         'LabelBudgetType
         '
         Me.LabelBudgetType.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBudgetType.Location = New System.Drawing.Point(12, 59)
+        Me.LabelBudgetType.Location = New System.Drawing.Point(726, 38)
         Me.LabelBudgetType.Name = "LabelBudgetType"
         Me.LabelBudgetType.Size = New System.Drawing.Size(92, 15)
         Me.LabelBudgetType.TabIndex = 32
         Me.LabelBudgetType.Text = "Budget Type : xxx"
+        Me.LabelBudgetType.Visible = False
         '
         'LabelStatus
         '
         Me.LabelStatus.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.Location = New System.Drawing.Point(12, 80)
+        Me.LabelStatus.Location = New System.Drawing.Point(12, 59)
         Me.LabelStatus.Name = "LabelStatus"
         Me.LabelStatus.Size = New System.Drawing.Size(61, 15)
         Me.LabelStatus.TabIndex = 31
@@ -222,7 +223,7 @@ Partial Class FormViewProdDemand
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(824, 282)
+        Me.GroupControl2.Size = New System.Drawing.Size(824, 304)
         Me.GroupControl2.TabIndex = 149
         '
         'GCProduct
@@ -231,7 +232,7 @@ Partial Class FormViewProdDemand
         Me.GCProduct.Location = New System.Drawing.Point(20, 34)
         Me.GCProduct.MainView = Me.BGVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(802, 246)
+        Me.GCProduct.Size = New System.Drawing.Size(802, 268)
         Me.GCProduct.TabIndex = 43
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVProduct})
         '
@@ -868,6 +869,32 @@ Partial Class FormViewProdDemand
         Me.GridColumnTotalAmountACTOrderSales.Visible = True
         Me.GridColumnTotalAmountACTOrderSales.VisibleIndex = 40
         '
+        'GridColumnTOTALCOSTCORE_add_report_column
+        '
+        Me.GridColumnTOTALCOSTCORE_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTOTALCOSTCORE_add_report_column.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTOTALCOSTCORE_add_report_column.Caption = "TOTAL COST CORE"
+        Me.GridColumnTOTALCOSTCORE_add_report_column.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTOTALCOSTCORE_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTOTALCOSTCORE_add_report_column.FieldName = "TOTAL COST CORE_add_report_column"
+        Me.GridColumnTOTALCOSTCORE_add_report_column.Name = "GridColumnTOTALCOSTCORE_add_report_column"
+        Me.GridColumnTOTALCOSTCORE_add_report_column.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST CORE_add_report_column", "{0:N2}")})
+        Me.GridColumnTOTALCOSTCORE_add_report_column.Visible = True
+        Me.GridColumnTOTALCOSTCORE_add_report_column.VisibleIndex = 35
+        '
+        'GridColumnTOTALAMOUNTCORE_add_report_column
+        '
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Caption = "TOTAL AMOUNT CORE"
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.FieldName = "TOTAL AMOUNT CORE_add_report_column"
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Name = "GridColumnTOTALAMOUNTCORE_add_report_column"
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT CORE_add_report_column", "{0:N2}")})
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Visible = True
+        Me.GridColumnTOTALAMOUNTCORE_add_report_column.VisibleIndex = 36
+        '
         'PanelControlCompleted
         '
         Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -918,10 +945,10 @@ Partial Class FormViewProdDemand
         'XTCPD
         '
         Me.XTCPD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPD.Location = New System.Drawing.Point(0, 117)
+        Me.XTCPD.Location = New System.Drawing.Point(0, 95)
         Me.XTCPD.Name = "XTCPD"
         Me.XTCPD.SelectedTabPage = Me.XTPDetail
-        Me.XTCPD.Size = New System.Drawing.Size(830, 310)
+        Me.XTCPD.Size = New System.Drawing.Size(830, 332)
         Me.XTCPD.TabIndex = 190
         Me.XTCPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
         '
@@ -929,7 +956,7 @@ Partial Class FormViewProdDemand
         '
         Me.XTPDetail.Controls.Add(Me.GroupControl2)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(824, 282)
+        Me.XTPDetail.Size = New System.Drawing.Size(824, 304)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPRevision
@@ -1008,32 +1035,6 @@ Partial Class FormViewProdDemand
         Me.GridColumnDate.Visible = True
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
-        '
-        'GridColumnTOTALCOSTCORE_add_report_column
-        '
-        Me.GridColumnTOTALCOSTCORE_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridColumnTOTALCOSTCORE_add_report_column.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnTOTALCOSTCORE_add_report_column.Caption = "TOTAL COST CORE"
-        Me.GridColumnTOTALCOSTCORE_add_report_column.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTOTALCOSTCORE_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTOTALCOSTCORE_add_report_column.FieldName = "TOTAL COST CORE_add_report_column"
-        Me.GridColumnTOTALCOSTCORE_add_report_column.Name = "GridColumnTOTALCOSTCORE_add_report_column"
-        Me.GridColumnTOTALCOSTCORE_add_report_column.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST CORE_add_report_column", "{0:N2}")})
-        Me.GridColumnTOTALCOSTCORE_add_report_column.Visible = True
-        Me.GridColumnTOTALCOSTCORE_add_report_column.VisibleIndex = 35
-        '
-        'GridColumnTOTALAMOUNTCORE_add_report_column
-        '
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Caption = "TOTAL AMOUNT CORE"
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.FieldName = "TOTAL AMOUNT CORE_add_report_column"
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Name = "GridColumnTOTALAMOUNTCORE_add_report_column"
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT CORE_add_report_column", "{0:N2}")})
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.Visible = True
-        Me.GridColumnTOTALAMOUNTCORE_add_report_column.VisibleIndex = 36
         '
         'FormViewProdDemand
         '
