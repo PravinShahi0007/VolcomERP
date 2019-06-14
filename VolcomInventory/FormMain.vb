@@ -9123,6 +9123,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProposeEmpSalary" Then
             FormProposeEmpSalary.load_pps()
+        ElseIf formName = "FormItemSubCat" Then
+            FormItemSubCat.load_cat()
         End If
     End Sub
     'Switch
