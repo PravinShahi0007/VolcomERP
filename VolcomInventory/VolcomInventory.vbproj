@@ -1831,6 +1831,18 @@
     <Compile Include="FormItemReqDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemSubCat.Designer.vb">
+      <DependentUpon>FormItemSubCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemSubCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemSubCatDet.Designer.vb">
+      <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemSubCatDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </Compile>
@@ -7695,6 +7707,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemReqDet.resx">
       <DependentUpon>FormItemReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemSubCat.resx">
+      <DependentUpon>FormItemSubCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemSubCatDet.resx">
+      <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
