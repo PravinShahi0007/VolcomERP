@@ -21,113 +21,59 @@ Partial Class FormEmpPayrollDeductionDet
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollDeductionDet))
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEEmployeeCode = New DevExpress.XtraEditors.TextEdit()
-        Me.TEEmployeeName = New DevExpress.XtraEditors.TextEdit()
-        Me.BPickEmployee = New DevExpress.XtraEditors.SimpleButton()
-        Me.LEDeductionType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.TEDeduction = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEEmployeeName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEDeductionType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDeduction.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCDeduction = New DevExpress.XtraGrid.GridControl()
+        Me.GVDeduction = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCIDEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDepartment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCNIP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployeePosition = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployeeLevel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCWorkingDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCActualWorkingDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCTotalSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCTotalDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITETotalDays = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GCValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEValue = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUECategory = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCCategoryId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCategoryTypeId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCUseDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCTypeId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBInsert = New DevExpress.XtraEditors.SimpleButton()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITETotalDays, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEValue, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.SLUECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'LabelControl16
-        '
-        Me.LabelControl16.Location = New System.Drawing.Point(12, 15)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(46, 13)
-        Me.LabelControl16.TabIndex = 137
-        Me.LabelControl16.Text = "Employee"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 41)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(75, 13)
-        Me.LabelControl1.TabIndex = 138
-        Me.LabelControl1.Text = "Deduction Type"
-        '
-        'TEEmployeeCode
-        '
-        Me.TEEmployeeCode.EditValue = ""
-        Me.TEEmployeeCode.Location = New System.Drawing.Point(112, 12)
-        Me.TEEmployeeCode.Name = "TEEmployeeCode"
-        Me.TEEmployeeCode.Properties.EditValueChangedDelay = 1
-        Me.TEEmployeeCode.Size = New System.Drawing.Size(119, 20)
-        Me.TEEmployeeCode.TabIndex = 1
-        '
-        'TEEmployeeName
-        '
-        Me.TEEmployeeName.EditValue = ""
-        Me.TEEmployeeName.Location = New System.Drawing.Point(237, 12)
-        Me.TEEmployeeName.Name = "TEEmployeeName"
-        Me.TEEmployeeName.Properties.EditValueChangedDelay = 1
-        Me.TEEmployeeName.Properties.ReadOnly = True
-        Me.TEEmployeeName.Size = New System.Drawing.Size(262, 20)
-        Me.TEEmployeeName.TabIndex = 140
-        '
-        'BPickEmployee
-        '
-        Me.BPickEmployee.Location = New System.Drawing.Point(505, 10)
-        Me.BPickEmployee.Name = "BPickEmployee"
-        Me.BPickEmployee.Size = New System.Drawing.Size(29, 23)
-        Me.BPickEmployee.TabIndex = 141
-        Me.BPickEmployee.TabStop = False
-        Me.BPickEmployee.Text = "..."
-        '
-        'LEDeductionType
-        '
-        Me.LEDeductionType.Location = New System.Drawing.Point(112, 38)
-        Me.LEDeductionType.Name = "LEDeductionType"
-        Me.LEDeductionType.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEDeductionType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEDeductionType.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.LEDeductionType.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.LEDeductionType.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEDeductionType.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.LEDeductionType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEDeductionType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_salary_deduction", "ID Deduction", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "Deduction")})
-        Me.LEDeductionType.Properties.NullText = ""
-        Me.LEDeductionType.Properties.ShowFooter = False
-        Me.LEDeductionType.Size = New System.Drawing.Size(245, 20)
-        Me.LEDeductionType.TabIndex = 2
-        '
-        'TEDeduction
-        '
-        Me.TEDeduction.EditValue = "1.00"
-        Me.TEDeduction.Location = New System.Drawing.Point(112, 64)
-        Me.TEDeduction.Name = "TEDeduction"
-        Me.TEDeduction.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEDeduction.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEDeduction.Properties.EditValueChangedDelay = 1
-        Me.TEDeduction.Properties.Mask.EditMask = "N0"
-        Me.TEDeduction.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEDeduction.Properties.Mask.SaveLiteral = False
-        Me.TEDeduction.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEDeduction.Size = New System.Drawing.Size(207, 20)
-        Me.TEDeduction.TabIndex = 3
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 67)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(48, 13)
-        Me.LabelControl2.TabIndex = 146
-        Me.LabelControl2.Text = "Deduction"
         '
         'LargeImageCollection
         '
@@ -156,20 +102,37 @@ Partial Class FormEmpPayrollDeductionDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.Label3)
+        Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 142)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 672)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(548, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(1008, 57)
         Me.PanelControl3.TabIndex = 148
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 12)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(30, 13)
+        Me.Label3.TabIndex = 15
+        Me.Label3.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(54, 9)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(775, 40)
+        Me.MENote.TabIndex = 7
         '
         'BCancel
         '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(398, 2)
+        Me.BCancel.Location = New System.Drawing.Point(843, 12)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 6
@@ -177,77 +140,356 @@ Partial Class FormEmpPayrollDeductionDet
         '
         'BSave
         '
-        Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.ImageIndex = 7
         Me.BSave.ImageList = Me.LargeImageCollection
-        Me.BSave.Location = New System.Drawing.Point(471, 2)
+        Me.BSave.Location = New System.Drawing.Point(922, 12)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 33)
         Me.BSave.TabIndex = 5
         Me.BSave.Text = "Save"
         '
-        'MENote
+        'GCDeduction
         '
-        Me.MENote.Location = New System.Drawing.Point(112, 90)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Properties.MaxLength = 200
-        Me.MENote.Size = New System.Drawing.Size(386, 46)
-        Me.MENote.TabIndex = 4
+        Me.GCDeduction.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDeduction.Location = New System.Drawing.Point(0, 37)
+        Me.GCDeduction.MainView = Me.GVDeduction
+        Me.GCDeduction.Name = "GCDeduction"
+        Me.GCDeduction.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITEValue, Me.RITETotalDays})
+        Me.GCDeduction.Size = New System.Drawing.Size(1008, 635)
+        Me.GCDeduction.TabIndex = 151
+        Me.GCDeduction.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDeduction})
         '
-        'LabelControl3
+        'GVDeduction
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 92)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl3.TabIndex = 150
-        Me.LabelControl3.Text = "Note"
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIDEmployee, Me.GCDepartment, Me.GCNIP, Me.GCEmployee, Me.GCEmployeePosition, Me.GCEmployeeLevel, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCTotalSalary, Me.GCTotalDays, Me.GCValue})
+        Me.GVDeduction.GridControl = Me.GCDeduction
+        Me.GVDeduction.GroupCount = 1
+        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", Me.GCValue, "{0:N0}")})
+        Me.GVDeduction.Name = "GVDeduction"
+        Me.GVDeduction.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDeduction.OptionsView.ShowFooter = True
+        Me.GVDeduction.OptionsView.ShowGroupPanel = False
+        Me.GVDeduction.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartment, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GCIDEmployee
+        '
+        Me.GCIDEmployee.FieldName = "id_employee"
+        Me.GCIDEmployee.Name = "GCIDEmployee"
+        '
+        'GCDepartment
+        '
+        Me.GCDepartment.Caption = "Department"
+        Me.GCDepartment.FieldName = "departement"
+        Me.GCDepartment.Name = "GCDepartment"
+        Me.GCDepartment.OptionsColumn.AllowEdit = False
+        Me.GCDepartment.Visible = True
+        Me.GCDepartment.VisibleIndex = 0
+        '
+        'GCNIP
+        '
+        Me.GCNIP.Caption = "NIP"
+        Me.GCNIP.FieldName = "employee_code"
+        Me.GCNIP.Name = "GCNIP"
+        Me.GCNIP.OptionsColumn.AllowEdit = False
+        Me.GCNIP.Visible = True
+        Me.GCNIP.VisibleIndex = 0
+        '
+        'GCEmployee
+        '
+        Me.GCEmployee.Caption = "Employee"
+        Me.GCEmployee.FieldName = "employee_name"
+        Me.GCEmployee.Name = "GCEmployee"
+        Me.GCEmployee.OptionsColumn.AllowEdit = False
+        Me.GCEmployee.Visible = True
+        Me.GCEmployee.VisibleIndex = 1
+        '
+        'GCEmployeePosition
+        '
+        Me.GCEmployeePosition.Caption = "Employee Position"
+        Me.GCEmployeePosition.FieldName = "employee_position"
+        Me.GCEmployeePosition.Name = "GCEmployeePosition"
+        Me.GCEmployeePosition.OptionsColumn.AllowEdit = False
+        Me.GCEmployeePosition.Visible = True
+        Me.GCEmployeePosition.VisibleIndex = 2
+        '
+        'GCEmployeeLevel
+        '
+        Me.GCEmployeeLevel.Caption = "Employee Level"
+        Me.GCEmployeeLevel.FieldName = "employee_level"
+        Me.GCEmployeeLevel.Name = "GCEmployeeLevel"
+        Me.GCEmployeeLevel.OptionsColumn.AllowEdit = False
+        Me.GCEmployeeLevel.Visible = True
+        Me.GCEmployeeLevel.VisibleIndex = 3
+        '
+        'GCWorkingDays
+        '
+        Me.GCWorkingDays.Caption = "Working Days"
+        Me.GCWorkingDays.DisplayFormat.FormatString = "N2"
+        Me.GCWorkingDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCWorkingDays.FieldName = "workdays"
+        Me.GCWorkingDays.Name = "GCWorkingDays"
+        Me.GCWorkingDays.OptionsColumn.AllowEdit = False
+        Me.GCWorkingDays.Visible = True
+        Me.GCWorkingDays.VisibleIndex = 4
+        '
+        'GCActualWorkingDays
+        '
+        Me.GCActualWorkingDays.Caption = "Actual Working Days"
+        Me.GCActualWorkingDays.DisplayFormat.FormatString = "N2"
+        Me.GCActualWorkingDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCActualWorkingDays.FieldName = "actual_workdays"
+        Me.GCActualWorkingDays.Name = "GCActualWorkingDays"
+        Me.GCActualWorkingDays.OptionsColumn.AllowEdit = False
+        Me.GCActualWorkingDays.Visible = True
+        Me.GCActualWorkingDays.VisibleIndex = 5
+        '
+        'GCTotalSalary
+        '
+        Me.GCTotalSalary.Caption = "Total Salary"
+        Me.GCTotalSalary.DisplayFormat.FormatString = "N0"
+        Me.GCTotalSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalSalary.FieldName = "total_salary"
+        Me.GCTotalSalary.Name = "GCTotalSalary"
+        Me.GCTotalSalary.OptionsColumn.AllowEdit = False
+        Me.GCTotalSalary.Visible = True
+        Me.GCTotalSalary.VisibleIndex = 6
+        '
+        'GCTotalDays
+        '
+        Me.GCTotalDays.Caption = "Total Days"
+        Me.GCTotalDays.ColumnEdit = Me.RITETotalDays
+        Me.GCTotalDays.DisplayFormat.FormatString = "N2"
+        Me.GCTotalDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalDays.FieldName = "total_days"
+        Me.GCTotalDays.Name = "GCTotalDays"
+        Me.GCTotalDays.Visible = True
+        Me.GCTotalDays.VisibleIndex = 7
+        '
+        'RITETotalDays
+        '
+        Me.RITETotalDays.AutoHeight = False
+        Me.RITETotalDays.DisplayFormat.FormatString = "N2"
+        Me.RITETotalDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITETotalDays.EditFormat.FormatString = "N2"
+        Me.RITETotalDays.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITETotalDays.Name = "RITETotalDays"
+        '
+        'GCValue
+        '
+        Me.GCValue.Caption = "Value"
+        Me.GCValue.ColumnEdit = Me.RITEValue
+        Me.GCValue.DisplayFormat.FormatString = "N0"
+        Me.GCValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCValue.FieldName = "value"
+        Me.GCValue.Name = "GCValue"
+        Me.GCValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N0}")})
+        Me.GCValue.Visible = True
+        Me.GCValue.VisibleIndex = 8
+        '
+        'RITEValue
+        '
+        Me.RITEValue.AutoHeight = False
+        Me.RITEValue.Name = "RITEValue"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SLUECategory)
+        Me.PanelControl1.Controls.Add(Me.SLUEType)
+        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.SBRemove)
+        Me.PanelControl1.Controls.Add(Me.SBInsert)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1008, 37)
+        Me.PanelControl1.TabIndex = 152
+        '
+        'SLUECategory
+        '
+        Me.SLUECategory.Location = New System.Drawing.Point(333, 9)
+        Me.SLUECategory.Name = "SLUECategory"
+        Me.SLUECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUECategory.Properties.View = Me.GridView1
+        Me.SLUECategory.Size = New System.Drawing.Size(200, 20)
+        Me.SLUECategory.TabIndex = 14
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCCategoryId, Me.GCCategoryTypeId, Me.GCUseDays, Me.GCCategory})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GCCategoryId
+        '
+        Me.GCCategoryId.FieldName = "id_salary_deduction"
+        Me.GCCategoryId.Name = "GCCategoryId"
+        '
+        'GCCategoryTypeId
+        '
+        Me.GCCategoryTypeId.FieldName = "id_salary_deduction_cat"
+        Me.GCCategoryTypeId.Name = "GCCategoryTypeId"
+        '
+        'GCUseDays
+        '
+        Me.GCUseDays.FieldName = "use_days"
+        Me.GCUseDays.Name = "GCUseDays"
+        '
+        'GCCategory
+        '
+        Me.GCCategory.Caption = "Category"
+        Me.GCCategory.FieldName = "salary_deduction"
+        Me.GCCategory.Name = "GCCategory"
+        Me.GCCategory.Visible = True
+        Me.GCCategory.VisibleIndex = 0
+        '
+        'SLUEType
+        '
+        Me.SLUEType.Location = New System.Drawing.Point(54, 9)
+        Me.SLUEType.Name = "SLUEType"
+        Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEType.Size = New System.Drawing.Size(200, 20)
+        Me.SLUEType.TabIndex = 13
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCTypeId, Me.GCType})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GCTypeId
+        '
+        Me.GCTypeId.FieldName = "id_salary_deduction_cat"
+        Me.GCTypeId.Name = "GCTypeId"
+        '
+        'GCType
+        '
+        Me.GCType.Caption = "Type"
+        Me.GCType.FieldName = "salary_deduction_cat"
+        Me.GCType.Name = "GCType"
+        Me.GCType.Visible = True
+        Me.GCType.VisibleIndex = 0
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(270, 12)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(52, 13)
+        Me.Label1.TabIndex = 12
+        Me.Label1.Text = "Category"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 12)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(31, 13)
+        Me.Label2.TabIndex = 11
+        Me.Label2.Text = "Type"
+        '
+        'SBRemove
+        '
+        Me.SBRemove.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBRemove.ImageIndex = 1
+        Me.SBRemove.ImageList = Me.LargeImageCollection
+        Me.SBRemove.Location = New System.Drawing.Point(752, 2)
+        Me.SBRemove.Name = "SBRemove"
+        Me.SBRemove.Size = New System.Drawing.Size(127, 33)
+        Me.SBRemove.TabIndex = 9
+        Me.SBRemove.Text = "Remove Employee"
+        '
+        'SBInsert
+        '
+        Me.SBInsert.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBInsert.ImageIndex = 19
+        Me.SBInsert.ImageList = Me.LargeImageCollection
+        Me.SBInsert.Location = New System.Drawing.Point(879, 2)
+        Me.SBInsert.Name = "SBInsert"
+        Me.SBInsert.Size = New System.Drawing.Size(127, 33)
+        Me.SBInsert.TabIndex = 6
+        Me.SBInsert.Text = "Insert Employee"
+        '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
         '
         'FormEmpPayrollDeductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(548, 179)
-        Me.Controls.Add(Me.LabelControl3)
-        Me.Controls.Add(Me.MENote)
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.Controls.Add(Me.GCDeduction)
+        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl3)
-        Me.Controls.Add(Me.TEDeduction)
-        Me.Controls.Add(Me.LabelControl2)
-        Me.Controls.Add(Me.LEDeductionType)
-        Me.Controls.Add(Me.BPickEmployee)
-        Me.Controls.Add(Me.TEEmployeeCode)
-        Me.Controls.Add(Me.TEEmployeeName)
-        Me.Controls.Add(Me.LabelControl1)
-        Me.Controls.Add(Me.LabelControl16)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormEmpPayrollDeductionDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Detail Deduction Salary"
-        CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEEmployeeName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEDeductionType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDeduction.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "Detail"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDeduction, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDeduction, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITETotalDays, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEValue, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.SLUECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEEmployeeCode As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEEmployeeName As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents BPickEmployee As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LEDeductionType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents TEDeduction As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDeduction As DevExpress.XtraGrid.GridControl
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBInsert As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GVDeduction As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCIDEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCDepartment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCNIP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployeePosition As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployeeLevel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITEValue As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents SBRemove As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents SLUECategory As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLUEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCTypeId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCategoryId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCategoryTypeId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ErrorProvider As ErrorProvider
+    Friend WithEvents Label3 As Label
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCWorkingDays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCActualWorkingDays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCTotalSalary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCTotalDays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITETotalDays As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GCUseDays As DevExpress.XtraGrid.Columns.GridColumn
 End Class
