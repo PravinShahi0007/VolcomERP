@@ -1716,6 +1716,10 @@ Public Class FormMain
             FormProposeEmpSalaryDet.id_employee_sal_pps = "-1"
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
+        ElseIf formName = "FormItemSubCat" Then
+            'purchase category
+            FormItemSubCatDet.id_sub_cat = "-1"
+            FormItemSubCatDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2778,6 +2782,10 @@ Public Class FormMain
                     FormProposeEmpSalaryDet.is_duplicate = "-1"
                     FormProposeEmpSalaryDet.ShowDialog()
                 End If
+            ElseIf formName = "FormItemSubCat" Then
+                'purchase category
+                FormItemSubCatDet.id_sub_cat = FormItemSubCat.GVPurchaseCategory.GetFocusedRowCellValue("id_item_cat_detail").ToString
+                FormItemSubCatDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7533,6 +7541,9 @@ Public Class FormMain
         ElseIf formName = "FormProposeEmpSalary" Then
             'employee propose
             print(FormProposeEmpSalary.GCList, "List Propose Employee Salary")
+        ElseIf formName = "FormItemSubCat" Then
+            'purchase category
+            print(FormItemSubCat.GCPurchaseCategory, "List Purchase Category")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8286,6 +8297,9 @@ Public Class FormMain
         ElseIf formName = "FormProposeEmpSalary" Then
             FormProposeEmpSalary.Close()
             FormProposeEmpSalary.Dispose()
+        ElseIf formName = "FormItemSubCat" Then
+            FormItemSubCat.Close()
+            FormItemSubCat.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

@@ -1,5 +1,5 @@
 ﻿Public Class FormItemSubCatDet
-    Dim id_sub_cat As String = "-1"
+    Public id_sub_cat As String = "-1"
 
     Private Sub FormItemSubCatDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
