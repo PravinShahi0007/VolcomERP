@@ -629,6 +629,7 @@ Public Class FormFGRepairReturnRecDet
             TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
             GCScan.RefreshDataSource()
             GVScan.RefreshData()
+            GVScan.FocusedRowHandle = GVScan.RowCount - 1
         Else
             stopCustom("Code not found!")
         End If
