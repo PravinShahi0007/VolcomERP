@@ -13105,4 +13105,18 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBItemSubCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemSubCat.LinkClicked
+        'Sub Category/purchase category
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemSubCat.MdiParent = Me
+            FormItemSubCat.Show()
+            FormItemSubCat.WindowState = FormWindowState.Maximized
+            FormItemSubCat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
