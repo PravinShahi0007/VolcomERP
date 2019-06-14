@@ -61,6 +61,7 @@ Partial Class FormSalesReturnDetNew
         Me.LookUpEdit1.Location = New System.Drawing.Point(12, 36)
         Me.LookUpEdit1.Name = "LookUpEdit1"
         Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ret_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ret_type", "Type")})
         Me.LookUpEdit1.Size = New System.Drawing.Size(209, 20)
         Me.LookUpEdit1.TabIndex = 2
         '
