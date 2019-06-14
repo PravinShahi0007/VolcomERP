@@ -5,7 +5,7 @@
         load_adjustment()
     End Sub
     Sub load_adjustment()
-        Dim query As String = "SELECT pya.id_payroll_adj,IF(adj.use_days = 2, '-', pya.total_days) AS total_days,pya.value,pya.increase,emp.`employee_name`,emp.`employee_code`,emp.`employee_position`,dep.`departement`,adj.`salary_adjustment`,adjc.salary_adjustment_cat,lvl.`employee_level` FROM tb_emp_payroll_adj pya
+        Dim query As String = "SELECT pya.id_payroll_adj,IF(adj.use_days = 2, '-', pya.total_days) AS total_days,pya.value,pya.increase,pya.note,emp.`employee_name`,emp.`employee_code`,emp.`employee_position`,dep.`departement`,adj.`salary_adjustment`,adjc.salary_adjustment_cat,lvl.`employee_level` FROM tb_emp_payroll_adj pya
                                 INNER JOIN tb_m_employee emp ON pya.id_employee=emp.`id_employee`
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=emp.`id_departement`
                                 INNER JOIN `tb_lookup_employee_level` lvl ON lvl.`id_employee_level`=emp.`id_employee_level`
@@ -73,9 +73,9 @@
         'get column
         Dim query_column As String = "
             (
-                SELECT tb.salary_adjustment, tb.total
+                SELECT tb.id_salary_adjustment_cat, tb.id_salary_adjustment, tb.salary_adjustment_cat, tb.salary_adjustment, MAX(tb.total) AS total
                 FROM (
-                    SELECT sald.id_salary_adjustment_cat, sald.id_salary_adjustment, sald.salary_adjustment, COUNT(sald.id_salary_adjustment) AS total
+                    SELECT sald.id_salary_adjustment_cat, sald.id_salary_adjustment, saldc.salary_adjustment_cat, sald.salary_adjustment, COUNT(sald.id_salary_adjustment) AS total
                     FROM tb_emp_payroll_adj pyd
                     INNER JOIN tb_lookup_salary_adjustment sald ON sald.id_salary_adjustment=pyd.id_salary_adj
                     INNER JOIN tb_lookup_salary_adjustment_cat saldc ON saldc.id_salary_adjustment_cat=sald.id_salary_adjustment_cat
@@ -88,8 +88,9 @@
             )
             UNION
             (
-                SELECT 'Total' AS salary_adjustment, 1 AS total
+                SELECT 99 AS id_salary_adjustment_cat, 99 AS id_salary_adjustment, 'Total' AS salary_adjustment_cat, 'Total' AS salary_adjustment, 1 AS total
             ) 
+            ORDER BY id_salary_adjustment_cat ASC, id_salary_adjustment ASC
         "
 
         Dim data_column As DataTable = execute_query(query_column, -1, True, "", "", "", "")
@@ -125,9 +126,13 @@
             Dim salary_adjustment As String = data_column.Rows(i)("salary_adjustment").ToString
 
             For j = 1 To data_column.Rows(i)("total")
-                Dim column As String = salary_adjustment + " " + j.ToString
+                Dim column As DataColumn = New DataColumn()
 
-                data.Columns.Add(column, GetType(Integer))
+                column.ColumnName = salary_adjustment + " " + j.ToString
+                column.DataType = GetType(Integer)
+                column.DefaultValue = 0
+
+                data.Columns.Add(column)
             Next
         Next
 
@@ -178,31 +183,42 @@
         Dim report As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction()
 
         'add column to grid
+        Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+        Dim last_cat As String = ""
+
         For i = 0 To data_column.Rows.Count - 1
+            Dim salary_adjustment_cat As String = data_column.Rows(i)("salary_adjustment_cat").ToString
             Dim salary_adjustment As String = data_column.Rows(i)("salary_adjustment").ToString
 
             For j = 1 To data_column.Rows(i)("total")
-                Dim column As String = salary_adjustment + " " + j.ToString
+                'band
+                If Not last_cat = salary_adjustment_cat Then
+                    band = report.GVDeduction.Bands.AddBand(salary_adjustment_cat)
+                End If
 
-                Dim grid_column As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn()
+                last_cat = salary_adjustment_cat
 
-                grid_column.FieldName = column
-                grid_column.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-                grid_column.Caption = salary_adjustment.Replace(" ", Environment.NewLine)
-                grid_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                grid_column.DisplayFormat.FormatString = "N0"
-                grid_column.VisibleIndex = i + 4
-                grid_column.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                grid_column.SummaryItem.DisplayFormat = "{0:N0}"
+                'column
+                Dim column As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
 
-                Dim group_summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                column.FieldName = salary_adjustment + " " + j.ToString
+                column.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                column.Caption = salary_adjustment.Replace(" ", Environment.NewLine)
+                column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                column.DisplayFormat.FormatString = "N0"
+                column.Visible = True
+                column.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                column.SummaryItem.DisplayFormat = "{0:N0}"
 
-                report.GVDeduction.Columns.Add(grid_column)
+                band.Columns.Add(column)
 
                 'grup summary
+                Dim group_summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+
                 group_summary.DisplayFormat = "{0:N0}"
-                group_summary.FieldName = column
-                group_summary.ShowInGroupColumnFooter = grid_column
+                group_summary.FieldName = salary_adjustment + " " + j.ToString
+                group_summary.ShowInGroupColumnFooter = column
                 group_summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
 
                 report.GVDeduction.GroupSummary.Add(group_summary)

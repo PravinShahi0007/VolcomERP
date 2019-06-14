@@ -23,6 +23,7 @@ Partial Class FormEmpPayrollAdjustment
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollAdjustment))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDeduction = New DevExpress.XtraGrid.GridControl()
@@ -39,7 +40,6 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -83,6 +83,18 @@ Partial Class FormEmpPayrollAdjustment
         Me.PanelControl1.Size = New System.Drawing.Size(1052, 38)
         Me.PanelControl1.TabIndex = 1
         '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Enabled = False
+        Me.SBPrint.ImageIndex = 6
+        Me.SBPrint.ImageList = Me.LargeImageCollection
+        Me.SBPrint.Location = New System.Drawing.Point(807, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(81, 34)
+        Me.SBPrint.TabIndex = 112
+        Me.SBPrint.Text = "Print"
+        '
         'BDel
         '
         Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
@@ -120,7 +132,7 @@ Partial Class FormEmpPayrollAdjustment
         Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnType, Me.GridColumnCategory, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnNote})
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 1
-        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", Me.GridColumnValue, "{0:N2}")})
+        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", Me.GridColumnValue, "{0:N0}")})
         Me.GVDeduction.Name = "GVDeduction"
         Me.GVDeduction.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDeduction.OptionsBehavior.Editable = False
@@ -223,11 +235,11 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnValue.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnValue.Caption = "Value"
-        Me.GridColumnValue.DisplayFormat.FormatString = "N2"
+        Me.GridColumnValue.DisplayFormat.FormatString = "N0"
         Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValue.FieldName = "value"
         Me.GridColumnValue.Name = "GridColumnValue"
-        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
+        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N0}")})
         Me.GridColumnValue.Visible = True
         Me.GridColumnValue.VisibleIndex = 7
         Me.GridColumnValue.Width = 86
@@ -240,18 +252,6 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 8
         Me.GridColumnNote.Width = 101
-        '
-        'SBPrint
-        '
-        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBPrint.Enabled = False
-        Me.SBPrint.ImageIndex = 6
-        Me.SBPrint.ImageList = Me.LargeImageCollection
-        Me.SBPrint.Location = New System.Drawing.Point(807, 2)
-        Me.SBPrint.Name = "SBPrint"
-        Me.SBPrint.Size = New System.Drawing.Size(81, 34)
-        Me.SBPrint.TabIndex = 112
-        Me.SBPrint.Text = "Print"
         '
         'FormEmpPayrollAdjustment
         '

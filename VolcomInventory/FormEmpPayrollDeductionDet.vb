@@ -194,8 +194,8 @@
     Private Sub GVDeduction_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVDeduction.CellValueChanged
         If e.Column.FieldName.ToString = "total_days" Then
             calculate_value()
-
-            GVDeduction.BestFitColumns()
         End If
+
+        GVDeduction.BestFitColumns()
     End Sub
 End Class

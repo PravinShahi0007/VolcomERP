@@ -19,8 +19,9 @@ Partial Class FormEmpPayrollDeductionDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollDeductionDet))
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -56,7 +57,7 @@ Partial Class FormEmpPayrollDeductionDet
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
         Me.SBInsert = New DevExpress.XtraEditors.SimpleButton()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -281,7 +282,7 @@ Partial Class FormEmpPayrollDeductionDet
         Me.GCValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCValue.FieldName = "value"
         Me.GCValue.Name = "GCValue"
-        Me.GCValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", "{0:N0}")})
+        Me.GCValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N0}")})
         Me.GCValue.Visible = True
         Me.GCValue.VisibleIndex = 8
         '

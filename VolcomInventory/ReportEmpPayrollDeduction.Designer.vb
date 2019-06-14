@@ -23,18 +23,19 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCDeduction = New DevExpress.XtraGrid.GridControl()
-        Me.GVDeduction = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.GVDeduction = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,90 +63,6 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCDeduction.Size = New System.Drawing.Size(1074, 256)
         Me.GCDeduction.TabIndex = 1
         Me.GCDeduction.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDeduction})
-        '
-        'GVDeduction
-        '
-        Me.GVDeduction.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
-        Me.GVDeduction.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVDeduction.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVDeduction.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVDeduction.AppearancePrint.FooterPanel.Options.UseBorderColor = True
-        Me.GVDeduction.AppearancePrint.FooterPanel.Options.UseFont = True
-        Me.GVDeduction.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
-        Me.GVDeduction.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
-        Me.GVDeduction.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVDeduction.AppearancePrint.GroupFooter.Options.UseBackColor = True
-        Me.GVDeduction.AppearancePrint.GroupFooter.Options.UseBorderColor = True
-        Me.GVDeduction.AppearancePrint.GroupFooter.Options.UseFont = True
-        Me.GVDeduction.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
-        Me.GVDeduction.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
-        Me.GVDeduction.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVDeduction.AppearancePrint.GroupRow.Options.UseBackColor = True
-        Me.GVDeduction.AppearancePrint.GroupRow.Options.UseBorderColor = True
-        Me.GVDeduction.AppearancePrint.GroupRow.Options.UseFont = True
-        Me.GVDeduction.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.GVDeduction.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVDeduction.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVDeduction.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVDeduction.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.GVDeduction.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVDeduction.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.GVDeduction.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.GVDeduction.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVDeduction.AppearancePrint.Row.Options.UseBackColor = True
-        Me.GVDeduction.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVDeduction.AppearancePrint.Row.Options.UseFont = True
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
-        Me.GVDeduction.GridControl = Me.GCDeduction
-        Me.GVDeduction.GroupCount = 1
-        Me.GVDeduction.Name = "GVDeduction"
-        Me.GVDeduction.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDeduction.OptionsBehavior.Editable = False
-        Me.GVDeduction.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVDeduction.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GVDeduction.OptionsView.ShowFooter = True
-        Me.GVDeduction.OptionsView.ShowGroupPanel = False
-        Me.GVDeduction.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Departement"
-        Me.GridColumn1.FieldName = "Departement"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "NIP"
-        Me.GridColumn2.FieldName = "NIP"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Employee"
-        Me.GridColumn3.FieldName = "Employee"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Employee Position"
-        Me.GridColumn4.FieldName = "Employee Position"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Employee Level"
-        Me.GridColumn5.FieldName = "Employee Level"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
         '
         'TopMargin
         '
@@ -201,6 +118,105 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'GVDeduction
+        '
+        Me.GVDeduction.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.GVDeduction.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVDeduction.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVDeduction.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.GVDeduction.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.GVDeduction.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.GVDeduction.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVDeduction.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVDeduction.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVDeduction.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVDeduction.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVDeduction.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVDeduction.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVDeduction.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVDeduction.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVDeduction.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVDeduction.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVDeduction.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVDeduction.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVDeduction.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVDeduction.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVDeduction.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVDeduction.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVDeduction.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVDeduction.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVDeduction.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVDeduction.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVDeduction.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVDeduction.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVDeduction.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVDeduction.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVDeduction.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVDeduction.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVDeduction.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVDeduction.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVDeduction.AppearancePrint.Row.Options.UseFont = True
+        Me.GVDeduction.BandPanelRowHeight = 16
+        Me.GVDeduction.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee})
+        Me.GVDeduction.ColumnPanelRowHeight = 32
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVDeduction.GridControl = Me.GCDeduction
+        Me.GVDeduction.GroupCount = 1
+        Me.GVDeduction.Name = "GVDeduction"
+        Me.GVDeduction.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDeduction.OptionsBehavior.Editable = False
+        Me.GVDeduction.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVDeduction.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVDeduction.OptionsView.ShowFooter = True
+        Me.GVDeduction.OptionsView.ShowGroupPanel = False
+        Me.GVDeduction.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Departement"
+        Me.GridColumn1.FieldName = "Departement"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "NIP"
+        Me.GridColumn2.FieldName = "NIP"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Employee"
+        Me.GridColumn3.FieldName = "Employee"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Employee Position"
+        Me.GridColumn4.FieldName = "Employee Position"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Employee Level"
+        Me.GridColumn5.FieldName = "Employee Level"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        '
+        'GBEmployee
+        '
+        Me.GBEmployee.Caption = "Employee"
+        Me.GBEmployee.Columns.Add(Me.GridColumn1)
+        Me.GBEmployee.Columns.Add(Me.GridColumn2)
+        Me.GBEmployee.Columns.Add(Me.GridColumn3)
+        Me.GBEmployee.Columns.Add(Me.GridColumn4)
+        Me.GBEmployee.Columns.Add(Me.GridColumn5)
+        Me.GBEmployee.Name = "GBEmployee"
+        Me.GBEmployee.VisibleIndex = 0
+        Me.GBEmployee.Width = 300
+        '
         'ReportEmpPayrollDeduction
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
@@ -225,10 +241,11 @@ Partial Public Class ReportEmpPayrollDeduction
     Friend WithEvents XLPeriod As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCDeduction As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDeduction As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GVDeduction As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GBEmployee As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
