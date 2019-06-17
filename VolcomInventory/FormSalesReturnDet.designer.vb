@@ -201,6 +201,7 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
+        Me.CENonList = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,6 +283,7 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -404,6 +406,7 @@ Partial Class FormSalesReturnDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.CENonList)
         Me.PanelControlTopLeft.Controls.Add(Me.MEAdrressCompFrom)
         Me.PanelControlTopLeft.Controls.Add(Me.TEDrawer)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl1)
@@ -2065,6 +2068,16 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
         '
+        'CENonList
+        '
+        Me.CENonList.Enabled = False
+        Me.CENonList.Location = New System.Drawing.Point(353, 114)
+        Me.CENonList.MenuManager = Me.BMDD
+        Me.CENonList.Name = "CENonList"
+        Me.CENonList.Properties.Caption = "Non List"
+        Me.CENonList.Size = New System.Drawing.Size(60, 19)
+        Me.CENonList.TabIndex = 10008
+        '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2170,6 +2183,7 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2354,4 +2368,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents LabelOLStoreOrder As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDiff As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CENonList As DevExpress.XtraEditors.CheckEdit
 End Class

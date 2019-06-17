@@ -44,6 +44,7 @@ Public Class FormSalesReturnDet
     Public is_use_unique_code As String = "2"
     Dim id_commerce_type As String = "-1"
     Dim action_scan_btn As String = ""
+    Public is_non_list As String = "-1"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -100,7 +101,7 @@ Public Class FormSalesReturnDet
 
 
             'query view based on edit id's
-            Dim query As String = "SELECT a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, d.id_commerce_type,(d.id_drawer_def) AS `id_wh_drawer_store`,IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
+            Dim query As String = "SELECT a.is_non_list,a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, d.id_commerce_type,(d.id_drawer_def) AS `id_wh_drawer_store`,IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
             query += "a.sales_return_note,a.sales_return_date, a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
             query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, dw.wh_drawer, rc.wh_rack, loc.wh_locator, a.id_ret_type, rt.ret_type, so.sales_order_ol_shop_number, a.is_use_unique_code "
             query += "FROM tb_sales_return a "
@@ -157,25 +158,32 @@ Public Class FormSalesReturnDet
             TxtReturnType.Text = data.Rows(0)("ret_type").ToString
             TxtOLStoreOrder.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
             is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
+            is_non_list = data.Rows(0)("is_non_list").ToString
+            If is_non_list = "1" Then
+                CENonList.EditValue = True
+            Else
+                CENonList.EditValue = False
+            End If
+
 
             'detail2
             viewDetail()
-            view_barcode_list()
-            view_barcode_list_prob()
-            check_but()
-            allow_status()
+                view_barcode_list()
+                view_barcode_list_prob()
+                check_but()
+                allow_status()
 
-            If id_pre = "1" Then
-                prePrinting()
-                Close()
-            ElseIf id_pre = "2" Then
-                printing()
-                Close()
+                If id_pre = "1" Then
+                    prePrinting()
+                    Close()
+                ElseIf id_pre = "2" Then
+                    printing()
+                    Close()
+                End If
             End If
-        End If
 
-        'ret type
-        If id_ret_type = "2" Then
+            'ret type
+            If id_ret_type = "2" Then
             XTCReturn.SelectedTabPageIndex = 1
             XTPReturn.PageEnabled = False
             XTPNonStock.PageEnabled = True
@@ -243,7 +251,11 @@ Public Class FormSalesReturnDet
             setDefDrawer()
         End If
 
-
+        If is_non_list = "1" Then
+            CENonList.EditValue = True
+        Else
+            CENonList.EditValue = False
+        End If
 
 
         'general
