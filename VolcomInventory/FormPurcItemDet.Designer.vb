@@ -73,6 +73,20 @@ Partial Class FormPurcItemDet
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BUploadDoc = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEPurchaseCategory = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEVendorType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -102,6 +116,10 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLEPurchaseCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDetail
@@ -111,12 +129,16 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCDetail.Size = New System.Drawing.Size(519, 227)
+        Me.XTCDetail.Size = New System.Drawing.Size(519, 280)
         Me.XTCDetail.TabIndex = 0
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPPriceList, Me.XTPAttachment})
         '
         'XtraTabPage1
         '
+        Me.XtraTabPage1.Controls.Add(Me.LabelControl7)
+        Me.XtraTabPage1.Controls.Add(Me.LabelControl6)
+        Me.XtraTabPage1.Controls.Add(Me.SLEVendorType)
+        Me.XtraTabPage1.Controls.Add(Me.SLEPurchaseCategory)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl5)
         Me.XtraTabPage1.Controls.Add(Me.SLEItemType)
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
@@ -129,13 +151,13 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.Controls.Add(Me.LabelControl11)
         Me.XtraTabPage1.Controls.Add(Me.TECode)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 199)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 252)
         Me.XtraTabPage1.Text = "Detail"
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(11, 127)
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 177)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl5.TabIndex = 8904
@@ -144,7 +166,7 @@ Partial Class FormPurcItemDet
         '
         'SLEItemType
         '
-        Me.SLEItemType.Location = New System.Drawing.Point(84, 124)
+        Me.SLEItemType.Location = New System.Drawing.Point(109, 174)
         Me.SLEItemType.Name = "SLEItemType"
         Me.SLEItemType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItemType.Properties.View = Me.GridView3
@@ -179,7 +201,7 @@ Partial Class FormPurcItemDet
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 159)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 212)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl1.TabIndex = 8902
@@ -207,7 +229,7 @@ Partial Class FormPurcItemDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 101)
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 151)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl4.TabIndex = 8900
@@ -215,7 +237,7 @@ Partial Class FormPurcItemDet
         '
         'SLEUOM
         '
-        Me.SLEUOM.Location = New System.Drawing.Point(84, 98)
+        Me.SLEUOM.Location = New System.Drawing.Point(109, 148)
         Me.SLEUOM.Name = "SLEUOM"
         Me.SLEUOM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUOM.Properties.View = Me.GridView1
@@ -246,11 +268,12 @@ Partial Class FormPurcItemDet
         '
         'SLECat
         '
-        Me.SLECat.Location = New System.Drawing.Point(84, 72)
+        Me.SLECat.Enabled = False
+        Me.SLECat.Location = New System.Drawing.Point(109, 96)
         Me.SLECat.Name = "SLECat"
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECat.Size = New System.Drawing.Size(392, 20)
+        Me.SLECat.Size = New System.Drawing.Size(367, 20)
         Me.SLECat.TabIndex = 8897
         '
         'SearchLookUpEdit1View
@@ -278,25 +301,25 @@ Partial Class FormPurcItemDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(11, 75)
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 73)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(92, 13)
         Me.LabelControl2.TabIndex = 8896
-        Me.LabelControl2.Text = "Category"
+        Me.LabelControl2.Text = "Purchase Category"
         '
         'TEDesc
         '
         Me.TEDesc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEDesc.EditValue = ""
-        Me.TEDesc.Location = New System.Drawing.Point(84, 44)
+        Me.TEDesc.Location = New System.Drawing.Point(109, 44)
         Me.TEDesc.Name = "TEDesc"
         Me.TEDesc.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEDesc.Properties.Appearance.Options.UseFont = True
         Me.TEDesc.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEDesc.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
-        Me.TEDesc.Size = New System.Drawing.Size(394, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(369, 20)
         Me.TEDesc.TabIndex = 8895
         Me.TEDesc.TabStop = False
         '
@@ -324,7 +347,7 @@ Partial Class FormPurcItemDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TECode.EditValue = ""
         Me.TECode.Enabled = False
-        Me.TECode.Location = New System.Drawing.Point(84, 15)
+        Me.TECode.Location = New System.Drawing.Point(109, 15)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECode.Properties.Appearance.Options.UseFont = True
@@ -332,7 +355,7 @@ Partial Class FormPurcItemDet
         Me.TECode.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TECode.Properties.EditValueChangedDelay = 1
         Me.TECode.Properties.ReadOnly = True
-        Me.TECode.Size = New System.Drawing.Size(394, 20)
+        Me.TECode.Size = New System.Drawing.Size(369, 20)
         Me.TECode.TabIndex = 8892
         Me.TECode.TabStop = False
         '
@@ -588,11 +611,120 @@ Partial Class FormPurcItemDet
         Me.BUploadDoc.TabIndex = 0
         Me.BUploadDoc.Text = "Upload"
         '
+        'SLEPurchaseCategory
+        '
+        Me.SLEPurchaseCategory.Location = New System.Drawing.Point(109, 70)
+        Me.SLEPurchaseCategory.Name = "SLEPurchaseCategory"
+        Me.SLEPurchaseCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPurchaseCategory.Properties.View = Me.GridView5
+        Me.SLEPurchaseCategory.Size = New System.Drawing.Size(367, 20)
+        Me.SLEPurchaseCategory.TabIndex = 8905
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn18, Me.GridColumn17, Me.GridColumn12, Me.GridColumn16, Me.GridColumn15})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID Purchase Category"
+        Me.GridColumn11.FieldName = "id_item_cat_detail"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Purchase Category"
+        Me.GridColumn12.FieldName = "item_cat_detail"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        '
+        'SLEVendorType
+        '
+        Me.SLEVendorType.Enabled = False
+        Me.SLEVendorType.Location = New System.Drawing.Point(109, 122)
+        Me.SLEVendorType.Name = "SLEVendorType"
+        Me.SLEVendorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorType.Properties.View = Me.GridView6
+        Me.SLEVendorType.Size = New System.Drawing.Size(367, 20)
+        Me.SLEVendorType.TabIndex = 8906
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID Vendor Type"
+        Me.GridColumn13.FieldName = "id_vendor_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Vendor Type"
+        Me.GridColumn14.FieldName = "vendor_type"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(11, 99)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl6.TabIndex = 8907
+        Me.LabelControl6.Text = "Budget Category"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(11, 125)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl7.TabIndex = 8908
+        Me.LabelControl7.Text = "Vendor Type"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Vendor Type"
+        Me.GridColumn15.FieldName = "vendor_type"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Budget Category"
+        Me.GridColumn16.FieldName = "item_cat"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 3
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "ID Vendor Type"
+        Me.GridColumn17.FieldName = "id_vendor_type"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "ID Cat"
+        Me.GridColumn18.FieldName = "id_item_cat"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
         'FormPurcItemDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(519, 227)
+        Me.ClientSize = New System.Drawing.Size(519, 280)
         Me.Controls.Add(Me.XTCDetail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -631,6 +763,10 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.SLEPurchaseCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -687,4 +823,18 @@ Partial Class FormPurcItemDet
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEVendorType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEPurchaseCategory As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
