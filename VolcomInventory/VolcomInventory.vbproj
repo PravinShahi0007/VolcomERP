@@ -1021,6 +1021,12 @@
     <Compile Include="FormEmpPayrollAdjustmentDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollADPick.Designer.vb">
+      <DependentUpon>FormEmpPayrollADPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollADPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollBCAFormat.Designer.vb">
       <DependentUpon>FormEmpPayrollBCAFormat.vb</DependentUpon>
     </Compile>
@@ -1823,6 +1829,18 @@
       <DependentUpon>FormItemReqDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormItemReqDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemSubCat.Designer.vb">
+      <DependentUpon>FormItemSubCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemSubCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemSubCatDet.Designer.vb">
+      <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemSubCatDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
@@ -5938,6 +5956,12 @@
     <Compile Include="ReportEmpOvertime.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpPayrollDeduction.Designer.vb">
+      <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollDeduction.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -7265,6 +7289,9 @@
     <EmbeddedResource Include="FormEmpPayrollAdjustmentDet.resx">
       <DependentUpon>FormEmpPayrollAdjustmentDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollADPick.resx">
+      <DependentUpon>FormEmpPayrollADPick.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollBCAFormat.resx">
       <DependentUpon>FormEmpPayrollBCAFormat.vb</DependentUpon>
     </EmbeddedResource>
@@ -7686,6 +7713,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemReqDet.resx">
       <DependentUpon>FormItemReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemSubCat.resx">
+      <DependentUpon>FormItemSubCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemSubCatDet.resx">
+      <DependentUpon>FormItemSubCatDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
@@ -10163,6 +10196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpOvertime.resx">
       <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollDeduction.resx">
+      <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>

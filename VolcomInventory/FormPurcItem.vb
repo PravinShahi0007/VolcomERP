@@ -112,4 +112,8 @@
     Private Sub SLEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEType.EditValueChanged
         load_cat()
     End Sub
+
+    Private Sub FormPurcItem_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class

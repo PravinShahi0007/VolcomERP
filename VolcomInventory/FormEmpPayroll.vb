@@ -71,9 +71,14 @@
     Sub load_payroll_detail()
         If GVPayrollPeriode.RowCount > 0 Then
             Dim query As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
+
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             GCPayroll.DataSource = data
+
+            adjustment_deduction_column("adjustment")
+            adjustment_deduction_column("deduction")
+
             GVPayroll.BestFitColumns()
 
             ' controls
@@ -384,5 +389,94 @@
             XTCPayroll.SelectedTabPage = XTPSalaryFormat
         Catch ex As Exception
         End Try
+    End Sub
+
+    Sub adjustment_deduction_column(type As String)
+        'column
+        Dim query_adj_c As String = "SELECT salary_" + type + "_cat FROM tb_lookup_salary_" + type + "_cat"
+
+        Dim data_adj_c As DataTable = execute_query(query_adj_c, -1, True, "", "", "", "")
+
+        For i = 0 To data_adj_c.Rows.Count - 1
+            Dim field_name As String = data_adj_c.Rows(i)("salary_" + type + "_cat").ToString + " " + type
+
+            'remove if exist
+            GVPayroll.Columns.Remove(GVPayroll.Columns(field_name))
+
+            'add column to datasource
+            If Not GCPayroll.DataSource.Columns.Contains(field_name) Then
+                Dim column_datasource As DataColumn = New DataColumn()
+
+                column_datasource.ColumnName = field_name
+                column_datasource.DataType = GetType(Integer)
+                column_datasource.DefaultValue = 0
+
+                GCPayroll.DataSource.Columns.Add(column_datasource)
+            End If
+
+            'add column to gridview
+            Dim column As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+
+            column.FieldName = field_name
+            column.Caption = data_adj_c.Rows(i)("salary_" + type + "_cat").ToString
+            column.Visible = True
+            column.OptionsColumn.AllowEdit = False
+            column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            column.DisplayFormat.FormatString = "N0"
+            column.SummaryItem.DisplayFormat = "{0:N0}"
+            column.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+
+            If type = "adjustment" Then
+                GBBonusAdjustment.Columns.Add(column)
+            ElseIf type = "deduction" Then
+                GBDeduction.Columns.Add(column)
+            End If
+
+            'add group summary
+            Dim group_summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+
+            group_summary.DisplayFormat = "{0:N0}"
+            group_summary.FieldName = field_name
+            group_summary.ShowInGroupColumnFooter = column
+            group_summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+
+            GVPayroll.GroupSummary.Add(group_summary)
+        Next
+
+        'move column total
+        Dim column_total As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = GVPayroll.Columns("total_" + type)
+
+        column_total.ColVIndex = 99
+
+        'value
+        Dim query_adj_v As String = ""
+
+        If type = "adjustment" Then
+            query_adj_v = "
+                SELECT adj.id_employee, ladjc.salary_adjustment_cat, ROUND(SUM(adj.value), 0) AS value
+                FROM tb_emp_payroll_adj AS adj
+                LEFT JOIN tb_lookup_salary_adjustment AS ladj ON adj.id_salary_adj = ladj.id_salary_adjustment
+                LEFT JOIN tb_lookup_salary_adjustment_cat AS ladjc ON ladj.id_salary_adjustment_cat = ladjc.id_salary_adjustment_cat
+                WHERE adj.id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "
+                GROUP BY adj.id_employee, ladjc.id_salary_adjustment_cat
+            "
+        ElseIf type = "deduction" Then
+            query_adj_v = "
+                SELECT adj.id_employee, ladjc.salary_deduction_cat, ROUND(SUM(adj.deduction), 0) AS value
+                FROM tb_emp_payroll_deduction AS adj
+                LEFT JOIN tb_lookup_salary_deduction AS ladj ON adj.id_salary_deduction = ladj.id_salary_deduction
+                LEFT JOIN tb_lookup_salary_deduction_cat AS ladjc ON ladj.id_salary_deduction_cat = ladjc.id_salary_deduction_cat
+                WHERE adj.id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "
+                GROUP BY adj.id_employee, ladjc.id_salary_deduction_cat
+            "
+        End If
+
+        Dim data_adj_v As DataTable = execute_query(query_adj_v, -1, True, "", "", "", "")
+
+        For i = 0 To data_adj_v.Rows.Count - 1
+            Dim row As Integer = find_row(GVPayroll, "id_employee", data_adj_v.Rows(i)("id_employee").ToString)
+
+            GVPayroll.SetRowCellValue(row, data_adj_v.Rows(i)("salary_" + type + "_cat").ToString + " " + type, data_adj_v.Rows(i)("value"))
+        Next
     End Sub
 End Class

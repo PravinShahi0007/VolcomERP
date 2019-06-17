@@ -99,10 +99,10 @@
             FormEmpPayrollOvertimeDet.LEDayoff.Focus()
             Close()
         ElseIf id_popup = "6" Then
-            FormEmpPayrollDeductionDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
-            FormEmpPayrollDeductionDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
-            FormEmpPayrollDeductionDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
-            FormEmpPayrollDeductionDet.LEDeductionType.Focus()
+            'FormEmpPayrollDeductionDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            'FormEmpPayrollDeductionDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            'FormEmpPayrollDeductionDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            'FormEmpPayrollDeductionDet.LEDeductionType.Focus()
             Close()
         ElseIf id_popup = "7" Then
             FormEmpPayrollAdjustmentDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
