@@ -231,7 +231,7 @@
             LENPWPStatus.ItemIndex = LENPWPStatus.Properties.GetDataSourceRowIndex("id_npwp_status", data.Rows(0)("id_npwp_status").ToString)
             LENPWPStatus.ReadOnly = True
             TENoRek.Text = datarow("employee_no_rek").ToString
-            TENoRek.Text = datarow("employee_rek_name").ToString
+            TERekeningName.Text = datarow("employee_rek_name").ToString
             TxtPhone.Text = datarow("phone").ToString
             TxtMobilePhone.Text = datarow("phone_mobile").ToString
             TxtPhoneExt.Text = datarow("phone_ext").ToString
