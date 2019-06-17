@@ -2018,4 +2018,10 @@ Public Class FormSalesPOSDet
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Private Sub BtnExportToReport_Click(sender As Object, e As EventArgs) Handles BtnExportToReport.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCItemList, "")
+        Cursor = Cursors.Default
+    End Sub
 End Class
