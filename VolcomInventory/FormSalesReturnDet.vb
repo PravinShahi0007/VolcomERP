@@ -1413,9 +1413,16 @@ Public Class FormSalesReturnDet
         End If
         If is_non_list = "1" And Not code_list_found Then
             'cek di return order
-            Dim qrc As String = "SELECT * 
+            Dim qrc As String = "SELECT rod.id_sales_return_order_det, rod.is_non_list, (rod.sales_return_order_det_qty-IFNULL(r.qty_ret,0)) AS `qty_limit`
             FROM tb_sales_return_order_det rod
             INNER JOIN tb_m_product p ON p.id_product = rod.id_product
+            LEFT JOIN (
+                SELECT rd.id_sales_return_order_det, SUM(rd.sales_return_det_qty) AS `qty_ret` 
+                FROM tb_sales_return_det rd
+                INNER JOIN tb_sales_return r ON r.id_sales_return = rd.id_sales_return
+                WHERE r.id_sales_return_order=" + id_sales_return_order + " AND r.id_report_status!=5
+                GROUP BY rd.id_sales_return_order_det
+            ) r ON r.id_sales_return_order_det = rod.id_sales_return_order_det
             WHERE p.product_full_code='" + addSlashes(code_list) + "' AND rod.id_sales_return_order=" + id_sales_return_order + " "
             Dim drc As DataTable = execute_query(qrc, -1, True, "", "", "", "")
             If drc.Rows.Count > 0 Then
@@ -1423,7 +1430,15 @@ Public Class FormSalesReturnDet
                 makeSafeGV(GVItemList)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                 GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Please scan this product in regular process")
+                If drc.Rows(0)("is_non_list").ToString = "1" Then
+                    stopCustom("Stock not available")
+                Else
+                    If drc.Rows(0)("qty_limit") > 0 Then
+                        stopCustom("Please scan this product in regular process")
+                    Else
+                        stopCustom("Stock not available")
+                    End If
+                End If
                 Exit Sub
             Else
                 'tambah ror jika ada SOH
@@ -1485,8 +1500,9 @@ Public Class FormSalesReturnDet
                         GVItemList.RefreshData()
                         code_list_found = True
 
-                        'load unique new ror detail => GAK BISA PAKE INI KARENA DI REPLACE
-                        codeAvailableIns(dcr.Rows(0)("id_product").ToString, "u.id_product='" + dcr.Rows(0)("id_product").ToString + "' ", id_store, 0)
+                        'load unique new ror detail
+                        dt.Merge(dtu, True, MissingSchemaAction.Ignore)
+                        'codeAvailableIns(dcr.Rows(0)("id_product").ToString, "u.id_product='" + dcr.Rows(0)("id_product").ToString + "' ", id_store, 0)
                     Else
                         Cursor = Cursors.Default
                         makeSafeGV(GVItemList)
