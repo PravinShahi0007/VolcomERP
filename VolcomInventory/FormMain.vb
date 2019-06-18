@@ -9102,7 +9102,7 @@ Public Class FormMain
             FormEmpOvertime.form_load()
             FormEmpOvertime.load_overtime("created_at")
         ElseIf formName = "FormInvoiceFGPO" Then
-            FormInvoiceFGPO.load_list()
+            FormInvoiceFGPO.load_list("0")
         ElseIf formName = "FormFGLinePlan" Then
             FormFGLinePlan.viewData()
         ElseIf formName = "FormWorkOrder" Then
