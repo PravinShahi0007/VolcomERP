@@ -1420,11 +1420,82 @@ Public Class FormSalesReturnDet
             Dim drc As DataTable = execute_query(qrc, -1, True, "", "", "", "")
             If drc.Rows.Count > 0 Then
                 Cursor = Cursors.Default
+                makeSafeGV(GVItemList)
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
                 stopCustom("Please scan this product in regular process")
                 Exit Sub
             Else
                 'tambah ror jika ada SOH
+                Dim qcr As String = "SELECT p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, 
+                SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty_avl,
+                prc.id_design_price, prc.design_price, prc.design_price_type
+                FROM tb_storage_fg f 
+                INNER JOIN tb_m_comp c ON c.id_drawer_def = f.id_wh_drawer
+                INNER JOIN tb_m_product p ON p.id_product = f.id_product
+                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                LEFT JOIN( 
+                  Select * FROM ( 
+                  Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                  price.id_design_price_type, price_type.design_price_type,
+                  cat.id_design_cat, cat.design_cat
+                  From tb_m_design_price price 
+                  INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                  INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+                  WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+                  ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a 
+                  GROUP BY a.id_design 
+                ) prc ON prc.id_design = p.id_design 
+                WHERE c.id_comp=" + id_store + " AND p.product_full_code='" + addSlashes(code_list) + "' HAVING qty_avl>0 "
+                Dim dcr As DataTable = execute_query(qcr, -1, True, "", "", "", "")
+                If dcr.Rows.Count <= 0 Then
+                    Cursor = Cursors.Default
+                    makeSafeGV(GVItemList)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustom("Stock not available")
+                    Exit Sub
+                Else
+                    'cek unik code
+                    Dim dtu As DataTable = execute_query("CALL view_stock_fg_unique_ret('" + dcr.Rows(0)("id_product").ToString + "','" + id_store + "', '0','0')", -1, True, "", "", "", "")
+                    Dim dtu_filter As DataRow() = dtu.Select("[product_full_code]='" + code_check + "' ")
+                    If dtu_filter.Length > 0 Then
+                        ' add ror detail
+                        Dim qar As String = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_product, id_return_cat, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, is_non_list) 
+                        VALUES(" + id_sales_return_order + ", " + dcr.Rows(0)("id_product").ToString + ",1, '" + dcr.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dcr.Rows(0)("design_price").ToString) + "',0,'',1); SELECT LAST_INSERT_ID(); "
+                        Dim id_rod_new As String = execute_query(qar, 0, True, "", "", "", "")
 
+                        'add on Grid list
+                        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                        newRow("id_sales_return_order_det") = id_rod_new
+                        newRow("id_product") = dcr.Rows(0)("id_product").ToString
+                        newRow("code") = dcr.Rows(0)("code").ToString
+                        newRow("name") = dcr.Rows(0)("name").ToString
+                        newRow("size") = dcr.Rows(0)("size").ToString
+                        newRow("sales_return_det_qty") = 0
+                        newRow("sales_return_det_qty_limit") = dcr.Rows(0)("qty_avl")
+                        newRow("design_price_type") = dcr.Rows(0)("design_price_type").ToString
+                        newRow("design_price") = dcr.Rows(0)("design_price")
+                        newRow("id_design_price") = dcr.Rows(0)("id_design_price").ToString
+                        newRow("sales_return_det_amount") = 0
+                        newRow("sales_return_det_note") = ""
+                        TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                        GCItemList.RefreshDataSource()
+                        GVItemList.RefreshData()
+                        code_list_found = True
+
+                        'load unique new ror detail => GAK BISA PAKE INI KARENA DI REPLACE
+                        codeAvailableIns(dcr.Rows(0)("id_product").ToString, "u.id_product='" + dcr.Rows(0)("id_product").ToString + "' ", id_store, 0)
+                    Else
+                        Cursor = Cursors.Default
+                        makeSafeGV(GVItemList)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                        stopCustom("Code not found")
+                        Exit Sub
+                    End If
+                End If
             End If
         End If
         makeSafeGV(GVItemList)
