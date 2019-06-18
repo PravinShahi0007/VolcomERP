@@ -1,7 +1,6 @@
 ﻿Public Class FormEmpPayrollOvertime
     Public id_periode As String = "-1"
     Private Sub FormEmpPayrollOvertime_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        FormEmpPayroll.load_payroll_detail()
         Dispose()
     End Sub
 

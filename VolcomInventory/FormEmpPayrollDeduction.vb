@@ -97,8 +97,6 @@
     End Sub
 
     Private Sub FormEmpPayrollDeduction_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        FormEmpPayroll.load_payroll_detail()
-
         Dispose()
     End Sub
 
@@ -133,7 +131,7 @@
             )
             UNION
             (
-                SELECT 99 AS id_salary_deduction_cat, 99 AS id_salary_deduction, 'Total' AS salary_deduction_cat, 'Total' AS salary_deduction, 1 AS total
+                SELECT 99 AS id_salary_deduction_cat, 99 AS id_salary_deduction, '' AS salary_deduction_cat, 'Total' AS salary_deduction, 1 AS total
             ) 
             ORDER BY id_salary_deduction_cat ASC, id_salary_deduction ASC
         "

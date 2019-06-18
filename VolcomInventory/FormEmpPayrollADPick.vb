@@ -19,13 +19,13 @@
         End If
 
         Dim query As String = "
-            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, ROUND(prl.workdays, 0) AS workdays, ROUND(prl.actual_workdays, 0) AS actual_workdays, ROUND(sal.total_salary, 0) AS total_salary
+            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, ROUND(prl.workdays, 0) AS workdays, ROUND(prl.actual_workdays, 0) AS actual_workdays, ROUND(sal.total_salary, 0) AS total_salary
             FROM tb_emp_payroll_det AS prl
             LEFT JOIN tb_m_employee AS emp ON prl.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON emp.id_departement = dp.id_departement
             LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
-            LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
             LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+            LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
             LEFT JOIN (
                 SELECT id_employee_salary, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS total_salary
                 FROM tb_m_employee_salary
