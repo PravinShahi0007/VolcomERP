@@ -14,7 +14,7 @@
                                 INNER JOIn tb_emp_payroll_type type ON type.id_payroll_type=pr.id_payroll_type
                                 INNER JOIN tb_m_user usr ON usr.id_user=pr.id_user_upd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.id_employee
-                                ORDER BY pr.periode_end DESC"
+                                ORDER BY pr.periode_end DESC, type.sort ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         '
         GCPayrollPeriode.DataSource = data
@@ -64,11 +64,9 @@
         FormEmpPayrollEmp.ShowDialog()
     End Sub
 
-    Private Sub GVPayrollPeriode_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVPayrollPeriode.FocusedRowChanged
-        load_payroll_detail()
-    End Sub
-
     Sub load_payroll_detail()
+        Cursor = Cursors.WaitCursor
+
         If GVPayrollPeriode.RowCount > 0 Then
             Dim query As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
 
@@ -79,16 +77,20 @@
             adjustment_deduction_column("adjustment")
             adjustment_deduction_column("deduction")
 
+            'grand total dw
+            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
+                calculate_grandtotal_dw()
+            End If
+
             GVPayroll.BestFitColumns()
 
-            ' controls
+            'controls
             Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "'", 0, True, "", "", "", "")
 
             If id_report_status = "0" Then
                 BGetEmployee.Enabled = True
                 BRemoveEmployee.Enabled = True
                 BMark.Enabled = False
-                'BandedGridColumnCheck.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = True
                 BandedGridColumnCash.OptionsColumn.AllowEdit = True
                 BReport.Enabled = False
@@ -96,13 +98,12 @@
                 BPrint.Enabled = False
                 BReset.Visible = False
                 BSubmit.Visible = True
-                CheckEditSelAll.Enabled = False
                 CMDelEmp.Enabled = True
             Else
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
                 BMark.Enabled = True
-                'BandedGridColumnCheck.OptionsColumn.AllowEdit = False
+                BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
                 BReport.Enabled = False
@@ -110,19 +111,62 @@
                 BPrint.Enabled = False
                 BReset.Visible = True
                 BSubmit.Visible = False
-                CheckEditSelAll.Enabled = False
                 CMDelEmp.Enabled = False
             End If
 
             If id_report_status = "6" Then
-                'BandedGridColumnCheck.OptionsColumn.AllowEdit = True
                 BReport.Enabled = True
                 BPrintSlip.Enabled = True
                 BPrint.Enabled = True
                 BReset.Visible = False
-                CheckEditSelAll.Enabled = True
+            End If
+
+            'grid
+            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+                GBWorkingDays.Visible = True
+                GBSalary.Visible = True
+                GBBonusAdjustment.Visible = True
+                GBDeduction.Visible = True
+                GBOvertime.Visible = True
+
+                GBDW.Visible = False
+            ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
+                GBWorkingDays.Visible = False
+                GBSalary.Visible = False
+                GBBonusAdjustment.Visible = False
+                GBDeduction.Visible = False
+                GBOvertime.Visible = False
+
+                GBDW.Visible = True
+            End If
+
+            'button
+            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+                BBonusAdjustment.Visible = True
+                BDeduction.Visible = True
+                BOvertime.Visible = True
+                BSetting.Visible = True
+            Else
+                BBonusAdjustment.Visible = False
+                BDeduction.Visible = False
+                BOvertime.Visible = False
+                BSetting.Visible = False
             End If
         End If
+
+        GVPayroll.TopRowIndex = 0
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub calculate_grandtotal_dw()
+        For i = 0 To GVPayroll.RowCount - 1
+            If GVPayroll.IsValidRowHandle(i) Then
+                Dim grand_total As Decimal = GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")
+
+                GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
+            End If
+        Next
     End Sub
 
     Private Sub GVPayroll_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)
@@ -171,8 +215,10 @@
                 Cursor = Cursors.WaitCursor
 
                 For i = 0 To GVPayroll.RowCount - 1
-                    Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll_det='" & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString & "'"
-                    execute_non_query(query, True, "", "", "", "")
+                    If GVPayroll.IsValidRowHandle(i) Then
+                        Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll_det='" & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 Next
 
                 load_payroll_detail()
@@ -242,17 +288,19 @@
         If GVPayroll.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             'search id det
-            makeSafeGV(GVPayroll)
+            'makeSafeGV(GVPayroll)
             GVPayroll.ActiveFilterString = "[is_check]='yes'"
             If GVPayroll.RowCount > 0 Then
                 For i As Integer = 0 To GVPayroll.RowCount - 1
-                    If i = 0 Then
-                        where_string = GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
-                    Else
-                        where_string += "," & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                    If GVPayroll.IsValidRowHandle(i) Then
+                        If i = 0 Then
+                            where_string = GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                        Else
+                            where_string += "," & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                        End If
                     End If
                 Next
-                makeSafeGV(GVPayroll)
+                'makeSafeGV(GVPayroll)
                 '
                 ReportSalarySlip.where_string = where_string
                 ReportSalarySlip.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
@@ -262,9 +310,9 @@
                 Cursor = Cursors.Default
             Else
                 stopCustom("Please choose employee first.")
-                GVPayroll.ActiveFilterString = ""
                 Cursor = Cursors.Default
             End If
+            GVPayroll.ActiveFilterString = ""
         End If
     End Sub
 
@@ -274,6 +322,8 @@
                 Dim id_det As String = GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString
                 Dim query_upd As String = "UPDATE tb_emp_payroll_det SET actual_workdays='" & decimalSQL(Decimal.Parse(e.Value.ToString).ToString) & "' WHERE id_payroll_det='" & id_det & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
+
+                load_payroll_detail()
             End If
         ElseIf e.Column.FieldName.ToString = "is_cash" Then
             If Not e.Value.ToString = "" And GVPayroll.RowCount > 0 Then
@@ -302,21 +352,36 @@
 
         ReportPayrollAll.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
         ReportPayrollAll.dt = GCPayroll.DataSource
-        ReportPayrollAll.no_column = no_column
+        'ReportPayrollAll.no_column = no_column
         Dim Report As New ReportPayrollAll()
+
+        'grid
+        If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+            Report.GBWorkingDays.Visible = True
+            Report.GBSalary.Visible = True
+
+            Report.GBDW.Visible = False
+        ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
+            Report.GBWorkingDays.Visible = False
+            Report.GBSalary.Visible = False
+
+            Report.GBDW.Visible = True
+        End If
+
+        Report.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
         '
-        ReportPayrollAll2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
-        ReportPayrollAll2.dt = GCPayroll.DataSource
-        ReportPayrollAll2.no_column = no_column
-        Dim Report2 As New ReportPayrollAll2()
+        'ReportPayrollAll2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
+        'ReportPayrollAll2.dt = GCPayroll.DataSource
+        'ReportPayrollAll2.no_column = no_column
+        'Dim Report2 As New ReportPayrollAll2()
 
         ' Show the report's preview. 
-        Dim Tool2 As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report2)
-        Tool2.ShowPreview()
+        'Dim Tool2 As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report2)
+        'Tool2.ShowPreview()
     End Sub
 
     Private Sub BBBcaFormat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBcaFormat.ItemClick
@@ -385,10 +450,7 @@
     End Sub
 
     Private Sub GVPayrollPeriode_DoubleClick(sender As Object, e As EventArgs) Handles GVPayrollPeriode.DoubleClick
-        Try
-            XTCPayroll.SelectedTabPage = XTPSalaryFormat
-        Catch ex As Exception
-        End Try
+        XTCPayroll.SelectedTabPage = XTPSalaryFormat
     End Sub
 
     Sub adjustment_deduction_column(type As String)
@@ -478,5 +540,11 @@
 
             GVPayroll.SetRowCellValue(row, data_adj_v.Rows(i)("salary_" + type + "_cat").ToString + " " + type, data_adj_v.Rows(i)("value"))
         Next
+    End Sub
+
+    Private Sub XTCPayroll_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPayroll.SelectedPageChanged
+        If XTCPayroll.SelectedTabPage.Name = "XTPSalaryFormat" Then
+            load_payroll_detail()
+        End If
     End Sub
 End Class

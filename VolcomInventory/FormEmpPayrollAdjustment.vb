@@ -37,8 +37,6 @@
     End Sub
 
     Private Sub FormEmpPayrollAdjustment_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        FormEmpPayroll.load_payroll_detail()
-
         Dispose()
     End Sub
 
@@ -88,7 +86,7 @@
             )
             UNION
             (
-                SELECT 99 AS id_salary_adjustment_cat, 99 AS id_salary_adjustment, 'Total' AS salary_adjustment_cat, 'Total' AS salary_adjustment, 1 AS total
+                SELECT 99 AS id_salary_adjustment_cat, 99 AS id_salary_adjustment, '' AS salary_adjustment_cat, 'Total' AS salary_adjustment, 1 AS total
             ) 
             ORDER BY id_salary_adjustment_cat ASC, id_salary_adjustment ASC
         "
