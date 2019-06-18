@@ -34,6 +34,16 @@ Partial Class FormSalesReturnDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.CENonList = New DevExpress.XtraEditors.CheckEdit()
+        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BtnPrint = New DevExpress.XtraBars.BarLargeButtonItem()
+        Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPrintNonStock = New DevExpress.XtraBars.BarButtonItem()
         Me.MEAdrressCompFrom = New DevExpress.XtraEditors.MemoEdit()
         Me.TEDrawer = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -59,15 +69,6 @@ Partial Class FormSalesReturnDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
-        Me.BtnPrint = New DevExpress.XtraBars.BarLargeButtonItem()
-        Me.BBPrintNonStock = New DevExpress.XtraBars.BarButtonItem()
-        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BtnVerify = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -201,7 +202,6 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.CENonList = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,6 +213,8 @@ Partial Class FormSalesReturnDet
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDrawer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -224,7 +226,6 @@ Partial Class FormSalesReturnDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -283,7 +284,6 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -428,6 +428,77 @@ Partial Class FormSalesReturnDet
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(450, 143)
         Me.PanelControlTopLeft.TabIndex = 10008
+        '
+        'CENonList
+        '
+        Me.CENonList.Enabled = False
+        Me.CENonList.Location = New System.Drawing.Point(353, 114)
+        Me.CENonList.MenuManager = Me.BMDD
+        Me.CENonList.Name = "CENonList"
+        Me.CENonList.Properties.Caption = "Non List"
+        Me.CENonList.Size = New System.Drawing.Size(58, 19)
+        Me.CENonList.TabIndex = 10008
+        '
+        'BMDD
+        '
+        Me.BMDD.DockControls.Add(Me.barDockControlTop)
+        Me.BMDD.DockControls.Add(Me.barDockControlBottom)
+        Me.BMDD.DockControls.Add(Me.barDockControlLeft)
+        Me.BMDD.DockControls.Add(Me.barDockControlRight)
+        Me.BMDD.Form = Me
+        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BtnPrint, Me.BtnPrePrinting, Me.BBPrintNonStock})
+        Me.BMDD.MaxItemId = 4
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(911, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 660)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(911, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 660)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(911, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 660)
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Id = 0
+        Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Caption = "Print"
+        Me.BtnPrint.Id = 1
+        Me.BtnPrint.Name = "BtnPrint"
+        '
+        'BtnPrePrinting
+        '
+        Me.BtnPrePrinting.Caption = "Pre Printing"
+        Me.BtnPrePrinting.Id = 2
+        Me.BtnPrePrinting.Name = "BtnPrePrinting"
+        '
+        'BBPrintNonStock
+        '
+        Me.BBPrintNonStock.Caption = "Non Stock"
+        Me.BBPrintNonStock.Id = 3
+        Me.BBPrintNonStock.Name = "BBPrintNonStock"
         '
         'MEAdrressCompFrom
         '
@@ -718,67 +789,6 @@ Partial Class FormSalesReturnDet
         Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrePrinting), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrint), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrintNonStock)})
         Me.PUDD.Manager = Me.BMDD
         Me.PUDD.Name = "PUDD"
-        '
-        'BtnPrePrinting
-        '
-        Me.BtnPrePrinting.Caption = "Pre Printing"
-        Me.BtnPrePrinting.Id = 2
-        Me.BtnPrePrinting.Name = "BtnPrePrinting"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Caption = "Print"
-        Me.BtnPrint.Id = 1
-        Me.BtnPrint.Name = "BtnPrint"
-        '
-        'BBPrintNonStock
-        '
-        Me.BBPrintNonStock.Caption = "Non Stock"
-        Me.BBPrintNonStock.Id = 3
-        Me.BBPrintNonStock.Name = "BBPrintNonStock"
-        '
-        'BMDD
-        '
-        Me.BMDD.DockControls.Add(Me.barDockControlTop)
-        Me.BMDD.DockControls.Add(Me.barDockControlBottom)
-        Me.BMDD.DockControls.Add(Me.barDockControlLeft)
-        Me.BMDD.DockControls.Add(Me.barDockControlRight)
-        Me.BMDD.Form = Me
-        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BtnPrint, Me.BtnPrePrinting, Me.BBPrintNonStock})
-        Me.BMDD.MaxItemId = 4
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(911, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 660)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(911, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 660)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(911, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 660)
-        '
-        'BarButtonItem1
-        '
-        Me.BarButtonItem1.Id = 0
-        Me.BarButtonItem1.Name = "BarButtonItem1"
         '
         'BtnVerify
         '
@@ -2068,16 +2078,6 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
         '
-        'CENonList
-        '
-        Me.CENonList.Enabled = False
-        Me.CENonList.Location = New System.Drawing.Point(353, 114)
-        Me.CENonList.MenuManager = Me.BMDD
-        Me.CENonList.Name = "CENonList"
-        Me.CENonList.Properties.Caption = "Non List"
-        Me.CENonList.Size = New System.Drawing.Size(60, 19)
-        Me.CENonList.TabIndex = 10008
-        '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2109,6 +2109,8 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDrawer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2120,7 +2122,6 @@ Partial Class FormSalesReturnDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2183,7 +2184,6 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

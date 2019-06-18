@@ -168,22 +168,22 @@ Public Class FormSalesReturnDet
 
             'detail2
             viewDetail()
-                view_barcode_list()
-                view_barcode_list_prob()
-                check_but()
-                allow_status()
+            view_barcode_list()
+            view_barcode_list_prob()
+            check_but()
+            allow_status()
 
-                If id_pre = "1" Then
-                    prePrinting()
-                    Close()
-                ElseIf id_pre = "2" Then
-                    printing()
-                    Close()
-                End If
+            If id_pre = "1" Then
+                prePrinting()
+                Close()
+            ElseIf id_pre = "2" Then
+                printing()
+                Close()
             End If
+        End If
 
-            'ret type
-            If id_ret_type = "2" Then
+        'ret type
+        If id_ret_type = "2" Then
             XTCReturn.SelectedTabPageIndex = 1
             XTPReturn.PageEnabled = False
             XTPNonStock.PageEnabled = True
@@ -297,7 +297,12 @@ Public Class FormSalesReturnDet
         dt.Clear()
         If action = "ins" Then
             'action
-            Dim query As String = "CALL view_sales_return_order_limit('" + id_sales_return_order + "', '0', '0')"
+            Dim query As String = ""
+            If is_non_list = "1" Then
+                query = "CALL view_sales_return_order_limit_non_list('" + id_sales_return_order + "','" + id_store + "')"
+            Else
+                query = "CALL view_sales_return_order_limit('" + id_sales_return_order + "', '0', '0')"
+            End If
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         ElseIf action = "upd" Then
@@ -844,7 +849,12 @@ Public Class FormSalesReturnDet
         GridColumnStt.Visible = True
         Dim cond_list As Boolean = True
         'Dim query_cek_stok As String = "CALL view_stock_fg('" + id_store + "', '" + id_wh_locator_store + "', '" + id_wh_rack_store + "', '" + id_wh_drawer_store + "', '0', 4, '9999-01-01') "
-        Dim query_cek_stok As String = "CALL view_sales_return_order_limit('" + id_sales_return_order + "','0','0') "
+        Dim query_cek_stok As String = ""
+        If is_non_list = "1" Then
+            query_cek_stok = "CALL view_sales_return_order_limit_non_list('" + id_sales_return_order + "','" + id_store + "') "
+        Else
+            query_cek_stok = "CALL view_sales_return_order_limit('" + id_sales_return_order + "','0','0') "
+        End If
         Dim dt_cek As DataTable = execute_query(query_cek_stok, -1, True, "", "", "", "")
 
         If id_commerce_type = "2" Then
@@ -1400,6 +1410,22 @@ Public Class FormSalesReturnDet
         GVItemList.FocusedRowHandle = 0
         If GVItemList.RowCount > 0 Then
             code_list_found = True
+        End If
+        If is_non_list = "1" And Not code_list_found Then
+            'cek di return order
+            Dim qrc As String = "SELECT * 
+            FROM tb_sales_return_order_det rod
+            INNER JOIN tb_m_product p ON p.id_product = rod.id_product
+            WHERE p.product_full_code='" + addSlashes(code_list) + "' AND rod.id_sales_return_order=" + id_sales_return_order + " "
+            Dim drc As DataTable = execute_query(qrc, -1, True, "", "", "", "")
+            If drc.Rows.Count > 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Please scan this product in regular process")
+                Exit Sub
+            Else
+                'tambah ror jika ada SOH
+
+            End If
         End If
         makeSafeGV(GVItemList)
 
