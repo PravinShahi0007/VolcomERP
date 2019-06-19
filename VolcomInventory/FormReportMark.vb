@@ -4446,6 +4446,7 @@
 	                `royalty_special`,
 	                `inflation` ,
 	                `rate_current`,
+                    `rate_management`,
 	                `msrp` ,
 	                `msrp_rp` ,
 	                `date_available_start`,
@@ -4464,6 +4465,7 @@
                     '" + decimalSQL(dpr.Rows(i)("royalty_design").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("royalty_special").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("inflation").ToString) + "',
+                    '1',
                     '" + decimalSQL(dpr.Rows(i)("rate_current").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("msrp").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("msrp_rp").ToString) + "',
@@ -5972,7 +5974,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
-            FormInvoiceFGPO.load_list()
+            FormInvoiceFGPO.load_list("0")
         ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"

@@ -1716,6 +1716,10 @@ Public Class FormMain
             FormProposeEmpSalaryDet.id_employee_sal_pps = "-1"
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
+        ElseIf formName = "FormItemSubCat" Then
+            'purchase category
+            FormItemSubCatDet.id_sub_cat = "-1"
+            FormItemSubCatDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2778,6 +2782,10 @@ Public Class FormMain
                     FormProposeEmpSalaryDet.is_duplicate = "-1"
                     FormProposeEmpSalaryDet.ShowDialog()
                 End If
+            ElseIf formName = "FormItemSubCat" Then
+                'purchase category
+                FormItemSubCatDet.id_sub_cat = FormItemSubCat.GVPurchaseCategory.GetFocusedRowCellValue("id_item_cat_detail").ToString
+                FormItemSubCatDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7533,6 +7541,9 @@ Public Class FormMain
         ElseIf formName = "FormProposeEmpSalary" Then
             'employee propose
             print(FormProposeEmpSalary.GCList, "List Propose Employee Salary")
+        ElseIf formName = "FormItemSubCat" Then
+            'purchase category
+            print(FormItemSubCat.GCPurchaseCategory, "List Purchase Category")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8286,6 +8297,9 @@ Public Class FormMain
         ElseIf formName = "FormProposeEmpSalary" Then
             FormProposeEmpSalary.Close()
             FormProposeEmpSalary.Dispose()
+        ElseIf formName = "FormItemSubCat" Then
+            FormItemSubCat.Close()
+            FormItemSubCat.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9088,7 +9102,7 @@ Public Class FormMain
             FormEmpOvertime.form_load()
             FormEmpOvertime.load_overtime("created_at")
         ElseIf formName = "FormInvoiceFGPO" Then
-            FormInvoiceFGPO.load_list()
+            FormInvoiceFGPO.load_list("0")
         ElseIf formName = "FormFGLinePlan" Then
             FormFGLinePlan.viewData()
         ElseIf formName = "FormWorkOrder" Then
@@ -9109,6 +9123,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProposeEmpSalary" Then
             FormProposeEmpSalary.load_pps()
+        ElseIf formName = "FormItemSubCat" Then
+            FormItemSubCat.load_cat()
         End If
     End Sub
     'Switch
@@ -13100,6 +13116,20 @@ Public Class FormMain
             FormProposeEmpSalary.Show()
             FormProposeEmpSalary.WindowState = FormWindowState.Maximized
             FormProposeEmpSalary.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemSubCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemSubCat.LinkClicked
+        'Sub Category/purchase category
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemSubCat.MdiParent = Me
+            FormItemSubCat.Show()
+            FormItemSubCat.WindowState = FormWindowState.Maximized
+            FormItemSubCat.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

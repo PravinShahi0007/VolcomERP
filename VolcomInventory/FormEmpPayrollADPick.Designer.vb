@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormEmpPayrollEmp
+Partial Class FormEmpPayrollADPick
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,16 +19,16 @@ Partial Class FormEmpPayrollEmp
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollEmp))
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollADPick))
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBInsert = New DevExpress.XtraEditors.SimpleButton()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCTotalWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCActualWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNIP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,88 +36,45 @@ Partial Class FormEmpPayrollEmp
         Me.GCPosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeLevel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCLevel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCIdEmployeeActive = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCActiveStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCActualWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCTotalWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        Me.GCIdEmployeeActive = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCActiveStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'LargeImageCollection
+        'PanelControl1
         '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
-        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
-        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        Me.PanelControl1.Controls.Add(Me.SBClose)
+        Me.PanelControl1.Controls.Add(Me.SBInsert)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 522)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 39)
+        Me.PanelControl1.TabIndex = 2
         '
-        'PanelControl3
+        'SBClose
         '
-        Me.PanelControl3.Controls.Add(Me.BPickAll)
-        Me.PanelControl3.Controls.Add(Me.BCancel)
-        Me.PanelControl3.Controls.Add(Me.BPick)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 524)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(784, 37)
-        Me.PanelControl3.TabIndex = 6
+        Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
+        Me.SBClose.Location = New System.Drawing.Point(647, 2)
+        Me.SBClose.Name = "SBClose"
+        Me.SBClose.Size = New System.Drawing.Size(66, 35)
+        Me.SBClose.TabIndex = 1
+        Me.SBClose.Text = "Close"
         '
-        'BPickAll
+        'SBInsert
         '
-        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BPickAll.ImageIndex = 19
-        Me.BPickAll.ImageList = Me.LargeImageCollection
-        Me.BPickAll.Location = New System.Drawing.Point(2, 2)
-        Me.BPickAll.Name = "BPickAll"
-        Me.BPickAll.Size = New System.Drawing.Size(191, 33)
-        Me.BPickAll.TabIndex = 2
-        Me.BPickAll.Text = "Insert All Eligible Employee"
-        '
-        'BCancel
-        '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.ImageIndex = 5
-        Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(634, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(73, 33)
-        Me.BCancel.TabIndex = 1
-        Me.BCancel.Text = "Cancel"
-        '
-        'BPick
-        '
-        Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPick.ImageIndex = 19
-        Me.BPick.ImageList = Me.LargeImageCollection
-        Me.BPick.Location = New System.Drawing.Point(707, 2)
-        Me.BPick.Name = "BPick"
-        Me.BPick.Size = New System.Drawing.Size(75, 33)
-        Me.BPick.TabIndex = 0
-        Me.BPick.Text = "Insert"
+        Me.SBInsert.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBInsert.Image = CType(resources.GetObject("SBInsert.Image"), System.Drawing.Image)
+        Me.SBInsert.Location = New System.Drawing.Point(713, 2)
+        Me.SBInsert.Name = "SBInsert"
+        Me.SBInsert.Size = New System.Drawing.Size(69, 35)
+        Me.SBInsert.TabIndex = 0
+        Me.SBInsert.Text = "Insert"
         '
         'GCEmployee
         '
@@ -125,8 +82,8 @@ Partial Class FormEmpPayrollEmp
         Me.GCEmployee.Location = New System.Drawing.Point(0, 0)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.Size = New System.Drawing.Size(784, 524)
-        Me.GCEmployee.TabIndex = 7
+        Me.GCEmployee.Size = New System.Drawing.Size(784, 522)
+        Me.GCEmployee.TabIndex = 8
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
         'GVEmployee
@@ -149,6 +106,24 @@ Partial Class FormEmpPayrollEmp
         Me.GCIdEmployee.FieldName = "id_employee"
         Me.GCIdEmployee.Name = "GCIdEmployee"
         Me.GCIdEmployee.OptionsColumn.AllowEdit = False
+        '
+        'GCIdEmployeeSalary
+        '
+        Me.GCIdEmployeeSalary.FieldName = "id_employee_salary"
+        Me.GCIdEmployeeSalary.Name = "GCIdEmployeeSalary"
+        Me.GCIdEmployeeSalary.OptionsColumn.AllowEdit = False
+        '
+        'GCTotalWorkdays
+        '
+        Me.GCTotalWorkdays.FieldName = "total_workdays"
+        Me.GCTotalWorkdays.Name = "GCTotalWorkdays"
+        Me.GCTotalWorkdays.OptionsColumn.AllowEdit = False
+        '
+        'GCActualWorkdays
+        '
+        Me.GCActualWorkdays.FieldName = "actual_workdays"
+        Me.GCActualWorkdays.Name = "GCActualWorkdays"
+        Me.GCActualWorkdays.OptionsColumn.AllowEdit = False
         '
         'GCNIP
         '
@@ -208,20 +183,6 @@ Partial Class FormEmpPayrollEmp
         Me.GCLevel.VisibleIndex = 4
         Me.GCLevel.Width = 84
         '
-        'GCIdEmployeeActive
-        '
-        Me.GCIdEmployeeActive.FieldName = "id_employee_active"
-        Me.GCIdEmployeeActive.Name = "GCIdEmployeeActive"
-        '
-        'GCActiveStatus
-        '
-        Me.GCActiveStatus.Caption = "Active Status"
-        Me.GCActiveStatus.FieldName = "employee_active"
-        Me.GCActiveStatus.Name = "GCActiveStatus"
-        Me.GCActiveStatus.OptionsColumn.AllowEdit = False
-        Me.GCActiveStatus.Visible = True
-        Me.GCActiveStatus.VisibleIndex = 6
-        '
         'GCIdEmployeeStatus
         '
         Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
@@ -237,53 +198,46 @@ Partial Class FormEmpPayrollEmp
         Me.GCEmployeeStatus.VisibleIndex = 5
         Me.GCEmployeeStatus.Width = 90
         '
-        'GCActualWorkdays
+        'GCIdEmployeeActive
         '
-        Me.GCActualWorkdays.FieldName = "actual_workdays"
-        Me.GCActualWorkdays.Name = "GCActualWorkdays"
-        Me.GCActualWorkdays.OptionsColumn.AllowEdit = False
+        Me.GCIdEmployeeActive.FieldName = "id_employee_active"
+        Me.GCIdEmployeeActive.Name = "GCIdEmployeeActive"
         '
-        'GCTotalWorkdays
+        'GCActiveStatus
         '
-        Me.GCTotalWorkdays.FieldName = "total_workdays"
-        Me.GCTotalWorkdays.Name = "GCTotalWorkdays"
-        Me.GCTotalWorkdays.OptionsColumn.AllowEdit = False
+        Me.GCActiveStatus.Caption = "Active Status"
+        Me.GCActiveStatus.FieldName = "employee_active"
+        Me.GCActiveStatus.Name = "GCActiveStatus"
+        Me.GCActiveStatus.OptionsColumn.AllowEdit = False
+        Me.GCActiveStatus.Visible = True
+        Me.GCActiveStatus.VisibleIndex = 6
         '
-        'GCIdEmployeeSalary
-        '
-        Me.GCIdEmployeeSalary.FieldName = "id_employee_salary"
-        Me.GCIdEmployeeSalary.Name = "GCIdEmployeeSalary"
-        Me.GCIdEmployeeSalary.OptionsColumn.AllowEdit = False
-        '
-        'FormEmpPayrollEmp
+        'FormEmpPayrollADPick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GCEmployee)
-        Me.Controls.Add(Me.PanelControl3)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MinimizeBox = False
-        Me.Name = "FormEmpPayrollEmp"
+        Me.Controls.Add(Me.PanelControl1)
+        Me.Name = "FormEmpPayrollADPick"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Insert Employee"
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BPickAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBInsert As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCIdEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIdEmployeeSalary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCTotalWorkdays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCActualWorkdays As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCNIP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Columns.GridColumn
@@ -291,11 +245,8 @@ Partial Class FormEmpPayrollEmp
     Friend WithEvents GCPosition As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdEmployeeLevel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCLevel As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCIdEmployeeActive As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCActiveStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCIdEmployeeSalary As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCTotalWorkdays As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCActualWorkdays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIdEmployeeActive As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCActiveStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class

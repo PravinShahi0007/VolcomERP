@@ -118,7 +118,7 @@ ORDER BY pdd.id_prod_demand_design DESC"
         toleransi = TEToleransi.EditValue
         TETotal.EditValue = total_qty
         '
-        TEToleransiAmount.EditValue = (toleransi / 100) * total_qty
+        TEToleransiAmount.EditValue = Math.Ceiling((toleransi / 100) * total_qty)
         TETotalAmount.EditValue = TETotal.EditValue + TEToleransiAmount.EditValue
     End Sub
 
