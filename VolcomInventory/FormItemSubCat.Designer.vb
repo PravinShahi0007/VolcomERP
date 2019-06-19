@@ -91,7 +91,7 @@ Partial Class FormItemSubCat
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Created By"
-        Me.GridColumn6.FieldName = "created_by"
+        Me.GridColumn6.FieldName = "employee_name"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
