@@ -42,7 +42,7 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RITEAttendance = New DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit()
+        Me.RITEAttendance = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEBreakHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -57,11 +57,11 @@ Partial Class FormEmpOvertimeDet
         Me.SBEmpDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.SBEmpAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.TEOvertimeEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.TEOvertimeStart = New DevExpress.XtraEditors.DateEdit()
         Me.TEOvertimeBreak = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEOvertimeEnd = New DevExpress.XtraEditors.TimeEdit()
-        Me.TEOvertimeStart = New DevExpress.XtraEditors.TimeEdit()
         Me.TETotalHours = New DevExpress.XtraEditors.TextEdit()
         Me.LUEOvertimeType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -104,6 +104,7 @@ Partial Class FormEmpOvertimeDet
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEAttendance.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,9 +115,11 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
-        CType(Me.TEOvertimeBreak.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEOvertimeEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEOvertimeStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOvertimeStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEOvertimeBreak.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalHours.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LUEOvertimeType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +179,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployee.Location = New System.Drawing.Point(2, 2)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RICEValid, Me.RITEAttendance, Me.RITEBreakHours})
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RICEValid, Me.RITEBreakHours, Me.RITEAttendance})
         Me.GCEmployee.Size = New System.Drawing.Size(982, 377)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
@@ -308,22 +311,25 @@ Partial Class FormEmpOvertimeDet
         '
         Me.GCStartWork.Caption = "Start Work"
         Me.GCStartWork.ColumnEdit = Me.RITEAttendance
+        Me.GCStartWork.DisplayFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
+        Me.GCStartWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCStartWork.FieldName = "start_work"
-        Me.GCStartWork.MinWidth = 120
+        Me.GCStartWork.MinWidth = 150
         Me.GCStartWork.Name = "GCStartWork"
         Me.GCStartWork.Visible = True
         Me.GCStartWork.VisibleIndex = 5
-        Me.GCStartWork.Width = 120
+        Me.GCStartWork.Width = 150
         '
         'RITEAttendance
         '
         Me.RITEAttendance.AutoHeight = False
         Me.RITEAttendance.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RITEAttendance.DisplayFormat.FormatString = "T"
+        Me.RITEAttendance.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RITEAttendance.DisplayFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
         Me.RITEAttendance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RITEAttendance.EditFormat.FormatString = "T"
+        Me.RITEAttendance.EditFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
         Me.RITEAttendance.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RITEAttendance.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.[Default]
+        Me.RITEAttendance.Mask.EditMask = "dd MMM yyyy h:mm:ss tt"
         Me.RITEAttendance.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendance.Name = "RITEAttendance"
         '
@@ -331,12 +337,14 @@ Partial Class FormEmpOvertimeDet
         '
         Me.GCEndWork.Caption = "End Work"
         Me.GCEndWork.ColumnEdit = Me.RITEAttendance
+        Me.GCEndWork.DisplayFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
+        Me.GCEndWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCEndWork.FieldName = "end_work"
-        Me.GCEndWork.MinWidth = 120
+        Me.GCEndWork.MinWidth = 150
         Me.GCEndWork.Name = "GCEndWork"
         Me.GCEndWork.Visible = True
         Me.GCEndWork.VisibleIndex = 6
-        Me.GCEndWork.Width = 120
+        Me.GCEndWork.Width = 150
         '
         'GCBreakHours
         '
@@ -457,11 +465,11 @@ Partial Class FormEmpOvertimeDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.TEOvertimeEnd)
+        Me.GroupControl2.Controls.Add(Me.TEOvertimeStart)
         Me.GroupControl2.Controls.Add(Me.TEOvertimeBreak)
         Me.GroupControl2.Controls.Add(Me.LabelControl12)
         Me.GroupControl2.Controls.Add(Me.LabelControl11)
-        Me.GroupControl2.Controls.Add(Me.TEOvertimeEnd)
-        Me.GroupControl2.Controls.Add(Me.TEOvertimeStart)
         Me.GroupControl2.Controls.Add(Me.TETotalHours)
         Me.GroupControl2.Controls.Add(Me.LUEOvertimeType)
         Me.GroupControl2.Controls.Add(Me.LabelControl9)
@@ -482,11 +490,43 @@ Partial Class FormEmpOvertimeDet
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Overtime"
         '
+        'TEOvertimeEnd
+        '
+        Me.TEOvertimeEnd.EditValue = Nothing
+        Me.TEOvertimeEnd.Location = New System.Drawing.Point(825, 64)
+        Me.TEOvertimeEnd.Name = "TEOvertimeEnd"
+        Me.TEOvertimeEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.TEOvertimeEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEOvertimeEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
+        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeEnd.Properties.EditFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
+        Me.TEOvertimeEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeEnd.Properties.Mask.EditMask = "dd MMM yyyy h:mm:ss tt"
+        Me.TEOvertimeEnd.Size = New System.Drawing.Size(165, 20)
+        Me.TEOvertimeEnd.TabIndex = 25
+        '
+        'TEOvertimeStart
+        '
+        Me.TEOvertimeStart.EditValue = Nothing
+        Me.TEOvertimeStart.Location = New System.Drawing.Point(646, 64)
+        Me.TEOvertimeStart.Name = "TEOvertimeStart"
+        Me.TEOvertimeStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.TEOvertimeStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEOvertimeStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEOvertimeStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
+        Me.TEOvertimeStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeStart.Properties.EditFormat.FormatString = "dd MMM yyyy h:mm:ss tt"
+        Me.TEOvertimeStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeStart.Properties.Mask.EditMask = "dd MMM yyyy h:mm:ss tt"
+        Me.TEOvertimeStart.Size = New System.Drawing.Size(165, 20)
+        Me.TEOvertimeStart.TabIndex = 24
+        '
         'TEOvertimeBreak
         '
         Me.TEOvertimeBreak.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEOvertimeBreak.EditValue = New Decimal(New Integer() {0, 0, 0, 65536})
-        Me.TEOvertimeBreak.Location = New System.Drawing.Point(670, 90)
+        Me.TEOvertimeBreak.Location = New System.Drawing.Point(646, 90)
         Me.TEOvertimeBreak.Name = "TEOvertimeBreak"
         Me.TEOvertimeBreak.Properties.DisplayFormat.FormatString = "N1"
         Me.TEOvertimeBreak.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -494,13 +534,13 @@ Partial Class FormEmpOvertimeDet
         Me.TEOvertimeBreak.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEOvertimeBreak.Properties.Mask.EditMask = "N1"
         Me.TEOvertimeBreak.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEOvertimeBreak.Size = New System.Drawing.Size(90, 20)
+        Me.TEOvertimeBreak.Size = New System.Drawing.Size(100, 20)
         Me.TEOvertimeBreak.TabIndex = 23
         '
         'LabelControl12
         '
         Me.LabelControl12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl12.Location = New System.Drawing.Point(785, 93)
+        Me.LabelControl12.Location = New System.Drawing.Point(770, 93)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(109, 13)
         Me.LabelControl12.TabIndex = 22
@@ -509,44 +549,24 @@ Partial Class FormEmpOvertimeDet
         'LabelControl11
         '
         Me.LabelControl11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl11.Location = New System.Drawing.Point(599, 93)
+        Me.LabelControl11.Location = New System.Drawing.Point(570, 93)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl11.TabIndex = 21
         Me.LabelControl11.Text = "Break (hours)"
         '
-        'TEOvertimeEnd
-        '
-        Me.TEOvertimeEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEOvertimeEnd.EditValue = New Date(2019, 3, 26, 0, 0, 0, 0)
-        Me.TEOvertimeEnd.Location = New System.Drawing.Point(840, 64)
-        Me.TEOvertimeEnd.Name = "TEOvertimeEnd"
-        Me.TEOvertimeEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeEnd.Size = New System.Drawing.Size(150, 20)
-        Me.TEOvertimeEnd.TabIndex = 20
-        '
-        'TEOvertimeStart
-        '
-        Me.TEOvertimeStart.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEOvertimeStart.EditValue = New Date(2019, 3, 26, 0, 0, 0, 0)
-        Me.TEOvertimeStart.Location = New System.Drawing.Point(670, 64)
-        Me.TEOvertimeStart.Name = "TEOvertimeStart"
-        Me.TEOvertimeStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeStart.Size = New System.Drawing.Size(150, 20)
-        Me.TEOvertimeStart.TabIndex = 19
-        '
         'TETotalHours
         '
         Me.TETotalHours.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TETotalHours.EditValue = ""
-        Me.TETotalHours.Location = New System.Drawing.Point(900, 90)
+        Me.TETotalHours.Location = New System.Drawing.Point(890, 90)
         Me.TETotalHours.Name = "TETotalHours"
         Me.TETotalHours.Properties.DisplayFormat.FormatString = "N1"
         Me.TETotalHours.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotalHours.Properties.EditFormat.FormatString = "N1"
         Me.TETotalHours.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotalHours.Properties.ReadOnly = True
-        Me.TETotalHours.Size = New System.Drawing.Size(90, 20)
+        Me.TETotalHours.Size = New System.Drawing.Size(100, 20)
         Me.TETotalHours.TabIndex = 18
         '
         'LUEOvertimeType
@@ -561,7 +581,7 @@ Partial Class FormEmpOvertimeDet
         'LabelControl9
         '
         Me.LabelControl9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl9.Location = New System.Drawing.Point(827, 67)
+        Me.LabelControl9.Location = New System.Drawing.Point(815, 67)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl9.TabIndex = 14
@@ -570,7 +590,7 @@ Partial Class FormEmpOvertimeDet
         'LabelControl8
         '
         Me.LabelControl8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl8.Location = New System.Drawing.Point(599, 67)
+        Me.LabelControl8.Location = New System.Drawing.Point(570, 67)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl8.TabIndex = 13
@@ -587,7 +607,7 @@ Partial Class FormEmpOvertimeDet
         'LabelControl4
         '
         Me.LabelControl4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl4.Location = New System.Drawing.Point(599, 15)
+        Me.LabelControl4.Location = New System.Drawing.Point(570, 15)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl4.TabIndex = 9
@@ -596,10 +616,10 @@ Partial Class FormEmpOvertimeDet
         'TECreatedBy
         '
         Me.TECreatedBy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TECreatedBy.Location = New System.Drawing.Point(670, 12)
+        Me.TECreatedBy.Location = New System.Drawing.Point(646, 12)
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(320, 20)
+        Me.TECreatedBy.Size = New System.Drawing.Size(344, 20)
         Me.TECreatedBy.TabIndex = 8
         '
         'DEOvertimeDate
@@ -618,7 +638,7 @@ Partial Class FormEmpOvertimeDet
         'LabelControl3
         '
         Me.LabelControl3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl3.Location = New System.Drawing.Point(599, 41)
+        Me.LabelControl3.Location = New System.Drawing.Point(570, 41)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl3.TabIndex = 6
@@ -627,10 +647,10 @@ Partial Class FormEmpOvertimeDet
         'TECreatedAt
         '
         Me.TECreatedAt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TECreatedAt.Location = New System.Drawing.Point(670, 38)
+        Me.TECreatedAt.Location = New System.Drawing.Point(646, 38)
         Me.TECreatedAt.Name = "TECreatedAt"
         Me.TECreatedAt.Properties.ReadOnly = True
-        Me.TECreatedAt.Size = New System.Drawing.Size(320, 20)
+        Me.TECreatedAt.Size = New System.Drawing.Size(344, 20)
         Me.TECreatedAt.TabIndex = 5
         '
         'LabelControl6
@@ -889,6 +909,7 @@ Partial Class FormEmpOvertimeDet
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEAttendance.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).EndInit()
@@ -901,9 +922,11 @@ Partial Class FormEmpOvertimeDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
-        CType(Me.TEOvertimeBreak.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEOvertimeEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEOvertimeStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOvertimeStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEOvertimeBreak.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotalHours.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LUEOvertimeType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -969,8 +992,6 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TETotalHours As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEOvertimeEnd As DevExpress.XtraEditors.TimeEdit
-    Friend WithEvents TEOvertimeStart As DevExpress.XtraEditors.TimeEdit
     Friend WithEvents GCOnlyDp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCConversionType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLUEType As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
@@ -1008,10 +1029,13 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SLUEPayrollPeriodView As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCTotalHours As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RITEAttendance As DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit
     Friend WithEvents RITEBreakHours As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIsDayOff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCPoint As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIsStore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TEOvertimeStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TEOvertimeEnd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents RITEAttendance As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class
