@@ -37,6 +37,7 @@ Partial Class FormEmpPayrollPeriode
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LEPayrollType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +51,7 @@ Partial Class FormEmpPayrollPeriode
         CType(Me.DEStartOt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartOt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPayrollType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -57,9 +59,9 @@ Partial Class FormEmpPayrollPeriode
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 219)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 223)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(462, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(434, 38)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnCancel
@@ -67,7 +69,7 @@ Partial Class FormEmpPayrollPeriode
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(310, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(282, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 12
@@ -100,7 +102,7 @@ Partial Class FormEmpPayrollPeriode
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(385, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(357, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 11
@@ -117,7 +119,7 @@ Partial Class FormEmpPayrollPeriode
         Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEEnd.Size = New System.Drawing.Size(222, 20)
+        Me.DEEnd.Size = New System.Drawing.Size(290, 20)
         Me.DEEnd.TabIndex = 8928
         '
         'DEStart
@@ -130,7 +132,7 @@ Partial Class FormEmpPayrollPeriode
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEStart.Size = New System.Drawing.Size(222, 20)
+        Me.DEStart.Size = New System.Drawing.Size(290, 20)
         Me.DEStart.TabIndex = 8927
         '
         'LabelControl2
@@ -164,7 +166,7 @@ Partial Class FormEmpPayrollPeriode
         '
         Me.MEPayrollNote.Location = New System.Drawing.Point(122, 143)
         Me.MEPayrollNote.Name = "MEPayrollNote"
-        Me.MEPayrollNote.Size = New System.Drawing.Size(313, 68)
+        Me.MEPayrollNote.Size = New System.Drawing.Size(290, 68)
         Me.MEPayrollNote.TabIndex = 8933
         '
         'LabelControl4
@@ -186,7 +188,7 @@ Partial Class FormEmpPayrollPeriode
         Me.DEEndOt.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEEndOt.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEndOt.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEEndOt.Size = New System.Drawing.Size(222, 20)
+        Me.DEEndOt.Size = New System.Drawing.Size(290, 20)
         Me.DEEndOt.TabIndex = 8935
         '
         'DEStartOt
@@ -199,7 +201,7 @@ Partial Class FormEmpPayrollPeriode
         Me.DEStartOt.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStartOt.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStartOt.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEStartOt.Size = New System.Drawing.Size(222, 20)
+        Me.DEStartOt.Size = New System.Drawing.Size(290, 20)
         Me.DEStartOt.TabIndex = 8934
         '
         'LabelControl5
@@ -216,8 +218,8 @@ Partial Class FormEmpPayrollPeriode
         Me.LEPayrollType.Location = New System.Drawing.Point(122, 64)
         Me.LEPayrollType.Name = "LEPayrollType"
         Me.LEPayrollType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPayrollType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll_type", "ID"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payroll_type", "Type")})
-        Me.LEPayrollType.Size = New System.Drawing.Size(222, 20)
+        Me.LEPayrollType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payroll_type", "Type")})
+        Me.LEPayrollType.Size = New System.Drawing.Size(290, 20)
         Me.LEPayrollType.TabIndex = 8939
         '
         'LabelControl7
@@ -229,11 +231,15 @@ Partial Class FormEmpPayrollPeriode
         Me.LabelControl7.TabIndex = 8940
         Me.LabelControl7.Text = "Type"
         '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
+        '
         'FormEmpPayrollPeriode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(462, 257)
+        Me.ClientSize = New System.Drawing.Size(434, 261)
         Me.Controls.Add(Me.LEPayrollType)
         Me.Controls.Add(Me.LabelControl7)
         Me.Controls.Add(Me.LabelControl4)
@@ -266,6 +272,7 @@ Partial Class FormEmpPayrollPeriode
         CType(Me.DEStartOt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartOt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPayrollType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -287,4 +294,5 @@ Partial Class FormEmpPayrollPeriode
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEPayrollType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents ErrorProvider As ErrorProvider
 End Class
