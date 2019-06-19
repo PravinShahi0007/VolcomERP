@@ -87,6 +87,9 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
                     newRow("note") = ""
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
+                'pop up DP
+
+                '
                 calculate()
             Else
                 'edit
