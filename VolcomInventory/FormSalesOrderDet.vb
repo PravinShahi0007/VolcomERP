@@ -1337,4 +1337,10 @@ Public Class FormSalesOrderDet
             End If
         End If
     End Sub
+
+    Private Sub BtnExportAsFile_Click(sender As Object, e As EventArgs) Handles BtnExportAsFile.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCItemList, "")
+        Cursor = Cursors.Default
+    End Sub
 End Class

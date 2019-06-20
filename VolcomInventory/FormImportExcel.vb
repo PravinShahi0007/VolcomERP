@@ -1488,7 +1488,7 @@ Public Class FormImportExcel
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
 
             Dim data As New DataTable
             Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_temp(" + FormSalesOrderDet.id_comp_par + ", '" + id_user + "')", connection)
