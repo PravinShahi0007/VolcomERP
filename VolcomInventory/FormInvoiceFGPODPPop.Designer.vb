@@ -144,7 +144,7 @@ Partial Class FormInvoiceFGPODPPop
         Me.GridColumn11.FieldName = "inv_number"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 3
         Me.GridColumn11.Width = 122
         '
         'GridColumnNote
@@ -153,7 +153,7 @@ Partial Class FormInvoiceFGPODPPop
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 5
+        Me.GridColumnNote.VisibleIndex = 4
         Me.GridColumnNote.Width = 241
         '
         'GridColumnPayment
@@ -196,8 +196,6 @@ Partial Class FormInvoiceFGPODPPop
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.AllowFocus = False
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat", "{0:N2}")})
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
         Me.GridColumn9.Width = 94
         '
         'RICECheckReceive

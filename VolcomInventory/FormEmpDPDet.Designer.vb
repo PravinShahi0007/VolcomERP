@@ -41,6 +41,8 @@ Partial Class FormEmpDPDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LEPayrollPeriode = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TETotHour = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -57,8 +59,6 @@ Partial Class FormEmpDPDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BDelDP = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddDP = New DevExpress.XtraEditors.SimpleButton()
-        Me.LEPayrollPeriode = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +73,7 @@ Partial Class FormEmpDPDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotHour.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEDPNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,6 @@ Partial Class FormEmpDPDet
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -319,6 +319,31 @@ Partial Class FormEmpDPDet
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "DP"
         '
+        'LEPayrollPeriode
+        '
+        Me.LEPayrollPeriode.Location = New System.Drawing.Point(405, 62)
+        Me.LEPayrollPeriode.Name = "LEPayrollPeriode"
+        Me.LEPayrollPeriode.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPayrollPeriode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LEPayrollPeriode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPayrollPeriode.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode", "Periode"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_periode_start", "Overtime Periode Start", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_periode_end", "Overtime Periode End", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LEPayrollPeriode.Properties.NullText = ""
+        Me.LEPayrollPeriode.Properties.ShowFooter = False
+        Me.LEPayrollPeriode.Size = New System.Drawing.Size(294, 20)
+        Me.LEPayrollPeriode.TabIndex = 148
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(328, 65)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl9.TabIndex = 147
+        Me.LabelControl9.Text = "Payroll Periode"
+        '
         'LabelControl8
         '
         Me.LabelControl8.Location = New System.Drawing.Point(232, 65)
@@ -470,31 +495,6 @@ Partial Class FormEmpDPDet
         Me.BAddDP.TabIndex = 0
         Me.BAddDP.Text = "Add"
         '
-        'LEPayrollPeriode
-        '
-        Me.LEPayrollPeriode.Location = New System.Drawing.Point(405, 62)
-        Me.LEPayrollPeriode.Name = "LEPayrollPeriode"
-        Me.LEPayrollPeriode.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEPayrollPeriode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEPayrollPeriode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.LEPayrollPeriode.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.LEPayrollPeriode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPayrollPeriode.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode", "Periode"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_start", "Periode Start", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_end", "Periode End", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
-        Me.LEPayrollPeriode.Properties.NullText = ""
-        Me.LEPayrollPeriode.Properties.ShowFooter = False
-        Me.LEPayrollPeriode.Size = New System.Drawing.Size(294, 20)
-        Me.LEPayrollPeriode.TabIndex = 148
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(328, 65)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(71, 13)
-        Me.LabelControl9.TabIndex = 147
-        Me.LabelControl9.Text = "Payroll Periode"
-        '
         'FormEmpDPDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -526,6 +526,7 @@ Partial Class FormEmpDPDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotHour.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEDPNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -534,7 +535,6 @@ Partial Class FormEmpDPDet
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

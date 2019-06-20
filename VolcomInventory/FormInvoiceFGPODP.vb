@@ -210,30 +210,58 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
         ElseIf is_dup Then
             warningCustom("Invoice number duplicate")
         Else
-            If id_dp = "-1" Then
-                'new
-                'header
-                Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
+            If type = "1" Then
+                If id_dp = "-1" Then
+                    'new
+                    'header
+                    Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
 VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
-                id_dp = execute_query(query, 0, True, "", "", "", "")
-                'detail
-                query = ""
-                For i = 0 To GVList.RowCount - 1
-                    query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
+                    id_dp = execute_query(query, 0, True, "", "", "", "")
+                    'detail
+                    query = ""
+                    For i = 0 To GVList.RowCount - 1
+                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
 VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
-                Next
-                execute_non_query(query, True, "", "", "", "")
-                '
-                query = "CALL gen_number('" & id_dp & "','189')"
-                execute_non_query(query, True, "", "", "", "")
-                submit_who_prepared("189", id_dp, id_user)
-                '
-                infoCustom("BPL Created")
-                Close()
-            Else
-                'edit
-                Dim query As String = ""
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    query = "CALL gen_number('" & id_dp & "','189')"
+                    execute_non_query(query, True, "", "", "", "")
+                    submit_who_prepared("189", id_dp, id_user)
+                    '
+                    infoCustom("BPL Created")
+                    Close()
+                Else
+                    'edit
+                    Dim query As String = ""
+                End If
+            ElseIf type = "2" Then 'pelunasan
+                If id_dp = "-1" Then
+                    'new
+                    'header
+                    Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
+VALUES ('2','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                    id_dp = execute_query(query, 0, True, "", "", "", "")
+                    'detail
+                    query = ""
+                    For i = 0 To GVList.RowCount - 1
+                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
+VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    query = "CALL gen_number('" & id_dp & "','189')"
+                    execute_non_query(query, True, "", "", "", "")
+                    submit_who_prepared("189", id_dp, id_user)
+                    '
+                    infoCustom("BPL Created")
+                    Close()
+                Else
+                    'edit
+                    Dim query As String = ""
+                End If
             End If
+
         End If
     End Sub
 
