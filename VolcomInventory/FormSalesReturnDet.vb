@@ -1442,12 +1442,13 @@ Public Class FormSalesReturnDet
                 Exit Sub
             Else
                 'tambah ror jika ada SOH
-                Dim qcr As String = "SELECT p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, 
+                Dim qcr As String = "SELECT p.id_product, d.id_design, d.is_old_design, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, 
                 SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty_avl,
                 prc.id_design_price, prc.design_price, prc.design_price_type
                 FROM tb_storage_fg f 
                 INNER JOIN tb_m_comp c ON c.id_drawer_def = f.id_wh_drawer
                 INNER JOIN tb_m_product p ON p.id_product = f.id_product
+                INNER JOIN tb_m_design d ON d.id_design = p.id_design
                 INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 LEFT JOIN( 
@@ -1472,10 +1473,20 @@ Public Class FormSalesReturnDet
                     stopCustom("Stock not available")
                     Exit Sub
                 Else
-                    'cek unik code
-                    Dim dtu As DataTable = execute_query("CALL view_stock_fg_unique_ret('" + dcr.Rows(0)("id_product").ToString + "','" + id_store + "', '0','0')", -1, True, "", "", "", "")
+                    Dim dtu As DataTable = Nothing
+                    If dcr.Rows(0)("is_old_design").ToString <> "2" Then
+                        'jika bukan unik
+                        Dim old As ClassDesign = New ClassDesign()
+                        Dim qold As String = old.queryOldDesignCode(dcr.Rows(0)("id_product").ToString)
+                        dtu = execute_query(qold, -1, True, "", "", "", "")
+                    Else
+                        'jika unik cek unik code
+                        dtu = execute_query("CALL view_stock_fg_unique_ret('" + dcr.Rows(0)("id_product").ToString + "','" + id_store + "', '0','0')", -1, True, "", "", "", "")
+                    End If
+
+
                     Dim dtu_filter As DataRow() = dtu.Select("[product_full_code]='" + code_check + "' ")
-                    If dtu_filter.Length > 0 Then
+                    If (dtu_filter.Length > 0) Then
                         ' add ror detail
                         Dim qar As String = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_product, id_return_cat, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, is_non_list) 
                         VALUES(" + id_sales_return_order + ", " + dcr.Rows(0)("id_product").ToString + ",1, '" + dcr.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dcr.Rows(0)("design_price").ToString) + "',0,'',1); SELECT LAST_INSERT_ID(); "
