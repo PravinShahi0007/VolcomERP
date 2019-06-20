@@ -798,7 +798,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "15" Then
             'RETURN ORDER
             Try
-                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list('0', '" + FormSalesOrderDet.id_comp_par + "', '" + FormSalesOrderDet.id_store + "')", -1, True, "", "", "", "")
+                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list_less('0', '" + FormSalesOrderDet.id_comp_par + "')", -1, True, "", "", "", "")
                 Dim tb1 = data_temp.AsEnumerable()
                 Dim tb2 = dt.AsEnumerable()
                 Dim query = From table1 In tb1
@@ -1521,7 +1521,7 @@ Public Class FormImportExcel
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_wh").Visible = False
             GVData.Columns("id_user").Visible = False
-            GVData.Columns("Class").Visible = False
+            'GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
             GVData.Columns("Style").VisibleIndex = 1
             GVData.Columns("Size").VisibleIndex = 2
@@ -2333,7 +2333,7 @@ Public Class FormImportExcel
                 Next
             Next
             qry += ") a ); ALTER TABLE tb_bex_month_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
