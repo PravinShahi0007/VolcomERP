@@ -45,7 +45,7 @@ Public Class FormSalesOrderDet
                 dt.Clear()
             Catch ex As Exception
             End Try
-            Dim query As String = "CALL view_sales_order_prod_list('0', '" + id_comp_par + "', '" + id_store + "')"
+            Dim query As String = "CALL view_sales_order_prod_list_less('0', '" + id_comp_par + "')"
             dt = execute_query(query, -1, True, "", "", "", "")
         End If
     End Sub
