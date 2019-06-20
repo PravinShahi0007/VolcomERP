@@ -2333,7 +2333,7 @@ Public Class FormImportExcel
                 Next
             Next
             qry += ") a ); ALTER TABLE tb_bex_month_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
