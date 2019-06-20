@@ -13,6 +13,7 @@
     Dim id_prepare_status As String = "-1"
     Public is_ro_only_offline As String = "-1"
     Dim lead_time_ro As String = "0"
+    Public dt As DataTable
 
 
     Private Sub FormSalesReturnOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -80,6 +81,39 @@
         End If
     End Sub
 
+    Sub loadStock()
+        If action = "ins" Then
+            Try
+                dt.Clear()
+            Catch ex As Exception
+            End Try
+            Dim query As String = "SELECT j.id_product, p.id_design,0 AS `id_sample`, 
+            p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+            SUM(IF(j.id_storage_category='2', CONCAT('-', j.storage_product_qty), j.storage_product_qty)) AS qty_all_product,
+            prc.id_design_price_retail, prc.design_price_retail
+            FROM tb_storage_fg j
+            INNER JOIN tb_m_product p ON p.id_product = j.id_product
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+            LEFT JOIN (
+	            SELECT prc.id_design, (prc.id_design_price) AS id_design_price_retail, (prc.design_price) AS design_price_retail, prc.id_design_cat, prc.design_cat, prc.`price_type`
+	            FROM (
+		            SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, prct.design_price_type AS `price_type`  
+		            FROM tb_m_design_price prc
+		            INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
+		            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = prct.id_design_cat
+		            WHERE design_price_start_date<=DATE(NOW()) AND is_active_wh = 1 AND is_design_cost=0
+		            ORDER BY design_price_start_date DESC, id_design_price DESC
+	            ) prc
+	            GROUP BY id_design
+            ) prc ON prc.id_design = p.id_design
+            WHERE j.id_wh_drawer=" + id_wh_drawer + "
+            GROUP BY j.id_product
+            HAVING qty_all_product>0 "
+            dt = execute_query(query, -1, True, "", "", "", "")
+        End If
+    End Sub
+
     Sub checkOnHold()
         Dim ro As New ClassSalesReturnOrder()
         Dim query As String = ro.queryOnHold("AND c.id_comp='" + id_comp + "' AND ISNULL(rof.id_detail_on_hold) ", "1", False, "0")
@@ -139,7 +173,7 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_return_order('" + id_sales_return_order + "')"
+        Dim query As String = "CALL view_sales_return_order_less('" + id_sales_return_order + "')"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         If action = "ins" Then
             'action
@@ -605,6 +639,7 @@
                 id_wh_drawer = "-1"
                 id_wh_rack = "-1"
                 id_wh_locator = "-1"
+                loadStock()
                 TxtNameCompTo.Text = ""
                 TxtCodeCompTo.Text = ""
                 MEAdrressCompTo.Text = ""
@@ -618,6 +653,7 @@
                 id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
                 id_wh_rack = data.Rows(0)("id_wh_rack").ToString
                 id_wh_locator = data.Rows(0)("id_wh_locator").ToString
+                loadStock()
                 TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
                 TxtCodeCompTo.Text = data.Rows(0)("comp_number").ToString
                 MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
@@ -705,7 +741,7 @@
                 If GVItemList.FocusedColumn.ToString = "Code" Then
                     GVItemList.CloseEditor()
                     Dim code_pas As String = addSlashes(GVItemList.GetRowCellValue(rh, "code").ToString)
-                    Dim dt As DataTable = execute_query("CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '9999-01-01') ", -1, True, "", "", "", "")
+                    'Dim dt As DataTable = execute_query("CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '9999-01-01') ", -1, True, "", "", "", "")
                     Dim data_filter As DataRow() = dt.Select("[code]='" + code_pas + "' ")
                     If data_filter.Length = 0 Then
                         stopCustom("Product not found !")
@@ -829,5 +865,11 @@
             FormSalesReturnOrderOnHoldList.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnExportAsFile_Click(sender As Object, e As EventArgs) Handles BtnExportAsFile.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCItemList, "")
+        Cursor = Cursors.Default
     End Sub
 End Class
