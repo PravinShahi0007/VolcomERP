@@ -200,12 +200,12 @@ Partial Class FormSalesOrder
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CancellOrderToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(147, 26)
         '
         'CancellOrderToolStripMenuItem1
         '
         Me.CancellOrderToolStripMenuItem1.Name = "CancellOrderToolStripMenuItem1"
-        Me.CancellOrderToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.CancellOrderToolStripMenuItem1.Size = New System.Drawing.Size(146, 22)
         Me.CancellOrderToolStripMenuItem1.Text = "Cancell Order"
         '
         'GVSalesOrder
@@ -279,8 +279,6 @@ Partial Class FormSalesOrder
         Me.GridColumn9.ColumnEdit = Me.RepositoryItemProgressBar1
         Me.GridColumn9.FieldName = "so_completness"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
         Me.GridColumn9.Width = 160
         '
         'RepositoryItemProgressBar1
