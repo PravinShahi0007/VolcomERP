@@ -4,6 +4,7 @@
     Public id_def_drawer As String = "-1"
     '
     Public is_view As String = "-1"
+    Dim id_vendor_type As String = "-1"
     '
     Dim data_map As DataTable
 
@@ -20,8 +21,12 @@
         viewLookupQuery(LEContractTemplate, query, 0, "description", "id_ko_template")
     End Sub
 
+    Sub load_vendor_type()
+        Dim query As String = "SELECT id_vendor_type,vendor_type FROM tb_vendor_type"
+        viewSearchLookupQuery(SLEVendorType, query, "id_vendor_type", "vendor_type", "id_vendor_type")
+    End Sub
+
     Sub action_load()
-        '
         For Each t As DevExpress.XtraTab.XtraTabPage In XTCCompany.TabPages
             XTCCompany.SelectedTabPage = t
         Next t
@@ -42,7 +47,7 @@
         viewSOType()
         viewLegal()
         load_contract_template()
-
+        load_vendor_type()
         'default value
         TxtCommission.EditValue = 0.0
         LEStoreType.EditValue = Nothing
@@ -211,9 +216,11 @@
             If LEStatus.EditValue.ToString = "3" Then 'created
                 BSave.Visible = True
                 BAddLegal.Visible = True
+                BSetVendorType.Visible = True
             Else
                 BSave.Visible = False
                 BAddLegal.Visible = False
+                BSetVendorType.Visible = False
             End If
         End If
     End Sub
@@ -895,16 +902,24 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
 
     Private Sub BApproval_Click_1(sender As Object, e As EventArgs) Handles BApproval.Click
         If BApproval.Text.ToString = "Submit" Then
-            'cek attachment kontrak first
-            Dim query As String = "SELECT * FROM `tb_m_comp_legal` WHERE id_comp='" & id_company & "' AND id_legal_type='1'"
+            'cek attachment already have or not
+            Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
+INNER JOIN tb_vendor_type_legal vtl ON vtl.`id_vendor_type`=c.`id_vendor_type`
+INNER JOIN `tb_lookup_legal_type` lt ON lt.`id_legal_type`=vtl.`id_legal_type`
+LEFT JOIN tb_m_comp_legal cl ON cl.`id_comp`=c.`id_comp` AND vtl.`id_legal_type`=cl.`id_legal_Type`
+WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count > 0 Then
+            If data.Rows.Count = 0 Then
                 FormReportMark.id_report = id_company
                 FormReportMark.report_mark_type = "153"
                 FormReportMark.is_view = is_view
                 FormReportMark.ShowDialog()
             Else
-                stopCustom("Please upload contract first")
+                Dim str_missing As String = "Please upload this remaining document : "
+                For i As Integer = 0 To data.Rows.Count - 1
+                    str_missing += vbNewLine & " - " & data.Rows(i)("legal_type").ToString
+                Next
+                warningCustom(str_missing)
             End If
         Else
             FormReportMark.id_report = id_company
@@ -971,5 +986,11 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
 
         Tool.ShowPreview()
+    End Sub
+
+    Private Sub BSetVendorType_Click(sender As Object, e As EventArgs) Handles BSetVendorType.Click
+        Dim query As String = "UPDATE tb_m_comp SET id_vendor_type='' WHERE id_comp='" & id_company & "'"
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom("Vendor type updated")
     End Sub
 End Class

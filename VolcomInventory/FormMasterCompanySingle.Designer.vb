@@ -164,6 +164,13 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEVendorType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl38 = New DevExpress.XtraEditors.LabelControl()
+        Me.BSetVendorType = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -240,6 +247,10 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl7.SuspendLayout()
+        CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -1304,6 +1315,7 @@ Partial Class FormMasterCompanySingle
         'XTPLegal
         '
         Me.XTPLegal.Controls.Add(Me.GroupControl8)
+        Me.XTPLegal.Controls.Add(Me.GroupControl7)
         Me.XTPLegal.Name = "XTPLegal"
         Me.XTPLegal.Size = New System.Drawing.Size(639, 493)
         Me.XTPLegal.Text = "Legal"
@@ -1314,9 +1326,9 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl8.Controls.Add(Me.PCVendorLegal)
         Me.GroupControl8.Controls.Add(Me.PanelControl2)
         Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl8.Location = New System.Drawing.Point(0, 56)
         Me.GroupControl8.Name = "GroupControl8"
-        Me.GroupControl8.Size = New System.Drawing.Size(639, 493)
+        Me.GroupControl8.Size = New System.Drawing.Size(639, 437)
         Me.GroupControl8.TabIndex = 17
         Me.GroupControl8.Text = "Detail"
         '
@@ -1327,7 +1339,7 @@ Partial Class FormMasterCompanySingle
         Me.GCLegal.MainView = Me.GVLegal
         Me.GCLegal.Name = "GCLegal"
         Me.GCLegal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDownload})
-        Me.GCLegal.Size = New System.Drawing.Size(635, 393)
+        Me.GCLegal.Size = New System.Drawing.Size(635, 337)
         Me.GCLegal.TabIndex = 1
         Me.GCLegal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLegal})
         '
@@ -1415,7 +1427,7 @@ Partial Class FormMasterCompanySingle
         Me.PCVendorLegal.Controls.Add(Me.LEContractTemplate)
         Me.PCVendorLegal.Controls.Add(Me.LabelControl37)
         Me.PCVendorLegal.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCVendorLegal.Location = New System.Drawing.Point(2, 452)
+        Me.PCVendorLegal.Location = New System.Drawing.Point(2, 396)
         Me.PCVendorLegal.Name = "PCVendorLegal"
         Me.PCVendorLegal.Size = New System.Drawing.Size(635, 39)
         Me.PCVendorLegal.TabIndex = 2
@@ -1723,6 +1735,71 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
         '
+        'GroupControl7
+        '
+        Me.GroupControl7.Controls.Add(Me.BSetVendorType)
+        Me.GroupControl7.Controls.Add(Me.SLEVendorType)
+        Me.GroupControl7.Controls.Add(Me.LabelControl38)
+        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl7.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl7.Name = "GroupControl7"
+        Me.GroupControl7.Size = New System.Drawing.Size(639, 56)
+        Me.GroupControl7.TabIndex = 18
+        Me.GroupControl7.Text = "Vendor Type"
+        '
+        'SLEVendorType
+        '
+        Me.SLEVendorType.Location = New System.Drawing.Point(78, 25)
+        Me.SLEVendorType.Name = "SLEVendorType"
+        Me.SLEVendorType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEVendorType.Properties.Appearance.Options.UseFont = True
+        Me.SLEVendorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorType.Properties.View = Me.GridView2
+        Me.SLEVendorType.Size = New System.Drawing.Size(257, 20)
+        Me.SLEVendorType.TabIndex = 8909
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn17, Me.GridColumn18})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Id Vendor Type"
+        Me.GridColumn17.FieldName = "id_vendor_type"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Vendor Type"
+        Me.GridColumn18.FieldName = "vendor_type"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 0
+        '
+        'LabelControl38
+        '
+        Me.LabelControl38.Location = New System.Drawing.Point(11, 28)
+        Me.LabelControl38.Name = "LabelControl38"
+        Me.LabelControl38.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl38.TabIndex = 8908
+        Me.LabelControl38.Text = "Vendor Type"
+        '
+        'BSetVendorType
+        '
+        Me.BSetVendorType.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BSetVendorType.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BSetVendorType.Appearance.Options.UseFont = True
+        Me.BSetVendorType.Location = New System.Drawing.Point(341, 25)
+        Me.BSetVendorType.Name = "BSetVendorType"
+        Me.BSetVendorType.Size = New System.Drawing.Size(70, 20)
+        Me.BSetVendorType.TabIndex = 8910
+        Me.BSetVendorType.TabStop = False
+        Me.BSetVendorType.Text = "Set"
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1820,6 +1897,11 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl7.ResumeLayout(False)
+        Me.GroupControl7.PerformLayout()
+        CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1966,4 +2048,11 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents LabelControl37 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BSetContract As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BrefreshTemplateContract As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GroupControl7 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SLEVendorType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl38 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BSetVendorType As DevExpress.XtraEditors.SimpleButton
 End Class
