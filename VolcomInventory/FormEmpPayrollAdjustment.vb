@@ -181,7 +181,7 @@
         Dim report As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction()
 
         'add column to grid
-        Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+        Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
 
         Dim last_cat As String = ""
 

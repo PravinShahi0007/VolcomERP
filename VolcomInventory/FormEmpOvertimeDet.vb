@@ -20,6 +20,8 @@
         viewSearchLookupQuery(SLUEPayrollPeriod, "SELECT id_payroll, DATE_FORMAT(periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(periode_end, '%d %M %Y') AS periode_end, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1", "id_payroll", "periode", "id_payroll")
 
         DEOvertimeDate.EditValue = Now
+        TEOvertimeStart.EditValue = New DateTime(Now.Year, Now.Month, Now.Day, 8, 30, 0)
+        TEOvertimeEnd.EditValue = New DateTime(Now.Year, Now.Month, Now.Day, 17, 30, 0)
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         TECreatedAt.EditValue = DateTime.Parse(Now).ToString("dd MMM yyyy h:mm:ss tt")
 
@@ -36,8 +38,8 @@
         data.Columns.Add("id_employee_level", GetType(String))
         data.Columns.Add("employee_level", GetType(String))
         data.Columns.Add("conversion_type", GetType(String))
-        data.Columns.Add("start_work", GetType(String))
-        data.Columns.Add("end_work", GetType(String))
+        data.Columns.Add("start_work", GetType(DateTime))
+        data.Columns.Add("end_work", GetType(DateTime))
         data.Columns.Add("break_hours", GetType(Decimal))
         data.Columns.Add("total_hours", GetType(Decimal))
         data.Columns.Add("is_day_off", GetType(String))
@@ -49,7 +51,7 @@
         'load database
         If Not id = "0" Then
             Dim query_ot As String = "
-                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, ot.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot.ot_start_time, ot.ot_end_time) / 60) - ot.ot_break, 1) AS total_hours, ot.ot_note, ot.id_payroll, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, ot.hrd_check, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, DATE_FORMAT(ot.ot_date, '%d %b %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%d %b %Y %l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%d %b %Y %l:%i:%s %p') AS ot_end_time, ot.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot.ot_start_time, ot.ot_end_time) / 60) - ot.ot_break, 1) AS total_hours, ot.ot_note, ot.id_payroll, DATE_FORMAT(payroll.periode_end, '%b %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, ot.hrd_check, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %l:%i:%s %p') AS created_at
                 FROM tb_ot AS ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                 LEFT JOIN tb_emp_payroll AS payroll ON ot.id_payroll = payroll.id_payroll
@@ -76,22 +78,22 @@
 
             ' load employee
             ' column
-            Dim whereCheckColumn As String = "TIME_FORMAT(IF(sch.id_schedule_type = 1, ot.ot_start_time, att_in.datetime), '%h:%i:%s %p') AS start_work, TIME_FORMAT(att_out.datetime, '%h:%i:%s %p') AS end_work, ot.ot_break AS break_hours, ROUND((TIMESTAMPDIFF(MINUTE, IF(sch.id_schedule_type = 1, ot.ot_start_time, att_in.datetime), att_out.datetime) / 60) - ot.ot_break, 1) AS total_hours, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1, 2, 1)) AS is_day_off, 0.0 AS point"
+            Dim whereCheckColumn As String = "DATE_FORMAT(IF(sch.id_schedule_type = 1, ot.ot_start_time, att_in.datetime), '%d %b %Y %l:%i:%s %p') AS start_work, DATE_FORMAT(att_out.datetime, '%d %b %Y %l:%i:%s %p') AS end_work, ot.ot_break AS break_hours, ROUND((TIMESTAMPDIFF(MINUTE, IF(sch.id_schedule_type = 1, ot.ot_start_time, att_in.datetime), att_out.datetime) / 60) - ot.ot_break, 1) AS total_hours, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1, 2, 1)) AS is_day_off, 0.0 AS point"
 
             If data_ot.Rows(0)("hrd_check").ToString = "1" Then
-                whereCheckColumn = "TIME_FORMAT(ot_det.start_work, '%h:%i:%s %p') AS start_work, TIME_FORMAT(ot_det.end_work, '%h:%i:%s %p') AS end_work, ot_det.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS total_hours, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1, 2, 1)) AS is_day_off, 0.0 AS point"
+                whereCheckColumn = "DATE_FORMAT(ot_det.start_work, '%d %b %Y %l:%i:%s %p') AS start_work, DATE_FORMAT(ot_det.end_work, '%d %b %Y %l:%i:%s %p') AS end_work, ot_det.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS total_hours, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1, 2, 1)) AS is_day_off, 0.0 AS point"
             End If
 
             ' table join
             Dim whereCheckJoin As String = "
                 LEFT JOIN (
-                    SELECT id_employee, TIME(MIN(`datetime`)) AS `datetime` 
+                    SELECT id_employee, MIN(`datetime`) AS `datetime` 
                     FROM tb_emp_attn
                     WHERE type_log = 1 AND DATE(`datetime`) = '" + Date.Parse(data_ot.Rows(0)("ot_date").ToString).ToString("yyyy-MM-dd") + "' 
                     GROUP BY id_employee
                 ) att_in ON ot_det.id_employee = att_in.id_employee
                 LEFT JOIN (
-                    SELECT id_employee, TIME(MAX(`datetime`)) AS `datetime` 
+                    SELECT id_employee, MAX(`datetime`) AS `datetime` 
                     FROM tb_emp_attn
                     WHERE type_log = 2 AND DATE(`datetime`) = '" + Date.Parse(data_ot.Rows(0)("ot_date").ToString).ToString("yyyy-MM-dd") + "'
                     GROUP BY id_employee
@@ -207,10 +209,10 @@
     End Sub
 
     Sub calculateTotalHours()
-        TEOvertimeStart.EditValue = Date.Parse(Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("yyyy-MM-dd") + " " + Date.Parse(TEOvertimeStart.EditValue.ToString).ToString("HH:mm:ss"))
-        TEOvertimeEnd.EditValue = Date.Parse(Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("yyyy-MM-dd") + " " + Date.Parse(TEOvertimeEnd.EditValue.ToString).ToString("HH:mm:ss"))
+        Dim ot_start As DateTime = TEOvertimeStart.EditValue
+        Dim ot_end As DateTime = TEOvertimeEnd.EditValue
 
-        Dim diff As TimeSpan = TEOvertimeEnd.EditValue - TEOvertimeStart.EditValue
+        Dim diff As TimeSpan = ot_end.Subtract(ot_start)
 
         Dim total As Decimal = 0.0
 
@@ -238,7 +240,10 @@
         For i = 0 To GVEmployee.RowCount - 1
             If GVEmployee.IsValidRowHandle(i) Then
                 If Not GVEmployee.GetRowCellValue(i, "end_work").ToString = "" And Not GVEmployee.GetRowCellValue(i, "start_work").ToString = "" Then
-                    Dim diff As TimeSpan = Date.Parse(GVEmployee.GetRowCellValue(i, "end_work").ToString) - Date.Parse(GVEmployee.GetRowCellValue(i, "start_work").ToString)
+                    Dim start_work As DateTime = GVEmployee.GetRowCellValue(i, "start_work")
+                    Dim end_work As DateTime = GVEmployee.GetRowCellValue(i, "end_work")
+
+                    Dim diff As TimeSpan = end_work.Subtract(start_work)
 
                     Dim total_hour As Decimal = 0.0
 
@@ -312,8 +317,8 @@
                 Dim query As String = ""
 
                 Dim ot_date As String = Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("yyyy-MM-dd")
-                Dim ot_start_time As String = Date.Parse(TEOvertimeStart.EditValue.ToString).ToString("HH:mm:ss")
-                Dim ot_end_time As String = Date.Parse(TEOvertimeEnd.EditValue.ToString).ToString("HH:mm:ss")
+                Dim ot_start_time As String = Date.Parse(TEOvertimeStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                Dim ot_end_time As String = Date.Parse(TEOvertimeEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
 
                 query = "INSERT INTO tb_ot (id_ot_type, ot_date, ot_start_time, ot_end_time, ot_break, ot_note, id_payroll, id_report_status, number, created_by, created_at) VALUES (" + LUEOvertimeType.EditValue.ToString + ", '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(TEOvertimeBreak.EditValue.ToString) + ", '" + addSlashes(MEOvertimeNote.Text.ToString) + "', " + SLUEPayrollPeriod.EditValue.ToString + ", 1, '0', " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
 
@@ -387,7 +392,7 @@
         Report.XLNumber.Text = TENumber.Text.ToString
         Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
         Report.XLOTDate.Text = DEOvertimeDate.Text.ToString
-        Report.XLOTTime.Text = TEOvertimeStart.Text.ToString + " - " + TEOvertimeEnd.Text.ToString + " (" + TETotalHours.Text.ToString + " Hours)"
+        Report.XLOTTime.Text = TEOvertimeStart.Text.ToString + Environment.NewLine + TEOvertimeEnd.Text.ToString + " (" + TETotalHours.Text.ToString + " Hours)"
         Report.XLPayrollPeriod.Text = SLUEPayrollPeriod.Text.ToString
         Report.XLCreatedAt.Text = TECreatedBy.Text.ToString
         Report.XLCreatedBy.Text = TECreatedAt.Text.ToString
@@ -433,7 +438,8 @@
 
     Private Sub DEOvertimeDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEOvertimeDate.EditValueChanged
         If Not DEOvertimeDate.EditValue Is Nothing Then
-            Dim data As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS ot_periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS ot_periode_end FROM tb_emp_payroll WHERE id_payroll_type = 1", -1, True, "", "", "", "")
+            'change payroll period
+            Dim data As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %b %Y') AS ot_periode_start, DATE_FORMAT(ot_periode_end, '%d %b %Y') AS ot_periode_end FROM tb_emp_payroll WHERE id_payroll_type = 1", -1, True, "", "", "", "")
 
             For i = 0 To data.Rows.Count - 1
                 If Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") >= Date.Parse(data.Rows(i)("ot_periode_start")) And Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") <= Date.Parse(data.Rows(i)("ot_periode_end")) Then
@@ -442,6 +448,24 @@
                     Exit For
                 End If
             Next
+
+            'time
+            Dim ot_date As DateTime = DEOvertimeDate.EditValue
+
+            Dim ot_start As DateTime = TEOvertimeStart.EditValue
+            Dim ot_end As DateTime = TEOvertimeEnd.EditValue
+
+            Dim plus_days As Integer = ot_end.Subtract(ot_start).TotalDays
+
+            'disable time
+            TEOvertimeStart.Properties.MinValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 0, 0, 0)
+            TEOvertimeStart.Properties.MaxValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 23, 59, 59)
+
+            TEOvertimeEnd.Properties.MinValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 0, 0, 0)
+
+            'change time date
+            TEOvertimeStart.EditValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, ot_start.Hour, ot_start.Minute, ot_start.Second)
+            TEOvertimeEnd.EditValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, ot_end.Hour, ot_end.Minute, ot_end.Second).AddDays(plus_days)
         End If
     End Sub
 
@@ -481,11 +505,11 @@
                         Dim break_hours As String = GVEmployee.GetRowCellValue(i, "break_hours").ToString
 
                         If Not GVEmployee.GetRowCellValue(i, "start_work").ToString = "" Then
-                            start_work = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "start_work").ToString).ToString("HH:mm:ss") + "'"
+                            start_work = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "start_work").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
                         End If
 
                         If Not GVEmployee.GetRowCellValue(i, "end_work").ToString = "" Then
-                            end_work = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "end_work").ToString).ToString("HH:mm:ss") + "'"
+                            end_work = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "end_work").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
                         End If
 
                         Dim is_valid As String = If(GVEmployee.GetRowCellValue(i, "valid").ToString = "yes", "1", "2")
@@ -532,9 +556,8 @@
             Dim id_payroll As String = data.Rows(i)("id_payroll").ToString
             Dim id_employee As String = data.Rows(i)("id_employee").ToString
             Dim id_ot_type As String = data.Rows(i)("id_ot_type").ToString
-            Dim ot_date As String = Date.Parse(data.Rows(i)("ot_date").ToString).ToString("yyyy-MM-dd")
-            Dim ot_start As String = data.Rows(i)("ot_start").ToString
-            Dim ot_end As String = data.Rows(i)("ot_end").ToString
+            Dim ot_start As String = Date.Parse(data.Rows(i)("ot_start").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+            Dim ot_end As String = Date.Parse(data.Rows(i)("ot_end").ToString).ToString("yyyy-MM-dd HH:mm:ss")
             Dim total_break As String = data.Rows(i)("total_break").ToString
             Dim total_hour As String = data.Rows(i)("total_hour").ToString
             Dim is_day_off As String = data.Rows(i)("is_day_off").ToString
@@ -547,7 +570,7 @@
 
             If conversion_type = "1" Then
                 ' overtime
-                query = "INSERT INTO tb_emp_payroll_ot (id_payroll, id_employee, id_ot_type, ot_start, ot_end, total_break, total_hour, total_point, is_day_off, wages_per_point, note, id_ot_det) VALUES (" + id_payroll + ", " + id_employee + ", " + id_ot_type + ", '" + ot_date + " " + ot_start + "', '" + ot_date + " " + ot_end + "', " + decimalSQL(total_break) + ", " + decimalSQL(total_hour) + ", " + decimalSQL(total_point) + ", " + is_day_off + ", '" + decimalSQL(wages_per_point) + "', '" + note + "', " + id_ot_det + ")"
+                query = "INSERT INTO tb_emp_payroll_ot (id_payroll, id_employee, id_ot_type, ot_start, ot_end, total_break, total_hour, total_point, is_day_off, wages_per_point, note, id_ot_det) VALUES (" + id_payroll + ", " + id_employee + ", " + id_ot_type + ", '" + ot_start + "', '" + ot_end + "', " + decimalSQL(total_break) + ", " + decimalSQL(total_hour) + ", " + decimalSQL(total_point) + ", " + is_day_off + ", '" + decimalSQL(wages_per_point) + "', '" + note + "', " + id_ot_det + ")"
 
                 execute_non_query(query, True, "", "", "", "")
             Else
