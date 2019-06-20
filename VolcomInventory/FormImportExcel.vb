@@ -1703,7 +1703,6 @@ Public Class FormImportExcel
                                 .CodeImport = If(result_prod Is Nothing, "0", result_prod("design_code_import")),
                                 .Code = If(result_prod Is Nothing, "0", result_prod("design_code")),
                                 .Description = If(result_prod Is Nothing, "0", result_prod("design_display_name")),
-                                .POOldSistem = table1("po_sistem_lama"),
                                 .hs_code = table1("hs_kode"),
                                 .AjuNumber = table1("aju_number"),
                                 .PibNumber = table1("pib_number"),
@@ -1745,7 +1744,6 @@ Public Class FormImportExcel
                 GVData.Columns("IdPO").Visible = False
                 GVData.Columns("hs_code").Caption = "HS Code"
                 GVData.Columns("CodeImport").Caption = "Code Import"
-                GVData.Columns("POOldSistem").Caption = "PO Reff #"
                 GVData.Columns("AjuNumber").Caption = "Aju Number"
                 GVData.Columns("PibNumber").Caption = "PIB Number"
                 GVData.Columns("PibDate").Caption = "PIB Date"
@@ -4098,7 +4096,6 @@ Public Class FormImportExcel
                             End If
 
                             Dim query_exec As String = "UPDATE tb_prod_order SET 
-                                                        po_lama_no='" & GVData.GetRowCellValue(i, "POOldSistem").ToString & "',
                                                         hs_code='" & GVData.GetRowCellValue(i, "hs_code").ToString & "',
                                                         aju_no='" & GVData.GetRowCellValue(i, "AjuNumber").ToString & "',
                                                         pib_no='" & GVData.GetRowCellValue(i, "PibNumber").ToString & "', 
