@@ -981,9 +981,18 @@ Public Class FormMain
                 FormProductionDet.id_prod_order = "-1"
                 FormProductionDet.ShowDialog()
             Else 'prod demand design
-                FormProductionDet.id_prod_demand_design = FormProduction.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                FormProductionDet.is_pd_base = "1"
-                FormProductionDet.ShowDialog()
+                'check first
+                Dim query_cek As String = "SELECT * FROM `tb_prod_demand_design_rev` pddr 
+INNER JOIN `tb_prod_demand_rev` pdr ON pdr.id_prod_demand_rev=pddr.id_prod_demand_rev
+WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString & "' AND pdr.id_report_status!='5'"
+                Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+                If data_cek.Rows.Count > 0 Then
+                    warningCustom("PD sedang diproses revisi.")
+                Else
+                    FormProductionDet.id_prod_demand_design = FormProduction.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                    FormProductionDet.is_pd_base = "1"
+                    FormProductionDet.ShowDialog()
+                End If
             End If
         ElseIf formName = "FormMatPL" Then
             If FormMatPL.XTCPL.SelectedTabPageIndex = 0 Then 'Production

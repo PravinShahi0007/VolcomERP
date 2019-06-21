@@ -81,7 +81,7 @@ Partial Public Class ReportListProd
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(968.9999!, 100.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1089.0!, 100.0!)
         Me.WinControlContainer1.WinControl = Me.GCProd
         '
         'GCProd
@@ -90,7 +90,7 @@ Partial Public Class ReportListProd
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(930, 96)
+        Me.GCProd.Size = New System.Drawing.Size(1045, 96)
         Me.GCProd.TabIndex = 3
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -327,7 +327,7 @@ Partial Public Class ReportListProd
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LPoNumber, Me.XrLine1, Me.LTitle, Me.XrPictureBox1})
-        Me.TopMargin.HeightF = 65.72919!
+        Me.TopMargin.HeightF = 66.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -336,10 +336,10 @@ Partial Public Class ReportListProd
         '
         Me.LPoNumber.Borders = DevExpress.XtraPrinting.BorderSide.Top
         Me.LPoNumber.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LPoNumber.LocationFloat = New DevExpress.Utils.PointFloat(784.6249!, 42.68751!)
+        Me.LPoNumber.LocationFloat = New DevExpress.Utils.PointFloat(936.6248!, 42.68751!)
         Me.LPoNumber.Name = "LPoNumber"
         Me.LPoNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPoNumber.SizeF = New System.Drawing.SizeF(184.3751!, 13.58335!)
+        Me.LPoNumber.SizeF = New System.Drawing.SizeF(152.3752!, 13.58335!)
         Me.LPoNumber.StylePriority.UseBorders = False
         Me.LPoNumber.StylePriority.UseFont = False
         '
@@ -347,15 +347,15 @@ Partial Public Class ReportListProd
         '
         Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 56.27085!)
         Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(968.9998!, 9.458332!)
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(1089.0!, 9.45834!)
         '
         'LTitle
         '
         Me.LTitle.Font = New System.Drawing.Font("Franklin Gothic Demi", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(624.2916!, 16.27081!)
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(776.2914!, 16.27081!)
         Me.LTitle.Name = "LTitle"
         Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LTitle.SizeF = New System.Drawing.SizeF(344.7085!, 26.4167!)
+        Me.LTitle.SizeF = New System.Drawing.SizeF(312.7086!, 26.4167!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
         Me.LTitle.Text = "Data Pengajuan PO"
@@ -371,7 +371,7 @@ Partial Public Class ReportListProd
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 21.875!
+        Me.BottomMargin.HeightF = 22.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -388,7 +388,7 @@ Partial Public Class ReportListProd
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(969.0001!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1089.0!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -417,7 +417,7 @@ Partial Public Class ReportListProd
         Me.LPeriod.LocationFloat = New DevExpress.Utils.PointFloat(82.12518!, 20.75001!)
         Me.LPeriod.Name = "LPeriod"
         Me.LPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPeriod.SizeF = New System.Drawing.SizeF(886.8748!, 20.75!)
+        Me.LPeriod.SizeF = New System.Drawing.SizeF(1006.875!, 20.75!)
         Me.LPeriod.StylePriority.UseTextAlignment = False
         Me.LPeriod.Text = "Period"
         Me.LPeriod.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -427,7 +427,7 @@ Partial Public Class ReportListProd
         Me.LSeason.LocationFloat = New DevExpress.Utils.PointFloat(82.12518!, 0!)
         Me.LSeason.Name = "LSeason"
         Me.LSeason.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSeason.SizeF = New System.Drawing.SizeF(886.8749!, 20.75!)
+        Me.LSeason.SizeF = New System.Drawing.SizeF(1006.875!, 20.75!)
         Me.LSeason.StylePriority.UseTextAlignment = False
         Me.LSeason.Text = "Season"
         Me.LSeason.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -476,7 +476,7 @@ Partial Public Class ReportListProd
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 66, 22)
+        Me.Margins = New System.Drawing.Printing.Margins(21, 59, 66, 22)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
