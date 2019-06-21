@@ -909,11 +909,14 @@ Public Class FormSalesReturnDet
         makeSafeGV(GVBarcodeProb)
 
         'check limit
+        GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
         Dim error_list As String = ""
         Dim cond_list As Boolean = True
         If action = "ins" Then
             cond_list = verifyTrans()
         End If
+        GVItemList.ActiveFilterString = ""
+        makeSafeGV(GVItemList)
 
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopRight) Then
