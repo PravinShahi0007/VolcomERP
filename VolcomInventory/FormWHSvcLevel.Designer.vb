@@ -122,6 +122,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.CEHighlightNonList = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnViewReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton7 = New DevExpress.XtraEditors.SimpleButton()
@@ -168,6 +169,7 @@ Partial Class FormWHSvcLevel
         CType(Me.GVReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.CEHighlightNonList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilReturn.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilReturn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromReturn.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1146,6 +1148,7 @@ Partial Class FormWHSvcLevel
         Me.GVReturn.Name = "GVReturn"
         Me.GVReturn.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVReturn.OptionsBehavior.Editable = False
+        Me.GVReturn.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVReturn.OptionsView.ColumnAutoWidth = False
         Me.GVReturn.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVReturn.OptionsView.ShowFooter = True
@@ -1272,6 +1275,7 @@ Partial Class FormWHSvcLevel
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.CEHighlightNonList)
         Me.GroupControl1.Controls.Add(Me.BtnViewReturn)
         Me.GroupControl1.Controls.Add(Me.SimpleButton6)
         Me.GroupControl1.Controls.Add(Me.SimpleButton7)
@@ -1284,6 +1288,14 @@ Partial Class FormWHSvcLevel
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(1222, 39)
         Me.GroupControl1.TabIndex = 4
+        '
+        'CEHighlightNonList
+        '
+        Me.CEHighlightNonList.Location = New System.Drawing.Point(398, 9)
+        Me.CEHighlightNonList.Name = "CEHighlightNonList"
+        Me.CEHighlightNonList.Properties.Caption = "show highlight for non list"
+        Me.CEHighlightNonList.Size = New System.Drawing.Size(174, 19)
+        Me.CEHighlightNonList.TabIndex = 8899
         '
         'BtnViewReturn
         '
@@ -1409,6 +1421,7 @@ Partial Class FormWHSvcLevel
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.CEHighlightNonList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilReturn.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilReturn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromReturn.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1527,4 +1540,5 @@ Partial Class FormWHSvcLevel
     Friend WithEvents BandedGridColumnDiffQtyScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnSLScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandDEL As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents CEHighlightNonList As DevExpress.XtraEditors.CheckEdit
 End Class
