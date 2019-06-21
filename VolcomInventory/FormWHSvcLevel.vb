@@ -163,6 +163,7 @@
     End Sub
 
     Sub viewSvcReturn()
+        Cursor = Cursors.WaitCursor
         'Prepare paramater
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
@@ -178,6 +179,8 @@
         Dim query As String = "CALL view_svc_level_return('" + date_from_selected + "','" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCReturn.DataSource = data
+        GVReturn.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub DEFromReturn_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFromReturn.KeyDown
@@ -249,6 +252,44 @@
             id_comp_selected = "-1"
             TxtComp.Text = ""
             GCByAcco.DataSource = Nothing
+        End If
+    End Sub
+
+    Private Sub GVReturn_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVReturn.CustomColumnDisplayText
+        If e.Column.FieldName = "diff_qty" Then
+            If e.Value > 0 Then
+                e.DisplayText = "+" + e.Value.ToString
+            Else
+                e.DisplayText = e.Value.ToString
+            End If
+            ' e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub CEHighlightNonList_CheckedChanged(sender As Object, e As EventArgs) Handles CEHighlightNonList.CheckedChanged
+        AddHandler GVReturn.RowStyle, AddressOf custom_cell
+        GCReturn.Focus()
+    End Sub
+
+    Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If CEHighlightNonList.EditValue = True Then
+            Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim diff As Integer = 0
+            Try
+                diff = currview.GetRowCellValue(e.RowHandle, "diff_qty")
+            Catch ex As Exception
+                diff = "0"
+            End Try
+
+            If diff > 0 Then
+                e.Appearance.BackColor = Color.Yellow
+            Else
+                e.Appearance.BackColor = Color.Empty
+            End If
+        Else
+            e.Appearance.BackColor = Color.Empty
         End If
     End Sub
 End Class
