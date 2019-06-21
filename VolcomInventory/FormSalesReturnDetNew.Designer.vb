@@ -24,16 +24,18 @@ Partial Class FormSalesReturnDetNew
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.CENonList = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 76)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 97)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(233, 37)
         Me.PanelControl1.TabIndex = 0
@@ -61,14 +63,24 @@ Partial Class FormSalesReturnDetNew
         Me.LookUpEdit1.Location = New System.Drawing.Point(12, 36)
         Me.LookUpEdit1.Name = "LookUpEdit1"
         Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ret_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ret_type", "Type")})
         Me.LookUpEdit1.Size = New System.Drawing.Size(209, 20)
         Me.LookUpEdit1.TabIndex = 2
+        '
+        'CENonList
+        '
+        Me.CENonList.Location = New System.Drawing.Point(162, 62)
+        Me.CENonList.Name = "CENonList"
+        Me.CENonList.Properties.Caption = "Non List"
+        Me.CENonList.Size = New System.Drawing.Size(59, 19)
+        Me.CENonList.TabIndex = 3
         '
         'FormSalesReturnDetNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(233, 113)
+        Me.ClientSize = New System.Drawing.Size(233, 134)
+        Me.Controls.Add(Me.CENonList)
         Me.Controls.Add(Me.LookUpEdit1)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.PanelControl1)
@@ -82,6 +94,7 @@ Partial Class FormSalesReturnDetNew
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENonList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -91,4 +104,5 @@ Partial Class FormSalesReturnDetNew
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents CENonList As DevExpress.XtraEditors.CheckEdit
 End Class
