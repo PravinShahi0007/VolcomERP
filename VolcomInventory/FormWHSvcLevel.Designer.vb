@@ -130,6 +130,8 @@ Partial Class FormWHSvcLevel
         Me.DEFromReturn = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnprepare_statusror = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLelel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLelel.SuspendLayout()
         Me.XTPBySO.SuspendLayout()
@@ -1142,7 +1144,7 @@ Partial Class FormWHSvcLevel
         '
         'GVReturn
         '
-        Me.GVReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.GVReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumnprepare_statusror, Me.GridColumnfinal_comment})
         Me.GVReturn.GridControl = Me.GCReturn
         Me.GVReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumn17, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.GridColumn18, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.GridColumn19, "{0:N0}")})
         Me.GVReturn.Name = "GVReturn"
@@ -1368,6 +1370,22 @@ Partial Class FormWHSvcLevel
         Me.LabelControl8.TabIndex = 8892
         Me.LabelControl8.Text = "From"
         '
+        'GridColumnprepare_statusror
+        '
+        Me.GridColumnprepare_statusror.Caption = "Status"
+        Me.GridColumnprepare_statusror.FieldName = "prepare_status"
+        Me.GridColumnprepare_statusror.Name = "GridColumnprepare_statusror"
+        Me.GridColumnprepare_statusror.Visible = True
+        Me.GridColumnprepare_statusror.VisibleIndex = 11
+        '
+        'GridColumnfinal_comment
+        '
+        Me.GridColumnfinal_comment.Caption = "Note"
+        Me.GridColumnfinal_comment.FieldName = "final_comment"
+        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
+        Me.GridColumnfinal_comment.Visible = True
+        Me.GridColumnfinal_comment.VisibleIndex = 12
+        '
         'FormWHSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1541,4 +1559,6 @@ Partial Class FormWHSvcLevel
     Friend WithEvents BandedGridColumnSLScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandDEL As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents CEHighlightNonList As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnprepare_statusror As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_comment As DevExpress.XtraGrid.Columns.GridColumn
 End Class
