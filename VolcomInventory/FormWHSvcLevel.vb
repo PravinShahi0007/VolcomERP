@@ -251,4 +251,15 @@
             GCByAcco.DataSource = Nothing
         End If
     End Sub
+
+    Private Sub GVReturn_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVReturn.CustomColumnDisplayText
+        If e.Column.FieldName = "diff_qty" Then
+            If e.Value > 0 Then
+                e.DisplayText = "+" + e.Value.ToString
+            Else
+                e.DisplayText = e.Value.ToString
+            End If
+            ' e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
 End Class
