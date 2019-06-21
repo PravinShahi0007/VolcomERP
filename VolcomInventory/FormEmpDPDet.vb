@@ -205,7 +205,11 @@
     End Sub
 
     Sub load_payroll_periode()
-        Dim query As String = "SELECT p.id_payroll,p.periode_start,p.periode_end,DATE_FORMAT(`periode_end`,'%M %Y') as periode FROM tb_emp_payroll p WHERE p.id_payroll_type='1'"
+        Dim query As String = "SELECT p.id_payroll,p.ot_periode_start,p.ot_periode_end,DATE_FORMAT(`periode_end`,'%M %Y') as periode 
+FROM tb_emp_payroll p WHERE p.id_payroll_type='1' AND (
+(YEAR(ot_periode_end)=YEAR(NOW()) AND  MONTH(ot_periode_end)=MONTH(NOW()))
+OR
+(YEAR(ot_periode_end)=YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND  MONTH(ot_periode_end)=MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))))"
         viewLookupQuery(LEPayrollPeriode, query, 0, "periode", "id_payroll")
     End Sub
 End Class
