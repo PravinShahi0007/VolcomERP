@@ -1081,6 +1081,12 @@
     <Compile Include="FormEmpPayrollPeriode.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollReportBPJSKesehatan.Designer.vb">
+      <DependentUpon>FormEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportBPJSKesehatan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollReportDept.Designer.vb">
       <DependentUpon>FormEmpPayrollReportDept.vb</DependentUpon>
     </Compile>
@@ -5968,6 +5974,18 @@
     <Compile Include="ReportEmpPayrollDeduction.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatan.Designer.vb">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatan.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatanDetail.Designer.vb">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatanDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatanDetail.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -7324,6 +7342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollReportBPJSKesehatan.resx">
+      <DependentUpon>FormEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollReportDept.resx">
       <DependentUpon>FormEmpPayrollReportDept.vb</DependentUpon>
@@ -10208,6 +10229,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPayrollDeduction.resx">
       <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollReportBPJSKesehatan.resx">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollReportBPJSKesehatanDetail.resx">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatanDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>

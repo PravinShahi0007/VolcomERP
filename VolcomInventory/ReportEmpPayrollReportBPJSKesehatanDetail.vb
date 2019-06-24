@@ -1,0 +1,3 @@
+﻿Public Class ReportEmpPayrollReportBPJSKesehatanDetail
+
+End Class

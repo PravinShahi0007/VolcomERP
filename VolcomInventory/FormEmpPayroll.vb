@@ -547,4 +547,15 @@
             load_payroll_detail()
         End If
     End Sub
+
+    Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem5.ItemClick
+        'bpjstk
+    End Sub
+
+    Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
+        'bpjs kesehatan
+        FormEmpPayrollReportBPJSKesehatan.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+        FormEmpPayrollReportBPJSKesehatan.ShowDialog()
+    End Sub
 End Class
