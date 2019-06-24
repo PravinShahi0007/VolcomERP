@@ -4207,6 +4207,12 @@
     <Compile Include="FormSalesReturnDetProblem.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnNonListDet.Designer.vb">
+      <DependentUpon>FormSalesReturnNonListDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnNonListDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderDetEdit.Designer.vb">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
     </Compile>
@@ -9139,6 +9145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnDetProblem.resx">
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnNonListDet.resx">
+      <DependentUpon>FormSalesReturnNonListDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderDetEdit.resx">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>

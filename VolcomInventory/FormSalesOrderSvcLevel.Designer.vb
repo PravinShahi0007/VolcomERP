@@ -20,6 +20,7 @@ Partial Class FormSalesOrderSvcLevel
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderSvcLevel))
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -272,6 +273,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPTrf = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGTrf = New DevExpress.XtraGrid.GridControl()
+        Me.ViewPreTransfer = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGTrf = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnFGTrfNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompNameFrom = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -330,8 +333,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.ViewPreTransfer = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnIsNonListReturn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoCENonList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -427,6 +430,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEFromReturnQC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPTrf.SuspendLayout()
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewPreTransfer.SuspendLayout()
         CType(Me.GVFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoTxtPrepOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -451,7 +455,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewPreTransfer.SuspendLayout()
+        CType(Me.RepoCENonList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -2202,7 +2206,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCSalesReturn.Location = New System.Drawing.Point(0, 39)
         Me.GCSalesReturn.MainView = Me.GVSalesReturn
         Me.GCSalesReturn.Name = "GCSalesReturn"
-        Me.GCSalesReturn.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3})
+        Me.GCSalesReturn.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepoCENonList})
         Me.GCSalesReturn.Size = New System.Drawing.Size(1024, 349)
         Me.GCSalesReturn.TabIndex = 6
         Me.GCSalesReturn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturn})
@@ -2221,7 +2225,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVSalesReturn
         '
-        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumn29, Me.GridColumn30, Me.GridColumnLastUser, Me.GridColumnSelReturn, Me.GridColumnTotalRet, Me.GridColumnTotalNonStock, Me.GridColumnRetType, Me.GridColumnOLStoreOrder, Me.GridColumnPreparedReturn})
+        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumn29, Me.GridColumn30, Me.GridColumnLastUser, Me.GridColumnSelReturn, Me.GridColumnTotalRet, Me.GridColumnTotalNonStock, Me.GridColumnRetType, Me.GridColumnOLStoreOrder, Me.GridColumnPreparedReturn, Me.GridColumnIsNonListReturn})
         Me.GVSalesReturn.GridControl = Me.GCSalesReturn
         Me.GVSalesReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotalRet, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", Me.GridColumnTotalNonStock, "{0:N0}")})
         Me.GVSalesReturn.Name = "GVSalesReturn"
@@ -2245,7 +2249,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnReturnOrderNumber.Name = "GridColumnReturnOrderNumber"
         Me.GridColumnReturnOrderNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnReturnOrderNumber.Visible = True
-        Me.GridColumnReturnOrderNumber.VisibleIndex = 3
+        Me.GridColumnReturnOrderNumber.VisibleIndex = 4
         Me.GridColumnReturnOrderNumber.Width = 91
         '
         'GridColumnStore
@@ -2255,7 +2259,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnStore.Name = "GridColumnStore"
         Me.GridColumnStore.OptionsColumn.AllowEdit = False
         Me.GridColumnStore.Visible = True
-        Me.GridColumnStore.VisibleIndex = 4
+        Me.GridColumnStore.VisibleIndex = 5
         Me.GridColumnStore.Width = 91
         '
         'GridColumnCompNameTo
@@ -2265,7 +2269,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnCompNameTo.Name = "GridColumnCompNameTo"
         Me.GridColumnCompNameTo.OptionsColumn.AllowEdit = False
         Me.GridColumnCompNameTo.Visible = True
-        Me.GridColumnCompNameTo.VisibleIndex = 5
+        Me.GridColumnCompNameTo.VisibleIndex = 6
         Me.GridColumnCompNameTo.Width = 91
         '
         'GridColumnStoreRetNumber
@@ -2275,7 +2279,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnStoreRetNumber.Name = "GridColumnStoreRetNumber"
         Me.GridColumnStoreRetNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreRetNumber.Visible = True
-        Me.GridColumnStoreRetNumber.VisibleIndex = 6
+        Me.GridColumnStoreRetNumber.VisibleIndex = 7
         Me.GridColumnStoreRetNumber.Width = 91
         '
         'GridColumnCreatedDate
@@ -2287,7 +2291,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 9
+        Me.GridColumnCreatedDate.VisibleIndex = 10
         Me.GridColumnCreatedDate.Width = 86
         '
         'GridColumn29
@@ -2297,7 +2301,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.OptionsColumn.AllowEdit = False
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 13
+        Me.GridColumn29.VisibleIndex = 14
         Me.GridColumn29.Width = 86
         '
         'GridColumn30
@@ -2309,7 +2313,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 12
+        Me.GridColumn30.VisibleIndex = 13
         Me.GridColumn30.Width = 86
         '
         'GridColumnLastUser
@@ -2319,7 +2323,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnLastUser.Name = "GridColumnLastUser"
         Me.GridColumnLastUser.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUser.Visible = True
-        Me.GridColumnLastUser.VisibleIndex = 11
+        Me.GridColumnLastUser.VisibleIndex = 12
         Me.GridColumnLastUser.Width = 86
         '
         'GridColumnSelReturn
@@ -2333,7 +2337,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelReturn.FieldName = "is_select"
         Me.GridColumnSelReturn.Name = "GridColumnSelReturn"
         Me.GridColumnSelReturn.Visible = True
-        Me.GridColumnSelReturn.VisibleIndex = 14
+        Me.GridColumnSelReturn.VisibleIndex = 15
         Me.GridColumnSelReturn.Width = 100
         '
         'RepositoryItemCheckEdit3
@@ -2352,7 +2356,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalRet.Name = "GridColumnTotalRet"
         Me.GridColumnTotalRet.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n0}")})
         Me.GridColumnTotalRet.Visible = True
-        Me.GridColumnTotalRet.VisibleIndex = 7
+        Me.GridColumnTotalRet.VisibleIndex = 8
         Me.GridColumnTotalRet.Width = 80
         '
         'GridColumnTotalNonStock
@@ -2364,7 +2368,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalNonStock.Name = "GridColumnTotalNonStock"
         Me.GridColumnTotalNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", "{0:N0}")})
         Me.GridColumnTotalNonStock.Visible = True
-        Me.GridColumnTotalNonStock.VisibleIndex = 8
+        Me.GridColumnTotalNonStock.VisibleIndex = 9
         Me.GridColumnTotalNonStock.Width = 99
         '
         'GridColumnRetType
@@ -2389,7 +2393,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPreparedReturn.FieldName = "prepared_by"
         Me.GridColumnPreparedReturn.Name = "GridColumnPreparedReturn"
         Me.GridColumnPreparedReturn.Visible = True
-        Me.GridColumnPreparedReturn.VisibleIndex = 10
+        Me.GridColumnPreparedReturn.VisibleIndex = 11
         '
         'GroupControl2
         '
@@ -2862,6 +2866,18 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCFGTrf.Size = New System.Drawing.Size(1024, 349)
         Me.GCFGTrf.TabIndex = 8
         Me.GCFGTrf.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGTrf})
+        '
+        'ViewPreTransfer
+        '
+        Me.ViewPreTransfer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem3})
+        Me.ViewPreTransfer.Name = "ViewRevProduct"
+        Me.ViewPreTransfer.Size = New System.Drawing.Size(172, 26)
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(171, 22)
+        Me.ToolStripMenuItem3.Text = "Print Unique Code"
         '
         'GVFGTrf
         '
@@ -3414,17 +3430,24 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
-        'ViewPreTransfer
+        'GridColumnIsNonListReturn
         '
-        Me.ViewPreTransfer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem3})
-        Me.ViewPreTransfer.Name = "ViewRevProduct"
-        Me.ViewPreTransfer.Size = New System.Drawing.Size(172, 48)
+        Me.GridColumnIsNonListReturn.Caption = "Non List"
+        Me.GridColumnIsNonListReturn.ColumnEdit = Me.RepoCENonList
+        Me.GridColumnIsNonListReturn.FieldName = "is_non_list_view"
+        Me.GridColumnIsNonListReturn.Name = "GridColumnIsNonListReturn"
+        Me.GridColumnIsNonListReturn.OptionsColumn.AllowEdit = False
+        Me.GridColumnIsNonListReturn.Visible = True
+        Me.GridColumnIsNonListReturn.VisibleIndex = 3
         '
-        'ToolStripMenuItem3
+        'RepoCENonList
         '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(171, 22)
-        Me.ToolStripMenuItem3.Text = "Print Unique Code"
+        Me.RepoCENonList.AutoHeight = False
+        Me.RepoCENonList.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepoCENonList.Name = "RepoCENonList"
+        Me.RepoCENonList.PictureChecked = CType(resources.GetObject("RepoCENonList.PictureChecked"), System.Drawing.Image)
+        Me.RepoCENonList.ValueChecked = "Yes"
+        Me.RepoCENonList.ValueUnchecked = "No"
         '
         'FormSalesOrderSvcLevel
         '
@@ -3537,6 +3560,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEFromReturnQC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPTrf.ResumeLayout(False)
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewPreTransfer.ResumeLayout(False)
         CType(Me.GVFGTrf, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoTxtPrepOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3563,7 +3587,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewPreTransfer.ResumeLayout(False)
+        CType(Me.RepoCENonList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3880,4 +3904,6 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents ViewPreTransfer As ContextMenuStrip
     Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
+    Friend WithEvents GridColumnIsNonListReturn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoCENonList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
