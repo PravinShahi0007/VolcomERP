@@ -22,7 +22,7 @@
                         newRow("description") = GVList.GetRowCellValue(i, "design_display_name").ToString
                         newRow("code") = GVList.GetRowCellValue(i, "design_code").ToString
                         newRow("value") = GVList.GetRowCellValue(i, "value") * -1
-                        newRow("vat") = 0
+                        newRow("vat") = GVList.GetRowCellValue(i, "vat") * -1
                         newRow("inv_number") = GVList.GetRowCellValue(i, "inv_number").ToString
                         newRow("note") = GVList.GetRowCellValue(i, "note").ToString
                         TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)

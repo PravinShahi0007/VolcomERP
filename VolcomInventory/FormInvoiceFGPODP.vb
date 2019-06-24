@@ -8,8 +8,8 @@
     End Sub
 
     Sub load_trans_type()
-        Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
-        viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
+        Dim query As String = "SELECT id_type,pn_type FROM tb_pn_type"
+        viewSearchLookupQuery(SLEPayType, query, "id_type", "pn_type", "id_type")
     End Sub
 
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -69,6 +69,7 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
                 End If
             End If
         ElseIf type = "2" Then
+            SLEPayType.EditValue = "2"
             If id_dp = "-1" Then 'new
                 BtnPrint.Visible = False
                 BtnViewJournal.Visible = False
