@@ -14,6 +14,7 @@
         GCEndWork.Caption = GCEndWork.Caption.Replace(" ", Environment.NewLine)
         GCBreakHours.Caption = GCBreakHours.Caption.Replace(" ", Environment.NewLine)
         GCTotalHours.Caption = GCTotalHours.Caption.Replace(" ", Environment.NewLine)
+        GCOvertime.Caption = GCTotalHours.Caption.Replace(" ", Environment.NewLine)
 
         GVEmployee.BestFitColumns()
 
@@ -22,6 +23,7 @@
             GCEndWork.Visible = False
             GCBreakHours.Visible = False
             GCTotalHours.Visible = False
+            GCOvertime.Visible = False
             GCPoint.Visible = False
             GCValid.Visible = False
         End If
