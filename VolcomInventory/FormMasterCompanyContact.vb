@@ -13,6 +13,9 @@ Public Class FormMasterCompanyContact
     Sub view_contact()
         Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact,contact_person,contact_number,email,position,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
         GCCompanyContactList.DataSource = data
+        If GVCompanyContactList.RowCount > 0 Then
+
+        End If
     End Sub
 
     Private Sub view_default(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -30,7 +33,7 @@ Public Class FormMasterCompanyContact
     Private Sub BNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BNew.Click
         view_default(LEDefault)
         PDetail.Enabled = True
-        BDelete.Enabled = False
+        BSetDefault.Enabled = False
         BEdit.Enabled = False
         '
         ''
@@ -41,7 +44,7 @@ Public Class FormMasterCompanyContact
         GroupControl1.Enabled = True
         PDetail.Enabled = False
         BNew.Enabled = True
-        BDelete.Enabled = True
+        BSetDefault.Enabled = True
         BEdit.Enabled = True
     End Sub
 
@@ -49,7 +52,7 @@ Public Class FormMasterCompanyContact
         view_default(LEDefault)
 
         PDetail.Enabled = True
-        BDelete.Enabled = False
+        BSetDefault.Enabled = False
         BNew.Enabled = False
 
         If GVCompanyContactList.GetFocusedRowCellDisplayText("is_default") = "Checked" Then
@@ -67,29 +70,17 @@ Public Class FormMasterCompanyContact
 
     End Sub
 
-    Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
+    Private Sub BSetDefault_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSetDefault.Click
         Dim confirm As DialogResult
         Dim query As String
 
-        Dim is_default As String = GVCompanyContactList.GetFocusedRowCellDisplayText("is_default").ToString
+        Dim id_contact As String = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
 
-        If is_default = "Checked" Then
-            XtraMessageBox.Show("Can't delete default contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            confirm = XtraMessageBox.Show("Are you sure want to delete this contact?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-            Dim id_contact As String = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-                Try
-                    query = String.Format("DELETE FROM tb_m_comp_contact WHERE id_comp_contact = '{0}'", id_contact)
-                    execute_non_query(query, True, "", "", "", "")
-                    view_contact()
-                Catch ex As Exception
-                    XtraMessageBox.Show("This contact already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Try
-                Cursor = Cursors.Default
-            End If
+        confirm = XtraMessageBox.Show("Are you sure want to set this as default contact?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            query = String.Format("UPDATE tb_m_comp_contact SET is_default='2' WHERE id_comp='{1}';UPDATE tb_m_comp_contact SET is_default='1' WHERE id_comp_contact = '{0}'", id_contact, id_company)
+            execute_non_query(query, True, "", "", "", "")
+            view_contact()
         End If
     End Sub
 
@@ -144,7 +135,7 @@ Public Class FormMasterCompanyContact
 
                 PDetail.Enabled = False
                 BNew.Enabled = True
-                BDelete.Enabled = True
+                BSetDefault.Enabled = True
                 BEdit.Enabled = True
             End If
         ElseIf BEdit.Enabled = True Then
@@ -170,7 +161,7 @@ Public Class FormMasterCompanyContact
                 GroupControl1.Enabled = True
                 PDetail.Enabled = False
                 BNew.Enabled = True
-                BDelete.Enabled = True
+                BSetDefault.Enabled = True
                 BEdit.Enabled = True
             End If
         End If
