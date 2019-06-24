@@ -179,6 +179,17 @@
         If is_must_active = "1" Then
             query += " AND tb_m_comp.is_active=1 "
         End If
+
+        If id_pop_up = "86" Then
+            'search vendor type minimum
+            Dim max_vendor_type As Integer = 1
+            For i As Integer = 0 To FormPurcOrderDet.GVPurcReq.RowCount - 1
+                If FormPurcOrderDet.GVPurcReq.GetRowCellValue(i, "id_vendor_type") > max_vendor_type Then
+                    max_vendor_type = FormPurcOrderDet.GVPurcReq.GetRowCellValue(i, "id_vendor_type")
+                End If
+            Next
+            query += " AND tb_m_comp.id_vendor_type >= '" & max_vendor_type.ToString & "' "
+        End If
         '
         query += "ORDER BY comp_name "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
