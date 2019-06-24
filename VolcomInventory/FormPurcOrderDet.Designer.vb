@@ -38,6 +38,8 @@ Partial Class FormPurcOrderDet
         Me.BPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.LEShipVia = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LEOrderTerm = New DevExpress.XtraEditors.LookUpEdit()
@@ -124,8 +126,8 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +141,8 @@ Partial Class FormPurcOrderDet
         CType(Me.TEVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEShipVia.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEOrderTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,8 +188,6 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -416,6 +418,26 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(464, 143)
         Me.PanelControlTopRight.TabIndex = 8936
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(251, 91)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl24.TabIndex = 171
+        Me.LabelControl24.Text = "Pay Due Date"
+        '
+        'DEDueDate
+        '
+        Me.DEDueDate.EditValue = Nothing
+        Me.DEDueDate.Location = New System.Drawing.Point(323, 88)
+        Me.DEDueDate.Name = "DEDueDate"
+        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Size = New System.Drawing.Size(127, 20)
+        Me.DEDueDate.TabIndex = 172
         '
         'LEShipVia
         '
@@ -971,7 +993,7 @@ Partial Class FormPurcOrderDet
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn21, Me.GridColumn3, Me.GridColumn22, Me.GridColumn33, Me.GridColumn2, Me.GridColumn10, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn21, Me.GridColumn3, Me.GridColumn22, Me.GridColumn33, Me.GridColumn2, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsBehavior.ReadOnly = True
@@ -1014,7 +1036,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn3.FieldName = "uom"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.VisibleIndex = 5
         '
         'GridColumn22
         '
@@ -1024,7 +1046,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn22.FieldName = "qty_pr"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.VisibleIndex = 6
         Me.GridColumn22.Width = 78
         '
         'GridColumn33
@@ -1035,7 +1057,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn33.FieldName = "qty_po"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 6
+        Me.GridColumn33.VisibleIndex = 7
         '
         'GridColumn2
         '
@@ -1045,7 +1067,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn2.FieldName = "val_pr"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 7
+        Me.GridColumn2.VisibleIndex = 8
         Me.GridColumn2.Width = 78
         '
         'GridColumn10
@@ -1353,25 +1375,19 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'DEDueDate
+        'GridColumn12
         '
-        Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(323, 88)
-        Me.DEDueDate.Name = "DEDueDate"
-        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDueDate.Size = New System.Drawing.Size(127, 20)
-        Me.DEDueDate.TabIndex = 172
+        Me.GridColumn12.Caption = "ID Vendor Type"
+        Me.GridColumn12.FieldName = "id_vendor_type"
+        Me.GridColumn12.Name = "GridColumn12"
         '
-        'LabelControl24
+        'GridColumn13
         '
-        Me.LabelControl24.Location = New System.Drawing.Point(251, 91)
-        Me.LabelControl24.Name = "LabelControl24"
-        Me.LabelControl24.Size = New System.Drawing.Size(66, 13)
-        Me.LabelControl24.TabIndex = 171
-        Me.LabelControl24.Text = "Pay Due Date"
+        Me.GridColumn13.Caption = "Vendor Type"
+        Me.GridColumn13.FieldName = "vendor_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 4
         '
         'FormPurcOrderDet
         '
@@ -1403,6 +1419,8 @@ Partial Class FormPurcOrderDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEShipVia.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEOrderTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1451,8 +1469,6 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1562,4 +1578,6 @@ Partial Class FormPurcOrderDet
     Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
