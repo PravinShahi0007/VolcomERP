@@ -239,14 +239,14 @@ Partial Class FormInvoiceFGPODP
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "ID Payment Type"
-        Me.GridColumn1.FieldName = "id_pay_type"
+        Me.GridColumn1.Caption = "ID Type"
+        Me.GridColumn1.FieldName = "id_type"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Type"
-        Me.GridColumn5.FieldName = "pay_type"
+        Me.GridColumn5.FieldName = "pn_type"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
@@ -657,7 +657,7 @@ Partial Class FormInvoiceFGPODP
         Me.MinimizeBox = False
         Me.Name = "FormInvoiceFGPODP"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "DP FGPO"
+        Me.Text = "Bukti Pembelian"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
