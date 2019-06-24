@@ -68,7 +68,7 @@
                     End If
                 End If
 
-                Dim query As String = "SELECT 'no' AS is_check,rec.`id_prod_order_rec`,rec.`prod_order_rec_number`
+                Dim query As String = "SELECT 'no' AS is_check,rec.id_prod_order,rec.`id_prod_order_rec`,rec.`prod_order_rec_number`
 ,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec
 ,SUM(recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS amount_rec
 ,SUM((wod.prod_order_wo_vat/100)*recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS vat_rec

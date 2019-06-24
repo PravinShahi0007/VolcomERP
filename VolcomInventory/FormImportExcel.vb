@@ -798,7 +798,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "15" Then
             'RETURN ORDER
             Try
-                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list('0', '" + FormSalesOrderDet.id_comp_par + "', '" + FormSalesOrderDet.id_store + "')", -1, True, "", "", "", "")
+                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list_less('0', '" + FormSalesOrderDet.id_comp_par + "')", -1, True, "", "", "", "")
                 Dim tb1 = data_temp.AsEnumerable()
                 Dim tb2 = dt.AsEnumerable()
                 Dim query = From table1 In tb1
@@ -1521,7 +1521,7 @@ Public Class FormImportExcel
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_wh").Visible = False
             GVData.Columns("id_user").Visible = False
-            GVData.Columns("Class").Visible = False
+            'GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
             GVData.Columns("Style").VisibleIndex = 1
             GVData.Columns("Size").VisibleIndex = 2
@@ -1703,7 +1703,6 @@ Public Class FormImportExcel
                                 .CodeImport = If(result_prod Is Nothing, "0", result_prod("design_code_import")),
                                 .Code = If(result_prod Is Nothing, "0", result_prod("design_code")),
                                 .Description = If(result_prod Is Nothing, "0", result_prod("design_display_name")),
-                                .POOldSistem = table1("po_sistem_lama"),
                                 .hs_code = table1("hs_kode"),
                                 .AjuNumber = table1("aju_number"),
                                 .PibNumber = table1("pib_number"),
@@ -1745,7 +1744,6 @@ Public Class FormImportExcel
                 GVData.Columns("IdPO").Visible = False
                 GVData.Columns("hs_code").Caption = "HS Code"
                 GVData.Columns("CodeImport").Caption = "Code Import"
-                GVData.Columns("POOldSistem").Caption = "PO Reff #"
                 GVData.Columns("AjuNumber").Caption = "Aju Number"
                 GVData.Columns("PibNumber").Caption = "PIB Number"
                 GVData.Columns("PibDate").Caption = "PIB Date"
@@ -2333,7 +2331,7 @@ Public Class FormImportExcel
                 Next
             Next
             qry += ") a ); ALTER TABLE tb_bex_month_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
@@ -4098,7 +4096,6 @@ Public Class FormImportExcel
                             End If
 
                             Dim query_exec As String = "UPDATE tb_prod_order SET 
-                                                        po_lama_no='" & GVData.GetRowCellValue(i, "POOldSistem").ToString & "',
                                                         hs_code='" & GVData.GetRowCellValue(i, "hs_code").ToString & "',
                                                         aju_no='" & GVData.GetRowCellValue(i, "AjuNumber").ToString & "',
                                                         pib_no='" & GVData.GetRowCellValue(i, "PibNumber").ToString & "', 
