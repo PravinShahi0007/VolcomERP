@@ -6,12 +6,8 @@
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
             Text = "Propose Overtime Detail"
-
-            SBFill.Visible = False
         Else
             Text = "Overtime Management Detail"
-
-            SBFill.Visible = True
         End If
 
         form_load()
@@ -185,6 +181,7 @@
             GCValid.Visible = False
 
             SBCheck.Visible = False
+            SBFill.Visible = False
 
             SBSave.Visible = True
 
@@ -230,6 +227,7 @@
             GCValid.Visible = True
 
             SBCheck.Visible = True
+            SBFill.Visible = True
 
             SBSave.Visible = False
 
