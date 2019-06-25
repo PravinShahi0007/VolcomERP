@@ -101,6 +101,7 @@
             Dim phone As String = data.Rows(0)("phone").ToString
             Dim id_dept As String = data.Rows(0)("id_departement").ToString
             Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
+            Dim id_vendor_type As String = data.Rows(0)("id_vendor_type").ToString
             '
             '
             id_def_drawer = data.Rows(0)("id_drawer_def").ToString
@@ -111,6 +112,7 @@
             TECargoCode.Text = data.Rows(0)("awb_cargo_code").ToString
             '
             SLEGroup.EditValue = id_comp_group
+            SLEVendorType.EditValue = id_vendor_type
 
             data.Dispose()
 
@@ -216,11 +218,9 @@
             If LEStatus.EditValue.ToString = "3" Then 'created
                 BSave.Visible = True
                 BAddLegal.Visible = True
-                BSetVendorType.Visible = True
             Else
                 BSave.Visible = False
                 BAddLegal.Visible = False
-                BSetVendorType.Visible = False
             End If
         End If
     End Sub
@@ -331,6 +331,7 @@
         Dim id_tax As String = LETax.EditValue.ToString
         Dim id_dept As String = LEDepartement.EditValue.ToString
         Dim id_comp_group As String = SLEGroup.EditValue.ToString
+        Dim id_vendor_type As String = SLEVendorType.EditValue.ToString
         Dim id_baru As String = ""
         '
         Dim contact_name As String = TECPName.Text
@@ -400,8 +401,8 @@
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone,id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
-                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}', "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone,id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def, id_vendor_type) "
+                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}', "
                 If id_dept = "0" Then
                     query += "NULL, "
                 Else
@@ -448,7 +449,7 @@
                     query += "'" + id_def_drawer + "' "
                 End If
                 query += "); SELECT LAST_INSERT_ID(); "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type)
 
                 'call last id
                 id_baru = execute_query(query, 0, True, "", "", "", "")
@@ -481,7 +482,7 @@
                 errorInput()
             Else
                 'update company
-                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}', "
+                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}',id_vendor_type='{19}' "
                 If id_dept = "0" Then
                     query += "id_departement = NULL, "
                 Else
@@ -533,7 +534,7 @@
                     query += "id_drawer_def = '" + id_def_drawer + "' "
                 End If
                 query += "WHERE id_comp='" + id_company + "' "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type)
                 execute_non_query(query, True, "", "", "", "")
 
 
@@ -988,9 +989,17 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
         Tool.ShowPreview()
     End Sub
 
-    Private Sub BSetVendorType_Click(sender As Object, e As EventArgs) Handles BSetVendorType.Click
+    Private Sub BSetVendorType_Click(sender As Object, e As EventArgs)
         Dim query As String = "UPDATE tb_m_comp SET id_vendor_type='' WHERE id_comp='" & id_company & "'"
         execute_non_query(query, True, "", "", "", "")
         infoCustom("Vendor type updated")
+    End Sub
+
+    Private Sub LECompanyCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LECompanyCategory.EditValueChanged
+        Try
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

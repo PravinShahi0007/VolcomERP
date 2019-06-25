@@ -38,7 +38,7 @@ Partial Class FormMasterCompanyContact
         Me.TECP = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSetDefault = New DevExpress.XtraEditors.SimpleButton()
         Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BNew = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -235,7 +235,7 @@ Partial Class FormMasterCompanyContact
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BDelete)
+        Me.PanelControl1.Controls.Add(Me.BSetDefault)
         Me.PanelControl1.Controls.Add(Me.BEdit)
         Me.PanelControl1.Controls.Add(Me.BNew)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
@@ -244,17 +244,16 @@ Partial Class FormMasterCompanyContact
         Me.PanelControl1.Size = New System.Drawing.Size(145, 202)
         Me.PanelControl1.TabIndex = 6
         '
-        'BDelete
+        'BSetDefault
         '
-        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BDelete.ImageIndex = 6
-        Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(2, 136)
-        Me.BDelete.Name = "BDelete"
-        Me.BDelete.Size = New System.Drawing.Size(141, 64)
-        Me.BDelete.TabIndex = 10
-        Me.BDelete.Text = "Delete"
-        Me.BDelete.Visible = False
+        Me.BSetDefault.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BSetDefault.ImageIndex = 7
+        Me.BSetDefault.ImageList = Me.LargeImageCollection
+        Me.BSetDefault.Location = New System.Drawing.Point(2, 136)
+        Me.BSetDefault.Name = "BSetDefault"
+        Me.BSetDefault.Size = New System.Drawing.Size(141, 64)
+        Me.BSetDefault.TabIndex = 10
+        Me.BSetDefault.Text = "Set Default"
         '
         'BEdit
         '
@@ -426,7 +425,7 @@ Partial Class FormMasterCompanyContact
     Friend WithEvents TECP As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSetDefault As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BNew As DevExpress.XtraEditors.SimpleButton
