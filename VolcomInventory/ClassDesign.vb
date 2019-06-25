@@ -136,6 +136,7 @@
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
+
     '***************
     'LINE LIST
     '***************
@@ -1919,5 +1920,26 @@
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodcode.id_code_detail "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
+    End Function
+
+    Public Function queryProposeChanges(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT dc.id_changes, dc.number, dc.created_date, dc.note, dc.id_report_status, rs.report_status 
+        FROM tb_m_design_changes dc
+        INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = dc.id_report_status
+        WHERE dc.id_changes>0 " + condition
+        query += "ORDER BY dc.id_changes  " + order_type
+        Return query
     End Function
 End Class
