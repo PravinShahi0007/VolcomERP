@@ -170,6 +170,10 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
         Me.BDeleteLegal = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEAnnotation = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -248,6 +252,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -257,6 +263,7 @@ Partial Class FormMasterCompanySingle
         '
         'GroupControl3
         '
+        Me.GroupControl3.Controls.Add(Me.SLEAnnotation)
         Me.GroupControl3.Controls.Add(Me.BCPSetup)
         Me.GroupControl3.Controls.Add(Me.TECPEmail)
         Me.GroupControl3.Controls.Add(Me.LabelControl36)
@@ -362,11 +369,11 @@ Partial Class FormMasterCompanySingle
         '
         'TECPName
         '
-        Me.TECPName.Location = New System.Drawing.Point(92, 33)
+        Me.TECPName.Location = New System.Drawing.Point(157, 33)
         Me.TECPName.Name = "TECPName"
         Me.TECPName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECPName.Properties.Appearance.Options.UseFont = True
-        Me.TECPName.Size = New System.Drawing.Size(230, 20)
+        Me.TECPName.Size = New System.Drawing.Size(165, 20)
         Me.TECPName.TabIndex = 20
         '
         'LabelControl10
@@ -1790,6 +1797,39 @@ Partial Class FormMasterCompanySingle
         Me.BDeleteLegal.Text = "Delete"
         Me.BDeleteLegal.Visible = False
         '
+        'SLEAnnotation
+        '
+        Me.SLEAnnotation.Location = New System.Drawing.Point(92, 33)
+        Me.SLEAnnotation.Name = "SLEAnnotation"
+        Me.SLEAnnotation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEAnnotation.Properties.Appearance.Options.UseFont = True
+        Me.SLEAnnotation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAnnotation.Properties.View = Me.GridView3
+        Me.SLEAnnotation.Size = New System.Drawing.Size(59, 20)
+        Me.SLEAnnotation.TabIndex = 8910
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Id Annotation"
+        Me.GridColumn19.FieldName = "id_annotation"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Annotation"
+        Me.GridColumn20.FieldName = "annotation"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1889,6 +1929,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2041,4 +2083,8 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LVendorType As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BDeleteLegal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEAnnotation As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

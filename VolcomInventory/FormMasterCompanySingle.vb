@@ -26,6 +26,11 @@
         viewSearchLookupQuery(SLEVendorType, query, "id_vendor_type", "vendor_type", "id_vendor_type")
     End Sub
 
+    Sub load_annotation()
+        Dim query As String = "SELECT id_annotation,annotation FROM tb_lookup_annotation"
+        viewSearchLookupQuery(SLEAnnotation, query, "id_annotation", "annotation", "id_annotation")
+    End Sub
+
     Sub action_load()
         For Each t As DevExpress.XtraTab.XtraTabPage In XTCCompany.TabPages
             XTCCompany.SelectedTabPage = t
@@ -46,6 +51,7 @@
         viewWHType()
         viewSOType()
         viewLegal()
+        load_annotation()
         load_contract_template()
         load_vendor_type()
         'default value
@@ -143,6 +149,8 @@
             TECPEmail.Enabled = False
             TECPPosition.Text = get_company_contact_x(id_comp_contact, "5")
             TECPPosition.Enabled = False
+            SLEAnnotation.EditValue = get_company_contact_x(id_comp_contact, "6")
+            SLEAnnotation.Enabled = False
 
             LECompanyCategory.EditValue = Nothing
             LECompanyCategory.ItemIndex = LECompanyCategory.Properties.GetDataSourceRowIndex("id_comp_cat", id_company_category)
@@ -334,6 +342,7 @@
         Dim id_vendor_type As String = SLEVendorType.EditValue.ToString
         Dim id_baru As String = ""
         '
+        Dim annotation As String = SLEAnnotation.EditValue.ToString
         Dim contact_name As String = TECPName.Text
         Dim contact_phone As String = TECPPhone.Text
         Dim contact_position As String = TECPPosition.Text
@@ -401,7 +410,7 @@
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone,id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def, id_vendor_type) "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
                 query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}', "
                 If id_dept = "0" Then
                     query += "NULL, "
@@ -459,8 +468,8 @@
                 execute_non_query(query_drw, True, "", "", "", "")
 
                 'insert to contact
-                query = "INSERT INTO tb_m_comp_contact(contact_person,contact_number,email,position,is_default,id_comp)"
-                query += String.Format("VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", contact_name, contact_phone, contact_email, contact_position, "1", id_baru)
+                query = "INSERT INTO tb_m_comp_contact(contact_person,contact_number,email,position,is_default,id_comp,id_annotation)"
+                query += String.Format("VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", contact_name, contact_phone, contact_email, contact_position, "1", id_baru, annotation)
                 execute_non_query(query, True, "", "", "", "")
 
                 If id_pop_up = "1" Then
@@ -482,7 +491,7 @@
                 errorInput()
             Else
                 'update company
-                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}',id_vendor_type='{19}' "
+                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}',id_vendor_type='{19}', "
                 If id_dept = "0" Then
                     query += "id_departement = NULL, "
                 Else
@@ -908,24 +917,33 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
 
     Private Sub BApproval_Click_1(sender As Object, e As EventArgs) Handles BApproval.Click
         If BApproval.Text.ToString = "Submit" Then
-            'cek attachment already have or not
-            Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
+            Dim q As String = "SELECT id_comp_cat FROM tb_m_comp WHERE id_comp='" & id_company & "'"
+            Dim id_cat As String = execute_query(q, 0, True, "", "", "", "")
+            If id_cat = "1" Or id_cat = "8" Then
+                'cek attachment already have or not
+                Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
 INNER JOIN tb_vendor_type_legal vtl ON vtl.`id_vendor_type`=c.`id_vendor_type`
 INNER JOIN `tb_lookup_legal_type` lt ON lt.`id_legal_type`=vtl.`id_legal_type`
 LEFT JOIN tb_m_comp_legal cl ON cl.`id_comp`=c.`id_comp` AND vtl.`id_legal_type`=cl.`id_legal_Type`
 WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count = 0 Then
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data.Rows.Count = 0 Then
+                    FormReportMark.id_report = id_company
+                    FormReportMark.report_mark_type = "153"
+                    FormReportMark.is_view = is_view
+                    FormReportMark.ShowDialog()
+                Else
+                    Dim str_missing As String = "Please upload this remaining document : "
+                    For i As Integer = 0 To data.Rows.Count - 1
+                        str_missing += vbNewLine & " - " & data.Rows(i)("legal_type").ToString
+                    Next
+                    warningCustom(str_missing)
+                End If
+            Else
                 FormReportMark.id_report = id_company
                 FormReportMark.report_mark_type = "153"
                 FormReportMark.is_view = is_view
                 FormReportMark.ShowDialog()
-            Else
-                Dim str_missing As String = "Please upload this remaining document : "
-                For i As Integer = 0 To data.Rows.Count - 1
-                    str_missing += vbNewLine & " - " & data.Rows(i)("legal_type").ToString
-                Next
-                warningCustom(str_missing)
             End If
         Else
             FormReportMark.id_report = id_company
@@ -1002,7 +1020,13 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
 
     Private Sub LECompanyCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LECompanyCategory.EditValueChanged
         Try
-
+            If LECompanyCategory.EditValue.ToString = "1" Or LECompanyCategory.EditValue.ToString = "8" Then
+                LVendorType.Visible = True
+                SLEVendorType.Visible = True
+            Else
+                LVendorType.Visible = False
+                SLEVendorType.Visible = False
+            End If
         Catch ex As Exception
 
         End Try
@@ -1032,5 +1056,9 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
             Cursor = Cursors.Default
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
+        MsgBox(SLEVendorType.EditValue.ToString)
     End Sub
 End Class
