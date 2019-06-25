@@ -832,7 +832,7 @@
             query_where = " AND lgl.id_legal_type='" & LELegalType.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT lglt.`legal_type`,lgl.`number`,lgl.`active_until`,lgl.`upload_datetime`,emp.`employee_name`,lgl.id_comp_legal,CONCAT(lgl.id_comp_legal,lgl.ext) AS filename,lgl.file_name FROM `tb_m_comp_legal` lgl
+        Dim query As String = "SELECT lgl.id_comp_legal,lgl.ext,lglt.`legal_type`,lgl.`number`,lgl.`active_until`,lgl.`upload_datetime`,emp.`employee_name`,lgl.id_comp_legal,CONCAT(lgl.id_comp_legal,lgl.ext) AS filename,lgl.file_name FROM `tb_m_comp_legal` lgl
 INNER JOIN tb_lookup_legal_type lglt ON lglt.`id_legal_type`=lgl.`id_legal_type`
 INNER JOIN tb_m_user usr ON usr.`id_user`=lgl.`upload_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -840,6 +840,11 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCLegal.DataSource = data
         GVLegal.BestFitColumns()
+        If GVLegal.RowCount > 0 And Not is_view = "1" Then
+            BDeleteLegal.Visible = True
+        Else
+            BDeleteLegal.Visible = False
+        End If
     End Sub
 
     Private Sub BAddLegal_Click(sender As Object, e As EventArgs) Handles BAddLegal.Click
@@ -1001,5 +1006,31 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub BDeleteLegal_Click(sender As Object, e As EventArgs) Handles BDeleteLegal.Click
+
+
+        Cursor = Cursors.WaitCursor
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                Dim directory_upload As String = get_setup_field("upload_legal_dir")
+                Dim path As String = directory_upload & id_company & "\" & GVLegal.GetFocusedRowCellValue("id_comp_legal").ToString & GVLegal.GetFocusedRowCellValue("ext").ToString
+
+                Dim query As String = ""
+                query = String.Format("DELETE FROM tb_m_comp_legal WHERE id_comp_legal = '{0}'", GVLegal.GetFocusedRowCellValue("id_comp_legal").ToString)
+                execute_non_query(query, True, "", "", "", "")
+                If IO.File.Exists(path) Then
+                    IO.File.Delete(path)
+                End If
+                load_legal()
+            Catch ex As Exception
+                errorConnection()
+            End Try
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -169,6 +169,7 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.BDeleteLegal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -1529,6 +1530,7 @@ Partial Class FormMasterCompanySingle
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BDeleteLegal)
         Me.PanelControl2.Controls.Add(Me.BAddLegal)
         Me.PanelControl2.Controls.Add(Me.BViewLegal)
         Me.PanelControl2.Controls.Add(Me.LELegalType)
@@ -1551,7 +1553,7 @@ Partial Class FormMasterCompanySingle
         Me.BAddLegal.Size = New System.Drawing.Size(96, 35)
         Me.BAddLegal.TabIndex = 8900
         Me.BAddLegal.TabStop = False
-        Me.BAddLegal.Text = "Add New"
+        Me.BAddLegal.Text = "Add Legal"
         '
         'BViewLegal
         '
@@ -1772,6 +1774,21 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
+        '
+        'BDeleteLegal
+        '
+        Me.BDeleteLegal.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BDeleteLegal.Appearance.Options.UseFont = True
+        Me.BDeleteLegal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDeleteLegal.ImageIndex = 1
+        Me.BDeleteLegal.ImageList = Me.LargeImageCollection
+        Me.BDeleteLegal.Location = New System.Drawing.Point(456, 2)
+        Me.BDeleteLegal.Name = "BDeleteLegal"
+        Me.BDeleteLegal.Size = New System.Drawing.Size(81, 35)
+        Me.BDeleteLegal.TabIndex = 8901
+        Me.BDeleteLegal.TabStop = False
+        Me.BDeleteLegal.Text = "Delete"
+        Me.BDeleteLegal.Visible = False
         '
         'FormMasterCompanySingle
         '
@@ -2023,4 +2040,5 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LVendorType As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BDeleteLegal As DevExpress.XtraEditors.SimpleButton
 End Class
