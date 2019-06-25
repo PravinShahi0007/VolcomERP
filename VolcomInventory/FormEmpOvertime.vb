@@ -14,6 +14,8 @@
             GCEValid.Visible = False
             GBEActual.Visible = False
             GCECheckStatus.Visible = False
+
+            GCIsDayOff.Visible = False
         Else
             Text = "Overtime Management"
         End If
@@ -47,23 +49,35 @@
         If XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
             Dim where_departement As String = ""
 
-            If Not SLUEDepartement.EditValue.ToString = "0" Then
-                where_departement = "AND ot_det.id_departement = " + SLUEDepartement.EditValue.ToString
-            End If
+            Try
+                If Not SLUEDepartement.EditValue.ToString = "0" Then
+                    where_departement = "AND ot_det.id_departement = " + SLUEDepartement.EditValue.ToString
+                End If
+            Catch ex As Exception
+            End Try
+
 
             Dim where_employee As String = ""
 
-            If Not SLUEEmployee.EditValue.ToString = "0" Then
-                where_employee = "AND ot_det.id_employee = " + SLUEEmployee.EditValue.ToString
-            End If
+            Try
+                If Not SLUEEmployee.EditValue.ToString = "0" Then
+                    where_employee = "AND ot_det.id_employee = " + SLUEEmployee.EditValue.ToString
+                End If
+            Catch ex As Exception
+            End Try
+
 
             Dim query As String = "
-                SELECT ot.id_ot, ot_det.id_ot_det, ot_det.id_departement, departement.departement, departement.is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, IF(ot_det.conversion_type = 1, 'Salary', 'DP') AS conversion_type, IF(ot_det.is_valid = 1, 'Yes', IF(ot_det.is_valid = 2, 'No', '-')) AS valid, ot.number, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot.ot_date, '%d %b %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%d %b %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%d %b %Y %H:%i:%s') AS ot_end_time, ot.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot.ot_start_time, ot.ot_end_time) / 60) - ot.ot_break, 1) AS total_hours, DATE_FORMAT(ot_det.start_work, '%d %b %Y %H:%i:%s') AS ot_det_start_time, DATE_FORMAT(ot_det.end_work, '%d %b %Y %H:%i:%s') AS ot_det_end_time, ot_det.break_hours AS ot_det_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS ot_det_total_hours, ot_det.overtime_hours AS ot_det_overtime_hours, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1, 2, 1)) AS is_day_off, NULL AS point, ot.ot_note, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, emp.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %H:%i:%s') AS created_at
+                SELECT ot.id_ot, ot_det.id_ot_det, ot_det.id_departement, departement.departement, departement.is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp, IF(ot_det.conversion_type = 1, 'Salary', 'DP') AS conversion_type, IF(ot_det.is_valid = 1, 'Yes', IF(ot_det.is_valid = 2, 'No', '-')) AS valid, ot.number, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot.ot_date, '%d %b %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%d %b %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%d %b %Y %H:%i:%s') AS ot_end_time, ot.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot.ot_start_time, ot.ot_end_time) / 60) - ot.ot_break, 1) AS total_hours, DATE_FORMAT(ot_det.start_work, '%d %b %Y %H:%i:%s') AS ot_det_start_time, DATE_FORMAT(ot_det.end_work, '%d %b %Y %H:%i:%s') AS ot_det_end_time, ot_det.break_hours AS ot_det_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS ot_det_total_hours, ot_det.overtime_hours AS ot_det_overtime_hours, IF((IFNULL(ot_det.is_day_off, (IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1) AND (SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL, 2, 1)))) = 1, 'Yes', 'No') AS is_day_off, NULL AS point, ot.ot_note, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, emp.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %H:%i:%s') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
                 LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
                 LEFT JOIN tb_lookup_employee_level AS employee_level ON ot_det.id_employee_level = employee_level.id_employee_level
+                LEFT JOIN (
+                    SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
+                    FROM tb_m_employee
+                ) AS salary ON ot_det.id_employee = salary.id_employee
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                 LEFT JOIN tb_emp_payroll AS payroll ON ot.id_payroll = payroll.id_payroll
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
@@ -136,9 +150,13 @@
     Sub view_employee()
         Dim where_department As String = ""
 
-        If Not SLUEDepartement.EditValue.ToString = "0" Then
-            where_department = "AND e.id_departement = " + SLUEDepartement.EditValue.ToString
-        End If
+        Try
+            If Not SLUEDepartement.EditValue.ToString = "0" Then
+                where_department = "AND e.id_departement = " + SLUEDepartement.EditValue.ToString
+            End If
+        Catch ex As Exception
+        End Try
+
 
         Dim query As String = "SELECT 0 AS id_employee, '' AS employee_code, 'All employee' AS employee_name UNION (SELECT id_employee, employee_code, employee_name FROM tb_m_employee e WHERE 1 " + where_department + " ORDER BY e.departement ASC, e.id_employee_level ASC)"
 
@@ -219,18 +237,18 @@
                 Dim overtime_hours As String = GVEmployee.GetRowCellValue(i, "ot_det_overtime_hours").ToString
 
                 If Not overtime_hours = "" Then
-                    Dim is_day_off As String = GVEmployee.GetRowCellValue(i, "is_day_off").ToString
-                    Dim is_store As String = GVEmployee.GetRowCellValue(i, "is_day_off").ToString
+                    Dim is_day_off As String = If(GVEmployee.GetRowCellValue(i, "is_day_off").ToString = "Yes", "1", "2")
+                    Dim is_store As String = GVEmployee.GetRowCellValue(i, "is_store").ToString
 
                     GVEmployee.SetRowCellValue(i, "point", FormEmpOvertimeDet.calc_point(Decimal.Parse(overtime_hours), is_day_off, is_store))
                 Else
                     GVEmployee.SetRowCellValue(i, "point", "")
                 End If
 
-                Dim conversion_type As String = GVEmployee.GetRowCellValue(i, "conversion_type").ToString
+                Dim only_dp As String = GVEmployee.GetRowCellValue(i, "only_dp").ToString
 
-                If conversion_type = "DP" Then
-                    GVEmployee.SetRowCellValue(i, "point", "")
+                If only_dp = "yes" Then
+                    GVEmployee.SetRowCellValue(i, "point", overtime_hours)
                 End If
             End If
         Next
