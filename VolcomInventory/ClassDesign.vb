@@ -1935,7 +1935,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT dc.id_changes, dc.number, dc.created_date, dc.note, dc.id_report_status, rs.report_status 
+        Dim query As String = "SELECT dc.id_changes, dc.number, dc.created_date, dc.note, dc.id_report_status, rs.report_status , dc.is_confirm, dc.is_md
         FROM tb_m_design_changes dc
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = dc.id_report_status
         WHERE dc.id_changes>0 " + condition

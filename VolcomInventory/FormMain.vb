@@ -1495,7 +1495,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormMasterDesignSingle.WindowState = FormWindowState.Maximized
                 FormMasterDesignSingle.ShowDialog()
             Else
-
+                FormFGDesignListChangesNew.ShowDialog()
             End If
         ElseIf formName = "FormEmpShift" Then
             'DESIGN LIST
@@ -2553,7 +2553,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormMasterDesignSingle.WindowState = FormWindowState.Maximized
                     FormMasterDesignSingle.ShowDialog()
                 Else
-
+                    FormFGDesignListChanges.id = FormFGDesignList.GVPropose.GetFocusedRowCellValue("id_changes").ToString
+                    FormFGDesignListChanges.ShowDialog()
                 End If
             ElseIf formName = "FormSamplePLToWH" Then
                 'PACING LIST SAMPLE

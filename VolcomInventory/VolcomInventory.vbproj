@@ -1477,6 +1477,18 @@
     <Compile Include="FormFGDesignList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGDesignListChanges.Designer.vb">
+      <DependentUpon>FormFGDesignListChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesNew.Designer.vb">
+      <DependentUpon>FormFGDesignListChangesNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGFirstDel.Designer.vb">
       <DependentUpon>FormFGFirstDel.vb</DependentUpon>
     </Compile>
@@ -7538,6 +7550,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChanges.resx">
+      <DependentUpon>FormFGDesignListChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChangesNew.resx">
+      <DependentUpon>FormFGDesignListChangesNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGFirstDel.resx">
       <DependentUpon>FormFGFirstDel.vb</DependentUpon>
