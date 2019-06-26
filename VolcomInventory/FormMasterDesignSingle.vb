@@ -1799,8 +1799,8 @@
                                 If id_po = "0" Or id_po = "" Then
                                     id_po = "NULL"
                                 End If
-                                Dim query_pcd_det As String = "INSERT INTO tb_m_design_changes_det(id_changes, id_prod_demand_design, id_prod_order) 
-                                VALUES(" + id_changes + ", " + id_pdd + ", " + id_po + "); "
+                                Dim query_pcd_det As String = "INSERT INTO tb_m_design_changes_det(id_changes, id_design, id_prod_demand_design, id_prod_order) 
+                                VALUES(" + id_changes + "," + id_design_tersimpan + ", " + id_pdd + ", " + id_po + "); "
                                 execute_non_query(query_pcd_det, True, "", "", "", "")
                             End If
 
