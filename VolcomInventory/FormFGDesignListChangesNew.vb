@@ -16,6 +16,7 @@
             Dim query As String = "INSERT INTO tb_m_design_changes(created_date, note, id_report_status,is_md)
             VALUES(NOW(),'" + addSlashes(MENote.Text.ToString) + "',1, '" + is_md + "'); SELECT LAST_INSERT_ID(); "
             Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            execute_non_query("CALL gen_number(" + id + ", 200);", True, "", "", "", "")
 
             'open detil
             FormFGDesignListChanges.id = id

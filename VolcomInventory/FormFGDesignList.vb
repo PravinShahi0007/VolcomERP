@@ -535,9 +535,15 @@
     End Sub
 
     Private Sub XTPDesign_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTPDesign.SelectedPageChanged
-        check_menu()
         If XTPDesign.SelectedTabPageIndex = 1 Then
             viewPropose()
+        End If
+        check_menu()
+    End Sub
+
+    Private Sub GVPropose_DoubleClick(sender As Object, e As EventArgs) Handles GVPropose.DoubleClick
+        If GVPropose.RowCount > 0 And GVPropose.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
         End If
     End Sub
 End Class

@@ -20,6 +20,9 @@
     Public id_propose_changes As String = "-1"
     Public report_mark_type As String = "-1"
     Public id_report_status_pc As String = "-1"
+    Public id_design_rev_from As String = "NULL"
+    Public is_pcd As String = "-1"
+    Public id_changes As String = "-1"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -443,7 +446,12 @@
                 If id_pop_up = "3" Then
                     TEDisplayNameNonMD.Text = data.Rows(0)("design_display_name").ToString
                 Else
-                    TEDisplayName.Text = data.Rows(0)("design_display_name").ToString
+
+                    If is_pcd = "1" Then
+                        TEDisplayName.Text = ""
+                    Else
+                        TEDisplayName.Text = data.Rows(0)("design_display_name").ToString
+                    End If
                 End If
 
                 'code
@@ -484,6 +492,9 @@
                     CheckEditApproved.EditValue = True
                 Else
                     CheckEditApproved.EditValue = False
+                End If
+                If is_pcd = "1" Then
+                    is_approved = "2"
                 End If
 
                 If dupe = "-1" And id_pop_up = "5" Then ' only for dsg Line List
@@ -1747,7 +1758,14 @@
                     Else
                         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                         If confirm = Windows.Forms.DialogResult.Yes Then
-                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design) "
+                            Dim is_process As String = ""
+                            If is_pcd = "1" Then
+                                is_process = "1"
+                            Else
+                                is_process = "2"
+                            End If
+
+                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from) "
                             query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                             If design_eos = "-1" Then
                                 query += "NULL, "
@@ -1771,8 +1789,20 @@
                                 query += "'" + id_design_ref + "', "
                             End If
                             query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
-                            query += ", '" + is_old_design + "');SELECT LAST_INSERT_ID(); "
+                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ");SELECT LAST_INSERT_ID(); "
                             id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
+
+                            'save detil propose change design
+                            If is_pcd = "1" Then
+                                Dim id_pdd As String = FormFGDesignListChangesDesign.GVData.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                                Dim id_po As String = FormFGDesignListChangesDesign.GVData.GetFocusedRowCellValue("id_prod_order").ToString
+                                If id_po = "0" Or id_po = "" Then
+                                    id_po = "NULL"
+                                End If
+                                Dim query_pcd_det As String = "INSERT INTO tb_m_design_changes_det(id_changes, id_prod_demand_design, id_prod_order) 
+                                VALUES(" + id_changes + ", " + id_pdd + ", " + id_po + "); "
+                                execute_non_query(query_pcd_det, True, "", "", "", "")
+                            End If
 
                             'cek image
                             save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & ".jpg")
@@ -1835,12 +1865,18 @@
                                 FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                             End If
 
-                            dupe = "-1"
-                            id_design = id_design_tersimpan
-                            Dim stt As New ClassDesign
-                            stt.updatedTime(id_design)
-                            infoCustom(display_name + ", has been sucessfully created.")
-                            actionLoad()
+                            If is_pcd = "1" Then
+                                FormFGDesignListChangesDesign.viewData()
+                                FormFGDesignListChanges.viewDetail()
+                                Close()
+                            Else
+                                dupe = "-1"
+                                id_design = id_design_tersimpan
+                                Dim stt As New ClassDesign
+                                stt.updatedTime(id_design)
+                                infoCustom(display_name + ", has been sucessfully created.")
+                                actionLoad()
+                            End If
                         End If
                     End If
                 Else

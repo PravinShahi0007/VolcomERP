@@ -4,7 +4,7 @@
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
     Dim rmt As String = "200"
-    Dim is_md As String = "-1"
+    Public is_md As String = "-1"
 
 
     Private Sub FormFGDesignListChanges_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -26,10 +26,10 @@
         Cursor = Cursors.WaitCursor
         'main
         Dim query_c As ClassDesign = New ClassDesign()
-        Dim query As String = query_c.queryProposeChanges("AND dc.id_changes=''" + id + "'' ", "2")
+        Dim query As String = query_c.queryProposeChanges("AND dc.id_changes=" + id + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        TxtNumber.Text = data.Rows(0)("fg_propose_price_number").ToString
-        MENote.Text = data.Rows(0)("fg_propose_price_note").ToString
+        TxtNumber.Text = data.Rows(0)("number").ToString
+        MENote.Text = data.Rows(0)("note").ToString
         DECreated.EditValue = data.Rows(0)("created_date")
         is_confirm = data.Rows(0)("is_confirm").ToString
         is_md = data.Rows(0)("is_md").ToString
@@ -47,11 +47,11 @@
 
         Dim query As String = ""
         If is_md = "1" Then
-            XTCType.SelectedTabPageIndex = 0
-            query = ""
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCData.DataSource = data
-            GVData.BestFitColumns()
+            'XTCType.SelectedTabPageIndex = 0
+            'query = ""
+            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            'GCData.DataSource = data
+            'GVData.BestFitColumns()
         Else 'non 
             XTCType.SelectedTabPageIndex = 1
             'query = ""
@@ -110,6 +110,7 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
+        FormFGDesignListChangesDesign.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
@@ -119,7 +120,17 @@
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
-
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this item(s) ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim id_design As String = GVData.GetFocusedRowCellValue("id_design").ToString
+                Dim query As String = "DELETE FROM tb_m_design WHERE id_design=" + id_design + " "
+                execute_non_query(query, True, "", "", "", "")
+                viewDetail()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
