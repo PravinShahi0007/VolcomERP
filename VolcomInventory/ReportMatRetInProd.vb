@@ -7,7 +7,7 @@
         GCRetDetail.DataSource = data
     End Sub
     Private Sub ReportMatRetIn_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
+        Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name,desg.design_code,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
         query += "a.mat_prod_ret_in_number  "
         query += "FROM tb_mat_prod_ret_in a "
         query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
@@ -21,7 +21,8 @@
         LPONumber.Text = data.Rows(0)("prod_order_number").ToString
         LFrom.Text = data.Rows(0)("comp_name").ToString
         LFromAddress.Text = data.Rows(0)("address_primary").ToString
-        LDesign.Text = data.Rows(0)("design_name").ToString
+        LDesign.Text = data.Rows(0)("design_display_name").ToString
+        LDesignCode.Text = data.Rows(0)("design_code").ToString
         Dim start_date_arr() As String = data.Rows(0)("mat_prod_ret_in_date").ToString.Split(" ")
         LabelDate.Text = start_date_arr(0).ToString
         LabelNo.Text = data.Rows(0)("mat_prod_ret_in_number").ToString

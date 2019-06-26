@@ -464,4 +464,7 @@
         E/i/8MsElPoD8tGP9gAllesAAAAASUVORK5CYIIL
 </value>
   </data>
+  <metadata name="LargeImageCollection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>129, 19</value>
+  </metadata>
 </root>
