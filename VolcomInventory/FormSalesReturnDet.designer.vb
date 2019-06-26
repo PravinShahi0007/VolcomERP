@@ -2091,6 +2091,7 @@ Partial Class FormSalesReturnDet
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.LookAndFeel.SkinName = "Office 2007 Green"
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnDet"
         Me.ShowInTaskbar = False

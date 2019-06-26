@@ -38,25 +38,25 @@
             is_non_list = "1"
 
             'cek limit qty
-            Dim id_ror As String = FormSalesReturn.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
-            Dim query As String = "SELECT ro.id_store_contact_to,rod.id_sales_return_order_det, rod.sales_return_order_det_qty, r.qty, (rod.sales_return_order_det_qty-IFNULL(r.qty,0)) AS `limit_qty`
-            FROM tb_sales_return_order_det rod
-            INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order
-            LEFT JOIN(
-	            SELECT rd.id_sales_return_order_det, SUM(rd.sales_return_det_qty) AS `qty` 
-	            FROM tb_sales_return_det rd
-	            INNER JOIN tb_sales_return r ON r.id_sales_return = rd.id_sales_return
-	            WHERE r.id_sales_return_order=" + id_ror + " AND r.id_report_status!=5
-	            GROUP BY rd.id_sales_return_order_det
-            ) r ON r.id_sales_return_order_det = rod.id_sales_return_order_det
-            WHERE rod.id_sales_return_order=" + id_ror + "
-            HAVING limit_qty<=0 "
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count <= 0 Then
-                Cursor = Cursors.Default
-                stopCustom("Please complete the return on list first")
-                Exit Sub
-            End If
+            'Dim id_ror As String = FormSalesReturn.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+            'Dim query As String = "SELECT ro.id_store_contact_to,rod.id_sales_return_order_det, rod.sales_return_order_det_qty, r.qty, (rod.sales_return_order_det_qty-IFNULL(r.qty,0)) AS `limit_qty`
+            'FROM tb_sales_return_order_det rod
+            'INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order
+            'LEFT JOIN(
+            ' SELECT rd.id_sales_return_order_det, SUM(rd.sales_return_det_qty) AS `qty` 
+            ' FROM tb_sales_return_det rd
+            ' INNER JOIN tb_sales_return r ON r.id_sales_return = rd.id_sales_return
+            ' WHERE r.id_sales_return_order=" + id_ror + " AND r.id_report_status!=5
+            ' GROUP BY rd.id_sales_return_order_det
+            ') r ON r.id_sales_return_order_det = rod.id_sales_return_order_det
+            'WHERE rod.id_sales_return_order=" + id_ror + "
+            'HAVING limit_qty<=0 "
+            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            'If data.Rows.Count <= 0 Then
+            '    Cursor = Cursors.Default
+            '    stopCustom("Please complete the return on list first")
+            '    Exit Sub
+            'End If
         Else
             is_non_list = "2"
         End If
