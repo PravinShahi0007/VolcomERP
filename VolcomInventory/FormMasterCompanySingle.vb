@@ -333,7 +333,6 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Cursor = Cursors.WaitCursor
-
         ValidateChildren()
 
         Dim query As String
@@ -565,7 +564,6 @@
                 query += "WHERE id_comp='" + id_company + "' "
                 query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address)
                 execute_non_query(query, True, "", "", "", "")
-
 
                 If id_pop_up = "1" Then
                     FormPopUpContact.view_company()

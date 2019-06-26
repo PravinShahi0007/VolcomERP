@@ -1564,12 +1564,16 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn4.Caption = "ID"
         Me.GridColumn4.FieldName = "id_comp_legal"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Type"
         Me.GridColumn5.FieldName = "legal_type"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
         '
@@ -1578,6 +1582,8 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn6.Caption = "Number"
         Me.GridColumn6.FieldName = "number"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
         '
@@ -1588,6 +1594,8 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn7.FieldName = "active_until"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
         '
@@ -1598,6 +1606,8 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn8.FieldName = "upload_datetime"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
         '
@@ -1606,6 +1616,8 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn9.Caption = "Upload By"
         Me.GridColumn9.FieldName = "employee_name"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 4
         '
