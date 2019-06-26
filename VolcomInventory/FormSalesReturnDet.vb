@@ -56,6 +56,18 @@ Public Class FormSalesReturnDet
     End Sub
 
     Sub actionLoad()
+        If is_non_list = "1" Then
+            Text = "Return Non List"
+            LookAndFeel.UseDefaultLookAndFeel = False
+            LookAndFeel.SkinName = "Office 2007 Green"
+        End If
+
+        If id_ret_type = "2" Then
+            Text = "Non Inventory Stock"
+            LookAndFeel.UseDefaultLookAndFeel = False
+            LookAndFeel.SkinName = "Office 2007 Pink"
+        End If
+
         Try
             'initiation datatable jika blm ada
             dt.Columns.Add("id_product")
@@ -1237,7 +1249,9 @@ Public Class FormSalesReturnDet
             End If
             id_product_param_or += "u.id_product='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' "
         Next
-        codeAvailableIns(id_product_param, id_product_param_or, id_store, "0")
+        If GVItemList.RowCount > 0 Then
+            codeAvailableIns(id_product_param, id_product_param_or, id_store, "0")
+        End If
 
         GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
@@ -1258,7 +1272,7 @@ Public Class FormSalesReturnDet
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         action_scan_btn = "start"
-        If GVItemList.RowCount > 0 Then
+        If GVItemList.RowCount > 0 Or is_non_list = "1" Then
             loadCodeDetail()
             verifyTrans()
             disableControl()
@@ -1515,7 +1529,12 @@ Public Class FormSalesReturnDet
                         code_list_found = True
 
                         'load unique new ror detail
-                        dt.Merge(dtu, True, MissingSchemaAction.Ignore)
+                        If dt.Rows.Count > 0 Then
+                            dt.Merge(dtu, True, MissingSchemaAction.Ignore)
+                        Else
+                            dt = dtu
+                        End If
+
                         'codeAvailableIns(dcr.Rows(0)("id_product").ToString, "u.id_product='" + dcr.Rows(0)("id_product").ToString + "' ", id_store, 0)
                     Else
                         Cursor = Cursors.Default
