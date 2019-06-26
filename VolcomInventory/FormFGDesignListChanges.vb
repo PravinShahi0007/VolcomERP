@@ -47,11 +47,25 @@
 
         Dim query As String = ""
         If is_md = "1" Then
-            'XTCType.SelectedTabPageIndex = 0
-            'query = ""
-            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            'GCData.DataSource = data
-            'GVData.BestFitColumns()
+            XTCType.SelectedTabPageIndex = 0
+            query = "SELECT pd.id_prod_demand, pd.prod_demand_number, po.id_prod_order, po.prod_order_number,
+            dr.id_design, d.id_design AS `id_design_new`,
+            dr.design_code AS `code`, d.design_code AS `code_new`,
+            dr.design_code_import AS `code_import`, d.design_code_import AS `code_import_new`,
+            dr.design_display_name AS `name`,d.design_display_name AS `name_new`,
+            dr.id_season_orign , d.id_season_orign AS `id_season_orign_new`,
+            dr.design_fabrication, d.design_fabrication AS `design_fabrication_new`,
+            dr.design_detail, d.design_detail AS `design_detail_new`,
+            src.`source`,src_new.`source_new`,
+            dvs.division,dvs_new.division_new,
+            subcat.sub_category,subcat_new.sub_category_new,
+            cls.class,cls_new.class_new,
+            col.color, col_new.color_new "
+            Dim dsg As New ClassDesign()
+            query += dsg.queryPCDBodyDetail(id)
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCData.DataSource = data
+            GVData.BestFitColumns()
         Else 'non 
             XTCType.SelectedTabPageIndex = 1
             'query = ""

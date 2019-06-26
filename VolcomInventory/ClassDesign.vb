@@ -1942,4 +1942,95 @@
         query += "ORDER BY dc.id_changes  " + order_type
         Return query
     End Function
+
+    Public Function queryPCDBodyDetail(ByVal id) As String
+        Dim query As String = "FROM tb_m_design_changes_det det
+        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = det.id_prod_demand_design AND pdd.is_void=2
+        INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1
+        LEFT JOIN tb_prod_order po ON po.id_prod_order = det.id_prod_order
+        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=5
+        ) src_new ON src_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `division_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=32
+        ) dvs_new ON dvs_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `sub_category_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=31
+        ) subcat_new ON subcat_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `class_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=30
+        ) cls_new ON cls_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `color_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=14
+        ) col_new ON col_new.id_design = d.id_design
+        INNER JOIN tb_m_design dr ON dr.id_design = d.id_design_rev_from
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=5
+        ) src ON src.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `division`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=32
+        ) dvs ON dvs.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `sub_category`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=31
+        ) subcat ON subcat.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `class`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=30
+        ) cls ON subcat.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `color`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=14
+        ) col ON subcat.id_design = dr.id_design
+        WHERE det.id_changes=" + id + " "
+        Return query
+    End Function
 End Class
