@@ -31,10 +31,16 @@
         viewSearchLookupQuery(SLEAnnotation, query, "id_annotation", "annotation", "id_annotation")
     End Sub
 
+    Sub load_kode_bank()
+        Dim query As String = "SELECT id,nama_bank,kode_bank FROM `tb_kode_bank`"
+        viewSearchLookupQuery(SLEBankAccount, query, "id", "nama_bank", "id")
+    End Sub
+
     Sub action_load()
         For Each t As DevExpress.XtraTab.XtraTabPage In XTCCompany.TabPages
             XTCCompany.SelectedTabPage = t
         Next t
+        '
         XTCCompany.SelectedTabPage = XTCCompany.TabPages(0)
         'LE/SLE
         view_comp_group()
@@ -54,6 +60,7 @@
         load_annotation()
         load_contract_template()
         load_vendor_type()
+        load_kode_bank()
         'default value
         TxtCommission.EditValue = 0.0
         LEStoreType.EditValue = Nothing
@@ -100,6 +107,9 @@
             Dim postal_code As String = data.Rows(0)("postal_code").ToString
             Dim email As String = data.Rows(0)("email").ToString
             Dim website As String = data.Rows(0)("website").ToString
+            Dim bank_rek As String = data.Rows(0)("bank_rek").ToString
+            Dim bank_atas_nama As String = data.Rows(0)("bank_attn_name").ToString
+            Dim bank_address As String = data.Rows(0)("bank_address").ToString
             Dim is_active As String = data.Rows(0)("is_active").ToString
             Dim id_tax As String = data.Rows(0)("id_tax").ToString
             Dim npwp As String = data.Rows(0)("npwp").ToString
@@ -108,7 +118,7 @@
             Dim id_dept As String = data.Rows(0)("id_departement").ToString
             Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
             Dim id_vendor_type As String = data.Rows(0)("id_vendor_type").ToString
-            '
+            Dim id_bank As String = data.Rows(0)("id_bank").ToString
             '
             id_def_drawer = data.Rows(0)("id_drawer_def").ToString
             TEDefDrawer.Text = data.Rows(0)("wh_drawer").ToString
@@ -119,6 +129,7 @@
             '
             SLEGroup.EditValue = id_comp_group
             SLEVendorType.EditValue = id_vendor_type
+            SLEBankAccount.EditValue = id_bank
 
             data.Dispose()
 
@@ -137,6 +148,10 @@
             TENPWP.Text = npwp
             TEFax.Text = fax
             TEPhoneComp.Text = phone
+            '
+            TEBankRek.Text = bank_rek
+            TEBankAtasNama.Text = bank_atas_nama
+            TEBankAddress.Text = bank_address
 
             Dim id_comp_contact As String = "-1"
             id_comp_contact = get_company_x(id_company, "6")
@@ -342,11 +357,16 @@
         Dim id_vendor_type As String = SLEVendorType.EditValue.ToString
         Dim id_baru As String = ""
         '
+        Dim id_bank As String = SLEBankAccount.EditValue.ToString
+        Dim bank_rek As String = addSlashes(TEBankRek.Text)
+        Dim bank_atas_nama As String = addSlashes(TEBankAtasNama.Text)
+        Dim bank_address As String = addSlashes(TEBankAddress.Text)
+        '
         Dim annotation As String = SLEAnnotation.EditValue.ToString
-        Dim contact_name As String = TECPName.Text
-        Dim contact_phone As String = TECPPhone.Text
-        Dim contact_position As String = TECPPosition.Text
-        Dim contact_email As String = TECPEmail.Text
+        Dim contact_name As String = addSlashes(TECPName.Text)
+        Dim contact_phone As String = addSlashes(TECPPhone.Text)
+        Dim contact_position As String = addSlashes(TECPPosition.Text)
+        Dim contact_email As String = addSlashes(TECPEmail.Text)
         '
         Dim cargo_dest As String = TECargoDest.Text
         Dim cargo_zone As String = TECargoZone.Text
@@ -410,8 +430,8 @@
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
-                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}', "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type,id_bank,bank_rek,bank_attn_name,bank_address, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
+                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}', "
                 If id_dept = "0" Then
                     query += "NULL, "
                 Else
@@ -458,7 +478,7 @@
                     query += "'" + id_def_drawer + "' "
                 End If
                 query += "); SELECT LAST_INSERT_ID(); "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address)
 
                 'call last id
                 id_baru = execute_query(query, 0, True, "", "", "", "")
@@ -469,7 +489,7 @@
 
                 'insert to contact
                 query = "INSERT INTO tb_m_comp_contact(contact_person,contact_number,email,position,is_default,id_comp,id_annotation)"
-                query += String.Format("VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", contact_name, contact_phone, contact_email, contact_position, "1", id_baru, annotation)
+                query += String.Format("VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", contact_name, contact_phone, contact_email, contact_position, "1", id_baru, annotation)
                 execute_non_query(query, True, "", "", "", "")
 
                 If id_pop_up = "1" Then
@@ -491,7 +511,7 @@
                 errorInput()
             Else
                 'update company
-                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}',id_vendor_type='{19}', "
+                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}',id_vendor_type='{19}',id_bank='{20}',bank_rek='{21}',bank_attn_name='{22}',bank_address='{23}', "
                 If id_dept = "0" Then
                     query += "id_departement = NULL, "
                 Else
@@ -543,7 +563,7 @@
                     query += "id_drawer_def = '" + id_def_drawer + "' "
                 End If
                 query += "WHERE id_comp='" + id_company + "' "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address)
                 execute_non_query(query, True, "", "", "", "")
 
 
@@ -580,14 +600,10 @@
     End Sub
 
     Private Sub TEEMail_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEEMail.Validating
-        If TEEMail.Text = "" Then
-            EPCompany.SetError(TEEMail, String.Empty)
+        If Not isEmail(TEEMail.Text) Or TEEMail.Text.Length < 1 Then
+            EPCompany.SetError(TEEMail, "Email is not valid.")
         Else
-            If Not isEmail(TEEMail.Text) Then
-                EPCompany.SetError(TEEMail, "Email is not valid.")
-            Else
-                EPCompany.SetError(TEEMail, String.Empty)
-            End If
+            EPCompany.SetError(TEEMail, String.Empty)
         End If
     End Sub
 
@@ -904,14 +920,10 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
     End Sub
 
     Private Sub TECPEmail_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TECPEmail.Validating
-        If TECPEmail.Text = "" Then
-            EPCompany.SetError(TECPEmail, String.Empty)
+        If Not isEmail(TECPEmail.Text) Or TECPEmail.Text.Length < 1 Then
+            EPCompany.SetError(TECPEmail, "Email is not valid.")
         Else
-            If Not isEmail(TECPEmail.Text) Then
-                EPCompany.SetError(TECPEmail, "Email is not valid.")
-            Else
-                EPCompany.SetError(TECPEmail, String.Empty)
-            End If
+            EPCompany.SetError(TECPEmail, String.Empty)
         End If
     End Sub
 
@@ -1033,8 +1045,6 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
     End Sub
 
     Private Sub BDeleteLegal_Click(sender As Object, e As EventArgs) Handles BDeleteLegal.Click
-
-
         Cursor = Cursors.WaitCursor
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
@@ -1056,9 +1066,5 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
             Cursor = Cursors.Default
         End If
         Cursor = Cursors.Default
-    End Sub
-
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
-        MsgBox(SLEVendorType.EditValue.ToString)
     End Sub
 End Class

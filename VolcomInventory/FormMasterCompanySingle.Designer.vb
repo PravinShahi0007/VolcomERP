@@ -23,6 +23,10 @@ Partial Class FormMasterCompanySingle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterCompanySingle))
         Me.EPCompany = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEAnnotation = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCPSetup = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.TECPEmail = New DevExpress.XtraEditors.TextEdit()
@@ -67,6 +71,18 @@ Partial Class FormMasterCompanySingle
         Me.MEAddress = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.TEBankAddress = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl41 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEBankAtasNama = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl40 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEBankRek = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl39 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEBankAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl38 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEVendorType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -144,6 +160,7 @@ Partial Class FormMasterCompanySingle
         Me.LEContractTemplate = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl37 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDeleteLegal = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddLegal = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewLegal = New DevExpress.XtraEditors.SimpleButton()
         Me.LELegalType = New DevExpress.XtraEditors.LookUpEdit()
@@ -169,14 +186,11 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
-        Me.BDeleteLegal = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEAnnotation = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECPEmail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECPPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,6 +215,11 @@ Partial Class FormMasterCompanySingle
         CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TEBankAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBankAtasNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBankRek.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEBankAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPhoneComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -252,8 +271,6 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -274,11 +291,44 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl3.Controls.Add(Me.TECPName)
         Me.GroupControl3.Controls.Add(Me.LabelControl10)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 372)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 381)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(639, 121)
+        Me.GroupControl3.Size = New System.Drawing.Size(639, 113)
         Me.GroupControl3.TabIndex = 14
         Me.GroupControl3.Text = "Contact Person"
+        '
+        'SLEAnnotation
+        '
+        Me.SLEAnnotation.Location = New System.Drawing.Point(92, 33)
+        Me.SLEAnnotation.Name = "SLEAnnotation"
+        Me.SLEAnnotation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEAnnotation.Properties.Appearance.Options.UseFont = True
+        Me.SLEAnnotation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAnnotation.Properties.View = Me.GridView3
+        Me.SLEAnnotation.Size = New System.Drawing.Size(59, 20)
+        Me.SLEAnnotation.TabIndex = 8910
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Id Annotation"
+        Me.GridColumn19.FieldName = "id_annotation"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Annotation"
+        Me.GridColumn20.FieldName = "annotation"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
         '
         'BCPSetup
         '
@@ -286,9 +336,9 @@ Partial Class FormMasterCompanySingle
         Me.BCPSetup.Appearance.Options.UseFont = True
         Me.BCPSetup.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BCPSetup.ImageList = Me.LargeImageCollection
-        Me.BCPSetup.Location = New System.Drawing.Point(2, 85)
+        Me.BCPSetup.Location = New System.Drawing.Point(2, 86)
         Me.BCPSetup.Name = "BCPSetup"
-        Me.BCPSetup.Size = New System.Drawing.Size(635, 34)
+        Me.BCPSetup.Size = New System.Drawing.Size(635, 25)
         Me.BCPSetup.TabIndex = 13
         Me.BCPSetup.Text = "Update Contact"
         '
@@ -387,7 +437,7 @@ Partial Class FormMasterCompanySingle
         '
         'TEFax
         '
-        Me.TEFax.Location = New System.Drawing.Point(398, 112)
+        Me.TEFax.Location = New System.Drawing.Point(399, 106)
         Me.TEFax.Name = "TEFax"
         Me.TEFax.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEFax.Properties.Appearance.Options.UseFont = True
@@ -397,7 +447,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl19
         '
         Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl19.Location = New System.Drawing.Point(335, 115)
+        Me.LabelControl19.Location = New System.Drawing.Point(336, 109)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl19.TabIndex = 27
@@ -406,7 +456,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl16
         '
         Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(11, 167)
+        Me.LabelControl16.Location = New System.Drawing.Point(12, 161)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl16.TabIndex = 15
@@ -415,7 +465,7 @@ Partial Class FormMasterCompanySingle
         'LEStatus
         '
         Me.LEStatus.Enabled = False
-        Me.LEStatus.Location = New System.Drawing.Point(92, 164)
+        Me.LEStatus.Location = New System.Drawing.Point(93, 158)
         Me.LEStatus.Name = "LEStatus"
         Me.LEStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEStatus.Properties.Appearance.Options.UseFont = True
@@ -427,7 +477,7 @@ Partial Class FormMasterCompanySingle
         '
         'LETax
         '
-        Me.LETax.Location = New System.Drawing.Point(398, 138)
+        Me.LETax.Location = New System.Drawing.Point(399, 132)
         Me.LETax.Name = "LETax"
         Me.LETax.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LETax.Properties.Appearance.Options.UseFont = True
@@ -440,7 +490,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl17
         '
         Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(336, 141)
+        Me.LabelControl17.Location = New System.Drawing.Point(337, 135)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl17.TabIndex = 26
@@ -448,7 +498,7 @@ Partial Class FormMasterCompanySingle
         '
         'TENPWP
         '
-        Me.TENPWP.Location = New System.Drawing.Point(398, 164)
+        Me.TENPWP.Location = New System.Drawing.Point(399, 158)
         Me.TENPWP.Name = "TENPWP"
         Me.TENPWP.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TENPWP.Properties.Appearance.Options.UseFont = True
@@ -458,7 +508,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl12
         '
         Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(335, 167)
+        Me.LabelControl12.Location = New System.Drawing.Point(336, 161)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(29, 13)
         Me.LabelControl12.TabIndex = 24
@@ -466,7 +516,7 @@ Partial Class FormMasterCompanySingle
         '
         'TEWeb
         '
-        Me.TEWeb.Location = New System.Drawing.Point(92, 112)
+        Me.TEWeb.Location = New System.Drawing.Point(93, 106)
         Me.TEWeb.Name = "TEWeb"
         Me.TEWeb.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEWeb.Properties.Appearance.Options.UseFont = True
@@ -476,7 +526,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(12, 115)
+        Me.LabelControl13.Location = New System.Drawing.Point(13, 109)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl13.TabIndex = 10
@@ -484,7 +534,7 @@ Partial Class FormMasterCompanySingle
         '
         'TEEMail
         '
-        Me.TEEMail.Location = New System.Drawing.Point(92, 138)
+        Me.TEEMail.Location = New System.Drawing.Point(93, 132)
         Me.TEEMail.Name = "TEEMail"
         Me.TEEMail.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEEMail.Properties.Appearance.Options.UseFont = True
@@ -494,7 +544,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl14
         '
         Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl14.Location = New System.Drawing.Point(11, 141)
+        Me.LabelControl14.Location = New System.Drawing.Point(12, 135)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl14.TabIndex = 8
@@ -552,7 +602,7 @@ Partial Class FormMasterCompanySingle
         Me.BCancel.ImageList = Me.LargeImageCollection
         Me.BCancel.Location = New System.Drawing.Point(477, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(84, 36)
+        Me.BCancel.Size = New System.Drawing.Size(84, 40)
         Me.BCancel.TabIndex = 9
         Me.BCancel.Text = "Close"
         '
@@ -565,7 +615,7 @@ Partial Class FormMasterCompanySingle
         Me.BSave.ImageList = Me.LargeImageCollection
         Me.BSave.Location = New System.Drawing.Point(561, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(82, 36)
+        Me.BSave.Size = New System.Drawing.Size(82, 40)
         Me.BSave.TabIndex = 24
         Me.BSave.Text = "Save"
         '
@@ -586,9 +636,9 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl2.Controls.Add(Me.MEAddress)
         Me.GroupControl2.Controls.Add(Me.LabelControl3)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 194)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 239)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(639, 178)
+        Me.GroupControl2.Size = New System.Drawing.Size(639, 142)
         Me.GroupControl2.TabIndex = 13
         Me.GroupControl2.Text = "Address"
         '
@@ -652,7 +702,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(335, 147)
+        Me.LabelControl9.Location = New System.Drawing.Point(12, 119)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl9.TabIndex = 12
@@ -660,11 +710,11 @@ Partial Class FormMasterCompanySingle
         '
         'TEPostalCode
         '
-        Me.TEPostalCode.Location = New System.Drawing.Point(398, 144)
+        Me.TEPostalCode.Location = New System.Drawing.Point(92, 116)
         Me.TEPostalCode.Name = "TEPostalCode"
         Me.TEPostalCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEPostalCode.Properties.Appearance.Options.UseFont = True
-        Me.TEPostalCode.Size = New System.Drawing.Size(221, 20)
+        Me.TEPostalCode.Size = New System.Drawing.Size(230, 20)
         Me.TEPostalCode.TabIndex = 19
         '
         'LabelControl8
@@ -696,17 +746,17 @@ Partial Class FormMasterCompanySingle
         '
         'MEOAddress
         '
-        Me.MEOAddress.Location = New System.Drawing.Point(92, 101)
+        Me.MEOAddress.Location = New System.Drawing.Point(92, 76)
         Me.MEOAddress.Name = "MEOAddress"
         Me.MEOAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEOAddress.Properties.Appearance.Options.UseFont = True
-        Me.MEOAddress.Size = New System.Drawing.Size(230, 65)
+        Me.MEOAddress.Size = New System.Drawing.Size(230, 34)
         Me.MEOAddress.TabIndex = 14
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 103)
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 78)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(70, 13)
         Me.LabelControl5.TabIndex = 4
@@ -718,13 +768,13 @@ Partial Class FormMasterCompanySingle
         Me.MEAddress.Name = "MEAddress"
         Me.MEAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAddress.Properties.Appearance.Options.UseFont = True
-        Me.MEAddress.Size = New System.Drawing.Size(230, 67)
+        Me.MEAddress.Size = New System.Drawing.Size(230, 42)
         Me.MEAddress.TabIndex = 13
         '
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 31)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 30)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl3.TabIndex = 2
@@ -732,6 +782,14 @@ Partial Class FormMasterCompanySingle
         '
         'GroupControl1
         '
+        Me.GroupControl1.Controls.Add(Me.TEBankAddress)
+        Me.GroupControl1.Controls.Add(Me.LabelControl41)
+        Me.GroupControl1.Controls.Add(Me.TEBankAtasNama)
+        Me.GroupControl1.Controls.Add(Me.LabelControl40)
+        Me.GroupControl1.Controls.Add(Me.TEBankRek)
+        Me.GroupControl1.Controls.Add(Me.LabelControl39)
+        Me.GroupControl1.Controls.Add(Me.SLEBankAccount)
+        Me.GroupControl1.Controls.Add(Me.LabelControl38)
         Me.GroupControl1.Controls.Add(Me.LETax)
         Me.GroupControl1.Controls.Add(Me.LabelControl17)
         Me.GroupControl1.Controls.Add(Me.SLEVendorType)
@@ -759,13 +817,117 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(639, 194)
+        Me.GroupControl1.Size = New System.Drawing.Size(639, 239)
         Me.GroupControl1.TabIndex = 12
         Me.GroupControl1.Text = "Description"
         '
+        'TEBankAddress
+        '
+        Me.TEBankAddress.Location = New System.Drawing.Point(93, 210)
+        Me.TEBankAddress.Name = "TEBankAddress"
+        Me.TEBankAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEBankAddress.Properties.Appearance.Options.UseFont = True
+        Me.TEBankAddress.Size = New System.Drawing.Size(526, 20)
+        Me.TEBankAddress.TabIndex = 8917
+        '
+        'LabelControl41
+        '
+        Me.LabelControl41.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl41.Location = New System.Drawing.Point(12, 213)
+        Me.LabelControl41.Name = "LabelControl41"
+        Me.LabelControl41.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl41.TabIndex = 8916
+        Me.LabelControl41.Text = "Bank Address"
+        '
+        'TEBankAtasNama
+        '
+        Me.TEBankAtasNama.Location = New System.Drawing.Point(443, 184)
+        Me.TEBankAtasNama.Name = "TEBankAtasNama"
+        Me.TEBankAtasNama.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEBankAtasNama.Properties.Appearance.Options.UseFont = True
+        Me.TEBankAtasNama.Size = New System.Drawing.Size(177, 20)
+        Me.TEBankAtasNama.TabIndex = 8915
+        '
+        'LabelControl40
+        '
+        Me.LabelControl40.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl40.Location = New System.Drawing.Point(410, 187)
+        Me.LabelControl40.Name = "LabelControl40"
+        Me.LabelControl40.Size = New System.Drawing.Size(27, 13)
+        Me.LabelControl40.TabIndex = 8914
+        Me.LabelControl40.Text = "Name"
+        '
+        'TEBankRek
+        '
+        Me.TEBankRek.Location = New System.Drawing.Point(269, 184)
+        Me.TEBankRek.Name = "TEBankRek"
+        Me.TEBankRek.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEBankRek.Properties.Appearance.Options.UseFont = True
+        Me.TEBankRek.Size = New System.Drawing.Size(135, 20)
+        Me.TEBankRek.TabIndex = 8913
+        '
+        'LabelControl39
+        '
+        Me.LabelControl39.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl39.Location = New System.Drawing.Point(229, 187)
+        Me.LabelControl39.Name = "LabelControl39"
+        Me.LabelControl39.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl39.TabIndex = 8912
+        Me.LabelControl39.Text = "No Rek"
+        '
+        'SLEBankAccount
+        '
+        Me.SLEBankAccount.Location = New System.Drawing.Point(93, 184)
+        Me.SLEBankAccount.Name = "SLEBankAccount"
+        Me.SLEBankAccount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEBankAccount.Properties.Appearance.Options.UseFont = True
+        Me.SLEBankAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEBankAccount.Properties.View = Me.GridView4
+        Me.SLEBankAccount.Size = New System.Drawing.Size(130, 20)
+        Me.SLEBankAccount.TabIndex = 8911
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Id Bank"
+        Me.GridColumn21.FieldName = "id"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Bank"
+        Me.GridColumn22.FieldName = "nama_bank"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Kode Bank"
+        Me.GridColumn23.FieldName = "kode_bank"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 1
+        '
+        'LabelControl38
+        '
+        Me.LabelControl38.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl38.Location = New System.Drawing.Point(13, 187)
+        Me.LabelControl38.Name = "LabelControl38"
+        Me.LabelControl38.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl38.TabIndex = 8910
+        Me.LabelControl38.Text = "Bank Account"
+        '
         'SLEVendorType
         '
-        Me.SLEVendorType.Location = New System.Drawing.Point(92, 83)
+        Me.SLEVendorType.Location = New System.Drawing.Point(92, 80)
         Me.SLEVendorType.Name = "SLEVendorType"
         Me.SLEVendorType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEVendorType.Properties.Appearance.Options.UseFont = True
@@ -798,7 +960,7 @@ Partial Class FormMasterCompanySingle
         '
         'LVendorType
         '
-        Me.LVendorType.Location = New System.Drawing.Point(11, 86)
+        Me.LVendorType.Location = New System.Drawing.Point(11, 83)
         Me.LVendorType.Name = "LVendorType"
         Me.LVendorType.Size = New System.Drawing.Size(61, 13)
         Me.LVendorType.TabIndex = 8908
@@ -806,7 +968,7 @@ Partial Class FormMasterCompanySingle
         '
         'TEPhoneComp
         '
-        Me.TEPhoneComp.Location = New System.Drawing.Point(398, 83)
+        Me.TEPhoneComp.Location = New System.Drawing.Point(398, 80)
         Me.TEPhoneComp.Name = "TEPhoneComp"
         Me.TEPhoneComp.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEPhoneComp.Properties.Appearance.Options.UseFont = True
@@ -816,7 +978,7 @@ Partial Class FormMasterCompanySingle
         'LabelControl34
         '
         Me.LabelControl34.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl34.Location = New System.Drawing.Point(335, 86)
+        Me.LabelControl34.Location = New System.Drawing.Point(335, 83)
         Me.LabelControl34.Name = "LabelControl34"
         Me.LabelControl34.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl34.TabIndex = 29
@@ -1313,9 +1475,9 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 521)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 522)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(645, 40)
+        Me.PanelControl1.Size = New System.Drawing.Size(645, 44)
         Me.PanelControl1.TabIndex = 16
         '
         'BPrint
@@ -1325,7 +1487,7 @@ Partial Class FormMasterCompanySingle
         Me.BPrint.ImageList = Me.LargeImageCollection
         Me.BPrint.Location = New System.Drawing.Point(99, 2)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(94, 36)
+        Me.BPrint.Size = New System.Drawing.Size(94, 40)
         Me.BPrint.TabIndex = 26
         Me.BPrint.Text = "Print"
         '
@@ -1336,7 +1498,7 @@ Partial Class FormMasterCompanySingle
         Me.BApproval.ImageList = Me.LargeImageCollection
         Me.BApproval.Location = New System.Drawing.Point(2, 2)
         Me.BApproval.Name = "BApproval"
-        Me.BApproval.Size = New System.Drawing.Size(97, 36)
+        Me.BApproval.Size = New System.Drawing.Size(97, 40)
         Me.BApproval.TabIndex = 25
         Me.BApproval.Text = "Approval"
         '
@@ -1346,7 +1508,7 @@ Partial Class FormMasterCompanySingle
         Me.XTCCompany.Location = New System.Drawing.Point(0, 0)
         Me.XTCCompany.Name = "XTCCompany"
         Me.XTCCompany.SelectedTabPage = Me.XTPDesc
-        Me.XTCCompany.Size = New System.Drawing.Size(645, 521)
+        Me.XTCCompany.Size = New System.Drawing.Size(645, 522)
         Me.XTCCompany.TabIndex = 28
         Me.XTCCompany.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesc, Me.XTPLegal, Me.XTPSetup})
         '
@@ -1356,14 +1518,14 @@ Partial Class FormMasterCompanySingle
         Me.XTPDesc.Controls.Add(Me.GroupControl2)
         Me.XTPDesc.Controls.Add(Me.GroupControl1)
         Me.XTPDesc.Name = "XTPDesc"
-        Me.XTPDesc.Size = New System.Drawing.Size(639, 493)
+        Me.XTPDesc.Size = New System.Drawing.Size(639, 494)
         Me.XTPDesc.Text = "General"
         '
         'XTPLegal
         '
         Me.XTPLegal.Controls.Add(Me.GroupControl8)
         Me.XTPLegal.Name = "XTPLegal"
-        Me.XTPLegal.Size = New System.Drawing.Size(639, 493)
+        Me.XTPLegal.Size = New System.Drawing.Size(639, 494)
         Me.XTPLegal.Text = "Legal"
         '
         'GroupControl8
@@ -1374,7 +1536,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl8.Name = "GroupControl8"
-        Me.GroupControl8.Size = New System.Drawing.Size(639, 493)
+        Me.GroupControl8.Size = New System.Drawing.Size(639, 494)
         Me.GroupControl8.TabIndex = 17
         Me.GroupControl8.Text = "Detail"
         '
@@ -1385,7 +1547,7 @@ Partial Class FormMasterCompanySingle
         Me.GCLegal.MainView = Me.GVLegal
         Me.GCLegal.Name = "GCLegal"
         Me.GCLegal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDownload})
-        Me.GCLegal.Size = New System.Drawing.Size(635, 393)
+        Me.GCLegal.Size = New System.Drawing.Size(635, 394)
         Me.GCLegal.TabIndex = 1
         Me.GCLegal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLegal})
         '
@@ -1473,7 +1635,7 @@ Partial Class FormMasterCompanySingle
         Me.PCVendorLegal.Controls.Add(Me.LEContractTemplate)
         Me.PCVendorLegal.Controls.Add(Me.LabelControl37)
         Me.PCVendorLegal.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCVendorLegal.Location = New System.Drawing.Point(2, 452)
+        Me.PCVendorLegal.Location = New System.Drawing.Point(2, 453)
         Me.PCVendorLegal.Name = "PCVendorLegal"
         Me.PCVendorLegal.Size = New System.Drawing.Size(635, 39)
         Me.PCVendorLegal.TabIndex = 2
@@ -1548,6 +1710,21 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl2.Size = New System.Drawing.Size(635, 39)
         Me.PanelControl2.TabIndex = 0
         '
+        'BDeleteLegal
+        '
+        Me.BDeleteLegal.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BDeleteLegal.Appearance.Options.UseFont = True
+        Me.BDeleteLegal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDeleteLegal.ImageIndex = 1
+        Me.BDeleteLegal.ImageList = Me.LargeImageCollection
+        Me.BDeleteLegal.Location = New System.Drawing.Point(456, 2)
+        Me.BDeleteLegal.Name = "BDeleteLegal"
+        Me.BDeleteLegal.Size = New System.Drawing.Size(81, 35)
+        Me.BDeleteLegal.TabIndex = 8901
+        Me.BDeleteLegal.TabStop = False
+        Me.BDeleteLegal.Text = "Delete"
+        Me.BDeleteLegal.Visible = False
+        '
         'BAddLegal
         '
         Me.BAddLegal.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1601,7 +1778,7 @@ Partial Class FormMasterCompanySingle
         Me.XTPSetup.Controls.Add(Me.GroupControl6)
         Me.XTPSetup.Controls.Add(Me.GroupControl4)
         Me.XTPSetup.Name = "XTPSetup"
-        Me.XTPSetup.Size = New System.Drawing.Size(639, 493)
+        Me.XTPSetup.Size = New System.Drawing.Size(639, 494)
         Me.XTPSetup.Text = "Advanced Setup"
         '
         'GroupControl5
@@ -1610,7 +1787,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl5.Location = New System.Drawing.Point(0, 284)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(639, 209)
+        Me.GroupControl5.Size = New System.Drawing.Size(639, 210)
         Me.GroupControl5.TabIndex = 16
         Me.GroupControl5.Text = "Accounting"
         '
@@ -1623,7 +1800,7 @@ Partial Class FormMasterCompanySingle
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCCoaMapping)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(635, 187)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(635, 188)
         Me.SplitContainerControl1.SplitterPosition = 184
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1634,7 +1811,7 @@ Partial Class FormMasterCompanySingle
         Me.GCCoaTrans.Location = New System.Drawing.Point(0, 0)
         Me.GCCoaTrans.MainView = Me.GVCoaTrans
         Me.GCCoaTrans.Name = "GCCoaTrans"
-        Me.GCCoaTrans.Size = New System.Drawing.Size(184, 187)
+        Me.GCCoaTrans.Size = New System.Drawing.Size(184, 188)
         Me.GCCoaTrans.TabIndex = 0
         Me.GCCoaTrans.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCoaTrans})
         '
@@ -1666,7 +1843,7 @@ Partial Class FormMasterCompanySingle
         Me.GCCoaMapping.Location = New System.Drawing.Point(0, 0)
         Me.GCCoaMapping.MainView = Me.GVCoaMapping
         Me.GCCoaMapping.Name = "GCCoaMapping"
-        Me.GCCoaMapping.Size = New System.Drawing.Size(446, 187)
+        Me.GCCoaMapping.Size = New System.Drawing.Size(446, 188)
         Me.GCCoaMapping.TabIndex = 1
         Me.GCCoaMapping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCoaMapping})
         '
@@ -1782,59 +1959,11 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
         '
-        'BDeleteLegal
-        '
-        Me.BDeleteLegal.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BDeleteLegal.Appearance.Options.UseFont = True
-        Me.BDeleteLegal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDeleteLegal.ImageIndex = 1
-        Me.BDeleteLegal.ImageList = Me.LargeImageCollection
-        Me.BDeleteLegal.Location = New System.Drawing.Point(456, 2)
-        Me.BDeleteLegal.Name = "BDeleteLegal"
-        Me.BDeleteLegal.Size = New System.Drawing.Size(81, 35)
-        Me.BDeleteLegal.TabIndex = 8901
-        Me.BDeleteLegal.TabStop = False
-        Me.BDeleteLegal.Text = "Delete"
-        Me.BDeleteLegal.Visible = False
-        '
-        'SLEAnnotation
-        '
-        Me.SLEAnnotation.Location = New System.Drawing.Point(92, 33)
-        Me.SLEAnnotation.Name = "SLEAnnotation"
-        Me.SLEAnnotation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEAnnotation.Properties.Appearance.Options.UseFont = True
-        Me.SLEAnnotation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAnnotation.Properties.View = Me.GridView3
-        Me.SLEAnnotation.Size = New System.Drawing.Size(59, 20)
-        Me.SLEAnnotation.TabIndex = 8910
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Id Annotation"
-        Me.GridColumn19.FieldName = "id_annotation"
-        Me.GridColumn19.Name = "GridColumn19"
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Annotation"
-        Me.GridColumn20.FieldName = "annotation"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 0
-        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(645, 561)
+        Me.ClientSize = New System.Drawing.Size(645, 566)
         Me.Controls.Add(Me.XTCCompany)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -1848,6 +1977,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECPEmail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECPPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1874,6 +2005,11 @@ Partial Class FormMasterCompanySingle
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.TEBankAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBankAtasNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBankRek.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEBankAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPhoneComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1929,8 +2065,6 @@ Partial Class FormMasterCompanySingle
         CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2087,4 +2221,16 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEBankAtasNama As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl40 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEBankRek As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl39 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEBankAccount As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl38 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEBankAddress As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl41 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
