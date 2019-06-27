@@ -4428,7 +4428,15 @@
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design
 	                WHERE rd.id_prod_demand_rev=" + id_report + " AND rd.is_cancel_po=1
                 ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
-                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; "
+                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; 
+                UPDATE tb_m_design main 
+                INNER JOIN (
+	                SELECT rd.id_design 
+	                FROM tb_prod_demand_rev r
+	                INNER JOIN tb_prod_demand_design_rev rd ON rd.id_prod_demand_rev = r.id_prod_demand_rev
+	                WHERE r.id_prod_demand_rev=" + id_report + " AND rd.id_pd_status_rev=2
+                ) src ON src.id_design = main.id_design
+                SET main.id_lookup_status_order=2; "
                 execute_non_query(query_void, True, "", "", "", "")
 
 
