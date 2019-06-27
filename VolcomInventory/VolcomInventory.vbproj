@@ -6052,6 +6052,12 @@
     <Compile Include="ReportFGCodeReplaceWH.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGDesignListChanges.Designer.vb">
+      <DependentUpon>ReportFGDesignListChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGDesignListChanges.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGLineList.Designer.vb">
       <DependentUpon>ReportFGLineList.vb</DependentUpon>
     </Compile>
@@ -10272,6 +10278,9 @@
     <EmbeddedResource Include="ReportFGCodeReplaceWH.resx">
       <DependentUpon>ReportFGCodeReplaceWH.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGDesignListChanges.resx">
+      <DependentUpon>ReportFGDesignListChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGLineList.resx">
       <DependentUpon>ReportFGLineList.vb</DependentUpon>

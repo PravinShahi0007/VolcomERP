@@ -75,17 +75,16 @@
             pd.id_prod_demand, pd.prod_demand_number, po.id_prod_order, po.prod_order_number,
             dr.id_design, d.id_design AS `id_design_new`,
             dr.design_code AS `code`, d.design_code AS `code_new`,
-            dr.design_code_import AS `code_import`, d.design_code_import AS `code_import_new`,
-            dr.design_display_name AS `name`,d.design_display_name AS `name_new`,
-            dr.id_season_orign , d.id_season_orign AS `id_season_orign_new`,
-            sordr.season_orign, sor.season_orign AS `season_orign_new`,
-            dr.design_fabrication, d.design_fabrication AS `design_fabrication_new`,
-            dr.design_detail, d.design_detail AS `design_detail_new`,
-            src.`source`,src_new.`source_new`,
-            dvs.division,dvs_new.division_new,
-            subcat.sub_category,subcat_new.sub_category_new,
-            cls.class,cls_new.class_new,
-            col.color, col_new.color_new, 
+            IF(det.c_design_code_import=1,dr.design_code_import,'-') AS `code_import`, IF(det.c_design_code_import=1,d.design_code_import,'-') AS `code_import_new`,
+            IF(det.c_design_display_name=1,dr.design_display_name,'-') AS `name`, IF(det.c_design_display_name=1,d.design_display_name,'-') AS `name_new`,
+            IF(det.c_id_season_orign=1,sordr.season_orign,'-') AS `season_orign`, IF(det.c_id_season_orign=1,sor.season_orign,'-') AS `season_orign_new`,
+            IF(det.c_design_fabrication=1, dr.design_fabrication,'-') AS `design_fabrication`, IF(det.c_design_fabrication=1, d.design_fabrication,'-') AS `design_fabrication_new`,
+            IF(det.c_design_detail=1,dr.design_detail, '-') AS `design_detail`, IF(det.c_design_detail=1,d.design_detail, '-') AS `design_detail_new`,
+            IF(det.c_source=1,src.`source`, '-') AS `source`, IF(det.c_source=1,src_new.`source_new`, '-') AS `source_new`,
+            IF(det.c_division=1,dvs.division,'-') AS `division`, IF(det.c_division=1,dvs_new.division_new,'-') AS `division_new`,
+            IF(det.c_subcategory=1, subcat.sub_category,'-') AS `sub_category`, IF(det.c_subcategory=1, subcat_new.sub_category_new,'-') AS `sub_category_new`,
+            IF(det.c_class=1, cls.class, '-') AS `class`, IF(det.c_class=1, cls_new.class_new, '-') AS `class_new`,
+            IF(det.c_color=1, col.color,'-') AS `color`, IF(det.c_color=1, col_new.color_new,'-') AS `color_new`,
             det.c_design_name, det.c_design_code_import, det.c_design_display_name, det.c_id_season_orign, 
             det.c_design_fabrication, det.c_design_detail,
             det.c_source, det.c_division, det.c_subcategory, det.c_class, det.c_color "
@@ -259,71 +258,67 @@
         If Not check_allow_print(id_report_status, rmt, id) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
-            'Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            'gv = GVData
-            'ReportFGProposePriceDetail.dt = GCData.DataSource
-            'ReportFGProposePriceDetail.id = id
-            'If id_report_status <> "6" Then
-            '    ReportFGProposePriceDetail.is_pre = "1"
-            'Else
-            '    ReportFGProposePriceDetail.is_pre = "-1"
-            'End If
-            'ReportFGProposePriceDetail.id_report_status = LEReportStatus.EditValue.ToString
+            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            gv = GVData
+            ReportFGDesignListChanges.dt = GCData.DataSource
+            ReportFGDesignListChanges.id = id
+            If id_report_status <> "6" Then
+                ReportFGProposePriceDetail.is_pre = "1"
+            Else
+                ReportFGProposePriceDetail.is_pre = "-1"
+            End If
+            ReportFGProposePriceDetail.id_report_status = LEReportStatus.EditValue.ToString
 
-            'ReportFGProposePriceDetail.rmt = rmt
-            'Dim Report As New ReportFGProposePriceDetail()
+            ReportFGDesignListChanges.rmt = rmt
+            Dim Report As New ReportFGDesignListChanges()
 
-            ''... 
-            '' creating And saving the view's layout to a new memory stream 
-            'Dim str As System.IO.Stream
-            'str = New System.IO.MemoryStream()
-            'gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
-            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
+            '... 
+            ' creating And saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            ''style
-            'Report.GVData.OptionsPrint.UsePrintStyles = True
-            'Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+            'style
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-            'Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-            'Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
-            'Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-            'Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
-            'Report.GVData.OptionsPrint.ExpandAllDetails = True
-            'Report.GVData.OptionsPrint.UsePrintStyles = True
-            'Report.GVData.OptionsPrint.PrintDetails = True
-            'Report.GVData.OptionsPrint.PrintFooter = True
+            Report.GVData.OptionsPrint.ExpandAllDetails = True
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.OptionsPrint.PrintDetails = True
+            Report.GVData.OptionsPrint.PrintFooter = True
 
-            'Report.LabelNumber.Text = TxtNumber.Text
-            'Report.LabelSeason.Text = SLESeason.Text
-            'Report.LabelDivision.Text = TxtDivision.Text
-            'Report.LabelSource.Text = TxtSource.Text.ToUpper
-            'Report.LabelType.Text = TxtType.Text.ToUpper
-            'Report.LabelDate.Text = DECreated.Text.ToUpper
-            'Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-            'Report.LNote.Text = MENote.Text
+            Report.LabelNumber.Text = TxtNumber.Text
+            Report.LabelDate.Text = DECreated.Text.ToUpper
+            Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+            Report.LNote.Text = MENote.Text
 
-            '' Show the report's preview. 
-            'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            'Tool.ShowPreviewDialog()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         End If
         Cursor = Cursors.Default
     End Sub

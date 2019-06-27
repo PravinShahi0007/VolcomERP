@@ -76,13 +76,25 @@
 
         If is_for_production Then
             BtnPrint.Visible = True
+            SimpleButton1.Visible = False
             BMark.Visible = False
             hidePrice()
+            CEBreakSize.EditValue = True
         End If
 
         If is_for_design Then
             BtnPrint.Visible = True
+            SimpleButton1.Visible = False
             BMark.Visible = False
+            BGVProduct.Columns("COST_add_report_column").Visible = False
+            BGVProduct.Columns("RATE CURRENT_add_report_column").Visible = False
+            BGVProduct.Columns("TOTAL COST_add_report_column").Visible = False
+            BGVProduct.Columns("DEL_desc_report_column").Visible = False
+
+            BGVProduct.Columns("COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("RATE CURRENT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("TOTAL COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("DEL_desc_report_column").OptionsColumn.ShowInCustomizationForm = False
             hidePrice()
         End If
     End Sub
@@ -133,7 +145,6 @@
         BGVProduct.Columns("DEVELOPMENT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
         BGVProduct.Columns("TOTAL COST CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
         BGVProduct.Columns("TOTAL AMOUNT CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-        CEBreakSize.EditValue = True
     End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click

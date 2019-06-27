@@ -2023,7 +2023,7 @@
 	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=30
-        ) cls ON subcat.id_design = dr.id_design
+        ) cls ON cls.id_design = dr.id_design
         LEFT JOIN (
 	        SELECT dc.id_design, cd.id_code, cd.display_name AS `color`
 	        FROM tb_m_design_changes_det det
@@ -2031,7 +2031,7 @@
 	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=14
-        ) col ON subcat.id_design = dr.id_design
+        ) col ON col.id_design = dr.id_design
         WHERE det.id_changes=" + id + " "
         Return query
     End Function

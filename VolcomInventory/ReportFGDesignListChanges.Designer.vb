@@ -1,8 +1,8 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormFGDesignListChanges
-    Inherits DevExpress.XtraEditors.XtraForm
+Partial Public Class ReportFGDesignListChanges
+    Inherits DevExpress.XtraReports.UI.XtraReport
 
-    'Form overrides dispose to clean up the component list.
+    'XtraReport overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
@@ -11,38 +11,40 @@ Partial Class FormFGDesignListChanges
         MyBase.Dispose(disposing)
     End Sub
 
-    'Required by the Windows Form Designer
+    'Required by the Designer
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
+    'NOTE: The following procedure is required by the Designer
+    'It can be modified using the Designer.  
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGDesignListChanges))
-        Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
-        Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportFGDesignListChanges))
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNotex = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelNumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelDotApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelTitleApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelStatus = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelDotStatus = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelTitleStatus = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -87,295 +89,301 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnid_design_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLEPriceMaster = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepoLEPricePrint = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.XTCType = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPMDProduct = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPNonMDProduct = New DevExpress.XtraTab.XtraTabPage()
-        CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControlHead.SuspendLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlBottom.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlNav.SuspendLayout()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XTCType, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCType.SuspendLayout()
-        Me.XTPMDProduct.SuspendLayout()
-        Me.SuspendLayout()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
-        'GroupControlHead
+        'Detail
         '
-        Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.MENote)
-        Me.GroupControlHead.Controls.Add(Me.LabelControl7)
-        Me.GroupControlHead.Controls.Add(Me.TxtNumber)
-        Me.GroupControlHead.Controls.Add(Me.LabelControl2)
-        Me.GroupControlHead.Controls.Add(Me.PanelControl1)
-        Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(1007, 98)
-        Me.GroupControlHead.TabIndex = 10
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
+        Me.Detail.HeightF = 234.375!
+        Me.Detail.Name = "Detail"
+        Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'MENote
+        'TopMargin
         '
-        Me.MENote.Location = New System.Drawing.Point(91, 41)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(330, 41)
-        Me.MENote.TabIndex = 151
-        Me.MENote.TabStop = False
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelNumber, Me.LabelTitle, Me.XrPictureBox1})
+        Me.TopMargin.HeightF = 76.04166!
+        Me.TopMargin.Name = "TopMargin"
+        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'LabelControl7
+        'BottomMargin
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(36, 47)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl7.TabIndex = 150
-        Me.LabelControl7.Text = "Note"
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrPageInfo1})
+        Me.BottomMargin.HeightF = 37.5!
+        Me.BottomMargin.Name = "BottomMargin"
+        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'TxtNumber
+        'ReportFooter
         '
-        Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(91, 14)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(330, 20)
-        Me.TxtNumber.TabIndex = 147
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.LNote, Me.XrLabel18, Me.LNotex})
+        Me.ReportFooter.HeightF = 76.04166!
+        Me.ReportFooter.Name = "ReportFooter"
         '
-        'LabelControl2
+        'XrPageInfo1
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(36, 17)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl2.TabIndex = 147
-        Me.LabelControl2.Text = "Number"
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(849.0001!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'PanelControl1
+        'XrLabel8
         '
-        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl1.Controls.Add(Me.LabelControl21)
-        Me.PanelControl1.Controls.Add(Me.LabelControl4)
-        Me.PanelControl1.Controls.Add(Me.LEReportStatus)
-        Me.PanelControl1.Controls.Add(Me.DECreated)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(796, 2)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(209, 94)
-        Me.PanelControl1.TabIndex = 4
+        Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.ForeColor = System.Drawing.Color.DarkGray
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(548.8425!, 16.04167!)
+        Me.XrLabel8.StylePriority.UseBorderColor = False
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseForeColor = False
+        Me.XrLabel8.StylePriority.UseTextAlignment = False
+        Me.XrLabel8.Text = "Printed from Volcom ERP ([printed_date])"
+        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'LabelControl21
+        'LNotex
         '
-        Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(10, 41)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 144
-        Me.LabelControl21.Text = "Status"
+        Me.LNotex.BorderColor = System.Drawing.Color.DimGray
+        Me.LNotex.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.LNotex.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LNotex.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.LNotex.Name = "LNotex"
+        Me.LNotex.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LNotex.SizeF = New System.Drawing.SizeF(46.87503!, 26.45835!)
+        Me.LNotex.StylePriority.UseBorderColor = False
+        Me.LNotex.StylePriority.UseBorders = False
+        Me.LNotex.StylePriority.UseFont = False
+        Me.LNotex.Text = "NOTE "
         '
-        'LabelControl4
+        'XrLabel18
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(10, 15)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl4.TabIndex = 7
-        Me.LabelControl4.Text = "Date"
+        Me.XrLabel18.BorderColor = System.Drawing.Color.DimGray
+        Me.XrLabel18.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel18.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(46.87503!, 0!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(10.3334!, 26.45831!)
+        Me.XrLabel18.StylePriority.UseBorderColor = False
+        Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.Text = ":"
         '
-        'LEReportStatus
+        'LNote
         '
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(56, 38)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(136, 20)
-        Me.LEReportStatus.TabIndex = 7
+        Me.LNote.BorderColor = System.Drawing.Color.DimGray
+        Me.LNote.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.LNote.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 0!)
+        Me.LNote.Name = "LNote"
+        Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(941.7916!, 26.45835!)
+        Me.LNote.StylePriority.UseBorderColor = False
+        Me.LNote.StylePriority.UseBorders = False
+        Me.LNote.StylePriority.UseFont = False
         '
-        'DECreated
+        'XrTable1
         '
-        Me.DECreated.EditValue = Nothing
-        Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(56, 12)
-        Me.DECreated.Name = "DECreated"
-        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DECreated.Properties.Appearance.Options.UseFont = True
-        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(136, 20)
-        Me.DECreated.TabIndex = 6
+        Me.XrTable1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.4583!)
+        Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(999.0!, 25.0!)
+        Me.XrTable1.StylePriority.UseBorders = False
+        Me.XrTable1.StylePriority.UseFont = False
         '
-        'PanelControlBottom
+        'XrTableRow1
         '
-        Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
-        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
-        Me.PanelControlBottom.Controls.Add(Me.BtnMark)
-        Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
-        Me.PanelControlBottom.Controls.Add(Me.BtnResetPropose)
-        Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
-        Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
-        Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 482)
-        Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(1007, 44)
-        Me.PanelControlBottom.TabIndex = 15
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
         '
-        'BtnPrint
+        'XrTableCell1
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(344, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
-        Me.BtnPrint.TabIndex = 3
-        Me.BtnPrint.Text = "Print"
+        Me.XrTableCell1.Font = New System.Drawing.Font("Lucida Console", 8.0!)
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseFont = False
+        Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
+        Me.XrTableCell1.Visible = False
+        Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'BtnAttachment
+        'PageHeader
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(431, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(109, 40)
-        Me.BtnAttachment.TabIndex = 4
-        Me.BtnAttachment.Text = "Attachment"
-        Me.BtnAttachment.Visible = False
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.LabelDate, Me.LabelDotApprovedDate, Me.LabelStatus, Me.LabelTitleApprovedDate, Me.LabelDotStatus, Me.LabelTitleStatus, Me.LabelApprovedDate, Me.XrLabel10})
+        Me.PageHeader.HeightF = 76.04166!
+        Me.PageHeader.Name = "PageHeader"
         '
-        'BtnMark
+        'XrPictureBox1
         '
-        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
-        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
-        Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(89, 40)
-        Me.BtnMark.TabIndex = 5
-        Me.BtnMark.Text = "Mark"
-        Me.BtnMark.Visible = False
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.45833!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(210.4167!, 39.58334!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
         '
-        'BtnCancell
+        'LabelTitle
         '
-        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(540, 2)
-        Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
-        Me.BtnCancell.TabIndex = 7
-        Me.BtnCancell.Text = "Cancell Propose"
-        Me.BtnCancell.Visible = False
+        Me.LabelTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTitle.LocationFloat = New DevExpress.Utils.PointFloat(526.9523!, 26.45833!)
+        Me.LabelTitle.Name = "LabelTitle"
+        Me.LabelTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelTitle.SizeF = New System.Drawing.SizeF(472.0478!, 25.08334!)
+        Me.LabelTitle.StylePriority.UseFont = False
+        Me.LabelTitle.StylePriority.UseTextAlignment = False
+        Me.LabelTitle.Text = "PROPOSE DESIGN CHANGES"
+        Me.LabelTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomRight
         '
-        'BtnResetPropose
+        'LabelNumber
         '
-        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(666, 2)
-        Me.BtnResetPropose.Name = "BtnResetPropose"
-        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
-        Me.BtnResetPropose.TabIndex = 9
-        Me.BtnResetPropose.Text = "Reset Propose"
+        Me.LabelNumber.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNumber.LocationFloat = New DevExpress.Utils.PointFloat(682.548!, 51.54166!)
+        Me.LabelNumber.Name = "LabelNumber"
+        Me.LabelNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelNumber.SizeF = New System.Drawing.SizeF(316.4521!, 14.5!)
+        Me.LabelNumber.StylePriority.UseFont = False
+        Me.LabelNumber.StylePriority.UseTextAlignment = False
+        Me.LabelNumber.Text = "0000000"
+        Me.LabelNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
-        'BtnSaveChanges
+        'XrLabel10
         '
-        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(789, 2)
-        Me.BtnSaveChanges.Name = "BtnSaveChanges"
-        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
-        Me.BtnSaveChanges.TabIndex = 8
-        Me.BtnSaveChanges.Text = "Save Changes"
-        Me.BtnSaveChanges.Visible = False
+        Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(858.2587!, 0!)
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
+        Me.XrLabel10.StylePriority.UseFont = False
+        Me.XrLabel10.StylePriority.UseTextAlignment = False
+        Me.XrLabel10.Text = ":"
+        Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'BtnConfirm
+        'LabelDotApprovedDate
         '
-        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(909, 2)
-        Me.BtnConfirm.Name = "BtnConfirm"
-        Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
-        Me.BtnConfirm.TabIndex = 6
-        Me.BtnConfirm.Text = "Confirm"
-        Me.BtnConfirm.Visible = False
+        Me.LabelDotApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelDotApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(858.2587!, 32.37384!)
+        Me.LabelDotApprovedDate.Name = "LabelDotApprovedDate"
+        Me.LabelDotApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelDotApprovedDate.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
+        Me.LabelDotApprovedDate.StylePriority.UseFont = False
+        Me.LabelDotApprovedDate.StylePriority.UseTextAlignment = False
+        Me.LabelDotApprovedDate.Text = ":"
+        Me.LabelDotApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.LabelDotApprovedDate.Visible = False
         '
-        'PanelControl3
+        'LabelTitleApprovedDate
         '
-        Me.PanelControl3.Controls.Add(Me.PanelControlNav)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 98)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1007, 40)
-        Me.PanelControl3.TabIndex = 17
+        Me.LabelTitleApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTitleApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(759.5318!, 32.37384!)
+        Me.LabelTitleApprovedDate.Name = "LabelTitleApprovedDate"
+        Me.LabelTitleApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelTitleApprovedDate.SizeF = New System.Drawing.SizeF(98.72687!, 16.18692!)
+        Me.LabelTitleApprovedDate.StylePriority.UseFont = False
+        Me.LabelTitleApprovedDate.StylePriority.UseTextAlignment = False
+        Me.LabelTitleApprovedDate.Text = "APPROVED DATE"
+        Me.LabelTitleApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelTitleApprovedDate.Visible = False
         '
-        'PanelControlNav
+        'LabelStatus
         '
-        Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlNav.Controls.Add(Me.BtnDel)
-        Me.PanelControlNav.Controls.Add(Me.BtnEdit)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
-        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlNav.Location = New System.Drawing.Point(648, 2)
-        Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(357, 36)
-        Me.PanelControlNav.TabIndex = 6
+        Me.LabelStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(876.0835!, 16.18692!)
+        Me.LabelStatus.Name = "LabelStatus"
+        Me.LabelStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelStatus.SizeF = New System.Drawing.SizeF(122.9167!, 16.18692!)
+        Me.LabelStatus.StylePriority.UseFont = False
+        Me.LabelStatus.StylePriority.UseTextAlignment = False
+        Me.LabelStatus.Text = "[status]"
+        Me.LabelStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'BtnDel
+        'LabelDotStatus
         '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.Image = CType(resources.GetObject("BtnDel.Image"), System.Drawing.Image)
-        Me.BtnDel.Location = New System.Drawing.Point(108, 0)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(86, 36)
-        Me.BtnDel.TabIndex = 7
-        Me.BtnDel.Text = "Delete"
+        Me.LabelDotStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelDotStatus.LocationFloat = New DevExpress.Utils.PointFloat(858.2587!, 16.18692!)
+        Me.LabelDotStatus.Name = "LabelDotStatus"
+        Me.LabelDotStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelDotStatus.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
+        Me.LabelDotStatus.StylePriority.UseFont = False
+        Me.LabelDotStatus.StylePriority.UseTextAlignment = False
+        Me.LabelDotStatus.Text = ":"
+        Me.LabelDotStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'BtnEdit
+        'LabelTitleStatus
         '
-        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
-        Me.BtnEdit.Location = New System.Drawing.Point(194, 0)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(86, 36)
-        Me.BtnEdit.TabIndex = 8
-        Me.BtnEdit.Text = "Edit"
+        Me.LabelTitleStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTitleStatus.LocationFloat = New DevExpress.Utils.PointFloat(759.5317!, 16.18692!)
+        Me.LabelTitleStatus.Name = "LabelTitleStatus"
+        Me.LabelTitleStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelTitleStatus.SizeF = New System.Drawing.SizeF(98.72687!, 16.18692!)
+        Me.LabelTitleStatus.StylePriority.UseFont = False
+        Me.LabelTitleStatus.StylePriority.UseTextAlignment = False
+        Me.LabelTitleStatus.Text = "STATUS"
+        Me.LabelTitleStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'BtnAdd
+        'XrLabel11
         '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(280, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(77, 36)
-        Me.BtnAdd.TabIndex = 6
-        Me.BtnAdd.Text = "Add"
+        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(759.5317!, 0!)
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(98.72699!, 16.18692!)
+        Me.XrLabel11.StylePriority.UseFont = False
+        Me.XrLabel11.StylePriority.UseTextAlignment = False
+        Me.XrLabel11.Text = "CREATED DATE"
+        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LabelDate
+        '
+        Me.LabelDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelDate.LocationFloat = New DevExpress.Utils.PointFloat(876.0828!, 0!)
+        Me.LabelDate.Name = "LabelDate"
+        Me.LabelDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelDate.SizeF = New System.Drawing.SizeF(122.9174!, 16.18692!)
+        Me.LabelDate.StylePriority.UseFont = False
+        Me.LabelDate.StylePriority.UseTextAlignment = False
+        Me.LabelDate.Text = "01/12/2017"
+        Me.LabelDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'LabelApprovedDate
+        '
+        Me.LabelApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(876.0828!, 32.37384!)
+        Me.LabelApprovedDate.Name = "LabelApprovedDate"
+        Me.LabelApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelApprovedDate.SizeF = New System.Drawing.SizeF(122.9169!, 16.18692!)
+        Me.LabelApprovedDate.StylePriority.UseFont = False
+        Me.LabelApprovedDate.StylePriority.UseTextAlignment = False
+        Me.LabelApprovedDate.Text = "[approved_date]"
+        Me.LabelApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LabelApprovedDate.Visible = False
         '
         'GCData
         '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint, Me.RepoLinkPD})
-        Me.GCData.Size = New System.Drawing.Size(1001, 338)
+        Me.GCData.Size = New System.Drawing.Size(959, 204)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -817,105 +825,64 @@ Partial Class FormFGDesignListChanges
         Me.RepoLEPricePrint.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type_print", "id_design_price_type_print", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
         Me.RepoLEPricePrint.Name = "RepoLEPricePrint"
         '
-        'XTCType
+        'WinControlContainer1
         '
-        Me.XTCType.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCType.Location = New System.Drawing.Point(0, 138)
-        Me.XTCType.Name = "XTCType"
-        Me.XTCType.SelectedTabPage = Me.XTPMDProduct
-        Me.XTCType.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XTCType.Size = New System.Drawing.Size(1007, 344)
-        Me.XTCType.TabIndex = 19
-        Me.XTCType.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMDProduct, Me.XTPNonMDProduct})
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(998.9996!, 212.5833!)
+        Me.WinControlContainer1.WinControl = Me.GCData
         '
-        'XTPMDProduct
+        'ReportFGDesignListChanges
         '
-        Me.XTPMDProduct.Controls.Add(Me.GCData)
-        Me.XTPMDProduct.Name = "XTPMDProduct"
-        Me.XTPMDProduct.Size = New System.Drawing.Size(1001, 338)
-        Me.XTPMDProduct.Text = "Merchandise Product"
-        '
-        'XTPNonMDProduct
-        '
-        Me.XTPNonMDProduct.Name = "XTPNonMDProduct"
-        Me.XTPNonMDProduct.Size = New System.Drawing.Size(1001, 338)
-        Me.XTPNonMDProduct.Text = "Non MD Product"
-        '
-        'FormFGDesignListChanges
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1007, 526)
-        Me.Controls.Add(Me.XTCType)
-        Me.Controls.Add(Me.PanelControl3)
-        Me.Controls.Add(Me.PanelControlBottom)
-        Me.Controls.Add(Me.GroupControlHead)
-        Me.Name = "FormFGDesignListChanges"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose Design Changes"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControlHead.ResumeLayout(False)
-        Me.GroupControlHead.PerformLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlBottom.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlNav.ResumeLayout(False)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
+        Me.Landscape = True
+        Me.Margins = New System.Drawing.Printing.Margins(51, 50, 76, 38)
+        Me.PageHeight = 850
+        Me.PageWidth = 1100
+        Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
+        Me.Version = "15.1"
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XTCType, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCType.ResumeLayout(False)
-        Me.XTPMDProduct.ResumeLayout(False)
-        Me.ResumeLayout(False)
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
-
-    Friend WithEvents GroupControlHead As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents PanelControlBottom As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
+    Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
+    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LNotex As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LNote As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents LabelTitle As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelNumber As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelDotApprovedDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelStatus As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelTitleApprovedDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelDotStatus As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelTitleStatus As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelApprovedDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCData As MyXtraGrid.MyGridControl
-    Friend WithEvents RepoLEPriceMaster As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
-    Friend WithEvents RepoLEPricePrint As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
-    Friend WithEvents XTCType As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPMDProduct As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPNonMDProduct As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnnameview As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnprod_demand_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepoLinkPD As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BandedGridColumnprod_order_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncode_import As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -951,6 +918,6 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents BandedGridColumnid_prod_order As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_design_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents RepoLinkPD As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepoLEPriceMaster As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents RepoLEPricePrint As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class

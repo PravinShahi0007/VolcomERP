@@ -523,6 +523,9 @@
         ElseIf report_mark_type = "197" Then
             'propose employee salary
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_sal_pps WHERE id_employee_sal_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "200" Then
+            'design changes
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_m_design_changes WHERE id_changes = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
