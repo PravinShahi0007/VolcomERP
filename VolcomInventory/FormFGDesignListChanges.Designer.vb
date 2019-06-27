@@ -46,6 +46,7 @@ Partial Class FormFGDesignListChanges
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnameview = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnprod_demand_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -386,9 +387,11 @@ Partial Class FormFGDesignListChanges
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
+        Me.GVData.AppearancePrint.Row.Options.UseForeColor = True
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor})
         Me.GVData.ColumnPanelRowHeight = 50
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new, Me.BandedGridColumnNo})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Nothing, "{0:n2}", "b"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", Nothing, "{0:n2}", "b_mng"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", Nothing, "{0:n2}", "b_sale"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", Nothing, "{0:n2}", "b_mng_sale")})
         Me.GVData.LevelIndent = 0
@@ -404,13 +407,23 @@ Partial Class FormFGDesignListChanges
         '
         'gridBandGeneral
         '
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnNo)
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode)
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnnameview)
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_demand_number)
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_order_number)
         Me.gridBandGeneral.Name = "gridBandGeneral"
         Me.gridBandGeneral.VisibleIndex = 0
-        Me.gridBandGeneral.Width = 300
+        Me.gridBandGeneral.Width = 336
+        '
+        'BandedGridColumnNo
+        '
+        Me.BandedGridColumnNo.Caption = "No"
+        Me.BandedGridColumnNo.FieldName = "no"
+        Me.BandedGridColumnNo.Name = "BandedGridColumnNo"
+        Me.BandedGridColumnNo.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnNo.Visible = True
+        Me.BandedGridColumnNo.Width = 36
         '
         'BandedGridColumncode
         '
@@ -434,6 +447,8 @@ Partial Class FormFGDesignListChanges
         '
         'BandedGridColumnprod_demand_number
         '
+        Me.BandedGridColumnprod_demand_number.AppearanceCell.ForeColor = System.Drawing.Color.Black
+        Me.BandedGridColumnprod_demand_number.AppearanceCell.Options.UseForeColor = True
         Me.BandedGridColumnprod_demand_number.AppearanceCell.Options.UseTextOptions = True
         Me.BandedGridColumnprod_demand_number.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnprod_demand_number.Caption = "PD#"
@@ -444,6 +459,8 @@ Partial Class FormFGDesignListChanges
         '
         'RepoLinkPD
         '
+        Me.RepoLinkPD.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.RepoLinkPD.Appearance.Options.UseForeColor = True
         Me.RepoLinkPD.AutoHeight = False
         Me.RepoLinkPD.Name = "RepoLinkPD"
         '
@@ -912,39 +929,28 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents XTPMDProduct As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPNonMDProduct As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnnameview As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnprod_demand_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnprod_order_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncode_import As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncode_import_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandName As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnname As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnname_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandSor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnseason_orign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnseason_orign_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandFabrication As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumndesign_fabrication As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndesign_fabrication_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandDesignDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumndesign_detail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndesign_detail_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandSource As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnsource As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsource_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandDivision As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumndivision As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndivision_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandSubCat As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnsub_category As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsub_category_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandClass As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnclass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnclass_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncolor As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncolor_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_prod_demand As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -953,4 +959,16 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents BandedGridColumnid_design_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RepoLinkPD As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandName As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandSor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandFabrication As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDesignDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandSource As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDivision As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandSubCat As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandClass As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

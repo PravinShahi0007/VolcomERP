@@ -6035,6 +6035,28 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             'update
             query = String.Format("UPDATE tb_employee_sal_pps SET id_report_status='{0}' WHERE id_employee_sal_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "200" Then
+            Cursor = Cursors.WaitCursor
+            'propose design changes
+            'auto completed
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_m_design_changes SET id_report_status='{0}' WHERE id_changes ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormFGDesignListChanges.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormFGDesignListChanges.actionLoad()
+            FormFGDesignList.viewPropose()
+            FormFGDesignList.GVPropose.FocusedRowHandle = find_row(FormFGDesignList.GVPropose, "id_changes", id_report)
+            Cursor = Cursors.Default
         End If
 
         'adding lead time

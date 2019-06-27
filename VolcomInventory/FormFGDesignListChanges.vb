@@ -263,11 +263,11 @@
             ReportFGDesignListChanges.dt = GCData.DataSource
             ReportFGDesignListChanges.id = id
             If id_report_status <> "6" Then
-                ReportFGProposePriceDetail.is_pre = "1"
+                ReportFGDesignListChanges.is_pre = "1"
             Else
-                ReportFGProposePriceDetail.is_pre = "-1"
+                ReportFGDesignListChanges.is_pre = "-1"
             End If
-            ReportFGProposePriceDetail.id_report_status = LEReportStatus.EditValue.ToString
+            ReportFGDesignListChanges.id_report_status = LEReportStatus.EditValue.ToString
 
             ReportFGDesignListChanges.rmt = rmt
             Dim Report As New ReportFGDesignListChanges()
@@ -282,6 +282,10 @@
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'style
+            Report.GVData.AppearancePrint.BandPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.BandPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.BandPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
             Report.GVData.OptionsPrint.UsePrintStyles = True
             Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
             Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
@@ -432,5 +436,11 @@
         FormViewProdDemand.is_for_design = True
         FormViewProdDemand.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
