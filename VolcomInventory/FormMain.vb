@@ -13144,4 +13144,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBItemSubCatAcc_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemSubCatAcc.LinkClicked
+        'Sub Category/purchase category
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemSubCat.MdiParent = Me
+            FormItemSubCat.is_accounting = "1"
+            FormItemSubCat.Show()
+            FormItemSubCat.WindowState = FormWindowState.Maximized
+            FormItemSubCat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
