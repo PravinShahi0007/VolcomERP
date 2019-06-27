@@ -30,6 +30,7 @@
         ORDER BY rm.id_report_mark DESC LIMIT 1 "
         Dim dpd As DataTable = execute_query(qpd, -1, True, "", "", "", "")
         DataSource = dpd
+        RepoLinkPD.Appearance.ForeColor = Color.Black
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText

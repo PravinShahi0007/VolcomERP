@@ -255,9 +255,14 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+        RepoLinkPD.LinkColor = Color.Black
         If Not check_allow_print(id_report_status, rmt, id) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
+            BandedGridColumnprod_demand_number.Visible = False
+            BandedGridColumnPDView.Visible = True
+            BandedGridColumnPDView.VisibleIndex = 3
+
             Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
             gv = GVData
             ReportFGDesignListChanges.dt = GCData.DataSource
@@ -308,6 +313,7 @@
             Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
             Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
+            Report.GVData.AppearancePrint.Row.ForeColor = Color.Black
             Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
             Report.GVData.OptionsPrint.ExpandAllDetails = True
@@ -323,6 +329,9 @@
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
+            BandedGridColumnprod_demand_number.Visible = True
+            BandedGridColumnprod_demand_number.VisibleIndex = 3
+            BandedGridColumnPDView.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub

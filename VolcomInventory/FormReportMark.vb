@@ -18,6 +18,22 @@
 
     Private Sub FormReportMark_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'checkFormAccessSingle(Name)
+        'block load 
+        If report_mark_type = "22" Then
+            'Prod order - cek jika ada yang sedang diproses di perubajan design
+            Dim query_cek As String = "SELECT * 
+            FROM tb_m_design_changes_det pcd
+            INNER JOIN tb_m_design d ON d.id_design = pcd.id_design
+            INNER JOIN tb_m_design_changes pc ON pc.id_changes = pcd.id_changes
+            WHERE d.id_design_rev_from=" + FormViewProduction.id_design + " AND pc.id_report_status!=5 "
+            Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+            If data_cek.Rows.Count > 0 Then
+                stopCustom("Cannot approve this order, because it's being processed for design changes.")
+                Exit Sub
+                Close()
+            End If
+        End If
+
         act_load()
         '
         '
