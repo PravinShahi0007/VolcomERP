@@ -41,15 +41,55 @@ Partial Class FormFGDesignListChanges
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnnameview = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnprod_demand_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnprod_order_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandCodeImport = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumncode_import = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncode_import_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandName = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnname_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandSor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnseason_orign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnseason_orign_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandFabrication = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumndesign_fabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_fabrication_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandDesignDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumndesign_detail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_detail_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandSource = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnsource = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnsource_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandDivision = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumndivision = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndivision_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandSubCat = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnsub_category = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnsub_category_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandClass = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnclass_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandColor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncolor_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_prod_demand = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_prod_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_design_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLEPriceMaster = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepoLEPricePrint = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.XTCType = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPMDProduct = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPNonMDProduct = New DevExpress.XtraTab.XtraTabPage()
-        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
-        Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.RepoLinkPD = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,12 +106,13 @@ Partial Class FormFGDesignListChanges
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCType, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCType.SuspendLayout()
         Me.XTPMDProduct.SuspendLayout()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -85,7 +126,7 @@ Partial Class FormFGDesignListChanges
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(874, 98)
+        Me.GroupControlHead.Size = New System.Drawing.Size(1007, 98)
         Me.GroupControlHead.TabIndex = 10
         '
         'MENote
@@ -132,7 +173,7 @@ Partial Class FormFGDesignListChanges
         Me.PanelControl1.Controls.Add(Me.LEReportStatus)
         Me.PanelControl1.Controls.Add(Me.DECreated)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(663, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(796, 2)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(209, 94)
         Me.PanelControl1.TabIndex = 4
@@ -198,14 +239,14 @@ Partial Class FormFGDesignListChanges
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 482)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(874, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(1007, 44)
         Me.PanelControlBottom.TabIndex = 15
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(214, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(344, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -215,9 +256,9 @@ Partial Class FormFGDesignListChanges
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(301, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(431, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
+        Me.BtnAttachment.Size = New System.Drawing.Size(109, 40)
         Me.BtnAttachment.TabIndex = 4
         Me.BtnAttachment.Text = "Attachment"
         Me.BtnAttachment.Visible = False
@@ -237,7 +278,7 @@ Partial Class FormFGDesignListChanges
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(407, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(540, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -248,7 +289,7 @@ Partial Class FormFGDesignListChanges
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(533, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(666, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 9
@@ -258,7 +299,7 @@ Partial Class FormFGDesignListChanges
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(656, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(789, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -269,7 +310,7 @@ Partial Class FormFGDesignListChanges
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(776, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(909, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
@@ -282,16 +323,17 @@ Partial Class FormFGDesignListChanges
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 98)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(874, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(1007, 40)
         Me.PanelControl3.TabIndex = 17
         '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
+        Me.PanelControlNav.Controls.Add(Me.BtnEdit)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlNav.Location = New System.Drawing.Point(515, 2)
+        Me.PanelControlNav.Location = New System.Drawing.Point(648, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(357, 36)
         Me.PanelControlNav.TabIndex = 6
@@ -300,11 +342,21 @@ Partial Class FormFGDesignListChanges
         '
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.Image = CType(resources.GetObject("BtnDel.Image"), System.Drawing.Image)
-        Me.BtnDel.Location = New System.Drawing.Point(194, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(108, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(86, 36)
         Me.BtnDel.TabIndex = 7
         Me.BtnDel.Text = "Delete"
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
+        Me.BtnEdit.Location = New System.Drawing.Point(194, 0)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(86, 36)
+        Me.BtnEdit.TabIndex = 8
+        Me.BtnEdit.Text = "Edit"
         '
         'BtnAdd
         '
@@ -322,10 +374,373 @@ Partial Class FormFGDesignListChanges
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint})
-        Me.GCData.Size = New System.Drawing.Size(868, 338)
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint, Me.RepoLinkPD})
+        Me.GCData.Size = New System.Drawing.Size(1001, 338)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVData.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor})
+        Me.GVData.ColumnPanelRowHeight = 50
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Nothing, "{0:n2}", "b"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", Nothing, "{0:n2}", "b_mng"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", Nothing, "{0:n2}", "b_sale"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", Nothing, "{0:n2}", "b_mng_sale")})
+        Me.GVData.LevelIndent = 0
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsCustomization.AllowRowSizing = True
+        Me.GVData.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.RowHeight = 17
+        '
+        'gridBandGeneral
+        '
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnnameview)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_demand_number)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_order_number)
+        Me.gridBandGeneral.Name = "gridBandGeneral"
+        Me.gridBandGeneral.VisibleIndex = 0
+        Me.gridBandGeneral.Width = 300
+        '
+        'BandedGridColumncode
+        '
+        Me.BandedGridColumncode.Caption = "Code"
+        Me.BandedGridColumncode.FieldName = "code_view"
+        Me.BandedGridColumncode.Name = "BandedGridColumncode"
+        Me.BandedGridColumncode.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumncode.Visible = True
+        '
+        'BandedGridColumnnameview
+        '
+        Me.BandedGridColumnnameview.Caption = "Design"
+        Me.BandedGridColumnnameview.FieldName = "name_view"
+        Me.BandedGridColumnnameview.Name = "BandedGridColumnnameview"
+        Me.BandedGridColumnnameview.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnnameview.Visible = True
+        '
+        'BandedGridColumnprod_demand_number
+        '
+        Me.BandedGridColumnprod_demand_number.Caption = "PD#"
+        Me.BandedGridColumnprod_demand_number.ColumnEdit = Me.RepoLinkPD
+        Me.BandedGridColumnprod_demand_number.FieldName = "prod_demand_number"
+        Me.BandedGridColumnprod_demand_number.Name = "BandedGridColumnprod_demand_number"
+        Me.BandedGridColumnprod_demand_number.Visible = True
+        '
+        'BandedGridColumnprod_order_number
+        '
+        Me.BandedGridColumnprod_order_number.Caption = "FGPO#"
+        Me.BandedGridColumnprod_order_number.FieldName = "prod_order_number"
+        Me.BandedGridColumnprod_order_number.Name = "BandedGridColumnprod_order_number"
+        Me.BandedGridColumnprod_order_number.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnprod_order_number.Visible = True
+        '
+        'gridBandCodeImport
+        '
+        Me.gridBandCodeImport.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandCodeImport.AppearanceHeader.Options.UseFont = True
+        Me.gridBandCodeImport.Caption = "Code Import"
+        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import)
+        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import_new)
+        Me.gridBandCodeImport.Name = "gridBandCodeImport"
+        Me.gridBandCodeImport.VisibleIndex = 1
+        Me.gridBandCodeImport.Width = 150
+        '
+        'BandedGridColumncode_import
+        '
+        Me.BandedGridColumncode_import.Caption = "From"
+        Me.BandedGridColumncode_import.FieldName = "code_import"
+        Me.BandedGridColumncode_import.Name = "BandedGridColumncode_import"
+        Me.BandedGridColumncode_import.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumncode_import.Visible = True
+        '
+        'BandedGridColumncode_import_new
+        '
+        Me.BandedGridColumncode_import_new.Caption = "To"
+        Me.BandedGridColumncode_import_new.FieldName = "code_import_new"
+        Me.BandedGridColumncode_import_new.Name = "BandedGridColumncode_import_new"
+        Me.BandedGridColumncode_import_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumncode_import_new.Visible = True
+        '
+        'gridBandName
+        '
+        Me.gridBandName.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandName.AppearanceHeader.Options.UseFont = True
+        Me.gridBandName.Caption = "Name"
+        Me.gridBandName.Columns.Add(Me.BandedGridColumnname)
+        Me.gridBandName.Columns.Add(Me.BandedGridColumnname_new)
+        Me.gridBandName.Name = "gridBandName"
+        Me.gridBandName.VisibleIndex = 2
+        Me.gridBandName.Width = 150
+        '
+        'BandedGridColumnname
+        '
+        Me.BandedGridColumnname.Caption = "From"
+        Me.BandedGridColumnname.FieldName = "name"
+        Me.BandedGridColumnname.Name = "BandedGridColumnname"
+        Me.BandedGridColumnname.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnname.Visible = True
+        '
+        'BandedGridColumnname_new
+        '
+        Me.BandedGridColumnname_new.Caption = "To"
+        Me.BandedGridColumnname_new.FieldName = "name_new"
+        Me.BandedGridColumnname_new.Name = "BandedGridColumnname_new"
+        Me.BandedGridColumnname_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnname_new.Visible = True
+        '
+        'gridBandSor
+        '
+        Me.gridBandSor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandSor.AppearanceHeader.Options.UseFont = True
+        Me.gridBandSor.Caption = "Season Orign"
+        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign)
+        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign_new)
+        Me.gridBandSor.Name = "gridBandSor"
+        Me.gridBandSor.VisibleIndex = 3
+        Me.gridBandSor.Width = 150
+        '
+        'BandedGridColumnseason_orign
+        '
+        Me.BandedGridColumnseason_orign.Caption = "From"
+        Me.BandedGridColumnseason_orign.FieldName = "season_orign"
+        Me.BandedGridColumnseason_orign.Name = "BandedGridColumnseason_orign"
+        Me.BandedGridColumnseason_orign.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnseason_orign.Visible = True
+        '
+        'BandedGridColumnseason_orign_new
+        '
+        Me.BandedGridColumnseason_orign_new.Caption = "To"
+        Me.BandedGridColumnseason_orign_new.FieldName = "season_orign_new"
+        Me.BandedGridColumnseason_orign_new.Name = "BandedGridColumnseason_orign_new"
+        Me.BandedGridColumnseason_orign_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnseason_orign_new.Visible = True
+        '
+        'gridBandFabrication
+        '
+        Me.gridBandFabrication.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandFabrication.AppearanceHeader.Options.UseFont = True
+        Me.gridBandFabrication.Caption = "Fabrication"
+        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication)
+        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication_new)
+        Me.gridBandFabrication.Name = "gridBandFabrication"
+        Me.gridBandFabrication.VisibleIndex = 4
+        Me.gridBandFabrication.Width = 150
+        '
+        'BandedGridColumndesign_fabrication
+        '
+        Me.BandedGridColumndesign_fabrication.Caption = "From"
+        Me.BandedGridColumndesign_fabrication.FieldName = "design_fabrication"
+        Me.BandedGridColumndesign_fabrication.Name = "BandedGridColumndesign_fabrication"
+        Me.BandedGridColumndesign_fabrication.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumndesign_fabrication.Visible = True
+        '
+        'BandedGridColumndesign_fabrication_new
+        '
+        Me.BandedGridColumndesign_fabrication_new.Caption = "To"
+        Me.BandedGridColumndesign_fabrication_new.FieldName = "design_fabrication_new"
+        Me.BandedGridColumndesign_fabrication_new.Name = "BandedGridColumndesign_fabrication_new"
+        Me.BandedGridColumndesign_fabrication_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumndesign_fabrication_new.Visible = True
+        '
+        'gridBandDesignDetail
+        '
+        Me.gridBandDesignDetail.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandDesignDetail.AppearanceHeader.Options.UseFont = True
+        Me.gridBandDesignDetail.Caption = "Design Detail"
+        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail)
+        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail_new)
+        Me.gridBandDesignDetail.Name = "gridBandDesignDetail"
+        Me.gridBandDesignDetail.VisibleIndex = 5
+        Me.gridBandDesignDetail.Width = 150
+        '
+        'BandedGridColumndesign_detail
+        '
+        Me.BandedGridColumndesign_detail.Caption = "From"
+        Me.BandedGridColumndesign_detail.FieldName = "design_detail"
+        Me.BandedGridColumndesign_detail.Name = "BandedGridColumndesign_detail"
+        Me.BandedGridColumndesign_detail.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumndesign_detail.Visible = True
+        '
+        'BandedGridColumndesign_detail_new
+        '
+        Me.BandedGridColumndesign_detail_new.Caption = "To"
+        Me.BandedGridColumndesign_detail_new.FieldName = "design_detail_new"
+        Me.BandedGridColumndesign_detail_new.Name = "BandedGridColumndesign_detail_new"
+        Me.BandedGridColumndesign_detail_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumndesign_detail_new.Visible = True
+        '
+        'gridBandSource
+        '
+        Me.gridBandSource.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandSource.AppearanceHeader.Options.UseFont = True
+        Me.gridBandSource.Caption = "Source"
+        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource)
+        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource_new)
+        Me.gridBandSource.Name = "gridBandSource"
+        Me.gridBandSource.VisibleIndex = 6
+        Me.gridBandSource.Width = 150
+        '
+        'BandedGridColumnsource
+        '
+        Me.BandedGridColumnsource.Caption = "From"
+        Me.BandedGridColumnsource.FieldName = "source"
+        Me.BandedGridColumnsource.Name = "BandedGridColumnsource"
+        Me.BandedGridColumnsource.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnsource.Visible = True
+        '
+        'BandedGridColumnsource_new
+        '
+        Me.BandedGridColumnsource_new.Caption = "To"
+        Me.BandedGridColumnsource_new.FieldName = "source_new"
+        Me.BandedGridColumnsource_new.Name = "BandedGridColumnsource_new"
+        Me.BandedGridColumnsource_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnsource_new.Visible = True
+        '
+        'gridBandDivision
+        '
+        Me.gridBandDivision.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandDivision.AppearanceHeader.Options.UseFont = True
+        Me.gridBandDivision.Caption = "Division"
+        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision)
+        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision_new)
+        Me.gridBandDivision.Name = "gridBandDivision"
+        Me.gridBandDivision.VisibleIndex = 7
+        Me.gridBandDivision.Width = 150
+        '
+        'BandedGridColumndivision
+        '
+        Me.BandedGridColumndivision.Caption = "From"
+        Me.BandedGridColumndivision.FieldName = "division"
+        Me.BandedGridColumndivision.Name = "BandedGridColumndivision"
+        Me.BandedGridColumndivision.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumndivision.Visible = True
+        '
+        'BandedGridColumndivision_new
+        '
+        Me.BandedGridColumndivision_new.Caption = "To"
+        Me.BandedGridColumndivision_new.FieldName = "division_new"
+        Me.BandedGridColumndivision_new.Name = "BandedGridColumndivision_new"
+        Me.BandedGridColumndivision_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumndivision_new.Visible = True
+        '
+        'gridBandSubCat
+        '
+        Me.gridBandSubCat.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandSubCat.AppearanceHeader.Options.UseFont = True
+        Me.gridBandSubCat.Caption = "Sub Category"
+        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category)
+        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category_new)
+        Me.gridBandSubCat.Name = "gridBandSubCat"
+        Me.gridBandSubCat.VisibleIndex = 8
+        Me.gridBandSubCat.Width = 150
+        '
+        'BandedGridColumnsub_category
+        '
+        Me.BandedGridColumnsub_category.Caption = "From"
+        Me.BandedGridColumnsub_category.FieldName = "sub_category"
+        Me.BandedGridColumnsub_category.Name = "BandedGridColumnsub_category"
+        Me.BandedGridColumnsub_category.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnsub_category.Visible = True
+        '
+        'BandedGridColumnsub_category_new
+        '
+        Me.BandedGridColumnsub_category_new.Caption = "To"
+        Me.BandedGridColumnsub_category_new.FieldName = "sub_category_new"
+        Me.BandedGridColumnsub_category_new.Name = "BandedGridColumnsub_category_new"
+        Me.BandedGridColumnsub_category_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnsub_category_new.Visible = True
+        '
+        'gridBandClass
+        '
+        Me.gridBandClass.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandClass.AppearanceHeader.Options.UseFont = True
+        Me.gridBandClass.Caption = "Class"
+        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass)
+        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass_new)
+        Me.gridBandClass.Name = "gridBandClass"
+        Me.gridBandClass.VisibleIndex = 9
+        Me.gridBandClass.Width = 150
+        '
+        'BandedGridColumnclass
+        '
+        Me.BandedGridColumnclass.Caption = "From"
+        Me.BandedGridColumnclass.FieldName = "class"
+        Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
+        Me.BandedGridColumnclass.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnclass.Visible = True
+        '
+        'BandedGridColumnclass_new
+        '
+        Me.BandedGridColumnclass_new.Caption = "To"
+        Me.BandedGridColumnclass_new.FieldName = "class_new"
+        Me.BandedGridColumnclass_new.Name = "BandedGridColumnclass_new"
+        Me.BandedGridColumnclass_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnclass_new.Visible = True
+        '
+        'gridBandColor
+        '
+        Me.gridBandColor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandColor.AppearanceHeader.Options.UseFont = True
+        Me.gridBandColor.Caption = "Color"
+        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor)
+        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor_new)
+        Me.gridBandColor.Name = "gridBandColor"
+        Me.gridBandColor.VisibleIndex = 10
+        Me.gridBandColor.Width = 150
+        '
+        'BandedGridColumncolor
+        '
+        Me.BandedGridColumncolor.Caption = "From"
+        Me.BandedGridColumncolor.FieldName = "color"
+        Me.BandedGridColumncolor.Name = "BandedGridColumncolor"
+        Me.BandedGridColumncolor.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumncolor.Visible = True
+        '
+        'BandedGridColumncolor_new
+        '
+        Me.BandedGridColumncolor_new.Caption = "To"
+        Me.BandedGridColumncolor_new.FieldName = "color_new"
+        Me.BandedGridColumncolor_new.Name = "BandedGridColumncolor_new"
+        Me.BandedGridColumncolor_new.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumncolor_new.Visible = True
+        '
+        'BandedGridColumnid_prod_demand
+        '
+        Me.BandedGridColumnid_prod_demand.Caption = "id pd"
+        Me.BandedGridColumnid_prod_demand.FieldName = "id_prod_demand"
+        Me.BandedGridColumnid_prod_demand.Name = "BandedGridColumnid_prod_demand"
+        Me.BandedGridColumnid_prod_demand.OptionsColumn.AllowEdit = False
+        '
+        'BandedGridColumnid_prod_order
+        '
+        Me.BandedGridColumnid_prod_order.Caption = "id_prod_order"
+        Me.BandedGridColumnid_prod_order.FieldName = "id_prod_order"
+        Me.BandedGridColumnid_prod_order.Name = "BandedGridColumnid_prod_order"
+        Me.BandedGridColumnid_prod_order.OptionsColumn.AllowEdit = False
+        '
+        'BandedGridColumnid_design
+        '
+        Me.BandedGridColumnid_design.Caption = "id_design"
+        Me.BandedGridColumnid_design.FieldName = "id_design"
+        Me.BandedGridColumnid_design.Name = "BandedGridColumnid_design"
+        Me.BandedGridColumnid_design.OptionsColumn.AllowEdit = False
+        '
+        'BandedGridColumnid_design_new
+        '
+        Me.BandedGridColumnid_design_new.Caption = "id_design_new"
+        Me.BandedGridColumnid_design_new.FieldName = "id_design_new"
+        Me.BandedGridColumnid_design_new.Name = "BandedGridColumnid_design_new"
+        Me.BandedGridColumnid_design_new.OptionsColumn.AllowEdit = False
         '
         'RepoLEPriceMaster
         '
@@ -348,7 +763,7 @@ Partial Class FormFGDesignListChanges
         Me.XTCType.Name = "XTCType"
         Me.XTCType.SelectedTabPage = Me.XTPMDProduct
         Me.XTCType.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XTCType.Size = New System.Drawing.Size(874, 344)
+        Me.XTCType.Size = New System.Drawing.Size(1007, 344)
         Me.XTCType.TabIndex = 19
         Me.XTCType.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMDProduct, Me.XTPNonMDProduct})
         '
@@ -356,7 +771,7 @@ Partial Class FormFGDesignListChanges
         '
         Me.XTPMDProduct.Controls.Add(Me.GCData)
         Me.XTPMDProduct.Name = "XTPMDProduct"
-        Me.XTPMDProduct.Size = New System.Drawing.Size(868, 338)
+        Me.XTPMDProduct.Size = New System.Drawing.Size(1001, 338)
         Me.XTPMDProduct.Text = "Merchandise Product"
         '
         'XTPNonMDProduct
@@ -365,37 +780,16 @@ Partial Class FormFGDesignListChanges
         Me.XTPNonMDProduct.Size = New System.Drawing.Size(868, 338)
         Me.XTPNonMDProduct.Text = "Non MD Product"
         '
-        'GVData
+        'RepoLinkPD
         '
-        Me.GVData.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GVData.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
-        Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral})
-        Me.GVData.ColumnPanelRowHeight = 50
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Nothing, "{0:n2}", "b"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", Nothing, "{0:n2}", "b_mng"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", Nothing, "{0:n2}", "b_sale"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", Nothing, "{0:n2}", "b_mng_sale")})
-        Me.GVData.LevelIndent = 0
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVData.OptionsCustomization.AllowRowSizing = True
-        Me.GVData.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVData.OptionsView.ShowFooter = True
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        Me.GVData.RowHeight = 17
-        '
-        'gridBandGeneral
-        '
-        Me.gridBandGeneral.Name = "gridBandGeneral"
-        Me.gridBandGeneral.VisibleIndex = 0
+        Me.RepoLinkPD.AutoHeight = False
+        Me.RepoLinkPD.Name = "RepoLinkPD"
         '
         'FormFGDesignListChanges
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(874, 526)
+        Me.ClientSize = New System.Drawing.Size(1007, 526)
         Me.Controls.Add(Me.XTCType)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -422,12 +816,13 @@ Partial Class FormFGDesignListChanges
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCType, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCType.ResumeLayout(False)
         Me.XTPMDProduct.ResumeLayout(False)
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -460,6 +855,46 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents XTCType As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPMDProduct As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPNonMDProduct As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumncode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnnameview As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnprod_demand_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnprod_order_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumncode_import As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumncode_import_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandName As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnname As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnname_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandSor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnseason_orign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnseason_orign_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandFabrication As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumndesign_fabrication As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_fabrication_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandDesignDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumndesign_detail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_detail_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandSource As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnsource As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnsource_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandDivision As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumndivision As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndivision_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandSubCat As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnsub_category As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnsub_category_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandClass As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnclass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnclass_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumncolor As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumncolor_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_prod_demand As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_prod_order As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_design_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RepoLinkPD As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

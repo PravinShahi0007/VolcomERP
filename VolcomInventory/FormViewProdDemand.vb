@@ -8,6 +8,7 @@
     Dim is_load_break_size As Boolean = False
     Dim is_confirm As Boolean = False
     Public is_for_production As Boolean = False
+    Public is_for_design As Boolean = False
     Dim created_date As String = ""
     Dim season As String = ""
     Dim division As String = ""
@@ -76,53 +77,63 @@
         If is_for_production Then
             BtnPrint.Visible = True
             BMark.Visible = False
-            BGVProduct.Columns("ADDITIONAL COST_add_report_column").Visible = False
-            BGVProduct.Columns("PROPOSE PRICE_add_report_column").Visible = False
-            BGVProduct.Columns("ADDITIONAL PRICE_add_report_column").Visible = False
-            BGVProduct.Columns("PROPOSE PRICE NON ADDITIONAL_add_report_column").Visible = False
-            BGVProduct.Columns("MARK UP_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL AMOUNT_add_report_column").Visible = False
-            BGVProduct.Columns("MOVE/DROP_desc_report_column").Visible = False
-            BGVProduct.Columns("MARKETING_add_report_column").Visible = False
-            BGVProduct.Columns("BUFFER STYLE_add_report_column").Visible = False
-            BGVProduct.Columns("CORE_add_report_column").Visible = False
-            BGVProduct.Columns("DEVELOPMENT_add_report_column").Visible = False
-            BGVProduct.Columns("ACT ORDER SALES_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL COST MKT_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL AMOUNT MKT_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL COST BUFF_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL AMOUNT BUFF_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL COST DEV_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL AMOUNT DEV_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL COST ACT ORDER SALES_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL AMOUNT ACT ORDER SALES_add_report_column").Visible = False
-            BGVProduct.Columns("COST NON ADDITIONAL_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL COST NON ADDITIONAL_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL COST CORE_add_report_column").Visible = False
-            BGVProduct.Columns("TOTAL AMOUNT CORE_add_report_column").Visible = False
-
-            BGVProduct.Columns("ADDITIONAL COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("PROPOSE PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("ADDITIONAL PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("PROPOSE PRICE NON ADDITIONAL_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("MARK UP_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL AMOUNT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("MOVE/DROP_desc_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL COST MKT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL AMOUNT MKT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL COST BUFF_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL AMOUNT BUFF_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL COST DEV_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL AMOUNT DEV_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL COST ACT ORDER SALES_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL AMOUNT ACT ORDER SALES_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("DEVELOPMENT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL COST CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            BGVProduct.Columns("TOTAL AMOUNT CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
-            CEBreakSize.EditValue = True
+            hidePrice()
         End If
+
+        If is_for_design Then
+            BtnPrint.Visible = True
+            BMark.Visible = False
+            hidePrice()
+        End If
+    End Sub
+
+    Sub hidePrice()
+        BGVProduct.Columns("ADDITIONAL COST_add_report_column").Visible = False
+        BGVProduct.Columns("PROPOSE PRICE_add_report_column").Visible = False
+        BGVProduct.Columns("ADDITIONAL PRICE_add_report_column").Visible = False
+        BGVProduct.Columns("PROPOSE PRICE NON ADDITIONAL_add_report_column").Visible = False
+        BGVProduct.Columns("MARK UP_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL AMOUNT_add_report_column").Visible = False
+        BGVProduct.Columns("MOVE/DROP_desc_report_column").Visible = False
+        BGVProduct.Columns("MARKETING_add_report_column").Visible = False
+        BGVProduct.Columns("BUFFER STYLE_add_report_column").Visible = False
+        BGVProduct.Columns("CORE_add_report_column").Visible = False
+        BGVProduct.Columns("DEVELOPMENT_add_report_column").Visible = False
+        BGVProduct.Columns("ACT ORDER SALES_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL COST MKT_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL AMOUNT MKT_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL COST BUFF_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL AMOUNT BUFF_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL COST DEV_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL AMOUNT DEV_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL COST ACT ORDER SALES_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL AMOUNT ACT ORDER SALES_add_report_column").Visible = False
+        BGVProduct.Columns("COST NON ADDITIONAL_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL COST NON ADDITIONAL_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL COST CORE_add_report_column").Visible = False
+        BGVProduct.Columns("TOTAL AMOUNT CORE_add_report_column").Visible = False
+
+        BGVProduct.Columns("ADDITIONAL COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("PROPOSE PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("ADDITIONAL PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("PROPOSE PRICE NON ADDITIONAL_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("MARK UP_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL AMOUNT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("MOVE/DROP_desc_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL COST MKT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL AMOUNT MKT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL COST BUFF_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL AMOUNT BUFF_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL COST DEV_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL AMOUNT DEV_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL COST ACT ORDER SALES_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL AMOUNT ACT ORDER SALES_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("DEVELOPMENT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL COST CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        BGVProduct.Columns("TOTAL AMOUNT CORE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+        CEBreakSize.EditValue = True
     End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click

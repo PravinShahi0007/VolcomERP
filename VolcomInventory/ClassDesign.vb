@@ -1949,6 +1949,7 @@
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1
         LEFT JOIN tb_prod_order po ON po.id_prod_order = det.id_prod_order
         INNER JOIN tb_m_design d ON d.id_design = det.id_design
+        INNER JOIN tb_season_orign sor ON sor.id_season_orign = d.id_season_orign
         LEFT JOIN (
 	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source_new`
 	        FROM tb_m_design_changes_det det
@@ -1990,6 +1991,7 @@
 	        WHERE det.id_changes=" + id + " AND cd.id_code=14
         ) col_new ON col_new.id_design = d.id_design
         INNER JOIN tb_m_design dr ON dr.id_design = d.id_design_rev_from
+        INNER JOIN tb_season_orign sordr ON sordr.id_season_orign = dr.id_season_orign
         LEFT JOIN (
 	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source`
 	        FROM tb_m_design_changes_det det

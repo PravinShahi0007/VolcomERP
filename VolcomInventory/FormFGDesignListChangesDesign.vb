@@ -28,13 +28,14 @@
         Cursor = Cursors.WaitCursor
         Dim id_ss As String = SLESeason.EditValue.ToString
         Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name AS `name`, dr.id_design,
-        pdd.id_prod_demand_design, IFNULL(po.id_prod_order,0) AS `id_prod_order`
+        pdd.id_prod_demand_design, IFNULL(po.id_prod_order,0) AS `id_prod_order`, IFNULL(po.id_report_status,0) AS `id_status_po`
         FROM tb_m_design d
         INNER JOIN tb_prod_demand_design pdd ON pdd.id_design = d.id_design AND pdd.is_void=2
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1
         LEFT JOIN tb_prod_order po ON po.id_prod_demand_design = pdd.id_prod_demand_design
         LEFT JOIN tb_m_design dr ON dr.id_design_rev_from = d.id_design AND dr.id_lookup_status_order=1
-        WHERE d.id_season=" + id_ss + " AND ISNULL(dr.id_design) "
+        WHERE d.id_season=" + id_ss + " AND ISNULL(dr.id_design) 
+        HAVING id_status_po<>6 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

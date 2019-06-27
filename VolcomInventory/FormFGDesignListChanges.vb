@@ -48,23 +48,94 @@
         Dim query As String = ""
         If is_md = "1" Then
             XTCType.SelectedTabPageIndex = 0
-            query = "SELECT pd.id_prod_demand, pd.prod_demand_number, po.id_prod_order, po.prod_order_number,
+
+            gridBandCodeImport.Visible = True
+            gridBandName.Visible = True
+            gridBandSor.Visible = True
+            gridBandFabrication.Visible = True
+            gridBandDesignDetail.Visible = True
+            gridBandSource.Visible = True
+            gridBandDivision.Visible = True
+            gridBandSubCat.Visible = True
+            gridBandClass.Visible = True
+            gridBandColor.Visible = True
+
+            gridBandCodeImport.VisibleIndex = 0
+            gridBandName.VisibleIndex = 1
+            gridBandSor.VisibleIndex = 2
+            gridBandFabrication.VisibleIndex = 3
+            gridBandDesignDetail.VisibleIndex = 4
+            gridBandSource.VisibleIndex = 5
+            gridBandDivision.VisibleIndex = 6
+            gridBandSubCat.VisibleIndex = 7
+            gridBandClass.VisibleIndex = 8
+            gridBandColor.VisibleIndex = 9
+
+            query = "SELECT dr.design_code AS `code_view`, dr.design_display_name AS `name_view`,
+            pd.id_prod_demand, pd.prod_demand_number, po.id_prod_order, po.prod_order_number,
             dr.id_design, d.id_design AS `id_design_new`,
             dr.design_code AS `code`, d.design_code AS `code_new`,
             dr.design_code_import AS `code_import`, d.design_code_import AS `code_import_new`,
             dr.design_display_name AS `name`,d.design_display_name AS `name_new`,
             dr.id_season_orign , d.id_season_orign AS `id_season_orign_new`,
+            sordr.season_orign, sor.season_orign AS `season_orign_new`,
             dr.design_fabrication, d.design_fabrication AS `design_fabrication_new`,
             dr.design_detail, d.design_detail AS `design_detail_new`,
             src.`source`,src_new.`source_new`,
             dvs.division,dvs_new.division_new,
             subcat.sub_category,subcat_new.sub_category_new,
             cls.class,cls_new.class_new,
-            col.color, col_new.color_new "
+            col.color, col_new.color_new, 
+            det.c_design_name, det.c_design_code_import, det.c_design_display_name, det.c_id_season_orign, 
+            det.c_design_fabrication, det.c_design_detail,
+            det.c_source, det.c_division, det.c_subcategory, det.c_class, det.c_color "
             Dim dsg As New ClassDesign()
             query += dsg.queryPCDBodyDetail(id)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCData.DataSource = data
+
+            'cek column
+            GVData.ActiveFilterString = "c_design_display_name=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandName.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_design_code_import=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandCodeImport.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_id_season_orign=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandSor.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_design_fabrication=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandFabrication.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_design_detail=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandDesignDetail.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_source=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandSource.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_division=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandDivision.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_subcategory=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandSubCat.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_class=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandClass.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_color=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandColor.Visible = False
+            End If
+            makeSafeGV(GVData)
             GVData.BestFitColumns()
         Else 'non 
             XTCType.SelectedTabPageIndex = 1
@@ -138,7 +209,7 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this item(s) ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
-                Dim id_design As String = GVData.GetFocusedRowCellValue("id_design").ToString
+                Dim id_design As String = GVData.GetFocusedRowCellValue("id_design_new").ToString
                 Dim query As String = "DELETE FROM tb_m_design WHERE id_design=" + id_design + " "
                 execute_non_query(query, True, "", "", "", "")
                 viewDetail()
@@ -151,7 +222,14 @@
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
-            Dim query As String = "UPDATE tb_m_design_changes SET id_report_status=5 WHERE id_changes='" + id + "'"
+            Dim query As String = "UPDATE tb_m_design_changes SET id_report_status=5 WHERE id_changes='" + id + "'; 
+            UPDATE tb_m_design d
+            INNER JOIN (
+	            SELECT pcd_det.id_design 
+	            FROM tb_m_design_changes_det pcd_det
+	            WHERE pcd_det.id_changes=" + id + "
+            ) src ON src.id_design = d.id_design
+            SET d.id_lookup_status_order=2; "
             execute_non_query(query, True, "", "", "", "")
 
             'nonaktif mark
@@ -264,7 +342,7 @@
         'head
         Dim note As String = addSlashes(MENote.Text)
         Dim query_head As String = "UPDATE tb_m_design_changes SET note='" + note + "', created_date=NOW()
-        WHERE id_fg_propose_price='" + id + "' "
+        WHERE id_changes='" + id + "' "
         execute_non_query(query_head, True, "", "", "", "")
     End Sub
 
@@ -330,5 +408,34 @@
         Else
             stopCustom("This propose already process")
         End If
+    End Sub
+
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMasterDesignSingle.id_pop_up = "5"
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.form_name = Name
+            Dim id_dsg_param As String = "-1"
+            Try
+                id_dsg_param = GVData.GetFocusedRowCellValue("id_design_new").ToString
+            Catch ex As Exception
+            End Try
+
+            FormMasterDesignSingle.id_changes = id
+            FormMasterDesignSingle.is_pcd = "1"
+            FormMasterDesignSingle.id_design = id_dsg_param
+            FormMasterDesignSingle.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkPD_Click(sender As Object, e As EventArgs) Handles RepoLinkPD.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_pd As String = GVData.GetFocusedRowCellValue("id_prod_demand").ToString
+        FormViewProdDemand.id_prod_demand = id_pd
+        FormViewProdDemand.is_for_design = True
+        FormViewProdDemand.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

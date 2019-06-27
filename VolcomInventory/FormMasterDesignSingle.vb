@@ -1800,8 +1800,8 @@
                                     id_po = "NULL"
                                 End If
                                 Dim query_pcd_det As String = "INSERT INTO tb_m_design_changes_det(id_changes, id_design, id_prod_demand_design, id_prod_order) 
-                                VALUES(" + id_changes + "," + id_design_tersimpan + ", " + id_pdd + ", " + id_po + "); "
-                                execute_non_query(query_pcd_det, True, "", "", "", "")
+                                VALUES(" + id_changes + "," + id_design_tersimpan + ", " + id_pdd + ", " + id_po + "); SELECT LAST_INSERT_ID(); "
+                                Dim id_detail_pcd As String = execute_query(query_pcd_det, 0, True, "", "", "", "")
                             End If
 
                             'cek image
@@ -1866,6 +1866,7 @@
                             End If
 
                             If is_pcd = "1" Then
+                                execute_non_query("CALL gen_design_changes(" + id_changes + ")", True, "", "", "", "")
                                 FormFGDesignListChangesDesign.viewData()
                                 FormFGDesignListChanges.viewDetail()
                                 Close()
@@ -1975,6 +1976,14 @@
                             stt.updatedTime(id_design)
 
                             Cursor = Cursors.Default
+
+                            If is_pcd = "1" Then
+                                execute_non_query("CALL gen_design_changes(" + id_changes + ")", True, "", "", "", "")
+                                FormFGDesignListChanges.viewDetail()
+                                FormFGDesignListChanges.GVData.FocusedRowHandle = find_row(FormFGDesignListChanges.GVData, "id_design_new", id_design)
+                                Close()
+                                Exit Sub
+                            End If
                             infoCustom("Edit has been sucessfully.")
                             actionLoad()
                         End If
