@@ -24,40 +24,29 @@ Partial Public Class ReportFGDesignListChanges
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnameview = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnprod_demand_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkPD = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnprod_order_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandCodeImport = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncode_import = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncode_import_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandName = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandSor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnseason_orign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnseason_orign_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandFabrication = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndesign_fabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_fabrication_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandDesignDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndesign_detail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_detail_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandSource = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnsource = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsource_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandDivision = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndivision = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndivision_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandSubCat = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnsub_category = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsub_category_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandClass = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnclass_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandColor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncolor_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_demand = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -110,7 +99,7 @@ Partial Public Class ReportFGDesignListChanges
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1063.0!, 212.5833!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1061.999!, 212.5833!)
         Me.WinControlContainer1.WinControl = Me.GCData
         '
         'GCData
@@ -130,7 +119,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor})
         Me.GVData.ColumnPanelRowHeight = 50
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new})
         Me.GVData.GridControl = Me.GCData
@@ -145,16 +133,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 17
-        '
-        'gridBandGeneral
-        '
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnnameview)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_demand_number)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_order_number)
-        Me.gridBandGeneral.Name = "gridBandGeneral"
-        Me.gridBandGeneral.VisibleIndex = 0
-        Me.gridBandGeneral.Width = 300
         '
         'BandedGridColumncode
         '
@@ -188,6 +166,8 @@ Partial Public Class ReportFGDesignListChanges
         '
         'RepoLinkPD
         '
+        Me.RepoLinkPD.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.RepoLinkPD.Appearance.Options.UseForeColor = True
         Me.RepoLinkPD.AutoHeight = False
         Me.RepoLinkPD.Name = "RepoLinkPD"
         '
@@ -200,17 +180,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumnprod_order_number.Name = "BandedGridColumnprod_order_number"
         Me.BandedGridColumnprod_order_number.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnprod_order_number.Visible = True
-        '
-        'gridBandCodeImport
-        '
-        Me.gridBandCodeImport.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridBandCodeImport.AppearanceHeader.Options.UseFont = True
-        Me.gridBandCodeImport.Caption = "Code Import"
-        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import)
-        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import_new)
-        Me.gridBandCodeImport.Name = "gridBandCodeImport"
-        Me.gridBandCodeImport.VisibleIndex = 1
-        Me.gridBandCodeImport.Width = 150
         '
         'BandedGridColumncode_import
         '
@@ -232,17 +201,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumncode_import_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumncode_import_new.Visible = True
         '
-        'gridBandName
-        '
-        Me.gridBandName.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandName.AppearanceHeader.Options.UseFont = True
-        Me.gridBandName.Caption = "Name"
-        Me.gridBandName.Columns.Add(Me.BandedGridColumnname)
-        Me.gridBandName.Columns.Add(Me.BandedGridColumnname_new)
-        Me.gridBandName.Name = "gridBandName"
-        Me.gridBandName.VisibleIndex = 2
-        Me.gridBandName.Width = 150
-        '
         'BandedGridColumnname
         '
         Me.BandedGridColumnname.AppearanceCell.Options.UseTextOptions = True
@@ -262,17 +220,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumnname_new.Name = "BandedGridColumnname_new"
         Me.BandedGridColumnname_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnname_new.Visible = True
-        '
-        'gridBandSor
-        '
-        Me.gridBandSor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandSor.AppearanceHeader.Options.UseFont = True
-        Me.gridBandSor.Caption = "Season Orign"
-        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign)
-        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign_new)
-        Me.gridBandSor.Name = "gridBandSor"
-        Me.gridBandSor.VisibleIndex = 3
-        Me.gridBandSor.Width = 150
         '
         'BandedGridColumnseason_orign
         '
@@ -294,17 +241,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumnseason_orign_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnseason_orign_new.Visible = True
         '
-        'gridBandFabrication
-        '
-        Me.gridBandFabrication.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandFabrication.AppearanceHeader.Options.UseFont = True
-        Me.gridBandFabrication.Caption = "Fabrication"
-        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication)
-        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication_new)
-        Me.gridBandFabrication.Name = "gridBandFabrication"
-        Me.gridBandFabrication.VisibleIndex = 4
-        Me.gridBandFabrication.Width = 150
-        '
         'BandedGridColumndesign_fabrication
         '
         Me.BandedGridColumndesign_fabrication.AppearanceCell.Options.UseTextOptions = True
@@ -324,17 +260,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumndesign_fabrication_new.Name = "BandedGridColumndesign_fabrication_new"
         Me.BandedGridColumndesign_fabrication_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumndesign_fabrication_new.Visible = True
-        '
-        'gridBandDesignDetail
-        '
-        Me.gridBandDesignDetail.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandDesignDetail.AppearanceHeader.Options.UseFont = True
-        Me.gridBandDesignDetail.Caption = "Design Detail"
-        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail)
-        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail_new)
-        Me.gridBandDesignDetail.Name = "gridBandDesignDetail"
-        Me.gridBandDesignDetail.VisibleIndex = 5
-        Me.gridBandDesignDetail.Width = 150
         '
         'BandedGridColumndesign_detail
         '
@@ -356,17 +281,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumndesign_detail_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumndesign_detail_new.Visible = True
         '
-        'gridBandSource
-        '
-        Me.gridBandSource.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandSource.AppearanceHeader.Options.UseFont = True
-        Me.gridBandSource.Caption = "Source"
-        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource)
-        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource_new)
-        Me.gridBandSource.Name = "gridBandSource"
-        Me.gridBandSource.VisibleIndex = 6
-        Me.gridBandSource.Width = 150
-        '
         'BandedGridColumnsource
         '
         Me.BandedGridColumnsource.AppearanceCell.Options.UseTextOptions = True
@@ -386,17 +300,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumnsource_new.Name = "BandedGridColumnsource_new"
         Me.BandedGridColumnsource_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnsource_new.Visible = True
-        '
-        'gridBandDivision
-        '
-        Me.gridBandDivision.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandDivision.AppearanceHeader.Options.UseFont = True
-        Me.gridBandDivision.Caption = "Division"
-        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision)
-        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision_new)
-        Me.gridBandDivision.Name = "gridBandDivision"
-        Me.gridBandDivision.VisibleIndex = 7
-        Me.gridBandDivision.Width = 150
         '
         'BandedGridColumndivision
         '
@@ -418,17 +321,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumndivision_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumndivision_new.Visible = True
         '
-        'gridBandSubCat
-        '
-        Me.gridBandSubCat.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandSubCat.AppearanceHeader.Options.UseFont = True
-        Me.gridBandSubCat.Caption = "Sub Category"
-        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category)
-        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category_new)
-        Me.gridBandSubCat.Name = "gridBandSubCat"
-        Me.gridBandSubCat.VisibleIndex = 8
-        Me.gridBandSubCat.Width = 150
-        '
         'BandedGridColumnsub_category
         '
         Me.BandedGridColumnsub_category.AppearanceCell.Options.UseTextOptions = True
@@ -449,17 +341,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumnsub_category_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnsub_category_new.Visible = True
         '
-        'gridBandClass
-        '
-        Me.gridBandClass.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandClass.AppearanceHeader.Options.UseFont = True
-        Me.gridBandClass.Caption = "Class"
-        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass)
-        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass_new)
-        Me.gridBandClass.Name = "gridBandClass"
-        Me.gridBandClass.VisibleIndex = 9
-        Me.gridBandClass.Width = 150
-        '
         'BandedGridColumnclass
         '
         Me.BandedGridColumnclass.AppearanceCell.Options.UseTextOptions = True
@@ -479,17 +360,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.BandedGridColumnclass_new.Name = "BandedGridColumnclass_new"
         Me.BandedGridColumnclass_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnclass_new.Visible = True
-        '
-        'gridBandColor
-        '
-        Me.gridBandColor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandColor.AppearanceHeader.Options.UseFont = True
-        Me.gridBandColor.Caption = "Color"
-        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor)
-        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor_new)
-        Me.gridBandColor.Name = "gridBandColor"
-        Me.gridBandColor.VisibleIndex = 10
-        Me.gridBandColor.Width = 150
         '
         'BandedGridColumncolor
         '
@@ -572,7 +442,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelNumber
         '
         Me.LabelNumber.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelNumber.LocationFloat = New DevExpress.Utils.PointFloat(746.5479!, 51.54166!)
+        Me.LabelNumber.LocationFloat = New DevExpress.Utils.PointFloat(745.5479!, 51.54166!)
         Me.LabelNumber.Name = "LabelNumber"
         Me.LabelNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelNumber.SizeF = New System.Drawing.SizeF(316.4521!, 14.5!)
@@ -584,7 +454,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelTitle
         '
         Me.LabelTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitle.LocationFloat = New DevExpress.Utils.PointFloat(590.9522!, 26.45833!)
+        Me.LabelTitle.LocationFloat = New DevExpress.Utils.PointFloat(589.9522!, 26.45833!)
         Me.LabelTitle.Name = "LabelTitle"
         Me.LabelTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelTitle.SizeF = New System.Drawing.SizeF(472.0478!, 25.08334!)
@@ -629,7 +499,7 @@ Partial Public Class ReportFGDesignListChanges
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(912.9993!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(912.0!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -653,7 +523,7 @@ Partial Public Class ReportFGDesignListChanges
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.4583!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(1062.999!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1061.999!, 25.0!)
         Me.XrTable1.StylePriority.UseBorders = False
         Me.XrTable1.StylePriority.UseFont = False
         '
@@ -681,7 +551,7 @@ Partial Public Class ReportFGDesignListChanges
         Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 0!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote.SizeF = New System.Drawing.SizeF(1005.791!, 26.45835!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(1004.791!, 26.45835!)
         Me.LNote.StylePriority.UseBorderColor = False
         Me.LNote.StylePriority.UseBorders = False
         Me.LNote.StylePriority.UseFont = False
@@ -724,7 +594,7 @@ Partial Public Class ReportFGDesignListChanges
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(823.5315!, 0!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(822.5313!, 0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel11.SizeF = New System.Drawing.SizeF(98.72699!, 16.18692!)
@@ -736,7 +606,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelDate
         '
         Me.LabelDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDate.LocationFloat = New DevExpress.Utils.PointFloat(940.0826!, 0!)
+        Me.LabelDate.LocationFloat = New DevExpress.Utils.PointFloat(939.0826!, 0!)
         Me.LabelDate.Name = "LabelDate"
         Me.LabelDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelDate.SizeF = New System.Drawing.SizeF(122.9174!, 16.18692!)
@@ -748,7 +618,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelDotApprovedDate
         '
         Me.LabelDotApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDotApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(922.2583!, 32.37384!)
+        Me.LabelDotApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(921.2583!, 32.37384!)
         Me.LabelDotApprovedDate.Name = "LabelDotApprovedDate"
         Me.LabelDotApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelDotApprovedDate.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -761,7 +631,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelStatus
         '
         Me.LabelStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(940.0826!, 16.18692!)
+        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(939.0826!, 16.18692!)
         Me.LabelStatus.Name = "LabelStatus"
         Me.LabelStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelStatus.SizeF = New System.Drawing.SizeF(122.9167!, 16.18692!)
@@ -773,7 +643,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelTitleApprovedDate
         '
         Me.LabelTitleApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitleApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(823.5314!, 32.37384!)
+        Me.LabelTitleApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(822.5313!, 32.37384!)
         Me.LabelTitleApprovedDate.Name = "LabelTitleApprovedDate"
         Me.LabelTitleApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelTitleApprovedDate.SizeF = New System.Drawing.SizeF(98.72687!, 16.18692!)
@@ -786,7 +656,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelDotStatus
         '
         Me.LabelDotStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDotStatus.LocationFloat = New DevExpress.Utils.PointFloat(922.2583!, 16.18692!)
+        Me.LabelDotStatus.LocationFloat = New DevExpress.Utils.PointFloat(921.2583!, 16.18692!)
         Me.LabelDotStatus.Name = "LabelDotStatus"
         Me.LabelDotStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelDotStatus.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -798,7 +668,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelTitleStatus
         '
         Me.LabelTitleStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitleStatus.LocationFloat = New DevExpress.Utils.PointFloat(823.5316!, 16.18692!)
+        Me.LabelTitleStatus.LocationFloat = New DevExpress.Utils.PointFloat(822.5313!, 16.18692!)
         Me.LabelTitleStatus.Name = "LabelTitleStatus"
         Me.LabelTitleStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelTitleStatus.SizeF = New System.Drawing.SizeF(98.72687!, 16.18692!)
@@ -810,7 +680,7 @@ Partial Public Class ReportFGDesignListChanges
         'LabelApprovedDate
         '
         Me.LabelApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(940.0824!, 32.37384!)
+        Me.LabelApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(939.0824!, 32.37384!)
         Me.LabelApprovedDate.Name = "LabelApprovedDate"
         Me.LabelApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelApprovedDate.SizeF = New System.Drawing.SizeF(122.9169!, 16.18692!)
@@ -823,7 +693,7 @@ Partial Public Class ReportFGDesignListChanges
         'XrLabel10
         '
         Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(922.2585!, 0!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(921.2585!, 0!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -836,7 +706,7 @@ Partial Public Class ReportFGDesignListChanges
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(51, 55, 76, 38)
+        Me.Margins = New System.Drawing.Printing.Margins(51, 56, 76, 38)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -879,40 +749,29 @@ Partial Public Class ReportFGDesignListChanges
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCData As MyXtraGrid.MyGridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnnameview As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnprod_demand_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoLinkPD As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BandedGridColumnprod_order_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncode_import As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncode_import_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandName As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnname As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnname_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandSor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnseason_orign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnseason_orign_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandFabrication As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumndesign_fabrication As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndesign_fabrication_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandDesignDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumndesign_detail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndesign_detail_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandSource As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnsource As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsource_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandDivision As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumndivision As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndivision_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandSubCat As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnsub_category As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsub_category_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandClass As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnclass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnclass_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncolor As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncolor_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_prod_demand As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn

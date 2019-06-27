@@ -1945,7 +1945,7 @@
 
     Public Function queryPCDBodyDetail(ByVal id) As String
         Dim query As String = "FROM tb_m_design_changes_det det
-        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = det.id_prod_demand_design AND pdd.is_void=2
+        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = det.id_prod_demand_design
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1
         LEFT JOIN tb_prod_order po ON po.id_prod_order = det.id_prod_order
         INNER JOIN tb_m_design d ON d.id_design = det.id_design
