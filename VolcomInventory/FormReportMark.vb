@@ -29,8 +29,8 @@
             Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
             If data_cek.Rows.Count > 0 Then
                 stopCustom("Cannot approve this order, because it's being processed for design changes.")
-                Exit Sub
                 Close()
+                Exit Sub
             End If
         End If
 
@@ -4452,7 +4452,7 @@
 	                INNER JOIN tb_prod_demand_design_rev rd ON rd.id_prod_demand_rev = r.id_prod_demand_rev
 	                WHERE r.id_prod_demand_rev=" + id_report + " AND rd.id_pd_status_rev=2
                 ) src ON src.id_design = main.id_design
-                SET main.id_lookup_status_order=2; "
+                SET main.id_lookup_status_order=2, main.id_active=2; "
                 execute_non_query(query_void, True, "", "", "", "")
 
 
@@ -6104,7 +6104,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                INNER JOIN tb_m_design d ON d.id_design = det.id_design
 	                WHERE det.id_changes=" + id_report + "
                 ) src ON src.id_design = main.id_design 
-                SET main.id_lookup_status_order=2;
+                SET main.id_lookup_status_order=2, main.id_active=2;
                 /*update design new*/
                 UPDATE tb_m_design main
                 INNER JOIN (

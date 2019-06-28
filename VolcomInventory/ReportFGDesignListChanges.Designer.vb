@@ -24,9 +24,9 @@ Partial Public Class ReportFGDesignListChanges
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.RepoLinkPD = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepoLEPriceMaster = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepoLEPricePrint = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.RepoLinkPD = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.LabelNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
@@ -53,9 +53,9 @@ Partial Public Class ReportFGDesignListChanges
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -105,13 +105,6 @@ Partial Public Class ReportFGDesignListChanges
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 17
         '
-        'RepoLinkPD
-        '
-        Me.RepoLinkPD.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.RepoLinkPD.Appearance.Options.UseForeColor = True
-        Me.RepoLinkPD.AutoHeight = False
-        Me.RepoLinkPD.Name = "RepoLinkPD"
-        '
         'RepoLEPriceMaster
         '
         Me.RepoLEPriceMaster.AutoHeight = False
@@ -125,6 +118,13 @@ Partial Public Class ReportFGDesignListChanges
         Me.RepoLEPricePrint.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepoLEPricePrint.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type_print", "id_design_price_type_print", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
         Me.RepoLEPricePrint.Name = "RepoLEPricePrint"
+        '
+        'RepoLinkPD
+        '
+        Me.RepoLinkPD.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.RepoLinkPD.Appearance.Options.UseForeColor = True
+        Me.RepoLinkPD.AutoHeight = False
+        Me.RepoLinkPD.Name = "RepoLinkPD"
         '
         'TopMargin
         '
@@ -246,7 +246,7 @@ Partial Public Class ReportFGDesignListChanges
         Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 0!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote.SizeF = New System.Drawing.SizeF(1004.791!, 26.45835!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(1004.0!, 26.45835!)
         Me.LNote.StylePriority.UseBorderColor = False
         Me.LNote.StylePriority.UseBorders = False
         Me.LNote.StylePriority.UseFont = False
@@ -409,9 +409,9 @@ Partial Public Class ReportFGDesignListChanges
         Me.Version = "15.1"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 

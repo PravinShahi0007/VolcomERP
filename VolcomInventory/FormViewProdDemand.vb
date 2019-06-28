@@ -90,11 +90,13 @@
             BGVProduct.Columns("RATE CURRENT_add_report_column").Visible = False
             BGVProduct.Columns("TOTAL COST_add_report_column").Visible = False
             BGVProduct.Columns("DEL_desc_report_column").Visible = False
+            BGVProduct.Columns("TOTAL QTY_add_report_column").Visible = False
 
             BGVProduct.Columns("COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("RATE CURRENT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("TOTAL COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("DEL_desc_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("TOTAL QTY_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             hidePrice()
         End If
     End Sub

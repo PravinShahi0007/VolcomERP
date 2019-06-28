@@ -293,7 +293,7 @@
             FormProposeEmpSalaryDet.Close()
         ElseIf report_mark_type = "200" Then
             'propose design changes
-            FormFGDesignListChangesDesign.Close()
+            FormFGDesignListChanges.Close()
         End If
     End Sub
     Sub show()

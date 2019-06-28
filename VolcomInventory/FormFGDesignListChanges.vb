@@ -77,7 +77,7 @@
             dr.design_code AS `code`, d.design_code AS `code_new`,
             IF(det.c_design_code_import=1,dr.design_code_import,'-') AS `code_import`, IF(det.c_design_code_import=1,d.design_code_import,'-') AS `code_import_new`,
             IF(det.c_design_display_name=1,dr.design_display_name,'-') AS `name`, IF(det.c_design_display_name=1,d.design_display_name,'-') AS `name_new`,
-            IF(det.c_id_season_orign=1,sordr.season_orign,'-') AS `season_orign`, IF(det.c_id_season_orign=1,sor.season_orign,'-') AS `season_orign_new`,
+            IF(det.c_id_season_orign=1,sordr.season_orign_display,'-') AS `season_orign`, IF(det.c_id_season_orign=1,sor.season_orign_display,'-') AS `season_orign_new`,
             IF(det.c_design_fabrication=1, dr.design_fabrication,'-') AS `design_fabrication`, IF(det.c_design_fabrication=1, d.design_fabrication,'-') AS `design_fabrication_new`,
             IF(det.c_design_detail=1,dr.design_detail, '-') AS `design_detail`, IF(det.c_design_detail=1,d.design_detail, '-') AS `design_detail_new`,
             IF(det.c_source=1,src.`source`, '-') AS `source`, IF(det.c_source=1,src_new.`source_new`, '-') AS `source_new`,
@@ -262,6 +262,7 @@
             BandedGridColumnprod_demand_number.Visible = False
             BandedGridColumnPDView.Visible = True
             BandedGridColumnPDView.VisibleIndex = 3
+            GVData.BestFitColumns()
 
             Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
             gv = GVData
@@ -332,6 +333,7 @@
             BandedGridColumnprod_demand_number.Visible = True
             BandedGridColumnprod_demand_number.VisibleIndex = 3
             BandedGridColumnPDView.Visible = False
+            GVData.BestFitColumns()
         End If
         Cursor = Cursors.Default
     End Sub
