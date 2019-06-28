@@ -1483,6 +1483,24 @@
     <Compile Include="FormFGDesignList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGDesignListChanges.Designer.vb">
+      <DependentUpon>FormFGDesignListChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesDesign.Designer.vb">
+      <DependentUpon>FormFGDesignListChangesDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesNew.Designer.vb">
+      <DependentUpon>FormFGDesignListChangesNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGFirstDel.Designer.vb">
       <DependentUpon>FormFGFirstDel.vb</DependentUpon>
     </Compile>
@@ -6052,6 +6070,12 @@
     <Compile Include="ReportFGCodeReplaceWH.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGDesignListChanges.Designer.vb">
+      <DependentUpon>ReportFGDesignListChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGDesignListChanges.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGLineList.Designer.vb">
       <DependentUpon>ReportFGLineList.vb</DependentUpon>
     </Compile>
@@ -7559,6 +7583,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChanges.resx">
+      <DependentUpon>FormFGDesignListChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChangesDesign.resx">
+      <DependentUpon>FormFGDesignListChangesDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChangesNew.resx">
+      <DependentUpon>FormFGDesignListChangesNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGFirstDel.resx">
       <DependentUpon>FormFGFirstDel.vb</DependentUpon>
@@ -10272,6 +10305,9 @@
     <EmbeddedResource Include="ReportFGCodeReplaceWH.resx">
       <DependentUpon>ReportFGCodeReplaceWH.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGDesignListChanges.resx">
+      <DependentUpon>ReportFGDesignListChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGLineList.resx">
       <DependentUpon>ReportFGLineList.vb</DependentUpon>
