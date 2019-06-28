@@ -37,7 +37,7 @@
         data.Columns.Add("employee_code", GetType(String))
         data.Columns.Add("employee_name", GetType(String))
         data.Columns.Add("employee_position", GetType(String))
-        data.Columns.Add("employee_level", GetType(String))
+        data.Columns.Add("employee_status", GetType(String))
         data.Columns.Add("workdays", GetType(Decimal))
         data.Columns.Add("actual_workdays", GetType(Decimal))
         data.Columns.Add("total_salary", GetType(Integer))
@@ -134,7 +134,7 @@
             GCNIP.VisibleIndex = 0
             GCEmployee.VisibleIndex = 1
             GCEmployeePosition.VisibleIndex = 2
-            GCEmployeeLevel.VisibleIndex = 3
+            GCEmployeeStatus.VisibleIndex = 3
             GCValue.VisibleIndex = 4
             GCWorkingDays.VisibleIndex = -1
             GCActualWorkingDays.VisibleIndex = -1
@@ -148,7 +148,7 @@
                     GCNIP.VisibleIndex = 0
                     GCEmployee.VisibleIndex = 1
                     GCEmployeePosition.VisibleIndex = 2
-                    GCEmployeeLevel.VisibleIndex = 3
+                    GCEmployeeStatus.VisibleIndex = 3
                     GCWorkingDays.VisibleIndex = 4
                     GCActualWorkingDays.VisibleIndex = 5
                     GCTotalSalary.VisibleIndex = 6
@@ -160,7 +160,7 @@
                     GCNIP.VisibleIndex = 0
                     GCEmployee.VisibleIndex = 1
                     GCEmployeePosition.VisibleIndex = 2
-                    GCEmployeeLevel.VisibleIndex = 3
+                    GCEmployeeStatus.VisibleIndex = 3
                     GCValue.VisibleIndex = 4
                     GCWorkingDays.VisibleIndex = -1
                     GCActualWorkingDays.VisibleIndex = -1
