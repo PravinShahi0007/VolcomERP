@@ -22,6 +22,14 @@ Partial Class FormEmpPayrollReportBPJSKesehatan
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollReportBPJSKesehatan))
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAllDepartements = New DevExpress.XtraGrid.GridControl()
+        Me.GVAllDepartements = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCANo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCADepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAEqual = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAConpanyContribution = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAEmployeeContribution = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCATotalContribution = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -37,24 +45,16 @@ Partial Class FormEmpPayrollReportBPJSKesehatan
         Me.GCClass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCAllDepartements = New DevExpress.XtraGrid.GridControl()
-        Me.GVAllDepartements = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCANo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCADepartement = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCAEqual = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCAConpanyContribution = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCAEmployeeContribution = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCATotalContribution = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCAllDepartements, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAllDepartements, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCAllDepartements, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVAllDepartements, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -74,6 +74,86 @@ Partial Class FormEmpPayrollReportBPJSKesehatan
         Me.XtraTabPage1.Name = "XtraTabPage1"
         Me.XtraTabPage1.Size = New System.Drawing.Size(1002, 655)
         Me.XtraTabPage1.Text = "All Departements"
+        '
+        'GCAllDepartements
+        '
+        Me.GCAllDepartements.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCAllDepartements.Location = New System.Drawing.Point(0, 0)
+        Me.GCAllDepartements.MainView = Me.GVAllDepartements
+        Me.GCAllDepartements.Name = "GCAllDepartements"
+        Me.GCAllDepartements.Size = New System.Drawing.Size(1002, 655)
+        Me.GCAllDepartements.TabIndex = 4
+        Me.GCAllDepartements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAllDepartements})
+        '
+        'GVAllDepartements
+        '
+        Me.GVAllDepartements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCANo, Me.GCADepartement, Me.GCAEqual, Me.GCAConpanyContribution, Me.GCAEmployeeContribution, Me.GCATotalContribution})
+        Me.GVAllDepartements.GridControl = Me.GCAllDepartements
+        Me.GVAllDepartements.Name = "GVAllDepartements"
+        Me.GVAllDepartements.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVAllDepartements.OptionsBehavior.Editable = False
+        Me.GVAllDepartements.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVAllDepartements.OptionsView.ShowFooter = True
+        Me.GVAllDepartements.OptionsView.ShowGroupPanel = False
+        '
+        'GCANo
+        '
+        Me.GCANo.Caption = "No"
+        Me.GCANo.FieldName = "no"
+        Me.GCANo.Name = "GCANo"
+        Me.GCANo.Visible = True
+        Me.GCANo.VisibleIndex = 0
+        '
+        'GCADepartement
+        '
+        Me.GCADepartement.Caption = "Departement"
+        Me.GCADepartement.FieldName = "departement"
+        Me.GCADepartement.Name = "GCADepartement"
+        Me.GCADepartement.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "departement", "Total Biaya Iuran")})
+        Me.GCADepartement.Visible = True
+        Me.GCADepartement.VisibleIndex = 1
+        '
+        'GCAEqual
+        '
+        Me.GCAEqual.Caption = " "
+        Me.GCAEqual.FieldName = "equal"
+        Me.GCAEqual.Name = "GCAEqual"
+        Me.GCAEqual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "equal", "=")})
+        Me.GCAEqual.Visible = True
+        Me.GCAEqual.VisibleIndex = 2
+        '
+        'GCAConpanyContribution
+        '
+        Me.GCAConpanyContribution.Caption = "Dibayar Oleh Perusahaan"
+        Me.GCAConpanyContribution.DisplayFormat.FormatString = "N0"
+        Me.GCAConpanyContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAConpanyContribution.FieldName = "company_contribution"
+        Me.GCAConpanyContribution.Name = "GCAConpanyContribution"
+        Me.GCAConpanyContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution", "{0:N0}")})
+        Me.GCAConpanyContribution.Visible = True
+        Me.GCAConpanyContribution.VisibleIndex = 3
+        '
+        'GCAEmployeeContribution
+        '
+        Me.GCAEmployeeContribution.Caption = "Dibayar Oleh Karyawan"
+        Me.GCAEmployeeContribution.DisplayFormat.FormatString = "N0"
+        Me.GCAEmployeeContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAEmployeeContribution.FieldName = "employee_contribution"
+        Me.GCAEmployeeContribution.Name = "GCAEmployeeContribution"
+        Me.GCAEmployeeContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution", "{0:N0}")})
+        Me.GCAEmployeeContribution.Visible = True
+        Me.GCAEmployeeContribution.VisibleIndex = 4
+        '
+        'GCATotalContribution
+        '
+        Me.GCATotalContribution.Caption = "Dibayarkan ke BPJS Kesehatan"
+        Me.GCATotalContribution.DisplayFormat.FormatString = "N0"
+        Me.GCATotalContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCATotalContribution.FieldName = "total_contribution"
+        Me.GCATotalContribution.Name = "GCATotalContribution"
+        Me.GCATotalContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", "{0:N0}")})
+        Me.GCATotalContribution.Visible = True
+        Me.GCATotalContribution.VisibleIndex = 5
         '
         'XtraTabPage2
         '
@@ -101,7 +181,6 @@ Partial Class FormEmpPayrollReportBPJSKesehatan
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsBehavior.Editable = False
-        Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVEmployee.OptionsView.ShowFooter = True
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
@@ -224,87 +303,6 @@ Partial Class FormEmpPayrollReportBPJSKesehatan
         Me.SBPrint.TabIndex = 0
         Me.SBPrint.Text = "Print"
         '
-        'GCAllDepartements
-        '
-        Me.GCAllDepartements.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAllDepartements.Location = New System.Drawing.Point(0, 0)
-        Me.GCAllDepartements.MainView = Me.GVAllDepartements
-        Me.GCAllDepartements.Name = "GCAllDepartements"
-        Me.GCAllDepartements.Size = New System.Drawing.Size(1002, 655)
-        Me.GCAllDepartements.TabIndex = 4
-        Me.GCAllDepartements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAllDepartements})
-        '
-        'GVAllDepartements
-        '
-        Me.GVAllDepartements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCANo, Me.GCADepartement, Me.GCAEqual, Me.GCAConpanyContribution, Me.GCAEmployeeContribution, Me.GCATotalContribution})
-        Me.GVAllDepartements.GridControl = Me.GCAllDepartements
-        Me.GVAllDepartements.Name = "GVAllDepartements"
-        Me.GVAllDepartements.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVAllDepartements.OptionsBehavior.Editable = False
-        Me.GVAllDepartements.OptionsView.ColumnAutoWidth = False
-        Me.GVAllDepartements.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GVAllDepartements.OptionsView.ShowFooter = True
-        Me.GVAllDepartements.OptionsView.ShowGroupPanel = False
-        '
-        'GCANo
-        '
-        Me.GCANo.Caption = "No"
-        Me.GCANo.FieldName = "no"
-        Me.GCANo.Name = "GCANo"
-        Me.GCANo.Visible = True
-        Me.GCANo.VisibleIndex = 0
-        '
-        'GCADepartement
-        '
-        Me.GCADepartement.Caption = "Departement"
-        Me.GCADepartement.FieldName = "departement"
-        Me.GCADepartement.Name = "GCADepartement"
-        Me.GCADepartement.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "departement", "Total Biaya Iuran")})
-        Me.GCADepartement.Visible = True
-        Me.GCADepartement.VisibleIndex = 1
-        '
-        'GCAEqual
-        '
-        Me.GCAEqual.Caption = " "
-        Me.GCAEqual.FieldName = "equal"
-        Me.GCAEqual.Name = "GCAEqual"
-        Me.GCAEqual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "equal", "=")})
-        Me.GCAEqual.Visible = True
-        Me.GCAEqual.VisibleIndex = 2
-        '
-        'GCAConpanyContribution
-        '
-        Me.GCAConpanyContribution.Caption = "Dibayar Oleh Perusahaan"
-        Me.GCAConpanyContribution.DisplayFormat.FormatString = "N0"
-        Me.GCAConpanyContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCAConpanyContribution.FieldName = "company_contribution"
-        Me.GCAConpanyContribution.Name = "GCAConpanyContribution"
-        Me.GCAConpanyContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution", "{0:N0}")})
-        Me.GCAConpanyContribution.Visible = True
-        Me.GCAConpanyContribution.VisibleIndex = 3
-        '
-        'GCAEmployeeContribution
-        '
-        Me.GCAEmployeeContribution.Caption = "Dibayar Oleh Karyawan"
-        Me.GCAEmployeeContribution.DisplayFormat.FormatString = "N0"
-        Me.GCAEmployeeContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCAEmployeeContribution.FieldName = "employee_contribution"
-        Me.GCAEmployeeContribution.Name = "GCAEmployeeContribution"
-        Me.GCAEmployeeContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution", "{0:N0}")})
-        Me.GCAEmployeeContribution.Visible = True
-        Me.GCAEmployeeContribution.VisibleIndex = 4
-        '
-        'GCATotalContribution
-        '
-        Me.GCATotalContribution.Caption = "Dibayarkan ke BPJS Kesehatan"
-        Me.GCATotalContribution.DisplayFormat.FormatString = "N0"
-        Me.GCATotalContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCATotalContribution.FieldName = "total_contribution"
-        Me.GCATotalContribution.Name = "GCATotalContribution"
-        Me.GCATotalContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", "{0:N0}")})
-        Me.GCATotalContribution.Visible = True
-        Me.GCATotalContribution.VisibleIndex = 5
-        '
         'FormEmpPayrollReportBPJSKesehatan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -316,16 +314,17 @@ Partial Class FormEmpPayrollReportBPJSKesehatan
         Me.Name = "FormEmpPayrollReportBPJSKesehatan"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Report BPJS Kesehatan"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCAllDepartements, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAllDepartements, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.GCAllDepartements, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVAllDepartements, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

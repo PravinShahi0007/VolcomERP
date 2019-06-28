@@ -71,7 +71,10 @@
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, 0, True, "", "", "", "")
 
+        'all
         Dim report As ReportEmpPayrollReportBPJSKesehatan = New ReportEmpPayrollReportBPJSKesehatan
+
+        report.PrintingSystem.ContinuousPageNumbering = False
 
         report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
 
@@ -79,7 +82,34 @@
         report.id_payroll = id_payroll
         report.data = GCAllDepartements.DataSource
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
-        tool.ShowPreview()
+        report.CreateDocument()
+
+        'detail
+        Dim report_detail As ReportEmpPayrollReportBPJSKesehatanDetail = New ReportEmpPayrollReportBPJSKesehatanDetail
+
+        report_detail.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
+
+        report_detail.id_pre = If(id_report_status = "6", "-1", "1")
+        report_detail.id_payroll = id_payroll
+        report_detail.data = GCEmployee.DataSource
+
+        report_detail.CreateDocument()
+
+        'combine
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+
+        For i = 0 To report.Pages.Count - 1
+            list.Add(report.Pages(i))
+        Next
+
+        For i = 0 To report_detail.Pages.Count - 1
+            list.Add(report_detail.Pages(i))
+        Next
+
+        report.Pages.AddRange(list)
+
+        Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool_detail.ShowPreview()
     End Sub
 End Class
