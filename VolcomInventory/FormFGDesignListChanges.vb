@@ -259,11 +259,6 @@
         If Not check_allow_print(id_report_status, rmt, id) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
-            BandedGridColumnprod_demand_number.Visible = False
-            BandedGridColumnPDView.Visible = True
-            BandedGridColumnPDView.VisibleIndex = 3
-            GVData.BestFitColumns()
-
             Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
             gv = GVData
             ReportFGDesignListChanges.dt = GCData.DataSource
@@ -330,10 +325,6 @@
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
-            BandedGridColumnprod_demand_number.Visible = True
-            BandedGridColumnprod_demand_number.VisibleIndex = 3
-            BandedGridColumnPDView.Visible = False
-            GVData.BestFitColumns()
         End If
         Cursor = Cursors.Default
     End Sub
