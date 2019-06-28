@@ -13,6 +13,7 @@
         is_reload = "1"
         DEYearBudget.EditValue = Now
         load_item_type()
+        load_purc_type()
         is_reload = "2"
         '
         If id_req = "-1" Then 'new
@@ -70,6 +71,11 @@
         End If
 
         load_but()
+    End Sub
+    '
+    Sub load_purc_type()
+        Dim query As String = "SELECT id_expense_type,expense_type FROM `tb_lookup_expense_type`"
+        viewSearchLookupQuery(SLEPurcType, query, "id_expense_type", "expense_type", "id_expense_type")
     End Sub
     '
     Sub load_item_type()
@@ -198,8 +204,12 @@
     Sub check_but()
         If GVItemList.RowCount > 0 Then
             BtnDel.Visible = True
+            DEYearBudget.Enabled = False
+            SLEPurcType.Enabled = False
         Else
             BtnDel.Visible = False
+            DEYearBudget.Enabled = True
+            SLEPurcType.Enabled = True
         End If
     End Sub
 
@@ -216,14 +226,9 @@
             'check 
             For i As Integer = 0 To GVItemList.RowCount - 1
                 'exceed budget
-                If GVItemList.GetRowCellValue(i, "budget_after") = Nothing Then
+                If GVItemList.GetRowCellValue(i, "budget") <= 0 Then
                     is_exceed_budget = True
-                Else
-                    If GVItemList.GetRowCellValue(i, "budget_after") < 0 Then
-                        is_exceed_budget = True
-                    End If
                 End If
-
                 'no shipping destination
                 If GVItemList.GetRowCellValue(i, "ship_destination").ToString = "" Then
                     is_no_shipping = True
@@ -231,7 +236,7 @@
             Next
             '
             If is_exceed_budget = True Then
-                stopCustom("Please make sure the item you requested not exceed the budget and filled properly.")
+                stopCustom("Please make sure you have budget.")
             ElseIf is_no_shipping = True Then
                 stopCustom("Please make sure fill the shipping destination.")
             Else
@@ -257,7 +262,7 @@
                             If Not query_det = "" Then
                                 query_det += ","
                             End If
-                            query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "')"
+                            query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','0.00','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "')"
                         End If
                     Next
                     '
@@ -267,11 +272,11 @@
                     execute_non_query(query_det, True, "", "", "", "")
 
                     'insert to expense trans
-                    Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
-                                                 SELECT id_b_expense,NOW(),`value`,id_purc_req AS id_report,'137' AS report_mark_type,'Purchase Request'
-                                                 FROM tb_purc_req_det prd
-                                                 WHERE prd.`id_purc_req`='" & id_req & "'"
-                    execute_non_query(query_trans, True, "", "", "", "")
+                    'Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
+                    '                             SELECT id_b_expense,NOW(),`value`,id_purc_req AS id_report,'137' AS report_mark_type,'Purchase Request'
+                    '                             FROM tb_purc_req_det prd
+                    '                             WHERE prd.`id_purc_req`='" & id_req & "'"
+                    'execute_non_query(query_trans, True, "", "", "", "")
 
                     'generate number
                     query = "CALL gen_number('" & id_req & "','137')"
@@ -302,33 +307,33 @@
             Catch ex As Exception
             End Try
         End If
-        If e.Column.FieldName = "budget_after" Then
-            Try
-                If calculate_in_proc = False Then
-                    update_remaining_budget()
-                End If
-            Catch ex As Exception
-                calculate_in_proc = False
-            End Try
-        End If
+        'If e.Column.FieldName = "budget_after" Then
+        '    Try
+        '        If calculate_in_proc = False Then
+        '            update_remaining_budget()
+        '        End If
+        '    Catch ex As Exception
+        '        calculate_in_proc = False
+        '    End Try
+        'End If
     End Sub
 
-    Sub update_remaining_budget()
-        calculate_in_proc = True
-        For i As Integer = 0 To GVItemList.RowCount - 1
-            'check per item
-            For j As Integer = i + 1 To GVItemList.RowCount - 1
-                If GVItemList.GetRowCellValue(i, "id_b_expense").ToString = GVItemList.GetRowCellValue(j, "id_b_expense").ToString Then
-                    GVItemList.SetRowCellValue(j, "budget_remaining", GVItemList.GetRowCellValue(i, "budget_after"))
-                End If
-            Next
-        Next
-        calculate_in_proc = False
-    End Sub
+    'Sub update_remaining_budget()
+    '    calculate_in_proc = True
+    '    For i As Integer = 0 To GVItemList.RowCount - 1
+    '        'check per item
+    '        For j As Integer = i + 1 To GVItemList.RowCount - 1
+    '            If GVItemList.GetRowCellValue(i, "id_b_expense").ToString = GVItemList.GetRowCellValue(j, "id_b_expense").ToString Then
+    '                GVItemList.SetRowCellValue(j, "budget_remaining", GVItemList.GetRowCellValue(i, "budget_after"))
+    '            End If
+    '        Next
+    '    Next
+    '    calculate_in_proc = False
+    'End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
         GVItemList.DeleteSelectedRows()
-        update_remaining_budget()
+        'update_remaining_budget()
         check_but()
     End Sub
 
@@ -396,12 +401,6 @@ GROUP BY req.`id_purc_req`"
             End If
         End If
         '
-        If SLEItemType.EditValue.ToString = "1" Then
-            GCValue.OptionsColumn.ReadOnly = True
-        Else
-            GCValue.OptionsColumn.ReadOnly = False
-        End If
-        '
         is_reload = "2"
     End Sub
 
@@ -445,5 +444,30 @@ GROUP BY req.`id_purc_req`"
                 GVItemList.SetRowCellValue(i, "ship_address", get_company_x(id_own_company, "3").ToString)
             End If
         Next
+    End Sub
+
+    Private Sub SLEPurcType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPurcType.EditValueChanged
+        'reset
+        If Not SLEPurcType.OldEditValue = Nothing Then
+            If Not SLEPurcType.EditValue = SLEPurcType.OldEditValue And is_reload = "2" And id_req = "-1" Then
+                If GVItemList.RowCount > 0 Then
+                    Dim confirm As DialogResult
+                    confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All list will be reset, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                    If confirm = DialogResult.Yes Then
+                        clear_all_request()
+                        load_item_pil()
+                        load_but()
+                    Else
+                        SLEPurcType.EditValue = SLEPurcType.OldEditValue
+                    End If
+                Else
+                    load_item_pil()
+                    load_but()
+                End If
+            End If
+            '
+            is_reload = "2"
+        End If
     End Sub
 End Class
