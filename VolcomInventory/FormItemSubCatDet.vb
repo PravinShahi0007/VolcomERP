@@ -1,9 +1,12 @@
 ﻿Public Class FormItemSubCatDet
     Public id_sub_cat As String = "-1"
+    Public is_accounting As String = "-1"
 
     Private Sub FormItemSubCatDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_cat()
         load_vendor_type()
+        '
+        is_accounting = FormItemSubCat.is_accounting
 
         If Not id_sub_cat = "-1" Then
             Dim query As String = "SELECT * FROM tb_item_cat_detail WHERE id_item_cat_detail='" & id_sub_cat & "'"
@@ -14,6 +17,18 @@
             End If
             '
             BSave.Visible = False
+        End If
+        '
+        If is_accounting = "1" Then
+            TEPurchaseCategory.Enabled = False
+            SLEVendorType.Enabled = False
+            BSave.Visible = True
+            '
+            SLEBudgetCat.Visible = True
+            LBudgetCat.Visible = True
+        Else
+            SLEBudgetCat.Visible = False
+            LBudgetCat.Visible = False
         End If
     End Sub
 
@@ -39,16 +54,22 @@ GROUP BY cat.`id_item_cat`"
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        If id_sub_cat = "-1" Then
+        If id_sub_cat = "-1" Then 'new
             If TEPurchaseCategory.Text = "" Then
                 warningCustom("Please input purchase category")
             Else
-                Dim query As String = "INSERT INTO tb_item_cat_detail(id_item_cat,id_vendor_type,item_cat_detail,created_by,created_date) VALUES('" & SLEBudgetCat.EditValue.ToString & "','" & SLEVendorType.EditValue.ToString & "','" & addSlashes(TEPurchaseCategory.Text) & "','" & id_user & "',NOW())"
+                Dim query As String = "INSERT INTO tb_item_cat_detail(id_item_cat,id_vendor_type,item_cat_detail,created_by,created_date) VALUES(NULL,'" & SLEVendorType.EditValue.ToString & "','" & addSlashes(TEPurchaseCategory.Text) & "','" & id_user & "',NOW())"
                 execute_non_query(query, True, "", "", "", "")
                 infoCustom("Purchase category added")
                 FormItemSubCat.load_cat()
                 Close()
             End If
+        Else 'edit by accounting
+            Dim query As String = "UPDATE tb_item_cat_detail SET id_item_cat='" & SLEBudgetCat.EditValue.ToString & "',id_status='2' WHERE id_item_cat_detail='" & id_sub_cat & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Purchase category updated")
+            FormItemSubCat.load_cat()
+            Close()
         End If
     End Sub
 End Class
