@@ -615,7 +615,7 @@
             If id_report_status <> "6" Then
                 ReportProdDemandNew.is_pre = "1"
             Else
-                ReportProdDemandNew.is_pre = "-1"
+                ReportProdDemandNew.is_pre = "1"
             End If
             ReportProdDemandNew.id_report_status = LEReportStatus.EditValue.ToString
 
@@ -767,10 +767,12 @@
     Private Sub CheckEditShowActive_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditShowNonActive.CheckedChanged
         Cursor = Cursors.WaitCursor
         If CheckEditShowNonActive.EditValue = True Then
+            GridColumndrop_ref.VisibleIndex = GridColumnMoveDrop.VisibleIndex + 1
             Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
         Else
+            GridColumndrop_ref.Visible = False
             Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + " AND is_void=2 ')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
@@ -997,5 +999,38 @@
         Else
             stopCustom("This propose already process")
         End If
+    End Sub
+
+    Private Sub RepoLinkDropRef_Click(sender As Object, e As EventArgs) Handles RepoLinkDropRef.Click
+        Cursor = Cursors.WaitCursor
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            Dim type_drop_ref As String = "0"
+            Try
+                type_drop_ref = GVDesign.GetFocusedRowCellValue("type_drop_ref").ToString
+            Catch ex As Exception
+                type_drop_ref = "0"
+            End Try
+
+            If type_drop_ref <> "0" Then
+
+                Dim id_drop_ref As String = "-1"
+                Try
+                    id_drop_ref = GVDesign.GetFocusedRowCellValue("id_drop_ref").ToString
+                Catch ex As Exception
+                End Try
+
+
+                If type_drop_ref = "1" Then
+                    FormProdDemandRevDet.id = id_drop_ref
+                    FormProdDemandRevDet.is_view = "1"
+                    FormProdDemandRevDet.ShowDialog()
+                ElseIf type_drop_ref = "2" Then
+                    FormFGDesignListChanges.id = id_drop_ref
+                    FormFGDesignListChanges.is_view = "1"
+                    FormFGDesignListChanges.ShowDialog()
+                End If
+            End If
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
