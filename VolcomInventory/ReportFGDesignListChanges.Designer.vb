@@ -169,7 +169,7 @@ Partial Public Class ReportFGDesignListChanges
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 38.0!
+        Me.BottomMargin.HeightF = 51.45834!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -206,7 +206,7 @@ Partial Public Class ReportFGDesignListChanges
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.LNote, Me.XrLabel18, Me.LNotex})
-        Me.ReportFooter.HeightF = 76.04166!
+        Me.ReportFooter.HeightF = 100.0!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable1
@@ -215,10 +215,10 @@ Partial Public Class ReportFGDesignListChanges
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.4583!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001907349!, 49.37502!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(1061.999!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1061.208!, 25.0!)
         Me.XrTable1.StylePriority.UseBorders = False
         Me.XrTable1.StylePriority.UseFont = False
         '
@@ -244,9 +244,10 @@ Partial Public Class ReportFGDesignListChanges
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNote.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 0!)
+        Me.LNote.Multiline = True
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote.SizeF = New System.Drawing.SizeF(1004.0!, 26.45835!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(1004.0!, 49.37502!)
         Me.LNote.StylePriority.UseBorderColor = False
         Me.LNote.StylePriority.UseBorders = False
         Me.LNote.StylePriority.UseFont = False
@@ -259,7 +260,7 @@ Partial Public Class ReportFGDesignListChanges
         Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(46.87503!, 0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(10.3334!, 26.45831!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(10.3334!, 49.37502!)
         Me.XrLabel18.StylePriority.UseBorderColor = False
         Me.XrLabel18.StylePriority.UseBorders = False
         Me.XrLabel18.StylePriority.UseFont = False
@@ -274,7 +275,7 @@ Partial Public Class ReportFGDesignListChanges
         Me.LNotex.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.LNotex.Name = "LNotex"
         Me.LNotex.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNotex.SizeF = New System.Drawing.SizeF(46.87503!, 26.45835!)
+        Me.LNotex.SizeF = New System.Drawing.SizeF(46.87503!, 49.37502!)
         Me.LNotex.StylePriority.UseBorderColor = False
         Me.LNotex.StylePriority.UseBorders = False
         Me.LNotex.StylePriority.UseFont = False
@@ -401,7 +402,7 @@ Partial Public Class ReportFGDesignListChanges
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(51, 56, 76, 38)
+        Me.Margins = New System.Drawing.Printing.Margins(51, 56, 76, 51)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4

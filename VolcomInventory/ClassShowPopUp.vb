@@ -192,7 +192,7 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase Request
             FormPurcReqDet.Close()
         ElseIf report_mark_type = "138" Then
@@ -842,7 +842,7 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase Request
             FormPurcReqDet.is_view = "1"
             FormPurcReqDet.id_req = id_report
@@ -1757,7 +1757,7 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'purchase request
             table_name = "tb_purc_req"
             field_id = "id_purc_req"
