@@ -5,13 +5,13 @@
     End Sub
 
     Private Sub FormEmpPayrollOvertime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        load_payroll_periode()
+        'load_payroll_periode()
         load_payroll_ot()
         load_payroll_dp()
     End Sub
 
     Sub load_payroll_periode()
-        Dim query As String = "SELECT p.id_payroll,p.ot_periode_start,p.ot_periode_end,DATE_FORMAT(`ot_periode_end`,'%M %Y') as periode FROM tb_emp_payroll p"
+        Dim query As String = "SELECT p.id_payroll,p.ot_periode_start,p.ot_periode_end,DATE_FORMAT(`ot_periode_end`,'%M %Y') as periode FROM tb_emp_payroll p WHERE id_payroll_type = 1"
         viewLookupQuery(LEPayrollPeriode, query, 0, "periode", "id_payroll")
         If Not id_periode = "-1" Then
             LEPayrollPeriode.ItemIndex = LEPayrollPeriode.Properties.GetDataSourceRowIndex("id_payroll", id_periode)
@@ -19,28 +19,46 @@
     End Sub
 
     Sub load_payroll_ot()
-        Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,p.`id_employee`,p.`id_ot_type`,DATE_FORMAT(p.`ot_start`, '%d %M %Y') AS ot_date, DATE_FORMAT(p.`ot_start`, '%l:%i:%s %p') AS ot_start, DATE_FORMAT(p.`ot_end`, '%l:%i:%s %p') AS ot_end,p.`total_break`,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,dep.departement,emp.employee_position,lvl.`employee_level`,emp.`employee_name`,emp.`employee_code`,CONCAT(IF(ott.`is_event` = 1, 'Event ', ''), ott.`ot_type`) AS ot_type, IF(ott.`is_event` = 1, p.wages_per_point, ((SELECT (sal.`basic_salary` + sal.`allow_job` + sal.`allow_meal` + sal.`allow_trans`) FROM tb_emp_payroll_det AS pd INNER JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & LEPayrollPeriode.EditValue.ToString & "') * pay.ot_reg_pembilang / pay.ot_reg_penyebut)) AS wages_per_point, IF(ott.`is_event` = 1, p.`total_point` * p.wages_per_point, p.`total_point` * ((SELECT (sal.`basic_salary` + sal.`allow_job` + sal.`allow_meal` + sal.`allow_trans`) FROM tb_emp_payroll_det AS pd INNER JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & LEPayrollPeriode.EditValue.ToString & "') * pay.ot_reg_pembilang / pay.ot_reg_penyebut)) AS wages_per_point_total, p.note
+        Dim id_payroll As String = id_periode
+
+        'get id_payroll if dw
+        If FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
+            id_payroll = execute_query("
+                SELECT id_payroll 
+                FROM tb_emp_payroll
+                WHERE periode_start = (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND id_payroll_type = 1
+                LIMIT 1
+            ", 0, True, "", "", "", "")
+        End If
+
+        'where organic or dw
+        Dim where_staff As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "emp.id_employee_status = 3", "emp.id_employee_status <> 3")
+
+        'where wages dw
+        Dim where_wages As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "sal.`basic_salary` * 22", "sal.`basic_salary` + sal.`allow_job` + sal.`allow_meal` + sal.`allow_trans`")
+
+        Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,p.`id_employee`,p.`id_ot_type`,DATE_FORMAT(p.`ot_start`, '%d %M %Y') AS ot_date, DATE_FORMAT(p.`ot_start`, '%d %b %Y %H:%i:%s') AS ot_start, DATE_FORMAT(p.`ot_end`, '%d %b %Y %H:%i:%s') AS ot_end,p.`total_break`,ROUND((TIMESTAMPDIFF(MINUTE, p.`ot_start`, p.`ot_end`) / 60) - p.`total_break`, 1) AS total_hour_actual,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,dep.departement,emp.employee_position,lvl.`employee_status`,emp.`employee_name`,emp.`employee_code`,CONCAT(IF(ott.`is_event` = 1, 'Event ', ''), ott.`ot_type`) AS ot_type, IF(ott.`is_event` = 1, p.wages_per_point, ((SELECT (" + where_wages + ") FROM tb_emp_payroll_det AS pd INNER JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & id_periode & "') * pay.ot_reg_pembilang / pay.ot_reg_penyebut)) AS wages_per_point, IF(ott.`is_event` = 1, p.`total_point` * p.wages_per_point, p.`total_point` * ((SELECT (" + where_wages + ") FROM tb_emp_payroll_det AS pd INNER JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & id_periode & "') * pay.ot_reg_pembilang / pay.ot_reg_penyebut)) AS wages_per_point_total, p.note
                                 FROM tb_emp_payroll_ot p
                                 INNER JOIN `tb_lookup_ot_type` ott ON ott.`id_ot_type`=p.`id_ot_type`
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=p.`id_employee`
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=emp.`id_departement`
                                 INNER JOIN tb_emp_payroll pay ON p.`id_payroll`=pay.`id_payroll`
-                                INNER JOIN `tb_lookup_employee_level` lvl ON lvl.`id_employee_level`=emp.`id_employee_level`
-                                WHERE p.`id_payroll`='" & LEPayrollPeriode.EditValue.ToString & "'
-                                ORDER BY emp.id_employee_level ASC, emp.employee_code ASC, p.`ot_start` ASC"
+                                INNER JOIN `tb_lookup_employee_status` lvl ON lvl.`id_employee_status`=emp.`id_employee_status`
+                                WHERE p.`id_payroll`='" & id_payroll & "' AND " + where_staff + "
+                                ORDER BY emp.id_employee_status ASC, emp.employee_code ASC, p.`ot_start` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOverTime.DataSource = data
         GVOverTime.BestFitColumns()
     End Sub
     Sub load_payroll_dp()
-        Dim query As String = "SELECT ot_det.id_employee, employee.employee_code, employee.employee_name, dep.departement, employee.employee_position, employee_level.employee_level, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot_det.start_work, '%l:%i:%s %p') AS ot_start, DATE_FORMAT(ot_det.end_work, '%l:%i:%s %p') AS ot_end, ot_det.break_hours AS total_break, (TIMESTAMPDIFF(HOUR, ot_det.start_work, ot_det.end_work) - ot_det.break_hours) AS total_hour, ot.ot_note AS note
+        Dim query As String = "SELECT ot_det.id_employee, employee.employee_code, employee.employee_name, dep.departement, employee.employee_position, employee_status.employee_status, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot_det.start_work, '%l:%i:%s %p') AS ot_start, DATE_FORMAT(ot_det.end_work, '%l:%i:%s %p') AS ot_end, ot_det.break_hours AS total_break, (TIMESTAMPDIFF(HOUR, ot_det.start_work, ot_det.end_work) - ot_det.break_hours) AS total_hour, ot.ot_note AS note
                                 FROM tb_ot_det AS ot_det
                                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
                                 LEFT JOIN tb_m_departement dep ON dep.`id_departement`=employee.`id_departement`
-                                LEFT JOIN tb_lookup_employee_level AS employee_level ON ot_det.id_employee_level = employee_level.id_employee_level
-                                WHERE ot_det.conversion_type = 2 AND ot_det.is_valid = 1 AND ot.id_check_status = 6 AND ot.id_payroll = '" + LEPayrollPeriode.EditValue.ToString + "'
-                                ORDER BY employee.id_employee_level ASC, employee.employee_code ASC, ot.ot_date ASC"
+                                LEFT JOIN tb_lookup_employee_status AS employee_status ON employee.id_employee_status = employee_status.id_employee_status
+                                WHERE ot_det.conversion_type = 2 AND ot_det.is_valid = 1 AND ot.id_check_status = 6 AND ot.id_payroll = '" + id_periode + "'
+                                ORDER BY employee.id_employee_status ASC, employee.employee_code ASC, ot.ot_date ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDP.DataSource = data
         GVDP.BestFitColumns()

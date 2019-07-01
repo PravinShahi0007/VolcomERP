@@ -23,18 +23,18 @@ Partial Class FormItemSubCatDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LBudgetCat = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPurchaseCategory = New DevExpress.XtraEditors.TextEdit()
         Me.SLEBudgetCat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEVendorType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEPurchaseCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,13 +74,13 @@ Partial Class FormItemSubCatDet
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
         '
-        'LabelControl1
+        'LBudgetCat
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(20, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(82, 13)
-        Me.LabelControl1.TabIndex = 1
-        Me.LabelControl1.Text = "Budget Category"
+        Me.LBudgetCat.Location = New System.Drawing.Point(20, 90)
+        Me.LBudgetCat.Name = "LBudgetCat"
+        Me.LBudgetCat.Size = New System.Drawing.Size(82, 13)
+        Me.LBudgetCat.TabIndex = 1
+        Me.LBudgetCat.Text = "Budget Category"
         '
         'LabelControl2
         '
@@ -92,7 +92,7 @@ Partial Class FormItemSubCatDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(20, 86)
+        Me.LabelControl3.Location = New System.Drawing.Point(20, 15)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(92, 13)
         Me.LabelControl3.TabIndex = 3
@@ -100,14 +100,14 @@ Partial Class FormItemSubCatDet
         '
         'TEPurchaseCategory
         '
-        Me.TEPurchaseCategory.Location = New System.Drawing.Point(131, 83)
+        Me.TEPurchaseCategory.Location = New System.Drawing.Point(131, 12)
         Me.TEPurchaseCategory.Name = "TEPurchaseCategory"
         Me.TEPurchaseCategory.Size = New System.Drawing.Size(257, 20)
         Me.TEPurchaseCategory.TabIndex = 4
         '
         'SLEBudgetCat
         '
-        Me.SLEBudgetCat.Location = New System.Drawing.Point(131, 14)
+        Me.SLEBudgetCat.Location = New System.Drawing.Point(131, 87)
         Me.SLEBudgetCat.Name = "SLEBudgetCat"
         Me.SLEBudgetCat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEBudgetCat.Properties.Appearance.Options.UseFont = True
@@ -123,20 +123,6 @@ Partial Class FormItemSubCatDet
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "ID Item Cat"
-        Me.GridColumn4.FieldName = "id_item_cat"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Budget Category"
-        Me.GridColumn5.FieldName = "item_cat"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
         '
         'SLEVendorType
         '
@@ -171,6 +157,20 @@ Partial Class FormItemSubCatDet
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID Item Cat"
+        Me.GridColumn4.FieldName = "id_item_cat"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Budget Category"
+        Me.GridColumn5.FieldName = "item_cat"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
         'FormItemSubCatDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -181,7 +181,7 @@ Partial Class FormItemSubCatDet
         Me.Controls.Add(Me.TEPurchaseCategory)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LabelControl2)
-        Me.Controls.Add(Me.LabelControl1)
+        Me.Controls.Add(Me.LBudgetCat)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -201,7 +201,7 @@ Partial Class FormItemSubCatDet
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LBudgetCat As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl

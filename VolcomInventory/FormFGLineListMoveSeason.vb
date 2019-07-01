@@ -53,6 +53,37 @@
     End Sub
 
     Private Sub BtnUpdateRec_Click(sender As Object, e As EventArgs) Handles BtnUpdateRec.Click
+        'cek jika drop
+        If LEPlanStatus.EditValue.ToString = "2" Then
+            Dim dsg_cek As String = ""
+
+            For l As Integer = 0 To ((FormFGLineList.BGVLineList.RowCount - 1) - GetGroupRowCount(FormFGLineList.BGVLineList))
+                If l > 0 Then
+                    dsg_cek += "OR "
+                End If
+                dsg_cek += "pdd.id_design = '" + FormFGLineList.BGVLineList.GetRowCellValue(l, "id_design").ToString + "' "
+            Next
+
+
+            'cek design yg ada di PD
+            Dim qd As String = "SELECT pd.prod_demand_number, d.design_code AS `code`, d.design_display_name AS `name` 
+            FROM tb_prod_demand_design pdd
+            INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+            INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
+            WHERE pd.is_pd=1 AND pd.id_report_status!=5 AND pdd.is_void=2
+            AND (" + dsg_cek + ")
+            ORDER BY pd.id_prod_demand ASC "
+            Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+            If dd.Rows.Count > 0 Then
+                warningCustom("Some designs already have PD, please 'drop' via PD 'Revision'. Click OK to see design detail.")
+                FormFGLineListPDExist.dt = dd
+                FormFGLineListPDExist.PanelControl1.Visible = False
+                FormFGLineListPDExist.ShowDialog()
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+        End If
+
         If LEPlanStatus.EditValue.ToString = "3" And (SLESeason.EditValue.ToString = SLESeasonFrom.EditValue.ToString) Then
             errorCustom("Season must different")
         Else
