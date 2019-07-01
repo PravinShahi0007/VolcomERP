@@ -6076,7 +6076,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                FROM tb_m_design_changes_det det
 	                WHERE det.id_changes=" + id_report + "
                 ) src ON src.id_prod_demand_design = main.id_prod_demand_design
-                SET main.is_void=1; 
+                SET main.is_void=1, main.id_design_changes=" + id_report + "; 
                 /*void PO jika ada*/
                 UPDATE tb_prod_order main
                 INNER JOIN (
