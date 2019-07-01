@@ -44,7 +44,7 @@
         If id_pdr <> "" Then
             Dim query_date_rev As String = "SELECT UPPER(DATE_FORMAT(rm.report_mark_datetime, '%d %M %Y')) AS `approved_date` 
             FROM tb_report_mark rm 
-            WHERE rm.id_report=" + id_pdr + " AND (rm.report_mark_type=143 OR rm.report_mark_type=144 OR rm.report_mark_type=145)  AND rm.id_mark=2
+            WHERE rm.id_report=" + id_pdr + " AND (rm.report_mark_type=143 OR rm.report_mark_type=144 OR rm.report_mark_type=145 OR rm.report_mark_type=194)  AND rm.id_mark=2
             ORDER BY rm.id_report_mark DESC LIMIT 1 "
             Dim data_date_rev As DataTable = execute_query(query_date_rev, -1, True, "", "", "", "")
             LabelApprovedDate.Text = Date.Parse(data_date_rev.Rows(0)("approved_date").ToString).ToString("dd MMMM yyyy").ToUpper

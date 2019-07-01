@@ -3,6 +3,7 @@
     Public id_prod_demand As String = "-1"
     Public id_prod_demand_design As String = "-1"
     Public id_delivery As String = "-1"
+    Public id_design As String = "-1"
     '
     Public is_no_cost As String = "-1"
     '
@@ -44,6 +45,7 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             id_prod_demand_design = data.Rows(0)("id_prod_demand_design").ToString()
             id_prod_demand = get_prod_demand_design_x(id_prod_demand_design, "1")
             id_delivery = get_prod_demand_design_x(id_prod_demand_design, "2")
+            id_design = get_prod_demand_design_x(id_prod_demand_design, "3")
             '
             TEPDNo.Text = get_prod_demand_x(id_prod_demand, "1")
             TEDesign.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "1")
