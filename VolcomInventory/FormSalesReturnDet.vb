@@ -2374,11 +2374,11 @@ Public Class FormSalesReturnDet
                         End If
                     End If
 
-                    'ada stock ato gak
-                    If isAvailableStock(data.Rows(0)("id_product").ToString) Then
-                        stopCustom("This product still has stock, please scan in Return-Non List")
-                        Exit Sub
-                    End If
+                    ''ada stock ato gak
+                    'If isAvailableStock(data.Rows(0)("id_product").ToString) Then
+                    '    stopCustom("This product still has stock, please scan in Return-Non List")
+                    '    Exit Sub
+                    'End If
 
                     Dim newRow As DataRow = (TryCast(GCBarcodeProb.DataSource, DataTable)).NewRow()
                         newRow("id_sales_return_problem") = "0"
