@@ -8,12 +8,16 @@
         '
         is_accounting = FormItemSubCat.is_accounting
 
+        Dim id_status As String = "1"
+
         If Not id_sub_cat = "-1" Then
             Dim query As String = "SELECT * FROM tb_item_cat_detail WHERE id_item_cat_detail='" & id_sub_cat & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
+                TEPurchaseCategory.Text = data.Rows(0)("item_cat_detail").ToString
                 SLEBudgetCat.EditValue = data.Rows(0)("id_item_cat").ToString
                 SLEVendorType.EditValue = data.Rows(0)("id_vendor_type").ToString
+                id_status = data.Rows(0)("id_status").ToString
             End If
             '
             BSave.Visible = False
@@ -27,8 +31,13 @@
             SLEBudgetCat.Visible = True
             LBudgetCat.Visible = True
         Else
-            SLEBudgetCat.Visible = False
-            LBudgetCat.Visible = False
+            If id_status = "1" Then
+                SLEBudgetCat.Visible = False
+                LBudgetCat.Visible = False
+            Else
+                SLEBudgetCat.Visible = True
+                LBudgetCat.Visible = True
+            End If
         End If
     End Sub
 

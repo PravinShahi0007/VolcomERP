@@ -80,7 +80,8 @@ GROUP BY cat.`id_item_cat`"
         Dim query As String = "SELECT icd.`id_item_cat_detail`,ic.`item_cat`,vt.`vendor_type`,icd.`item_cat_detail`,icd.id_item_cat,icd.id_vendor_type
 FROM `tb_item_cat_detail` icd
 INNER JOIN `tb_item_cat` ic ON ic.`id_item_cat`=icd.`id_item_cat`
-INNER JOIN tb_vendor_type vt ON vt.`id_vendor_type`=icd.`id_vendor_type`"
+INNER JOIN tb_vendor_type vt ON vt.`id_vendor_type`=icd.`id_vendor_type`
+WHERE id_status='2'"
         viewSearchLookupQuery(SLEPurchaseCategory, query, "id_item_cat_detail", "item_cat_detail", "id_item_cat_detail")
     End Sub
 
