@@ -46,7 +46,8 @@
             '
             GVItemList.OptionsBehavior.Editable = False
             '
-            Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status FROM tb_purc_req req
+            Dim query As String = "SELECT req.id_expense_type,req.`purc_req_number`,req.requirement_date,req.`note`,emp.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status 
+                                    FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                     INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
@@ -62,6 +63,7 @@
                 TEDep.Text = data.Rows(0)("departement").ToString
                 MENote.Text = data.Rows(0)("note").ToString
                 '
+                SLEPurcType.EditValue = data.Rows(0)("id_expense_type").ToString
                 SLEItemType.EditValue = data.Rows(0)("id_item_type").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 '
@@ -241,7 +243,7 @@
                 stopCustom("Please make sure fill the shipping destination.")
             Else
                 If id_req = "-1" Then 'new
-                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,year_budget,note,id_user_created,date_created,requirement_date,id_item_type) VALUES('" & id_departement & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEItemType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date,id_item_type) VALUES('" & id_departement & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEItemType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_req As String = execute_query(query, 0, True, "", "", "", "")
                     '
                     Dim query_det As String = ""
@@ -279,10 +281,18 @@
                     'execute_non_query(query_trans, True, "", "", "", "")
 
                     'generate number
-                    query = "CALL gen_number('" & id_req & "','137')"
-                    execute_non_query(query, True, "", "", "", "")
-                    '
-                    submit_who_prepared("137", id_req, id_user)
+                    If SLEPurcType.EditValue.ToString = "1" Then
+                        query = "CALL gen_number('" & id_req & "','137')"
+                        execute_non_query(query, True, "", "", "", "")
+                        '
+                        submit_who_prepared("137", id_req, id_user)
+                    Else
+                        query = "CALL gen_number('" & id_req & "','201')"
+                        execute_non_query(query, True, "", "", "", "")
+                        '
+                        submit_who_prepared("201", id_req, id_user)
+                    End If
+
                     infoCustom("Purchase requested.")
                     FormPurcReq.load_req()
                     Close()
