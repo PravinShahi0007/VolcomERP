@@ -56,18 +56,6 @@ Public Class FormSalesReturnDet
     End Sub
 
     Sub actionLoad()
-        If is_non_list = "1" Then
-            Text = "Return Non List"
-            LookAndFeel.UseDefaultLookAndFeel = False
-            LookAndFeel.SkinName = "Office 2007 Green"
-        End If
-
-        If id_ret_type = "2" Then
-            Text = "Non Inventory Stock"
-            LookAndFeel.UseDefaultLookAndFeel = False
-            LookAndFeel.SkinName = "Office 2007 Pink"
-        End If
-
         Try
             'initiation datatable jika blm ada
             dt.Columns.Add("id_product")
@@ -203,6 +191,20 @@ Public Class FormSalesReturnDet
             XTCReturn.SelectedTabPageIndex = 0
             XTPNonStock.PageEnabled = False
             XTPReturn.PageEnabled = True
+        End If
+
+
+        'color form
+        If is_non_list = "1" Then
+            Text = "Return Non List"
+            LookAndFeel.UseDefaultLookAndFeel = False
+            LookAndFeel.SkinName = "Office 2007 Green"
+        End If
+
+        If id_ret_type = "2" Then
+            Text = "Non Inventory Stock"
+            LookAndFeel.UseDefaultLookAndFeel = False
+            LookAndFeel.SkinName = "Office 2007 Pink"
         End If
     End Sub
     Sub viewSalesReturnOrder()
