@@ -127,7 +127,6 @@
                 GBSalary.Visible = True
                 GBBonusAdjustment.Visible = True
                 GBDeduction.Visible = True
-                GBOvertime.Visible = True
 
                 GBDW.Visible = False
             ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
@@ -135,7 +134,6 @@
                 GBSalary.Visible = False
                 GBBonusAdjustment.Visible = False
                 GBDeduction.Visible = False
-                GBOvertime.Visible = False
 
                 GBDW.Visible = True
             End If
@@ -144,12 +142,10 @@
             If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
                 BBonusAdjustment.Visible = True
                 BDeduction.Visible = True
-                BOvertime.Visible = True
                 BSetting.Visible = True
             Else
                 BBonusAdjustment.Visible = False
                 BDeduction.Visible = False
-                BOvertime.Visible = False
                 BSetting.Visible = False
             End If
         End If
@@ -162,7 +158,7 @@
     Sub calculate_grandtotal_dw()
         For i = 0 To GVPayroll.RowCount - 1
             If GVPayroll.IsValidRowHandle(i) Then
-                Dim grand_total As Decimal = GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")
+                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages")
 
                 GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
             End If
@@ -349,39 +345,74 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Dim data As DataTable = GCPayroll.DataSource
 
-        ReportPayrollAll.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
-        ReportPayrollAll.dt = GCPayroll.DataSource
-        'ReportPayrollAll.no_column = no_column
-        Dim Report As New ReportPayrollAll()
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, 0, True, "", "", "", "")
 
-        'grid
-        If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
-            Report.GBWorkingDays.Visible = True
-            Report.GBSalary.Visible = True
+        'office
+        Dim data_payroll_1 As DataTable = data.Clone
 
-            Report.GBDW.Visible = False
-        ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
-            Report.GBWorkingDays.Visible = False
-            Report.GBSalary.Visible = False
+        For j = 0 To data.Rows.Count - 1
+            If data.Rows(j)("is_office_payroll").ToString = "1" Then
+                data_payroll_1.ImportRow(data.Rows(j))
+            End If
+        Next
 
-            Report.GBDW.Visible = True
-        End If
+        Dim report_office_1 As ReportPayrollAll = New ReportPayrollAll
 
-        Report.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report_office_1.PrintingSystem.ContinuousPageNumbering = False
 
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        '
-        'ReportPayrollAll2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
-        'ReportPayrollAll2.dt = GCPayroll.DataSource
-        'ReportPayrollAll2.no_column = no_column
-        'Dim Report2 As New ReportPayrollAll2()
+        report_office_1.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        report_office_1.dt = data_payroll_1
+        report_office_1.id_pre = If(id_report_status = "6", "-1", "1")
+        report_office_1.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
 
-        ' Show the report's preview. 
-        'Dim Tool2 As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report2)
-        'Tool2.ShowPreview()
+        report_office_1.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report_office_1.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
+        report_office_1.XLLocation.Text = "Office"
+
+        report_office_1.CreateDocument()
+
+        'store
+        Dim data_payroll_2 As DataTable = data.Clone
+
+        For j = 0 To data.Rows.Count - 1
+            If data.Rows(j)("is_office_payroll").ToString = "2" Then
+                data_payroll_2.ImportRow(data.Rows(j))
+            End If
+        Next
+
+        Dim report_office_2 As ReportPayrollAll = New ReportPayrollAll
+
+        report_office_2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        report_office_2.dt = data_payroll_2
+        report_office_2.id_pre = If(id_report_status = "6", "-1", "1")
+        report_office_2.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+
+        report_office_2.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report_office_2.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
+        report_office_2.XLLocation.Text = "Store"
+
+        report_office_2.CreateDocument()
+
+        'combine
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+
+        'report_office_1
+        For i = 0 To report_office_1.Pages.Count - 1
+            list.Add(report_office_1.Pages(i))
+        Next
+
+        'report_office_2
+        For i = 0 To report_office_2.Pages.Count - 1
+            list.Add(report_office_2.Pages(i))
+        Next
+
+        report_office_1.Pages.AddRange(list)
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report_office_1)
+
+        tool.ShowPreview()
     End Sub
 
     Private Sub BBBcaFormat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBcaFormat.ItemClick
@@ -546,5 +577,16 @@
         If XTCPayroll.SelectedTabPage.Name = "XTPSalaryFormat" Then
             load_payroll_detail()
         End If
+    End Sub
+
+    Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem5.ItemClick
+        'bpjstk
+    End Sub
+
+    Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
+        'bpjs kesehatan
+        FormEmpPayrollReportBPJSKesehatan.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+        FormEmpPayrollReportBPJSKesehatan.ShowDialog()
     End Sub
 End Class

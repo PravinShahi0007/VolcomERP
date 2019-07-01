@@ -34,7 +34,7 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnNIP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpPosition = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnEmpLvl = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEmpSts = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -129,7 +129,7 @@ Partial Class FormEmpPayrollAdjustment
         '
         'GVDeduction
         '
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnType, Me.GridColumnCategory, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnNote})
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpSts, Me.GridColumnType, Me.GridColumnCategory, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnNote})
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 1
         Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", Me.GridColumnValue, "{0:N0}")})
@@ -188,14 +188,14 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnEmpPosition.VisibleIndex = 2
         Me.GridColumnEmpPosition.Width = 86
         '
-        'GridColumnEmpLvl
+        'GridColumnEmpSts
         '
-        Me.GridColumnEmpLvl.Caption = "Employee Level"
-        Me.GridColumnEmpLvl.FieldName = "employee_level"
-        Me.GridColumnEmpLvl.Name = "GridColumnEmpLvl"
-        Me.GridColumnEmpLvl.Visible = True
-        Me.GridColumnEmpLvl.VisibleIndex = 3
-        Me.GridColumnEmpLvl.Width = 86
+        Me.GridColumnEmpSts.Caption = "Employee Status"
+        Me.GridColumnEmpSts.FieldName = "employee_status"
+        Me.GridColumnEmpSts.Name = "GridColumnEmpSts"
+        Me.GridColumnEmpSts.Visible = True
+        Me.GridColumnEmpSts.VisibleIndex = 3
+        Me.GridColumnEmpSts.Width = 86
         '
         'GridColumnType
         '
@@ -287,7 +287,7 @@ Partial Class FormEmpPayrollAdjustment
     Friend WithEvents GridColumnNIP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnEmp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnEmpPosition As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnEmpLvl As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEmpSts As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn

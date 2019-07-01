@@ -7,12 +7,21 @@ Public Class FormMasterCompanyContact
         EP_TE_cant_blank(EPContact, TECP)
     End Sub
     Private Sub FormCompanyContact_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        load_annotation()
         view_contact()
+    End Sub
+
+    Sub load_annotation()
+        Dim query As String = "SELECT id_annotation,annotation FROM tb_lookup_annotation"
+        viewSearchLookupQuery(SLEAnnotation, query, "id_annotation", "annotation", "id_annotation")
     End Sub
 
     Sub view_contact()
         Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact,contact_person,contact_number,email,position,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
         GCCompanyContactList.DataSource = data
+        If GVCompanyContactList.RowCount > 0 Then
+
+        End If
     End Sub
 
     Private Sub view_default(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -30,7 +39,7 @@ Public Class FormMasterCompanyContact
     Private Sub BNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BNew.Click
         view_default(LEDefault)
         PDetail.Enabled = True
-        BDelete.Enabled = False
+        BSetDefault.Enabled = False
         BEdit.Enabled = False
         '
         ''
@@ -41,7 +50,7 @@ Public Class FormMasterCompanyContact
         GroupControl1.Enabled = True
         PDetail.Enabled = False
         BNew.Enabled = True
-        BDelete.Enabled = True
+        BSetDefault.Enabled = True
         BEdit.Enabled = True
     End Sub
 
@@ -49,7 +58,7 @@ Public Class FormMasterCompanyContact
         view_default(LEDefault)
 
         PDetail.Enabled = True
-        BDelete.Enabled = False
+        BSetDefault.Enabled = False
         BNew.Enabled = False
 
         If GVCompanyContactList.GetFocusedRowCellDisplayText("is_default") = "Checked" Then
@@ -67,29 +76,17 @@ Public Class FormMasterCompanyContact
 
     End Sub
 
-    Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
+    Private Sub BSetDefault_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSetDefault.Click
         Dim confirm As DialogResult
         Dim query As String
 
-        Dim is_default As String = GVCompanyContactList.GetFocusedRowCellDisplayText("is_default").ToString
+        Dim id_contact As String = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
 
-        If is_default = "Checked" Then
-            XtraMessageBox.Show("Can't delete default contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            confirm = XtraMessageBox.Show("Are you sure want to delete this contact?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-            Dim id_contact As String = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-                Try
-                    query = String.Format("DELETE FROM tb_m_comp_contact WHERE id_comp_contact = '{0}'", id_contact)
-                    execute_non_query(query, True, "", "", "", "")
-                    view_contact()
-                Catch ex As Exception
-                    XtraMessageBox.Show("This contact already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Try
-                Cursor = Cursors.Default
-            End If
+        confirm = XtraMessageBox.Show("Are you sure want to set this as default contact?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            query = String.Format("UPDATE tb_m_comp_contact SET is_default='0' WHERE id_comp='{1}';UPDATE tb_m_comp_contact SET is_default='1' WHERE id_comp_contact = '{0}'", id_contact, id_company)
+            execute_non_query(query, True, "", "", "", "")
+            view_contact()
         End If
     End Sub
 
@@ -120,6 +117,7 @@ Public Class FormMasterCompanyContact
         Dim email As String = addSlashes(TEEmail.Text)
         Dim position As String = addSlashes(TEPosition.Text)
         Dim isdefault As String = LEDefault.EditValue.ToString
+        Dim annotation As String = SLEAnnotation.EditValue.ToString
         Dim query As String
 
         If BNew.Enabled = True Then
@@ -133,7 +131,7 @@ Public Class FormMasterCompanyContact
                 Else
                     isdefault = "0"
                 End If
-                query = String.Format("INSERT INTO tb_m_comp_contact(id_comp,contact_person,contact_number,email,position,is_default,last_upd,last_upd_by) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',NOW(),'{6}')", id_company, contact_name, contact_number, email, position, isdefault, id_user)
+                query = String.Format("INSERT INTO tb_m_comp_contact(id_comp,contact_person,contact_number,email,position,is_default,last_upd,last_upd_by,id_annotation) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',NOW(),'{6}','{7}')", id_company, contact_name, contact_number, email, position, isdefault, id_user, annotation)
                 execute_non_query(query, True, "", "", "", "")
                 view_contact()
                 clean_field()
@@ -144,7 +142,7 @@ Public Class FormMasterCompanyContact
 
                 PDetail.Enabled = False
                 BNew.Enabled = True
-                BDelete.Enabled = True
+                BSetDefault.Enabled = True
                 BEdit.Enabled = True
             End If
         ElseIf BEdit.Enabled = True Then
@@ -158,7 +156,7 @@ Public Class FormMasterCompanyContact
                 Else
                     isdefault = "0"
                 End If
-                query = String.Format("UPDATE tb_m_comp_contact SET contact_person='{0}',contact_number='{1}',is_default='{2}',email='{3}',position='{4}',last_upd=NOW(),last_upd_by='{5}' WHERE id_comp_contact='{5}'", contact_name, contact_number, isdefault, email, position, GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString, id_user)
+                query = String.Format("UPDATE tb_m_comp_contact SET contact_person='{0}',contact_number='{1}',is_default='{2}',email='{3}',position='{4}',last_upd=NOW(),last_upd_by='{6}',id_annotation='{7}' WHERE id_comp_contact='{5}'", contact_name, contact_number, isdefault, email, position, GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString, id_user, annotation)
                 execute_non_query(query, True, "", "", "", "")
                 view_contact()
                 clean_field()
@@ -170,7 +168,7 @@ Public Class FormMasterCompanyContact
                 GroupControl1.Enabled = True
                 PDetail.Enabled = False
                 BNew.Enabled = True
-                BDelete.Enabled = True
+                BSetDefault.Enabled = True
                 BEdit.Enabled = True
             End If
         End If

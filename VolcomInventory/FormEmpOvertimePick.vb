@@ -35,6 +35,7 @@
                 FROM tb_m_employee
             ) AS salary ON e.id_employee = salary.id_employee
             WHERE 1 " + whereHrd + " " + notIncluded + "
+            ORDER BY e.id_employee_level ASC, e.employee_code ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -87,8 +88,9 @@
                               GVList.GetRowCellValue(i, "id_employee_level"),
                               GVList.GetRowCellValue(i, "employee_level"),
                               conversion_type,
-                              "",
-                              "",
+                              FormEmpOvertimeDet.TEOvertimeStart.EditValue,
+                              FormEmpOvertimeDet.TEOvertimeEnd.EditValue,
+                              0.0,
                               0.0,
                               0.0,
                               "",

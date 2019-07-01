@@ -34,8 +34,6 @@ Partial Class FormEmpPayrollADPick
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCPosition = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCIdEmployeeLevel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCLevel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeActive = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -88,7 +86,7 @@ Partial Class FormEmpPayrollADPick
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdEmployeeSalary, Me.GCTotalWorkdays, Me.GCActualWorkdays, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeActive, Me.GCActiveStatus})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdEmployeeSalary, Me.GCTotalWorkdays, Me.GCActualWorkdays, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeActive, Me.GCActiveStatus})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -168,21 +166,6 @@ Partial Class FormEmpPayrollADPick
         Me.GCPosition.VisibleIndex = 3
         Me.GCPosition.Width = 96
         '
-        'GCIdEmployeeLevel
-        '
-        Me.GCIdEmployeeLevel.FieldName = "id_employee_level"
-        Me.GCIdEmployeeLevel.Name = "GCIdEmployeeLevel"
-        '
-        'GCLevel
-        '
-        Me.GCLevel.Caption = "Employee Level"
-        Me.GCLevel.FieldName = "employee_level"
-        Me.GCLevel.Name = "GCLevel"
-        Me.GCLevel.OptionsColumn.AllowEdit = False
-        Me.GCLevel.Visible = True
-        Me.GCLevel.VisibleIndex = 4
-        Me.GCLevel.Width = 84
-        '
         'GCIdEmployeeStatus
         '
         Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
@@ -195,7 +178,7 @@ Partial Class FormEmpPayrollADPick
         Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
         Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
         Me.GCEmployeeStatus.Visible = True
-        Me.GCEmployeeStatus.VisibleIndex = 5
+        Me.GCEmployeeStatus.VisibleIndex = 4
         Me.GCEmployeeStatus.Width = 90
         '
         'GCIdEmployeeActive
@@ -210,7 +193,7 @@ Partial Class FormEmpPayrollADPick
         Me.GCActiveStatus.Name = "GCActiveStatus"
         Me.GCActiveStatus.OptionsColumn.AllowEdit = False
         Me.GCActiveStatus.Visible = True
-        Me.GCActiveStatus.VisibleIndex = 6
+        Me.GCActiveStatus.VisibleIndex = 5
         '
         'FormEmpPayrollADPick
         '
@@ -243,8 +226,6 @@ Partial Class FormEmpPayrollADPick
     Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDepartement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCPosition As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCIdEmployeeLevel As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCLevel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdEmployeeActive As DevExpress.XtraGrid.Columns.GridColumn

@@ -1854,6 +1854,10 @@ Module Common
             'position
             query = "SELECT position FROM tb_m_comp_contact WHERE id_comp_contact='" & id_comp_contact & "'"
             result = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "6" Then
+            'annotation
+            query = "SELECT id_annotation FROM tb_m_comp_contact WHERE id_comp_contact='" & id_comp_contact & "'"
+            result = execute_query(query, 0, True, "", "", "", "")
         End If
         Return result
     End Function

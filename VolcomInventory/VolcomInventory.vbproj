@@ -1081,6 +1081,12 @@
     <Compile Include="FormEmpPayrollPeriode.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollReportBPJSKesehatan.Designer.vb">
+      <DependentUpon>FormEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportBPJSKesehatan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollReportDept.Designer.vb">
       <DependentUpon>FormEmpPayrollReportDept.vb</DependentUpon>
     </Compile>
@@ -1475,6 +1481,24 @@
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGDesignList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGDesignListChanges.Designer.vb">
+      <DependentUpon>FormFGDesignListChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesDesign.Designer.vb">
+      <DependentUpon>FormFGDesignListChangesDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesNew.Designer.vb">
+      <DependentUpon>FormFGDesignListChangesNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignListChangesNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGFirstDel.Designer.vb">
@@ -5968,6 +5992,18 @@
     <Compile Include="ReportEmpPayrollDeduction.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatan.Designer.vb">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatan.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatanDetail.Designer.vb">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatanDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportBPJSKesehatanDetail.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -6032,6 +6068,12 @@
       <DependentUpon>ReportFGCodeReplaceWH.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportFGCodeReplaceWH.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGDesignListChanges.Designer.vb">
+      <DependentUpon>ReportFGDesignListChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGDesignListChanges.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportFGLineList.Designer.vb">
@@ -7325,6 +7367,9 @@
     <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollReportBPJSKesehatan.resx">
+      <DependentUpon>FormEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollReportDept.resx">
       <DependentUpon>FormEmpPayrollReportDept.vb</DependentUpon>
     </EmbeddedResource>
@@ -7538,6 +7583,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChanges.resx">
+      <DependentUpon>FormFGDesignListChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChangesDesign.resx">
+      <DependentUpon>FormFGDesignListChangesDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignListChangesNew.resx">
+      <DependentUpon>FormFGDesignListChangesNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGFirstDel.resx">
       <DependentUpon>FormFGFirstDel.vb</DependentUpon>
@@ -10209,6 +10263,12 @@
     <EmbeddedResource Include="ReportEmpPayrollDeduction.resx">
       <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollReportBPJSKesehatan.resx">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollReportBPJSKesehatanDetail.resx">
+      <DependentUpon>ReportEmpPayrollReportBPJSKesehatanDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </EmbeddedResource>
@@ -10245,6 +10305,9 @@
     <EmbeddedResource Include="ReportFGCodeReplaceWH.resx">
       <DependentUpon>ReportFGCodeReplaceWH.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGDesignListChanges.resx">
+      <DependentUpon>ReportFGDesignListChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGLineList.resx">
       <DependentUpon>ReportFGLineList.vb</DependentUpon>

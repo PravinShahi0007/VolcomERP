@@ -72,6 +72,7 @@ Partial Public Class ReportEmpOvertime
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.GCOvertime = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +138,7 @@ Partial Public Class ReportEmpOvertime
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GCConversionType, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCPoint, Me.GCValid})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GCConversionType, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCOvertime, Me.GCPoint, Me.GCValid})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -291,7 +292,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCPoint.FieldName = "point"
         Me.GCPoint.Name = "GCPoint"
         Me.GCPoint.Visible = True
-        Me.GCPoint.VisibleIndex = 9
+        Me.GCPoint.VisibleIndex = 10
         '
         'GCValid
         '
@@ -300,7 +301,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCValid.MaxWidth = 55
         Me.GCValid.Name = "GCValid"
         Me.GCValid.Visible = True
-        Me.GCValid.VisibleIndex = 10
+        Me.GCValid.VisibleIndex = 11
         Me.GCValid.Width = 55
         '
         'XrLabel16
@@ -609,6 +610,17 @@ Partial Public Class ReportEmpOvertime
         Me.ReportFooter.HeightF = 96.54169!
         Me.ReportFooter.Name = "ReportFooter"
         '
+        'GCOvertime
+        '
+        Me.GCOvertime.Caption = "Overtime (hours)"
+        Me.GCOvertime.DisplayFormat.FormatString = "N1"
+        Me.GCOvertime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCOvertime.FieldName = "overtime_hours"
+        Me.GCOvertime.Name = "GCOvertime"
+        Me.GCOvertime.OptionsColumn.AllowEdit = False
+        Me.GCOvertime.Visible = True
+        Me.GCOvertime.VisibleIndex = 9
+        '
         'ReportEmpOvertime
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -678,4 +690,5 @@ Partial Public Class ReportEmpOvertime
     Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOvertime As DevExpress.XtraGrid.Columns.GridColumn
 End Class

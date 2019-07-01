@@ -27,6 +27,7 @@ Partial Class FormItemSubCat
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPurchaseCategory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPurchaseCategory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -43,7 +44,7 @@ Partial Class FormItemSubCat
         '
         'GVPurchaseCategory
         '
-        Me.GVPurchaseCategory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVPurchaseCategory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
         Me.GVPurchaseCategory.GridControl = Me.GCPurchaseCategory
         Me.GVPurchaseCategory.Name = "GVPurchaseCategory"
         Me.GVPurchaseCategory.OptionsView.ShowGroupPanel = False
@@ -96,6 +97,14 @@ Partial Class FormItemSubCat
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Status"
+        Me.GridColumn7.FieldName = "status"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
+        '
         'FormItemSubCat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -122,4 +131,5 @@ Partial Class FormItemSubCat
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

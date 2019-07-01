@@ -45,6 +45,9 @@
                         newRow("val_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "val_pr")
                         newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
                         '
+                        newRow("id_vendor_type") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_vendor_type")
+                        newRow("vendor_type") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "vendor_type")
+                        '
                         newRow("val_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "latest_price")
                         newRow("discount") = 0.00
                         newRow("discount_percent") = 0.00
@@ -186,12 +189,14 @@ WHERE po.id_purc_order='" & id_po & "'"
 
     Sub load_det()
         is_process = "1"
-        Dim query As String = "SELECT pod.`id_item`,dep.`departement`,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
+        Dim query As String = "SELECT pod.`id_item`,dep.`departement`,icd.id_item_cat_detail,vt.vendor_type,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=pr.`id_departement`
                                 INNER JOIN `tb_item` item ON item.`id_item`=pod.`id_item`
+                                INNER JOIN tb_item_cat_detail icd ON icd.`id_item_cat_detail`=item.`id_item_cat_detail`
+                                INNER JOIN tb_vendor_type vt ON vt.id_vendor_type=icd.id_vendor_type
                                 INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
                                 WHERE pod.`id_purc_order`='" & id_po & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
