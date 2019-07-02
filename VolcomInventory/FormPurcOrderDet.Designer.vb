@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPurcOrderDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormPurcOrderDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcOrderDet))
@@ -98,11 +98,15 @@ Partial Class FormPurcOrderDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PCPrice = New DevExpress.XtraEditors.PanelControl()
+        Me.BSetPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
@@ -126,8 +130,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,6 +181,8 @@ Partial Class FormPurcOrderDet
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPrice.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
@@ -975,6 +979,7 @@ Partial Class FormPurcOrderDet
         'XTPReqList
         '
         Me.XTPReqList.Controls.Add(Me.GCPurcReq)
+        Me.XTPReqList.Controls.Add(Me.PCPrice)
         Me.XTPReqList.Controls.Add(Me.PanelControl3)
         Me.XTPReqList.Name = "XTPReqList"
         Me.XTPReqList.Size = New System.Drawing.Size(1038, 246)
@@ -987,7 +992,7 @@ Partial Class FormPurcOrderDet
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase})
-        Me.GCPurcReq.Size = New System.Drawing.Size(1038, 210)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1038, 171)
         Me.GCPurcReq.TabIndex = 11
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -1061,13 +1066,11 @@ Partial Class FormPurcOrderDet
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Value (PR)"
+        Me.GridColumn2.Caption = "Price PR"
         Me.GridColumn2.DisplayFormat.FormatString = "N2"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.FieldName = "val_pr"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 8
         Me.GridColumn2.Width = 78
         '
         'GridColumn10
@@ -1091,13 +1094,29 @@ Partial Class FormPurcOrderDet
         Me.GridColumn11.VisibleIndex = 0
         Me.GridColumn11.Width = 81
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID Vendor Type"
+        Me.GridColumn12.FieldName = "id_vendor_type"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Vendor Type"
+        Me.GridColumn13.FieldName = "vendor_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 4
+        '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Value (PO)"
+        Me.GridColumn4.Caption = "Price"
         Me.GridColumn4.DisplayFormat.FormatString = "N2"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "val_po"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 8
         '
         'GridColumn5
         '
@@ -1128,6 +1147,25 @@ Partial Class FormPurcOrderDet
         Me.RICEPurchase.Name = "RICEPurchase"
         Me.RICEPurchase.ValueChecked = "yes"
         Me.RICEPurchase.ValueUnchecked = "no"
+        '
+        'PCPrice
+        '
+        Me.PCPrice.Controls.Add(Me.BSetPrice)
+        Me.PCPrice.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCPrice.Location = New System.Drawing.Point(0, 207)
+        Me.PCPrice.Name = "PCPrice"
+        Me.PCPrice.Size = New System.Drawing.Size(1038, 39)
+        Me.PCPrice.TabIndex = 13
+        '
+        'BSetPrice
+        '
+        Me.BSetPrice.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BSetPrice.Image = CType(resources.GetObject("BSetPrice.Image"), System.Drawing.Image)
+        Me.BSetPrice.Location = New System.Drawing.Point(2, 2)
+        Me.BSetPrice.Name = "BSetPrice"
+        Me.BSetPrice.Size = New System.Drawing.Size(107, 35)
+        Me.BSetPrice.TabIndex = 1
+        Me.BSetPrice.Text = "Set Price"
         '
         'PanelControl3
         '
@@ -1375,20 +1413,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "ID Vendor Type"
-        Me.GridColumn12.FieldName = "id_vendor_type"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Vendor Type"
-        Me.GridColumn13.FieldName = "vendor_type"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
-        '
         'FormPurcOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1459,6 +1483,8 @@ Partial Class FormPurcOrderDet
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPrice.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -1580,4 +1606,6 @@ Partial Class FormPurcOrderDet
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCPrice As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BSetPrice As DevExpress.XtraEditors.SimpleButton
 End Class

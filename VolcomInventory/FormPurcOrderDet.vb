@@ -146,8 +146,25 @@ WHERE po.id_purc_order='" & id_po & "'"
         End If
     End Sub
 
+    Sub set_price(ByVal id_item As String, ByVal price As Decimal)
+        For i = 0 To GVPurcReq.RowCount - 1
+            If GVPurcReq.GetRowCellValue(i, "id_item").ToString = id_item Then
+                GVPurcReq.SetRowCellValue(i, "val_po", price)
+            End If
+        Next
+        load_summary()
+    End Sub
+
+    Sub check_budget()
+        For i = 0 To GVPurcReq.RowCount - 1
+
+        Next
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status"
+
+    End Sub
+
     Sub load_report_status()
-        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
@@ -157,7 +174,8 @@ WHERE po.id_purc_order='" & id_po & "'"
         For j As Integer = GVSummary.RowCount - 1 To 0 Step -1
             GVSummary.DeleteRow(j)
         Next
-        'add
+
+        'add all row
         For i As Integer = 0 To GVPurcReq.RowCount - 1
             Dim is_found As Boolean = False
             For k As Integer = 0 To GVSummary.RowCount - 1
@@ -179,8 +197,6 @@ WHERE po.id_purc_order='" & id_po & "'"
                 newRow("discount_percent") = GVPurcReq.GetRowCellValue(i, "discount_percent")
                 TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
             End If
-            '
-
         Next
 
         GVSummary.RefreshData()
@@ -189,7 +205,7 @@ WHERE po.id_purc_order='" & id_po & "'"
 
     Sub load_det()
         is_process = "1"
-        Dim query As String = "SELECT pod.`id_item`,dep.`departement`,icd.id_item_cat_detail,vt.vendor_type,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
+        Dim query As String = "SELECT pod.`id_item`,icd.`id_vendor_type`,dep.`departement`,icd.id_item_cat_detail,vt.vendor_type,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
@@ -265,12 +281,12 @@ WHERE po.id_purc_order='" & id_po & "'"
                                             SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
                                             FROM `tb_purc_order_det` pod
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                            WHERE pod.`id_purc_order`='" & id_po & "'
-                                            UNION
-                                            SELECT prd.id_b_expense,NOW(),-(prd.`value`),prd.`id_purc_req` AS id_report,'137' AS report_mark_type,'Purchase Request vs Purchase Order'
-                                            FROM `tb_purc_order_det` pod
-                                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'"
+                'query_trans += " UNION
+                '                            SELECT prd.id_b_expense,NOW(),-(prd.`value`),prd.`id_purc_req` AS id_report,'137' AS report_mark_type,'Purchase Request vs Purchase Order'
+                '                            FROM `tb_purc_order_det` pod
+                '                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                '                            WHERE pod.`id_purc_order`='" & id_po & "'"
                 execute_non_query(query_trans, True, "", "", "", "")
                 '
                 submit_who_prepared("139", id_po, id_user)
@@ -456,8 +472,8 @@ WHERE po.id_purc_order='" & id_po & "'"
         ReportPurcOrder.id_po = id_po
         ReportPurcOrder.dt = GCSummary.DataSource
         Dim Report As New ReportPurcOrder()
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
+        ' ...
+        ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
@@ -507,5 +523,15 @@ WHERE po.id_purc_order='" & id_po & "'"
             calculate_grand_total()
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BSetPrice_Click(sender As Object, e As EventArgs) Handles BSetPrice.Click
+        If GVPurcReq.RowCount > 0 Then
+            FormPurcItemDet.id_item = GVPurcReq.GetFocusedRowCellValue("id_item").ToString
+            FormPurcItemDet.is_view = "1"
+            FormPurcItemDet.ShowDialog()
+        Else
+            stopCustom("No item selected")
+        End If
     End Sub
 End Class
