@@ -363,7 +363,7 @@ Public Class FormSalesReturnDet
 
     Sub view_barcode_list_prob()
         Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, d.design_code, rp.scanned_code AS `code`,
-            d.design_display_name AS `name`, cd.code_detail_name AS `size`, rp.remark
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, rp.remark, rp.is_unique_not_found, rp.is_no_stock
             FROM tb_sales_return_problem rp
             INNER JOIN tb_m_product p ON p.id_product = rp.id_product
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
@@ -372,6 +372,7 @@ Public Class FormSalesReturnDet
             WHERE rp.id_sales_return=" + id_sales_return + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBarcodeProb.DataSource = data
+        GVBarcodeProb.BestFitColumns()
     End Sub
 
 
@@ -1054,16 +1055,19 @@ Public Class FormSalesReturnDet
                     Dim jum_ins_k As Integer = 0
                     Dim query_problem_stock As String = ""
                     If GVBarcodeProb.RowCount > 0 Then
-                        query_problem_stock = "INSERT INTO tb_sales_return_problem(id_sales_return, id_product, scanned_code, remark) VALUES "
+                        query_problem_stock = "INSERT INTO tb_sales_return_problem(id_sales_return, id_product, scanned_code, remark, is_unique_not_found, is_no_stock) VALUES "
                     End If
                     For k As Integer = 0 To ((GVBarcodeProb.RowCount - 1) - GetGroupRowCount(GVBarcodeProb))
                         Dim id_product As String = GVBarcodeProb.GetRowCellValue(k, "id_product").ToString
                         Dim scanned_code As String = GVBarcodeProb.GetRowCellValue(k, "code").ToString
                         Dim remark As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "remark").ToString)
+                        Dim is_unique_not_found As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "is_unique_not_found").ToString)
+                        Dim is_no_stock As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "is_no_stock").ToString)
+
                         If jum_ins_k > 0 Then
                             query_problem_stock += ", "
                         End If
-                        query_problem_stock += "('" + id_sales_return + "','" + id_product + "','" + scanned_code + "', '" + remark + "') "
+                        query_problem_stock += "('" + id_sales_return + "','" + id_product + "','" + scanned_code + "', '" + remark + "', " + is_unique_not_found + ", " + is_no_stock + ") "
                         jum_ins_k = jum_ins_k + 1
                     Next
                     If jum_ins_k > 0 Then
@@ -2334,7 +2338,7 @@ Public Class FormSalesReturnDet
 
     End Sub
 
-    Function isAvailableStock(ByVal id_prod) As Boolean
+    Function isNoAvailableStock(ByVal id_prod) As Boolean
         Dim query As String = "SELECT f.id_product, IFNULL(SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) AS `qty`
         FROM tb_storage_fg f
         WHERE f.id_wh_drawer=" + id_wh_drawer_store + " AND f.id_product=" + id_prod + "
@@ -2342,12 +2346,12 @@ Public Class FormSalesReturnDet
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             If data.Rows(0)("qty") > 0 Then
-                Return True
-            Else
                 Return False
+            Else
+                Return True
             End If
         Else
-            Return False
+            Return True
         End If
     End Function
 
@@ -2375,17 +2379,39 @@ Public Class FormSalesReturnDet
                     End If
 
                     'check unique sesuai toko
+                    Dim cond_unique_not_found As Boolean = False
+                    Dim is_unique_not_found As String = "2"
                     If data.Rows(0)("is_old_design").ToString = "2" Then
                         Dim qcu As String = "CALL view_stock_fg_unique_ret(" + data.Rows(0)("id_product").ToString + ", " + id_store + ", 0, 0) "
                         Dim dcu As DataTable = execute_query(qcu, -1, True, "", "", "", "")
-                        'Dim dtu_f As DataRow() = dcu.Select("[id_sales_return_order_det]='" + id_sales_return_order_det_cek + "' ")
+                        Dim dtu_f As DataRow() = dcu.Select("[product_full_code]='" + code + "' ")
+                        If dtu_f.Length > 0 Then
+                            cond_unique_not_found = False
+                            is_unique_not_found = "2"
+                        Else
+                            cond_unique_not_found = True
+                            is_unique_not_found = "1"
+                        End If
                     End If
 
-                    'ada stock ato gak
-                    If isAvailableStock(data.Rows(0)("id_product").ToString) Then
+
+                    'ada stock ato gak (diaktifkan setelah jalan 1 sistem)
+                    'Dim cond_no_stock As Boolean = isNoAvailableStock(data.Rows(0)("id_product").ToString)
+                    'Dim is_no_stock As String = "2"
+                    'If cond_no_stock Then
+                    '    is_no_stock = "1"
+                    'Else
+                    '    is_no_stock = "2"
+                    'End If
+                    Dim cond_no_stock As Boolean = True
+                    Dim is_no_stock As String = "1"
+
+                    'cek
+                    If Not cond_unique_not_found And Not cond_no_stock Then
                         stopCustom("This product still has stock, please scan in Return-Non List")
                         Exit Sub
                     End If
+
 
                     Dim newRow As DataRow = (TryCast(GCBarcodeProb.DataSource, DataTable)).NewRow()
                     newRow("id_sales_return_problem") = "0"
@@ -2394,6 +2420,8 @@ Public Class FormSalesReturnDet
                     newRow("code") = data.Rows(0)("code").ToString
                     newRow("name") = data.Rows(0)("name").ToString
                     newRow("size") = data.Rows(0)("size").ToString
+                    newRow("is_unique_not_found") = is_unique_not_found
+                    newRow("is_no_stock") = is_no_stock
                     TryCast(GCBarcodeProb.DataSource, DataTable).Rows.Add(newRow)
                     FormSalesReturnDetProblem.TxtCode.Text = data.Rows(0)("design_code").ToString
                     FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString

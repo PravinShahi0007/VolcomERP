@@ -3,6 +3,7 @@
     Public id_design As String = "-1"
     Public id_sales_return_problem As String = "-1"
     Public id_type As String = "-1"
+    Public is_old_design As String = "-1"
 
     Private Sub FormSalesReturnDetProblem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_type = "1" Or id_type = "2" Then
@@ -26,6 +27,32 @@
                 FormSalesReturnDet.GVBarcodeProb.SetFocusedRowCellValue("remark", TxtRemark.Text.ToString)
                 Close()
             Else
+                Dim cond_unique_not_found As Boolean = False
+                Dim is_unique_not_found As String = "2"
+                If is_old_design = "2" Then
+                    'unique code
+                    cond_unique_not_found = True
+                    is_unique_not_found = "1"
+                End If
+
+                'ada stock ato gak
+                Dim cond_no_stock As Boolean = FormSalesReturnDet.isNoAvailableStock(id_product)
+                Dim is_no_stock As String = "2"
+                If cond_no_stock Then
+                    is_no_stock = "1"
+                Else
+                    is_no_stock = "2"
+                End If
+
+                'cek
+                If Not cond_unique_not_found And Not cond_no_stock Then
+                    stopCustom("This product still has stock, please scan in Return-Non List")
+                    Close()
+                    Exit Sub
+                End If
+
+
+
                 Dim newRow As DataRow = (TryCast(FormSalesReturnDet.GCBarcodeProb.DataSource, DataTable)).NewRow()
                 newRow("id_sales_return_problem") = "0"
                 newRow("id_product") = id_product

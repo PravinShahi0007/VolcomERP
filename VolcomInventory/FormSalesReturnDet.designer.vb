@@ -202,6 +202,12 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnis_unique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_no_stock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnunique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnno_stock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CENotFound = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.CENoStock = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -284,6 +290,8 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -1812,7 +1820,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcodeProb.Location = New System.Drawing.Point(20, 38)
         Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
         Me.GCBarcodeProb.Name = "GCBarcodeProb"
-        Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3})
+        Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3, Me.CENotFound, Me.CENoStock})
         Me.GCBarcodeProb.Size = New System.Drawing.Size(883, 336)
         Me.GCBarcodeProb.TabIndex = 6
         Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
@@ -1837,7 +1845,7 @@ Partial Class FormSalesReturnDet
         '
         'GVBarcodeProb
         '
-        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode, Me.GridColumnQtyNonStock})
+        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode, Me.GridColumnQtyNonStock, Me.GridColumnis_unique_not_found, Me.GridColumnis_no_stock, Me.GridColumnunique_not_found, Me.GridColumnno_stock})
         Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
         Me.GVBarcodeProb.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyNonStock, "{0:n0}")})
         Me.GVBarcodeProb.Name = "GVBarcodeProb"
@@ -1862,7 +1870,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 54
+        Me.GridColumn1.Width = 67
         '
         'GridColumn3
         '
@@ -1871,7 +1879,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 303
+        Me.GridColumn3.Width = 379
         '
         'GridColumn4
         '
@@ -1941,7 +1949,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 348
+        Me.GridColumn13.Width = 435
         '
         'GridColumn14
         '
@@ -1951,7 +1959,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 81
+        Me.GridColumn14.Width = 101
         '
         'GridColumnRemarkProb
         '
@@ -1961,7 +1969,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnRemarkProb.OptionsColumn.AllowEdit = False
         Me.GridColumnRemarkProb.Visible = True
         Me.GridColumnRemarkProb.VisibleIndex = 5
-        Me.GridColumnRemarkProb.Width = 292
+        Me.GridColumnRemarkProb.Width = 331
         '
         'GridColumnDesignCode
         '
@@ -1982,6 +1990,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnQtyNonStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumnQtyNonStock.Visible = True
         Me.GridColumnQtyNonStock.VisibleIndex = 4
+        Me.GridColumnQtyNonStock.Width = 93
         '
         'RepositoryItemCheckEdit1
         '
@@ -2077,6 +2086,55 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.Size = New System.Drawing.Size(109, 36)
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
+        '
+        'GridColumnis_unique_not_found
+        '
+        Me.GridColumnis_unique_not_found.Caption = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.FieldName = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.Name = "GridColumnis_unique_not_found"
+        Me.GridColumnis_unique_not_found.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnis_no_stock
+        '
+        Me.GridColumnis_no_stock.Caption = "is_no_stock"
+        Me.GridColumnis_no_stock.FieldName = "is_no_stock"
+        Me.GridColumnis_no_stock.Name = "GridColumnis_no_stock"
+        Me.GridColumnis_no_stock.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnunique_not_found
+        '
+        Me.GridColumnunique_not_found.Caption = "Unique Not Found"
+        Me.GridColumnunique_not_found.ColumnEdit = Me.CENotFound
+        Me.GridColumnunique_not_found.FieldName = "unique_not_found"
+        Me.GridColumnunique_not_found.Name = "GridColumnunique_not_found"
+        Me.GridColumnunique_not_found.UnboundExpression = "Iif([is_unique_not_found] = 1, 'Yes', 'No')"
+        Me.GridColumnunique_not_found.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnunique_not_found.Visible = True
+        Me.GridColumnunique_not_found.VisibleIndex = 6
+        Me.GridColumnunique_not_found.Width = 109
+        '
+        'GridColumnno_stock
+        '
+        Me.GridColumnno_stock.Caption = "No Stock"
+        Me.GridColumnno_stock.ColumnEdit = Me.CENoStock
+        Me.GridColumnno_stock.FieldName = "is_no_stock"
+        Me.GridColumnno_stock.Name = "GridColumnno_stock"
+        Me.GridColumnno_stock.UnboundExpression = "Iif([is_no_stock]=1,'Yes' ,'No' )"
+        Me.GridColumnno_stock.Width = 117
+        '
+        'CENotFound
+        '
+        Me.CENotFound.AutoHeight = False
+        Me.CENotFound.Name = "CENotFound"
+        Me.CENotFound.ValueChecked = "Yes"
+        Me.CENotFound.ValueUnchecked = "No"
+        '
+        'CENoStock
+        '
+        Me.CENoStock.AutoHeight = False
+        Me.CENoStock.Name = "CENoStock"
+        Me.CENoStock.ValueChecked = "Yes"
+        Me.CENoStock.ValueUnchecked = "No"
         '
         'FormSalesReturnDet
         '
@@ -2185,6 +2243,8 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2370,4 +2430,10 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDiff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CENonList As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnis_unique_not_found As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_no_stock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnunique_not_found As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CENotFound As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnno_stock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CENoStock As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
