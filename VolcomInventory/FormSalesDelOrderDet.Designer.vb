@@ -39,6 +39,8 @@ Partial Class FormSalesDelOrderDet
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOLShopNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LEStatusSO = New DevExpress.XtraEditors.LookUpEdit()
@@ -107,6 +109,8 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTCDONew = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutboundScanNew = New DevExpress.XtraTab.XtraTabPage()
@@ -144,10 +148,7 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNoteDel = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,6 +163,7 @@ Partial Class FormSalesDelOrderDet
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
+        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatusSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,7 +216,6 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -451,6 +452,25 @@ Partial Class FormSalesDelOrderDet
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(274, 176)
         Me.PanelControlTopMiddle.TabIndex = 10003
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl14.Location = New System.Drawing.Point(14, 89)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl14.TabIndex = 8904
+        Me.LabelControl14.Text = "Customer"
+        '
+        'TxtCustomer
+        '
+        Me.TxtCustomer.EditValue = ""
+        Me.TxtCustomer.Location = New System.Drawing.Point(84, 86)
+        Me.TxtCustomer.Name = "TxtCustomer"
+        Me.TxtCustomer.Properties.EditValueChangedDelay = 1
+        Me.TxtCustomer.Properties.ReadOnly = True
+        Me.TxtCustomer.Size = New System.Drawing.Size(168, 20)
+        Me.TxtCustomer.TabIndex = 8903
         '
         'LabelControl13
         '
@@ -902,7 +922,7 @@ Partial Class FormSalesDelOrderDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStatus, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPriceType, Me.GridColumn1, Me.GridColumnOrderNumber, Me.GridColumnCustomer})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStatus, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPriceType, Me.GridColumn1, Me.GridColumnOrderNumber, Me.GridColumnCustomer, Me.GridColumnNoteDel})
         Me.GVItemList.CustomizationFormBounds = New System.Drawing.Rectangle(958, 136, 216, 180)
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_from_wh", Me.GridColumnQtyWH, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_amount", Me.GridColumnAmount, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty_limit", Me.GridColumnQtyLimit, "{0:n0}")})
@@ -1178,6 +1198,16 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.UnboundExpression = "[sales_order_det_qty_limit] - [pl_sales_order_del_det_qty]"
         Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'GridColumnOrderNumber
+        '
+        Me.GridColumnOrderNumber.Caption = "Order Number"
+        Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
+        '
+        'GridColumnCustomer
+        '
+        Me.GridColumnCustomer.Caption = "Customer Name"
+        Me.GridColumnCustomer.Name = "GridColumnCustomer"
         '
         'RepositoryItemSpinEdit1
         '
@@ -1543,34 +1573,10 @@ Partial Class FormSalesDelOrderDet
         Me.GVTest.GridControl = Me.GCTest
         Me.GVTest.Name = "GVTest"
         '
-        'TxtCustomer
+        'GridColumnNoteDel
         '
-        Me.TxtCustomer.EditValue = ""
-        Me.TxtCustomer.Location = New System.Drawing.Point(84, 86)
-        Me.TxtCustomer.Name = "TxtCustomer"
-        Me.TxtCustomer.Properties.EditValueChangedDelay = 1
-        Me.TxtCustomer.Properties.ReadOnly = True
-        Me.TxtCustomer.Size = New System.Drawing.Size(168, 20)
-        Me.TxtCustomer.TabIndex = 8903
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl14.Location = New System.Drawing.Point(14, 89)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(46, 13)
-        Me.LabelControl14.TabIndex = 8904
-        Me.LabelControl14.Text = "Customer"
-        '
-        'GridColumnOrderNumber
-        '
-        Me.GridColumnOrderNumber.Caption = "Order Number"
-        Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
-        '
-        'GridColumnCustomer
-        '
-        Me.GridColumnCustomer.Caption = "Customer Name"
-        Me.GridColumnCustomer.Name = "GridColumnCustomer"
+        Me.GridColumnNoteDel.Caption = "Note Del"
+        Me.GridColumnNoteDel.Name = "GridColumnNoteDel"
         '
         'FormSalesDelOrderDet
         '
@@ -1607,6 +1613,7 @@ Partial Class FormSalesDelOrderDet
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
+        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatusSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1664,7 +1671,6 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1796,4 +1802,5 @@ Partial Class FormSalesDelOrderDet
     Friend WithEvents TxtCustomer As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnOrderNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCustomer As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNoteDel As DevExpress.XtraGrid.Columns.GridColumn
 End Class
