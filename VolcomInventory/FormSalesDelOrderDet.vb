@@ -171,6 +171,7 @@ Public Class FormSalesDelOrderDet
 
         'SO
         TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
+        MENote.Text = data.Rows(0)("sales_order_note").ToString
 
         'store data
         Dim id_comp_to As String = data.Rows(0)("id_store").ToString
@@ -1457,6 +1458,7 @@ Public Class FormSalesDelOrderDet
             GridColumnRemark.VisibleIndex = 5
             GridColumnOrderNumber.VisibleIndex = 6
             GridColumnCustomer.VisibleIndex = 7
+            GridColumnNoteDel.VisibleIndex = 8
             GVItemList.OptionsPrint.PrintFooter = False
             GVItemList.OptionsPrint.PrintHeader = False
 
@@ -1496,6 +1498,7 @@ Public Class FormSalesDelOrderDet
             GridColumnTo.Visible = False
             GridColumnOrderNumber.Visible = False
             GridColumnCustomer.Visible = False
+            GridColumnNoteDel.Visible = False
             GVItemList.OptionsPrint.PrintFooter = True
             GVItemList.OptionsPrint.PrintHeader = True
             Cursor = Cursors.Default
@@ -1532,22 +1535,24 @@ Public Class FormSalesDelOrderDet
             colIndex = 0
             For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
                 colIndex = colIndex + 1
-                If j = 0 Then 'code
+                If j = 0 Then 'code A
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
-                ElseIf j = 1 Then 'qty
+                ElseIf j = 1 Then ' B
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "pl_sales_order_del_det_qty")
-                ElseIf j = 2 Then 'number
+                ElseIf j = 2 Then 'number C
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "number").ToString
-                ElseIf j = 3 Then 'from
+                ElseIf j = 3 Then 'from D
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "from").ToString
-                ElseIf j = 4 Then 'to
+                ElseIf j = 4 Then 'to E
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "to").ToString
-                ElseIf j = 5 Then 'remark detil
+                ElseIf j = 5 Then 'remark detil F
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "pl_sales_order_del_det_note").ToString
-                ElseIf j = 6 Then 'order number
+                ElseIf j = 6 Then 'order number G
                     wSheet.Cells(rowIndex + 1, colIndex) = TxtOLShopNumber.Text
-                ElseIf j = 7 Then 'customer Name
+                ElseIf j = 7 Then 'customer Name H
                     wSheet.Cells(rowIndex + 1, colIndex) = TxtCustomer.Text
+                ElseIf j = 8 Then 'note I
+                    wSheet.Cells(rowIndex + 1, colIndex) = MENote.Text
                 End If
             Next
         Next
