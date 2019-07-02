@@ -48,8 +48,10 @@
     Private Sub BGetKurs_Click(sender As Object, e As EventArgs) Handles BGetKurs.Click
         Cursor = Cursors.WaitCursor
         Try
+            Net.ServicePointManager.SecurityProtocol = DirectCast(3072, Net.SecurityProtocolType)
+
             Dim webClient As New Net.WebClient
-            Dim result As String = webClient.DownloadString("http://fiskal.kemenkeu.go.id/dw-kurs-db.asp")
+            Dim result As String = webClient.DownloadString("https://fiskal.kemenkeu.go.id/dw-kurs-db.asp")
             Dim str_kurs_dec As String = Between(result, "Dolar Amerika Serikat (USD)</td><td class='text-right'>", " <img src='data/aimages").Replace(",", "").Replace(" ", "")
             '
             Dim query_sel As String = "SELECT CAST('" & str_kurs_dec & "' AS DECIMAL(13,2)) as kurs"

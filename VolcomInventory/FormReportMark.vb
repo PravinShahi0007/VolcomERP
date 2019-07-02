@@ -434,7 +434,7 @@
         ElseIf report_mark_type = "136" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase Request
             query = String.Format("SELECT id_report_status,purc_req_number as report_number FROM tb_purc_req WHERE id_purc_req = '{0}'", id_report)
         ElseIf report_mark_type = "138" Then
@@ -4283,7 +4283,7 @@
             FormBudgetExpenseProposeDet.actionLoad()
             FormBudgetExpensePropose.viewData()
             FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id_report)
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase request
             'auto completed
             If id_status_reportx = "3" Then
@@ -6076,7 +6076,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                FROM tb_m_design_changes_det det
 	                WHERE det.id_changes=" + id_report + "
                 ) src ON src.id_prod_demand_design = main.id_prod_demand_design
-                SET main.is_void=1; 
+                SET main.is_void=1, main.id_design_changes=" + id_report + "; 
                 /*void PO jika ada*/
                 UPDATE tb_prod_order main
                 INNER JOIN (

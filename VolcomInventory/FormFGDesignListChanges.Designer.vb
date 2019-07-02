@@ -135,6 +135,7 @@ Partial Class FormFGDesignListChanges
         '
         Me.MENote.Location = New System.Drawing.Point(91, 41)
         Me.MENote.Name = "MENote"
+        Me.MENote.Properties.MaxLength = 255
         Me.MENote.Size = New System.Drawing.Size(330, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
