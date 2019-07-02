@@ -136,7 +136,7 @@ Partial Class FormFGDesignListChanges
         Me.MENote.Location = New System.Drawing.Point(91, 41)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 255
-        Me.MENote.Size = New System.Drawing.Size(330, 41)
+        Me.MENote.Size = New System.Drawing.Size(527, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
@@ -156,7 +156,7 @@ Partial Class FormFGDesignListChanges
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(330, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(229, 20)
         Me.TxtNumber.TabIndex = 147
         '
         'LabelControl2
