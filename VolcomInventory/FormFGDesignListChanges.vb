@@ -152,20 +152,18 @@
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            MENote.Enabled = False
             PanelControlNav.Visible = True
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
-            MENote.Enabled = True
+            MENote.Properties.ReadOnly = False
             GVData.OptionsBehavior.ReadOnly = False
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
-            MENote.Enabled = False
             PanelControlNav.Visible = False
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
-            MENote.Enabled = False
+            MENote.Properties.ReadOnly = True
             GVData.OptionsBehavior.ReadOnly = True
         End If
 
@@ -183,11 +181,10 @@
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
             BtnConfirm.Visible = False
-            MENote.Enabled = False
             BtnPrint.Visible = False
             PanelControlNav.Visible = False
             BtnSaveChanges.Visible = False
-            MENote.Enabled = False
+            MENote.Properties.ReadOnly = True
             GVData.OptionsBehavior.ReadOnly = True
         End If
     End Sub
