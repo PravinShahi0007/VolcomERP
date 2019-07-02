@@ -795,6 +795,7 @@ Partial Class FormPurcReqDet
         Me.TETotal.Size = New System.Drawing.Size(287, 20)
         Me.TETotal.TabIndex = 145
         Me.TETotal.TabStop = False
+        Me.TETotal.Visible = False
         '
         'LabelControl3
         '
@@ -803,6 +804,7 @@ Partial Class FormPurcReqDet
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 144
         Me.LabelControl3.Text = "Total"
+        Me.LabelControl3.Visible = False
         '
         'PanelControlBottomLeft
         '
