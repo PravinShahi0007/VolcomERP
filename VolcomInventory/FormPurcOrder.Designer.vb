@@ -176,6 +176,7 @@ Partial Class FormPurcOrder
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -263,7 +264,7 @@ Partial Class FormPurcOrder
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn8, Me.GridColumn49, Me.GridColumn9, Me.GridColumn72, Me.GridColumn71, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn44, Me.GridColumn40, Me.GridColumn39, Me.GridColumn23, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn43, Me.GridColumn47, Me.GridColumn48, Me.GridColumn12, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn24, Me.GridColumn25, Me.GridColumn38})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn8, Me.GridColumn49, Me.GridColumn9, Me.GridColumn72, Me.GridColumn71, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn44, Me.GridColumn40, Me.GridColumn39, Me.GridColumn23, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn43, Me.GridColumn47, Me.GridColumn48, Me.GridColumn12, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn24, Me.GridColumn25, Me.GridColumn38, Me.GridColumn73})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AlwaysVisible = True
@@ -312,8 +313,9 @@ Partial Class FormPurcOrder
         Me.GridColumn9.FieldName = "purc_req_number"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.AllowFocus = False
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.VisibleIndex = 4
         Me.GridColumn9.Width = 98
         '
         'GridColumn72
@@ -321,14 +323,18 @@ Partial Class FormPurcOrder
         Me.GridColumn72.Caption = "ID Vendor Type"
         Me.GridColumn72.FieldName = "id_vendor_type"
         Me.GridColumn72.Name = "GridColumn72"
+        Me.GridColumn72.OptionsColumn.AllowEdit = False
+        Me.GridColumn72.OptionsColumn.AllowFocus = False
         '
         'GridColumn71
         '
         Me.GridColumn71.Caption = "Vendor Type"
         Me.GridColumn71.FieldName = "vendor_type"
         Me.GridColumn71.Name = "GridColumn71"
+        Me.GridColumn71.OptionsColumn.AllowEdit = False
+        Me.GridColumn71.OptionsColumn.AllowFocus = False
         Me.GridColumn71.Visible = True
-        Me.GridColumn71.VisibleIndex = 4
+        Me.GridColumn71.VisibleIndex = 3
         '
         'GridColumn20
         '
@@ -344,8 +350,9 @@ Partial Class FormPurcOrder
         Me.GridColumn21.FieldName = "item_desc"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
+        Me.GridColumn21.OptionsColumn.AllowFocus = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 8
+        Me.GridColumn21.VisibleIndex = 7
         Me.GridColumn21.Width = 78
         '
         'GridColumn34
@@ -354,8 +361,10 @@ Partial Class FormPurcOrder
         Me.GridColumn34.FieldName = "uom"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.OptionsColumn.AllowEdit = False
+        Me.GridColumn34.OptionsColumn.AllowFocus = False
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 9
+        Me.GridColumn34.Width = 51
         '
         'GridColumn22
         '
@@ -365,6 +374,7 @@ Partial Class FormPurcOrder
         Me.GridColumn22.FieldName = "qty_pr"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
+        Me.GridColumn22.OptionsColumn.AllowFocus = False
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 11
         Me.GridColumn22.Width = 83
@@ -378,6 +388,7 @@ Partial Class FormPurcOrder
         Me.GridColumn33.FieldName = "qty_po"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.OptionsColumn.AllowFocus = False
         '
         'RITEQty
         '
@@ -394,6 +405,7 @@ Partial Class FormPurcOrder
         Me.GridColumn44.FieldName = "id_report_status"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.OptionsColumn.AllowEdit = False
+        Me.GridColumn44.OptionsColumn.AllowFocus = False
         '
         'GridColumn40
         '
@@ -401,6 +413,7 @@ Partial Class FormPurcOrder
         Me.GridColumn40.FieldName = "id_item_type"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.OptionsColumn.AllowEdit = False
+        Me.GridColumn40.OptionsColumn.AllowFocus = False
         '
         'GridColumn39
         '
@@ -408,6 +421,7 @@ Partial Class FormPurcOrder
         Me.GridColumn39.FieldName = "item_type"
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.OptionsColumn.AllowEdit = False
+        Me.GridColumn39.OptionsColumn.AllowFocus = False
         '
         'GridColumn23
         '
@@ -417,6 +431,7 @@ Partial Class FormPurcOrder
         Me.GridColumn23.FieldName = "latest_price"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
+        Me.GridColumn23.OptionsColumn.AllowFocus = False
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 10
         '
@@ -428,6 +443,7 @@ Partial Class FormPurcOrder
         Me.GridColumn18.FieldName = "val_pr"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.AllowFocus = False
         Me.GridColumn18.Width = 78
         '
         'GridColumn10
@@ -438,8 +454,9 @@ Partial Class FormPurcOrder
         Me.GridColumn10.FieldName = "pr_created"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.AllowFocus = False
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.VisibleIndex = 2
         Me.GridColumn10.Width = 81
         '
         'GridColumn11
@@ -448,8 +465,9 @@ Partial Class FormPurcOrder
         Me.GridColumn11.FieldName = "departement"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.AllowFocus = False
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.VisibleIndex = 1
         Me.GridColumn11.Width = 81
         '
         'GridColumn43
@@ -458,6 +476,7 @@ Partial Class FormPurcOrder
         Me.GridColumn43.FieldName = "status_po"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.OptionsColumn.AllowEdit = False
+        Me.GridColumn43.OptionsColumn.AllowFocus = False
         Me.GridColumn43.Width = 84
         '
         'GridColumn47
@@ -466,8 +485,9 @@ Partial Class FormPurcOrder
         Me.GridColumn47.FieldName = "ship_destination"
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.OptionsColumn.AllowEdit = False
+        Me.GridColumn47.OptionsColumn.AllowFocus = False
         Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 6
+        Me.GridColumn47.VisibleIndex = 5
         Me.GridColumn47.Width = 107
         '
         'GridColumn48
@@ -476,8 +496,9 @@ Partial Class FormPurcOrder
         Me.GridColumn48.FieldName = "ship_address"
         Me.GridColumn48.Name = "GridColumn48"
         Me.GridColumn48.OptionsColumn.AllowEdit = False
+        Me.GridColumn48.OptionsColumn.AllowFocus = False
         Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 7
+        Me.GridColumn48.VisibleIndex = 6
         Me.GridColumn48.Width = 92
         '
         'GridColumn12
@@ -486,6 +507,7 @@ Partial Class FormPurcOrder
         Me.GridColumn12.FieldName = "created_by"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.AllowFocus = False
         '
         'GridColumn15
         '
@@ -493,6 +515,7 @@ Partial Class FormPurcOrder
         Me.GridColumn15.FieldName = "date_last_upd"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.AllowFocus = False
         '
         'GridColumn16
         '
@@ -500,6 +523,7 @@ Partial Class FormPurcOrder
         Me.GridColumn16.FieldName = "last_upd_by"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.AllowFocus = False
         '
         'GridColumn17
         '
@@ -509,6 +533,7 @@ Partial Class FormPurcOrder
         Me.GridColumn17.FieldName = "qty_po_created"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.OptionsColumn.AllowFocus = False
         Me.GridColumn17.Width = 78
         '
         'GridColumn19
@@ -519,6 +544,7 @@ Partial Class FormPurcOrder
         Me.GridColumn19.FieldName = "qty_rec"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.AllowFocus = False
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 12
         Me.GridColumn19.Width = 78
@@ -531,6 +557,7 @@ Partial Class FormPurcOrder
         Me.GridColumn24.FieldName = "diff_rec_po"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
+        Me.GridColumn24.OptionsColumn.AllowFocus = False
         Me.GridColumn24.UnboundExpression = "[qty_rec] - [qty_po_created]"
         Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn24.Visible = True
@@ -545,6 +572,7 @@ Partial Class FormPurcOrder
         Me.GridColumn25.FieldName = "diff_rec_req"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.OptionsColumn.AllowFocus = False
         Me.GridColumn25.UnboundExpression = "[qty_rec] - [qty_pr]"
         Me.GridColumn25.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn25.Visible = True
@@ -557,8 +585,7 @@ Partial Class FormPurcOrder
         Me.GridColumn38.FieldName = "status_val"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.OptionsColumn.AllowEdit = False
-        Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 1
+        Me.GridColumn38.OptionsColumn.AllowFocus = False
         Me.GridColumn38.Width = 87
         '
         'RICECheck
@@ -1630,6 +1657,17 @@ Partial Class FormPurcOrder
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
+        'GridColumn73
+        '
+        Me.GridColumn73.Caption = "Item Detail"
+        Me.GridColumn73.FieldName = "item_detail"
+        Me.GridColumn73.Name = "GridColumn73"
+        Me.GridColumn73.OptionsColumn.AllowEdit = False
+        Me.GridColumn73.OptionsColumn.AllowFocus = False
+        Me.GridColumn73.Visible = True
+        Me.GridColumn73.VisibleIndex = 8
+        Me.GridColumn73.Width = 140
+        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1860,4 +1898,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn72 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn71 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
