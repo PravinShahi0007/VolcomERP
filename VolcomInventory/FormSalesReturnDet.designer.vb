@@ -209,6 +209,7 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCreateReturn = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -691,6 +692,7 @@ Partial Class FormSalesReturnDet
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnTest)
+        Me.PanelControl3.Controls.Add(Me.BtnCreateReturn)
         Me.PanelControl3.Controls.Add(Me.BtnCreateReturnNonList)
         Me.PanelControl3.Controls.Add(Me.BtnCreateNonStock)
         Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
@@ -711,7 +713,7 @@ Partial Class FormSalesReturnDet
         'BtnTest
         '
         Me.BtnTest.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnTest.Location = New System.Drawing.Point(372, 2)
+        Me.BtnTest.Location = New System.Drawing.Point(495, 2)
         Me.BtnTest.Name = "BtnTest"
         Me.BtnTest.Size = New System.Drawing.Size(75, 34)
         Me.BtnTest.TabIndex = 12
@@ -2154,6 +2156,20 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
         '
+        'BtnCreateReturn
+        '
+        Me.BtnCreateReturn.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnCreateReturn.Image = CType(resources.GetObject("BtnCreateReturn.Image"), System.Drawing.Image)
+        Me.BtnCreateReturn.ImageIndex = 0
+        Me.BtnCreateReturn.Location = New System.Drawing.Point(372, 2)
+        Me.BtnCreateReturn.LookAndFeel.SkinName = "iMaginary"
+        Me.BtnCreateReturn.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateReturn.Name = "BtnCreateReturn"
+        Me.BtnCreateReturn.Size = New System.Drawing.Size(123, 34)
+        Me.BtnCreateReturn.TabIndex = 28
+        Me.BtnCreateReturn.Text = "Create Return"
+        Me.BtnCreateReturn.Visible = False
+        '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2455,4 +2471,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnno_stock As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CENoStock As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BtnCreateReturnNonList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCreateReturn As DevExpress.XtraEditors.SimpleButton
 End Class

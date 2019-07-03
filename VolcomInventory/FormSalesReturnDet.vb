@@ -96,6 +96,7 @@ Public Class FormSalesReturnDet
             BtnBrowseRO.Enabled = False
             BtnInfoSrs.Enabled = True
             BMark.Enabled = True
+            BtnCreateReturn.Visible = True
             BtnCreateReturnNonList.Visible = True
             BtnCreateNonStock.Visible = True
             DDBPrint.Enabled = True
@@ -196,6 +197,11 @@ Public Class FormSalesReturnDet
 
 
         'color form
+        If is_non_list = "-1" Then
+            Text = "Return"
+            LookAndFeel.UseDefaultLookAndFeel = True
+        End If
+
         If is_non_list = "1" Then
             Text = "Return Non List"
             LookAndFeel.UseDefaultLookAndFeel = False
@@ -2593,6 +2599,8 @@ Public Class FormSalesReturnDet
         DDBPrint.Enabled = False
         BtnSave.Enabled = True
         BtnXlsBOF.Visible = False
+        BtnCreateReturn.Visible = False
+        BtnCreateReturnNonList.Visible = False
         BtnCreateNonStock.Visible = False
         PanelNavBarcode.Enabled = True
         PanelNavBarcodeProb.Enabled = True
@@ -2623,6 +2631,39 @@ Public Class FormSalesReturnDet
         BtnSave.Enabled = True
         BtnXlsBOF.Visible = False
         BtnBrowseContactTo.Enabled = True
+        BtnCreateReturn.Visible = False
+        BtnCreateReturnNonList.Visible = False
+        BtnCreateNonStock.Visible = False
+        PanelNavBarcode.Enabled = True
+        PanelNavBarcodeProb.Enabled = True
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateReturn_Click(sender As Object, e As EventArgs) Handles BtnCreateReturn.Click
+        Cursor = Cursors.WaitCursor
+        action = "ins"
+        id_ret_type = "1"
+        FormSalesReturnSelectRetType.ShowDialog()
+        is_non_list = "-1"
+        id_sales_return = "-1"
+        TxtReturnType.Text = "Return"
+        Dim store_ret_number As String = TxtStoreReturnNumber.Text
+        actionLoad()
+        TxtStoreReturnNumber.Text = store_ret_number
+        TxtSalesReturnNumber.Text = ""
+        TxtSalesReturnNumber.Text = ""
+        id_comp_contact_to = "-1"
+        TxtCodeCompTo.Text = ""
+        TxtNameCompTo.Text = ""
+        BtnPrint.Enabled = False
+        BMark.Enabled = False
+        BtnAttachment.Enabled = False
+        DEForm.Text = view_date(0)
+        DDBPrint.Enabled = False
+        BtnSave.Enabled = True
+        BtnXlsBOF.Visible = False
+        BtnBrowseContactTo.Enabled = True
+        BtnCreateReturn.Visible = False
         BtnCreateReturnNonList.Visible = False
         BtnCreateNonStock.Visible = False
         PanelNavBarcode.Enabled = True
