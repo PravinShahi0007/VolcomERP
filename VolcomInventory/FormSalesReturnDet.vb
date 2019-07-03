@@ -2361,7 +2361,21 @@ Public Class FormSalesReturnDet
             Dim code As String = addSlashes(TxtScanProb.Text)
 
             If is_scan_prob = "1" Then 'scan
-                Dim query As String = "CALL view_scan_code_active('AND list.code=''" + code + "''')"
+                'filter id product
+                Dim code12 As String = ""
+                If code.Length >= 12 Then
+                    code12 = code.Substring(0, 12)
+                Else
+                    code12 = code
+                End If
+                Dim id_product_find As String = "-1"
+                Try
+                    id_product_find = execute_query("SELECT id_product FROM tb_m_product p WHERE p.product_full_code='" + code12 + "'", 0, True, "", "", "", "")
+                Catch ex As Exception
+                    id_product_find = "-1"
+                End Try
+
+                Dim query As String = "CALL view_scan_code_active('AND list.code=''" + code + "'''," + id_product_find + ")"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count > 0 Then
                     'check duplicate

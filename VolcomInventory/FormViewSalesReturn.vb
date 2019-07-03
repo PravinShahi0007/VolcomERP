@@ -122,7 +122,7 @@
         Catch ex As Exception
         End Try
         Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, rp.scanned_code AS `code`,
-        d.design_display_name AS `name`, cd.code_detail_name AS `size` 
+        d.design_display_name AS `name`, cd.code_detail_name AS `size` , rp.is_unique_not_found, rp.is_no_stock, rp.remark
         FROM tb_sales_return_problem rp
         INNER JOIN tb_m_product p ON p.id_product = rp.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product

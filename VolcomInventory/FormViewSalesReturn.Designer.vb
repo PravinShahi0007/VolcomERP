@@ -31,6 +31,10 @@ Partial Class FormViewSalesReturn
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtRetType = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtOLStoreOrder = New DevExpress.XtraEditors.TextEdit()
         Me.TxtOrderStatus = New DevExpress.XtraEditors.TextEdit()
         Me.LabelOrderStatus = New DevExpress.XtraEditors.LabelControl()
         Me.TxtStoreReturnNumber = New DevExpress.XtraEditors.TextEdit()
@@ -127,14 +131,14 @@ Partial Class FormViewSalesReturn
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_unique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnunique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GroupControlStatus = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtOLStoreOrder = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtRetType = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnremarknostock = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,6 +153,8 @@ Partial Class FormViewSalesReturn
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrderStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStoreReturnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSalesReturnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,12 +195,11 @@ Partial Class FormViewSalesReturn
         Me.XTPProblem.SuspendLayout()
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlStatus.SuspendLayout()
-        CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -328,6 +333,40 @@ Partial Class FormViewSalesReturn
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 173)
         Me.PanelControlTopRight.TabIndex = 10009
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(7, 89)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(81, 13)
+        Me.LabelControl10.TabIndex = 10008
+        Me.LabelControl10.Text = "OL Store Order#"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(7, 115)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl6.TabIndex = 10007
+        Me.LabelControl6.Text = "Ret. Type"
+        '
+        'TxtRetType
+        '
+        Me.TxtRetType.Location = New System.Drawing.Point(104, 112)
+        Me.TxtRetType.Name = "TxtRetType"
+        Me.TxtRetType.Properties.ReadOnly = True
+        Me.TxtRetType.Size = New System.Drawing.Size(182, 20)
+        Me.TxtRetType.TabIndex = 10006
+        '
+        'TxtOLStoreOrder
+        '
+        Me.TxtOLStoreOrder.Location = New System.Drawing.Point(104, 86)
+        Me.TxtOLStoreOrder.Name = "TxtOLStoreOrder"
+        Me.TxtOLStoreOrder.Properties.ReadOnly = True
+        Me.TxtOLStoreOrder.Size = New System.Drawing.Size(182, 20)
+        Me.TxtOLStoreOrder.TabIndex = 10005
         '
         'TxtOrderStatus
         '
@@ -569,7 +608,7 @@ Partial Class FormViewSalesReturn
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XTCReturn)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
         Me.SplitContainerControl1.Size = New System.Drawing.Size(911, 451)
-        Me.SplitContainerControl1.SplitterPosition = 201
+        Me.SplitContainerControl1.SplitterPosition = 193
         Me.SplitContainerControl1.TabIndex = 191
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
@@ -581,7 +620,7 @@ Partial Class FormViewSalesReturn
         Me.GroupControlListItem.Enabled = False
         Me.GroupControlListItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListItem.Name = "GroupControlListItem"
-        Me.GroupControlListItem.Size = New System.Drawing.Size(911, 201)
+        Me.GroupControlListItem.Size = New System.Drawing.Size(911, 193)
         Me.GroupControlListItem.TabIndex = 3
         Me.GroupControlListItem.Text = "Summary"
         '
@@ -591,7 +630,7 @@ Partial Class FormViewSalesReturn
         Me.XTCReturnSummary.Location = New System.Drawing.Point(21, 2)
         Me.XTCReturnSummary.Name = "XTCReturnSummary"
         Me.XTCReturnSummary.SelectedTabPage = Me.XTPReturnItem
-        Me.XTCReturnSummary.Size = New System.Drawing.Size(888, 197)
+        Me.XTCReturnSummary.Size = New System.Drawing.Size(888, 189)
         Me.XTCReturnSummary.TabIndex = 6
         Me.XTCReturnSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturnItem, Me.XTPProblemItem})
         '
@@ -599,7 +638,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPReturnItem.Controls.Add(Me.GCItemList)
         Me.XTPReturnItem.Name = "XTPReturnItem"
-        Me.XTPReturnItem.Size = New System.Drawing.Size(882, 169)
+        Me.XTPReturnItem.Size = New System.Drawing.Size(882, 161)
         Me.XTPReturnItem.Text = "Return Item"
         '
         'GCItemList
@@ -610,7 +649,7 @@ Partial Class FormViewSalesReturn
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(882, 169)
+        Me.GCItemList.Size = New System.Drawing.Size(882, 161)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -846,7 +885,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPProblemItem.Controls.Add(Me.GCProbSum)
         Me.XTPProblemItem.Name = "XTPProblemItem"
-        Me.XTPProblemItem.Size = New System.Drawing.Size(883, 169)
+        Me.XTPProblemItem.Size = New System.Drawing.Size(882, 161)
         Me.XTPProblemItem.Text = "Non Stock Item"
         '
         'GCProbSum
@@ -856,7 +895,7 @@ Partial Class FormViewSalesReturn
         Me.GCProbSum.MainView = Me.GVProbSum
         Me.GCProbSum.Name = "GCProbSum"
         Me.GCProbSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemSpinEdit4})
-        Me.GCProbSum.Size = New System.Drawing.Size(883, 169)
+        Me.GCProbSum.Size = New System.Drawing.Size(882, 161)
         Me.GCProbSum.TabIndex = 8
         Me.GCProbSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbSum})
         '
@@ -1010,7 +1049,7 @@ Partial Class FormViewSalesReturn
         Me.XTCReturn.Location = New System.Drawing.Point(0, 0)
         Me.XTCReturn.Name = "XTCReturn"
         Me.XTCReturn.SelectedTabPage = Me.XTPScan
-        Me.XTCReturn.Size = New System.Drawing.Size(911, 244)
+        Me.XTCReturn.Size = New System.Drawing.Size(911, 252)
         Me.XTCReturn.TabIndex = 0
         Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPProblem})
         '
@@ -1018,7 +1057,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(905, 216)
+        Me.XTPScan.Size = New System.Drawing.Size(905, 224)
         Me.XTPScan.Text = "Return Product Detail"
         '
         'GroupControlScannedItem
@@ -1029,7 +1068,7 @@ Partial Class FormViewSalesReturn
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(905, 216)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(905, 224)
         Me.GroupControlScannedItem.TabIndex = 3
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -1040,7 +1079,7 @@ Partial Class FormViewSalesReturn
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(882, 212)
+        Me.GCBarcode.Size = New System.Drawing.Size(882, 220)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1157,7 +1196,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPProblem.Controls.Add(Me.GCBarcodeProb)
         Me.XTPProblem.Name = "XTPProblem"
-        Me.XTPProblem.Size = New System.Drawing.Size(905, 265)
+        Me.XTPProblem.Size = New System.Drawing.Size(905, 224)
         Me.XTPProblem.Text = "Non Stock Detail"
         '
         'GCBarcodeProb
@@ -1166,14 +1205,14 @@ Partial Class FormViewSalesReturn
         Me.GCBarcodeProb.Location = New System.Drawing.Point(0, 0)
         Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
         Me.GCBarcodeProb.Name = "GCBarcodeProb"
-        Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3})
-        Me.GCBarcodeProb.Size = New System.Drawing.Size(905, 265)
+        Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3, Me.RepositoryItemCheckEdit4})
+        Me.GCBarcodeProb.Size = New System.Drawing.Size(905, 224)
         Me.GCBarcodeProb.TabIndex = 7
         Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
         '
         'GVBarcodeProb
         '
-        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnis_unique_not_found, Me.GridColumnunique_not_found, Me.GridColumnremarknostock})
         Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
         Me.GVBarcodeProb.Name = "GVBarcodeProb"
         Me.GVBarcodeProb.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -1287,6 +1326,32 @@ Partial Class FormViewSalesReturn
         Me.GridColumn14.VisibleIndex = 3
         Me.GridColumn14.Width = 59
         '
+        'GridColumnis_unique_not_found
+        '
+        Me.GridColumnis_unique_not_found.Caption = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.FieldName = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.Name = "GridColumnis_unique_not_found"
+        Me.GridColumnis_unique_not_found.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnunique_not_found
+        '
+        Me.GridColumnunique_not_found.Caption = "Unique Not Found"
+        Me.GridColumnunique_not_found.ColumnEdit = Me.RepositoryItemCheckEdit4
+        Me.GridColumnunique_not_found.FieldName = "unique_not_found"
+        Me.GridColumnunique_not_found.Name = "GridColumnunique_not_found"
+        Me.GridColumnunique_not_found.OptionsColumn.AllowEdit = False
+        Me.GridColumnunique_not_found.UnboundExpression = "Iif([is_unique_not_found] = 1, 'Yes', 'No')"
+        Me.GridColumnunique_not_found.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnunique_not_found.Visible = True
+        Me.GridColumnunique_not_found.VisibleIndex = 5
+        '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        Me.RepositoryItemCheckEdit4.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit4.ValueUnchecked = "No"
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -1322,39 +1387,14 @@ Partial Class FormViewSalesReturn
         Me.BtnUpdateStatus.TabIndex = 5
         Me.BtnUpdateStatus.Text = "Update Order Status"
         '
-        'TxtOLStoreOrder
+        'GridColumnremarknostock
         '
-        Me.TxtOLStoreOrder.Location = New System.Drawing.Point(104, 86)
-        Me.TxtOLStoreOrder.Name = "TxtOLStoreOrder"
-        Me.TxtOLStoreOrder.Properties.ReadOnly = True
-        Me.TxtOLStoreOrder.Size = New System.Drawing.Size(182, 20)
-        Me.TxtOLStoreOrder.TabIndex = 10005
-        '
-        'TxtRetType
-        '
-        Me.TxtRetType.Location = New System.Drawing.Point(104, 112)
-        Me.TxtRetType.Name = "TxtRetType"
-        Me.TxtRetType.Properties.ReadOnly = True
-        Me.TxtRetType.Size = New System.Drawing.Size(182, 20)
-        Me.TxtRetType.TabIndex = 10006
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(7, 115)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(48, 13)
-        Me.LabelControl6.TabIndex = 10007
-        Me.LabelControl6.Text = "Ret. Type"
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(7, 89)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(81, 13)
-        Me.LabelControl10.TabIndex = 10008
-        Me.LabelControl10.Text = "OL Store Order#"
+        Me.GridColumnremarknostock.Caption = "Remark"
+        Me.GridColumnremarknostock.FieldName = "remark"
+        Me.GridColumnremarknostock.Name = "GridColumnremarknostock"
+        Me.GridColumnremarknostock.OptionsColumn.AllowEdit = False
+        Me.GridColumnremarknostock.Visible = True
+        Me.GridColumnremarknostock.VisibleIndex = 4
         '
         'FormViewSalesReturn
         '
@@ -1390,6 +1430,8 @@ Partial Class FormViewSalesReturn
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrderStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStoreReturnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSalesReturnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1431,12 +1473,11 @@ Partial Class FormViewSalesReturn
         Me.XTPProblem.ResumeLayout(False)
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlStatus.ResumeLayout(False)
-        CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1556,4 +1597,8 @@ Partial Class FormViewSalesReturn
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtRetType As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtOLStoreOrder As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnis_unique_not_found As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnunique_not_found As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnremarknostock As DevExpress.XtraGrid.Columns.GridColumn
 End Class

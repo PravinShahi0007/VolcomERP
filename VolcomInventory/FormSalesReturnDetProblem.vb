@@ -61,6 +61,8 @@
                 newRow("name") = TxtDesign.Text
                 newRow("size") = TxtSize.Text
                 newRow("remark") = TxtRemark.Text
+                newRow("is_unique_not_found") = is_unique_not_found
+                newRow("is_no_stock") = is_no_stock
                 TryCast(FormSalesReturnDet.GCBarcodeProb.DataSource, DataTable).Rows.Add(newRow)
                 FormSalesReturnDet.GCBarcodeProb.RefreshDataSource()
                 FormSalesReturnDet.GVBarcodeProb.RefreshData()
