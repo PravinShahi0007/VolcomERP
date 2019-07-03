@@ -96,6 +96,7 @@ Public Class FormSalesReturnDet
             BtnBrowseRO.Enabled = False
             BtnInfoSrs.Enabled = True
             BMark.Enabled = True
+            BtnCreateReturnNonList.Visible = True
             BtnCreateNonStock.Visible = True
             DDBPrint.Enabled = True
 
@@ -2575,6 +2576,7 @@ Public Class FormSalesReturnDet
     End Sub
 
     Private Sub BtnCreateNonStock_Click(sender As Object, e As EventArgs) Handles BtnCreateNonStock.Click
+        Cursor = Cursors.WaitCursor
         action = "ins"
         id_ret_type = "2"
         id_sales_return = "-1"
@@ -2594,5 +2596,37 @@ Public Class FormSalesReturnDet
         BtnCreateNonStock.Visible = False
         PanelNavBarcode.Enabled = True
         PanelNavBarcodeProb.Enabled = True
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateReturnNonList_Click(sender As Object, e As EventArgs) Handles BtnCreateReturnNonList.Click
+        Cursor = Cursors.WaitCursor
+        action = "ins"
+        id_ret_type = "1"
+        FormSalesReturnSelectRetType.ShowDialog()
+        is_non_list = "1"
+        id_sales_return = "-1"
+        TxtReturnType.Text = "Return Non List"
+        Dim store_ret_number As String = TxtStoreReturnNumber.Text
+        actionLoad()
+        TxtStoreReturnNumber.Text = store_ret_number
+        TxtSalesReturnNumber.Text = ""
+        TxtSalesReturnNumber.Text = ""
+        id_comp_contact_to = "-1"
+        TxtCodeCompTo.Text = ""
+        TxtNameCompTo.Text = ""
+        BtnPrint.Enabled = False
+        BMark.Enabled = False
+        BtnAttachment.Enabled = False
+        DEForm.Text = view_date(0)
+        DDBPrint.Enabled = False
+        BtnSave.Enabled = True
+        BtnXlsBOF.Visible = False
+        BtnBrowseContactTo.Enabled = True
+        BtnCreateReturnNonList.Visible = False
+        BtnCreateNonStock.Visible = False
+        PanelNavBarcode.Enabled = True
+        PanelNavBarcodeProb.Enabled = True
+        Cursor = Cursors.Default
     End Sub
 End Class

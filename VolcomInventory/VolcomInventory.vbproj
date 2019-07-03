@@ -4297,6 +4297,12 @@
     <Compile Include="FormSalesReturnSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnSelectRetType.Designer.vb">
+      <DependentUpon>FormSalesReturnSelectRetType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnSelectRetType.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesTargetPropose.Designer.vb">
       <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>
     </Compile>
@@ -9232,6 +9238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnSearch.resx">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnSelectRetType.resx">
+      <DependentUpon>FormSalesReturnSelectRetType.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesTargetPropose.resx">
       <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>

@@ -62,6 +62,7 @@ Partial Class FormSalesReturnDet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnTest = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCreateReturnNonList = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNonStock = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
@@ -208,7 +209,6 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCreateReturnNonList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -711,12 +711,26 @@ Partial Class FormSalesReturnDet
         'BtnTest
         '
         Me.BtnTest.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnTest.Location = New System.Drawing.Point(403, 2)
+        Me.BtnTest.Location = New System.Drawing.Point(372, 2)
         Me.BtnTest.Name = "BtnTest"
         Me.BtnTest.Size = New System.Drawing.Size(75, 34)
         Me.BtnTest.TabIndex = 12
         Me.BtnTest.Text = "Test"
         Me.BtnTest.Visible = False
+        '
+        'BtnCreateReturnNonList
+        '
+        Me.BtnCreateReturnNonList.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnCreateReturnNonList.Image = CType(resources.GetObject("BtnCreateReturnNonList.Image"), System.Drawing.Image)
+        Me.BtnCreateReturnNonList.ImageIndex = 0
+        Me.BtnCreateReturnNonList.Location = New System.Drawing.Point(209, 2)
+        Me.BtnCreateReturnNonList.LookAndFeel.SkinName = "Office 2007 Green"
+        Me.BtnCreateReturnNonList.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateReturnNonList.Name = "BtnCreateReturnNonList"
+        Me.BtnCreateReturnNonList.Size = New System.Drawing.Size(163, 34)
+        Me.BtnCreateReturnNonList.TabIndex = 27
+        Me.BtnCreateReturnNonList.Text = "Create Return Non List"
+        Me.BtnCreateReturnNonList.Visible = False
         '
         'BtnCreateNonStock
         '
@@ -727,9 +741,9 @@ Partial Class FormSalesReturnDet
         Me.BtnCreateNonStock.LookAndFeel.SkinName = "Office 2007 Pink"
         Me.BtnCreateNonStock.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCreateNonStock.Name = "BtnCreateNonStock"
-        Me.BtnCreateNonStock.Size = New System.Drawing.Size(163, 34)
+        Me.BtnCreateNonStock.Size = New System.Drawing.Size(132, 34)
         Me.BtnCreateNonStock.TabIndex = 26
-        Me.BtnCreateNonStock.Text = "Create Non Stock Report"
+        Me.BtnCreateNonStock.Text = "Create Non Stock"
         Me.BtnCreateNonStock.Visible = False
         '
         'LargeImageCollection
@@ -1533,7 +1547,7 @@ Partial Class FormSalesReturnDet
         Me.XTPStorage.Controls.Add(Me.SCCStorage)
         Me.XTPStorage.Name = "XTPStorage"
         Me.XTPStorage.PageVisible = False
-        Me.XTPStorage.Size = New System.Drawing.Size(899, 201)
+        Me.XTPStorage.Size = New System.Drawing.Size(1162, 201)
         Me.XTPStorage.Text = "Save to Storage"
         '
         'SCCStorage
@@ -1546,7 +1560,7 @@ Partial Class FormSalesReturnDet
         Me.SCCStorage.Panel1.Text = "Panel1"
         Me.SCCStorage.Panel2.Controls.Add(Me.GroupControl1)
         Me.SCCStorage.Panel2.Text = "Panel2"
-        Me.SCCStorage.Size = New System.Drawing.Size(899, 201)
+        Me.SCCStorage.Size = New System.Drawing.Size(1162, 201)
         Me.SCCStorage.SplitterPosition = 900
         Me.SCCStorage.TabIndex = 0
         Me.SCCStorage.Text = "SplitContainerControl2"
@@ -1559,7 +1573,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlListStorage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlListStorage.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListStorage.Name = "GroupControlListStorage"
-        Me.GroupControlListStorage.Size = New System.Drawing.Size(894, 201)
+        Me.GroupControlListStorage.Size = New System.Drawing.Size(900, 201)
         Me.GroupControlListStorage.TabIndex = 0
         Me.GroupControlListStorage.Text = "Item Based On Cost"
         '
@@ -1569,7 +1583,7 @@ Partial Class FormSalesReturnDet
         Me.GCDrawer.Location = New System.Drawing.Point(20, 38)
         Me.GCDrawer.MainView = Me.GVDrawer
         Me.GCDrawer.Name = "GCDrawer"
-        Me.GCDrawer.Size = New System.Drawing.Size(872, 161)
+        Me.GCDrawer.Size = New System.Drawing.Size(878, 161)
         Me.GCDrawer.TabIndex = 4
         Me.GCDrawer.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDrawer, Me.GridView2})
         '
@@ -1681,7 +1695,7 @@ Partial Class FormSalesReturnDet
         Me.PanelNavStorage.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavStorage.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavStorage.Name = "PanelNavStorage"
-        Me.PanelNavStorage.Size = New System.Drawing.Size(872, 36)
+        Me.PanelNavStorage.Size = New System.Drawing.Size(878, 36)
         Me.PanelNavStorage.TabIndex = 3
         '
         'BtmDeleteStorage
@@ -1801,7 +1815,7 @@ Partial Class FormSalesReturnDet
         '
         Me.XTPNonStock.Controls.Add(Me.GroupControlProb)
         Me.XTPNonStock.Name = "XTPNonStock"
-        Me.XTPNonStock.Size = New System.Drawing.Size(905, 376)
+        Me.XTPNonStock.Size = New System.Drawing.Size(1168, 376)
         Me.XTPNonStock.Text = "Non Stock"
         '
         'GroupControlProb
@@ -1813,7 +1827,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlProb.Enabled = False
         Me.GroupControlProb.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlProb.Name = "GroupControlProb"
-        Me.GroupControlProb.Size = New System.Drawing.Size(905, 376)
+        Me.GroupControlProb.Size = New System.Drawing.Size(1168, 376)
         Me.GroupControlProb.TabIndex = 5
         Me.GroupControlProb.Text = "Unidentified Code"
         '
@@ -1825,7 +1839,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
         Me.GCBarcodeProb.Name = "GCBarcodeProb"
         Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3, Me.CENotFound, Me.CENoStock})
-        Me.GCBarcodeProb.Size = New System.Drawing.Size(883, 336)
+        Me.GCBarcodeProb.Size = New System.Drawing.Size(1146, 336)
         Me.GCBarcodeProb.TabIndex = 6
         Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
         '
@@ -2074,7 +2088,7 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavBarcodeProb.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavBarcodeProb.Name = "PanelNavBarcodeProb"
-        Me.PanelNavBarcodeProb.Size = New System.Drawing.Size(883, 36)
+        Me.PanelNavBarcodeProb.Size = New System.Drawing.Size(1146, 36)
         Me.PanelNavBarcodeProb.TabIndex = 2
         '
         'TxtScanProb
@@ -2100,7 +2114,7 @@ Partial Class FormSalesReturnDet
         Me.BDeleteProb.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDeleteProb.ImageIndex = 1
         Me.BDeleteProb.ImageList = Me.LargeImageCollection
-        Me.BDeleteProb.Location = New System.Drawing.Point(492, 0)
+        Me.BDeleteProb.Location = New System.Drawing.Point(755, 0)
         Me.BDeleteProb.Name = "BDeleteProb"
         Me.BDeleteProb.Size = New System.Drawing.Size(94, 36)
         Me.BDeleteProb.TabIndex = 8
@@ -2112,7 +2126,7 @@ Partial Class FormSalesReturnDet
         Me.BStopProb.Enabled = False
         Me.BStopProb.ImageIndex = 9
         Me.BStopProb.ImageList = Me.LargeImageCollection
-        Me.BStopProb.Location = New System.Drawing.Point(586, 0)
+        Me.BStopProb.Location = New System.Drawing.Point(849, 0)
         Me.BStopProb.Name = "BStopProb"
         Me.BStopProb.Size = New System.Drawing.Size(97, 36)
         Me.BStopProb.TabIndex = 7
@@ -2123,7 +2137,7 @@ Partial Class FormSalesReturnDet
         Me.BScanProb.Dock = System.Windows.Forms.DockStyle.Right
         Me.BScanProb.ImageIndex = 8
         Me.BScanProb.ImageList = Me.LargeImageCollection
-        Me.BScanProb.Location = New System.Drawing.Point(683, 0)
+        Me.BScanProb.Location = New System.Drawing.Point(946, 0)
         Me.BScanProb.Name = "BScanProb"
         Me.BScanProb.Size = New System.Drawing.Size(91, 36)
         Me.BScanProb.TabIndex = 6
@@ -2134,25 +2148,11 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddManual.ImageIndex = 0
         Me.BtnAddManual.ImageList = Me.LargeImageCollection
-        Me.BtnAddManual.Location = New System.Drawing.Point(774, 0)
+        Me.BtnAddManual.Location = New System.Drawing.Point(1037, 0)
         Me.BtnAddManual.Name = "BtnAddManual"
         Me.BtnAddManual.Size = New System.Drawing.Size(109, 36)
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
-        '
-        'BtnCreateReturnNonList
-        '
-        Me.BtnCreateReturnNonList.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnCreateReturnNonList.Image = CType(resources.GetObject("BtnCreateReturnNonList.Image"), System.Drawing.Image)
-        Me.BtnCreateReturnNonList.ImageIndex = 0
-        Me.BtnCreateReturnNonList.Location = New System.Drawing.Point(240, 2)
-        Me.BtnCreateReturnNonList.LookAndFeel.SkinName = "Office 2007 Green"
-        Me.BtnCreateReturnNonList.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnCreateReturnNonList.Name = "BtnCreateReturnNonList"
-        Me.BtnCreateReturnNonList.Size = New System.Drawing.Size(163, 34)
-        Me.BtnCreateReturnNonList.TabIndex = 27
-        Me.BtnCreateReturnNonList.Text = "Create Return Non List"
-        Me.BtnCreateReturnNonList.Visible = False
         '
         'FormSalesReturnDet
         '
