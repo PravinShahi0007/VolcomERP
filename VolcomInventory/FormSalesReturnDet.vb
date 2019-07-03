@@ -104,7 +104,7 @@ Public Class FormSalesReturnDet
 
             'query view based on edit id's
             Dim query As String = "SELECT a.is_non_list,a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, d.id_commerce_type,(d.id_drawer_def) AS `id_wh_drawer_store`,IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
-            query += "a.sales_return_note,a.sales_return_date, a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
+            query += "a.sales_return_note,a.sales_return_date, a.combine_number,a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
             query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, dw.wh_drawer, rc.wh_rack, loc.wh_locator, a.id_ret_type, rt.ret_type, so.sales_order_ol_shop_number, a.is_use_unique_code "
             query += "FROM tb_sales_return a "
             query += "INNER JOIN tb_sales_return_order b ON a.id_sales_return_order = b.id_sales_return_order "
@@ -140,6 +140,7 @@ Public Class FormSalesReturnDet
 
             DEForm.Text = view_date_from(data.Rows(0)("sales_return_datex").ToString, 0)
             TxtSalesReturnNumber.Text = data.Rows(0)("sales_return_number").ToString
+            TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
             MENote.Text = data.Rows(0)("sales_return_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_sales_return_order = data.Rows(0)("id_sales_return_order").ToString
@@ -157,6 +158,12 @@ Public Class FormSalesReturnDet
             id_drawer = data.Rows(0)("id_wh_drawer").ToString
             TEDrawer.Text = data.Rows(0)("wh_drawer_code").ToString
             id_ret_type = data.Rows(0)("id_ret_type").ToString
+            If id_ret_type = "2" Then
+                XTPCombine.PageEnabled = False
+            Else
+                XTPCombine.PageEnabled = True
+            End If
+
             TxtReturnType.Text = data.Rows(0)("ret_type").ToString
             TxtOLStoreOrder.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
             is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
@@ -257,6 +264,7 @@ Public Class FormSalesReturnDet
         'MEAdrressCompTo.Text = get_company_x(id_comp_to, 3)
 
         If id_ret_type = "2" Then 'for non stock
+            XTPCombine.PageEnabled = False
             id_comp_contact_to = id_store_contact_from
             TxtNameCompTo.Text = TxtNameCompFrom.Text
             TxtCodeCompTo.Text = TxtCodeCompFrom.Text
@@ -380,6 +388,36 @@ Public Class FormSalesReturnDet
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBarcodeProb.DataSource = data
         GVBarcodeProb.BestFitColumns()
+    End Sub
+
+    Sub viewCombine()
+        Cursor = Cursors.WaitCursor
+        If TxtCombineNumber.Text = "" And action = "upd" Then
+            BtnCombineReturn.Visible = True
+        Else
+            BtnCombineReturn.Visible = False
+        End If
+        Dim query As String = "SELECT rd.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        prc.id_design_price, rd.design_price, pt.design_price_type, SUM(rd.sales_return_det_qty) AS `sales_return_det_qty`
+        FROM tb_sales_return r
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
+        INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = rd.id_design_price
+        INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+        WHERE r.id_sales_return>0 AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
+        AND r.id_store_contact_from=" + id_store_contact_from + " AND r.id_report_status!=5 "
+        If BtnCombineReturn.Visible = True Then
+            query += "AND r.combine_number='' "
+        Else
+            query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
+        End If
+        query += "GROUP BY rd.id_product "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCombine.DataSource = data
+        GVCombine.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
 
@@ -2669,5 +2707,11 @@ Public Class FormSalesReturnDet
         PanelNavBarcode.Enabled = True
         PanelNavBarcodeProb.Enabled = True
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCReturnMain_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReturnMain.SelectedPageChanged
+        If XTCReturnMain.SelectedTabPageIndex = 2 Then
+            viewCombine()
+        End If
     End Sub
 End Class

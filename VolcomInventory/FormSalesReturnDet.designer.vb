@@ -210,6 +210,37 @@ Partial Class FormSalesReturnDet
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateReturn = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPCombine = New DevExpress.XtraTab.XtraTabPage()
+        Me.TxtCombineNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnCombineReturn = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCCombine = New DevExpress.XtraGrid.GridControl()
+        Me.GVCombine = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNoCombine = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeEanComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNameComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceTypeComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmountComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemarkComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumberComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFromComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnToComb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -294,6 +325,11 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCombine.SuspendLayout()
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -304,12 +340,14 @@ Partial Class FormSalesReturnDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1174, 147)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1174, 179)
         Me.GroupGeneralHeader.TabIndex = 185
         '
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtCombineNumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelOLStoreOrder)
         Me.PanelControlTopRight.Controls.Add(Me.TxtOLStoreOrder)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl6)
@@ -323,12 +361,12 @@ Partial Class FormSalesReturnDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(869, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 143)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 175)
         Me.PanelControlTopRight.TabIndex = 10009
         '
         'LabelOLStoreOrder
         '
-        Me.LabelOLStoreOrder.Location = New System.Drawing.Point(7, 87)
+        Me.LabelOLStoreOrder.Location = New System.Drawing.Point(7, 112)
         Me.LabelOLStoreOrder.Name = "LabelOLStoreOrder"
         Me.LabelOLStoreOrder.Size = New System.Drawing.Size(81, 13)
         Me.LabelOLStoreOrder.TabIndex = 10006
@@ -336,16 +374,16 @@ Partial Class FormSalesReturnDet
         '
         'TxtOLStoreOrder
         '
-        Me.TxtOLStoreOrder.Location = New System.Drawing.Point(104, 84)
+        Me.TxtOLStoreOrder.Location = New System.Drawing.Point(116, 109)
         Me.TxtOLStoreOrder.Name = "TxtOLStoreOrder"
         Me.TxtOLStoreOrder.Properties.ReadOnly = True
-        Me.TxtOLStoreOrder.Size = New System.Drawing.Size(182, 20)
+        Me.TxtOLStoreOrder.Size = New System.Drawing.Size(170, 20)
         Me.TxtOLStoreOrder.TabIndex = 10005
         '
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(7, 113)
+        Me.LabelControl6.Location = New System.Drawing.Point(7, 138)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl6.TabIndex = 10004
@@ -353,17 +391,17 @@ Partial Class FormSalesReturnDet
         '
         'TxtReturnType
         '
-        Me.TxtReturnType.Location = New System.Drawing.Point(104, 110)
+        Me.TxtReturnType.Location = New System.Drawing.Point(116, 135)
         Me.TxtReturnType.Name = "TxtReturnType"
         Me.TxtReturnType.Properties.ReadOnly = True
-        Me.TxtReturnType.Size = New System.Drawing.Size(182, 20)
+        Me.TxtReturnType.Size = New System.Drawing.Size(170, 20)
         Me.TxtReturnType.TabIndex = 10003
         '
         'TxtStoreReturnNumber
         '
-        Me.TxtStoreReturnNumber.Location = New System.Drawing.Point(104, 60)
+        Me.TxtStoreReturnNumber.Location = New System.Drawing.Point(116, 85)
         Me.TxtStoreReturnNumber.Name = "TxtStoreReturnNumber"
-        Me.TxtStoreReturnNumber.Size = New System.Drawing.Size(182, 20)
+        Me.TxtStoreReturnNumber.Size = New System.Drawing.Size(170, 20)
         Me.TxtStoreReturnNumber.TabIndex = 4
         '
         'LabelControl5
@@ -378,17 +416,17 @@ Partial Class FormSalesReturnDet
         'TxtSalesReturnNumber
         '
         Me.TxtSalesReturnNumber.EditValue = ""
-        Me.TxtSalesReturnNumber.Location = New System.Drawing.Point(104, 34)
+        Me.TxtSalesReturnNumber.Location = New System.Drawing.Point(116, 34)
         Me.TxtSalesReturnNumber.Name = "TxtSalesReturnNumber"
         Me.TxtSalesReturnNumber.Properties.EditValueChangedDelay = 1
         Me.TxtSalesReturnNumber.Properties.ReadOnly = True
-        Me.TxtSalesReturnNumber.Size = New System.Drawing.Size(182, 20)
+        Me.TxtSalesReturnNumber.Size = New System.Drawing.Size(170, 20)
         Me.TxtSalesReturnNumber.TabIndex = 8
         '
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(7, 63)
+        Me.LabelControl2.Location = New System.Drawing.Point(7, 88)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(90, 13)
         Me.LabelControl2.TabIndex = 10002
@@ -406,11 +444,11 @@ Partial Class FormSalesReturnDet
         'DEForm
         '
         Me.DEForm.EditValue = ""
-        Me.DEForm.Location = New System.Drawing.Point(104, 10)
+        Me.DEForm.Location = New System.Drawing.Point(116, 10)
         Me.DEForm.Name = "DEForm"
         Me.DEForm.Properties.EditValueChangedDelay = 1
         Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(182, 20)
+        Me.DEForm.Size = New System.Drawing.Size(170, 20)
         Me.DEForm.TabIndex = 162
         '
         'PanelControlTopLeft
@@ -436,7 +474,7 @@ Partial Class FormSalesReturnDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(450, 143)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(450, 175)
         Me.PanelControlTopLeft.TabIndex = 10008
         '
         'CENonList
@@ -512,7 +550,7 @@ Partial Class FormSalesReturnDet
         '
         'MEAdrressCompFrom
         '
-        Me.MEAdrressCompFrom.Location = New System.Drawing.Point(89, 141)
+        Me.MEAdrressCompFrom.Location = New System.Drawing.Point(89, 176)
         Me.MEAdrressCompFrom.Name = "MEAdrressCompFrom"
         Me.MEAdrressCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompFrom.Properties.Appearance.Options.UseFont = True
@@ -591,7 +629,7 @@ Partial Class FormSalesReturnDet
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 143)
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 178)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl3.TabIndex = 153
@@ -933,7 +971,7 @@ Partial Class FormSalesReturnDet
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XTCReturn)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1168, 376)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1168, 344)
         Me.SplitContainerControl1.SplitterPosition = 142
         Me.SplitContainerControl1.TabIndex = 188
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1305,7 +1343,7 @@ Partial Class FormSalesReturnDet
         Me.XTCReturn.Location = New System.Drawing.Point(0, 0)
         Me.XTCReturn.Name = "XTCReturn"
         Me.XTCReturn.SelectedTabPage = Me.XTPScan
-        Me.XTCReturn.Size = New System.Drawing.Size(1168, 229)
+        Me.XTCReturn.Size = New System.Drawing.Size(1168, 197)
         Me.XTCReturn.TabIndex = 0
         Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPStorage})
         '
@@ -1313,7 +1351,7 @@ Partial Class FormSalesReturnDet
         '
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1162, 201)
+        Me.XTPScan.Size = New System.Drawing.Size(1162, 169)
         Me.XTPScan.Text = "Return Product"
         '
         'GroupControlScannedItem
@@ -1325,7 +1363,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(1162, 201)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(1162, 169)
         Me.GroupControlScannedItem.TabIndex = 3
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -1336,7 +1374,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(1140, 164)
+        Me.GCBarcode.Size = New System.Drawing.Size(1140, 132)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1799,18 +1837,18 @@ Partial Class FormSalesReturnDet
         'XTCReturnMain
         '
         Me.XTCReturnMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCReturnMain.Location = New System.Drawing.Point(0, 147)
+        Me.XTCReturnMain.Location = New System.Drawing.Point(0, 179)
         Me.XTCReturnMain.Name = "XTCReturnMain"
         Me.XTCReturnMain.SelectedTabPage = Me.XTPReturn
-        Me.XTCReturnMain.Size = New System.Drawing.Size(1174, 404)
+        Me.XTCReturnMain.Size = New System.Drawing.Size(1174, 372)
         Me.XTCReturnMain.TabIndex = 193
-        Me.XTCReturnMain.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturn, Me.XTPNonStock})
+        Me.XTCReturnMain.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturn, Me.XTPNonStock, Me.XTPCombine})
         '
         'XTPReturn
         '
         Me.XTPReturn.Controls.Add(Me.SplitContainerControl1)
         Me.XTPReturn.Name = "XTPReturn"
-        Me.XTPReturn.Size = New System.Drawing.Size(1168, 376)
+        Me.XTPReturn.Size = New System.Drawing.Size(1168, 344)
         Me.XTPReturn.Text = "Return"
         '
         'XTPNonStock
@@ -2170,6 +2208,338 @@ Partial Class FormSalesReturnDet
         Me.BtnCreateReturn.Text = "Create Return"
         Me.BtnCreateReturn.Visible = False
         '
+        'XTPCombine
+        '
+        Me.XTPCombine.Controls.Add(Me.GCCombine)
+        Me.XTPCombine.Controls.Add(Me.BtnCombineReturn)
+        Me.XTPCombine.Name = "XTPCombine"
+        Me.XTPCombine.Size = New System.Drawing.Size(1168, 344)
+        Me.XTPCombine.Text = "Combine Return"
+        '
+        'TxtCombineNumber
+        '
+        Me.TxtCombineNumber.EditValue = ""
+        Me.TxtCombineNumber.Location = New System.Drawing.Point(116, 58)
+        Me.TxtCombineNumber.Name = "TxtCombineNumber"
+        Me.TxtCombineNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtCombineNumber.Properties.ReadOnly = True
+        Me.TxtCombineNumber.Size = New System.Drawing.Size(170, 20)
+        Me.TxtCombineNumber.TabIndex = 10007
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(7, 62)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(97, 13)
+        Me.LabelControl10.TabIndex = 10008
+        Me.LabelControl10.Text = "Combine Return No."
+        '
+        'BtnCombineReturn
+        '
+        Me.BtnCombineReturn.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCombineReturn.Location = New System.Drawing.Point(0, 316)
+        Me.BtnCombineReturn.Name = "BtnCombineReturn"
+        Me.BtnCombineReturn.Size = New System.Drawing.Size(1168, 28)
+        Me.BtnCombineReturn.TabIndex = 0
+        Me.BtnCombineReturn.Text = "Combine Return"
+        '
+        'GCCombine
+        '
+        Me.GCCombine.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCombine.Location = New System.Drawing.Point(0, 0)
+        Me.GCCombine.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.GCCombine.MainView = Me.GVCombine
+        Me.GCCombine.Name = "GCCombine"
+        Me.GCCombine.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit4})
+        Me.GCCombine.Size = New System.Drawing.Size(1168, 316)
+        Me.GCCombine.TabIndex = 6
+        Me.GCCombine.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCombine})
+        '
+        'GVCombine
+        '
+        Me.GVCombine.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoCombine, Me.GridColumnCodeComb, Me.GridColumnCodeEanComb, Me.GridColumnNameComb, Me.GridColumnSizeComb, Me.GridColumnPriceTypeComb, Me.GridColumn22, Me.GridColumn23, Me.GridColumnQtyComb, Me.GridColumn25, Me.GridColumnPriceComb, Me.GridColumnAmountComb, Me.GridColumnRemarkComb, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumnNumberComb, Me.GridColumnFromComb, Me.GridColumnToComb, Me.GridColumn39})
+        Me.GVCombine.GridControl = Me.GCCombine
+        Me.GVCombine.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.GridColumnQtyComb, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_limit", Me.GridColumn25, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_amount", Me.GridColumnAmountComb, "{0:n2}")})
+        Me.GVCombine.IndicatorWidth = 30
+        Me.GVCombine.Name = "GVCombine"
+        Me.GVCombine.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVCombine.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVCombine.OptionsView.ShowFooter = True
+        Me.GVCombine.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNoCombine
+        '
+        Me.GridColumnNoCombine.Caption = "No"
+        Me.GridColumnNoCombine.FieldName = "no"
+        Me.GridColumnNoCombine.Name = "GridColumnNoCombine"
+        Me.GridColumnNoCombine.OptionsColumn.AllowEdit = False
+        Me.GridColumnNoCombine.OptionsColumn.ReadOnly = True
+        Me.GridColumnNoCombine.Width = 38
+        '
+        'GridColumnCodeComb
+        '
+        Me.GridColumnCodeComb.Caption = "Code"
+        Me.GridColumnCodeComb.FieldName = "code"
+        Me.GridColumnCodeComb.Name = "GridColumnCodeComb"
+        Me.GridColumnCodeComb.OptionsColumn.ReadOnly = True
+        Me.GridColumnCodeComb.Visible = True
+        Me.GridColumnCodeComb.VisibleIndex = 0
+        Me.GridColumnCodeComb.Width = 70
+        '
+        'GridColumnCodeEanComb
+        '
+        Me.GridColumnCodeEanComb.Caption = "EAN Code"
+        Me.GridColumnCodeEanComb.FieldName = "ean_code"
+        Me.GridColumnCodeEanComb.Name = "GridColumnCodeEanComb"
+        Me.GridColumnCodeEanComb.OptionsColumn.AllowEdit = False
+        Me.GridColumnCodeEanComb.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnNameComb
+        '
+        Me.GridColumnNameComb.Caption = "Description"
+        Me.GridColumnNameComb.FieldName = "name"
+        Me.GridColumnNameComb.FieldNameSortGroup = "id_design"
+        Me.GridColumnNameComb.Name = "GridColumnNameComb"
+        Me.GridColumnNameComb.OptionsColumn.AllowEdit = False
+        Me.GridColumnNameComb.OptionsColumn.ReadOnly = True
+        Me.GridColumnNameComb.Visible = True
+        Me.GridColumnNameComb.VisibleIndex = 1
+        Me.GridColumnNameComb.Width = 142
+        '
+        'GridColumnSizeComb
+        '
+        Me.GridColumnSizeComb.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSizeComb.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSizeComb.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnSizeComb.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSizeComb.Caption = "Size"
+        Me.GridColumnSizeComb.FieldName = "size"
+        Me.GridColumnSizeComb.Name = "GridColumnSizeComb"
+        Me.GridColumnSizeComb.OptionsColumn.AllowEdit = False
+        Me.GridColumnSizeComb.OptionsColumn.ReadOnly = True
+        Me.GridColumnSizeComb.Visible = True
+        Me.GridColumnSizeComb.VisibleIndex = 2
+        Me.GridColumnSizeComb.Width = 53
+        '
+        'GridColumnPriceTypeComb
+        '
+        Me.GridColumnPriceTypeComb.Caption = "Price Type"
+        Me.GridColumnPriceTypeComb.FieldName = "design_price_type"
+        Me.GridColumnPriceTypeComb.Name = "GridColumnPriceTypeComb"
+        Me.GridColumnPriceTypeComb.OptionsColumn.ReadOnly = True
+        Me.GridColumnPriceTypeComb.Visible = True
+        Me.GridColumnPriceTypeComb.VisibleIndex = 4
+        Me.GridColumnPriceTypeComb.Width = 93
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.Caption = "UOM"
+        Me.GridColumn22.FieldName = "uom"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.AllowEdit = False
+        Me.GridColumn22.OptionsColumn.ReadOnly = True
+        Me.GridColumn22.Width = 71
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.Caption = "Qty From WH"
+        Me.GridColumn23.DisplayFormat.FormatString = "F2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn23.FieldName = "qty_from_wh"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
+        Me.GridColumn23.OptionsColumn.ReadOnly = True
+        Me.GridColumn23.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn23.Width = 97
+        '
+        'GridColumnQtyComb
+        '
+        Me.GridColumnQtyComb.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyComb.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyComb.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyComb.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyComb.Caption = "Qty"
+        Me.GridColumnQtyComb.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyComb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyComb.FieldName = "sales_return_det_qty"
+        Me.GridColumnQtyComb.Name = "GridColumnQtyComb"
+        Me.GridColumnQtyComb.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyComb.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnQtyComb.OptionsColumn.ReadOnly = True
+        Me.GridColumnQtyComb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", "{0:n0}")})
+        Me.GridColumnQtyComb.Visible = True
+        Me.GridColumnQtyComb.VisibleIndex = 3
+        Me.GridColumnQtyComb.Width = 70
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.Caption = "Limit Qty"
+        Me.GridColumn25.DisplayFormat.FormatString = "N0"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "sales_return_det_qty_limit"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn25.OptionsColumn.ReadOnly = True
+        Me.GridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_limit", "{0:n0}")})
+        Me.GridColumn25.Width = 67
+        '
+        'GridColumnPriceComb
+        '
+        Me.GridColumnPriceComb.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPriceComb.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnPriceComb.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnPriceComb.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnPriceComb.Caption = "Price"
+        Me.GridColumnPriceComb.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnPriceComb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceComb.FieldName = "design_price"
+        Me.GridColumnPriceComb.Name = "GridColumnPriceComb"
+        Me.GridColumnPriceComb.OptionsColumn.AllowEdit = False
+        Me.GridColumnPriceComb.OptionsColumn.ReadOnly = True
+        Me.GridColumnPriceComb.Visible = True
+        Me.GridColumnPriceComb.VisibleIndex = 5
+        Me.GridColumnPriceComb.Width = 114
+        '
+        'GridColumnAmountComb
+        '
+        Me.GridColumnAmountComb.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAmountComb.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAmountComb.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAmountComb.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAmountComb.Caption = "Amount"
+        Me.GridColumnAmountComb.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnAmountComb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmountComb.FieldName = "sales_return_det_amount"
+        Me.GridColumnAmountComb.Name = "GridColumnAmountComb"
+        Me.GridColumnAmountComb.OptionsColumn.AllowEdit = False
+        Me.GridColumnAmountComb.OptionsColumn.ReadOnly = True
+        Me.GridColumnAmountComb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_amount", "{0:n2}")})
+        Me.GridColumnAmountComb.UnboundExpression = "[sales_return_det_qty] * [design_price]"
+        Me.GridColumnAmountComb.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmountComb.Visible = True
+        Me.GridColumnAmountComb.VisibleIndex = 6
+        Me.GridColumnAmountComb.Width = 117
+        '
+        'GridColumnRemarkComb
+        '
+        Me.GridColumnRemarkComb.Caption = "Remark"
+        Me.GridColumnRemarkComb.FieldName = "sales_return_det_note"
+        Me.GridColumnRemarkComb.Name = "GridColumnRemarkComb"
+        Me.GridColumnRemarkComb.Width = 250
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Id Sales Order Det"
+        Me.GridColumn29.FieldName = "id_sales_order_det"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.OptionsColumn.AllowEdit = False
+        Me.GridColumn29.OptionsColumn.ReadOnly = True
+        Me.GridColumn29.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn29.Width = 98
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "id Product"
+        Me.GridColumn30.FieldName = "id_product"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn30.Width = 72
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Id Design price"
+        Me.GridColumn31.FieldName = "id_design_price"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn31.Width = 80
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Id Design"
+        Me.GridColumn32.FieldName = "id_design"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Id Sample"
+        Me.GridColumn33.FieldName = "id_sample"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Id Pl Sales Order Del Det"
+        Me.GridColumn34.FieldName = "id_sales_return_det"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn34.Width = 127
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Diff"
+        Me.GridColumn35.FieldName = "status"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn35.Width = 88
+        '
+        'GridColumnNumberComb
+        '
+        Me.GridColumnNumberComb.Caption = "Number"
+        Me.GridColumnNumberComb.FieldName = "number"
+        Me.GridColumnNumberComb.Name = "GridColumnNumberComb"
+        Me.GridColumnNumberComb.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumnFromComb
+        '
+        Me.GridColumnFromComb.Caption = "From"
+        Me.GridColumnFromComb.FieldName = "from"
+        Me.GridColumnFromComb.Name = "GridColumnFromComb"
+        Me.GridColumnFromComb.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumnToComb
+        '
+        Me.GridColumnToComb.Caption = "To"
+        Me.GridColumnToComb.FieldName = "to"
+        Me.GridColumnToComb.Name = "GridColumnToComb"
+        Me.GridColumnToComb.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Different"
+        Me.GridColumn39.DisplayFormat.FormatString = "N0"
+        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn39.FieldName = "diff"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.UnboundExpression = "[sales_return_det_qty_limit] - [sales_return_det_qty]"
+        Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'RepositoryItemSpinEdit4
+        '
+        Me.RepositoryItemSpinEdit4.AutoHeight = False
+        Me.RepositoryItemSpinEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit4.Mask.EditMask = "f0"
+        Me.RepositoryItemSpinEdit4.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
+        Me.RepositoryItemSpinEdit4.Name = "RepositoryItemSpinEdit4"
+        '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2279,6 +2649,11 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCombine.ResumeLayout(False)
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2472,4 +2847,35 @@ Partial Class FormSalesReturnDet
     Friend WithEvents CENoStock As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BtnCreateReturnNonList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCreateReturn As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtCombineNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents XTPCombine As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCCombine As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCombine As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnNoCombine As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCodeComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCodeEanComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNameComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSizeComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceTypeComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmountComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemarkComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumberComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFromComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnToComb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents BtnCombineReturn As DevExpress.XtraEditors.SimpleButton
 End Class
