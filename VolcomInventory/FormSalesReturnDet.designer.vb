@@ -193,6 +193,12 @@ Partial Class FormSalesReturnDet
         Me.GridColumnRemarkProb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_unique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_no_stock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnunique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CENotFound = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnno_stock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CENoStock = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcodeProb = New DevExpress.XtraEditors.PanelControl()
@@ -202,12 +208,7 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnis_unique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnis_no_stock = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnunique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnno_stock = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CENotFound = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.CENoStock = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BtnCreateReturnNonList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -285,13 +286,13 @@ Partial Class FormSalesReturnDet
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -302,7 +303,7 @@ Partial Class FormSalesReturnDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(911, 147)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1174, 147)
         Me.GroupGeneralHeader.TabIndex = 185
         '
         'PanelControlTopRight
@@ -319,7 +320,7 @@ Partial Class FormSalesReturnDet
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DEForm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(606, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(869, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 143)
         Me.PanelControlTopRight.TabIndex = 10009
@@ -462,14 +463,14 @@ Partial Class FormSalesReturnDet
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(911, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1174, 0)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 660)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(911, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1174, 0)
         '
         'barDockControlLeft
         '
@@ -482,7 +483,7 @@ Partial Class FormSalesReturnDet
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(911, 0)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1174, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 660)
         '
         'BarButtonItem1
@@ -690,6 +691,7 @@ Partial Class FormSalesReturnDet
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnTest)
+        Me.PanelControl3.Controls.Add(Me.BtnCreateReturnNonList)
         Me.PanelControl3.Controls.Add(Me.BtnCreateNonStock)
         Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
@@ -703,13 +705,13 @@ Partial Class FormSalesReturnDet
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(911, 38)
+        Me.PanelControl3.Size = New System.Drawing.Size(1174, 38)
         Me.PanelControl3.TabIndex = 186
         '
         'BtnTest
         '
         Me.BtnTest.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnTest.Location = New System.Drawing.Point(240, 2)
+        Me.BtnTest.Location = New System.Drawing.Point(403, 2)
         Me.BtnTest.Name = "BtnTest"
         Me.BtnTest.Size = New System.Drawing.Size(75, 34)
         Me.BtnTest.TabIndex = 12
@@ -722,6 +724,8 @@ Partial Class FormSalesReturnDet
         Me.BtnCreateNonStock.ImageIndex = 0
         Me.BtnCreateNonStock.ImageList = Me.LargeImageCollection
         Me.BtnCreateNonStock.Location = New System.Drawing.Point(77, 2)
+        Me.BtnCreateNonStock.LookAndFeel.SkinName = "Office 2007 Pink"
+        Me.BtnCreateNonStock.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCreateNonStock.Name = "BtnCreateNonStock"
         Me.BtnCreateNonStock.Size = New System.Drawing.Size(163, 34)
         Me.BtnCreateNonStock.TabIndex = 26
@@ -750,7 +754,7 @@ Partial Class FormSalesReturnDet
         Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
         Me.BtnXlsBOF.ImageIndex = 11
         Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(385, 2)
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(648, 2)
         Me.BtnXlsBOF.Name = "BtnXlsBOF"
         Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
         Me.BtnXlsBOF.TabIndex = 24
@@ -762,7 +766,7 @@ Partial Class FormSalesReturnDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(501, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(764, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(97, 34)
         Me.BtnAttachment.TabIndex = 12
@@ -786,7 +790,7 @@ Partial Class FormSalesReturnDet
         Me.DDBPrint.DropDownControl = Me.PUDD
         Me.DDBPrint.ImageIndex = 6
         Me.DDBPrint.ImageList = Me.LargeImageCollection
-        Me.DDBPrint.Location = New System.Drawing.Point(598, 2)
+        Me.DDBPrint.Location = New System.Drawing.Point(861, 2)
         Me.DDBPrint.Name = "DDBPrint"
         Me.DDBPrint.Size = New System.Drawing.Size(79, 34)
         Me.DDBPrint.TabIndex = 11
@@ -804,7 +808,7 @@ Partial Class FormSalesReturnDet
         Me.BtnVerify.Image = CType(resources.GetObject("BtnVerify.Image"), System.Drawing.Image)
         Me.BtnVerify.ImageIndex = 5
         Me.BtnVerify.ImageList = Me.LargeImageCollection
-        Me.BtnVerify.Location = New System.Drawing.Point(677, 2)
+        Me.BtnVerify.Location = New System.Drawing.Point(940, 2)
         Me.BtnVerify.Name = "BtnVerify"
         Me.BtnVerify.Size = New System.Drawing.Size(82, 34)
         Me.BtnVerify.TabIndex = 25
@@ -815,7 +819,7 @@ Partial Class FormSalesReturnDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(759, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(1022, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 10
@@ -826,7 +830,7 @@ Partial Class FormSalesReturnDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(834, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(1097, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 9
@@ -840,7 +844,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 551)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(911, 71)
+        Me.GroupControl3.Size = New System.Drawing.Size(1174, 71)
         Me.GroupControl3.TabIndex = 187
         '
         'PanelControlBottomRight
@@ -849,7 +853,7 @@ Partial Class FormSalesReturnDet
         Me.PanelControlBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(613, 2)
+        Me.PanelControlBottomRight.Location = New System.Drawing.Point(876, 2)
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
         Me.PanelControlBottomRight.Size = New System.Drawing.Size(296, 67)
         Me.PanelControlBottomRight.TabIndex = 146
@@ -913,7 +917,7 @@ Partial Class FormSalesReturnDet
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XTCReturn)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(905, 376)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1168, 376)
         Me.SplitContainerControl1.SplitterPosition = 142
         Me.SplitContainerControl1.TabIndex = 188
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -927,7 +931,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlListItem.Enabled = False
         Me.GroupControlListItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListItem.Name = "GroupControlListItem"
-        Me.GroupControlListItem.Size = New System.Drawing.Size(905, 142)
+        Me.GroupControlListItem.Size = New System.Drawing.Size(1168, 142)
         Me.GroupControlListItem.TabIndex = 3
         Me.GroupControlListItem.Text = "Return Item"
         '
@@ -939,7 +943,7 @@ Partial Class FormSalesReturnDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(883, 103)
+        Me.GCItemList.Size = New System.Drawing.Size(1146, 103)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1241,7 +1245,7 @@ Partial Class FormSalesReturnDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(883, 35)
+        Me.PanelControlNav.Size = New System.Drawing.Size(1146, 35)
         Me.PanelControlNav.TabIndex = 2
         Me.PanelControlNav.Visible = False
         '
@@ -1250,7 +1254,7 @@ Partial Class FormSalesReturnDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(602, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(865, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(99, 35)
         Me.BtnDel.TabIndex = 5
@@ -1261,7 +1265,7 @@ Partial Class FormSalesReturnDet
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(701, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(964, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(91, 35)
         Me.BtnEdit.TabIndex = 4
@@ -1273,7 +1277,7 @@ Partial Class FormSalesReturnDet
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(792, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(1055, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(91, 35)
         Me.BtnAdd.TabIndex = 3
@@ -1285,7 +1289,7 @@ Partial Class FormSalesReturnDet
         Me.XTCReturn.Location = New System.Drawing.Point(0, 0)
         Me.XTCReturn.Name = "XTCReturn"
         Me.XTCReturn.SelectedTabPage = Me.XTPScan
-        Me.XTCReturn.Size = New System.Drawing.Size(905, 229)
+        Me.XTCReturn.Size = New System.Drawing.Size(1168, 229)
         Me.XTCReturn.TabIndex = 0
         Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPStorage})
         '
@@ -1293,7 +1297,7 @@ Partial Class FormSalesReturnDet
         '
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(899, 201)
+        Me.XTPScan.Size = New System.Drawing.Size(1162, 201)
         Me.XTPScan.Text = "Return Product"
         '
         'GroupControlScannedItem
@@ -1305,7 +1309,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(899, 201)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(1162, 201)
         Me.GroupControlScannedItem.TabIndex = 3
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -1316,7 +1320,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(877, 164)
+        Me.GCBarcode.Size = New System.Drawing.Size(1140, 164)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1469,7 +1473,7 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavBarcode.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavBarcode.Name = "PanelNavBarcode"
-        Me.PanelNavBarcode.Size = New System.Drawing.Size(877, 33)
+        Me.PanelNavBarcode.Size = New System.Drawing.Size(1140, 33)
         Me.PanelNavBarcode.TabIndex = 2
         '
         'TxtDeleteScan
@@ -1495,7 +1499,7 @@ Partial Class FormSalesReturnDet
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.ImageIndex = 1
         Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(595, 0)
+        Me.BDelete.Location = New System.Drawing.Point(858, 0)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(94, 33)
         Me.BDelete.TabIndex = 8
@@ -1507,7 +1511,7 @@ Partial Class FormSalesReturnDet
         Me.BStop.Enabled = False
         Me.BStop.ImageIndex = 9
         Me.BStop.ImageList = Me.LargeImageCollection
-        Me.BStop.Location = New System.Drawing.Point(689, 0)
+        Me.BStop.Location = New System.Drawing.Point(952, 0)
         Me.BStop.Name = "BStop"
         Me.BStop.Size = New System.Drawing.Size(97, 33)
         Me.BStop.TabIndex = 7
@@ -1518,7 +1522,7 @@ Partial Class FormSalesReturnDet
         Me.BScan.Dock = System.Windows.Forms.DockStyle.Right
         Me.BScan.ImageIndex = 8
         Me.BScan.ImageList = Me.LargeImageCollection
-        Me.BScan.Location = New System.Drawing.Point(786, 0)
+        Me.BScan.Location = New System.Drawing.Point(1049, 0)
         Me.BScan.Name = "BScan"
         Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 6
@@ -1782,7 +1786,7 @@ Partial Class FormSalesReturnDet
         Me.XTCReturnMain.Location = New System.Drawing.Point(0, 147)
         Me.XTCReturnMain.Name = "XTCReturnMain"
         Me.XTCReturnMain.SelectedTabPage = Me.XTPReturn
-        Me.XTCReturnMain.Size = New System.Drawing.Size(911, 404)
+        Me.XTCReturnMain.Size = New System.Drawing.Size(1174, 404)
         Me.XTCReturnMain.TabIndex = 193
         Me.XTCReturnMain.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturn, Me.XTPNonStock})
         '
@@ -1790,7 +1794,7 @@ Partial Class FormSalesReturnDet
         '
         Me.XTPReturn.Controls.Add(Me.SplitContainerControl1)
         Me.XTPReturn.Name = "XTPReturn"
-        Me.XTPReturn.Size = New System.Drawing.Size(905, 376)
+        Me.XTPReturn.Size = New System.Drawing.Size(1168, 376)
         Me.XTPReturn.Text = "Return"
         '
         'XTPNonStock
@@ -1992,6 +1996,55 @@ Partial Class FormSalesReturnDet
         Me.GridColumnQtyNonStock.VisibleIndex = 4
         Me.GridColumnQtyNonStock.Width = 93
         '
+        'GridColumnis_unique_not_found
+        '
+        Me.GridColumnis_unique_not_found.Caption = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.FieldName = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.Name = "GridColumnis_unique_not_found"
+        Me.GridColumnis_unique_not_found.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnis_no_stock
+        '
+        Me.GridColumnis_no_stock.Caption = "is_no_stock"
+        Me.GridColumnis_no_stock.FieldName = "is_no_stock"
+        Me.GridColumnis_no_stock.Name = "GridColumnis_no_stock"
+        Me.GridColumnis_no_stock.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnunique_not_found
+        '
+        Me.GridColumnunique_not_found.Caption = "Unique Not Found"
+        Me.GridColumnunique_not_found.ColumnEdit = Me.CENotFound
+        Me.GridColumnunique_not_found.FieldName = "unique_not_found"
+        Me.GridColumnunique_not_found.Name = "GridColumnunique_not_found"
+        Me.GridColumnunique_not_found.UnboundExpression = "Iif([is_unique_not_found] = 1, 'Yes', 'No')"
+        Me.GridColumnunique_not_found.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnunique_not_found.Visible = True
+        Me.GridColumnunique_not_found.VisibleIndex = 6
+        Me.GridColumnunique_not_found.Width = 109
+        '
+        'CENotFound
+        '
+        Me.CENotFound.AutoHeight = False
+        Me.CENotFound.Name = "CENotFound"
+        Me.CENotFound.ValueChecked = "Yes"
+        Me.CENotFound.ValueUnchecked = "No"
+        '
+        'GridColumnno_stock
+        '
+        Me.GridColumnno_stock.Caption = "No Stock"
+        Me.GridColumnno_stock.ColumnEdit = Me.CENoStock
+        Me.GridColumnno_stock.FieldName = "is_no_stock"
+        Me.GridColumnno_stock.Name = "GridColumnno_stock"
+        Me.GridColumnno_stock.UnboundExpression = "Iif([is_no_stock]=1,'Yes' ,'No' )"
+        Me.GridColumnno_stock.Width = 117
+        '
+        'CENoStock
+        '
+        Me.CENoStock.AutoHeight = False
+        Me.CENoStock.Name = "CENoStock"
+        Me.CENoStock.ValueChecked = "Yes"
+        Me.CENoStock.ValueUnchecked = "No"
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -2087,60 +2140,25 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
         '
-        'GridColumnis_unique_not_found
+        'BtnCreateReturnNonList
         '
-        Me.GridColumnis_unique_not_found.Caption = "is_unique_not_found"
-        Me.GridColumnis_unique_not_found.FieldName = "is_unique_not_found"
-        Me.GridColumnis_unique_not_found.Name = "GridColumnis_unique_not_found"
-        Me.GridColumnis_unique_not_found.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnis_no_stock
-        '
-        Me.GridColumnis_no_stock.Caption = "is_no_stock"
-        Me.GridColumnis_no_stock.FieldName = "is_no_stock"
-        Me.GridColumnis_no_stock.Name = "GridColumnis_no_stock"
-        Me.GridColumnis_no_stock.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnunique_not_found
-        '
-        Me.GridColumnunique_not_found.Caption = "Unique Not Found"
-        Me.GridColumnunique_not_found.ColumnEdit = Me.CENotFound
-        Me.GridColumnunique_not_found.FieldName = "unique_not_found"
-        Me.GridColumnunique_not_found.Name = "GridColumnunique_not_found"
-        Me.GridColumnunique_not_found.UnboundExpression = "Iif([is_unique_not_found] = 1, 'Yes', 'No')"
-        Me.GridColumnunique_not_found.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumnunique_not_found.Visible = True
-        Me.GridColumnunique_not_found.VisibleIndex = 6
-        Me.GridColumnunique_not_found.Width = 109
-        '
-        'GridColumnno_stock
-        '
-        Me.GridColumnno_stock.Caption = "No Stock"
-        Me.GridColumnno_stock.ColumnEdit = Me.CENoStock
-        Me.GridColumnno_stock.FieldName = "is_no_stock"
-        Me.GridColumnno_stock.Name = "GridColumnno_stock"
-        Me.GridColumnno_stock.UnboundExpression = "Iif([is_no_stock]=1,'Yes' ,'No' )"
-        Me.GridColumnno_stock.Width = 117
-        '
-        'CENotFound
-        '
-        Me.CENotFound.AutoHeight = False
-        Me.CENotFound.Name = "CENotFound"
-        Me.CENotFound.ValueChecked = "Yes"
-        Me.CENotFound.ValueUnchecked = "No"
-        '
-        'CENoStock
-        '
-        Me.CENoStock.AutoHeight = False
-        Me.CENoStock.Name = "CENoStock"
-        Me.CENoStock.ValueChecked = "Yes"
-        Me.CENoStock.ValueUnchecked = "No"
+        Me.BtnCreateReturnNonList.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnCreateReturnNonList.Image = CType(resources.GetObject("BtnCreateReturnNonList.Image"), System.Drawing.Image)
+        Me.BtnCreateReturnNonList.ImageIndex = 0
+        Me.BtnCreateReturnNonList.Location = New System.Drawing.Point(240, 2)
+        Me.BtnCreateReturnNonList.LookAndFeel.SkinName = "Office 2007 Green"
+        Me.BtnCreateReturnNonList.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateReturnNonList.Name = "BtnCreateReturnNonList"
+        Me.BtnCreateReturnNonList.Size = New System.Drawing.Size(163, 34)
+        Me.BtnCreateReturnNonList.TabIndex = 27
+        Me.BtnCreateReturnNonList.Text = "Create Return Non List"
+        Me.BtnCreateReturnNonList.Visible = False
         '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(911, 660)
+        Me.ClientSize = New System.Drawing.Size(1174, 660)
         Me.Controls.Add(Me.XTCReturnMain)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -2237,14 +2255,14 @@ Partial Class FormSalesReturnDet
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2436,4 +2454,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents CENotFound As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnno_stock As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CENoStock As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BtnCreateReturnNonList As DevExpress.XtraEditors.SimpleButton
 End Class
