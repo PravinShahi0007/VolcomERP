@@ -398,7 +398,8 @@ Public Class FormSalesReturnDet
             BtnCombineReturn.Visible = False
         End If
         Dim query As String = "SELECT rd.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
-        prc.id_design_price, rd.design_price, pt.design_price_type, SUM(rd.sales_return_det_qty) AS `sales_return_det_qty`
+        prc.id_design_price, rd.design_price, pt.design_price_type, SUM(rd.sales_return_det_qty) AS `sales_return_det_qty`,
+        '" + TxtCombineNumber.Text + "' AS `number`, '" + TxtCodeCompFrom.Text + "' AS `from`, '" + TxtCodeCompTo.Text + "' AS `to`
         FROM tb_sales_return r
         INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
         INNER JOIN tb_m_product p ON p.id_product = rd.id_product
@@ -407,9 +408,9 @@ Public Class FormSalesReturnDet
         INNER JOIN tb_m_design_price prc ON prc.id_design_price = rd.id_design_price
         INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
         WHERE r.id_sales_return>0 AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
-        AND r.id_store_contact_from=" + id_store_contact_from + " AND r.id_report_status!=5 "
+        AND r.id_store_contact_from=" + id_store_contact_from + " "
         If BtnCombineReturn.Visible = True Then
-            query += "AND r.combine_number='' "
+            query += "AND r.id_report_status=1 AND r.combine_number='' "
         Else
             query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
         End If
@@ -2066,57 +2067,106 @@ Public Class FormSalesReturnDet
 
     Sub exportToBOF(ByVal show_msg As Boolean)
         If bof_column = "1" Then
-            Cursor = Cursors.WaitCursor
+            If XTCReturnMain.SelectedTabPageIndex = 2 And TxtCombineNumber.Text <> "" Then
+                Cursor = Cursors.WaitCursor
+                'hide column
+                For c As Integer = 0 To GVCombine.Columns.Count - 1
+                    GVCombine.Columns(c).Visible = False
+                Next
+                GridColumnCodeComb.VisibleIndex = 0
+                GridColumnQtyComb.VisibleIndex = 1
+                GridColumnNumberComb.VisibleIndex = 2
+                GridColumnFromComb.VisibleIndex = 3
+                GridColumnToComb.VisibleIndex = 4
+                GridColumnRemarkComb.VisibleIndex = 5
+                GVCombine.OptionsPrint.PrintFooter = False
+                GVCombine.OptionsPrint.PrintHeader = False
 
-            'hide column
-            For c As Integer = 0 To GVItemList.Columns.Count - 1
-                GVItemList.Columns(c).Visible = False
-            Next
-            GridColumnCode.VisibleIndex = 0
-            GridColumnQty.VisibleIndex = 1
-            GridColumnNumber.VisibleIndex = 2
-            GridColumnFrom.VisibleIndex = 3
-            GridColumnTo.VisibleIndex = 4
-            GridColumnRemark.VisibleIndex = 5
-            GVItemList.OptionsPrint.PrintFooter = False
-            GVItemList.OptionsPrint.PrintHeader = False
+                'export excel
+                Dim path_root As String = ""
+                Try
+                    ' Open the file using a stream reader.
+                    Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                        ' Read the stream to a string and write the string to the console.
+                        path_root = sr.ReadToEnd()
+                    End Using
+                Catch ex As Exception
+                End Try
 
+                Dim fileName As String = bof_xls_so + ".xls"
+                Dim exp As String = IO.Path.Combine(path_root, fileName)
+                Try
+                    ExportToExcel(GVCombine, exp, show_msg)
+                Catch ex As Exception
+                    stopCustom("Please close your excel file first then try again later")
+                End Try
 
-            'export excel
-            Dim path_root As String = ""
-            Try
-                ' Open the file using a stream reader.
-                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
-                    ' Read the stream to a string and write the string to the console.
-                    path_root = sr.ReadToEnd()
-                End Using
-            Catch ex As Exception
-            End Try
+                'show column
+                GridColumnCodeComb.VisibleIndex = 0
+                GridColumnNameComb.VisibleIndex = 1
+                GridColumnSizeComb.VisibleIndex = 2
+                GridColumnQtyComb.VisibleIndex = 3
+                GridColumnPriceTypeComb.VisibleIndex = 4
+                GridColumnPriceComb.VisibleIndex = 5
+                GridColumnAmountComb.VisibleIndex = 6
+                GridColumnRemarkComb.Visible = False
+                GridColumnNumberComb.Visible = False
+                GridColumnFromComb.Visible = False
+                GridColumnToComb.Visible = False
+                GVCombine.OptionsPrint.PrintFooter = True
+                GVCombine.OptionsPrint.PrintHeader = True
+                Cursor = Cursors.Default
+            Else
+                Cursor = Cursors.WaitCursor
+                'hide column
+                For c As Integer = 0 To GVItemList.Columns.Count - 1
+                    GVItemList.Columns(c).Visible = False
+                Next
+                GridColumnCode.VisibleIndex = 0
+                GridColumnQty.VisibleIndex = 1
+                GridColumnNumber.VisibleIndex = 2
+                GridColumnFrom.VisibleIndex = 3
+                GridColumnTo.VisibleIndex = 4
+                GridColumnRemark.VisibleIndex = 5
+                GVItemList.OptionsPrint.PrintFooter = False
+                GVItemList.OptionsPrint.PrintHeader = False
 
-            Dim fileName As String = bof_xls_so + ".xls"
-            Dim exp As String = IO.Path.Combine(path_root, fileName)
-            Try
-                ExportToExcel(GVItemList, exp, show_msg)
-            Catch ex As Exception
-                stopCustom("Please close your excel file first then try again later")
-            End Try
+                'export excel
+                Dim path_root As String = ""
+                Try
+                    ' Open the file using a stream reader.
+                    Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                        ' Read the stream to a string and write the string to the console.
+                        path_root = sr.ReadToEnd()
+                    End Using
+                Catch ex As Exception
+                End Try
 
-            'show column
-            GridColumnCode.VisibleIndex = 0
-            GridColumnName.VisibleIndex = 1
-            GridColumnSize.VisibleIndex = 2
-            GridColumnQty.VisibleIndex = 3
-            GridColumnPriceType.VisibleIndex = 4
-            GridColumnPrice.VisibleIndex = 5
-            GridColumnAmount.VisibleIndex = 6
-            GridColumnRemark.VisibleIndex = 7
-            GridColumnStt.Visible = False
-            GridColumnNumber.Visible = False
-            GridColumnFrom.Visible = False
-            GridColumnTo.Visible = False
-            GVItemList.OptionsPrint.PrintFooter = True
-            GVItemList.OptionsPrint.PrintHeader = True
-            Cursor = Cursors.Default
+                Dim fileName As String = bof_xls_so + ".xls"
+                Dim exp As String = IO.Path.Combine(path_root, fileName)
+                Try
+                    ExportToExcel(GVItemList, exp, show_msg)
+                Catch ex As Exception
+                    stopCustom("Please close your excel file first then try again later")
+                End Try
+
+                'show column
+                GridColumnCode.VisibleIndex = 0
+                GridColumnName.VisibleIndex = 1
+                GridColumnSize.VisibleIndex = 2
+                GridColumnQty.VisibleIndex = 3
+                GridColumnPriceType.VisibleIndex = 4
+                GridColumnPrice.VisibleIndex = 5
+                GridColumnAmount.VisibleIndex = 6
+                GridColumnRemark.VisibleIndex = 7
+                GridColumnStt.Visible = False
+                GridColumnNumber.Visible = False
+                GridColumnFrom.Visible = False
+                GridColumnTo.Visible = False
+                GVItemList.OptionsPrint.PrintFooter = True
+                GVItemList.OptionsPrint.PrintHeader = True
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -2161,7 +2211,7 @@ Public Class FormSalesReturnDet
                 ElseIf j = 4 Then  'to
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "to").ToString
                 Else
-                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_return_det_note").ToString
+                    wSheet.Cells(rowIndex + 1, colIndex) = ""
                 End If
             Next
         Next
@@ -2674,6 +2724,8 @@ Public Class FormSalesReturnDet
         BtnCreateNonStock.Visible = False
         PanelNavBarcode.Enabled = True
         PanelNavBarcodeProb.Enabled = True
+        GridColumnQtyLimit.VisibleIndex = 3
+        GridColumnStt.VisibleIndex = 5
         Cursor = Cursors.Default
     End Sub
 
@@ -2706,12 +2758,42 @@ Public Class FormSalesReturnDet
         BtnCreateNonStock.Visible = False
         PanelNavBarcode.Enabled = True
         PanelNavBarcodeProb.Enabled = True
+        GridColumnQtyLimit.VisibleIndex = 3
+        GridColumnStt.VisibleIndex = 5
         Cursor = Cursors.Default
     End Sub
 
     Private Sub XTCReturnMain_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReturnMain.SelectedPageChanged
         If XTCReturnMain.SelectedTabPageIndex = 2 Then
             viewCombine()
+        End If
+    End Sub
+
+    Private Sub BtnCombineReturn_Click(sender As Object, e As EventArgs) Handles BtnCombineReturn.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim combine_number As String = header_number_sales("5")
+            increase_inc_sales("5")
+            Dim query_upd As String = "/*update combine number*/
+            UPDATE tb_sales_return r SET r.combine_number='" + combine_number + "' 
+            WHERE r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
+            AND r.id_store_contact_from=" + id_store_contact_from + " 
+            AND r.id_report_status=1 AND r.combine_number=''; 
+            /*update deskripsi report mark*/
+            UPDATE tb_report_mark rm 
+            INNER JOIN tb_sales_return r ON r.id_sales_return = rm.id_report
+            SET rm.info_design = CONCAT('Combine No : ', r.combine_number)
+            WHERE (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120) AND r.combine_number='" + combine_number + "'; "
+            execute_non_query(query_upd, True, "", "", "", "")
+
+            'refresh
+            actionLoad()
+            viewCombine()
+            FormSalesReturn.viewSalesReturn()
+            FormSalesReturn.GVSalesReturn.FocusedRowHandle = find_row(FormSalesReturn.GVSalesReturn, "id_sales_return", id_sales_return)
+            exportToBOF(False)
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

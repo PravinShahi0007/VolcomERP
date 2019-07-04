@@ -14,7 +14,7 @@
 
         Dim query As String = ""
         query += "SELECT a.id_comp_contact_to, a.id_report_status, a.id_sales_return, a.id_sales_return_order, a.sales_return_date, "
-        query += "a.sales_return_note, a.sales_return_number, a.sales_return_store_number,  "
+        query += "a.sales_return_note, a.combine_number,a.sales_return_number, a.sales_return_store_number,  "
         query += "CONCAT(c.comp_number,' - ',c.comp_name) AS store_name_from, (c.comp_name) AS store_name_to, "
         query += "CONCAT(e.comp_number,' - ',e.comp_name) AS comp_name_to, (e.comp_number) AS comp_number_to, "
         query += "f.sales_return_order_number, g.report_status, a.last_update, getUserEmp(a.last_update_by, '1') AS `last_user`, ('No') AS `is_select`, 

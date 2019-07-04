@@ -987,4 +987,36 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub CancelCombineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CancelCombineToolStripMenuItem.Click
+        If GVSalesReturn.FocusedRowHandle >= 0 And GVSalesReturn.RowCount > 0 Then
+            Dim combine_number As String = GVSalesReturn.GetFocusedRowCellValue("combine_number").ToString
+            If combine_number <> "" Then
+                'cek combine status
+                Dim id_rs As String = execute_query("SELECT MAX(id_report_status) AS `id_report_status` FROM tb_sales_return WHERE combine_number='" + combine_number + "' ", 0, True, "", "", "", "")
+                If id_rs <> "1" Then
+                    stopCustom("Can't cancel this combine because already approved ")
+                    Exit Sub
+                End If
+
+
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell combine number : " + combine_number + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    Dim query As String = "/*update keterangan rm*/
+                    UPDATE tb_report_mark rm 
+                    INNER JOIN tb_sales_return r ON r.id_sales_return = rm.id_report
+                    SET rm.info_design = ''
+                    WHERE (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120) AND r.combine_number='" + combine_number + "';
+                    /*update combine number*/
+                    UPDATE tb_sales_return SET combine_number='' WHERE combine_number='" + combine_number + "'; "
+                    execute_non_query(query, True, "", "", "", "")
+                    GCSalesReturn.DataSource = Nothing
+                    Cursor = Cursors.Default
+                End If
+            Else
+                stopCustom("Combine number not found")
+            End If
+        End If
+    End Sub
 End Class

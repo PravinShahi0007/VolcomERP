@@ -23,6 +23,8 @@ Partial Class FormSalesReturnDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCombineNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelOLStoreOrder = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOLStoreOrder = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -62,6 +64,7 @@ Partial Class FormSalesReturnDet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnTest = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCreateReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateReturnNonList = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNonStock = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -209,11 +212,7 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCreateReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPCombine = New DevExpress.XtraTab.XtraTabPage()
-        Me.TxtCombineNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnCombineReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.GCCombine = New DevExpress.XtraGrid.GridControl()
         Me.GVCombine = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNoCombine = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -241,10 +240,12 @@ Partial Class FormSalesReturnDet
         Me.GridColumnToComb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.BtnCombineReturn = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStoreReturnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -326,7 +327,6 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCombine.SuspendLayout()
-        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,6 +363,25 @@ Partial Class FormSalesReturnDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 175)
         Me.PanelControlTopRight.TabIndex = 10009
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(7, 62)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(97, 13)
+        Me.LabelControl10.TabIndex = 10008
+        Me.LabelControl10.Text = "Combine Return No."
+        '
+        'TxtCombineNumber
+        '
+        Me.TxtCombineNumber.EditValue = ""
+        Me.TxtCombineNumber.Location = New System.Drawing.Point(116, 58)
+        Me.TxtCombineNumber.Name = "TxtCombineNumber"
+        Me.TxtCombineNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtCombineNumber.Properties.ReadOnly = True
+        Me.TxtCombineNumber.Size = New System.Drawing.Size(170, 20)
+        Me.TxtCombineNumber.TabIndex = 10007
         '
         'LabelOLStoreOrder
         '
@@ -757,6 +776,20 @@ Partial Class FormSalesReturnDet
         Me.BtnTest.TabIndex = 12
         Me.BtnTest.Text = "Test"
         Me.BtnTest.Visible = False
+        '
+        'BtnCreateReturn
+        '
+        Me.BtnCreateReturn.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnCreateReturn.Image = CType(resources.GetObject("BtnCreateReturn.Image"), System.Drawing.Image)
+        Me.BtnCreateReturn.ImageIndex = 0
+        Me.BtnCreateReturn.Location = New System.Drawing.Point(372, 2)
+        Me.BtnCreateReturn.LookAndFeel.SkinName = "iMaginary"
+        Me.BtnCreateReturn.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateReturn.Name = "BtnCreateReturn"
+        Me.BtnCreateReturn.Size = New System.Drawing.Size(123, 34)
+        Me.BtnCreateReturn.TabIndex = 28
+        Me.BtnCreateReturn.Text = "Create Return"
+        Me.BtnCreateReturn.Visible = False
         '
         'BtnCreateReturnNonList
         '
@@ -1587,7 +1620,7 @@ Partial Class FormSalesReturnDet
         Me.XTPStorage.Controls.Add(Me.SCCStorage)
         Me.XTPStorage.Name = "XTPStorage"
         Me.XTPStorage.PageVisible = False
-        Me.XTPStorage.Size = New System.Drawing.Size(1162, 201)
+        Me.XTPStorage.Size = New System.Drawing.Size(1162, 169)
         Me.XTPStorage.Text = "Save to Storage"
         '
         'SCCStorage
@@ -1600,7 +1633,7 @@ Partial Class FormSalesReturnDet
         Me.SCCStorage.Panel1.Text = "Panel1"
         Me.SCCStorage.Panel2.Controls.Add(Me.GroupControl1)
         Me.SCCStorage.Panel2.Text = "Panel2"
-        Me.SCCStorage.Size = New System.Drawing.Size(1162, 201)
+        Me.SCCStorage.Size = New System.Drawing.Size(1162, 169)
         Me.SCCStorage.SplitterPosition = 900
         Me.SCCStorage.TabIndex = 0
         Me.SCCStorage.Text = "SplitContainerControl2"
@@ -1613,7 +1646,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlListStorage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlListStorage.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListStorage.Name = "GroupControlListStorage"
-        Me.GroupControlListStorage.Size = New System.Drawing.Size(900, 201)
+        Me.GroupControlListStorage.Size = New System.Drawing.Size(900, 169)
         Me.GroupControlListStorage.TabIndex = 0
         Me.GroupControlListStorage.Text = "Item Based On Cost"
         '
@@ -1623,7 +1656,7 @@ Partial Class FormSalesReturnDet
         Me.GCDrawer.Location = New System.Drawing.Point(20, 38)
         Me.GCDrawer.MainView = Me.GVDrawer
         Me.GCDrawer.Name = "GCDrawer"
-        Me.GCDrawer.Size = New System.Drawing.Size(878, 161)
+        Me.GCDrawer.Size = New System.Drawing.Size(878, 129)
         Me.GCDrawer.TabIndex = 4
         Me.GCDrawer.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDrawer, Me.GridView2})
         '
@@ -1855,7 +1888,7 @@ Partial Class FormSalesReturnDet
         '
         Me.XTPNonStock.Controls.Add(Me.GroupControlProb)
         Me.XTPNonStock.Name = "XTPNonStock"
-        Me.XTPNonStock.Size = New System.Drawing.Size(1168, 376)
+        Me.XTPNonStock.Size = New System.Drawing.Size(1168, 344)
         Me.XTPNonStock.Text = "Non Stock"
         '
         'GroupControlProb
@@ -1867,7 +1900,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlProb.Enabled = False
         Me.GroupControlProb.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlProb.Name = "GroupControlProb"
-        Me.GroupControlProb.Size = New System.Drawing.Size(1168, 376)
+        Me.GroupControlProb.Size = New System.Drawing.Size(1168, 344)
         Me.GroupControlProb.TabIndex = 5
         Me.GroupControlProb.Text = "Unidentified Code"
         '
@@ -1879,7 +1912,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
         Me.GCBarcodeProb.Name = "GCBarcodeProb"
         Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3, Me.CENotFound, Me.CENoStock})
-        Me.GCBarcodeProb.Size = New System.Drawing.Size(1146, 336)
+        Me.GCBarcodeProb.Size = New System.Drawing.Size(1146, 304)
         Me.GCBarcodeProb.TabIndex = 6
         Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
         '
@@ -2194,20 +2227,6 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
         '
-        'BtnCreateReturn
-        '
-        Me.BtnCreateReturn.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnCreateReturn.Image = CType(resources.GetObject("BtnCreateReturn.Image"), System.Drawing.Image)
-        Me.BtnCreateReturn.ImageIndex = 0
-        Me.BtnCreateReturn.Location = New System.Drawing.Point(372, 2)
-        Me.BtnCreateReturn.LookAndFeel.SkinName = "iMaginary"
-        Me.BtnCreateReturn.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnCreateReturn.Name = "BtnCreateReturn"
-        Me.BtnCreateReturn.Size = New System.Drawing.Size(123, 34)
-        Me.BtnCreateReturn.TabIndex = 28
-        Me.BtnCreateReturn.Text = "Create Return"
-        Me.BtnCreateReturn.Visible = False
-        '
         'XTPCombine
         '
         Me.XTPCombine.Controls.Add(Me.GCCombine)
@@ -2215,34 +2234,6 @@ Partial Class FormSalesReturnDet
         Me.XTPCombine.Name = "XTPCombine"
         Me.XTPCombine.Size = New System.Drawing.Size(1168, 344)
         Me.XTPCombine.Text = "Combine Return"
-        '
-        'TxtCombineNumber
-        '
-        Me.TxtCombineNumber.EditValue = ""
-        Me.TxtCombineNumber.Location = New System.Drawing.Point(116, 58)
-        Me.TxtCombineNumber.Name = "TxtCombineNumber"
-        Me.TxtCombineNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtCombineNumber.Properties.ReadOnly = True
-        Me.TxtCombineNumber.Size = New System.Drawing.Size(170, 20)
-        Me.TxtCombineNumber.TabIndex = 10007
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(7, 62)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(97, 13)
-        Me.LabelControl10.TabIndex = 10008
-        Me.LabelControl10.Text = "Combine Return No."
-        '
-        'BtnCombineReturn
-        '
-        Me.BtnCombineReturn.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnCombineReturn.Location = New System.Drawing.Point(0, 316)
-        Me.BtnCombineReturn.Name = "BtnCombineReturn"
-        Me.BtnCombineReturn.Size = New System.Drawing.Size(1168, 28)
-        Me.BtnCombineReturn.TabIndex = 0
-        Me.BtnCombineReturn.Text = "Combine Return"
         '
         'GCCombine
         '
@@ -2540,6 +2531,15 @@ Partial Class FormSalesReturnDet
         Me.RepositoryItemSpinEdit4.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit4.Name = "RepositoryItemSpinEdit4"
         '
+        'BtnCombineReturn
+        '
+        Me.BtnCombineReturn.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCombineReturn.Location = New System.Drawing.Point(0, 316)
+        Me.BtnCombineReturn.Name = "BtnCombineReturn"
+        Me.BtnCombineReturn.Size = New System.Drawing.Size(1168, 28)
+        Me.BtnCombineReturn.TabIndex = 0
+        Me.BtnCombineReturn.Text = "Combine Return"
+        '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2564,6 +2564,7 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStoreReturnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2650,7 +2651,6 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCombine.ResumeLayout(False)
-        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).EndInit()
