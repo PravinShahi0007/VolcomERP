@@ -167,9 +167,11 @@ WHERE po.id_purc_order='" & id_po & "'"
                     MENote.Enabled = True
                     BtnSave.Visible = True
                 End If
+                GridColumnBudgetStatus.Visible = False
             Else 'not yet submitted
                 BMark.Visible = False
                 BSubmit.Visible = True
+                GridColumnBudgetStatus.Visible = True
             End If
         End If
     End Sub
@@ -237,6 +239,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 GVPurcReq.SetRowCellValue(i, "budget_status", "No Budget")
             End If
         Next
+        but_submit()
     End Sub
 
     Sub load_report_status()
@@ -381,7 +384,50 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 Dim query As String = "UPDATE `tb_purc_order` SET `note`='" & addSlashes(MENote.Text) & "' WHERE id_purc_order='" & id_po & "'"
                 execute_non_query(query, True, "", "", "", "")
             Else
+                'still draft
+                Dim is_check As String = "1"
+                If CEPercent.Checked = True Then
+                    is_check = "1"
+                Else
+                    is_check = "2"
+                End If
 
+                Dim query As String = "UPDATE `tb_purc_order` SET 
+                                        `id_comp_contact`='" & id_vendor_contact & "',
+                                        id_payment_purchasing='" & LEPaymentTerm.EditValue.ToString & "',
+                                        `note`='" & addSlashes(MENote.Text) & "',
+                                        est_date_receive='" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',
+                                        pay_due_date='" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',
+                                        `last_update`=NOW(),
+                                        `last_update_by`='" & id_user & "',
+                                        is_disc_percent='" & is_check & "',
+                                        disc_percent='" & decimalSQL(TEDiscPercent.EditValue.ToString) & "',
+                                        disc_value='" & decimalSQL(TEDiscTotal.EditValue.ToString) & "',
+                                        vat_percent='" & decimalSQL(TEVATPercent.EditValue.ToString) & "',
+                                        vat_value='" & decimalSQL(TEVATValue.EditValue.ToString) & "',
+                                        ship_destination='" & addSlashes(TEShipDestination.Text) & "',
+                                        ship_address='" & addSlashes(MESHipAddress.Text) & "'
+                                        WHERE id_purc_order='" & id_po & "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'delete detail
+                query = "DELETE FROM tb_purc_order_det WHERE id_purc_order='" & id_po & "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'detail
+                For i As Integer = 0 To GVPurcReq.RowCount - 1
+                    Dim budget_status As String = "2"
+
+                    If GVPurcReq.GetRowCellValue(i, "budget_status").ToString = "Budget Ok" Then
+                        budget_status = "1"
+                    Else
+                        budget_status = "2"
+                    End If
+
+                    query = "INSERT INTO `tb_purc_order_det`(`id_purc_order`,`id_item`,`id_purc_req_det`,`qty`,`value`,`discount_percent`,`discount`,budget_status)
+                        VALUES('" & id_po & "','" & GVPurcReq.GetRowCellValue(i, "id_item").ToString & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "qty_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "val_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount_percent").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount").ToString) & "','" & budget_status & "')"
+                    execute_non_query(query, True, "", "", "", "")
+                Next
             End If
 
             infoCustom("Order Updated")
@@ -481,6 +527,24 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         is_process = "2"
     End Sub
 
+    Sub but_submit()
+        Dim is_ok_budget As Boolean = True
+
+        'check first all budget ok
+        For i As Integer = 0 To GVPurcReq.RowCount - 1
+            If Not GVPurcReq.GetRowCellValue(i, "budget_status").ToString = "Budget Ok" Then
+                is_ok_budget = False
+                Exit For
+            End If
+        Next
+
+        If is_ok_budget And is_submit = "2" Then
+            BSubmit.Visible = True
+        Else
+            BSubmit.Visible = False
+        End If
+    End Sub
+
     Private Sub TEVendorCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TEVendorCode.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim max_vendor_type As Integer = 1
@@ -538,6 +602,16 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         End If
     End Sub
 
+    Sub calculate_percent()
+        If CEPercent.Checked = True Then
+            TEDiscTotal.EditValue = (TETotal.EditValue * TEDiscPercent.EditValue) / 100
+            calculate_grand_total()
+        Else
+            TEDiscPercent.EditValue = 0.00
+            calculate_grand_total()
+        End If
+    End Sub
+
     Sub calculate_grand_total()
         Try
             TEVATValue.EditValue = (TETotal.EditValue - TEDiscTotal.EditValue) * (TEVATPercent.EditValue / 100)
@@ -560,6 +634,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Private Sub TETotal_EditValueChanged(sender As Object, e As EventArgs) Handles TETotal.EditValueChanged
+        calculate_percent()
         calculate_grand_total()
     End Sub
 
@@ -639,7 +714,14 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         'insert to expense trans
         Dim rmt As String = "-1"
         Dim is_ok_budget As Boolean = True
+
         'check first all budget ok
+        For i As Integer = 0 To GVPurcReq.RowCount - 1
+            If Not GVPurcReq.GetRowCellValue(i, "budget_status").ToString = "Budget Ok" Then
+                is_ok_budget = False
+                Exit For
+            End If
+        Next
 
         If is_ok_budget Then
             'generate number
@@ -670,8 +752,11 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             '
             execute_non_query(query_trans, True, "", "", "", "")
             submit_who_prepared(rmt, id_po, id_user)
+
+            query = "UPDATE tb_purc_order SET is_submit='1' WHERE id_purc_order='" & id_po & "'"
+            execute_non_query(query, True, "", "", "", "")
             '
-            load_det()
+            load_form()
         Else
             warningCustom("Please make sure all budget is Ok")
         End If
