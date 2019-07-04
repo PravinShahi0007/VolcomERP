@@ -56,4 +56,23 @@ ORDER BY ic.item_cat"
         GCBudgetList.DataSource = data
         GVBudgetList.BestFitColumns()
     End Sub
+
+    Private Sub BRevision_Click(sender As Object, e As EventArgs) Handles BRevision.Click
+        load_budget()
+        '
+        Dim query As String = "SELECT COUNT(*) FROM `tb_b_opex_pps_det` ppd
+INNER JOIN tb_b_opex_pps pps ON pps.`id_b_opex_pps`=ppd.`id_b_opex_pps`
+WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND pps.`id_report_status` !=6"
+        Dim jml As String = execute_query(query, 0, True, "", "", "", "").ToString
+
+        If Not jml = "0" Then
+            stopCustom("There is ongoing proposal, please cancel it first")
+        ElseIf GVBudgetList.RowCount = 0 Then
+            stopCustom("Nothing to revise")
+        Else
+            FormSetupBudgetOPEXDet.is_rev = "1"
+            FormSetupBudgetOPEXDet.ShowDialog()
+        End If
+        '
+    End Sub
 End Class
