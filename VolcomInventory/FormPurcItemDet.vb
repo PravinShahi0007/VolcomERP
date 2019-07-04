@@ -44,6 +44,7 @@ WHERE pr.id_report_status!=5"
             '
             If is_view = "1" Then
                 XTCDetail.SelectedTabPageIndex = 1
+                PCSetPrice.Visible = True
             End If
         Else
             TECode.Text = "[Auto Generate]"
@@ -107,9 +108,6 @@ WHERE id_status='2'"
     End Sub
 
     Private Sub FormPurcItemDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If is_view = "1" Then
-            FormPurcOrderDet.set_price(id_item, Decimal.Parse(GVPriceList.GetRowCellValue(0, "price").ToString))
-        End If
         Dispose()
     End Sub
 
@@ -162,5 +160,19 @@ WHERE id_status='2'"
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BSetSameItemPrice.Click
+        If GVPriceList.RowCount > 0 Then
+            FormPurcOrderDet.set_price(id_item, Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
+            Close()
+        End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BSetSameSpecPrice.Click
+        If GVPriceList.RowCount > 0 Then
+            FormPurcOrderDet.set_same_detail_price(Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
+            Close()
+        End If
     End Sub
 End Class

@@ -72,6 +72,9 @@ Partial Class FormPurcItemDet
         Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BAddPrice = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCSetPrice = New DevExpress.XtraEditors.PanelControl()
+        Me.BSetSameItemPrice = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSetSameSpecPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPAttachment = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFileList = New DevExpress.XtraGrid.GridControl()
         Me.GVFileList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -112,6 +115,8 @@ Partial Class FormPurcItemDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCSetPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSetPrice.SuspendLayout()
         Me.XTPAttachment.SuspendLayout()
         CType(Me.GCFileList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFileList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -472,6 +477,7 @@ Partial Class FormPurcItemDet
         '
         Me.XTPPriceList.Controls.Add(Me.GCPriceList)
         Me.XTPPriceList.Controls.Add(Me.PanelControl3)
+        Me.XTPPriceList.Controls.Add(Me.PCSetPrice)
         Me.XTPPriceList.Name = "XTPPriceList"
         Me.XTPPriceList.Size = New System.Drawing.Size(513, 252)
         Me.XTPPriceList.Text = "Price List"
@@ -479,11 +485,11 @@ Partial Class FormPurcItemDet
         'GCPriceList
         '
         Me.GCPriceList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPriceList.Location = New System.Drawing.Point(0, 0)
+        Me.GCPriceList.Location = New System.Drawing.Point(0, 40)
         Me.GCPriceList.MainView = Me.GVPriceList
         Me.GCPriceList.Name = "GCPriceList"
         Me.GCPriceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCPriceList.Size = New System.Drawing.Size(513, 212)
+        Me.GCPriceList.Size = New System.Drawing.Size(513, 172)
         Me.GCPriceList.TabIndex = 8905
         Me.GCPriceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPriceList, Me.GridView4})
         '
@@ -501,12 +507,16 @@ Partial Class FormPurcItemDet
         Me.GridColumn5.Caption = "Id"
         Me.GridColumn5.FieldName = "id_item"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "By"
         Me.GridColumn6.FieldName = "employee_name"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
         '
@@ -517,6 +527,8 @@ Partial Class FormPurcItemDet
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn7.FieldName = "create_date"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
         '
@@ -527,6 +539,8 @@ Partial Class FormPurcItemDet
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "price"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
         '
@@ -549,8 +563,8 @@ Partial Class FormPurcItemDet
         Me.PanelControl3.Controls.Add(Me.TEPrice)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.BAddPrice)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 212)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl3.TabIndex = 8904
@@ -581,6 +595,37 @@ Partial Class FormPurcItemDet
         Me.BAddPrice.Size = New System.Drawing.Size(109, 36)
         Me.BAddPrice.TabIndex = 0
         Me.BAddPrice.Text = "Add"
+        '
+        'PCSetPrice
+        '
+        Me.PCSetPrice.Controls.Add(Me.BSetSameItemPrice)
+        Me.PCSetPrice.Controls.Add(Me.BSetSameSpecPrice)
+        Me.PCSetPrice.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCSetPrice.Location = New System.Drawing.Point(0, 212)
+        Me.PCSetPrice.Name = "PCSetPrice"
+        Me.PCSetPrice.Size = New System.Drawing.Size(513, 40)
+        Me.PCSetPrice.TabIndex = 8906
+        Me.PCSetPrice.Visible = False
+        '
+        'BSetSameItemPrice
+        '
+        Me.BSetSameItemPrice.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSetSameItemPrice.Image = CType(resources.GetObject("BSetSameItemPrice.Image"), System.Drawing.Image)
+        Me.BSetSameItemPrice.Location = New System.Drawing.Point(135, 2)
+        Me.BSetSameItemPrice.Name = "BSetSameItemPrice"
+        Me.BSetSameItemPrice.Size = New System.Drawing.Size(200, 36)
+        Me.BSetSameItemPrice.TabIndex = 1
+        Me.BSetSameItemPrice.Text = "Set Harga PO (Item yang sama)"
+        '
+        'BSetSameSpecPrice
+        '
+        Me.BSetSameSpecPrice.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSetSameSpecPrice.Image = CType(resources.GetObject("BSetSameSpecPrice.Image"), System.Drawing.Image)
+        Me.BSetSameSpecPrice.Location = New System.Drawing.Point(335, 2)
+        Me.BSetSameSpecPrice.Name = "BSetSameSpecPrice"
+        Me.BSetSameSpecPrice.Size = New System.Drawing.Size(176, 36)
+        Me.BSetSameSpecPrice.TabIndex = 0
+        Me.BSetSameSpecPrice.Text = "Set Harga PO (Spec Sama)"
         '
         'XTPAttachment
         '
@@ -760,6 +805,8 @@ Partial Class FormPurcItemDet
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCSetPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSetPrice.ResumeLayout(False)
         Me.XTPAttachment.ResumeLayout(False)
         CType(Me.GCFileList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFileList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -838,4 +885,7 @@ Partial Class FormPurcItemDet
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCSetPrice As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BSetSameSpecPrice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSetSameItemPrice As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -32,7 +32,7 @@
     End Sub
 
     Sub load_kode_bank()
-        Dim query As String = "SELECT id,nama_bank,kode_bank FROM `tb_kode_bank`"
+        Dim query As String = "SELECT id,nama_bank,kode_bank FROM `tb_kode_bank` WHERE id!=0"
         viewSearchLookupQuery(SLEBankAccount, query, "id", "nama_bank", "id")
     End Sub
 
@@ -1064,5 +1064,29 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
             Cursor = Cursors.Default
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TEBankRek_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEBankRek.Validating
+        If TEBankRek.Text.Length < 1 Then
+            EPCompany.SetError(TEBankRek, "Rekening is not valid.")
+        Else
+            EPCompany.SetError(TEBankRek, String.Empty)
+        End If
+    End Sub
+
+    Private Sub TEBankAtasNama_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEBankAtasNama.Validating
+        If TEBankAtasNama.Text.Length < 1 Then
+            EPCompany.SetError(TEBankAtasNama, "Atas Nama Rekening is not valid.")
+        Else
+            EPCompany.SetError(TEBankAtasNama, String.Empty)
+        End If
+    End Sub
+
+    Private Sub TEBankAddress_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEBankAddress.Validating
+        If TEBankAddress.Text.Length < 1 Then
+            EPCompany.SetError(TEBankAddress, "Bank Address is not valid.")
+        Else
+            EPCompany.SetError(TEBankAddress, String.Empty)
+        End If
     End Sub
 End Class

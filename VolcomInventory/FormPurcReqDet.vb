@@ -214,6 +214,7 @@
             '    GVItemList.SetFocusedRowCellValue("value", sle.Properties.View.GetFocusedRowCellValue("latest_price"))
             'End If
 
+            GVItemList.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("item_desc").ToString())
             GVItemList.SetFocusedRowCellValue("uom", sle.Properties.View.GetFocusedRowCellValue("uom").ToString())
             GVItemList.SetFocusedRowCellValue("item_cat", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
             GVItemList.SetFocusedRowCellValue("budget", sle.Properties.View.GetFocusedRowCellValue("budget").ToString())
