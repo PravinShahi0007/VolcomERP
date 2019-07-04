@@ -103,6 +103,16 @@
         noEdit()
     End Sub
 
+    Sub viewPropose()
+        Cursor = Cursors.WaitCursor
+        Dim d As New ClassDesign()
+        Dim query As String = d.queryProposeChanges("-1", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPropose.DataSource = data
+        GVPropose.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub FormFGDesignList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         check_menu()
@@ -113,23 +123,43 @@
     End Sub
 
     Sub check_menu()
-        If GVDesign.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
-            bedit_active = "0"
-            bdel_active = "0"
-            bdupe_active = "0"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-            button_main_ext("3", bdupe_active)
+        If XTPDesign.SelectedTabPageIndex = 0 Then
+            If GVDesign.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                bdupe_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                button_main_ext("3", bdupe_active)
+            Else
+                noManipulating()
+            End If
         Else
-            noManipulating()
+            If GVPropose.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                bdupe_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                button_main_ext("3", bdupe_active)
+            Else
+                noManipulating()
+            End If
         End If
     End Sub
 
     Sub noManipulating()
         Try
-            Dim indeks As Integer = GVDesign.FocusedRowHandle
+            Dim indeks As Integer = 0
+            If XTPDesign.SelectedTabPageIndex = 0 Then
+                indeks = GVDesign.FocusedRowHandle
+            Else
+                indeks = GVPropose.FocusedRowHandle
+            End If
             If indeks < 0 Then
                 bnew_active = "1"
                 bedit_active = "0"
@@ -502,5 +532,18 @@
         FormHistoryProposeChanges.form_name = Name
 
         FormHistoryProposeChanges.ShowDialog()
+    End Sub
+
+    Private Sub XTPDesign_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTPDesign.SelectedPageChanged
+        If XTPDesign.SelectedTabPageIndex = 1 Then
+            viewPropose()
+        End If
+        check_menu()
+    End Sub
+
+    Private Sub GVPropose_DoubleClick(sender As Object, e As EventArgs) Handles GVPropose.DoubleClick
+        If GVPropose.RowCount > 0 And GVPropose.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
     End Sub
 End Class

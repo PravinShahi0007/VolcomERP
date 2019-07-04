@@ -34,7 +34,7 @@ Partial Class FormEmpPayrollDeductionDet
         Me.GCNIP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeePosition = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCEmployeeLevel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCWorkingDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCActualWorkingDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCTotalSalary = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -161,7 +161,7 @@ Partial Class FormEmpPayrollDeductionDet
         '
         'GVDeduction
         '
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIDEmployee, Me.GCDepartment, Me.GCNIP, Me.GCEmployee, Me.GCEmployeePosition, Me.GCEmployeeLevel, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCTotalSalary, Me.GCTotalDays, Me.GCValue})
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIDEmployee, Me.GCDepartment, Me.GCNIP, Me.GCEmployee, Me.GCEmployeePosition, Me.GCEmployeeStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCTotalSalary, Me.GCTotalDays, Me.GCValue})
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 1
         Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", Me.GCValue, "{0:N0}")})
@@ -212,14 +212,14 @@ Partial Class FormEmpPayrollDeductionDet
         Me.GCEmployeePosition.Visible = True
         Me.GCEmployeePosition.VisibleIndex = 2
         '
-        'GCEmployeeLevel
+        'GCEmployeeStatus
         '
-        Me.GCEmployeeLevel.Caption = "Employee Level"
-        Me.GCEmployeeLevel.FieldName = "employee_level"
-        Me.GCEmployeeLevel.Name = "GCEmployeeLevel"
-        Me.GCEmployeeLevel.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeLevel.Visible = True
-        Me.GCEmployeeLevel.VisibleIndex = 3
+        Me.GCEmployeeStatus.Caption = "Employee Status"
+        Me.GCEmployeeStatus.FieldName = "employee_status"
+        Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
+        Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
+        Me.GCEmployeeStatus.Visible = True
+        Me.GCEmployeeStatus.VisibleIndex = 3
         '
         'GCWorkingDays
         '
@@ -468,7 +468,7 @@ Partial Class FormEmpPayrollDeductionDet
     Friend WithEvents GCNIP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCEmployee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCEmployeePosition As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCEmployeeLevel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITEValue As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents SBRemove As DevExpress.XtraEditors.SimpleButton

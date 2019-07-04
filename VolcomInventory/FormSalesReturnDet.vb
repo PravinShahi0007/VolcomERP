@@ -192,6 +192,20 @@ Public Class FormSalesReturnDet
             XTPNonStock.PageEnabled = False
             XTPReturn.PageEnabled = True
         End If
+
+
+        'color form
+        If is_non_list = "1" Then
+            Text = "Return Non List"
+            LookAndFeel.UseDefaultLookAndFeel = False
+            LookAndFeel.SkinName = "Office 2007 Green"
+        End If
+
+        If id_ret_type = "2" Then
+            Text = "Non Inventory Stock"
+            LookAndFeel.UseDefaultLookAndFeel = False
+            LookAndFeel.SkinName = "Office 2007 Pink"
+        End If
     End Sub
     Sub viewSalesReturnOrder()
         Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, a.id_wh_contact_to, d.is_use_unique_code, d.id_commerce_type, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
@@ -1237,7 +1251,9 @@ Public Class FormSalesReturnDet
             End If
             id_product_param_or += "u.id_product='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' "
         Next
-        codeAvailableIns(id_product_param, id_product_param_or, id_store, "0")
+        If GVItemList.RowCount > 0 Then
+            codeAvailableIns(id_product_param, id_product_param_or, id_store, "0")
+        End If
 
         GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
@@ -1258,7 +1274,7 @@ Public Class FormSalesReturnDet
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         action_scan_btn = "start"
-        If GVItemList.RowCount > 0 Then
+        If GVItemList.RowCount > 0 Or is_non_list = "1" Then
             loadCodeDetail()
             verifyTrans()
             disableControl()
@@ -1515,7 +1531,12 @@ Public Class FormSalesReturnDet
                         code_list_found = True
 
                         'load unique new ror detail
-                        dt.Merge(dtu, True, MissingSchemaAction.Ignore)
+                        If dt.Rows.Count > 0 Then
+                            dt.Merge(dtu, True, MissingSchemaAction.Ignore)
+                        Else
+                            dt = dtu
+                        End If
+
                         'codeAvailableIns(dcr.Rows(0)("id_product").ToString, "u.id_product='" + dcr.Rows(0)("id_product").ToString + "' ", id_store, 0)
                     Else
                         Cursor = Cursors.Default
@@ -2313,6 +2334,23 @@ Public Class FormSalesReturnDet
 
     End Sub
 
+    Function isAvailableStock(ByVal id_prod) As Boolean
+        Dim query As String = "SELECT f.id_product, IFNULL(SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) AS `qty`
+        FROM tb_storage_fg f
+        WHERE f.id_wh_drawer=" + id_store + " AND f.id_product=" + id_prod + "
+        GROUP BY f.id_product "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            If data.Rows(0)("qty") > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Else
+            Return False
+        End If
+    End Function
+
     Private Sub TxtScanProb_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtScanProb.KeyDown
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
@@ -2336,28 +2374,34 @@ Public Class FormSalesReturnDet
                         End If
                     End If
 
+                    ''ada stock ato gak
+                    'If isAvailableStock(data.Rows(0)("id_product").ToString) Then
+                    '    stopCustom("This product still has stock, please scan in Return-Non List")
+                    '    Exit Sub
+                    'End If
+
                     Dim newRow As DataRow = (TryCast(GCBarcodeProb.DataSource, DataTable)).NewRow()
-                    newRow("id_sales_return_problem") = "0"
-                    newRow("id_product") = data.Rows(0)("id_product").ToString
-                    newRow("design_code") = data.Rows(0)("design_code").ToString
-                    newRow("code") = data.Rows(0)("code").ToString
-                    newRow("name") = data.Rows(0)("name").ToString
-                    newRow("size") = data.Rows(0)("size").ToString
-                    TryCast(GCBarcodeProb.DataSource, DataTable).Rows.Add(newRow)
-                    FormSalesReturnDetProblem.TxtCode.Text = data.Rows(0)("design_code").ToString
-                    FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString
-                    FormSalesReturnDetProblem.TxtSize.Text = data.Rows(0)("size").ToString
-                    FormSalesReturnDetProblem.TxtDesign.Text = data.Rows(0)("name").ToString
-                    FormSalesReturnDetProblem.id_product = data.Rows(0)("id_product").ToString
-                    FormSalesReturnDetProblem.id_type = "1"
-                    FormSalesReturnDetProblem.ShowDialog()
-                    GCBarcodeProb.RefreshDataSource()
-                    GVBarcodeProb.RefreshData()
-                    GVBarcodeProb.ActiveFilterString = ""
-                    TxtScanProb.Text = ""
-                    TxtScanProb.Focus()
-                Else
-                    stopCustom("Data not found")
+                        newRow("id_sales_return_problem") = "0"
+                        newRow("id_product") = data.Rows(0)("id_product").ToString
+                        newRow("design_code") = data.Rows(0)("design_code").ToString
+                        newRow("code") = data.Rows(0)("code").ToString
+                        newRow("name") = data.Rows(0)("name").ToString
+                        newRow("size") = data.Rows(0)("size").ToString
+                        TryCast(GCBarcodeProb.DataSource, DataTable).Rows.Add(newRow)
+                        FormSalesReturnDetProblem.TxtCode.Text = data.Rows(0)("design_code").ToString
+                        FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString
+                        FormSalesReturnDetProblem.TxtSize.Text = data.Rows(0)("size").ToString
+                        FormSalesReturnDetProblem.TxtDesign.Text = data.Rows(0)("name").ToString
+                        FormSalesReturnDetProblem.id_product = data.Rows(0)("id_product").ToString
+                        FormSalesReturnDetProblem.id_type = "1"
+                        FormSalesReturnDetProblem.ShowDialog()
+                        GCBarcodeProb.RefreshDataSource()
+                        GVBarcodeProb.RefreshData()
+                        GVBarcodeProb.ActiveFilterString = ""
+                        TxtScanProb.Text = ""
+                        TxtScanProb.Focus()
+                    Else
+                        stopCustom("Data not found")
                     GVBarcodeProb.ActiveFilterString = ""
                     TxtScanProb.Text = ""
                     TxtScanProb.Focus()

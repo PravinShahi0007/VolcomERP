@@ -192,7 +192,7 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase Request
             FormPurcReqDet.Close()
         ElseIf report_mark_type = "138" Then
@@ -291,6 +291,9 @@
         ElseIf report_mark_type = "197" Then
             'propose employee salary
             FormProposeEmpSalaryDet.Close()
+        ElseIf report_mark_type = "200" Then
+            'propose design changes
+            FormFGDesignListChanges.Close()
         End If
     End Sub
     Sub show()
@@ -839,7 +842,7 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase Request
             FormPurcReqDet.is_view = "1"
             FormPurcReqDet.id_req = id_report
@@ -1053,6 +1056,11 @@
             FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
+        ElseIf report_mark_type = "200" Then
+            'propose design changes
+            FormFGDesignListChanges.id = id_report
+            FormFGDesignListChanges.is_view = "1"
+            FormFGDesignListChanges.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1749,7 +1757,7 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'purchase request
             table_name = "tb_purc_req"
             field_id = "id_purc_req"
@@ -1899,6 +1907,12 @@
             field_id = "id_work_order"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "192" Then
+            'payroll
+            table_name = "tb_emp_payroll"
+            field_id = "id_payroll"
+            field_number = "report_number"
+            field_date = "NOW()"
         ElseIf report_mark_type = "197" Then
             'propose employee salary
             table_name = "tb_employee_sal_pps"
@@ -1915,6 +1929,12 @@
             'Overtime employee report
             table_name = "tb_ot"
             field_id = "id_ot"
+            field_number = "number"
+            field_date = "NOW()"
+        ElseIf report_mark_type = "200" Then
+            'propose design changes
+            table_name = "tb_m_design_changes"
+            field_id = "id_changes"
             field_number = "number"
             field_date = "NOW()"
         Else

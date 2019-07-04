@@ -19,11 +19,10 @@
         End If
 
         Dim query As String = "
-            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, ROUND(prl.workdays, 0) AS workdays, ROUND(prl.actual_workdays, 0) AS actual_workdays, ROUND(sal.total_salary, 0) AS total_salary
+            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, ROUND(prl.workdays, 0) AS workdays, ROUND(prl.actual_workdays, 0) AS actual_workdays, ROUND(sal.total_salary, 0) AS total_salary
             FROM tb_emp_payroll_det AS prl
             LEFT JOIN tb_m_employee AS emp ON prl.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON emp.id_departement = dp.id_departement
-            LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
             LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
             LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
             LEFT JOIN (
@@ -31,7 +30,7 @@
                 FROM tb_m_employee_salary
             ) AS sal ON sal.id_employee_salary = prl.id_salary
             WHERE prl.id_payroll = " + id_payroll + " " + where_not_included + "
-            ORDER BY emp.id_employee_level ASC
+            ORDER BY emp.id_employee_status ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -62,14 +61,14 @@
                     Dim employee_code As String = GVEmployee.GetRowCellValue(selected_row, "employee_code").ToString
                     Dim employee_name As String = GVEmployee.GetRowCellValue(selected_row, "employee_name").ToString
                     Dim employee_position As String = GVEmployee.GetRowCellValue(selected_row, "employee_position").ToString
-                    Dim employee_level As String = GVEmployee.GetRowCellValue(selected_row, "employee_level").ToString
+                    Dim employee_status As String = GVEmployee.GetRowCellValue(selected_row, "employee_status").ToString
                     Dim workdays As Integer = GVEmployee.GetRowCellValue(selected_row, "workdays")
                     Dim actual_workdays As Integer = GVEmployee.GetRowCellValue(selected_row, "actual_workdays")
                     Dim total_salary As Integer = GVEmployee.GetRowCellValue(selected_row, "total_salary")
                     Dim total_days As Integer = 0
                     Dim value As Integer = 0
 
-                    data.Rows.Add(id_employee, departement, employee_code, employee_name, employee_position, employee_level, workdays, actual_workdays, total_salary, total_days, value)
+                    data.Rows.Add(id_employee, departement, employee_code, employee_name, employee_position, employee_status, workdays, actual_workdays, total_salary, total_days, value)
                 End If
             Next
 
