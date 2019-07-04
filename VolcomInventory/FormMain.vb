@@ -13199,4 +13199,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSetupBudgetOPEX_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupBudgetOPEX.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSetupBudgetOPEX.MdiParent = Me
+            FormSetupBudgetOPEX.Show()
+            FormSetupBudgetOPEX.WindowState = FormWindowState.Maximized
+            FormSetupBudgetOPEX.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
