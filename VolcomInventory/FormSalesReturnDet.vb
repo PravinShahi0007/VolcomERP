@@ -45,6 +45,7 @@ Public Class FormSalesReturnDet
     Dim id_commerce_type As String = "-1"
     Dim action_scan_btn As String = ""
     Public is_non_list As String = "-1"
+    Public is_for_approve_combine = "-1"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -73,6 +74,8 @@ Public Class FormSalesReturnDet
         If action = "ins" Then
             XTPStorage.PageEnabled = False
             TxtSalesReturnNumber.Text = ""
+            TxtCombineNumber.Text = ""
+            TxtCombineFrom.Text = ""
             BtnPrint.Enabled = False
             BMark.Enabled = False
             BtnAttachment.Enabled = False
@@ -188,6 +191,14 @@ Public Class FormSalesReturnDet
             ElseIf id_pre = "2" Then
                 printing()
                 Close()
+            End If
+
+            'for approve combine
+            If is_for_approve_combine = "1" Then
+                BtnCreateReturn.Visible = False
+                BtnCreateReturnNonList.Visible = False
+                BtnCreateNonStock.Visible = False
+                XTCReturnMain.SelectedTabPageIndex = 2
             End If
         End If
 
@@ -412,7 +423,19 @@ Public Class FormSalesReturnDet
         If BtnCombineReturn.Visible = True Then
             query += "AND r.id_report_status=1 AND r.combine_number='' "
         Else
-            query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
+            If action = "upd" Then
+                query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
+
+                'member number
+                Dim qm As String = "SELECT GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `number`
+                FROM tb_sales_return r
+                WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "'
+                GROUP BY r.combine_number "
+                Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+                If dm.Rows.Count > 0 Then
+                    TxtCombineFrom.Text = dm.Rows(0)("number").ToString
+                End If
+            End If
         End If
         query += "GROUP BY rd.id_product "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -2697,6 +2720,7 @@ Public Class FormSalesReturnDet
 
     Private Sub BtnCreateReturnNonList_Click(sender As Object, e As EventArgs) Handles BtnCreateReturnNonList.Click
         Cursor = Cursors.WaitCursor
+        XTCReturnMain.SelectedTabPageIndex = 0
         action = "ins"
         id_ret_type = "1"
         FormSalesReturnSelectRetType.ShowDialog()
@@ -2731,6 +2755,7 @@ Public Class FormSalesReturnDet
 
     Private Sub BtnCreateReturn_Click(sender As Object, e As EventArgs) Handles BtnCreateReturn.Click
         Cursor = Cursors.WaitCursor
+        XTCReturnMain.SelectedTabPageIndex = 0
         action = "ins"
         id_ret_type = "1"
         FormSalesReturnSelectRetType.ShowDialog()
@@ -2783,7 +2808,7 @@ Public Class FormSalesReturnDet
             /*update deskripsi report mark*/
             UPDATE tb_report_mark rm 
             INNER JOIN tb_sales_return r ON r.id_sales_return = rm.id_report
-            SET rm.info_design = CONCAT('Combine No : ', r.combine_number)
+            SET rm.info_design = CONCAT('Combine No:', r.combine_number,'; Qty:','" + GVCombine.Columns("sales_return_det_qty").SummaryItem.SummaryValue.ToString + "')
             WHERE (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120) AND r.combine_number='" + combine_number + "'; "
             execute_non_query(query_upd, True, "", "", "", "")
 

@@ -4237,6 +4237,12 @@
     <Compile Include="FormSalesReturnNonListDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOptionView.Designer.vb">
+      <DependentUpon>FormSalesReturnOptionView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOptionView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderDetEdit.Designer.vb">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
     </Compile>
@@ -9208,6 +9214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnNonListDet.resx">
       <DependentUpon>FormSalesReturnNonListDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOptionView.resx">
+      <DependentUpon>FormSalesReturnOptionView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderDetEdit.resx">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>

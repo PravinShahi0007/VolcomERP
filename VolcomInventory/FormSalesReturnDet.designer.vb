@@ -241,6 +241,9 @@ Partial Class FormSalesReturnDet
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.BtnCombineReturn = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlInfoCombine = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCombineFrom = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -330,6 +333,9 @@ Partial Class FormSalesReturnDet
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlInfoCombine, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlInfoCombine.SuspendLayout()
+        CType(Me.TxtCombineFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -2230,6 +2236,7 @@ Partial Class FormSalesReturnDet
         'XTPCombine
         '
         Me.XTPCombine.Controls.Add(Me.GCCombine)
+        Me.XTPCombine.Controls.Add(Me.PanelControlInfoCombine)
         Me.XTPCombine.Controls.Add(Me.BtnCombineReturn)
         Me.XTPCombine.Name = "XTPCombine"
         Me.XTPCombine.Size = New System.Drawing.Size(1168, 344)
@@ -2238,12 +2245,12 @@ Partial Class FormSalesReturnDet
         'GCCombine
         '
         Me.GCCombine.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCCombine.Location = New System.Drawing.Point(0, 0)
+        Me.GCCombine.Location = New System.Drawing.Point(0, 39)
         Me.GCCombine.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCCombine.MainView = Me.GVCombine
         Me.GCCombine.Name = "GCCombine"
         Me.GCCombine.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit4})
-        Me.GCCombine.Size = New System.Drawing.Size(1168, 316)
+        Me.GCCombine.Size = New System.Drawing.Size(1168, 277)
         Me.GCCombine.TabIndex = 6
         Me.GCCombine.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCombine})
         '
@@ -2540,6 +2547,33 @@ Partial Class FormSalesReturnDet
         Me.BtnCombineReturn.TabIndex = 0
         Me.BtnCombineReturn.Text = "Combine Return"
         '
+        'PanelControlInfoCombine
+        '
+        Me.PanelControlInfoCombine.Controls.Add(Me.TxtCombineFrom)
+        Me.PanelControlInfoCombine.Controls.Add(Me.LabelControl11)
+        Me.PanelControlInfoCombine.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlInfoCombine.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlInfoCombine.Name = "PanelControlInfoCombine"
+        Me.PanelControlInfoCombine.Size = New System.Drawing.Size(1168, 39)
+        Me.PanelControlInfoCombine.TabIndex = 7
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(15, 13)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl11.TabIndex = 0
+        Me.LabelControl11.Text = "Combine from"
+        '
+        'TxtCombineFrom
+        '
+        Me.TxtCombineFrom.Enabled = False
+        Me.TxtCombineFrom.Location = New System.Drawing.Point(89, 10)
+        Me.TxtCombineFrom.MenuManager = Me.BMDD
+        Me.TxtCombineFrom.Name = "TxtCombineFrom"
+        Me.TxtCombineFrom.Size = New System.Drawing.Size(380, 20)
+        Me.TxtCombineFrom.TabIndex = 1
+        '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2654,6 +2688,10 @@ Partial Class FormSalesReturnDet
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlInfoCombine, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlInfoCombine.ResumeLayout(False)
+        Me.PanelControlInfoCombine.PerformLayout()
+        CType(Me.TxtCombineFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2878,4 +2916,7 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents BtnCombineReturn As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControlInfoCombine As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtCombineFrom As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
 End Class

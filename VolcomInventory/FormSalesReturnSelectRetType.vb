@@ -9,7 +9,9 @@
         GROUP BY s.id_ret_type "
         Dim dgt As DataTable = execute_query(qgt, -1, True, "", "", "", "")
         If dgt.Rows.Count > 0 Then
-            query = "SELECT * FROM tb_lookup_ret_type a WHERE a.id_ret_type=" + dgt.Rows(0)("id_ret_type").ToString + " ORDER BY a.id_ret_type ASC "
+            FormSalesReturnDet.id_ret_type = dgt.Rows(0)("id_ret_type").ToString
+            Close()
+            'query = "SELECT * FROM tb_lookup_ret_type a WHERE a.id_ret_type=" + dgt.Rows(0)("id_ret_type").ToString + " ORDER BY a.id_ret_type ASC "
         Else
             query = "SELECT * FROM tb_lookup_ret_type a WHERE a.id_ret_type=1 OR a.id_ret_type=3 ORDER BY a.id_ret_type ASC "
         End If

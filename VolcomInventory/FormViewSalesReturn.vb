@@ -37,7 +37,7 @@
 
         'query view based on edit id's
         Dim query As String = "SELECT a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
-        query += "a.sales_return_note,a.sales_return_date, a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
+        query += "a.sales_return_note,a.sales_return_date, a.combine_number,a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
         query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, b.id_prepare_status, prep_stt.prepare_status, a.id_ret_type, rt.ret_type, so.sales_order_ol_shop_number   "
         query += "FROM tb_sales_return a "
         query += "INNER JOIN tb_sales_return_order b ON a.id_sales_return_order = b.id_sales_return_order "
@@ -60,6 +60,7 @@
         TxtStoreReturnNumber.Text = data.Rows(0)("sales_return_store_number").ToString
         TxtSalesReturnNumber.Text = data.Rows(0)("sales_return_number").ToString
         TxtSalesReturnOrderNumber.Text = data.Rows(0)("sales_return_order_number").ToString
+        TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
 
         TxtNameCompFrom.Text = data.Rows(0)("store_name_from").ToString
         TxtCodeCompFrom.Text = data.Rows(0)("store_number_from").ToString
@@ -91,6 +92,16 @@
             GroupControl3.Visible = False
             GroupControlStatus.Visible = True
         End If
+
+        'cek jika belum approve dan ada combine return
+        If id_report_status = "1" And TxtCombineNumber.Text <> "" Then
+            Cursor = Cursors.WaitCursor
+            BMark.Enabled = False
+            openCombine()
+            Close()
+            Cursor = Cursors.Default
+        End If
+
         'detail2
         viewDetail()
         view_problem_summary()
@@ -655,5 +666,21 @@
 
     Private Sub GVProbSum_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVProbSum.ColumnFilterChanged
         view_barcode_list_prob()
+    End Sub
+
+    Private Sub TxtCombineNumber_OpenLink(sender As Object, e As DevExpress.XtraEditors.Controls.OpenLinkEventArgs) Handles TxtCombineNumber.OpenLink
+        openCombine()
+    End Sub
+
+    Sub openCombine()
+        If TxtCombineNumber.Text <> "" Then
+            Cursor = Cursors.WaitCursor
+            FormSalesReturnDet.action = "upd"
+            FormSalesReturnDet.id_sales_return = id_sales_return
+            FormSalesReturnDet.is_view = "1"
+            FormSalesReturnDet.is_for_approve_combine = "1"
+            FormSalesReturnDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
