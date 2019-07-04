@@ -41,6 +41,13 @@
         If id_report_status = "6" Then
             SBPrint.Enabled = True
         End If
+
+        'view
+        If FormEmpPayroll.is_view = "1" Then
+            BDel.Enabled = False
+            BEdit.Enabled = False
+            BAdd.Enabled = False
+        End If
     End Sub
 
     Private Sub BBJamsostek_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBJamsostek.ItemClick
