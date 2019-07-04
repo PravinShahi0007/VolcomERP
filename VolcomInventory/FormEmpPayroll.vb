@@ -1,4 +1,5 @@
 ﻿Public Class FormEmpPayroll
+    Public is_view As String = "2"
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "0"
     Dim bdel_active As String = "0"
@@ -154,6 +155,18 @@
         End If
 
         GVPayroll.TopRowIndex = 0
+
+        'view
+        If is_view = "1" Then
+            BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
+            BandedGridColumnPending.OptionsColumn.AllowEdit = False
+            BandedGridColumnCash.OptionsColumn.AllowEdit = False
+            BGetEmployee.Visible = False
+            BRemoveEmployee.Visible = False
+            BReset.Visible = False
+            BSubmit.Visible = False
+            SBSendSlip.Visible = False
+        End If
 
         Cursor = Cursors.Default
     End Sub

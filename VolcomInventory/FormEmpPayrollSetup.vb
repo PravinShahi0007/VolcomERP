@@ -36,9 +36,30 @@
 
                 'controls
                 If Not data.Rows(0)("id_report_status").ToString = "0" Then
+                    TEUMP.ReadOnly = True
+                    TEBPJSMax.ReadOnly = True
+                    TEJPMax.ReadOnly = True
+                    TEPembilang.ReadOnly = True
+                    TEPenyebut.ReadOnly = True
+                    TEKoperasiIuran.ReadOnly = True
+                    DEEffDate.ReadOnly = True
+                    MemoEdit1.ReadOnly = True
                     BPick.Enabled = False
                 End If
             End If
+        End If
+
+        'view
+        If FormEmpPayroll.is_view = "1" Then
+            TEUMP.ReadOnly = True
+            TEBPJSMax.ReadOnly = True
+            TEJPMax.ReadOnly = True
+            TEPembilang.ReadOnly = True
+            TEPenyebut.ReadOnly = True
+            TEKoperasiIuran.ReadOnly = True
+            DEEffDate.ReadOnly = True
+            MemoEdit1.ReadOnly = True
+            BPick.Enabled = False
         End If
     End Sub
 
