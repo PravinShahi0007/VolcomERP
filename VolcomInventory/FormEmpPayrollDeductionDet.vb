@@ -1,5 +1,6 @@
 ﻿Public Class FormEmpPayrollDeductionDet
     '1 Deduction, 2 Adjustment
+    Public id As String = "-1"
     Public id_popup As String = "1"
     Public id_payroll As String = "-1"
 
@@ -45,6 +46,62 @@
         data.Columns.Add("value", GetType(Integer))
 
         GCDeduction.DataSource = data
+
+        'edit
+        If Not id = "-1" Then
+            SBInsert.Enabled = False
+            SBRemove.Enabled = False
+
+            Dim query As String = ""
+
+            If id_popup = "1" Then
+                query = "
+                    SELECT emp.id_employee, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, sts.employee_status, pyl.workdays, pyl.actual_workdays, sal.total_salary, ded.total_days, ded.deduction AS value, ded.id_salary_deduction AS id_salary_adj, ldedc.id_salary_deduction_cat AS id_salary_adj_cat, ded.note
+                    FROM tb_emp_payroll_deduction AS ded
+                    LEFT JOIN tb_m_employee AS emp ON ded.id_employee = emp.id_employee
+                    LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
+                    LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+                    LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
+                    LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
+                    LEFT JOIN tb_emp_payroll_det AS pyl ON emp.id_employee = pyl.id_employee AND pyl.id_payroll = " + id_payroll + "
+                    LEFT JOIN (
+                        SELECT id_employee_salary, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS total_salary
+                        FROM tb_m_employee_salary
+                    ) AS sal ON sal.id_employee_salary = pyl.id_salary
+                    LEFT JOIN tb_lookup_salary_deduction AS lded ON lded.id_salary_deduction = ded.id_salary_deduction
+                    LEFT JOIN tb_lookup_salary_deduction_cat AS ldedc ON ldedc.id_salary_deduction_cat = lded.id_salary_deduction_cat
+                    WHERE id_payroll_deduction = " + id + "
+                "
+            ElseIf id_popup = "2" Then
+                query = "
+                    SELECT emp.id_employee, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, sts.employee_status, pyl.workdays, pyl.actual_workdays, sal.total_salary, adj.total_days, adj.value, adj.id_salary_adj, ladjc.id_salary_adjustment_cat AS id_salary_adj_cat, adj.note
+                    FROM tb_emp_payroll_adj AS adj
+                    LEFT JOIN tb_m_employee AS emp ON adj.id_employee = emp.id_employee
+                    LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
+                    LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+                    LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
+                    LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
+                    LEFT JOIN tb_emp_payroll_det AS pyl ON emp.id_employee = pyl.id_employee AND pyl.id_payroll = " + id_payroll + "
+                    LEFT JOIN (
+                        SELECT id_employee_salary, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS total_salary
+                        FROM tb_m_employee_salary
+                    ) AS sal ON sal.id_employee_salary = pyl.id_salary
+                    LEFT JOIN tb_lookup_salary_adjustment AS ladj ON ladj.id_salary_adjustment = adj.id_salary_adj
+                    LEFT JOIN tb_lookup_salary_adjustment_cat AS ladjc ON ladjc.id_salary_adjustment_cat = ladj.id_salary_adjustment_cat
+                    WHERE id_payroll_adj = " + id + "
+                "
+            End If
+
+            data = execute_query(query, -1, True, "", "", "", "")
+
+            SLUEType.EditValue = data.Rows(0)("id_salary_adj_cat")
+            SLUECategory.EditValue = data.Rows(0)("id_salary_adj")
+            MENote.EditValue = data.Rows(0)("note")
+
+            SLUECategory_EditValueChanged(SLUECategory, New EventArgs)
+
+            GCDeduction.DataSource = data
+        End If
     End Sub
 
     Private Sub FormEmpPayrollDeductionDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -63,23 +120,35 @@
                 Dim id_salary_dadj As String = SLUECategory.EditValue.ToString
                 Dim note As String = MENote.Text.ToString
 
+                Dim row As Integer = SLUECategory.Properties.GetIndexByKeyValue(SLUECategory.EditValue)
+
+                Dim data As DataTable = SLUECategory.Properties.DataSource
+
                 For i = 0 To GVDeduction.RowCount - 1
                     If GVDeduction.IsValidRowHandle(i) Then
                         Dim id_employee As String = GVDeduction.GetRowCellValue(i, "id_employee").ToString
                         Dim value As String = GVDeduction.GetRowCellValue(i, "value").ToString
-                        Dim total_days As String = GVDeduction.GetRowCellValue(i, "total_days").ToString
-                        Dim increase As String = GVDeduction.GetRowCellValue(i, "total_salary").ToString
+                        Dim total_days As String = If(data.Rows(row)("use_days").ToString = "1", GVDeduction.GetRowCellValue(i, "total_days").ToString, "")
+                        Dim increase As String = If(data.Rows(row)("use_days").ToString = "1", GVDeduction.GetRowCellValue(i, "total_salary").ToString, "0")
 
                         Dim query As String = ""
 
-                        If id_popup = "1" Then
-                            query = "
-                                INSERT INTO tb_emp_payroll_deduction (id_payroll, id_salary_deduction, id_employee, total_days, increase, deduction, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(total_days) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
-                            "
-                        ElseIf id_popup = "2" Then
-                            query = "
-                                INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, value, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + decimalSQL(total_days) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
-                            "
+                        If id = "-1" Then
+                            If id_popup = "1" Then
+                                query = "
+                                    INSERT INTO tb_emp_payroll_deduction (id_payroll, id_salary_deduction, id_employee, total_days, increase, deduction, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
+                                "
+                            ElseIf id_popup = "2" Then
+                                query = "
+                                    INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, value, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
+                                "
+                            End If
+                        Else
+                            If id_popup = "1" Then
+                                query = "UPDATE tb_emp_payroll_deduction SET id_salary_deduction = " + id_salary_dadj + ", total_days = " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", increase = " + decimalSQL(increase) + ", deduction = " + decimalSQL(value) + ", note = '" + addSlashes(note) + "' WHERE id_payroll_deduction = " + id
+                            ElseIf id_popup = "2" Then
+                                query = "UPDATE tb_emp_payroll_adj SET id_salary_adj = " + id_salary_dadj + ", total_days = " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", increase = " + decimalSQL(increase) + ", value = " + decimalSQL(value) + ", note = '" + addSlashes(note) + "' WHERE id_payroll_adj = " + id
+                            End If
                         End If
 
                         execute_non_query(query, True, "", "", "", "")
@@ -130,6 +199,8 @@
     Private Sub SLUECategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECategory.EditValueChanged
         Dim row As Integer = SLUECategory.Properties.GetIndexByKeyValue(SLUECategory.EditValue)
 
+        Dim data As DataTable = SLUECategory.Properties.DataSource
+
         If row < 0 Then
             GCNIP.VisibleIndex = 0
             GCEmployee.VisibleIndex = 1
@@ -142,7 +213,7 @@
             GCTotalDays.VisibleIndex = -1
         Else
             Try
-                If SLUECategory.Properties.View.GetRowCellValue(row, "use_days").ToString = "1" Then
+                If data.Rows(row)("use_days").ToString = "1" Then
                     GCTotalDays.OptionsColumn.AllowEdit = True
 
                     GCNIP.VisibleIndex = 0

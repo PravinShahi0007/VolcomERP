@@ -1,7 +1,6 @@
 ﻿Public Class FormEmpPayrollSetup
     Public id_payroll As String = "-1"
     Private Sub FormEmpPayrollSetup_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        FormEmpPayroll.load_payroll_detail()
         Dispose()
     End Sub
 
