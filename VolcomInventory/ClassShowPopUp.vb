@@ -294,6 +294,9 @@
         ElseIf report_mark_type = "200" Then
             'propose design changes
             FormFGDesignListChanges.Close()
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'propose budget OPEX
+            FormSetupBudgetOPEX.Close()
         End If
     End Sub
     Sub show()
@@ -1061,6 +1064,11 @@
             FormFGDesignListChanges.id = id_report
             FormFGDesignListChanges.is_view = "1"
             FormFGDesignListChanges.ShowDialog()
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'propose budget OPEX
+            FormSetupBudgetOPEXDet.id_pps = id_report
+            FormSetupBudgetOPEXDet.is_view = "1"
+            FormSetupBudgetOPEXDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1937,6 +1945,12 @@
             field_id = "id_changes"
             field_number = "number"
             field_date = "NOW()"
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'propose budget OPEX
+            table_name = "tb_b_opex_pps"
+            field_id = "id_b_opex_pps"
+            field_number = "number"
+            field_date = "date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
