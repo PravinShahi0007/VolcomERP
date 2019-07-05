@@ -542,6 +542,9 @@
         ElseIf report_mark_type = "200" Then
             'design changes
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_m_design_changes WHERE id_changes = '{0}'", id_report)
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'OPEX Budget Propose
+            query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_opex_pps WHERE id_b_opex_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6129,6 +6132,60 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             FormFGDesignList.viewPropose()
             FormFGDesignList.GVPropose.FocusedRowHandle = find_row(FormFGDesignList.GVPropose, "id_changes", id_report)
             Cursor = Cursors.Default
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'budget OPEX propose
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then 'complete update/insert budget
+                'cek type first
+                Dim query_pps As String = "SELECT id_type FROM tb_b_opex_pps WHERE id_b_opex_pps ='" & id_report & "'"
+                Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
+                If data_pps.Rows.Count > 0 Then
+                    If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat`,ppsd.`year`,ppsd.`value_after`
+FROM `tb_b_opex_pps` pps
+INNER JOIN tb_b_opex_pps_det ppsd ON ppsd.id_b_opex_pps=pps.id_b_opex_pps
+WHERE pps.id_b_opex_pps='" & id_report & "' AND value_after!=0"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'insert budget
+                            Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                            execute_non_query(ins_det, True, "", "", "", "")
+                        Next
+                    Else 'revision
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat`,ppsd.`year`,ppsd.`value_before`,ppsd.`value_after`,IFNULL(bo.`id_b_expense_opex`,'') AS id_b_expense_opex
+FROM `tb_b_opex_pps` pps
+INNER JOIN tb_b_opex_pps_det ppsd ON ppsd.id_b_opex_pps=pps.id_b_opex_pps
+LEFT JOIN tb_b_expense_opex bo ON bo.`id_item_cat`=ppsd.id_item_cat AND ppsd.year=bo.`year` AND bo.`is_active`='1'
+WHERE pps.id_b_opex_pps='" & id_report & "' AND (value_after!=0 OR value_before!=0)"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+
+                            If Not data_det.Rows(i)("id_b_expense_opex").ToString = "" Then
+                                'update budget
+                                Dim upd_det As String = "UPDATE tb_b_expense_opex SET value_expense='" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "' WHERE id_b_expense_opex='" & data_det.Rows(i)("id_b_expense_opex").ToString & "'"
+                                execute_non_query(upd_det, True, "", "", "", "")
+                            Else
+                                'insert budget
+                                Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                                execute_non_query(ins_det, True, "", "", "", "")
+                            End If
+                        Next
+                    End If
+                End If
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_b_opex_pps SET id_report_status='{0}' WHERE id_b_opex_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            'FormSampleBudget.load_propose()
+            'FormSampleBudget.load_budget()
         End If
 
         'adding lead time
