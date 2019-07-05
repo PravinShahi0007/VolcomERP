@@ -50,13 +50,6 @@ Public Class FormSalesReturnDet
     Dim is_input_manual_ret_store As String = "2"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        viewReportStatus()
-        actionLoad()
-
-        'sementara bahkan selamanya
-        SCCStorage.Panel2.Hide()
-        WindowState = FormWindowState.Maximized
-
         'cek input mnual surat jalan
         is_input_manual_ret_store = get_setup_field("is_input_manual_ret_store")
         If is_input_manual_ret_store = "1" Then
@@ -64,6 +57,13 @@ Public Class FormSalesReturnDet
         Else
             TxtStoreReturnNumber.Properties.ReadOnly = True
         End If
+
+        viewReportStatus()
+        actionLoad()
+
+        'sementara bahkan selamanya
+        SCCStorage.Panel2.Hide()
+        WindowState = FormWindowState.Maximized
     End Sub
 
     Sub actionLoad()
@@ -318,7 +318,23 @@ Public Class FormSalesReturnDet
         GroupControlProb.Enabled = True
         BtnInfoSrs.Enabled = True
         GVItemList.OptionsBehavior.AutoExpandAllGroups = True
+
+        'referensi surat jalan
+        Dim dtr As DataTable = getRefStoreRetNumber(id_store)
+        If dtr.Rows.Count > 0 Then
+            FormSalesReturnStoreReturn.dt = dtr
+            FormSalesReturnStoreReturn.ShowDialog()
+        End If
     End Sub
+
+    Function getRefStoreRetNumber(ByVal id_store_par As String) As DataTable
+        Dim query As String = "SELECT ad.id_wh_awb_det, ad.id_awbill, ad.do_no, ad.qty, ad.is_active 
+        FROM tb_wh_awbill_det_in ad
+        INNER JOIN tb_wh_awbill a ON a.id_awbill = ad.id_awbill
+        WHERE a.id_store=" + id_store_par + " AND ad.is_active=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
 
     Sub setDefDrawer()
         'get default drawer
@@ -434,24 +450,22 @@ Public Class FormSalesReturnDet
         If BtnCombineReturn.Visible = True Then
             query += "AND r.id_report_status=1 AND r.combine_number='' "
         Else
-            If action = "upd" Then
-                query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
-
-                'member number
-                Dim qm As String = "SELECT GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `number`
-                FROM tb_sales_return r
-                WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "'
-                GROUP BY r.combine_number "
-                Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
-                If dm.Rows.Count > 0 Then
-                    TxtCombineFrom.Text = dm.Rows(0)("number").ToString
-                End If
-            End If
+            query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
         End If
         query += "GROUP BY rd.id_product "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCombine.DataSource = data
         GVCombine.BestFitColumns()
+
+        'member number
+        Dim qm As String = "SELECT GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `number`
+                FROM tb_sales_return r
+                WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "'
+                GROUP BY r.combine_number "
+        Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+        If dm.Rows.Count > 0 Then
+            TxtCombineFrom.Text = dm.Rows(0)("number").ToString
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -593,7 +607,7 @@ Public Class FormSalesReturnDet
             PanelNavBarcodeProb.Enabled = False
             MENote.Properties.ReadOnly = False
             BtnSave.Enabled = False
-            TxtStoreReturnNumber.Properties.ReadOnly = False
+            TxtStoreReturnNumber.Properties.ReadOnly = True
             BtnInfoSrs.Enabled = True
             GridColumnQtyLimit.Visible = False
             BtnBrowseContactTo.Enabled = False
@@ -612,6 +626,7 @@ Public Class FormSalesReturnDet
         End If
         BtnVerify.Enabled = False
         GridColumnStt.Visible = False
+        BtnBrowseStoreReturn.Enabled = False
 
         'non stock report
         If is_view = "1" Then
@@ -2839,6 +2854,17 @@ Public Class FormSalesReturnDet
             FormSalesReturn.GVSalesReturn.FocusedRowHandle = find_row(FormSalesReturn.GVSalesReturn, "id_sales_return", id_sales_return)
             exportToBOF(False)
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnBrowseStoreReturn_Click(sender As Object, e As EventArgs) Handles BtnBrowseStoreReturn.Click
+        'referensi surat jalan
+        Dim dtr As DataTable = getRefStoreRetNumber(id_store)
+        If dtr.Rows.Count > 0 Then
+            FormSalesReturnStoreReturn.dt = dtr
+            FormSalesReturnStoreReturn.ShowDialog()
+        Else
+            stopCustom("Data not found")
         End If
     End Sub
 End Class
