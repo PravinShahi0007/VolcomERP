@@ -3,6 +3,8 @@
     Public is_check As String = "-1"
     Public id As String = "0"
 
+    Private is_point_ho As String = "0"
+
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
             Text = "Propose Overtime Detail"
@@ -286,6 +288,17 @@
         Dim is_store As Decimal = GVEmployee.GetRowCellValue(i, "is_store").ToString
         Dim overtime_hour As Decimal = GVEmployee.GetRowCellValue(i, "overtime_hours")
 
+        'force calculate point head office
+        Dim data As DataTable = LUEOvertimeType.Properties.DataSource
+
+        If is_point_ho = "0" Then
+            is_point_ho = execute_query("SELECT is_point_ho FROM tb_lookup_ot_type WHERE id_ot_type = " + LUEOvertimeType.EditValue.ToString, 0, True, "", "", "", "")
+        End If
+
+        If is_point_ho = "1" Then
+            is_store = "2"
+        End If
+
         GVEmployee.SetRowCellValue(i, "point", calc_point(overtime_hour, is_day_off, is_store))
 
         If GVEmployee.GetRowCellValue(i, "only_dp").ToString = "yes" Then
@@ -308,15 +321,15 @@
     End Sub
 
     Private Sub RITEAttendanceStart_EditValueChanged(sender As Object, e As EventArgs) Handles RITEAttendanceStart.EditValueChanged
-        calculateTotalHoursList(GVEmployee.GetFocusedDataSourceRowIndex)
+        calculateTotalHoursList(GVEmployee.FocusedRowHandle)
     End Sub
 
     Private Sub RITEAttendanceEnd_EditValueChanged(sender As Object, e As EventArgs) Handles RITEAttendanceEnd.EditValueChanged
-        calculateTotalHoursList(GVEmployee.GetFocusedDataSourceRowIndex)
+        calculateTotalHoursList(GVEmployee.FocusedRowHandle)
     End Sub
 
     Private Sub RITEBreakHours_EditValueChanged(sender As Object, e As EventArgs) Handles RITEBreakHours.EditValueChanged
-        calculateTotalHoursList(GVEmployee.GetFocusedDataSourceRowIndex)
+        calculateTotalHoursList(GVEmployee.FocusedRowHandle)
     End Sub
 
     Private Sub FormEmpOvertimeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -615,7 +628,7 @@
         Dim query As String = ""
 
         query = "
-            SELECT ot_det.conversion_type, departement.is_store, ot.id_payroll, payroll.periode_end, ot_det.id_employee, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp, ot.id_ot_type, ot.ot_date, ot_det.start_work AS ot_start, ot_det.end_work AS ot_end, ot_det.break_hours AS total_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS total_hour, IFNULL(ot_det.overtime_hours, 0.0) AS overtime_hours, 0 AS total_point, IFNULL(ot_det.is_day_off, (IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1) AND (SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL, 2, 1))) AS is_day_off, ot_type.ot_point_wages AS wages_per_point, ot.ot_note AS note, ot_det.id_ot_det
+            SELECT ot_det.conversion_type, departement.is_store, ot.id_payroll, payroll.periode_end, ot_det.id_employee, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp, ot.id_ot_type, ot_type.is_point_ho, ot.ot_date, ot_det.start_work AS ot_start, ot_det.end_work AS ot_end, ot_det.break_hours AS total_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS total_hour, IFNULL(ot_det.overtime_hours, 0.0) AS overtime_hours, 0 AS total_point, IFNULL(ot_det.is_day_off, (IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot.ot_date) = 1) AND (SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL, 2, 1))) AS is_day_off, ot_type.ot_point_wages AS wages_per_point, ot.ot_note AS note, ot_det.id_ot_det
             FROM tb_ot_det AS ot_det
             LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
             LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -643,6 +656,12 @@
             Dim total_break As String = data.Rows(i)("total_break").ToString
             Dim overtime_hour As String = data.Rows(i)("overtime_hours").ToString
             Dim is_day_off As String = data.Rows(i)("is_day_off").ToString
+
+            'force calculate point head office
+            If data.Rows(i)("is_point_ho").ToString = "1" Then
+                is_store = "2"
+            End If
+
             Dim total_point As String = If(only_dp = "yes", overtime_hour.ToString, calc_point(Decimal.Parse(overtime_hour), is_day_off, is_store).ToString)
             Dim wages_per_point As String = data.Rows(i)("wages_per_point").ToString
             Dim note As String = data.Rows(i)("note").ToString
@@ -686,7 +705,7 @@
     End Function
 
     Private Sub RITEOvertimeHours_EditValueChanged(sender As Object, e As EventArgs) Handles RITEOvertimeHours.EditValueChanged
-        calculatePointList(GVEmployee.GetFocusedDataSourceRowIndex)
+        calculatePointList(GVEmployee.FocusedRowHandle)
     End Sub
 
     Private Sub SBFill_Click(sender As Object, e As EventArgs) Handles SBFill.Click
@@ -711,6 +730,6 @@
     End Sub
 
     Private Sub RISLUEDayOff_EditValueChanged(sender As Object, e As EventArgs) Handles RISLUEDayOff.EditValueChanged
-        calculatePointList(GVEmployee.GetFocusedDataSourceRowIndex)
+        calculatePointList(GVEmployee.FocusedRowHandle)
     End Sub
 End Class
