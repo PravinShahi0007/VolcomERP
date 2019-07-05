@@ -24,18 +24,17 @@ Partial Class FormSetupBudgetOPEX
         Me.XTPBudget = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBudgetList = New DevExpress.XtraGrid.GridControl()
         Me.GVBudgetList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.DEYearBudget = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BRevision = New DevExpress.XtraEditors.SimpleButton()
-        Me.BNewBudget = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPProposal = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProposeList = New DevExpress.XtraGrid.GridControl()
         Me.GVProposeList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -138,7 +137,7 @@ Partial Class FormSetupBudgetOPEX
         Me.GCBudgetList.MainView = Me.GVBudgetList
         Me.GCBudgetList.Name = "GCBudgetList"
         Me.GCBudgetList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudget})
-        Me.GCBudgetList.Size = New System.Drawing.Size(936, 482)
+        Me.GCBudgetList.Size = New System.Drawing.Size(936, 506)
         Me.GCBudgetList.TabIndex = 5
         Me.GCBudgetList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetList})
         '
@@ -150,13 +149,6 @@ Partial Class FormSetupBudgetOPEX
         Me.GVBudgetList.OptionsBehavior.ReadOnly = True
         Me.GVBudgetList.OptionsView.ShowFooter = True
         Me.GVBudgetList.OptionsView.ShowGroupPanel = False
-        '
-        'RICEBudget
-        '
-        Me.RICEBudget.AutoHeight = False
-        Me.RICEBudget.Name = "RICEBudget"
-        Me.RICEBudget.ValueChecked = "yes"
-        Me.RICEBudget.ValueUnchecked = "no"
         '
         'GridColumnId
         '
@@ -193,6 +185,13 @@ Partial Class FormSetupBudgetOPEX
         Me.GridColumnVal.Visible = True
         Me.GridColumnVal.VisibleIndex = 2
         Me.GridColumnVal.Width = 167
+        '
+        'RICEBudget
+        '
+        Me.RICEBudget.AutoHeight = False
+        Me.RICEBudget.Name = "RICEBudget"
+        Me.RICEBudget.ValueChecked = "yes"
+        Me.RICEBudget.ValueUnchecked = "no"
         '
         'PanelControl1
         '
@@ -243,16 +242,15 @@ Partial Class FormSetupBudgetOPEX
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BRevision)
-        Me.PanelControl2.Controls.Add(Me.BNewBudget)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 520)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 544)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(936, 71)
+        Me.PanelControl2.Size = New System.Drawing.Size(936, 47)
         Me.PanelControl2.TabIndex = 6
         '
         'BRevision
         '
-        Me.BRevision.Appearance.BackColor = System.Drawing.Color.Tomato
+        Me.BRevision.Appearance.BackColor = System.Drawing.Color.CadetBlue
         Me.BRevision.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.BRevision.Appearance.ForeColor = System.Drawing.Color.White
         Me.BRevision.Appearance.Options.UseBackColor = True
@@ -265,28 +263,9 @@ Partial Class FormSetupBudgetOPEX
         Me.BRevision.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BRevision.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BRevision.Name = "BRevision"
-        Me.BRevision.Size = New System.Drawing.Size(932, 35)
+        Me.BRevision.Size = New System.Drawing.Size(932, 43)
         Me.BRevision.TabIndex = 14
-        Me.BRevision.Text = "Revise Budget"
-        '
-        'BNewBudget
-        '
-        Me.BNewBudget.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BNewBudget.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BNewBudget.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BNewBudget.Appearance.Options.UseBackColor = True
-        Me.BNewBudget.Appearance.Options.UseFont = True
-        Me.BNewBudget.Appearance.Options.UseForeColor = True
-        Me.BNewBudget.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BNewBudget.Location = New System.Drawing.Point(2, 37)
-        Me.BNewBudget.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BNewBudget.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BNewBudget.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BNewBudget.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BNewBudget.Name = "BNewBudget"
-        Me.BNewBudget.Size = New System.Drawing.Size(932, 32)
-        Me.BNewBudget.TabIndex = 13
-        Me.BNewBudget.Text = "Propose New Budget"
+        Me.BRevision.Text = "Setup Budget"
         '
         'XTPProposal
         '
@@ -317,7 +296,7 @@ Partial Class FormSetupBudgetOPEX
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_sample_budget_pps"
+        Me.GridColumn1.FieldName = "id_b_opex_pps"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
@@ -752,7 +731,6 @@ Partial Class FormSetupBudgetOPEX
     Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BRevision As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BNewBudget As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPProposal As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCProposeList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProposeList As DevExpress.XtraGrid.Views.Grid.GridView

@@ -47,7 +47,7 @@
     End Sub
 
     Sub load_budget()
-        Dim query As String = "SELECT ic.id_item_cat,ic.item_cat,'" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.value_expense,0) AS value_expense
+        Dim query As String = "SELECT ic.id_item_cat,ic.item_cat,'" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense_opex,'') AS id_b_expense_opex,IFNULL(bo.value_expense,0) AS value_expense
 FROM tb_item_cat ic
 LEFT JOIN `tb_b_expense_opex` bo ON bo.id_item_cat=ic.id_item_cat AND bo.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND bo.is_active='1'
 WHERE ic.id_expense_type='1'
@@ -74,5 +74,37 @@ WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND p
             FormSetupBudgetOPEXDet.ShowDialog()
         End If
         '
+    End Sub
+
+    Private Sub BShowList_Click(sender As Object, e As EventArgs) Handles BShowList.Click
+        load_propose()
+    End Sub
+
+    Sub load_propose()
+        Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_b_opex_pps` pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+WHERE DATE(pps.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pps.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+ORDER BY pps.id_b_opex_pps DESC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCProposeList.DataSource = data
+        GVProposeList.BestFitColumns()
+    End Sub
+
+    Private Sub BShowAll_Click(sender As Object, e As EventArgs) Handles BShowAll.Click
+        Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_b_opex_pps` pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_b_opex_pps DESC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCProposeList.DataSource = data
+        GVProposeList.BestFitColumns()
+    End Sub
+
+    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        FormSetupBudgetOPEXDet.id_pps = GVProposeList.GetFocusedRowCellValue("id_b_opex_pps").ToString
+        FormSetupBudgetOPEXDet.ShowDialog()
     End Sub
 End Class
