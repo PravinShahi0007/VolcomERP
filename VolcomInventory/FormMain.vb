@@ -11995,6 +11995,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBPayroll_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayroll.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormEmpPayroll.is_view = "2"
             FormEmpPayroll.MdiParent = Me
             FormEmpPayroll.Show()
             FormEmpPayroll.WindowState = FormWindowState.Maximized
@@ -13179,6 +13180,33 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemSubCat.Show()
             FormItemSubCat.WindowState = FormWindowState.Maximized
             FormItemSubCat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPayrollApprove_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayrollApprove.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPayroll.is_view = "1"
+            FormEmpPayroll.MdiParent = Me
+            FormEmpPayroll.Show()
+            FormEmpPayroll.WindowState = FormWindowState.Maximized
+            FormEmpPayroll.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSetupBudgetOPEX_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupBudgetOPEX.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSetupBudgetOPEX.MdiParent = Me
+            FormSetupBudgetOPEX.Show()
+            FormSetupBudgetOPEX.WindowState = FormWindowState.Maximized
+            FormSetupBudgetOPEX.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

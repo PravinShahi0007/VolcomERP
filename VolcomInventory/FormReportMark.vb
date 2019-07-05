@@ -440,7 +440,7 @@
         ElseIf report_mark_type = "138" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
-        ElseIf report_mark_type = "139" Then
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then
             'Purchase Order
             query = String.Format("SELECT id_report_status,purc_order_number as report_number FROM tb_purc_order WHERE id_purc_order = '{0}'", id_report)
         ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "194" Then
@@ -4400,7 +4400,7 @@
             FormBudgetExpenseRevisionDet.actionLoad()
             FormBudgetExpenseRevision.viewData()
             FormBudgetExpenseRevision.GVData.FocusedRowHandle = find_row(FormBudgetExpenseRevision.GVData, "id_b_expense_revision", id_report)
-        ElseIf report_mark_type = "139" Then
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then
             'Purchase Order
             'auto completed
             If id_status_reportx = "3" Then
@@ -5238,7 +5238,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                                             GROUP BY py.id_payment
                                             )trx WHERE trx.debit != 0 OR trx.credit != 0"
                             execute_non_query(qjd, True, "", "", "", "")
-                            If data_payment.Rows(0)("report_mark_type").ToString = "139" Then
+                            If data_payment.Rows(0)("report_mark_type").ToString = "139" Or report_mark_type = "202" Then
                                 'close pay in tb_purc_order
                                 Dim qc As String = "UPDATE tb_purc_order po
                                             INNER JOIN tb_payment_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_payment`=" & id_report & "
@@ -6069,42 +6069,6 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             If id_status_reportx = "6" Then
                 Dim query_comp As String = "
-                /*void pd*/
-                UPDATE tb_prod_demand_design main
-                INNER JOIN (
-	                SELECT det.id_prod_demand_design
-	                FROM tb_m_design_changes_det det
-	                WHERE det.id_changes=" + id_report + "
-                ) src ON src.id_prod_demand_design = main.id_prod_demand_design
-                SET main.is_void=1, main.id_design_changes=" + id_report + "; 
-                /*void PO jika ada*/
-                UPDATE tb_prod_order main
-                INNER JOIN (
-	                SELECT det.id_prod_order, c.note
-	                FROM tb_m_design_changes_det det
-	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
-	                WHERE det.id_changes=" + id_report + "
-                ) src ON src.id_prod_order = main.id_prod_order
-                SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note;
-                /*nonaktif PO approval*/
-                UPDATE tb_report_mark main
-                INNER JOIN (
-	                SELECT det.id_prod_order, c.note
-	                FROM tb_m_design_changes_det det
-	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
-	                WHERE det.id_changes=" + id_report + "
-                ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
-                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL;
-                /*drop design old*/
-                UPDATE tb_m_design main
-                INNER JOIN (
-	                SELECT d.id_design_rev_from AS `id_design`
-	                FROM tb_m_design_changes_det det
-	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
-	                INNER JOIN tb_m_design d ON d.id_design = det.id_design
-	                WHERE det.id_changes=" + id_report + "
-                ) src ON src.id_design = main.id_design 
-                SET main.id_lookup_status_order=2, main.id_active=2;
                 /*update design new*/
                 UPDATE tb_m_design main
                 INNER JOIN (
