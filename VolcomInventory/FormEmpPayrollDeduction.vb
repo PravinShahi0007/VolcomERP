@@ -7,7 +7,7 @@
     End Sub
 
     Sub load_deduction()
-        Dim query As String = "SELECT pyd.id_payroll_deduction,IF(sald.use_days = 2, '-', pyd.total_days) AS total_days,emp.`id_employee`,dep.`departement`,emp.`employee_code`,emp.`employee_name`,emp.`employee_position`,lvl.`employee_status`,pyd.`deduction`,sald.`salary_deduction`,saldc.salary_deduction_cat,pyd.note FROM tb_emp_payroll_deduction pyd
+        Dim query As String = "SELECT pyd.id_payroll_deduction,dep.is_office_payroll,IF(sald.use_days = 2, '-', pyd.total_days) AS total_days,emp.`id_employee`,dep.`departement`,emp.`employee_code`,emp.`employee_name`,emp.`employee_position`,lvl.`employee_status`,pyd.`deduction`,sald.`salary_deduction`,saldc.salary_deduction_cat,pyd.note FROM tb_emp_payroll_deduction pyd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
                                 INNER jOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN `tb_lookup_employee_status` lvl ON lvl.`id_employee_status`=emp.`id_employee_status`
@@ -24,14 +24,14 @@
 
         If id_report_status = "0" Then
             BAdd.Enabled = True
-            'BEdit.Enabled = True
+            BEdit.Enabled = True
             BDel.Enabled = True
 
             BtnDropQuickMenu.Enabled = True
             DropDownButton1.Enabled = True
         Else
             BAdd.Enabled = False
-            'BEdit.Enabled = False
+            BEdit.Enabled = False
             BDel.Enabled = False
 
             BtnDropQuickMenu.Enabled = False
@@ -40,6 +40,13 @@
 
         If id_report_status = "6" Then
             SBPrint.Enabled = True
+        End If
+
+        'view
+        If FormEmpPayroll.is_view = "1" Then
+            BDel.Enabled = False
+            BEdit.Enabled = False
+            BAdd.Enabled = False
         End If
     End Sub
 
@@ -66,13 +73,26 @@
     End Sub
 
     Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
-        Dim confirm As DialogResult
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll_deduction='" & GVDeduction.GetFocusedRowCellValue("id_payroll_deduction") & "'"
-            execute_non_query(query, True, "", "", "", "")
-            '
+        If GVDeduction.SelectedRowsCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                Dim selected_rows As Integer() = GVDeduction.GetSelectedRows()
+
+                For i = 0 To selected_rows.Length - 1
+                    Dim selected_row As Integer = selected_rows(i)
+
+                    If selected_row >= 0 Then
+                        Dim query As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll_deduction='" & GVDeduction.GetRowCellValue(selected_row, "id_payroll_deduction").ToString & "'"
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                Next
+            End If
+
             load_deduction()
+        Else
+            stopCustom("Please choose employee first.")
         End If
     End Sub
 
@@ -113,7 +133,20 @@
     End Function
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim data As DataTable = GCDeduction.DataSource
+
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, 0, True, "", "", "", "")
+
+        Dim already_office As Boolean = False
+        Dim already_store As Boolean = False
+
+        For j = 0 To data.Rows.Count - 1
+            If data.Rows(j)("is_office_payroll").ToString = "1" Then
+                already_office = True
+            ElseIf data.Rows(j)("is_office_payroll").ToString = "2"
+                already_store = True
+            End If
+        Next
 
         'print office
         Dim report1 As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
@@ -151,19 +184,53 @@
         Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
 
         'report1
-        For i = 0 To report1.Pages.Count - 1
-            list.Add(report1.Pages(i))
-        Next
+        If already_office Then
+            For i = 0 To report1.Pages.Count - 1
+                list.Add(report1.Pages(i))
+            Next
+        End If
 
         'report2
-        For i = 0 To report2.Pages.Count - 1
-            list.Add(report2.Pages(i))
-        Next
+        If already_store Then
+            For i = 0 To report2.Pages.Count - 1
+                list.Add(report2.Pages(i))
+            Next
+        End If
 
-        report1.Pages.AddRange(list)
+        If already_office Then
+            report1.Pages.AddRange(list)
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report1)
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report1)
 
-        tool.ShowPreview()
+            tool.ShowPreview()
+        End If
+
+        If already_store And Not already_office Then
+            report2.Pages.AddRange(list)
+
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report2)
+
+            tool.ShowPreview()
+        End If
+    End Sub
+
+    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        If GVDeduction.SelectedRowsCount > 0 Then
+            Dim selected_rows As Integer() = GVDeduction.GetSelectedRows()
+
+            For i = 0 To selected_rows.Length - 1
+                Dim selected_row As Integer = selected_rows(i)
+
+                If selected_row >= 0 Then
+                    FormEmpPayrollDeductionDet.id = GVDeduction.GetRowCellValue(selected_row, "id_payroll_deduction").ToString
+                    FormEmpPayrollDeductionDet.id_popup = "1"
+                    FormEmpPayrollDeductionDet.id_payroll = id_payroll
+
+                    FormEmpPayrollDeductionDet.ShowDialog()
+                End If
+            Next
+        Else
+            stopCustom("Please choose employee first.")
+        End If
     End Sub
 End Class

@@ -91,6 +91,7 @@ Partial Class FormPurcReqDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -482,7 +483,7 @@ Partial Class FormPurcReqDet
         '
         Me.GVItemList.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVItemList.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumn20, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Nothing, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -501,23 +502,31 @@ Partial Class FormPurcReqDet
         Me.GridColumn6.Caption = "ID Expense"
         Me.GridColumn6.FieldName = "id_b_expense"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.AllowFocus = False
         '
         'GridColumnIDDet
         '
         Me.GridColumnIDDet.Caption = "ID Det"
         Me.GridColumnIDDet.FieldName = "id_purc_req_det"
         Me.GridColumnIDDet.Name = "GridColumnIDDet"
+        Me.GridColumnIDDet.OptionsColumn.AllowEdit = False
+        Me.GridColumnIDDet.OptionsColumn.AllowFocus = False
         '
         'GridColumnIDItem
         '
         Me.GridColumnIDItem.Caption = "ID Item"
         Me.GridColumnIDItem.Name = "GridColumnIDItem"
+        Me.GridColumnIDItem.OptionsColumn.AllowEdit = False
+        Me.GridColumnIDItem.OptionsColumn.AllowFocus = False
         '
         'GridColumnIDCat
         '
         Me.GridColumnIDCat.Caption = "ID Cat"
         Me.GridColumnIDCat.FieldName = "note"
         Me.GridColumnIDCat.Name = "GridColumnIDCat"
+        Me.GridColumnIDCat.OptionsColumn.AllowEdit = False
+        Me.GridColumnIDCat.OptionsColumn.AllowFocus = False
         '
         'GridColumn2
         '
@@ -529,8 +538,9 @@ Partial Class FormPurcReqDet
         Me.GridColumn2.FieldName = "item_cat"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 2
         Me.GridColumn2.Width = 159
         '
         'GridColumnItem
@@ -631,8 +641,9 @@ Partial Class FormPurcReqDet
         Me.GridColumnBudgetRemaining.FieldName = "budget_remaining"
         Me.GridColumnBudgetRemaining.Name = "GridColumnBudgetRemaining"
         Me.GridColumnBudgetRemaining.OptionsColumn.AllowEdit = False
+        Me.GridColumnBudgetRemaining.OptionsColumn.AllowFocus = False
         Me.GridColumnBudgetRemaining.Visible = True
-        Me.GridColumnBudgetRemaining.VisibleIndex = 2
+        Me.GridColumnBudgetRemaining.VisibleIndex = 3
         Me.GridColumnBudgetRemaining.Width = 198
         '
         'GridColumn4
@@ -647,7 +658,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn4.FieldName = "qty"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         Me.GridColumn4.Width = 91
         '
         'GridColumnUOM
@@ -660,8 +671,9 @@ Partial Class FormPurcReqDet
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
         Me.GridColumnUOM.OptionsColumn.AllowEdit = False
+        Me.GridColumnUOM.OptionsColumn.AllowFocus = False
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 5
+        Me.GridColumnUOM.VisibleIndex = 6
         Me.GridColumnUOM.Width = 91
         '
         'GridColumn13
@@ -669,6 +681,8 @@ Partial Class FormPurcReqDet
         Me.GridColumn13.Caption = "Yearly Budget"
         Me.GridColumn13.FieldName = "budget"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.AllowFocus = False
         '
         'GridColumn3
         '
@@ -681,10 +695,12 @@ Partial Class FormPurcReqDet
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "percent_budget_use"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
         Me.GridColumn3.UnboundExpression = "([budget] -[budget_remaining]) / [budget] * 100"
         Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 4
         Me.GridColumn3.Width = 156
         '
         'GridColumn14
@@ -693,7 +709,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn14.FieldName = "note"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 8
+        Me.GridColumn14.VisibleIndex = 9
         Me.GridColumn14.Width = 281
         '
         'GridColumn17
@@ -702,7 +718,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn17.FieldName = "ship_destination"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 6
+        Me.GridColumn17.VisibleIndex = 7
         Me.GridColumn17.Width = 119
         '
         'GridColumn15
@@ -711,7 +727,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn15.FieldName = "ship_address"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 7
+        Me.GridColumn15.VisibleIndex = 8
         Me.GridColumn15.Width = 107
         '
         'RepositoryItemSpinEdit1
@@ -795,6 +811,7 @@ Partial Class FormPurcReqDet
         Me.TETotal.Size = New System.Drawing.Size(287, 20)
         Me.TETotal.TabIndex = 145
         Me.TETotal.TabStop = False
+        Me.TETotal.Visible = False
         '
         'LabelControl3
         '
@@ -803,6 +820,7 @@ Partial Class FormPurcReqDet
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 144
         Me.LabelControl3.Text = "Total"
+        Me.LabelControl3.Visible = False
         '
         'PanelControlBottomLeft
         '
@@ -869,6 +887,15 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabIndex = 13
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Item Detail"
+        Me.GridColumn20.FieldName = "item_detail"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        Me.GridColumn20.Width = 219
         '
         'FormPurcReqDet
         '
@@ -1003,4 +1030,5 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

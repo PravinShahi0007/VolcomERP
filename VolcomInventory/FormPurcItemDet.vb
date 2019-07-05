@@ -1,5 +1,6 @@
 ﻿Public Class FormPurcItemDet
     Public id_item As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
         Close()
@@ -29,6 +30,22 @@
             '
             XTPAttachment.PageVisible = True
             XTPPriceList.PageVisible = True
+
+            'check if item already PR
+            query = "SELECT * FROM tb_purc_req_det prd 
+INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
+WHERE pr.id_report_status!=5"
+            data = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                BSave.Visible = False
+            Else
+                BSave.Visible = True
+            End If
+            '
+            If is_view = "1" Then
+                XTCDetail.SelectedTabPageIndex = 1
+                PCSetPrice.Visible = True
+            End If
         Else
             TECode.Text = "[Auto Generate]"
             '
@@ -143,5 +160,19 @@ WHERE id_status='2'"
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BSetSameItemPrice.Click
+        If GVPriceList.RowCount > 0 Then
+            FormPurcOrderDet.set_price(id_item, Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
+            Close()
+        End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BSetSameSpecPrice.Click
+        If GVPriceList.RowCount > 0 Then
+            FormPurcOrderDet.set_same_detail_price(Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
+            Close()
+        End If
     End Sub
 End Class
