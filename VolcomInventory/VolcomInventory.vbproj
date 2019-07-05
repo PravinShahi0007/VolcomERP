@@ -5005,6 +5005,18 @@
     <Compile Include="FormSetKurs.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSetupBudgetOPEX.Designer.vb">
+      <DependentUpon>FormSetupBudgetOPEX.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetupBudgetOPEX.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetupBudgetOPEXDet.Designer.vb">
+      <DependentUpon>FormSetupBudgetOPEXDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetupBudgetOPEXDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupDBStockTake.Designer.vb">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </Compile>
@@ -9699,6 +9711,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetKurs.resx">
       <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetupBudgetOPEX.resx">
+      <DependentUpon>FormSetupBudgetOPEX.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetupBudgetOPEXDet.resx">
+      <DependentUpon>FormSetupBudgetOPEXDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetupDBStockTake.resx">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>

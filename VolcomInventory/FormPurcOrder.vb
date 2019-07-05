@@ -4,7 +4,7 @@
     Dim bdel_active As String = "1"
     '
     Public is_purc_dep As String = "-1"
-    '
+
     Private Sub FormPurcOrder_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -50,7 +50,8 @@
         load_item_cat()
         load_item()
         load_po_status()
-        load_match()
+        loadImgPath()
+        load_expense_type()
         '
         load_rec_status()
         '
@@ -66,13 +67,9 @@
         viewSearchLookupQuery(SLERecStatus, query, "id_rec_status", "rec_status", "id_rec_status")
     End Sub
 
-    Sub load_match()
-        Dim query As String = "SELECT '0' AS `id_match`,'All' AS `match`
-                                UNION
-                                SELECT '1' AS `id_match`,'Price in budget' AS `match`
-                                UNION
-                                SELECT '2' AS `id_match`,'Requested price exceed budget' AS `match`"
-        viewSearchLookupQuery(SLELastPrice, query, "id_match", "match", "id_match")
+    Sub load_expense_type()
+        Dim query As String = "SELECT id_expense_type,expense_type FROM `tb_lookup_expense_type`"
+        viewSearchLookupQuery(SLEExpenseType, query, "id_expense_type", "expense_type", "id_expense_type")
     End Sub
 
     Sub load_po()
@@ -116,6 +113,7 @@ LEFT JOIN
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=po.id_purc_order
 WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_order DESC"
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPO.DataSource = data
         GVPO.BestFitColumns()
@@ -174,16 +172,10 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_ord
                 query_where += " AND IFNULL(po.qty,0) > 0"
             End If
         End If
+        'expense type
+        query_where += " AND cat.id_expense_type='" & SLEExpenseType.EditValue.ToString & "' "
         '
-        If Not SLELastPrice.EditValue.ToString = "0" Then 'match
-            If SLELastPrice.EditValue.ToString = "1" Then
-                query_where += " AND itm.latest_price<=rd.`value` "
-            Else
-                query_where += " AND itm.latest_price>rd.`value` "
-            End If
-        End If
-        '
-        Dim query As String = "SELECT '-' AS status_val,icd.item_cat_detail,vt.vendor_type,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
+        Dim query As String = "SELECT '-' AS status_val,cat.id_expense_type,rd.item_detail,rd.id_b_expense,rd.id_b_expense_opex,icd.id_vendor_type,icd.item_cat_detail,vt.vendor_type,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
                                 ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
@@ -276,9 +268,9 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_ord
                 ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po").ToString = "") OrElse (GVPurcReq.GetRowCellValue(i, "qty_po").ToString = "0") Then
                     is_zero = True
                     GVPurcReq.SetRowCellValue(i, "status_val", "Zero Qty")
-                ElseIf GVPurcReq.GetRowCellValue(i, "val_pr") < GVPurcReq.GetRowCellValue(i, "latest_price") Then
-                    is_pr_not_match = True
-                    GVPurcReq.SetRowCellValue(i, "status_val", "Requested price below the latest Price")
+                    'ElseIf GVPurcReq.GetRowCellValue(i, "val_pr") < GVPurcReq.GetRowCellValue(i, "latest_price") Then
+                    '    is_pr_not_match = True
+                    '    GVPurcReq.SetRowCellValue(i, "status_val", "Requested price below the latest Price")
                 Else
                     GVPurcReq.SetRowCellValue(i, "status_val", "Ok")
                 End If

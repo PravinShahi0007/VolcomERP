@@ -551,7 +551,6 @@ Partial Class FormEmpOvertimeDet
         '
         'SBFill
         '
-        Me.SBFill.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBFill.Image = CType(resources.GetObject("SBFill.Image"), System.Drawing.Image)
         Me.SBFill.Location = New System.Drawing.Point(5, 5)
         Me.SBFill.Name = "SBFill"
@@ -609,6 +608,7 @@ Partial Class FormEmpOvertimeDet
         '
         'TEOvertimeEnd
         '
+        Me.TEOvertimeEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEOvertimeEnd.EditValue = Nothing
         Me.TEOvertimeEnd.Location = New System.Drawing.Point(825, 64)
         Me.TEOvertimeEnd.Name = "TEOvertimeEnd"
@@ -625,6 +625,7 @@ Partial Class FormEmpOvertimeDet
         '
         'TEOvertimeStart
         '
+        Me.TEOvertimeStart.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEOvertimeStart.EditValue = Nothing
         Me.TEOvertimeStart.Location = New System.Drawing.Point(646, 64)
         Me.TEOvertimeStart.Name = "TEOvertimeStart"
@@ -868,6 +869,8 @@ Partial Class FormEmpOvertimeDet
         '
         'MEOvertimeNote
         '
+        Me.MEOvertimeNote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MEOvertimeNote.Location = New System.Drawing.Point(105, 11)
         Me.MEOvertimeNote.Name = "MEOvertimeNote"
         Me.MEOvertimeNote.Size = New System.Drawing.Size(865, 70)
@@ -1017,6 +1020,7 @@ Partial Class FormEmpOvertimeDet
         Me.Name = "FormEmpOvertimeDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Overtime Detail"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
