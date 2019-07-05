@@ -86,7 +86,9 @@
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
         End If
 
-        Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'", id_status_reportx_par, id_report_par)
+        Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}';
+        /*update status sj*/
+        CALL update_store_ret_status(" + id_report_par + ");", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
@@ -124,7 +126,7 @@
             INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
             INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
             INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
-            WHERE r.id_sales_return=" + id_report_par + " AND rd.sales_return_det_qty>0 "
+            WHERE r.id_sales_return=" + id_report_par + " AND rd.sales_return_det_qty>0; "
             execute_non_query(query_stc, True, "", "", "", "")
 
             'save unreg unique
@@ -135,7 +137,9 @@
                 cancellUnique(id_report_par)
             End If
         End If
-        Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'", id_status_reportx_par, id_report_par)
+        Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'; 
+        /*update status sj*/
+        CALL update_store_ret_status(" + id_report_par + ");", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
@@ -212,7 +216,7 @@
         INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
         INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
-        WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0 "
+        WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0; "
         execute_non_query(query, True, "", "", "", "")
 
         'complete old
