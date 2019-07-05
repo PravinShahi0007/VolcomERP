@@ -18,6 +18,7 @@
                 FormSalesReturnDetProblem.TxtSize.Text = GVData.GetFocusedRowCellValue("size").ToString
                 FormSalesReturnDetProblem.TxtDesign.Text = GVData.GetFocusedRowCellValue("name").ToString
                 FormSalesReturnDetProblem.id_product = GVData.GetFocusedRowCellValue("id_product").ToString
+                FormSalesReturnDetProblem.is_old_design = GVData.GetFocusedRowCellValue("is_old_design").ToString
                 Close()
             ElseIf id_pop_up = "1" Then
                 FormFGCodeReplaceStoreAdd.TxtDesignCode.Text = GVData.GetFocusedRowCellValue("product_code").ToString
