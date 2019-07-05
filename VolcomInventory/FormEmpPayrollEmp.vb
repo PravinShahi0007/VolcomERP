@@ -24,7 +24,7 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status != 3
@@ -39,7 +39,7 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status != 3 AND TIMESTAMPDIFF(MONTH, emp.employee_join_date, DATE(NOW())) >= (SELECT min_month_bonus FROM tb_opt_emp LIMIT 1)
@@ -54,7 +54,7 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status != 3 AND TIMESTAMPDIFF(MONTH, emp.employee_join_date, DATE(NOW())) >= (SELECT min_month_bonus FROM tb_opt_emp LIMIT 1)
@@ -69,12 +69,14 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status = 3
             "
         End If
+
+        Console.WriteLine(query)
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -148,7 +150,7 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE ((emp.id_employee_active = '1') OR (emp.employee_last_date BETWEEN (" + query_period_start + ") AND (" + query_period_end + "))) AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status != 3
@@ -163,7 +165,7 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE ((emp.id_employee_active = '1') OR (emp.employee_last_date BETWEEN (" + query_period_start + ") AND (" + query_period_end + "))) AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status != 3 AND TIMESTAMPDIFF(MONTH, emp.employee_join_date, DATE(NOW())) >= (SELECT min_month_bonus FROM tb_opt_emp LIMIT 1)
@@ -178,7 +180,7 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE ((emp.id_employee_active = '1') OR (emp.employee_last_date BETWEEN (" + query_period_start + ") AND (" + query_period_end + "))) AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status != 3 AND TIMESTAMPDIFF(MONTH, emp.employee_join_date, DATE(NOW())) >= (SELECT min_month_bonus FROM tb_opt_emp LIMIT 1)
@@ -193,7 +195,7 @@
                 INNER JOIN tb_lookup_employee_active AS active ON active.id_employee_active = emp.id_employee_active
                 INNER JOIN (	
                     SELECT MAX(id_employee_salary) AS id_employee_salary, id_employee 
-                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_start + ")
+                    FROM tb_m_employee_salary WHERE effective_date <= (" + query_period_end + ")
                     GROUP BY id_employee
                 ) salx ON salx.id_employee = emp.id_employee
                 WHERE ((emp.id_employee_active = '1') OR (emp.employee_last_date BETWEEN (" + query_period_start + ") AND (" + query_period_end + "))) AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status = 3

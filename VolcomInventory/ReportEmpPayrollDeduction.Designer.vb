@@ -25,20 +25,33 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCDeduction = New DevExpress.XtraGrid.GridControl()
         Me.GVDeduction = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCEmployeePosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLLocation = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         CType(Me.GCDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDeduction, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -106,7 +119,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GVDeduction.BandPanelRowHeight = 16
         Me.GVDeduction.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee})
         Me.GVDeduction.ColumnPanelRowHeight = 32
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCNIP, Me.GCEmployee, Me.GCEmployeePosition, Me.GCEmployeeStatus})
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 1
         Me.GVDeduction.Name = "GVDeduction"
@@ -116,105 +129,77 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GVDeduction.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVDeduction.OptionsView.ShowFooter = True
         Me.GVDeduction.OptionsView.ShowGroupPanel = False
-        Me.GVDeduction.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVDeduction.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GBEmployee
         '
         Me.GBEmployee.Caption = "Employee"
-        Me.GBEmployee.Columns.Add(Me.GridColumn1)
-        Me.GBEmployee.Columns.Add(Me.GridColumn2)
-        Me.GBEmployee.Columns.Add(Me.GridColumn3)
-        Me.GBEmployee.Columns.Add(Me.GridColumn4)
-        Me.GBEmployee.Columns.Add(Me.GridColumn5)
+        Me.GBEmployee.Columns.Add(Me.GCDepartement)
+        Me.GBEmployee.Columns.Add(Me.GCNIP)
+        Me.GBEmployee.Columns.Add(Me.GCEmployee)
+        Me.GBEmployee.Columns.Add(Me.GCEmployeePosition)
+        Me.GBEmployee.Columns.Add(Me.GCEmployeeStatus)
         Me.GBEmployee.Name = "GBEmployee"
         Me.GBEmployee.VisibleIndex = 0
-        Me.GBEmployee.Width = 300
+        Me.GBEmployee.Width = 496
         '
-        'GridColumn1
+        'GCDepartement
         '
-        Me.GridColumn1.Caption = "Departement"
-        Me.GridColumn1.FieldName = "Departement"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GCDepartement.Caption = "Departement"
+        Me.GCDepartement.FieldName = "Departement"
+        Me.GCDepartement.Name = "GCDepartement"
         '
-        'GridColumn2
+        'GCNIP
         '
-        Me.GridColumn2.Caption = "NIP"
-        Me.GridColumn2.FieldName = "NIP"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
+        Me.GCNIP.Caption = "NIP"
+        Me.GCNIP.FieldName = "NIP"
+        Me.GCNIP.MinWidth = 65
+        Me.GCNIP.Name = "GCNIP"
+        Me.GCNIP.Visible = True
+        Me.GCNIP.Width = 86
         '
-        'GridColumn3
+        'GCEmployee
         '
-        Me.GridColumn3.Caption = "Employee"
-        Me.GridColumn3.FieldName = "Employee"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
+        Me.GCEmployee.AppearanceCell.Options.UseTextOptions = True
+        Me.GCEmployee.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCEmployee.Caption = "Employee"
+        Me.GCEmployee.FieldName = "Employee"
+        Me.GCEmployee.MinWidth = 200
+        Me.GCEmployee.Name = "GCEmployee"
+        Me.GCEmployee.Visible = True
+        Me.GCEmployee.Width = 200
         '
-        'GridColumn4
+        'GCEmployeePosition
         '
-        Me.GridColumn4.Caption = "Employee Position"
-        Me.GridColumn4.FieldName = "Employee Position"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
+        Me.GCEmployeePosition.AppearanceCell.Options.UseTextOptions = True
+        Me.GCEmployeePosition.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCEmployeePosition.Caption = "Employee Position"
+        Me.GCEmployeePosition.FieldName = "Employee Position"
+        Me.GCEmployeePosition.MinWidth = 150
+        Me.GCEmployeePosition.Name = "GCEmployeePosition"
+        Me.GCEmployeePosition.Visible = True
+        Me.GCEmployeePosition.Width = 150
         '
-        'GridColumn5
+        'GCEmployeeStatus
         '
-        Me.GridColumn5.Caption = "Employee Level"
-        Me.GridColumn5.FieldName = "Employee Level"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
+        Me.GCEmployeeStatus.Caption = "Employee Status"
+        Me.GCEmployeeStatus.FieldName = "Employee Status"
+        Me.GCEmployeeStatus.MinWidth = 60
+        Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
+        Me.GCEmployeeStatus.Visible = True
+        Me.GCEmployeeStatus.Width = 60
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLPeriod, Me.XrLine1, Me.XrPictureBox1, Me.XLTitle})
-        Me.TopMargin.HeightF = 75.0!
+        Me.TopMargin.HeightF = 50.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XLPeriod
-        '
-        Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(899.0001!, 20.00001!)
-        Me.XLPeriod.Name = "XLPeriod"
-        Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLPeriod.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
-        Me.XLPeriod.StylePriority.UseFont = False
-        Me.XLPeriod.StylePriority.UseTextAlignment = False
-        Me.XLPeriod.Text = "[period]"
-        Me.XLPeriod.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        '
-        'XrLine1
-        '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 51.15001!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(1119.0!, 23.0!)
-        '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-        '
-        'XLTitle
-        '
-        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 20.00001!)
-        Me.XLTitle.Name = "XLTitle"
-        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(679.0001!, 23.0!)
-        Me.XLTitle.StylePriority.UseFont = False
-        Me.XLTitle.StylePriority.UseTextAlignment = False
-        Me.XLTitle.Text = "[title]"
-        Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 50.41666!
+        Me.BottomMargin.HeightF = 50.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -233,11 +218,165 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
+        'ReportFooter
+        '
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1})
+        Me.ReportFooter.HeightF = 100.0!
+        Me.ReportFooter.Name = "ReportFooter"
+        '
+        'XrTable1
+        '
+        Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.00007947286!, 20.0!)
+        Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1118.999!, 25.0!)
+        Me.XrTable1.StylePriority.UseFont = False
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell13})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
+        '
+        'XrTableCell13
+        '
+        Me.XrTableCell13.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.StylePriority.UseFont = False
+        Me.XrTableCell13.Text = "Here Table Mark Goes, Please Ignore This"
+        Me.XrTableCell13.Visible = False
+        Me.XrTableCell13.Weight = 2.99999986405489R
+        '
+        'ReportHeader
+        '
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XrPictureBox1, Me.XrLabel3, Me.XrLabel4, Me.XLPeriod, Me.XLTitle, Me.XLType, Me.XrLabel2, Me.XLLocation, Me.XrLine1})
+        Me.ReportHeader.HeightF = 100.0!
+        Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(898.9992!, 33.99998!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "Type"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 22.99999!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(958.9999!, 33.99998!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.StylePriority.UseTextAlignment = False
+        Me.XrLabel3.Text = ":"
+        Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(958.9999!, 57.0!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = ":"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLPeriod
+        '
+        Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(898.9991!, 11.0!)
+        Me.XLPeriod.Name = "XLPeriod"
+        Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLPeriod.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
+        Me.XLPeriod.StylePriority.UseFont = False
+        Me.XLPeriod.StylePriority.UseTextAlignment = False
+        Me.XLPeriod.Text = "[period]"
+        Me.XLPeriod.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLTitle
+        '
+        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 33.99998!)
+        Me.XLTitle.Name = "XLTitle"
+        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(678.9993!, 23.0!)
+        Me.XLTitle.StylePriority.UseFont = False
+        Me.XLTitle.StylePriority.UseTextAlignment = False
+        Me.XLTitle.Text = "[title]"
+        Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XLType
+        '
+        Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(973.9998!, 33.99998!)
+        Me.XLType.Name = "XLType"
+        Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLType.SizeF = New System.Drawing.SizeF(145.0!, 23.0!)
+        Me.XLType.StylePriority.UseFont = False
+        Me.XLType.StylePriority.UseTextAlignment = False
+        Me.XLType.Text = "[type]"
+        Me.XLType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(898.9991!, 57.0!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.StylePriority.UseTextAlignment = False
+        Me.XrLabel2.Text = "Location"
+        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLLocation
+        '
+        Me.XLLocation.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(973.9998!, 57.0!)
+        Me.XLLocation.Name = "XLLocation"
+        Me.XLLocation.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLLocation.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)
+        Me.XLLocation.StylePriority.UseFont = False
+        Me.XLLocation.StylePriority.UseTextAlignment = False
+        Me.XLLocation.Text = "[location]"
+        Me.XLLocation.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLine1
+        '
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 79.99998!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(1119.0!, 20.0!)
+        '
+        'XrPanel1
+        '
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(1119.0!, 100.0!)
+        '
         'ReportEmpPayrollDeduction
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.ReportHeader})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(25, 25, 75, 50)
+        Me.Margins = New System.Drawing.Printing.Margins(25, 25, 50, 50)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -245,24 +384,37 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.Version = "15.1"
         CType(Me.GCDeduction, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDeduction, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
     Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
-    Friend WithEvents XLTitle As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
-    Friend WithEvents XLPeriod As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCDeduction As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDeduction As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCNIP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCEmployeePosition As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GBEmployee As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
+    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLPeriod As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLTitle As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLType As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLLocation As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
 End Class

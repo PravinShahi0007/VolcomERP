@@ -1,4 +1,5 @@
 ﻿Public Class FormEmpPayroll
+    Public is_view As String = "2"
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "0"
     Dim bdel_active As String = "0"
@@ -95,6 +96,7 @@
                 BandedGridColumnCash.OptionsColumn.AllowEdit = True
                 BReport.Enabled = False
                 BPrintSlip.Enabled = False
+                SBSendSlip.Enabled = False
                 BPrint.Enabled = False
                 BReset.Visible = False
                 BSubmit.Visible = True
@@ -108,6 +110,7 @@
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
                 BReport.Enabled = False
                 BPrintSlip.Enabled = False
+                SBSendSlip.Enabled = False
                 BPrint.Enabled = False
                 BReset.Visible = True
                 BSubmit.Visible = False
@@ -117,6 +120,7 @@
             If id_report_status = "6" Then
                 BReport.Enabled = True
                 BPrintSlip.Enabled = True
+                SBSendSlip.Enabled = True
                 BPrint.Enabled = True
                 BReset.Visible = False
             End If
@@ -127,7 +131,6 @@
                 GBSalary.Visible = True
                 GBBonusAdjustment.Visible = True
                 GBDeduction.Visible = True
-                GBOvertime.Visible = True
 
                 GBDW.Visible = False
             ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
@@ -135,7 +138,6 @@
                 GBSalary.Visible = False
                 GBBonusAdjustment.Visible = False
                 GBDeduction.Visible = False
-                GBOvertime.Visible = False
 
                 GBDW.Visible = True
             End If
@@ -144,17 +146,27 @@
             If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
                 BBonusAdjustment.Visible = True
                 BDeduction.Visible = True
-                BOvertime.Visible = True
                 BSetting.Visible = True
             Else
                 BBonusAdjustment.Visible = False
                 BDeduction.Visible = False
-                BOvertime.Visible = False
                 BSetting.Visible = False
             End If
         End If
 
         GVPayroll.TopRowIndex = 0
+
+        'view
+        If is_view = "1" Then
+            BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
+            BandedGridColumnPending.OptionsColumn.AllowEdit = False
+            BandedGridColumnCash.OptionsColumn.AllowEdit = False
+            BGetEmployee.Visible = False
+            BRemoveEmployee.Visible = False
+            BReset.Visible = False
+            BSubmit.Visible = False
+            SBSendSlip.Visible = False
+        End If
 
         Cursor = Cursors.Default
     End Sub
@@ -162,7 +174,7 @@
     Sub calculate_grandtotal_dw()
         For i = 0 To GVPayroll.RowCount - 1
             If GVPayroll.IsValidRowHandle(i) Then
-                Dim grand_total As Decimal = GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")
+                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages")
 
                 GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
             End If
@@ -302,9 +314,9 @@
                 Next
                 'makeSafeGV(GVPayroll)
                 '
-                ReportSalarySlip.where_string = where_string
-                ReportSalarySlip.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-                Dim Report As New ReportSalarySlip()
+                Dim Report As ReportSalarySlip = New ReportSalarySlip
+                Report.where_string = where_string
+                Report.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreviewDialog()
                 Cursor = Cursors.Default
@@ -349,39 +361,99 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Dim data As DataTable = GCPayroll.DataSource
 
-        ReportPayrollAll.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
-        ReportPayrollAll.dt = GCPayroll.DataSource
-        'ReportPayrollAll.no_column = no_column
-        Dim Report As New ReportPayrollAll()
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, 0, True, "", "", "", "")
 
-        'grid
-        If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
-            Report.GBWorkingDays.Visible = True
-            Report.GBSalary.Visible = True
+        Dim already_office As Boolean = False
+        Dim already_store As Boolean = False
 
-            Report.GBDW.Visible = False
-        ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
-            Report.GBWorkingDays.Visible = False
-            Report.GBSalary.Visible = False
+        For j = 0 To data.Rows.Count - 1
+            If data.Rows(j)("is_office_payroll").ToString = "1" Then
+                already_office = True
+            ElseIf data.Rows(j)("is_office_payroll").ToString = "2"
+                already_store = True
+            End If
+        Next
 
-            Report.GBDW.Visible = True
+        'office
+        Dim data_payroll_1 As DataTable = data.Clone
+
+        For j = 0 To data.Rows.Count - 1
+            If data.Rows(j)("is_office_payroll").ToString = "1" Then
+                data_payroll_1.ImportRow(data.Rows(j))
+            End If
+        Next
+
+        Dim report_office_1 As ReportPayrollAll = New ReportPayrollAll
+
+        report_office_1.PrintingSystem.ContinuousPageNumbering = False
+
+        report_office_1.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        report_office_1.dt = data_payroll_1
+        report_office_1.id_pre = If(id_report_status = "6", "-1", "1")
+        report_office_1.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+
+        report_office_1.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report_office_1.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
+        report_office_1.XLLocation.Text = "Office"
+
+        report_office_1.CreateDocument()
+
+        'store
+        Dim data_payroll_2 As DataTable = data.Clone
+
+        For j = 0 To data.Rows.Count - 1
+            If data.Rows(j)("is_office_payroll").ToString = "2" Then
+                data_payroll_2.ImportRow(data.Rows(j))
+            End If
+        Next
+
+        Dim report_office_2 As ReportPayrollAll = New ReportPayrollAll
+
+        report_office_2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        report_office_2.dt = data_payroll_2
+        report_office_2.id_pre = If(id_report_status = "6", "-1", "1")
+        report_office_2.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+
+        report_office_2.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report_office_2.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
+        report_office_2.XLLocation.Text = "Store"
+
+        report_office_2.CreateDocument()
+
+        'combine
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+
+        'report_office_1
+        If already_office Then
+            For i = 0 To report_office_1.Pages.Count - 1
+                list.Add(report_office_1.Pages(i))
+            Next
         End If
 
-        Report.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        'report_office_2
+        If already_store Then
+            For i = 0 To report_office_2.Pages.Count - 1
+                list.Add(report_office_2.Pages(i))
+            Next
+        End If
 
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        '
-        'ReportPayrollAll2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
-        'ReportPayrollAll2.dt = GCPayroll.DataSource
-        'ReportPayrollAll2.no_column = no_column
-        'Dim Report2 As New ReportPayrollAll2()
+        If already_office Then
+            report_office_1.Pages.AddRange(list)
 
-        ' Show the report's preview. 
-        'Dim Tool2 As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report2)
-        'Tool2.ShowPreview()
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report_office_1)
+
+            tool.ShowPreview()
+        End If
+
+        If already_store And Not already_office Then
+            report_office_2.Pages.AddRange(list)
+
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report_office_2)
+
+            tool.ShowPreview()
+        End If
     End Sub
 
     Private Sub BBBcaFormat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBcaFormat.ItemClick
@@ -545,6 +617,131 @@
     Private Sub XTCPayroll_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPayroll.SelectedPageChanged
         If XTCPayroll.SelectedTabPage.Name = "XTPSalaryFormat" Then
             load_payroll_detail()
+        End If
+    End Sub
+
+    Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem5.ItemClick
+        'bpjstk
+        FormEmpPayrollReportBPJSTK.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+        FormEmpPayrollReportBPJSTK.ShowDialog()
+    End Sub
+
+    Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
+        'bpjs kesehatan
+        FormEmpPayrollReportBPJSKesehatan.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+        FormEmpPayrollReportBPJSKesehatan.ShowDialog()
+    End Sub
+
+    Private Sub SBSendSlip_Click(sender As Object, e As EventArgs) Handles SBSendSlip.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to send salary slip ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            If GVPayroll.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                GVPayroll.ActiveFilterString = "[is_check]='yes'"
+
+                If GVPayroll.RowCount > 0 Then
+                    Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+
+                    Dim client As Net.Mail.SmtpClient = New Net.Mail.SmtpClient()
+
+                    If is_ssl = "1" Then
+                        client.Port = get_setup_field("system_email_ssl_port").ToString
+                        client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+                        client.UseDefaultCredentials = False
+                        client.Host = get_setup_field("system_email_ssl_server").ToString
+                        client.EnableSsl = True
+                        client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+                    Else
+                        client.Port = get_setup_field("system_email_port").ToString
+                        client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+                        client.UseDefaultCredentials = False
+                        client.Host = get_setup_field("system_email_server").ToString
+                        client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+                    End If
+
+                    'check personal email
+                    Dim already_personal_email As Boolean = True
+                    Dim list_personal_email As String = ""
+
+                    For i As Integer = 0 To GVPayroll.RowCount - 1
+                        If GVPayroll.IsValidRowHandle(i) Then
+                            If GVPayroll.GetRowCellValue(i, "email_personal").ToString = "" Then
+                                already_personal_email = False
+
+                                list_personal_email += "- (" + GVPayroll.GetRowCellValue(i, "employee_code").ToString + ") " + GVPayroll.GetRowCellValue(i, "employee_name").ToString + Environment.NewLine
+                            End If
+                        End If
+                    Next
+
+                    If already_personal_email Then
+                        For i As Integer = 0 To GVPayroll.RowCount - 1
+                            If GVPayroll.IsValidRowHandle(i) Then
+                                Dim period As String = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+                                Dim employee_name As String = GVPayroll.GetRowCellValue(i, "employee_name").ToString
+                                Dim email_personal As String = GVPayroll.GetRowCellValue(i, "email_personal").ToString
+
+                                Dim mem As New IO.MemoryStream()
+
+                                Dim report As ReportSalarySlip = New ReportSalarySlip
+
+                                report.where_string = GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                                report.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+                                report.ExportOptions.Pdf.PasswordSecurityOptions.OpenPassword = GVPayroll.GetRowCellValue(i, "employee_dob").ToString
+
+                                report.ExportToPdf(mem)
+
+                                mem.Seek(0, System.IO.SeekOrigin.Begin)
+
+                                Dim att = New Net.Mail.Attachment(mem, "Salary Slip " + period + ".pdf", "application/pdf")
+
+                                'mail
+                                Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
+
+                                'from
+                                Dim from_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress("system@volcom.co.id", "Volcom ERP")
+
+                                mail.From = from_mail
+
+                                'to
+                                Dim to_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress(email_personal, employee_name)
+
+                                mail.To.Add(to_mail)
+
+                                mail.Subject = "PT. VOLCOM INDONESIA - SALARY SLIP " + period.ToUpper
+                                mail.IsBodyHtml = True
+                                mail.Body = "
+                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Dear " + employee_name + ",</b></p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial'>Here is your salary slip in " + period + ".</p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial'>Thank You</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Volcom ERP</b></p>
+                                "
+
+                                mail.Attachments.Add(att)
+
+                                client.Send(mail)
+                            End If
+                        Next
+                    Else
+                        errorCustom("Please complete personal email for : " + Environment.NewLine + list_personal_email)
+                    End If
+
+                    Cursor = Cursors.Default
+                Else
+                    stopCustom("Please choose employee first.")
+
+                    Cursor = Cursors.Default
+                End If
+                GVPayroll.ActiveFilterString = ""
+            End If
         End If
     End Sub
 End Class

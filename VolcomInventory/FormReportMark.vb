@@ -18,6 +18,22 @@
 
     Private Sub FormReportMark_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'checkFormAccessSingle(Name)
+        'block load 
+        If report_mark_type = "22" Then
+            'Prod order - cek jika ada yang sedang diproses di perubajan design
+            Dim query_cek As String = "SELECT * 
+            FROM tb_m_design_changes_det pcd
+            INNER JOIN tb_m_design d ON d.id_design = pcd.id_design
+            INNER JOIN tb_m_design_changes pc ON pc.id_changes = pcd.id_changes
+            WHERE d.id_design_rev_from=" + FormViewProduction.id_design + " AND pc.id_report_status!=5 "
+            Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+            If data_cek.Rows.Count > 0 Then
+                stopCustom("Cannot approve this order, because it's being processed for design changes.")
+                Close()
+                Exit Sub
+            End If
+        End If
+
         act_load()
         '
         '
@@ -523,6 +539,9 @@
         ElseIf report_mark_type = "197" Then
             'propose employee salary
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_sal_pps WHERE id_employee_sal_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "200" Then
+            'design changes
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_m_design_changes WHERE id_changes = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4425,7 +4444,15 @@
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design
 	                WHERE rd.id_prod_demand_rev=" + id_report + " AND rd.is_cancel_po=1
                 ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
-                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; "
+                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; 
+                UPDATE tb_m_design main 
+                INNER JOIN (
+	                SELECT rd.id_design 
+	                FROM tb_prod_demand_rev r
+	                INNER JOIN tb_prod_demand_design_rev rd ON rd.id_prod_demand_rev = r.id_prod_demand_rev
+	                WHERE r.id_prod_demand_rev=" + id_report + " AND rd.id_pd_status_rev=2
+                ) src ON src.id_design = main.id_design
+                SET main.id_lookup_status_order=2, main.id_active=2; "
                 execute_non_query(query_void, True, "", "", "", "")
 
 
@@ -6032,6 +6059,76 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             'update
             query = String.Format("UPDATE tb_employee_sal_pps SET id_report_status='{0}' WHERE id_employee_sal_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "200" Then
+            Cursor = Cursors.WaitCursor
+            'propose design changes
+            'auto completed
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim query_comp As String = "
+                /*void pd*/
+                UPDATE tb_prod_demand_design main
+                INNER JOIN (
+	                SELECT det.id_prod_demand_design
+	                FROM tb_m_design_changes_det det
+	                WHERE det.id_changes=" + id_report + "
+                ) src ON src.id_prod_demand_design = main.id_prod_demand_design
+                SET main.is_void=1, main.id_design_changes=" + id_report + "; 
+                /*void PO jika ada*/
+                UPDATE tb_prod_order main
+                INNER JOIN (
+	                SELECT det.id_prod_order, c.note
+	                FROM tb_m_design_changes_det det
+	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
+	                WHERE det.id_changes=" + id_report + "
+                ) src ON src.id_prod_order = main.id_prod_order
+                SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note;
+                /*nonaktif PO approval*/
+                UPDATE tb_report_mark main
+                INNER JOIN (
+	                SELECT det.id_prod_order, c.note
+	                FROM tb_m_design_changes_det det
+	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
+	                WHERE det.id_changes=" + id_report + "
+                ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
+                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL;
+                /*drop design old*/
+                UPDATE tb_m_design main
+                INNER JOIN (
+	                SELECT d.id_design_rev_from AS `id_design`
+	                FROM tb_m_design_changes_det det
+	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
+	                INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	                WHERE det.id_changes=" + id_report + "
+                ) src ON src.id_design = main.id_design 
+                SET main.id_lookup_status_order=2, main.id_active=2;
+                /*update design new*/
+                UPDATE tb_m_design main
+                INNER JOIN (
+	                SELECT det.id_design
+	                FROM tb_m_design_changes_det det
+	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
+	                WHERE det.id_changes=" + id_report + "
+                ) src ON src.id_design = main.id_design 
+                SET main.is_process=2, main.last_updated=NOW(), main.updated_by=" + id_user + ", main.is_approved=1,
+                main.approved_by=" + id_user + ", main.approved_time=NOW(); "
+                execute_non_query(query_comp, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_m_design_changes SET id_report_status='{0}' WHERE id_changes ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+
+            'refresh view
+            FormFGDesignListChanges.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormFGDesignListChanges.actionLoad()
+            FormFGDesignList.viewPropose()
+            FormFGDesignList.GVPropose.FocusedRowHandle = find_row(FormFGDesignList.GVPropose, "id_changes", id_report)
+            Cursor = Cursors.Default
         End If
 
         'adding lead time

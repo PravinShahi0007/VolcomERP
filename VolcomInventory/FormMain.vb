@@ -1488,11 +1488,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSampleReturnPLDet.ShowDialog()
         ElseIf formName = "FormFGDesignList" Then
             'DESIGN LIST
-            FormMasterDesignSingle.id_pop_up = "5"
-            FormMasterDesignSingle.id_season_par = FormFGDesignList.SLESeason.EditValue.ToString
-            FormMasterDesignSingle.form_name = "FormFGDesignList"
-            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
-            FormMasterDesignSingle.ShowDialog()
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                FormMasterDesignSingle.id_pop_up = "5"
+                FormMasterDesignSingle.id_season_par = FormFGDesignList.SLESeason.EditValue.ToString
+                FormMasterDesignSingle.form_name = "FormFGDesignList"
+                FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+                FormMasterDesignSingle.ShowDialog()
+            Else
+                FormFGDesignListChangesNew.ShowDialog()
+            End If
         ElseIf formName = "FormEmpShift" Then
             'DESIGN LIST
             FormEmpShiftDet.id_shift = "-1"
@@ -2542,11 +2546,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormMasterPriceSingle.id_fg_price = FormMasterPrice.GVPrice.GetFocusedRowCellValue("id_fg_price").ToString
                 FormMasterPriceSingle.ShowDialog()
             ElseIf formName = "FormFGDesignList" Then
-                FormMasterDesignSingle.id_pop_up = "5"
-                FormMasterDesignSingle.form_name = "FormFGDesignList"
-                FormMasterDesignSingle.id_design = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                FormMasterDesignSingle.WindowState = FormWindowState.Maximized
-                FormMasterDesignSingle.ShowDialog()
+                If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                    FormMasterDesignSingle.id_pop_up = "5"
+                    FormMasterDesignSingle.form_name = "FormFGDesignList"
+                    FormMasterDesignSingle.id_design = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                    FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+                    FormMasterDesignSingle.ShowDialog()
+                Else
+                    FormFGDesignListChanges.id = FormFGDesignList.GVPropose.GetFocusedRowCellValue("id_changes").ToString
+                    FormFGDesignListChanges.ShowDialog()
+                End If
             ElseIf formName = "FormSamplePLToWH" Then
                 'PACING LIST SAMPLE
                 FormSamplePLToWHDet.action = "upd"
@@ -5746,16 +5755,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 stopCustom("This data already marked")
             End If
         ElseIf formName = "FormFGDesignList" Then
-            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Try
-                    Dim id_design As String = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                    query = String.Format("DELETE FROM tb_m_design WHERE id_design='{0}'", id_design)
-                    execute_non_query(query, True, "", "", "", "")
-                    FormFGDesignList.viewData()
-                Catch ex As Exception
-                    errorDelete()
-                End Try
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_design As String = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                        query = String.Format("DELETE FROM tb_m_design WHERE id_design='{0}'", id_design)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGDesignList.viewData()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+
             End If
         ElseIf formName = "FormEmpShift" Then
             confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -7212,7 +7225,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormWHImportDO.GCImportDO, "DELIVERY ORDER LIST")
         ElseIf formName = "FormFGDesignList" Then
             'DESIGN LIST
-            print(FormFGDesignList.GCDesign, FormFGDesignList.SLESeason.Text.ToString.ToUpper)
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                print(FormFGDesignList.GCDesign, FormFGDesignList.SLESeason.Text.ToString.ToUpper)
+            Else
+                print(FormFGDesignList.GCPropose, "PROPOSE CHANGES")
+            End If
         ElseIf formName = "FormWHSvcLevel" Then
             If FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 0 Then
                 print(FormWHSvcLevel.GCBySO, "SERVICE LEVEL BY PREPARE ORDER" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFrom.Text + " - " + FormWHSvcLevel.DEUntil.Text)
@@ -8375,17 +8392,21 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterSampleDet.ShowDialog()
         ElseIf formName = "FormFGDesignList" Then
             'LINE LIST DESIGN
-            FormMasterDesignSingle.id_pop_up = "5"
-            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
-            FormMasterDesignSingle.form_name = "FormFGDesignList"
-            FormMasterDesignSingle.dupe = "1"
-            Dim id_dsg_param As String = "-1"
-            Try
-                id_dsg_param = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
-            Catch ex As Exception
-            End Try
-            FormMasterDesignSingle.id_design = id_dsg_param
-            FormMasterDesignSingle.ShowDialog()
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                FormMasterDesignSingle.id_pop_up = "5"
+                FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+                FormMasterDesignSingle.form_name = "FormFGDesignList"
+                FormMasterDesignSingle.dupe = "1"
+                Dim id_dsg_param As String = "-1"
+                Try
+                    id_dsg_param = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                Catch ex As Exception
+                End Try
+                FormMasterDesignSingle.id_design = id_dsg_param
+                FormMasterDesignSingle.ShowDialog()
+            Else
+
+            End If
         ElseIf formName = "FormProposeEmpSalary" Then
             If FormProposeEmpSalary.GVList.RowCount > 0 Then
                 FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
@@ -8921,7 +8942,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormMasterRawMaterial.viewMatDetailList()
             End If
         ElseIf formName = "FormFGDesignList" Then
-            FormFGDesignList.viewData()
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                FormFGDesignList.viewData()
+            Else
+                FormFGDesignList.viewPropose()
+            End If
         ElseIf formName = "FormWHSvcLevel" Then
             If FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 0 Then
                 FormWHSvcLevel.viewSvcBySO()
@@ -11970,6 +11995,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBPayroll_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayroll.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormEmpPayroll.is_view = "2"
             FormEmpPayroll.MdiParent = Me
             FormEmpPayroll.Show()
             FormEmpPayroll.WindowState = FormWindowState.Maximized
@@ -13154,6 +13180,33 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemSubCat.Show()
             FormItemSubCat.WindowState = FormWindowState.Maximized
             FormItemSubCat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPayrollApprove_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayrollApprove.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPayroll.is_view = "1"
+            FormEmpPayroll.MdiParent = Me
+            FormEmpPayroll.Show()
+            FormEmpPayroll.WindowState = FormWindowState.Maximized
+            FormEmpPayroll.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSetupBudgetOPEX_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupBudgetOPEX.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSetupBudgetOPEX.MdiParent = Me
+            FormSetupBudgetOPEX.Show()
+            FormSetupBudgetOPEX.WindowState = FormWindowState.Maximized
+            FormSetupBudgetOPEX.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
