@@ -113,6 +113,7 @@ Partial Class FormEmpPayroll
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.SBSendSlip = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintSlip = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -960,6 +961,7 @@ Partial Class FormEmpPayroll
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BReport)
+        Me.PanelControl2.Controls.Add(Me.SBSendSlip)
         Me.PanelControl2.Controls.Add(Me.BPrintSlip)
         Me.PanelControl2.Controls.Add(Me.PCSelAll)
         Me.PanelControl2.Controls.Add(Me.BMark)
@@ -979,7 +981,7 @@ Partial Class FormEmpPayroll
         Me.BReport.DropDownControl = Me.PopupMenu1
         Me.BReport.ImageIndex = 17
         Me.BReport.ImageList = Me.LargeImageCollection
-        Me.BReport.Location = New System.Drawing.Point(516, 2)
+        Me.BReport.Location = New System.Drawing.Point(413, 2)
         Me.BReport.Name = "BReport"
         Me.BReport.Size = New System.Drawing.Size(111, 35)
         Me.BReport.TabIndex = 108
@@ -1140,6 +1142,17 @@ Partial Class FormEmpPayroll
         Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        '
+        'SBSendSlip
+        '
+        Me.SBSendSlip.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSendSlip.ImageIndex = 19
+        Me.SBSendSlip.ImageList = Me.LargeImageCollection
+        Me.SBSendSlip.Location = New System.Drawing.Point(524, 2)
+        Me.SBSendSlip.Name = "SBSendSlip"
+        Me.SBSendSlip.Size = New System.Drawing.Size(103, 35)
+        Me.SBSendSlip.TabIndex = 112
+        Me.SBSendSlip.Text = "Send Slip"
         '
         'BPrintSlip
         '
@@ -1469,4 +1482,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents BarButtonItem5 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GCIsOfficePayroll As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBSendSlip As DevExpress.XtraEditors.SimpleButton
 End Class
