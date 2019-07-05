@@ -20,25 +20,6 @@ Partial Public Class ReportSalesReturnNonStock
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        Me.GCBarcodeProb = New DevExpress.XtraGrid.GridControl()
-        Me.GVBarcodeProb = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRemarkProb = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -66,18 +47,46 @@ Partial Public Class ReportSalesReturnNonStock
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.GCBarcodeProb = New DevExpress.XtraGrid.GridControl()
+        Me.GVBarcodeProb = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemarkProb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_unique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_no_stock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnunique_not_found = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CENotFound = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnno_stock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CENoStock = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -87,170 +96,6 @@ Partial Public Class ReportSalesReturnNonStock
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(774.0!, 184.6354!)
-        Me.WinControlContainer1.WinControl = Me.GCBarcodeProb
-        '
-        'GCBarcodeProb
-        '
-        Me.GCBarcodeProb.Location = New System.Drawing.Point(20, 38)
-        Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
-        Me.GCBarcodeProb.Name = "GCBarcodeProb"
-        Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3})
-        Me.GCBarcodeProb.Size = New System.Drawing.Size(743, 177)
-        Me.GCBarcodeProb.TabIndex = 6
-        Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
-        '
-        'GVBarcodeProb
-        '
-        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode})
-        Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
-        Me.GVBarcodeProb.Name = "GVBarcodeProb"
-        Me.GVBarcodeProb.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVBarcodeProb.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVBarcodeProb.OptionsBehavior.Editable = False
-        Me.GVBarcodeProb.OptionsCustomization.AllowColumnMoving = False
-        Me.GVBarcodeProb.OptionsCustomization.AllowGroup = False
-        Me.GVBarcodeProb.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVBarcodeProb.OptionsCustomization.AllowSort = False
-        Me.GVBarcodeProb.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "No"
-        Me.GridColumn1.FieldName = "no"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn1.OptionsColumn.AllowMove = False
-        Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 54
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Scanned Code"
-        Me.GridColumn3.FieldName = "code"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 303
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Counting Code"
-        Me.GridColumn4.FieldName = "counting_code"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
-        Me.GridColumn4.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Id PL Counting"
-        Me.GridColumn6.FieldName = "id_sales_return_det_counting"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Is Fix"
-        Me.GridColumn7.FieldName = "is_fix"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn7.OptionsColumn.AllowMove = False
-        Me.GridColumn7.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Id Unique Receiving"
-        Me.GridColumn8.FieldName = "id_pl_prod_order_rec_det_unique"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn8.OptionsColumn.AllowMove = False
-        Me.GridColumn8.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Id Product"
-        Me.GridColumn9.FieldName = "id_product"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Unit Cost"
-        Me.GridColumn10.FieldName = "bom_unit_price"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Width = 132
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Id Design Price"
-        Me.GridColumn11.FieldName = "id_design_price"
-        Me.GridColumn11.Name = "GridColumn11"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Design Price"
-        Me.GridColumn12.FieldName = "design_price"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Description"
-        Me.GridColumn13.FieldName = "name"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 348
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Size"
-        Me.GridColumn14.FieldName = "size"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.AllowEdit = False
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 81
-        '
-        'GridColumnRemarkProb
-        '
-        Me.GridColumnRemarkProb.Caption = "Remark"
-        Me.GridColumnRemarkProb.FieldName = "remark"
-        Me.GridColumnRemarkProb.Name = "GridColumnRemarkProb"
-        Me.GridColumnRemarkProb.OptionsColumn.AllowEdit = False
-        Me.GridColumnRemarkProb.Visible = True
-        Me.GridColumnRemarkProb.VisibleIndex = 4
-        Me.GridColumnRemarkProb.Width = 292
-        '
-        'GridColumnDesignCode
-        '
-        Me.GridColumnDesignCode.Caption = "Code"
-        Me.GridColumnDesignCode.FieldName = "design_code"
-        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        '
-        'RepositoryItemSpinEdit3
-        '
-        Me.RepositoryItemSpinEdit3.AutoHeight = False
-        Me.RepositoryItemSpinEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit3.EditValueChangedDelay = 50
-        Me.RepositoryItemSpinEdit3.Mask.EditMask = "n2"
-        Me.RepositoryItemSpinEdit3.Mask.SaveLiteral = False
-        Me.RepositoryItemSpinEdit3.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
-        Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
         '
         'TopMargin
         '
@@ -516,6 +361,12 @@ Partial Public Class ReportSalesReturnNonStock
         Me.XrTableCell16.Name = "XrTableCell16"
         Me.XrTableCell16.Weight = 0.965495259723731R
         '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.Text = "."
+        Me.XrTableCell1.Weight = 0.9654950683953164R
+        '
         'XrTableRow2
         '
         Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell5, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell2})
@@ -562,12 +413,6 @@ Partial Public Class ReportSalesReturnNonStock
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell8.Weight = 0.965495259723731R
         '
-        'XrTableCell1
-        '
-        Me.XrTableCell1.Name = "XrTableCell1"
-        Me.XrTableCell1.Text = "."
-        Me.XrTableCell1.Weight = 0.9654950683953164R
-        '
         'XrTableCell2
         '
         Me.XrTableCell2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -578,17 +423,249 @@ Partial Public Class ReportSalesReturnNonStock
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell2.Weight = 0.9654950683953164R
         '
+        'GCBarcodeProb
+        '
+        Me.GCBarcodeProb.Location = New System.Drawing.Point(20, 38)
+        Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
+        Me.GCBarcodeProb.Name = "GCBarcodeProb"
+        Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3, Me.CENotFound, Me.CENoStock})
+        Me.GCBarcodeProb.Size = New System.Drawing.Size(743, 177)
+        Me.GCBarcodeProb.TabIndex = 6
+        Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
+        '
+        'GVBarcodeProb
+        '
+        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode, Me.GridColumnQtyNonStock, Me.GridColumnis_unique_not_found, Me.GridColumnis_no_stock, Me.GridColumnunique_not_found, Me.GridColumnno_stock})
+        Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
+        Me.GVBarcodeProb.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyNonStock, "{0:n0}")})
+        Me.GVBarcodeProb.Name = "GVBarcodeProb"
+        Me.GVBarcodeProb.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVBarcodeProb.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVBarcodeProb.OptionsBehavior.Editable = False
+        Me.GVBarcodeProb.OptionsCustomization.AllowColumnMoving = False
+        Me.GVBarcodeProb.OptionsCustomization.AllowGroup = False
+        Me.GVBarcodeProb.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVBarcodeProb.OptionsCustomization.AllowSort = False
+        Me.GVBarcodeProb.OptionsView.ShowFooter = True
+        Me.GVBarcodeProb.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "No"
+        Me.GridColumn1.FieldName = "no"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn1.OptionsColumn.AllowMove = False
+        Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 67
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Scanned Code"
+        Me.GridColumn3.FieldName = "code"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 379
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Counting Code"
+        Me.GridColumn4.FieldName = "counting_code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Id PL Counting"
+        Me.GridColumn6.FieldName = "id_sales_return_det_counting"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Is Fix"
+        Me.GridColumn7.FieldName = "is_fix"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn7.OptionsColumn.AllowMove = False
+        Me.GridColumn7.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Id Unique Receiving"
+        Me.GridColumn8.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn8.OptionsColumn.AllowMove = False
+        Me.GridColumn8.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id Product"
+        Me.GridColumn9.FieldName = "id_product"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Unit Cost"
+        Me.GridColumn10.FieldName = "bom_unit_price"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Width = 132
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Id Design Price"
+        Me.GridColumn11.FieldName = "id_design_price"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Design Price"
+        Me.GridColumn12.FieldName = "design_price"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Description"
+        Me.GridColumn13.FieldName = "name"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 2
+        Me.GridColumn13.Width = 435
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Size"
+        Me.GridColumn14.FieldName = "size"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
+        Me.GridColumn14.Width = 101
+        '
+        'GridColumnRemarkProb
+        '
+        Me.GridColumnRemarkProb.Caption = "Remark"
+        Me.GridColumnRemarkProb.FieldName = "remark"
+        Me.GridColumnRemarkProb.Name = "GridColumnRemarkProb"
+        Me.GridColumnRemarkProb.OptionsColumn.AllowEdit = False
+        Me.GridColumnRemarkProb.Visible = True
+        Me.GridColumnRemarkProb.VisibleIndex = 5
+        Me.GridColumnRemarkProb.Width = 331
+        '
+        'GridColumnDesignCode
+        '
+        Me.GridColumnDesignCode.Caption = "Code"
+        Me.GridColumnDesignCode.FieldName = "design_code"
+        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
+        '
+        'GridColumnQtyNonStock
+        '
+        Me.GridColumnQtyNonStock.Caption = "Qty"
+        Me.GridColumnQtyNonStock.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnQtyNonStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyNonStock.FieldName = "qty"
+        Me.GridColumnQtyNonStock.Name = "GridColumnQtyNonStock"
+        Me.GridColumnQtyNonStock.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
+        Me.GridColumnQtyNonStock.UnboundExpression = "1"
+        Me.GridColumnQtyNonStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnQtyNonStock.Visible = True
+        Me.GridColumnQtyNonStock.VisibleIndex = 4
+        Me.GridColumnQtyNonStock.Width = 93
+        '
+        'GridColumnis_unique_not_found
+        '
+        Me.GridColumnis_unique_not_found.Caption = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.FieldName = "is_unique_not_found"
+        Me.GridColumnis_unique_not_found.Name = "GridColumnis_unique_not_found"
+        Me.GridColumnis_unique_not_found.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnis_no_stock
+        '
+        Me.GridColumnis_no_stock.Caption = "is_no_stock"
+        Me.GridColumnis_no_stock.FieldName = "is_no_stock"
+        Me.GridColumnis_no_stock.Name = "GridColumnis_no_stock"
+        Me.GridColumnis_no_stock.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnunique_not_found
+        '
+        Me.GridColumnunique_not_found.Caption = "Unique Not Found"
+        Me.GridColumnunique_not_found.ColumnEdit = Me.CENotFound
+        Me.GridColumnunique_not_found.FieldName = "unique_not_found"
+        Me.GridColumnunique_not_found.Name = "GridColumnunique_not_found"
+        Me.GridColumnunique_not_found.UnboundExpression = "Iif([is_unique_not_found] = 1, 'Yes', 'No')"
+        Me.GridColumnunique_not_found.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnunique_not_found.Visible = True
+        Me.GridColumnunique_not_found.VisibleIndex = 6
+        Me.GridColumnunique_not_found.Width = 109
+        '
+        'CENotFound
+        '
+        Me.CENotFound.AutoHeight = False
+        Me.CENotFound.Name = "CENotFound"
+        Me.CENotFound.ValueChecked = "Yes"
+        Me.CENotFound.ValueUnchecked = "No"
+        '
+        'GridColumnno_stock
+        '
+        Me.GridColumnno_stock.Caption = "No Stock"
+        Me.GridColumnno_stock.ColumnEdit = Me.CENoStock
+        Me.GridColumnno_stock.FieldName = "is_no_stock"
+        Me.GridColumnno_stock.Name = "GridColumnno_stock"
+        Me.GridColumnno_stock.UnboundExpression = "Iif([is_no_stock]=1,'Yes' ,'No' )"
+        Me.GridColumnno_stock.Width = 117
+        '
+        'CENoStock
+        '
+        Me.CENoStock.AutoHeight = False
+        Me.CENoStock.Name = "CENoStock"
+        Me.CENoStock.ValueChecked = "Yes"
+        Me.CENoStock.ValueUnchecked = "No"
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        '
+        'RepositoryItemSpinEdit3
+        '
+        Me.RepositoryItemSpinEdit3.AutoHeight = False
+        Me.RepositoryItemSpinEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit3.EditValueChangedDelay = 50
+        Me.RepositoryItemSpinEdit3.Mask.EditMask = "n2"
+        Me.RepositoryItemSpinEdit3.Mask.SaveLiteral = False
+        Me.RepositoryItemSpinEdit3.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
+        Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
+        '
+        'WinControlContainer1
+        '
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(774.0001!, 184.6354!)
+        Me.WinControlContainer1.WinControl = Me.GCBarcodeProb
+        '
         'ReportSalesReturnNonStock
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
         Me.Margins = New System.Drawing.Printing.Margins(25, 51, 166, 36)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENotFound, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENoStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -612,6 +689,21 @@ Partial Public Class ReportSalesReturnNonStock
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LRecNumber As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LRecDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelPrint As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCBarcodeProb As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVBarcodeProb As DevExpress.XtraGrid.Views.Grid.GridView
@@ -629,21 +721,13 @@ Partial Public Class ReportSalesReturnNonStock
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemarkProb As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyNonStock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_unique_not_found As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_no_stock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnunique_not_found As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CENotFound As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnno_stock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CENoStock As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelPrint As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
-    Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
 End Class
