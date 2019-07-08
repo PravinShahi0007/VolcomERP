@@ -155,12 +155,16 @@ Partial Class FormSetupBudgetOPEX
         Me.GridColumnId.Caption = "Id"
         Me.GridColumnId.FieldName = "id_b_expense_opex"
         Me.GridColumnId.Name = "GridColumnId"
+        Me.GridColumnId.OptionsColumn.AllowEdit = False
+        Me.GridColumnId.OptionsColumn.ReadOnly = True
         '
         'GridColumnYear
         '
         Me.GridColumnYear.Caption = "Year"
         Me.GridColumnYear.FieldName = "year"
         Me.GridColumnYear.Name = "GridColumnYear"
+        Me.GridColumnYear.OptionsColumn.AllowEdit = False
+        Me.GridColumnYear.OptionsColumn.ReadOnly = True
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 0
         Me.GridColumnYear.Width = 177
@@ -170,6 +174,8 @@ Partial Class FormSetupBudgetOPEX
         Me.GridColumnDivision.Caption = "Category"
         Me.GridColumnDivision.FieldName = "item_cat"
         Me.GridColumnDivision.Name = "GridColumnDivision"
+        Me.GridColumnDivision.OptionsColumn.AllowEdit = False
+        Me.GridColumnDivision.OptionsColumn.ReadOnly = True
         Me.GridColumnDivision.Visible = True
         Me.GridColumnDivision.VisibleIndex = 1
         Me.GridColumnDivision.Width = 177
@@ -181,6 +187,8 @@ Partial Class FormSetupBudgetOPEX
         Me.GridColumnVal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnVal.FieldName = "value_expense"
         Me.GridColumnVal.Name = "GridColumnVal"
+        Me.GridColumnVal.OptionsColumn.AllowEdit = False
+        Me.GridColumnVal.OptionsColumn.ReadOnly = True
         Me.GridColumnVal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense", "{0:N2}")})
         Me.GridColumnVal.Visible = True
         Me.GridColumnVal.VisibleIndex = 2

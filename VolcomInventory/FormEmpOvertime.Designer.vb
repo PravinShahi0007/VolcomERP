@@ -61,6 +61,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEValid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -86,7 +87,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn36 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlCheck = New DevExpress.XtraEditors.PanelControl()
         Me.SBCheck = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
@@ -110,7 +111,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -424,7 +425,7 @@ Partial Class FormEmpOvertime
         'GVEmployee
         '
         Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.GBEActual, Me.gridBand4})
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn28, Me.BandedGridColumn6, Me.GridColumn30, Me.GridColumn31, Me.GridColumn33, Me.GridColumn29, Me.GridColumn32, Me.GridColumn34, Me.GCIsDayOff, Me.GCEValid, Me.GridColumn35, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn39, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn41, Me.GridColumn27, Me.GCECheckStatus, Me.GridColumn36, Me.GridColumn37, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn8, Me.BandedGridColumn5, Me.BandedGridColumn9})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn28, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.GridColumn30, Me.GridColumn31, Me.GridColumn33, Me.GridColumn29, Me.GridColumn32, Me.GridColumn34, Me.GCIsDayOff, Me.GCEValid, Me.GridColumn35, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn39, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn41, Me.GridColumn27, Me.GCECheckStatus, Me.GridColumn36, Me.GridColumn37, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn8, Me.BandedGridColumn5, Me.BandedGridColumn9})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Me.GridColumn24, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ot_det_total_hours", Me.BandedGridColumn4, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ot_det_overtime_hours", Me.BandedGridColumn8, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "point", Me.BandedGridColumn5, "{0:N1}")})
@@ -519,6 +520,13 @@ Partial Class FormEmpOvertime
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
         Me.GridColumn34.Width = 110
+        '
+        'GCIsDayOff
+        '
+        Me.GCIsDayOff.Caption = "Day Off"
+        Me.GCIsDayOff.FieldName = "is_day_off"
+        Me.GCIsDayOff.Name = "GCIsDayOff"
+        Me.GCIsDayOff.Visible = True
         '
         'GCEValid
         '
@@ -727,12 +735,11 @@ Partial Class FormEmpOvertime
         Me.BandedGridColumn6.FieldName = "is_store"
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         '
-        'GCIsDayOff
+        'BandedGridColumn9
         '
-        Me.GCIsDayOff.Caption = "Day Off"
-        Me.GCIsDayOff.FieldName = "is_day_off"
-        Me.GCIsDayOff.Name = "GCIsDayOff"
-        Me.GCIsDayOff.Visible = True
+        Me.BandedGridColumn9.Caption = "BandedGridColumn9"
+        Me.BandedGridColumn9.FieldName = "only_dp"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
         '
         'PanelControlCheck
         '
@@ -933,11 +940,10 @@ Partial Class FormEmpOvertime
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "Payroll Period :"
         '
-        'BandedGridColumn9
+        'BandedGridColumn7
         '
-        Me.BandedGridColumn9.Caption = "BandedGridColumn9"
-        Me.BandedGridColumn9.FieldName = "only_dp"
-        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn7.FieldName = "is_point_ho"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
         '
         'FormEmpOvertime
         '
@@ -1077,4 +1083,5 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
