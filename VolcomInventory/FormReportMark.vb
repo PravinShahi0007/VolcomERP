@@ -2372,10 +2372,11 @@
                 stt.changeStatus(id_report, id_status_reportx)
             End If
 
-
             'infoCustom("Status changed.")
 
+            Dim combine_number As String = ""
             If form_origin = "FormSalesReturnDet" Then
+                combine_number = FormSalesReturnDet.TxtCombineNumber.Text
                 FormSalesReturnDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSalesReturnDet.check_but()
                 FormSalesReturnDet.actionLoad()
@@ -2384,6 +2385,13 @@
                 FormSalesReturn.GVSalesReturn.FocusedRowHandle = find_row(FormSalesReturn.GVSalesReturn, "id_sales_return", id_report)
             Else
                 'code here
+                combine_number = FormViewSalesReturn.TxtCombineNumber.Text
+            End If
+
+            'update status for related combine number
+            If combine_number <> "" And report_mark_type <> "111" Then
+                Dim query_upd_single As String = "UPDATE tb_sales_return SET id_report_status=" + id_status_reportx + ", last_update=NOW(), last_update_by=" + id_user + " WHERE combine_number='" + combine_number + "' AND id_sales_return!=" + id_report + " "
+                execute_non_query(query_upd_single, True, "", "", "", "")
             End If
         ElseIf report_mark_type = "47" Then
             'Return Production
