@@ -45,6 +45,7 @@
 
     Private Sub FormPurcOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
+        load_vendor_list_po()
         '
         load_dep()
         load_item_cat()
@@ -218,7 +219,7 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_ord
     Sub load_vendor()
         Dim query As String = "SELECT 0 AS id_comp,'All Vendor' AS comp_number,'All Vendor' AS comp_name
                                UNION
-                               SELECT id_comp,comp_number,comp_name FROM tb_m_comp WHERE id_comp_cat='1'"
+                               SELECT id_comp,comp_number,comp_name FROM tb_m_comp WHERE id_comp_cat='8'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -330,5 +331,13 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_ord
                 End If
             Next
         End If
+    End Sub
+
+    Sub load_vendor_list_po()
+        Dim query As String = "SELECT c.`id_comp`,c.`comp_number`,c.`comp_name` FROM tb_purc_order po
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=po.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.id_comp
+GROUP BY c.id_comp"
+        viewSearchLookupQuery(SLEVendorListPO, query, "id_comp", "comp_name", "id_comp")
     End Sub
 End Class
