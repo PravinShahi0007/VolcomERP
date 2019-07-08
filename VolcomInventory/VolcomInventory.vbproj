@@ -4243,6 +4243,12 @@
     <Compile Include="FormSalesReturnNonListDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOptionView.Designer.vb">
+      <DependentUpon>FormSalesReturnOptionView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOptionView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderDetEdit.Designer.vb">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
     </Compile>
@@ -4301,6 +4307,18 @@
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnSelectRetType.Designer.vb">
+      <DependentUpon>FormSalesReturnSelectRetType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnSelectRetType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnStoreReturn.Designer.vb">
+      <DependentUpon>FormSalesReturnStoreReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnStoreReturn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesTargetPropose.Designer.vb">
@@ -9236,6 +9254,9 @@
     <EmbeddedResource Include="FormSalesReturnNonListDet.resx">
       <DependentUpon>FormSalesReturnNonListDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOptionView.resx">
+      <DependentUpon>FormSalesReturnOptionView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderDetEdit.resx">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
     </EmbeddedResource>
@@ -9265,6 +9286,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnSearch.resx">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnSelectRetType.resx">
+      <DependentUpon>FormSalesReturnSelectRetType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnStoreReturn.resx">
+      <DependentUpon>FormSalesReturnStoreReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesTargetPropose.resx">
       <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>

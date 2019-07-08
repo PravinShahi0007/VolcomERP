@@ -5,7 +5,7 @@
         GCBarcodeProb.DataSource = dt
     End Sub
 
-    Private Sub GVBarcodeProb_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcodeProb.CustomColumnDisplayText
+    Private Sub GVBarcodeProb_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If

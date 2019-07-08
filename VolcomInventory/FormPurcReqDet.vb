@@ -160,7 +160,7 @@
 		                GROUP BY reqd.id_b_expense_opex
 	                ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
                 )used_opex ON used_opex.id_item_cat=cat.`id_item_cat`
-                WHERE it.is_active='1' AND it.id_item_type='" & SLEItemType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
+                WHERE it.is_active='1' AND cat.id_expense_type='" & SLEItemType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
 
 
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")

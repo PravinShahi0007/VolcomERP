@@ -674,7 +674,7 @@ Partial Class FormWHAWBillIn
         '
         'GridColumnRetNo
         '
-        Me.GridColumnRetNo.Caption = "Return Order Number"
+        Me.GridColumnRetNo.Caption = "Store Return Number"
         Me.GridColumnRetNo.FieldName = "do_no"
         Me.GridColumnRetNo.Name = "GridColumnRetNo"
         Me.GridColumnRetNo.Visible = True
@@ -712,11 +712,11 @@ Partial Class FormWHAWBillIn
         '
         'BBrowse
         '
-        Me.BBrowse.Location = New System.Drawing.Point(663, 81)
+        Me.BBrowse.Location = New System.Drawing.Point(607, 81)
         Me.BBrowse.Name = "BBrowse"
-        Me.BBrowse.Size = New System.Drawing.Size(87, 23)
+        Me.BBrowse.Size = New System.Drawing.Size(143, 23)
         Me.BBrowse.TabIndex = 1
-        Me.BBrowse.Text = "Return Order"
+        Me.BBrowse.Text = "(+) Store Return Number"
         '
         'XTPDetail
         '
