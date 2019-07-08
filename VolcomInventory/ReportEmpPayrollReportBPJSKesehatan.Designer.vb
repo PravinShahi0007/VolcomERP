@@ -208,13 +208,13 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         'SubBand1
         '
         Me.SubBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3})
-        Me.SubBand1.HeightF = 48.00001!
+        Me.SubBand1.HeightF = 32.0!
         Me.SubBand1.Name = "SubBand1"
         '
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(727.0!, 16.0!)
