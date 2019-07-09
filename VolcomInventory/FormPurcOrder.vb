@@ -46,6 +46,8 @@
     Private Sub FormPurcOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
         load_vendor_list_po()
+        load_po_item()
+
         '
         load_dep()
         load_item_cat()
@@ -148,6 +150,17 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_ord
                                 INNER JOIN `tb_item_cat` itc ON itc.id_item_cat=itm.id_item_cat AND itc.`is_active`='1'
                                 WHERE " & query_where & " itm.`is_active`='1'"
         viewSearchLookupQuery(SLEItem, query, "id_item", "item_desc", "id_item")
+    End Sub
+
+    Sub load_po_item()
+        Dim query As String = "SELECT 0 AS id_purc_order,'ALL' AS `purc_order_number` ,'ALL' AS `comp_name`,'ALL' AS `comp_number`
+UNION
+SELECT po.id_purc_order,po.`purc_order_number` ,c.`comp_name`,c.`comp_number`
+FROM tb_purc_order po 
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=po.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE po.id_report_status='6' AND po.is_close_rec='2'"
+        viewSearchLookupQuery(SLEPONumber, query, "id_purc_order", "purc_order_number", "id_purc_order")
     End Sub
 
     Sub load_req()
@@ -325,19 +338,54 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_ord
         If GVPO.RowCount > 0 Then
             For i As Integer = 0 To ((GVPO.RowCount - 1) - GetGroupRowCount(GVPO))
                 If CheckEditSelAll.Checked = False Then
-                    GVPO.SetRowCellValue(i, "is_check", "no")
+                    GVPOItem.SetRowCellValue(i, "is_check", "no")
                 Else
-                    GVPO.SetRowCellValue(i, "is_check", "yes")
+                    GVPOItem.SetRowCellValue(i, "is_check", "yes")
                 End If
             Next
         End If
     End Sub
 
     Sub load_vendor_list_po()
-        Dim query As String = "SELECT c.`id_comp`,c.`comp_number`,c.`comp_name` FROM tb_purc_order po
+        Dim query As String = "SELECT 0 AS `id_comp`,'ALL' AS `comp_number`,'ALL' AS `comp_name`
+UNION
+SELECT c.`id_comp`,c.`comp_number`,c.`comp_name` FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=po.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.id_comp
 GROUP BY c.id_comp"
         viewSearchLookupQuery(SLEVendorListPO, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub load_list_item_po()
+        Dim query_where As String = ""
+
+        If Not SLEVendorListPO.EditValue.ToString = "0" Then 'id vendor
+            query_where += " AND c.id_comp='" & SLEVendorListPO.EditValue.ToString & "' "
+        End If
+
+        If Not SLEPONumber.EditValue.ToString = "0" Then 'id po
+            query_where += " AND po.id_purc_order='" & SLEPONumber.EditValue.ToString & "' "
+        End If
+
+        Dim query As String = "SELECT 'no' AS is_check,pod.qty AS qty_po,SUM(IFNULL(recd.qty,0.00)) AS qty_rec,po.date_created,cd.item_cat_detail,po.est_date_receive,po.pay_due_date,pod.`id_purc_order_det`,po.`purc_order_number`,c.`comp_number`,c.`comp_name`,it.id_item,it.`item_desc`,reqd.`item_detail`,pod.`value` 
+FROM tb_purc_order_det pod
+INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status` = 6 AND po.`is_close_rec`='2'
+INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
+INNER JOIN tb_item it ON it.`id_item`=reqd.`id_item`
+INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=it.`id_item_cat`
+INNER JOIN tb_item_cat_detail cd ON cd.id_item_cat_detail=it.id_item_cat_detail
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=po.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+LEFT JOIN tb_purc_rec_det recd ON recd.id_purc_order_det=pod.id_purc_order_det
+WHERE req.`id_report_status` = 6 AND reqd.`is_unable_fulfill` = '2' " & query_where & " 
+GROUP BY pod.id_purc_order_det"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPOItem.DataSource = data
+        GVPOItem.BestFitColumns()
+    End Sub
+
+    Private Sub BViewPOItem_Click(sender As Object, e As EventArgs) Handles BViewPOItem.Click
+        load_list_item_po()
     End Sub
 End Class
