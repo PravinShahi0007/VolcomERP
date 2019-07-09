@@ -134,12 +134,18 @@ Partial Class FormPurcOrder
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEPONumber = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -177,12 +183,7 @@ Partial Class FormPurcOrder
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BBCloseReceiving = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -1307,6 +1308,22 @@ Partial Class FormPurcOrder
         Me.GridColumn65.Visible = True
         Me.GridColumn65.VisibleIndex = 2
         '
+        'GridColumn88
+        '
+        Me.GridColumn88.Caption = "Purchase Category"
+        Me.GridColumn88.FieldName = "item_cat_detail"
+        Me.GridColumn88.Name = "GridColumn88"
+        Me.GridColumn88.Visible = True
+        Me.GridColumn88.VisibleIndex = 6
+        '
+        'GridColumn87
+        '
+        Me.GridColumn87.Caption = "Item Detail"
+        Me.GridColumn87.FieldName = "item_detail"
+        Me.GridColumn87.Name = "GridColumn87"
+        Me.GridColumn87.Visible = True
+        Me.GridColumn87.VisibleIndex = 7
+        '
         'GridColumn64
         '
         Me.GridColumn64.Caption = "PO Number"
@@ -1345,15 +1362,19 @@ Partial Class FormPurcOrder
         Me.GridColumn70.Visible = True
         Me.GridColumn70.VisibleIndex = 5
         '
-        'RepositoryItemProgressBar1
+        'GridColumn76
         '
-        Me.RepositoryItemProgressBar1.EndColor = System.Drawing.Color.LawnGreen
-        Me.RepositoryItemProgressBar1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.RepositoryItemProgressBar1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.RepositoryItemProgressBar1.Name = "RepositoryItemProgressBar1"
-        Me.RepositoryItemProgressBar1.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
-        Me.RepositoryItemProgressBar1.ShowTitle = True
-        Me.RepositoryItemProgressBar1.Step = 1
+        Me.GridColumn76.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn76.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn76.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn76.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn76.Caption = "Qty Order"
+        Me.GridColumn76.DisplayFormat.FormatString = "N2"
+        Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn76.FieldName = "qty_po"
+        Me.GridColumn76.Name = "GridColumn76"
+        Me.GridColumn76.Visible = True
+        Me.GridColumn76.VisibleIndex = 10
         '
         'GridColumn78
         '
@@ -1366,6 +1387,47 @@ Partial Class FormPurcOrder
         Me.GridColumn78.Visible = True
         Me.GridColumn78.VisibleIndex = 8
         Me.GridColumn78.Width = 96
+        '
+        'GridColumn79
+        '
+        Me.GridColumn79.Caption = "PO Price"
+        Me.GridColumn79.DisplayFormat.FormatString = "N2"
+        Me.GridColumn79.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn79.FieldName = "value"
+        Me.GridColumn79.Name = "GridColumn79"
+        Me.GridColumn79.Visible = True
+        Me.GridColumn79.VisibleIndex = 9
+        '
+        'GridColumn80
+        '
+        Me.GridColumn80.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn80.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn80.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn80.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn80.Caption = "Qty Receiving"
+        Me.GridColumn80.DisplayFormat.FormatString = "N2"
+        Me.GridColumn80.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn80.FieldName = "qty_rec"
+        Me.GridColumn80.Name = "GridColumn80"
+        Me.GridColumn80.Visible = True
+        Me.GridColumn80.VisibleIndex = 11
+        '
+        'GridColumn81
+        '
+        Me.GridColumn81.Caption = "Status Receiving"
+        Me.GridColumn81.Name = "GridColumn81"
+        Me.GridColumn81.Visible = True
+        Me.GridColumn81.VisibleIndex = 12
+        '
+        'RepositoryItemProgressBar1
+        '
+        Me.RepositoryItemProgressBar1.EndColor = System.Drawing.Color.LawnGreen
+        Me.RepositoryItemProgressBar1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RepositoryItemProgressBar1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar1.Name = "RepositoryItemProgressBar1"
+        Me.RepositoryItemProgressBar1.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RepositoryItemProgressBar1.ShowTitle = True
+        Me.RepositoryItemProgressBar1.Step = 1
         '
         'PanelControl3
         '
@@ -1525,7 +1587,10 @@ Partial Class FormPurcOrder
         '
         'BtnDropQuickMenu
         '
+        Me.BtnDropQuickMenu.ContextMenuStrip = Me.ViewMenu
         Me.BtnDropQuickMenu.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDropQuickMenu.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Hide
+        Me.BtnDropQuickMenu.DropDownControl = Me.PopupMenu1
         Me.BtnDropQuickMenu.ImageIndex = 17
         Me.BtnDropQuickMenu.ImageList = Me.LargeImageCollection
         Me.BtnDropQuickMenu.Location = New System.Drawing.Point(1032, 2)
@@ -1578,8 +1643,8 @@ Partial Class FormPurcOrder
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc})
-        Me.BarManager1.MaxItemId = 12
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBCloseReceiving})
+        Me.BarManager1.MaxItemId = 13
         '
         'barDockControlTop
         '
@@ -1668,70 +1733,15 @@ Partial Class FormPurcOrder
         '
         'PopupMenu1
         '
-        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBSubEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSubOther)})
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBCloseReceiving)})
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
-        'GridColumn87
+        'BBCloseReceiving
         '
-        Me.GridColumn87.Caption = "Item Detail"
-        Me.GridColumn87.FieldName = "item_detail"
-        Me.GridColumn87.Name = "GridColumn87"
-        Me.GridColumn87.Visible = True
-        Me.GridColumn87.VisibleIndex = 7
-        '
-        'GridColumn88
-        '
-        Me.GridColumn88.Caption = "Purchase Category"
-        Me.GridColumn88.FieldName = "item_cat_detail"
-        Me.GridColumn88.Name = "GridColumn88"
-        Me.GridColumn88.Visible = True
-        Me.GridColumn88.VisibleIndex = 6
-        '
-        'GridColumn79
-        '
-        Me.GridColumn79.Caption = "PO Price"
-        Me.GridColumn79.DisplayFormat.FormatString = "N2"
-        Me.GridColumn79.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn79.FieldName = "value"
-        Me.GridColumn79.Name = "GridColumn79"
-        Me.GridColumn79.Visible = True
-        Me.GridColumn79.VisibleIndex = 9
-        '
-        'GridColumn76
-        '
-        Me.GridColumn76.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn76.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn76.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn76.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn76.Caption = "Qty Order"
-        Me.GridColumn76.DisplayFormat.FormatString = "N2"
-        Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn76.FieldName = "qty_po"
-        Me.GridColumn76.Name = "GridColumn76"
-        Me.GridColumn76.Visible = True
-        Me.GridColumn76.VisibleIndex = 10
-        '
-        'GridColumn80
-        '
-        Me.GridColumn80.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn80.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn80.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn80.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn80.Caption = "Qty Receiving"
-        Me.GridColumn80.DisplayFormat.FormatString = "N2"
-        Me.GridColumn80.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn80.FieldName = "qty_rec"
-        Me.GridColumn80.Name = "GridColumn80"
-        Me.GridColumn80.Visible = True
-        Me.GridColumn80.VisibleIndex = 11
-        '
-        'GridColumn81
-        '
-        Me.GridColumn81.Caption = "Status Receiving"
-        Me.GridColumn81.Name = "GridColumn81"
-        Me.GridColumn81.Visible = True
-        Me.GridColumn81.VisibleIndex = 12
+        Me.BBCloseReceiving.Caption = "Close Receiving"
+        Me.BBCloseReceiving.Id = 12
+        Me.BBCloseReceiving.Name = "BBCloseReceiving"
         '
         'FormPurcOrder
         '
@@ -1970,4 +1980,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn79 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn81 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BBCloseReceiving As DevExpress.XtraBars.BarButtonItem
 End Class
