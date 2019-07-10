@@ -335,8 +335,8 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
     End Sub
 
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
-        If GVPO.RowCount > 0 Then
-            For i As Integer = 0 To ((GVPO.RowCount - 1) - GetGroupRowCount(GVPO))
+        If GVPOItem.RowCount > 0 Then
+            For i As Integer = 0 To ((GVPOItem.RowCount - 1) - GetGroupRowCount(GVPOItem))
                 If CheckEditSelAll.Checked = False Then
                     GVPOItem.SetRowCellValue(i, "is_check", "no")
                 Else
@@ -367,7 +367,7 @@ GROUP BY c.id_comp"
             query_where += " AND po.id_purc_order='" & SLEPONumber.EditValue.ToString & "' "
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,pod.qty AS qty_po,SUM(IFNULL(recd.qty,0.00)) AS qty_rec,po.date_created,cd.item_cat_detail,po.est_date_receive,po.pay_due_date,pod.`id_purc_order_det`,po.`purc_order_number`,c.`comp_number`,c.`comp_name`,it.id_item,it.`item_desc`,reqd.`item_detail`,pod.`value` 
+        Dim query As String = "SELECT 'no' AS is_check,pod.qty AS qty_po,SUM(IFNULL(recd.qty,0.00)) AS qty_rec,IF(SUM(IFNULL(recd.qty,0.00))=0,'Waiting',IF(SUM(IFNULL(recd.qty,0.00))<pod.qty,'Partial','Complete')) AS status_rec,po.date_created,cd.item_cat_detail,po.est_date_receive,po.pay_due_date,pod.`id_purc_order_det`,po.`purc_order_number`,c.`comp_number`,c.`comp_name`,it.id_item,it.`item_desc`,reqd.`item_detail`,pod.`value` 
 FROM tb_purc_order_det pod
 INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status` = 6 AND po.`is_close_rec`='2'
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
@@ -387,5 +387,19 @@ GROUP BY pod.id_purc_order_det"
 
     Private Sub BViewPOItem_Click(sender As Object, e As EventArgs) Handles BViewPOItem.Click
         load_list_item_po()
+    End Sub
+
+    Private Sub BBCloseReceiving_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCloseReceiving.ItemClick
+        GVPOItem.ActiveFilterString = "[is_check]='yes'"
+        If GVPOItem.RowCount > 0 Then
+            For i As Integer = 0 To GVPOItem.RowCount - 1
+                If GVPOItem.GetRowCellValue(i, "status_rec").ToString = "Waiting" Then
+                    Dim id_order_det As String = GVPOItem.GetRowCellValue(i, "id_purc_order_det").ToString
+                End If
+            Next
+        Else
+            stopCustom("Please check one of PO item")
+        End If
+        GVPOItem.ActiveFilterString = ""
     End Sub
 End Class
