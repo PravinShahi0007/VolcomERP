@@ -37,6 +37,16 @@
         lookup.ItemIndex = 0
     End Sub
 
+    'view line plan
+    Sub viewLinePlan()
+        Dim query As String = "SELECT lp.id_fg_line_plan,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
+        FROM tb_fg_line_plan lp WHERE lp.id_fg_line_plan=0
+        UNION
+        SELECT lp.id_fg_line_plan,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
+        FROM tb_fg_line_plan lp WHERE lp.id_season=" + id_season_par + " "
+        viewSearchLookupQuery(SLELinePlan, query, "id_fg_line_plan", "description", "id_fg_line_plan")
+    End Sub
+
     'tampung counting
     Sub getCounting()
         Dim query As String = ""
@@ -371,6 +381,7 @@
         viewSeasonOrign(SLESeasonOrigin)
         viewSampleOrign(LESampleOrign)
         view_ret_code(LERetCode)
+        viewLinePlan()
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
@@ -436,6 +447,7 @@
                 query += "INNER JOIN tb_season_delivery del ON a.id_delivery = del.id_delivery "
                 query += "INNER JOIN tb_lookup_status d ON d.id_status = a.id_active  "
                 query += "INNER JOIN tb_lookup_ret_code ret ON ret.id_ret_code = a.id_ret_code "
+                query += "INNER JOIN tb_fg_line_plan lp ON lp.id_fg_line_plan = a.id_fg_line_plan "
                 query += "WHERE a.id_design = '" + id_design + "' "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -476,6 +488,7 @@
                 LESeason.EditValue = data.Rows(0)("id_season").ToString
                 SLESeasonOrigin.EditValue = data.Rows(0)("id_season_orign").ToString
                 LESampleOrign.EditValue = data.Rows(0)("id_sample").ToString
+                SLELinePlan.EditValue = data.Rows(0)("id_fg_line_plan").ToString
 
                 SLEDel.EditValue = data.Rows(0)("id_delivery").ToString
                 SLEDelAct.EditValue = data.Rows(0)("id_delivery_act").ToString
@@ -965,6 +978,7 @@
             SLESeasonOrigin.Enabled = False
             BtnAddSeasonOrign.Enabled = False
 
+            SLELinePlan.Enabled = True
             LESeason.Enabled = True
             BtnAddSeaason.Enabled = True
             XTPLineList.PageVisible = True
@@ -1141,6 +1155,7 @@
             DEWHDate.Enabled = False
             DEInStoreDet.Enabled = False
             BtnAddRetCode.Enabled = False
+            SLELinePlan.Enabled = False
 
             'comment
             PanelControlComment.Visible = True
@@ -1182,9 +1197,9 @@
         Dim is_permanent_master_dsg As String = get_setup_field("is_permanent_master_dsg")
         If is_permanent_master_dsg = "1" And dupe = "-1" Then
             Dim query_cek_po As String = ""
-            query_cek_po += "SELECT COUNT(*) FROM tb_prod_order pr_ord "
-            query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand_design = pd_dsg.id_prod_demand_design "
-            query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' "
+            query_cek_po += "SELECT COUNT(*) FROM tb_prod_demand pr_ord "
+            query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand = pd_dsg.id_prod_demand "
+            query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' AND pr_ord.is_pd=1 "
             Dim jum_cek_po As String = execute_query(query_cek_po, 0, True, "", "", "", "")
             'jika uda ada PO yg diproses
             If jum_cek_po > 0 Then
@@ -1223,6 +1238,7 @@
                 TEDisplayNameNonMD.Enabled = False
                 DEWHDate.Enabled = False
                 BtnAddRetCode.Enabled = False
+                SLELinePlan.Enabled = False
             End If
         End If
 
