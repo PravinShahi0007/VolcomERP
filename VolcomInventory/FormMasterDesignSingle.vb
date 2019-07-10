@@ -40,6 +40,17 @@
     'view line plan
     Sub viewLinePlan()
         Dim id_ss As String = LESeason.EditValue.ToString
+
+        'get class design
+        Dim id_cls As String = "0"
+        Dim qcl As String = "SELECT dc.id_code_detail FROM tb_m_design_code dc
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail
+        WHERE dc.id_design=" + id_design + " AND cd.id_code=30 "
+        Dim dcl As DataTable = execute_query(qcl, -1, True, "", "", "", "")
+        If dcl.Rows.Count > 0 Then
+            id_cls = dcl.Rows(0)("id_code_detail").ToString
+        End If
+
         Dim query As String = "SELECT lp.id_fg_line_plan, cd.display_name AS `class`, cdc.display_name AS `color`,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
         FROM tb_fg_line_plan lp 
         LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = lp.id_class
@@ -50,7 +61,7 @@
         FROM tb_fg_line_plan lp 
         LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = lp.id_class
         LEFT JOIN tb_m_code_detail cdc ON cd.id_code_detail = lp.id_color
-        WHERE lp.id_season=" + id_ss + " "
+        WHERE lp.id_season=" + id_ss + " AND lp.id_class='" + id_cls + "' "
         viewSearchLookupQuery(SLELinePlan, query, "id_fg_line_plan", "description", "id_fg_line_plan")
     End Sub
 
