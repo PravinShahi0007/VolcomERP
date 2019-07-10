@@ -4,7 +4,7 @@
     Private Sub FormEmpPayrollReportBPJSKesehatan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '== all ==
         Dim query_all As String = "
-            SELECT 0 AS `no`, dep.departement, '=' AS equal, SUM(salary.employee_salary * 0.04) AS company_contribution, SUM(salary.employee_salary * 0.01) AS employee_contribution, SUM(salary.employee_salary * 0.05) AS total_contribution
+            SELECT 0 AS `no`, dep.departement, SUM(salary.employee_salary * 0.04) AS company_contribution, SUM(salary.employee_salary * 0.01) AS employee_contribution, SUM(salary.employee_salary * 0.05) AS total_contribution
             FROM tb_emp_payroll_deduction AS ded
             LEFT JOIN tb_emp_payroll_det AS pay_det ON ded.id_employee = pay_det.id_employee AND pay_det.id_payroll = " + id_payroll + "
             LEFT JOIN  (
@@ -69,6 +69,14 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim query As String = "SELECT ump, bpjs_max, bpjs_max_kelas_2 FROM tb_emp_payroll WHERE id_payroll = " + id_payroll
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim query_opt As String = "SELECT bpjs_virtual_acc_1, bpjs_virtual_acc_2 FROM tb_opt"
+
+        Dim data_opt As DataTable = execute_query(query_opt, -1, True, "", "", "", "")
+
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, 0, True, "", "", "", "")
 
         'all
@@ -88,6 +96,11 @@
         Dim report_detail As ReportEmpPayrollReportBPJSKesehatanDetail = New ReportEmpPayrollReportBPJSKesehatanDetail
 
         report_detail.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
+        report_detail.XLKodeBU.Text = data_opt.Rows(0)("bpjs_virtual_acc_1").ToString.Substring(data_opt.Rows(0)("bpjs_virtual_acc_1").ToString.Length - 8)
+        report_detail.XLVirtualAcc.Text = data_opt.Rows(0)("bpjs_virtual_acc_1").ToString
+        report_detail.XLMaxKelas1.Text = Format(data.Rows(0)("bpjs_max"), "##,##0")
+        report_detail.XLMaxKelas2.Text = Format(data.Rows(0)("bpjs_max_kelas_2"), "##,##0")
+        report_detail.XLUMK.Text = Format(data.Rows(0)("ump"), "##,##0")
 
         report_detail.id_pre = If(id_report_status = "6", "-1", "1")
         report_detail.id_payroll = id_payroll

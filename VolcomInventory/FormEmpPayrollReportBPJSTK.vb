@@ -4,7 +4,7 @@
     Private Sub FormEmpPayrollReportBPJSTK_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '== all ==
         Dim query_all As String = "
-            SELECT 0 AS `no`, dep.departement, '=' AS equal, SUM(salary.employee_salary * 0.424) AS company_contribution_1, SUM(IF(ded.id_salary_deduction = 2, ded.deduction * 2, 0)) AS company_contribution_2, SUM(IF(ded.id_salary_deduction = 2, ded.deduction, 0)) AS employee_contribution_1, SUM(IF(ded.id_salary_deduction = 3, ded.deduction, 0)) AS employee_contribution_2
+            SELECT 0 AS `no`, dep.departement, SUM(salary.employee_salary * 0.424) AS company_contribution_1, SUM(IF(ded.id_salary_deduction = 2, ded.deduction * 2, 0)) AS company_contribution_2, SUM(IF(ded.id_salary_deduction = 2, ded.deduction, 0)) AS employee_contribution_1, SUM(IF(ded.id_salary_deduction = 3, ded.deduction, 0)) AS employee_contribution_2
             FROM tb_emp_payroll_deduction AS ded
             LEFT JOIN tb_emp_payroll_det AS pay_det ON ded.id_employee = pay_det.id_employee AND pay_det.id_payroll = " + id_payroll + "
             LEFT JOIN  (

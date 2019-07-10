@@ -25,6 +25,7 @@ Partial Class FormEmpPayrollReportSummary
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,7 +40,6 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -102,6 +102,15 @@ Partial Class FormEmpPayrollReportSummary
         Me.GVSummary.OptionsBehavior.Editable = False
         Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
+        Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "No"
+        Me.GridColumn1.FieldName = "no"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn2
         '
@@ -109,7 +118,7 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn2.FieldName = "departement"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -117,14 +126,14 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "Gaji"
+        Me.GridColumn3.Caption = "Salary"
         Me.GridColumn3.DisplayFormat.FormatString = "N0"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "total_gaji"
+        Me.GridColumn3.FieldName = "salary"
         Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_gaji", "{0:N0}")})
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "salary", "{0:N0}")})
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -132,14 +141,14 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Lembur Event"
+        Me.GridColumn4.Caption = "Overtime Event"
         Me.GridColumn4.DisplayFormat.FormatString = "N0"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "total_event"
+        Me.GridColumn4.FieldName = "event_overtime"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_event", "{0:N0}")})
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "event_overtime", "{0:N0}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumn5
         '
@@ -147,14 +156,14 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn5.Caption = "Pinjaman Koperasi"
+        Me.GridColumn5.Caption = "Cooperative Loan"
         Me.GridColumn5.DisplayFormat.FormatString = "N0"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "total_pinjaman_koperasi"
+        Me.GridColumn5.FieldName = "d_cooperative_loan"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pinjaman_koperasi", "{0:N0}")})
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_cooperative_loan", "{0:N0}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 4
         '
         'GridColumn6
         '
@@ -165,11 +174,11 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn6.Caption = "BPJS Kesehatan"
         Me.GridColumn6.DisplayFormat.FormatString = "N0"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "total_bpjs"
+        Me.GridColumn6.FieldName = "d_bpjskes"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bpjs", "{0:N0}")})
+        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_bpjskes", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         '
         'GridColumn7
         '
@@ -177,14 +186,14 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.Caption = "Jaminan Pensiun"
+        Me.GridColumn7.Caption = "JP Contribution"
         Me.GridColumn7.DisplayFormat.FormatString = "N0"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "total_jaminan_pensiun"
+        Me.GridColumn7.FieldName = "d_jaminan_pensiun"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_jaminan_pensiun", "{0:N0}")})
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_jaminan_pensiun", "{0:N0}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.VisibleIndex = 6
         '
         'GridColumn8
         '
@@ -192,12 +201,12 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.Caption = "BPJS TK / Jamsostek"
+        Me.GridColumn8.Caption = "BPJSTK"
         Me.GridColumn8.DisplayFormat.FormatString = "N0"
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "total_jamsostek"
+        Me.GridColumn8.FieldName = "d_bpjstk"
         Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_jamsostek", "{0:N0}")})
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_bpjstk", "{0:N0}")})
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
         '
@@ -207,14 +216,14 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.Caption = "Koperasi Karyawan"
+        Me.GridColumn9.Caption = "Cooperative Contribution"
         Me.GridColumn9.DisplayFormat.FormatString = "N0"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "total_iuran_koperasi"
+        Me.GridColumn9.FieldName = "d_cooperative_contribution"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_iuran_koperasi", "{0:N0}")})
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_cooperative_contribution", "{0:N0}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.VisibleIndex = 8
         '
         'GridColumn10
         '
@@ -222,12 +231,12 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.Caption = "Tabungan / Missing"
+        Me.GridColumn10.Caption = "Saving Missing"
         Me.GridColumn10.DisplayFormat.FormatString = "N0"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "total_tab_missing"
+        Me.GridColumn10.FieldName = "d_missing"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_tab_missing", "{0:N0}")})
+        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_missing", "{0:N0}")})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 9
         '
@@ -237,12 +246,12 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.Caption = "Uniform / REIKI / Kas bon"
+        Me.GridColumn11.Caption = "Meditation / Cash Receipt"
         Me.GridColumn11.DisplayFormat.FormatString = "N0"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "total_reiki_uni_kb_whsale"
+        Me.GridColumn11.FieldName = "d_meditation_cash"
         Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_reiki_uni_kb_whsale", "{0:N0}")})
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_meditation_cash", "{0:N0}")})
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 10
         '
@@ -252,12 +261,12 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn12.Caption = "Lain-lain / SPT"
+        Me.GridColumn12.Caption = "Other"
         Me.GridColumn12.DisplayFormat.FormatString = "N0"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "total_pot_lain_spt"
+        Me.GridColumn12.FieldName = "d_other"
         Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pot_lain_spt", "{0:N0}")})
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_other", "{0:N0}")})
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 11
         '
@@ -267,14 +276,18 @@ Partial Class FormEmpPayrollReportSummary
         Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn13.Caption = "Saldo"
+        Me.GridColumn13.Caption = "Balance"
         Me.GridColumn13.DisplayFormat.FormatString = "N0"
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn13.FieldName = "saldo"
+        Me.GridColumn13.FieldName = "balance"
         Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "saldo", "{0:N0}")})
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N0}")})
+        Me.GridColumn13.UnboundExpression = "[salary] + [event_overtime] - [d_cooperative_loan] - [d_bpjskes] - [d_jaminan_pen" &
+    "siun] - [d_bpjstk] - [d_cooperative_contribution] - [d_missing] - [d_meditation_" &
+    "cash] - [d_other]"
+        Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 11
+        Me.GridColumn13.VisibleIndex = 12
         '
         'PanelControl1
         '
@@ -294,14 +307,6 @@ Partial Class FormEmpPayrollReportSummary
         Me.SBPrint.Size = New System.Drawing.Size(85, 42)
         Me.SBPrint.TabIndex = 0
         Me.SBPrint.Text = "Print"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "No"
-        Me.GridColumn1.FieldName = "no"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
         '
         'FormEmpPayrollReportSummary
         '

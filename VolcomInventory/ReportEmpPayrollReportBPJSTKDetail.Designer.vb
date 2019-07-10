@@ -26,7 +26,23 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell31 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell30 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell29 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell25 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XTTotal = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -40,29 +56,13 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XTRow = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell26 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell24 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XTable = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableCell24 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XTTotal = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell25 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell29 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell30 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell31 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
-        CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -126,251 +126,6 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.Text = "DAFTAR NAMA TENAGA KERJA"
         '
-        'XrTableCell11
-        '
-        Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell11.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell11.Name = "XrTableCell11"
-        Me.XrTableCell11.StylePriority.UseBackColor = False
-        Me.XrTableCell11.StylePriority.UseBorders = False
-        Me.XrTableCell11.StylePriority.UseTextAlignment = False
-        Me.XrTableCell11.Text = "KETERANGAN"
-        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 0.71867156491075468R
-        '
-        'XrTableCell9
-        '
-        Me.XrTableCell9.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell9.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell9.Name = "XrTableCell9"
-        Me.XrTableCell9.StylePriority.UseBackColor = False
-        Me.XrTableCell9.StylePriority.UseBorders = False
-        Me.XrTableCell9.StylePriority.UseTextAlignment = False
-        Me.XrTableCell9.Text = "JHT"
-        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell9.Weight = 0.55282492988448406R
-        '
-        'XrTableCell8
-        '
-        Me.XrTableCell8.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell8.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell8.Name = "XrTableCell8"
-        Me.XrTableCell8.StylePriority.UseBackColor = False
-        Me.XrTableCell8.StylePriority.UseBorders = False
-        Me.XrTableCell8.StylePriority.UseTextAlignment = False
-        Me.XrTableCell8.Text = "JP"
-        Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell8.Weight = 0.55282492988448384R
-        '
-        'XrTableCell13
-        '
-        Me.XrTableCell13.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell13.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell13.Name = "XrTableCell13"
-        Me.XrTableCell13.StylePriority.UseBackColor = False
-        Me.XrTableCell13.StylePriority.UseBorders = False
-        Me.XrTableCell13.StylePriority.UseTextAlignment = False
-        Me.XrTableCell13.Text = "JP"
-        Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell13.Weight = 0.55282490352373692R
-        '
-        'XrTableCell7
-        '
-        Me.XrTableCell7.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell7.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell7.Name = "XrTableCell7"
-        Me.XrTableCell7.StylePriority.UseBackColor = False
-        Me.XrTableCell7.StylePriority.UseBorders = False
-        Me.XrTableCell7.StylePriority.UseTextAlignment = False
-        Me.XrTableCell7.Text = "JKK, JKM, JHT"
-        Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell7.Weight = 0.55282492991842691R
-        '
-        'XrTableCell15
-        '
-        Me.XrTableCell15.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell15.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell15.Multiline = True
-        Me.XrTableCell15.Name = "XrTableCell15"
-        Me.XrTableCell15.StylePriority.UseBackColor = False
-        Me.XrTableCell15.StylePriority.UseBorders = False
-        Me.XrTableCell15.StylePriority.UseTextAlignment = False
-        Me.XrTableCell15.Text = "UPAH"
-        Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell15.Weight = 0.55282492991842669R
-        '
-        'XrTableCell3
-        '
-        Me.XrTableCell3.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell3.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell3.Multiline = True
-        Me.XrTableCell3.Name = "XrTableCell3"
-        Me.XrTableCell3.StylePriority.UseBackColor = False
-        Me.XrTableCell3.StylePriority.UseBorders = False
-        Me.XrTableCell3.StylePriority.UseTextAlignment = False
-        Me.XrTableCell3.Text = "KEP PROG"
-        Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell3.Weight = 0.55282491116747823R
-        '
-        'XrTableCell2
-        '
-        Me.XrTableCell2.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell2.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell2.Multiline = True
-        Me.XrTableCell2.Name = "XrTableCell2"
-        Me.XrTableCell2.StylePriority.UseBackColor = False
-        Me.XrTableCell2.StylePriority.UseBorders = False
-        Me.XrTableCell2.StylePriority.UseTextAlignment = False
-        Me.XrTableCell2.Text = "LAHIR"
-        Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell2.Weight = 0.552824929855132R
-        '
-        'XrTableCell4
-        '
-        Me.XrTableCell4.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell4.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell4.Multiline = True
-        Me.XrTableCell4.Name = "XrTableCell4"
-        Me.XrTableCell4.StylePriority.UseBackColor = False
-        Me.XrTableCell4.StylePriority.UseBorders = False
-        Me.XrTableCell4.StylePriority.UseTextAlignment = False
-        Me.XrTableCell4.Text = "JENIS KELAMIN"
-        Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell4.Weight = 0.34551556088566976R
-        '
-        'XrTableCell5
-        '
-        Me.XrTableCell5.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell5.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell5.Name = "XrTableCell5"
-        Me.XrTableCell5.StylePriority.UseBackColor = False
-        Me.XrTableCell5.StylePriority.UseBorders = False
-        Me.XrTableCell5.StylePriority.UseTextAlignment = False
-        Me.XrTableCell5.Text = "NAMA"
-        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell5.Weight = 1.1056498903387213R
-        '
-        'XrTableCell6
-        '
-        Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell6.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell6.Name = "XrTableCell6"
-        Me.XrTableCell6.StylePriority.UseBackColor = False
-        Me.XrTableCell6.StylePriority.UseBorders = False
-        Me.XrTableCell6.StylePriority.UseTextAlignment = False
-        Me.XrTableCell6.Text = "KPJ"
-        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 0.62192805157214615R
-        '
-        'XrTableCell1
-        '
-        Me.XrTableCell1.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell1.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell1.Name = "XrTableCell1"
-        Me.XrTableCell1.StylePriority.UseBackColor = False
-        Me.XrTableCell1.StylePriority.UseBorders = False
-        Me.XrTableCell1.StylePriority.UseTextAlignment = False
-        Me.XrTableCell1.Text = "NO."
-        Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell1.Weight = 0.17275780269173002R
-        '
-        'XTRow
-        '
-        Me.XTRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell6, Me.XrTableCell5, Me.XrTableCell4, Me.XrTableCell2, Me.XrTableCell3, Me.XrTableCell15, Me.XrTableCell7, Me.XrTableCell13, Me.XrTableCell8, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11})
-        Me.XTRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XTRow.Name = "XTRow"
-        Me.XTRow.StylePriority.UseFont = False
-        Me.XTRow.Weight = 1.9200002929687932R
-        '
-        'XrTableCell26
-        '
-        Me.XrTableCell26.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell26.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell26.Name = "XrTableCell26"
-        Me.XrTableCell26.StylePriority.UseBackColor = False
-        Me.XrTableCell26.StylePriority.UseBorders = False
-        Me.XrTableCell26.StylePriority.UseTextAlignment = False
-        Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell26.Weight = 1.2714969692886808R
-        '
-        'XrTableCell22
-        '
-        Me.XrTableCell22.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell22.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell22.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell22.Name = "XrTableCell22"
-        Me.XrTableCell22.StylePriority.UseBackColor = False
-        Me.XrTableCell22.StylePriority.UseBorders = False
-        Me.XrTableCell22.StylePriority.UseFont = False
-        Me.XrTableCell22.StylePriority.UseTextAlignment = False
-        Me.XrTableCell22.Text = "DIBAYAR OLEH PERUSAHAAN"
-        Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell22.Weight = 1.1056498334421641R
-        '
-        'XrTableCell20
-        '
-        Me.XrTableCell20.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell20.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell20.Name = "XrTableCell20"
-        Me.XrTableCell20.StylePriority.UseBackColor = False
-        Me.XrTableCell20.StylePriority.UseBorders = False
-        Me.XrTableCell20.StylePriority.UseTextAlignment = False
-        Me.XrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell20.Weight = 3.9043260764293044R
-        '
-        'XrTableRow1
-        '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell20, Me.XrTableCell22, Me.XrTableCell24, Me.XrTableCell26})
-        Me.XrTableRow1.Name = "XrTableRow1"
-        Me.XrTableRow1.Weight = 0.64000009765626431R
-        '
-        'XTable
-        '
-        Me.XTable.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XTable.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XTable.Name = "XTable"
-        Me.XTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XTRow, Me.XTTotal})
-        Me.XTable.SizeF = New System.Drawing.SizeF(1069.0!, 80.0!)
-        Me.XTable.StylePriority.UseFont = False
-        '
-        'XrTableCell24
-        '
-        Me.XrTableCell24.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell24.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell24.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell24.Name = "XrTableCell24"
-        Me.XrTableCell24.StylePriority.UseBackColor = False
-        Me.XrTableCell24.StylePriority.UseBorders = False
-        Me.XrTableCell24.StylePriority.UseFont = False
-        Me.XrTableCell24.StylePriority.UseTextAlignment = False
-        Me.XrTableCell24.Text = "DIBAYAR OLEH KARYAWAN  "
-        Me.XrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell24.Weight = 1.1056493852755258R
-        '
-        'XrTableCell10
-        '
-        Me.XrTableCell10.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell10.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell10.Name = "XrTableCell10"
-        Me.XrTableCell10.StylePriority.UseBackColor = False
-        Me.XrTableCell10.StylePriority.UseBorders = False
-        Me.XrTableCell10.StylePriority.UseTextAlignment = False
-        Me.XrTableCell10.Text = "BAYAR KE BPJS KETENAGAKERJAAN"
-        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell10.Weight = 0.552824929884484R
-        '
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XLPeriod})
@@ -407,107 +162,16 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell17.Visible = False
         Me.XrTableCell17.Weight = 2.99999986405489R
         '
-        'XTTotal
+        'XrTableCell31
         '
-        Me.XTTotal.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19, Me.XrTableCell21, Me.XrTableCell23, Me.XrTableCell25, Me.XrTableCell27, Me.XrTableCell28, Me.XrTableCell29, Me.XrTableCell30, Me.XrTableCell31})
-        Me.XTTotal.Name = "XTTotal"
-        Me.XTTotal.Weight = 0.64000009765626453R
-        '
-        'XrTableCell21
-        '
-        Me.XrTableCell21.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell21.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell21.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell21.Name = "XrTableCell21"
-        Me.XrTableCell21.StylePriority.UseBackColor = False
-        Me.XrTableCell21.StylePriority.UseBorders = False
-        Me.XrTableCell21.StylePriority.UseFont = False
-        Me.XrTableCell21.StylePriority.UseTextAlignment = False
-        Me.XrTableCell21.Text = "GRAND TOTAL"
-        Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell21.Weight = 0.55282491116747823R
-        '
-        'XrTableCell23
-        '
-        Me.XrTableCell23.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell23.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell23.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell23.Name = "XrTableCell23"
-        Me.XrTableCell23.StylePriority.UseBackColor = False
-        Me.XrTableCell23.StylePriority.UseBorders = False
-        Me.XrTableCell23.StylePriority.UseFont = False
-        Me.XrTableCell23.StylePriority.UseTextAlignment = False
-        Me.XrTableCell23.Text = "0"
-        Me.XrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell23.Weight = 0.55282492991842669R
-        '
-        'XrTableCell25
-        '
-        Me.XrTableCell25.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell25.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell25.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell25.Name = "XrTableCell25"
-        Me.XrTableCell25.StylePriority.UseBackColor = False
-        Me.XrTableCell25.StylePriority.UseBorders = False
-        Me.XrTableCell25.StylePriority.UseFont = False
-        Me.XrTableCell25.StylePriority.UseTextAlignment = False
-        Me.XrTableCell25.Text = "0"
-        Me.XrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell25.Weight = 0.55282492991842691R
-        '
-        'XrTableCell27
-        '
-        Me.XrTableCell27.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell27.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell27.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell27.Name = "XrTableCell27"
-        Me.XrTableCell27.StylePriority.UseBackColor = False
-        Me.XrTableCell27.StylePriority.UseBorders = False
-        Me.XrTableCell27.StylePriority.UseFont = False
-        Me.XrTableCell27.StylePriority.UseTextAlignment = False
-        Me.XrTableCell27.Text = "0"
-        Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell27.Weight = 0.55282490352373692R
-        '
-        'XrTableCell28
-        '
-        Me.XrTableCell28.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell28.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell28.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell28.Name = "XrTableCell28"
-        Me.XrTableCell28.StylePriority.UseBackColor = False
-        Me.XrTableCell28.StylePriority.UseBorders = False
-        Me.XrTableCell28.StylePriority.UseFont = False
-        Me.XrTableCell28.StylePriority.UseTextAlignment = False
-        Me.XrTableCell28.Text = "0"
-        Me.XrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell28.Weight = 0.55282492988448384R
-        '
-        'XrTableCell29
-        '
-        Me.XrTableCell29.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell29.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell29.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell29.Name = "XrTableCell29"
-        Me.XrTableCell29.StylePriority.UseBackColor = False
-        Me.XrTableCell29.StylePriority.UseBorders = False
-        Me.XrTableCell29.StylePriority.UseFont = False
-        Me.XrTableCell29.StylePriority.UseTextAlignment = False
-        Me.XrTableCell29.Text = "0"
-        Me.XrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell29.Weight = 0.55282492988448406R
+        Me.XrTableCell31.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell31.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell31.Name = "XrTableCell31"
+        Me.XrTableCell31.StylePriority.UseBackColor = False
+        Me.XrTableCell31.StylePriority.UseBorders = False
+        Me.XrTableCell31.StylePriority.UseTextAlignment = False
+        Me.XrTableCell31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell31.Weight = 0.718671564910755R
         '
         'XrTableCell30
         '
@@ -525,16 +189,101 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         Me.XrTableCell30.Weight = 0.552824929884484R
         '
-        'XrTableCell31
+        'XrTableCell29
         '
-        Me.XrTableCell31.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell31.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell31.Name = "XrTableCell31"
-        Me.XrTableCell31.StylePriority.UseBackColor = False
-        Me.XrTableCell31.StylePriority.UseBorders = False
-        Me.XrTableCell31.StylePriority.UseTextAlignment = False
-        Me.XrTableCell31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell31.Weight = 0.71867156491075468R
+        Me.XrTableCell29.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell29.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell29.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell29.Name = "XrTableCell29"
+        Me.XrTableCell29.StylePriority.UseBackColor = False
+        Me.XrTableCell29.StylePriority.UseBorders = False
+        Me.XrTableCell29.StylePriority.UseFont = False
+        Me.XrTableCell29.StylePriority.UseTextAlignment = False
+        Me.XrTableCell29.Text = "0"
+        Me.XrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrTableCell29.Weight = 0.552824929884484R
+        '
+        'XrTableCell28
+        '
+        Me.XrTableCell28.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell28.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell28.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell28.Name = "XrTableCell28"
+        Me.XrTableCell28.StylePriority.UseBackColor = False
+        Me.XrTableCell28.StylePriority.UseBorders = False
+        Me.XrTableCell28.StylePriority.UseFont = False
+        Me.XrTableCell28.StylePriority.UseTextAlignment = False
+        Me.XrTableCell28.Text = "0"
+        Me.XrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrTableCell28.Weight = 0.552824929884484R
+        '
+        'XrTableCell27
+        '
+        Me.XrTableCell27.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell27.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell27.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell27.Name = "XrTableCell27"
+        Me.XrTableCell27.StylePriority.UseBackColor = False
+        Me.XrTableCell27.StylePriority.UseBorders = False
+        Me.XrTableCell27.StylePriority.UseFont = False
+        Me.XrTableCell27.StylePriority.UseTextAlignment = False
+        Me.XrTableCell27.Text = "0"
+        Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrTableCell27.Weight = 0.552824903523737R
+        '
+        'XrTableCell25
+        '
+        Me.XrTableCell25.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell25.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell25.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell25.Name = "XrTableCell25"
+        Me.XrTableCell25.StylePriority.UseBackColor = False
+        Me.XrTableCell25.StylePriority.UseBorders = False
+        Me.XrTableCell25.StylePriority.UseFont = False
+        Me.XrTableCell25.StylePriority.UseTextAlignment = False
+        Me.XrTableCell25.Text = "0"
+        Me.XrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrTableCell25.Weight = 0.552824929918427R
+        '
+        'XrTableCell23
+        '
+        Me.XrTableCell23.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell23.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell23.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell23.Name = "XrTableCell23"
+        Me.XrTableCell23.StylePriority.UseBackColor = False
+        Me.XrTableCell23.StylePriority.UseBorders = False
+        Me.XrTableCell23.StylePriority.UseFont = False
+        Me.XrTableCell23.StylePriority.UseTextAlignment = False
+        Me.XrTableCell23.Text = "0"
+        Me.XrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrTableCell23.Weight = 0.552824929918427R
+        '
+        'XrTableCell21
+        '
+        Me.XrTableCell21.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell21.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell21.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell21.Name = "XrTableCell21"
+        Me.XrTableCell21.StylePriority.UseBackColor = False
+        Me.XrTableCell21.StylePriority.UseBorders = False
+        Me.XrTableCell21.StylePriority.UseFont = False
+        Me.XrTableCell21.StylePriority.UseTextAlignment = False
+        Me.XrTableCell21.Text = "GRAND TOTAL"
+        Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell21.Weight = 0.552824911167478R
         '
         'XrTableCell19
         '
@@ -545,7 +294,258 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell19.StylePriority.UseBorders = False
         Me.XrTableCell19.StylePriority.UseTextAlignment = False
         Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell19.Weight = 2.7986762353433994R
+        Me.XrTableCell19.Weight = 2.7986762353434R
+        '
+        'XTTotal
+        '
+        Me.XTTotal.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19, Me.XrTableCell21, Me.XrTableCell23, Me.XrTableCell25, Me.XrTableCell27, Me.XrTableCell28, Me.XrTableCell29, Me.XrTableCell30, Me.XrTableCell31})
+        Me.XTTotal.Name = "XTTotal"
+        Me.XTTotal.Weight = 0.640000097656265R
+        '
+        'XrTableCell11
+        '
+        Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell11.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell11.Name = "XrTableCell11"
+        Me.XrTableCell11.StylePriority.UseBackColor = False
+        Me.XrTableCell11.StylePriority.UseBorders = False
+        Me.XrTableCell11.StylePriority.UseTextAlignment = False
+        Me.XrTableCell11.Text = "KETERANGAN"
+        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell11.Weight = 0.718671564910755R
+        '
+        'XrTableCell10
+        '
+        Me.XrTableCell10.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell10.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell10.Name = "XrTableCell10"
+        Me.XrTableCell10.StylePriority.UseBackColor = False
+        Me.XrTableCell10.StylePriority.UseBorders = False
+        Me.XrTableCell10.StylePriority.UseTextAlignment = False
+        Me.XrTableCell10.Text = "BAYAR KE BPJS KETENAGAKERJAAN"
+        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell10.Weight = 0.552824929884484R
+        '
+        'XrTableCell9
+        '
+        Me.XrTableCell9.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell9.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell9.Name = "XrTableCell9"
+        Me.XrTableCell9.StylePriority.UseBackColor = False
+        Me.XrTableCell9.StylePriority.UseBorders = False
+        Me.XrTableCell9.StylePriority.UseTextAlignment = False
+        Me.XrTableCell9.Text = "JHT"
+        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell9.Weight = 0.552824929884484R
+        '
+        'XrTableCell8
+        '
+        Me.XrTableCell8.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell8.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell8.Name = "XrTableCell8"
+        Me.XrTableCell8.StylePriority.UseBackColor = False
+        Me.XrTableCell8.StylePriority.UseBorders = False
+        Me.XrTableCell8.StylePriority.UseTextAlignment = False
+        Me.XrTableCell8.Text = "JP"
+        Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell8.Weight = 0.552824929884484R
+        '
+        'XrTableCell13
+        '
+        Me.XrTableCell13.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell13.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.StylePriority.UseBackColor = False
+        Me.XrTableCell13.StylePriority.UseBorders = False
+        Me.XrTableCell13.StylePriority.UseTextAlignment = False
+        Me.XrTableCell13.Text = "JP"
+        Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter
+        Me.XrTableCell13.Weight = 0.552824903523737R
+        '
+        'XrTableCell7
+        '
+        Me.XrTableCell7.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell7.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell7.Name = "XrTableCell7"
+        Me.XrTableCell7.StylePriority.UseBackColor = False
+        Me.XrTableCell7.StylePriority.UseBorders = False
+        Me.XrTableCell7.StylePriority.UseTextAlignment = False
+        Me.XrTableCell7.Text = "JKK, JKM, JHT"
+        Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter
+        Me.XrTableCell7.Weight = 0.552824929918427R
+        '
+        'XrTableCell15
+        '
+        Me.XrTableCell15.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell15.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell15.Multiline = True
+        Me.XrTableCell15.Name = "XrTableCell15"
+        Me.XrTableCell15.StylePriority.UseBackColor = False
+        Me.XrTableCell15.StylePriority.UseBorders = False
+        Me.XrTableCell15.StylePriority.UseTextAlignment = False
+        Me.XrTableCell15.Text = "UPAH"
+        Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell15.Weight = 0.552824929918427R
+        '
+        'XrTableCell3
+        '
+        Me.XrTableCell3.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell3.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell3.Multiline = True
+        Me.XrTableCell3.Name = "XrTableCell3"
+        Me.XrTableCell3.StylePriority.UseBackColor = False
+        Me.XrTableCell3.StylePriority.UseBorders = False
+        Me.XrTableCell3.StylePriority.UseTextAlignment = False
+        Me.XrTableCell3.Text = "KEP PROG"
+        Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell3.Weight = 0.552824911167478R
+        '
+        'XrTableCell2
+        '
+        Me.XrTableCell2.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell2.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell2.Multiline = True
+        Me.XrTableCell2.Name = "XrTableCell2"
+        Me.XrTableCell2.StylePriority.UseBackColor = False
+        Me.XrTableCell2.StylePriority.UseBorders = False
+        Me.XrTableCell2.StylePriority.UseTextAlignment = False
+        Me.XrTableCell2.Text = "LAHIR"
+        Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell2.Weight = 0.552824929855132R
+        '
+        'XrTableCell4
+        '
+        Me.XrTableCell4.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell4.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell4.Multiline = True
+        Me.XrTableCell4.Name = "XrTableCell4"
+        Me.XrTableCell4.StylePriority.UseBackColor = False
+        Me.XrTableCell4.StylePriority.UseBorders = False
+        Me.XrTableCell4.StylePriority.UseTextAlignment = False
+        Me.XrTableCell4.Text = "JENIS KELAMIN"
+        Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell4.Weight = 0.34551556088567R
+        '
+        'XrTableCell5
+        '
+        Me.XrTableCell5.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell5.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell5.Name = "XrTableCell5"
+        Me.XrTableCell5.StylePriority.UseBackColor = False
+        Me.XrTableCell5.StylePriority.UseBorders = False
+        Me.XrTableCell5.StylePriority.UseTextAlignment = False
+        Me.XrTableCell5.Text = "NAMA"
+        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell5.Weight = 1.10564989033872R
+        '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell6.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseBackColor = False
+        Me.XrTableCell6.StylePriority.UseBorders = False
+        Me.XrTableCell6.StylePriority.UseTextAlignment = False
+        Me.XrTableCell6.Text = "KPJ"
+        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell6.Weight = 0.621928051572146R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell1.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseBackColor = False
+        Me.XrTableCell1.StylePriority.UseBorders = False
+        Me.XrTableCell1.StylePriority.UseTextAlignment = False
+        Me.XrTableCell1.Text = "NO."
+        Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell1.Weight = 0.17275780269173R
+        '
+        'XTRow
+        '
+        Me.XTRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell6, Me.XrTableCell5, Me.XrTableCell4, Me.XrTableCell2, Me.XrTableCell3, Me.XrTableCell15, Me.XrTableCell7, Me.XrTableCell13, Me.XrTableCell8, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11})
+        Me.XTRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XTRow.Name = "XTRow"
+        Me.XTRow.StylePriority.UseFont = False
+        Me.XTRow.Weight = 1.92000029296879R
+        '
+        'XrTableCell26
+        '
+        Me.XrTableCell26.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell26.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell26.Name = "XrTableCell26"
+        Me.XrTableCell26.StylePriority.UseBackColor = False
+        Me.XrTableCell26.StylePriority.UseBorders = False
+        Me.XrTableCell26.StylePriority.UseTextAlignment = False
+        Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell26.Weight = 1.27149696928868R
+        '
+        'XrTableCell24
+        '
+        Me.XrTableCell24.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell24.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell24.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell24.Name = "XrTableCell24"
+        Me.XrTableCell24.StylePriority.UseBackColor = False
+        Me.XrTableCell24.StylePriority.UseBorders = False
+        Me.XrTableCell24.StylePriority.UseFont = False
+        Me.XrTableCell24.StylePriority.UseTextAlignment = False
+        Me.XrTableCell24.Text = "DIBAYAR OLEH KARYAWAN  "
+        Me.XrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell24.Weight = 1.10564938527553R
+        '
+        'XrTableCell22
+        '
+        Me.XrTableCell22.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell22.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell22.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell22.Name = "XrTableCell22"
+        Me.XrTableCell22.StylePriority.UseBackColor = False
+        Me.XrTableCell22.StylePriority.UseBorders = False
+        Me.XrTableCell22.StylePriority.UseFont = False
+        Me.XrTableCell22.StylePriority.UseTextAlignment = False
+        Me.XrTableCell22.Text = "DIBAYAR OLEH PERUSAHAAN"
+        Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell22.Weight = 1.10564983344216R
+        '
+        'XrTableCell20
+        '
+        Me.XrTableCell20.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell20.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell20.Name = "XrTableCell20"
+        Me.XrTableCell20.StylePriority.UseBackColor = False
+        Me.XrTableCell20.StylePriority.UseBorders = False
+        Me.XrTableCell20.StylePriority.UseTextAlignment = False
+        Me.XrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell20.Weight = 3.9043260764293R
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell20, Me.XrTableCell22, Me.XrTableCell24, Me.XrTableCell26})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 0.640000097656264R
+        '
+        'XTable
+        '
+        Me.XTable.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XTable.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XTable.Name = "XTable"
+        Me.XTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XTRow, Me.XTTotal})
+        Me.XTable.SizeF = New System.Drawing.SizeF(1069.0!, 80.0!)
+        Me.XTable.StylePriority.UseFont = False
         '
         'ReportEmpPayrollReportBPJSTKDetail
         '
@@ -557,8 +557,8 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
-        CType(Me.XTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -569,6 +569,11 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XLPeriod As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XTable As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell
@@ -589,11 +594,6 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
-    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
-    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
-    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XTTotal As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell21 As DevExpress.XtraReports.UI.XRTableCell

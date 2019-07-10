@@ -404,7 +404,7 @@ Partial Public Class ReportPayrollAll
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(898.9992!, 32.99999!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(898.9996!, 33.99998!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
@@ -416,7 +416,7 @@ Partial Public Class ReportPayrollAll
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(898.9991!, 56.00001!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(898.9995!, 57.0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
@@ -428,7 +428,7 @@ Partial Public Class ReportPayrollAll
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(958.9999!, 32.99999!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(959.0002!, 33.99998!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -440,7 +440,7 @@ Partial Public Class ReportPayrollAll
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(958.9999!, 56.00001!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(959.0002!, 57.0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -452,7 +452,7 @@ Partial Public Class ReportPayrollAll
         'XLType
         '
         Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(973.9999!, 32.99999!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(974.0002!, 33.99998!)
         Me.XLType.Name = "XLType"
         Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLType.SizeF = New System.Drawing.SizeF(145.0!, 23.0!)
@@ -464,7 +464,7 @@ Partial Public Class ReportPayrollAll
         'XLLocation
         '
         Me.XLLocation.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(973.9999!, 56.00001!)
+        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(974.0002!, 57.0!)
         Me.XLLocation.Name = "XLLocation"
         Me.XLLocation.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLLocation.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)
@@ -483,7 +483,7 @@ Partial Public Class ReportPayrollAll
         'XLTitle
         '
         Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 32.99999!)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0004!, 33.99998!)
         Me.XLTitle.Name = "XLTitle"
         Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLTitle.SizeF = New System.Drawing.SizeF(678.9993!, 23.0!)
@@ -495,7 +495,7 @@ Partial Public Class ReportPayrollAll
         'XLPeriod
         '
         Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(898.9991!, 10.00001!)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(898.9995!, 11.0!)
         Me.XLPeriod.Name = "XLPeriod"
         Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLPeriod.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
@@ -506,7 +506,7 @@ Partial Public Class ReportPayrollAll
         '
         'XrLine1
         '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 79.0!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0004053116!, 79.99998!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(1119.0!, 20.0!)
         '
@@ -514,7 +514,7 @@ Partial Public Class ReportPayrollAll
         '
         Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 21.99999!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.0004053116!, 22.99999!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
@@ -548,7 +548,7 @@ Partial Public Class ReportPayrollAll
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XLLocation, Me.XrLabel2, Me.XLType, Me.XLTitle, Me.XLPeriod, Me.XrLabel4, Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel1})
-        Me.ReportHeader.HeightF = 99.0!
+        Me.ReportHeader.HeightF = 100.0!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'ReportFooter

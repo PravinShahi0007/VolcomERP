@@ -11,8 +11,8 @@
                 SELECT tb.id_salary_" + type + "_cat, tb.id_salary_" + type + ", tb.salary_" + type + "_cat, tb.salary_" + type + ", MAX(tb.total) AS total
                 FROM (
                     SELECT sald.id_salary_" + type + "_cat, sald.id_salary_" + type + ", saldc.salary_" + type + "_cat, sald.salary_" + type + ", COUNT(sald.id_salary_" + type + ") AS total
-                    FROM tb_emp_payroll_adj pyd
-                    INNER JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_adj
+                    FROM tb_emp_payroll_" + If(type = "adjustment", "adj", type) + " pyd
+                    INNER JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_" + If(type = "adjustment", "adj", type) + "
                     INNER JOIN tb_lookup_salary_" + type + "_cat saldc ON saldc.id_salary_" + type + "_cat=sald.id_salary_" + type + "_cat
                     WHERE pyd.id_payroll='" + id_payroll + "'
                     GROUP BY pyd.id_employee, sald.id_salary_" + type + "
@@ -34,16 +34,16 @@
         Dim query_employee As String = "
             SELECT dep.departement,emp.employee_code,emp.employee_name,emp.employee_position,lvl.employee_status,
                 GROUP_CONCAT(sald.salary_" + type + " ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC) AS salary_" + type + "_c,
-                GROUP_CONCAT(ROUND(pyd.value, 0) ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC) AS salary_" + type + "_v
-            FROM tb_emp_payroll_adj AS pyd
+                GROUP_CONCAT(ROUND(pyd." + If(type = "deduction", "deduction", "value") + ", 0) ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC) AS salary_" + type + "_v
+            FROM tb_emp_payroll_" + If(type = "adjustment", "adj", type) + " AS pyd
             INNER JOIN tb_m_employee emp ON emp.id_employee=pyd.id_employee
             INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
             INNER JOIN tb_lookup_employee_status lvl ON lvl.id_employee_status=emp.id_employee_status
-            INNER JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_adj
+            INNER JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_" + If(type = "adjustment", "adj", type) + "
             INNER JOIN tb_lookup_salary_" + type + "_cat saldc ON saldc.id_salary_" + type + "_cat=sald.id_salary_" + type + "_cat
             WHERE pyd.id_payroll='" + id_payroll + "' AND dep.is_office_payroll = '" + is_office_payroll + "'
             GROUP BY pyd.id_employee
-            ORDER BY emp.id_employee_status ASC, emp.employee_code ASC 
+            ORDER BY emp.id_employee_level ASC, emp.employee_code ASC 
         "
 
         Dim data_employee As DataTable = execute_query(query_employee, -1, True, "", "", "", "")

@@ -12,7 +12,7 @@
                                 INNER JOIN `tb_lookup_salary_adjustment` adj ON adj.`id_salary_adjustment`=pya.`id_salary_adj`
                                 INNER JOIN tb_lookup_salary_adjustment_cat adjc ON adjc.id_salary_adjustment_cat = adj.id_salary_adjustment_cat
                                 WHERE pya.`id_payroll`='" & id_payroll & "'
-                                ORDER BY emp.id_employee_status ASC, emp.`employee_code` ASC, adj.id_salary_adjustment_cat ASC, adj.`id_salary_adjustment` ASC"
+                                ORDER BY emp.id_employee_level ASC, emp.`employee_code` ASC, adj.id_salary_adjustment_cat ASC, adj.`id_salary_adjustment` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCDeduction.DataSource = data
@@ -25,13 +25,11 @@
             BAdd.Enabled = True
             BEdit.Enabled = True
             BDel.Enabled = True
+            SBPrint.Enabled = False
         Else
             BAdd.Enabled = False
             BEdit.Enabled = False
             BDel.Enabled = False
-        End If
-
-        If id_report_status = "6" Then
             SBPrint.Enabled = True
         End If
 

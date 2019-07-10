@@ -33,29 +33,22 @@
             departement.Text = data.Rows(i)("departement").ToString
             departement.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
 
-            'equal
-            Dim equal As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-
-            equal.Text = data.Rows(i)("equal").ToString
-            equal.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
-            equal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-
             'company contribution
-            Dim company_contribution As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            Dim company_contribution As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
 
             company_contribution.Text = Format(data.Rows(i)("company_contribution"), "##,##0")
             company_contribution.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
             company_contribution.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
 
             'employee contribution
-            Dim employee_contribution As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            Dim employee_contribution As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
 
             employee_contribution.Text = Format(data.Rows(i)("employee_contribution"), "##,##0")
             employee_contribution.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left
             employee_contribution.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
 
             'total contribution
-            Dim total_contribution As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+            Dim total_contribution As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
 
             total_contribution.Text = Format(data.Rows(i)("total_contribution"), "##,##0")
             total_contribution.Borders = DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right
@@ -69,9 +62,9 @@
 
         XTRowTotal.HeightF = 16
 
-        XTRowTotal.Cells.Item(3).Text = Format(total_company, "##,##0")
-        XTRowTotal.Cells.Item(4).Text = Format(total_employee, "##,##0")
-        XTRowTotal.Cells.Item(5).Text = Format(total, "##,##0")
+        XTRowTotal.Cells.Item(2).Text = Format(total_company, "##,##0")
+        XTRowTotal.Cells.Item(3).Text = Format(total_employee, "##,##0")
+        XTRowTotal.Cells.Item(4).Text = Format(total, "##,##0")
 
         'mark
         If id_pre = "-1" Then

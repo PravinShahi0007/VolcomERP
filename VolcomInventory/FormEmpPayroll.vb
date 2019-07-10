@@ -110,20 +110,18 @@
                 BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
-                BReport.Enabled = False
+                BReport.Enabled = True
                 BPrintSlip.Enabled = False
                 SBSendSlip.Enabled = False
-                BPrint.Enabled = False
+                BPrint.Enabled = True
                 BReset.Visible = True
                 BSubmit.Visible = False
                 CMDelEmp.Enabled = False
             End If
 
             If id_report_status = "6" Then
-                BReport.Enabled = True
                 BPrintSlip.Enabled = True
                 SBSendSlip.Enabled = True
-                BPrint.Enabled = True
                 BReset.Visible = False
             End If
 
@@ -745,5 +743,9 @@
                 GVPayroll.ActiveFilterString = ""
             End If
         End If
+    End Sub
+
+    Private Sub BarButtonItem6_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem6.ItemClick
+
     End Sub
 End Class

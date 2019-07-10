@@ -14,7 +14,7 @@
                                 INNER JOIN `tb_lookup_salary_deduction` sald ON sald.`id_salary_deduction` = pyd.`id_salary_deduction`
                                 INNER JOIN tb_lookup_salary_deduction_cat saldc ON saldc.id_salary_deduction_cat = sald.id_salary_deduction_cat
                                 WHERE pyd.`id_payroll`='" & id_payroll & "'
-                                ORDER BY emp.`id_employee_status` ASC, emp.`employee_code` ASC, sald.`id_salary_deduction_cat` ASC, sald.`id_salary_deduction` ASC"
+                                ORDER BY emp.`id_employee_level` ASC, emp.`employee_code` ASC, sald.`id_salary_deduction_cat` ASC, sald.`id_salary_deduction` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDeduction.DataSource = data
         GVDeduction.BestFitColumns()
@@ -26,6 +26,7 @@
             BAdd.Enabled = True
             BEdit.Enabled = True
             BDel.Enabled = True
+            SBPrint.Enabled = False
 
             BtnDropQuickMenu.Enabled = True
             DropDownButton1.Enabled = True
@@ -33,13 +34,10 @@
             BAdd.Enabled = False
             BEdit.Enabled = False
             BDel.Enabled = False
+            SBPrint.Enabled = True
 
             BtnDropQuickMenu.Enabled = False
             DropDownButton1.Enabled = False
-        End If
-
-        If id_report_status = "6" Then
-            SBPrint.Enabled = True
         End If
 
         'view

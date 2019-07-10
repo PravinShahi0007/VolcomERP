@@ -96,8 +96,8 @@ Partial Class FormEmpPayroll
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.BBBcaFormat = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -112,6 +112,7 @@ Partial Class FormEmpPayroll
         Me.BBSubEstPrice = New DevExpress.XtraBars.BarSubItem()
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.SBSendSlip = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintSlip = New DevExpress.XtraEditors.SimpleButton()
@@ -989,7 +990,7 @@ Partial Class FormEmpPayroll
         '
         'PopupMenu1
         '
-        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem5), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem4), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem2, False), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BBBcaFormat, False)})
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem5), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem4), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BBBcaFormat, False), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem2, False)})
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
@@ -1011,17 +1012,17 @@ Partial Class FormEmpPayroll
         Me.BarButtonItem4.Id = 15
         Me.BarButtonItem4.Name = "BarButtonItem4"
         '
-        'BarButtonItem2
-        '
-        Me.BarButtonItem2.Caption = "Rekap OT Event"
-        Me.BarButtonItem2.Id = 12
-        Me.BarButtonItem2.Name = "BarButtonItem2"
-        '
         'BBBcaFormat
         '
         Me.BBBcaFormat.Caption = "Export to BCA Format"
         Me.BBBcaFormat.Id = 14
         Me.BBBcaFormat.Name = "BBBcaFormat"
+        '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "Rekap OT Event"
+        Me.BarButtonItem2.Id = 12
+        Me.BarButtonItem2.Name = "BarButtonItem2"
         '
         'BarManager1
         '
@@ -1030,8 +1031,8 @@ Partial Class FormEmpPayroll
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BBBcaFormat, Me.BarButtonItem4, Me.BarButtonItem5})
-        Me.BarManager1.MaxItemId = 17
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BBBcaFormat, Me.BarButtonItem4, Me.BarButtonItem5, Me.BarButtonItem6})
+        Me.BarManager1.MaxItemId = 18
         '
         'barDockControlTop
         '
@@ -1117,6 +1118,12 @@ Partial Class FormEmpPayroll
         Me.BarButtonItem3.Caption = "Rekap Per Departement"
         Me.BarButtonItem3.Id = 13
         Me.BarButtonItem3.Name = "BarButtonItem3"
+        '
+        'BarButtonItem6
+        '
+        Me.BarButtonItem6.Caption = "BarButtonItem6"
+        Me.BarButtonItem6.Id = 17
+        Me.BarButtonItem6.Name = "BarButtonItem6"
         '
         'LargeImageCollection
         '
@@ -1483,4 +1490,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GCIsOfficePayroll As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SBSendSlip As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BarButtonItem6 As DevExpress.XtraBars.BarButtonItem
 End Class
