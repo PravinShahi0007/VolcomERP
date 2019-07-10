@@ -39,11 +39,18 @@
 
     'view line plan
     Sub viewLinePlan()
-        Dim query As String = "SELECT lp.id_fg_line_plan,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
-        FROM tb_fg_line_plan lp WHERE lp.id_fg_line_plan=0
+        Dim id_ss As String = LESeason.EditValue.ToString
+        Dim query As String = "SELECT lp.id_fg_line_plan, cd.display_name AS `class`, cdc.display_name AS `color`,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
+        FROM tb_fg_line_plan lp 
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = lp.id_class
+        LEFT JOIN tb_m_code_detail cdc ON cd.id_code_detail = lp.id_color
+        WHERE lp.id_fg_line_plan=0
         UNION
-        SELECT lp.id_fg_line_plan,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
-        FROM tb_fg_line_plan lp WHERE lp.id_season=" + id_season_par + " "
+        SELECT lp.id_fg_line_plan, cd.display_name AS `class`, cdc.display_name AS `color`,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
+        FROM tb_fg_line_plan lp 
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = lp.id_class
+        LEFT JOIN tb_m_code_detail cdc ON cd.id_code_detail = lp.id_color
+        WHERE lp.id_season=" + id_ss + " "
         viewSearchLookupQuery(SLELinePlan, query, "id_fg_line_plan", "description", "id_fg_line_plan")
     End Sub
 
@@ -381,7 +388,6 @@
         viewSeasonOrign(SLESeasonOrigin)
         viewSampleOrign(LESampleOrign)
         view_ret_code(LERetCode)
-        viewLinePlan()
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
@@ -1456,7 +1462,7 @@
         End If
 
         ValidateChildren()
-        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign, is_old_design As String
+        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_fg_line_plan, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign, is_old_design As String
         namex = addSlashes(TEName.Text.TrimStart(" ").TrimEnd(" "))
 
         'code & display name
@@ -1501,6 +1507,7 @@
         End Try
         design_fabrication = addSlashes(TxtFabrication.Text)
         id_lookup_status_order = "1"
+        id_fg_line_plan = SLELinePlan.EditValue.ToString
 
         id_design_ref = Nothing
         Try
@@ -1927,7 +1934,8 @@
                                 query += "id_design_ref='" + id_design_ref + "', "
                             End If
                             query += "id_active='" + id_active + "', "
-                            query += "design_detail='" + design_detail + "' "
+                            query += "design_detail='" + design_detail + "', 
+                            id_fg_line_plan='" + id_fg_line_plan + "' "
                             query += "WHERE id_design='{5}' "
                             query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
                             execute_non_query(query, True, "", "", "", "")
@@ -2327,6 +2335,7 @@
         Catch ex As Exception
         End Try
         viewDelivery(id_s)
+        viewLinePlan()
     End Sub
 
     Private Sub GCProductPrice_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GCProductPrice.Click
@@ -3101,5 +3110,9 @@
         End If
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLELinePlan_MouseDown(sender As Object, e As MouseEventArgs) Handles SLELinePlan.MouseDown
+        SLELinePlan.Properties.View.BestFitColumns()
     End Sub
 End Class

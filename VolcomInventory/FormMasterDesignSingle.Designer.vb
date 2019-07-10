@@ -85,6 +85,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumntarget_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntarget_cost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmarkup = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.PCChanges = New DevExpress.XtraEditors.PanelControl()
         Me.LCChangesRequest = New DevExpress.XtraEditors.LabelControl()
@@ -270,6 +271,7 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1015,13 +1017,14 @@ Partial Class FormMasterDesignSingle
         Me.SLELinePlan.Location = New System.Drawing.Point(10, 393)
         Me.SLELinePlan.Name = "SLELinePlan"
         Me.SLELinePlan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLELinePlan.Properties.ShowClearButton = False
         Me.SLELinePlan.Properties.View = Me.GridView16
         Me.SLELinePlan.Size = New System.Drawing.Size(371, 20)
         Me.SLELinePlan.TabIndex = 139
         '
         'GridView16
         '
-        Me.GridView16.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_line_plan, Me.GridColumndescription, Me.GridColumnbenchmark, Me.GridColumntarget_price, Me.GridColumntarget_cost, Me.GridColumnmarkup})
+        Me.GridView16.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_line_plan, Me.GridColumndescription, Me.GridColumnbenchmark, Me.GridColumntarget_price, Me.GridColumntarget_cost, Me.GridColumnmarkup, Me.GridColumnClass, Me.GridColumncolor})
         Me.GridView16.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView16.Name = "GridView16"
         Me.GridView16.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -1039,7 +1042,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumndescription.FieldName = "description"
         Me.GridColumndescription.Name = "GridColumndescription"
         Me.GridColumndescription.Visible = True
-        Me.GridColumndescription.VisibleIndex = 0
+        Me.GridColumndescription.VisibleIndex = 1
         '
         'GridColumnbenchmark
         '
@@ -1047,7 +1050,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumnbenchmark.FieldName = "benchmark"
         Me.GridColumnbenchmark.Name = "GridColumnbenchmark"
         Me.GridColumnbenchmark.Visible = True
-        Me.GridColumnbenchmark.VisibleIndex = 1
+        Me.GridColumnbenchmark.VisibleIndex = 3
         '
         'GridColumntarget_price
         '
@@ -1057,7 +1060,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumntarget_price.FieldName = "target_price"
         Me.GridColumntarget_price.Name = "GridColumntarget_price"
         Me.GridColumntarget_price.Visible = True
-        Me.GridColumntarget_price.VisibleIndex = 3
+        Me.GridColumntarget_price.VisibleIndex = 4
         '
         'GridColumntarget_cost
         '
@@ -1067,7 +1070,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumntarget_cost.FieldName = "target_cost"
         Me.GridColumntarget_cost.Name = "GridColumntarget_cost"
         Me.GridColumntarget_cost.Visible = True
-        Me.GridColumntarget_cost.VisibleIndex = 4
+        Me.GridColumntarget_cost.VisibleIndex = 5
         '
         'GridColumnmarkup
         '
@@ -1076,8 +1079,14 @@ Partial Class FormMasterDesignSingle
         Me.GridColumnmarkup.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnmarkup.FieldName = "markup"
         Me.GridColumnmarkup.Name = "GridColumnmarkup"
-        Me.GridColumnmarkup.Visible = True
-        Me.GridColumnmarkup.VisibleIndex = 2
+        '
+        'GridColumnClass
+        '
+        Me.GridColumnClass.Caption = "Class"
+        Me.GridColumnClass.FieldName = "class"
+        Me.GridColumnClass.Name = "GridColumnClass"
+        Me.GridColumnClass.Visible = True
+        Me.GridColumnClass.VisibleIndex = 0
         '
         'LabelControl20
         '
@@ -2887,6 +2896,14 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
         '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 2
+        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3286,4 +3303,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumntarget_cost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmarkup As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnClass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
 End Class
