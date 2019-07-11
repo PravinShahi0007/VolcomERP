@@ -81,7 +81,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrTableCell1.StylePriority.UseBorders = False
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "NO"
-        Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell1.Weight = 0.191573106999784R
         '
         'XrTableCell6
@@ -91,8 +91,8 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrTableCell6.StylePriority.UseBorders = False
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "DEPARTEMEN"
-        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell6.Weight = 2.4904500806300898R
+        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell6.Weight = 2.49045008063009R
         '
         'XrTableCell4
         '
@@ -102,7 +102,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.Text = "DIBAYAR OLEH PERUSAHAAN"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell4.Weight = 0.75364414714474326R
+        Me.XrTableCell4.Weight = 0.753644147144743R
         '
         'XrTableCell2
         '
@@ -150,7 +150,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrTableCell8.StylePriority.UseBorders = False
         Me.XrTableCell8.StylePriority.UseFont = False
         Me.XrTableCell8.Text = "TOTAL BIAYA IURAN"
-        Me.XrTableCell8.Weight = 2.4904500806300898R
+        Me.XrTableCell8.Weight = 2.49045008063009R
         '
         'XrTableCell10
         '
@@ -164,7 +164,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrTableCell10.StylePriority.UseFont = False
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell10.Weight = 0.75364372897409537R
+        Me.XrTableCell10.Weight = 0.753643728974095R
         '
         'XrTableCell11
         '

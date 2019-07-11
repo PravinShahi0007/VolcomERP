@@ -96,6 +96,12 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.DetailReport1 = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail2 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.DetailReport2 = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail3 = New DevExpress.XtraReports.UI.DetailBand()
         CType(Me.GCSummaryAll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummaryAll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSummaryOffice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,8 +114,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer2, Me.XLLocation, Me.XrLabel4, Me.XrLabel2, Me.WinControlContainer1, Me.WinControlContainer4, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5})
-        Me.Detail.HeightF = 526.0!
+        Me.Detail.HeightF = 0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -117,9 +122,9 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'WinControlContainer2
         '
         Me.WinControlContainer2.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right
-        Me.WinControlContainer2.LocationFloat = New DevExpress.Utils.PointFloat(390.0!, 376.0!)
+        Me.WinControlContainer2.LocationFloat = New DevExpress.Utils.PointFloat(0.00003973643!, 0!)
         Me.WinControlContainer2.Name = "WinControlContainer2"
-        Me.WinControlContainer2.SizeF = New System.Drawing.SizeF(729.0!, 150.0!)
+        Me.WinControlContainer2.SizeF = New System.Drawing.SizeF(1119.0!, 150.0!)
         Me.WinControlContainer2.WinControl = Me.GCSummaryAll
         '
         'GCSummaryAll
@@ -128,7 +133,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCSummaryAll.Location = New System.Drawing.Point(2, 48)
         Me.GCSummaryAll.MainView = Me.GVSummaryAll
         Me.GCSummaryAll.Name = "GCSummaryAll"
-        Me.GCSummaryAll.Size = New System.Drawing.Size(700, 144)
+        Me.GCSummaryAll.Size = New System.Drawing.Size(1074, 144)
         Me.GCSummaryAll.TabIndex = 0
         Me.GCSummaryAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummaryAll})
         '
@@ -281,7 +286,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XLLocation
         '
         Me.XLLocation.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(75.0007!, 0!)
+        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(74.99976!, 0!)
         Me.XLLocation.Name = "XLLocation"
         Me.XLLocation.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLLocation.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)
@@ -293,7 +298,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(60.0008!, 0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(59.99986!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -305,7 +310,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.00003973643!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
@@ -316,7 +321,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.00003973643!, 23.00001!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.00003973643!, 23.00002!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
         Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1119.0!, 150.0!)
         Me.WinControlContainer1.WinControl = Me.GCSummaryOffice
@@ -389,7 +394,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 204
+        Me.GridColumn2.Width = 200
         '
         'GridColumn3
         '
@@ -576,11 +581,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 12
-        Me.GridColumn13.Width = 72
+        Me.GridColumn13.Width = 76
         '
         'WinControlContainer4
         '
-        Me.WinControlContainer4.LocationFloat = New DevExpress.Utils.PointFloat(0.00004334883!, 206.0!)
+        Me.WinControlContainer4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 23.00001!)
         Me.WinControlContainer4.Name = "WinControlContainer4"
         Me.WinControlContainer4.SizeF = New System.Drawing.SizeF(1119.0!, 150.0!)
         Me.WinControlContainer4.WinControl = Me.GCSummaryStore
@@ -653,7 +658,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 1
-        Me.GridColumn28.Width = 206
+        Me.GridColumn28.Width = 200
         '
         'GridColumn29
         '
@@ -669,7 +674,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn29.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "salary", "{0:N0}")})
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 2
-        Me.GridColumn29.Width = 72
+        Me.GridColumn29.Width = 73
         '
         'GridColumn30
         '
@@ -686,7 +691,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "event_overtime", "{0:N0}")})
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 3
-        Me.GridColumn30.Width = 72
+        Me.GridColumn30.Width = 73
         '
         'GridColumn31
         '
@@ -703,7 +708,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_cooperative_loan", "{0:N0}")})
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 4
-        Me.GridColumn31.Width = 72
+        Me.GridColumn31.Width = 73
         '
         'GridColumn32
         '
@@ -720,7 +725,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn32.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_bpjskes", "{0:N0}")})
         Me.GridColumn32.Visible = True
         Me.GridColumn32.VisibleIndex = 5
-        Me.GridColumn32.Width = 72
+        Me.GridColumn32.Width = 73
         '
         'GridColumn33
         '
@@ -737,7 +742,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn33.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_jaminan_pensiun", "{0:N0}")})
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 6
-        Me.GridColumn33.Width = 72
+        Me.GridColumn33.Width = 73
         '
         'GridColumn34
         '
@@ -753,7 +758,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn34.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_bpjstk", "{0:N0}")})
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 7
-        Me.GridColumn34.Width = 72
+        Me.GridColumn34.Width = 73
         '
         'GridColumn35
         '
@@ -770,7 +775,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn35.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_cooperative_contribution", "{0:N0}")})
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 8
-        Me.GridColumn35.Width = 72
+        Me.GridColumn35.Width = 73
         '
         'GridColumn36
         '
@@ -787,7 +792,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_missing", "{0:N0}")})
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 9
-        Me.GridColumn36.Width = 72
+        Me.GridColumn36.Width = 73
         '
         'GridColumn37
         '
@@ -804,7 +809,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn37.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_meditation_cash", "{0:N0}")})
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 10
-        Me.GridColumn37.Width = 72
+        Me.GridColumn37.Width = 73
         '
         'GridColumn38
         '
@@ -820,7 +825,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn38.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_other", "{0:N0}")})
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 11
-        Me.GridColumn38.Width = 72
+        Me.GridColumn38.Width = 73
         '
         'GridColumn39
         '
@@ -840,12 +845,12 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 12
-        Me.GridColumn39.Width = 80
+        Me.GridColumn39.Width = 76
         '
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(75.0007!, 183.0!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(74.99976!, 0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)
@@ -857,7 +862,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(60.0008!, 183.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(59.99984!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -869,7 +874,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 183.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
@@ -1238,9 +1243,45 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 12
         '
+        'DetailReport
+        '
+        Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
+        Me.DetailReport.Level = 0
+        Me.DetailReport.Name = "DetailReport"
+        '
+        'Detail1
+        '
+        Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1, Me.XrLabel4, Me.XrLabel2, Me.XLLocation})
+        Me.Detail1.HeightF = 183.0!
+        Me.Detail1.Name = "Detail1"
+        '
+        'DetailReport1
+        '
+        Me.DetailReport1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail2})
+        Me.DetailReport1.Level = 1
+        Me.DetailReport1.Name = "DetailReport1"
+        '
+        'Detail2
+        '
+        Me.Detail2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.WinControlContainer4})
+        Me.Detail2.HeightF = 183.0!
+        Me.Detail2.Name = "Detail2"
+        '
+        'DetailReport2
+        '
+        Me.DetailReport2.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail3})
+        Me.DetailReport2.Level = 2
+        Me.DetailReport2.Name = "DetailReport2"
+        '
+        'Detail3
+        '
+        Me.Detail3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer2})
+        Me.Detail3.HeightF = 180.0!
+        Me.Detail3.Name = "Detail3"
+        '
         'ReportEmpPayrollReportAllDepartement
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.DetailReport, Me.DetailReport1, Me.DetailReport2})
         Me.Landscape = True
         Me.Margins = New System.Drawing.Printing.Margins(25, 25, 50, 50)
         Me.PageHeight = 827
@@ -1335,4 +1376,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents DetailReport1 As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail2 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents DetailReport2 As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail3 As DevExpress.XtraReports.UI.DetailBand
 End Class
