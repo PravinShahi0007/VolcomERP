@@ -2,7 +2,8 @@
     Public id_comp_contact As String = "-1"
     Public id_comp As String = "-1"
     Public id_design As String = "-1"
-
+    '
+    '
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
     End Sub
@@ -136,6 +137,8 @@ WHERE dsg.id_design='" & id_design & "'"
         'stopCustom("Please select vendor first")
         'Else
         Dim query As String = ""
+        'check 
+        query = "SELECT * FROM "
         query = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
 INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
 WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND pd.is_pd='1'"
