@@ -204,7 +204,7 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
                                 (
 	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) as qty FROM tb_purc_order_det pod
 	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
-	                                WHERE po.`id_report_status`!='5'
+	                                WHERE po.`id_report_status`!='5' AND pod.is_drop='2'
                                     GROUP BY pod.`id_purc_req_det`
                                 )po ON po.id_purc_req_det=rd.`id_purc_req_det`
                                 LEFT JOIN 
@@ -367,7 +367,8 @@ GROUP BY c.id_comp"
             query_where += " AND po.id_purc_order='" & SLEPONumber.EditValue.ToString & "' "
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,pod.qty AS qty_po,SUM(IFNULL(recd.qty,0.00)) AS qty_rec,IF(SUM(IFNULL(recd.qty,0.00))=0,'Waiting',IF(SUM(IFNULL(recd.qty,0.00))<pod.qty,'Partial','Complete')) AS status_rec,po.date_created,cd.item_cat_detail,po.est_date_receive,po.pay_due_date,pod.`id_purc_order_det`,po.`purc_order_number`,c.`comp_number`,c.`comp_name`,it.id_item,it.`item_desc`,reqd.`item_detail`,pod.`value` 
+        Dim query As String = "SELECT 'no' AS is_check,po.`id_purc_order`,po.`id_expense_type`,reqd.`id_b_expense`,reqd.`id_b_expense_opex`,pod.qty AS qty_po,SUM(IFNULL(recd.qty,0.00)) AS qty_rec,IF(pod.is_drop='1','Closed',IF(SUM(IFNULL(recd.qty,0.00))=0,'Waiting',IF(SUM(IFNULL(recd.qty,0.00))<pod.qty,'Partial','Complete'))) AS status_rec,po.date_created,cd.item_cat_detail,po.est_date_receive,po.pay_due_date
+,pod.`id_purc_order_det`,po.`purc_order_number`,c.`comp_number`,c.`comp_name`,it.id_item,it.`item_desc`,reqd.`item_detail`,pod.`value`,(pod.`qty`*pod.`value`) AS tot_value
 FROM tb_purc_order_det pod
 INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status` = 6 AND po.`is_close_rec`='2'
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
@@ -378,6 +379,7 @@ INNER JOIN tb_item_cat_detail cd ON cd.id_item_cat_detail=it.id_item_cat_detail
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=po.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN tb_purc_rec_det recd ON recd.id_purc_order_det=pod.id_purc_order_det
+LEFT JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec AND rec.id_report_status!=5
 WHERE req.`id_report_status` = 6 AND reqd.`is_unable_fulfill` = '2' " & query_where & " 
 GROUP BY pod.id_purc_order_det"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -389,16 +391,57 @@ GROUP BY pod.id_purc_order_det"
         load_list_item_po()
     End Sub
 
-    Private Sub BBCloseReceiving_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCloseReceiving.ItemClick
-        GVPOItem.ActiveFilterString = "[is_check]='yes'"
+    Private Sub BBCloseReceiving_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDropPOItem.ItemClick
+        GVPOItem.ActiveFilterString = "[is_check]='yes' AND [status_rec]='Waiting'"
         If GVPOItem.RowCount > 0 Then
-            For i As Integer = 0 To GVPOItem.RowCount - 1
-                If GVPOItem.GetRowCellValue(i, "status_rec").ToString = "Waiting" Then
-                    Dim id_order_det As String = GVPOItem.GetRowCellValue(i, "id_purc_order_det").ToString
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yakin ingin membatalkan item tersebut?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim id_det As String = ""
+                Dim q_opex As String = ""
+                Dim q_capex As String = ""
+
+                For i As Integer = 0 To GVPOItem.RowCount - 1
+                    If Not id_det = "" Then
+                        id_det += ","
+                    End If
+                    id_det += GVPOItem.GetRowCellValue(i, "id_purc_order_det").ToString
+
+                    If GVPOItem.GetRowCellValue(i, "id_expense_type").ToString = "1" Then
+                        'opex
+                        If Not q_opex = "" Then
+                            q_opex += ","
+                        End If
+                        q_opex += "('" & GVPOItem.GetRowCellValue(i, "id_b_expense_opex").ToString & "',NOW(),'-" & decimalSQL(GVPOItem.GetRowCellValue(i, "tot_value").ToString) & "','" & GVPOItem.GetRowCellValue(i, "id_purc_order").ToString & "','139','Cancel order item')"
+                    Else
+                        'capex
+                        If Not q_capex = "" Then
+                            q_capex += ","
+                        End If
+                        q_capex += "('" & GVPOItem.GetRowCellValue(i, "id_b_expense").ToString & "',NOW(),'-" & decimalSQL(GVPOItem.GetRowCellValue(i, "tot_value").ToString) & "','" & GVPOItem.GetRowCellValue(i, "id_purc_order").ToString & "','202','Cancel order item')"
+                    End If
+                Next
+                '
+                If Not id_det = "" Then
+                    Dim query As String = ""
+                    'close
+                    query = "UPDATE tb_purc_order_det SET is_drop='1' WHERE id_purc_order_det IN (" & id_det & ")"
+                    execute_non_query(query, True, "", "", "", "")
+                    'budget remove
+                    'opex
+                    If Not q_opex = "" Then
+                        query = "INSERT INTO tb_b_expense_opex_trans(id_b_expense_opex,date_trans,value_expense,id_report,report_mark_type,note) VALUES " & q_opex
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                    'capex
+                    If Not q_capex = "" Then
+                        query = "INSERT INTO tb_b_expense_trans(id_b_expense,date_trans,value,id_report,report_mark_type,note) VALUES " & q_capex
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                    load_list_item_po()
                 End If
-            Next
+            End If
         Else
-            stopCustom("Please check one of PO item")
+            stopCustom("Pilih item terlebih dahulu, hanya status receiving 'Waiting' yang akan diproses.")
         End If
         GVPOItem.ActiveFilterString = ""
     End Sub
