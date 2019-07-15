@@ -1546,12 +1546,12 @@
         If id_pop_up = "-1" Then
             Dim query_cek_code As String = ""
             If id_design = "-1" Then 'New
-                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
+                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
             Else 'Edit
                 If dupe = "-1" Then
-                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' AND a.id_active=1 "
+                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' "
                 Else
-                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
+                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
                 End If
             End If
             Dim jum_row As String = execute_query(query_cek_code, 0, True, "", "", "", "")
