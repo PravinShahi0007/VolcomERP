@@ -7557,6 +7557,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print_raw(FormProductionHO.GCList, "")
             ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 1 Then
                 print_raw(FormProductionHO.GCDetail, "")
+            ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 2 Then
+                print_raw(FormProductionHO.GCSummary, "")
             End If
         ElseIf formName = "FormSalesOrderReport" Then
             If FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 0 Then
