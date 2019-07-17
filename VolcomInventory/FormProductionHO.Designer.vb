@@ -1068,7 +1068,7 @@ Partial Class FormProductionHO
         Me.BandedGridColumndiff_order.FieldName = "diff_order"
         Me.BandedGridColumndiff_order.Name = "BandedGridColumndiff_order"
         Me.BandedGridColumndiff_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_order", "{0:N0}")})
-        Me.BandedGridColumndiff_order.UnboundExpression = "[total_order] - [total_rec]"
+        Me.BandedGridColumndiff_order.UnboundExpression = "[total_rec]-[total_order]"
         Me.BandedGridColumndiff_order.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumndiff_order.Visible = True
         '
@@ -1145,7 +1145,7 @@ Partial Class FormProductionHO
         Me.BandedGridColumndiff_rec.FieldName = "diff_rec"
         Me.BandedGridColumndiff_rec.Name = "BandedGridColumndiff_rec"
         Me.BandedGridColumndiff_rec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_rec", "{0:N0}")})
-        Me.BandedGridColumndiff_rec.UnboundExpression = "[total_rec] - [total_pl]"
+        Me.BandedGridColumndiff_rec.UnboundExpression = "[total_pl]-[total_rec]"
         Me.BandedGridColumndiff_rec.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumndiff_rec.Visible = True
         '
@@ -1223,7 +1223,7 @@ Partial Class FormProductionHO
         Me.BandedGridColumndiff_ho.FieldName = "diff_ho"
         Me.BandedGridColumndiff_ho.Name = "BandedGridColumndiff_ho"
         Me.BandedGridColumndiff_ho.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_ho", "{0:N0}")})
-        Me.BandedGridColumndiff_ho.UnboundExpression = "[total_pl] - [total_rw]"
+        Me.BandedGridColumndiff_ho.UnboundExpression = "[total_rw]-[total_pl]"
         Me.BandedGridColumndiff_ho.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumndiff_ho.Visible = True
         '
