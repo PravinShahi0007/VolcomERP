@@ -80,10 +80,10 @@
         actionLoad()
 
         'divisi non md - tidak punya divisi biarkan stelah action load
-        If SLEKind.EditValue.ToString <> "1" Then
-            LESampleDivision.EditValue = Nothing
-            LESampleDivision.Enabled = False
-        End If
+        'If SLEKind.EditValue.ToString <> "1" Then
+        'LESampleDivision.EditValue = Nothing
+        'LESampleDivision.Enabled = False
+        'End If
 
 
 
@@ -180,6 +180,9 @@
             SLEKind.EditValue = id_pd_kind
             LEPDType.ItemIndex = LEPDType.Properties.GetDataSourceRowIndex("id_pd_type", id_pd_type)
             LEBudget.ItemIndex = LEBudget.Properties.GetDataSourceRowIndex("id_pd_budget", id_pd_budget)
+            If id_division = "0" Then
+                LESampleDivision.EditValue = Nothing
+            End If
             LESampleDivision.ItemIndex = LESampleDivision.Properties.GetDataSourceRowIndex("id_code_detail", id_division)
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_report_status)
             TxtRateCurrent.EditValue = rate_current
@@ -755,13 +758,13 @@
     'End Sub
 
     Private Sub SLEKind_EditValueChanged(sender As Object, e As EventArgs) Handles SLEKind.EditValueChanged
-        If SLEKind.EditValue.ToString <> "1" Then
-            LESampleDivision.EditValue = Nothing
-            LESampleDivision.Enabled = False
-        Else
-            LESampleDivision.EditValue = 3823
-            LESampleDivision.Enabled = True
-        End If
+        'If SLEKind.EditValue.ToString <> "1" Then
+        '    LESampleDivision.EditValue = Nothing
+        '    LESampleDivision.Enabled = False
+        'Else
+        '    LESampleDivision.EditValue = 3823
+        '    LESampleDivision.Enabled = True
+        'End If
     End Sub
 
     Private Sub CheckEditShowActive_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditShowNonActive.CheckedChanged

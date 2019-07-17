@@ -1,6 +1,6 @@
 ﻿Public Class FormEmpPayroll
     Public is_view As String = "2"
-    Dim bnew_active As String = "1"
+    Dim bnew_active As String = "0"
     Dim bedit_active As String = "0"
     Dim bdel_active As String = "0"
     '
@@ -24,20 +24,22 @@
     End Sub
 
     Sub check_but()
-        If XTCPayroll.SelectedTabPageIndex = 0 Then
-            If GVPayrollPeriode.RowCount > 0 Then
-                bnew_active = "1"
-                bedit_active = "1"
-                bdel_active = "1"
+        If is_view = "2" Then
+            If XTCPayroll.SelectedTabPageIndex = 0 Then
+                If GVPayrollPeriode.RowCount > 0 Then
+                    bnew_active = "1"
+                    bedit_active = "1"
+                    bdel_active = "1"
+                Else
+                    bnew_active = "1"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                End If
             Else
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "0"
                 bdel_active = "0"
             End If
-        Else
-            bnew_active = "0"
-            bedit_active = "0"
-            bdel_active = "0"
         End If
     End Sub
 
