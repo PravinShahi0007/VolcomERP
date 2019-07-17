@@ -209,4 +209,8 @@ WHERE cpd.id_design='" & id_design & "'"
             End If
         End If
     End Sub
+
+    Private Sub BHistoryCOP_Click(sender As Object, e As EventArgs) Handles BHistoryCOP.Click
+        FormMasterDesignCOPHistory.ShowDialog()
+    End Sub
 End Class

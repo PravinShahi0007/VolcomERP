@@ -1969,6 +1969,12 @@
     <Compile Include="FormMasterDesignComment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterDesignCOPHistory.Designer.vb">
+      <DependentUpon>FormMasterDesignCOPHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterDesignCOPHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterDesignCOPPD.Designer.vb">
       <DependentUpon>FormMasterDesignCOPPD.vb</DependentUpon>
     </Compile>
@@ -7878,6 +7884,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignComment.resx">
       <DependentUpon>FormMasterDesignComment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterDesignCOPHistory.resx">
+      <DependentUpon>FormMasterDesignCOPHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignCOPPD.resx">
       <DependentUpon>FormMasterDesignCOPPD.vb</DependentUpon>
