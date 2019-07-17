@@ -513,7 +513,8 @@ Public Class FormMain
     'Exit Strip
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         NotifyIconVI.Visible = False
-        Application.Exit()
+        Close()
+        'Application.Exit()
     End Sub
     'Dashboard Strip
     Private Sub DashboardToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DashboardToolStripMenuItem.Click
