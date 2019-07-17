@@ -211,6 +211,19 @@ WHERE cpd.id_design='" & id_design & "'"
     End Sub
 
     Private Sub BHistoryCOP_Click(sender As Object, e As EventArgs) Handles BHistoryCOP.Click
+        FormMasterDesignCOPHistory.id_source = get_id_from_design(id_design, "5")
+        FormMasterDesignCOPHistory.id_class = get_id_from_design(id_design, "30")
         FormMasterDesignCOPHistory.ShowDialog()
     End Sub
+
+    Function get_id_from_design(ByVal id_design As String, ByVal id_code As String)
+        Dim id As String = "0"
+        Dim query As String = "SELECT dsgc.id_code_detail FROM tb_m_design_code dsgc
+INNER JOIN tb_m_code_detail cd ON dsgc.`id_code_detail`=cd.`id_code_detail` AND cd.`id_code`='" & id_code & "' AND dsgc.`id_design`='" & id_design & "' LIMIT 1"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            id = data.Rows(0)("id_code_detail").ToString
+        End If
+        Return id
+    End Function
 End Class
