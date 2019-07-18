@@ -651,12 +651,12 @@ Partial Class FormInvoiceFGPODP
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(98, 26)
         '
         'SMEditCost
         '
         Me.SMEditCost.Name = "SMEditCost"
-        Me.SMEditCost.Size = New System.Drawing.Size(152, 22)
+        Me.SMEditCost.Size = New System.Drawing.Size(97, 22)
         Me.SMEditCost.Text = "Split"
         '
         'FormInvoiceFGPODP
