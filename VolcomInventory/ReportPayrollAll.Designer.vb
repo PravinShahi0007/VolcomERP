@@ -45,6 +45,7 @@ Partial Public Class ReportPayrollAll
         Me.GCBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCSubDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEPending = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -140,10 +141,11 @@ Partial Public Class ReportPayrollAll
         Me.GVPayroll.BandPanelRowHeight = 16
         Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBWorkingDays, Me.GBSalary, Me.GBDW, Me.GBGrandTotal})
         Me.GVPayroll.ColumnPanelRowHeight = 32
-        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCNIP, Me.GCName, Me.GCPosition, Me.GCStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCOvertimeHours, Me.GCTotalTHP, Me.GCTotalAdjustment, Me.GCTotalPaymentOvertime, Me.GCTotalDeduction, Me.GCActualWorkingDaysDW, Me.GCBasicSalaryDW, Me.GCGrandTotal})
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCName, Me.GCPosition, Me.GCStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCOvertimeHours, Me.GCTotalTHP, Me.GCTotalAdjustment, Me.GCTotalPaymentOvertime, Me.GCTotalDeduction, Me.GCActualWorkingDaysDW, Me.GCBasicSalaryDW, Me.GCGrandTotal})
         Me.GVPayroll.GridControl = Me.GCPayroll
-        Me.GVPayroll.GroupCount = 1
-        Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", Me.GCTotalTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", Me.GCTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", Me.GCTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", Me.GCTotalPaymentOvertime, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", Me.GCGrandTotal, "{0:N0}")})
+        Me.GVPayroll.GroupCount = 2
+        Me.GVPayroll.GroupFormat = "{1} {2}"
+        Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertime, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotal, "{0:N0}")})
         Me.GVPayroll.Name = "GVPayroll"
         Me.GVPayroll.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVPayroll.OptionsMenu.ShowConditionalFormattingItem = True
@@ -151,7 +153,7 @@ Partial Public Class ReportPayrollAll
         Me.GVPayroll.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVPayroll.OptionsView.ShowFooter = True
         Me.GVPayroll.OptionsView.ShowGroupPanel = False
-        Me.GVPayroll.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVPayroll.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCSubDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GBEmployee
         '
@@ -164,7 +166,7 @@ Partial Public Class ReportPayrollAll
         Me.GBEmployee.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GBEmployee.Name = "GBEmployee"
         Me.GBEmployee.VisibleIndex = 0
-        Me.GBEmployee.Width = 496
+        Me.GBEmployee.Width = 512
         '
         'GCNIP
         '
@@ -174,7 +176,7 @@ Partial Public Class ReportPayrollAll
         Me.GCNIP.Name = "GCNIP"
         Me.GCNIP.OptionsColumn.AllowEdit = False
         Me.GCNIP.Visible = True
-        Me.GCNIP.Width = 86
+        Me.GCNIP.Width = 107
         '
         'GCName
         '
@@ -182,11 +184,11 @@ Partial Public Class ReportPayrollAll
         Me.GCName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCName.Caption = "Employee"
         Me.GCName.FieldName = "employee_name"
-        Me.GCName.MinWidth = 200
+        Me.GCName.MinWidth = 195
         Me.GCName.Name = "GCName"
         Me.GCName.OptionsColumn.AllowEdit = False
         Me.GCName.Visible = True
-        Me.GCName.Width = 200
+        Me.GCName.Width = 195
         '
         'GCDepartement
         '
@@ -227,7 +229,7 @@ Partial Public Class ReportPayrollAll
         Me.GBWorkingDays.Columns.Add(Me.GCOvertimeHours)
         Me.GBWorkingDays.Name = "GBWorkingDays"
         Me.GBWorkingDays.VisibleIndex = 1
-        Me.GBWorkingDays.Width = 130
+        Me.GBWorkingDays.Width = 116
         '
         'GCWorkingDays
         '
@@ -240,7 +242,7 @@ Partial Public Class ReportPayrollAll
         Me.GCWorkingDays.Name = "GCWorkingDays"
         Me.GCWorkingDays.OptionsColumn.AllowEdit = False
         Me.GCWorkingDays.Visible = True
-        Me.GCWorkingDays.Width = 40
+        Me.GCWorkingDays.Width = 35
         '
         'GCActualWorkingDays
         '
@@ -253,7 +255,7 @@ Partial Public Class ReportPayrollAll
         Me.GCActualWorkingDays.Name = "GCActualWorkingDays"
         Me.GCActualWorkingDays.OptionsColumn.AllowEdit = False
         Me.GCActualWorkingDays.Visible = True
-        Me.GCActualWorkingDays.Width = 40
+        Me.GCActualWorkingDays.Width = 35
         '
         'GCOvertimeHours
         '
@@ -266,7 +268,7 @@ Partial Public Class ReportPayrollAll
         Me.GCOvertimeHours.Name = "GCOvertimeHours"
         Me.GCOvertimeHours.OptionsColumn.AllowEdit = False
         Me.GCOvertimeHours.Visible = True
-        Me.GCOvertimeHours.Width = 50
+        Me.GCOvertimeHours.Width = 46
         '
         'GBSalary
         '
@@ -278,7 +280,7 @@ Partial Public Class ReportPayrollAll
         Me.GBSalary.Columns.Add(Me.GCTotalDeduction)
         Me.GBSalary.Name = "GBSalary"
         Me.GBSalary.VisibleIndex = 2
-        Me.GBSalary.Width = 260
+        Me.GBSalary.Width = 232
         '
         'GCTotalTHP
         '
@@ -292,7 +294,7 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalTHP.OptionsColumn.AllowEdit = False
         Me.GCTotalTHP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", "{0:N0}")})
         Me.GCTotalTHP.Visible = True
-        Me.GCTotalTHP.Width = 65
+        Me.GCTotalTHP.Width = 57
         '
         'GCTotalAdjustment
         '
@@ -306,7 +308,7 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalAdjustment.OptionsColumn.AllowEdit = False
         Me.GCTotalAdjustment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", "{0:N0}")})
         Me.GCTotalAdjustment.Visible = True
-        Me.GCTotalAdjustment.Width = 65
+        Me.GCTotalAdjustment.Width = 57
         '
         'GCTotalPaymentOvertime
         '
@@ -320,7 +322,7 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalPaymentOvertime.OptionsColumn.AllowEdit = False
         Me.GCTotalPaymentOvertime.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", "{0:N0}")})
         Me.GCTotalPaymentOvertime.Visible = True
-        Me.GCTotalPaymentOvertime.Width = 65
+        Me.GCTotalPaymentOvertime.Width = 57
         '
         'GCTotalDeduction
         '
@@ -334,7 +336,7 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalDeduction.OptionsColumn.AllowEdit = False
         Me.GCTotalDeduction.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", "{0:N0}")})
         Me.GCTotalDeduction.Visible = True
-        Me.GCTotalDeduction.Width = 65
+        Me.GCTotalDeduction.Width = 61
         '
         'GBDW
         '
@@ -342,7 +344,7 @@ Partial Public Class ReportPayrollAll
         Me.GBDW.Columns.Add(Me.GCBasicSalaryDW)
         Me.GBDW.Name = "GBDW"
         Me.GBDW.VisibleIndex = 3
-        Me.GBDW.Width = 150
+        Me.GBDW.Width = 134
         '
         'GCActualWorkingDaysDW
         '
@@ -355,6 +357,7 @@ Partial Public Class ReportPayrollAll
         Me.GCActualWorkingDaysDW.Name = "GCActualWorkingDaysDW"
         Me.GCActualWorkingDaysDW.OptionsColumn.AllowEdit = False
         Me.GCActualWorkingDaysDW.Visible = True
+        Me.GCActualWorkingDaysDW.Width = 66
         '
         'GCBasicSalaryDW
         '
@@ -365,13 +368,14 @@ Partial Public Class ReportPayrollAll
         Me.GCBasicSalaryDW.Name = "GCBasicSalaryDW"
         Me.GCBasicSalaryDW.OptionsColumn.AllowEdit = False
         Me.GCBasicSalaryDW.Visible = True
+        Me.GCBasicSalaryDW.Width = 68
         '
         'GBGrandTotal
         '
         Me.GBGrandTotal.Columns.Add(Me.GCGrandTotal)
         Me.GBGrandTotal.Name = "GBGrandTotal"
         Me.GBGrandTotal.VisibleIndex = 4
-        Me.GBGrandTotal.Width = 65
+        Me.GBGrandTotal.Width = 60
         '
         'GCGrandTotal
         '
@@ -385,7 +389,13 @@ Partial Public Class ReportPayrollAll
         Me.GCGrandTotal.OptionsColumn.AllowEdit = False
         Me.GCGrandTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", "{0:N0}")})
         Me.GCGrandTotal.Visible = True
-        Me.GCGrandTotal.Width = 65
+        Me.GCGrandTotal.Width = 60
+        '
+        'GCSubDepartement
+        '
+        Me.GCSubDepartement.Caption = "Sub Departement"
+        Me.GCSubDepartement.FieldName = "departement_sub"
+        Me.GCSubDepartement.Name = "GCSubDepartement"
         '
         'RICEPending
         '
@@ -654,4 +664,5 @@ Partial Public Class ReportPayrollAll
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents GCSubDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

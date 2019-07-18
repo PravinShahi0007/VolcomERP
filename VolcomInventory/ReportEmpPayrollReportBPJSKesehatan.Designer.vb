@@ -76,9 +76,12 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell1
         '
+        Me.XrTableCell1.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell1.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseBackColor = False
         Me.XrTableCell1.StylePriority.UseBorders = False
+        Me.XrTableCell1.StylePriority.UseForeColor = False
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "NO"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -86,9 +89,12 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell6
         '
+        Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell6.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseBackColor = False
         Me.XrTableCell6.StylePriority.UseBorders = False
+        Me.XrTableCell6.StylePriority.UseForeColor = False
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "DEPARTEMEN"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -96,9 +102,12 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell4
         '
+        Me.XrTableCell4.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell4.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell4.Name = "XrTableCell4"
+        Me.XrTableCell4.StylePriority.UseBackColor = False
         Me.XrTableCell4.StylePriority.UseBorders = False
+        Me.XrTableCell4.StylePriority.UseForeColor = False
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.Text = "DIBAYAR OLEH PERUSAHAAN"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -106,9 +115,12 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell2
         '
+        Me.XrTableCell2.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell2.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell2.Name = "XrTableCell2"
+        Me.XrTableCell2.StylePriority.UseBackColor = False
         Me.XrTableCell2.StylePriority.UseBorders = False
+        Me.XrTableCell2.StylePriority.UseForeColor = False
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "DIBAYARKAN OLEH KARYAWAN"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -116,10 +128,13 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell3
         '
+        Me.XrTableCell3.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell3.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell3.Name = "XrTableCell3"
+        Me.XrTableCell3.StylePriority.UseBackColor = False
         Me.XrTableCell3.StylePriority.UseBorders = False
+        Me.XrTableCell3.StylePriority.UseForeColor = False
         Me.XrTableCell3.StylePriority.UseTextAlignment = False
         Me.XrTableCell3.Text = "DIBAYARKAN KE BPJS KESEHATAN"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -141,7 +156,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell8
         '
-        Me.XrTableCell8.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell8.BackColor = System.Drawing.Color.Transparent
         Me.XrTableCell8.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell8.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
@@ -149,12 +164,14 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrTableCell8.StylePriority.UseBackColor = False
         Me.XrTableCell8.StylePriority.UseBorders = False
         Me.XrTableCell8.StylePriority.UseFont = False
+        Me.XrTableCell8.StylePriority.UseTextAlignment = False
         Me.XrTableCell8.Text = "TOTAL BIAYA IURAN"
+        Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         Me.XrTableCell8.Weight = 2.49045008063009R
         '
         'XrTableCell10
         '
-        Me.XrTableCell10.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell10.BackColor = System.Drawing.Color.Transparent
         Me.XrTableCell10.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell10.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
@@ -168,7 +185,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell11
         '
-        Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell11.BackColor = System.Drawing.Color.Transparent
         Me.XrTableCell11.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell11.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
@@ -182,7 +199,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         '
         'XrTableCell12
         '
-        Me.XrTableCell12.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell12.BackColor = System.Drawing.Color.Transparent
         Me.XrTableCell12.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)

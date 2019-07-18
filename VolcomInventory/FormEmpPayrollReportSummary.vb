@@ -2,6 +2,7 @@
     Public id_payroll As String = ""
     Private Sub FormEmpPayrollReportSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
         load_sum()
 
         'number
@@ -10,6 +11,15 @@
                 GVSummary.SetRowCellValue(i, "no", i + 1)
             End If
         Next
+
+        'controls
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll + "'", 0, True, "", "", "", "")
+
+        If id_report_status = "0" Then
+            SBPrint.Enabled = False
+        Else
+            SBPrint.Enabled = True
+        End If
     End Sub
     Sub load_sum()
         Dim query As String = "CALL view_payroll_sum('" & id_payroll & "')"

@@ -792,7 +792,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell45.StylePriority.UseBackColor = False
         Me.XrTableCell45.StylePriority.UseBorders = False
         Me.XrTableCell45.StylePriority.UseTextAlignment = False
-        Me.XrTableCell45.Text = "karyawan"
+        Me.XrTableCell45.Text = " karyawan"
         Me.XrTableCell45.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         Me.XrTableCell45.Weight = 0.842821188646664R
         '
@@ -911,7 +911,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell53.StylePriority.UseBackColor = False
         Me.XrTableCell53.StylePriority.UseBorders = False
         Me.XrTableCell53.StylePriority.UseTextAlignment = False
-        Me.XrTableCell53.Text = "karyawan"
+        Me.XrTableCell53.Text = " karyawan"
         Me.XrTableCell53.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         Me.XrTableCell53.Weight = 0.842822046009329R
         '
@@ -1142,7 +1142,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XLClass1Before.StylePriority.UseBackColor = False
         Me.XLClass1Before.StylePriority.UseBorders = False
         Me.XLClass1Before.StylePriority.UseTextAlignment = False
-        Me.XLClass1Before.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XLClass1Before.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         Me.XLClass1Before.Weight = 0.702352318429886R
         '
         'XrTableCell70
@@ -1153,7 +1153,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell70.StylePriority.UseBackColor = False
         Me.XrTableCell70.StylePriority.UseBorders = False
         Me.XrTableCell70.StylePriority.UseTextAlignment = False
-        Me.XrTableCell70.Text = "orang"
+        Me.XrTableCell70.Text = " orang"
         Me.XrTableCell70.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         Me.XrTableCell70.Weight = 0.842821188646664R
         '
@@ -1260,7 +1260,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XLClass2Before.StylePriority.UseBackColor = False
         Me.XLClass2Before.StylePriority.UseBorders = False
         Me.XLClass2Before.StylePriority.UseTextAlignment = False
-        Me.XLClass2Before.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XLClass2Before.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         Me.XLClass2Before.Weight = 0.702352318429886R
         '
         'XrTableCell79
@@ -1271,7 +1271,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatanDetail
         Me.XrTableCell79.StylePriority.UseBackColor = False
         Me.XrTableCell79.StylePriority.UseBorders = False
         Me.XrTableCell79.StylePriority.UseTextAlignment = False
-        Me.XrTableCell79.Text = "orang"
+        Me.XrTableCell79.Text = " orang"
         Me.XrTableCell79.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         Me.XrTableCell79.Weight = 0.842821188646664R
         '

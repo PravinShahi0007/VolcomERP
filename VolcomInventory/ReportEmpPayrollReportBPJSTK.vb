@@ -6,6 +6,14 @@
     Private Sub ReportEmpPayrollReportBPJSTK_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
 
+        Dim last_location As String = ""
+
+        Dim location_total_company_contribution_1 As Integer = 0
+        Dim location_total_company_contribution_2 As Integer = 0
+        Dim location_total_employee_contribution_1 As Integer = 0
+        Dim location_total_employee_contribution_2 As Integer = 0
+        Dim location_total As Integer = 0
+
         Dim total_company_contribution_1 As Integer = 0
         Dim total_company_contribution_2 As Integer = 0
         Dim total_employee_contribution_1 As Integer = 0
@@ -13,6 +21,55 @@
         Dim total As Integer = 0
 
         For i = 0 To data.Rows.Count - 1
+            'total location
+            If Not i = 0 And Not last_location = data.Rows(i)("bpjs_tk_location").ToString Then
+                row = XTable.InsertRowBelow(row)
+
+                row.Font = New Font(XTRow.Font.FontFamily, XTRow.Font.Size, FontStyle.Bold)
+
+                'total
+                Dim total_text As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+
+                total_text.Text = "TOTAL " + data.Rows(i - 1)("bpjs_tk_location").ToString
+                total_text.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+                total_text.BackColor = Color.LightGray
+
+                'company 1
+                Dim location_company_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+
+                location_company_1.Text = Format(location_total_company_contribution_1, "##,##0")
+                location_company_1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_company_1.BackColor = Color.LightGray
+
+                'company 2
+                Dim location_company_2 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+
+                location_company_2.Text = Format(location_total_company_contribution_2, "##,##0")
+                location_company_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_company_2.BackColor = Color.LightGray
+
+                'employee 1
+                Dim location_employee_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+
+                location_employee_1.Text = Format(location_total_employee_contribution_1, "##,##0")
+                location_employee_1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_employee_1.BackColor = Color.LightGray
+
+                'employee 2
+                Dim location_employee_2 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+
+                location_employee_2.Text = Format(location_total_employee_contribution_2, "##,##0")
+                location_employee_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_employee_2.BackColor = Color.LightGray
+
+                'total
+                Dim total_location As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+
+                total_location.Text = Format(location_total, "##,##0")
+                total_location.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                total_location.BackColor = Color.LightGray
+            End If
+
             'row
             If i = 0 Then
                 row = XTable.InsertRowBelow(XTRow)
@@ -83,6 +140,72 @@
             total_employee_contribution_1 += data.Rows(i)("employee_contribution_1")
             total_employee_contribution_2 += data.Rows(i)("employee_contribution_2")
             total += data.Rows(i)("company_contribution_1") + data.Rows(i)("company_contribution_2") + data.Rows(i)("employee_contribution_1") + data.Rows(i)("employee_contribution_2")
+
+            If Not last_location = data.Rows(i)("bpjs_tk_location").ToString Then
+                location_total_company_contribution_1 = 0
+                location_total_company_contribution_2 = 0
+                location_total_employee_contribution_1 = 0
+                location_total_employee_contribution_2 = 0
+                location_total = 0
+            End If
+
+            'calculate total location
+            location_total_company_contribution_1 += data.Rows(i)("company_contribution_1")
+            location_total_company_contribution_2 += data.Rows(i)("company_contribution_2")
+            location_total_employee_contribution_1 += data.Rows(i)("employee_contribution_1")
+            location_total_employee_contribution_2 += data.Rows(i)("employee_contribution_2")
+            location_total += data.Rows(i)("company_contribution_1") + data.Rows(i)("company_contribution_2") + data.Rows(i)("employee_contribution_1") + data.Rows(i)("employee_contribution_2")
+
+            'total last location
+            If i = data.Rows.Count - 1 Then
+                row = XTable.InsertRowBelow(row)
+
+                row.Font = New Font(XTRow.Font.FontFamily, XTRow.Font.Size, FontStyle.Bold)
+
+                'total
+                Dim total_text As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+
+                total_text.Text = "TOTAL " + data.Rows(i)("bpjs_tk_location").ToString
+                total_text.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+                total_text.BackColor = Color.LightGray
+
+                'company 1
+                Dim location_company_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+
+                location_company_1.Text = Format(location_total_company_contribution_1, "##,##0")
+                location_company_1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_company_1.BackColor = Color.LightGray
+
+                'company 2
+                Dim location_company_2 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+
+                location_company_2.Text = Format(location_total_company_contribution_2, "##,##0")
+                location_company_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_company_2.BackColor = Color.LightGray
+
+                'employee 1
+                Dim location_employee_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+
+                location_employee_1.Text = Format(location_total_employee_contribution_1, "##,##0")
+                location_employee_1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_employee_1.BackColor = Color.LightGray
+
+                'employee 2
+                Dim location_employee_2 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+
+                location_employee_2.Text = Format(location_total_employee_contribution_2, "##,##0")
+                location_employee_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                location_employee_2.BackColor = Color.LightGray
+
+                'total
+                Dim total_location As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+
+                total_location.Text = Format(location_total, "##,##0")
+                total_location.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+                total_location.BackColor = Color.LightGray
+            End If
+
+            last_location = data.Rows(i)("bpjs_tk_location").ToString
         Next
 
         XTRowTotal.HeightF = 16

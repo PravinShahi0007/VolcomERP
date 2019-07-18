@@ -45,15 +45,27 @@
         'where wages dw
         Dim where_wages As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "sal.`basic_salary` * 22", "sal.`basic_salary` + sal.`allow_job` + sal.`allow_meal` + sal.`allow_trans`")
 
-        Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,p.`id_employee`,p.`id_ot_type`,DATE_FORMAT(p.`ot_start`, '%d %M %Y') AS ot_date, DATE_FORMAT(p.`ot_start`, '%d %b %Y %H:%i:%s') AS ot_start, DATE_FORMAT(p.`ot_end`, '%d %b %Y %H:%i:%s') AS ot_end,p.`total_break`,ROUND((TIMESTAMPDIFF(MINUTE, p.`ot_start`, p.`ot_end`) / 60) - p.`total_break`, 1) AS total_hour_actual,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,dep.departement,emp.employee_position,lvl.`employee_status`,emp.`employee_name`,emp.`employee_code`,CONCAT(IF(ott.`is_event` = 1, 'Event ', ''), ott.`ot_type`) AS ot_type, ROUND(IF(ott.`is_event` = 1, p.wages_per_point, ((SELECT (" + where_wages + ") FROM tb_emp_payroll_det AS pd INNER JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & id_periode & "') * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point, ROUND(IF(ott.`is_event` = 1, p.`total_point` * p.wages_per_point, p.`total_point` * ((SELECT (" + where_wages + ") FROM tb_emp_payroll_det AS pd INNER JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & id_periode & "') * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point_total, p.note, dep.is_office_payroll
-                                FROM tb_emp_payroll_ot p
-                                INNER JOIN `tb_lookup_ot_type` ott ON ott.`id_ot_type`=p.`id_ot_type`
-                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=p.`id_employee`
-                                INNER JOIN tb_m_departement dep ON dep.`id_departement`=emp.`id_departement`
-                                INNER JOIN tb_emp_payroll pay ON p.`id_payroll`=pay.`id_payroll`
-                                INNER JOIN `tb_lookup_employee_status` lvl ON lvl.`id_employee_status`=emp.`id_employee_status`
-                                WHERE p.`id_payroll`='" & id_payroll & "' AND " + where_staff + "
-                                ORDER BY emp.id_employee_status ASC, emp.employee_code ASC, p.`ot_start` ASC"
+        Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,p.`id_employee`,p.`id_ot_type`,DATE_FORMAT(p.`ot_start`, '%d %M %Y') AS ot_date, DATE_FORMAT(p.`ot_start`, '%d %b %Y %H:%i:%s') AS ot_start, DATE_FORMAT(p.`ot_end`, '%d %b %Y %H:%i:%s') AS ot_end,p.`total_break`,ROUND((TIMESTAMPDIFF(MINUTE, p.`ot_start`, p.`ot_end`) / 60) - p.`total_break`, 1) AS total_hour_actual,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,lvl.`employee_status`,emp.`employee_name`,emp.`employee_code`,CONCAT(IF(ott.`is_event` = 1, 'Event ', ''), ott.`ot_type`) AS ot_type, ROUND(IF(ott.`is_event` = 1, p.wages_per_point, ((SELECT (" + where_wages + ") FROM tb_emp_payroll_det AS pd LEFT JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & id_periode & "') * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point, ROUND(IF(ott.`is_event` = 1, p.`total_point` * p.wages_per_point, p.`total_point` * ((SELECT (" + where_wages + ") FROM tb_emp_payroll_det AS pd LEFT JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & id_periode & "') * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point_total, p.note, dep.is_office_payroll
+                FROM tb_emp_payroll_ot p
+                LEFT JOIN `tb_lookup_ot_type` ott ON ott.`id_ot_type`=p.`id_ot_type`
+                LEFT JOIN tb_m_employee emp ON emp.`id_employee`=p.`id_employee`
+                LEFT JOIN (
+                    SELECT * FROM (
+                        SELECT id_employee, id_departement, id_departement_sub, employee_position, employee_position_date
+                        FROM tb_m_employee_position
+                        WHERE employee_position_date <= (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')
+                        ORDER BY id_employee_position DESC
+                    ) AS tab
+                    GROUP BY id_employee
+                ) AS emp_pos ON p.id_employee = emp_pos.id_employee
+                LEFT JOIN tb_m_departement dep ON dep.id_departement=emp_pos.id_departement
+                LEFT JOIN tb_m_departement dep_ori ON dep_ori.id_departement = emp.id_departement
+                LEFT JOIN tb_m_departement_sub sub ON sub.`id_departement_sub`=emp_pos.`id_departement_sub`
+                LEFT JOIN tb_m_departement_sub sub_ori ON sub_ori.id_departement_sub = emp.id_departement_sub
+                LEFT JOIN tb_emp_payroll pay ON p.`id_payroll`=pay.`id_payroll`
+                LEFT JOIN `tb_lookup_employee_status` lvl ON lvl.`id_employee_status`=emp.`id_employee_status`
+                WHERE p.`id_payroll`='" & id_payroll & "' AND " + where_staff + "
+                ORDER BY emp.id_employee_status ASC, emp.employee_code ASC, p.`ot_start` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOvertime.DataSource = data
         GVOvertime.BestFitColumns()
@@ -194,6 +206,29 @@
             Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report2)
 
             tool.ShowPreview()
+        End If
+    End Sub
+
+    Private Sub GVOvertime_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVOvertime.CustomDrawRowFooter
+        e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
+
+        e.Handled = True
+    End Sub
+
+    Private Sub GVOvertime_CustomDrawRowFooterCell(sender As Object, e As DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventArgs) Handles GVOvertime.CustomDrawRowFooterCell
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If view.GetGroupRowDisplayText(e.RowHandle).Contains("Sub Departement") And Not view.GetGroupRowValue(e.RowHandle).ToString.Contains("SOGO") Then
+            e.Appearance.ForeColor = Color.White
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub GVOvertime_CustomDrawGroupRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVOvertime.CustomDrawGroupRow
+        Dim info As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo = TryCast(e.Info, DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo)
+
+        If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
+            info.GroupText = " "
         End If
     End Sub
 End Class
