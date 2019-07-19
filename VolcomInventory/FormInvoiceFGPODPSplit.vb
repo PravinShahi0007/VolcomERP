@@ -13,8 +13,9 @@
         If TEAmount.EditValue + TEVAT.EditValue < 0 Then
             warningCustom("Please put the amount/VAT value first")
         ElseIf TEAmount.EditValue = FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("value") Then
-            warningCustom("No split invoice")
-            Close()
+            warningCustom("Values are same")
+        ElseIf TEAmount.EditValue > FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("value") Or TEVAT.EditValue > FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("vat") Then
+            warningCustom("Values are more than original")
         Else
             'update focused row
             FormInvoiceFGPODP.GVList.SetFocusedRowCellValue("value", FormInvoiceFGPODP.GVList.GetFocusedRowCellValue("value") - TEAmount.EditValue)

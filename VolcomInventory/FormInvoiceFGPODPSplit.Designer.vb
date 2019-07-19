@@ -61,6 +61,12 @@ Partial Class FormInvoiceFGPODPSplit
         '
         Me.TEAmount.Location = New System.Drawing.Point(93, 21)
         Me.TEAmount.Name = "TEAmount"
+        Me.TEAmount.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAmount.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEAmount.Properties.Mask.EditMask = "N2"
+        Me.TEAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEAmount.Size = New System.Drawing.Size(267, 20)
         Me.TEAmount.TabIndex = 2
         '
@@ -68,6 +74,12 @@ Partial Class FormInvoiceFGPODPSplit
         '
         Me.TEVAT.Location = New System.Drawing.Point(93, 47)
         Me.TEVAT.Name = "TEVAT"
+        Me.TEVAT.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEVAT.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVAT.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEVAT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEVAT.Properties.Mask.EditMask = "N2"
+        Me.TEVAT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEVAT.Size = New System.Drawing.Size(267, 20)
         Me.TEVAT.TabIndex = 4
         '
