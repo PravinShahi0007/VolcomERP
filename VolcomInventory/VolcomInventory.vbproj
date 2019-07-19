@@ -1765,6 +1765,12 @@
     <Compile Include="FormInvoiceFGPODPPop.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceFGPODPSplit.Designer.vb">
+      <DependentUpon>FormInvoiceFGPODPSplit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPODPSplit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatMapping.Designer.vb">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>
     </Compile>
@@ -7782,6 +7788,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPODPPop.resx">
       <DependentUpon>FormInvoiceFGPODPPop.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceFGPODPSplit.resx">
+      <DependentUpon>FormInvoiceFGPODPSplit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMapping.resx">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>
