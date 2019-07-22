@@ -2491,6 +2491,12 @@
     <Compile Include="FormProposeEmpSalary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProposeEmpSalaryAtt.Designer.vb">
+      <DependentUpon>FormProposeEmpSalaryAtt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposeEmpSalaryAtt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposeEmpSalaryDet.Designer.vb">
       <DependentUpon>FormProposeEmpSalaryDet.vb</DependentUpon>
     </Compile>
@@ -8152,6 +8158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalary.resx">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposeEmpSalaryAtt.resx">
+      <DependentUpon>FormProposeEmpSalaryAtt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalaryDet.resx">
       <DependentUpon>FormProposeEmpSalaryDet.vb</DependentUpon>
