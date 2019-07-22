@@ -2674,6 +2674,10 @@ Public Class FormImportExcel
             Dim qdel As String = "SELECT * FROM tb_season_delivery d WHERE d.id_season=" + FormFGLinePlan.SLESeason.EditValue.ToString + "; "
             Dim ddel As DataTable = execute_query(qdel, -1, True, "", "", "", "")
 
+            'line plan type
+            Dim qtyp As String = "SELECT * FROM tb_lookup_line_plan_cat "
+            Dim dtyp As DataTable = execute_query(qtyp, -1, True, "", "", "", "")
+
             Dim tb1 = data_temp.AsEnumerable() 'datatable xls
             Dim tb2 = ddv.AsEnumerable() 'datatable division
             Dim tb3 = dcat.AsEnumerable() 'datatable cat
@@ -2681,6 +2685,8 @@ Public Class FormImportExcel
             Dim tb5 = dcl.AsEnumerable() 'datatable class
             Dim tb6 = dcol.AsEnumerable() 'datatable color
             Dim tb7 = ddel.AsEnumerable()
+            Dim tb8 = dtyp.AsEnumerable()
+
             Dim query = From xls In tb1
                         Group Join div In tb2
                         On xls("SEX").ToString.ToUpper Equals div("display_name").ToString.ToUpper Into divjoin = Group

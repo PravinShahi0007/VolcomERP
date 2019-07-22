@@ -312,4 +312,10 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
         FormReportMark.id_report = id_dp
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub SMEditCost_Click(sender As Object, e As EventArgs) Handles SMEditCost.Click
+        If GVList.RowCount > 0 Then
+            FormInvoiceFGPODPSplit.ShowDialog()
+        End If
+    End Sub
 End Class
