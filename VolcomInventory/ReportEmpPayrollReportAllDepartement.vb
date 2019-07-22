@@ -44,4 +44,177 @@
             pre_load_mark_horz("192", id_payroll, "2", "2", XrTable1)
         End If
     End Sub
+
+    Dim tot_salary As Decimal = 0
+    Dim tot_event_overtime As Decimal = 0
+    Dim tot_d_cooperative_loan As Decimal = 0
+    Dim tot_d_bpjskes As Decimal = 0
+    Dim tot_d_jaminan_pensiun As Decimal = 0
+    Dim tot_d_bpjstk As Decimal = 0
+    Dim tot_d_cooperative_contributtion As Decimal = 0
+    Dim tot_d_missing As Decimal = 0
+    Dim tot_d_meditation_cash As Decimal = 0
+    Dim tot_d_other As Decimal = 0
+    Dim tot_total_cash As Decimal = 0
+    Dim tot_balance As Decimal = 0
+
+    Private Sub GVSummaryStore_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVSummaryStore.CustomSummaryCalculate
+        Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
+
+        If item.FieldName.ToString = "salary" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_salary = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_salary += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_salary, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "event_overtime" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_event_overtime = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_event_overtime += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_event_overtime, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_cooperative_loan" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_cooperative_loan = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_cooperative_loan += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_cooperative_loan, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_bpjskes" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_bpjskes = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_bpjskes += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_bpjskes, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_jaminan_pensiun" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_jaminan_pensiun = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_jaminan_pensiun += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_jaminan_pensiun, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_bpjstk" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_bpjstk = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_bpjstk += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_bpjstk, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_cooperative_contributtion" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_cooperative_contributtion = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_cooperative_contributtion += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_cooperative_contributtion, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_missing" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_missing = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_missing += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_missing, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_meditation_cash" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_meditation_cash = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_meditation_cash += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_meditation_cash, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "d_other" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_d_other = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_d_other += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_d_other, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_cash" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_total_cash = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_total_cash += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_total_cash, "##,##0")
+            End Select
+        End If
+
+        If item.FieldName.ToString = "balance" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_balance = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If Not GVSummaryStore.GetRowCellValue(e.RowHandle, "no").ToString = "" Then
+                        tot_balance += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = Format(tot_balance, "##,##0")
+            End Select
+        End If
+    End Sub
 End Class
