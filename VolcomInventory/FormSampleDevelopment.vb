@@ -33,7 +33,6 @@
 
     Private Sub FormSampleDevelopment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
-
     End Sub
 
     Sub viewSeason()
