@@ -19,6 +19,7 @@ Partial Class FormSampleDevelopment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleDevelopment))
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
@@ -41,7 +42,9 @@ Partial Class FormSampleDevelopment
         Me.GridColumnCodeImport = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColDisplayName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnFabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnDetailDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnStatusOrder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBPendukung = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -62,6 +65,8 @@ Partial Class FormSampleDevelopment
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +78,8 @@ Partial Class FormSampleDevelopment
         CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,6 +88,7 @@ Partial Class FormSampleDevelopment
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -115,7 +123,7 @@ Partial Class FormSampleDevelopment
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(942, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(889, 20)
         Me.SLESeason.TabIndex = 95
         '
         'SearchLookUpEdit1View
@@ -165,7 +173,6 @@ Partial Class FormSampleDevelopment
         Me.PanelControlFreeze.Name = "PanelControlFreeze"
         Me.PanelControlFreeze.Size = New System.Drawing.Size(97, 36)
         Me.PanelControlFreeze.TabIndex = 108
-        Me.PanelControlFreeze.Visible = False
         '
         'CheckEditFreeze
         '
@@ -188,11 +195,12 @@ Partial Class FormSampleDevelopment
         '
         'GCDesign
         '
+        Me.GCDesign.ContextMenuStrip = Me.ViewMenu
         Me.GCDesign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDesign.Location = New System.Drawing.Point(0, 40)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1, Me.RepositoryItemCheckEdit3})
+        Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1, Me.RepositoryItemCheckEdit3, Me.RepositoryItemMemoEdit2, Me.RepositoryItemMemoEdit3})
         Me.GCDesign.Size = New System.Drawing.Size(1123, 546)
         Me.GCDesign.TabIndex = 107
         Me.GCDesign.TabStop = False
@@ -294,22 +302,32 @@ Partial Class FormSampleDevelopment
         'GridColumnFabrication
         '
         Me.GridColumnFabrication.Caption = "Fabrication"
+        Me.GridColumnFabrication.ColumnEdit = Me.RepositoryItemMemoEdit2
         Me.GridColumnFabrication.FieldName = "design_fabrication"
         Me.GridColumnFabrication.Name = "GridColumnFabrication"
         Me.GridColumnFabrication.OptionsColumn.AllowEdit = False
         Me.GridColumnFabrication.Visible = True
         Me.GridColumnFabrication.Width = 118
         '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'GridColumnDetailDesc
         '
         Me.GridColumnDetailDesc.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnDetailDesc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnDetailDesc.Caption = "Detail Description"
+        Me.GridColumnDetailDesc.ColumnEdit = Me.RepositoryItemMemoEdit3
         Me.GridColumnDetailDesc.FieldName = "design_detail"
         Me.GridColumnDetailDesc.Name = "GridColumnDetailDesc"
         Me.GridColumnDetailDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnDetailDesc.Visible = True
         Me.GridColumnDetailDesc.Width = 243
+        '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
         '
         'GridColumnStatusOrder
         '
@@ -505,6 +523,18 @@ Partial Class FormSampleDevelopment
         Me.GridView2.GridControl = Me.GCDesign
         Me.GridView2.Name = "GridView2"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View History"
+        '
         'FormSampleDevelopment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -530,6 +560,8 @@ Partial Class FormSampleDevelopment
         CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -538,6 +570,7 @@ Partial Class FormSampleDevelopment
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -584,4 +617,8 @@ Partial Class FormSampleDevelopment
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GBCopyProto2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
 End Class

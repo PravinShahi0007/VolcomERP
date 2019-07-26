@@ -63,4 +63,8 @@
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewData()
     End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        FormSampleDevelopmentDet.ShowDialog()
+    End Sub
 End Class
