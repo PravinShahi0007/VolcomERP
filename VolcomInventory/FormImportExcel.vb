@@ -2706,7 +2706,12 @@ Public Class FormImportExcel
                         Group Join del In tb7
                         On xls("DEL").ToString Equals del("delivery").ToString Into deljoin = Group
                         From delresult In deljoin.DefaultIfEmpty()
+                        Group Join typ In tb8
+                        On xls("TYPE").ToString.ToUpper Equals typ("line_plan_cat").ToString.ToUpper Into typjoin = Group
+                        From typresult In typjoin.DefaultIfEmpty()
                         Select New With {
+                                    .id_line_plan_cat = If(typresult Is Nothing, "0", typresult("id_line_plan_cat").ToString),
+                                    .PlanType = If(typresult Is Nothing, "", typresult("line_plan_cat").ToString),
                                     .id_division = If(divresult Is Nothing, "0", divresult("id_code_detail").ToString),
                                     .Division = If(divresult Is Nothing, "", divresult("display_name").ToString),
                                     .id_category = If(catresult Is Nothing, "0", catresult("id_code_detail").ToString),
@@ -2724,7 +2729,7 @@ Public Class FormImportExcel
                                     .Qty = If(xls("QTY").ToString = "", 0, xls("QTY")),
                                     .MarkUp = If(xls("QTY").ToString = "", 0, xls("MARK UP")),
                                     .TargetPrice = If(xls("TARGET PRICE").ToString = "", 0, xls("TARGET PRICE")),
-                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", ""), "OK")
+                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing Or typresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", "") + If(typresult Is Nothing, "Plan Type not found", ""), "OK")
                                 }
 
             GCData.DataSource = Nothing
@@ -2733,6 +2738,7 @@ Public Class FormImportExcel
             GVData.PopulateColumns()
 
             'hide
+            GVData.Columns("id_line_plan_cat").Visible = False
             GVData.Columns("id_delivery").Visible = False
             GVData.Columns("id_division").Visible = False
             GVData.Columns("id_category").Visible = False
@@ -4718,6 +4724,7 @@ Public Class FormImportExcel
 
                         Dim id_season As String = FormFGLinePlan.SLESeason.EditValue.ToString
                         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_line_plan_cat As String = GVData.GetRowCellValue(i, "id_line_plan_cat").ToString
                             Dim id_delivery As String = GVData.GetRowCellValue(i, "id_delivery").ToString
                             Dim id_division As String = GVData.GetRowCellValue(i, "id_division").ToString
                             Dim id_category As String = GVData.GetRowCellValue(i, "id_category").ToString
@@ -4735,6 +4742,7 @@ Public Class FormImportExcel
 
                             'query
                             Dim query_ins As String = "INSERT INTO tb_fg_line_plan (
+                                `id_line_plan_cat`,
 	                            `id_season` ,
 	                            `id_delivery` ,
 	                            `id_division`,
@@ -4750,6 +4758,7 @@ Public Class FormImportExcel
                                 `input_date`
                             ) 
                             VALUES(
+                                '" + id_line_plan_cat + "',
                                 '" + id_season + "' ,
                                 '" + id_delivery + "' ,
                                 '" + id_division + "',
@@ -4769,6 +4778,7 @@ Public Class FormImportExcel
                             PBC.PerformStep()
                             PBC.Update()
                         Next
+                        FormFGLinePlan.viewlinePlanCat()
                         FormFGLinePlan.viewData()
                         Close()
                     Else
