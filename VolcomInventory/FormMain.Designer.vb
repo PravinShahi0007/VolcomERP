@@ -116,6 +116,32 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
+        Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
+        Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBBankDeposit = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCashAdvance = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAccFY = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInvoiceFGPO = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAcc = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemCat = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBMappingCat = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAccJournal = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPayment = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBJournalAdj = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAccSum = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBScanEFactur = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRateManagement = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAssetCat = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAsset = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAssetPO = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAssetRec = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemExpense = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSetupBudgetOPEX = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAssetManagement = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProposeExpenseBudgetAdmin = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRevExpenseBudgetAdmin = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemSubCatAcc = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBWork = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCompany_category = New DevExpress.XtraNavBar.NavBarItem()
@@ -207,6 +233,7 @@ Partial Class FormMain
         Me.NBGTransaction = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBSampleBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSample = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSampleDev = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSamplePlan = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSamplePurchase = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSampleReceive = New DevExpress.XtraNavBar.NavBarItem()
@@ -357,32 +384,6 @@ Partial Class FormMain
         Me.NBOLStoreWork = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSalesTargetPropose = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEstQtyToWH = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
-        Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBBankDeposit = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBCashAdvance = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAccFY = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBInvoiceFGPO = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAcc = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemCat = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBMappingCat = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAccJournal = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPayment = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBJournalAdj = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAccSum = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBScanEFactur = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRateManagement = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAssetCat = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAsset = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAssetPO = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAssetRec = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemExpense = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSetupBudgetOPEX = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAssetManagement = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProposeExpenseBudgetAdmin = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRevExpenseBudgetAdmin = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemSubCatAcc = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
@@ -417,7 +418,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBSampleDev = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1322,6 +1322,172 @@ Partial Class FormMain
         Me.NBProdRet.Text = "NavBarControl1"
         Me.NBProdRet.View = New DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator()
         '
+        'NBGAccounting
+        '
+        Me.NBGAccounting.Caption = "Accounting"
+        Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
+        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankWithdrawal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankDeposit), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCashAdvance), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceFGPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetOPEX), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposeExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemSubCatAcc)})
+        Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
+        Me.NBGAccounting.LargeImageIndex = 3
+        Me.NBGAccounting.Name = "NBGAccounting"
+        Me.NBGAccounting.SmallImage = CType(resources.GetObject("NBGAccounting.SmallImage"), System.Drawing.Image)
+        '
+        'NBBankWithdrawal
+        '
+        Me.NBBankWithdrawal.Caption = "Bank Withdrawal"
+        Me.NBBankWithdrawal.Name = "NBBankWithdrawal"
+        Me.NBBankWithdrawal.SmallImage = CType(resources.GetObject("NBBankWithdrawal.SmallImage"), System.Drawing.Image)
+        '
+        'NBBankDeposit
+        '
+        Me.NBBankDeposit.Caption = "Bank Deposit"
+        Me.NBBankDeposit.Name = "NBBankDeposit"
+        Me.NBBankDeposit.SmallImageIndex = 37
+        '
+        'NBCashAdvance
+        '
+        Me.NBCashAdvance.Caption = "Cash Advance"
+        Me.NBCashAdvance.Name = "NBCashAdvance"
+        Me.NBCashAdvance.SmallImage = CType(resources.GetObject("NBCashAdvance.SmallImage"), System.Drawing.Image)
+        '
+        'NBAccFY
+        '
+        Me.NBAccFY.Caption = "Fiscal Year"
+        Me.NBAccFY.LargeImageIndex = 3
+        Me.NBAccFY.Name = "NBAccFY"
+        Me.NBAccFY.SmallImageIndex = 43
+        '
+        'NBInvoiceFGPO
+        '
+        Me.NBInvoiceFGPO.Caption = "Invoice FGPO"
+        Me.NBInvoiceFGPO.Name = "NBInvoiceFGPO"
+        Me.NBInvoiceFGPO.SmallImageIndex = 46
+        '
+        'NBAcc
+        '
+        Me.NBAcc.Caption = "Chart Of Account"
+        Me.NBAcc.LargeImageIndex = 8
+        Me.NBAcc.Name = "NBAcc"
+        Me.NBAcc.SmallImageIndex = 38
+        '
+        'NBItemCat
+        '
+        Me.NBItemCat.Caption = "Setup Budget Category"
+        Me.NBItemCat.Name = "NBItemCat"
+        Me.NBItemCat.SmallImage = CType(resources.GetObject("NBItemCat.SmallImage"), System.Drawing.Image)
+        '
+        'NBMappingCat
+        '
+        Me.NBMappingCat.Caption = "Mapping Category"
+        Me.NBMappingCat.Name = "NBMappingCat"
+        Me.NBMappingCat.SmallImage = CType(resources.GetObject("NBMappingCat.SmallImage"), System.Drawing.Image)
+        '
+        'NBAccJournal
+        '
+        Me.NBAccJournal.Caption = "Entry Journal"
+        Me.NBAccJournal.LargeImageIndex = 7
+        Me.NBAccJournal.Name = "NBAccJournal"
+        Me.NBAccJournal.SmallImageIndex = 44
+        '
+        'NBPayment
+        '
+        Me.NBPayment.Caption = "Payment"
+        Me.NBPayment.LargeImageIndex = 40
+        Me.NBPayment.Name = "NBPayment"
+        Me.NBPayment.SmallImageIndex = 28
+        '
+        'NBJournalAdj
+        '
+        Me.NBJournalAdj.Caption = "Adjustment Journal"
+        Me.NBJournalAdj.LargeImageIndex = 31
+        Me.NBJournalAdj.Name = "NBJournalAdj"
+        Me.NBJournalAdj.SmallImageIndex = 33
+        '
+        'NBAccSum
+        '
+        Me.NBAccSum.Caption = "Summary"
+        Me.NBAccSum.LargeImageIndex = 29
+        Me.NBAccSum.Name = "NBAccSum"
+        Me.NBAccSum.SmallImageIndex = 45
+        '
+        'NBScanEFactur
+        '
+        Me.NBScanEFactur.Caption = "E-Faktur"
+        Me.NBScanEFactur.Name = "NBScanEFactur"
+        Me.NBScanEFactur.SmallImageIndex = 15
+        '
+        'NBRateManagement
+        '
+        Me.NBRateManagement.Caption = "Rate Management"
+        Me.NBRateManagement.Name = "NBRateManagement"
+        Me.NBRateManagement.SmallImageIndex = 9
+        '
+        'NBAssetCat
+        '
+        Me.NBAssetCat.Caption = "Master Asset Category"
+        Me.NBAssetCat.Name = "NBAssetCat"
+        Me.NBAssetCat.SmallImage = CType(resources.GetObject("NBAssetCat.SmallImage"), System.Drawing.Image)
+        '
+        'NBAsset
+        '
+        Me.NBAsset.Caption = "Master Asset"
+        Me.NBAsset.Name = "NBAsset"
+        Me.NBAsset.SmallImage = CType(resources.GetObject("NBAsset.SmallImage"), System.Drawing.Image)
+        '
+        'NBAssetPO
+        '
+        Me.NBAssetPO.Caption = "Asset Purchase"
+        Me.NBAssetPO.Name = "NBAssetPO"
+        Me.NBAssetPO.SmallImage = CType(resources.GetObject("NBAssetPO.SmallImage"), System.Drawing.Image)
+        '
+        'NBAssetRec
+        '
+        Me.NBAssetRec.Caption = "Asset Receive"
+        Me.NBAssetRec.Name = "NBAssetRec"
+        Me.NBAssetRec.SmallImage = CType(resources.GetObject("NBAssetRec.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemExpense
+        '
+        Me.NBItemExpense.Caption = "Expense"
+        Me.NBItemExpense.Name = "NBItemExpense"
+        Me.NBItemExpense.SmallImage = CType(resources.GetObject("NBItemExpense.SmallImage"), System.Drawing.Image)
+        '
+        'NBExpenseBudget
+        '
+        Me.NBExpenseBudget.Caption = "Expense Budget"
+        Me.NBExpenseBudget.Name = "NBExpenseBudget"
+        Me.NBExpenseBudget.SmallImage = CType(resources.GetObject("NBExpenseBudget.SmallImage"), System.Drawing.Image)
+        '
+        'NBSetupBudgetOPEX
+        '
+        Me.NBSetupBudgetOPEX.Caption = "Setup Budget Operasional"
+        Me.NBSetupBudgetOPEX.Name = "NBSetupBudgetOPEX"
+        Me.NBSetupBudgetOPEX.SmallImage = CType(resources.GetObject("NBSetupBudgetOPEX.SmallImage"), System.Drawing.Image)
+        '
+        'NBAssetManagement
+        '
+        Me.NBAssetManagement.Caption = "Asset Management"
+        Me.NBAssetManagement.Name = "NBAssetManagement"
+        Me.NBAssetManagement.SmallImage = CType(resources.GetObject("NBAssetManagement.SmallImage"), System.Drawing.Image)
+        '
+        'NBProposeExpenseBudgetAdmin
+        '
+        Me.NBProposeExpenseBudgetAdmin.Caption = "Propose Budget CAPEX"
+        Me.NBProposeExpenseBudgetAdmin.Name = "NBProposeExpenseBudgetAdmin"
+        Me.NBProposeExpenseBudgetAdmin.SmallImage = CType(resources.GetObject("NBProposeExpenseBudgetAdmin.SmallImage"), System.Drawing.Image)
+        '
+        'NBRevExpenseBudgetAdmin
+        '
+        Me.NBRevExpenseBudgetAdmin.Caption = "Revision Budget CAPEX"
+        Me.NBRevExpenseBudgetAdmin.Name = "NBRevExpenseBudgetAdmin"
+        Me.NBRevExpenseBudgetAdmin.SmallImage = CType(resources.GetObject("NBRevExpenseBudgetAdmin.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemSubCatAcc
+        '
+        Me.NBItemSubCatAcc.Caption = "Purchase Category"
+        Me.NBItemSubCatAcc.Name = "NBItemSubCatAcc"
+        Me.NBItemSubCatAcc.SmallImage = CType(resources.GetObject("NBItemSubCatAcc.SmallImage"), System.Drawing.Image)
+        '
         'NBGGeneral
         '
         Me.NBGGeneral.Caption = "General"
@@ -1901,6 +2067,12 @@ Partial Class FormMain
         Me.NBSample.LargeImageIndex = 18
         Me.NBSample.Name = "NBSample"
         Me.NBSample.SmallImageIndex = 19
+        '
+        'NBSampleDev
+        '
+        Me.NBSampleDev.Caption = "Sample Development"
+        Me.NBSampleDev.Name = "NBSampleDev"
+        Me.NBSampleDev.SmallImage = CType(resources.GetObject("NBSampleDev.SmallImage"), System.Drawing.Image)
         '
         'NBSamplePlan
         '
@@ -2853,172 +3025,6 @@ Partial Class FormMain
         Me.NBEstQtyToWH.Name = "NBEstQtyToWH"
         Me.NBEstQtyToWH.SmallImage = CType(resources.GetObject("NBEstQtyToWH.SmallImage"), System.Drawing.Image)
         '
-        'NBGAccounting
-        '
-        Me.NBGAccounting.Caption = "Accounting"
-        Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankWithdrawal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankDeposit), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCashAdvance), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceFGPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetOPEX), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposeExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemSubCatAcc)})
-        Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
-        Me.NBGAccounting.LargeImageIndex = 3
-        Me.NBGAccounting.Name = "NBGAccounting"
-        Me.NBGAccounting.SmallImage = CType(resources.GetObject("NBGAccounting.SmallImage"), System.Drawing.Image)
-        '
-        'NBBankWithdrawal
-        '
-        Me.NBBankWithdrawal.Caption = "Bank Withdrawal"
-        Me.NBBankWithdrawal.Name = "NBBankWithdrawal"
-        Me.NBBankWithdrawal.SmallImage = CType(resources.GetObject("NBBankWithdrawal.SmallImage"), System.Drawing.Image)
-        '
-        'NBBankDeposit
-        '
-        Me.NBBankDeposit.Caption = "Bank Deposit"
-        Me.NBBankDeposit.Name = "NBBankDeposit"
-        Me.NBBankDeposit.SmallImageIndex = 37
-        '
-        'NBCashAdvance
-        '
-        Me.NBCashAdvance.Caption = "Cash Advance"
-        Me.NBCashAdvance.Name = "NBCashAdvance"
-        Me.NBCashAdvance.SmallImage = CType(resources.GetObject("NBCashAdvance.SmallImage"), System.Drawing.Image)
-        '
-        'NBAccFY
-        '
-        Me.NBAccFY.Caption = "Fiscal Year"
-        Me.NBAccFY.LargeImageIndex = 3
-        Me.NBAccFY.Name = "NBAccFY"
-        Me.NBAccFY.SmallImageIndex = 43
-        '
-        'NBInvoiceFGPO
-        '
-        Me.NBInvoiceFGPO.Caption = "Invoice FGPO"
-        Me.NBInvoiceFGPO.Name = "NBInvoiceFGPO"
-        Me.NBInvoiceFGPO.SmallImageIndex = 46
-        '
-        'NBAcc
-        '
-        Me.NBAcc.Caption = "Chart Of Account"
-        Me.NBAcc.LargeImageIndex = 8
-        Me.NBAcc.Name = "NBAcc"
-        Me.NBAcc.SmallImageIndex = 38
-        '
-        'NBItemCat
-        '
-        Me.NBItemCat.Caption = "Setup Budget Category"
-        Me.NBItemCat.Name = "NBItemCat"
-        Me.NBItemCat.SmallImage = CType(resources.GetObject("NBItemCat.SmallImage"), System.Drawing.Image)
-        '
-        'NBMappingCat
-        '
-        Me.NBMappingCat.Caption = "Mapping Category"
-        Me.NBMappingCat.Name = "NBMappingCat"
-        Me.NBMappingCat.SmallImage = CType(resources.GetObject("NBMappingCat.SmallImage"), System.Drawing.Image)
-        '
-        'NBAccJournal
-        '
-        Me.NBAccJournal.Caption = "Entry Journal"
-        Me.NBAccJournal.LargeImageIndex = 7
-        Me.NBAccJournal.Name = "NBAccJournal"
-        Me.NBAccJournal.SmallImageIndex = 44
-        '
-        'NBPayment
-        '
-        Me.NBPayment.Caption = "Payment"
-        Me.NBPayment.LargeImageIndex = 40
-        Me.NBPayment.Name = "NBPayment"
-        Me.NBPayment.SmallImageIndex = 28
-        '
-        'NBJournalAdj
-        '
-        Me.NBJournalAdj.Caption = "Adjustment Journal"
-        Me.NBJournalAdj.LargeImageIndex = 31
-        Me.NBJournalAdj.Name = "NBJournalAdj"
-        Me.NBJournalAdj.SmallImageIndex = 33
-        '
-        'NBAccSum
-        '
-        Me.NBAccSum.Caption = "Summary"
-        Me.NBAccSum.LargeImageIndex = 29
-        Me.NBAccSum.Name = "NBAccSum"
-        Me.NBAccSum.SmallImageIndex = 45
-        '
-        'NBScanEFactur
-        '
-        Me.NBScanEFactur.Caption = "E-Faktur"
-        Me.NBScanEFactur.Name = "NBScanEFactur"
-        Me.NBScanEFactur.SmallImageIndex = 15
-        '
-        'NBRateManagement
-        '
-        Me.NBRateManagement.Caption = "Rate Management"
-        Me.NBRateManagement.Name = "NBRateManagement"
-        Me.NBRateManagement.SmallImageIndex = 9
-        '
-        'NBAssetCat
-        '
-        Me.NBAssetCat.Caption = "Master Asset Category"
-        Me.NBAssetCat.Name = "NBAssetCat"
-        Me.NBAssetCat.SmallImage = CType(resources.GetObject("NBAssetCat.SmallImage"), System.Drawing.Image)
-        '
-        'NBAsset
-        '
-        Me.NBAsset.Caption = "Master Asset"
-        Me.NBAsset.Name = "NBAsset"
-        Me.NBAsset.SmallImage = CType(resources.GetObject("NBAsset.SmallImage"), System.Drawing.Image)
-        '
-        'NBAssetPO
-        '
-        Me.NBAssetPO.Caption = "Asset Purchase"
-        Me.NBAssetPO.Name = "NBAssetPO"
-        Me.NBAssetPO.SmallImage = CType(resources.GetObject("NBAssetPO.SmallImage"), System.Drawing.Image)
-        '
-        'NBAssetRec
-        '
-        Me.NBAssetRec.Caption = "Asset Receive"
-        Me.NBAssetRec.Name = "NBAssetRec"
-        Me.NBAssetRec.SmallImage = CType(resources.GetObject("NBAssetRec.SmallImage"), System.Drawing.Image)
-        '
-        'NBItemExpense
-        '
-        Me.NBItemExpense.Caption = "Expense"
-        Me.NBItemExpense.Name = "NBItemExpense"
-        Me.NBItemExpense.SmallImage = CType(resources.GetObject("NBItemExpense.SmallImage"), System.Drawing.Image)
-        '
-        'NBExpenseBudget
-        '
-        Me.NBExpenseBudget.Caption = "Expense Budget"
-        Me.NBExpenseBudget.Name = "NBExpenseBudget"
-        Me.NBExpenseBudget.SmallImage = CType(resources.GetObject("NBExpenseBudget.SmallImage"), System.Drawing.Image)
-        '
-        'NBSetupBudgetOPEX
-        '
-        Me.NBSetupBudgetOPEX.Caption = "Setup Budget Operasional"
-        Me.NBSetupBudgetOPEX.Name = "NBSetupBudgetOPEX"
-        Me.NBSetupBudgetOPEX.SmallImage = CType(resources.GetObject("NBSetupBudgetOPEX.SmallImage"), System.Drawing.Image)
-        '
-        'NBAssetManagement
-        '
-        Me.NBAssetManagement.Caption = "Asset Management"
-        Me.NBAssetManagement.Name = "NBAssetManagement"
-        Me.NBAssetManagement.SmallImage = CType(resources.GetObject("NBAssetManagement.SmallImage"), System.Drawing.Image)
-        '
-        'NBProposeExpenseBudgetAdmin
-        '
-        Me.NBProposeExpenseBudgetAdmin.Caption = "Propose Expense Budget (Admin)"
-        Me.NBProposeExpenseBudgetAdmin.Name = "NBProposeExpenseBudgetAdmin"
-        Me.NBProposeExpenseBudgetAdmin.SmallImage = CType(resources.GetObject("NBProposeExpenseBudgetAdmin.SmallImage"), System.Drawing.Image)
-        '
-        'NBRevExpenseBudgetAdmin
-        '
-        Me.NBRevExpenseBudgetAdmin.Caption = "Revision Expense Budget (Admin)"
-        Me.NBRevExpenseBudgetAdmin.Name = "NBRevExpenseBudgetAdmin"
-        Me.NBRevExpenseBudgetAdmin.SmallImage = CType(resources.GetObject("NBRevExpenseBudgetAdmin.SmallImage"), System.Drawing.Image)
-        '
-        'NBItemSubCatAcc
-        '
-        Me.NBItemSubCatAcc.Caption = "Purchase Category"
-        Me.NBItemSubCatAcc.Name = "NBItemSubCatAcc"
-        Me.NBItemSubCatAcc.SmallImage = CType(resources.GetObject("NBItemSubCatAcc.SmallImage"), System.Drawing.Image)
-        '
         'NBQC
         '
         Me.NBQC.Caption = "Quality Control"
@@ -3294,12 +3300,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBSampleDev
-        '
-        Me.NBSampleDev.Caption = "Sample Development"
-        Me.NBSampleDev.Name = "NBSampleDev"
-        Me.NBSampleDev.SmallImage = CType(resources.GetObject("NBSampleDev.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
