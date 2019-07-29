@@ -772,7 +772,7 @@
             Cursor = Cursors.WaitCursor
             'generate
             Dim query As String = "CALL ins_unique_code_migration(" + id_store + "); UPDATE tb_m_comp SET is_use_unique_code=1 WHERE id_comp=" + id_store + ";"
-            execute_non_query(query, True, "", "", "", "")
+            execute_non_query_long(query, True, "", "", "", "")
             TxtUseUniqueCode.Text = "Yes"
             BtnSet.Enabled = False
             infoCustom("Aktifasi sukses")
