@@ -782,7 +782,7 @@
 
     Sub loadUniqueCode()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT u.id_unique_code, u.id_comp, u.id_product, p.product_display_name, u.id_pl_sales_order_del_det, d.pl_sales_order_del_number, 
+        Dim query As String = "SELECT u.id_comp, u.id_product, p.product_display_name, u.id_pl_sales_order_del_det, d.pl_sales_order_del_number, 
         u.id_sales_pos_det, sal.sales_pos_number AS `sal_number`,
         u.id_sales_pos_cn_det, cn.sales_pos_number AS `cn_number`, 
         u.id_sales_return_det, r.sales_return_number,
