@@ -6,6 +6,8 @@
     Public is_view As String = "-1"
     Dim id_vendor_type As String = "-1"
     '
+    Public is_need_bank_account As String = "-1"
+    '
     Dim data_map As DataTable
 
     Private Sub FormMasterCompanySingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -87,7 +89,7 @@
             BApproval.Visible = True
             BPrint.Visible = True
             '
-            Dim query As String = String.Format("SELECT comp.*,ccat.is_advance_setup,drawer.wh_drawer FROM tb_m_comp comp LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat WHERE id_comp = '{0}'", id_company)
+            Dim query As String = String.Format("SELECT comp.*,ccat.is_need_bank_account,ccat.is_advance_setup,drawer.wh_drawer FROM tb_m_comp comp LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat WHERE id_comp = '{0}'", id_company)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             Dim id_company_category As String = data.Rows(0)("id_comp_cat").ToString
@@ -120,12 +122,17 @@
             Dim id_vendor_type As String = data.Rows(0)("id_vendor_type").ToString
             Dim id_bank As String = data.Rows(0)("id_bank").ToString
             '
+            is_need_bank_account = data.Rows(0)("is_need_bank_account").ToString
+            '
             id_def_drawer = data.Rows(0)("id_drawer_def").ToString
             TEDefDrawer.Text = data.Rows(0)("wh_drawer").ToString
             '
             TECargoDest.Text = data.Rows(0)("awb_destination").ToString
             TECargoZone.Text = data.Rows(0)("awb_zone").ToString
             TECargoCode.Text = data.Rows(0)("awb_cargo_code").ToString
+            '
+            TENPWPName.Text = data.Rows(0)("npwp_name").ToString
+            TENPWPAddress.Text = data.Rows(0)("npwp_address").ToString
             '
             SLEGroup.EditValue = id_comp_group
             SLEVendorType.EditValue = id_vendor_type
@@ -367,6 +374,9 @@
         Dim contact_position As String = addSlashes(TECPPosition.Text)
         Dim contact_email As String = addSlashes(TECPEmail.Text)
         '
+        Dim npwp_name As String = addSlashes(TENPWPName.Text)
+        Dim npwp_address As String = addSlashes(TENPWPAddress.Text)
+        '
         Dim cargo_dest As String = TECargoDest.Text
         Dim cargo_zone As String = TECargoZone.Text
         Dim cargo_code As String = TECargoCode.Text
@@ -429,8 +439,8 @@
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type,id_bank,bank_rek,bank_attn_name,bank_address, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
-                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}', "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type,id_bank,bank_rek,bank_attn_name,bank_address,npwp_name,npwp_address, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
+                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}', "
                 If id_dept = "0" Then
                     query += "NULL, "
                 Else
@@ -477,7 +487,7 @@
                     query += "'" + id_def_drawer + "' "
                 End If
                 query += "); SELECT LAST_INSERT_ID(); "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address, npwp_name, npwp_address)
 
                 'call last id
                 id_baru = execute_query(query, 0, True, "", "", "", "")
@@ -510,7 +520,7 @@
                 errorInput()
             Else
                 'update company
-                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}',id_vendor_type='{19}',id_bank='{20}',bank_rek='{21}',bank_attn_name='{22}',bank_address='{23}', "
+                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}',id_vendor_type='{19}',id_bank='{20}',bank_rek='{21}',bank_attn_name='{22}',bank_address='{23}',npwp_name='{24}',npwp_address='{25}', "
                 If id_dept = "0" Then
                     query += "id_departement = NULL, "
                 Else
@@ -562,7 +572,7 @@
                     query += "id_drawer_def = '" + id_def_drawer + "' "
                 End If
                 query += "WHERE id_comp='" + id_company + "' "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address, npwp_name, npwp_address)
                 execute_non_query(query, True, "", "", "", "")
 
                 If id_pop_up = "1" Then
@@ -1037,6 +1047,35 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
                 LVendorType.Visible = False
                 SLEVendorType.Visible = False
             End If
+            '
+            Dim query As String = "SELECT is_need_bank_account 
+FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.ToString & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                is_need_bank_account = data.Rows(0)("is_need_bank_account").ToString
+            End If
+            '
+            If is_need_bank_account = "1" Then
+                SLEBankAccount.Visible = True
+                TEBankRek.Visible = True
+                TEBankAtasNama.Visible = True
+                TEBankAddress.Visible = True
+                '
+                LBankAccount.Visible = True
+                LBankAddress.Visible = True
+                LRekName.Visible = True
+                LNoRek.Visible = True
+            Else
+                SLEBankAccount.Visible = False
+                TEBankRek.Visible = False
+                TEBankAtasNama.Visible = False
+                TEBankAddress.Visible = False
+                '
+                LBankAccount.Visible = False
+                LBankAddress.Visible = False
+                LRekName.Visible = False
+                LNoRek.Visible = False
+            End If
         Catch ex As Exception
 
         End Try
@@ -1067,7 +1106,7 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
     End Sub
 
     Private Sub TEBankRek_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEBankRek.Validating
-        If TEBankRek.Text.Length < 1 Then
+        If TEBankRek.Text.Length < 1 And is_need_bank_account = "1" Then
             EPCompany.SetError(TEBankRek, "Rekening is not valid.")
         Else
             EPCompany.SetError(TEBankRek, String.Empty)
@@ -1075,7 +1114,7 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
     End Sub
 
     Private Sub TEBankAtasNama_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEBankAtasNama.Validating
-        If TEBankAtasNama.Text.Length < 1 Then
+        If TEBankAtasNama.Text.Length < 1 And is_need_bank_account = "1" Then
             EPCompany.SetError(TEBankAtasNama, "Atas Nama Rekening is not valid.")
         Else
             EPCompany.SetError(TEBankAtasNama, String.Empty)
@@ -1083,7 +1122,7 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
     End Sub
 
     Private Sub TEBankAddress_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEBankAddress.Validating
-        If TEBankAddress.Text.Length < 1 Then
+        If TEBankAddress.Text.Length < 1 And is_need_bank_account = "1" Then
             EPCompany.SetError(TEBankAddress, "Bank Address is not valid.")
         Else
             EPCompany.SetError(TEBankAddress, String.Empty)
