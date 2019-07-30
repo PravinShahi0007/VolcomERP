@@ -1,5 +1,6 @@
 ﻿Public Class FormSalesOrderReport
     Public id_design_new_order As String = "-1"
+    Public id_design_all_order As String = "-1"
 
     Private Sub FormSalesOrderReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim now As DateTime = getTimeDB()
@@ -127,6 +128,11 @@
     End Sub
 
     Private Sub BtnViewAll_Click(sender As Object, e As EventArgs) Handles BtnViewAll.Click
+        If CEFindAllProductSO.EditValue = False And id_design_all_order = "-1" Then
+            stopCustom("Please select product first")
+            Exit Sub
+        End If
+
         viewAllOrder()
     End Sub
 
@@ -143,6 +149,16 @@
         Catch ex As Exception
         End Try
 
+        'find spesific product
+        Dim cond_prod As String = ""
+        Dim cond_prod2 As String = ""
+        If CEFindAllProductSO.EditValue = False Then
+            cond_prod = "INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design AND dsg.id_design=" + id_design_all_order + " "
+            cond_prod2 = "INNER JOIN tb_m_product prod ON prod.id_product = deld.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design AND dsg.id_design=" + id_design_all_order + " "
+        End If
+
         Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, sog.sales_order_gen_reff, so.sales_order_date, so.id_so_status, so_stt.so_status, 
         so.id_prepare_status, ps.prepare_status, so.final_comment, so.final_date, ef.employee_name AS `final_by_name`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, CONCAT(s.comp_number, ' - ', s.comp_name) AS `destination`,
@@ -156,6 +172,7 @@
         INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
         INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = so.id_prepare_status
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        " + cond_prod + "
         LEFT JOIN (
 	        SELECT trs.id_sales_order, SUM(total_trs) AS `total_trs`
 	        FROM (
@@ -163,6 +180,7 @@
 		        FROM tb_pl_sales_order_del del
 		        INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
 		        INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del
+                " + cond_prod2 + "
 		        WHERE del.id_report_status!=5 AND so.id_so_status!=5
 		        AND so.sales_order_date>='" + date_from_selected + "'
 		        UNION ALL
@@ -170,6 +188,7 @@
 		        FROM tb_fg_trf del
 		        INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
 		        INNER JOIN tb_fg_trf_det deld ON deld.id_fg_trf = del.id_fg_trf
+                " + cond_prod2 + "
 		        WHERE del.id_report_status!=5 AND so.id_so_status=5
 		        AND so.sales_order_date>='" + date_from_selected + "'
 	        ) trs 
@@ -182,6 +201,7 @@
 		        FROM tb_pl_sales_order_del del
 		        INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
 		        INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del
+                " + cond_prod2 + "
 		        WHERE del.id_report_status=6 AND so.id_so_status!=5
 		        AND so.sales_order_date>='" + date_from_selected + "'
 		        UNION ALL
@@ -189,6 +209,7 @@
 		        FROM tb_fg_trf del
 		        INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
 		        INNER JOIN tb_fg_trf_det deld ON deld.id_fg_trf = del.id_fg_trf
+                " + cond_prod2 + "
 		        WHERE del.id_report_status=6 AND so.id_so_status=5
 		        AND so.sales_order_date>='" + date_from_selected + "'
 	        ) trs 
@@ -207,6 +228,7 @@
 
     Private Sub GVAll_DoubleClick(sender As Object, e As EventArgs) Handles GVAll.DoubleClick
         If GVAll.RowCount > 0 And GVAll.FocusedRowHandle >= 0 Then
+            FormSalesOrderReportDet.id_design = id_design_all_order
             FormSalesOrderReportDet.id_so = GVAll.GetFocusedRowCellValue("id_sales_order").ToString
             FormSalesOrderReportDet.id_so_status = GVAll.GetFocusedRowCellValue("id_so_status").ToString
             FormSalesOrderReportDet.so_number = GVAll.GetFocusedRowCellValue("sales_order_number").ToString
@@ -227,6 +249,12 @@
         CEShowHighlight.Enabled = False
         id_design_new_order = "-1"
         TxtProduct.Text = ""
+    End Sub
+
+    Sub resetAllOrder()
+        GCAll.DataSource = Nothing
+        id_design_all_order = "-1"
+        TxtProductSO.Text = ""
     End Sub
 
     Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
@@ -276,6 +304,30 @@
     Private Sub BtnBrowseProduct_Click(sender As Object, e As EventArgs) Handles BtnBrowseProduct.Click
         Cursor = Cursors.WaitCursor
         FormSearchDesign.id_pop_up = "1"
+        FormSearchDesign.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CEFindAllProductSO_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProductSO.EditValueChanged
+        resetAllOrder()
+        If CEFindAllProductSO.EditValue = True Then
+            BtnBrowseProductSO.Enabled = False
+        Else
+            BtnBrowseProductSO.Enabled = True
+        End If
+    End Sub
+
+    Private Sub DEFromAll_EditValueChanged(sender As Object, e As EventArgs) Handles DEFromAll.EditValueChanged
+        resetAllOrder()
+    End Sub
+
+    Private Sub DEUntilAll_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAll.EditValueChanged
+        resetAllOrder()
+    End Sub
+
+    Private Sub BtnBrowseProductSO_Click(sender As Object, e As EventArgs) Handles BtnBrowseProductSO.Click
+        Cursor = Cursors.WaitCursor
+        FormSearchDesign.id_pop_up = "2"
         FormSearchDesign.ShowDialog()
         Cursor = Cursors.Default
     End Sub

@@ -70,12 +70,17 @@ Partial Class FormSalesOrderReport
         Me.GridColumnAllfinal_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnViewAll = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEFindAllProductSO = New DevExpress.XtraEditors.CheckEdit()
+        Me.TxtProductSO = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntilAll = New DevExpress.XtraEditors.DateEdit()
         Me.DEFromAll = New DevExpress.XtraEditors.DateEdit()
+        Me.BtnBrowseProductSO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnViewAll = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSO.SuspendLayout()
         Me.XTPNew.SuspendLayout()
@@ -100,6 +105,10 @@ Partial Class FormSalesOrderReport
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.CEFindAllProductSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtProductSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -399,11 +408,11 @@ Partial Class FormSalesOrderReport
         'GCAll
         '
         Me.GCAll.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAll.Location = New System.Drawing.Point(0, 39)
+        Me.GCAll.Location = New System.Drawing.Point(0, 71)
         Me.GCAll.MainView = Me.GVAll
         Me.GCAll.Name = "GCAll"
         Me.GCAll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1, Me.RepositoryItemProgressBar})
-        Me.GCAll.Size = New System.Drawing.Size(871, 422)
+        Me.GCAll.Size = New System.Drawing.Size(871, 390)
         Me.GCAll.TabIndex = 7
         Me.GCAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAll})
         '
@@ -581,21 +590,116 @@ Partial Class FormSalesOrderReport
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.PanelControl2)
         Me.GroupControl1.Controls.Add(Me.BtnViewAll)
         Me.GroupControl1.Controls.Add(Me.SimpleButton2)
-        Me.GroupControl1.Controls.Add(Me.DEUntilAll)
-        Me.GroupControl1.Controls.Add(Me.DEFromAll)
-        Me.GroupControl1.Controls.Add(Me.LabelControl1)
-        Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(871, 39)
+        Me.GroupControl1.Size = New System.Drawing.Size(871, 71)
         Me.GroupControl1.TabIndex = 5
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.CEFindAllProductSO)
+        Me.PanelControl2.Controls.Add(Me.TxtProductSO)
+        Me.PanelControl2.Controls.Add(Me.LabelControl8)
+        Me.PanelControl2.Controls.Add(Me.DEUntilAll)
+        Me.PanelControl2.Controls.Add(Me.DEFromAll)
+        Me.PanelControl2.Controls.Add(Me.BtnBrowseProductSO)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(440, 67)
+        Me.PanelControl2.TabIndex = 8905
+        '
+        'CEFindAllProductSO
+        '
+        Me.CEFindAllProductSO.EditValue = True
+        Me.CEFindAllProductSO.Location = New System.Drawing.Point(325, 9)
+        Me.CEFindAllProductSO.Name = "CEFindAllProductSO"
+        Me.CEFindAllProductSO.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEFindAllProductSO.Properties.Appearance.Options.UseFont = True
+        Me.CEFindAllProductSO.Properties.Caption = "Find All Product"
+        Me.CEFindAllProductSO.Size = New System.Drawing.Size(98, 19)
+        Me.CEFindAllProductSO.TabIndex = 8903
+        '
+        'TxtProductSO
+        '
+        Me.TxtProductSO.EditValue = ""
+        Me.TxtProductSO.Enabled = False
+        Me.TxtProductSO.Location = New System.Drawing.Point(57, 35)
+        Me.TxtProductSO.Name = "TxtProductSO"
+        Me.TxtProductSO.Size = New System.Drawing.Size(336, 20)
+        Me.TxtProductSO.TabIndex = 8902
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(9, 38)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl8.TabIndex = 8901
+        Me.LabelControl8.Text = "Product"
+        '
+        'DEUntilAll
+        '
+        Me.DEUntilAll.EditValue = Nothing
+        Me.DEUntilAll.Location = New System.Drawing.Point(201, 9)
+        Me.DEUntilAll.Name = "DEUntilAll"
+        Me.DEUntilAll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilAll.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilAll.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilAll.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilAll.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilAll.Size = New System.Drawing.Size(118, 20)
+        Me.DEUntilAll.TabIndex = 8895
+        '
+        'DEFromAll
+        '
+        Me.DEFromAll.EditValue = Nothing
+        Me.DEFromAll.Location = New System.Drawing.Point(57, 9)
+        Me.DEFromAll.Name = "DEFromAll"
+        Me.DEFromAll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromAll.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromAll.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromAll.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromAll.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromAll.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromAll.TabIndex = 8894
+        '
+        'BtnBrowseProductSO
+        '
+        Me.BtnBrowseProductSO.Enabled = False
+        Me.BtnBrowseProductSO.Image = CType(resources.GetObject("BtnBrowseProductSO.Image"), System.Drawing.Image)
+        Me.BtnBrowseProductSO.Location = New System.Drawing.Point(397, 34)
+        Me.BtnBrowseProductSO.LookAndFeel.SkinName = "Blue"
+        Me.BtnBrowseProductSO.Name = "BtnBrowseProductSO"
+        Me.BtnBrowseProductSO.Size = New System.Drawing.Size(26, 20)
+        Me.BtnBrowseProductSO.TabIndex = 8900
+        Me.BtnBrowseProductSO.Text = "..."
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(174, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl1.TabIndex = 8893
+        Me.LabelControl1.Text = "Until"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(9, 12)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl4.TabIndex = 8892
+        Me.LabelControl4.Text = "From"
         '
         'BtnViewAll
         '
-        Me.BtnViewAll.Location = New System.Drawing.Point(317, 9)
+        Me.BtnViewAll.Image = CType(resources.GetObject("BtnViewAll.Image"), System.Drawing.Image)
+        Me.BtnViewAll.Location = New System.Drawing.Point(471, 23)
         Me.BtnViewAll.LookAndFeel.SkinName = "Blue"
         Me.BtnViewAll.Name = "BtnViewAll"
         Me.BtnViewAll.Size = New System.Drawing.Size(75, 20)
@@ -611,48 +715,6 @@ Partial Class FormSalesOrderReport
         Me.SimpleButton2.TabIndex = 8898
         Me.SimpleButton2.Text = "Hide All Detail"
         Me.SimpleButton2.Visible = False
-        '
-        'DEUntilAll
-        '
-        Me.DEUntilAll.EditValue = Nothing
-        Me.DEUntilAll.Location = New System.Drawing.Point(202, 9)
-        Me.DEUntilAll.Name = "DEUntilAll"
-        Me.DEUntilAll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilAll.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntilAll.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilAll.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilAll.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilAll.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntilAll.TabIndex = 8895
-        '
-        'DEFromAll
-        '
-        Me.DEFromAll.EditValue = Nothing
-        Me.DEFromAll.Location = New System.Drawing.Point(58, 9)
-        Me.DEFromAll.Name = "DEFromAll"
-        Me.DEFromAll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromAll.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFromAll.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFromAll.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromAll.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEFromAll.Size = New System.Drawing.Size(111, 20)
-        Me.DEFromAll.TabIndex = 8894
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(175, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl1.TabIndex = 8893
-        Me.LabelControl1.Text = "Until"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(28, 12)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl4.TabIndex = 8892
-        Me.LabelControl4.Text = "From"
         '
         'FormSalesOrderReport
         '
@@ -688,7 +750,11 @@ Partial Class FormSalesOrderReport
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
-        Me.GroupControl1.PerformLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.CEFindAllProductSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtProductSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -753,4 +819,9 @@ Partial Class FormSalesOrderReport
     Friend WithEvents TxtProduct As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnBrowseProduct As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEFindAllProductSO As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents TxtProductSO As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnBrowseProductSO As DevExpress.XtraEditors.SimpleButton
 End Class
