@@ -965,7 +965,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.XLTitle.SizeF = New System.Drawing.SizeF(635.0!, 41.15005!)
         Me.XLTitle.StylePriority.UseFont = False
         Me.XLTitle.StylePriority.UseTextAlignment = False
-        Me.XLTitle.Text = "Summary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Monthly Payroll"
+        Me.XLTitle.Text = "Summary Monthly Payroll"
         Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XLType
