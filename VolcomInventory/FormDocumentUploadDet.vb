@@ -65,4 +65,32 @@
     Private Sub FormDocumentUploadDet_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BUploadenc_Click(sender As Object, e As EventArgs) Handles BUploadenc.Click
+        Try
+            'save db
+            Dim query As String = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,datetime,ext,id_user_upload,is_encrypted) VALUES('" & addSlashes(TEFileName.Text) & "','" & report_mark_type & "','" & id_report & "',NOW(),'" & file_ext & "','" & id_user & "','1');SELECT LAST_INSERT_ID() "
+            Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
+            'upload
+            Dim path As String = directory_upload & report_mark_type & "\"
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            Dim file_path As String = path & last_id & "_" & report_mark_type & "_" & id_report & "_temp" & file_ext
+            Dim file_path_enc As String = path & last_id & "_" & report_mark_type & "_" & id_report & file_ext
+
+            My.Computer.Network.UploadFile(file_address, file_path, "", "", True, 100, True)
+
+            CryptFile.EncryptFile(get_setup_field("en_phrase"), file_path, file_path_enc)
+
+            My.Computer.FileSystem.DeleteFile(file_path)
+
+            '
+            FormDocumentUpload.refresh_load(report_mark_type)
+            '
+            Close()
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+    End Sub
 End Class

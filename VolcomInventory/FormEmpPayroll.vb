@@ -748,6 +748,22 @@
     Private Sub GVPayroll_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVPayroll.CustomDrawRowFooter
         e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
 
+        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
+
+        format.Alignment = StringAlignment.Near
+
+        If GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("Group") Then
+            e.Graphics.DrawString("Grand Total: " + GVPayroll.GetGroupRowValue(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+        Else
+            If GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("SOGO") Then
+                e.Graphics.DrawString("Total " + GVPayroll.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+            Else
+                If Not GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("Sub") Then
+                    e.Graphics.DrawString("Total " + GVPayroll.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+                End If
+            End If
+        End If
+
         e.Handled = True
     End Sub
 
@@ -766,5 +782,14 @@
         If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
             info.GroupText = " "
         End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = GVPayroll.GetFocusedRowCellValue("id_payroll").ToString
+        FormDocumentUpload.report_mark_type = "192"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
