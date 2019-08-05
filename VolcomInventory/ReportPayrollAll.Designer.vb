@@ -132,6 +132,8 @@ Partial Public Class ReportPayrollAll
         Me.GVPayroll.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVPayroll.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
         Me.GVPayroll.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVPayroll.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVPayroll.AppearancePrint.Lines.Options.UseBackColor = True
         Me.GVPayroll.AppearancePrint.Row.BackColor = System.Drawing.Color.White
         Me.GVPayroll.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVPayroll.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
@@ -146,6 +148,7 @@ Partial Public Class ReportPayrollAll
         Me.GVPayroll.GroupCount = 2
         Me.GVPayroll.GroupFormat = "{1} {2}"
         Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertime, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotal, "{0:N0}")})
+        Me.GVPayroll.LevelIndent = 0
         Me.GVPayroll.Name = "GVPayroll"
         Me.GVPayroll.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVPayroll.OptionsMenu.ShowConditionalFormattingItem = True
@@ -229,7 +232,7 @@ Partial Public Class ReportPayrollAll
         Me.GBWorkingDays.Columns.Add(Me.GCOvertimeHours)
         Me.GBWorkingDays.Name = "GBWorkingDays"
         Me.GBWorkingDays.VisibleIndex = 1
-        Me.GBWorkingDays.Width = 116
+        Me.GBWorkingDays.Width = 81
         '
         'GCWorkingDays
         '
@@ -241,7 +244,6 @@ Partial Public Class ReportPayrollAll
         Me.GCWorkingDays.FieldName = "workdays"
         Me.GCWorkingDays.Name = "GCWorkingDays"
         Me.GCWorkingDays.OptionsColumn.AllowEdit = False
-        Me.GCWorkingDays.Visible = True
         Me.GCWorkingDays.Width = 35
         '
         'GCActualWorkingDays
@@ -350,6 +352,7 @@ Partial Public Class ReportPayrollAll
         '
         Me.GCActualWorkingDaysDW.AppearanceCell.Options.UseTextOptions = True
         Me.GCActualWorkingDaysDW.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCActualWorkingDaysDW.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCActualWorkingDaysDW.Caption = "Actual Working Days"
         Me.GCActualWorkingDaysDW.DisplayFormat.FormatString = "N1"
         Me.GCActualWorkingDaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -493,10 +496,11 @@ Partial Public Class ReportPayrollAll
         'XLTitle
         '
         Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0004!, 33.99998!)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0004!, 22.99999!)
+        Me.XLTitle.Multiline = True
         Me.XLTitle.Name = "XLTitle"
         Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(634.9996!, 23.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(634.9996!, 41.15001!)
         Me.XLTitle.StylePriority.UseFont = False
         Me.XLTitle.StylePriority.UseTextAlignment = False
         Me.XLTitle.Text = "Monthly Payroll"

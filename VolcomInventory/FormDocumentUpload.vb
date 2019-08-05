@@ -47,7 +47,7 @@
     End Sub
 
     Sub view_file()
-        Dim query As String = "SELECT doc.id_doc,doc.doc_desc,doc.datetime,'yes' as is_download,CONCAT(doc.id_doc,'_" & report_mark_type & "_" & id_report & "',doc.ext) AS filename,emp.employee_name 
+        Dim query As String = "SELECT doc.id_doc,doc.doc_desc,doc.datetime,'yes' as is_download,CONCAT(doc.id_doc,'_" & report_mark_type & "_" & id_report & "',doc.ext) AS filename,emp.employee_name,doc.is_encrypted
                                FROM tb_doc doc
                                LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
                                LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -82,7 +82,16 @@
                 System.IO.Directory.CreateDirectory(path)
             End If
             'download
-            My.Computer.Network.DownloadFile(source_path & report_mark_type & "\" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
+            If GVFileList.GetFocusedRowCellValue("is_encrypted").ToString = "1" Then
+                My.Computer.Network.DownloadFile(source_path & report_mark_type & "\" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
+
+                CryptFile.DecryptFile(get_setup_field("en_phrase"), path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString)
+
+                My.Computer.FileSystem.DeleteFile(path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString)
+            Else
+                My.Computer.Network.DownloadFile(source_path & report_mark_type & "\" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
+            End If
+
             'open folder
             If IO.File.Exists(path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString) Then
                 Dim open_folder As ProcessStartInfo = New ProcessStartInfo()

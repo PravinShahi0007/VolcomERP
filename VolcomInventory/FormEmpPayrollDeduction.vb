@@ -52,11 +52,19 @@
             DropDownButton1.Enabled = False
         End If
 
+        If Not FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+            DropDownButton1.Visible = False
+            BBKoperasi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        End If
+
         'view
         If FormEmpPayroll.is_view = "1" Then
             BDel.Enabled = False
             BEdit.Enabled = False
             BAdd.Enabled = False
+
+            BtnDropQuickMenu.Enabled = False
+            DropDownButton1.Enabled = False
         End If
     End Sub
 
@@ -92,8 +100,10 @@
                 Cursor = Cursors.WaitCursor
 
                 For i = 0 To GVDeduction.RowCount - 1
-                    Dim query As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll_deduction='" & GVDeduction.GetRowCellValue(i, "id_payroll_deduction").ToString & "'"
-                    execute_non_query(query, True, "", "", "", "")
+                    If GVDeduction.IsValidRowHandle(i) Then
+                        Dim query As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll_deduction='" & GVDeduction.GetRowCellValue(i, "id_payroll_deduction").ToString & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 Next
 
                 load_deduction()
@@ -103,6 +113,8 @@
         Else
             stopCustom("Please choose employee first.")
         End If
+
+        GVDeduction.ActiveFilterString = ""
     End Sub
 
     'Private Sub BEdit_Click(sender As Object, e As EventArgs)
@@ -233,6 +245,24 @@
 
     Private Sub GVDeduction_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVDeduction.CustomDrawRowFooter
         e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
+
+        e.Handled = True
+
+        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
+
+        format.Alignment = StringAlignment.Near
+
+        If GVDeduction.GetGroupRowDisplayText(e.RowHandle).Contains("Group") Then
+            e.Graphics.DrawString("Grand Total: " + GVDeduction.GetGroupRowValue(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+        Else
+            If GVDeduction.GetGroupRowDisplayText(e.RowHandle).Contains("SOGO") Then
+                e.Graphics.DrawString("Total " + GVDeduction.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+            Else
+                If Not GVDeduction.GetGroupRowDisplayText(e.RowHandle).Contains("Sub") Then
+                    e.Graphics.DrawString("Total " + GVDeduction.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+                End If
+            End If
+        End If
 
         e.Handled = True
     End Sub
