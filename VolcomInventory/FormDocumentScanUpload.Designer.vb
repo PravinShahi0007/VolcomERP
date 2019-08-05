@@ -83,7 +83,6 @@ Partial Class FormDocumentScanUpload
         Me.BUpload.Size = New System.Drawing.Size(562, 32)
         Me.BUpload.TabIndex = 13
         Me.BUpload.Text = "Upload"
-        Me.BUpload.Visible = False
         '
         'PanelControl2
         '
