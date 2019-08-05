@@ -5,14 +5,22 @@
 
     Sub actionLoad()
         viewType()
+        viewMainCategory()
         TxtCat.Text = ""
         TxtCatEn.Text = ""
-        LookUpEdit1.Focus()
+        LEExpenseType.Focus()
     End Sub
 
     Sub viewType()
         Dim query As String = "SELECT * FROM tb_lookup_expense_type t "
-        viewLookupQuery(LookUpEdit1, query, 0, "expense_type", "id_expense_type")
+        viewLookupQuery(LEExpenseType, query, 0, "expense_type", "id_expense_type")
+    End Sub
+
+    Sub viewMainCategory()
+        Dim query As String = "SELECT * FROM tb_item_cat_main t
+INNER JOIN tb_lookup_expense_type tt ON tt.`id_expense_type`=t.`id_expense_type` "
+        viewSearchLookupQuery(SLEMainCategory, query, "id_item_cat_main", "item_cat_main", "id_item_cat_main")
+        SLEMainCategory.EditValue = Nothing
     End Sub
 
     Private Sub FormItemCatProposeAdd_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -33,7 +41,7 @@
         Else
             Dim item_cat As String = addSlashes(TxtCat.Text).Trim()
             Dim item_cat_en As String = addSlashes(TxtCatEn.Text).Trim()
-            Dim id_expense_type As String = LookUpEdit1.EditValue.ToString
+            Dim id_expense_type As String = LEExpenseType.EditValue.ToString
 
             'cek kondisi master
             Dim cm As Boolean = False
@@ -67,7 +75,7 @@
 
     End Sub
 
-    Private Sub LookUpEdit1_KeyDown(sender As Object, e As KeyEventArgs) Handles LookUpEdit1.KeyDown
+    Private Sub LookUpEdit1_KeyDown(sender As Object, e As KeyEventArgs) Handles LEExpenseType.KeyDown
         If e.KeyCode = Keys.Enter Then
             TxtCat.Focus()
         End If
@@ -87,6 +95,18 @@
     Private Sub TxtCatEn_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCatEn.KeyDown
         If e.KeyCode = Keys.Enter Then
             save()
+        End If
+    End Sub
+
+    Private Sub SLEMainCategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLEMainCategory.EditValueChanged
+        If Not SLEMainCategory.EditValue = Nothing Then
+            Try
+                Dim id_expense_type As String = SLEMainCategory.Properties.View.GetFocusedRowCellValue("id_expense_type").ToString
+                LEExpenseType.EditValue = Nothing
+                LEExpenseType.ItemIndex = LEExpenseType.Properties.GetDataSourceRowIndex("id_expense_type", id_expense_type)
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
         End If
     End Sub
 End Class
