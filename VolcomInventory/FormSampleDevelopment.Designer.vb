@@ -36,44 +36,44 @@ Partial Class FormSampleDevelopment
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GBDesign = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.ColDesignCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ColDisplayName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColID = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColSampleSeason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.ColDesignCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCodeImport = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.ColDisplayName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnFabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnDetailDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnStatusOrder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBPendukung = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnPendukungDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnPendukungNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GBStrikeOff = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnStrikeoffDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnStrikeoffNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GBProto1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnProto1Date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnProto1Note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBProto2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnProto2Date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnProto2Note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBCopyProto2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCopyProto2Date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnCopyProto2Note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BandedGridColumnPendukungNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnStrikeoffNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnProto1Note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnProto2Note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnCopyProto2Note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBDesign = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBPendukung = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBStrikeOff = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBProto1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBProto2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBCopyProto2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.RepositoryItemMemoEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,15 +88,15 @@ Partial Class FormSampleDevelopment
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -218,12 +218,12 @@ Partial Class FormSampleDevelopment
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(141, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View History"
         '
         'GVDesign
@@ -250,6 +250,51 @@ Partial Class FormSampleDevelopment
         Me.GVDesign.OptionsView.ShowGroupPanel = False
         Me.GVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColID, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
+        'GBDesign
+        '
+        Me.GBDesign.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GBDesign.AppearanceHeader.Options.UseFont = True
+        Me.GBDesign.Caption = "Design"
+        Me.GBDesign.Columns.Add(Me.ColDesignCode)
+        Me.GBDesign.Columns.Add(Me.ColDisplayName)
+        Me.GBDesign.Name = "GBDesign"
+        Me.GBDesign.VisibleIndex = 0
+        Me.GBDesign.Width = 217
+        '
+        'ColDesignCode
+        '
+        Me.ColDesignCode.Caption = "Code"
+        Me.ColDesignCode.FieldName = "design_code"
+        Me.ColDesignCode.Name = "ColDesignCode"
+        Me.ColDesignCode.OptionsColumn.AllowEdit = False
+        Me.ColDesignCode.Visible = True
+        '
+        'ColDisplayName
+        '
+        Me.ColDisplayName.Caption = "Description"
+        Me.ColDisplayName.FieldName = "design_display_name"
+        Me.ColDisplayName.Name = "ColDisplayName"
+        Me.ColDisplayName.OptionsColumn.AllowEdit = False
+        Me.ColDisplayName.Visible = True
+        Me.ColDisplayName.Width = 142
+        '
+        'GridBand1
+        '
+        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridBand1.AppearanceHeader.Options.UseFont = True
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.ColID)
+        Me.GridBand1.Columns.Add(Me.ColSampleSeason)
+        Me.GridBand1.Columns.Add(Me.GridColumn7)
+        Me.GridBand1.Columns.Add(Me.GridColumnCodeImport)
+        Me.GridBand1.Columns.Add(Me.GridColumnFabrication)
+        Me.GridBand1.Columns.Add(Me.GridColumnDetailDesc)
+        Me.GridBand1.Columns.Add(Me.GridColumnStatusOrder)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 670
+        '
         'ColID
         '
         Me.ColID.Caption = "Id Design"
@@ -274,14 +319,6 @@ Partial Class FormSampleDevelopment
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ShowInCustomizationForm = False
         '
-        'ColDesignCode
-        '
-        Me.ColDesignCode.Caption = "Code"
-        Me.ColDesignCode.FieldName = "design_code"
-        Me.ColDesignCode.Name = "ColDesignCode"
-        Me.ColDesignCode.OptionsColumn.AllowEdit = False
-        Me.ColDesignCode.Visible = True
-        '
         'GridColumnCodeImport
         '
         Me.GridColumnCodeImport.Caption = "Code Import"
@@ -290,15 +327,6 @@ Partial Class FormSampleDevelopment
         Me.GridColumnCodeImport.OptionsColumn.AllowEdit = False
         Me.GridColumnCodeImport.Visible = True
         Me.GridColumnCodeImport.Width = 80
-        '
-        'ColDisplayName
-        '
-        Me.ColDisplayName.Caption = "Description"
-        Me.ColDisplayName.FieldName = "design_display_name"
-        Me.ColDisplayName.Name = "ColDisplayName"
-        Me.ColDisplayName.OptionsColumn.AllowEdit = False
-        Me.ColDisplayName.Visible = True
-        Me.ColDisplayName.Width = 142
         '
         'GridColumnFabrication
         '
@@ -350,6 +378,19 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         Me.BandedGridColumn6.Visible = True
         '
+        'GBPendukung
+        '
+        Me.GBPendukung.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GBPendukung.AppearanceHeader.Options.UseFont = True
+        Me.GBPendukung.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBPendukung.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBPendukung.Caption = "Material Pendukung Proto Sample"
+        Me.GBPendukung.Columns.Add(Me.BandedGridColumnPendukungDate)
+        Me.GBPendukung.Columns.Add(Me.BandedGridColumnPendukungNote)
+        Me.GBPendukung.Name = "GBPendukung"
+        Me.GBPendukung.VisibleIndex = 2
+        Me.GBPendukung.Width = 289
+        '
         'BandedGridColumnPendukungDate
         '
         Me.BandedGridColumnPendukungDate.AppearanceCell.Options.UseTextOptions = True
@@ -364,6 +405,31 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumnPendukungDate.Visible = True
         Me.BandedGridColumnPendukungDate.Width = 214
         '
+        'BandedGridColumnPendukungNote
+        '
+        Me.BandedGridColumnPendukungNote.Caption = "Note"
+        Me.BandedGridColumnPendukungNote.ColumnEdit = Me.RepositoryItemMemoEdit4
+        Me.BandedGridColumnPendukungNote.FieldName = "note_stage1"
+        Me.BandedGridColumnPendukungNote.Name = "BandedGridColumnPendukungNote"
+        Me.BandedGridColumnPendukungNote.Visible = True
+        '
+        'RepositoryItemMemoEdit4
+        '
+        Me.RepositoryItemMemoEdit4.Name = "RepositoryItemMemoEdit4"
+        '
+        'GBStrikeOff
+        '
+        Me.GBStrikeOff.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GBStrikeOff.AppearanceHeader.Options.UseFont = True
+        Me.GBStrikeOff.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBStrikeOff.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBStrikeOff.Caption = "Strike Off"
+        Me.GBStrikeOff.Columns.Add(Me.BandedGridColumnStrikeoffDate)
+        Me.GBStrikeOff.Columns.Add(Me.BandedGridColumnStrikeoffNote)
+        Me.GBStrikeOff.Name = "GBStrikeOff"
+        Me.GBStrikeOff.VisibleIndex = 3
+        Me.GBStrikeOff.Width = 150
+        '
         'BandedGridColumnStrikeoffDate
         '
         Me.BandedGridColumnStrikeoffDate.AppearanceCell.Options.UseTextOptions = True
@@ -376,6 +442,31 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumnStrikeoffDate.FieldName = "date_stage2"
         Me.BandedGridColumnStrikeoffDate.Name = "BandedGridColumnStrikeoffDate"
         Me.BandedGridColumnStrikeoffDate.Visible = True
+        '
+        'BandedGridColumnStrikeoffNote
+        '
+        Me.BandedGridColumnStrikeoffNote.Caption = "Note"
+        Me.BandedGridColumnStrikeoffNote.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.BandedGridColumnStrikeoffNote.FieldName = "note_stage2"
+        Me.BandedGridColumnStrikeoffNote.Name = "BandedGridColumnStrikeoffNote"
+        Me.BandedGridColumnStrikeoffNote.Visible = True
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GBProto1
+        '
+        Me.GBProto1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GBProto1.AppearanceHeader.Options.UseFont = True
+        Me.GBProto1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBProto1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBProto1.Caption = "Proto Sample Tahap 1"
+        Me.GBProto1.Columns.Add(Me.BandedGridColumnProto1Date)
+        Me.GBProto1.Columns.Add(Me.BandedGridColumnProto1Note)
+        Me.GBProto1.Name = "GBProto1"
+        Me.GBProto1.VisibleIndex = 4
+        Me.GBProto1.Width = 218
         '
         'BandedGridColumnProto1Date
         '
@@ -391,6 +482,27 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumnProto1Date.Visible = True
         Me.BandedGridColumnProto1Date.Width = 143
         '
+        'BandedGridColumnProto1Note
+        '
+        Me.BandedGridColumnProto1Note.Caption = "Note"
+        Me.BandedGridColumnProto1Note.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.BandedGridColumnProto1Note.FieldName = "note_stage3"
+        Me.BandedGridColumnProto1Note.Name = "BandedGridColumnProto1Note"
+        Me.BandedGridColumnProto1Note.Visible = True
+        '
+        'GBProto2
+        '
+        Me.GBProto2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GBProto2.AppearanceHeader.Options.UseFont = True
+        Me.GBProto2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBProto2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBProto2.Caption = "Proto Sample Tahap 2"
+        Me.GBProto2.Columns.Add(Me.BandedGridColumnProto2Date)
+        Me.GBProto2.Columns.Add(Me.BandedGridColumnProto2Note)
+        Me.GBProto2.Name = "GBProto2"
+        Me.GBProto2.VisibleIndex = 5
+        Me.GBProto2.Width = 198
+        '
         'BandedGridColumnProto2Date
         '
         Me.BandedGridColumnProto2Date.AppearanceCell.Options.UseTextOptions = True
@@ -405,6 +517,27 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumnProto2Date.Visible = True
         Me.BandedGridColumnProto2Date.Width = 123
         '
+        'BandedGridColumnProto2Note
+        '
+        Me.BandedGridColumnProto2Note.Caption = "Note"
+        Me.BandedGridColumnProto2Note.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.BandedGridColumnProto2Note.FieldName = "note_stage4"
+        Me.BandedGridColumnProto2Note.Name = "BandedGridColumnProto2Note"
+        Me.BandedGridColumnProto2Note.Visible = True
+        '
+        'GBCopyProto2
+        '
+        Me.GBCopyProto2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GBCopyProto2.AppearanceHeader.Options.UseFont = True
+        Me.GBCopyProto2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBCopyProto2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBCopyProto2.Caption = "Copy Proto Sample Tahap 2"
+        Me.GBCopyProto2.Columns.Add(Me.BandedGridColumnCopyProto2Date)
+        Me.GBCopyProto2.Columns.Add(Me.BandedGridColumnCopyProto2Note)
+        Me.GBCopyProto2.Name = "GBCopyProto2"
+        Me.GBCopyProto2.VisibleIndex = 6
+        Me.GBCopyProto2.Width = 246
+        '
         'BandedGridColumnCopyProto2Date
         '
         Me.BandedGridColumnCopyProto2Date.AppearanceCell.Options.UseTextOptions = True
@@ -418,6 +551,14 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumnCopyProto2Date.Name = "BandedGridColumnCopyProto2Date"
         Me.BandedGridColumnCopyProto2Date.Visible = True
         Me.BandedGridColumnCopyProto2Date.Width = 171
+        '
+        'BandedGridColumnCopyProto2Note
+        '
+        Me.BandedGridColumnCopyProto2Note.Caption = "Note"
+        Me.BandedGridColumnCopyProto2Note.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.BandedGridColumnCopyProto2Note.FieldName = "note_stage5"
+        Me.BandedGridColumnCopyProto2Note.Name = "BandedGridColumnCopyProto2Note"
+        Me.BandedGridColumnCopyProto2Note.Visible = True
         '
         'RepositoryItemCheckEdit1
         '
@@ -456,10 +597,6 @@ Partial Class FormSampleDevelopment
         Me.RepositoryItemCheckEdit2.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit2.ValueUnchecked = "No"
         '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
-        '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
@@ -473,143 +610,6 @@ Partial Class FormSampleDevelopment
         '
         Me.GridView2.GridControl = Me.GCDesign
         Me.GridView2.Name = "GridView2"
-        '
-        'BandedGridColumnPendukungNote
-        '
-        Me.BandedGridColumnPendukungNote.Caption = "Note"
-        Me.BandedGridColumnPendukungNote.ColumnEdit = Me.RepositoryItemMemoEdit4
-        Me.BandedGridColumnPendukungNote.FieldName = "note_stage1"
-        Me.BandedGridColumnPendukungNote.Name = "BandedGridColumnPendukungNote"
-        Me.BandedGridColumnPendukungNote.Visible = True
-        '
-        'BandedGridColumnStrikeoffNote
-        '
-        Me.BandedGridColumnStrikeoffNote.Caption = "Note"
-        Me.BandedGridColumnStrikeoffNote.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.BandedGridColumnStrikeoffNote.FieldName = "note_stage2"
-        Me.BandedGridColumnStrikeoffNote.Name = "BandedGridColumnStrikeoffNote"
-        Me.BandedGridColumnStrikeoffNote.Visible = True
-        '
-        'BandedGridColumnProto1Note
-        '
-        Me.BandedGridColumnProto1Note.Caption = "Note"
-        Me.BandedGridColumnProto1Note.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.BandedGridColumnProto1Note.FieldName = "note_stage3"
-        Me.BandedGridColumnProto1Note.Name = "BandedGridColumnProto1Note"
-        Me.BandedGridColumnProto1Note.Visible = True
-        '
-        'BandedGridColumnProto2Note
-        '
-        Me.BandedGridColumnProto2Note.Caption = "Note"
-        Me.BandedGridColumnProto2Note.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.BandedGridColumnProto2Note.FieldName = "note_stage4"
-        Me.BandedGridColumnProto2Note.Name = "BandedGridColumnProto2Note"
-        Me.BandedGridColumnProto2Note.Visible = True
-        '
-        'BandedGridColumnCopyProto2Note
-        '
-        Me.BandedGridColumnCopyProto2Note.Caption = "Note"
-        Me.BandedGridColumnCopyProto2Note.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.BandedGridColumnCopyProto2Note.FieldName = "note_stage5"
-        Me.BandedGridColumnCopyProto2Note.Name = "BandedGridColumnCopyProto2Note"
-        Me.BandedGridColumnCopyProto2Note.Visible = True
-        '
-        'GBDesign
-        '
-        Me.GBDesign.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBDesign.AppearanceHeader.Options.UseFont = True
-        Me.GBDesign.Caption = "Design"
-        Me.GBDesign.Columns.Add(Me.ColDesignCode)
-        Me.GBDesign.Columns.Add(Me.ColDisplayName)
-        Me.GBDesign.Name = "GBDesign"
-        Me.GBDesign.VisibleIndex = 0
-        Me.GBDesign.Width = 217
-        '
-        'GridBand1
-        '
-        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridBand1.AppearanceHeader.Options.UseFont = True
-        Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.ColID)
-        Me.GridBand1.Columns.Add(Me.ColSampleSeason)
-        Me.GridBand1.Columns.Add(Me.GridColumn7)
-        Me.GridBand1.Columns.Add(Me.GridColumnCodeImport)
-        Me.GridBand1.Columns.Add(Me.GridColumnFabrication)
-        Me.GridBand1.Columns.Add(Me.GridColumnDetailDesc)
-        Me.GridBand1.Columns.Add(Me.GridColumnStatusOrder)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn6)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 670
-        '
-        'GBPendukung
-        '
-        Me.GBPendukung.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBPendukung.AppearanceHeader.Options.UseFont = True
-        Me.GBPendukung.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBPendukung.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBPendukung.Caption = "Material Pendukung Proto Sample"
-        Me.GBPendukung.Columns.Add(Me.BandedGridColumnPendukungDate)
-        Me.GBPendukung.Columns.Add(Me.BandedGridColumnPendukungNote)
-        Me.GBPendukung.Name = "GBPendukung"
-        Me.GBPendukung.VisibleIndex = 2
-        Me.GBPendukung.Width = 289
-        '
-        'GBStrikeOff
-        '
-        Me.GBStrikeOff.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBStrikeOff.AppearanceHeader.Options.UseFont = True
-        Me.GBStrikeOff.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBStrikeOff.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBStrikeOff.Caption = "Strike Off"
-        Me.GBStrikeOff.Columns.Add(Me.BandedGridColumnStrikeoffDate)
-        Me.GBStrikeOff.Columns.Add(Me.BandedGridColumnStrikeoffNote)
-        Me.GBStrikeOff.Name = "GBStrikeOff"
-        Me.GBStrikeOff.VisibleIndex = 3
-        Me.GBStrikeOff.Width = 150
-        '
-        'GBProto1
-        '
-        Me.GBProto1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBProto1.AppearanceHeader.Options.UseFont = True
-        Me.GBProto1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBProto1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBProto1.Caption = "Proto Sample Tahap 1"
-        Me.GBProto1.Columns.Add(Me.BandedGridColumnProto1Date)
-        Me.GBProto1.Columns.Add(Me.BandedGridColumnProto1Note)
-        Me.GBProto1.Name = "GBProto1"
-        Me.GBProto1.VisibleIndex = 4
-        Me.GBProto1.Width = 218
-        '
-        'GBProto2
-        '
-        Me.GBProto2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBProto2.AppearanceHeader.Options.UseFont = True
-        Me.GBProto2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBProto2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBProto2.Caption = "Proto Sample Tahap 2"
-        Me.GBProto2.Columns.Add(Me.BandedGridColumnProto2Date)
-        Me.GBProto2.Columns.Add(Me.BandedGridColumnProto2Note)
-        Me.GBProto2.Name = "GBProto2"
-        Me.GBProto2.VisibleIndex = 5
-        Me.GBProto2.Width = 198
-        '
-        'GBCopyProto2
-        '
-        Me.GBCopyProto2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBCopyProto2.AppearanceHeader.Options.UseFont = True
-        Me.GBCopyProto2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBCopyProto2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBCopyProto2.Caption = "Copy Proto Sample Tahap 2"
-        Me.GBCopyProto2.Columns.Add(Me.BandedGridColumnCopyProto2Date)
-        Me.GBCopyProto2.Columns.Add(Me.BandedGridColumnCopyProto2Note)
-        Me.GBCopyProto2.Name = "GBCopyProto2"
-        Me.GBCopyProto2.VisibleIndex = 6
-        Me.GBCopyProto2.Width = 246
-        '
-        'RepositoryItemMemoEdit4
-        '
-        Me.RepositoryItemMemoEdit4.Name = "RepositoryItemMemoEdit4"
         '
         'FormSampleDevelopment
         '
@@ -639,15 +639,15 @@ Partial Class FormSampleDevelopment
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
