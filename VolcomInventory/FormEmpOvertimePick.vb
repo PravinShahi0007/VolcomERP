@@ -1,5 +1,10 @@
 ﻿Public Class FormEmpOvertimePick
     Public is_hrd As String = "-1"
+    Public overtime_date As DateTime = Now
+    Public overtime_start_time As DateTime = New DateTime(Now.Year, Now.Month, Now.Day, 8, 30, 0)
+    Public overtime_end_time As DateTime = New DateTime(Now.Year, Now.Month, Now.Day, 17, 30, 0)
+    Public overtime_break As Decimal = 0.0
+    Public id_payroll As String = "-1"
 
     Private Sub FormEmpOvertimePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -8,33 +13,45 @@
             Text = "Overtime Management Pick"
         End If
 
-        Dim notIncluded As String = ""
+        viewSearchLookupQuery(SLUEPayrollPeriod, "SELECT id_payroll, DATE_FORMAT(periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(periode_end, '%d %M %Y') AS periode_end, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY periode_end DESC", "id_payroll", "periode", "id_payroll")
 
-        For i = 0 To FormEmpOvertimeDet.GVEmployee.RowCount - 1
-            If FormEmpOvertimeDet.GVEmployee.IsValidRowHandle(i) Then
-                notIncluded += FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "id_employee") + ", "
-            End If
-        Next
+        'load
+        DEOvertimeDate.EditValue = overtime_date
+        TEOvertimeStart.EditValue = overtime_start_time
+        TEOvertimeEnd.EditValue = overtime_end_time
+        TEOvertimeBreak.EditValue = overtime_break
+        SLUEPayrollPeriod.EditValue = id_payroll
 
         Dim whereHrd As String = If(is_hrd = "-1", "AND e.id_departement = " + id_departement_user + "", "")
 
-        If Not notIncluded = "" Then
-            notIncluded = notIncluded.Substring(0, notIncluded.Length - 2)
+        Dim whereNotInclude As String = ""
 
-            notIncluded = "AND e.id_employee NOT IN (" + notIncluded + ")"
+        For i = 0 To FormEmpOvertimeDet.GVEmployee.RowCount - 1
+            If FormEmpOvertimeDet.GVEmployee.IsValidRowHandle(i) Then
+                Dim date_1 As String = Date.Parse(FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "date").ToString).ToString("yyyy-MM-dd")
+                Dim date_2 As String = Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("yyyy-MM-dd")
+
+                If date_2 = date_1 Then
+                    whereNotInclude += FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", "
+                End If
+            End If
+        Next
+
+        If Not whereNotInclude = "" Then
+            whereNotInclude = "AND e.id_employee NOT IN (" + whereNotInclude.Substring(0, whereNotInclude.Length - 2) + ")"
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, ll.employee_level, e.id_employee_active, la.employee_active, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no') AS only_dp
+            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no') AS only_dp
             FROM tb_m_employee AS e 
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
-            LEFT JOIN tb_lookup_employee_level AS ll ON e.id_employee_level = ll.id_employee_level
+            LEFT JOIN tb_lookup_employee_status AS st ON e.id_employee_status = st.id_employee_status
             LEFT JOIN tb_lookup_employee_active AS la ON e.id_employee_active = la.id_employee_active
             LEFT JOIN (
                 SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
                 FROM tb_m_employee
             ) AS salary ON e.id_employee = salary.id_employee
-            WHERE 1 " + whereHrd + " " + notIncluded + "
+            WHERE 1 " + whereHrd + " " + whereNotInclude + "
             ORDER BY e.id_employee_level ASC, e.employee_code ASC
         "
 
@@ -81,19 +98,25 @@
                               GVList.GetRowCellValue(i, "only_dp"),
                               GVList.GetRowCellValue(i, "id_departement"),
                               GVList.GetRowCellValue(i, "departement"),
+                              Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("dd MMM yyyy"),
                               GVList.GetRowCellValue(i, "is_store"),
                               GVList.GetRowCellValue(i, "employee_code"),
                               GVList.GetRowCellValue(i, "employee_name"),
                               GVList.GetRowCellValue(i, "employee_position"),
-                              GVList.GetRowCellValue(i, "id_employee_level"),
-                              GVList.GetRowCellValue(i, "employee_level"),
+                              GVList.GetRowCellValue(i, "id_employee_status"),
+                              GVList.GetRowCellValue(i, "employee_status"),
                               conversion_type,
-                              FormEmpOvertimeDet.TEOvertimeStart.EditValue,
-                              FormEmpOvertimeDet.TEOvertimeEnd.EditValue,
-                              0.0,
-                              0.0,
-                              0.0,
                               "",
+                              SLUEPayrollPeriod.EditValue.ToString,
+                              TEOvertimeStart.EditValue,
+                              TEOvertimeEnd.EditValue,
+                              TEOvertimeBreak.EditValue,
+                              TETotalHours.EditValue,
+                              Date.Parse(Now.ToString).ToString("dd MMM yyyy"),
+                              Date.Parse(Now.ToString).ToString("dd MMM yyyy"),
+                              0.0,
+                              0.0,
+                              0.0,
                               0.0,
                               "no")
             End If
@@ -110,5 +133,50 @@
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
         Close()
+    End Sub
+
+    Sub calculateTotalHours()
+        Dim ot_start As DateTime = TEOvertimeStart.EditValue
+        Dim ot_end As DateTime = TEOvertimeEnd.EditValue
+
+        Dim diff As TimeSpan = ot_end.Subtract(ot_start)
+
+        Dim total As Decimal = 0.0
+
+        total = Math.Round(Math.Round(diff.TotalHours, 1) - TEOvertimeBreak.EditValue, 1)
+
+        TETotalHours.EditValue = total
+    End Sub
+
+    Private Sub DEOvertimeDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEOvertimeDate.EditValueChanged
+        'time
+        Dim ot_date As DateTime = DEOvertimeDate.EditValue
+
+        Dim ot_start As DateTime = TEOvertimeStart.EditValue
+        Dim ot_end As DateTime = TEOvertimeEnd.EditValue
+
+        Dim plus_days As Integer = ot_end.Subtract(ot_start).TotalDays
+
+        'disable time
+        TEOvertimeStart.Properties.MinValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 0, 0, 0)
+        TEOvertimeStart.Properties.MaxValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 23, 59, 59)
+
+        TEOvertimeEnd.Properties.MinValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 0, 0, 0)
+
+        'change time date
+        TEOvertimeStart.EditValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, ot_start.Hour, ot_start.Minute, ot_start.Second)
+        TEOvertimeEnd.EditValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, ot_end.Hour, ot_end.Minute, ot_end.Second).AddDays(plus_days)
+    End Sub
+
+    Private Sub TEOvertimeStart_EditValueChanged(sender As Object, e As EventArgs) Handles TEOvertimeStart.EditValueChanged
+        calculateTotalHours()
+    End Sub
+
+    Private Sub TEOvertimeEnd_EditValueChanged(sender As Object, e As EventArgs) Handles TEOvertimeEnd.EditValueChanged
+        calculateTotalHours()
+    End Sub
+
+    Private Sub TEOvertimeBreak_EditValueChanged(sender As Object, e As EventArgs) Handles TEOvertimeBreak.EditValueChanged
+        calculateTotalHours()
     End Sub
 End Class
