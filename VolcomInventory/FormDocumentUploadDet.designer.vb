@@ -19,13 +19,14 @@ Partial Class FormDocumentUploadDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BUpload = New DevExpress.XtraEditors.SimpleButton
-        Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.TEFileName = New DevExpress.XtraEditors.TextEdit
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUpload = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEFileName = New DevExpress.XtraEditors.TextEdit()
+        Me.BUploadenc = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -35,6 +36,7 @@ Partial Class FormDocumentUploadDet
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BCancel)
+        Me.PanelControl2.Controls.Add(Me.BUploadenc)
         Me.PanelControl2.Controls.Add(Me.BUpload)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 82)
@@ -45,7 +47,7 @@ Partial Class FormDocumentUploadDet
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.Location = New System.Drawing.Point(406, 2)
+        Me.BCancel.Location = New System.Drawing.Point(330, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(75, 28)
         Me.BCancel.TabIndex = 4
@@ -58,13 +60,14 @@ Partial Class FormDocumentUploadDet
         Me.BUpload.Name = "BUpload"
         Me.BUpload.Size = New System.Drawing.Size(75, 28)
         Me.BUpload.TabIndex = 3
-        Me.BUpload.Text = "Upload"
+        Me.BUpload.Text = "Upload old"
+        Me.BUpload.Visible = False
         '
         'BUploadFile
         '
         Me.BUploadFile.Location = New System.Drawing.Point(101, 19)
         Me.BUploadFile.Name = "BUploadFile"
-        Me.BUploadFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.BUploadFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.BUploadFile.Properties.ReadOnly = True
         Me.BUploadFile.Size = New System.Drawing.Size(445, 20)
         Me.BUploadFile.TabIndex = 3
@@ -91,6 +94,15 @@ Partial Class FormDocumentUploadDet
         Me.TEFileName.Name = "TEFileName"
         Me.TEFileName.Size = New System.Drawing.Size(445, 20)
         Me.TEFileName.TabIndex = 6
+        '
+        'BUploadenc
+        '
+        Me.BUploadenc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BUploadenc.Location = New System.Drawing.Point(405, 2)
+        Me.BUploadenc.Name = "BUploadenc"
+        Me.BUploadenc.Size = New System.Drawing.Size(76, 28)
+        Me.BUploadenc.TabIndex = 5
+        Me.BUploadenc.Text = "Upload"
         '
         'FormDocumentUploadDet
         '
@@ -124,4 +136,5 @@ Partial Class FormDocumentUploadDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEFileName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BUploadenc As DevExpress.XtraEditors.SimpleButton
 End Class

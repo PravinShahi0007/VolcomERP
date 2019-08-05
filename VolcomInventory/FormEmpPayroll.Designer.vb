@@ -133,6 +133,7 @@ Partial Class FormEmpPayroll
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetting = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
@@ -987,6 +988,7 @@ Partial Class FormEmpPayroll
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnAttachment)
         Me.PanelControl2.Controls.Add(Me.BReport)
         Me.PanelControl2.Controls.Add(Me.SBSendSlip)
         Me.PanelControl2.Controls.Add(Me.BPrintSlip)
@@ -1008,7 +1010,7 @@ Partial Class FormEmpPayroll
         Me.BReport.DropDownControl = Me.PopupMenu1
         Me.BReport.ImageIndex = 17
         Me.BReport.ImageList = Me.LargeImageCollection
-        Me.BReport.Location = New System.Drawing.Point(413, 2)
+        Me.BReport.Location = New System.Drawing.Point(419, 2)
         Me.BReport.Name = "BReport"
         Me.BReport.Size = New System.Drawing.Size(111, 35)
         Me.BReport.TabIndex = 108
@@ -1175,7 +1177,7 @@ Partial Class FormEmpPayroll
         Me.SBSendSlip.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSendSlip.ImageIndex = 19
         Me.SBSendSlip.ImageList = Me.LargeImageCollection
-        Me.SBSendSlip.Location = New System.Drawing.Point(524, 2)
+        Me.SBSendSlip.Location = New System.Drawing.Point(530, 2)
         Me.SBSendSlip.Name = "SBSendSlip"
         Me.SBSendSlip.Size = New System.Drawing.Size(103, 35)
         Me.SBSendSlip.TabIndex = 112
@@ -1186,9 +1188,9 @@ Partial Class FormEmpPayroll
         Me.BPrintSlip.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrintSlip.ImageIndex = 6
         Me.BPrintSlip.ImageList = Me.LargeImageCollection
-        Me.BPrintSlip.Location = New System.Drawing.Point(627, 2)
+        Me.BPrintSlip.Location = New System.Drawing.Point(633, 2)
         Me.BPrintSlip.Name = "BPrintSlip"
-        Me.BPrintSlip.Size = New System.Drawing.Size(103, 35)
+        Me.BPrintSlip.Size = New System.Drawing.Size(97, 35)
         Me.BPrintSlip.TabIndex = 106
         Me.BPrintSlip.Text = "Print Slip"
         '
@@ -1357,6 +1359,18 @@ Partial Class FormEmpPayroll
         Me.BSetting.TabIndex = 0
         Me.BSetting.Text = "Setting"
         '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.LargeImageCollection
+        Me.BtnAttachment.Location = New System.Drawing.Point(316, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 35)
+        Me.BtnAttachment.TabIndex = 113
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
+        '
         'FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1513,4 +1527,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents GBExtraNote As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnDepartementSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
 End Class
