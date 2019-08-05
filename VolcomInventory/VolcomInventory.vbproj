@@ -991,6 +991,12 @@
     <Compile Include="FormEmpOvertime.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpOvertimeDate.Designer.vb">
+      <DependentUpon>FormEmpOvertimeDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpOvertimeDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpOvertimeDet.Designer.vb">
       <DependentUpon>FormEmpOvertimeDet.vb</DependentUpon>
     </Compile>
@@ -7417,6 +7423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpOvertime.resx">
       <DependentUpon>FormEmpOvertime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpOvertimeDate.resx">
+      <DependentUpon>FormEmpOvertimeDate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpOvertimeDet.resx">
       <DependentUpon>FormEmpOvertimeDet.vb</DependentUpon>
