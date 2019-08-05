@@ -96,7 +96,7 @@
                 BMark.Enabled = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = True
                 BandedGridColumnCash.OptionsColumn.AllowEdit = True
-                BReport.Enabled = False
+                'BReport.Enabled = False
                 BPrintSlip.Enabled = False
                 SBSendSlip.Enabled = False
                 BPrint.Enabled = False
@@ -110,20 +110,18 @@
                 BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
-                BReport.Enabled = False
+                'BReport.Enabled = True
                 BPrintSlip.Enabled = False
                 SBSendSlip.Enabled = False
-                BPrint.Enabled = False
+                BPrint.Enabled = True
                 BReset.Visible = True
                 BSubmit.Visible = False
                 CMDelEmp.Enabled = False
             End If
 
             If id_report_status = "6" Then
-                BReport.Enabled = True
                 BPrintSlip.Enabled = True
                 SBSendSlip.Enabled = True
-                BPrint.Enabled = True
                 BReset.Visible = False
             End If
 
@@ -132,14 +130,12 @@
                 GBWorkingDays.Visible = True
                 GBSalary.Visible = True
                 GBBonusAdjustment.Visible = True
-                GBDeduction.Visible = True
 
                 GBDW.Visible = False
             ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
                 GBWorkingDays.Visible = False
                 GBSalary.Visible = False
                 GBBonusAdjustment.Visible = False
-                GBDeduction.Visible = False
 
                 GBDW.Visible = True
             End If
@@ -147,12 +143,8 @@
             'button
             If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
                 BBonusAdjustment.Visible = True
-                BDeduction.Visible = True
-                BSetting.Visible = True
             Else
                 BBonusAdjustment.Visible = False
-                BDeduction.Visible = False
-                BSetting.Visible = False
             End If
         End If
 
@@ -176,7 +168,7 @@
     Sub calculate_grandtotal_dw()
         For i = 0 To GVPayroll.RowCount - 1
             If GVPayroll.IsValidRowHandle(i) Then
-                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages")
+                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages") - GVPayroll.GetRowCellValue(i, "total_deduction")
 
                 GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
             End If
@@ -529,7 +521,13 @@
 
     Sub adjustment_deduction_column(type As String)
         'column
-        Dim query_adj_c As String = "SELECT salary_" + type + "_cat FROM tb_lookup_salary_" + type + "_cat"
+        Dim where_adj_c As String = ""
+
+        If Not GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+            where_adj_c = "WHERE id_salary_" + type + "_cat IN (SELECT id_salary_" + type + "_cat FROM tb_lookup_salary_" + type + " WHERE use_dw = 1)"
+        End If
+
+        Dim query_adj_c As String = "SELECT salary_" + type + "_cat FROM tb_lookup_salary_" + type + "_cat" + " " + where_adj_c
 
         Dim data_adj_c As DataTable = execute_query(query_adj_c, -1, True, "", "", "", "")
 
@@ -744,6 +742,45 @@
                 End If
                 GVPayroll.ActiveFilterString = ""
             End If
+        End If
+    End Sub
+
+    Private Sub GVPayroll_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVPayroll.CustomDrawRowFooter
+        e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
+
+        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
+
+        format.Alignment = StringAlignment.Near
+
+        If GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("Group") Then
+            e.Graphics.DrawString("Grand Total: " + GVPayroll.GetGroupRowValue(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+        Else
+            If GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("SOGO") Then
+                e.Graphics.DrawString("Total " + GVPayroll.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+            Else
+                If Not GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("Sub") Then
+                    e.Graphics.DrawString("Total " + GVPayroll.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+                End If
+            End If
+        End If
+
+        e.Handled = True
+    End Sub
+
+    Private Sub GVPayroll_CustomDrawRowFooterCell(sender As Object, e As DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventArgs) Handles GVPayroll.CustomDrawRowFooterCell
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If view.GetGroupRowDisplayText(e.RowHandle).Contains("Sub Departement") And Not view.GetGroupRowValue(e.RowHandle).ToString.Contains("SOGO") Then
+            e.Appearance.ForeColor = Color.White
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub GVPayroll_CustomDrawGroupRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVPayroll.CustomDrawGroupRow
+        Dim info As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo = TryCast(e.Info, DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo)
+
+        If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
+            info.GroupText = " "
         End If
     End Sub
 End Class

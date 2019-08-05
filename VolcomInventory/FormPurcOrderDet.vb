@@ -153,6 +153,9 @@ WHERE po.id_purc_order='" & id_po & "'"
                 LEOrderTerm.Enabled = False
                 LEShipVia.Enabled = False
                 '
+                TEVATPercent.Enabled = False
+                DEDueDate.Enabled = False
+                '
                 Dim rmt As String = "-1"
                 If SLEPurcType.EditValue.ToString = "1" Then
                     rmt = "139"
@@ -168,10 +171,12 @@ WHERE po.id_purc_order='" & id_po & "'"
                     BtnSave.Visible = True
                 End If
                 GridColumnBudgetStatus.Visible = False
+                PCPrice.Visible = False
             Else 'not yet submitted
                 BMark.Visible = False
                 BSubmit.Visible = True
                 GridColumnBudgetStatus.Visible = True
+                PCPrice.Visible = True
             End If
         End If
     End Sub
@@ -748,7 +753,6 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'"
             End If
-
             '
             execute_non_query(query_trans, True, "", "", "", "")
             submit_who_prepared(rmt, id_po, id_user)

@@ -67,6 +67,7 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumndesign_fabrication_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandDesignDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndesign_detail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BandedGridColumndesign_detail_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandSource = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnsource = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -110,6 +111,7 @@ Partial Class FormFGDesignListChanges
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCType, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -377,7 +379,7 @@ Partial Class FormFGDesignListChanges
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint, Me.RepoLinkPD})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint, Me.RepoLinkPD, Me.RepositoryItemMemoEdit1})
         Me.GCData.Size = New System.Drawing.Size(1001, 338)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -403,6 +405,7 @@ Partial Class FormFGDesignListChanges
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVData.OptionsView.RowAutoHeight = True
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 17
@@ -621,16 +624,24 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumndesign_detail.AppearanceCell.Options.UseTextOptions = True
         Me.BandedGridColumndesign_detail.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumndesign_detail.Caption = "From"
+        Me.BandedGridColumndesign_detail.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.BandedGridColumndesign_detail.FieldName = "design_detail"
         Me.BandedGridColumndesign_detail.Name = "BandedGridColumndesign_detail"
         Me.BandedGridColumndesign_detail.OptionsColumn.AllowEdit = False
         Me.BandedGridColumndesign_detail.Visible = True
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'BandedGridColumndesign_detail_new
         '
         Me.BandedGridColumndesign_detail_new.AppearanceCell.Options.UseTextOptions = True
         Me.BandedGridColumndesign_detail_new.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumndesign_detail_new.Caption = "To"
+        Me.BandedGridColumndesign_detail_new.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.BandedGridColumndesign_detail_new.FieldName = "design_detail_new"
         Me.BandedGridColumndesign_detail_new.Name = "BandedGridColumndesign_detail_new"
         Me.BandedGridColumndesign_detail_new.OptionsColumn.AllowEdit = False
@@ -898,6 +909,7 @@ Partial Class FormFGDesignListChanges
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCType, System.ComponentModel.ISupportInitialize).EndInit()
@@ -979,4 +991,5 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents gridBandSubCat As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandClass As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

@@ -513,7 +513,8 @@ Public Class FormMain
     'Exit Strip
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         NotifyIconVI.Visible = False
-        Application.Exit()
+        Close()
+        'Application.Exit()
     End Sub
     'Dashboard Strip
     Private Sub DashboardToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DashboardToolStripMenuItem.Click
@@ -7557,6 +7558,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print_raw(FormProductionHO.GCList, "")
             ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 1 Then
                 print_raw(FormProductionHO.GCDetail, "")
+            ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 2 Then
+                print_raw(FormProductionHO.GCSummary, "")
             End If
         ElseIf formName = "FormSalesOrderReport" Then
             If FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 0 Then
@@ -11505,9 +11508,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Sub
 
     Private Sub FormMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        'log
-        Dim u As New ClassUser()
-        u.logLogin("2")
+        Dim confirm As DialogResult = XtraMessageBox.Show("Are you sure want to close application?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            'log
+            Dim u As New ClassUser()
+            u.logLogin("2")
+        Else
+            e.Cancel = True
+        End If
     End Sub
 
     Private Sub NBChSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBChSchedule.LinkClicked
@@ -13207,6 +13215,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSetupBudgetOPEX.Show()
             FormSetupBudgetOPEX.WindowState = FormWindowState.Maximized
             FormSetupBudgetOPEX.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSampleDev_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSampleDev.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSampleDevelopment.MdiParent = Me
+            FormSampleDevelopment.Show()
+            FormSampleDevelopment.WindowState = FormWindowState.Maximized
+            FormSampleDevelopment.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

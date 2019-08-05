@@ -20,7 +20,6 @@ Partial Class FormCashAdvance
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,8 +73,11 @@ Partial Class FormCashAdvance
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMMainVendor = New System.Windows.Forms.ToolStripMenuItem()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.DateFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.DateTo = New DevExpress.XtraEditors.DateEdit()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,29 +95,16 @@ Partial Class FormCashAdvance
         CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
+        CType(Me.DateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.SLEStatus)
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
-        Me.PanelControl1.Controls.Add(Me.BPrint)
-        Me.PanelControl1.Controls.Add(Me.SLEType)
-        Me.PanelControl1.Controls.Add(Me.SLEDepartement)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.SLEEmployee)
-        Me.PanelControl1.Controls.Add(Me.LabelControl5)
-        Me.PanelControl1.Controls.Add(Me.BView)
-        Me.PanelControl1.Controls.Add(Me.LabelControl2)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1008, 42)
-        Me.PanelControl1.TabIndex = 3
         '
         'SLEStatus
         '
-        Me.SLEStatus.Location = New System.Drawing.Point(714, 13)
+        Me.SLEStatus.Location = New System.Drawing.Point(559, 33)
         Me.SLEStatus.Name = "SLEStatus"
         Me.SLEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStatus.Properties.View = Me.GridView3
@@ -146,15 +135,15 @@ Partial Class FormCashAdvance
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(641, 16)
+        Me.LabelControl3.Location = New System.Drawing.Point(559, 14)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(71, 13)
         Me.LabelControl3.TabIndex = 8924
-        Me.LabelControl3.Text = "Report Status"
+        Me.LabelControl3.Text = "Report Status:"
         '
         'BPrint
         '
-        Me.BPrint.Location = New System.Drawing.Point(936, 10)
+        Me.BPrint.Location = New System.Drawing.Point(1085, 31)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(60, 23)
         Me.BPrint.TabIndex = 8923
@@ -162,7 +151,7 @@ Partial Class FormCashAdvance
         '
         'SLEType
         '
-        Me.SLEType.Location = New System.Drawing.Point(45, 13)
+        Me.SLEType.Location = New System.Drawing.Point(11, 33)
         Me.SLEType.Name = "SLEType"
         Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEType.Properties.View = Me.GridView2
@@ -193,11 +182,11 @@ Partial Class FormCashAdvance
         '
         'SLEDepartement
         '
-        Me.SLEDepartement.Location = New System.Drawing.Point(256, 13)
+        Me.SLEDepartement.Location = New System.Drawing.Point(147, 33)
         Me.SLEDepartement.Name = "SLEDepartement"
         Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDepartement.Properties.View = Me.GridView1
-        Me.SLEDepartement.Size = New System.Drawing.Size(150, 20)
+        Me.SLEDepartement.Size = New System.Drawing.Size(200, 20)
         Me.SLEDepartement.TabIndex = 8921
         '
         'GridView1
@@ -224,19 +213,19 @@ Partial Class FormCashAdvance
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(187, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(147, 14)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl1.TabIndex = 8920
-        Me.LabelControl1.Text = "Departement"
+        Me.LabelControl1.Text = "Departement:"
         '
         'SLEEmployee
         '
-        Me.SLEEmployee.Location = New System.Drawing.Point(475, 12)
+        Me.SLEEmployee.Location = New System.Drawing.Point(353, 33)
         Me.SLEEmployee.Name = "SLEEmployee"
         Me.SLEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEEmployee.Properties.View = Me.GridView5
-        Me.SLEEmployee.Size = New System.Drawing.Size(150, 20)
+        Me.SLEEmployee.Size = New System.Drawing.Size(200, 20)
         Me.SLEEmployee.TabIndex = 8919
         '
         'GridView5
@@ -263,15 +252,15 @@ Partial Class FormCashAdvance
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(423, 16)
+        Me.LabelControl5.Location = New System.Drawing.Point(353, 14)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl5.TabIndex = 8918
-        Me.LabelControl5.Text = "Employee"
+        Me.LabelControl5.Text = "Employee:"
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(870, 10)
+        Me.BView.Location = New System.Drawing.Point(1019, 31)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 23)
         Me.BView.TabIndex = 8913
@@ -279,20 +268,20 @@ Partial Class FormCashAdvance
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(15, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 14)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl2.TabIndex = 8911
-        Me.LabelControl2.Text = "Type"
+        Me.LabelControl2.Text = "Type:"
         '
         'XTCPO
         '
         Me.XTCPO.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCPO.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCPO.Location = New System.Drawing.Point(0, 42)
+        Me.XTCPO.Location = New System.Drawing.Point(0, 87)
         Me.XTCPO.Name = "XTCPO"
         Me.XTCPO.SelectedTabPage = Me.XTPList
-        Me.XTCPO.Size = New System.Drawing.Size(1008, 687)
+        Me.XTCPO.Size = New System.Drawing.Size(1264, 642)
         Me.XTCPO.TabIndex = 4
         Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList})
         '
@@ -301,7 +290,7 @@ Partial Class FormCashAdvance
         Me.XTPList.Controls.Add(Me.GCListOpen)
         Me.XTPList.Controls.Add(Me.BAccountability)
         Me.XTPList.Name = "XTPList"
-        Me.XTPList.Size = New System.Drawing.Size(1002, 659)
+        Me.XTPList.Size = New System.Drawing.Size(1258, 614)
         Me.XTPList.Text = "List"
         '
         'GCListOpen
@@ -311,18 +300,46 @@ Partial Class FormCashAdvance
         Me.GCListOpen.MainView = Me.GVListOpen
         Me.GCListOpen.Name = "GCListOpen"
         Me.GCListOpen.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCListOpen.Size = New System.Drawing.Size(1002, 627)
+        Me.GCListOpen.Size = New System.Drawing.Size(1258, 582)
         Me.GCListOpen.TabIndex = 20
         Me.GCListOpen.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListOpen})
         '
         'GVListOpen
         '
+        Me.GVListOpen.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVListOpen.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVListOpen.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVListOpen.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVListOpen.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVListOpen.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVListOpen.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVListOpen.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVListOpen.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVListOpen.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVListOpen.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVListOpen.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVListOpen.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVListOpen.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVListOpen.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVListOpen.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVListOpen.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVListOpen.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVListOpen.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVListOpen.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVListOpen.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVListOpen.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVListOpen.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVListOpen.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVListOpen.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVListOpen.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVListOpen.ColumnPanelRowHeight = 32
         Me.GVListOpen.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNumber, Me.GCType, Me.GCCreatedDate, Me.GCCreatedBy, Me.GCNote, Me.GCEmployee, Me.GCDepartement, Me.GCCashInAdvance, Me.GCProposalStatus, Me.GCReportBackDate, Me.GCReportBackDueDate, Me.GCReportBackStatus, Me.GCIdReportStatus})
         Me.GVListOpen.GridControl = Me.GCListOpen
         Me.GVListOpen.Name = "GVListOpen"
         Me.GVListOpen.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVListOpen.OptionsBehavior.Editable = False
         Me.GVListOpen.OptionsView.ColumnAutoWidth = False
+        Me.GVListOpen.OptionsView.RowAutoHeight = True
         Me.GVListOpen.OptionsView.ShowGroupPanel = False
         '
         'GCId
@@ -369,12 +386,15 @@ Partial Class FormCashAdvance
         '
         'GCNote
         '
+        Me.GCNote.AppearanceCell.Options.UseTextOptions = True
+        Me.GCNote.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCNote.Caption = "Purpose"
         Me.GCNote.FieldName = "note"
+        Me.GCNote.MaxWidth = 200
         Me.GCNote.Name = "GCNote"
         Me.GCNote.Visible = True
         Me.GCNote.VisibleIndex = 6
-        Me.GCNote.Width = 35
+        Me.GCNote.Width = 200
         '
         'GCEmployee
         '
@@ -384,7 +404,7 @@ Partial Class FormCashAdvance
         Me.GCEmployee.FieldName = "employee_name"
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.Visible = True
-        Me.GCEmployee.VisibleIndex = 3
+        Me.GCEmployee.VisibleIndex = 4
         Me.GCEmployee.Width = 133
         '
         'GCDepartement
@@ -393,7 +413,7 @@ Partial Class FormCashAdvance
         Me.GCDepartement.FieldName = "departement"
         Me.GCDepartement.Name = "GCDepartement"
         Me.GCDepartement.Visible = True
-        Me.GCDepartement.VisibleIndex = 4
+        Me.GCDepartement.VisibleIndex = 3
         Me.GCDepartement.Width = 133
         '
         'GCCashInAdvance
@@ -407,6 +427,7 @@ Partial Class FormCashAdvance
         Me.GCCashInAdvance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCCashInAdvance.FieldName = "val_ca"
         Me.GCCashInAdvance.Name = "GCCashInAdvance"
+        Me.GCCashInAdvance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_ca", "{0:N2}")})
         Me.GCCashInAdvance.Visible = True
         Me.GCCashInAdvance.VisibleIndex = 5
         Me.GCCashInAdvance.Width = 106
@@ -418,7 +439,7 @@ Partial Class FormCashAdvance
         Me.GCProposalStatus.Name = "GCProposalStatus"
         Me.GCProposalStatus.Visible = True
         Me.GCProposalStatus.VisibleIndex = 7
-        Me.GCProposalStatus.Width = 79
+        Me.GCProposalStatus.Width = 85
         '
         'GCReportBackDate
         '
@@ -440,7 +461,7 @@ Partial Class FormCashAdvance
         Me.GCReportBackDueDate.Name = "GCReportBackDueDate"
         Me.GCReportBackDueDate.Visible = True
         Me.GCReportBackDueDate.VisibleIndex = 9
-        Me.GCReportBackDueDate.Width = 97
+        Me.GCReportBackDueDate.Width = 103
         '
         'GCReportBackStatus
         '
@@ -473,13 +494,13 @@ Partial Class FormCashAdvance
         Me.BAccountability.Appearance.Options.UseFont = True
         Me.BAccountability.Appearance.Options.UseForeColor = True
         Me.BAccountability.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BAccountability.Location = New System.Drawing.Point(0, 627)
+        Me.BAccountability.Location = New System.Drawing.Point(0, 582)
         Me.BAccountability.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BAccountability.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BAccountability.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BAccountability.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BAccountability.Name = "BAccountability"
-        Me.BAccountability.Size = New System.Drawing.Size(1002, 32)
+        Me.BAccountability.Size = New System.Drawing.Size(1258, 32)
         Me.BAccountability.TabIndex = 19
         Me.BAccountability.Text = "Proceed to Accountability Report"
         '
@@ -498,14 +519,14 @@ Partial Class FormCashAdvance
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1008, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1264, 0)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1264, 0)
         '
         'barDockControlLeft
         '
@@ -518,7 +539,7 @@ Partial Class FormCashAdvance
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1264, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
         '
         'BarButtonItem1
@@ -556,13 +577,85 @@ Partial Class FormCashAdvance
         Me.SMMainVendor.Size = New System.Drawing.Size(174, 22)
         Me.SMMainVendor.Text = "Set as Main Vendor"
         '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.DateTo)
+        Me.XtraScrollableControl1.Controls.Add(Me.DateFrom)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl6)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEStatus)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEType)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl3)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl2)
+        Me.XtraScrollableControl1.Controls.Add(Me.BPrint)
+        Me.XtraScrollableControl1.Controls.Add(Me.BView)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl5)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEDepartement)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEEmployee)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl1)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1264, 87)
+        Me.XtraScrollableControl1.TabIndex = 8926
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(705, 14)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl4.TabIndex = 8926
+        Me.LabelControl4.Text = "Reconcile Date:"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(851, 36)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl6.TabIndex = 8930
+        Me.LabelControl6.Text = "-"
+        '
+        'DateFrom
+        '
+        Me.DateFrom.EditValue = Nothing
+        Me.DateFrom.Location = New System.Drawing.Point(705, 33)
+        Me.DateFrom.MenuManager = Me.BMDD
+        Me.DateFrom.Name = "DateFrom"
+        Me.DateFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DateFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DateFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DateFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DateFrom.Size = New System.Drawing.Size(140, 20)
+        Me.DateFrom.TabIndex = 8931
+        '
+        'DateTo
+        '
+        Me.DateTo.EditValue = Nothing
+        Me.DateTo.Location = New System.Drawing.Point(861, 33)
+        Me.DateTo.MenuManager = Me.BMDD
+        Me.DateTo.Name = "DateTo"
+        Me.DateTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateTo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DateTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateTo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DateTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateTo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DateTo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DateTo.Size = New System.Drawing.Size(140, 20)
+        Me.DateTo.TabIndex = 8932
+        '
         'FormCashAdvance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.ClientSize = New System.Drawing.Size(1264, 729)
         Me.Controls.Add(Me.XTCPO)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.XtraScrollableControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
@@ -573,9 +666,6 @@ Partial Class FormCashAdvance
         Me.Name = "FormCashAdvance"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Cash Advance"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -593,12 +683,16 @@ Partial Class FormCashAdvance
         CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl1.PerformLayout()
+        CType(Me.DateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEEmployee As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
@@ -652,4 +746,9 @@ Partial Class FormCashAdvance
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCIdReportStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DateTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateFrom As DevExpress.XtraEditors.DateEdit
 End Class

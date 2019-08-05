@@ -26,9 +26,9 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAllDepartements = New DevExpress.XtraGrid.GridControl()
         Me.GVAllDepartements = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCALocation = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCANo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCADepartement = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCAEqual = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCACompanyContribution1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCACompanyContribution2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAEmployeeContribution1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,6 +37,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeKjp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -44,17 +45,17 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCJenisKelamin = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeDOB = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCKepProg = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCEmployeeSalaryBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCCompanyContribution1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeContribution1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCCompanyContribution2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeContribution2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCTotalContribution = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCKeterangan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCTotalContribution = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCLocation = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,14 +117,25 @@ Partial Class FormEmpPayrollReportBPJSTK
         '
         'GVAllDepartements
         '
-        Me.GVAllDepartements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCANo, Me.GCADepartement, Me.GCAEqual, Me.GCACompanyContribution1, Me.GCACompanyContribution2, Me.GCAEmployeeContribution1, Me.GCAEmployeeContribution2, Me.GCATotalContribution})
+        Me.GVAllDepartements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCALocation, Me.GCANo, Me.GCADepartement, Me.GCACompanyContribution1, Me.GCACompanyContribution2, Me.GCAEmployeeContribution1, Me.GCAEmployeeContribution2, Me.GCATotalContribution})
         Me.GVAllDepartements.GridControl = Me.GCAllDepartements
+        Me.GVAllDepartements.GroupCount = 1
+        Me.GVAllDepartements.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", Me.GCATotalContribution, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_1", Me.GCACompanyContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_2", Me.GCACompanyContribution2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_1", Me.GCAEmployeeContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_2", Me.GCAEmployeeContribution2, "{0:N0}")})
         Me.GVAllDepartements.Name = "GVAllDepartements"
         Me.GVAllDepartements.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVAllDepartements.OptionsBehavior.Editable = False
         Me.GVAllDepartements.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVAllDepartements.OptionsView.ShowFooter = True
         Me.GVAllDepartements.OptionsView.ShowGroupPanel = False
+        Me.GVAllDepartements.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCALocation, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GCALocation
+        '
+        Me.GCALocation.Caption = "Location"
+        Me.GCALocation.FieldName = "bpjs_tk_location"
+        Me.GCALocation.Name = "GCALocation"
+        Me.GCALocation.Visible = True
+        Me.GCALocation.VisibleIndex = 0
         '
         'GCANo
         '
@@ -144,16 +156,6 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCADepartement.VisibleIndex = 1
         Me.GCADepartement.Width = 204
         '
-        'GCAEqual
-        '
-        Me.GCAEqual.Caption = " "
-        Me.GCAEqual.FieldName = "equal"
-        Me.GCAEqual.Name = "GCAEqual"
-        Me.GCAEqual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "equal", "=")})
-        Me.GCAEqual.Visible = True
-        Me.GCAEqual.VisibleIndex = 2
-        Me.GCAEqual.Width = 204
-        '
         'GCACompanyContribution1
         '
         Me.GCACompanyContribution1.Caption = "Dibayar Oleh Perusahaan (JHT, JKK, JKM)"
@@ -163,7 +165,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCACompanyContribution1.Name = "GCACompanyContribution1"
         Me.GCACompanyContribution1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_1", "{0:N0}")})
         Me.GCACompanyContribution1.Visible = True
-        Me.GCACompanyContribution1.VisibleIndex = 3
+        Me.GCACompanyContribution1.VisibleIndex = 2
         Me.GCACompanyContribution1.Width = 246
         '
         'GCACompanyContribution2
@@ -175,7 +177,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCACompanyContribution2.Name = "GCACompanyContribution2"
         Me.GCACompanyContribution2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_2", "{0:N0}")})
         Me.GCACompanyContribution2.Visible = True
-        Me.GCACompanyContribution2.VisibleIndex = 4
+        Me.GCACompanyContribution2.VisibleIndex = 3
         Me.GCACompanyContribution2.Width = 193
         '
         'GCAEmployeeContribution1
@@ -187,7 +189,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCAEmployeeContribution1.Name = "GCAEmployeeContribution1"
         Me.GCAEmployeeContribution1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_1", "{0:N0}")})
         Me.GCAEmployeeContribution1.Visible = True
-        Me.GCAEmployeeContribution1.VisibleIndex = 5
+        Me.GCAEmployeeContribution1.VisibleIndex = 4
         Me.GCAEmployeeContribution1.Width = 193
         '
         'GCAEmployeeContribution2
@@ -199,7 +201,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCAEmployeeContribution2.Name = "GCAEmployeeContribution2"
         Me.GCAEmployeeContribution2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_2", "{0:N0}")})
         Me.GCAEmployeeContribution2.Visible = True
-        Me.GCAEmployeeContribution2.VisibleIndex = 6
+        Me.GCAEmployeeContribution2.VisibleIndex = 5
         Me.GCAEmployeeContribution2.Width = 195
         '
         'GCATotalContribution
@@ -214,7 +216,7 @@ Partial Class FormEmpPayrollReportBPJSTK
     " [employee_contribution_2]"
         Me.GCATotalContribution.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GCATotalContribution.Visible = True
-        Me.GCATotalContribution.VisibleIndex = 7
+        Me.GCATotalContribution.VisibleIndex = 6
         Me.GCATotalContribution.Width = 193
         '
         'XtraTabPage2
@@ -237,9 +239,9 @@ Partial Class FormEmpPayrollReportBPJSTK
         'GVEmployee
         '
         Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4})
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCNo, Me.GCEmployeeKjp, Me.GCEmployeeName, Me.GCJenisKelamin, Me.GCEmployeeDOB, Me.GCKepProg, Me.GCEmployeeSalary, Me.GCCompanyContribution1, Me.GCCompanyContribution2, Me.GCEmployeeContribution1, Me.GCEmployeeContribution2, Me.GCTotalContribution, Me.GCKeterangan})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCLocation, Me.GCDepartement, Me.GCNo, Me.GCEmployeeKjp, Me.GCEmployeeName, Me.GCJenisKelamin, Me.GCEmployeeDOB, Me.GCKepProg, Me.GCEmployeeSalaryBefore, Me.GCEmployeeSalary, Me.GCCompanyContribution1, Me.GCCompanyContribution2, Me.GCEmployeeContribution1, Me.GCEmployeeContribution2, Me.GCTotalContribution})
         Me.GVEmployee.GridControl = Me.GCEmployee
-        Me.GVEmployee.GroupCount = 1
+        Me.GVEmployee.GroupCount = 2
         Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", Me.GCTotalContribution, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_1", Me.GCCompanyContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution_2", Me.GCCompanyContribution2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_1", Me.GCEmployeeContribution1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_2", Me.GCEmployeeContribution2, "{0:N0}")})
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
@@ -247,7 +249,22 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GVEmployee.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVEmployee.OptionsView.ShowFooter = True
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
-        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCLocation, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GCDepartement)
+        Me.GridBand1.Columns.Add(Me.GCNo)
+        Me.GridBand1.Columns.Add(Me.GCEmployeeKjp)
+        Me.GridBand1.Columns.Add(Me.GCEmployeeName)
+        Me.GridBand1.Columns.Add(Me.GCJenisKelamin)
+        Me.GridBand1.Columns.Add(Me.GCEmployeeDOB)
+        Me.GridBand1.Columns.Add(Me.GCKepProg)
+        Me.GridBand1.Columns.Add(Me.GCEmployeeSalaryBefore)
+        Me.GridBand1.Columns.Add(Me.GCEmployeeSalary)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 693
         '
         'GCDepartement
         '
@@ -300,6 +317,15 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCKepProg.Name = "GCKepProg"
         Me.GCKepProg.Visible = True
         '
+        'GCEmployeeSalaryBefore
+        '
+        Me.GCEmployeeSalaryBefore.Caption = "Upah"
+        Me.GCEmployeeSalaryBefore.DisplayFormat.FormatString = "N0"
+        Me.GCEmployeeSalaryBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCEmployeeSalaryBefore.FieldName = "employee_salary_before"
+        Me.GCEmployeeSalaryBefore.Name = "GCEmployeeSalaryBefore"
+        Me.GCEmployeeSalaryBefore.Visible = True
+        '
         'GCEmployeeSalary
         '
         Me.GCEmployeeSalary.Caption = "Upah"
@@ -309,6 +335,15 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCEmployeeSalary.Name = "GCEmployeeSalary"
         Me.GCEmployeeSalary.Visible = True
         Me.GCEmployeeSalary.Width = 155
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Dibayar Oleh Perusahaan"
+        Me.gridBand2.Columns.Add(Me.GCCompanyContribution1)
+        Me.gridBand2.Columns.Add(Me.GCEmployeeContribution1)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 232
         '
         'GCCompanyContribution1
         '
@@ -332,6 +367,15 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCEmployeeContribution1.Visible = True
         Me.GCEmployeeContribution1.Width = 107
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Dibayar Oleh Karyawan"
+        Me.gridBand3.Columns.Add(Me.GCCompanyContribution2)
+        Me.gridBand3.Columns.Add(Me.GCEmployeeContribution2)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 150
+        '
         'GCCompanyContribution2
         '
         Me.GCCompanyContribution2.Caption = "JP"
@@ -352,6 +396,13 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCEmployeeContribution2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution_2", "{0:N0}")})
         Me.GCEmployeeContribution2.Visible = True
         '
+        'gridBand4
+        '
+        Me.gridBand4.Columns.Add(Me.GCTotalContribution)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 179
+        '
         'GCTotalContribution
         '
         Me.GCTotalContribution.Caption = "Bayar ke BPJS Ketenagakerjaan"
@@ -366,52 +417,11 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.GCTotalContribution.Visible = True
         Me.GCTotalContribution.Width = 179
         '
-        'GCKeterangan
+        'GCLocation
         '
-        Me.GCKeterangan.Caption = "Keterangan"
-        Me.GCKeterangan.FieldName = "keterangan"
-        Me.GCKeterangan.Name = "GCKeterangan"
-        Me.GCKeterangan.Visible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.GCDepartement)
-        Me.GridBand1.Columns.Add(Me.GCNo)
-        Me.GridBand1.Columns.Add(Me.GCEmployeeKjp)
-        Me.GridBand1.Columns.Add(Me.GCEmployeeName)
-        Me.GridBand1.Columns.Add(Me.GCJenisKelamin)
-        Me.GridBand1.Columns.Add(Me.GCEmployeeDOB)
-        Me.GridBand1.Columns.Add(Me.GCKepProg)
-        Me.GridBand1.Columns.Add(Me.GCEmployeeSalary)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 618
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Dibayar Oleh Perusahaan"
-        Me.gridBand2.Columns.Add(Me.GCCompanyContribution1)
-        Me.gridBand2.Columns.Add(Me.GCEmployeeContribution1)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 232
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Dibayar Oleh Karyawan"
-        Me.gridBand3.Columns.Add(Me.GCCompanyContribution2)
-        Me.gridBand3.Columns.Add(Me.GCEmployeeContribution2)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Columns.Add(Me.GCTotalContribution)
-        Me.gridBand4.Columns.Add(Me.GCKeterangan)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 254
+        Me.GCLocation.Caption = "Location"
+        Me.GCLocation.FieldName = "bpjs_tk_location"
+        Me.GCLocation.Name = "GCLocation"
         '
         'FormEmpPayrollReportBPJSTK
         '
@@ -446,7 +456,6 @@ Partial Class FormEmpPayrollReportBPJSTK
     Friend WithEvents GVAllDepartements As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCANo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCADepartement As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCAEqual As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCACompanyContribution2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCAEmployeeContribution1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCATotalContribution As DevExpress.XtraGrid.Columns.GridColumn
@@ -468,9 +477,11 @@ Partial Class FormEmpPayrollReportBPJSTK
     Friend WithEvents GCTotalContribution As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCCompanyContribution2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeeContribution2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCALocation As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCLocation As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCEmployeeSalaryBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GCKeterangan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
