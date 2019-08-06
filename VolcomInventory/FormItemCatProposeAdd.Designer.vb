@@ -53,11 +53,11 @@ Partial Class FormItemCatProposeAdd
         '
         'LEExpenseType
         '
+        Me.LEExpenseType.Enabled = False
         Me.LEExpenseType.Location = New System.Drawing.Point(104, 38)
         Me.LEExpenseType.Name = "LEExpenseType"
         Me.LEExpenseType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEExpenseType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_expense_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("expense_type", "Type")})
-        Me.LEExpenseType.Properties.ReadOnly = True
         Me.LEExpenseType.Size = New System.Drawing.Size(260, 20)
         Me.LEExpenseType.TabIndex = 1
         '

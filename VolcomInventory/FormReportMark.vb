@@ -4176,6 +4176,11 @@
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+                query = "INSERT INTO tb_item_cat(`id_expense_type`,`id_item_cat_main` ,`item_cat`, `item_cat_en`)
+		                SELECT d.id_expense_type,d.id_item_cat_main, d.item_cat, d.item_cat_en 
+		                FROM tb_item_cat_propose_det d
+		                WHERE d.id_item_cat_propose = '" & id_report & "'"
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             'jika cancel

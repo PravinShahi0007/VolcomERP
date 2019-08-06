@@ -42,12 +42,18 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "SELECT d.id_item_cat_propose_det, d.id_item_cat_propose, d.id_expense_type, ex.expense_type, d.item_cat, d.item_cat_en 
+        Dim query As String = "SELECT d.id_item_cat_propose_det, d.id_item_cat_propose,cm.item_cat_main, d.id_expense_type, ex.expense_type, d.item_cat, d.item_cat_en 
         FROM tb_item_cat_propose_det d 
         INNER JOIN tb_lookup_expense_type ex ON ex.id_expense_type = d.id_expense_type
+        LEFT JOIN tb_item_cat_main cm ON cm.id_item_cat_main=d.id_item_cat_main
         WHERE d.id_item_cat_propose=" + id + " ORDER BY d.id_item_cat_propose_det ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        If GVData.RowCount > 0 Then
+            BtnDelete.Visible = True
+        Else
+            BtnDelete.Visible = False
+        End If
     End Sub
 
     Sub allow_status()

@@ -8,7 +8,6 @@
         viewMainCategory()
         TxtCat.Text = ""
         TxtCatEn.Text = ""
-        LEExpenseType.Focus()
     End Sub
 
     Sub viewType()
@@ -38,6 +37,8 @@ INNER JOIN tb_lookup_expense_type tt ON tt.`id_expense_type`=t.`id_expense_type`
     Sub save()
         If TxtCat.Text = "" Then
             stopCustom("Category can't blank")
+        ElseIf SLEMainCategory.EditValue = Nothing Then
+            stopCustom("Please choose main category")
         Else
             Dim item_cat As String = addSlashes(TxtCat.Text).Trim()
             Dim item_cat_en As String = addSlashes(TxtCatEn.Text).Trim()
@@ -65,8 +66,8 @@ INNER JOIN tb_lookup_expense_type tt ON tt.`id_expense_type`=t.`id_expense_type`
                 stopCustom("Category already exist")
                 TxtCat.Focus()
             Else
-                Dim query As String = "INSERT INTO tb_item_cat_propose_det(id_item_cat_propose, id_expense_type, item_cat, item_cat_en)
-            VALUES('" + FormItemCatProposeDet.id + "', " + id_expense_type + ", '" + item_cat + "', '" + item_cat_en + "'); "
+                Dim query As String = "INSERT INTO tb_item_cat_propose_det(id_item_cat_propose, id_item_cat_main, id_expense_type, item_cat, item_cat_en)
+            VALUES('" + FormItemCatProposeDet.id + "','" & SLEMainCategory.EditValue.ToString & "', " + id_expense_type + ", '" + item_cat + "', '" + item_cat_en + "'); "
                 execute_non_query(query, True, "", "", "", "")
                 FormItemCatProposeDet.viewDetail()
                 actionLoad()
@@ -105,7 +106,6 @@ INNER JOIN tb_lookup_expense_type tt ON tt.`id_expense_type`=t.`id_expense_type`
                 LEExpenseType.EditValue = Nothing
                 LEExpenseType.ItemIndex = LEExpenseType.Properties.GetDataSourceRowIndex("id_expense_type", id_expense_type)
             Catch ex As Exception
-                MsgBox(ex.ToString)
             End Try
         End If
     End Sub
