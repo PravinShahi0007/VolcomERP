@@ -47,6 +47,7 @@ Partial Class FormItemCatProposeDet
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -281,7 +282,7 @@ Partial Class FormItemCatProposeDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnItemCat, Me.GridColumnItemCatEn, Me.GridColumn1})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumn2, Me.GridColumnItemCat, Me.GridColumnItemCatEn, Me.GridColumn1})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -307,7 +308,7 @@ Partial Class FormItemCatProposeDet
         Me.GridColumnItemCatEn.FieldName = "item_cat_en"
         Me.GridColumnItemCatEn.Name = "GridColumnItemCatEn"
         Me.GridColumnItemCatEn.Visible = True
-        Me.GridColumnItemCatEn.VisibleIndex = 1
+        Me.GridColumnItemCatEn.VisibleIndex = 2
         '
         'GridColumn1
         '
@@ -315,7 +316,7 @@ Partial Class FormItemCatProposeDet
         Me.GridColumn1.FieldName = "expense_type"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 3
         '
         'PanelControlNav
         '
@@ -347,6 +348,14 @@ Partial Class FormItemCatProposeDet
         Me.BtnAdd.Size = New System.Drawing.Size(81, 38)
         Me.BtnAdd.TabIndex = 0
         Me.BtnAdd.Text = "Add"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Main Category"
+        Me.GridColumn2.FieldName = "item_cat_main"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
         '
         'FormItemCatProposeDet
         '
@@ -418,4 +427,5 @@ Partial Class FormItemCatProposeDet
     Friend WithEvents GridColumnItemCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnItemCatEn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

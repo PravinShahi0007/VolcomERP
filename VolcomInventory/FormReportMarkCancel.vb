@@ -41,7 +41,6 @@
                 '
                 BSubmit.Text = "Mark"
             End If
-
         Else
             'not view
             If id_report_mark_cancel = "-1" Then 'new
@@ -98,6 +97,7 @@
         If is_complete = "1" Then
             Dim query_comp As String = "SELECT * FROM tb_doc WHERE id_user_upload='" & id_user & "' AND report_mark_type='142' AND id_report='" & id_report_mark_cancel & "'"
             Dim data_comp As DataTable = execute_query(query_comp, -1, True, "", "", "", "")
+            'Button tak muncul? attach first !
             If data_comp.Rows.Count > 0 Then
                 PCSubmit.Visible = True
                 BSubmit.Text = "Complete"
