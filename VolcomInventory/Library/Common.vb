@@ -3300,7 +3300,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            cell.Text = ""
+            Dim q_cek As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' AND id_report_status='3'"
+            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
+            If dt_cek.Rows.Count > 0 Then
+                cell.Text = ""
+            Else
+                cell.Text = get_report_mark_status("3", "1")
+            End If
             row_head.Cells.Add(cell)
         End If
 
@@ -3894,7 +3900,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            cell.Text = ""
+            Dim q_cek As String = "SELECT * FROM tb_mark_asg WHERE report_mark_type='" & report_mark_type & "' AND id_report_status='3'"
+            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
+            If dt_cek.Rows.Count > 0 Then
+                cell.Text = ""
+            Else
+                cell.Text = get_report_mark_status("3", "1")
+            End If
+
             row_head.Cells.Add(cell)
         End If
         'opt
