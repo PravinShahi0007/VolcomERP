@@ -19,7 +19,6 @@ Partial Public Class ReportPayrollAll
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportPayrollAll))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
@@ -61,7 +60,7 @@ Partial Public Class ReportPayrollAll
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
+        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
@@ -141,7 +140,7 @@ Partial Public Class ReportPayrollAll
         Me.GVPayroll.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVPayroll.AppearancePrint.Row.Options.UseFont = True
         Me.GVPayroll.BandPanelRowHeight = 16
-        Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBWorkingDays, Me.GBSalary, Me.GBDW, Me.GBGrandTotal})
+        Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBWorkingDays, Me.GBDW, Me.GBSalary, Me.GBGrandTotal})
         Me.GVPayroll.ColumnPanelRowHeight = 32
         Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCName, Me.GCPosition, Me.GCStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCOvertimeHours, Me.GCTotalTHP, Me.GCTotalAdjustment, Me.GCTotalPaymentOvertime, Me.GCTotalDeduction, Me.GCActualWorkingDaysDW, Me.GCBasicSalaryDW, Me.GCGrandTotal})
         Me.GVPayroll.GridControl = Me.GCPayroll
@@ -281,7 +280,7 @@ Partial Public Class ReportPayrollAll
         Me.GBSalary.Columns.Add(Me.GCTotalPaymentOvertime)
         Me.GBSalary.Columns.Add(Me.GCTotalDeduction)
         Me.GBSalary.Name = "GBSalary"
-        Me.GBSalary.VisibleIndex = 2
+        Me.GBSalary.VisibleIndex = 3
         Me.GBSalary.Width = 232
         '
         'GCTotalTHP
@@ -345,7 +344,7 @@ Partial Public Class ReportPayrollAll
         Me.GBDW.Columns.Add(Me.GCActualWorkingDaysDW)
         Me.GBDW.Columns.Add(Me.GCBasicSalaryDW)
         Me.GBDW.Name = "GBDW"
-        Me.GBDW.VisibleIndex = 3
+        Me.GBDW.VisibleIndex = 2
         Me.GBDW.Width = 134
         '
         'GCActualWorkingDaysDW
