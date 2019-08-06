@@ -6027,7 +6027,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             FormWorkOrderDet.load_form()
         ElseIf report_mark_type = "192" Then
             'payroll
-            If id_status_reportx = "3" Then
+            If id_status_reportx = "2" Then
                 id_status_reportx = "6"
             End If
 

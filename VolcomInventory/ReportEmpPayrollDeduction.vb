@@ -158,8 +158,15 @@
                 column.Visible = True
                 column.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
                 column.SummaryItem.DisplayFormat = "{0:N0}"
-                column.MinWidth = 70
-                column.Width = 70
+
+                'width
+                If salary_adjustment = "Missing Staff Toko" Or salary_adjustment = "Missing Staff Security" Or salary_adjustment = "Internal Sale" Or salary_adjustment = "Meditation" Or salary_adjustment = "Cash Receipt" Or salary_adjustment = "Tax Penalty" Or salary_adjustment = "Unpaid Leave" Or salary_adjustment = "Total" Then
+                    column.MinWidth = 50
+                    column.Width = 50
+                Else
+                    column.MinWidth = 65
+                    column.Width = 65
+                End If
 
                 band.Columns.Add(column)
 
@@ -174,6 +181,11 @@
                 GVDeduction.GroupSummary.Add(group_summary)
             Next
         Next
+
+        'employee status width
+        If data_column.Rows.Count >= 9 Then
+            GVDeduction.Columns("Employee Position").MinWidth = 110
+        End If
 
         GCDeduction.DataSource = data
 
