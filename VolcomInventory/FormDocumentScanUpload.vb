@@ -107,8 +107,8 @@
 
                 Process.Start(p)
 
-                My.Computer.FileSystem.DeleteFile(filename_temp)
-                My.Computer.FileSystem.DeleteFile(filename_temp_enc)
+                'My.Computer.FileSystem.DeleteFile(filename_temp)
+                'My.Computer.FileSystem.DeleteFile(filename_temp_enc)
 
                 'end upload
                 FormDocumentUpload.refresh_load(report_mark_type)

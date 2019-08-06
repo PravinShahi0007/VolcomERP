@@ -83,11 +83,11 @@
             End If
             'download
             If GVFileList.GetFocusedRowCellValue("is_encrypted").ToString = "1" Then
-                My.Computer.Network.DownloadFile(source_path & report_mark_type & "\" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
+                'My.Computer.Network.DownloadFile(source_path & report_mark_type & "\" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
 
-                CryptFile.DecryptFile(get_setup_field("en_phrase"), path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString)
+                CryptFile.DecryptFile(get_setup_field("en_phrase"), source_path & report_mark_type & "\" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString)
 
-                My.Computer.FileSystem.DeleteFile(path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString)
+                'My.Computer.FileSystem.DeleteFile(path & "temp_" & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString)
             Else
                 My.Computer.Network.DownloadFile(source_path & report_mark_type & "\" & GVFileList.GetFocusedRowCellValue("filename").ToString, path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
             End If
