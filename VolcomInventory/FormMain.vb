@@ -1734,6 +1734,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'purchase category
             FormItemSubCatDet.id_sub_cat = "-1"
             FormItemSubCatDet.ShowDialog()
+        ElseIf formName = "FormItemCatMain" Then
+            'Main Category
+            FormItemCatMainDet.id_propose = "-1"
+            FormItemCatMainDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2805,6 +2809,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'purchase category
                 FormItemSubCatDet.id_sub_cat = FormItemSubCat.GVPurchaseCategory.GetFocusedRowCellValue("id_item_cat_detail").ToString
                 FormItemSubCatDet.ShowDialog()
+            ElseIf formName = "FormItemCatMain" Then
+                'main category
+                FormItemCatMainDet.id_propose = FormItemCatMain.GVData.GetFocusedRowCellValue("id_item_cat_main_pps").ToString
+                FormItemCatMainDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7575,6 +7583,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemSubCat" Then
             'purchase category
             print(FormItemSubCat.GCPurchaseCategory, "List Purchase Category")
+        ElseIf formName = "FormItemCatMain" Then
+            If FormItemCatMain.XTCCat.SelectedTabPageIndex = 0 Then
+                print_raw(FormItemCatMain.GCItemCat, "")
+            ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
+                print_raw(FormItemCatMain.GCData, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8331,6 +8345,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemSubCat" Then
             FormItemSubCat.Close()
             FormItemSubCat.Dispose()
+        ElseIf formName = "FormItemCatMain" Then
+            FormItemCatMain.Close()
+            FormItemCatMain.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9164,6 +9181,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposeEmpSalary.load_pps()
         ElseIf formName = "FormItemSubCat" Then
             FormItemSubCat.load_cat()
+        ElseIf formName = "FormItemCatMain" Then
+            If FormItemCatMain.XTCCat.SelectedTabPageIndex = 0 Then
+                FormItemCatMain.view_cat()
+            ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
+                FormItemCatMain.view_propose()
+            End If
         End If
     End Sub
     'Switch
@@ -13230,6 +13253,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSampleDevelopment.Show()
             FormSampleDevelopment.WindowState = FormWindowState.Maximized
             FormSampleDevelopment.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSetupItemMainCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupItemMainCat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemCatMain.MdiParent = Me
+            FormItemCatMain.Show()
+            FormItemCatMain.WindowState = FormWindowState.Maximized
+            FormItemCatMain.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

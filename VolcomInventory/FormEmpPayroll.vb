@@ -727,7 +727,7 @@
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Pasword slip gaji Anda adalah ddMmmyyyy (contoh: 01Aug1995)</p>
                                     <br>
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>dd : Dua digit tanggal lahir Anda, contoh: 01</p>
-                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>mmm : Tiga huruf pertama bulan lahir Anda dalam bahasa Inggris, contoh: Aug (Huruf pertama adalah huruf besar dan selanjutnya huruf kecil)</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Mmm : Tiga huruf pertama bulan lahir Anda dalam bahasa Inggris, contoh: Aug (Huruf pertama adalah huruf besar dan selanjutnya huruf kecil)</p>
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>yyyy : Tahun lahir Anda, contoh: 1995</p>
                                     <br>
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Demikian kami sampaikan, atas perhatiannya kami ucapkan terimakasih.</p>
