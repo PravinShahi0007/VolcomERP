@@ -297,6 +297,9 @@
         ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
             'propose budget OPEX
             FormSetupBudgetOPEX.Close()
+        ElseIf report_mark_type = "206" Then
+            'prod demand sales
+            FormViewProdDemand.Close()
         End If
     End Sub
     Sub show()
@@ -611,7 +614,7 @@
             FormViewBOM.id_bom_approve = id_report
             FormViewBOM.id_bom = data.Rows(0)("id_bom").ToString
             FormViewBOM.ShowDialog()
-        ElseIf report_mark_type = "80" Then
+        ElseIf report_mark_type = "80" Or report_mark_type = "206" Then
             'prod demand mkt
             FormViewProdDemand.id_prod_demand = id_report
             FormViewProdDemand.report_mark_type = report_mark_type
