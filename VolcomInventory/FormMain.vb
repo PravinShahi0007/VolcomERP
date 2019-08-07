@@ -3256,6 +3256,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     rmt = "80"
                 ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "3" Then 'HRDSCR
                     rmt = "81"
+                ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "4" Then 'SALES
+                    rmt = "206"
                 End If
             End If
             '
