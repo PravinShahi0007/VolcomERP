@@ -19,8 +19,10 @@ Partial Class FormSampleDevelopmentDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleDevelopmentDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEDev = New DevExpress.XtraEditors.DateEdit()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -56,9 +58,13 @@ Partial Class FormSampleDevelopmentDet
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.BShowTimeline = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEDev = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEDev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDev.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEProgress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,8 +83,7 @@ Partial Class FormSampleDevelopmentDet
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDev.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -99,6 +104,21 @@ Partial Class FormSampleDevelopmentDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(310, 577)
         Me.PanelControl1.TabIndex = 0
+        '
+        'DEDev
+        '
+        Me.DEDev.EditValue = Nothing
+        Me.DEDev.Location = New System.Drawing.Point(15, 123)
+        Me.DEDev.Name = "DEDev"
+        Me.DEDev.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDev.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEDev.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDev.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
+        Me.DEDev.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.DEDev.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDev.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
+        Me.DEDev.Size = New System.Drawing.Size(275, 20)
+        Me.DEDev.TabIndex = 8924
         '
         'Label6
         '
@@ -246,6 +266,7 @@ Partial Class FormSampleDevelopmentDet
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.ViewMenu
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCList.Location = New System.Drawing.Point(2, 43)
         Me.GCList.MainView = Me.GVList
@@ -257,7 +278,7 @@ Partial Class FormSampleDevelopmentDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn9, Me.GridColumn3, Me.GridColumn8, Me.GridColumn4, Me.GridColumn5})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn9, Me.GridColumn3, Me.GridColumn8, Me.GridColumn4, Me.GridColumn5, Me.GridColumn10})
         Me.GVList.CustomizationFormBounds = New System.Drawing.Rectangle(1084, 600, 210, 172)
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
@@ -418,20 +439,29 @@ Partial Class FormSampleDevelopmentDet
         Me.BShowTimeline.TabIndex = 8919
         Me.BShowTimeline.Text = "search"
         '
-        'DEDev
+        'GridColumn10
         '
-        Me.DEDev.EditValue = Nothing
-        Me.DEDev.Location = New System.Drawing.Point(15, 123)
-        Me.DEDev.Name = "DEDev"
-        Me.DEDev.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDev.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEDev.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDev.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
-        Me.DEDev.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
-        Me.DEDev.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDev.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEDev.Size = New System.Drawing.Size(275, 20)
-        Me.DEDev.TabIndex = 8924
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.Caption = "Status"
+        Me.GridColumn10.FieldName = "is_active"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 6
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View History"
         '
         'FormSampleDevelopmentDet
         '
@@ -448,6 +478,8 @@ Partial Class FormSampleDevelopmentDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEDev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDev.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEProgress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -467,8 +499,7 @@ Partial Class FormSampleDevelopmentDet
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDev.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -510,4 +541,7 @@ Partial Class FormSampleDevelopmentDet
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RICEAttachment As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents DEDev As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
 End Class

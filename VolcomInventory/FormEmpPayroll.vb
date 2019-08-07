@@ -107,6 +107,7 @@
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
                 BMark.Enabled = True
+                BandedGridColumnActWorkdays.OptionsColumn.AllowEdit = False
                 BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
@@ -699,7 +700,7 @@
 
                                 mem.Seek(0, System.IO.SeekOrigin.Begin)
 
-                                Dim att = New Net.Mail.Attachment(mem, "Salary Slip " + period + ".pdf", "application/pdf")
+                                Dim att = New Net.Mail.Attachment(mem, "Slip Gaji " + period + ".pdf", "application/pdf")
 
                                 'mail
                                 Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
@@ -714,20 +715,31 @@
 
                                 mail.To.Add(to_mail)
 
-                                mail.Subject = "PT. VOLCOM INDONESIA - SALARY SLIP " + period.ToUpper
+                                mail.Subject = "PT. VOLCOM INDONESIA - SLIP GAJI " + period.ToUpper
                                 mail.IsBodyHtml = True
                                 mail.Body = "
-                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Dear " + employee_name + ",</b></p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Yang Terhormat Bapak/Ibu</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>" + employee_name + "</p>
                                     <br>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'>Here is your salary slip in " + period + ".</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Bersama ini kami lampirkan slip gaji Anda untuk bulan <b>" + period + "</b>,  slip gaji Anda ini bersifat pribadi dan sangat rahasia.</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Gunakan password Anda untuk melihat slip gaji tersebut.</p>
                                     <br>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'>Thank You</p>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Volcom ERP</b></p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Pasword slip gaji Anda adalah ddMmmyyyy (contoh: 01Aug1995)</p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>dd : Dua digit tanggal lahir Anda, contoh: 01</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>mmm : Tiga huruf pertama bulan lahir Anda dalam bahasa Inggris, contoh: Aug (Huruf pertama adalah huruf besar dan selanjutnya huruf kecil)</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>yyyy : Tahun lahir Anda, contoh: 1995</p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Demikian kami sampaikan, atas perhatiannya kami ucapkan terimakasih.</p>
                                 "
 
                                 mail.Attachments.Add(att)
 
-                                client.Send(mail)
+                                Try
+                                    client.Send(mail)
+                                Catch ex As Exception
+                                    ex.ToString()
+                                End Try
                             End If
                         Next
                     Else
@@ -782,5 +794,14 @@
         If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
             info.GroupText = " "
         End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        FormDocumentUpload.report_mark_type = "192"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
