@@ -349,6 +349,9 @@ Partial Class FormItemCatMainDet
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormItemCatMainDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Main Category"
