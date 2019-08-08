@@ -1736,7 +1736,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemSubCatDet.ShowDialog()
         ElseIf formName = "FormItemCatMain" Then
             'Main Category
-            FormItemCatMainDet.id_propose = "-1"
+            Dim query As String = "INSERT INTO tb_item_cat_main_pps(created_date,created_by, note, id_report_status) 
+            VALUES(NOW(),'" & id_user & "', '',1);SELECT LAST_INSERT_ID(); "
+            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            execute_non_query("CALL gen_number('" & id & "','207')", True, "", "", "", "")
+            FormItemCatMain.view_propose()
+            FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id)
+            FormItemCatMainDet.id_propose = id
             FormItemCatMainDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
@@ -2835,7 +2841,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Cursor = Cursors.WaitCursor
                     Try
                         query = String.Format("DELETE FROM tb_m_country WHERE id_country = '{0}'", id_country)
-                        execute_non_query(query, True, "", "", "", "")
+            execute_non_query(query, True, "", "", "", "")
                         FormMasterArea.view_country()
                     Catch ex As Exception
                         XtraMessageBox.Show("This country already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
