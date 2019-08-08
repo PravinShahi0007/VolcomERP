@@ -122,7 +122,7 @@
         ElseIf report_mark_type = "8" Then
             'bom
             query = String.Format("SELECT id_report_status FROM tb_bom WHERE id_bom = '{0}'", id_report)
-        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             'prod demand
             query = String.Format("SELECT id_report_status,(prod_demand_number) AS report_number FROM tb_prod_Demand WHERE id_prod_demand = '{0}'", id_report)
         ElseIf report_mark_type = "10" Then
@@ -1136,7 +1136,7 @@
                 'FormWork.view_sample_purc()
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             'PROD DEMAND
             'auto completed
             If id_status_reportx = "2" Then
@@ -6983,7 +6983,7 @@ VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)(
         End If
 
         Dim dt As DataTable = get_who_prepared(report_mark_type, id_report)
-        If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "11" Then
             pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)

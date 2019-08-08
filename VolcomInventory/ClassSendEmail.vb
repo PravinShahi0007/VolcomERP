@@ -2811,7 +2811,7 @@ Public Class ClassSendEmail
         'caption
         Dim mail_subject As String = ""
 
-        If rmt = "9" Or rmt = "80" Or rmt = "81" Then
+        If rmt = "9" Or rmt = "80" Or rmt = "81" Or rmt = "206" Then
             mail_subject = "PD Created"
         End If
 
@@ -2863,7 +2863,7 @@ WHERE is_to='2' AND report_mark_type='" & rmt & "'"
             report_type = d_type.Rows(0)("report_mark_type_name").ToString
         End If
 
-        If rmt = "9" Or rmt = "80" Or rmt = "81" Then
+        If rmt = "9" Or rmt = "80" Or rmt = "81" Or rmt = "206" Then
             Dim query As String = "SELECT pd.prod_demand_number,pdd.`id_prod_demand_design`,dsg.`design_code`,dsg.`design_display_name`,ROUND(SUM(pdp.`prod_demand_product_qty`)) AS qty FROM `tb_prod_demand_product` pdp
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=pdp.`id_prod_demand_design` AND pdd.`is_void`='2'
 INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
