@@ -16,6 +16,7 @@
 
     'View Data
     Sub viewReportStatus()
+
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")

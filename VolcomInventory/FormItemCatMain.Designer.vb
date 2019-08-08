@@ -132,7 +132,7 @@ Partial Class FormItemCatMain
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_item_cat_propose"
+        Me.GridColumn1.FieldName = "id_item_cat_main_pps"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
