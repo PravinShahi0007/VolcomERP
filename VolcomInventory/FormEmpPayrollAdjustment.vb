@@ -74,8 +74,10 @@
                 Cursor = Cursors.WaitCursor
 
                 For i = 0 To GVDeduction.RowCount - 1
-                    Dim query As String = "DELETE FROM tb_emp_payroll_adj WHERE id_payroll_adj='" & GVDeduction.GetRowCellValue(i, "id_payroll_adj").ToString & "'"
-                    execute_non_query(query, True, "", "", "", "")
+                    If GVDeduction.IsValidRowHandle(i) Then
+                        Dim query As String = "DELETE FROM tb_emp_payroll_adj WHERE id_payroll_adj='" & GVDeduction.GetRowCellValue(i, "id_payroll_adj").ToString & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 Next
 
                 load_adjustment()
@@ -85,6 +87,8 @@
         Else
             stopCustom("Please choose employee first.")
         End If
+
+        GVDeduction.ActiveFilterString = ""
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
@@ -179,6 +183,22 @@
 
     Private Sub GVDeduction_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVDeduction.CustomDrawRowFooter
         e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
+
+        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
+
+        format.Alignment = StringAlignment.Near
+
+        If GVDeduction.GetGroupRowDisplayText(e.RowHandle).Contains("Group") Then
+            e.Graphics.DrawString("Grand Total: " + GVDeduction.GetGroupRowValue(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+        Else
+            If GVDeduction.GetGroupRowDisplayText(e.RowHandle).Contains("SOGO") Then
+                e.Graphics.DrawString("Total " + GVDeduction.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+            Else
+                If Not GVDeduction.GetGroupRowDisplayText(e.RowHandle).Contains("Sub") Then
+                    e.Graphics.DrawString("Total " + GVDeduction.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+                End If
+            End If
+        End If
 
         e.Handled = True
     End Sub

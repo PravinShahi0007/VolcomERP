@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormItemCatPropose
+Partial Class FormItemCatMain
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,6 +19,16 @@ Partial Class FormItemCatPropose
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.XTCCat = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPItemCat = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCItemCat = New DevExpress.XtraGrid.GridControl()
+        Me.GVItemCat = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPItemCatPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -26,25 +36,95 @@ Partial Class FormItemCatPropose
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTCCat = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPItemCat = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCItemCat = New DevExpress.XtraGrid.GridControl()
-        Me.GVItemCat = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPItemCatPropose = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCat.SuspendLayout()
         Me.XTPItemCat.SuspendLayout()
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPItemCatPropose.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'XTCCat
+        '
+        Me.XTCCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCCat.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCCat.Location = New System.Drawing.Point(0, 0)
+        Me.XTCCat.Name = "XTCCat"
+        Me.XTCCat.SelectedTabPage = Me.XTPItemCat
+        Me.XTCCat.Size = New System.Drawing.Size(1031, 553)
+        Me.XTCCat.TabIndex = 2
+        Me.XTCCat.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItemCat, Me.XTPItemCatPropose})
+        '
+        'XTPItemCat
+        '
+        Me.XTPItemCat.Controls.Add(Me.GCItemCat)
+        Me.XTPItemCat.Name = "XTPItemCat"
+        Me.XTPItemCat.Size = New System.Drawing.Size(1025, 525)
+        Me.XTPItemCat.Text = "Budget Category"
+        '
+        'GCItemCat
+        '
+        Me.GCItemCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItemCat.Location = New System.Drawing.Point(0, 0)
+        Me.GCItemCat.MainView = Me.GVItemCat
+        Me.GCItemCat.Name = "GCItemCat"
+        Me.GCItemCat.Size = New System.Drawing.Size(1025, 525)
+        Me.GCItemCat.TabIndex = 1
+        Me.GCItemCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemCat})
+        '
+        'GVItemCat
+        '
+        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.GridColumn8, Me.GridColumn9})
+        Me.GVItemCat.GridControl = Me.GCItemCat
+        Me.GVItemCat.Name = "GVItemCat"
+        Me.GVItemCat.OptionsBehavior.Editable = False
+        Me.GVItemCat.OptionsFind.AlwaysVisible = True
+        Me.GVItemCat.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Id"
+        Me.GridColumn6.FieldName = "id_item_cat"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Expense Type"
+        Me.GridColumn7.FieldName = "expense_type"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Main Category"
+        Me.GridColumn10.FieldName = "item_cat_main"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Category"
+        Me.GridColumn8.FieldName = "item_cat"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Category (En)"
+        Me.GridColumn9.FieldName = "item_cat_en"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'XTPItemCatPropose
+        '
+        Me.XTPItemCatPropose.Controls.Add(Me.GCData)
+        Me.XTPItemCatPropose.Name = "XTPItemCatPropose"
+        Me.XTPItemCatPropose.Size = New System.Drawing.Size(945, 500)
+        Me.XTPItemCatPropose.Text = "Setup Budget Category"
         '
         'GCData
         '
@@ -105,107 +185,40 @@ Partial Class FormItemCatPropose
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
-        'XTCCat
-        '
-        Me.XTCCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCCat.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCCat.Location = New System.Drawing.Point(0, 0)
-        Me.XTCCat.Name = "XTCCat"
-        Me.XTCCat.SelectedTabPage = Me.XTPItemCat
-        Me.XTCCat.Size = New System.Drawing.Size(951, 528)
-        Me.XTCCat.TabIndex = 1
-        Me.XTCCat.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItemCat, Me.XTPItemCatPropose})
-        '
-        'XTPItemCat
-        '
-        Me.XTPItemCat.Controls.Add(Me.GCItemCat)
-        Me.XTPItemCat.Name = "XTPItemCat"
-        Me.XTPItemCat.Size = New System.Drawing.Size(945, 500)
-        Me.XTPItemCat.Text = "Budget Category"
-        '
-        'GCItemCat
-        '
-        Me.GCItemCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemCat.Location = New System.Drawing.Point(0, 0)
-        Me.GCItemCat.MainView = Me.GVItemCat
-        Me.GCItemCat.Name = "GCItemCat"
-        Me.GCItemCat.Size = New System.Drawing.Size(945, 500)
-        Me.GCItemCat.TabIndex = 1
-        Me.GCItemCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemCat})
-        '
-        'GVItemCat
-        '
-        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.GridColumn8, Me.GridColumn9})
-        Me.GVItemCat.GridControl = Me.GCItemCat
-        Me.GVItemCat.Name = "GVItemCat"
-        Me.GVItemCat.OptionsBehavior.Editable = False
-        Me.GVItemCat.OptionsFind.AlwaysVisible = True
-        Me.GVItemCat.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Id"
-        Me.GridColumn6.FieldName = "id_item_cat"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Expense Type"
-        Me.GridColumn7.FieldName = "expense_type"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Category"
-        Me.GridColumn8.FieldName = "item_cat"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Category (En)"
-        Me.GridColumn9.FieldName = "item_cat_en"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'XTPItemCatPropose
-        '
-        Me.XTPItemCatPropose.Controls.Add(Me.GCData)
-        Me.XTPItemCatPropose.Name = "XTPItemCatPropose"
-        Me.XTPItemCatPropose.Size = New System.Drawing.Size(945, 500)
-        Me.XTPItemCatPropose.Text = "Setup Budget Category"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Main Category"
-        Me.GridColumn10.FieldName = "item_cat_main"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        '
-        'FormItemCatPropose
+        'FormItemCatMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(951, 528)
+        Me.ClientSize = New System.Drawing.Size(1031, 553)
         Me.Controls.Add(Me.XTCCat)
-        Me.Name = "FormItemCatPropose"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Item Category"
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "FormItemCatMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "Main Category"
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCCat.ResumeLayout(False)
         Me.XTPItemCat.ResumeLayout(False)
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPItemCatPropose.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
+    Friend WithEvents XTCCat As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPItemCat As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCItemCat As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVItemCat As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPItemCatPropose As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -213,14 +226,4 @@ Partial Class FormItemCatPropose
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XTCCat As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPItemCat As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCItemCat As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVItemCat As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XTPItemCatPropose As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

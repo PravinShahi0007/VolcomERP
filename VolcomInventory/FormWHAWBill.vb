@@ -341,7 +341,7 @@
         Else
             If CERO.Checked = True Then 'view do
                 gridBandRO.Visible = True
-                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,do.do_no,do.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
+                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no,awbd.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
                             DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,
                             DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,
                             (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,
@@ -352,8 +352,8 @@
                             INNER JOIN tb_m_comp comp_store ON comp_store.id_comp=awb.id_store
                             INNER JOIN tb_m_comp comp_cargo ON comp_cargo.id_comp=awb.id_cargo
                             LEFT JOIN tb_m_comp_group grp ON grp.id_comp_group = comp_store.id_comp_group
-                            INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
-                            INNER JOIN tb_wh_awb_do DO ON do.do_no=awbd.do_no
+                            INNER JOIN tb_wh_awbill_det_in awbd ON awbd.id_awbill=awb.id_awbill
+                            LEFT JOIN tb_wh_awb_do DO ON do.do_no=awbd.do_no
                             LEFT JOIN
                             (
 	                            SELECT id_wh_awb_det

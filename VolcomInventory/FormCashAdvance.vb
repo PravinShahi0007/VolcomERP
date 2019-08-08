@@ -68,10 +68,17 @@ SELECT id_employee,employee_name FROM tb_m_employee"
     End Sub
 
     Sub load_cash_advance()
-        Dim where_string As String = ""
-        '
+        Dim date_from As String = ""
+        Dim date_to As String = ""
 
-        '
+        Try
+            date_from = DateTime.Parse(DateFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+            date_to = DateTime.Parse(DateTo.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim where_string As String = ""
+
         Try
             If Not SLEType.EditValue.ToString = "0" Then
                 where_string += " AND ca.id_cash_advance_type='" & SLEType.EditValue.ToString & "' "
@@ -93,6 +100,14 @@ SELECT id_employee,employee_name FROM tb_m_employee"
                 ElseIf SLEStatus.EditValue.ToString = "3" Then '
                     where_string += " AND ca.rb_id_report_status =6"
                 End If
+            End If
+
+            If Not date_from = "" Then
+                where_string += " AND ca.report_back_date >= '" + date_from + "'"
+            End If
+
+            If Not date_to = "" Then
+                where_string += " AND ca.report_back_date <= '" + date_to + "'"
             End If
         Catch ex As Exception
         End Try
@@ -147,30 +162,26 @@ WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
     End Sub
 
     Sub print_list()
-        GCNumber.MinWidth = 20
-        GCCreatedDate.MinWidth = 20
-        GCCreatedBy.MinWidth = 20
-        GCNote.MinWidth = 20
-        GCEmployee.MinWidth = 20
-        GCDepartement.MinWidth = 20
-        GCCashInAdvance.MinWidth = 20
-        GCProposalStatus.MinWidth = 20
-        GCReportBackDate.MinWidth = 20
-        GCReportBackDueDate.MinWidth = 20
-        GCReportBackStatus.MinWidth = 20
+        GCType.Visible = False
+        GCCreatedDate.Visible = False
+        GCProposalStatus.Visible = False
+        GCReportBackDueDate.Visible = False
+        GCReportBackStatus.Visible = False
+
+        GVListOpen.BestFitColumns()
 
         print(Me.GCListOpen, "Cash Advance")
 
-        GCNumber.MinWidth = 70
-        GCCreatedDate.MinWidth = 110
-        GCCreatedBy.MinWidth = 150
-        GCNote.MinWidth = 40
-        GCEmployee.MinWidth = 150
-        GCDepartement.MinWidth = 150
-        GCCashInAdvance.MinWidth = 120
-        GCProposalStatus.MinWidth = 90
-        GCReportBackDate.MinWidth = 110
-        GCReportBackDueDate.MinWidth = 110
-        GCReportBackStatus.MinWidth = 90
+        GCNumber.VisibleIndex = 0
+        GCType.VisibleIndex = 1
+        GCCreatedDate.VisibleIndex = 2
+        GCDepartement.VisibleIndex = 3
+        GCEmployee.VisibleIndex = 4
+        GCCashInAdvance.VisibleIndex = 5
+        GCNote.VisibleIndex = 6
+        GCProposalStatus.VisibleIndex = 7
+        GCReportBackDate.VisibleIndex = 8
+        GCReportBackDueDate.VisibleIndex = 9
+        GCReportBackStatus.VisibleIndex = 10
     End Sub
 End Class

@@ -107,6 +107,7 @@
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
                 BMark.Enabled = True
+                BandedGridColumnActWorkdays.OptionsColumn.AllowEdit = False
                 BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
@@ -130,14 +131,12 @@
                 GBWorkingDays.Visible = True
                 GBSalary.Visible = True
                 GBBonusAdjustment.Visible = True
-                GBDeduction.Visible = True
 
                 GBDW.Visible = False
             ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
                 GBWorkingDays.Visible = False
                 GBSalary.Visible = False
                 GBBonusAdjustment.Visible = False
-                GBDeduction.Visible = False
 
                 GBDW.Visible = True
             End If
@@ -145,12 +144,8 @@
             'button
             If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
                 BBonusAdjustment.Visible = True
-                BDeduction.Visible = True
-                BSetting.Visible = True
             Else
                 BBonusAdjustment.Visible = False
-                BDeduction.Visible = False
-                BSetting.Visible = False
             End If
         End If
 
@@ -174,7 +169,7 @@
     Sub calculate_grandtotal_dw()
         For i = 0 To GVPayroll.RowCount - 1
             If GVPayroll.IsValidRowHandle(i) Then
-                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages")
+                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages") - GVPayroll.GetRowCellValue(i, "total_deduction")
 
                 GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
             End If
@@ -527,7 +522,13 @@
 
     Sub adjustment_deduction_column(type As String)
         'column
-        Dim query_adj_c As String = "SELECT salary_" + type + "_cat FROM tb_lookup_salary_" + type + "_cat"
+        Dim where_adj_c As String = ""
+
+        If Not GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+            where_adj_c = "WHERE id_salary_" + type + "_cat IN (SELECT id_salary_" + type + "_cat FROM tb_lookup_salary_" + type + " WHERE use_dw = 1)"
+        End If
+
+        Dim query_adj_c As String = "SELECT salary_" + type + "_cat FROM tb_lookup_salary_" + type + "_cat" + " " + where_adj_c
 
         Dim data_adj_c As DataTable = execute_query(query_adj_c, -1, True, "", "", "", "")
 
@@ -699,7 +700,7 @@
 
                                 mem.Seek(0, System.IO.SeekOrigin.Begin)
 
-                                Dim att = New Net.Mail.Attachment(mem, "Salary Slip " + period + ".pdf", "application/pdf")
+                                Dim att = New Net.Mail.Attachment(mem, "Slip Gaji " + period + ".pdf", "application/pdf")
 
                                 'mail
                                 Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
@@ -714,20 +715,31 @@
 
                                 mail.To.Add(to_mail)
 
-                                mail.Subject = "PT. VOLCOM INDONESIA - SALARY SLIP " + period.ToUpper
+                                mail.Subject = "PT. VOLCOM INDONESIA - SLIP GAJI " + period.ToUpper
                                 mail.IsBodyHtml = True
                                 mail.Body = "
-                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Dear " + employee_name + ",</b></p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Yang Terhormat Bapak/Ibu</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>" + employee_name + "</p>
                                     <br>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'>Here is your salary slip in " + period + ".</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Bersama ini kami lampirkan slip gaji Anda untuk bulan <b>" + period + "</b>,  slip gaji Anda ini bersifat pribadi dan sangat rahasia.</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Gunakan password Anda untuk melihat slip gaji tersebut.</p>
                                     <br>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'>Thank You</p>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Volcom ERP</b></p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Pasword slip gaji Anda adalah ddMmmyyyy (contoh: 01Aug1995)</p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>dd : Dua digit tanggal lahir Anda, contoh: 01</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Mmm : Tiga huruf pertama bulan lahir Anda dalam bahasa Inggris, contoh: Aug (Huruf pertama adalah huruf besar dan selanjutnya huruf kecil)</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>yyyy : Tahun lahir Anda, contoh: 1995</p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Demikian kami sampaikan, atas perhatiannya kami ucapkan terimakasih.</p>
                                 "
 
                                 mail.Attachments.Add(att)
 
-                                client.Send(mail)
+                                Try
+                                    client.Send(mail)
+                                Catch ex As Exception
+                                    ex.ToString()
+                                End Try
                             End If
                         Next
                     Else
@@ -748,6 +760,22 @@
     Private Sub GVPayroll_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVPayroll.CustomDrawRowFooter
         e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
 
+        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
+
+        format.Alignment = StringAlignment.Near
+
+        If GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("Group") Then
+            e.Graphics.DrawString("Grand Total: " + GVPayroll.GetGroupRowValue(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+        Else
+            If GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("SOGO") Then
+                e.Graphics.DrawString("Total " + GVPayroll.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+            Else
+                If Not GVPayroll.GetGroupRowDisplayText(e.RowHandle).Contains("Sub") Then
+                    e.Graphics.DrawString("Total " + GVPayroll.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+                End If
+            End If
+        End If
+
         e.Handled = True
     End Sub
 
@@ -766,5 +794,14 @@
         If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
             info.GroupText = " "
         End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        FormDocumentUpload.report_mark_type = "192"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

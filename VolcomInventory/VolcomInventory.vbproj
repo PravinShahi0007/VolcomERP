@@ -268,6 +268,7 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="CryptFile.vb" />
     <Compile Include="FindPanel.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -1769,6 +1770,18 @@
       <DependentUpon>FormInvoiceFGPODPSplit.vb</DependentUpon>
     </Compile>
     <Compile Include="FormInvoiceFGPODPSplit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCatMain.Designer.vb">
+      <DependentUpon>FormItemCatMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCatMainDet.Designer.vb">
+      <DependentUpon>FormItemCatMainDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMainDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormItemCatMapping.Designer.vb">
@@ -5023,6 +5036,12 @@
     <Compile Include="FormSampleTrf.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSearchDesign.Designer.vb">
+      <DependentUpon>FormSearchDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSearchDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSeason.Designer.vb">
       <DependentUpon>FormSeason.vb</DependentUpon>
     </Compile>
@@ -7822,6 +7841,12 @@
     <EmbeddedResource Include="FormInvoiceFGPODPSplit.resx">
       <DependentUpon>FormInvoiceFGPODPSplit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMain.resx">
+      <DependentUpon>FormItemCatMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMainDet.resx">
+      <DependentUpon>FormItemCatMainDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMapping.resx">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>
     </EmbeddedResource>
@@ -9777,6 +9802,9 @@
     <EmbeddedResource Include="FormSampleTrf.resx">
       <DependentUpon>FormSampleTrf.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSearchDesign.resx">
+      <DependentUpon>FormSearchDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSeason.resx">
       <DependentUpon>FormSeason.vb</DependentUpon>
