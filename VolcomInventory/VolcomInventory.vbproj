@@ -1778,6 +1778,12 @@
     <Compile Include="FormItemCatMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatMainAdd.Designer.vb">
+      <DependentUpon>FormItemCatMainAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMainAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatMainDet.Designer.vb">
       <DependentUpon>FormItemCatMainDet.vb</DependentUpon>
     </Compile>
@@ -7843,6 +7849,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMain.resx">
       <DependentUpon>FormItemCatMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMainAdd.resx">
+      <DependentUpon>FormItemCatMainAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMainDet.resx">
       <DependentUpon>FormItemCatMainDet.vb</DependentUpon>

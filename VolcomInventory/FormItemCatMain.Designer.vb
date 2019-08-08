@@ -26,8 +26,6 @@ Partial Class FormItemCatMain
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPItemCatPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -62,7 +60,7 @@ Partial Class FormItemCatMain
         Me.XTPItemCat.Controls.Add(Me.GCItemCat)
         Me.XTPItemCat.Name = "XTPItemCat"
         Me.XTPItemCat.Size = New System.Drawing.Size(1025, 525)
-        Me.XTPItemCat.Text = "Budget Category"
+        Me.XTPItemCat.Text = "List Main Category"
         '
         'GCItemCat
         '
@@ -76,7 +74,7 @@ Partial Class FormItemCatMain
         '
         'GVItemCat
         '
-        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.GridColumn8, Me.GridColumn9})
+        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn10})
         Me.GVItemCat.GridControl = Me.GCItemCat
         Me.GVItemCat.Name = "GVItemCat"
         Me.GVItemCat.OptionsBehavior.Editable = False
@@ -86,7 +84,7 @@ Partial Class FormItemCatMain
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Id"
-        Me.GridColumn6.FieldName = "id_item_cat"
+        Me.GridColumn6.FieldName = "id_item_cat_main"
         Me.GridColumn6.Name = "GridColumn6"
         '
         'GridColumn7
@@ -105,26 +103,12 @@ Partial Class FormItemCatMain
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Category"
-        Me.GridColumn8.FieldName = "item_cat"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Category (En)"
-        Me.GridColumn9.FieldName = "item_cat_en"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
         'XTPItemCatPropose
         '
         Me.XTPItemCatPropose.Controls.Add(Me.GCData)
         Me.XTPItemCatPropose.Name = "XTPItemCatPropose"
-        Me.XTPItemCatPropose.Size = New System.Drawing.Size(945, 500)
-        Me.XTPItemCatPropose.Text = "Setup Budget Category"
+        Me.XTPItemCatPropose.Size = New System.Drawing.Size(1025, 525)
+        Me.XTPItemCatPropose.Text = "Propose Main Category"
         '
         'GCData
         '
@@ -132,7 +116,7 @@ Partial Class FormItemCatMain
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(945, 500)
+        Me.GCData.Size = New System.Drawing.Size(1025, 525)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -148,7 +132,7 @@ Partial Class FormItemCatMain
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_item_cat_propose"
+        Me.GridColumn1.FieldName = "id_item_cat_main_pps"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
@@ -216,8 +200,6 @@ Partial Class FormItemCatMain
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPItemCatPropose As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
