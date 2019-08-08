@@ -57,10 +57,13 @@ Public Class FormRangeSingle
             Dim season_printed_name As String = TxtSeasonPrintedName.Text
             Dim query_count = String.Format("SELECT * FROM tb_range WHERE tb_range.range='{0}'", range)
             Dim id_dept As String = "-1"
+            Dim is_need_us_approval As String = "-1"
             If FormSeason.is_md = "1" Then
                 id_dept = get_setup_field("ss_default_dept").ToString
+                is_need_us_approval = "1"
             Else
                 id_dept = id_departement_user
+                is_need_us_approval = "2"
             End If
 
             If action = "upd" Then
@@ -78,8 +81,8 @@ Public Class FormRangeSingle
                         id_range = execute_query(query, 0, True, "", "", "", "")
 
                         'u/ season
-                        Dim query_season As String = "INSERT INTO tb_season(id_range, season, season_printed_name) VALUES "
-                        query_season += "('" + id_range + "', '" + season + "', '" + season_printed_name + "'); SELECT LAST_INSERT_ID(); "
+                        Dim query_season As String = "INSERT INTO tb_season(id_range, season, season_printed_name, is_need_us_approval) VALUES "
+                        query_season += "('" + id_range + "', '" + season + "', '" + season_printed_name + "', '" + is_need_us_approval + "'); SELECT LAST_INSERT_ID(); "
                         Dim id_season As String = execute_query(query_season, 0, True, "", "", "", "")
 
                         'del

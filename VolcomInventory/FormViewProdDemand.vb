@@ -36,8 +36,10 @@
             rmt = "9"
         ElseIf id_pd_kind = "2" Then 'MKT
             rmt = "80"
-        Else 'HRD
+        ElseIf id_pd_kind = "3" Then 'HRD
             rmt = "81"
+        ElseIf id_pd_kind = "4" Then 'SALES
+            rmt = "206"
         End If
         If data.Rows(0)("is_confirm").ToString = "1" Then
             is_confirm = True
