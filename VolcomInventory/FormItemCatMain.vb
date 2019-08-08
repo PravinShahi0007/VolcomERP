@@ -57,7 +57,7 @@
 
     Sub view_cat()
         Cursor = Cursors.WaitCursor
-        Dim qm As String = "SELECT * FROM tb_item_cat_main WHERE is_active='1'"
+        Dim qm As String = "SELECT * FROM tb_item_cat_main"
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         GCItemCat.DataSource = dm
         Cursor = Cursors.Default
@@ -65,7 +65,10 @@
 
     Sub view_propose()
         Cursor = Cursors.WaitCursor
-        Dim qm As String = ""
+        Dim qm As String = "SELECT ip.id_item_cat_main_pps, ip.number, ip.created_date, ip.note, ip.id_report_status, stt.report_status, ip.is_confirm
+        FROM tb_item_cat_main_pps ip
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ip.id_report_status
+        WHERE ip.id_item_cat_main_pps>0 ORDER BY ip.id_item_cat_main_pps"
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         GCData.DataSource = dm
         Cursor = Cursors.Default
