@@ -19,6 +19,7 @@ Partial Class FormEmpPayroll
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayroll))
         Me.XTCPayroll = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPeriode = New DevExpress.XtraTab.XtraTabPage()
@@ -35,7 +36,7 @@ Partial Class FormEmpPayroll
         Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPayroll = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -43,6 +44,9 @@ Partial Class FormEmpPayroll
         Me.GridColumnDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCheck = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumnSent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RICESent = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GridColumnNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -52,6 +56,10 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnActWorkdays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEActWorkdays = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BandedGridColumnOvertimeHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnActWorkdaysDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RITEActWorkdaysDW = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnBasicSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnJobAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -78,10 +86,6 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnTotalPaymentOt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBDeduction = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnTotalDeduction = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumnActWorkdaysDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RITEActWorkdaysDW = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumnBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBExtraNote = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -94,16 +98,17 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditViewSend = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.BReport = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
         Me.BBBcaFormat = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -144,12 +149,16 @@ Partial Class FormEmpPayroll
         Me.ViewPopWorksheet.SuspendLayout()
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICESent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.CheckEditViewSend.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,7 +176,7 @@ Partial Class FormEmpPayroll
         Me.XTCPayroll.Location = New System.Drawing.Point(0, 0)
         Me.XTCPayroll.Name = "XTCPayroll"
         Me.XTCPayroll.SelectedTabPage = Me.XTPPeriode
-        Me.XTCPayroll.Size = New System.Drawing.Size(1008, 729)
+        Me.XTCPayroll.Size = New System.Drawing.Size(1344, 729)
         Me.XTCPayroll.TabIndex = 0
         Me.XTCPayroll.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPeriode, Me.XTPSalaryFormat})
         '
@@ -175,7 +184,7 @@ Partial Class FormEmpPayroll
         '
         Me.XTPPeriode.Controls.Add(Me.GCPayrollPeriode)
         Me.XTPPeriode.Name = "XTPPeriode"
-        Me.XTPPeriode.Size = New System.Drawing.Size(1002, 701)
+        Me.XTPPeriode.Size = New System.Drawing.Size(1338, 701)
         Me.XTPPeriode.Text = "Period"
         '
         'GCPayrollPeriode
@@ -184,7 +193,7 @@ Partial Class FormEmpPayroll
         Me.GCPayrollPeriode.Location = New System.Drawing.Point(0, 0)
         Me.GCPayrollPeriode.MainView = Me.GVPayrollPeriode
         Me.GCPayrollPeriode.Name = "GCPayrollPeriode"
-        Me.GCPayrollPeriode.Size = New System.Drawing.Size(1002, 701)
+        Me.GCPayrollPeriode.Size = New System.Drawing.Size(1338, 701)
         Me.GCPayrollPeriode.TabIndex = 0
         Me.GCPayrollPeriode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayrollPeriode})
         '
@@ -283,7 +292,7 @@ Partial Class FormEmpPayroll
         Me.XTPSalaryFormat.Controls.Add(Me.PanelControl2)
         Me.XTPSalaryFormat.Controls.Add(Me.PanelControl1)
         Me.XTPSalaryFormat.Name = "XTPSalaryFormat"
-        Me.XTPSalaryFormat.Size = New System.Drawing.Size(1002, 701)
+        Me.XTPSalaryFormat.Size = New System.Drawing.Size(1338, 701)
         Me.XTPSalaryFormat.Text = "Worksheet"
         '
         'GCPayroll
@@ -293,8 +302,8 @@ Partial Class FormEmpPayroll
         Me.GCPayroll.Location = New System.Drawing.Point(0, 39)
         Me.GCPayroll.MainView = Me.GVPayroll
         Me.GCPayroll.Name = "GCPayroll"
-        Me.GCPayroll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending, Me.RITEActWorkdaysDW, Me.RICECheck, Me.RITEActWorkdays})
-        Me.GCPayroll.Size = New System.Drawing.Size(1002, 623)
+        Me.GCPayroll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending, Me.RITEActWorkdaysDW, Me.RICECheck, Me.RITEActWorkdays, Me.RICESent})
+        Me.GCPayroll.Size = New System.Drawing.Size(1338, 623)
         Me.GCPayroll.TabIndex = 1
         Me.GCPayroll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayroll})
         '
@@ -313,7 +322,7 @@ Partial Class FormEmpPayroll
         'GVPayroll
         '
         Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand8, Me.GBWorkingDays, Me.GBDW, Me.GBSalary, Me.GBBonusAdjustment, Me.GBOvertime, Me.GBDeduction, Me.GBTotal, Me.GBExtraNote})
-        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDPayroll, Me.GridColumnIDEmployee, Me.GCIsOfficePayroll, Me.GridColumnGroupReport, Me.GridColumnDepartement, Me.BandedGridColumn1, Me.GridColumnDepartementSub, Me.BandedGridColumnCheck, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnWorkingDays, Me.BandedGridColumnActWorkdays, Me.BandedGridColumnOvertimeHours, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.BandedGridColumnTotalAdjustment, Me.BandedGridColumnTotalDeduction, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.BandedGridColumnTotalPaymentOt, Me.BandedGridColumnActWorkdaysDW, Me.GridColumnBasicSalaryDW, Me.BandedGridColumnGrandTotal, Me.BandedGridColumnPending, Me.BandedGridColumnCash})
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDPayroll, Me.GridColumnIDEmployee, Me.GCIsOfficePayroll, Me.GridColumnGroupReport, Me.GridColumnDepartement, Me.BandedGridColumn1, Me.GridColumnDepartementSub, Me.BandedGridColumnCheck, Me.BandedGridColumnSent, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnWorkingDays, Me.BandedGridColumnActWorkdays, Me.BandedGridColumnOvertimeHours, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.BandedGridColumnTotalAdjustment, Me.BandedGridColumnTotalDeduction, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.BandedGridColumnTotalPaymentOt, Me.BandedGridColumnActWorkdaysDW, Me.GridColumnBasicSalaryDW, Me.BandedGridColumnGrandTotal, Me.BandedGridColumnPending, Me.BandedGridColumnCash})
         Me.GVPayroll.GridControl = Me.GCPayroll
         Me.GVPayroll.GroupCount = 3
         Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GridColumnBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GridColumnJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GridColumnMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GridColumnTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GridColumnHousingAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GridColumnVehicleAttndAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", Me.GridColumnTotTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", Me.BandedGridColumnTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", Me.BandedGridColumnTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_point", Me.GridColumnPointRegular, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_wages", Me.GridColumnOTReguler, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_point", Me.GridColumnPointMkt, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_wages", Me.GridColumnOtMkt, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_point", Me.GridColumnPointIA, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_wages", Me.GridColumnOtIA, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_point", Me.GridColumnPointProd, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_wages", Me.GridColumnOTProd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_point", Me.GridColumnPointSales, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_wages", Me.GridColumnOtSales, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_point", Me.GridColumnPointGeneral, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_wages", Me.GridColumnOtGeneral, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", Me.BandedGridColumnTotalPaymentOt, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", Me.BandedGridColumnGrandTotal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "id_departement_sub", Me.BandedGridColumn1, "{0}")})
@@ -335,6 +344,7 @@ Partial Class FormEmpPayroll
         Me.gridBand8.Columns.Add(Me.GridColumnGroupReport)
         Me.gridBand8.Columns.Add(Me.GridColumnDepartement)
         Me.gridBand8.Columns.Add(Me.BandedGridColumnCheck)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnSent)
         Me.gridBand8.Columns.Add(Me.GridColumnNIP)
         Me.gridBand8.Columns.Add(Me.GridColumnName)
         Me.gridBand8.Columns.Add(Me.GridColumnPosition)
@@ -376,6 +386,48 @@ Partial Class FormEmpPayroll
         Me.RICECheck.Name = "RICECheck"
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
+        '
+        'BandedGridColumnSent
+        '
+        Me.BandedGridColumnSent.Caption = "Sent"
+        Me.BandedGridColumnSent.ColumnEdit = Me.RICESent
+        Me.BandedGridColumnSent.FieldName = "slip_send"
+        Me.BandedGridColumnSent.Name = "BandedGridColumnSent"
+        '
+        'RICESent
+        '
+        Me.RICESent.AutoHeight = False
+        Me.RICESent.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RICESent.ImageIndexChecked = 19
+        Me.RICESent.Images = Me.LargeImageCollection
+        Me.RICESent.Name = "RICESent"
+        Me.RICESent.ValueChecked = "yes"
+        Me.RICESent.ValueUnchecked = "no"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
         'GridColumnNIP
         '
@@ -466,6 +518,45 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnOvertimeHours.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnOvertimeHours.Visible = True
         Me.BandedGridColumnOvertimeHours.Width = 93
+        '
+        'GBDW
+        '
+        Me.GBDW.Columns.Add(Me.BandedGridColumnActWorkdaysDW)
+        Me.GBDW.Columns.Add(Me.GridColumnBasicSalaryDW)
+        Me.GBDW.Name = "GBDW"
+        Me.GBDW.VisibleIndex = 2
+        Me.GBDW.Width = 215
+        '
+        'BandedGridColumnActWorkdaysDW
+        '
+        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumnActWorkdaysDW.Caption = "Actual Working Days"
+        Me.BandedGridColumnActWorkdaysDW.ColumnEdit = Me.RITEActWorkdaysDW
+        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatString = "N1"
+        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnActWorkdaysDW.FieldName = "actual_workdays"
+        Me.BandedGridColumnActWorkdaysDW.Name = "BandedGridColumnActWorkdaysDW"
+        Me.BandedGridColumnActWorkdaysDW.Visible = True
+        Me.BandedGridColumnActWorkdaysDW.Width = 109
+        '
+        'RITEActWorkdaysDW
+        '
+        Me.RITEActWorkdaysDW.AutoHeight = False
+        Me.RITEActWorkdaysDW.DisplayFormat.FormatString = "N1"
+        Me.RITEActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEActWorkdaysDW.Name = "RITEActWorkdaysDW"
+        '
+        'GridColumnBasicSalaryDW
+        '
+        Me.GridColumnBasicSalaryDW.Caption = "Daily Salary"
+        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatString = "N0"
+        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBasicSalaryDW.FieldName = "basic_salary"
+        Me.GridColumnBasicSalaryDW.Name = "GridColumnBasicSalaryDW"
+        Me.GridColumnBasicSalaryDW.OptionsColumn.AllowEdit = False
+        Me.GridColumnBasicSalaryDW.Visible = True
+        Me.GridColumnBasicSalaryDW.Width = 106
         '
         'GBSalary
         '
@@ -871,45 +962,6 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnTotalDeduction.Visible = True
         Me.BandedGridColumnTotalDeduction.Width = 90
         '
-        'GBDW
-        '
-        Me.GBDW.Columns.Add(Me.BandedGridColumnActWorkdaysDW)
-        Me.GBDW.Columns.Add(Me.GridColumnBasicSalaryDW)
-        Me.GBDW.Name = "GBDW"
-        Me.GBDW.VisibleIndex = 2
-        Me.GBDW.Width = 215
-        '
-        'BandedGridColumnActWorkdaysDW
-        '
-        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumnActWorkdaysDW.Caption = "Actual Working Days"
-        Me.BandedGridColumnActWorkdaysDW.ColumnEdit = Me.RITEActWorkdaysDW
-        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatString = "N1"
-        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnActWorkdaysDW.FieldName = "actual_workdays"
-        Me.BandedGridColumnActWorkdaysDW.Name = "BandedGridColumnActWorkdaysDW"
-        Me.BandedGridColumnActWorkdaysDW.Visible = True
-        Me.BandedGridColumnActWorkdaysDW.Width = 109
-        '
-        'RITEActWorkdaysDW
-        '
-        Me.RITEActWorkdaysDW.AutoHeight = False
-        Me.RITEActWorkdaysDW.DisplayFormat.FormatString = "N1"
-        Me.RITEActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEActWorkdaysDW.Name = "RITEActWorkdaysDW"
-        '
-        'GridColumnBasicSalaryDW
-        '
-        Me.GridColumnBasicSalaryDW.Caption = "Daily Salary"
-        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatString = "N0"
-        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBasicSalaryDW.FieldName = "basic_salary"
-        Me.GridColumnBasicSalaryDW.Name = "GridColumnBasicSalaryDW"
-        Me.GridColumnBasicSalaryDW.OptionsColumn.AllowEdit = False
-        Me.GridColumnBasicSalaryDW.Visible = True
-        Me.GridColumnBasicSalaryDW.Width = 106
-        '
         'GBTotal
         '
         Me.GBTotal.Columns.Add(Me.BandedGridColumnGrandTotal)
@@ -996,6 +1048,7 @@ Partial Class FormEmpPayroll
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.BtnAttachment)
         Me.PanelControl2.Controls.Add(Me.BReport)
         Me.PanelControl2.Controls.Add(Me.SBSendSlip)
@@ -1009,45 +1062,38 @@ Partial Class FormEmpPayroll
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 662)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1002, 39)
+        Me.PanelControl2.Size = New System.Drawing.Size(1338, 39)
         Me.PanelControl2.TabIndex = 2
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CheckEditViewSend)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(298, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(96, 35)
+        Me.PanelControl3.TabIndex = 114
+        '
+        'CheckEditViewSend
+        '
+        Me.CheckEditViewSend.Location = New System.Drawing.Point(5, 7)
+        Me.CheckEditViewSend.Name = "CheckEditViewSend"
+        Me.CheckEditViewSend.Properties.Caption = "View Sent Slip"
+        Me.CheckEditViewSend.Size = New System.Drawing.Size(88, 19)
+        Me.CheckEditViewSend.TabIndex = 102
         '
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(316, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(652, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 35)
         Me.BtnAttachment.TabIndex = 113
         Me.BtnAttachment.TabStop = False
         Me.BtnAttachment.Text = "Attachment"
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
-        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
-        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
         'BReport
         '
@@ -1055,7 +1101,7 @@ Partial Class FormEmpPayroll
         Me.BReport.DropDownControl = Me.PopupMenu1
         Me.BReport.ImageIndex = 17
         Me.BReport.ImageList = Me.LargeImageCollection
-        Me.BReport.Location = New System.Drawing.Point(419, 2)
+        Me.BReport.Location = New System.Drawing.Point(755, 2)
         Me.BReport.Name = "BReport"
         Me.BReport.Size = New System.Drawing.Size(111, 35)
         Me.BReport.TabIndex = 108
@@ -1112,14 +1158,14 @@ Partial Class FormEmpPayroll
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1008, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1344, 0)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1344, 0)
         '
         'barDockControlLeft
         '
@@ -1132,7 +1178,7 @@ Partial Class FormEmpPayroll
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1344, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
         '
         'BBPD
@@ -1197,7 +1243,7 @@ Partial Class FormEmpPayroll
         Me.SBSendSlip.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSendSlip.ImageIndex = 19
         Me.SBSendSlip.ImageList = Me.LargeImageCollection
-        Me.SBSendSlip.Location = New System.Drawing.Point(530, 2)
+        Me.SBSendSlip.Location = New System.Drawing.Point(866, 2)
         Me.SBSendSlip.Name = "SBSendSlip"
         Me.SBSendSlip.Size = New System.Drawing.Size(103, 35)
         Me.SBSendSlip.TabIndex = 112
@@ -1208,7 +1254,7 @@ Partial Class FormEmpPayroll
         Me.BPrintSlip.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrintSlip.ImageIndex = 6
         Me.BPrintSlip.ImageList = Me.LargeImageCollection
-        Me.BPrintSlip.Location = New System.Drawing.Point(633, 2)
+        Me.BPrintSlip.Location = New System.Drawing.Point(969, 2)
         Me.BPrintSlip.Name = "BPrintSlip"
         Me.BPrintSlip.Size = New System.Drawing.Size(97, 35)
         Me.BPrintSlip.TabIndex = 106
@@ -1221,7 +1267,7 @@ Partial Class FormEmpPayroll
         Me.PCSelAll.Dock = System.Windows.Forms.DockStyle.Left
         Me.PCSelAll.Location = New System.Drawing.Point(226, 2)
         Me.PCSelAll.Name = "PCSelAll"
-        Me.PCSelAll.Size = New System.Drawing.Size(99, 35)
+        Me.PCSelAll.Size = New System.Drawing.Size(72, 35)
         Me.PCSelAll.TabIndex = 105
         '
         'CheckEditSelAll
@@ -1229,7 +1275,7 @@ Partial Class FormEmpPayroll
         Me.CheckEditSelAll.Location = New System.Drawing.Point(5, 7)
         Me.CheckEditSelAll.Name = "CheckEditSelAll"
         Me.CheckEditSelAll.Properties.Caption = "Select All"
-        Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
+        Me.CheckEditSelAll.Size = New System.Drawing.Size(66, 19)
         Me.CheckEditSelAll.TabIndex = 102
         '
         'BMark
@@ -1258,7 +1304,7 @@ Partial Class FormEmpPayroll
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.ImageIndex = 6
         Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(730, 2)
+        Me.BPrint.Location = New System.Drawing.Point(1066, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(82, 35)
         Me.BPrint.TabIndex = 0
@@ -1269,7 +1315,7 @@ Partial Class FormEmpPayroll
         Me.BReset.Dock = System.Windows.Forms.DockStyle.Right
         Me.BReset.ImageIndex = 3
         Me.BReset.ImageList = Me.LargeImageCollection
-        Me.BReset.Location = New System.Drawing.Point(812, 2)
+        Me.BReset.Location = New System.Drawing.Point(1148, 2)
         Me.BReset.Name = "BReset"
         Me.BReset.Size = New System.Drawing.Size(91, 35)
         Me.BReset.TabIndex = 110
@@ -1280,7 +1326,7 @@ Partial Class FormEmpPayroll
         Me.BSubmit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSubmit.ImageIndex = 19
         Me.BSubmit.ImageList = Me.LargeImageCollection
-        Me.BSubmit.Location = New System.Drawing.Point(903, 2)
+        Me.BSubmit.Location = New System.Drawing.Point(1239, 2)
         Me.BSubmit.Name = "BSubmit"
         Me.BSubmit.Size = New System.Drawing.Size(97, 35)
         Me.BSubmit.TabIndex = 109
@@ -1298,7 +1344,7 @@ Partial Class FormEmpPayroll
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1002, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(1338, 39)
         Me.PanelControl1.TabIndex = 0
         '
         'BUpdateActualWorkingDays
@@ -1318,7 +1364,7 @@ Partial Class FormEmpPayroll
         Me.BBonusAdjustment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BBonusAdjustment.ImageIndex = 14
         Me.BBonusAdjustment.ImageList = Me.LargeImageCollection
-        Me.BBonusAdjustment.Location = New System.Drawing.Point(562, 2)
+        Me.BBonusAdjustment.Location = New System.Drawing.Point(898, 2)
         Me.BBonusAdjustment.Name = "BBonusAdjustment"
         Me.BBonusAdjustment.Size = New System.Drawing.Size(137, 35)
         Me.BBonusAdjustment.TabIndex = 5
@@ -1329,7 +1375,7 @@ Partial Class FormEmpPayroll
         Me.BDeduction.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDeduction.ImageIndex = 14
         Me.BDeduction.ImageList = Me.LargeImageCollection
-        Me.BDeduction.Location = New System.Drawing.Point(699, 2)
+        Me.BDeduction.Location = New System.Drawing.Point(1035, 2)
         Me.BDeduction.Name = "BDeduction"
         Me.BDeduction.Size = New System.Drawing.Size(103, 35)
         Me.BDeduction.TabIndex = 4
@@ -1362,7 +1408,7 @@ Partial Class FormEmpPayroll
         Me.BOvertime.Dock = System.Windows.Forms.DockStyle.Right
         Me.BOvertime.ImageIndex = 18
         Me.BOvertime.ImageList = Me.LargeImageCollection
-        Me.BOvertime.Location = New System.Drawing.Point(802, 2)
+        Me.BOvertime.Location = New System.Drawing.Point(1138, 2)
         Me.BOvertime.Name = "BOvertime"
         Me.BOvertime.Size = New System.Drawing.Size(101, 35)
         Me.BOvertime.TabIndex = 1
@@ -1373,7 +1419,7 @@ Partial Class FormEmpPayroll
         Me.BSetting.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSetting.ImageIndex = 17
         Me.BSetting.ImageList = Me.LargeImageCollection
-        Me.BSetting.Location = New System.Drawing.Point(903, 2)
+        Me.BSetting.Location = New System.Drawing.Point(1239, 2)
         Me.BSetting.Name = "BSetting"
         Me.BSetting.Size = New System.Drawing.Size(97, 35)
         Me.BSetting.TabIndex = 0
@@ -1383,7 +1429,7 @@ Partial Class FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.ClientSize = New System.Drawing.Size(1344, 729)
         Me.Controls.Add(Me.XTCPayroll)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
@@ -1405,12 +1451,16 @@ Partial Class FormEmpPayroll
         Me.ViewPopWorksheet.ResumeLayout(False)
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICESent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.CheckEditViewSend.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1518,7 +1568,6 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnBasicSalaryDW As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RITEActWorkdaysDW As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents BandedGridColumnCheck As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BandedGridColumnOvertimeHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BarButtonItem5 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
@@ -1538,4 +1587,9 @@ Partial Class FormEmpPayroll
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RITEActWorkdays As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEditViewSend As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BandedGridColumnSent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RICESent As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
