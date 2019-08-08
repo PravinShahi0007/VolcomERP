@@ -161,6 +161,7 @@
             BReset.Visible = False
             BSubmit.Visible = False
             SBSendSlip.Visible = False
+            CheckEditViewSend.Visible = False
         End If
 
         Cursor = Cursors.Default
@@ -735,11 +736,21 @@
 
                                 mail.Attachments.Add(att)
 
+                                Dim status As String = "1"
+                                Dim message As String = ""
+
                                 Try
                                     client.Send(mail)
                                 Catch ex As Exception
-                                    ex.ToString()
+                                    status = "2"
+                                    message = ex.ToString()
                                 End Try
+
+                                execute_non_query("INSERT INTO tb_emp_payroll_slip_log (id_payroll_det, status, message, send_to, send_at, send_by) VALUES ('" + GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString + "', '" + status + "', '" + message + "', '" + email_personal + "', NOW(), '" + id_employee_user + "')", True, "", "", "", "")
+
+                                If status = "1" Then
+                                    GVPayroll.SetRowCellValue(i, "slip_send", "yes")
+                                End If
                             End If
                         Next
                     Else
@@ -752,7 +763,16 @@
 
                     Cursor = Cursors.Default
                 End If
+
                 GVPayroll.ActiveFilterString = ""
+
+                For i As Integer = 0 To GVPayroll.RowCount - 1
+                    If GVPayroll.IsValidRowHandle(i) Then
+                        If GVPayroll.GetRowCellValue(i, "is_check").ToString = "yes" Then
+                            GVPayroll.SetRowCellValue(i, "is_check", "no")
+                        End If
+                    End If
+                Next
             End If
         End If
     End Sub
@@ -803,5 +823,27 @@
         FormDocumentUpload.report_mark_type = "192"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEditViewSend_EditValueChanged(sender As Object, e As EventArgs) Handles CheckEditViewSend.EditValueChanged
+        Dim slip_sent As DataTable = execute_query("SELECT id_payroll_det FROM tb_emp_payroll_slip_log WHERE id_payroll_det IN (SELECT id_payroll_det FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ") AND status = 1", -1, True, "", "", "", "")
+
+        For i = 0 To GVPayroll.RowCount - 1
+            If GVPayroll.IsValidRowHandle(i) Then
+                For j = 0 To slip_sent.Rows.Count - 1
+                    If GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString = slip_sent.Rows(j)("id_payroll_det").ToString Then
+                        GVPayroll.SetRowCellValue(i, "slip_send", "yes")
+
+                        Exit For
+                    End If
+                Next
+            End If
+        Next
+
+        If CheckEditViewSend.EditValue Then
+            BandedGridColumnSent.Visible = True
+        Else
+            BandedGridColumnSent.Visible = False
+        End If
     End Sub
 End Class
