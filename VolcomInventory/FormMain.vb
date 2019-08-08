@@ -1734,6 +1734,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'purchase category
             FormItemSubCatDet.id_sub_cat = "-1"
             FormItemSubCatDet.ShowDialog()
+        ElseIf formName = "FormItemCatMain" Then
+            'Main Category
+            Dim query As String = "INSERT INTO tb_item_cat_main_pps(created_date,created_by, note, id_report_status) 
+            VALUES(NOW(),'" & id_user & "', '',1);SELECT LAST_INSERT_ID(); "
+            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            execute_non_query("CALL gen_number('" & id & "','207')", True, "", "", "", "")
+            FormItemCatMain.view_propose()
+            FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id)
+            FormItemCatMainDet.id_propose = id
+            FormItemCatMainDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2805,6 +2815,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'purchase category
                 FormItemSubCatDet.id_sub_cat = FormItemSubCat.GVPurchaseCategory.GetFocusedRowCellValue("id_item_cat_detail").ToString
                 FormItemSubCatDet.ShowDialog()
+            ElseIf formName = "FormItemCatMain" Then
+                'main category
+                FormItemCatMainDet.id_propose = FormItemCatMain.GVData.GetFocusedRowCellValue("id_item_cat_main_pps").ToString
+                FormItemCatMainDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -2827,7 +2841,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Cursor = Cursors.WaitCursor
                     Try
                         query = String.Format("DELETE FROM tb_m_country WHERE id_country = '{0}'", id_country)
-                        execute_non_query(query, True, "", "", "", "")
+            execute_non_query(query, True, "", "", "", "")
                         FormMasterArea.view_country()
                     Catch ex As Exception
                         XtraMessageBox.Show("This country already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -3256,6 +3270,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     rmt = "80"
                 ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "3" Then 'HRDSCR
                     rmt = "81"
+                ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "4" Then 'SALES
+                    rmt = "206"
                 End If
             End If
             '
@@ -7573,6 +7589,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemSubCat" Then
             'purchase category
             print(FormItemSubCat.GCPurchaseCategory, "List Purchase Category")
+        ElseIf formName = "FormItemCatMain" Then
+            If FormItemCatMain.XTCCat.SelectedTabPageIndex = 0 Then
+                print_raw(FormItemCatMain.GCItemCat, "")
+            ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
+                print_raw(FormItemCatMain.GCData, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8329,6 +8351,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemSubCat" Then
             FormItemSubCat.Close()
             FormItemSubCat.Dispose()
+        ElseIf formName = "FormItemCatMain" Then
+            FormItemCatMain.Close()
+            FormItemCatMain.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9162,6 +9187,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposeEmpSalary.load_pps()
         ElseIf formName = "FormItemSubCat" Then
             FormItemSubCat.load_cat()
+        ElseIf formName = "FormItemCatMain" Then
+            If FormItemCatMain.XTCCat.SelectedTabPageIndex = 0 Then
+                FormItemCatMain.view_cat()
+            ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
+                FormItemCatMain.view_propose()
+            End If
         End If
     End Sub
     'Switch
@@ -13228,6 +13259,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSampleDevelopment.Show()
             FormSampleDevelopment.WindowState = FormWindowState.Maximized
             FormSampleDevelopment.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSetupItemMainCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupItemMainCat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemCatMain.MdiParent = Me
+            FormItemCatMain.Show()
+            FormItemCatMain.WindowState = FormWindowState.Maximized
+            FormItemCatMain.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
