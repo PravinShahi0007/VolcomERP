@@ -57,7 +57,9 @@
 
     Sub view_cat()
         Cursor = Cursors.WaitCursor
-        Dim qm As String = "SELECT * FROM tb_item_cat_main"
+        Dim qm As String = "SELECT cm.id_item_cat_main,et.expense_type 
+FROM tb_item_cat_main cm
+INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=cm.id_expense_type"
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         GCItemCat.DataSource = dm
         Cursor = Cursors.Default
