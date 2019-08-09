@@ -6171,6 +6171,9 @@ VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)(
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
                 query = "INSERT INTO tb_item_cat_main(`id_expense_type`,`item_cat_main`)
 		                SELECT d.id_expense_type, d.item_cat_main 
 		                FROM tb_item_cat_main_pps_det d
