@@ -1128,4 +1128,14 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
             EPCompany.SetError(TEBankAddress, String.Empty)
         End If
     End Sub
+
+    Private Sub XTCCompany_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCCompany.SelectedPageChanged
+        If XTCCompany.SelectedTabPageIndex = 1 Then
+            Try
+                load_legal()
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
 End Class

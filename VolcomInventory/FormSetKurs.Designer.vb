@@ -30,15 +30,22 @@ Partial Class FormSetKurs
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEFixFloating = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCKursTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVKursTrans, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEFixFloating.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TEFixFloating)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.BGetKurs)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -51,7 +58,7 @@ Partial Class FormSetKurs
         '
         'BGetKurs
         '
-        Me.BGetKurs.Location = New System.Drawing.Point(347, 11)
+        Me.BGetKurs.Location = New System.Drawing.Point(570, 11)
         Me.BGetKurs.Name = "BGetKurs"
         Me.BGetKurs.Size = New System.Drawing.Size(94, 23)
         Me.BGetKurs.TabIndex = 3
@@ -59,7 +66,7 @@ Partial Class FormSetKurs
         '
         'BSave
         '
-        Me.BSave.Location = New System.Drawing.Point(281, 11)
+        Me.BSave.Location = New System.Drawing.Point(504, 11)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(60, 23)
         Me.BSave.TabIndex = 2
@@ -95,7 +102,7 @@ Partial Class FormSetKurs
         '
         'GVKursTrans
         '
-        Me.GVKursTrans.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVKursTrans.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVKursTrans.GridControl = Me.GCKursTrans
         Me.GVKursTrans.Name = "GVKursTrans"
         Me.GVKursTrans.OptionsBehavior.Editable = False
@@ -117,7 +124,7 @@ Partial Class FormSetKurs
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 282
+        Me.GridColumn2.Width = 134
         '
         'GridColumn3
         '
@@ -126,7 +133,7 @@ Partial Class FormSetKurs
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 307
+        Me.GridColumn3.Width = 146
         '
         'GridColumn4
         '
@@ -137,7 +144,47 @@ Partial Class FormSetKurs
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 1043
+        Me.GridColumn4.Width = 167
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(281, 16)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl2.TabIndex = 4
+        Me.LabelControl2.Text = "Fixed Floating :"
+        '
+        'TEFixFloating
+        '
+        Me.TEFixFloating.Location = New System.Drawing.Point(361, 13)
+        Me.TEFixFloating.Name = "TEFixFloating"
+        Me.TEFixFloating.Properties.Mask.EditMask = "N2"
+        Me.TEFixFloating.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEFixFloating.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEFixFloating.Size = New System.Drawing.Size(137, 20)
+        Me.TEFixFloating.TabIndex = 5
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Fixed Floating"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "fixed_floating"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 192
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Management Rate"
+        Me.GridColumn6.DisplayFormat.FormatString = "N2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "management_rate"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 213
         '
         'FormSetKurs
         '
@@ -158,6 +205,7 @@ Partial Class FormSetKurs
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCKursTrans, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVKursTrans, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEFixFloating.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -173,4 +221,8 @@ Partial Class FormSetKurs
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BGetKurs As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEFixFloating As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
