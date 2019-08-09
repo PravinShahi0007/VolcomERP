@@ -126,6 +126,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 2
         Me.GVDeduction.GroupFormat = "{1} {2}"
+        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Employee", Me.GCEmployee, "", "")})
         Me.GVDeduction.LevelIndent = 0
         Me.GVDeduction.Name = "GVDeduction"
         Me.GVDeduction.OptionsBehavior.AutoExpandAllGroups = True

@@ -16,7 +16,7 @@
 
         If id_payroll_type = "1" Then
             query = "
-                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active
+                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active, DATE_FORMAT(emp.employee_last_date, '%d %M %Y') AS employee_last_date
                 FROM tb_m_employee AS emp
                 INNER JOIN tb_m_departement AS dep ON dep.id_departement = emp.id_departement
                 INNER JOIN tb_lookup_employee_level AS lvl ON lvl.id_employee_level = emp.id_employee_level 
@@ -31,7 +31,7 @@
             "
         ElseIf id_payroll_type = "2" Then 'thr
             query = "
-                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active
+                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active, DATE_FORMAT(emp.employee_last_date, '%d %M %Y') AS employee_last_date
                 FROM tb_m_employee AS emp
                 INNER JOIN tb_m_departement AS dep ON dep.id_departement = emp.id_departement
                 INNER JOIN tb_lookup_employee_level AS lvl ON lvl.id_employee_level = emp.id_employee_level 
@@ -46,7 +46,7 @@
             "
         ElseIf id_payroll_type = "3" Then 'bonus
             query = "
-                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active
+                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active, DATE_FORMAT(emp.employee_last_date, '%d %M %Y') AS employee_last_date
                 FROM tb_m_employee AS emp
                 INNER JOIN tb_m_departement AS dep ON dep.id_departement = emp.id_departement
                 INNER JOIN tb_lookup_employee_level AS lvl ON lvl.id_employee_level = emp.id_employee_level 
@@ -61,7 +61,7 @@
             "
         ElseIf id_payroll_type = "4" Then 'dw
             query = "
-                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active
+                SELECT emp.id_employee, salx.id_employee_salary, dep.total_workdays, IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays, emp.employee_code, emp.employee_name, emp.id_departement, dep.departement, emp.employee_position, emp.id_employee_level, lvl.employee_level, emp.id_employee_status, sts.employee_status, emp.id_employee_active, active.employee_active, DATE_FORMAT(emp.employee_last_date, '%d %M %Y') AS employee_last_date
                 FROM tb_m_employee AS emp
                 INNER JOIN tb_m_departement AS dep ON dep.id_departement = emp.id_departement
                 INNER JOIN tb_lookup_employee_level AS lvl ON lvl.id_employee_level = emp.id_employee_level 
@@ -75,8 +75,6 @@
                 WHERE emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "') AND emp.id_employee_status = 3
             "
         End If
-
-        Console.WriteLine(query)
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
