@@ -11,16 +11,12 @@
         actionLoad()
     End Sub
 
-    Private Sub FormItemCatMainDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Dispose()
-    End Sub
-
-    Private Sub FormItemCatProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormItemCatMainDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         actionLoad()
     End Sub
 
-    Private Sub FormItemCatProposeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+    Private Sub FormItemCatMainDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
 
@@ -154,8 +150,8 @@
             Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 207, id_propose, "5")
             execute_non_query(queryrm, True, "", "", "", "")
 
-            FormItemCatPropose.viewPropose()
-            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_main_pps", id_propose)
+            FormItemCatMain.view_propose()
+            FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id_propose)
             actionLoad()
             Cursor = Cursors.Default
         End If
@@ -174,7 +170,7 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
-        FormItemCatProposeAdd.ShowDialog()
+        FormItemCatMainAdd.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
@@ -182,8 +178,8 @@
         If is_confirm = 2 And id_report_status = "1" Then
             Dim query_upd As String = "UPDATE tb_item_cat_main_pps SET note='" + addSlashes(MENote.Text) + "' WHERE id_item_cat_main_pps='" + id_propose + "' "
             execute_non_query(query_upd, True, "", "", "", "")
-            FormItemCatPropose.viewPropose()
-            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_main_pps", id_propose)
+            FormItemCatMain.view_propose()
+            FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id_propose)
         End If
     End Sub
 End Class
