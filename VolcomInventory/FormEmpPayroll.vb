@@ -387,6 +387,7 @@
 
         report_office_1.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         report_office_1.dt = data_payroll_1
+        report_office_1.last_alphabet = 0
         report_office_1.id_pre = If(id_report_status = "6", "-1", "1")
         report_office_1.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
 
@@ -409,6 +410,7 @@
 
         report_office_2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         report_office_2.dt = data_payroll_2
+        report_office_2.last_alphabet = data_payroll_1.AsDataView.ToTable(True, "departement").Rows.Count
         report_office_2.id_pre = If(id_report_status = "6", "-1", "1")
         report_office_2.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
 

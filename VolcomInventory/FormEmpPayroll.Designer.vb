@@ -393,6 +393,7 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnSent.ColumnEdit = Me.RICESent
         Me.BandedGridColumnSent.FieldName = "slip_send"
         Me.BandedGridColumnSent.Name = "BandedGridColumnSent"
+        Me.BandedGridColumnSent.OptionsColumn.AllowEdit = False
         '
         'RICESent
         '
