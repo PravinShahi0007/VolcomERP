@@ -181,4 +181,8 @@ WHERE sd.id_design='" & id_design & "'"
             End If
         End If
     End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+
+    End Sub
 End Class

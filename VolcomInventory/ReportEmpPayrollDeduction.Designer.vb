@@ -121,11 +121,12 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GVDeduction.AppearancePrint.Row.Options.UseFont = True
         Me.GVDeduction.BandPanelRowHeight = 16
         Me.GVDeduction.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee})
-        Me.GVDeduction.ColumnPanelRowHeight = 32
+        Me.GVDeduction.ColumnPanelRowHeight = 48
         Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCEmployee, Me.GCEmployeePosition, Me.GCEmployeeStatus})
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 2
         Me.GVDeduction.GroupFormat = "{1} {2}"
+        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Employee", Me.GCEmployee, "", "")})
         Me.GVDeduction.LevelIndent = 0
         Me.GVDeduction.Name = "GVDeduction"
         Me.GVDeduction.OptionsBehavior.AutoExpandAllGroups = True
@@ -158,7 +159,7 @@ Partial Public Class ReportEmpPayrollDeduction
         '
         Me.GCNIP.Caption = "NIP"
         Me.GCNIP.FieldName = "NIP"
-        Me.GCNIP.MinWidth = 65
+        Me.GCNIP.MinWidth = 50
         Me.GCNIP.Name = "GCNIP"
         Me.GCNIP.Visible = True
         Me.GCNIP.Width = 218
@@ -169,7 +170,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCEmployee.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployee.Caption = "Employee"
         Me.GCEmployee.FieldName = "Employee"
-        Me.GCEmployee.MinWidth = 195
+        Me.GCEmployee.MinWidth = 185
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.Visible = True
         Me.GCEmployee.Width = 195
@@ -189,7 +190,7 @@ Partial Public Class ReportEmpPayrollDeduction
         '
         Me.GCEmployeeStatus.Caption = "Employee Status"
         Me.GCEmployeeStatus.FieldName = "Employee Status"
-        Me.GCEmployeeStatus.MinWidth = 60
+        Me.GCEmployeeStatus.MinWidth = 55
         Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
         Me.GCEmployeeStatus.Visible = True
         Me.GCEmployeeStatus.Width = 186
@@ -344,7 +345,7 @@ Partial Public Class ReportEmpPayrollDeduction
         'XLType
         '
         Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(930.0005!, 33.99998!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(930.0007!, 33.99998!)
         Me.XLType.Name = "XLType"
         Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLType.SizeF = New System.Drawing.SizeF(145.0!, 23.0!)
@@ -368,7 +369,7 @@ Partial Public Class ReportEmpPayrollDeduction
         'XLLocation
         '
         Me.XLLocation.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(930.0005!, 57.0!)
+        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(930.0015!, 57.0!)
         Me.XLLocation.Name = "XLLocation"
         Me.XLLocation.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLLocation.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)

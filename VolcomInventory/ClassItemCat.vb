@@ -12,9 +12,10 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT c.id_item_cat, c.id_expense_type, e.expense_type, c.item_cat, c.item_cat_en 
+        Dim query As String = "SELECT c.id_item_cat, c.id_expense_type, c.id_item_cat_main, m.item_cat_main, e.expense_type, c.item_cat, c.item_cat_en 
         FROM tb_item_cat c
         INNER JOIN tb_lookup_expense_type e ON e.id_expense_type = c.id_expense_type
+        INNER JOIN tb_item_cat_main m ON m.id_item_cat_main=c.id_item_cat_main
         WHERE c.id_item_cat>0 "
         query += condition + " "
         query += "ORDER BY c.id_item_cat " + order_type

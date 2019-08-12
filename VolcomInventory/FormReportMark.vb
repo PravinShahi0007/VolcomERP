@@ -122,7 +122,7 @@
         ElseIf report_mark_type = "8" Then
             'bom
             query = String.Format("SELECT id_report_status FROM tb_bom WHERE id_bom = '{0}'", id_report)
-        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             'prod demand
             query = String.Format("SELECT id_report_status,(prod_demand_number) AS report_number FROM tb_prod_Demand WHERE id_prod_demand = '{0}'", id_report)
         ElseIf report_mark_type = "10" Then
@@ -545,6 +545,9 @@
         ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
             'OPEX Budget Propose
             query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_opex_pps WHERE id_b_opex_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "207" Then
+            'PROPOSE MAIN CATEGORY
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_cat_main_pps WHERE id_item_cat_main_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -1136,7 +1139,7 @@
                 'FormWork.view_sample_purc()
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             'PROD DEMAND
             'auto completed
             If id_status_reportx = "2" Then
@@ -4176,6 +4179,11 @@
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+                query = "INSERT INTO tb_item_cat(`id_expense_type`,`id_item_cat_main` ,`item_cat`, `item_cat_en`)
+		                SELECT d.id_expense_type,d.id_item_cat_main, d.item_cat, d.item_cat_en 
+		                FROM tb_item_cat_propose_det d
+		                WHERE d.id_item_cat_propose = '" & id_report & "'"
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             'jika cancel
@@ -6027,7 +6035,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             FormWorkOrderDet.load_form()
         ElseIf report_mark_type = "192" Then
             'payroll
-            If id_status_reportx = "3" Then
+            If id_status_reportx = "2" Then
                 id_status_reportx = "6"
             End If
 
@@ -6158,6 +6166,32 @@ VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)(
             'refresh view
             'FormSampleBudget.load_propose()
             'FormSampleBudget.load_budget()
+        ElseIf report_mark_type = "207" Then
+            'POPOSE MAIN CATEGORY
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                query = "INSERT INTO tb_item_cat_main(`id_expense_type`,`item_cat_main`)
+		                SELECT d.id_expense_type, d.item_cat_main 
+		                FROM tb_item_cat_main_pps_det d
+		                WHERE d.id_item_cat_main_pps = '" & id_report & "'"
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'jika cancel
+
+            'update status
+            query = String.Format("UPDATE tb_item_cat_main_pps SET id_report_status='{0}' WHERE id_item_cat_main_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormItemCatMainDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormItemCatMainDet.actionLoad()
+            FormItemCatMain.view_propose()
+            FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id_report)
         End If
 
         'adding lead time
@@ -6978,7 +7012,7 @@ VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)(
         End If
 
         Dim dt As DataTable = get_who_prepared(report_mark_type, id_report)
-        If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "11" Then
             pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)

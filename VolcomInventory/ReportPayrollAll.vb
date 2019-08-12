@@ -3,8 +3,45 @@
     Public id_payroll As String = ""
     Public type As String = ""
     Public dt As DataTable
+    Public last_alphabet As Integer = 0
 
     Private Sub ReportEmpUni_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        dt.DefaultView.Sort = "departement ASC, departement_sub ASC"
+        dt = dt.DefaultView.ToTable
+
+        Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+
+        Dim iAlphabet As Integer = last_alphabet
+        Dim iInterger As Integer = 0
+
+        Dim last_departement As String = ""
+        Dim last_departement_sub As String = ""
+
+        For i = 0 To dt.Rows.Count - 1
+            Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(dt.Rows(i)("departement").ToString, "\(([A-Z])\)", "").ToString()
+            Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(dt.Rows(i)("departement_sub").ToString, "\(([A-Z])\)", "").ToString()
+
+            If i = 0 Then
+                last_departement = curr_departement
+                last_departement_sub = curr_departement_sub
+            End If
+
+            If Not last_departement = curr_departement Then
+                iAlphabet += 1
+                iInterger = 0
+            End If
+
+            If Not last_departement_sub = curr_departement_sub Then
+                iInterger += 1
+            End If
+
+            dt.Rows(i)("departement") = curr_departement + " (" + alphabet(iAlphabet) + ")"
+            dt.Rows(i)("departement_sub") = curr_departement_sub + " (" + alphabet(iAlphabet) + iInterger.ToString + ")"
+
+            last_departement = curr_departement
+            last_departement_sub = curr_departement_sub
+        Next
+
         GCPayroll.DataSource = dt
 
         If type = "1" Then
@@ -36,6 +73,8 @@
 
             GCStatus.Width = 100
         End If
+
+        GCName.SummaryItem.DisplayFormat = "Grand Total: " + XLLocation.Text.ToUpper
 
         'mark
         If id_pre = "-1" Then
@@ -154,6 +193,29 @@
                     Else
                         If e.GroupLevel = 0 Then
                             e.TotalValue = sum_tot
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "employee_name" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVPayroll.GetRowCellValue(e.RowHandle, "departement").ToString, "\(([A-Z])\)", "").ToString()
+                    Dim alphabet As String = GVPayroll.GetRowCellValue(e.RowHandle, "departement").ToString.Replace(curr_departement, "")
+
+                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                    Dim alphabet_sub As String = GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Replace(curr_departement_sub, "")
+
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        If e.GroupLevel = 1 Then
+                            e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
+                        Else
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
                         End If
                     End If
             End Select

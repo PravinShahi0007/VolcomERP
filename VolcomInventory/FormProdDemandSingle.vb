@@ -195,8 +195,10 @@
                 report_mark_type = "9"
             ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
                 report_mark_type = "80"
-            Else 'HRD
+            ElseIf SLEKind.EditValue.ToString = "3" Then 'HRD
                 report_mark_type = "81"
+            ElseIf SLEKind.EditValue.ToString = "4" Then 'SALES
+                report_mark_type = "206"
             End If
 
             'Design tab
@@ -262,8 +264,10 @@
             rmt = "9"
         ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
             rmt = "80"
-        Else 'HRD
+        ElseIf SLEKind.EditValue.ToString = "3" Then 'HRD
             rmt = "81"
+        ElseIf SLEKind.EditValue.ToString = "4" Then 'SALES
+            rmt = "206"
         End If
 
         If Not formIsValidInPanel(EPProdDemand, GroupGeneralHeader) Then

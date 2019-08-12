@@ -35,6 +35,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPD = New DevExpress.XtraGrid.GridControl()
         Me.GVPD = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -202,6 +203,7 @@ Partial Class FormMatPurchasePD
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BCancel)
+        Me.PanelControl2.Controls.Add(Me.BClose)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 450)
@@ -211,13 +213,23 @@ Partial Class FormMatPurchasePD
         '
         'BCancel
         '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
         Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
-        Me.BCancel.Location = New System.Drawing.Point(809, 2)
+        Me.BCancel.Location = New System.Drawing.Point(2, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(104, 36)
-        Me.BCancel.TabIndex = 1
-        Me.BCancel.Text = "Close"
+        Me.BCancel.TabIndex = 2
+        Me.BCancel.Text = "Cancel"
+        '
+        'BClose
+        '
+        Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
+        Me.BClose.Location = New System.Drawing.Point(809, 2)
+        Me.BClose.Name = "BClose"
+        Me.BClose.Size = New System.Drawing.Size(104, 36)
+        Me.BClose.TabIndex = 1
+        Me.BClose.Text = "Close"
         '
         'BSave
         '
@@ -272,12 +284,16 @@ Partial Class FormMatPurchasePD
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_prod_demand_design"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Prod Demand Number"
         Me.GridColumn2.FieldName = "prod_demand_number"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 108
@@ -287,6 +303,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn5.Caption = "Design Code"
         Me.GridColumn5.FieldName = "design_code"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
         Me.GridColumn5.Width = 114
@@ -296,6 +314,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn6.Caption = "Design"
         Me.GridColumn6.FieldName = "design_display_name"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 327
@@ -311,6 +331,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
@@ -327,6 +349,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty_order"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
@@ -560,7 +584,7 @@ Partial Class FormMatPurchasePD
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEToleransi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BCalculate As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
@@ -573,4 +597,5 @@ Partial Class FormMatPurchasePD
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
 End Class

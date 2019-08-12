@@ -107,6 +107,7 @@
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
                 BMark.Enabled = True
+                BandedGridColumnActWorkdays.OptionsColumn.AllowEdit = False
                 BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
@@ -160,6 +161,7 @@
             BReset.Visible = False
             BSubmit.Visible = False
             SBSendSlip.Visible = False
+            CheckEditViewSend.Visible = False
         End If
 
         Cursor = Cursors.Default
@@ -385,6 +387,7 @@
 
         report_office_1.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         report_office_1.dt = data_payroll_1
+        report_office_1.last_alphabet = 0
         report_office_1.id_pre = If(id_report_status = "6", "-1", "1")
         report_office_1.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
 
@@ -407,6 +410,7 @@
 
         report_office_2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         report_office_2.dt = data_payroll_2
+        report_office_2.last_alphabet = data_payroll_1.AsDataView.ToTable(True, "departement").Rows.Count
         report_office_2.id_pre = If(id_report_status = "6", "-1", "1")
         report_office_2.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
 
@@ -699,7 +703,7 @@
 
                                 mem.Seek(0, System.IO.SeekOrigin.Begin)
 
-                                Dim att = New Net.Mail.Attachment(mem, "Salary Slip " + period + ".pdf", "application/pdf")
+                                Dim att = New Net.Mail.Attachment(mem, "Slip Gaji " + period + ".pdf", "application/pdf")
 
                                 'mail
                                 Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
@@ -714,20 +718,41 @@
 
                                 mail.To.Add(to_mail)
 
-                                mail.Subject = "PT. VOLCOM INDONESIA - SALARY SLIP " + period.ToUpper
+                                mail.Subject = "PT. VOLCOM INDONESIA - SLIP GAJI " + period.ToUpper
                                 mail.IsBodyHtml = True
                                 mail.Body = "
-                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Dear " + employee_name + ",</b></p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Yang Terhormat Bapak/Ibu</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>" + employee_name + "</p>
                                     <br>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'>Here is your salary slip in " + period + ".</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Bersama ini kami lampirkan slip gaji Anda untuk bulan <b>" + period + "</b>,  slip gaji Anda ini bersifat pribadi dan sangat rahasia.</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Gunakan password Anda untuk melihat slip gaji tersebut.</p>
                                     <br>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'>Thank You</p>
-                                    <p style='font: normal 10.00pt/14.25pt Arial'><b>Volcom ERP</b></p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Pasword slip gaji Anda adalah ddMmmyyyy (contoh: 01Aug1995)</p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>dd : Dua digit tanggal lahir Anda, contoh: 01</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Mmm : Tiga huruf pertama bulan lahir Anda dalam bahasa Inggris, contoh: Aug (Huruf pertama adalah huruf besar dan selanjutnya huruf kecil)</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>yyyy : Tahun lahir Anda, contoh: 1995</p>
+                                    <br>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Demikian kami sampaikan, atas perhatiannya kami ucapkan terimakasih.</p>
                                 "
 
                                 mail.Attachments.Add(att)
 
-                                client.Send(mail)
+                                Dim status As String = "1"
+                                Dim message As String = ""
+
+                                Try
+                                    client.Send(mail)
+                                Catch ex As Exception
+                                    status = "2"
+                                    message = ex.ToString()
+                                End Try
+
+                                execute_non_query("INSERT INTO tb_emp_payroll_slip_log (id_payroll_det, status, message, send_to, send_at, send_by) VALUES ('" + GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString + "', '" + status + "', '" + message + "', '" + email_personal + "', NOW(), '" + id_employee_user + "')", True, "", "", "", "")
+
+                                If status = "1" Then
+                                    GVPayroll.SetRowCellValue(i, "slip_send", "yes")
+                                End If
                             End If
                         Next
                     Else
@@ -740,7 +765,16 @@
 
                     Cursor = Cursors.Default
                 End If
+
                 GVPayroll.ActiveFilterString = ""
+
+                For i As Integer = 0 To GVPayroll.RowCount - 1
+                    If GVPayroll.IsValidRowHandle(i) Then
+                        If GVPayroll.GetRowCellValue(i, "is_check").ToString = "yes" Then
+                            GVPayroll.SetRowCellValue(i, "is_check", "no")
+                        End If
+                    End If
+                Next
             End If
         End If
     End Sub
@@ -781,6 +815,37 @@
 
         If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
             info.GroupText = " "
+        End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        FormDocumentUpload.report_mark_type = "192"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEditViewSend_EditValueChanged(sender As Object, e As EventArgs) Handles CheckEditViewSend.EditValueChanged
+        Dim slip_sent As DataTable = execute_query("SELECT id_payroll_det FROM tb_emp_payroll_slip_log WHERE id_payroll_det IN (SELECT id_payroll_det FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ") AND status = 1", -1, True, "", "", "", "")
+
+        For i = 0 To GVPayroll.RowCount - 1
+            If GVPayroll.IsValidRowHandle(i) Then
+                For j = 0 To slip_sent.Rows.Count - 1
+                    If GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString = slip_sent.Rows(j)("id_payroll_det").ToString Then
+                        GVPayroll.SetRowCellValue(i, "slip_send", "yes")
+
+                        Exit For
+                    End If
+                Next
+            End If
+        Next
+
+        If CheckEditViewSend.EditValue Then
+            BandedGridColumnSent.Visible = True
+        Else
+            BandedGridColumnSent.Visible = False
         End If
     End Sub
 End Class
