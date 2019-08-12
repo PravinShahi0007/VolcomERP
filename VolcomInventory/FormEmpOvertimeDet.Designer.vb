@@ -25,7 +25,6 @@ Partial Class FormEmpOvertimeDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GCInfo1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCOnlyDp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -54,31 +53,20 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCStartWorkSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceStartSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GCEndWorkSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceEndSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GCBreakHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBActual = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GCStartWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceStart = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GCEndWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceEnd = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GCBreakHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEBreakHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GCTotalHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBInfo2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GCOvertime = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEOvertimeHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GCPoint = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCValid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEValid = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBFill = New DevExpress.XtraEditors.SimpleButton()
         Me.SBEmpDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.SBEmpAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
@@ -93,19 +81,17 @@ Partial Class FormEmpOvertimeDet
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBCheck = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.PCCheckStatus = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECheckStatus = New DevExpress.XtraEditors.TextEdit()
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GCInfo1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,9 +132,6 @@ Partial Class FormEmpOvertimeDet
         CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.PCCheckStatus, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCCheckStatus.SuspendLayout()
-        CType(Me.TECheckStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -185,9 +168,9 @@ Partial Class FormEmpOvertimeDet
         '
         'GVEmployee
         '
-        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GCInfo1, Me.GBProposed, Me.GBActual, Me.GBInfo2})
+        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GCInfo1, Me.GBProposed})
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCDepartement, Me.GCDate, Me.GCIsStore, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCIsDayOff, Me.GCPayrollPeriod, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCOvertime, Me.GCPoint, Me.GCValid})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCDepartement, Me.GCDate, Me.GCIsStore, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCIsDayOff, Me.GCPayrollPeriod, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 2
         Me.GVEmployee.Name = "GVEmployee"
@@ -196,26 +179,6 @@ Partial Class FormEmpOvertimeDet
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDate, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GCInfo1
-        '
-        Me.GCInfo1.Columns.Add(Me.GCIdEmployee)
-        Me.GCInfo1.Columns.Add(Me.GCOnlyDp)
-        Me.GCInfo1.Columns.Add(Me.GCIdDepartement)
-        Me.GCInfo1.Columns.Add(Me.GCDepartement)
-        Me.GCInfo1.Columns.Add(Me.GCDate)
-        Me.GCInfo1.Columns.Add(Me.GCIsStore)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeCode)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeName)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeePosition)
-        Me.GCInfo1.Columns.Add(Me.GCIdEmployeeStatus)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeStatus)
-        Me.GCInfo1.Columns.Add(Me.GCConversionType)
-        Me.GCInfo1.Columns.Add(Me.GCIsDayOff)
-        Me.GCInfo1.Columns.Add(Me.GCPayrollPeriod)
-        Me.GCInfo1.Name = "GCInfo1"
-        Me.GCInfo1.VisibleIndex = 0
-        Me.GCInfo1.Width = 550
         '
         'GCIdEmployee
         '
@@ -430,17 +393,6 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
         '
-        'GBProposed
-        '
-        Me.GBProposed.Caption = "Proposed"
-        Me.GBProposed.Columns.Add(Me.GCStartWorkSub)
-        Me.GBProposed.Columns.Add(Me.GCEndWorkSub)
-        Me.GBProposed.Columns.Add(Me.GCBreakHoursSub)
-        Me.GBProposed.Columns.Add(Me.GCTotalHoursSub)
-        Me.GBProposed.Name = "GBProposed"
-        Me.GBProposed.VisibleIndex = 1
-        Me.GBProposed.Width = 400
-        '
         'GCStartWorkSub
         '
         Me.GCStartWorkSub.AppearanceHeader.Options.UseTextOptions = True
@@ -524,34 +476,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCTotalHoursSub.Visible = True
         Me.GCTotalHoursSub.Width = 50
         '
-        'GBActual
-        '
-        Me.GBActual.Caption = "Actual"
-        Me.GBActual.Columns.Add(Me.GCStartWork)
-        Me.GBActual.Columns.Add(Me.GCEndWork)
-        Me.GBActual.Columns.Add(Me.GCBreakHours)
-        Me.GBActual.Columns.Add(Me.GCTotalHours)
-        Me.GBActual.Name = "GBActual"
-        Me.GBActual.VisibleIndex = 2
-        Me.GBActual.Width = 400
-        '
-        'GCStartWork
-        '
-        Me.GCStartWork.AppearanceCell.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.GCStartWork.AppearanceCell.Options.UseBackColor = True
-        Me.GCStartWork.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCStartWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCStartWork.Caption = "Start Work"
-        Me.GCStartWork.ColumnEdit = Me.RITEAttendanceStart
-        Me.GCStartWork.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
-        Me.GCStartWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCStartWork.FieldName = "start_work"
-        Me.GCStartWork.MinWidth = 150
-        Me.GCStartWork.Name = "GCStartWork"
-        Me.GCStartWork.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCStartWork.Visible = True
-        Me.GCStartWork.Width = 150
-        '
         'RITEAttendanceStart
         '
         Me.RITEAttendanceStart.AutoHeight = False
@@ -564,23 +488,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEAttendanceStart.Mask.EditMask = "dd MMM yyyy HH:mm:ss"
         Me.RITEAttendanceStart.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendanceStart.Name = "RITEAttendanceStart"
-        '
-        'GCEndWork
-        '
-        Me.GCEndWork.AppearanceCell.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.GCEndWork.AppearanceCell.Options.UseBackColor = True
-        Me.GCEndWork.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCEndWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCEndWork.Caption = "End Work"
-        Me.GCEndWork.ColumnEdit = Me.RITEAttendanceEnd
-        Me.GCEndWork.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
-        Me.GCEndWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCEndWork.FieldName = "end_work"
-        Me.GCEndWork.MinWidth = 150
-        Me.GCEndWork.Name = "GCEndWork"
-        Me.GCEndWork.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCEndWork.Visible = True
-        Me.GCEndWork.Width = 150
         '
         'RITEAttendanceEnd
         '
@@ -595,22 +502,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEAttendanceEnd.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendanceEnd.Name = "RITEAttendanceEnd"
         '
-        'GCBreakHours
-        '
-        Me.GCBreakHours.AppearanceCell.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.GCBreakHours.AppearanceCell.Options.UseBackColor = True
-        Me.GCBreakHours.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCBreakHours.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCBreakHours.Caption = "Break (hours)"
-        Me.GCBreakHours.ColumnEdit = Me.RITEBreakHours
-        Me.GCBreakHours.DisplayFormat.FormatString = "N1"
-        Me.GCBreakHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCBreakHours.FieldName = "break_hours"
-        Me.GCBreakHours.Name = "GCBreakHours"
-        Me.GCBreakHours.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCBreakHours.Visible = True
-        Me.GCBreakHours.Width = 50
-        '
         'RITEBreakHours
         '
         Me.RITEBreakHours.AutoHeight = False
@@ -622,45 +513,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEBreakHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEBreakHours.Name = "RITEBreakHours"
         '
-        'GCTotalHours
-        '
-        Me.GCTotalHours.AppearanceCell.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.GCTotalHours.AppearanceCell.Options.UseBackColor = True
-        Me.GCTotalHours.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCTotalHours.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCTotalHours.Caption = "Total (hours)"
-        Me.GCTotalHours.DisplayFormat.FormatString = "N1"
-        Me.GCTotalHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCTotalHours.FieldName = "total_hours"
-        Me.GCTotalHours.Name = "GCTotalHours"
-        Me.GCTotalHours.OptionsColumn.AllowEdit = False
-        Me.GCTotalHours.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCTotalHours.Visible = True
-        Me.GCTotalHours.Width = 50
-        '
-        'GBInfo2
-        '
-        Me.GBInfo2.Columns.Add(Me.GCOvertime)
-        Me.GBInfo2.Columns.Add(Me.GCPoint)
-        Me.GBInfo2.Columns.Add(Me.GCValid)
-        Me.GBInfo2.Name = "GBInfo2"
-        Me.GBInfo2.VisibleIndex = 3
-        Me.GBInfo2.Width = 155
-        '
-        'GCOvertime
-        '
-        Me.GCOvertime.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCOvertime.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCOvertime.Caption = "Overtime (hours)"
-        Me.GCOvertime.ColumnEdit = Me.RITEOvertimeHours
-        Me.GCOvertime.DisplayFormat.FormatString = "N1"
-        Me.GCOvertime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCOvertime.FieldName = "overtime_hours"
-        Me.GCOvertime.Name = "GCOvertime"
-        Me.GCOvertime.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCOvertime.Visible = True
-        Me.GCOvertime.Width = 55
-        '
         'RITEOvertimeHours
         '
         Me.RITEOvertimeHours.AutoHeight = False
@@ -671,28 +523,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEOvertimeHours.Mask.EditMask = "N1"
         Me.RITEOvertimeHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEOvertimeHours.Name = "RITEOvertimeHours"
-        '
-        'GCPoint
-        '
-        Me.GCPoint.Caption = "Point"
-        Me.GCPoint.DisplayFormat.FormatString = "N1"
-        Me.GCPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCPoint.FieldName = "point"
-        Me.GCPoint.Name = "GCPoint"
-        Me.GCPoint.OptionsColumn.AllowEdit = False
-        Me.GCPoint.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCPoint.Visible = True
-        Me.GCPoint.Width = 50
-        '
-        'GCValid
-        '
-        Me.GCValid.Caption = "Valid"
-        Me.GCValid.ColumnEdit = Me.RICEValid
-        Me.GCValid.FieldName = "valid"
-        Me.GCValid.Name = "GCValid"
-        Me.GCValid.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCValid.Visible = True
-        Me.GCValid.Width = 50
         '
         'RICEValid
         '
@@ -724,7 +554,6 @@ Partial Class FormEmpOvertimeDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SBFill)
         Me.PanelControl2.Controls.Add(Me.SBEmpDelete)
         Me.PanelControl2.Controls.Add(Me.SBEmpAdd)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -732,15 +561,6 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(986, 50)
         Me.PanelControl2.TabIndex = 2
-        '
-        'SBFill
-        '
-        Me.SBFill.Image = CType(resources.GetObject("SBFill.Image"), System.Drawing.Image)
-        Me.SBFill.Location = New System.Drawing.Point(5, 5)
-        Me.SBFill.Name = "SBFill"
-        Me.SBFill.Size = New System.Drawing.Size(284, 40)
-        Me.SBFill.TabIndex = 2
-        Me.SBFill.Text = "Fill Empty Start && End Work With Proposed Time"
         '
         'SBEmpDelete
         '
@@ -846,7 +666,6 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl3.Controls.Add(Me.SBMark)
         Me.PanelControl3.Controls.Add(Me.SBClose)
         Me.PanelControl3.Controls.Add(Me.SBPrint)
-        Me.PanelControl3.Controls.Add(Me.SBCheck)
         Me.PanelControl3.Controls.Add(Me.SBSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 679)
@@ -869,7 +688,7 @@ Partial Class FormEmpOvertimeDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(703, 2)
+        Me.SBClose.Location = New System.Drawing.Point(781, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 46)
         Me.SBClose.TabIndex = 2
@@ -880,21 +699,11 @@ Partial Class FormEmpOvertimeDet
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Enabled = False
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(778, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(856, 2)
         Me.SBPrint.Name = "SBPrint"
         Me.SBPrint.Size = New System.Drawing.Size(75, 46)
         Me.SBPrint.TabIndex = 4
         Me.SBPrint.Text = "Print"
-        '
-        'SBCheck
-        '
-        Me.SBCheck.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBCheck.Image = CType(resources.GetObject("SBCheck.Image"), System.Drawing.Image)
-        Me.SBCheck.Location = New System.Drawing.Point(853, 2)
-        Me.SBCheck.Name = "SBCheck"
-        Me.SBCheck.Size = New System.Drawing.Size(78, 46)
-        Me.SBCheck.TabIndex = 5
-        Me.SBCheck.Text = "Check"
         '
         'SBSave
         '
@@ -941,40 +750,12 @@ Partial Class FormEmpOvertimeDet
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl6.Controls.Add(Me.PCCheckStatus)
         Me.PanelControl6.Controls.Add(Me.PCReportStatus)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl6.Location = New System.Drawing.Point(20, 89)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(986, 34)
         Me.PanelControl6.TabIndex = 13
-        '
-        'PCCheckStatus
-        '
-        Me.PCCheckStatus.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCCheckStatus.Controls.Add(Me.LabelControl13)
-        Me.PCCheckStatus.Controls.Add(Me.TECheckStatus)
-        Me.PCCheckStatus.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCCheckStatus.Location = New System.Drawing.Point(240, 0)
-        Me.PCCheckStatus.Name = "PCCheckStatus"
-        Me.PCCheckStatus.Size = New System.Drawing.Size(220, 34)
-        Me.PCCheckStatus.TabIndex = 26
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Location = New System.Drawing.Point(7, 8)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl13.TabIndex = 17
-        Me.LabelControl13.Text = "Check Status"
-        '
-        'TECheckStatus
-        '
-        Me.TECheckStatus.Location = New System.Drawing.Point(80, 5)
-        Me.TECheckStatus.Name = "TECheckStatus"
-        Me.TECheckStatus.Properties.ReadOnly = True
-        Me.TECheckStatus.Size = New System.Drawing.Size(124, 20)
-        Me.TECheckStatus.TabIndex = 21
         '
         'PCReportStatus
         '
@@ -1006,6 +787,37 @@ Partial Class FormEmpOvertimeDet
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
+        '
+        'GCInfo1
+        '
+        Me.GCInfo1.Columns.Add(Me.GCIdEmployee)
+        Me.GCInfo1.Columns.Add(Me.GCOnlyDp)
+        Me.GCInfo1.Columns.Add(Me.GCIdDepartement)
+        Me.GCInfo1.Columns.Add(Me.GCDepartement)
+        Me.GCInfo1.Columns.Add(Me.GCDate)
+        Me.GCInfo1.Columns.Add(Me.GCIsStore)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeeCode)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeeName)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeePosition)
+        Me.GCInfo1.Columns.Add(Me.GCIdEmployeeStatus)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeeStatus)
+        Me.GCInfo1.Columns.Add(Me.GCConversionType)
+        Me.GCInfo1.Columns.Add(Me.GCIsDayOff)
+        Me.GCInfo1.Columns.Add(Me.GCPayrollPeriod)
+        Me.GCInfo1.Name = "GCInfo1"
+        Me.GCInfo1.VisibleIndex = 0
+        Me.GCInfo1.Width = 550
+        '
+        'GBProposed
+        '
+        Me.GBProposed.Caption = "Proposed"
+        Me.GBProposed.Columns.Add(Me.GCStartWorkSub)
+        Me.GBProposed.Columns.Add(Me.GCEndWorkSub)
+        Me.GBProposed.Columns.Add(Me.GCBreakHoursSub)
+        Me.GBProposed.Columns.Add(Me.GCTotalHoursSub)
+        Me.GBProposed.Name = "GBProposed"
+        Me.GBProposed.VisibleIndex = 1
+        Me.GBProposed.Width = 400
         '
         'FormEmpOvertimeDet
         '
@@ -1063,10 +875,6 @@ Partial Class FormEmpOvertimeDet
         CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
-        CType(Me.PCCheckStatus, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCCheckStatus.ResumeLayout(False)
-        Me.PCCheckStatus.PerformLayout()
-        CType(Me.TECheckStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCReportStatus.ResumeLayout(False)
         Me.PCReportStatus.PerformLayout()
@@ -1106,11 +914,7 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TECreatedAt As DevExpress.XtraEditors.TextEdit
     Friend WithEvents RICEValid As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents SBCheck As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PCReportStatus As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PCCheckStatus As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TECheckStatus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents RITEBreakHours As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
@@ -1118,7 +922,6 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents RITEAttendanceStart As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RITEOvertimeHours As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RITEAttendanceEnd As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents SBFill As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RISLUEDayOff As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1137,13 +940,6 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCConversionType As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCIsDayOff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCStartWork As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCTotalHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCOvertime As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCPoint As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCValid As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCEndWork As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCStartWorkSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEndWorkSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCBreakHoursSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1155,10 +951,8 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCInfo1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBProposed As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBActual As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBInfo2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RITEAttendanceStartSub As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RITEAttendanceEndSub As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents GCInfo1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBProposed As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

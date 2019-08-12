@@ -198,7 +198,7 @@
         End Try
     End Sub
 
-    Private Sub SBCheck_Click(sender As Object, e As EventArgs) Handles SBCheck.Click
+    Private Sub SBCheck_Click(sender As Object, e As EventArgs)
         If XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
             Try
                 If GVEmployee.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
@@ -269,5 +269,11 @@
             DEStart.EditValue = SLUEPayrollPeriodView.GetRowCellValue(i, "periode_start")
             DEUntil.EditValue = SLUEPayrollPeriodView.GetRowCellValue(i, "periode_end")
         End If
+    End Sub
+
+    Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
+        FormEmpOvertimeVerification.id_ot = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
+
+        FormEmpOvertimeVerification.ShowDialog()
     End Sub
 End Class

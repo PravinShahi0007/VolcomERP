@@ -77,7 +77,6 @@ Public Class FormEmpOvertimeDet
             LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
             MEOvertimeNote.EditValue = data_ot.Rows(0)("ot_note").ToString
             TEReportStatus.EditValue = data_ot.Rows(0)("report_status").ToString
-            TECheckStatus.EditValue = data_ot.Rows(0)("check_status").ToString
 
             ' load employee
             ' column
@@ -162,15 +161,8 @@ Public Class FormEmpOvertimeDet
 
         If is_check = "-1" Then
             GCIsDayOff.Visible = False
-            GBActual.Visible = False
-            GBInfo2.Visible = False
-
-            SBCheck.Visible = False
-            SBFill.Visible = False
 
             SBSave.Visible = True
-
-            PCCheckStatus.Visible = False
         Else
             Dim query_check As String = "SELECT id_check_status FROM tb_ot WHERE id_ot = " + id + ""
 
@@ -181,33 +173,18 @@ Public Class FormEmpOvertimeDet
 
                 SBMark.Enabled = False
                 SBPrint.Enabled = False
-                SBCheck.Enabled = True
             Else
                 RISLUEType.ReadOnly = True
 
                 SBMark.Enabled = True
                 SBPrint.Enabled = True
-                SBCheck.Enabled = False
 
                 GCIsDayOff.OptionsColumn.AllowEdit = False
-                GCStartWork.OptionsColumn.AllowEdit = False
-                GCEndWork.OptionsColumn.AllowEdit = False
-                GCBreakHours.OptionsColumn.AllowEdit = False
-                GCTotalHours.OptionsColumn.AllowEdit = False
-                GCOvertime.OptionsColumn.AllowEdit = False
-                GCValid.OptionsColumn.AllowEdit = False
             End If
 
             GCIsDayOff.Visible = True
-            GBActual.Visible = True
-            GBInfo2.Visible = True
-
-            SBCheck.Visible = True
-            SBFill.Visible = True
 
             SBSave.Visible = False
-
-            PCCheckStatus.Visible = True
         End If
     End Sub
 
@@ -498,7 +475,7 @@ Public Class FormEmpOvertimeDet
         End If
     End Sub
 
-    Private Sub SBCheck_Click(sender As Object, e As EventArgs) Handles SBCheck.Click
+    Private Sub SBCheck_Click(sender As Object, e As EventArgs)
         Dim confirm As DialogResult
 
         ' Validation
@@ -645,7 +622,7 @@ Public Class FormEmpOvertimeDet
         calculatePointList(GVEmployee.FocusedRowHandle)
     End Sub
 
-    Private Sub SBFill_Click(sender As Object, e As EventArgs) Handles SBFill.Click
+    Private Sub SBFill_Click(sender As Object, e As EventArgs)
         For i = 0 To GVEmployee.RowCount - 1
             Dim start_work_sub As DateTime = GVEmployee.GetRowCellValue(i, "start_work_sub")
             Dim end_work_sub As DateTime = GVEmployee.GetRowCellValue(i, "end_work_sub")
