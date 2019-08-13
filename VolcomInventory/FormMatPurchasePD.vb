@@ -11,7 +11,7 @@
     Sub load_view()
         If Not id_list = "-1" Then 'view
             BCancel.Visible = True
-            Dim query As String = "SELECT p.id_mat_det,p.qty_consumption,p.tolerance,p.note,uom.uom,p.id_mat_purc,p.is_cancel
+            Dim query As String = "SELECT p.id_mat_det,p.qty_consumption,p.tolerance,p.note,uom.uom,p.id_mat_purc,p.is_cancel,LPAD(p.`id_mat_purc_list`,6,'0') AS number
 FROM tb_mat_purc_list p
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=p.id_mat_det
 INNER JOIN tb_m_mat m ON m.id_mat=md.id_mat
@@ -19,6 +19,7 @@ INNER JOIN tb_m_uom uom ON uom.id_uom=m.id_uom
 WHERE p.id_mat_purc_list='" & id_list & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
+                LNumber.Text = "Number : " & data.Rows(0)("number").ToString
                 SLEMaterial.EditValue = data.Rows(0)("id_mat_det").ToString
                 TEConsumption.EditValue = data.Rows(0)("qty_consumption")
                 TEToleransi.EditValue = data.Rows(0)("tolerance")
@@ -41,6 +42,10 @@ WHERE p.id_mat_purc_list='" & id_list & "'"
             End If
             BDuplicate.Visible = True
         Else
+            LNumber.Text = "Number : -"
+            BSetConsumption.Enabled = True
+            TEToleransi.Enabled = True
+            BCalculate.Enabled = True
             BSave.Visible = True
             BCancel.Visible = False
             BDuplicate.Visible = False
@@ -330,8 +335,7 @@ WHERE l.`is_cancel`=2 AND lp.id_mat_purc_list='" & id_list & "' AND lp.`id_prod_
     End Sub
 
     Private Sub BDuplicate_Click(sender As Object, e As EventArgs) Handles BDuplicate.Click
-        id_list = "-1"
-        infoCustom("Duplicate generated")
+        FormMatPurchasePDDup.ShowDialog()
     End Sub
 
     Sub select_all()
