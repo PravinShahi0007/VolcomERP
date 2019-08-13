@@ -175,7 +175,7 @@
 
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
         FormEmpPayrollDeductionDet.id = GVDeduction.GetFocusedRowCellValue("id_payroll_adj")
-        FormEmpPayrollDeductionDet.id_popup = "1"
+        FormEmpPayrollDeductionDet.id_popup = "2"
         FormEmpPayrollDeductionDet.id_payroll = id_payroll
 
         FormEmpPayrollDeductionDet.ShowDialog()
