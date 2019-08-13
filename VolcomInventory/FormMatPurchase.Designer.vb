@@ -75,6 +75,7 @@ Partial Class FormMatPurchase
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
@@ -108,7 +109,6 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -667,6 +667,12 @@ Partial Class FormMatPurchase
         Me.GridColumn18.VisibleIndex = 6
         Me.GridColumn18.Width = 87
         '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Price"
+        Me.GridColumn23.FieldName = "id_mat_det_price"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Price (Default)"
@@ -713,11 +719,11 @@ Partial Class FormMatPurchase
         Me.BGenerateFromPD.Dock = System.Windows.Forms.DockStyle.Right
         Me.BGenerateFromPD.ImageIndex = 4
         Me.BGenerateFromPD.ImageList = Me.LargeImageCollection
-        Me.BGenerateFromPD.Location = New System.Drawing.Point(634, 2)
+        Me.BGenerateFromPD.Location = New System.Drawing.Point(631, 2)
         Me.BGenerateFromPD.Name = "BGenerateFromPD"
-        Me.BGenerateFromPD.Size = New System.Drawing.Size(154, 40)
+        Me.BGenerateFromPD.Size = New System.Drawing.Size(157, 40)
         Me.BGenerateFromPD.TabIndex = 8910
-        Me.BGenerateFromPD.Text = "Generate From PD"
+        Me.BGenerateFromPD.Text = "Create new list from PD"
         '
         'LargeImageCollection
         '
@@ -975,12 +981,6 @@ Partial Class FormMatPurchase
         Me.LabelControl10.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "ID Price"
-        Me.GridColumn23.FieldName = "id_mat_det_price"
-        Me.GridColumn23.Name = "GridColumn23"
         '
         'FormMatPurchase
         '

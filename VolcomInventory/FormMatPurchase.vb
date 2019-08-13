@@ -93,22 +93,30 @@ GROUP BY mpd.`id_mat_purc`"
         check_menu()
     End Sub
     Sub check_menu()
-        If GVMatPurchase.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
+        If XTCPurcMat.SelectedTabPageIndex = 0 Then
+            If GVMatPurchase.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                '
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                '
+            End If
+        Else
+            bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            '
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-            '
         End If
     End Sub
 
@@ -276,7 +284,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
         FormMatPurchasePD.ShowDialog()
     End Sub
 
-    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+    Sub load_list_mat_from_pd()
         Dim query As String = ""
         Dim query_where = ""
         If Not SLEMatDet.EditValue.ToString = "0" Then
@@ -311,6 +319,10 @@ GROUP BY pl.`id_mat_purc_list`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListMatPD.DataSource = data
         GVListMatPD.BestFitColumns()
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        load_list_mat_from_pd()
     End Sub
 
     Private Sub GVListMatPD_DoubleClick(sender As Object, e As EventArgs) Handles GVListMatPD.DoubleClick
@@ -359,5 +371,9 @@ GROUP BY pl.`id_mat_purc_list`"
             warningCustom("Please choose list first")
         End If
         GVListMatPD.ActiveFilterString = ""
+    End Sub
+
+    Private Sub XTCPurcMat_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPurcMat.SelectedPageChanged
+        check_menu()
     End Sub
 End Class
