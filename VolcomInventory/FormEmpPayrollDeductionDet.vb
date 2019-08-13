@@ -64,7 +64,7 @@
 
             If id_popup = "1" Then
                 query = "
-                    SELECT emp.id_employee, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, sts.employee_status, pyl.workdays, pyl.actual_workdays, sal.total_salary, ded.total_days, ded.deduction AS value, ded.id_salary_deduction AS id_salary_adj, ldedc.id_salary_deduction_cat AS id_salary_adj_cat, ded.note
+                    SELECT emp.id_employee, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, sts.employee_status, pyl.workdays, pyl.actual_workdays, IF(COALESCE(ded.increase, 0) = 0, (IF(emp.id_employee_status = 3, (sal.total_salary * dep.total_workdays), sal.total_salary)), ded.increase) AS total_salary, ded.total_days, ded.deduction AS value, ded.id_salary_deduction AS id_salary_adj, ldedc.id_salary_deduction_cat AS id_salary_adj_cat, ded.note
                     FROM tb_emp_payroll_deduction AS ded
                     LEFT JOIN tb_m_employee AS emp ON ded.id_employee = emp.id_employee
                     LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
@@ -82,7 +82,7 @@
                 "
             ElseIf id_popup = "2" Then
                 query = "
-                    SELECT emp.id_employee, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, sts.employee_status, pyl.workdays, pyl.actual_workdays, sal.total_salary, adj.total_days, adj.value, adj.id_salary_adj, ladjc.id_salary_adjustment_cat AS id_salary_adj_cat, adj.note
+                    SELECT emp.id_employee, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, sts.employee_status, pyl.workdays, pyl.actual_workdays, IF(COALESCE(adj.increase, 0) = 0, (IF(emp.id_employee_status = 3, (sal.total_salary * dep.total_workdays), sal.total_salary)), adj.increase) AS total_salary, adj.total_days, adj.value, adj.id_salary_adj, ladjc.id_salary_adjustment_cat AS id_salary_adj_cat, adj.note
                     FROM tb_emp_payroll_adj AS adj
                     LEFT JOIN tb_m_employee AS emp ON adj.id_employee = emp.id_employee
                     LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
@@ -271,10 +271,47 @@
     End Sub
 
     Private Sub GVDeduction_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVDeduction.CellValueChanged
-        If e.Column.FieldName.ToString = "total_days" Then
+        If e.Column.FieldName.ToString = "total_days" Or e.Column.FieldName.ToString = "total_salary" Then
             calculate_value()
         End If
 
         GVDeduction.BestFitColumns()
+    End Sub
+
+    Private Sub GVDeduction_RowCellClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs) Handles GVDeduction.RowCellClick
+        If e.Button = MouseButtons.Right And e.Column.FieldName = "total_salary" Then
+            PMSalary.ClearLinks()
+
+            Dim query As String = "
+                SELECT IF(sal_det.id_employee_status = 3, ((sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car) * dep.total_workdays), (sal_det.basic_salary + sal_det.allow_job + sal_det.allow_meal + sal_det.allow_trans + sal_det.allow_house + sal_det.allow_car)) AS salary, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date
+                FROM tb_employee_sal_pps_det AS sal_det
+                LEFT JOIN tb_employee_sal_pps AS sal ON sal_det.id_employee_sal_pps = sal.id_employee_sal_pps
+                LEFT JOIN tb_m_departement AS dep ON sal_det.id_departement = dep.id_departement
+                WHERE sal.id_report_status = 6 AND sal_det.id_employee = " + GVDeduction.GetFocusedRowCellValue("id_employee").ToString + "
+                ORDER BY sal.id_employee_sal_pps DESC
+            "
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            For i = 0 To data.Rows.Count - 1
+                Dim item As DevExpress.XtraBars.BarButtonItem = New DevExpress.XtraBars.BarButtonItem
+
+                item.Caption = Format(data.Rows(i)("salary"), "##,##0") + " (" + data.Rows(i)("effective_date").ToString + ")"
+
+                AddHandler item.ItemClick, AddressOf itemClick
+
+                PMSalary.AddItem(item)
+            Next
+
+            PMSalary.ShowPopup(Control.MousePosition)
+        End If
+    End Sub
+
+    Sub itemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
+        Dim salary As String = System.Text.RegularExpressions.Regex.Replace(e.Item.Caption.ToString, "\((.*)\)", "").ToString()
+
+        salary = salary.Replace(".", "").Replace(" ", "")
+
+        GVDeduction.SetFocusedRowCellValue("total_salary", Decimal.Parse(salary))
     End Sub
 End Class
