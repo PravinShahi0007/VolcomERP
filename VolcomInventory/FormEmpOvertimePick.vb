@@ -42,7 +42,7 @@
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no') AS only_dp
+            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) AS id_departement_sub, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no') AS only_dp
             FROM tb_m_employee AS e 
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_lookup_employee_status AS st ON e.id_employee_status = st.id_employee_status
@@ -97,6 +97,7 @@
                 data.Rows.Add(GVList.GetRowCellValue(i, "id_employee"),
                               GVList.GetRowCellValue(i, "only_dp"),
                               GVList.GetRowCellValue(i, "id_departement"),
+                              GVList.GetRowCellValue(i, "id_departement_sub"),
                               GVList.GetRowCellValue(i, "departement"),
                               Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("dd MMM yyyy"),
                               GVList.GetRowCellValue(i, "is_store"),

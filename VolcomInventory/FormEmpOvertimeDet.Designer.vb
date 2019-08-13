@@ -25,6 +25,7 @@ Partial Class FormEmpOvertimeDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GCInfo1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCOnlyDp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -53,17 +54,18 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCStartWorkSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceStartSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GCEndWorkSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceEndSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GCBreakHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RITEAttendanceStart = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.RITEAttendanceEnd = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.RITEBreakHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.RITEOvertimeHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICEValid = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RITEBreakHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RITEAttendanceStart = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RITEOvertimeHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RITEAttendanceEnd = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -90,8 +92,7 @@ Partial Class FormEmpOvertimeDet
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GCInfo1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCIdDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,13 +106,13 @@ Partial Class FormEmpOvertimeDet
         CType(Me.RITEAttendanceStartSub.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceEndSub, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceEndSub.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceStart.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEOvertimeHours, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceEnd.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEOvertimeHours, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,7 +171,7 @@ Partial Class FormEmpOvertimeDet
         '
         Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GCInfo1, Me.GBProposed})
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCDepartement, Me.GCDate, Me.GCIsStore, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCIsDayOff, Me.GCPayrollPeriod, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCIsStore, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCIsDayOff, Me.GCPayrollPeriod, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 2
         Me.GVEmployee.Name = "GVEmployee"
@@ -179,6 +180,26 @@ Partial Class FormEmpOvertimeDet
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDate, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GCInfo1
+        '
+        Me.GCInfo1.Columns.Add(Me.GCIdEmployee)
+        Me.GCInfo1.Columns.Add(Me.GCOnlyDp)
+        Me.GCInfo1.Columns.Add(Me.GCIdDepartement)
+        Me.GCInfo1.Columns.Add(Me.GCDepartement)
+        Me.GCInfo1.Columns.Add(Me.GCDate)
+        Me.GCInfo1.Columns.Add(Me.GCIsStore)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeeCode)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeeName)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeePosition)
+        Me.GCInfo1.Columns.Add(Me.GCIdEmployeeStatus)
+        Me.GCInfo1.Columns.Add(Me.GCEmployeeStatus)
+        Me.GCInfo1.Columns.Add(Me.GCConversionType)
+        Me.GCInfo1.Columns.Add(Me.GCIsDayOff)
+        Me.GCInfo1.Columns.Add(Me.GCPayrollPeriod)
+        Me.GCInfo1.Name = "GCInfo1"
+        Me.GCInfo1.VisibleIndex = 0
+        Me.GCInfo1.Width = 550
         '
         'GCIdEmployee
         '
@@ -393,6 +414,17 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
         '
+        'GBProposed
+        '
+        Me.GBProposed.Caption = "Proposed"
+        Me.GBProposed.Columns.Add(Me.GCStartWorkSub)
+        Me.GBProposed.Columns.Add(Me.GCEndWorkSub)
+        Me.GBProposed.Columns.Add(Me.GCBreakHoursSub)
+        Me.GBProposed.Columns.Add(Me.GCTotalHoursSub)
+        Me.GBProposed.Name = "GBProposed"
+        Me.GBProposed.VisibleIndex = 1
+        Me.GBProposed.Width = 400
+        '
         'GCStartWorkSub
         '
         Me.GCStartWorkSub.AppearanceHeader.Options.UseTextOptions = True
@@ -476,6 +508,24 @@ Partial Class FormEmpOvertimeDet
         Me.GCTotalHoursSub.Visible = True
         Me.GCTotalHoursSub.Width = 50
         '
+        'RICEValid
+        '
+        Me.RICEValid.AutoHeight = False
+        Me.RICEValid.Name = "RICEValid"
+        Me.RICEValid.ValueChecked = "yes"
+        Me.RICEValid.ValueUnchecked = "no"
+        '
+        'RITEBreakHours
+        '
+        Me.RITEBreakHours.AutoHeight = False
+        Me.RITEBreakHours.DisplayFormat.FormatString = "N1"
+        Me.RITEBreakHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreakHours.EditFormat.FormatString = "N1"
+        Me.RITEBreakHours.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreakHours.Mask.EditMask = "N1"
+        Me.RITEBreakHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEBreakHours.Name = "RITEBreakHours"
+        '
         'RITEAttendanceStart
         '
         Me.RITEAttendanceStart.AutoHeight = False
@@ -489,6 +539,17 @@ Partial Class FormEmpOvertimeDet
         Me.RITEAttendanceStart.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendanceStart.Name = "RITEAttendanceStart"
         '
+        'RITEOvertimeHours
+        '
+        Me.RITEOvertimeHours.AutoHeight = False
+        Me.RITEOvertimeHours.DisplayFormat.FormatString = "N1"
+        Me.RITEOvertimeHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEOvertimeHours.EditFormat.FormatString = "N1"
+        Me.RITEOvertimeHours.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEOvertimeHours.Mask.EditMask = "N1"
+        Me.RITEOvertimeHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEOvertimeHours.Name = "RITEOvertimeHours"
+        '
         'RITEAttendanceEnd
         '
         Me.RITEAttendanceEnd.AutoHeight = False
@@ -501,35 +562,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEAttendanceEnd.Mask.EditMask = "dd MMM yyyy HH:mm:ss"
         Me.RITEAttendanceEnd.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendanceEnd.Name = "RITEAttendanceEnd"
-        '
-        'RITEBreakHours
-        '
-        Me.RITEBreakHours.AutoHeight = False
-        Me.RITEBreakHours.DisplayFormat.FormatString = "N1"
-        Me.RITEBreakHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEBreakHours.EditFormat.FormatString = "N1"
-        Me.RITEBreakHours.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEBreakHours.Mask.EditMask = "N1"
-        Me.RITEBreakHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEBreakHours.Name = "RITEBreakHours"
-        '
-        'RITEOvertimeHours
-        '
-        Me.RITEOvertimeHours.AutoHeight = False
-        Me.RITEOvertimeHours.DisplayFormat.FormatString = "N1"
-        Me.RITEOvertimeHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEOvertimeHours.EditFormat.FormatString = "N1"
-        Me.RITEOvertimeHours.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEOvertimeHours.Mask.EditMask = "N1"
-        Me.RITEOvertimeHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEOvertimeHours.Name = "RITEOvertimeHours"
-        '
-        'RICEValid
-        '
-        Me.RICEValid.AutoHeight = False
-        Me.RICEValid.Name = "RICEValid"
-        Me.RICEValid.ValueChecked = "yes"
-        Me.RICEValid.ValueUnchecked = "no"
         '
         'GroupControl1
         '
@@ -788,36 +820,13 @@ Partial Class FormEmpOvertimeDet
         '
         Me.ErrorProvider.ContainerControl = Me
         '
-        'GCInfo1
+        'GCIdDepartementSub
         '
-        Me.GCInfo1.Columns.Add(Me.GCIdEmployee)
-        Me.GCInfo1.Columns.Add(Me.GCOnlyDp)
-        Me.GCInfo1.Columns.Add(Me.GCIdDepartement)
-        Me.GCInfo1.Columns.Add(Me.GCDepartement)
-        Me.GCInfo1.Columns.Add(Me.GCDate)
-        Me.GCInfo1.Columns.Add(Me.GCIsStore)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeCode)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeName)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeePosition)
-        Me.GCInfo1.Columns.Add(Me.GCIdEmployeeStatus)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeStatus)
-        Me.GCInfo1.Columns.Add(Me.GCConversionType)
-        Me.GCInfo1.Columns.Add(Me.GCIsDayOff)
-        Me.GCInfo1.Columns.Add(Me.GCPayrollPeriod)
-        Me.GCInfo1.Name = "GCInfo1"
-        Me.GCInfo1.VisibleIndex = 0
-        Me.GCInfo1.Width = 550
-        '
-        'GBProposed
-        '
-        Me.GBProposed.Caption = "Proposed"
-        Me.GBProposed.Columns.Add(Me.GCStartWorkSub)
-        Me.GBProposed.Columns.Add(Me.GCEndWorkSub)
-        Me.GBProposed.Columns.Add(Me.GCBreakHoursSub)
-        Me.GBProposed.Columns.Add(Me.GCTotalHoursSub)
-        Me.GBProposed.Name = "GBProposed"
-        Me.GBProposed.VisibleIndex = 1
-        Me.GBProposed.Width = 400
+        Me.GCIdDepartementSub.FieldName = "id_departement_sub"
+        Me.GCIdDepartementSub.Name = "GCIdDepartementSub"
+        Me.GCIdDepartementSub.OptionsColumn.AllowEdit = False
+        Me.GCIdDepartementSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCIdDepartementSub.Visible = True
         '
         'FormEmpOvertimeDet
         '
@@ -846,13 +855,13 @@ Partial Class FormEmpOvertimeDet
         CType(Me.RITEAttendanceStartSub, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceEndSub.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceEndSub, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceStart.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceStart, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEOvertimeHours, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceEnd.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceEnd, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEOvertimeHours, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -955,4 +964,5 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents RITEAttendanceEndSub As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GCInfo1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBProposed As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCIdDepartementSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

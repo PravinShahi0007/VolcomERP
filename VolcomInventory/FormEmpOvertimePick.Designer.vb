@@ -57,6 +57,7 @@ Partial Class FormEmpOvertimePick
         Me.DEOvertimeDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPick, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,7 +92,7 @@ Partial Class FormEmpOvertimePick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn9, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn12, Me.GridColumn11, Me.GridColumn10, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn9, Me.GridColumn17, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn12, Me.GridColumn11, Me.GridColumn10, Me.GridColumn6})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.Name = "GVList"
@@ -447,6 +448,12 @@ Partial Class FormEmpOvertimePick
         Me.GroupControl1.TabIndex = 5
         Me.GroupControl1.Text = "Employee"
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "GridColumn17"
+        Me.GridColumn17.FieldName = "id_departement_sub"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
         'FormEmpOvertimePick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -520,4 +527,5 @@ Partial Class FormEmpOvertimePick
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

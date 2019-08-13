@@ -32,6 +32,7 @@ Public Class FormEmpOvertimeDet
         data.Columns.Add("id_employee", GetType(String))
         data.Columns.Add("only_dp", GetType(String))
         data.Columns.Add("id_departement", GetType(String))
+        data.Columns.Add("id_departement_sub", GetType(String))
         data.Columns.Add("departement", GetType(String))
         data.Columns.Add("date", GetType(String))
         data.Columns.Add("is_store", GetType(String))
@@ -110,7 +111,7 @@ Public Class FormEmpOvertimeDet
             End If
 
             Dim query_ot_det As String = "
-                SELECT ot_det.id_employee, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp, ot_det.id_departement, departement.departement, departement.is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, ot_det.ot_break AS break_hours_sub, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub, ot_det.id_payroll, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, " + whereCheckColumn + ", IF(is_valid = 1, 'yes', 'no') AS valid
+                SELECT ot_det.id_employee, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, departement.is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, ot_det.ot_break AS break_hours_sub, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub, ot_det.id_payroll, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, " + whereCheckColumn + ", IF(is_valid = 1, 'yes', 'no') AS valid
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -367,7 +368,7 @@ Public Class FormEmpOvertimeDet
                         Dim ot_start_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "start_work_sub").ToString).ToString("yyyy-MM-dd HH:mm:ss")
                         Dim ot_end_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "end_work_sub").ToString).ToString("yyyy-MM-dd HH:mm:ss")
 
-                        query = "INSERT INTO tb_ot_det (id_ot, id_employee, id_departement, employee_position, id_employee_status, conversion_type, ot_date, ot_start_time, ot_end_time, ot_break, id_payroll) VALUES (" + id + ", " + GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement").ToString + ", '" + addSlashes(GVEmployee.GetRowCellValue(i, "employee_position").ToString) + "', " + GVEmployee.GetRowCellValue(i, "id_employee_status").ToString + ", " + GVEmployee.GetRowCellValue(i, "conversion_type").ToString + ", '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(GVEmployee.GetRowCellValue(i, "break_hours_sub").ToString) + ", " + GVEmployee.GetRowCellValue(i, "id_payroll").ToString + ")"
+                        query = "INSERT INTO tb_ot_det (id_ot, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, conversion_type, ot_date, ot_start_time, ot_end_time, ot_break, id_payroll) VALUES (" + id + ", " + GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement_sub").ToString + ", '" + addSlashes(GVEmployee.GetRowCellValue(i, "employee_position").ToString) + "', " + GVEmployee.GetRowCellValue(i, "id_employee_status").ToString + ", " + GVEmployee.GetRowCellValue(i, "conversion_type").ToString + ", '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(GVEmployee.GetRowCellValue(i, "break_hours_sub").ToString) + ", " + GVEmployee.GetRowCellValue(i, "id_payroll").ToString + ")"
 
                         execute_non_query(query, True, "", "", "", "")
                     End If
