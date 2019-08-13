@@ -81,7 +81,9 @@ GROUP BY pl.`id_mat_purc_list`"
             BtnAttachment.Visible = False
             BPrePrint.Visible = False
             '
+            Console.WriteLine(is_from_list)
             If is_from_list = "1" Then
+
                 load_list_pd()
                 'get all list
                 'header vendor,etc
