@@ -42,10 +42,10 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
             FormMatPurchasePD.LNumber.Text = "Number : -"
             FormMatPurchasePD.SLEMaterial.EditValue = SLEMaterial.EditValue
             FormMatPurchasePD.TEConsumption.EditValue = TEConsumption.EditValue
-            FormMatPurchasePD.BCalculate.Text = "Calculate"
-            FormMatPurchasePD.set_calculate()
             FormMatPurchasePD.id_list = "-1"
             FormMatPurchasePD.load_view()
+            FormMatPurchasePD.BCalculate.Text = "Calculate"
+            FormMatPurchasePD.set_calculate()
             infoCustom("Duplicate created")
             Close()
         End If
