@@ -81,7 +81,9 @@ GROUP BY pl.`id_mat_purc_list`"
             BtnAttachment.Visible = False
             BPrePrint.Visible = False
             '
+            Console.WriteLine(is_from_list)
             If is_from_list = "1" Then
+
                 load_list_pd()
                 'get all list
                 'header vendor,etc
@@ -825,16 +827,21 @@ GROUP BY pl.`id_mat_purc_list`"
             Dim rpt As New ReportMatPD
             rpt.id_purc = id_purc
             'head
-            Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,pl.mat_det_price,md.mat_det_display_name,SUM(plp.total_qty_pd) AS total_qty_pd,CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)) AS total_qty_order,
-CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_toleransi,
-CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))) AS total 
+            Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,FORMAT(pl.mat_det_price,4,'id_ID') AS mat_det_price,md.mat_det_display_name
+,FORMAT(SUM(plp.total_qty_pd),0,'id_ID') AS total_qty_pd
+,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)),0,'id_ID') AS total_qty_order
+,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)),0,'id_ID') AS total_toleransi
+,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))),0,'id_ID') AS total 
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString & "'
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.id_mat_det"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             rpt.dt_head = data
             'detail
-            query = "SELECT class.display_name AS class,dsg.`design_name`,color.display_name AS color,plp.total_qty_pd,CEIL(pl.`qty_consumption`) AS qty_consumption,CEIL(plp.total_qty_pd*pl.`qty_consumption`) AS qty_order
+            query = "SELECT class.display_name AS class,dsg.`design_name`,color.display_name AS color
+,FORMAT(plp.total_qty_pd,0,'id_ID') AS total_qty_pd
+,FORMAT(CEIL(pl.`qty_consumption`),0,'id_ID') AS qty_consumption
+,FORMAT(CEIL(plp.total_qty_pd*pl.`qty_consumption`),0,'id_ID') AS qty_order
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString & "'
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=plp.`id_prod_demand_design`

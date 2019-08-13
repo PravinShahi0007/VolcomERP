@@ -11,7 +11,7 @@
     Sub load_view()
         If Not id_list = "-1" Then 'view
             BCancel.Visible = True
-            Dim query As String = "SELECT p.id_mat_det,p.qty_consumption,p.tolerance,p.note,uom.uom,p.id_mat_purc,p.is_cancel
+            Dim query As String = "SELECT p.id_mat_det,p.qty_consumption,p.tolerance,p.note,uom.uom,p.id_mat_purc,p.is_cancel,LPAD(p.`id_mat_purc_list`,6,'0') AS number
 FROM tb_mat_purc_list p
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=p.id_mat_det
 INNER JOIN tb_m_mat m ON m.id_mat=md.id_mat
@@ -19,6 +19,7 @@ INNER JOIN tb_m_uom uom ON uom.id_uom=m.id_uom
 WHERE p.id_mat_purc_list='" & id_list & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
+                LNumber.Text = "Number : " & data.Rows(0)("number").ToString
                 SLEMaterial.EditValue = data.Rows(0)("id_mat_det").ToString
                 TEConsumption.EditValue = data.Rows(0)("qty_consumption")
                 TEToleransi.EditValue = data.Rows(0)("tolerance")
@@ -39,9 +40,15 @@ WHERE p.id_mat_purc_list='" & id_list & "'"
                 End If
                 set_calculate()
             End If
+            BDuplicate.Visible = True
         Else
+            LNumber.Text = "Number : -"
+            BSetConsumption.Enabled = True
+            TEToleransi.Enabled = True
+            BCalculate.Enabled = True
             BSave.Visible = True
             BCancel.Visible = False
+            BDuplicate.Visible = False
         End If
     End Sub
 
@@ -172,6 +179,7 @@ ORDER BY is_check DESC,id_prod_demand_design DESC"
 
     Sub set_calculate()
         If BCalculate.Text = "Calculate" Then
+            GVPD.ApplyFindFilter("")
             GVPD.ActiveFilterString = "[is_check] = 'yes'"
             calculate()
             '
@@ -254,6 +262,7 @@ WHERE l.`is_cancel`=2 AND lp.`id_prod_demand_design`='" & GVPD.GetRowCellValue(i
                     query = "INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,total_qty_pd,note) VALUES " & query
                     execute_non_query(query, True, "", "", "", "")
 
+                    FormMatPurchase.load_list_mat_from_pd()
                     Close()
                 End If
             Else
@@ -294,6 +303,7 @@ WHERE l.`is_cancel`=2 AND lp.id_mat_purc_list='" & id_list & "' AND lp.`id_prod_
                     query = "DELETE FROM tb_mat_purc_list_pd WHERE id_mat_purc_list='" & id_list & "';INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,total_qty_pd,note) VALUES " & query
                     execute_non_query(query, True, "", "", "", "")
 
+                    FormMatPurchase.load_list_mat_from_pd()
                     Close()
                 End If
             End If
@@ -301,23 +311,54 @@ WHERE l.`is_cancel`=2 AND lp.id_mat_purc_list='" & id_list & "' AND lp.`id_prod_
     End Sub
 
     Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BCancel.Click
-        Dim is_ok As Boolean = False
-        Dim q As String = "SELECT id_mat_purc,is_cancel FROM `tb_mat_purc_list` WHERE id_mat_purc_list='" & id_list & "'"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        If dt.Rows.Count > 0 Then
-            If dt.Rows(0)("id_mat_purc").ToString = "" And dt.Rows(0)("is_cancel").ToString = "2" Then
-                is_ok = True
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to cancel this list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim is_ok As Boolean = False
+            Dim q As String = "SELECT id_mat_purc,is_cancel FROM `tb_mat_purc_list` WHERE id_mat_purc_list='" & id_list & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                If dt.Rows(0)("id_mat_purc").ToString = "" And dt.Rows(0)("is_cancel").ToString = "2" Then
+                    is_ok = True
+                End If
+            End If
+            '
+            If is_ok Then
+                q = "UPDATE tb_mat_purc_list SET is_cancel='1' WHERE id_mat_purc_list='" & id_list & "'"
+                execute_non_query(q, True, "", "", "", "")
+                '
+                load_view()
+                stopCustom("List canceled")
+            Else
+                stopCustom("Already cancelled or PO already created !")
             End If
         End If
-        '
-        If is_ok Then
-            q = "UPDATE tb_mat_purc_list SET is_cancel='1' WHERE id_mat_purc_list='" & id_list & "'"
-            execute_non_query(q, True, "", "", "", "")
-            '
-            load_view()
-            stopCustom("List canceled")
-        Else
-            stopCustom("Already cancelled or PO already created !")
+    End Sub
+
+    Private Sub BDuplicate_Click(sender As Object, e As EventArgs) Handles BDuplicate.Click
+        FormMatPurchasePDDup.ShowDialog()
+    End Sub
+
+    Sub select_all()
+        If GVPD.RowCount > 0 Then
+            For i As Integer = 0 To ((GVPD.RowCount - 1) - GetGroupRowCount(GVPD))
+                GVPD.SetRowCellValue(i, "is_select", "yes")
+            Next
         End If
+    End Sub
+
+    Sub unselect_all()
+        If GVPD.RowCount > 0 Then
+            For i As Integer = 0 To ((GVPD.RowCount - 1) - GetGroupRowCount(GVPD))
+                GVPD.SetRowCellValue(i, "is_select", "no")
+            Next
+        End If
+    End Sub
+
+    Private Sub SMView_Click(sender As Object, e As EventArgs) Handles SMView.Click
+        select_all()
+    End Sub
+
+    Private Sub UnselectAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnselectAllToolStripMenuItem.Click
+        unselect_all()
     End Sub
 End Class
