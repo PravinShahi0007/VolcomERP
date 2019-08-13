@@ -830,6 +830,7 @@ GROUP BY pl.`id_mat_purc_list`"
             Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,FORMAT(pl.mat_det_price,4,'id_ID') AS mat_det_price,md.mat_det_display_name
 ,FORMAT(SUM(plp.total_qty_pd),0,'id_ID') AS total_qty_pd
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)),0,'id_ID') AS total_qty_order
+,FORMAT(pl.tolerance,0,'id_ID') AS tolerance
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)),0,'id_ID') AS total_toleransi
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))),0,'id_ID') AS total 
 FROM `tb_mat_purc_list` pl
@@ -855,7 +856,8 @@ LEFT JOIN
 (
 	SELECT mdc.id_design,mcd.display_name FROM `tb_m_design_code` mdc
 	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=14
-) color ON color.id_design=dsg.id_design"
+) color ON color.id_design=dsg.id_design
+ORDER BY class.display_name"
             data = execute_query(query, -1, True, "", "", "", "")
             rpt.dt_det = data
 
