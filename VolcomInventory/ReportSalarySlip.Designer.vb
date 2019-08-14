@@ -1461,7 +1461,7 @@ Partial Public Class ReportSalarySlip
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
         Me.Dpi = 254.0!
         Me.Margins = New System.Drawing.Printing.Margins(49, 49, 100, 50)
-        Me.PageHeight = 1359
+        Me.PageHeight = 1380
         Me.PageWidth = 2100
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.ReportUnit = DevExpress.XtraReports.UI.ReportUnit.TenthsOfAMillimeter
