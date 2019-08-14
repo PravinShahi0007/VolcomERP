@@ -29,6 +29,9 @@ Partial Class FormEmpPayrollEmp
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCTotalWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCActualWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNIP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,13 +39,11 @@ Partial Class FormEmpPayrollEmp
         Me.GCPosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeLevel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCLevel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCIdEmployeeActive = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCActiveStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCActualWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCTotalWorkdays = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIdEmployeeActive = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCActiveStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCLastWorkingDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -83,7 +84,7 @@ Partial Class FormEmpPayrollEmp
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 524)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(784, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(1008, 37)
         Me.PanelControl3.TabIndex = 6
         '
         'BPickAll
@@ -102,7 +103,7 @@ Partial Class FormEmpPayrollEmp
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(634, 2)
+        Me.BCancel.Location = New System.Drawing.Point(858, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 1
@@ -113,7 +114,7 @@ Partial Class FormEmpPayrollEmp
         Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPick.ImageIndex = 19
         Me.BPick.ImageList = Me.LargeImageCollection
-        Me.BPick.Location = New System.Drawing.Point(707, 2)
+        Me.BPick.Location = New System.Drawing.Point(931, 2)
         Me.BPick.Name = "BPick"
         Me.BPick.Size = New System.Drawing.Size(75, 33)
         Me.BPick.TabIndex = 0
@@ -125,13 +126,13 @@ Partial Class FormEmpPayrollEmp
         Me.GCEmployee.Location = New System.Drawing.Point(0, 0)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.Size = New System.Drawing.Size(784, 524)
+        Me.GCEmployee.Size = New System.Drawing.Size(1008, 524)
         Me.GCEmployee.TabIndex = 7
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdEmployeeSalary, Me.GCTotalWorkdays, Me.GCActualWorkdays, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeActive, Me.GCActiveStatus})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdEmployeeSalary, Me.GCTotalWorkdays, Me.GCActualWorkdays, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeActive, Me.GCActiveStatus, Me.GCLastWorkingDate})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -149,6 +150,24 @@ Partial Class FormEmpPayrollEmp
         Me.GCIdEmployee.FieldName = "id_employee"
         Me.GCIdEmployee.Name = "GCIdEmployee"
         Me.GCIdEmployee.OptionsColumn.AllowEdit = False
+        '
+        'GCIdEmployeeSalary
+        '
+        Me.GCIdEmployeeSalary.FieldName = "id_employee_salary"
+        Me.GCIdEmployeeSalary.Name = "GCIdEmployeeSalary"
+        Me.GCIdEmployeeSalary.OptionsColumn.AllowEdit = False
+        '
+        'GCTotalWorkdays
+        '
+        Me.GCTotalWorkdays.FieldName = "total_workdays"
+        Me.GCTotalWorkdays.Name = "GCTotalWorkdays"
+        Me.GCTotalWorkdays.OptionsColumn.AllowEdit = False
+        '
+        'GCActualWorkdays
+        '
+        Me.GCActualWorkdays.FieldName = "actual_workdays"
+        Me.GCActualWorkdays.Name = "GCActualWorkdays"
+        Me.GCActualWorkdays.OptionsColumn.AllowEdit = False
         '
         'GCNIP
         '
@@ -208,20 +227,6 @@ Partial Class FormEmpPayrollEmp
         Me.GCLevel.VisibleIndex = 4
         Me.GCLevel.Width = 84
         '
-        'GCIdEmployeeActive
-        '
-        Me.GCIdEmployeeActive.FieldName = "id_employee_active"
-        Me.GCIdEmployeeActive.Name = "GCIdEmployeeActive"
-        '
-        'GCActiveStatus
-        '
-        Me.GCActiveStatus.Caption = "Active Status"
-        Me.GCActiveStatus.FieldName = "employee_active"
-        Me.GCActiveStatus.Name = "GCActiveStatus"
-        Me.GCActiveStatus.OptionsColumn.AllowEdit = False
-        Me.GCActiveStatus.Visible = True
-        Me.GCActiveStatus.VisibleIndex = 6
-        '
         'GCIdEmployeeStatus
         '
         Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
@@ -237,29 +242,33 @@ Partial Class FormEmpPayrollEmp
         Me.GCEmployeeStatus.VisibleIndex = 5
         Me.GCEmployeeStatus.Width = 90
         '
-        'GCActualWorkdays
+        'GCIdEmployeeActive
         '
-        Me.GCActualWorkdays.FieldName = "actual_workdays"
-        Me.GCActualWorkdays.Name = "GCActualWorkdays"
-        Me.GCActualWorkdays.OptionsColumn.AllowEdit = False
+        Me.GCIdEmployeeActive.FieldName = "id_employee_active"
+        Me.GCIdEmployeeActive.Name = "GCIdEmployeeActive"
         '
-        'GCTotalWorkdays
+        'GCActiveStatus
         '
-        Me.GCTotalWorkdays.FieldName = "total_workdays"
-        Me.GCTotalWorkdays.Name = "GCTotalWorkdays"
-        Me.GCTotalWorkdays.OptionsColumn.AllowEdit = False
+        Me.GCActiveStatus.Caption = "Active Status"
+        Me.GCActiveStatus.FieldName = "employee_active"
+        Me.GCActiveStatus.Name = "GCActiveStatus"
+        Me.GCActiveStatus.OptionsColumn.AllowEdit = False
+        Me.GCActiveStatus.Visible = True
+        Me.GCActiveStatus.VisibleIndex = 6
         '
-        'GCIdEmployeeSalary
+        'GCLastWorkingDate
         '
-        Me.GCIdEmployeeSalary.FieldName = "id_employee_salary"
-        Me.GCIdEmployeeSalary.Name = "GCIdEmployeeSalary"
-        Me.GCIdEmployeeSalary.OptionsColumn.AllowEdit = False
+        Me.GCLastWorkingDate.Caption = "Last Working Date"
+        Me.GCLastWorkingDate.FieldName = "employee_last_date"
+        Me.GCLastWorkingDate.Name = "GCLastWorkingDate"
+        Me.GCLastWorkingDate.Visible = True
+        Me.GCLastWorkingDate.VisibleIndex = 7
         '
         'FormEmpPayrollEmp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.ClientSize = New System.Drawing.Size(1008, 561)
         Me.Controls.Add(Me.GCEmployee)
         Me.Controls.Add(Me.PanelControl3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -298,4 +307,5 @@ Partial Class FormEmpPayrollEmp
     Friend WithEvents GCIdEmployeeSalary As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCTotalWorkdays As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCActualWorkdays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCLastWorkingDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class

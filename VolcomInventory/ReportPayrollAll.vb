@@ -3,6 +3,7 @@
     Public id_payroll As String = ""
     Public type As String = ""
     Public dt As DataTable
+    Public last_alphabet As Integer = 0
 
     Private Sub ReportEmpUni_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         dt.DefaultView.Sort = "departement ASC, departement_sub ASC"
@@ -10,7 +11,7 @@
 
         Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 
-        Dim iAlphabet As Integer = 0
+        Dim iAlphabet As Integer = last_alphabet
         Dim iInterger As Integer = 0
 
         Dim last_departement As String = ""

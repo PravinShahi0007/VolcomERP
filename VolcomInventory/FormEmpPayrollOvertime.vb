@@ -143,9 +143,13 @@
 
         Dim data As DataTable = GCOvertime.DataSource
 
+        Dim data_office As DataTable = data.Clone
+
         For j = 0 To data.Rows.Count - 1
             If data.Rows(j)("is_office_payroll").ToString = "1" Then
                 already_office = True
+
+                data_office.ImportRow(data.Rows(j))
             ElseIf data.Rows(j)("is_office_payroll").ToString = "2"
                 already_store = True
             End If
@@ -157,6 +161,7 @@
         report1.id_payroll = id_payroll
         report1.id_pre = If(id_report_status = "6", "-1", "1")
         report1.is_office_payroll = "1"
+        report1.last_alphabet = 0
         report1.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
         report1.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
         report1.XLLocation.Text = "Office"
@@ -169,6 +174,7 @@
         report2.id_payroll = id_payroll
         report2.id_pre = If(id_report_status = "6", "-1", "1")
         report2.is_office_payroll = "2"
+        report2.last_alphabet = data_office.AsDataView.ToTable(True, "departement").Rows.Count
         report2.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
         report2.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
         report2.XLLocation.Text = "Store"

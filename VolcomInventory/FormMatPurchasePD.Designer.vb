@@ -22,6 +22,8 @@ Partial Class FormMatPurchasePD
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMatPurchasePD))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.LNumber = New System.Windows.Forms.Label()
         Me.BDuplicate = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetConsumption = New DevExpress.XtraEditors.SimpleButton()
         Me.TEUOM = New DevExpress.XtraEditors.TextEdit()
@@ -68,6 +70,8 @@ Partial Class FormMatPurchasePD
         Me.UnselectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEConsumption.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEMaterial.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +97,7 @@ Partial Class FormMatPurchasePD
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl5)
         Me.PanelControl1.Controls.Add(Me.BDuplicate)
         Me.PanelControl1.Controls.Add(Me.BSetConsumption)
         Me.PanelControl1.Controls.Add(Me.TEUOM)
@@ -105,6 +110,26 @@ Partial Class FormMatPurchasePD
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1051, 54)
         Me.PanelControl1.TabIndex = 0
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.LNumber)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl5.Location = New System.Drawing.Point(793, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(256, 50)
+        Me.PanelControl5.TabIndex = 8
+        '
+        'LNumber
+        '
+        Me.LNumber.AutoSize = True
+        Me.LNumber.Font = New System.Drawing.Font("Tahoma", 14.0!)
+        Me.LNumber.Location = New System.Drawing.Point(5, 11)
+        Me.LNumber.Name = "LNumber"
+        Me.LNumber.Size = New System.Drawing.Size(104, 23)
+        Me.LNumber.TabIndex = 7
+        Me.LNumber.Text = "Number : -"
         '
         'BDuplicate
         '
@@ -533,18 +558,18 @@ Partial Class FormMatPurchasePD
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.UnselectAllToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(135, 48)
         '
         'SMView
         '
         Me.SMView.Name = "SMView"
-        Me.SMView.Size = New System.Drawing.Size(152, 22)
+        Me.SMView.Size = New System.Drawing.Size(134, 22)
         Me.SMView.Text = "Select all"
         '
         'UnselectAllToolStripMenuItem
         '
         Me.UnselectAllToolStripMenuItem.Name = "UnselectAllToolStripMenuItem"
-        Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.UnselectAllToolStripMenuItem.Text = "Unselect all"
         '
         'FormMatPurchasePD
@@ -565,6 +590,9 @@ Partial Class FormMatPurchasePD
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEConsumption.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEMaterial.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -637,4 +665,6 @@ Partial Class FormMatPurchasePD
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMView As ToolStripMenuItem
     Friend WithEvents UnselectAllToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LNumber As Label
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
 End Class
