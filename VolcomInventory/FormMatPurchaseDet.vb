@@ -81,7 +81,6 @@ GROUP BY pl.`id_mat_purc_list`"
             BtnAttachment.Visible = False
             BPrePrint.Visible = False
             '
-            Console.WriteLine(is_from_list)
             If is_from_list = "1" Then
 
                 load_list_pd()
@@ -868,6 +867,16 @@ ORDER BY class.display_name"
                 Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
             End If
             Tool.ShowPreview()
+        End If
+    End Sub
+
+    Private Sub GVListPurchase_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVListPurchase.CellValueChanged
+        If GVListPurchase.RowCount > 0 Then
+            If e.Column.FieldName = "note" Then
+                If e.Value.ToString = "" Then
+
+                End If
+            End If
         End If
     End Sub
 End Class
