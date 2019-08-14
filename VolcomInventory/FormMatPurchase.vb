@@ -296,9 +296,11 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
 ,md.mat_det_name,color.display_name AS color,size.display_name AS size
+,m.mat_code,m.mat_display_name,m.id_mat,md.id_mat_det
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
+INNER JOIN tb_m_mat m ON m.id_mat=md.id_mat
 LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
 INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_po='1' AND mdp.id_mat_det=pl.id_mat_det
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
@@ -375,5 +377,22 @@ GROUP BY pl.`id_mat_purc_list`"
 
     Private Sub XTCPurcMat_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPurcMat.SelectedPageChanged
         check_menu()
+    End Sub
+
+    Sub open_mat()
+        FormMasterRawMaterialDetSingle.action = "upd"
+
+        FormMasterRawMaterialDetSingle.id_mat = GVListMatPD.GetFocusedRowCellValue("id_mat").ToString
+        FormMasterRawMaterialDetSingle.LabelPrintedName.Text = GVListMatPD.GetFocusedRowCellValue("mat_display_name").ToString
+        FormMasterRawMaterialDetSingle.TxtMaterialTypeCode.Text = GVListMatPD.GetFocusedRowCellValue("mat_code").ToString
+
+        FormMasterRawMaterialDetSingle.id_mat_det = GVListMatPD.GetFocusedRowCellValue("id_mat_det").ToString
+        FormMasterRawMaterialDetSingle.ShowDialog()
+    End Sub
+
+    Private Sub SMMasterMat_Click(sender As Object, e As EventArgs) Handles SMMasterMat.Click
+        If GVListMatPD.RowCount > 0 Then
+            open_mat()
+        End If
     End Sub
 End Class
