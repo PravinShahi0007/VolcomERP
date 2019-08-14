@@ -68,6 +68,7 @@ Partial Class FormMatPurchase
         Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -109,7 +110,8 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMMasterMat = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -146,6 +148,7 @@ Partial Class FormMatPurchase
         Me.PanelControl5.SuspendLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPurcMat
@@ -547,6 +550,7 @@ Partial Class FormMatPurchase
         '
         'GCListMatPD
         '
+        Me.GCListMatPD.ContextMenuStrip = Me.ViewMenu
         Me.GCListMatPD.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCListMatPD.Location = New System.Drawing.Point(0, 44)
         Me.GCListMatPD.MainView = Me.GVListMatPD
@@ -602,6 +606,15 @@ Partial Class FormMatPurchase
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
         Me.GridColumn9.Width = 77
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Code"
+        Me.GridColumn24.FieldName = "mat_det_code"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 2
+        Me.GridColumn24.Width = 94
         '
         'GridColumn10
         '
@@ -983,14 +996,17 @@ Partial Class FormMatPurchase
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
-        'GridColumn24
+        'ViewMenu
         '
-        Me.GridColumn24.Caption = "Code"
-        Me.GridColumn24.FieldName = "mat_det_code"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 2
-        Me.GridColumn24.Width = 94
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMMasterMat})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(157, 26)
+        '
+        'SMMasterMat
+        '
+        Me.SMMasterMat.Name = "SMMasterMat"
+        Me.SMMasterMat.Size = New System.Drawing.Size(156, 22)
+        Me.SMMasterMat.Text = "Master Material"
         '
         'FormMatPurchase
         '
@@ -1045,6 +1061,7 @@ Partial Class FormMatPurchase
         Me.PanelControl5.PerformLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1137,4 +1154,6 @@ Partial Class FormMatPurchase
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMMasterMat As ToolStripMenuItem
 End Class
