@@ -300,7 +300,7 @@ FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
 LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
-INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_cost='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_po='1' AND mdp.id_mat_det=pl.id_mat_det
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
 LEFT JOIN

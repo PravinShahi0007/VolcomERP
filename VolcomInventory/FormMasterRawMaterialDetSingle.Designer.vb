@@ -103,6 +103,8 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BSetPrice = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -671,6 +673,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'XTPPrice
         '
+        Me.XTPPrice.Controls.Add(Me.BSetPrice)
         Me.XTPPrice.Controls.Add(Me.BSetDefault)
         Me.XTPPrice.Controls.Add(Me.BtnAdd)
         Me.XTPPrice.Controls.Add(Me.BtnEdit)
@@ -751,7 +754,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'GVPrice
         '
-        Me.GVPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPrice, Me.ColPriceName, Me.ColCompany, Me.GridColumnCurrency, Me.ColPrice, Me.ColDate, Me.GridColumn9, Me.GridColumnIdCur})
+        Me.GVPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPrice, Me.ColPriceName, Me.ColCompany, Me.GridColumnCurrency, Me.ColPrice, Me.ColDate, Me.GridColumn9, Me.GridColumn12, Me.GridColumnIdCur})
         Me.GVPrice.GridControl = Me.GCPrice
         Me.GVPrice.Name = "GVPrice"
         Me.GVPrice.OptionsBehavior.Editable = False
@@ -944,6 +947,27 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
         '
+        'BSetPrice
+        '
+        Me.BSetPrice.ImageIndex = 1
+        Me.BSetPrice.ImageList = Me.LargeImageCollection
+        Me.BSetPrice.Location = New System.Drawing.Point(160, 12)
+        Me.BSetPrice.Name = "BSetPrice"
+        Me.BSetPrice.Size = New System.Drawing.Size(149, 44)
+        Me.BSetPrice.TabIndex = 14
+        Me.BSetPrice.Text = "Set Default PO Price"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Default PO Price"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumn12.FieldName = "is_default_cost"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
+        '
         'FormMasterRawMaterialDetSingle
         '
         Me.AcceptButton = Me.BSave
@@ -1094,4 +1118,6 @@ Partial Class FormMasterRawMaterialDetSingle
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDescRange As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BSetPrice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
