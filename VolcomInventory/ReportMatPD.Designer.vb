@@ -497,7 +497,7 @@ Partial Public Class ReportMatPD
         Me.XrLabel5.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel5.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel5.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(494.9999!, 35.0!)
         Me.XrLabel5.Multiline = True
         Me.XrLabel5.Name = "XrLabel5"
@@ -506,7 +506,7 @@ Partial Public Class ReportMatPD
         Me.XrLabel5.StylePriority.UseBorders = False
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UseTextAlignment = False
-        Me.XrLabel5.Text = "[mat_det_display_name]"
+        Me.XrLabel5.Text = "[mat_det_code]" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "[mat_det_name]"
         Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel14
