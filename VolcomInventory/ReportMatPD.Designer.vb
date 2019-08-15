@@ -552,7 +552,7 @@ Partial Public Class ReportMatPD
         Me.XrLabel16.StylePriority.UseFont = False
         Me.XrLabel16.StylePriority.UseTextAlignment = False
         Me.XrLabel16.Text = "Design"
-        Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel17
         '
