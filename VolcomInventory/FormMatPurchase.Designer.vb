@@ -68,6 +68,7 @@ Partial Class FormMatPurchase
         Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,6 +76,7 @@ Partial Class FormMatPurchase
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
@@ -108,7 +110,8 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMMasterMat = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -145,6 +148,7 @@ Partial Class FormMatPurchase
         Me.PanelControl5.SuspendLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPurcMat
@@ -546,6 +550,7 @@ Partial Class FormMatPurchase
         '
         'GCListMatPD
         '
+        Me.GCListMatPD.ContextMenuStrip = Me.ViewMenu
         Me.GCListMatPD.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCListMatPD.Location = New System.Drawing.Point(0, 44)
         Me.GCListMatPD.MainView = Me.GVListMatPD
@@ -557,7 +562,7 @@ Partial Class FormMatPurchase
         '
         'GVListMatPD
         '
-        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn17, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn13, Me.GridColumn22, Me.GridColumn19, Me.GridColumn21, Me.GridColumn18, Me.GridColumn23, Me.GridColumn20, Me.GridColumn14})
+        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn17, Me.GridColumn8, Me.GridColumn9, Me.GridColumn24, Me.GridColumn10, Me.GridColumn11, Me.GridColumn13, Me.GridColumn22, Me.GridColumn19, Me.GridColumn21, Me.GridColumn18, Me.GridColumn23, Me.GridColumn20, Me.GridColumn14})
         Me.GVListMatPD.GridControl = Me.GCListMatPD
         Me.GVListMatPD.Name = "GVListMatPD"
         Me.GVListMatPD.OptionsView.ShowGroupPanel = False
@@ -574,7 +579,7 @@ Partial Class FormMatPurchase
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 0
-        Me.GridColumn17.Width = 114
+        Me.GridColumn17.Width = 51
         '
         'RICEPD
         '
@@ -600,7 +605,16 @@ Partial Class FormMatPurchase
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
-        Me.GridColumn9.Width = 172
+        Me.GridColumn9.Width = 77
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Code"
+        Me.GridColumn24.FieldName = "mat_det_code"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 2
+        Me.GridColumn24.Width = 94
         '
         'GridColumn10
         '
@@ -610,8 +624,8 @@ Partial Class FormMatPurchase
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
-        Me.GridColumn10.Width = 383
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 155
         '
         'GridColumn11
         '
@@ -623,8 +637,8 @@ Partial Class FormMatPurchase
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
-        Me.GridColumn11.Width = 147
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 58
         '
         'GridColumn13
         '
@@ -634,8 +648,8 @@ Partial Class FormMatPurchase
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 8
-        Me.GridColumn13.Width = 148
+        Me.GridColumn13.VisibleIndex = 9
+        Me.GridColumn13.Width = 73
         '
         'GridColumn22
         '
@@ -649,8 +663,8 @@ Partial Class FormMatPurchase
         Me.GridColumn19.FieldName = "comp_name"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 5
-        Me.GridColumn19.Width = 223
+        Me.GridColumn19.VisibleIndex = 6
+        Me.GridColumn19.Width = 88
         '
         'GridColumn21
         '
@@ -664,8 +678,14 @@ Partial Class FormMatPurchase
         Me.GridColumn18.FieldName = "currency"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
-        Me.GridColumn18.Width = 87
+        Me.GridColumn18.VisibleIndex = 7
+        Me.GridColumn18.Width = 34
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Price"
+        Me.GridColumn23.FieldName = "id_mat_det_price"
+        Me.GridColumn23.Name = "GridColumn23"
         '
         'GridColumn20
         '
@@ -673,8 +693,8 @@ Partial Class FormMatPurchase
         Me.GridColumn20.FieldName = "mat_det_price"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 7
-        Me.GridColumn20.Width = 119
+        Me.GridColumn20.VisibleIndex = 8
+        Me.GridColumn20.Width = 46
         '
         'GridColumn14
         '
@@ -684,8 +704,8 @@ Partial Class FormMatPurchase
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 4
-        Me.GridColumn14.Width = 239
+        Me.GridColumn14.VisibleIndex = 5
+        Me.GridColumn14.Width = 96
         '
         'BCreatePO
         '
@@ -713,11 +733,11 @@ Partial Class FormMatPurchase
         Me.BGenerateFromPD.Dock = System.Windows.Forms.DockStyle.Right
         Me.BGenerateFromPD.ImageIndex = 4
         Me.BGenerateFromPD.ImageList = Me.LargeImageCollection
-        Me.BGenerateFromPD.Location = New System.Drawing.Point(634, 2)
+        Me.BGenerateFromPD.Location = New System.Drawing.Point(631, 2)
         Me.BGenerateFromPD.Name = "BGenerateFromPD"
-        Me.BGenerateFromPD.Size = New System.Drawing.Size(154, 40)
+        Me.BGenerateFromPD.Size = New System.Drawing.Size(157, 40)
         Me.BGenerateFromPD.TabIndex = 8910
-        Me.BGenerateFromPD.Text = "Generate From PD"
+        Me.BGenerateFromPD.Text = "Create new list from PD"
         '
         'LargeImageCollection
         '
@@ -976,11 +996,17 @@ Partial Class FormMatPurchase
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
-        'GridColumn23
+        'ViewMenu
         '
-        Me.GridColumn23.Caption = "ID Price"
-        Me.GridColumn23.FieldName = "id_mat_det_price"
-        Me.GridColumn23.Name = "GridColumn23"
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMMasterMat})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(157, 26)
+        '
+        'SMMasterMat
+        '
+        Me.SMMasterMat.Name = "SMMasterMat"
+        Me.SMMasterMat.Size = New System.Drawing.Size(156, 22)
+        Me.SMMasterMat.Text = "Master Material"
         '
         'FormMatPurchase
         '
@@ -1035,6 +1061,7 @@ Partial Class FormMatPurchase
         Me.PanelControl5.PerformLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1126,4 +1153,7 @@ Partial Class FormMatPurchase
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMMasterMat As ToolStripMenuItem
 End Class

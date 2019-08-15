@@ -93,22 +93,30 @@ GROUP BY mpd.`id_mat_purc`"
         check_menu()
     End Sub
     Sub check_menu()
-        If GVMatPurchase.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
+        If XTCPurcMat.SelectedTabPageIndex = 0 Then
+            If GVMatPurchase.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                '
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                '
+            End If
+        Else
+            bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            '
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-            '
         End If
     End Sub
 
@@ -276,7 +284,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
         FormMatPurchasePD.ShowDialog()
     End Sub
 
-    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+    Sub load_list_mat_from_pd()
         Dim query As String = ""
         Dim query_where = ""
         If Not SLEMatDet.EditValue.ToString = "0" Then
@@ -288,11 +296,13 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
 ,md.mat_det_name,color.display_name AS color,size.display_name AS size
+,m.mat_code,m.mat_display_name,m.id_mat,md.id_mat_det
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
+INNER JOIN tb_m_mat m ON m.id_mat=md.id_mat
 LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
-INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_cost='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_po='1' AND mdp.id_mat_det=pl.id_mat_det
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
 LEFT JOIN
@@ -311,6 +321,10 @@ GROUP BY pl.`id_mat_purc_list`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListMatPD.DataSource = data
         GVListMatPD.BestFitColumns()
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        load_list_mat_from_pd()
     End Sub
 
     Private Sub GVListMatPD_DoubleClick(sender As Object, e As EventArgs) Handles GVListMatPD.DoubleClick
@@ -359,5 +373,26 @@ GROUP BY pl.`id_mat_purc_list`"
             warningCustom("Please choose list first")
         End If
         GVListMatPD.ActiveFilterString = ""
+    End Sub
+
+    Private Sub XTCPurcMat_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPurcMat.SelectedPageChanged
+        check_menu()
+    End Sub
+
+    Sub open_mat()
+        FormMasterRawMaterialDetSingle.action = "upd"
+
+        FormMasterRawMaterialDetSingle.id_mat = GVListMatPD.GetFocusedRowCellValue("id_mat").ToString
+        FormMasterRawMaterialDetSingle.LabelPrintedName.Text = GVListMatPD.GetFocusedRowCellValue("mat_display_name").ToString
+        FormMasterRawMaterialDetSingle.TxtMaterialTypeCode.Text = GVListMatPD.GetFocusedRowCellValue("mat_code").ToString
+
+        FormMasterRawMaterialDetSingle.id_mat_det = GVListMatPD.GetFocusedRowCellValue("id_mat_det").ToString
+        FormMasterRawMaterialDetSingle.ShowDialog()
+    End Sub
+
+    Private Sub SMMasterMat_Click(sender As Object, e As EventArgs) Handles SMMasterMat.Click
+        If GVListMatPD.RowCount > 0 Then
+            open_mat()
+        End If
     End Sub
 End Class
