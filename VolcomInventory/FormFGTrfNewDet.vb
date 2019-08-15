@@ -570,14 +570,19 @@ Public Class FormFGTrfNewDet
 
     Sub loadCodeDetail()
         Cursor = Cursors.WaitCursor
-        Dim id_product_param As String = ""
-        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
-            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
-                id_product_param += ";"
-            End If
-        Next
-        codeAvailableIns(id_product_param)
+        makeSafeGV(GVItemList)
+        GVItemList.ActiveFilterString = "[status]<>'0'"
+        If GVItemList.RowCount > 0 Then
+            Dim id_product_param As String = ""
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+                If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                    id_product_param += ";"
+                End If
+            Next
+            codeAvailableIns(id_product_param)
+        End If
+        GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 
