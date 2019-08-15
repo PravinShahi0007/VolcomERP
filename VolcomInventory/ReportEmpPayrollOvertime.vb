@@ -2,6 +2,7 @@
     Public id_payroll As String
     Public id_pre As String
     Public is_office_payroll As String
+    Public last_alphabet As Integer = 0
 
     Private Sub ReportEmpPayrollOvertime_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim query As String = "
@@ -53,6 +54,43 @@
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'departement naming
+        data.DefaultView.Sort = "Departement ASC, Sub Departement ASC"
+        data = data.DefaultView.ToTable
+
+        Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+
+        Dim iAlphabet As Integer = last_alphabet
+        Dim iInterger As Integer = 0
+
+        Dim last_departement As String = ""
+        Dim last_departement_sub As String = ""
+
+        For i = 0 To data.Rows.Count - 1
+            Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("Departement").ToString, "\(([A-Z])\)", "").ToString()
+            Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("Sub Departement").ToString, "\(([A-Z])\)", "").ToString()
+
+            If i = 0 Then
+                last_departement = curr_departement
+                last_departement_sub = curr_departement_sub
+            End If
+
+            If Not last_departement = curr_departement Then
+                iAlphabet += 1
+                iInterger = 0
+            End If
+
+            If Not last_departement_sub = curr_departement_sub Then
+                iInterger += 1
+            End If
+
+            data.Rows(i)("Departement") = curr_departement + " (" + alphabet(iAlphabet) + ")"
+            data.Rows(i)("Sub Departement") = curr_departement_sub + " (" + alphabet(iAlphabet) + iInterger.ToString + ")"
+
+            last_departement = curr_departement
+            last_departement_sub = curr_departement_sub
+        Next
 
         GCOvertime.DataSource = data
 
@@ -173,6 +211,29 @@
                     Else
                         If e.GroupLevel = 0 Then
                             e.TotalValue = sum_tot
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "Employee" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVOverTime.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
+                    Dim alphabet As String = GVOverTime.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
+
+                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                    Dim alphabet_sub As String = GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
+
+                    If GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                        If e.GroupLevel = 1 Then
+                            e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
+                        Else
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
                         End If
                     End If
             End Select

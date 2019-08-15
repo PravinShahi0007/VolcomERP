@@ -130,22 +130,13 @@
             If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
                 GBWorkingDays.Visible = True
                 GBSalary.Visible = True
-                GBBonusAdjustment.Visible = True
 
                 GBDW.Visible = False
             ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
                 GBWorkingDays.Visible = False
                 GBSalary.Visible = False
-                GBBonusAdjustment.Visible = False
 
                 GBDW.Visible = True
-            End If
-
-            'button
-            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
-                BBonusAdjustment.Visible = True
-            Else
-                BBonusAdjustment.Visible = False
             End If
         End If
 
@@ -161,6 +152,7 @@
             BReset.Visible = False
             BSubmit.Visible = False
             SBSendSlip.Visible = False
+            CheckEditViewSend.Visible = False
         End If
 
         Cursor = Cursors.Default
@@ -169,7 +161,7 @@
     Sub calculate_grandtotal_dw()
         For i = 0 To GVPayroll.RowCount - 1
             If GVPayroll.IsValidRowHandle(i) Then
-                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages") - GVPayroll.GetRowCellValue(i, "total_deduction")
+                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_adjustment") + GVPayroll.GetRowCellValue(i, "total_ot_wages") - GVPayroll.GetRowCellValue(i, "total_deduction")
 
                 GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
             End If
@@ -386,6 +378,7 @@
 
         report_office_1.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         report_office_1.dt = data_payroll_1
+        report_office_1.last_alphabet = 0
         report_office_1.id_pre = If(id_report_status = "6", "-1", "1")
         report_office_1.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
 
@@ -408,6 +401,7 @@
 
         report_office_2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         report_office_2.dt = data_payroll_2
+        report_office_2.last_alphabet = data_payroll_1.AsDataView.ToTable(True, "departement").Rows.Count
         report_office_2.id_pre = If(id_report_status = "6", "-1", "1")
         report_office_2.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
 
@@ -524,11 +518,7 @@
         'column
         Dim where_adj_c As String = ""
 
-        If Not GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
-            where_adj_c = "WHERE id_salary_" + type + "_cat IN (SELECT id_salary_" + type + "_cat FROM tb_lookup_salary_" + type + " WHERE use_dw = 1)"
-        End If
-
-        Dim query_adj_c As String = "SELECT salary_" + type + "_cat FROM tb_lookup_salary_" + type + "_cat" + " " + where_adj_c
+        Dim query_adj_c As String = "SELECT cat.salary_" + type + "_cat, (SELECT MIN(use_dw) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_dw FROM tb_lookup_salary_" + type + "_cat AS cat"
 
         Dim data_adj_c As DataTable = execute_query(query_adj_c, -1, True, "", "", "", "")
 
@@ -537,6 +527,11 @@
 
             'remove if exist
             GVPayroll.Columns.Remove(GVPayroll.Columns(field_name))
+
+            'dw column
+            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" And data_adj_c.Rows(i)("use_dw").ToString = "2" Then
+                Continue For
+            End If
 
             'add column to datasource
             If Not GCPayroll.DataSource.Columns.Contains(field_name) Then
@@ -735,11 +730,21 @@
 
                                 mail.Attachments.Add(att)
 
+                                Dim status As String = "1"
+                                Dim message As String = ""
+
                                 Try
                                     client.Send(mail)
                                 Catch ex As Exception
-                                    ex.ToString()
+                                    status = "2"
+                                    message = ex.ToString()
                                 End Try
+
+                                execute_non_query("INSERT INTO tb_emp_payroll_slip_log (id_payroll_det, status, message, send_to, send_at, send_by) VALUES ('" + GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString + "', '" + status + "', '" + message + "', '" + email_personal + "', NOW(), '" + id_employee_user + "')", True, "", "", "", "")
+
+                                If status = "1" Then
+                                    GVPayroll.SetRowCellValue(i, "slip_send", "yes")
+                                End If
                             End If
                         Next
                     Else
@@ -752,7 +757,16 @@
 
                     Cursor = Cursors.Default
                 End If
+
                 GVPayroll.ActiveFilterString = ""
+
+                For i As Integer = 0 To GVPayroll.RowCount - 1
+                    If GVPayroll.IsValidRowHandle(i) Then
+                        If GVPayroll.GetRowCellValue(i, "is_check").ToString = "yes" Then
+                            GVPayroll.SetRowCellValue(i, "is_check", "no")
+                        End If
+                    End If
+                Next
             End If
         End If
     End Sub
@@ -803,5 +817,27 @@
         FormDocumentUpload.report_mark_type = "192"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEditViewSend_EditValueChanged(sender As Object, e As EventArgs) Handles CheckEditViewSend.EditValueChanged
+        Dim slip_sent As DataTable = execute_query("SELECT id_payroll_det FROM tb_emp_payroll_slip_log WHERE id_payroll_det IN (SELECT id_payroll_det FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ") AND status = 1", -1, True, "", "", "", "")
+
+        For i = 0 To GVPayroll.RowCount - 1
+            If GVPayroll.IsValidRowHandle(i) Then
+                For j = 0 To slip_sent.Rows.Count - 1
+                    If GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString = slip_sent.Rows(j)("id_payroll_det").ToString Then
+                        GVPayroll.SetRowCellValue(i, "slip_send", "yes")
+
+                        Exit For
+                    End If
+                Next
+            End If
+        Next
+
+        If CheckEditViewSend.EditValue Then
+            BandedGridColumnSent.Visible = True
+        Else
+            BandedGridColumnSent.Visible = False
+        End If
     End Sub
 End Class

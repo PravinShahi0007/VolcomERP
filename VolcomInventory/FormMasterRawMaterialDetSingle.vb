@@ -421,7 +421,7 @@ Public Class FormMasterRawMaterialDetSingle
     '----PRICE-------------------
     'View Price
     Sub viewPrice()
-        Dim query As String = "SELECT a.id_mat_det,a.id_mat_det_price,a.mat_det_price,a.mat_det_price_name,a.mat_det_price_date,c.comp_name,a.id_currency,d.currency,IF(a.is_default_cost=1,'yes','no') AS is_default_cost FROM tb_m_mat_det_price a "
+        Dim query As String = "SELECT a.id_mat_det,a.id_mat_det_price,a.mat_det_price,a.mat_det_price_name,a.mat_det_price_date,c.comp_name,a.id_currency,d.currency,IF(a.is_default_cost=1,'yes','no') AS is_default_cost,IF(a.is_default_po=1,'yes','no') AS is_default_po FROM tb_m_mat_det_price a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_comp_contact = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
         query += "INNER JOIN tb_lookup_currency d ON a.id_currency = d.id_currency "
@@ -569,5 +569,28 @@ Public Class FormMasterRawMaterialDetSingle
         FormCodeTemplateEdit.id_pop_up = "4"
         FormCodeTemplateEdit.id_template_code = LETemplate.EditValue.ToString
         FormCodeTemplateEdit.ShowDialog()
+    End Sub
+
+    Private Sub BSetPrice_Click(sender As Object, e As EventArgs) Handles BSetPrice.Click
+        Dim id_mat_det_price As String = GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString
+
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change material price to this price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                'get old id_mat_det_price
+                Dim query As String = ""
+                query = String.Format("UPDATE tb_m_mat_det_price SET is_default_po='2' WHERE id_mat_det='{1}'; UPDATE tb_m_mat_det_price SET is_default_po='1' WHERE id_mat_det_price = '{0}';", id_mat_det_price, id_mat_det)
+                execute_non_query(query, True, "", "", "", "")
+                '
+                viewPrice()
+                infoCustom("Default PO Price changed.")
+            Catch ex As Exception
+                XtraMessageBox.Show("Please check your connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

@@ -19,8 +19,12 @@ Partial Class FormMatPurchasePD
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMatPurchasePD))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.LNumber = New System.Windows.Forms.Label()
+        Me.BDuplicate = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetConsumption = New DevExpress.XtraEditors.SimpleButton()
         Me.TEUOM = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -35,6 +39,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPD = New DevExpress.XtraGrid.GridControl()
         Me.GVPD = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -60,8 +65,13 @@ Partial Class FormMatPurchasePD
         Me.TEToleransiAmount = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.BCalculate = New DevExpress.XtraEditors.SimpleButton()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UnselectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEConsumption.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEMaterial.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,10 +92,13 @@ Partial Class FormMatPurchasePD
         CType(Me.TETotalAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEToleransiAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl5)
+        Me.PanelControl1.Controls.Add(Me.BDuplicate)
         Me.PanelControl1.Controls.Add(Me.BSetConsumption)
         Me.PanelControl1.Controls.Add(Me.TEUOM)
         Me.PanelControl1.Controls.Add(Me.Label2)
@@ -97,6 +110,34 @@ Partial Class FormMatPurchasePD
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1051, 54)
         Me.PanelControl1.TabIndex = 0
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.LNumber)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl5.Location = New System.Drawing.Point(793, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(256, 50)
+        Me.PanelControl5.TabIndex = 8
+        '
+        'LNumber
+        '
+        Me.LNumber.AutoSize = True
+        Me.LNumber.Font = New System.Drawing.Font("Tahoma", 14.0!)
+        Me.LNumber.Location = New System.Drawing.Point(5, 11)
+        Me.LNumber.Name = "LNumber"
+        Me.LNumber.Size = New System.Drawing.Size(104, 23)
+        Me.LNumber.TabIndex = 7
+        Me.LNumber.Text = "Number : -"
+        '
+        'BDuplicate
+        '
+        Me.BDuplicate.Location = New System.Drawing.Point(589, 16)
+        Me.BDuplicate.Name = "BDuplicate"
+        Me.BDuplicate.Size = New System.Drawing.Size(60, 23)
+        Me.BDuplicate.TabIndex = 6
+        Me.BDuplicate.Text = "duplicate"
         '
         'BSetConsumption
         '
@@ -202,32 +243,43 @@ Partial Class FormMatPurchasePD
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BCancel)
+        Me.PanelControl2.Controls.Add(Me.BClose)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 450)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 455)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1051, 40)
+        Me.PanelControl2.Size = New System.Drawing.Size(1051, 49)
         Me.PanelControl2.TabIndex = 1
         '
         'BCancel
         '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
         Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
-        Me.BCancel.Location = New System.Drawing.Point(809, 2)
+        Me.BCancel.Location = New System.Drawing.Point(2, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(104, 36)
-        Me.BCancel.TabIndex = 1
-        Me.BCancel.Text = "Close"
+        Me.BCancel.Size = New System.Drawing.Size(144, 45)
+        Me.BCancel.TabIndex = 2
+        Me.BCancel.Text = "Cancel Document"
+        '
+        'BClose
+        '
+        Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
+        Me.BClose.Location = New System.Drawing.Point(863, 2)
+        Me.BClose.Name = "BClose"
+        Me.BClose.Size = New System.Drawing.Size(94, 45)
+        Me.BClose.TabIndex = 1
+        Me.BClose.Text = "Close"
         '
         'BSave
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(913, 2)
+        Me.BSave.Location = New System.Drawing.Point(957, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(136, 36)
+        Me.BSave.Size = New System.Drawing.Size(92, 45)
         Me.BSave.TabIndex = 0
-        Me.BSave.Text = "Generate List"
+        Me.BSave.Text = "Save"
         '
         'GCPD
         '
@@ -236,7 +288,7 @@ Partial Class FormMatPurchasePD
         Me.GCPD.MainView = Me.GVPD
         Me.GCPD.Name = "GCPD"
         Me.GCPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPD})
-        Me.GCPD.Size = New System.Drawing.Size(1051, 267)
+        Me.GCPD.Size = New System.Drawing.Size(1051, 272)
         Me.GCPD.TabIndex = 2
         Me.GCPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPD})
         '
@@ -245,6 +297,7 @@ Partial Class FormMatPurchasePD
         Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCheck, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11})
         Me.GVPD.GridControl = Me.GCPD
         Me.GVPD.Name = "GVPD"
+        Me.GVPD.OptionsFind.AlwaysVisible = True
         Me.GVPD.OptionsView.ShowFooter = True
         Me.GVPD.OptionsView.ShowGroupPanel = False
         '
@@ -272,12 +325,16 @@ Partial Class FormMatPurchasePD
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_prod_demand_design"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Prod Demand Number"
         Me.GridColumn2.FieldName = "prod_demand_number"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 108
@@ -287,6 +344,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn5.Caption = "Design Code"
         Me.GridColumn5.FieldName = "design_code"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
         Me.GridColumn5.Width = 114
@@ -296,6 +355,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn6.Caption = "Design"
         Me.GridColumn6.FieldName = "design_display_name"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 327
@@ -311,6 +372,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
@@ -327,6 +390,8 @@ Partial Class FormMatPurchasePD
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty_order"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
@@ -346,7 +411,7 @@ Partial Class FormMatPurchasePD
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.PanelControl9)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 348)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 353)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1051, 102)
         Me.PanelControl3.TabIndex = 3
@@ -483,17 +548,35 @@ Partial Class FormMatPurchasePD
         'BCalculate
         '
         Me.BCalculate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCalculate.Location = New System.Drawing.Point(0, 321)
+        Me.BCalculate.Location = New System.Drawing.Point(0, 326)
         Me.BCalculate.Name = "BCalculate"
         Me.BCalculate.Size = New System.Drawing.Size(1051, 27)
         Me.BCalculate.TabIndex = 4
         Me.BCalculate.Text = "Calculate"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.UnselectAllToolStripMenuItem})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(135, 48)
+        '
+        'SMView
+        '
+        Me.SMView.Name = "SMView"
+        Me.SMView.Size = New System.Drawing.Size(134, 22)
+        Me.SMView.Text = "Select all"
+        '
+        'UnselectAllToolStripMenuItem
+        '
+        Me.UnselectAllToolStripMenuItem.Name = "UnselectAllToolStripMenuItem"
+        Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.UnselectAllToolStripMenuItem.Text = "Unselect all"
+        '
         'FormMatPurchasePD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1051, 490)
+        Me.ClientSize = New System.Drawing.Size(1051, 504)
         Me.Controls.Add(Me.GCPD)
         Me.Controls.Add(Me.BCalculate)
         Me.Controls.Add(Me.PanelControl3)
@@ -507,6 +590,9 @@ Partial Class FormMatPurchasePD
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEConsumption.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEMaterial.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -529,6 +615,7 @@ Partial Class FormMatPurchasePD
         CType(Me.TETotalAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEToleransiAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -560,7 +647,7 @@ Partial Class FormMatPurchasePD
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEToleransi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BCalculate As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
@@ -573,4 +660,11 @@ Partial Class FormMatPurchasePD
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDuplicate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMView As ToolStripMenuItem
+    Friend WithEvents UnselectAllToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LNumber As Label
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
 End Class
