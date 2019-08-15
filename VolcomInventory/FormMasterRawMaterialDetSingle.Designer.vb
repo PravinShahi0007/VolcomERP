@@ -72,6 +72,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.TxtName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPrice = New DevExpress.XtraTab.XtraTabPage()
+        Me.BSetPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetDefault = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -88,6 +89,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.ColDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdCur = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPMovement = New DevExpress.XtraTab.XtraTabPage()
@@ -103,8 +105,6 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.BSetPrice = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -685,6 +685,16 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.XTPPrice.Size = New System.Drawing.Size(874, 373)
         Me.XTPPrice.Text = "Price"
         '
+        'BSetPrice
+        '
+        Me.BSetPrice.ImageIndex = 1
+        Me.BSetPrice.ImageList = Me.LargeImageCollection
+        Me.BSetPrice.Location = New System.Drawing.Point(160, 12)
+        Me.BSetPrice.Name = "BSetPrice"
+        Me.BSetPrice.Size = New System.Drawing.Size(149, 44)
+        Me.BSetPrice.TabIndex = 14
+        Me.BSetPrice.Text = "Set Default PO Price"
+        '
         'BSetDefault
         '
         Me.BSetDefault.ImageIndex = 6
@@ -838,6 +848,17 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Default PO Price"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumn12.FieldName = "is_default_po"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
+        '
         'GridColumnIdCur
         '
         Me.GridColumnIdCur.Caption = "ID Cur"
@@ -946,27 +967,6 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
-        '
-        'BSetPrice
-        '
-        Me.BSetPrice.ImageIndex = 1
-        Me.BSetPrice.ImageList = Me.LargeImageCollection
-        Me.BSetPrice.Location = New System.Drawing.Point(160, 12)
-        Me.BSetPrice.Name = "BSetPrice"
-        Me.BSetPrice.Size = New System.Drawing.Size(149, 44)
-        Me.BSetPrice.TabIndex = 14
-        Me.BSetPrice.Text = "Set Default PO Price"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn12.Caption = "Default PO Price"
-        Me.GridColumn12.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.GridColumn12.FieldName = "is_default_cost"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
         '
         'FormMasterRawMaterialDetSingle
         '
