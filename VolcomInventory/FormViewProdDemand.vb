@@ -443,4 +443,11 @@
         Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnSizeDetail_Click(sender As Object, e As EventArgs) Handles BtnSizeDetail.Click
+        Cursor = Cursors.WaitCursor
+        FormProdDemandSize.id = id_prod_demand
+        FormProdDemandSize.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

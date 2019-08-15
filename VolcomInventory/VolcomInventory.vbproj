@@ -2342,6 +2342,12 @@
     <Compile Include="FormProdDemandRevSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandSize.Designer.vb">
+      <DependentUpon>FormProdDemandSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
     </Compile>
@@ -8141,6 +8147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandRevSingle.resx">
       <DependentUpon>FormProdDemandRevSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandSize.resx">
+      <DependentUpon>FormProdDemandSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
