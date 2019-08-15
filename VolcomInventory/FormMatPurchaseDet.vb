@@ -99,7 +99,9 @@ GROUP BY pl.`id_mat_purc_list`"
                         newRow("id_mat_purc_list") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString
                         newRow("mat_det_name") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_name").ToString
                         newRow("number") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "number").ToString
+                        'the bulk
                         newRow("total_qty_order") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order").ToString
+                        '
                         newRow("mat_det_price") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_price")
 
                         TryCast(GCListMatPD.DataSource, DataTable).Rows.Add(newRow)

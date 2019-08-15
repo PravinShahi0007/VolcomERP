@@ -19,32 +19,34 @@ Partial Class FormMasterRawMaterialPrcSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterRawMaterialPrcSingle))
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton
-        Me.TxtPrice = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtPriceName = New DevExpress.XtraEditors.TextEdit
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdCompContact = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompContact = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.SLEVendorContact = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdComp = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompAddress = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompCat = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPriceName = New DevExpress.XtraEditors.TextEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdCompContact = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompContact = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEVendorContact = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompAddress = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.EPPrice = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
+        Me.TEQtyinBulk = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +58,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQtyinBulk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -65,7 +68,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(153, 255)
+        Me.PanelControl2.Size = New System.Drawing.Size(153, 282)
         Me.PanelControl2.TabIndex = 111
         '
         'PictureSeason
@@ -83,7 +86,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         'BtnCancel
         '
         Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnCancel.Location = New System.Drawing.Point(378, 215)
+        Me.BtnCancel.Location = New System.Drawing.Point(378, 250)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(86, 20)
         Me.BtnCancel.TabIndex = 7
@@ -91,7 +94,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         '
         'BtnSave
         '
-        Me.BtnSave.Location = New System.Drawing.Point(470, 215)
+        Me.BtnSave.Location = New System.Drawing.Point(470, 250)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(86, 20)
         Me.BtnSave.TabIndex = 6
@@ -99,7 +102,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         '
         'TxtPrice
         '
-        Me.TxtPrice.Location = New System.Drawing.Point(359, 173)
+        Me.TxtPrice.Location = New System.Drawing.Point(359, 219)
         Me.TxtPrice.Name = "TxtPrice"
         Me.TxtPrice.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TxtPrice.Properties.Appearance.Options.UseFont = True
@@ -107,7 +110,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.TxtPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtPrice.Properties.Mask.SaveLiteral = False
         Me.TxtPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtPrice.Size = New System.Drawing.Size(197, 23)
+        Me.TxtPrice.Size = New System.Drawing.Size(197, 22)
         Me.TxtPrice.TabIndex = 5
         Me.TxtPrice.ToolTip = "Example : 65000"
         Me.TxtPrice.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -116,7 +119,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.LabelControl4.Location = New System.Drawing.Point(359, 153)
+        Me.LabelControl4.Location = New System.Drawing.Point(359, 199)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(28, 15)
         Me.LabelControl4.TabIndex = 109
@@ -129,7 +132,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.TxtPriceName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TxtPriceName.Properties.Appearance.Options.UseFont = True
         Me.TxtPriceName.Properties.MaxLength = 50
-        Me.TxtPriceName.Size = New System.Drawing.Size(384, 23)
+        Me.TxtPriceName.Size = New System.Drawing.Size(384, 22)
         Me.TxtPriceName.TabIndex = 3
         Me.TxtPriceName.ToolTip = "Example : Price Estimation, Regular, etc. Max : 50 character."
         Me.TxtPriceName.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -259,7 +262,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.LabelControl5.Location = New System.Drawing.Point(172, 153)
+        Me.LabelControl5.Location = New System.Drawing.Point(172, 199)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(49, 15)
         Me.LabelControl5.TabIndex = 126
@@ -267,7 +270,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         '
         'LECurrency
         '
-        Me.LECurrency.Location = New System.Drawing.Point(172, 174)
+        Me.LECurrency.Location = New System.Drawing.Point(172, 220)
         Me.LECurrency.Name = "LECurrency"
         Me.LECurrency.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LECurrency.Properties.Appearance.Options.UseFont = True
@@ -276,13 +279,40 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.LECurrency.Size = New System.Drawing.Size(181, 22)
         Me.LECurrency.TabIndex = 4
         '
+        'TEQtyinBulk
+        '
+        Me.TEQtyinBulk.Location = New System.Drawing.Point(172, 171)
+        Me.TEQtyinBulk.Name = "TEQtyinBulk"
+        Me.TEQtyinBulk.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.TEQtyinBulk.Properties.Appearance.Options.UseFont = True
+        Me.TEQtyinBulk.Properties.Mask.EditMask = "N4"
+        Me.TEQtyinBulk.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQtyinBulk.Properties.Mask.SaveLiteral = False
+        Me.TEQtyinBulk.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQtyinBulk.Size = New System.Drawing.Size(197, 22)
+        Me.TEQtyinBulk.TabIndex = 127
+        Me.TEQtyinBulk.ToolTip = "2500 in 1 roll"
+        Me.TEQtyinBulk.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.TEQtyinBulk.ToolTipTitle = "Info"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.LabelControl6.Location = New System.Drawing.Point(172, 151)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(116, 15)
+        Me.LabelControl6.TabIndex = 128
+        Me.LabelControl6.Text = "Minimum Qty in Bulk"
+        '
         'FormMasterRawMaterialPrcSingle
         '
         Me.AcceptButton = Me.BtnSave
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnCancel
-        Me.ClientSize = New System.Drawing.Size(579, 255)
+        Me.ClientSize = New System.Drawing.Size(579, 282)
+        Me.Controls.Add(Me.TEQtyinBulk)
+        Me.Controls.Add(Me.LabelControl6)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.LECurrency)
         Me.Controls.Add(Me.PanelControl2)
@@ -301,7 +331,6 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMaterialPrcSingle"
         Me.ShowInTaskbar = False
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Price Raw Material"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -315,6 +344,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQtyinBulk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -343,4 +373,6 @@ Partial Class FormMasterRawMaterialPrcSingle
     Friend WithEvents EPPrice As System.Windows.Forms.ErrorProvider
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LECurrency As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents TEQtyinBulk As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
