@@ -5,7 +5,7 @@
         load_adjustment()
     End Sub
     Sub load_adjustment()
-        Dim query As String = "SELECT 'no' AS is_check, pya.id_payroll_adj,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(adj.use_days = 2, '-', pya.total_days) AS total_days,pya.value,pya.increase,pya.note,emp.`employee_name`,emp.`employee_code`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,adj.`salary_adjustment`,adjc.salary_adjustment_cat,lvl.`employee_status` FROM tb_emp_payroll_adj pya
+        Dim query As String = "SELECT 'no' AS is_check, pya.id_payroll_adj,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(adj.use_days = 2, '-', pya.total_days) AS total_days,pya.value,pya.increase,pya.note,emp.`employee_name`,emp.`employee_code`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,adj.`salary_adjustment`,adjc.salary_adjustment_cat,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status FROM tb_emp_payroll_adj pya
             LEFT JOIN tb_m_employee emp ON pya.id_employee=emp.`id_employee`
             LEFT JOIN (
                 SELECT * FROM (
@@ -20,7 +20,16 @@
             LEFT JOIN tb_m_departement dep_ori ON dep_ori.id_departement = emp.id_departement
             LEFT JOIN tb_m_departement_sub sub ON sub.`id_departement_sub`=emp_pos.`id_departement_sub`
             LEFT JOIN tb_m_departement_sub sub_ori ON sub_ori.id_departement_sub = emp.id_departement_sub
-            LEFT JOIN `tb_lookup_employee_status` lvl ON lvl.`id_employee_status`=emp.`id_employee_status`
+            LEFT JOIN (
+                SELECT * FROM (
+                    SELECT det.*, lookup.employee_status FROM tb_m_employee_status_det AS det
+                    LEFT JOIN tb_lookup_employee_status AS lookup ON det.id_employee_status = lookup.id_employee_status
+                    WHERE det.start_period <= (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')
+                    ORDER BY det.id_employee_status_det DESC
+                ) AS tab
+                GROUP BY id_employee
+            ) AS sts ON pya.id_employee = sts.id_employee
+            LEFT JOIN `tb_lookup_employee_status` sts_ori ON sts_ori.`id_employee_status`=emp.`id_employee_status`
             LEFT JOIN `tb_lookup_salary_adjustment` adj ON adj.`id_salary_adjustment`=pya.`id_salary_adj`
             LEFT JOIN tb_lookup_salary_adjustment_cat adjc ON adjc.id_salary_adjustment_cat = adj.id_salary_adjustment_cat
             WHERE pya.`id_payroll`='" & id_payroll & "'
