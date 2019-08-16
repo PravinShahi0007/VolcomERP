@@ -405,10 +405,10 @@ Public Class FormFGTrfNewDet
     '-------------------------------------------------------------------------------------
     'SAAT INI PARAMETER HANYA ID PROD KARENA PRODUCTION HANYA ADA 1 COST (19 Sept 2014)
     '-----------------------------------------------------------------------------------
-    Sub codeAvailableIns(ByVal id_product_param As String)
+    Sub codeAvailableIns(ByVal id_product_param As String, ByVal id_product_param_comma As String)
         dt.Clear()
         Dim query As String = ""
-        query = "CALL view_stock_fg_unique_del('" + id_product_param + "')"
+        query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
         Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
         dt = datax
         'For k As Integer = 0 To (datax.Rows.Count - 1)
@@ -417,7 +417,7 @@ Public Class FormFGTrfNewDet
 
         'not unique 
         Dim query_c As ClassDesign = New ClassDesign()
-        Dim query_not As String = query_c.queryOldDesignCode(id_product_param)
+        Dim query_not As String = query_c.queryOldDesignCodeLess(id_product_param_comma)
         Dim data_not As DataTable = execute_query(query_not, -1, True, "", "", "", "")
 
         'merge
@@ -574,13 +574,16 @@ Public Class FormFGTrfNewDet
         GVItemList.ActiveFilterString = "[status]<>'0'"
         If GVItemList.RowCount > 0 Then
             Dim id_product_param As String = ""
+            Dim id_product_param_comma As String = ""
             For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                 id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+                id_product_param_comma += GVItemList.GetRowCellValue(i, "id_product").ToString
                 If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
                     id_product_param += ";"
+                    id_product_param_comma += ","
                 End If
             Next
-            codeAvailableIns(id_product_param)
+            codeAvailableIns(id_product_param, id_product_param_comma)
         End If
         GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
@@ -588,7 +591,7 @@ Public Class FormFGTrfNewDet
 
     Sub startScan()
         loadCodeDetail()
-        verifyTrans()
+        'verifyTrans()
         disableControl()
         newRowsBc()
         'allowDelete()
