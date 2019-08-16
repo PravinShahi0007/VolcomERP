@@ -1022,6 +1022,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Options.UseFont = True
         Me.GridColumnRATECOP_add_report_column.Caption = "RATE COP"
+        Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatString = "N0"
         Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnRATECOP_add_report_column.FieldName = "RATE COP_add_report_column"
         Me.GridColumnRATECOP_add_report_column.Name = "GridColumnRATECOP_add_report_column"
