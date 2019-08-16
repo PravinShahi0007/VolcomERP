@@ -280,34 +280,37 @@
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'style
+            Report.GVData.AppearancePrint.BandPanel.BorderColor = Color.Black
             Report.GVData.AppearancePrint.BandPanel.BackColor = Color.Transparent
             Report.GVData.AppearancePrint.BandPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.BandPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.BandPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
 
             Report.GVData.OptionsPrint.UsePrintStyles = True
             Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
             Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
 
             Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
             Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 7, FontStyle.Bold)
 
             Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
             Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 7, FontStyle.Bold)
 
-
+            Report.GVData.AppearancePrint.HeaderPanel.BorderColor = Color.Black
             Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
             Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
 
             Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
             Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7.3, FontStyle.Bold)
 
             Report.GVData.AppearancePrint.Row.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 7.3, FontStyle.Regular)
+
+            Report.GVData.AppearancePrint.Lines.BackColor = Color.Black
 
             Report.GVData.OptionsPrint.ExpandAllDetails = True
             Report.GVData.OptionsPrint.UsePrintStyles = True
