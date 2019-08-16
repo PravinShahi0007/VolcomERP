@@ -74,6 +74,7 @@
         Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
+        Report.GVData.AppearancePrint.HeaderPanel.BorderColor = Color.Black
         Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
         Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
         Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
@@ -83,6 +84,8 @@
         Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
         Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        Report.GVData.AppearancePrint.Lines.BackColor = Color.Black
 
         Report.GVData.OptionsPrint.ExpandAllDetails = True
         Report.GVData.OptionsPrint.UsePrintStyles = True

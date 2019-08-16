@@ -50,7 +50,6 @@ Partial Public Class ReportProdDemandSize
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
-        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +57,7 @@ Partial Public Class ReportProdDemandSize
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
-        Me.Detail.HeightF = 176.0417!
+        Me.Detail.HeightF = 148.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -81,6 +80,8 @@ Partial Public Class ReportProdDemandSize
         '
         'GVData
         '
+        Me.GVData.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVData.AppearancePrint.Lines.Options.UseBackColor = True
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -131,7 +132,7 @@ Partial Public Class ReportProdDemandSize
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 38.54167!
+        Me.BottomMargin.HeightF = 49.41654!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -140,7 +141,7 @@ Partial Public Class ReportProdDemandSize
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel8.ForeColor = System.Drawing.Color.DarkGray
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(548.8425!, 16.04167!)
@@ -156,7 +157,7 @@ Partial Public Class ReportProdDemandSize
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(586.0005!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(586.0005!, 10.00001!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -393,15 +394,10 @@ Partial Public Class ReportProdDemandSize
         Me.LabelApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LabelApprovedDate.Visible = False
         '
-        'ReportFooter
-        '
-        Me.ReportFooter.HeightF = 100.0!
-        Me.ReportFooter.Name = "ReportFooter"
-        '
         'ReportProdDemandSize
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(51, 63, 77, 39)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader})
+        Me.Margins = New System.Drawing.Printing.Margins(51, 63, 77, 49)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -413,7 +409,6 @@ Partial Public Class ReportProdDemandSize
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
-    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
