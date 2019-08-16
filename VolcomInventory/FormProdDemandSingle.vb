@@ -1040,4 +1040,17 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnSizeDetail_Click(sender As Object, e As EventArgs) Handles BtnSizeDetail.Click
+        Cursor = Cursors.WaitCursor
+        FormProdDemandSize.rmt = report_mark_type
+        FormProdDemandSize.id_report_status = id_report_status
+        FormProdDemandSize.status = LEReportStatus.Text.ToUpper
+        FormProdDemandSize.season = SLESeason.Text
+        FormProdDemandSize.created_date = DEForm.Text.ToUpper
+        FormProdDemandSize.division = LESampleDivision.Text
+        FormProdDemandSize.id = id_prod_demand
+        FormProdDemandSize.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
