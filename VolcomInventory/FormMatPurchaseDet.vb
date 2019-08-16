@@ -30,17 +30,19 @@
     End Sub
 
     Sub load_list_pd()
-        Dim query As String = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_order 
+        Dim query As String = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
+,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
+,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
 ,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
 ,md.mat_det_name,color.display_name AS color,size.display_name AS size
-,pl.mat_det_price
+,pl.mat_det_price,pl.id_mat_det_price
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
 LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
-INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_cost='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pl.id_mat_det_price
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
 LEFT JOIN
@@ -452,7 +454,7 @@ GROUP BY pl.`id_mat_purc_list`"
 
                     'update list if any
                     For i As Integer = 0 To GVListMatPD.RowCount - 1
-                        query = String.Format("UPDATE tb_mat_purc_list SET id_mat_purc='" & id_purc_new & "',id_comp_contact='" & id_comp_to & "',mat_det_price='" & decimalSQL(GVListMatPD.GetRowCellValue(i, "mat_det_price").ToString) & "' WHERE id_mat_purc_list='" & GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString & "'")
+                        query = String.Format("UPDATE tb_mat_purc_list SET id_mat_purc='" & id_purc_new & "',id_comp_contact='" & id_comp_to & "',mat_det_price='" & decimalSQL(GVListMatPD.GetRowCellValue(i, "mat_det_price").ToString) & "',id_mat_det_price='" & GVListMatPD.GetRowCellValue(i, "id_mat_det_price").ToString & "' WHERE id_mat_purc_list='" & GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString & "'")
                         execute_non_query(query, True, "", "", "", "")
                     Next
                     '
