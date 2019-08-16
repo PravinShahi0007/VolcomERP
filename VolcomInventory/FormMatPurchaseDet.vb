@@ -30,17 +30,19 @@
     End Sub
 
     Sub load_list_pd()
-        Dim query As String = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_order 
+        Dim query As String = "SELECT pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
+,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
+,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
 ,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
 ,md.mat_det_name,color.display_name AS color,size.display_name AS size
-,pl.mat_det_price
+,pl.mat_det_price,pl.id_mat_det_price
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
 LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
-INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_cost='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pl.id_mat_det_price
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
 LEFT JOIN
@@ -97,9 +99,12 @@ GROUP BY pl.`id_mat_purc_list`"
                     For i As Integer = 0 To FormMatPurchase.GVListMatPD.RowCount - 1
                         Dim newRow As DataRow = (TryCast(GCListMatPD.DataSource, DataTable)).NewRow()
                         newRow("id_mat_purc_list") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString
+                        newRow("id_mat_det_price") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "id_mat_det_price").ToString
                         newRow("mat_det_name") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_name").ToString
                         newRow("number") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "number").ToString
+                        'the bulk
                         newRow("total_qty_order") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order").ToString
+                        '
                         newRow("mat_det_price") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_price")
 
                         TryCast(GCListMatPD.DataSource, DataTable).Rows.Add(newRow)
@@ -133,7 +138,7 @@ GROUP BY pl.`id_mat_purc_list`"
                             newRow("qty") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order")
                             newRow("discount") = 0
                             newRow("total") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "total_qty_order") * FormMatPurchase.GVListMatPD.GetRowCellValue(i, "mat_det_price")
-                            newRow("note") = ""
+                            newRow("note") = FormMatPurchase.GVListMatPD.GetRowCellValue(i, "order_note")
 
                             TryCast(GCListPurchase.DataSource, DataTable).Rows.Add(newRow)
                             GCListPurchase.RefreshDataSource()
@@ -449,7 +454,7 @@ GROUP BY pl.`id_mat_purc_list`"
 
                     'update list if any
                     For i As Integer = 0 To GVListMatPD.RowCount - 1
-                        query = String.Format("UPDATE tb_mat_purc_list SET id_mat_purc='" & id_purc_new & "',id_comp_contact='" & id_comp_to & "',mat_det_price='" & decimalSQL(GVListMatPD.GetRowCellValue(i, "mat_det_price").ToString) & "' WHERE id_mat_purc_list='" & GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString & "'")
+                        query = String.Format("UPDATE tb_mat_purc_list SET id_mat_purc='" & id_purc_new & "',id_comp_contact='" & id_comp_to & "',mat_det_price='" & decimalSQL(GVListMatPD.GetRowCellValue(i, "mat_det_price").ToString) & "',id_mat_det_price='" & GVListMatPD.GetRowCellValue(i, "id_mat_det_price").ToString & "' WHERE id_mat_purc_list='" & GVListMatPD.GetRowCellValue(i, "id_mat_purc_list").ToString & "'")
                         execute_non_query(query, True, "", "", "", "")
                     Next
                     '
@@ -833,10 +838,19 @@ GROUP BY pl.`id_mat_purc_list`"
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)),0,'id_ID') AS total_toleransi
 ,FORMAT(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))),0,'id_ID') AS total 
 ,md.mat_det_code
+,FORMAT(mdp.min_qty_in_bulk,0,'id_ID') AS min_qty_in_bulk,mdp.bulk_unit
+,FORMAT(SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)),0,'id_ID') AS total_qty_list
+,ROUND((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
+,FORMAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),0,'id_ID') AS total_qty_order_conv
+,FORMAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk,0,'id_ID') AS total_order
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list AND plp.`id_mat_purc_list`='" & GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString & "'
-INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.id_mat_det"
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.id_mat_det
+INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price = '" & GVListMatPD.GetFocusedRowCellValue("id_mat_det_price").ToString & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If Not data.Rows(0)("min_qty_in_bulk") = 1 Then
+                rpt.is_use_bulk = True
+            End If
             rpt.dt_head = data
             'detail
             query = "SELECT class.display_name AS class,dsg.`design_name`,color.display_name AS color
