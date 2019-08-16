@@ -128,6 +128,7 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMatPurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -653,7 +654,7 @@ Partial Class FormMatPurchaseDet
         '
         'GVListMatPD
         '
-        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn5})
+        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn5, Me.GridColumn6})
         Me.GVListMatPD.GridControl = Me.GCListMatPD
         Me.GVListMatPD.Name = "GVListMatPD"
         Me.GVListMatPD.OptionsView.ShowGroupPanel = False
@@ -1334,6 +1335,12 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID Mat Det Price"
+        Me.GridColumn6.FieldName = "id_mat_det_price"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
         'FormMatPurchaseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1516,4 +1523,5 @@ Partial Class FormMatPurchaseDet
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMView As ToolStripMenuItem
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

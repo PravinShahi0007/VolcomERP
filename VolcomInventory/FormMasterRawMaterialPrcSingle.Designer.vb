@@ -47,6 +47,9 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
         Me.TEQtyinBulk = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUnit = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,6 +62,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         CType(Me.EPPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQtyinBulk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -289,7 +293,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.TEQtyinBulk.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEQtyinBulk.Properties.Mask.SaveLiteral = False
         Me.TEQtyinBulk.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEQtyinBulk.Size = New System.Drawing.Size(197, 22)
+        Me.TEQtyinBulk.Size = New System.Drawing.Size(215, 22)
         Me.TEQtyinBulk.TabIndex = 127
         Me.TEQtyinBulk.ToolTip = "2500 in 1 roll"
         Me.TEQtyinBulk.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -300,9 +304,40 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.LabelControl6.Location = New System.Drawing.Point(172, 151)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(116, 15)
+        Me.LabelControl6.Size = New System.Drawing.Size(194, 15)
         Me.LabelControl6.TabIndex = 128
-        Me.LabelControl6.Text = "Minimum Qty in Bulk"
+        Me.LabelControl6.Text = "Minimum Purchase Qty Conversion"
+        '
+        'TEUnit
+        '
+        Me.TEUnit.Location = New System.Drawing.Point(416, 171)
+        Me.TEUnit.Name = "TEUnit"
+        Me.TEUnit.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.TEUnit.Properties.Appearance.Options.UseFont = True
+        Me.TEUnit.Properties.MaxLength = 50
+        Me.TEUnit.Size = New System.Drawing.Size(140, 22)
+        Me.TEUnit.TabIndex = 129
+        Me.TEUnit.ToolTip = "Example : Price Estimation, Regular, etc. Max : 50 character."
+        Me.TEUnit.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.TEUnit.ToolTipTitle = "Info"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.LabelControl7.Location = New System.Drawing.Point(416, 151)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(88, 15)
+        Me.LabelControl7.TabIndex = 130
+        Me.LabelControl7.Text = "Conversion Unit"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.LabelControl8.Location = New System.Drawing.Point(393, 174)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(18, 15)
+        Me.LabelControl8.TabIndex = 131
+        Me.LabelControl8.Text = "per"
         '
         'FormMasterRawMaterialPrcSingle
         '
@@ -311,6 +346,9 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnCancel
         Me.ClientSize = New System.Drawing.Size(579, 282)
+        Me.Controls.Add(Me.LabelControl8)
+        Me.Controls.Add(Me.LabelControl7)
+        Me.Controls.Add(Me.TEUnit)
         Me.Controls.Add(Me.TEQtyinBulk)
         Me.Controls.Add(Me.LabelControl6)
         Me.Controls.Add(Me.LabelControl5)
@@ -345,6 +383,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         CType(Me.EPPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQtyinBulk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -375,4 +414,7 @@ Partial Class FormMasterRawMaterialPrcSingle
     Friend WithEvents LECurrency As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TEQtyinBulk As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEUnit As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class
