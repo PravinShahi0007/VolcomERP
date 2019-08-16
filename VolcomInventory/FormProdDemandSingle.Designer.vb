@@ -93,6 +93,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnActOrderSales = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCostEstimate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRATECOP_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAdditionalCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCostEstimateNonAddition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRateCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -134,6 +135,7 @@ Partial Class FormProdDemandSingle
         Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlBreakSize = New DevExpress.XtraEditors.PanelControl()
         Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnSizeDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddFromLineList = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -151,7 +153,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRATECOP_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1016,6 +1017,18 @@ Partial Class FormProdDemandSingle
         Me.GridColumnCostEstimate.Visible = True
         Me.GridColumnCostEstimate.VisibleIndex = 21
         '
+        'GridColumnRATECOP_add_report_column
+        '
+        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnRATECOP_add_report_column.Caption = "RATE COP"
+        Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRATECOP_add_report_column.FieldName = "RATE COP_add_report_column"
+        Me.GridColumnRATECOP_add_report_column.Name = "GridColumnRATECOP_add_report_column"
+        Me.GridColumnRATECOP_add_report_column.Visible = True
+        Me.GridColumnRATECOP_add_report_column.VisibleIndex = 22
+        Me.GridColumnRATECOP_add_report_column.Width = 54
+        '
         'GridColumnAdditionalCost
         '
         Me.GridColumnAdditionalCost.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -1453,6 +1466,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlCENONActive)
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlBreakSize)
+        Me.PanelControlCompleted.Controls.Add(Me.BtnSizeDetail)
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 246)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
@@ -1496,6 +1510,15 @@ Partial Class FormProdDemandSingle
         Me.CEBreakSize.Properties.Caption = "show breakdown size"
         Me.CEBreakSize.Size = New System.Drawing.Size(123, 19)
         Me.CEBreakSize.TabIndex = 0
+        '
+        'BtnSizeDetail
+        '
+        Me.BtnSizeDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSizeDetail.Location = New System.Drawing.Point(858, 0)
+        Me.BtnSizeDetail.Name = "BtnSizeDetail"
+        Me.BtnSizeDetail.Size = New System.Drawing.Size(78, 32)
+        Me.BtnSizeDetail.TabIndex = 167
+        Me.BtnSizeDetail.Text = "size detail"
         '
         'PanelControlNav
         '
@@ -1638,18 +1661,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnDate.Visible = True
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
-        '
-        'GridColumnRATECOP_add_report_column
-        '
-        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnRATECOP_add_report_column.Caption = "RATE COP"
-        Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnRATECOP_add_report_column.FieldName = "RATE COP_add_report_column"
-        Me.GridColumnRATECOP_add_report_column.Name = "GridColumnRATECOP_add_report_column"
-        Me.GridColumnRATECOP_add_report_column.Visible = True
-        Me.GridColumnRATECOP_add_report_column.VisibleIndex = 22
-        Me.GridColumnRATECOP_add_report_column.Width = 54
         '
         'FormProdDemandSingle
         '
@@ -1853,4 +1864,5 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumndrop_ref As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoLinkDropRef As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumnRATECOP_add_report_column As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSizeDetail As DevExpress.XtraEditors.SimpleButton
 End Class

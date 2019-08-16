@@ -2856,7 +2856,12 @@
 
         'desc
         Dim full_desc As String = ""
-        full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+        If CEPRM.EditValue = True Then
+            full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+        Else
+            full_desc = class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+        End If
+
 
         If full_desc.Length > 25 Then
             TEDisplayNameNonMD.Text = full_desc.Substring(0, 25)

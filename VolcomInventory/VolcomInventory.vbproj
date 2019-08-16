@@ -2342,6 +2342,12 @@
     <Compile Include="FormProdDemandRevSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandSize.Designer.vb">
+      <DependentUpon>FormProdDemandSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
     </Compile>
@@ -6605,6 +6611,12 @@
     <Compile Include="ReportProdDemandRev.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProdDemandSize.Designer.vb">
+      <DependentUpon>ReportProdDemandSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdDemandSize.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdOverMemo.Designer.vb">
       <DependentUpon>ReportProdOverMemo.vb</DependentUpon>
     </Compile>
@@ -8141,6 +8153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandRevSingle.resx">
       <DependentUpon>FormProdDemandRevSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandSize.resx">
+      <DependentUpon>FormProdDemandSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
@@ -10735,6 +10750,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdDemandRev.resx">
       <DependentUpon>ReportProdDemandRev.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdDemandSize.resx">
+      <DependentUpon>ReportProdDemandSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdOverMemo.resx">
       <DependentUpon>ReportProdOverMemo.vb</DependentUpon>
