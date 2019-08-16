@@ -52,7 +52,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
             'check if target cost already input
             Dim target_ok As Boolean = True
 
-            If id_season >= get_opt_prod_field("ecop_limit_start") Then
+            If get_use_target_cost() = "1" Then
                 Dim query_target As String = "SELECT dsg.id_fg_line_plan,(fg_lp.`target_price`/fg_lp.`mark_up`) AS target_cost
 FROM tb_m_design dsg
 INNER JOIN tb_fg_line_plan fg_lp ON fg_lp.`id_fg_line_plan`=dsg.`id_fg_line_plan` 
@@ -83,6 +83,18 @@ WHERE dsg.id_design='" & id_design & "'"
             End If
         End If
     End Sub
+
+    Function get_use_target_cost()
+        'look season if use target cost
+        Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
+
+        Dim is_use_target_cost As String = "2"
+        Dim qst As String = "SELECT is_use_target_cost FROM tb_season WHERE id_season='" & id_season.ToString & "'"
+        Console.WriteLine(qst)
+        is_use_target_cost = execute_query(qst, 0, True, "", "", "", "")
+
+        Return is_use_target_cost
+    End Function
 
     Sub load_det_current()
         Dim query As String = "SELECT description,id_currency,kurs,before_kurs,additional FROM tb_m_design_cop WHERE is_active='1' AND id_design='" & id_design & "'"
@@ -164,7 +176,7 @@ WHERE dsg.id_design='" & id_design & "'"
         Dim is_more_than_limit As Boolean = False
 
         'check limit
-        If id_season >= get_opt_prod_field("ecop_limit_start") Then
+        If get_use_target_cost() = "1" Then
             Dim limit As Decimal = 0.00
             Dim target_cost As Decimal = TETargetCost.EditValue
             Dim ecop As Decimal = TEEcop.EditValue
@@ -316,7 +328,7 @@ INNER JOIN tb_m_code_detail cd ON dsgc.`id_code_detail`=cd.`id_code_detail` AND 
         Dim is_more_than_limit As Boolean = False
 
         'check limit
-        If id_season >= get_opt_prod_field("ecop_limit_start") Then
+        If get_use_target_cost() = "1" Then
             Dim limit As Decimal = 0.00
             Dim target_cost As Decimal = TETargetCost.EditValue
             Dim ecop As Decimal = GVCOPComponent.Columns("sub_tot").SummaryItem.SummaryValue
