@@ -154,6 +154,10 @@ Partial Class FormProdDemandSize
         '
         'GridColumnsize
         '
+        Me.GridColumnsize.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnsize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnsize.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnsize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnsize.Caption = "Size"
         Me.GridColumnsize.FieldName = "size"
         Me.GridColumnsize.Name = "GridColumnsize"

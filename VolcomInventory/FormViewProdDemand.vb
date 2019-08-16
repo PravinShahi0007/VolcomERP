@@ -446,6 +446,12 @@
 
     Private Sub BtnSizeDetail_Click(sender As Object, e As EventArgs) Handles BtnSizeDetail.Click
         Cursor = Cursors.WaitCursor
+        FormProdDemandSize.rmt = rmt
+        FormProdDemandSize.id_report_status = id_report_status
+        FormProdDemandSize.status = status
+        FormProdDemandSize.season = season
+        FormProdDemandSize.created_date = created_date
+        FormProdDemandSize.division = division
         FormProdDemandSize.id = id_prod_demand
         FormProdDemandSize.ShowDialog()
         Cursor = Cursors.Default
