@@ -336,14 +336,14 @@ Partial Class FormSetupBudgetOPEXDet
         'GridColumn8
         '
         Me.GridColumn8.Caption = "ID Item Cat"
-        Me.GridColumn8.FieldName = "id_item_cat"
+        Me.GridColumn8.FieldName = "id_item_cat_main"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         '
         'GridColumnDesc
         '
         Me.GridColumnDesc.Caption = "Description"
-        Me.GridColumnDesc.FieldName = "item_cat"
+        Me.GridColumnDesc.FieldName = "item_cat_main"
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnDesc.Visible = True
@@ -425,7 +425,7 @@ Partial Class FormSetupBudgetOPEXDet
         'GridColumn2
         '
         Me.GridColumn2.Caption = "ID Item Cat"
-        Me.GridColumn2.FieldName = "id_item_cat"
+        Me.GridColumn2.FieldName = "id_item_cat_main"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.OptionsColumn.ReadOnly = True
@@ -433,7 +433,7 @@ Partial Class FormSetupBudgetOPEXDet
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Description"
-        Me.GridColumn3.FieldName = "item_cat"
+        Me.GridColumn3.FieldName = "item_cat_main"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.OptionsColumn.ReadOnly = True
