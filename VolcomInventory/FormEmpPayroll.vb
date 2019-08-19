@@ -130,22 +130,13 @@
             If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
                 GBWorkingDays.Visible = True
                 GBSalary.Visible = True
-                GBBonusAdjustment.Visible = True
 
                 GBDW.Visible = False
             ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
                 GBWorkingDays.Visible = False
                 GBSalary.Visible = False
-                GBBonusAdjustment.Visible = False
 
                 GBDW.Visible = True
-            End If
-
-            'button
-            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
-                BBonusAdjustment.Visible = True
-            Else
-                BBonusAdjustment.Visible = False
             End If
         End If
 
@@ -170,7 +161,7 @@
     Sub calculate_grandtotal_dw()
         For i = 0 To GVPayroll.RowCount - 1
             If GVPayroll.IsValidRowHandle(i) Then
-                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_ot_wages") - GVPayroll.GetRowCellValue(i, "total_deduction")
+                Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_adjustment") + GVPayroll.GetRowCellValue(i, "total_ot_wages") - GVPayroll.GetRowCellValue(i, "total_deduction")
 
                 GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
             End If
@@ -527,11 +518,7 @@
         'column
         Dim where_adj_c As String = ""
 
-        If Not GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
-            where_adj_c = "WHERE id_salary_" + type + "_cat IN (SELECT id_salary_" + type + "_cat FROM tb_lookup_salary_" + type + " WHERE use_dw = 1)"
-        End If
-
-        Dim query_adj_c As String = "SELECT salary_" + type + "_cat FROM tb_lookup_salary_" + type + "_cat" + " " + where_adj_c
+        Dim query_adj_c As String = "SELECT cat.salary_" + type + "_cat, (SELECT MIN(use_dw) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_dw FROM tb_lookup_salary_" + type + "_cat AS cat"
 
         Dim data_adj_c As DataTable = execute_query(query_adj_c, -1, True, "", "", "", "")
 
@@ -540,6 +527,11 @@
 
             'remove if exist
             GVPayroll.Columns.Remove(GVPayroll.Columns(field_name))
+
+            'dw column
+            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" And data_adj_c.Rows(i)("use_dw").ToString = "2" Then
+                Continue For
+            End If
 
             'add column to datasource
             If Not GCPayroll.DataSource.Columns.Contains(field_name) Then

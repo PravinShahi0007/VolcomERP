@@ -2138,6 +2138,12 @@
     <Compile Include="FormMatPurchasePD.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurchasePDDup.Designer.vb">
+      <DependentUpon>FormMatPurchasePDDup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurchasePDDup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMatPurcSum.Designer.vb">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
     </Compile>
@@ -8044,6 +8050,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurchasePD.resx">
       <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurchasePDDup.resx">
+      <DependentUpon>FormMatPurchasePDDup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcSum.resx">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>

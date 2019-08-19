@@ -452,6 +452,7 @@
                     item.ShowInGroupColumnFooter = BGVParam.Columns(data.Columns(i).ColumnName.ToString)
                     BGVParam.GroupSummary.Add(item)
                 ElseIf Not data.Columns(i).ColumnName.ToString = "RATE IN RP_Prc" _
+                    And Not data.Columns(i).ColumnName.ToString = "RATE COP_Prc" _
                     And Not data.Columns(i).ColumnName.ToString = "CURRENCY ORIGIN_Prc" _
                     And Not data.Columns(i).ColumnName.ToString = "MSRP_Prc" _
                        And Not data.Columns(i).ColumnName.ToString = "MSRP IN RP_Prc" _

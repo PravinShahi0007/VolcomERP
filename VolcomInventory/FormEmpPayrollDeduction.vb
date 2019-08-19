@@ -7,7 +7,7 @@
     End Sub
 
     Sub load_deduction()
-        Dim query As String = "SELECT 'no' AS is_check, pyd.id_payroll_deduction,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(sald.use_days = 2, '-', pyd.total_days) AS total_days,emp.`id_employee`,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,emp.`employee_code`,emp.`employee_name`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,lvl.`employee_status`,pyd.`deduction`,sald.`salary_deduction`,saldc.salary_deduction_cat,pyd.note FROM tb_emp_payroll_deduction pyd
+        Dim query As String = "SELECT 'no' AS is_check, pyd.id_payroll_deduction,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(sald.use_days = 2, '-', pyd.total_days) AS total_days,emp.`id_employee`,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,emp.`employee_code`,emp.`employee_name`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status,pyd.`deduction`,sald.`salary_deduction`,saldc.salary_deduction_cat,pyd.note FROM tb_emp_payroll_deduction pyd
             LEFT JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
             LEFT JOIN (
                 SELECT * FROM (
@@ -22,7 +22,16 @@
             LEFT JOIN tb_m_departement dep_ori ON dep_ori.id_departement = emp.id_departement
             LEFT JOIN tb_m_departement_sub sub ON sub.`id_departement_sub`=emp_pos.`id_departement_sub`
             LEFT JOIN tb_m_departement_sub sub_ori ON sub_ori.id_departement_sub = emp.id_departement_sub
-            LEFT JOIN `tb_lookup_employee_status` lvl ON lvl.`id_employee_status`=emp.`id_employee_status`
+            LEFT JOIN (
+                SELECT * FROM (
+                    SELECT det.*, lookup.employee_status FROM tb_m_employee_status_det AS det
+                    LEFT JOIN tb_lookup_employee_status AS lookup ON det.id_employee_status = lookup.id_employee_status
+                    WHERE det.start_period <= (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')
+                    ORDER BY det.id_employee_status_det DESC
+                ) AS tab
+                GROUP BY id_employee
+            ) AS sts ON pyd.id_employee = sts.id_employee
+            LEFT JOIN `tb_lookup_employee_status` sts_ori ON sts_ori.`id_employee_status`=emp.`id_employee_status`
             LEFT JOIN `tb_lookup_salary_deduction` sald ON sald.`id_salary_deduction` = pyd.`id_salary_deduction`
             LEFT JOIN tb_lookup_salary_deduction_cat saldc ON saldc.id_salary_deduction_cat = sald.id_salary_deduction_cat
             WHERE pyd.`id_payroll`='" & id_payroll & "'

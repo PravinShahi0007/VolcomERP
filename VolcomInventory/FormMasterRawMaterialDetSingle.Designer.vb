@@ -72,6 +72,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.TxtName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPrice = New DevExpress.XtraTab.XtraTabPage()
+        Me.BSetPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetDefault = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -88,6 +89,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.ColDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdCur = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPMovement = New DevExpress.XtraTab.XtraTabPage()
@@ -671,6 +673,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'XTPPrice
         '
+        Me.XTPPrice.Controls.Add(Me.BSetPrice)
         Me.XTPPrice.Controls.Add(Me.BSetDefault)
         Me.XTPPrice.Controls.Add(Me.BtnAdd)
         Me.XTPPrice.Controls.Add(Me.BtnEdit)
@@ -681,6 +684,16 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.XTPPrice.PageVisible = False
         Me.XTPPrice.Size = New System.Drawing.Size(874, 373)
         Me.XTPPrice.Text = "Price"
+        '
+        'BSetPrice
+        '
+        Me.BSetPrice.ImageIndex = 1
+        Me.BSetPrice.ImageList = Me.LargeImageCollection
+        Me.BSetPrice.Location = New System.Drawing.Point(160, 12)
+        Me.BSetPrice.Name = "BSetPrice"
+        Me.BSetPrice.Size = New System.Drawing.Size(149, 44)
+        Me.BSetPrice.TabIndex = 14
+        Me.BSetPrice.Text = "Set Default PO Price"
         '
         'BSetDefault
         '
@@ -751,7 +764,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'GVPrice
         '
-        Me.GVPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPrice, Me.ColPriceName, Me.ColCompany, Me.GridColumnCurrency, Me.ColPrice, Me.ColDate, Me.GridColumn9, Me.GridColumnIdCur})
+        Me.GVPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPrice, Me.ColPriceName, Me.ColCompany, Me.GridColumnCurrency, Me.ColPrice, Me.ColDate, Me.GridColumn9, Me.GridColumn12, Me.GridColumnIdCur})
         Me.GVPrice.GridControl = Me.GCPrice
         Me.GVPrice.Name = "GVPrice"
         Me.GVPrice.OptionsBehavior.Editable = False
@@ -834,6 +847,17 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Default PO Price"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumn12.FieldName = "is_default_po"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
         '
         'GridColumnIdCur
         '
@@ -1094,4 +1118,6 @@ Partial Class FormMasterRawMaterialDetSingle
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDescRange As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BSetPrice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
