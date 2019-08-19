@@ -3,10 +3,83 @@
     Public dt_det As DataTable
     '
     Public id_purc As String = "-1"
+    Public is_use_bulk As Boolean = False
 
     Private Sub ReportMatPD_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         DataSource = dt_head
-
+        '
+        If is_use_bulk Then
+            LNO1.Visible = True
+            LNO2.Visible = True
+            LNO3.Visible = True
+            LNO4.Visible = True
+            '
+            LClass1.Visible = True
+            LClass2.Visible = True
+            LClass3.Visible = True
+            LClass4.Visible = True
+            '
+            LDesign1.Visible = True
+            LDesign2.Visible = True
+            LDesign3.Visible = True
+            LDesign4.Visible = True
+            '
+            LColor1.Visible = True
+            LColor2.Visible = True
+            LColor3.Visible = True
+            LColor4.Visible = True
+            '
+            LQty1.Visible = True
+            LQty2.Visible = True
+            LQty3.Visible = True
+            LQty4.Visible = True
+            '
+            LCons1.Visible = True
+            LCons2.Visible = True
+            LCons3.Visible = True
+            LCons4.Visible = True
+            '
+            LTotal1.Visible = True
+            LTotal2.Visible = True
+            LTotal3.Visible = True
+            LTotal4.Visible = True
+        Else
+            LNO1.Visible = False
+            LNO2.Visible = False
+            LNO3.Visible = False
+            LNO4.Visible = False
+            '
+            LClass1.Visible = False
+            LClass2.Visible = False
+            LClass3.Visible = False
+            LClass4.Visible = False
+            '
+            LDesign1.Visible = False
+            LDesign2.Visible = False
+            LDesign3.Visible = False
+            LDesign4.Visible = False
+            '
+            LColor1.Visible = False
+            LColor2.Visible = False
+            LColor3.Visible = False
+            LColor4.Visible = False
+            '
+            LQty1.Visible = False
+            LQty2.Visible = False
+            LQty3.Visible = False
+            LQty4.Visible = False
+            '
+            LCons1.Visible = False
+            LCons2.Visible = False
+            LCons3.Visible = False
+            LCons4.Visible = False
+            '
+            LTotal1.Visible = False
+            LTotal2.Visible = False
+            LTotal3.Visible = False
+            LTotal4.Visible = False
+        End If
+        '
         Dim po_height As Integer = 0
 
         For i = 0 To dt_det.Rows.Count - 1
@@ -41,7 +114,7 @@
             tb_design.SizeF = New Size(250, 20)
             tb_design.LocationF = New Point(80, po_height)
             tb_design.Font = New Font("Calibri", 10)
-            tb_design.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            tb_design.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_design.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_design.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
 

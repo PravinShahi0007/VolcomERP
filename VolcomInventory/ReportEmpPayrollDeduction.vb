@@ -33,34 +33,7 @@
         data_column = execute_query(query_column, -1, True, "", "", "", "")
 
         'employee
-        Dim query_employee As String = "
-            SELECT IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,emp.employee_code,emp.employee_name,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,lvl.employee_status,
-                GROUP_CONCAT(sald.salary_" + type + " ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC) AS salary_" + type + "_c,
-                GROUP_CONCAT(ROUND(pyd." + If(type = "deduction", "deduction", "value") + ", 0) ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC) AS salary_" + type + "_v
-            FROM tb_emp_payroll_" + If(type = "adjustment", "adj", type) + " AS pyd
-            LEFT JOIN tb_m_employee emp ON emp.id_employee=pyd.id_employee
-            LEFT JOIN (
-                SELECT * FROM (
-                    SELECT id_employee, id_departement, id_departement_sub, employee_position, employee_position_date
-                    FROM tb_m_employee_position
-                    WHERE employee_position_date <= (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll + "')
-                    ORDER BY id_employee_position DESC
-                ) AS tab
-                GROUP BY id_employee
-            ) AS emp_pos ON pyd.id_employee = emp_pos.id_employee
-            LEFT JOIN tb_m_departement dep ON dep.id_departement=emp_pos.id_departement
-            LEFT JOIN tb_m_departement dep_ori ON dep_ori.id_departement = emp.id_departement
-            LEFT JOIN tb_m_departement_sub sub ON sub.`id_departement_sub`=emp_pos.`id_departement_sub`
-            LEFT JOIN tb_m_departement_sub sub_ori ON sub_ori.id_departement_sub = emp.id_departement_sub
-            LEFT JOIN tb_lookup_employee_status lvl ON lvl.id_employee_status=emp.id_employee_status
-            LEFT JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_" + If(type = "adjustment", "adj", type) + "
-            LEFT JOIN tb_lookup_salary_" + type + "_cat saldc ON saldc.id_salary_" + type + "_cat=sald.id_salary_" + type + "_cat
-            WHERE pyd.id_payroll='" + id_payroll + "' AND IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '" + is_office_payroll + "'
-            GROUP BY pyd.id_employee
-            ORDER BY emp.id_employee_level ASC, emp.employee_code ASC 
-        "
-
-        Dim data_employee As DataTable = execute_query(query_employee, -1, True, "", "", "", "")
+        Dim data_employee As DataTable = get_employee(is_office_payroll)
 
         'data
         Dim data As DataTable = New DataTable()
@@ -187,6 +160,51 @@
             GVDeduction.Columns("Employee Position").MinWidth = 110
         End If
 
+        'departement naming
+        Dim last_alphabet As Integer = 0
+
+        If is_office_payroll = "2" Then
+            Dim data_employee_get As DataTable = get_employee("1")
+
+            last_alphabet = data_employee_get.AsDataView.ToTable(True, "departement").Rows.Count
+        End If
+
+        data.DefaultView.Sort = "Departement ASC, Sub Departement ASC"
+        data = data.DefaultView.ToTable
+
+        Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+
+        Dim iAlphabet As Integer = last_alphabet
+        Dim iInterger As Integer = 0
+
+        Dim last_departement As String = ""
+        Dim last_departement_sub As String = ""
+
+        For i = 0 To data.Rows.Count - 1
+            Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("Departement").ToString, "\(([A-Z])\)", "").ToString()
+            Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("Sub Departement").ToString, "\(([A-Z])\)", "").ToString()
+
+            If i = 0 Then
+                last_departement = curr_departement
+                last_departement_sub = curr_departement_sub
+            End If
+
+            If Not last_departement = curr_departement Then
+                iAlphabet += 1
+                iInterger = 0
+            End If
+
+            If Not last_departement_sub = curr_departement_sub Then
+                iInterger += 1
+            End If
+
+            data.Rows(i)("Departement") = curr_departement + " (" + alphabet(iAlphabet) + ")"
+            data.Rows(i)("Sub Departement") = curr_departement_sub + " (" + alphabet(iAlphabet) + iInterger.ToString + ")"
+
+            last_departement = curr_departement
+            last_departement_sub = curr_departement_sub
+        Next
+
         GCDeduction.DataSource = data
 
         'mark
@@ -215,6 +233,48 @@
             End If
         End If
     End Sub
+
+    Function get_employee(is_office_payroll_get As String) As DataTable
+        Dim query_employee As String = "
+            SELECT IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,emp.employee_code,emp.employee_name,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status,
+                GROUP_CONCAT(sald.salary_" + type + " ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC) AS salary_" + type + "_c,
+                GROUP_CONCAT(ROUND(pyd." + If(type = "deduction", "deduction", "value") + ", 0) ORDER BY sald.id_salary_" + type + "_cat ASC, sald.id_salary_" + type + " ASC) AS salary_" + type + "_v
+            FROM tb_emp_payroll_" + If(type = "adjustment", "adj", type) + " AS pyd
+            LEFT JOIN tb_m_employee emp ON emp.id_employee=pyd.id_employee
+            LEFT JOIN (
+                SELECT * FROM (
+                    SELECT id_employee, id_departement, id_departement_sub, employee_position, employee_position_date
+                    FROM tb_m_employee_position
+                    WHERE employee_position_date <= (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll + "')
+                    ORDER BY id_employee_position DESC
+                ) AS tab
+                GROUP BY id_employee
+            ) AS emp_pos ON pyd.id_employee = emp_pos.id_employee
+            LEFT JOIN tb_m_departement dep ON dep.id_departement=emp_pos.id_departement
+            LEFT JOIN tb_m_departement dep_ori ON dep_ori.id_departement = emp.id_departement
+            LEFT JOIN tb_m_departement_sub sub ON sub.`id_departement_sub`=emp_pos.`id_departement_sub`
+            LEFT JOIN tb_m_departement_sub sub_ori ON sub_ori.id_departement_sub = emp.id_departement_sub
+            LEFT JOIN (
+                SELECT * FROM (
+                    SELECT det.*, lookup.employee_status FROM tb_m_employee_status_det AS det
+                    LEFT JOIN tb_lookup_employee_status AS lookup ON det.id_employee_status = lookup.id_employee_status
+                    WHERE det.start_period <= (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')
+                    ORDER BY det.id_employee_status_det DESC
+                ) AS tab
+                GROUP BY id_employee
+            ) AS sts ON p.id_employee = sts.id_employee
+            LEFT JOIN `tb_lookup_employee_status` sts_ori ON sts_ori.`id_employee_status`=emp.`id_employee_status`
+            LEFT JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_" + If(type = "adjustment", "adj", type) + "
+            LEFT JOIN tb_lookup_salary_" + type + "_cat saldc ON saldc.id_salary_" + type + "_cat=sald.id_salary_" + type + "_cat
+            WHERE pyd.id_payroll='" + id_payroll + "' AND IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '" + is_office_payroll_get + "'
+            GROUP BY pyd.id_employee
+            ORDER BY emp.id_employee_level ASC, emp.employee_code ASC 
+        "
+
+        Dim data_employee As DataTable = execute_query(query_employee, -1, True, "", "", "", "")
+
+        Return data_employee
+    End Function
 
     Dim total_list As DataTable = New DataTable
 
@@ -246,5 +306,28 @@
                 End If
             Next
         Next
+
+        If item.FieldName.ToString = "Employee" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVDeduction.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
+                    Dim alphabet As String = GVDeduction.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
+
+                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVDeduction.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                    Dim alphabet_sub As String = GVDeduction.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
+
+                    If GVDeduction.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                        If e.GroupLevel = 1 Then
+                            e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
+                        Else
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    End If
+            End Select
+        End If
     End Sub
 End Class

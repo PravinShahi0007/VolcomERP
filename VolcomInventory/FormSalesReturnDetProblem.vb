@@ -45,13 +45,12 @@
                 End If
 
                 'cek
-                If Not cond_unique_not_found And Not cond_no_stock Then
-                    stopCustom("This product still has stock, please scan in Return-Non List")
-                    Close()
-                    Exit Sub
-                End If
-
-
+                'commented by septian 14 Agustus 2019 rizki cant scan manual
+                'If Not cond_unique_not_found And Not cond_no_stock Then
+                '    stopCustom("This product still has stock, please scan in Return-Non List")
+                '    Close()
+                '    Exit Sub
+                'End If
 
                 Dim newRow As DataRow = (TryCast(FormSalesReturnDet.GCBarcodeProb.DataSource, DataTable)).NewRow()
                 newRow("id_sales_return_problem") = "0"

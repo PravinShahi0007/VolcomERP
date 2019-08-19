@@ -70,6 +70,7 @@ Partial Class FormMatPurchaseDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
@@ -127,7 +128,7 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMatPurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -653,7 +654,7 @@ Partial Class FormMatPurchaseDet
         '
         'GVListMatPD
         '
-        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn5})
+        Me.GVListMatPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn5, Me.GridColumn6})
         Me.GVListMatPD.GridControl = Me.GCListMatPD
         Me.GVListMatPD.Name = "GVListMatPD"
         Me.GVListMatPD.OptionsView.ShowGroupPanel = False
@@ -701,6 +702,12 @@ Partial Class FormMatPurchaseDet
         Me.GridColumn11.VisibleIndex = 2
         Me.GridColumn11.Width = 147
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Mat Det Price"
+        Me.GridColumn5.FieldName = "mat_det_price"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
         'RICEPD
         '
         Me.RICEPD.AutoHeight = False
@@ -732,7 +739,6 @@ Partial Class FormMatPurchaseDet
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
         Me.GVListPurchase.Name = "GVListPurchase"
-        Me.GVListPurchase.OptionsBehavior.Editable = False
         Me.GVListPurchase.OptionsView.ShowGroupPanel = False
         '
         'ColIdPurcDet
@@ -740,12 +746,16 @@ Partial Class FormMatPurchaseDet
         Me.ColIdPurcDet.Caption = "ID Purc Det"
         Me.ColIdPurcDet.FieldName = "id_mat_purc_det"
         Me.ColIdPurcDet.Name = "ColIdPurcDet"
+        Me.ColIdPurcDet.OptionsColumn.AllowEdit = False
+        Me.ColIdPurcDet.OptionsColumn.ReadOnly = True
         '
         'ColIdMatDetPrice
         '
         Me.ColIdMatDetPrice.Caption = "Id Mat Price"
         Me.ColIdMatDetPrice.FieldName = "id_mat_det_price"
         Me.ColIdMatDetPrice.Name = "ColIdMatDetPrice"
+        Me.ColIdMatDetPrice.OptionsColumn.AllowEdit = False
+        Me.ColIdMatDetPrice.OptionsColumn.ReadOnly = True
         '
         'ColNo
         '
@@ -754,6 +764,8 @@ Partial Class FormMatPurchaseDet
         Me.ColNo.Caption = "No."
         Me.ColNo.FieldName = "no"
         Me.ColNo.Name = "ColNo"
+        Me.ColNo.OptionsColumn.AllowEdit = False
+        Me.ColNo.OptionsColumn.ReadOnly = True
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
         Me.ColNo.Width = 22
@@ -763,6 +775,8 @@ Partial Class FormMatPurchaseDet
         Me.ColCode.Caption = "Code"
         Me.ColCode.FieldName = "code"
         Me.ColCode.Name = "ColCode"
+        Me.ColCode.OptionsColumn.AllowEdit = False
+        Me.ColCode.OptionsColumn.ReadOnly = True
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
         Me.ColCode.Width = 101
@@ -772,6 +786,8 @@ Partial Class FormMatPurchaseDet
         Me.ColName.Caption = "Description"
         Me.ColName.FieldName = "name"
         Me.ColName.Name = "ColName"
+        Me.ColName.OptionsColumn.AllowEdit = False
+        Me.ColName.OptionsColumn.ReadOnly = True
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 2
         Me.ColName.Width = 170
@@ -787,6 +803,8 @@ Partial Class FormMatPurchaseDet
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
+        Me.ColPrice.OptionsColumn.AllowEdit = False
+        Me.ColPrice.OptionsColumn.ReadOnly = True
         Me.ColPrice.Visible = True
         Me.ColPrice.VisibleIndex = 5
         Me.ColPrice.Width = 101
@@ -802,6 +820,8 @@ Partial Class FormMatPurchaseDet
         Me.ColQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
+        Me.ColQty.OptionsColumn.AllowEdit = False
+        Me.ColQty.OptionsColumn.ReadOnly = True
         Me.ColQty.Visible = True
         Me.ColQty.VisibleIndex = 7
         Me.ColQty.Width = 49
@@ -817,6 +837,8 @@ Partial Class FormMatPurchaseDet
         Me.GridColumnDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDiscount.FieldName = "discount"
         Me.GridColumnDiscount.Name = "GridColumnDiscount"
+        Me.GridColumnDiscount.OptionsColumn.AllowEdit = False
+        Me.GridColumnDiscount.OptionsColumn.ReadOnly = True
         Me.GridColumnDiscount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "discount", "{0:N2}")})
         Me.GridColumnDiscount.Visible = True
         Me.GridColumnDiscount.VisibleIndex = 6
@@ -833,6 +855,8 @@ Partial Class FormMatPurchaseDet
         Me.ColSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColSubtotal.FieldName = "total"
         Me.ColSubtotal.Name = "ColSubtotal"
+        Me.ColSubtotal.OptionsColumn.AllowEdit = False
+        Me.ColSubtotal.OptionsColumn.ReadOnly = True
         Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColSubtotal.Visible = True
         Me.ColSubtotal.VisibleIndex = 8
@@ -856,6 +880,8 @@ Partial Class FormMatPurchaseDet
         Me.GridColumnSize.Caption = "Size"
         Me.GridColumnSize.FieldName = "size"
         Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.OptionsColumn.AllowEdit = False
+        Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 4
         Me.GridColumnSize.Width = 54
@@ -869,6 +895,8 @@ Partial Class FormMatPurchaseDet
         Me.GridColumnColor.Caption = "Color"
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
+        Me.GridColumnColor.OptionsColumn.AllowEdit = False
+        Me.GridColumnColor.OptionsColumn.ReadOnly = True
         Me.GridColumnColor.Visible = True
         Me.GridColumnColor.VisibleIndex = 3
         Me.GridColumnColor.Width = 54
@@ -1307,11 +1335,11 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
-        'GridColumn5
+        'GridColumn6
         '
-        Me.GridColumn5.Caption = "Mat Det Price"
-        Me.GridColumn5.FieldName = "mat_det_price"
-        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn6.Caption = "ID Mat Det Price"
+        Me.GridColumn6.FieldName = "id_mat_det_price"
+        Me.GridColumn6.Name = "GridColumn6"
         '
         'FormMatPurchaseDet
         '
@@ -1495,4 +1523,5 @@ Partial Class FormMatPurchaseDet
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMView As ToolStripMenuItem
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

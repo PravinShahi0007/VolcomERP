@@ -139,7 +139,13 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Software\MySqlBackup.NET 2.0.9.5\Net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlBackup">
+      <HintPath>D:\Software\MySqlBackup.NET 2.0.9.5\Net40\MySqlBackup.dll</HintPath>
+    </Reference>
     <Reference Include="NTwain, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f9f7e0c5169536c8, processorArchitecture=MSIL">
       <HintPath>..\packages\NTwain.3.6.0\lib\net40-client\NTwain.dll</HintPath>
       <Private>True</Private>
@@ -2120,6 +2126,12 @@
     <Compile Include="FormMatPurchasePD.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurchasePDDup.Designer.vb">
+      <DependentUpon>FormMatPurchasePDDup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurchasePDDup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMatPurcSum.Designer.vb">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
     </Compile>
@@ -2328,6 +2340,12 @@
       <DependentUpon>FormProdDemandRevSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdDemandRevSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdDemandSize.Designer.vb">
+      <DependentUpon>FormProdDemandSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandSize.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
@@ -6227,6 +6245,12 @@
     <Compile Include="ReportFGProposePrice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGProposePriceAnalysis.Designer.vb">
+      <DependentUpon>ReportFGProposePriceAnalysis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGProposePriceAnalysis.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGProposePriceDetail.Designer.vb">
       <DependentUpon>ReportFGProposePriceDetail.vb</DependentUpon>
     </Compile>
@@ -6597,6 +6621,12 @@
       <DependentUpon>ReportProdDemandRev.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportProdDemandRev.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProdDemandSize.Designer.vb">
+      <DependentUpon>ReportProdDemandSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdDemandSize.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportProdOverMemo.Designer.vb">
@@ -8027,6 +8057,9 @@
     <EmbeddedResource Include="FormMatPurchasePD.resx">
       <DependentUpon>FormMatPurchasePD.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurchasePDDup.resx">
+      <DependentUpon>FormMatPurchasePDDup.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcSum.resx">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
     </EmbeddedResource>
@@ -8132,6 +8165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandRevSingle.resx">
       <DependentUpon>FormProdDemandRevSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandSize.resx">
+      <DependentUpon>FormProdDemandSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
@@ -10510,6 +10546,9 @@
       <DependentUpon>ReportFGProposePrice.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGProposePriceAnalysis.resx">
+      <DependentUpon>ReportFGProposePriceAnalysis.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportFGProposePriceDetail.resx">
       <DependentUpon>ReportFGProposePriceDetail.vb</DependentUpon>
     </EmbeddedResource>
@@ -10729,6 +10768,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdDemandRev.resx">
       <DependentUpon>ReportProdDemandRev.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdDemandSize.resx">
+      <DependentUpon>ReportProdDemandSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdOverMemo.resx">
       <DependentUpon>ReportProdOverMemo.vb</DependentUpon>
