@@ -441,8 +441,8 @@ Public Class FormFGProposePriceDetail
             End If
         ElseIf XTCDetail.SelectedTabPageIndex = 1 Then
             Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            gv = GVData
-            ReportFGProposePriceAnalysis.dt = GCData.DataSource
+            gv = GVAnalysis
+            ReportFGProposePriceAnalysis.dt = GCAnalysis.DataSource
             ReportFGProposePriceAnalysis.id = id
             If id_report_status <> "6" Then
                 ReportFGProposePriceAnalysis.is_pre = "1"
@@ -469,6 +469,7 @@ Public Class FormFGProposePriceDetail
             Report.GVAnalysis.AppearancePrint.FilterPanel.ForeColor = Color.Black
             Report.GVAnalysis.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
+            Report.GVAnalysis.AppearancePrint.GroupFooter.BorderColor = Color.Black
             Report.GVAnalysis.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
             Report.GVAnalysis.AppearancePrint.GroupFooter.ForeColor = Color.Black
             Report.GVAnalysis.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
@@ -477,16 +478,24 @@ Public Class FormFGProposePriceDetail
             Report.GVAnalysis.AppearancePrint.GroupRow.ForeColor = Color.Black
             Report.GVAnalysis.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
+            Report.GVAnalysis.AppearancePrint.BandPanel.BorderColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.BandPanel.BackColor = Color.Transparent
+            Report.GVAnalysis.AppearancePrint.BandPanel.ForeColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.BandPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
+            Report.GVAnalysis.AppearancePrint.HeaderPanel.BorderColor = Color.Black
             Report.GVAnalysis.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
             Report.GVAnalysis.AppearancePrint.HeaderPanel.ForeColor = Color.Black
             Report.GVAnalysis.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
+            Report.GVAnalysis.AppearancePrint.FooterPanel.BorderColor = Color.Black
             Report.GVAnalysis.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
             Report.GVAnalysis.AppearancePrint.FooterPanel.ForeColor = Color.Black
             Report.GVAnalysis.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
             Report.GVAnalysis.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+            Report.GVAnalysis.AppearancePrint.Lines.BackColor = Color.Black
 
             Report.GVAnalysis.OptionsPrint.ExpandAllDetails = True
             Report.GVAnalysis.OptionsPrint.UsePrintStyles = True
