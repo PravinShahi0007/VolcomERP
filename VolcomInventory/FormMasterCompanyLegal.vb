@@ -72,7 +72,6 @@ VALUES('" & id_comp & "','" & LELegalType.EditValue.ToString & "','" & addSlashe
 
         fd.Title = "Upload file"
         fd.InitialDirectory = "C:\"
-        fd.Filter = "Pdf Files|*.pdf"
 
         fd.FilterIndex = 2
         fd.RestoreDirectory = True

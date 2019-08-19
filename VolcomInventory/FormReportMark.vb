@@ -1280,7 +1280,7 @@
             If id_status_reportx = 3 Then 'Approved then completed
                 id_status_reportx = 6
             ElseIf id_status_reportx = 5 Then 'cancel
-                query = "UPDATE `tb_mat_purc_list` SET id_mat_purc=NULL,id_comp_contact=NULL,mat_det_price=NULL WHERE id_mat_purc='" & id_report & "'"
+                query = "UPDATE `tb_mat_purc_list` SET id_mat_purc=NULL,id_comp_contact=NULL,mat_det_price=NULL,id_mat_det_price=NULL WHERE id_mat_purc='" & id_report & "'"
                 execute_non_query(query, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_mat_purc SET id_report_status='{0}' WHERE id_mat_purc='{1}'", id_status_reportx, id_report)
@@ -4512,8 +4512,8 @@
                     '" + decimalSQL(dpr.Rows(i)("royalty_design").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("royalty_special").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("inflation").ToString) + "',
-                    '1',
                     '" + decimalSQL(dpr.Rows(i)("rate_current").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("rate_management").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("msrp").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("msrp_rp").ToString) + "',
                     '" + DateTime.Parse(dpr.Rows(i)("date_available_start").ToString).ToString("yyyy-MM-dd") + "',

@@ -6,7 +6,10 @@
     Private Sub FormRawMaterialPrcSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim def_dec As Decimal = 0.0
         TxtPrice.EditValue = def_dec
-
+        TEQtyinBulk.EditValue = 1.0
+        '
+        TEUnit.Text = "pcs"
+        '
         viewVendor()
         viewVendorContact()
         viewCurrency()
@@ -25,6 +28,8 @@
             LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("id_currency").ToString)
             TxtPriceName.Text = data.Rows(0)("mat_det_price_name").ToString
             TxtPrice.Text = data.Rows(0)("mat_det_price").ToString
+            TEQtyinBulk.EditValue = data.Rows(0)("min_qty_in_bulk")
+            TEUnit.Text = data.Rows(0)("bulk_unit").ToString
         End If
     End Sub
     'Form Closed
@@ -73,11 +78,13 @@
             Dim mat_det_price_name As String = addSlashes(TxtPriceName.Text)
             Dim mat_det_price As String = TxtPrice.EditValue
             Dim id_currency As String = LECurrency.EditValue
+            Dim qty_bulk As String = decimalSQL(TEQtyinBulk.EditValue.ToString)
+            Dim bulk_unit As String = addSlashes(TEUnit.Text)
             If action = "ins" Then
                 Try
-                    query = "INSERT INTO tb_m_mat_det_price(id_mat_det, id_comp_contact, mat_det_price_name, mat_det_price, mat_det_price_date, id_currency) "
-                    query += "VALUES('{0}', '{1}', '{2}', '{3}', DATE(NOW()), '{4}')"
-                    query = String.Format(query, id_mat_det, id_comp_contact, mat_det_price_name, decimalSQL(mat_det_price.ToString), id_currency)
+                    query = "INSERT INTO tb_m_mat_det_price(id_mat_det, id_comp_contact, mat_det_price_name, mat_det_price, mat_det_price_date, id_currency, min_qty_in_bulk, bulk_unit) "
+                    query += "VALUES('{0}', '{1}', '{2}', '{3}', DATE(NOW()), '{4}','{5}','{6}')"
+                    query = String.Format(query, id_mat_det, id_comp_contact, mat_det_price_name, decimalSQL(mat_det_price.ToString), id_currency, qty_bulk, bulk_unit)
                     execute_non_query(query, True, "", "", "", "")
                     logData("tb_m_mat", 1)
                     FormMasterRawMaterialDetSingle.viewPrice()
@@ -89,8 +96,8 @@
             ElseIf action = "upd" Then
                 Try
                     query = "UPDATE tb_m_mat_det_price SET id_mat_det ='{0}', id_comp_contact='{1}', "
-                    query += "mat_det_price_name = '{2}', mat_det_price = '{3}', id_currency = '{4}' WHERE id_mat_det_price = '{5}' "
-                    query = String.Format(query, id_mat_det, id_comp_contact, mat_det_price_name, decimalSQL(mat_det_price.ToString), id_currency, id_mat_det_price)
+                    query += "mat_det_price_name = '{2}', mat_det_price = '{3}', id_currency = '{4}',min_qty_in_bulk='{6}',bulk_unit='{7}' WHERE id_mat_det_price = '{5}' "
+                    query = String.Format(query, id_mat_det, id_comp_contact, mat_det_price_name, decimalSQL(mat_det_price.ToString), id_currency, id_mat_det_price, qty_bulk, bulk_unit)
                     execute_non_query(query, True, "", "", "", "")
                     logData("tb_m_mat", 2)
                     FormMasterRawMaterialDetSingle.viewPrice()
