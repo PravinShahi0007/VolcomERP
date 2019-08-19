@@ -91,6 +91,7 @@ Partial Class FormEmpOvertime
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlCheck = New DevExpress.XtraEditors.PanelControl()
+        Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.PCEmployee = New DevExpress.XtraEditors.PanelControl()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -104,15 +105,6 @@ Partial Class FormEmpOvertime
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLUEPayrollPeriod = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SLUEPayrollPeriodView = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,10 +132,6 @@ Partial Class FormEmpOvertime
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.SLUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEPayrollPeriodView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCOvertime
@@ -311,7 +299,7 @@ Partial Class FormEmpOvertime
         Me.PanelControl4.Controls.Add(Me.SBViewOD)
         Me.PanelControl4.Controls.Add(Me.SBViewCA)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(1198, 0)
+        Me.PanelControl4.Location = New System.Drawing.Point(943, 0)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(265, 40)
         Me.PanelControl4.TabIndex = 19
@@ -342,7 +330,7 @@ Partial Class FormEmpOvertime
         Me.PanelControl3.Controls.Add(Me.Label2)
         Me.PanelControl3.Controls.Add(Me.DEUntil)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl3.Location = New System.Drawing.Point(255, 0)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(414, 40)
         Me.PanelControl3.TabIndex = 18
@@ -770,12 +758,21 @@ Partial Class FormEmpOvertime
         Me.PanelControlCheck.Size = New System.Drawing.Size(1004, 52)
         Me.PanelControlCheck.TabIndex = 1
         '
+        'SBVerification
+        '
+        Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
+        Me.SBVerification.Location = New System.Drawing.Point(901, 2)
+        Me.SBVerification.Name = "SBVerification"
+        Me.SBVerification.Size = New System.Drawing.Size(101, 48)
+        Me.SBVerification.TabIndex = 0
+        Me.SBVerification.Text = "Verification"
+        '
         'XtraScrollableControl1
         '
         Me.XtraScrollableControl1.Controls.Add(Me.PanelControl4)
         Me.XtraScrollableControl1.Controls.Add(Me.PCEmployee)
         Me.XtraScrollableControl1.Controls.Add(Me.PanelControl3)
-        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl1)
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
@@ -792,7 +789,7 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.Controls.Add(Me.SLUEDepartement)
         Me.PCEmployee.Controls.Add(Me.Label3)
         Me.PCEmployee.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCEmployee.Location = New System.Drawing.Point(669, 0)
+        Me.PCEmployee.Location = New System.Drawing.Point(414, 0)
         Me.PCEmployee.Name = "PCEmployee"
         Me.PCEmployee.Size = New System.Drawing.Size(529, 40)
         Me.PCEmployee.TabIndex = 20
@@ -886,80 +883,6 @@ Partial Class FormEmpOvertime
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.PanelControl1.Appearance.Options.UseBackColor = True
-        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl1.Controls.Add(Me.SLUEPayrollPeriod)
-        Me.PanelControl1.Controls.Add(Me.Label5)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(255, 40)
-        Me.PanelControl1.TabIndex = 21
-        '
-        'SLUEPayrollPeriod
-        '
-        Me.SLUEPayrollPeriod.Location = New System.Drawing.Point(93, 11)
-        Me.SLUEPayrollPeriod.Name = "SLUEPayrollPeriod"
-        Me.SLUEPayrollPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEPayrollPeriod.Properties.View = Me.SLUEPayrollPeriodView
-        Me.SLUEPayrollPeriod.Size = New System.Drawing.Size(150, 20)
-        Me.SLUEPayrollPeriod.TabIndex = 18
-        '
-        'SLUEPayrollPeriodView
-        '
-        Me.SLUEPayrollPeriodView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45})
-        Me.SLUEPayrollPeriodView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SLUEPayrollPeriodView.Name = "SLUEPayrollPeriodView"
-        Me.SLUEPayrollPeriodView.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SLUEPayrollPeriodView.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn42
-        '
-        Me.GridColumn42.FieldName = "id_payroll"
-        Me.GridColumn42.Name = "GridColumn42"
-        '
-        'GridColumn43
-        '
-        Me.GridColumn43.Caption = "Periode Start"
-        Me.GridColumn43.FieldName = "periode_start"
-        Me.GridColumn43.Name = "GridColumn43"
-        '
-        'GridColumn44
-        '
-        Me.GridColumn44.Caption = "Periode End"
-        Me.GridColumn44.FieldName = "periode_end"
-        Me.GridColumn44.Name = "GridColumn44"
-        '
-        'GridColumn45
-        '
-        Me.GridColumn45.Caption = "Periode"
-        Me.GridColumn45.FieldName = "periode"
-        Me.GridColumn45.Name = "GridColumn45"
-        Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 0
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(8, 14)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(79, 13)
-        Me.Label5.TabIndex = 12
-        Me.Label5.Text = "Payroll Period :"
-        '
-        'SBVerification
-        '
-        Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
-        Me.SBVerification.Location = New System.Drawing.Point(901, 2)
-        Me.SBVerification.Name = "SBVerification"
-        Me.SBVerification.Size = New System.Drawing.Size(101, 48)
-        Me.SBVerification.TabIndex = 0
-        Me.SBVerification.Text = "Verification"
-        '
         'FormEmpOvertime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -998,11 +921,6 @@ Partial Class FormEmpOvertime
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        CType(Me.SLUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEPayrollPeriodView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1072,14 +990,6 @@ Partial Class FormEmpOvertime
     Friend WithEvents GBEActual As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents Label5 As Label
-    Friend WithEvents SLUEPayrollPeriod As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SLUEPayrollPeriodView As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GVOvertime As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView

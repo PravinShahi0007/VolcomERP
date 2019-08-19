@@ -7,8 +7,6 @@
         If is_hrd = "-1" Then
             Text = "Propose Overtime"
 
-            PanelControlCheck.Visible = False
-
             GCCheckStatus.Visible = False
 
             GCEValid.Visible = False
@@ -22,10 +20,6 @@
     End Sub
 
     Sub form_load()
-        viewSearchLookupQuery(SLUEPayrollPeriod, "SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %b %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %b %Y') AS periode_end, DATE_FORMAT(ot_periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY DATE(periode_end) DESC", "id_payroll", "periode", "id_payroll")
-
-        SLUEPayrollPeriod.EditValue = Nothing
-
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
 
@@ -259,21 +253,12 @@
         Next
     End Sub
 
-    Private Sub SLUEPayrollPeriod_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEPayrollPeriod.EditValueChanged
-        If SLUEPayrollPeriod.EditValue = Nothing Then
-            DEStart.EditValue = Date.Now
-            DEUntil.EditValue = Date.Now
-        Else
-            Dim i As Integer = SLUEPayrollPeriod.Properties.GetIndexByKeyValue(SLUEPayrollPeriod.EditValue)
-
-            DEStart.EditValue = SLUEPayrollPeriodView.GetRowCellValue(i, "periode_start")
-            DEUntil.EditValue = SLUEPayrollPeriodView.GetRowCellValue(i, "periode_end")
-        End If
-    End Sub
-
     Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
-        FormEmpOvertimeVerification.id_ot = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
+        Try
+            FormEmpOvertimeVerification.id_ot = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
 
-        FormEmpOvertimeVerification.ShowDialog()
+            FormEmpOvertimeVerification.ShowDialog()
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

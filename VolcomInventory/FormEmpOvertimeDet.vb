@@ -272,15 +272,15 @@ Public Class FormEmpOvertimeDet
         calculateTotalHours()
     End Sub
 
-    Private Sub RITEAttendanceStart_EditValueChanged(sender As Object, e As EventArgs) Handles RITEAttendanceStart.EditValueChanged
+    Private Sub RITEAttendanceStart_EditValueChanged(sender As Object, e As EventArgs)
         calculateTotalHoursList(GVEmployee.FocusedRowHandle)
     End Sub
 
-    Private Sub RITEAttendanceEnd_EditValueChanged(sender As Object, e As EventArgs) Handles RITEAttendanceEnd.EditValueChanged
+    Private Sub RITEAttendanceEnd_EditValueChanged(sender As Object, e As EventArgs)
         calculateTotalHoursList(GVEmployee.FocusedRowHandle)
     End Sub
 
-    Private Sub RITEBreakHours_EditValueChanged(sender As Object, e As EventArgs) Handles RITEBreakHours.EditValueChanged
+    Private Sub RITEBreakHours_EditValueChanged(sender As Object, e As EventArgs)
         calculateTotalHoursList(GVEmployee.FocusedRowHandle)
     End Sub
 
@@ -619,7 +619,7 @@ Public Class FormEmpOvertimeDet
         Return tot_point
     End Function
 
-    Private Sub RITEOvertimeHours_EditValueChanged(sender As Object, e As EventArgs) Handles RITEOvertimeHours.EditValueChanged
+    Private Sub RITEOvertimeHours_EditValueChanged(sender As Object, e As EventArgs)
         calculatePointList(GVEmployee.FocusedRowHandle)
     End Sub
 
