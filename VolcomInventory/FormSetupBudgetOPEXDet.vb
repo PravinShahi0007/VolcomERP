@@ -207,9 +207,9 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         '
-        ReportSampleBudget.id_report = id_pps
-        ReportSampleBudget.dt = GCAfter.DataSource
-        Dim Report As New ReportSampleBudget()
+        ReportSetupBudgetOPEX.id_report = id_pps
+        ReportSetupBudgetOPEX.dt = GCAfter.DataSource
+        Dim Report As New ReportSetupBudgetOPEX()
         Report.LNumber.Text = TENumber.Text
         Report.LNote.Text = MENote.Text
         Report.LPrroposedBy.Text = TECreatedBy.Text
@@ -217,18 +217,20 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
 
         If is_rev = "1" Then
             Report.GBBefore.Visible = True
-            Report.LTypePropose.Text = "Revision"
+            Report.LType.Text = "Revision"
+            Report.report_mark_type = "204"
         Else
             Report.GBBefore.Visible = False
-            Report.LTypePropose.Text = "Propose new budget"
+            Report.LType.Text = "Propose new budget"
+            Report.report_mark_type = "203"
         End If
 
-        ReportStyleGridview(Report.GVReportBudgetSample)
-        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        ReportStyleGridview(Report.GVBudgetPropose)
+        Report.GVBudgetPropose.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
