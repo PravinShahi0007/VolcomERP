@@ -7017,6 +7017,12 @@
     <Compile Include="ReportSampleStockOpname.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSetupBudgetOPEX.Designer.vb">
+      <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSetupBudgetOPEX.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportWHDelEmpty.Designer.vb">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
     </Compile>
@@ -11005,6 +11011,9 @@
     <EmbeddedResource Include="ReportSampleStockOpname.resx">
       <DependentUpon>ReportSampleStockOpname.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSetupBudgetOPEX.resx">
+      <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHDelEmpty.resx">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>

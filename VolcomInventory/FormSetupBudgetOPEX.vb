@@ -47,11 +47,11 @@
     End Sub
 
     Sub load_budget()
-        Dim query As String = "SELECT ic.id_item_cat,ic.item_cat,'" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense_opex,'') AS id_b_expense_opex,IFNULL(bo.value_expense,0) AS value_expense
-FROM tb_item_cat ic
-LEFT JOIN `tb_b_expense_opex` bo ON bo.id_item_cat=ic.id_item_cat AND bo.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND bo.is_active='1'
+        Dim query As String = "SELECT ic.id_item_cat_main,ic.item_cat_main,'" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense_opex,'') AS id_b_expense_opex,IFNULL(bo.value_expense,0) AS value_expense
+FROM tb_item_cat_main ic
+LEFT JOIN `tb_b_expense_opex` bo ON bo.id_item_cat_main=ic.id_item_cat_main AND bo.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND bo.is_active='1'
 WHERE ic.id_expense_type='1'
-ORDER BY ic.item_cat"
+ORDER BY ic.id_item_cat_main"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBudgetList.DataSource = data
         GVBudgetList.BestFitColumns()
