@@ -172,7 +172,7 @@ Partial Class FormSetupBudgetOPEX
         'GridColumnDivision
         '
         Me.GridColumnDivision.Caption = "Category"
-        Me.GridColumnDivision.FieldName = "item_cat"
+        Me.GridColumnDivision.FieldName = "item_cat_main"
         Me.GridColumnDivision.Name = "GridColumnDivision"
         Me.GridColumnDivision.OptionsColumn.AllowEdit = False
         Me.GridColumnDivision.OptionsColumn.ReadOnly = True
