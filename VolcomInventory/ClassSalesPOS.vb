@@ -37,16 +37,71 @@ Public Class ClassSalesPOS
         Dim file As String = IO.Path.Combine(path_root, fileName)
         Dim dic As New Dictionary(Of String, String)()
 
-        Dim ql As String = "SELECT a.sync_time FROM tb_sync_log a WHERE a.id_sync_data=1 AND a.is_success=1 ORDER BY a.sync_time DESC LIMIT 1"
+        Dim ql As String = "SELECT a.sync_time FROM tb_pos_sync_log a WHERE a.is_success=1 ORDER BY a.sync_time DESC LIMIT 1"
         Dim dql As DataTable = execute_query(ql, -1, True, "", "", "", "")
         If dql.Rows.Count > 0 Then
             last_upd = DateTime.Parse(dql.Rows(0)("sync_time").ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Else
             last_upd = "1945-08-17 00:00:10"
         End If
-        dic.Add("tb_m_code_detail", "SELECT cd.* FROM tb_m_code_detail cd JOIN tb_opt o WHERE (cd.id_code= 14 OR cd.id_code=30 OR id_code=33) AND cd.last_updated>'" + last_upd + "';")
+        dic.Add("tb_pos", "SELECT * FROM tb_pos p WHERE p.is_closed=1 AND p.pos_closed_date>'" + last_upd + "';")
 
+        'backup
+        Using conn As New MySqlConnection(constring)
+            Using cmd As New MySqlCommand()
+                Using mb As New MySqlBackup(cmd)
+                    cmd.Connection = conn
+                    conn.Open()
+                    mb.ExportInfo.AddCreateDatabase = False
+                    mb.ExportInfo.ExportTableStructure = True
+                    mb.ExportInfo.ExportRows = True
+                    mb.ExportInfo.TablesToBeExportedDic = dic
+                    mb.ExportInfo.ExportProcedures = False
+                    mb.ExportInfo.ExportFunctions = False
+                    mb.ExportInfo.ExportTriggers = False
+                    mb.ExportInfo.ExportEvents = False
+                    mb.ExportInfo.ExportViews = False
+                    mb.ExportInfo.EnableEncryption = True
+                    mb.ExportInfo.EncryptionPassword = "csmtafc"
+                    mb.ExportToFile(file)
+                End Using
+            End Using
+        End Using
 
+        'restore
+        Dim constring_erp As String = "server=" + app_host + ";user=" + app_username + ";pwd=" + app_password + ";database=db_sync;"
+        Dim path_root_erp As String = Application.StartupPath
+        Dim fileName_erp As String = "bup" + ".sql"
+        Dim file_erp As String = IO.Path.Combine(path_root_erp, fileName_erp)
+        Using conn As New MySqlConnection(constring_erp)
+            Using cmd As New MySqlCommand()
+                Using mb As New MySqlBackup(cmd)
+                    cmd.Connection = conn
+                    conn.Open()
+                    mb.ImportInfo.TargetDatabase = "db_sync"
+                    mb.ImportInfo.EnableEncryption = True
+                    mb.ImportInfo.EncryptionPassword = "csmtafc"
+                    mb.ImportFromFile(file)
+                    conn.Close()
+                End Using
+            End Using
+        End Using
+
+        'sync
+        Dim err As String = ""
+        Try
+
+        Catch ex As Exception
+            err += ex.ToString + "; "
+        End Try
+        Dim is_success = ""
+        If err = "" Then
+            is_success = "1"
+        Else
+            is_success = "2"
+        End If
+        Dim qlast As String = "INSERT INTO tb_sync_log(sync_time, id_sync_data, is_success, remark) VALUES('" + curr_time + "', '3', '" + is_success + "','" + addSlashes(err) + "') "
+        execute_non_query(qlast, True, "", "", "", "")
     End Sub
 
     Public Sub syncAllOutlet()
