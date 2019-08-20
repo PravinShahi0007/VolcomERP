@@ -33,7 +33,14 @@
     Private Sub BtnGetData_Click(sender As Object, e As EventArgs) Handles BtnGetData.Click
         SplashScreenManager1.ShowWaitForm()
         Dim sal As New ClassSalesPOS
-        'sal.syncOutlet()
+        sal.splash = SplashScreenManager1
+        Dim query As String = "SELECT sc.id_store_conn, sc.id_outlet, d.departement AS `outlet`, sc.host, sc.username, sc.pass, sc.db 
+        FROM tb_store_conn sc 
+        INNER JOIN tb_m_departement d ON d.id_departement = sc.id_outlet "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To data.Rows.Count - 1
+            sal.syncOutlet(data.Rows(i)("id_outlet").ToString, data.Rows(i)("outlet").ToString, data.Rows(i)("host").ToString, data.Rows(i)("username").ToString, data.Rows(i)("pass").ToString, data.Rows(i)("db").ToString)
+        Next
         SplashScreenManager1.CloseWaitForm()
     End Sub
 End Class
