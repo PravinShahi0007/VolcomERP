@@ -6,7 +6,7 @@
         Dispose()
     End Sub
 
-    Private Sub FormMasterDesignCOPPropose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub load_head()
         viewReportStatus()
         viewCOPType()
 
@@ -17,11 +17,6 @@
             DEDateCreated.EditValue = Now()
             'load det
             load_det()
-            BtnPrint.Visible = False
-            BAttach.Visible = False
-            BMark.Visible = False
-            BtnSave.Visible = True
-            PCAddDel.Visible = True
         Else
             'edit
             LECOPType.Enabled = False
@@ -44,25 +39,20 @@
                 Else
                     CENeedMarketing.Checked = False
                 End If
+
+                If data.Rows(0)("is_additional").ToString = "1" Then
+                    CEAdditionalCost.Checked = True
+                Else
+                    CEAdditionalCost.Checked = False
+                End If
                 '
                 load_det()
             End If
-
-            CENeedMarketing.Enabled = False
-            MENote.Enabled = False
-
-            If is_view = "1" Then
-                BtnPrint.Visible = False
-                BAttach.Visible = True
-            Else
-                BtnPrint.Visible = True
-                BAttach.Visible = True
-            End If
-
-            BMark.Visible = True
-            BtnSave.Visible = False
-            PCAddDel.Visible = False
         End If
+    End Sub
+
+    Private Sub FormMasterDesignCOPPropose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
     End Sub
 
     Sub viewCOPType()
@@ -90,16 +80,48 @@ WHERE pd.id_design_cop_propose='" & id_propose & "'"
     End Sub
 
     Sub check_but()
-        If id_propose = "-1" Then
-            PCAddDel.Visible = True
+        If Not id_propose = "-1" Then
+            '
             BtnAdd.Visible = True
             If BGVItemList.RowCount > 0 Then
                 BtnDel.Visible = True
             Else
                 BtnDel.Visible = False
             End If
+            '
+            If is_view = "1" Then
+                BtnPrint.Visible = False
+                BAttach.Visible = True
+            Else
+                BtnPrint.Visible = True
+                BAttach.Visible = True
+            End If
+            '
+            CEAdditionalCost.Enabled = False
+            CENeedMarketing.Enabled = False
+            '
+            BMark.Visible = True
         Else
+            BtnPrint.Visible = False
+            BAttach.Visible = False
+            BMark.Visible = False
+            BtnSave.Visible = True
             PCAddDel.Visible = False
+            '
+            CEAdditionalCost.Enabled = True
+            CENeedMarketing.Enabled = True
+        End If
+        '
+        Dim query As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_propose & "' AND report_mark_type='" & get_report_mark_type() & "'"
+        Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            'submitted
+            PCAddDel.Visible = False
+            BtnSave.Visible = False
+        Else
+            'not yet submitted
+            PCAddDel.Visible = True
+            BtnSave.Visible = True
         End If
     End Sub
 
@@ -110,53 +132,78 @@ WHERE pd.id_design_cop_propose='" & id_propose & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If id_propose = "-1" Then
+        Dim is_additional As String = "-1"
+        Dim is_promo As String = "-1"
+        '
+        If id_propose = "-1" Then 'new
+            If CEAdditionalCost.Checked = True Then
+                is_additional = "1"
+            Else
+                is_additional = "2"
+            End If
+            '
+            If CENeedMarketing.Checked = True Then
+                is_promo = "1"
+            Else
+                is_promo = "2"
+            End If
+
+            Dim query As String = "INSERT INTO `tb_design_cop_propose`(id_cop_propose_type,created_by,created_date,note,id_report_status,is_promo,is_additional)
+VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & is_promo & "','" & is_additional & "'); SELECT LAST_INSERT_ID(); "
+            id_propose = execute_query(query, 0, True, "", "", "", "")
+
+            'query = ""
+            'For i As Integer = 0 To BGVItemList.RowCount - 1
+            '    Dim id_design As String = BGVItemList.GetRowCellValue(i, "id_design").ToString
+            '    Dim target_cost As String = decimalSQL(BGVItemList.GetRowCellValue(i, "target_cost").ToString)
+
+            '    Dim id_currency_before As String = "NULL"
+            '    Dim kurs_before As String = "NULL"
+            '    Dim design_cop_before As String = "NULL"
+            '    Dim id_comp_contact_before As String = "NULL"
+            '    Dim add_cost_before As String = "NULL"
+
+            '    If LECOPType.EditValue.ToString = "1" Then
+            '        id_currency_before = "'" & BGVItemList.GetRowCellValue(i, "id_currency_before").ToString & "'"
+            '        kurs_before = "'" & decimalSQL(BGVItemList.GetRowCellValue(i, "kurs_before").ToString) & "'"
+            '        design_cop_before = "'" & decimalSQL(BGVItemList.GetRowCellValue(i, "design_cop_before").ToString) & "'"
+            '        id_comp_contact_before = "'" & BGVItemList.GetRowCellValue(i, "id_comp_contact_before").ToString & "'"
+            '        add_cost_before = "'" & decimalSQL(BGVItemList.GetRowCellValue(i, "add_cost_before").ToString) & "'"
+            '    End If
+
+            '    '
+            '    Dim id_currency As String = BGVItemList.GetRowCellValue(i, "id_currency").ToString
+            '    Dim kurs As String = decimalSQL(BGVItemList.GetRowCellValue(i, "kurs").ToString)
+            '    Dim design_cop As String = decimalSQL(BGVItemList.GetRowCellValue(i, "design_cop").ToString)
+            '    Dim id_comp_contact As String = BGVItemList.GetRowCellValue(i, "id_comp_contact").ToString
+            '    Dim add_cost As String = decimalSQL(BGVItemList.GetRowCellValue(i, "add_cost").ToString)
+            '    '
+            '    If Not i = 0 Then
+            '        query += ","
+            '    End If
+            '    query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_currency_before & "," & kurs_before & "," & design_cop_before & "," & id_comp_contact_before & "," & add_cost_before & ",'" & id_currency & "','" & kurs & "','" & design_cop & "','" & id_comp_contact & "','" & add_cost & "')"
+            'Next
+            ''
+            'query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES" & query
+            'execute_non_query(query, True, "", "", "", "")
+
+            query = "CALL gen_number('" & id_propose & "','150')"
+            execute_non_query(query, True, "", "", "", "")
+
+            infoCustom("Proposal created")
+            FormMasterDesignCOP.load_propose()
+            load_head()
+            'Close()
+        Else 'edit
             If BGVItemList.RowCount <= 0 Then
                 warningCustom("Please select design to revise first")
             Else
-                Dim query As String = "INSERT INTO `tb_design_cop_propose`(id_cop_propose_type,created_by,created_date,note,id_report_status)
-VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENote.Text & "','1'); SELECT LAST_INSERT_ID(); "
-                id_propose = execute_query(query, 0, True, "", "", "", "")
-                'detail
-                query = ""
-                For i As Integer = 0 To BGVItemList.RowCount - 1
-                    Dim id_design As String = BGVItemList.GetRowCellValue(i, "id_design").ToString
-                    Dim target_cost As String = decimalSQL(BGVItemList.GetRowCellValue(i, "target_cost").ToString)
-
-                    Dim id_currency_before As String = "NULL"
-                    Dim kurs_before As String = "NULL"
-                    Dim design_cop_before As String = "NULL"
-                    Dim id_comp_contact_before As String = "NULL"
-                    Dim add_cost_before As String = "NULL"
-
-                    If LECOPType.EditValue.ToString = "1" Then
-                        id_currency_before = "'" & BGVItemList.GetRowCellValue(i, "id_currency_before").ToString & "'"
-                        kurs_before = "'" & decimalSQL(BGVItemList.GetRowCellValue(i, "kurs_before").ToString) & "'"
-                        design_cop_before = "'" & decimalSQL(BGVItemList.GetRowCellValue(i, "design_cop_before").ToString) & "'"
-                        id_comp_contact_before = "'" & BGVItemList.GetRowCellValue(i, "id_comp_contact_before").ToString & "'"
-                        add_cost_before = "'" & decimalSQL(BGVItemList.GetRowCellValue(i, "add_cost_before").ToString) & "'"
-                    End If
-
-                    '
-                    Dim id_currency As String = BGVItemList.GetRowCellValue(i, "id_currency").ToString
-                    Dim kurs As String = decimalSQL(BGVItemList.GetRowCellValue(i, "kurs").ToString)
-                    Dim design_cop As String = decimalSQL(BGVItemList.GetRowCellValue(i, "design_cop").ToString)
-                    Dim id_comp_contact As String = BGVItemList.GetRowCellValue(i, "id_comp_contact").ToString
-                    Dim add_cost As String = decimalSQL(BGVItemList.GetRowCellValue(i, "add_cost").ToString)
-                    '
-                    If Not i = 0 Then
-                        query += ","
-                    End If
-                    query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_currency_before & "," & kurs_before & "," & design_cop_before & "," & id_comp_contact_before & "," & add_cost_before & ",'" & id_currency & "','" & kurs & "','" & design_cop & "','" & id_comp_contact & "','" & add_cost & "')"
-                Next
-                query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES" & query
-                execute_non_query(query, True, "", "", "", "")
-                query = "CALL gen_number('" & id_propose & "','150')"
+                Dim query As String = "UPDATE `tb_design_cop_propose` SET note='" & addSlashes(MENote.Text) & "' WHERE id_design_cop_propose='" & id_propose & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
-                infoCustom("Proposal created")
+                infoCustom("Proposal updated")
                 FormMasterDesignCOP.load_propose()
-                Close()
+                'Close()
             End If
         End If
     End Sub
@@ -169,40 +216,29 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         Close()
     End Sub
 
-    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        Dim is_addcost As Boolean = False
-        '
-        For i As Integer = 0 To BGVItemList.RowCount - 1
-            If LECOPType.EditValue.ToString = "1" Then
-                If Not BGVItemList.GetRowCellValue(i, "add_cost_before") = 0 Or Not BGVItemList.GetRowCellValue(i, "add_cost") = 0 Then
-                    is_addcost = True
-                End If
-            Else
-                If Not BGVItemList.GetRowCellValue(i, "add_cost") = 0 Then
-                    is_addcost = True
-                End If
-            End If
-        Next
-        '
-        If is_addcost = True Then
+    Function get_report_mark_type()
+        Dim rmt As String = ""
+        If CEAdditionalCost.Checked = True Then
             If CENeedMarketing.Checked = True Then
-                FormReportMark.report_mark_type = "173"
+                rmt = "173"
             Else
-                FormReportMark.report_mark_type = "150"
+                rmt = "150"
             End If
-            FormReportMark.is_view = is_view
-            FormReportMark.id_report = id_propose
-            FormReportMark.ShowDialog()
         Else
             If CENeedMarketing.Checked = True Then
-                FormReportMark.report_mark_type = "172"
+                rmt = "172"
             Else
-                FormReportMark.report_mark_type = "155"
+                rmt = "155"
             End If
-            FormReportMark.is_view = is_view
-            FormReportMark.id_report = id_propose
-            FormReportMark.ShowDialog()
         End If
+        Return rmt
+    End Function
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = get_report_mark_type()
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_propose
+        FormReportMark.ShowDialog()
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
@@ -215,35 +251,9 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         ReportDesignCOPPropose.id_propose = id_propose
-        Dim is_addcost As Boolean = False
-        For i As Integer = 0 To BGVItemList.RowCount - 1
-            If LECOPType.EditValue.ToString = "1" Then
-                If Not BGVItemList.GetRowCellValue(i, "add_cost_before") = 0 Or Not BGVItemList.GetRowCellValue(i, "add_cost") = 0 Then
-                    is_addcost = True
-                End If
-            Else
-                If Not BGVItemList.GetRowCellValue(i, "add_cost") = 0 Then
-                    is_addcost = True
-                End If
-            End If
-        Next
-        If is_addcost = True Then
-            If CENeedMarketing.Checked = True Then
-                ReportDesignCOPPropose.rmt = "173"
-                FormProdDemandPrintOpt.rmt = "173"
-            Else
-                ReportDesignCOPPropose.rmt = "150"
-                FormProdDemandPrintOpt.rmt = "150"
-            End If
-        Else
-            If CENeedMarketing.Checked = True Then
-                ReportDesignCOPPropose.rmt = "172"
-                FormProdDemandPrintOpt.rmt = "172"
-            Else
-                ReportDesignCOPPropose.rmt = "155"
-                FormProdDemandPrintOpt.rmt = "155"
-            End If
-        End If
+
+        ReportDesignCOPPropose.rmt = get_report_mark_type()
+        FormProdDemandPrintOpt.rmt = get_report_mark_type()
         '
         If LEReportStatus.EditValue.ToString = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
             FormProdDemandPrintOpt.id = id_propose

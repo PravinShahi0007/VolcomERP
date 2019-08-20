@@ -1,16 +1,70 @@
 ﻿Public Class FormMasterDesignCOPProposeDet
     Public id_comp As String = "-1"
     Public id_comp_contact As String = "-1"
+    Public id_det As String = "-1"
 
     Private Sub FormMasterDesignCOPProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'check kurs first
+        Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(created_date) = DATE(NOW()) ORDER BY id_kurs_trans DESC"
+        Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+        If Not data_kurs.Rows.Count > 0 Then
+            warningCustom("Today transaction kurs still not submitted, please contact accounting.")
+            TETodayKurs.EditValue = 0.00
+        Else
+            TETodayKurs.EditValue = data_kurs.Rows(0)("kurs_trans") + data_kurs.Rows(0)("fixed_floating")
+        End If
+        '
         viewSeason()
-        view_currency(LECurrency)
+        view_currency_grid()
+        '
+        load_det_input()
     End Sub
 
+    Sub add_row()
+        Dim newRow As DataRow = (TryCast(GCCOPComponent.DataSource, DataTable)).NewRow()
+        newRow("description") = ""
+        newRow("id_currency") = 1
+        newRow("kurs") = TETodayKurs.EditValue
+        newRow("before_kurs") = 0.00
+        newRow("additional") = 0.00
+
+        TryCast(GCCOPComponent.DataSource, DataTable).Rows.Add(newRow)
+        GCCOPComponent.RefreshDataSource()
+        show_but()
+    End Sub
+
+    Sub show_but()
+        If GVCOPComponent.RowCount > 0 Then
+            BDelete.Visible = True
+        Else
+            BDelete.Visible = False
+        End If
+    End Sub
+
+    Sub load_det_input()
+        Try
+            Dim query As String = "SELECT description,id_currency," & decimalSQL(TETodayKurs.EditValue.ToString) & " AS kurs,before_kurs,additional FROM tb_design_cop_propose_comp WHERE id_design_cop_propose_det='" & id_det & "'"
+            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCCOPComponent.DataSource = dt
+            GVCOPComponent.BestFitColumns()
+            show_but()
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
+
+    End Sub
+
+    Private Sub view_currency_grid()
+        Try
+            Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency WHERE is_active_cop='1'"
+            viewSearchLookupRepositoryQuery(RISLEComp, query, 0, "currency", "id_currency")
+        Catch ex As Exception
+        End Try
+    End Sub
     Sub load_det(ByVal opt As String)
         Dim query_where As String = ""
         '
-        TEKurs.EditValue = 0.00
         TEEcop.EditValue = 0.00
         TEAdditionalCost.EditValue = 0.00
         '
@@ -112,18 +166,12 @@
                 TEVendorName.Text = data.Rows(0)("comp_name").ToString
                 TEVendor.Text = data.Rows(0)("comp_number").ToString
                 '
-                LECurrency.Focus()
+                'LECurrency.Focus()
             End If
         End If
     End Sub
 
-    Private Sub LECurrency_KeyDown(sender As Object, e As KeyEventArgs) Handles LECurrency.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            TEKurs.Focus()
-        End If
-    End Sub
-
-    Private Sub TEKurs_KeyDown(sender As Object, e As KeyEventArgs) Handles TEKurs.KeyDown
+    Private Sub TEKurs_KeyDown(sender As Object, e As KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             TEEcop.Focus()
         End If
@@ -168,9 +216,11 @@ WHERE pd_desg.id_design='" & BGVItemList.GetFocusedRowCellValue("id_design").ToS
                         newRow("id_comp_contact") = id_comp_contact
                         newRow("comp_number") = TEVendor.Text
                         newRow("comp_name") = TEVendorName.Text
-                        newRow("id_currency") = LECurrency.EditValue.ToString
-                        newRow("currency") = LECurrency.Text
-                        newRow("kurs") = TEKurs.EditValue
+                        ''search currency
+                        'newRow("id_currency") = LECurrency.EditValue.ToString
+                        'perbaiki here
+                        'newRow("currency") = LECurrency.Text
+                        newRow("kurs") = TETodayKurs.EditValue
                         newRow("design_cop") = TEEcop.EditValue
                         newRow("add_cost") = TEAdditionalCost.EditValue
                         newRow("design_cop_ex") = TEEcop.EditValue - TEAdditionalCost.EditValue
@@ -203,5 +253,15 @@ WHERE pd_desg.id_design='" & BGVItemList.GetFocusedRowCellValue("id_design").ToS
         FormPopUpContact.id_pop_up = "88"
         FormPopUpContact.id_cat = 1
         FormPopUpContact.ShowDialog()
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        GVCOPComponent.DeleteSelectedRows()
+        show_but()
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        add_row()
+        show_but()
     End Sub
 End Class
