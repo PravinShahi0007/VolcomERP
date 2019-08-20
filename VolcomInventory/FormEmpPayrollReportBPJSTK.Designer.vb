@@ -430,6 +430,7 @@ Partial Class FormEmpPayrollReportBPJSTK
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl1)
+        Me.MinimizeBox = False
         Me.Name = "FormEmpPayrollReportBPJSTK"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Report BPJS TK"
