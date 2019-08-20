@@ -6124,22 +6124,22 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
                 If data_pps.Rows.Count > 0 Then
                     If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
-                        Dim query_det As String = "SELECT ppsd.`id_item_cat`,ppsd.`year`,ppsd.`value_after`
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,ppsd.`year`,ppsd.`value_after`
 FROM `tb_b_opex_pps` pps
 INNER JOIN tb_b_opex_pps_det ppsd ON ppsd.id_b_opex_pps=pps.id_b_opex_pps
 WHERE pps.id_b_opex_pps='" & id_report & "' AND value_after!=0"
                         Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                         For i As Integer = 0 To data_det.Rows.Count - 1
                             'insert budget
-                            Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat,`year`,value_expense)
-VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                            Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat_main,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
                             execute_non_query(ins_det, True, "", "", "", "")
                         Next
                     Else 'revision
-                        Dim query_det As String = "SELECT ppsd.`id_item_cat`,ppsd.`year`,ppsd.`value_before`,ppsd.`value_after`,IFNULL(bo.`id_b_expense_opex`,'') AS id_b_expense_opex
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,ppsd.`year`,ppsd.`value_before`,ppsd.`value_after`,IFNULL(bo.`id_b_expense_opex`,'') AS id_b_expense_opex
 FROM `tb_b_opex_pps` pps
 INNER JOIN tb_b_opex_pps_det ppsd ON ppsd.id_b_opex_pps=pps.id_b_opex_pps
-LEFT JOIN tb_b_expense_opex bo ON bo.`id_item_cat`=ppsd.id_item_cat AND ppsd.year=bo.`year` AND bo.`is_active`='1'
+LEFT JOIN tb_b_expense_opex bo ON bo.`id_item_cat_main`=ppsd.id_item_cat_main AND ppsd.year=bo.`year` AND bo.`is_active`='1'
 WHERE pps.id_b_opex_pps='" & id_report & "' AND (value_after!=0 OR value_before!=0)"
                         Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                         For i As Integer = 0 To data_det.Rows.Count - 1
@@ -6150,8 +6150,8 @@ WHERE pps.id_b_opex_pps='" & id_report & "' AND (value_after!=0 OR value_before!
                                 execute_non_query(upd_det, True, "", "", "", "")
                             Else
                                 'insert budget
-                                Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat,`year`,value_expense)
-VALUES('" & data_det.Rows(i)("id_item_cat").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                                Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat_main,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
                                 execute_non_query(ins_det, True, "", "", "", "")
                             End If
                         Next
