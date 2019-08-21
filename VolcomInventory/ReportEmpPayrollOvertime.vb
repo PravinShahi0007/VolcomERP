@@ -221,23 +221,26 @@
         If item.FieldName.ToString = "Employee" Then
             Select Case e.SummaryProcess
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
-                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVOverTime.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
-                    Dim alphabet As String = GVOverTime.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
+                    Try
+                        Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVOverTime.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
+                        Dim alphabet As String = GVOverTime.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
 
-                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
-                    Dim alphabet_sub As String = GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
+                        Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                        Dim alphabet_sub As String = GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
 
-                    If GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
-                        If e.GroupLevel = 1 Then
-                            e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
+                        If GVOverTime.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                            If e.GroupLevel = 1 Then
+                                e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
+                            Else
+                                e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                            End If
                         Else
-                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                            If e.GroupLevel = 0 Then
+                                e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                            End If
                         End If
-                    Else
-                        If e.GroupLevel = 0 Then
-                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
-                        End If
-                    End If
+                    Catch ex As Exception
+                    End Try
             End Select
         End If
     End Sub
