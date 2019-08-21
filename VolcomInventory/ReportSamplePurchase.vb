@@ -50,6 +50,7 @@ WHERE sp.id_sample_purc ='{0}'", id_sample_purc)
             LPOReffbits.Visible = False
             LPOReffTitle.Visible = False
             LPONumber.Text = data.Rows(0)("sample_purc_number").ToString
+            LPayment.Text = data.Rows(0)("payment").ToString
         End If
         '
         Dim id_comp_to As String = data.Rows(0)("id_comp_contact_to").ToString
