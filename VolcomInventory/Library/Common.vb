@@ -3242,7 +3242,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         'XrTableCell1.Visible = False
 
-        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note
+,d.employee_position AS role "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
@@ -3436,7 +3437,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         'XrTableCell1.Visible = False
 
-        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,d.employee_position AS role "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
@@ -3649,7 +3650,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         'XrTableCell1.Visible = False
 
-        Dim query As String = "SELECT b.report_status_display_id,b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        Dim query As String = "SELECT b.report_status_display_id,b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,d.employee_position AS role "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
@@ -3843,7 +3844,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         'XrTableCell1.Visible = False
 
-        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,d.employee_position AS role "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
@@ -4036,14 +4037,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         'XrTableCell1.Visible = False
 
-        Dim query As String = "SELECT b.report_status_display,b.id_report_status,b.report_status,'" & id_user & "',d.employee_name,role.role
+        Dim query As String = "SELECT b.report_status_display,b.id_report_status,b.report_status,'" & id_user & "',d.employee_name,d.employee_position AS role
                                 FROM tb_m_user c
                                 LEFT JOIN  tb_lookup_report_status b ON b.id_report_status=1
                                 LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee 
                                 INNER JOIN tb_m_role role ON role.id_role=c.id_role 
                                 WHERE c.id_user='" & id_user & "'        
                                 UNION
-                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,d.employee_name,role.role
+                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,d.employee_name,d.employee_position AS role
                                 FROM tb_print_list_emp a 
                                 INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
                                 LEFT JOIN tb_m_user c ON a.id_user=c.id_user 
@@ -4152,7 +4153,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         'XrTableCell1.Visible = False
 
-        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,d.employee_position AS role "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
@@ -4335,7 +4336,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         'XrTableCell1.Visible = False
 
-        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,d.employee_position AS role "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
