@@ -61,8 +61,11 @@ Partial Class FormSalesPOSDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -132,15 +135,14 @@ Partial Class FormSalesPOSDet
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnid_pos_combine_summary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnLoadPOS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToReport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStoreNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNoStock = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnListProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.XTCInvoice = New DevExpress.XtraTab.XtraTabControl()
@@ -158,8 +160,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnLoadPOS = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnid_pos_combine_summary = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -724,18 +724,18 @@ Partial Class FormSalesPOSDet
         Me.PanelControl3.Size = New System.Drawing.Size(1069, 38)
         Me.PanelControl3.TabIndex = 185
         '
-        'BtnXlsBOF
+        'BtnDel
         '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(514, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
-        Me.BtnXlsBOF.TabIndex = 24
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
+        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDel.ImageIndex = 1
+        Me.BtnDel.ImageList = Me.LargeImageCollection
+        Me.BtnDel.Location = New System.Drawing.Point(224, 2)
+        Me.BtnDel.Name = "BtnDel"
+        Me.BtnDel.Size = New System.Drawing.Size(35, 34)
+        Me.BtnDel.TabIndex = 5
+        Me.BtnDel.TabStop = False
+        Me.BtnDel.Text = "Delete"
+        Me.BtnDel.Visible = False
         '
         'LargeImageCollection
         '
@@ -757,6 +757,45 @@ Partial Class FormSalesPOSDet
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnEdit.ImageIndex = 2
+        Me.BtnEdit.ImageList = Me.LargeImageCollection
+        Me.BtnEdit.Location = New System.Drawing.Point(187, 2)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(37, 34)
+        Me.BtnEdit.TabIndex = 4
+        Me.BtnEdit.TabStop = False
+        Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Visible = False
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAdd.ImageIndex = 0
+        Me.BtnAdd.ImageList = Me.LargeImageCollection
+        Me.BtnAdd.Location = New System.Drawing.Point(152, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(35, 34)
+        Me.BtnAdd.TabIndex = 3
+        Me.BtnAdd.TabStop = False
+        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Visible = False
+        '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(514, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
+        Me.BtnXlsBOF.TabIndex = 24
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
         '
         'BtnDraftJournal
         '
@@ -1498,6 +1537,12 @@ Partial Class FormSalesPOSDet
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
+        'GridColumnid_pos_combine_summary
+        '
+        Me.GridColumnid_pos_combine_summary.Caption = "id_pos_combine_summary"
+        Me.GridColumnid_pos_combine_summary.FieldName = "id_pos_combine_summary"
+        Me.GridColumnid_pos_combine_summary.Name = "GridColumnid_pos_combine_summary"
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1513,6 +1558,18 @@ Partial Class FormSalesPOSDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(1041, 36)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnLoadPOS
+        '
+        Me.BtnLoadPOS.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLoadPOS.Image = CType(resources.GetObject("BtnLoadPOS.Image"), System.Drawing.Image)
+        Me.BtnLoadPOS.ImageIndex = 3
+        Me.BtnLoadPOS.ImageList = Me.LargeImageCollection
+        Me.BtnLoadPOS.Location = New System.Drawing.Point(425, 0)
+        Me.BtnLoadPOS.Name = "BtnLoadPOS"
+        Me.BtnLoadPOS.Size = New System.Drawing.Size(120, 36)
+        Me.BtnLoadPOS.TabIndex = 28
+        Me.BtnLoadPOS.Text = "Load from POS"
         '
         'BtnExportToReport
         '
@@ -1568,45 +1625,6 @@ Partial Class FormSalesPOSDet
         Me.BtnImport.Size = New System.Drawing.Size(116, 36)
         Me.BtnImport.TabIndex = 22
         Me.BtnImport.Text = "Load from Excel"
-        '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnDel.ImageIndex = 1
-        Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(224, 2)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(35, 34)
-        Me.BtnDel.TabIndex = 5
-        Me.BtnDel.TabStop = False
-        Me.BtnDel.Text = "Delete"
-        Me.BtnDel.Visible = False
-        '
-        'BtnEdit
-        '
-        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnEdit.ImageIndex = 2
-        Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(187, 2)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(37, 34)
-        Me.BtnEdit.TabIndex = 4
-        Me.BtnEdit.TabStop = False
-        Me.BtnEdit.Text = "Edit"
-        Me.BtnEdit.Visible = False
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnAdd.ImageIndex = 0
-        Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(152, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(35, 34)
-        Me.BtnAdd.TabIndex = 3
-        Me.BtnAdd.TabStop = False
-        Me.BtnAdd.Text = "Add"
-        Me.BtnAdd.Visible = False
         '
         'BtnListProduct
         '
@@ -1753,24 +1771,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.FieldName = "design_price"
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
-        '
-        'BtnLoadPOS
-        '
-        Me.BtnLoadPOS.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnLoadPOS.Image = CType(resources.GetObject("BtnLoadPOS.Image"), System.Drawing.Image)
-        Me.BtnLoadPOS.ImageIndex = 3
-        Me.BtnLoadPOS.ImageList = Me.LargeImageCollection
-        Me.BtnLoadPOS.Location = New System.Drawing.Point(425, 0)
-        Me.BtnLoadPOS.Name = "BtnLoadPOS"
-        Me.BtnLoadPOS.Size = New System.Drawing.Size(120, 36)
-        Me.BtnLoadPOS.TabIndex = 28
-        Me.BtnLoadPOS.Text = "Load from POS"
-        '
-        'GridColumnid_pos_combine_summary
-        '
-        Me.GridColumnid_pos_combine_summary.Caption = "id_pos_combine_summary"
-        Me.GridColumnid_pos_combine_summary.FieldName = "id_pos_combine_summary"
-        Me.GridColumnid_pos_combine_summary.Name = "GridColumnid_pos_combine_summary"
         '
         'FormSalesPOSDet
         '

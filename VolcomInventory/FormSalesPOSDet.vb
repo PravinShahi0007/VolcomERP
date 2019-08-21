@@ -1097,6 +1097,12 @@ Public Class FormSalesPOSDet
         FormSalesPOSDetCheckCollectionCode.ShowDialog()
     End Sub
 
+    Sub load_data_pos()
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
+
     Public is_continue_load As Boolean = True
     Sub load_excel_ol_store()
         is_continue_load = True
@@ -2037,6 +2043,13 @@ Public Class FormSalesPOSDet
     Private Sub BtnExportToReport_Click(sender As Object, e As EventArgs) Handles BtnExportToReport.Click
         Cursor = Cursors.WaitCursor
         print_raw(GCItemList, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnLoadPOS_Click(sender As Object, e As EventArgs) Handles BtnLoadPOS.Click
+        Cursor = Cursors.WaitCursor
+        load_data_pos()
+        calculate()
         Cursor = Cursors.Default
     End Sub
 End Class
