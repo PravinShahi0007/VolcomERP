@@ -468,7 +468,7 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
@@ -494,11 +494,16 @@ Public Class FormSalesPOSDet
                             End If
                         Catch ex As Exception
                         End Try
+                        Dim id_pos_combine_summary As String = "NULL "
+                        Try
+                            id_pos_combine_summary = GVItemList.GetRowCellValue(i, "id_pos_combine_summary").ToString
+                        Catch ex As Exception
+                        End Try
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ") "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
