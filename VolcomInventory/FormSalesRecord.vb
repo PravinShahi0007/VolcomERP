@@ -43,4 +43,34 @@
         Next
         SplashScreenManager1.CloseWaitForm()
     End Sub
+
+    Private Sub BtnViewData_Click(sender As Object, e As EventArgs) Handles BtnViewData.Click
+        viewSales()
+    End Sub
+
+    Sub viewSales()
+        Cursor = Cursors.WaitCursor
+        Dim date_from As String = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_until As String = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim outlet As String = ""
+        If SLEOutlet.EditValue.ToString <> "0" Then
+            outlet = "AND pc.id_outlet='" + SLEOutlet.EditValue.ToString + "' "
+        End If
+        Dim cond As String = outlet + "AND (DATE(pc.pos_date)>='" + date_from + "' AND DATE(pc.pos_date)<='" + date_until + "') "
+        Dim p As New ClassSalesPOS()
+        Dim query As String = p.querySalesRecord(cond, "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        Cursor = Cursors.WaitCursor
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            FormSalesRecordDet.id = GVData.GetFocusedRowCellValue("id_pos_combine").ToString
+            FormSalesRecordDet.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

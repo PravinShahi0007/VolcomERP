@@ -4274,6 +4274,12 @@
     <Compile Include="FormSalesRecord.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesRecordDet.Designer.vb">
+      <DependentUpon>FormSalesRecordDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesRecordDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReportTracking.Designer.vb">
       <DependentUpon>FormSalesReportTracking.vb</DependentUpon>
     </Compile>
@@ -9374,6 +9380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesRecord.resx">
       <DependentUpon>FormSalesRecord.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesRecordDet.resx">
+      <DependentUpon>FormSalesRecordDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReportTracking.resx">
       <DependentUpon>FormSalesReportTracking.vb</DependentUpon>

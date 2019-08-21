@@ -34,6 +34,27 @@ Partial Class FormSalesRecord
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_pos_combine = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_pos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_outlet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOutletview = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpos_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshift_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnuser_employee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsubtotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvoucher_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvoucher = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncash = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncard = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncard_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncard_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncountry = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_time = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -86,6 +107,7 @@ Partial Class FormSalesRecord
         Me.DEUntil.EditValue = Nothing
         Me.DEUntil.Location = New System.Drawing.Point(460, 14)
         Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -154,6 +176,7 @@ Partial Class FormSalesRecord
         Me.DEFrom.EditValue = Nothing
         Me.DEFrom.Location = New System.Drawing.Point(317, 14)
         Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -174,11 +197,203 @@ Partial Class FormSalesRecord
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pos_combine, Me.GridColumnid_pos, Me.GridColumnid_outlet, Me.GridColumnOutletview, Me.GridColumnpos_number, Me.GridColumn1, Me.GridColumnshift_type, Me.GridColumnuser_employee, Me.GridColumnsubtotal, Me.GridColumndiscount, Me.GridColumntotal, Me.GridColumnvoucher_number, Me.GridColumnvoucher, Me.GridColumncash, Me.GridColumncard, Me.GridColumncard_type, Me.GridColumncard_name, Me.GridColumntotal_qty, Me.GridColumncountry, Me.GridColumnsync_time, Me.GridColumnsales_name})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_pos_combine
+        '
+        Me.GridColumnid_pos_combine.Caption = "id_pos_combine"
+        Me.GridColumnid_pos_combine.FieldName = "id_pos_combine"
+        Me.GridColumnid_pos_combine.Name = "GridColumnid_pos_combine"
+        '
+        'GridColumnid_pos
+        '
+        Me.GridColumnid_pos.Caption = "id_pos"
+        Me.GridColumnid_pos.FieldName = "id_pos"
+        Me.GridColumnid_pos.Name = "GridColumnid_pos"
+        '
+        'GridColumnid_outlet
+        '
+        Me.GridColumnid_outlet.Caption = "id_outlet"
+        Me.GridColumnid_outlet.FieldName = "id_outlet"
+        Me.GridColumnid_outlet.Name = "GridColumnid_outlet"
+        '
+        'GridColumnOutletview
+        '
+        Me.GridColumnOutletview.Caption = "Outlet"
+        Me.GridColumnOutletview.FieldName = "outlet"
+        Me.GridColumnOutletview.Name = "GridColumnOutletview"
+        Me.GridColumnOutletview.Visible = True
+        Me.GridColumnOutletview.VisibleIndex = 0
+        '
+        'GridColumnpos_number
+        '
+        Me.GridColumnpos_number.Caption = "Transaction No."
+        Me.GridColumnpos_number.FieldName = "pos_number"
+        Me.GridColumnpos_number.Name = "GridColumnpos_number"
+        Me.GridColumnpos_number.Visible = True
+        Me.GridColumnpos_number.VisibleIndex = 1
+        Me.GridColumnpos_number.Width = 140
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Created Date"
+        Me.GridColumn1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn1.FieldName = "pos_date"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
+        '
+        'GridColumnshift_type
+        '
+        Me.GridColumnshift_type.Caption = "Shift"
+        Me.GridColumnshift_type.FieldName = "shift_type"
+        Me.GridColumnshift_type.Name = "GridColumnshift_type"
+        Me.GridColumnshift_type.Visible = True
+        Me.GridColumnshift_type.VisibleIndex = 3
+        '
+        'GridColumnuser_employee
+        '
+        Me.GridColumnuser_employee.Caption = "User"
+        Me.GridColumnuser_employee.FieldName = "user_employee"
+        Me.GridColumnuser_employee.Name = "GridColumnuser_employee"
+        Me.GridColumnuser_employee.Visible = True
+        Me.GridColumnuser_employee.VisibleIndex = 4
+        '
+        'GridColumnsubtotal
+        '
+        Me.GridColumnsubtotal.Caption = "Subtotal"
+        Me.GridColumnsubtotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnsubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsubtotal.FieldName = "subtotal"
+        Me.GridColumnsubtotal.Name = "GridColumnsubtotal"
+        Me.GridColumnsubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "subtotal", "{0:N2}")})
+        Me.GridColumnsubtotal.Visible = True
+        Me.GridColumnsubtotal.VisibleIndex = 6
+        '
+        'GridColumndiscount
+        '
+        Me.GridColumndiscount.Caption = "Discount"
+        Me.GridColumndiscount.DisplayFormat.FormatString = "N2"
+        Me.GridColumndiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiscount.FieldName = "discount"
+        Me.GridColumndiscount.Name = "GridColumndiscount"
+        Me.GridColumndiscount.Visible = True
+        Me.GridColumndiscount.VisibleIndex = 7
+        '
+        'GridColumntotal
+        '
+        Me.GridColumntotal.Caption = "Total"
+        Me.GridColumntotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal.FieldName = "total"
+        Me.GridColumntotal.Name = "GridColumntotal"
+        Me.GridColumntotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.GridColumntotal.Visible = True
+        Me.GridColumntotal.VisibleIndex = 8
+        '
+        'GridColumnvoucher_number
+        '
+        Me.GridColumnvoucher_number.Caption = "Voucher No."
+        Me.GridColumnvoucher_number.FieldName = "voucher_number"
+        Me.GridColumnvoucher_number.Name = "GridColumnvoucher_number"
+        Me.GridColumnvoucher_number.Visible = True
+        Me.GridColumnvoucher_number.VisibleIndex = 9
+        '
+        'GridColumnvoucher
+        '
+        Me.GridColumnvoucher.Caption = "Voucher"
+        Me.GridColumnvoucher.DisplayFormat.FormatString = "N2"
+        Me.GridColumnvoucher.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnvoucher.FieldName = "voucher"
+        Me.GridColumnvoucher.Name = "GridColumnvoucher"
+        Me.GridColumnvoucher.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "voucher", "{0:N2}")})
+        Me.GridColumnvoucher.Visible = True
+        Me.GridColumnvoucher.VisibleIndex = 10
+        '
+        'GridColumncash
+        '
+        Me.GridColumncash.Caption = "Cash"
+        Me.GridColumncash.DisplayFormat.FormatString = "N2"
+        Me.GridColumncash.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncash.FieldName = "cash"
+        Me.GridColumncash.Name = "GridColumncash"
+        Me.GridColumncash.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash", "{0:N2}")})
+        Me.GridColumncash.Visible = True
+        Me.GridColumncash.VisibleIndex = 11
+        '
+        'GridColumncard
+        '
+        Me.GridColumncard.Caption = "Card"
+        Me.GridColumncard.DisplayFormat.FormatString = "N2"
+        Me.GridColumncard.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncard.FieldName = "card"
+        Me.GridColumncard.Name = "GridColumncard"
+        Me.GridColumncard.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "card", "{0:N2}")})
+        Me.GridColumncard.Visible = True
+        Me.GridColumncard.VisibleIndex = 12
+        '
+        'GridColumncard_type
+        '
+        Me.GridColumncard_type.Caption = "Card Type"
+        Me.GridColumncard_type.FieldName = "card_type"
+        Me.GridColumncard_type.Name = "GridColumncard_type"
+        Me.GridColumncard_type.Visible = True
+        Me.GridColumncard_type.VisibleIndex = 13
+        '
+        'GridColumncard_name
+        '
+        Me.GridColumncard_name.Caption = "Customer Card Name"
+        Me.GridColumncard_name.FieldName = "card_name"
+        Me.GridColumncard_name.Name = "GridColumncard_name"
+        Me.GridColumncard_name.Visible = True
+        Me.GridColumncard_name.VisibleIndex = 14
+        Me.GridColumncard_name.Width = 114
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N2}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 5
+        '
+        'GridColumncountry
+        '
+        Me.GridColumncountry.Caption = "Customer Country"
+        Me.GridColumncountry.FieldName = "country"
+        Me.GridColumncountry.Name = "GridColumncountry"
+        Me.GridColumncountry.Visible = True
+        Me.GridColumncountry.VisibleIndex = 15
+        Me.GridColumncountry.Width = 117
+        '
+        'GridColumnsync_time
+        '
+        Me.GridColumnsync_time.Caption = "Sync Time"
+        Me.GridColumnsync_time.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnsync_time.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsync_time.FieldName = "sync_time"
+        Me.GridColumnsync_time.Name = "GridColumnsync_time"
+        Me.GridColumnsync_time.Visible = True
+        Me.GridColumnsync_time.VisibleIndex = 17
+        '
+        'GridColumnsales_name
+        '
+        Me.GridColumnsales_name.Caption = "Sales"
+        Me.GridColumnsales_name.FieldName = "sales_name"
+        Me.GridColumnsales_name.Name = "GridColumnsales_name"
+        Me.GridColumnsales_name.Visible = True
+        Me.GridColumnsales_name.VisibleIndex = 16
         '
         'SplashScreenManager1
         '
@@ -224,4 +439,25 @@ Partial Class FormSalesRecord
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents GridColumnid_departement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnoutlet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pos_combine As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_outlet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOutletview As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpos_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshift_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnuser_employee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsubtotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiscount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnvoucher_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnvoucher As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncash As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncard As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncard_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncard_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncountry As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_time As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

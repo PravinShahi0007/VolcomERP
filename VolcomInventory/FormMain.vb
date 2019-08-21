@@ -7595,6 +7595,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
                 print_raw(FormItemCatMain.GCData, "")
             End If
+        ElseIf formName = "FormSalesRecord" Then
+            print_raw(FormSalesRecord.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8354,6 +8356,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemCatMain" Then
             FormItemCatMain.Close()
             FormItemCatMain.Dispose()
+        ElseIf formName = "FormSalesRecord" Then
+            FormSalesRecord.Close()
+            FormSalesRecord.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

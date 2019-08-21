@@ -41,7 +41,7 @@ Public Class ClassSalesPOS
 
         splash.SetWaitFormCaption(outlet_par)
         splash.SetWaitFormDescription("Prepare data")
-        Dim ql As String = "SELECT a.id_pos FROM tb_pos_sync_log a WHERE a.is_success=1 ORDER BY a.sync_time DESC LIMIT 1"
+        Dim ql As String = "SELECT a.id_pos FROM tb_pos_sync_log a WHERE a.id_outlet='" + id_outlet_par + "' AND a.is_success=1 ORDER BY a.sync_time DESC LIMIT 1"
         Dim dql As DataTable = execute_query(ql, -1, True, "", "", "", "")
         If dql.Rows.Count > 0 Then
             id_pos_last = dql.Rows(0)("id_pos").ToString
@@ -157,4 +157,34 @@ Public Class ClassSalesPOS
             syncOutlet(data.Rows(i)("id_outlet").ToString, data.Rows(i)("outlet").ToString, data.Rows(i)("host").ToString, data.Rows(i)("username").ToString, data.Rows(i)("pass").ToString, data.Rows(i)("db").ToString)
         Next
     End Sub
+
+    Public Function querySalesRecord(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT pc.id_pos_combine, pc.id_pos, pc.id_outlet, d.departement AS `outlet`, pc.id_pos_ref, pc.pos_number,
+        pc.pos_date, pc.pos_closed_date, pc.id_shift, pc.shift_type, pc.id_user_employee, e.employee_name AS `user_employee`, pc.id_pos_status,
+        pc.id_pos_cat, pc.subtotal, pc.discount, pc.tax, pc.total, pc.id_voucher, pc.voucher_number, pc.voucher,
+        pc.point, pc.cash, pc.card, pc.id_card_type, ct.card_type, pc.card_number, pc.card_name, pc.`change`, pc.total_qty, pc.id_sales, es.employee_name AS `sales_name`,
+        pc.id_country, cty.country, pc.closed_date, pc.closed_by, pc.sync_time 
+        FROM tb_pos_combine pc 
+        INNER JOIN tb_m_employee e ON e.id_employee = pc.id_user_employee
+        INNER JOIN tb_m_employee es ON es.id_employee = pc.id_sales
+        INNER JOIN tb_m_departement d ON d.id_departement = pc.id_outlet
+        LEFT JOIN tb_lookup_card_type ct ON ct.id_card_type = pc.id_card_type
+        LEFT JOIN tb_m_country cty ON cty.id_country = pc.id_country
+        WHERE pc.id_pos_combine>0 "
+        query += condition + " "
+        query += "ORDER BY pc.id_outlet ASC, pc.id_pos " + order_type
+        Return query
+    End Function
 End Class
