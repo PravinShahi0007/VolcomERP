@@ -164,6 +164,10 @@
                 Dim grand_total As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays")) + GVPayroll.GetRowCellValue(i, "total_adjustment") + GVPayroll.GetRowCellValue(i, "total_ot_wages") - GVPayroll.GetRowCellValue(i, "total_deduction")
 
                 GVPayroll.SetRowCellValue(i, "grand_total", grand_total)
+
+                Dim total_salary_dw As Decimal = (GVPayroll.GetRowCellValue(i, "basic_salary") * GVPayroll.GetRowCellValue(i, "actual_workdays"))
+
+                GVPayroll.SetRowCellValue(i, "total_salary_dw", total_salary_dw)
             End If
         Next
     End Sub

@@ -9,6 +9,19 @@ Public Class FormEmpPayrollBCAFormat
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBCAFormat.DataSource = data
         GVBCAFormat.BestFitColumns()
+
+        'controls
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll + "'", 0, True, "", "", "", "")
+
+        If id_report_status = "0" Then
+            BPrint.Enabled = False
+            BExcel.Enabled = False
+            BBrowse.Enabled = False
+        Else
+            BPrint.Enabled = True
+            BExcel.Enabled = True
+            BBrowse.Enabled = True
+        End If
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
@@ -19,16 +32,45 @@ Public Class FormEmpPayrollBCAFormat
         export_bof(True)
     End Sub
     Sub export_bof(ByVal show_msg As Boolean)
-        'export excel
-        Dim filepath As String = IO.Path.Combine(TBFileAddress.Text)
+        Dim groups As DataTable = GCBCAFormat.DataSource.DefaultView.ToTable(True, "group_name")
 
-        Try
-            ExportToExcel(GVBCAFormat, filepath, show_msg)
-            '
-            IO.File.Open(filepath, IO.FileMode.Open)
-        Catch ex As Exception
-            stopCustom("Please close your excel file first then try again later")
-        End Try
+        GVBCAFormat.ClearGrouping()
+
+        GridColumn7.Visible = False
+
+        For i = 0 To groups.Rows.Count - 1
+            'export excel
+            Dim filepath As String = IO.Path.Combine(TBFileAddress.Text)
+
+            If filepath = "" Then
+                stopCustom("Please close your excel file first then try again later")
+            Else
+                Dim options As DevExpress.XtraPrinting.CsvExportOptionsEx = New DevExpress.XtraPrinting.CsvExportOptionsEx
+
+                options.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+                GVBCAFormat.ActiveFilterString = "[group_name]='" + groups.Rows(i)("group_name").ToString + "'"
+
+                filepath = filepath.Replace(".csv", " " + groups.Rows(i)("group_name").ToString + ".csv")
+
+                GVBCAFormat.ExportToCsv(filepath, options)
+            End If
+        Next
+
+        GVBCAFormat.ActiveFilterString = ""
+
+        GridColumn7.SortOrder = DevExpress.Data.ColumnSortOrder.Descending
+
+        GridColumn7.GroupIndex = 0
+
+        'Try
+        '    ExportToExcel(GVBCAFormat, filepath, show_msg)
+        '    '
+        '    IO.File.Open(filepath, IO.FileMode.Open)
+        'Catch ex As Exception
+        '    MsgBox(ex.ToString)
+        '    stopCustom("Please close your excel file first then try again later")
+        'End Try
     End Sub
     '
     Public Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
@@ -109,7 +151,7 @@ Public Class FormEmpPayrollBCAFormat
         Dim fdlg As FolderBrowserDialog = New FolderBrowserDialog()
         Cursor = Cursors.Default
         If fdlg.ShowDialog() = DialogResult.OK Then
-            TBFileAddress.Text = fdlg.SelectedPath & "BCA Payroll.xls"
+            TBFileAddress.Text = fdlg.SelectedPath & "\Salary " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".csv"
         End If
         fdlg.Dispose()
     End Sub

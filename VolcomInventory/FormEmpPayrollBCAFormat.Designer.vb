@@ -23,25 +23,27 @@ Partial Class FormEmpPayrollBCAFormat
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollBCAFormat))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TBFileAddress = New DevExpress.XtraEditors.TextEdit()
+        Me.BBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCBCAFormat = New DevExpress.XtraGrid.GridControl()
         Me.GVBCAFormat = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TBFileAddress = New DevExpress.XtraEditors.TextEdit()
-        Me.BBrowse = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBCAFormat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBCAFormat, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -83,17 +85,49 @@ Partial Class FormEmpPayrollBCAFormat
         Me.PanelControl2.Controls.Add(Me.BExcel)
         Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 458)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 690)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(986, 39)
+        Me.PanelControl2.Size = New System.Drawing.Size(1008, 39)
         Me.PanelControl2.TabIndex = 3
+        '
+        'TBFileAddress
+        '
+        Me.TBFileAddress.Location = New System.Drawing.Point(64, 10)
+        Me.TBFileAddress.Name = "TBFileAddress"
+        Me.TBFileAddress.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TBFileAddress.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TBFileAddress.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TBFileAddress.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.TBFileAddress.Properties.ReadOnly = True
+        Me.TBFileAddress.Size = New System.Drawing.Size(383, 20)
+        Me.TBFileAddress.TabIndex = 89
+        '
+        'BBrowse
+        '
+        Me.BBrowse.Location = New System.Drawing.Point(453, 7)
+        Me.BBrowse.Name = "BBrowse"
+        Me.BBrowse.Size = New System.Drawing.Size(51, 23)
+        Me.BBrowse.TabIndex = 90
+        Me.BBrowse.Text = "Browse"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 14)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Save To :"
         '
         'BExcel
         '
         Me.BExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BExcel.ImageIndex = 25
         Me.BExcel.ImageList = Me.LargeImageCollection
-        Me.BExcel.Location = New System.Drawing.Point(754, 2)
+        Me.BExcel.Location = New System.Drawing.Point(776, 2)
         Me.BExcel.Name = "BExcel"
         Me.BExcel.Size = New System.Drawing.Size(127, 35)
         Me.BExcel.TabIndex = 1
@@ -104,11 +138,12 @@ Partial Class FormEmpPayrollBCAFormat
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.ImageIndex = 6
         Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(881, 2)
+        Me.BPrint.Location = New System.Drawing.Point(903, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(103, 35)
         Me.BPrint.TabIndex = 0
         Me.BPrint.Text = "Print"
+        Me.BPrint.Visible = False
         '
         'GCBCAFormat
         '
@@ -116,16 +151,33 @@ Partial Class FormEmpPayrollBCAFormat
         Me.GCBCAFormat.Location = New System.Drawing.Point(0, 0)
         Me.GCBCAFormat.MainView = Me.GVBCAFormat
         Me.GCBCAFormat.Name = "GCBCAFormat"
-        Me.GCBCAFormat.Size = New System.Drawing.Size(986, 458)
+        Me.GCBCAFormat.Size = New System.Drawing.Size(1008, 690)
         Me.GCBCAFormat.TabIndex = 4
         Me.GCBCAFormat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBCAFormat})
         '
         'GVBCAFormat
         '
-        Me.GVBCAFormat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVBCAFormat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVBCAFormat.GridControl = Me.GCBCAFormat
+        Me.GVBCAFormat.GroupCount = 1
         Me.GVBCAFormat.Name = "GVBCAFormat"
+        Me.GVBCAFormat.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVBCAFormat.OptionsBehavior.Editable = False
+        Me.GVBCAFormat.OptionsPrint.PrintHeader = False
+        Me.GVBCAFormat.OptionsView.ShowFooter = True
         Me.GVBCAFormat.OptionsView.ShowGroupPanel = False
+        Me.GVBCAFormat.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.FieldName = "id_departement_group"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Group"
+        Me.GridColumn7.FieldName = "group_name"
+        Me.GridColumn7.Name = "GridColumn7"
         '
         'GridColumn1
         '
@@ -162,8 +214,6 @@ Partial Class FormEmpPayrollBCAFormat
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Grand Total"
-        Me.GridColumn5.DisplayFormat.FormatString = "N0"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "grand_total"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
@@ -171,64 +221,32 @@ Partial Class FormEmpPayrollBCAFormat
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Incentive"
+        Me.GridColumn6.Caption = "Other"
         Me.GridColumn6.FieldName = "incentive"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
         '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 14)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(46, 13)
-        Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Save To :"
-        '
-        'TBFileAddress
-        '
-        Me.TBFileAddress.Location = New System.Drawing.Point(64, 10)
-        Me.TBFileAddress.Name = "TBFileAddress"
-        Me.TBFileAddress.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TBFileAddress.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.TBFileAddress.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.TBFileAddress.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
-        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseForeColor = True
-        Me.TBFileAddress.Properties.ReadOnly = True
-        Me.TBFileAddress.Size = New System.Drawing.Size(383, 20)
-        Me.TBFileAddress.TabIndex = 89
-        '
-        'BBrowse
-        '
-        Me.BBrowse.Location = New System.Drawing.Point(453, 7)
-        Me.BBrowse.Name = "BBrowse"
-        Me.BBrowse.Size = New System.Drawing.Size(51, 23)
-        Me.BBrowse.TabIndex = 90
-        Me.BBrowse.Text = "Browse"
-        '
         'FormEmpPayrollBCAFormat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(986, 497)
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.GCBCAFormat)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormEmpPayrollBCAFormat"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Export BCA Format"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBCAFormat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBCAFormat, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -248,4 +266,6 @@ Partial Class FormEmpPayrollBCAFormat
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TBFileAddress As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
