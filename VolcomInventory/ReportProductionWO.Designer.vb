@@ -620,7 +620,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LDesignName.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LDesignName.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LDesignName.LocationFloat = New DevExpress.Utils.PointFloat(416.0835!, 46.5834!)
+        Me.LDesignName.LocationFloat = New DevExpress.Utils.PointFloat(416.0838!, 46.5834!)
         Me.LDesignName.Name = "LDesignName"
         Me.LDesignName.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LDesignName.SizeF = New System.Drawing.SizeF(159.4162!, 13.58335!)
