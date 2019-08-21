@@ -942,7 +942,7 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
             If id_cat = "1" Or id_cat = "8" Then
                 'cek attachment already have or not
                 Dim query As String = "SELECT c.`id_comp`,c.`comp_name`,lt.`id_legal_type`,lt.`legal_type`,cl.`id_comp_legal` FROM tb_m_comp c
-INNER JOIN tb_vendor_type_legal vtl ON vtl.`id_vendor_type`=c.`id_vendor_type`
+INNER JOIN tb_vendor_type_legal vtl ON vtl.`id_vendor_type`=c.`id_vendor_type` AND c.id_comp_cat=vtl.id_comp_cat
 INNER JOIN `tb_lookup_legal_type` lt ON lt.`id_legal_type`=vtl.`id_legal_type`
 LEFT JOIN tb_m_comp_legal cl ON cl.`id_comp`=c.`id_comp` AND vtl.`id_legal_type`=cl.`id_legal_Type`
 WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
