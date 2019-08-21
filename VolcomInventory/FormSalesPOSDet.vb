@@ -1099,7 +1099,7 @@ Public Class FormSalesPOSDet
 
     Sub load_data_pos()
         Cursor = Cursors.WaitCursor
-
+        Dim query As String
         Cursor = Cursors.Default
     End Sub
 
