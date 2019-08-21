@@ -94,6 +94,8 @@
 
         GCOvertime.DataSource = data
 
+        GridColumn3.SummaryItem.DisplayFormat = "Grand Total: " + XLLocation.Text.ToUpper
+
         'mark
         If id_pre = "-1" Then
             load_mark_horz("192", id_payroll, "2", "1", XrTable1)
