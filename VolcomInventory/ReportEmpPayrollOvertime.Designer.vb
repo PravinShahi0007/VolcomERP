@@ -162,6 +162,7 @@ Partial Public Class ReportEmpPayrollOvertime
         Me.GridColumn3.FieldName = "Employee"
         Me.GridColumn3.MinWidth = 195
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 195
