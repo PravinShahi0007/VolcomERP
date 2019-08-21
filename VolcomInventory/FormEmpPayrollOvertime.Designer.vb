@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpPayrollOvertime
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormEmpPayrollOvertime
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollOvertime))
@@ -71,6 +71,12 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PMSalary = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BMSalary = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +91,8 @@ Partial Class FormEmpPayrollOvertime
         Me.XTPDP.SuspendLayout()
         CType(Me.GCDP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PMSalary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BMSalary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -231,7 +239,7 @@ Partial Class FormEmpPayrollOvertime
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_overtime"
+        Me.GridColumn1.FieldName = "id_payroll_ot"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
@@ -583,6 +591,48 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 9
         '
+        'PMSalary
+        '
+        Me.PMSalary.Manager = Me.BMSalary
+        Me.PMSalary.Name = "PMSalary"
+        '
+        'BMSalary
+        '
+        Me.BMSalary.DockControls.Add(Me.barDockControlTop)
+        Me.BMSalary.DockControls.Add(Me.barDockControlBottom)
+        Me.BMSalary.DockControls.Add(Me.barDockControlLeft)
+        Me.BMSalary.DockControls.Add(Me.barDockControlRight)
+        Me.BMSalary.Form = Me
+        Me.BMSalary.MaxItemId = 0
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 729)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
+        '
         'FormEmpPayrollOvertime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -590,6 +640,10 @@ Partial Class FormEmpPayrollOvertime
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
         Me.MinimizeBox = False
@@ -612,7 +666,10 @@ Partial Class FormEmpPayrollOvertime
         Me.XTPDP.ResumeLayout(False)
         CType(Me.GCDP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PMSalary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BMSalary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -666,4 +723,10 @@ Partial Class FormEmpPayrollOvertime
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PMSalary As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BMSalary As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class
