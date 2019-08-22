@@ -12,10 +12,11 @@
     End Sub
 
     Private Function queryMasterMain(ByVal show_ok_only As Boolean, ByVal show_price As Boolean) As String
-        Dim query As String = "SELECT pd.id_pos_combine_summary, pd.id_product, pd.item_code,  prod.product_full_code, prod.product_display_name AS `name`, cd.code_detail_name AS `size`, 
-        (pd.qty-IFNULL(crt.qty,0)) AS `qty`,coll.is_unique_report,IF(ISNULL(coll.full_code),'Not found','OK') AS `status` "
+        Dim query As String = "SELECT pd.id_pos_combine_summary, pd.id_product, prod.id_design, pd.item_code,  prod.product_full_code, prod.product_display_name AS `name`, cd.code_detail_name AS `size`, 
+        (pd.qty-IFNULL(crt.qty,0)) AS `qty`,coll.is_unique_report,IF(ISNULL(coll.full_code),'Not found','OK') AS `status`, 
+        coll.id_pl_prod_order_rec_det_unique, coll.counting "
         If show_price Then
-            query += ",prc.id_design_price, prc.design_price "
+            query += ",prc.id_design_price, prc.design_price,prc.design_price_type "
         End If
         query += "From tb_pos_combine_summary pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
@@ -120,7 +121,81 @@
     End Sub
 
     Private Sub BtnProceed_Click(sender As Object, e As EventArgs) Handles BtnProceed.Click
+        'check stock
+        XTCData.SelectedTabPageIndex = 1
+        makeSafeGV(GVStock)
+        GVStock.ActiveFilterString = "[status]='OK'"
+        If GVData.RowCount <= 0 Then
+            stopCustom("There is no data that can be processed")
+            makeSafeGV(GVStock)
+            XTCData.SelectedTabPageIndex = 0
+            Exit Sub
+        End If
+        makeSafeGV(GVStock)
 
+        makeSafeGV(GVData)
+        GVData.ActiveFilterString = "[status]='OK'"
+        If GVData.RowCount <= 0 Then
+            stopCustom("No product can be processed")
+            makeSafeGV(GVData)
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will include in invoice list." + System.Environment.NewLine + "- If you want to cancell please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'record unique code
+                FormSalesPOSDet.viewDetailCode()
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status]='OK' AND [is_unique_report]='1' "
+                For i As Integer = 0 To GVData.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(FormSalesPOSDet.GCCode.DataSource, DataTable)).NewRow()
+                    newRow("id_sales_pos_det_counting") = "0"
+                    newRow("id_sales_pos") = "0"
+                    newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
+                    newRow("id_pl_prod_order_rec_det_unique") = GVData.GetRowCellValue(i, "id_pl_prod_order_rec_det_unique").ToString
+                    newRow("counting_code") = GVData.GetRowCellValue(i, "counting").ToString
+                    newRow("full_code") = GVData.GetRowCellValue(i, "item_code").ToString
+                    newRow("code") = GVData.GetRowCellValue(i, "product_full_code").ToString
+                    newRow("name") = GVData.GetRowCellValue(i, "name").ToString
+                    newRow("size") = GVData.GetRowCellValue(i, "size").ToString
+                    TryCast(FormSalesPOSDet.GCCode.DataSource, DataTable).Rows.Add(newRow)
+                    FormSalesPOSDet.GCCode.RefreshDataSource()
+                    FormSalesPOSDet.GVCode.RefreshData()
+                Next
+
+                'detail
+                FormSalesPOSDet.viewDetail()
+                makeSafeGV(GVData)
+                For i As Integer = 0 To GVData.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable)).NewRow()
+                    newRow("code") = GVData.GetRowCellValue(i, "product_full_code").ToString
+                    newRow("name") = GVData.GetRowCellValue(i, "name").ToString
+                    newRow("size") = GVData.GetRowCellValue(i, "size").ToString
+                    newRow("sales_pos_det_qty") = GVData.GetRowCellValue(i, "qty")
+                    newRow("limit_qty") = 0
+                    newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
+                    newRow("design_price") = GVData.GetRowCellValue(i, "design_price")
+                    newRow("design_price_type") = GVData.GetRowCellValue(i, "design_price_type").ToString
+                    newRow("id_design_price_retail") = GVData.GetRowCellValue(i, "id_design_price").ToString
+                    newRow("design_price_retail") = GVData.GetRowCellValue(i, "design_price")
+                    newRow("sales_pos_det_amount") = GVData.GetRowCellValue(i, "qty") * GVData.GetRowCellValue(i, "design_price")
+                    newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
+                    newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
+                    newRow("id_pos_combine_summary") = GVData.GetRowCellValue(i, "id_pos_combine_summary").ToString
+                    newRow("is_select") = "No"
+                    newRow("note") = "OK"
+                    newRow("id_sales_pos_det") = "0"
+                    TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                    FormSalesPOSDet.GCItemList.RefreshDataSource()
+                    FormSalesPOSDet.GVItemList.RefreshData()
+                Next
+                makeSafeGV(GVData)
+                Close()
+                Cursor = Cursors.Default
+            Else
+                makeSafeGV(GVData)
+                XTCData.SelectedTabPageIndex = 0
+            End If
+        End If
     End Sub
 
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged

@@ -25,7 +25,6 @@ Partial Class FormSalesPOSCheck
         Me.BtnProceed = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPMaster = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPStock = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_pos_combine_summary = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,6 +33,11 @@ Partial Class FormSalesPOSCheck
         Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnproduct_full_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_unique_report = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPStock = New DevExpress.XtraTab.XtraTabPage()
         Me.GCStock = New DevExpress.XtraGrid.GridControl()
         Me.GVStock = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,18 +46,17 @@ Partial Class FormSalesPOSCheck
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnproduct_full_code = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnis_unique_report = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_pl_prod_order_rec_det_unique = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncounting = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPMaster.SuspendLayout()
-        Me.XTPStock.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPStock.SuspendLayout()
         CType(Me.GCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -106,13 +109,6 @@ Partial Class FormSalesPOSCheck
         Me.XTPMaster.Size = New System.Drawing.Size(678, 340)
         Me.XTPMaster.Text = "Check Master"
         '
-        'XTPStock
-        '
-        Me.XTPStock.Controls.Add(Me.GCStock)
-        Me.XTPStock.Name = "XTPStock"
-        Me.XTPStock.Size = New System.Drawing.Size(678, 340)
-        Me.XTPStock.Text = "Check Stock"
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -125,7 +121,7 @@ Partial Class FormSalesPOSCheck
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pos_combine_summary, Me.GridColumnitem_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnqty, Me.GridColumnstatus, Me.GridColumnproduct_full_code, Me.GridColumnis_unique_report, Me.GridColumndesign_price, Me.GridColumnid_design_price})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pos_combine_summary, Me.GridColumnitem_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnqty, Me.GridColumnstatus, Me.GridColumnproduct_full_code, Me.GridColumnis_unique_report, Me.GridColumndesign_price, Me.GridColumnid_design_price, Me.GridColumnid_pl_prod_order_rec_det_unique, Me.GridColumncounting, Me.GridColumndesign_price_type})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -181,6 +177,43 @@ Partial Class FormSalesPOSCheck
         Me.GridColumnstatus.Name = "GridColumnstatus"
         Me.GridColumnstatus.Visible = True
         Me.GridColumnstatus.VisibleIndex = 6
+        '
+        'GridColumnproduct_full_code
+        '
+        Me.GridColumnproduct_full_code.Caption = "Product Code"
+        Me.GridColumnproduct_full_code.FieldName = "product_full_code"
+        Me.GridColumnproduct_full_code.Name = "GridColumnproduct_full_code"
+        Me.GridColumnproduct_full_code.Visible = True
+        Me.GridColumnproduct_full_code.VisibleIndex = 1
+        '
+        'GridColumnis_unique_report
+        '
+        Me.GridColumnis_unique_report.Caption = "is_unique_report"
+        Me.GridColumnis_unique_report.FieldName = "is_unique_report"
+        Me.GridColumnis_unique_report.Name = "GridColumnis_unique_report"
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N2"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 4
+        '
+        'GridColumnid_design_price
+        '
+        Me.GridColumnid_design_price.Caption = "id_design_price"
+        Me.GridColumnid_design_price.FieldName = "id_design_price"
+        Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
+        '
+        'XTPStock
+        '
+        Me.XTPStock.Controls.Add(Me.GCStock)
+        Me.XTPStock.Name = "XTPStock"
+        Me.XTPStock.Size = New System.Drawing.Size(678, 340)
+        Me.XTPStock.Text = "Check Stock"
         '
         'GCStock
         '
@@ -251,35 +284,23 @@ Partial Class FormSalesPOSCheck
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
-        'GridColumnproduct_full_code
+        'GridColumnid_pl_prod_order_rec_det_unique
         '
-        Me.GridColumnproduct_full_code.Caption = "Product Code"
-        Me.GridColumnproduct_full_code.FieldName = "product_full_code"
-        Me.GridColumnproduct_full_code.Name = "GridColumnproduct_full_code"
-        Me.GridColumnproduct_full_code.Visible = True
-        Me.GridColumnproduct_full_code.VisibleIndex = 1
+        Me.GridColumnid_pl_prod_order_rec_det_unique.Caption = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumnid_pl_prod_order_rec_det_unique.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumnid_pl_prod_order_rec_det_unique.Name = "GridColumnid_pl_prod_order_rec_det_unique"
         '
-        'GridColumnis_unique_report
+        'GridColumncounting
         '
-        Me.GridColumnis_unique_report.Caption = "is_unique_report"
-        Me.GridColumnis_unique_report.FieldName = "is_unique_report"
-        Me.GridColumnis_unique_report.Name = "GridColumnis_unique_report"
+        Me.GridColumncounting.Caption = "counting"
+        Me.GridColumncounting.FieldName = "counting"
+        Me.GridColumncounting.Name = "GridColumncounting"
         '
-        'GridColumndesign_price
+        'GridColumndesign_price_type
         '
-        Me.GridColumndesign_price.Caption = "Price"
-        Me.GridColumndesign_price.DisplayFormat.FormatString = "N2"
-        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndesign_price.FieldName = "design_price"
-        Me.GridColumndesign_price.Name = "GridColumndesign_price"
-        Me.GridColumndesign_price.Visible = True
-        Me.GridColumndesign_price.VisibleIndex = 4
-        '
-        'GridColumnid_design_price
-        '
-        Me.GridColumnid_design_price.Caption = "id_design_price"
-        Me.GridColumnid_design_price.FieldName = "id_design_price"
-        Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
+        Me.GridColumndesign_price_type.Caption = "Price Type"
+        Me.GridColumndesign_price_type.FieldName = "design_price_type"
+        Me.GridColumndesign_price_type.Name = "GridColumndesign_price_type"
         '
         'FormSalesPOSCheck
         '
@@ -290,16 +311,16 @@ Partial Class FormSalesPOSCheck
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormSalesPOSCheck"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Checking Result"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPMaster.ResumeLayout(False)
-        Me.XTPStock.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPStock.ResumeLayout(False)
         CType(Me.GCStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -332,4 +353,7 @@ Partial Class FormSalesPOSCheck
     Friend WithEvents GridColumnis_unique_report As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_design_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pl_prod_order_rec_det_unique As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncounting As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

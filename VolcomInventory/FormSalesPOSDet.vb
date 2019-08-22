@@ -484,6 +484,9 @@ Public Class FormSalesPOSDet
                         Dim id_sales_pos_det_ref As String = "NULL "
                         Try
                             id_sales_pos_det_ref = GVItemList.GetRowCellValue(i, "id_sales_pos_det_ref").ToString
+                            If id_sales_pos_det_ref = "0" Or id_sales_pos_det_ref = "" Then
+                                id_sales_pos_det_ref = "NULL "
+                            End If
                         Catch ex As Exception
                         End Try
                         Dim id_pl_sales_order_del_det As String = "NULL "
@@ -497,6 +500,9 @@ Public Class FormSalesPOSDet
                         Dim id_pos_combine_summary As String = "NULL "
                         Try
                             id_pos_combine_summary = GVItemList.GetRowCellValue(i, "id_pos_combine_summary").ToString
+                            If id_pos_combine_summary = "0" Or id_pos_combine_summary = "" Then
+                                id_pos_combine_summary = "NULL "
+                            End If
                         Catch ex As Exception
                         End Try
 
@@ -1431,6 +1437,9 @@ Public Class FormSalesPOSDet
                 id_wh_locator = data.Rows(0)("id_wh_locator").ToString
                 id_wh_rack = data.Rows(0)("id_wh_rack").ToString
                 is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
+                If is_use_unique_code = "1" Then
+                    QtyToolStripMenuItem.Visible = False
+                End If
                 '
                 LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
                 '
