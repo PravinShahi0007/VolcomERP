@@ -76,10 +76,9 @@ Public Class FormMasterRawMaterialDetSingle
                     id_mat_det = execute_query(query, 0, True, "", "", "", "")
 
                     logData("tb_mat_det", 1)
-
-                    query = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost) VALUES('{0}','Default Price','1',(SELECT id_comp_contact FROM tb_m_comp_contact LIMIT 1),'0',DATE(NOW()),'1')", id_mat_det)
+                    '
+                    query = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','Default Price','1',(SELECT id_comp_contact FROM tb_m_comp_contact LIMIT 1),'0',DATE(NOW()),'1','1')", id_mat_det)
                     execute_non_query(query, True, "", "", "", "")
-
                     'cek image
                     If Not PictureEdit1.EditValue Is Nothing Then
                         save_image_ori(PictureEdit1, material_image_path, id_mat_det & ".jpg")
