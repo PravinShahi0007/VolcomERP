@@ -72,9 +72,9 @@ Partial Class FormSalesPOSCheck
         '
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDiscard.Image = CType(resources.GetObject("BtnDiscard.Image"), System.Drawing.Image)
-        Me.BtnDiscard.Location = New System.Drawing.Point(498, 2)
+        Me.BtnDiscard.Location = New System.Drawing.Point(508, 2)
         Me.BtnDiscard.Name = "BtnDiscard"
-        Me.BtnDiscard.Size = New System.Drawing.Size(92, 39)
+        Me.BtnDiscard.Size = New System.Drawing.Size(85, 39)
         Me.BtnDiscard.TabIndex = 1
         Me.BtnDiscard.Text = "Discard"
         '
@@ -82,9 +82,9 @@ Partial Class FormSalesPOSCheck
         '
         Me.BtnProceed.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnProceed.Image = CType(resources.GetObject("BtnProceed.Image"), System.Drawing.Image)
-        Me.BtnProceed.Location = New System.Drawing.Point(590, 2)
+        Me.BtnProceed.Location = New System.Drawing.Point(593, 2)
         Me.BtnProceed.Name = "BtnProceed"
-        Me.BtnProceed.Size = New System.Drawing.Size(92, 39)
+        Me.BtnProceed.Size = New System.Drawing.Size(89, 39)
         Me.BtnProceed.TabIndex = 0
         Me.BtnProceed.Text = "Proceed"
         '
@@ -291,6 +291,7 @@ Partial Class FormSalesPOSCheck
         Me.MinimizeBox = False
         Me.Name = "FormSalesPOSCheck"
         Me.Text = "Checking Result"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
