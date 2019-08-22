@@ -63,11 +63,14 @@
 
         If type = "4" Then
             GCActualWorkingDaysDW.Caption = "Actual" + Environment.NewLine + "Working Days"
+            GCTotalAdjustment.Caption = "Total" + Environment.NewLine + "Bonus / Adj"
+            GCTotalDeduction.Caption = "Total" + Environment.NewLine + "Deduction"
+            GCTotalPaymentOvertime.Caption = "Total" + Environment.NewLine + "Overtime"
+            GCGrandTotal.Caption = "Grand" + Environment.NewLine + "Total"
 
             GBWorkingDays.Visible = False
 
             GCTotalTHP.Visible = False
-            GCTotalAdjustment.Visible = False
 
             GBDW.Visible = True
 
@@ -107,6 +110,7 @@
     Dim sum_tot_adj As Double = 0
     Dim sum_tot_ded As Double = 0
     Dim sum_tot_ot As Double = 0
+    Dim sum_tot_dw As Double = 0
     Dim sum_tot As Double = 0
 
     Private Sub GVPayroll_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVPayroll.CustomSummaryCalculate
@@ -176,6 +180,23 @@
                     Else
                         If e.GroupLevel = 0 Then
                             e.TotalValue = sum_tot_ot
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_salary_dw" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    sum_tot_dw = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    sum_tot_dw += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        e.TotalValue = sum_tot_dw
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = sum_tot_dw
                         End If
                     End If
             End Select
