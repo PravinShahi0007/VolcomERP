@@ -59,7 +59,7 @@
 
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, 0, True, "", "", "", "")
 
-        Dim id_payroll_before As String = execute_query("SELECT id_payroll FROM tb_emp_payroll WHERE periode_end LIKE CONCAT((SELECT DATE_FORMAT(DATE_SUB(periode_end, INTERVAL 1 MONTH), '%Y-%m') FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), '%') AND id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        'Dim id_payroll_before As String = execute_query("SELECT id_payroll FROM tb_emp_payroll WHERE periode_end LIKE CONCAT((SELECT DATE_FORMAT(DATE_SUB(periode_end, INTERVAL 1 MONTH), '%Y-%m') FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), '%') AND id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
         'Dim total_before As String = execute_query("
         'SELECT (IFNULL(company_contribution, 0) + IFNULL(employee_contribution, 0)) AS deduction
@@ -84,7 +84,7 @@
         report.CreateDocument()
 
         'detail
-        Dim data_class As DataTable = execute_query("CALL view_payroll_bpjs_detail(" + id_payroll_before + ")", -1, True, "", "", "", "")
+        'Dim data_class As DataTable = execute_query("CALL view_payroll_bpjs_detail(" + id_payroll_before + ")", -1, True, "", "", "", "")
 
         'Dim total_class1_before As Integer = 0
         'Dim total_class2_before As Integer = 0

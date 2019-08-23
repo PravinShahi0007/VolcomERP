@@ -2124,7 +2124,7 @@ Public Class FormImportExcel
                 GVData.Columns("NIK").Caption = "NIK"
 
                 GVData.Columns("Deduction").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GVData.Columns("Deduction").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("Deduction").DisplayFormat.FormatString = "{0:N0}"
 
                 GVData.OptionsView.ColumnAutoWidth = False
                 GVData.BestFitColumns()
@@ -4320,7 +4320,7 @@ Public Class FormImportExcel
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
                             Dim query_exec As String = "INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction,note)
-                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & "','" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
+                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "',ROUND(" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & ",0),'" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '
