@@ -133,9 +133,11 @@ Partial Class FormProdDemandSingle
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlCENONActive = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnSizeDetail = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlPrintBreaksize = New DevExpress.XtraEditors.PanelControl()
+        Me.CEBreakSizeDetail = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlBreakSize = New DevExpress.XtraEditors.PanelControl()
         Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
-        Me.BtnSizeDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddFromLineList = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -144,6 +146,12 @@ Partial Class FormProdDemandSingle
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.XTCPD = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDetailPropose = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPBreakSize = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSize = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVSize = New VolcomMRP.MyXtraGrid.MyGridView()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -153,12 +161,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPDetailPropose = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPBreakSize = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCSize = New VolcomMRP.MyXtraGrid.MyGridControl()
-        Me.GVSize = New VolcomMRP.MyXtraGrid.MyGridView()
-        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,6 +196,9 @@ Partial Class FormProdDemandSingle
         CType(Me.PanelControlCENONActive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCENONActive.SuspendLayout()
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlPrintBreaksize, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlPrintBreaksize.SuspendLayout()
+        CType(Me.CEBreakSizeDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBreakSize, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBreakSize.SuspendLayout()
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,9 +209,6 @@ Partial Class FormProdDemandSingle
         CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPD.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
-        Me.XTPRevision.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XTPDetailPropose.SuspendLayout()
@@ -214,6 +216,9 @@ Partial Class FormProdDemandSingle
         CType(Me.GCSize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPRevision.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdDemand
@@ -1480,8 +1485,9 @@ Partial Class FormProdDemandSingle
         '
         Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlCENONActive)
-        Me.PanelControlCompleted.Controls.Add(Me.PanelControlBreakSize)
         Me.PanelControlCompleted.Controls.Add(Me.BtnSizeDetail)
+        Me.PanelControlCompleted.Controls.Add(Me.PanelControlPrintBreaksize)
+        Me.PanelControlCompleted.Controls.Add(Me.PanelControlBreakSize)
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 399)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
@@ -1494,7 +1500,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControlCENONActive.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlCENONActive.Controls.Add(Me.CheckEditShowNonActive)
         Me.PanelControlCENONActive.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlCENONActive.Location = New System.Drawing.Point(131, 0)
+        Me.PanelControlCENONActive.Location = New System.Drawing.Point(311, 0)
         Me.PanelControlCENONActive.Name = "PanelControlCENONActive"
         Me.PanelControlCENONActive.Size = New System.Drawing.Size(144, 32)
         Me.PanelControlCENONActive.TabIndex = 165
@@ -1507,6 +1513,33 @@ Partial Class FormProdDemandSingle
         Me.CheckEditShowNonActive.Properties.Caption = "show non active status"
         Me.CheckEditShowNonActive.Size = New System.Drawing.Size(132, 19)
         Me.CheckEditShowNonActive.TabIndex = 164
+        '
+        'BtnSizeDetail
+        '
+        Me.BtnSizeDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSizeDetail.Location = New System.Drawing.Point(829, 0)
+        Me.BtnSizeDetail.Name = "BtnSizeDetail"
+        Me.BtnSizeDetail.Size = New System.Drawing.Size(78, 32)
+        Me.BtnSizeDetail.TabIndex = 167
+        Me.BtnSizeDetail.Text = "size detail"
+        '
+        'PanelControlPrintBreaksize
+        '
+        Me.PanelControlPrintBreaksize.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlPrintBreaksize.Controls.Add(Me.CEBreakSizeDetail)
+        Me.PanelControlPrintBreaksize.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlPrintBreaksize.Location = New System.Drawing.Point(131, 0)
+        Me.PanelControlPrintBreaksize.Name = "PanelControlPrintBreaksize"
+        Me.PanelControlPrintBreaksize.Size = New System.Drawing.Size(180, 32)
+        Me.PanelControlPrintBreaksize.TabIndex = 168
+        '
+        'CEBreakSizeDetail
+        '
+        Me.CEBreakSizeDetail.Location = New System.Drawing.Point(4, 6)
+        Me.CEBreakSizeDetail.Name = "CEBreakSizeDetail"
+        Me.CEBreakSizeDetail.Properties.Caption = "print with breakdown size detail"
+        Me.CEBreakSizeDetail.Size = New System.Drawing.Size(182, 19)
+        Me.CEBreakSizeDetail.TabIndex = 164
         '
         'PanelControlBreakSize
         '
@@ -1525,15 +1558,6 @@ Partial Class FormProdDemandSingle
         Me.CEBreakSize.Properties.Caption = "show breakdown size"
         Me.CEBreakSize.Size = New System.Drawing.Size(123, 19)
         Me.CEBreakSize.TabIndex = 0
-        '
-        'BtnSizeDetail
-        '
-        Me.BtnSizeDetail.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSizeDetail.Location = New System.Drawing.Point(829, 0)
-        Me.BtnSizeDetail.Name = "BtnSizeDetail"
-        Me.BtnSizeDetail.Size = New System.Drawing.Size(78, 32)
-        Me.BtnSizeDetail.TabIndex = 167
-        Me.BtnSizeDetail.Text = "size detail"
         '
         'PanelControlNav
         '
@@ -1600,12 +1624,78 @@ Partial Class FormProdDemandSingle
         Me.XTPDetail.Size = New System.Drawing.Size(958, 439)
         Me.XTPDetail.Text = "Detail"
         '
+        'XTCDetail
+        '
+        Me.XTCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCDetail.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
+        Me.XTCDetail.Name = "XTCDetail"
+        Me.XTCDetail.SelectedTabPage = Me.XTPDetailPropose
+        Me.XTCDetail.Size = New System.Drawing.Size(958, 439)
+        Me.XTCDetail.TabIndex = 189
+        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetailPropose, Me.XTPBreakSize})
+        '
+        'XTPDetailPropose
+        '
+        Me.XTPDetailPropose.Controls.Add(Me.GroupControlList)
+        Me.XTPDetailPropose.Name = "XTPDetailPropose"
+        Me.XTPDetailPropose.Size = New System.Drawing.Size(929, 433)
+        Me.XTPDetailPropose.Text = "Detail Propose"
+        '
+        'XTPBreakSize
+        '
+        Me.XTPBreakSize.Controls.Add(Me.GCSize)
+        Me.XTPBreakSize.Name = "XTPBreakSize"
+        Me.XTPBreakSize.Size = New System.Drawing.Size(929, 433)
+        Me.XTPBreakSize.Text = "Breakdown Size Detail"
+        '
+        'GCSize
+        '
+        Me.GCSize.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSize.Location = New System.Drawing.Point(0, 0)
+        Me.GCSize.MainView = Me.GVSize
+        Me.GCSize.Name = "GCSize"
+        Me.GCSize.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
+        Me.GCSize.Size = New System.Drawing.Size(929, 433)
+        Me.GCSize.TabIndex = 43
+        Me.GCSize.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSize})
+        '
+        'GVSize
+        '
+        Me.GVSize.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVSize.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GVSize.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVSize.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVSize.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVSize.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVSize.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVSize.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVSize.ColumnPanelRowHeight = 30
+        Me.GVSize.GridControl = Me.GCSize
+        Me.GVSize.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", Nothing, "{0:N0}")})
+        Me.GVSize.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
+        Me.GVSize.Name = "GVSize"
+        Me.GVSize.OptionsBehavior.ReadOnly = True
+        Me.GVSize.OptionsCustomization.AllowRowSizing = True
+        Me.GVSize.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVSize.OptionsView.ColumnAutoWidth = False
+        Me.GVSize.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVSize.OptionsView.RowAutoHeight = True
+        Me.GVSize.OptionsView.ShowFooter = True
+        Me.GVSize.OptionsView.ShowGroupPanel = False
+        Me.GVSize.RowHeight = 15
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        '
         'XTPRevision
         '
         Me.XTPRevision.Controls.Add(Me.GCData)
         Me.XTPRevision.Name = "XTPRevision"
         Me.XTPRevision.PageVisible = False
-        Me.XTPRevision.Size = New System.Drawing.Size(958, 280)
+        Me.XTPRevision.Size = New System.Drawing.Size(958, 439)
         Me.XTPRevision.Text = "Revision"
         '
         'GCData
@@ -1614,7 +1704,7 @@ Partial Class FormProdDemandSingle
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(958, 280)
+        Me.GCData.Size = New System.Drawing.Size(958, 439)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1677,72 +1767,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
-        'XTCDetail
-        '
-        Me.XTCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCDetail.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
-        Me.XTCDetail.Name = "XTCDetail"
-        Me.XTCDetail.SelectedTabPage = Me.XTPDetailPropose
-        Me.XTCDetail.Size = New System.Drawing.Size(958, 439)
-        Me.XTCDetail.TabIndex = 189
-        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetailPropose, Me.XTPBreakSize})
-        '
-        'XTPDetailPropose
-        '
-        Me.XTPDetailPropose.Controls.Add(Me.GroupControlList)
-        Me.XTPDetailPropose.Name = "XTPDetailPropose"
-        Me.XTPDetailPropose.Size = New System.Drawing.Size(929, 433)
-        Me.XTPDetailPropose.Text = "Detail Propose"
-        '
-        'XTPBreakSize
-        '
-        Me.XTPBreakSize.Controls.Add(Me.GCSize)
-        Me.XTPBreakSize.Name = "XTPBreakSize"
-        Me.XTPBreakSize.Size = New System.Drawing.Size(929, 433)
-        Me.XTPBreakSize.Text = "Breakdown Size"
-        '
-        'GCSize
-        '
-        Me.GCSize.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSize.Location = New System.Drawing.Point(0, 0)
-        Me.GCSize.MainView = Me.GVSize
-        Me.GCSize.Name = "GCSize"
-        Me.GCSize.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
-        Me.GCSize.Size = New System.Drawing.Size(929, 433)
-        Me.GCSize.TabIndex = 43
-        Me.GCSize.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSize})
-        '
-        'GVSize
-        '
-        Me.GVSize.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GVSize.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVSize.Appearance.HeaderPanel.Options.UseTextOptions = True
-        Me.GVSize.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVSize.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GVSize.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVSize.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
-        Me.GVSize.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVSize.ColumnPanelRowHeight = 30
-        Me.GVSize.GridControl = Me.GCSize
-        Me.GVSize.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", Nothing, "{0:N0}")})
-        Me.GVSize.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
-        Me.GVSize.Name = "GVSize"
-        Me.GVSize.OptionsBehavior.ReadOnly = True
-        Me.GVSize.OptionsCustomization.AllowRowSizing = True
-        Me.GVSize.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVSize.OptionsView.ColumnAutoWidth = False
-        Me.GVSize.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVSize.OptionsView.RowAutoHeight = True
-        Me.GVSize.OptionsView.ShowFooter = True
-        Me.GVSize.OptionsView.ShowGroupPanel = False
-        Me.GVSize.RowHeight = 15
-        '
-        'RepositoryItemHyperLinkEdit1
-        '
-        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
-        '
         'FormProdDemandSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1798,6 +1822,9 @@ Partial Class FormProdDemandSingle
         CType(Me.PanelControlCENONActive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCENONActive.ResumeLayout(False)
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlPrintBreaksize, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlPrintBreaksize.ResumeLayout(False)
+        CType(Me.CEBreakSizeDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBreakSize, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBreakSize.ResumeLayout(False)
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1808,9 +1835,6 @@ Partial Class FormProdDemandSingle
         CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPD.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
-        Me.XTPRevision.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDetail.ResumeLayout(False)
         Me.XTPDetailPropose.ResumeLayout(False)
@@ -1818,6 +1842,9 @@ Partial Class FormProdDemandSingle
         CType(Me.GCSize, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSize, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPRevision.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1959,4 +1986,6 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GCSize As MyXtraGrid.MyGridControl
     Friend WithEvents GVSize As MyXtraGrid.MyGridView
     Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents PanelControlPrintBreaksize As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEBreakSizeDetail As DevExpress.XtraEditors.CheckEdit
 End Class
