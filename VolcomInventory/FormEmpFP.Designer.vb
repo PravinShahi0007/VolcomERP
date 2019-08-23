@@ -49,6 +49,8 @@ Partial Class FormEmpFP
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.SetDeviceTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GetDeviceTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVFP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,19 +73,19 @@ Partial Class FormEmpFP
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestConnectionToolStripMenuItem, Me.MasterMachineToolStripMenuItem, Me.DataToolStripMenuItem, Me.DeviceToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(161, 114)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(162, 114)
         '
         'TestConnectionToolStripMenuItem
         '
         Me.TestConnectionToolStripMenuItem.Name = "TestConnectionToolStripMenuItem"
-        Me.TestConnectionToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.TestConnectionToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.TestConnectionToolStripMenuItem.Text = "Test Connection"
         '
         'MasterMachineToolStripMenuItem
         '
         Me.MasterMachineToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddMachineToolStripMenuItem, Me.EditMachineToolStripMenuItem, Me.DeleteMachineToolStripMenuItem, Me.ToolStripMenuItem1})
         Me.MasterMachineToolStripMenuItem.Name = "MasterMachineToolStripMenuItem"
-        Me.MasterMachineToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.MasterMachineToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.MasterMachineToolStripMenuItem.Text = "Master Machine"
         '
         'AddMachineToolStripMenuItem
@@ -114,7 +116,7 @@ Partial Class FormEmpFP
         '
         Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DownloadTemplateToolStripMenuItem, Me.ShowFingerTemplateToolStripMenuItem, Me.DownloadFingerTemplateToolStripMenuItem, Me.DownloadFaceTemplateToolStripMenuItem, Me.UploadFingerTemplateToolStripMenuItem, Me.UploadFaceTemplateToolStripMenuItem, Me.UploadFingerFacespesifikToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
-        Me.DataToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.DataToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.DataToolStripMenuItem.Text = "Data"
         '
         'DownloadTemplateToolStripMenuItem
@@ -161,21 +163,21 @@ Partial Class FormEmpFP
         '
         'DeviceToolStripMenuItem
         '
-        Me.DeviceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RestartToolStripMenuItem, Me.TurnOffToolStripMenuItem})
+        Me.DeviceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RestartToolStripMenuItem, Me.TurnOffToolStripMenuItem, Me.SetDeviceTimeToolStripMenuItem, Me.GetDeviceTimeToolStripMenuItem})
         Me.DeviceToolStripMenuItem.Name = "DeviceToolStripMenuItem"
-        Me.DeviceToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.DeviceToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.DeviceToolStripMenuItem.Text = "Device"
         '
         'RestartToolStripMenuItem
         '
         Me.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem"
-        Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
         Me.RestartToolStripMenuItem.Text = "Restart"
         '
         'TurnOffToolStripMenuItem
         '
         Me.TurnOffToolStripMenuItem.Name = "TurnOffToolStripMenuItem"
-        Me.TurnOffToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.TurnOffToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
         Me.TurnOffToolStripMenuItem.Text = "Turn Off"
         '
         'GVFP
@@ -262,6 +264,18 @@ Partial Class FormEmpFP
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'SetDeviceTimeToolStripMenuItem
+        '
+        Me.SetDeviceTimeToolStripMenuItem.Name = "SetDeviceTimeToolStripMenuItem"
+        Me.SetDeviceTimeToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.SetDeviceTimeToolStripMenuItem.Text = "Set Device Time"
+        '
+        'GetDeviceTimeToolStripMenuItem
+        '
+        Me.GetDeviceTimeToolStripMenuItem.Name = "GetDeviceTimeToolStripMenuItem"
+        Me.GetDeviceTimeToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.GetDeviceTimeToolStripMenuItem.Text = "Get Device Time"
+        '
         'FormEmpFP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -308,4 +322,6 @@ Partial Class FormEmpFP
     Friend WithEvents TestConnectionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents UploadFingerFacespesifikToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SetDeviceTimeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GetDeviceTimeToolStripMenuItem As ToolStripMenuItem
 End Class

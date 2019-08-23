@@ -6967,27 +6967,27 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
         End If
     End Sub
 
-    Private Sub GVMark_RowStyle(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVMark.RowStyle
-        If (e.RowHandle >= 0) Then
-            'pick field
-            'see if already marked
-            If check_available_asg_color(sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_report_mark"))) Then
-                'already marked
-                Dim lead_time As String = sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("raw_lead_time"))
-                'condition
-                If Not lead_time = "" Then
-                    If Integer.Parse(check_date_passed_now(lead_time)) > 0 Then
-                        e.Appearance.BackColor = Color.Salmon
-                        e.Appearance.BackColor2 = Color.Salmon
-                    End If
-                End If
-            End If
-            '
-            If sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_user")).ToString = id_user Then
-                e.Appearance.Font = New Font(GVMark.Appearance.Row.Font, FontStyle.Bold)
-            End If
-        End If
-    End Sub
+    'Private Sub GVMark_RowStyle(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVMark.RowStyle
+    'If (e.RowHandle >= 0) Then
+    '    'pick field
+    '    'see if already marked
+    '    If check_available_asg_color(sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_report_mark"))) Then
+    '        'already marked
+    '        Dim lead_time As String = sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("raw_lead_time"))
+    '        'condition
+    '        If Not lead_time = "" Then
+    '            If Integer.Parse(check_date_passed_now(lead_time)) > 0 Then
+    '                e.Appearance.BackColor = Color.Salmon
+    '                e.Appearance.BackColor2 = Color.Salmon
+    '            End If
+    '        End If
+    '    End If
+    '    '
+    '    If sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_user")).ToString = id_user Then
+    '        e.Appearance.Font = New Font(GVMark.Appearance.Row.Font, FontStyle.Bold)
+    '    End If
+    'End If
+    'End Sub
 
     Private Sub BClearLeadTime_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BClearLeadTime.Click
         'MsgBox(id_report_status_report)
