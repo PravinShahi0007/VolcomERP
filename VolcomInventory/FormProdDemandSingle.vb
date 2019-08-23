@@ -1053,4 +1053,20 @@
         FormProdDemandSize.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Sub viewBreakdownSize()
+        Cursor = Cursors.WaitCursor
+        Dim pd As New ClassProdDemand()
+        Dim query As String = pd.viewBreakSizeDetail(id_prod_demand)
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSize.DataSource = data
+        GVSize.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCDetail_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCDetail.SelectedPageChanged
+        If XTCDetail.SelectedTabPageIndex = 1 Then
+            viewBreakdownSize()
+        End If
+    End Sub
 End Class

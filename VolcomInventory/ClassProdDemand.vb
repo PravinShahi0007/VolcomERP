@@ -621,4 +621,35 @@
             GVDesign.Columns("qty" + j.ToString).Visible = False
         Next
     End Sub
+
+    Function viewBreakSizeDetail(ByVal id_prod_demand As String) As String
+        'get size
+        Dim qz As String = "SELECT cd.id_code_detail, cd.display_name 
+        FROM tb_prod_demand_design pdd
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        WHERE pdd.id_prod_demand=" + id_prod_demand + "
+        GROUP BY cd.id_code_detail
+        ORDER BY cd.id_code_detail ASC "
+        Dim dz As DataTable = execute_query(qz, -1, True, "", "", "", "")
+
+        Dim query As String = "SELECT '' AS `NO`,dsg.design_code_import AS `CODE IMPORT`, dsg.design_code AS `CODE` , dsg.design_display_name AS `DESCRIPTION`,
+        GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY prodc.id_code_detail ASC SEPARATOR ', ') AS `SIZE CHART`, "
+        For i As Integer = 0 To dz.Rows.Count - 1
+            query += "SUM(CASE WHEN cd.id_code_detail=" + dz.Rows(i)("id_code_detail").ToString + " THEN pdp.prod_demand_product_qty END) AS `" + dz.Rows(i)("display_name").ToString + "`, "
+        Next
+        query += "SUM(pdp.prod_demand_product_qty) AS `TOTAL QTY`
+        FROM tb_prod_demand_design pdd
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design AND pdp.prod_demand_product_qty>0
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = pdd.id_design
+        WHERE pdd.id_prod_demand=" + id_prod_demand + "
+        GROUP BY pdd.id_prod_demand_design
+        ORDER BY pdd.id_prod_demand_design ASC "
+        Return query
+    End Function
 End Class
