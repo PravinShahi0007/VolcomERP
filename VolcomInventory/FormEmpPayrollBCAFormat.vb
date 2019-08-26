@@ -10,6 +10,10 @@ Public Class FormEmpPayrollBCAFormat
         GCBCAFormat.DataSource = data
         GVBCAFormat.BestFitColumns()
 
+        If FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
+            CESamePeriod.Visible = False
+        End If
+
         'controls
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll + "'", 0, True, "", "", "", "")
 
@@ -151,8 +155,35 @@ Public Class FormEmpPayrollBCAFormat
         Dim fdlg As FolderBrowserDialog = New FolderBrowserDialog()
         Cursor = Cursors.Default
         If fdlg.ShowDialog() = DialogResult.OK Then
-            TBFileAddress.Text = fdlg.SelectedPath & "\Salary " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".csv"
+            Dim type As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "DW ", "")
+
+            TBFileAddress.Text = fdlg.SelectedPath & "\Salary " + type + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".csv"
         End If
         fdlg.Dispose()
+    End Sub
+
+    Private Sub CESamePeriod_EditValueChanged(sender As Object, e As EventArgs) Handles CESamePeriod.EditValueChanged
+        GCBCAFormat.DataSource = execute_query("CALL view_payroll_bca_format('" & id_payroll & "')", -1, True, "", "", "", "")
+
+        If CESamePeriod.EditValue Then
+            Dim id_payroll_before As String = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE periode_start = (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND id_payroll_type = 4), 0) AS id_payroll", 0, True, "", "", "", "")
+
+            If Not id_payroll_before = "0" Then
+                Dim query_before As String = "CALL view_payroll_bca_format('" & id_payroll_before & "')"
+                Dim data_before As DataTable = execute_query(query_before, -1, True, "", "", "", "")
+
+                Dim data As DataTable = GCBCAFormat.DataSource
+
+                data.Merge(data_before)
+
+                GCBCAFormat.DataSource = data
+            End If
+        End If
+
+        GVBCAFormat.BestFitColumns()
+    End Sub
+
+    Private Sub FormEmpPayrollBCAFormat_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

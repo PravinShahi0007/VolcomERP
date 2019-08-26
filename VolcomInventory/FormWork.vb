@@ -45,7 +45,7 @@
                     INNER JOIN tb_lookup_report_status c ON c.id_report_status = a.id_report_status 
                     LEFT JOIN 
                     (
-	                    SELECT report_mark_type,id_report,id_mark_asg,COUNT(id_report_mark) AS jml FROM tb_report_mark WHERE id_mark!=1 GROUP BY report_mark_type,id_report,id_mark_asg
+	                    SELECT report_mark_type,id_report,id_mark_asg,COUNT(id_report_mark) AS jml FROM tb_report_mark WHERE id_mark!=1 AND id_report_status!=1 GROUP BY report_mark_type,id_report,id_mark_asg
                     ) mark ON  a.report_mark_type=mark.report_mark_type AND a.id_report=mark.id_report AND a.id_mark_asg=mark.id_mark_asg 
                     LEFT JOIN 
                     (

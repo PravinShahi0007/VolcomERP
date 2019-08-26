@@ -6611,6 +6611,12 @@
     <Compile Include="ReportProdDemandNew.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProdDemandNewBreakSize.Designer.vb">
+      <DependentUpon>ReportProdDemandNewBreakSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdDemandNewBreakSize.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdDemandRev.Designer.vb">
       <DependentUpon>ReportProdDemandRev.vb</DependentUpon>
     </Compile>
@@ -10762,6 +10768,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdDemandNew.resx">
       <DependentUpon>ReportProdDemandNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdDemandNewBreakSize.resx">
+      <DependentUpon>ReportProdDemandNewBreakSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdDemandRev.resx">
       <DependentUpon>ReportProdDemandRev.vb</DependentUpon>

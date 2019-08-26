@@ -33,6 +33,7 @@
         GCSummaryAll.DataSource = data
 
         GVSummaryAll.Columns("volcom_indonesia").Caption = "VOLCOM INDONESIA" + Environment.NewLine + "(VCIN)"
+        GVSummaryAll.Columns("volcom_sogo").Caption = "VOLCOM SOGO" + Environment.NewLine + "(VCIN)"
         GVSummaryAll.Columns("bemo_corner").Caption = "BEMO CORNER" + Environment.NewLine + "(VCOM)"
         GVSummaryAll.Columns("kuta_square").Caption = "KUTA SQUARE" + Environment.NewLine + "(VOCM)"
         GVSummaryAll.Columns("seminyak").Caption = "SEMINYAK" + Environment.NewLine + "(PTVI)"
