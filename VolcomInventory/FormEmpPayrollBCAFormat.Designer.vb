@@ -38,12 +38,17 @@ Partial Class FormEmpPayrollBCAFormat
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CESamePeriod = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBCAFormat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBCAFormat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CESamePeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -79,9 +84,10 @@ Partial Class FormEmpPayrollBCAFormat
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.PanelControl1)
         Me.PanelControl2.Controls.Add(Me.TBFileAddress)
         Me.PanelControl2.Controls.Add(Me.BBrowse)
-        Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Controls.Add(Me.BExcel)
         Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -116,7 +122,7 @@ Partial Class FormEmpPayrollBCAFormat
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 14)
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl1.TabIndex = 2
@@ -227,6 +233,25 @@ Partial Class FormEmpPayrollBCAFormat
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
         '
+        'CESamePeriod
+        '
+        Me.CESamePeriod.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CESamePeriod.Location = New System.Drawing.Point(7, 8)
+        Me.CESamePeriod.Name = "CESamePeriod"
+        Me.CESamePeriod.Properties.Caption = "Include DW"
+        Me.CESamePeriod.Size = New System.Drawing.Size(75, 19)
+        Me.CESamePeriod.TabIndex = 91
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.CESamePeriod)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(688, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(88, 35)
+        Me.PanelControl1.TabIndex = 92
+        '
         'FormEmpPayrollBCAFormat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -247,6 +272,9 @@ Partial Class FormEmpPayrollBCAFormat
         CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBCAFormat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBCAFormat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CESamePeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -268,4 +296,6 @@ Partial Class FormEmpPayrollBCAFormat
     Friend WithEvents BBrowse As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CESamePeriod As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
 End Class

@@ -456,7 +456,9 @@
         IFNULL(sz8.8,'-') AS `8`,
         IFNULL(sz9.9,'-') AS `9`,
         IFNULL(sz10.10,'-') AS `10`,
-        IFNULL(sz11.11,'-') AS `11`
+        IFNULL(sz11.11,'-') AS `11`,
+        IFNULL(sz12.12,'-') AS `12`,
+        IFNULL(sz13.13,'-') AS `13`
         FROM tb_m_employee e 
         INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
         LEFT JOIN (
@@ -536,6 +538,20 @@
 	        WHERE s.id_emp_uni_size_template=11
 	        GROUP BY s.id_employee
         ) sz11 ON sz11.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `12`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=12
+	        GROUP BY s.id_employee
+        ) sz12 ON sz12.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `13`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=13
+	        GROUP BY s.id_employee
+        ) sz13 ON sz13.id_employee = e.id_employee
         WHERE e.id_employee_active=1
         " + id_dept + "
         ORDER BY  d.departement ASC,e.id_employee_level ASC "

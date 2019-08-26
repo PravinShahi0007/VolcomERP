@@ -290,7 +290,6 @@ WHERE report_mark_type='142' AND id_report='" & id_report_mark_cancel & "' AND i
         '... 
         ' creating and saving the view's layout to a new memory stream 
 
-        '
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVReportList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
