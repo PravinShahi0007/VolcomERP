@@ -42,6 +42,14 @@
         End If
     End Sub
 
+    Sub calculate()
+        GVCOPComponent.RefreshData()
+        GCCOPComponent.Refresh()
+        '
+        TEEcop.EditValue = GVCOPComponent.Columns("sub_tot").SummaryItem.SummaryValue
+        TEAdditionalCost.EditValue = GVCOPComponent.Columns("additional").SummaryItem.SummaryValue
+    End Sub
+
     Sub load_det_input()
         Try
             Dim query As String = "SELECT description,id_currency," & decimalSQL(TETodayKurs.EditValue.ToString) & " AS kurs,before_kurs,additional FROM tb_design_cop_propose_comp WHERE id_design_cop_propose_det='" & id_det & "'"
@@ -178,10 +186,16 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        calculate()
+
         If Not BGVItemList.RowCount > 0 Then
             warningCustom("Please choose the design first")
         ElseIf id_comp_contact = "-1" Then
             warningCustom("Please fill the vendor")
+        ElseIf TEEcop.EditValue = 0 Then
+            warningCustom("Please put the cost")
+        ElseIf TETodayKurs.EditValue = 0 Then
+            warningCustom("Today transaction kurs still not submitted, please contact accounting.")
         Else
             Dim check As Boolean = False
             For i As Integer = 0 To FormMasterDesignCOPPropose.BGVItemList.RowCount - 1
@@ -192,57 +206,74 @@
             Next
 
             If check = False Then
-                '                If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" And BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString = "" Then
-                '                    warningCustom("This design dont have PD created, please change the cost normally.")
-                '                Else
-                '                    Dim check_rec_qc As String = "SELECT prod_det.id_prod_order_det,SUM(prod_rec_d.prod_order_rec_det_qty) AS receive_created_qty
-                'FROM tb_prod_order_rec_det prod_rec_d
-                'INNER JOIN tb_prod_order_det prod_det ON prod_det.id_prod_order_det=prod_rec_d.id_prod_order_det
-                'INNER JOIN tb_prod_order_rec prod_rec ON prod_rec_d.id_prod_order_rec=prod_rec.id_prod_order_rec
-                'INNER JOIN tb_prod_demand_product pd_prod ON prod_det.id_prod_demand_product=pd_prod.id_prod_demand_product
-                'INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design=pd_prod.id_prod_demand_design
-                'WHERE pd_desg.id_design='" & BGVItemList.GetFocusedRowCellValue("id_design").ToString & "' AND prod_rec.id_report_status=6 GROUP BY prod_rec_d.id_prod_order_det"
-                '                    Dim data_rec_qc As DataTable = execute_query(check_rec_qc, -1, True, "", "", "", "")
+                If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" And BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString = "" Then
+                    warningCustom("This design dont have PD created, please change the cost normally.")
+                Else
+                    Dim check_rec_qc As String = "SELECT prod_det.id_prod_order_det,SUM(prod_rec_d.prod_order_rec_det_qty) AS receive_created_qty
+                FROM tb_prod_order_rec_det prod_rec_d
+                INNER JOIN tb_prod_order_det prod_det ON prod_det.id_prod_order_det=prod_rec_d.id_prod_order_det
+                INNER JOIN tb_prod_order_rec prod_rec ON prod_rec_d.id_prod_order_rec=prod_rec.id_prod_order_rec
+                INNER JOIN tb_prod_demand_product pd_prod ON prod_det.id_prod_demand_product=pd_prod.id_prod_demand_product
+                INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design=pd_prod.id_prod_demand_design
+                WHERE pd_desg.id_design='" & BGVItemList.GetFocusedRowCellValue("id_design").ToString & "' AND prod_rec.id_report_status=6 GROUP BY prod_rec_d.id_prod_order_det"
+                    Dim data_rec_qc As DataTable = execute_query(check_rec_qc, -1, True, "", "", "", "")
 
-                '                    If data_rec_qc.Rows.Count > 0 Then
-                '                        warningCustom("This design already received at QC. Please cancel receive QC first before adjusting COP PD.")
-                '                    Else
-                '                        Dim newRow As DataRow = (TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable)).NewRow()
-                '                        newRow("id_design") = BGVItemList.GetFocusedRowCellValue("id_design").ToString
-                '                        newRow("design_code") = BGVItemList.GetFocusedRowCellValue("design_code").ToString
-                '                        newRow("design_display_name") = BGVItemList.GetFocusedRowCellValue("design_display_name").ToString
-                '                        newRow("target_cost") = BGVItemList.GetFocusedRowCellValue("target_cost")
-                '                        '
-                '                        newRow("id_comp_contact") = id_comp_contact
-                '                        newRow("comp_number") = TEVendor.Text
-                '                        newRow("comp_name") = TEVendorName.Text
-                '                        ''search currency
-                '                        'newRow("id_currency") = LECurrency.EditValue.ToString
-                '                        'perbaiki here
-                '                        'newRow("currency") = LECurrency.Text
-                '                        newRow("kurs") = TETodayKurs.EditValue
-                '                        newRow("design_cop") = TEEcop.EditValue
-                '                        newRow("add_cost") = TEAdditionalCost.EditValue
-                '                        newRow("design_cop_ex") = TEEcop.EditValue - TEAdditionalCost.EditValue
-                '                        '
-                '                        If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" Then
-                '                            newRow("id_comp_contact_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
-                '                            newRow("comp_number_before") = BGVItemList.GetFocusedRowCellValue("comp_number_pd").ToString
-                '                            newRow("comp_name_before") = BGVItemList.GetFocusedRowCellValue("comp_name_pd").ToString
-                '                            newRow("id_currency_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString
-                '                            newRow("currency_before") = BGVItemList.GetFocusedRowCellValue("curr_pd").ToString
-                '                            newRow("kurs_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
-                '                            newRow("design_cop_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd")
-                '                            newRow("add_cost_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
-                '                            newRow("design_cop_ex_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd") - BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
-                '                        End If
-                '                        '
-                '                        TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable).Rows.Add(newRow)
-                '                        FormMasterDesignCOPPropose.GCItemList.RefreshDataSource()
-                '                        FormMasterDesignCOPPropose.BGVItemList.BestFitColumns()
-                '                        FormMasterDesignCOPPropose.check_but()
-                '                    End If
-                '                End If
+                    If data_rec_qc.Rows.Count > 0 Then
+                        warningCustom("This design already received at QC. Please cancel receive QC first before adjusting COP PD.")
+                    Else
+                        'insert det
+                        Dim id_propose As String = FormMasterDesignCOPPropose.id_propose
+                        Dim target_cost As String = decimalSQL(BGVItemList.GetFocusedRowCellValue("target_cost").ToString)
+                        Dim id_design As String = BGVItemList.GetFocusedRowCellValue("id_design").ToString
+                        '
+                        Dim id_cur_before As String = ""
+                        Dim kurs_before As String = ""
+                        Dim cop_before As String = ""
+                        Dim id_contact_before As String = ""
+                        Dim add_cost_before As String = ""
+                        '
+                        Dim id_cur_after As String = ""
+                        Dim kurs_after As String = ""
+                        Dim cop_after As String = ""
+                        Dim id_contact_after As String = ""
+                        Dim add_cost_after As String = ""
+                        '
+                        If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" Then
+                            id_contact_before = "'" & BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString & "'"
+                            id_cur_before = "'" & BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString & "'"
+                            kurs_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("prod_order_cop_kurs_pd").ToString) & "'"
+                            cop_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd").ToString) & "'"
+                            add_cost_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_addcost").ToString) & "'"
+                        Else
+                            id_contact_before = "NULL"
+                            id_cur_before = "NULL"
+                            kurs_before = "NULL"
+                            cop_before = "NULL"
+                            add_cost_before = "NULL"
+                        End If
+                        '
+                        Dim query As String = ""
+                        query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES"
+                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "','" & id_cur_before & "','" & kurs_before & "','" & cop_before & "','" & id_contact_before & "','" & add_cost_before & "','" & id_cur_after & "','" & kurs_after & "','" & cop_after & "','" & id_contact_after & "','" & add_cost_after & "'); SELECT LAST_INSERT_ID(); "
+                        id_det = execute_query(query, 0, True, "", "", "", "")
+                        'MsgBox(query)
+                        'execute_non_query(query, True, "", "", "", "")
+                        query = "INSERT INTO tb_design_cop_propose_comp(`id_design_cop_propose_det`,`description`,`id_currency`,`kurs`,`before_kurs`,`additional`) VALUES"
+                        For i = 0 To GVCOPComponent.RowCount - 1
+                            If Not i = 0 Then
+                                query += ","
+                            End If
+                            query += "('" & id_det & "','" & addSlashes(GVCOPComponent.GetRowCellValue(i, "description").ToString) & "','','','','')"
+                        Next
+                        'insert component
+                        '
+
+                        'FormMasterDesignCOPPropose.GCItemList.RefreshDataSource()
+                        'FormMasterDesignCOPPropose.BGVItemList.BestFitColumns()
+                        'FormMasterDesignCOPPropose.check_but()
+                        Close()
+                    End If
+                End If
             Else
                 warningCustom("This design already listed")
             End If
@@ -263,5 +294,9 @@
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         add_row()
         show_but()
+    End Sub
+
+    Private Sub GVCOPComponent_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVCOPComponent.CellValueChanged
+        calculate()
     End Sub
 End Class

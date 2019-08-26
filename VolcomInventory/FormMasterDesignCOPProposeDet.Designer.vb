@@ -837,9 +837,9 @@ Partial Class FormMasterDesignCOPProposeDet
         '
         Me.BSearchByCode.Location = New System.Drawing.Point(247, 32)
         Me.BSearchByCode.Name = "BSearchByCode"
-        Me.BSearchByCode.Size = New System.Drawing.Size(83, 23)
+        Me.BSearchByCode.Size = New System.Drawing.Size(103, 23)
         Me.BSearchByCode.TabIndex = 8908
-        Me.BSearchByCode.Text = "Search"
+        Me.BSearchByCode.Text = "Search by code"
         '
         'LabelControl2
         '
@@ -895,9 +895,9 @@ Partial Class FormMasterDesignCOPProposeDet
         '
         Me.BSearch.Location = New System.Drawing.Point(247, 6)
         Me.BSearch.Name = "BSearch"
-        Me.BSearch.Size = New System.Drawing.Size(83, 23)
+        Me.BSearch.Size = New System.Drawing.Size(103, 23)
         Me.BSearch.TabIndex = 8903
-        Me.BSearch.Text = "Search"
+        Me.BSearch.Text = "Search by delivery"
         '
         'LabelControl6
         '
