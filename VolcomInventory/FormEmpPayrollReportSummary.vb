@@ -178,13 +178,14 @@
 
         data.Columns.Add("information", GetType(String))
         data.Columns.Add("volcom_indonesia", GetType(Decimal))
+        data.Columns.Add("volcom_sogo", GetType(Decimal))
         data.Columns.Add("bemo_corner", GetType(Decimal))
         data.Columns.Add("kuta_square", GetType(Decimal))
         data.Columns.Add("seminyak", GetType(Decimal))
 
-        data.Rows.Add("TRANSFER BCA EFEKTIF " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("eff_trans_date").ToString).ToString("dd MMMM yyyy").ToUpper, 0, 0, 0, 0)
-        data.Rows.Add("CASH EFEKTIF " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("eff_trans_date").ToString).ToString("dd MMMM yyyy").ToUpper, 0, 0, 0, 0)
-        data.Rows.Add("Cooperative ", 0, 0, 0, 0)
+        data.Rows.Add("TRANSFER BCA EFEKTIF " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("eff_trans_date").ToString).ToString("dd MMMM yyyy").ToUpper, 0, 0, 0, 0, 0)
+        data.Rows.Add("CASH EFEKTIF " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("eff_trans_date").ToString).ToString("dd MMMM yyyy").ToUpper, 0, 0, 0, 0, 0)
+        data.Rows.Add("Cooperative ", 0, 0, 0, 0, 0)
 
         Dim transfer As Decimal = 0.00
         Dim cash As Decimal = 0.00
@@ -211,6 +212,11 @@
                     data.Rows(0)("seminyak") += transfer
                     data.Rows(1)("seminyak") += cash
                     data.Rows(2)("seminyak") += cooperative
+                ElseIf data_ori.Rows(i)("id_departement").ToString = "17" Then
+                    'sogo
+                    data.Rows(0)("volcom_sogo") += transfer
+                    data.Rows(1)("volcom_sogo") += cash
+                    data.Rows(2)("volcom_sogo") += cooperative
                 Else
                     data.Rows(0)("volcom_indonesia") += transfer
                     data.Rows(1)("volcom_indonesia") += cash

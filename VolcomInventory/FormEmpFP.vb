@@ -159,4 +159,25 @@
     Private Sub UploadFingerFacespesifikToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UploadFingerFacespesifikToolStripMenuItem.Click
         FormEmpFPSingle.ShowDialog()
     End Sub
+
+    Private Sub SetDeviceTimeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetDeviceTimeToolStripMenuItem.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to turn set your PC clock to this device?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim fp As New ClassFingerPrint()
+            fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+            fp.port = GVFP.GetFocusedRowCellValue("port").ToString
+            fp.maintenance_datetime()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GetDeviceTimeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GetDeviceTimeToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim fp As New ClassFingerPrint()
+        fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+        fp.port = GVFP.GetFocusedRowCellValue("port").ToString
+        fp.get_datetime()
+        Cursor = Cursors.Default
+    End Sub
 End Class
