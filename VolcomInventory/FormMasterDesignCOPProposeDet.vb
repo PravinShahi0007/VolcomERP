@@ -25,6 +25,9 @@
             TEVendor.Text = FormMasterDesignCOPPropose.BGVItemList.GetFocusedRowCellValue("comp_number").ToString
             TEVendorName.Text = FormMasterDesignCOPPropose.BGVItemList.GetFocusedRowCellValue("comp_name").ToString
             '
+            TEVendor.Properties.ReadOnly = True
+            BtnBrowseContactFrom.Visible = False
+            '
             calculate()
             '
             LTodayKurs.Visible = False
