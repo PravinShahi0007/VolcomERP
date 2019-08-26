@@ -25,7 +25,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCComponent = New DevExpress.XtraEditors.PanelControl()
         Me.GCCOPComponent = New DevExpress.XtraGrid.GridControl()
         Me.GVCOPComponent = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,7 +41,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LTodayKurs = New DevExpress.XtraEditors.LabelControl()
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -81,7 +81,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCSeason = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeasonByCode = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -99,8 +99,8 @@ Partial Class FormMasterDesignCOPProposeDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
+        CType(Me.PCComponent, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCComponent.SuspendLayout()
         CType(Me.GCCOPComponent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCOPComponent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEComp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,8 +119,8 @@ Partial Class FormMasterDesignCOPProposeDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCSeason, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSeason.SuspendLayout()
         CType(Me.SLESeasonByCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,16 +180,16 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.BtnSave.TabIndex = 8
         Me.BtnSave.Text = "Pick"
         '
-        'PanelControl2
+        'PCComponent
         '
-        Me.PanelControl2.Controls.Add(Me.GCCOPComponent)
-        Me.PanelControl2.Controls.Add(Me.PanelControl5)
-        Me.PanelControl2.Controls.Add(Me.PanelControl4)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(631, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(445, 427)
-        Me.PanelControl2.TabIndex = 1
+        Me.PCComponent.Controls.Add(Me.GCCOPComponent)
+        Me.PCComponent.Controls.Add(Me.PanelControl5)
+        Me.PCComponent.Controls.Add(Me.PanelControl4)
+        Me.PCComponent.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PCComponent.Location = New System.Drawing.Point(631, 0)
+        Me.PCComponent.Name = "PCComponent"
+        Me.PCComponent.Size = New System.Drawing.Size(445, 427)
+        Me.PCComponent.TabIndex = 1
         '
         'GCCOPComponent
         '
@@ -356,7 +356,7 @@ Partial Class FormMasterDesignCOPProposeDet
         '
         'PanelControl5
         '
-        Me.PanelControl5.Controls.Add(Me.LabelControl8)
+        Me.PanelControl5.Controls.Add(Me.LTodayKurs)
         Me.PanelControl5.Controls.Add(Me.TETodayKurs)
         Me.PanelControl5.Controls.Add(Me.BDelete)
         Me.PanelControl5.Controls.Add(Me.BAdd)
@@ -366,14 +366,14 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.PanelControl5.Size = New System.Drawing.Size(441, 40)
         Me.PanelControl5.TabIndex = 8925
         '
-        'LabelControl8
+        'LTodayKurs
         '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(8, 13)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl8.TabIndex = 8903
-        Me.LabelControl8.Text = "Today Kurs"
+        Me.LTodayKurs.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LTodayKurs.Location = New System.Drawing.Point(8, 13)
+        Me.LTodayKurs.Name = "LTodayKurs"
+        Me.LTodayKurs.Size = New System.Drawing.Size(54, 13)
+        Me.LTodayKurs.TabIndex = 8903
+        Me.LTodayKurs.Text = "Today Kurs"
         '
         'TETodayKurs
         '
@@ -473,6 +473,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.TEAdditionalCost.Properties.Mask.EditMask = "N2"
         Me.TEAdditionalCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEAdditionalCost.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEAdditionalCost.Properties.ReadOnly = True
         Me.TEAdditionalCost.Size = New System.Drawing.Size(288, 20)
         Me.TEAdditionalCost.TabIndex = 8921
         '
@@ -511,12 +512,13 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.TEEcop.Properties.Mask.EditMask = "N2"
         Me.TEEcop.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEEcop.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEEcop.Properties.ReadOnly = True
         Me.TEEcop.Size = New System.Drawing.Size(288, 20)
         Me.TEEcop.TabIndex = 8910
         '
         'BtnBrowseContactFrom
         '
-        Me.BtnBrowseContactFrom.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.BtnBrowseContactFrom.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.BtnBrowseContactFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactFrom.Appearance.Options.UseFont = True
         Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(399, 12)
@@ -778,19 +780,19 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         '
-        'PanelControl3
+        'PCSeason
         '
-        Me.PanelControl3.Controls.Add(Me.SLESeasonByCode)
-        Me.PanelControl3.Controls.Add(Me.BSearchByCode)
-        Me.PanelControl3.Controls.Add(Me.LabelControl2)
-        Me.PanelControl3.Controls.Add(Me.SLESeason)
-        Me.PanelControl3.Controls.Add(Me.BSearch)
-        Me.PanelControl3.Controls.Add(Me.LabelControl6)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(631, 60)
-        Me.PanelControl3.TabIndex = 8
+        Me.PCSeason.Controls.Add(Me.SLESeasonByCode)
+        Me.PCSeason.Controls.Add(Me.BSearchByCode)
+        Me.PCSeason.Controls.Add(Me.LabelControl2)
+        Me.PCSeason.Controls.Add(Me.SLESeason)
+        Me.PCSeason.Controls.Add(Me.BSearch)
+        Me.PCSeason.Controls.Add(Me.LabelControl6)
+        Me.PCSeason.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCSeason.Location = New System.Drawing.Point(0, 0)
+        Me.PCSeason.Name = "PCSeason"
+        Me.PCSeason.Size = New System.Drawing.Size(631, 60)
+        Me.PCSeason.TabIndex = 8
         '
         'SLESeasonByCode
         '
@@ -914,8 +916,8 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1076, 466)
         Me.Controls.Add(Me.GCItemList)
-        Me.Controls.Add(Me.PanelControl3)
-        Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PCSeason)
+        Me.Controls.Add(Me.PCComponent)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -926,8 +928,8 @@ Partial Class FormMasterDesignCOPProposeDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PCComponent, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCComponent.ResumeLayout(False)
         CType(Me.GCCOPComponent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCOPComponent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEComp, System.ComponentModel.ISupportInitialize).EndInit()
@@ -948,9 +950,9 @@ Partial Class FormMasterDesignCOPProposeDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
+        CType(Me.PCSeason, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSeason.ResumeLayout(False)
+        Me.PCSeason.PerformLayout()
         CType(Me.SLESeasonByCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -961,7 +963,7 @@ Partial Class FormMasterDesignCOPProposeDet
 
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCComponent As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
     Friend WithEvents BGVItemList As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -993,7 +995,7 @@ Partial Class FormMasterDesignCOPProposeDet
     Friend WithEvents TEVendor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnBrowseContactFrom As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCSeason As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLESeasonByCode As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1030,7 +1032,7 @@ Partial Class FormMasterDesignCOPProposeDet
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LTodayKurs As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TETodayKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton

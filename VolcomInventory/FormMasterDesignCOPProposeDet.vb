@@ -2,6 +2,7 @@
     Public id_comp As String = "-1"
     Public id_comp_contact As String = "-1"
     Public id_det As String = "-1"
+    Public is_view As String = "2"
 
     Private Sub FormMasterDesignCOPProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'check kurs first
@@ -19,6 +20,25 @@
         view_currency_grid()
         '
         load_det_input()
+        '
+        If is_view = "1" Then
+            TEVendor.Text = FormMasterDesignCOPPropose.BGVItemList.GetFocusedRowCellValue("comp_number").ToString
+            TEVendorName.Text = FormMasterDesignCOPPropose.BGVItemList.GetFocusedRowCellValue("comp_name").ToString
+            '
+            calculate()
+            '
+            LTodayKurs.Visible = False
+            TETodayKurs.Visible = False
+            '
+            PCSeason.Visible = False
+            GCItemList.Visible = False
+            PCComponent.Dock = DockStyle.Fill
+            '
+            BAdd.Visible = False
+            BDelete.Visible = False
+            GVCOPComponent.OptionsBehavior.ReadOnly = True
+            BtnSave.Visible = False
+        End If
     End Sub
 
     Sub add_row()
@@ -72,9 +92,6 @@
     End Sub
     Sub load_det(ByVal opt As String)
         Dim query_where As String = ""
-        '
-        TEEcop.EditValue = 0.00
-        TEAdditionalCost.EditValue = 0.00
         '
         If opt = "code" Then
             If Not SLESeasonByCode.EditValue.ToString = "-1" Then
@@ -237,7 +254,8 @@
                         Dim cop_after As String = ""
                         Dim id_contact_after As String = ""
                         Dim add_cost_after As String = ""
-                        '
+
+                        'before
                         If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" Then
                             id_contact_before = "'" & BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString & "'"
                             id_cur_before = "'" & BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString & "'"
@@ -251,26 +269,39 @@
                             cop_before = "NULL"
                             add_cost_before = "NULL"
                         End If
-                        '
+
+                        'after
+                        Dim id_currency As String = "1"
+                        For i = 0 To GVCOPComponent.RowCount - 1
+                            If Not GVCOPComponent.GetRowCellValue(i, "id_currency").ToString = "1" Then
+                                id_currency = GVCOPComponent.GetRowCellValue(i, "id_currency").ToString
+                            End If
+                        Next
+
+                        id_cur_after = id_currency
+                        kurs_after = decimalSQL(TETodayKurs.EditValue.ToString)
+                        cop_after = decimalSQL(TEEcop.EditValue.ToString)
+                        id_contact_after = id_comp_contact
+                        add_cost_after = decimalSQL(TEAdditionalCost.EditValue.ToString)
+
                         Dim query As String = ""
                         query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES"
-                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "','" & id_cur_before & "','" & kurs_before & "','" & cop_before & "','" & id_contact_before & "','" & add_cost_before & "','" & id_cur_after & "','" & kurs_after & "','" & cop_after & "','" & id_contact_after & "','" & add_cost_after & "'); SELECT LAST_INSERT_ID(); "
+                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_cur_before & "," & kurs_before & "," & cop_before & "," & id_contact_before & "," & add_cost_before & ",'" & id_cur_after & "','" & kurs_after & "','" & cop_after & "','" & id_contact_after & "','" & add_cost_after & "'); SELECT LAST_INSERT_ID(); "
                         id_det = execute_query(query, 0, True, "", "", "", "")
-                        'MsgBox(query)
-                        'execute_non_query(query, True, "", "", "", "")
+
+                        'insert component
                         query = "INSERT INTO tb_design_cop_propose_comp(`id_design_cop_propose_det`,`description`,`id_currency`,`kurs`,`before_kurs`,`additional`) VALUES"
                         For i = 0 To GVCOPComponent.RowCount - 1
                             If Not i = 0 Then
                                 query += ","
                             End If
-                            query += "('" & id_det & "','" & addSlashes(GVCOPComponent.GetRowCellValue(i, "description").ToString) & "','','','','')"
+                            query += "('" & id_det & "','" & addSlashes(GVCOPComponent.GetRowCellValue(i, "description").ToString) & "','" & GVCOPComponent.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(TETodayKurs.EditValue.ToString) & "','" & decimalSQL(GVCOPComponent.GetRowCellValue(i, "before_kurs").ToString) & "','" & decimalSQL(GVCOPComponent.GetRowCellValue(i, "additional").ToString) & "')"
                         Next
-                        'insert component
-                        '
+                        execute_non_query(query, True, "", "", "", "")
 
-                        'FormMasterDesignCOPPropose.GCItemList.RefreshDataSource()
-                        'FormMasterDesignCOPPropose.BGVItemList.BestFitColumns()
-                        'FormMasterDesignCOPPropose.check_but()
+                        FormMasterDesignCOPPropose.load_det()
+                        FormMasterDesignCOPPropose.BGVItemList.BestFitColumns()
+                        FormMasterDesignCOPPropose.check_but()
                         Close()
                     End If
                 End If

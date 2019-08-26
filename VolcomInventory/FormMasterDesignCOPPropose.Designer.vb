@@ -83,8 +83,8 @@ Partial Class FormMasterDesignCOPPropose
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.CENeedMarketing = New DevExpress.XtraEditors.CheckEdit()
         Me.CEAdditionalCost = New DevExpress.XtraEditors.CheckEdit()
+        Me.CENeedMarketing = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -110,8 +110,8 @@ Partial Class FormMasterDesignCOPPropose
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottomLeft.SuspendLayout()
-        CType(Me.CENeedMarketing.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEAdditionalCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENeedMarketing.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -757,14 +757,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft.Size = New System.Drawing.Size(886, 122)
         Me.PanelControlBottomLeft.TabIndex = 172
         '
-        'CENeedMarketing
-        '
-        Me.CENeedMarketing.Location = New System.Drawing.Point(61, 90)
-        Me.CENeedMarketing.Name = "CENeedMarketing"
-        Me.CENeedMarketing.Properties.Caption = "Need Marketing Approval"
-        Me.CENeedMarketing.Size = New System.Drawing.Size(151, 19)
-        Me.CENeedMarketing.TabIndex = 145
-        '
         'CEAdditionalCost
         '
         Me.CEAdditionalCost.Location = New System.Drawing.Point(218, 90)
@@ -772,6 +764,14 @@ Partial Class FormMasterDesignCOPPropose
         Me.CEAdditionalCost.Properties.Caption = "Additional Cost"
         Me.CEAdditionalCost.Size = New System.Drawing.Size(95, 19)
         Me.CEAdditionalCost.TabIndex = 146
+        '
+        'CENeedMarketing
+        '
+        Me.CENeedMarketing.Location = New System.Drawing.Point(61, 90)
+        Me.CENeedMarketing.Name = "CENeedMarketing"
+        Me.CENeedMarketing.Properties.Caption = "Need Marketing Approval"
+        Me.CENeedMarketing.Size = New System.Drawing.Size(151, 19)
+        Me.CENeedMarketing.TabIndex = 145
         '
         'FormMasterDesignCOPPropose
         '
@@ -817,8 +817,8 @@ Partial Class FormMasterDesignCOPPropose
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottomLeft.ResumeLayout(False)
         Me.PanelControlBottomLeft.PerformLayout()
-        CType(Me.CENeedMarketing.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEAdditionalCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENeedMarketing.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

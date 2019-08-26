@@ -244,7 +244,10 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSl
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            BGVItemList.DeleteSelectedRows()
+            'BGVItemList.DeleteSelectedRows()
+            Dim query As String = "DELETE FROM tb_design_cop_propose_det WHERE id_design_cop_propose_det='" & BGVItemList.GetFocusedRowCellValue("id_design_cop_propose_det").ToString & "'"
+            execute_non_query(query, True, "", "", "", "")
+            load_det()
             check_but()
         End If
     End Sub
@@ -315,6 +318,14 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSl
         Else
             GBAfter.Caption = "Propose"
             GBBefore.Visible = False
+        End If
+    End Sub
+
+    Private Sub BGVItemList_DoubleClick(sender As Object, e As EventArgs) Handles BGVItemList.DoubleClick
+        If BGVItemList.RowCount > 0 Then
+            FormMasterDesignCOPProposeDet.id_det = BGVItemList.GetFocusedRowCellValue("id_design_cop_propose_det")
+            FormMasterDesignCOPProposeDet.is_view = "1"
+            FormMasterDesignCOPProposeDet.ShowDialog()
         End If
     End Sub
 End Class
