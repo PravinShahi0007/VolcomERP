@@ -90,7 +90,7 @@ WHERE dsg.id_design='" & id_design & "'"
 
         Dim is_use_target_cost As String = "2"
         Dim qst As String = "SELECT is_use_target_cost FROM tb_season WHERE id_season='" & id_season.ToString & "'"
-        Console.WriteLine(qst)
+
         is_use_target_cost = execute_query(qst, 0, True, "", "", "", "")
 
         Return is_use_target_cost
