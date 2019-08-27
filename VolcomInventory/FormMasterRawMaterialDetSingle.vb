@@ -140,8 +140,9 @@ Public Class FormMasterRawMaterialDetSingle
                 End Try
             End If
             Cursor = Cursors.Default
-            End If
+        End If
     End Sub
+
     'Form Load
     Private Sub FormMasterRawMaterialDetSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_form()
@@ -553,7 +554,7 @@ Public Class FormMasterRawMaterialDetSingle
         ElseIf Not res = "0" Then
             stopCustom("Material already stored by default cost.")
             'ElseIf Not price.Substring(price.Length - 2) = "00" Then
-            '    stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
+            'stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
         Else
             Dim confirm As DialogResult
 

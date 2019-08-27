@@ -250,7 +250,7 @@
             FormDocumentUpload.id_report = id_order
             FormDocumentUpload.report_mark_type = "39"
             If id_report_status <> "1" Then
-                FormDocumentUpload.is_view = "1"
+                FormDocumentUpload.is_no_delete = "1"
                 FormDocumentUpload.ShowDialog()
             Else
                 FormDocumentUpload.ShowDialog()
