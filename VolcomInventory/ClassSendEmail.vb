@@ -972,9 +972,8 @@ Public Class ClassSendEmail
                 '-- start attachment 
                 'Create a New report cek combine ato gk 
                 ReportSalesDelOrderDet.id_pl_sales_order_del = id_report
+                'ReportSalesDelOrderDet.rmt 
                 Dim Report As New ReportSalesDelOrderDet()
-
-
                 ' Create a new memory stream and export the report into it as PDF.
                 Dim Mem As New MemoryStream()
                 Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
@@ -984,6 +983,11 @@ Public Class ClassSendEmail
                 Dim Att = New Attachment(Mem, report_mark_type & "_" & unik_file & ".pdf", "application/pdf")
                 mail.Attachments.Add(Att)
                 '-- end attachment
+
+                mail.Subject = "Delivery Confirmation - " + design_code
+                mail.IsBodyHtml = True
+                mail.Body = body_temp
+                client.Send(mail)
             End If
         ElseIf report_mark_type = "39" Then
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Online Store Order - Volcom ERP")
