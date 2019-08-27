@@ -108,6 +108,7 @@ Public Class FormSalesDelOrderDet
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
             TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
+            is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
 
             'uniform
             Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
@@ -1243,47 +1244,73 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Sub getReport()
-        GridColumnNo.VisibleIndex = 0
-        GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
-        For i As Integer = 0 To GVItemList.RowCount - 1
-            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
-        Next
-        GCItemList.RefreshDataSource()
-        GVItemList.RefreshData()
-        ReportSalesDelOrderDet.dt = GCItemList.DataSource
-        ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
-        Dim Report As New ReportSalesDelOrderDet()
+        If is_use_unique_code = "-1" Then
+            GridColumnNo.VisibleIndex = 0
+            GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
+            For i As Integer = 0 To GVItemList.RowCount - 1
+                GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+            Next
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+            ReportSalesDelOrderDet.dt = GCItemList.DataSource
+            ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
+            Dim Report As New ReportSalesDelOrderDet()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVItemList)
+            'Grid Detail
+            ReportStyleGridview(Report.GVItemList)
 
-        'Parse val
-        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-        Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-        Report.LabelAddress.Text = MEAdrressCompTo.Text
-        Report.LRecDate.Text = DEForm.Text
-        Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
-        Report.LabelNote.Text = MENote.Text
-        Report.LabelPrepare.Text = TxtSalesOrder.Text
-        Report.LabelCat.Text = LEStatusSO.Text
-        Report.LabelUni3.Text = TxtNIK.Text
-        Report.LabelUni6.Text = TxtEmployee.Text
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPrepare.Text = TxtSalesOrder.Text
+            Report.LabelCat.Text = LEStatusSO.Text
+            Report.LabelUni3.Text = TxtNIK.Text
+            Report.LabelUni6.Text = TxtEmployee.Text
 
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        GVItemList.ActiveFilterString = ""
-        GridColumnNo.Visible = False
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            GVItemList.ActiveFilterString = ""
+            GridColumnNo.Visible = False
+        Else
+            ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del
+            ReportSalesDelOrderOwnStore.rmt = "43"
+            Dim Report As New ReportSalesDelOrderOwnStore()
+
+
+            'Grid Detail
+            ReportStyleGridviewBlackLine(Report.GVItemList)
+
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPrepare.Text = TxtSalesOrder.Text
+            Report.LabelCat.Text = LEStatusSO.Text
+            Report.LabelUni3.Text = TxtNIK.Text
+            Report.LabelUni6.Text = TxtEmployee.Text
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
     End Sub
 
     'Color Cell
