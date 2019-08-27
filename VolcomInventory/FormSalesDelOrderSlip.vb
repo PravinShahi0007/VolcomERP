@@ -177,9 +177,10 @@ Public Class FormSalesDelOrderSlip
         Next
         GCItemList.RefreshDataSource()
         GVItemList.RefreshData()
-        ReportSalesDelOrderSlip.dt = GCItemList.DataSource
-        ReportSalesDelOrderSlip.id_pl_sales_order_del = id_pl_sales_order_del_slip
-        Dim Report As New ReportSalesDelOrderSlip()
+        ReportSalesDelOrderDet.dt = GCItemList.DataSource
+        ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del_slip
+        ReportSalesDelOrderDet.rmt = "103"
+        Dim Report As New ReportSalesDelOrderDet()
 
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
