@@ -76,6 +76,9 @@ Partial Class FormSetupBudgetCAPEX
         Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSampleBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSampleBudget.SuspendLayout()
         Me.XTPBudget.SuspendLayout()
@@ -108,6 +111,7 @@ Partial Class FormSetupBudgetCAPEX
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSampleBudget
@@ -143,7 +147,7 @@ Partial Class FormSetupBudgetCAPEX
         '
         'GVBudgetList
         '
-        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnYear, Me.GridColumnDivision, Me.GridColumnVal})
+        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumn7, Me.GridColumnYear, Me.GridColumnDivision, Me.GridColumnVal})
         Me.GVBudgetList.GridControl = Me.GCBudgetList
         Me.GVBudgetList.Name = "GVBudgetList"
         Me.GVBudgetList.OptionsBehavior.ReadOnly = True
@@ -167,7 +171,7 @@ Partial Class FormSetupBudgetCAPEX
         Me.GridColumnYear.OptionsColumn.ReadOnly = True
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 0
-        Me.GridColumnYear.Width = 177
+        Me.GridColumnYear.Width = 165
         '
         'GridColumnDivision
         '
@@ -177,8 +181,8 @@ Partial Class FormSetupBudgetCAPEX
         Me.GridColumnDivision.OptionsColumn.AllowEdit = False
         Me.GridColumnDivision.OptionsColumn.ReadOnly = True
         Me.GridColumnDivision.Visible = True
-        Me.GridColumnDivision.VisibleIndex = 1
-        Me.GridColumnDivision.Width = 177
+        Me.GridColumnDivision.VisibleIndex = 2
+        Me.GridColumnDivision.Width = 923
         '
         'GridColumnVal
         '
@@ -191,8 +195,8 @@ Partial Class FormSetupBudgetCAPEX
         Me.GridColumnVal.OptionsColumn.ReadOnly = True
         Me.GridColumnVal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense", "{0:N2}")})
         Me.GridColumnVal.Visible = True
-        Me.GridColumnVal.VisibleIndex = 2
-        Me.GridColumnVal.Width = 167
+        Me.GridColumnVal.VisibleIndex = 3
+        Me.GridColumnVal.Width = 283
         '
         'RICEBudget
         '
@@ -203,6 +207,8 @@ Partial Class FormSetupBudgetCAPEX
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LEDeptSum)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.DEYearBudget)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.BSearch)
@@ -215,7 +221,7 @@ Partial Class FormSetupBudgetCAPEX
         'DEYearBudget
         '
         Me.DEYearBudget.EditValue = Nothing
-        Me.DEYearBudget.Location = New System.Drawing.Point(86, 8)
+        Me.DEYearBudget.Location = New System.Drawing.Point(77, 8)
         Me.DEYearBudget.Name = "DEYearBudget"
         Me.DEYearBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEYearBudget.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -227,7 +233,7 @@ Partial Class FormSetupBudgetCAPEX
         Me.DEYearBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEYearBudget.Size = New System.Drawing.Size(239, 20)
+        Me.DEYearBudget.Size = New System.Drawing.Size(143, 20)
         Me.DEYearBudget.TabIndex = 8905
         '
         'LabelControl6
@@ -241,7 +247,7 @@ Partial Class FormSetupBudgetCAPEX
         '
         'BSearch
         '
-        Me.BSearch.Location = New System.Drawing.Point(331, 6)
+        Me.BSearch.Location = New System.Drawing.Point(558, 6)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(59, 23)
         Me.BSearch.TabIndex = 8903
@@ -674,6 +680,32 @@ Partial Class FormSetupBudgetCAPEX
         Me.BPrint.TabIndex = 8924
         Me.BPrint.Text = "Print"
         '
+        'LEDeptSum
+        '
+        Me.LEDeptSum.Location = New System.Drawing.Point(304, 8)
+        Me.LEDeptSum.Name = "LEDeptSum"
+        Me.LEDeptSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDeptSum.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
+        Me.LEDeptSum.Size = New System.Drawing.Size(248, 20)
+        Me.LEDeptSum.TabIndex = 8907
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(235, 11)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl1.TabIndex = 8906
+        Me.LabelControl1.Text = "Departement"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Departement"
+        Me.GridColumn7.FieldName = "departement"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.Width = 261
+        '
         'FormSetupBudgetCAPEX
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -719,6 +751,7 @@ Partial Class FormSetupBudgetCAPEX
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -779,4 +812,7 @@ Partial Class FormSetupBudgetCAPEX
     Friend WithEvents DEStartCard As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label4 As Label
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

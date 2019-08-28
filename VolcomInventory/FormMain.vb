@@ -8354,6 +8354,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormItemCatMain" Then
             FormItemCatMain.Close()
             FormItemCatMain.Dispose()
+        ElseIf formName = "FormSetupBudgetOPEX" Then
+            FormSetupBudgetOPEX.Close()
+            FormSetupBudgetOPEX.Dispose()
+        ElseIf formName = "FormSetupBudgetCAPEX" Then
+            FormSetupBudgetCAPEX.Close()
+            FormSetupBudgetCAPEX.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -13280,5 +13286,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
     Private Sub NBSalesRecord_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesRecord.LinkClicked
 
+    End Sub
+
+    Private Sub NBSetupBudgetCAPEX_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupBudgetCAPEX.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSetupBudgetCAPEX.MdiParent = Me
+            FormSetupBudgetCAPEX.Show()
+            FormSetupBudgetCAPEX.WindowState = FormWindowState.Maximized
+            FormSetupBudgetCAPEX.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
