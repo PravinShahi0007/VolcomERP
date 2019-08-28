@@ -41,6 +41,8 @@ Partial Class FormSampleDevelopmentDet
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetNonActive = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -51,6 +53,7 @@ Partial Class FormSampleDevelopmentDet
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEAttachment = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BShowAll = New DevExpress.XtraEditors.SimpleButton()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
@@ -58,9 +61,6 @@ Partial Class FormSampleDevelopmentDet
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.BShowTimeline = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEDev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,6 +74,7 @@ Partial Class FormSampleDevelopmentDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEAttachment, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,7 +84,6 @@ Partial Class FormSampleDevelopmentDet
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -276,6 +276,18 @@ Partial Class FormSampleDevelopmentDet
         Me.GCList.TabIndex = 1
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetNonActive})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'SetNonActive
+        '
+        Me.SetNonActive.Name = "SetNonActive"
+        Me.SetNonActive.Size = New System.Drawing.Size(152, 22)
+        Me.SetNonActive.Text = "Delete"
+        '
         'GVList
         '
         Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn9, Me.GridColumn3, Me.GridColumn8, Me.GridColumn4, Me.GridColumn5, Me.GridColumn10})
@@ -367,6 +379,16 @@ Partial Class FormSampleDevelopmentDet
         Me.RICEAttachment.ValueChecked = "yes"
         Me.RICEAttachment.ValueUnchecked = "no"
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.Caption = "Status"
+        Me.GridColumn10.FieldName = "is_active"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BShowAll)
@@ -439,30 +461,6 @@ Partial Class FormSampleDevelopmentDet
         Me.BShowTimeline.TabIndex = 8919
         Me.BShowTimeline.Text = "search"
         '
-        'GridColumn10
-        '
-        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn10.Caption = "Status"
-        Me.GridColumn10.FieldName = "is_active"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 6
-        '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "View History"
-        '
         'FormSampleDevelopmentDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -489,6 +487,7 @@ Partial Class FormSampleDevelopmentDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEAttachment, System.ComponentModel.ISupportInitialize).EndInit()
@@ -499,7 +498,6 @@ Partial Class FormSampleDevelopmentDet
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -543,5 +541,5 @@ Partial Class FormSampleDevelopmentDet
     Friend WithEvents DEDev As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ViewMenu As ContextMenuStrip
-    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SetNonActive As ToolStripMenuItem
 End Class
