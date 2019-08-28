@@ -385,4 +385,23 @@
             End If
         End If
     End Sub
+
+    Sub sendEmailConfirmationforConceptStore(ByVal is_use_unique_code As String, ByVal id_report As String, ByVal rmt As String)
+        If id_pop_up = "2" Then
+            If is_use_unique_code = "1" And SLEStatusRec.EditValue.ToString = "6" Then
+                If rmt = "43" Then
+                    'single delivery
+                Else
+
+                End If
+                Dim query As String =
+                Dim em As New ClassSendEmail
+                em.report_mark_type = "43"
+                em.opt = "2"
+                em.id_report = id_report
+                em.dt = Data
+                em.send_email()
+            End If
+        End If
+    End Sub
 End Class

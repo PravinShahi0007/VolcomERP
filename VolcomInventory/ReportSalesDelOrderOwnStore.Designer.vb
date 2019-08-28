@@ -83,7 +83,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelCompleted = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -686,15 +686,15 @@ Partial Public Class ReportSalesDelOrderOwnStore
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrPanel2})
-        Me.ReportFooter.HeightF = 126.0417!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrPanel2, Me.LabelCompleted})
+        Me.ReportFooter.HeightF = 147.9167!
         Me.ReportFooter.Name = "ReportFooter"
         Me.ReportFooter.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBandExceptFirstEntry
         '
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 101.0417!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 122.625!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(795.9999!, 25.0!)
@@ -721,7 +721,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrPanel2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrPanel2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.LabelNote, Me.XrLabel9, Me.XrLabel18})
+        Me.XrPanel2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.LabelNote, Me.XrLabel9})
         Me.XrPanel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrPanel2.Name = "XrPanel2"
         Me.XrPanel2.SizeF = New System.Drawing.SizeF(798.0!, 101.0417!)
@@ -803,18 +803,20 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrLabel9.StylePriority.UseFont = False
         Me.XrLabel9.Text = "Note :"
         '
-        'XrLabel18
+        'LabelCompleted
         '
-        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel18.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(296.0001!, 28.83336!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(336.6252!, 13.58334!)
-        Me.XrLabel18.StylePriority.UseBorders = False
-        Me.XrLabel18.StylePriority.UseFont = False
-        Me.XrLabel18.Text = "Distribution : 1. Inventory, 2. Accounting, 3. Customer"
-        Me.XrLabel18.Visible = False
+        Me.LabelCompleted.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelCompleted.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelCompleted.LocationFloat = New DevExpress.Utils.PointFloat(0!, 101.0417!)
+        Me.LabelCompleted.Name = "LabelCompleted"
+        Me.LabelCompleted.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelCompleted.SizeF = New System.Drawing.SizeF(795.9997!, 21.58331!)
+        Me.LabelCompleted.StylePriority.UseBorders = False
+        Me.LabelCompleted.StylePriority.UseFont = False
+        Me.LabelCompleted.StylePriority.UseTextAlignment = False
+        Me.LabelCompleted.Text = "Completed by [completed_by] at [completed_date] on Volcom ERP"
+        Me.LabelCompleted.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelCompleted.Visible = False
         '
         'ReportSalesDelOrderOwnStore
         '
@@ -894,5 +896,5 @@ Partial Public Class ReportSalesDelOrderOwnStore
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents PanelUni As DevExpress.XtraReports.UI.XRPanel
-    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelCompleted As DevExpress.XtraReports.UI.XRLabel
 End Class
