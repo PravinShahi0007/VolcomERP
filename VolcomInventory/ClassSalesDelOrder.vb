@@ -129,7 +129,7 @@
         Dim query As String = "SELECT a.id_pl_sales_order_del, a.id_sales_order, ac.id_store_contact_to, (d.id_comp) AS `id_store`,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, CONCAT(d.comp_number, ' - ', d.comp_name) AS `store`, (d.address_primary) AS store_address_to, d.id_so_type, ac.id_report_status, f.report_status, 
         a.pl_sales_order_del_note, a.pl_sales_order_del_date,  DATE_FORMAT(ac.combine_date,'%Y-%m-%d') AS combine_datex, DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, a.pl_sales_order_del_number, b.sales_order_number, 
         DATE_FORMAT(a.pl_sales_order_del_date,'%d %M %Y') AS pl_sales_order_del_date, ac.id_comp_contact_from,(wh.id_comp) AS `id_wh`, (wh.comp_number) AS `wh_number`,(wh.comp_name) AS `wh_name`, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, ac.id_wh_drawer, drw.wh_drawer_code, drw.wh_drawer, 
-        ac.last_update, getUserEmp(ac.last_update_by, 1) AS `last_user`, ('No') AS `is_select`,a.is_combine, a.id_combine, IFNULL(ac.combine_number,'-') AS `combine_number`, ac.combine_note  
+        ac.last_update, getUserEmp(ac.last_update_by, 1) AS `last_user`, ('No') AS `is_select`,a.is_combine, a.id_combine, IFNULL(ac.combine_number,'-') AS `combine_number`, ac.combine_note , a.is_use_unique_code
         FROM tb_pl_sales_order_del a 
         INNER JOIN tb_pl_sales_order_del_combine ac ON ac.id_combine = a.id_combine
         INNER JOIN tb_sales_order b ON a.id_sales_order = b.id_sales_order 
@@ -377,4 +377,44 @@
             em.send_email()
         End If
     End Sub
+
+    Public Function queryDelConceptStore(ByVal condition As String, id_store As String) As String
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT 
+        dd.id_product, p.id_design,
+        IF(dsg.is_old_design=1,p.product_full_code, IF(ISNULL(u.is_unique_report), CONCAT(p.product_full_code,ddc.pl_sales_order_del_det_counting), p.product_full_code)) AS `code`, 
+        p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        COUNT(ddc.id_pl_sales_order_del_det_counting) AS `qty`, 
+        dd.design_price, pt.design_price_type, 2 AS `is_combine`,
+        IF(ISNULL(u.is_unique_report), 1, u.is_unique_report) AS `is_unique_report`
+        FROM tb_pl_sales_order_del d
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+        INNER JOIN tb_pl_sales_order_del_det_counting ddc ON ddc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+        LEFT JOIN (
+            SELECT u.id_product, u.is_unique_report 
+            FROM tb_m_unique_code u
+            WHERE u.id_comp=" + id_store + "
+            GROUP BY u.id_product
+        ) u ON u.id_product = p.id_product
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
+        INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_m_comp_contact whcc ON whcc.id_comp_contact = d.id_comp_contact_from
+        INNER JOIN tb_m_comp wh ON wh.id_comp = whcc.id_comp
+        WHERE d.id_pl_sales_order_del>0 "
+        query += condition
+        query += "GROUP BY IF(dsg.is_old_design=1,p.product_full_code, IF(ISNULL(u.is_unique_report), CONCAT(p.product_full_code,ddc.pl_sales_order_del_det_counting), p.product_full_code))
+        ORDER BY dsg.design_display_name ASC, p.product_full_code ASC "
+        Return query
+    End Function
 End Class
