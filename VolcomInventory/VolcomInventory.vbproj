@@ -5102,6 +5102,12 @@
     <Compile Include="FormSetupBudgetCAPEX.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSetupBudgetCAPEXDet.Designer.vb">
+      <DependentUpon>FormSetupBudgetCAPEXDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetupBudgetCAPEXDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupBudgetOPEX.Designer.vb">
       <DependentUpon>FormSetupBudgetOPEX.vb</DependentUpon>
     </Compile>
@@ -9889,6 +9895,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetupBudgetCAPEX.resx">
       <DependentUpon>FormSetupBudgetCAPEX.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetupBudgetCAPEXDet.resx">
+      <DependentUpon>FormSetupBudgetCAPEXDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetupBudgetOPEX.resx">
       <DependentUpon>FormSetupBudgetOPEX.vb</DependentUpon>
