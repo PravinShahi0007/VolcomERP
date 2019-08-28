@@ -174,7 +174,7 @@ Public Class FormSalesDelOrderSlip
     End Sub
 
     Sub getReport()
-        If is_use_unique_code = "2" Then
+        If is_use_unique_code = "-1" Then
             GridColumnNo.VisibleIndex = 0
             GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
             For i As Integer = 0 To GVItemList.RowCount - 1
@@ -219,6 +219,7 @@ Public Class FormSalesDelOrderSlip
             ReportSalesDelOrderOwnStore.is_combine = "1"
             ReportSalesDelOrderOwnStore.id_report_status = id_report_status
             ReportSalesDelOrderOwnStore.id_store = id_store
+            ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
             Dim Report As New ReportSalesDelOrderOwnStore()
 
 

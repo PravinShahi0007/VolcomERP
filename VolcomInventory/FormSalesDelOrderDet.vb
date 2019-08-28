@@ -1292,7 +1292,9 @@ Public Class FormSalesDelOrderDet
             ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del
             ReportSalesDelOrderOwnStore.rmt = "43"
             ReportSalesDelOrderOwnStore.id_report_status = id_report_status
-            ReportSalesDelOrderOwnStore.id_store = id_Store
+            ReportSalesDelOrderOwnStore.id_store = id_store
+            ReportSalesDelOrderOwnStore.is_combine = "2"
+            ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
             Dim Report As New ReportSalesDelOrderOwnStore()
 
 

@@ -689,6 +689,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrPanel2})
         Me.ReportFooter.HeightF = 126.0417!
         Me.ReportFooter.Name = "ReportFooter"
+        Me.ReportFooter.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBandExceptFirstEntry
         '
         'XrTable1
         '

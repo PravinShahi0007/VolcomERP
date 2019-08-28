@@ -411,9 +411,41 @@
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
         INNER JOIN tb_m_comp_contact whcc ON whcc.id_comp_contact = d.id_comp_contact_from
         INNER JOIN tb_m_comp wh ON wh.id_comp = whcc.id_comp
-        WHERE d.id_pl_sales_order_del>0 "
+        WHERE 1=1 "
         query += condition
         query += "GROUP BY IF(dsg.is_old_design=1,p.product_full_code, IF(ISNULL(u.is_unique_report), CONCAT(p.product_full_code,ddc.pl_sales_order_del_det_counting), p.product_full_code))
+        ORDER BY dsg.design_display_name ASC, p.product_full_code ASC "
+        Return query
+    End Function
+
+    Public Function queryDelRegular(ByVal condition As String, id_store As String) As String
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT 
+        dd.id_product, p.id_design, p.product_full_code AS `code`, 
+        p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 
+        dd.design_price, pt.design_price_type, 2 AS `is_combine`,
+        2 AS `is_unique_report`
+        FROM tb_pl_sales_order_del d
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
+        INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_m_comp_contact whcc ON whcc.id_comp_contact = d.id_comp_contact_from
+        INNER JOIN tb_m_comp wh ON wh.id_comp = whcc.id_comp
+        WHERE 1=1 "
+        query += condition
+        query += "GROUP BY p.id_product
         ORDER BY dsg.design_display_name ASC, p.product_full_code ASC "
         Return query
     End Function

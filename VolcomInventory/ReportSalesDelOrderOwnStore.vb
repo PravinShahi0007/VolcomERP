@@ -6,6 +6,7 @@
     Public Shared is_combine = "2"
     Public Shared id_report_status As String = "-1"
     Public Shared id_store As String = "-1"
+    Public Shared is_use_unique_code As String = "-1"
 
     Private Sub ReportSalesDelOrderOwnStore_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         If id_pre = "-1" Then
@@ -29,11 +30,16 @@
         Dim del As New ClassSalesDelOrder()
         Dim cond As String = ""
         If is_combine = "2" Then
-            cond = "AND d.is_combine=2 AND dd.id_pl_sales_order_del=" + id + " "
+            cond = "AND dd.id_pl_sales_order_del=" + id + " "
         Else
             cond = "AND d.is_combine=1 AND d.id_combine=" + id + " "
         End If
-        Dim query As String = del.queryDelConceptStore(cond, id_store)
+        Dim query As String = ""
+        If is_use_unique_code = "1" Then
+            query = del.queryDelConceptStore(cond, id_store)
+        Else
+            query = del.queryDelRegular(cond, id_store)
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
     End Sub
