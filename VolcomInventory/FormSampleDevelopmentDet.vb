@@ -123,7 +123,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=sd.`user_created`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN `tb_lookup_sample_dev_progress` sdp ON sdp.`id_sample_dev_progress`=sd.`id_sample_dev_progress`
 INNER JOIN `tb_lookup_sample_dev_stage` sds ON sds.`id_sample_dev_stage`=sd.`id_sample_dev_stage`
-WHERE sd.id_design='" & id_design & "' AND DATE(sd.date_dev_stage)>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(sd.date_dev_stage)<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+WHERE sd.id_design='" & id_design & "' AND sd.is_active=1 AND DATE(sd.date_dev_stage)>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(sd.date_dev_stage)<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
     End Sub
@@ -135,7 +135,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=sd.`user_created`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN `tb_lookup_sample_dev_progress` sdp ON sdp.`id_sample_dev_progress`=sd.`id_sample_dev_progress`
 INNER JOIN `tb_lookup_sample_dev_stage` sds ON sds.`id_sample_dev_stage`=sd.`id_sample_dev_stage`
-WHERE sd.id_design='" & id_design & "'"
+WHERE sd.id_design='" & id_design & "' AND sd.is_active=1"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
     End Sub
@@ -182,7 +182,10 @@ WHERE sd.id_design='" & id_design & "'"
         End If
     End Sub
 
-    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
-
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetNonActive.Click
+        Dim query As String = "UPDATE tb_sample_dev SET is_active='2',non_active_by='" & id_user & "',non_active_date=NOW() WHERE id_sample_dev='" & GVList.GetFocusedRowCellValue("id_sample_dev").ToString & "'"
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom("Timeline changed")
+        show_all()
     End Sub
 End Class

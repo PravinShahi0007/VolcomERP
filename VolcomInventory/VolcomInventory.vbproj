@@ -4202,6 +4202,12 @@
     <Compile Include="FormSalesOrderSvcLevel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSCheck.Designer.vb">
+      <DependentUpon>FormSalesPOSCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSCheckXLS.Designer.vb">
       <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
     </Compile>
@@ -4266,6 +4272,18 @@
       <DependentUpon>FormSalesPromoSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesPromoSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesRecord.Designer.vb">
+      <DependentUpon>FormSalesRecord.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesRecord.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesRecordDet.Designer.vb">
+      <DependentUpon>FormSalesRecordDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesRecordDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesReportTracking.Designer.vb">
@@ -5094,6 +5112,18 @@
       <DependentUpon>FormSetKurs.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSetKurs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetupBudgetCAPEX.Designer.vb">
+      <DependentUpon>FormSetupBudgetCAPEX.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetupBudgetCAPEX.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetupBudgetCAPEXDet.Designer.vb">
+      <DependentUpon>FormSetupBudgetCAPEXDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetupBudgetCAPEXDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSetupBudgetOPEX.Designer.vb">
@@ -6777,6 +6807,12 @@
       <DependentUpon>ReportSalesDelOrderDet.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesDelOrderDet.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesDelOrderOwnStore.Designer.vb">
+      <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesDelOrderOwnStore.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesDelOrderSlip.Designer.vb" />
@@ -9336,6 +9372,9 @@
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSCheck.resx">
+      <DependentUpon>FormSalesPOSCheck.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
       <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
     </EmbeddedResource>
@@ -9371,6 +9410,12 @@
     <EmbeddedResource Include="FormSalesPromoSingle.resx">
       <DependentUpon>FormSalesPromoSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesRecord.resx">
+      <DependentUpon>FormSalesRecord.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesRecordDet.resx">
+      <DependentUpon>FormSalesRecordDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReportTracking.resx">
       <DependentUpon>FormSalesReportTracking.vb</DependentUpon>
@@ -9880,6 +9925,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetKurs.resx">
       <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetupBudgetCAPEX.resx">
+      <DependentUpon>FormSetupBudgetCAPEX.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetupBudgetCAPEXDet.resx">
+      <DependentUpon>FormSetupBudgetCAPEXDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetupBudgetOPEX.resx">
       <DependentUpon>FormSetupBudgetOPEX.vb</DependentUpon>
@@ -10865,6 +10916,9 @@
     <EmbeddedResource Include="ReportSalesDelOrderDet.resx">
       <DependentUpon>ReportSalesDelOrderDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesDelOrderOwnStore.resx">
+      <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvoice.resx">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
