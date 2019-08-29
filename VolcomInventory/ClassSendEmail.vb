@@ -972,7 +972,7 @@ Public Class ClassSendEmail
                 '-- start attachment 
                 ReportSalesDelOrderOwnStore.id_pre = "1"
                 ReportSalesDelOrderOwnStore.id = id_report
-                ReportSalesDelOrderOwnStore.rmt = report_mark_type
+                ReportSalesDelOrderOwnStore.rmt = dt.Rows(0)("rmt").ToString
                 ReportSalesDelOrderOwnStore.id_report_status = "6"
                 ReportSalesDelOrderOwnStore.id_store = dt.Rows(0)("id_store").ToString
                 ReportSalesDelOrderOwnStore.is_combine = dt.Rows(0)("is_combine").ToString
