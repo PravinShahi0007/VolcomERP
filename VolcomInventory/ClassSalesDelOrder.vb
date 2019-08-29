@@ -460,7 +460,7 @@
                     d.pl_sales_order_del_number AS `del_number`, DATE_FORMAT(d.pl_sales_order_del_date,'%d-%m-%Y') AS `del_created_date`, DATE_FORMAT(d.last_update,'%d-%m-%Y %H:%i') AS `del_date`,
                     so.sales_order_number AS `order_number`, cat.so_status AS `order_cat`,
                     SUM(dd.pl_sales_order_del_det_qty) AS `total_qty`, SUM(dd.pl_sales_order_del_det_qty * dd.design_price) AS `amount`,
-                    2 AS `is_combine`, d.is_use_unique_code, d.pl_sales_order_del_note AS `note`
+                    2 AS `is_combine`, d.is_use_unique_code, d.pl_sales_order_del_note AS `note`, '43' AS `rmt`
                     FROM tb_pl_sales_order_del d
                     INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
                     INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = d.id_store_contact_to
@@ -478,7 +478,7 @@
                     dc.combine_number AS `del_number`, DATE_FORMAT(dc.combine_date,'%d-%m-%Y') AS `del_created_date`, DATE_FORMAT(dc.last_update,'%d-%m-%Y %H:%i') AS `del_date`,
                     '-' AS `order_number`, '-' AS `order_cat`,
                     SUM(dd.pl_sales_order_del_det_qty) AS `total_qty`, SUM(dd.pl_sales_order_del_det_qty * dd.design_price) AS `amount`,
-                    1 AS `is_combine`, d.is_use_unique_code, dc.combine_note AS `note`
+                    1 AS `is_combine`, d.is_use_unique_code, dc.combine_note AS `note`, '103' AS `rmt`
                     FROM tb_pl_sales_order_del d
                     INNER JOIN tb_pl_sales_order_del_combine dc ON dc.id_combine = d.id_combine
                     INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
@@ -499,7 +499,7 @@
             em.dt = data
             em.send_email()
         Catch ex As Exception
-            Dim qerr As String = "INSERT INTO tb_error_mail(date,description, note_penyelesaian) VALUES(NOW(), 'id del:" + id_report + "; error:" + addSlashes(ex.ToString) + "', ''); "
+            Dim qerr As String = "INSERT INTO tb_error_mail(date,description, note_penyelesaian) VALUES(NOW(), 'Failed send delivery confirmation; id del:" + id_report + "; error:" + addSlashes(ex.ToString) + "', ''); "
             execute_non_query(qerr, True, "", "", "", "")
         End Try
     End Sub
