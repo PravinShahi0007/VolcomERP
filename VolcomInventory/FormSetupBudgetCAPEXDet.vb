@@ -8,7 +8,7 @@
     Private Sub FormSetupBudgetCAPEXDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_pps = "-1" Then 'new
             TENumber.Text = "[auto_generate]"
-            TEDepartement.Text = get_departement_x(id_departement_user, "1")
+            TEDepartement.Text = get_departement_x(FormSetupBudgetCAPEX.LEDeptSum.EditValue.ToString, "1")
             TECreatedBy.Text = get_user_identify(id_user, "1")
             DEDateCreated.EditValue = Now
             id_departement = FormSetupBudgetCAPEX.LEDeptSum.EditValue.ToString
@@ -188,8 +188,8 @@ WHERE ppd.id_b_expense_propose='" & id_pps & "'"
         Else
             If is_rev = "1" Then 'revision
                 'header
-                Dim query As String = "INSERT INTO `tb_b_expense_propose`(`id_type`,`date_created`,`id_created_user`,`note`,`id_report_status`) 
-VALUES('2',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_b_expense_propose`(`id_type`,`date_created`,`id_created_user`,`note`,`id_report_status`,`id_departement`) 
+VALUES('2',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & FormSetupBudgetCAPEX.LEDeptSum.EditValue.ToString & "');SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(query, 0, True, "", "", "", "")
 
                 query = "CALL gen_number('" & id_pps & "','209')"
