@@ -208,6 +208,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCSalesReturn = New DevExpress.XtraGrid.GridControl()
         Me.ViewPreReturn = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CancelCombineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesReturn = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesReturnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReturnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -227,6 +228,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPreparedReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsNonListReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoCENonList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusReturn = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -335,8 +337,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CancelCombineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SendEmailConfirmationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1796,9 +1797,9 @@ Partial Class FormSalesOrderSvcLevel
         '
         'ViewPreDel
         '
-        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewCombinedDeliveryToolStripMenuItem, Me.CancellCombinedDeliveryToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
+        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewCombinedDeliveryToolStripMenuItem, Me.CancellCombinedDeliveryToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem, Me.SendEmailConfirmationToolStripMenuItem})
         Me.ViewPreDel.Name = "ViewPreDel"
-        Me.ViewPreDel.Size = New System.Drawing.Size(223, 92)
+        Me.ViewPreDel.Size = New System.Drawing.Size(223, 136)
         '
         'ViewDetailToolStripMenuItem
         '
@@ -2217,13 +2218,21 @@ Partial Class FormSalesOrderSvcLevel
         '
         Me.ViewPreReturn.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.CancelCombineToolStripMenuItem})
         Me.ViewPreReturn.Name = "ViewRevProduct"
-        Me.ViewPreReturn.Size = New System.Drawing.Size(172, 70)
+        Me.ViewPreReturn.Size = New System.Drawing.Size(172, 48)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
         Me.ToolStripMenuItem1.Text = "Print Unique Code"
+        '
+        'CancelCombineToolStripMenuItem
+        '
+        Me.CancelCombineToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CancelCombineToolStripMenuItem.ForeColor = System.Drawing.Color.Red
+        Me.CancelCombineToolStripMenuItem.Name = "CancelCombineToolStripMenuItem"
+        Me.CancelCombineToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.CancelCombineToolStripMenuItem.Text = "Cancel Combine"
         '
         'GVSalesReturn
         '
@@ -2415,6 +2424,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.RepoCENonList.PictureChecked = CType(resources.GetObject("RepoCENonList.PictureChecked"), System.Drawing.Image)
         Me.RepoCENonList.ValueChecked = "Yes"
         Me.RepoCENonList.ValueUnchecked = "No"
+        '
+        'GridColumncombine_number
+        '
+        Me.GridColumncombine_number.Caption = "Combine#"
+        Me.GridColumncombine_number.FieldName = "combine_number"
+        Me.GridColumncombine_number.Name = "GridColumncombine_number"
+        Me.GridColumncombine_number.Visible = True
+        Me.GridColumncombine_number.VisibleIndex = 1
         '
         'GroupControl2
         '
@@ -3451,21 +3468,11 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
-        'GridColumncombine_number
+        'SendEmailConfirmationToolStripMenuItem
         '
-        Me.GridColumncombine_number.Caption = "Combine#"
-        Me.GridColumncombine_number.FieldName = "combine_number"
-        Me.GridColumncombine_number.Name = "GridColumncombine_number"
-        Me.GridColumncombine_number.Visible = True
-        Me.GridColumncombine_number.VisibleIndex = 1
-        '
-        'CancelCombineToolStripMenuItem
-        '
-        Me.CancelCombineToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CancelCombineToolStripMenuItem.ForeColor = System.Drawing.Color.Red
-        Me.CancelCombineToolStripMenuItem.Name = "CancelCombineToolStripMenuItem"
-        Me.CancelCombineToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.CancelCombineToolStripMenuItem.Text = "Cancel Combine"
+        Me.SendEmailConfirmationToolStripMenuItem.Name = "SendEmailConfirmationToolStripMenuItem"
+        Me.SendEmailConfirmationToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.SendEmailConfirmationToolStripMenuItem.Text = "Send Email Confirmation"
         '
         'FormSalesOrderSvcLevel
         '
@@ -3926,4 +3933,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents RepoCENonList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumncombine_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CancelCombineToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SendEmailConfirmationToolStripMenuItem As ToolStripMenuItem
 End Class

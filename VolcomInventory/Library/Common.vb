@@ -4997,6 +4997,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         BandedGridView1.OptionsPrint.PrintFooter = True
     End Sub
 
+    Sub ReportStyleGridviewBlackLine(ByVal BandedGridView1 As DevExpress.XtraGrid.Views.Grid.GridView)
+        ReportStyleGridview(BandedGridView1)
+        BandedGridView1.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+        BandedGridView1.AppearancePrint.FooterPanel.BorderColor = Color.Black
+        BandedGridView1.AppearancePrint.Lines.BackColor = Color.Black
+    End Sub
+
     Function getNowDB(ByVal type As String)
         Dim date_default As String = ""
         Dim query_date_def As String = "SELECT DATE(NOW())"
