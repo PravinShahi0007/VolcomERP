@@ -830,10 +830,10 @@ Public Class ClassSendEmail
 
                 'Send to => design_code : email; design : contact person;
                 Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
-                FROM tb_mail_to md
+                FROM tb_mail_to_store md
                 INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                WHERE is_to='1' AND md.report_mark_type=43 AND md.opt=2 "
+                WHERE is_to='1' AND md.report_mark_type=43 AND md.opt=2 AND md.id_outlet=" + dt.Rows(0)("id_outlet").ToString + " "
                 Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
                 For i As Integer = 0 To data_send_to.Rows.Count - 1
                     Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
@@ -842,10 +842,10 @@ Public Class ClassSendEmail
 
                 'Send CC
                 Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
-                FROM tb_mail_to md
+                FROM tb_mail_to_store md
                 INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                WHERE is_to='2' AND md.report_mark_type=43 AND md.opt=2 "
+                WHERE is_to='2' AND md.report_mark_type=43 AND md.opt=2 AND md.id_outlet=" + dt.Rows(0)("id_outlet").ToString + " "
                 Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
                 For i As Integer = 0 To data_send_cc.Rows.Count - 1
                     Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)

@@ -455,7 +455,7 @@
             Dim query As String = ""
             If rmt = "43" Then
                 'single del
-                query = "SELECT s.id_comp AS `id_store`,CONCAT(s.comp_number, ' - ', s.comp_name) AS `store_account`, s.address_primary AS `store_address`,
+                query = "SELECT s.id_outlet,s.id_comp AS `id_store`,CONCAT(s.comp_number, ' - ', s.comp_name) AS `store_account`, s.address_primary AS `store_address`,
                     CONCAT(w.comp_number, ' - ', w.comp_name) AS `wh_account` ,
                     d.pl_sales_order_del_number AS `del_number`, DATE_FORMAT(d.pl_sales_order_del_date,'%d-%m-%Y') AS `del_created_date`, DATE_FORMAT(d.last_update,'%d-%m-%Y %H:%i') AS `del_date`,
                     so.sales_order_number AS `order_number`, cat.so_status AS `order_cat`,
@@ -473,7 +473,7 @@
                     GROUP BY d.id_pl_sales_order_del "
             Else
                 'combine del
-                query = "SELECT s.id_comp AS `id_store`,CONCAT(s.comp_number, ' - ', s.comp_name) AS `store_account`, s.address_primary AS `store_address`,
+                query = "SELECT s.id_outlet,s.id_comp AS `id_store`,CONCAT(s.comp_number, ' - ', s.comp_name) AS `store_account`, s.address_primary AS `store_address`,
                     CONCAT(w.comp_number, ' - ', w.comp_name) AS `wh_account` ,
                     dc.combine_number AS `del_number`, DATE_FORMAT(dc.combine_date,'%d-%m-%Y') AS `del_created_date`, DATE_FORMAT(dc.last_update,'%d-%m-%Y %H:%i') AS `del_date`,
                     '-' AS `order_number`, '-' AS `order_cat`,
