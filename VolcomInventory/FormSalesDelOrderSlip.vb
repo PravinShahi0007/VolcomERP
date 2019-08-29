@@ -220,6 +220,7 @@ Public Class FormSalesDelOrderSlip
             ReportSalesDelOrderOwnStore.id_report_status = id_report_status
             ReportSalesDelOrderOwnStore.id_store = id_store
             ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
+            ReportSalesDelOrderOwnStore.is_no_print = "-1"
             Dim Report As New ReportSalesDelOrderOwnStore()
 
 

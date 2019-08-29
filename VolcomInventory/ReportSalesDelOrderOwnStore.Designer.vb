@@ -65,9 +65,9 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.LabelPrintedBy = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelPrintedByTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelPrintedDate = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelPrintedDateTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
@@ -616,7 +616,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         '
         'BottomMargin
         '
-        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelPrintedBy, Me.XrLabel15, Me.LabelPrintedDate, Me.XrLabel14, Me.XrPageInfo1})
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelPrintedBy, Me.LabelPrintedByTitle, Me.LabelPrintedDate, Me.LabelPrintedDateTitle, Me.XrPageInfo1})
         Me.BottomMargin.HeightF = 49.95829!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -634,17 +634,17 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.LabelPrintedBy.Text = "Ari Tri Wibowo"
         Me.LabelPrintedBy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'XrLabel15
+        'LabelPrintedByTitle
         '
-        Me.XrLabel15.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(194.9583!, 0!)
-        Me.XrLabel15.Name = "XrLabel15"
-        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel15.SizeF = New System.Drawing.SizeF(72.0!, 18.71793!)
-        Me.XrLabel15.StylePriority.UseFont = False
-        Me.XrLabel15.StylePriority.UseTextAlignment = False
-        Me.XrLabel15.Text = "Printed by : "
-        Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelPrintedByTitle.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPrintedByTitle.LocationFloat = New DevExpress.Utils.PointFloat(194.9583!, 0!)
+        Me.LabelPrintedByTitle.Name = "LabelPrintedByTitle"
+        Me.LabelPrintedByTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelPrintedByTitle.SizeF = New System.Drawing.SizeF(72.0!, 18.71793!)
+        Me.LabelPrintedByTitle.StylePriority.UseFont = False
+        Me.LabelPrintedByTitle.StylePriority.UseTextAlignment = False
+        Me.LabelPrintedByTitle.Text = "Printed by : "
+        Me.LabelPrintedByTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LabelPrintedDate
         '
@@ -658,17 +658,17 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.LabelPrintedDate.Text = "18-05-1991 11:05"
         Me.LabelPrintedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'XrLabel14
+        'LabelPrintedDateTitle
         '
-        Me.XrLabel14.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(84.29163!, 18.71793!)
-        Me.XrLabel14.StylePriority.UseFont = False
-        Me.XrLabel14.StylePriority.UseTextAlignment = False
-        Me.XrLabel14.Text = "Printed Date : "
-        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelPrintedDateTitle.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPrintedDateTitle.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.LabelPrintedDateTitle.Name = "LabelPrintedDateTitle"
+        Me.LabelPrintedDateTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelPrintedDateTitle.SizeF = New System.Drawing.SizeF(84.29163!, 18.71793!)
+        Me.LabelPrintedDateTitle.StylePriority.UseFont = False
+        Me.LabelPrintedDateTitle.StylePriority.UseTextAlignment = False
+        Me.LabelPrintedDateTitle.Text = "Printed Date : "
+        Me.LabelPrintedDateTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrPageInfo1
         '
@@ -880,9 +880,9 @@ Partial Public Class ReportSalesDelOrderOwnStore
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents LabelPrintedBy As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelPrintedByTitle As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelPrintedDate As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelPrintedDateTitle As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow

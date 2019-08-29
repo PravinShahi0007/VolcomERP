@@ -7,6 +7,7 @@
     Public Shared id_report_status As String = "-1"
     Public Shared id_store As String = "-1"
     Public Shared is_use_unique_code As String = "-1"
+    Public Shared is_no_print As String = "-1"
 
     Private Sub ReportSalesDelOrderOwnStore_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         If id_pre = "-1" Then
@@ -14,13 +15,26 @@
         End If
 
         'printed by & printed date
-        Dim qp As String = "SELECT e.employee_nick_name AS `printed_by`, DATE_FORMAT(NOW(),'%d-%m-%Y %H:%i') AS `printed_date`
-        FROM tb_m_user u
-        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-        WHERE u.id_user=" + id_user + " "
-        Dim dp As DataTable = execute_query(qp, -1, True, "", "", "", "")
-        LabelPrintedDate.Text = dp.Rows(0)("printed_date").ToString
-        LabelPrintedBy.Text = dp.Rows(0)("printed_by").ToString
+        If is_no_print = "-1" Then
+            LabelPrintedDateTitle.Visible = True
+            LabelPrintedDate.Visible = True
+            LabelPrintedByTitle.Visible = True
+            LabelPrintedBy.Visible = True
+
+            Dim qp As String = "SELECT e.employee_nick_name AS `printed_by`, DATE_FORMAT(NOW(),'%d-%m-%Y %H:%i') AS `printed_date`
+            FROM tb_m_user u
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE u.id_user=" + id_user + " "
+            Dim dp As DataTable = execute_query(qp, -1, True, "", "", "", "")
+            LabelPrintedDate.Text = dp.Rows(0)("printed_date").ToString
+            LabelPrintedBy.Text = dp.Rows(0)("printed_by").ToString
+        Else
+            LabelPrintedDateTitle.Visible = False
+            LabelPrintedDate.Visible = False
+            LabelPrintedByTitle.Visible = False
+            LabelPrintedBy.Visible = False
+        End If
+
 
         'detail
         viewDetail()

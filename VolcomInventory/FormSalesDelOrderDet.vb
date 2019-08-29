@@ -1295,6 +1295,7 @@ Public Class FormSalesDelOrderDet
             ReportSalesDelOrderOwnStore.id_store = id_store
             ReportSalesDelOrderOwnStore.is_combine = "2"
             ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
+            ReportSalesDelOrderOwnStore.is_no_print = "-1"
             Dim Report As New ReportSalesDelOrderOwnStore()
 
 

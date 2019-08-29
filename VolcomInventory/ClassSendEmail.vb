@@ -901,31 +901,31 @@ Public Class ClassSendEmail
 		                  	<tr>
 		                  		<td width='20%'>Store Account</td>
 		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>Z06 - ZALORA SALE</td>
+		                  		<td width='77%'>" + dt.Rows(0)("store_account").ToString + "</td>
 		                  	</tr>
 
 		                  	<tr>
 		                  		<td width='20%'>Delivery No.</td>
 		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>1212</td>
+		                  		<td width='77%'>" + dt.Rows(0)("del_number").ToString + "</td>
 		                  	</tr>
 
 		                  	<tr>
-		                  		<td width='20%'>Delivered Date</td>
+		                  		<td width='20%'>Delivered at</td>
 		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>1212</td>
+		                  		<td width='77%'>" + dt.Rows(0)("del_date").ToString + "</td>
 		                  	</tr>
 
 		                  	<tr>
 		                  		<td width='20%'>Total Qty</td>
 		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>1212</td>
+		                  		<td width='77%'>" + Decimal.Parse(dt.Rows(0)("total_qty").ToString).ToString("N0") + "</td>
 		                  	</tr>
 
 		                  	<tr>
 		                  		<td width='20%'>Amount</td>
 		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>1212</td>
+		                  		<td width='77%'>" + Decimal.Parse(dt.Rows(0)("amount").ToString).ToString("N0") + "</td>
 		                  	</tr>
 		                 
 	                  	</table>
@@ -970,10 +970,33 @@ Public Class ClassSendEmail
         </table> "
 
                 '-- start attachment 
-                'Create a New report cek combine ato gk 
-                ReportSalesDelOrderDet.id_pl_sales_order_del = id_report
-                'ReportSalesDelOrderDet.rmt 
-                Dim Report As New ReportSalesDelOrderDet()
+                ReportSalesDelOrderOwnStore.id_pre = "1"
+                ReportSalesDelOrderOwnStore.id = id_report
+                ReportSalesDelOrderOwnStore.rmt = report_mark_type
+                ReportSalesDelOrderOwnStore.id_report_status = "6"
+                ReportSalesDelOrderOwnStore.id_store = dt.Rows(0)("id_store").ToString
+                ReportSalesDelOrderOwnStore.is_combine = dt.Rows(0)("is_combine").ToString
+                ReportSalesDelOrderOwnStore.is_use_unique_code = dt.Rows(0)("is_use_unique_code").ToString
+                ReportSalesDelOrderOwnStore.is_no_print = "1"
+                Dim Report As New ReportSalesDelOrderOwnStore()
+
+
+                'Grid Detail
+                ReportStyleGridviewBlackLine(Report.GVItemList)
+
+                'Parse val
+                Report.LabelTo.Text = dt.Rows(0)("store_account").ToString
+                Report.LabelFrom.Text = dt.Rows(0)("wh_account").ToString
+                Report.LabelAddress.Text = dt.Rows(0)("store_address").ToString
+                Report.LRecDate.Text = dt.Rows(0)("del_created_date").ToString
+                Report.LRecNumber.Text = dt.Rows(0)("del_number").ToString
+                Report.LabelNote.Text = dt.Rows(0)("note").ToString
+                Report.LabelPrepare.Text = dt.Rows(0)("order_number").ToString
+                Report.LabelCat.Text = dt.Rows(0)("order_cat").ToString
+                Report.LabelUni3.Text = "-"
+                Report.LabelUni6.Text = "-"
+                Report.PanelUni.Visible = False
+
                 ' Create a new memory stream and export the report into it as PDF.
                 Dim Mem As New MemoryStream()
                 Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
@@ -984,7 +1007,7 @@ Public Class ClassSendEmail
                 mail.Attachments.Add(Att)
                 '-- end attachment
 
-                mail.Subject = "Delivery Confirmation - " + design_code
+                mail.Subject = "Delivery Confirmation - " + dt.Rows(0)("del_number").ToString
                 mail.IsBodyHtml = True
                 mail.Body = body_temp
                 client.Send(mail)

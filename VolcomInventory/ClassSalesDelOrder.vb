@@ -449,4 +449,58 @@
         ORDER BY dsg.design_display_name ASC, p.product_full_code ASC "
         Return query
     End Function
+
+    Sub sendDeliveryConfirmationOfflineStore(ByVal id_report As String, ByVal rmt As String)
+        Try
+            Dim query As String = ""
+            If rmt = "43" Then
+                'single del
+                query = "SELECT s.id_comp AS `id_store`,CONCAT(s.comp_number, ' - ', s.comp_name) AS `store_account`, s.address_primary AS `store_address`,
+                    CONCAT(w.comp_number, ' - ', w.comp_name) AS `wh_account` ,
+                    d.pl_sales_order_del_number AS `del_number`, DATE_FORMAT(d.pl_sales_order_del_date,'%d-%m-%Y') AS `del_created_date`, DATE_FORMAT(d.last_update,'%d-%m-%Y %H:%i') AS `del_date`,
+                    so.sales_order_number AS `order_number`, cat.so_status AS `order_cat`,
+                    SUM(dd.pl_sales_order_del_det_qty) AS `total_qty`, SUM(dd.pl_sales_order_del_det_qty * dd.design_price) AS `amount`,
+                    2 AS `is_combine`, d.is_use_unique_code, d.pl_sales_order_del_note AS `note`
+                    FROM tb_pl_sales_order_del d
+                    INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+                    INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = d.id_store_contact_to
+                    INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+                    INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = d.id_comp_contact_from
+                    INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
+                    INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
+                    INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = so.id_so_status
+                    WHERE d.id_pl_sales_order_del=" + id_report + "
+                    GROUP BY d.id_pl_sales_order_del "
+            Else
+                'combine del
+                query = "SELECT s.id_comp AS `id_store`,CONCAT(s.comp_number, ' - ', s.comp_name) AS `store_account`, s.address_primary AS `store_address`,
+                    CONCAT(w.comp_number, ' - ', w.comp_name) AS `wh_account` ,
+                    dc.combine_number AS `del_number`, DATE_FORMAT(dc.combine_date,'%d-%m-%Y') AS `del_created_date`, DATE_FORMAT(dc.last_update,'%d-%m-%Y %H:%i') AS `del_date`,
+                    '-' AS `order_number`, '-' AS `order_cat`,
+                    SUM(dd.pl_sales_order_del_det_qty) AS `total_qty`, SUM(dd.pl_sales_order_del_det_qty * dd.design_price) AS `amount`,
+                    1 AS `is_combine`, d.is_use_unique_code, dc.combine_note AS `note`
+                    FROM tb_pl_sales_order_del d
+                    INNER JOIN tb_pl_sales_order_del_combine dc ON dc.id_combine = d.id_combine
+                    INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+                    INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = d.id_store_contact_to
+                    INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+                    INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = d.id_comp_contact_from
+                    INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
+                    INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
+                    INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = so.id_so_status
+                    WHERE d.id_combine=" + id_report + "
+                    GROUP BY d.id_combine "
+            End If
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim em As New ClassSendEmail
+            em.report_mark_type = "43"
+            em.opt = "2"
+            em.id_report = id_report
+            em.dt = data
+            em.send_email()
+        Catch ex As Exception
+            Dim qerr As String = "INSERT INTO tb_error_mail(date,description, note_penyelesaian) VALUES(NOW(), 'id del:" + id_report + "; error:" + addSlashes(ex.ToString) + "', ''); "
+            execute_non_query(qerr, True, "", "", "", "")
+        End Try
+    End Sub
 End Class
