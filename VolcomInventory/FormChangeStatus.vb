@@ -134,6 +134,7 @@
                                 removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx)
                                 insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
                                 sendEmailConfirmation(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_commerce_type").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                                sendEmailConfirmationforConceptStore(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "43")
                             Else
                                 'jika delivery combine
                                 Dim id_del As String = FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString
@@ -143,6 +144,7 @@
                                     stt.insertUniqueCodeHead(id_combine, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_store").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString)
                                     removeAppListCombine("103", id_combine, id_status_reportx)
                                     insertFinalCommentCombine("103", id_combine, id_status_reportx, note)
+                                    sendEmailConfirmationforConceptStore(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString, id_combine, "103")
                                 End If
                             End If
                             PBC.PerformStep()
@@ -382,6 +384,15 @@
                     em.dt = data
                     em.send_email()
                 End If
+            End If
+        End If
+    End Sub
+
+    Sub sendEmailConfirmationforConceptStore(ByVal is_use_unique_code As String, ByVal id_report As String, ByVal rmt As String)
+        If id_pop_up = "2" Then
+            If is_use_unique_code = "1" And SLEStatusRec.EditValue.ToString = "6" Then
+                Dim d As New ClassSalesDelOrder()
+                d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
             End If
         End If
     End Sub

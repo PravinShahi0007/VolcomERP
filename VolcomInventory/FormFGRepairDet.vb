@@ -329,7 +329,7 @@ Public Class FormFGRepairDet
             Else 'delete scan
                 GVScan.ActiveFilterString = "[code]='" + TxtScannedCode.Text + "'"
                 If GVScan.RowCount <= 0 Then
-                    stopCustom("Code not found.")
+                    stopCustomDialog("Code not found.")
                     GVScan.ActiveFilterString = ""
                     TxtScannedCode.Text = ""
                     TxtScannedCode.Focus()
@@ -362,7 +362,7 @@ Public Class FormFGRepairDet
                 GVScan.ActiveFilterString = "[code]='" + code_par + "'"
                 If GVScan.RowCount > 0 Then
                     GVScan.ActiveFilterString = ""
-                    stopCustom("Duplicate code")
+                    stopCustomDialog("Duplicate code")
                     Exit Sub
                 Else
                     GVScan.ActiveFilterString = ""
@@ -384,7 +384,7 @@ Public Class FormFGRepairDet
             GVScan.RefreshData()
             GVScan.FocusedRowHandle = GVScan.RowCount - 1
         Else
-            stopCustom("Code not found!")
+            stopCustomDialog("Code not found!")
         End If
     End Sub
 
