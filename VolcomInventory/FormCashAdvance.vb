@@ -114,7 +114,7 @@ SELECT id_employee,employee_name FROM tb_m_employee"
 
         Dim query As String = "SELECT 'no' AS is_check,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status
-,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml, IF(ca.id_report_status=5, 'Cancelled', IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,'Open',IF(ca.rb_id_report_status =6,'Closed','On Process'))) AS rb_status
+,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml,recon.recon_value, IF(ca.id_report_status=5, 'Cancelled', IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,'Open',IF(ca.rb_id_report_status =6,'Closed','On Process'))) AS rb_status
 FROM tb_cash_advance ca
 INNER JOIN tb_lookup_cash_advance_type cat ON cat.`id_cash_advance_type`=ca.`id_cash_advance_type`
 INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=ca.`created_by`
@@ -125,7 +125,7 @@ INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=ca.`id_report_s
 INNER JOIN tb_lookup_report_status sts_rb ON sts_rb.id_report_status=ca.rb_id_report_status
 LEFT JOIN 
 (
-    SELECT id_cash_advance,count(id_cash_advance) as jml FROM tb_cash_advance_report GROUP BY id_cash_advance
+    SELECT id_cash_advance,count(id_cash_advance) as jml,SUM(`value`) AS recon_value FROM tb_cash_advance_report GROUP BY id_cash_advance
 ) recon ON recon.id_cash_advance=ca.id_cash_advance
 WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
