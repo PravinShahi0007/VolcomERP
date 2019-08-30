@@ -142,7 +142,7 @@ WHERE ppd.id_b_expense_propose='" & id_pps & "'"
         If is_rev = "1" Then 'revision
             FormReportMark.report_mark_type = "209"
         Else
-            FormReportMark.report_mark_type = "209"
+            FormReportMark.report_mark_type = "208"
         End If
 
         FormReportMark.ShowDialog()
