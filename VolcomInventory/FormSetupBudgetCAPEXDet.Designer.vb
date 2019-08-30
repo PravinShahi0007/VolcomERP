@@ -54,7 +54,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
@@ -81,7 +81,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -401,7 +401,7 @@ Partial Class FormSetupBudgetCAPEXDet
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl3)
-        Me.PanelControlTopRight.Controls.Add(Me.TextEdit1)
+        Me.PanelControlTopRight.Controls.Add(Me.TEDepartement)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopRight.Controls.Add(Me.DEDateCreated)
         Me.PanelControlTopRight.Controls.Add(Me.TECreatedBy)
@@ -423,16 +423,16 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.LabelControl3.TabIndex = 163
         Me.LabelControl3.Text = "Departement"
         '
-        'TextEdit1
+        'TEDepartement
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(113, 88)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(207, 20)
-        Me.TextEdit1.TabIndex = 164
-        Me.TextEdit1.TabStop = False
+        Me.TEDepartement.EditValue = ""
+        Me.TEDepartement.Location = New System.Drawing.Point(113, 88)
+        Me.TEDepartement.Name = "TEDepartement"
+        Me.TEDepartement.Properties.EditValueChangedDelay = 1
+        Me.TEDepartement.Properties.ReadOnly = True
+        Me.TEDepartement.Size = New System.Drawing.Size(207, 20)
+        Me.TEDepartement.TabIndex = 164
+        Me.TEDepartement.TabStop = False
         '
         'LabelControl2
         '
@@ -532,7 +532,7 @@ Partial Class FormSetupBudgetCAPEXDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -580,5 +580,5 @@ Partial Class FormSetupBudgetCAPEXDet
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEDepartement As DevExpress.XtraEditors.TextEdit
 End Class
