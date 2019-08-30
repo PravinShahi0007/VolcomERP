@@ -1026,4 +1026,38 @@
             End If
         End If
     End Sub
+
+    Private Sub ViewPreDel_Opened(sender As Object, e As EventArgs) Handles ViewPreDel.Opened
+        If GVSalesDelOrder.RowCount > 0 And GVSalesDelOrder.FocusedRowHandle >= 0 Then
+            If GVSalesDelOrder.GetFocusedRowCellValue("is_use_unique_code").ToString = "1" And GVSalesDelOrder.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                SendEmailConfirmationToolStripMenuItem.Visible = True
+            Else
+                SendEmailConfirmationToolStripMenuItem.Visible = False
+            End If
+        End If
+    End Sub
+
+    Private Sub SendEmailConfirmationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendEmailConfirmationToolStripMenuItem.Click
+        If GVSalesDelOrder.RowCount > 0 And GVSalesDelOrder.FocusedRowHandle >= 0 Then
+            Dim report_number As String = ""
+            Dim id_report As String = ""
+            Dim rmt As String = ""
+            If GVSalesDelOrder.GetFocusedRowCellValue("id_combine").ToString = "0" Then
+                report_number = GVSalesDelOrder.GetFocusedRowCellValue("pl_sales_order_del_number").ToString
+                id_report = GVSalesDelOrder.GetFocusedRowCellValue("id_pl_sales_order_del").ToString
+                rmt = "43"
+            Else
+                report_number = GVSalesDelOrder.GetFocusedRowCellValue("combine_number").ToString
+                id_report = GVSalesDelOrder.GetFocusedRowCellValue("id_combine").ToString
+                rmt = "103"
+            End If
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to send delivery confirmation for this delivery : " + report_number + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim d As New ClassSalesDelOrder()
+                d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
 End Class
