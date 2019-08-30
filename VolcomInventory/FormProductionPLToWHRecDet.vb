@@ -810,7 +810,7 @@ Public Class FormProductionPLToWHRecDet
         End Try
 
         If id_wh = 0 Then
-            stopCustom("Please select storage first !")
+            stopCustomDialog("Please select storage first !")
             Exit Sub
         End If
 
@@ -818,9 +818,9 @@ Public Class FormProductionPLToWHRecDet
         If id_wh_type = "1" Or id_wh_type = "2" Then
             If id_wh_type <> id_design_cat Then
                 If id_wh_type = "1" Then
-                    stopCustom(SLEStorage.Text.ToString + " is only for normal product. ")
+                    stopCustomDialog(SLEStorage.Text.ToString + " is only for normal product. ")
                 Else
-                    stopCustom(SLEStorage.Text.ToString + " is only for sale product. ")
+                    stopCustomDialog(SLEStorage.Text.ToString + " is only for sale product. ")
                 End If
                 Exit Sub
             End If
@@ -960,10 +960,10 @@ Public Class FormProductionPLToWHRecDet
 
             If Not code_found Then
                 GVBarcode.SetFocusedRowCellValue("code", "")
-                stopCustom("Data not found !")
+                stopCustomDialog("Data not found !")
             ElseIf code_duplicate Then
                 GVBarcode.SetFocusedRowCellValue("code", "")
-                stopCustom("Data duplicate !")
+                stopCustomDialog("Data duplicate !")
             Else
                 GVBarcode.SetFocusedRowCellValue("id_pl_prod_order_rec_det_unique", "0")
                 GVBarcode.SetFocusedRowCellValue("is_fix", "2")
@@ -974,7 +974,7 @@ Public Class FormProductionPLToWHRecDet
             End If
         Else
             GVBarcode.SetFocusedRowCellValue("code", "")
-            stopCustom("Data not found !")
+            stopCustomDialog("Data not found !")
         End If
     End Sub
 
