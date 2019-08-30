@@ -1094,7 +1094,7 @@ Public Class FormSalesReturnQCDet
         If Not code_found Then
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
             GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-            stopCustom("Data not found !")
+            stopCustomDialog("Data not found !")
         Else
             'jika akun normal/sale
             If id_wh_type = "1" Or id_wh_type = "2" Then
@@ -1102,9 +1102,9 @@ Public Class FormSalesReturnQCDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
                     If id_wh_type = "1" Then
-                        stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for normal product. ")
                     Else
-                        stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for sale product. ")
                     End If
                     Cursor = Cursors.Default
                     Exit Sub
@@ -1115,7 +1115,7 @@ Public Class FormSalesReturnQCDet
                 If jum_scan >= jum_limit Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Scanned qty more than remaining limit")
+                    stopCustomDialog("Scanned qty more than remaining limit")
                 Else
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_sales_return_det_counting", id_sales_return_det_counting)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_sales_return_qc_det_counting", "0")
@@ -1147,12 +1147,12 @@ Public Class FormSalesReturnQCDet
                 If code_duplicate Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data duplicate !")
+                    stopCustomDialog("Data duplicate !")
                 Else
                     If jum_scan >= jum_limit Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Scanned qty more than remaining limit")
+                        stopCustomDialog("Scanned qty more than remaining limit")
                     Else
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_sales_return_det_counting", id_sales_return_det_counting)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_sales_return_qc_det_counting", "0")
@@ -1177,7 +1177,7 @@ Public Class FormSalesReturnQCDet
             Else
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                 GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Data not found !")
+                stopCustomDialog("Data not found !")
             End If
         End If
         Cursor = Cursors.Default
@@ -1517,7 +1517,7 @@ Public Class FormSalesReturnQCDet
             Cursor = Cursors.WaitCursor
             GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
             If GVBarcode.RowCount <= 0 Then
-                stopCustom("Code not found.")
+                stopCustomDialog("Code not found.")
                 GVBarcode.ActiveFilterString = ""
                 TxtDeleteScan.Text = ""
                 TxtDeleteScan.Focus()

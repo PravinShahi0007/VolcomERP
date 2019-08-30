@@ -1476,6 +1476,11 @@ Module Common
         XtraMessageBox.Show(stop_msg, "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop)
     End Sub
 
+    Sub stopCustomDialog(ByVal stop_msg As String)
+        FormError.LabelContent.Text = stop_msg
+        FormError.ShowDialog()
+    End Sub
+
     Sub infoCustom(ByVal info_msg As String)
         XtraMessageBox.Show(info_msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
