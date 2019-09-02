@@ -35,6 +35,7 @@ UNION SELECT 2 as id_status,'Overdue' AS status
 UNION SELECT 3 as id_status,'On Process' AS status 
 UNION SELECT 4 as id_status,'Closed' AS status 
 UNION SELECT 5 as id_status,'Cancelled' AS status 
+UNION SELECT 6 as id_status,'Not Cancelled' AS status 
 "
         viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
     End Sub
@@ -103,8 +104,10 @@ SELECT id_employee,employee_name FROM tb_m_employee"
                     where_string += " AND ca.rb_id_report_status !=6 AND ca.id_report_status !=5 AND IFNULL(recon.jml,0) > 0"
                 ElseIf SLEStatus.EditValue.ToString = "4" Then 'closed
                     where_string += " AND ca.rb_id_report_status =6"
-                ElseIf SLEStatus.EditValue.ToString = "4" Then 'cancelled
-                    where_string += " AND ca.rb_id_report_status =5"
+                ElseIf SLEStatus.EditValue.ToString = "5" Then 'cancelled
+                    where_string += " AND ca.id_report_status =5"
+                ElseIf SLEStatus.EditValue.ToString = "6" Then 'cancelled
+                    where_string += " AND ca.id_report_status !=5"
                 End If
             End If
 
