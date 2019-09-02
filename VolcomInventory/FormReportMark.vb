@@ -548,6 +548,9 @@
         ElseIf report_mark_type = "207" Then
             'PROPOSE MAIN CATEGORY
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_cat_main_pps WHERE id_item_cat_main_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'OPEX Budget Propose
+            query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4861,7 +4864,12 @@
                 'complete
                 query = "UPDATE tb_m_design dsg
 INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design=dsg.id_design AND copd.`id_design_cop_propose`='" & id_report & "'
-SET dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost`"
+SET dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost`;
+UPDATE tb_m_design_cop SET is_active='2' WHERE id_design IN (SELECT id_design FROM tb_design_cop_propose_det WHERE id_design_cop_propose='" & id_report & "');
+INSERT INTO `tb_m_design_cop`(description,id_design,date_created,id_currency,kurs,before_kurs,additional,is_active)
+SELECT cmp.description,copd.id_design,NOW(),cmp.id_currency,cmp.kurs,cmp.before_kurs,cmp.additional,1 FROM tb_design_cop_propose_comp cmp
+INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design_cop_propose_det=cmp.id_design_cop_propose_det
+WHERE copd.id_design_cop_propose='" & id_report & "';"
                 execute_non_query(query, True, "", "", "", "")
             End If
             'update status
@@ -6192,6 +6200,60 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             FormItemCatMainDet.actionLoad()
             FormItemCatMain.view_propose()
             FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id_report)
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'budget OPEX propose
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then 'complete update/insert budget
+                'cek type first
+                Dim query_pps As String = "SELECT id_type FROM tb_b_expense_propose WHERE id_b_expense_propose ='" & id_report & "'"
+                Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
+                If data_pps.Rows.Count > 0 Then
+                    If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,pps.id_departement,ppsd.`year`,ppsd.`value_after`
+FROM `tb_b_expense_propose` pps
+INNER JOIN tb_b_expense_propose_year ppsd ON ppsd.id_b_expense_propose=pps.id_b_expense_propose
+WHERE pps.id_b_expense_propose='" & id_report & "' AND value_after!=0"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'insert budget
+                            Dim ins_det As String = "INSERT INTO `tb_b_expense`(id_item_cat_main,id_departement,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("id_departement").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                            execute_non_query(ins_det, True, "", "", "", "")
+                        Next
+                    Else 'revision
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,pps.id_departement,ppsd.`year`,ppsd.`value_before`,ppsd.`value_after`,IFNULL(bo.`id_b_expense`,'') AS id_b_expense
+FROM `tb_b_expense_propose` pps
+INNER JOIN tb_b_expense_propose_year ppsd ON ppsd.id_b_expense_propose=pps.id_b_expense_propose
+LEFT JOIN tb_b_expense bo ON bo.`id_item_cat_main`=ppsd.id_item_cat_main AND ppsd.year=bo.`year` AND bo.`is_active`='1' AND pps.id_departement=bo.id_departement
+WHERE pps.id_b_opex_pps='" & id_report & "' AND (value_after!=0 OR value_before!=0)"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+
+                            If Not data_det.Rows(i)("id_b_expense").ToString = "" Then
+                                'update budget
+                                Dim upd_det As String = "UPDATE tb_b_expense SET value_expense='" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "' WHERE id_b_expense='" & data_det.Rows(i)("id_b_expense").ToString & "'"
+                                execute_non_query(upd_det, True, "", "", "", "")
+                            Else
+                                'insert budget
+                                Dim ins_det As String = "INSERT INTO `tb_b_expense`(id_item_cat_main,id_departement,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("id_departement").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                                execute_non_query(ins_det, True, "", "", "", "")
+                            End If
+                        Next
+                    End If
+                End If
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_b_expense_propose SET id_report_status='{0}' WHERE id_b_expense_propose ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            'FormSampleBudget.load_propose()
+            'FormSampleBudget.load_budget()
         End If
 
         'adding lead time

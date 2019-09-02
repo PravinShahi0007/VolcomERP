@@ -9,6 +9,8 @@ Module Database
     Public app_password As String
     Public app_database As String
 
+    Public is_test As String = "2"
+
     Function execute_non_query(ByVal command_text As String, ByVal is_local As Boolean, ByVal host As String, ByVal username As String, ByVal password As String, ByVal database As String)
         If is_local = True Then
             host = app_host
@@ -18,7 +20,9 @@ Module Database
         End If
 
         'Enable when developing
-        'Console.WriteLine(command_text)
+        If is_test = "1" Then
+            Console.WriteLine(command_text)
+        End If
 
         Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;", host, username, password, database)
 
@@ -51,7 +55,9 @@ Module Database
         End If
 
         'Enable when developing
-        'Console.WriteLine(command_text)
+        If is_test = "1" Then
+            Console.WriteLine(command_text)
+        End If
 
         Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;", host, username, password, database)
 
@@ -87,7 +93,9 @@ Module Database
         Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", host, username, password, database)
 
         'Enable when developing
-        'Console.WriteLine(command_text)
+        If is_test = "1" Then
+            Console.WriteLine(command_text)
+        End If
 
         If col_index < 0 Then 'return data table
             Dim connection As New MySqlConnection(connection_string)
