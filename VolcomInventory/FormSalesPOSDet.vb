@@ -893,8 +893,9 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        'ReportSalesInvoice.id_sales_pos = id_sales_pos
-        Dim Report As New ReportSalesInvoice()
+        ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
+        Dim Report As New ReportSalesInvoiceNew()
+        Report.LabelTitle.Text = print_title
         'If id_memo_type = "1" Then
         '    Report.LTitle.Text = "SALES INVOICE"
         'ElseIf id_memo_type = "2" Then
@@ -908,8 +909,8 @@ Public Class FormSalesPOSDet
         'End If
 
         ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreviewDialog()
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 
