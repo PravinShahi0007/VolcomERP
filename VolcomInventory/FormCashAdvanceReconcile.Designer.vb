@@ -58,7 +58,7 @@ Partial Class FormCashAdvanceReconcile
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCExp = New DevExpress.XtraEditors.PanelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
@@ -76,6 +76,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.XTCCA = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListExpense = New DevExpress.XtraTab.XtraTabPage()
@@ -96,7 +97,11 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PCBBK = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelBBK = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddBBK = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDeposit = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBankDeposit = New DevExpress.XtraGrid.GridControl()
         Me.GVBankDeposit = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -113,10 +118,11 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PCBBM = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelBBM = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddBBM = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,8 +146,8 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PCExp, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCExp.SuspendLayout()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RSLECOA, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,6 +164,8 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCBBK, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCBBK.SuspendLayout()
         Me.XTPDeposit.SuspendLayout()
         CType(Me.GCBankDeposit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBankDeposit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,6 +173,8 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCBBM, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCBBM.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl4
@@ -553,15 +563,15 @@ Partial Class FormCashAdvanceReconcile
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
         '
-        'PanelControl1
+        'PCExp
         '
-        Me.PanelControl1.Controls.Add(Me.BDelete)
-        Me.PanelControl1.Controls.Add(Me.BAdd)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1002, 37)
-        Me.PanelControl1.TabIndex = 10
+        Me.PCExp.Controls.Add(Me.BDelete)
+        Me.PCExp.Controls.Add(Me.BAdd)
+        Me.PCExp.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCExp.Location = New System.Drawing.Point(0, 0)
+        Me.PCExp.Name = "PCExp"
+        Me.PCExp.Size = New System.Drawing.Size(1002, 48)
+        Me.PCExp.TabIndex = 10
         '
         'BDelete
         '
@@ -570,7 +580,7 @@ Partial Class FormCashAdvanceReconcile
         Me.BDelete.ImageList = Me.LargeImageCollection
         Me.BDelete.Location = New System.Drawing.Point(809, 2)
         Me.BDelete.Name = "BDelete"
-        Me.BDelete.Size = New System.Drawing.Size(97, 33)
+        Me.BDelete.Size = New System.Drawing.Size(97, 44)
         Me.BDelete.TabIndex = 1
         Me.BDelete.Text = "Delete"
         '
@@ -581,18 +591,18 @@ Partial Class FormCashAdvanceReconcile
         Me.BAdd.ImageList = Me.LargeImageCollection
         Me.BAdd.Location = New System.Drawing.Point(906, 2)
         Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(94, 33)
+        Me.BAdd.Size = New System.Drawing.Size(94, 44)
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
         '
         'GCJournalDet
         '
         Me.GCJournalDet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCJournalDet.Location = New System.Drawing.Point(0, 37)
+        Me.GCJournalDet.Location = New System.Drawing.Point(0, 48)
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RSLECOA})
-        Me.GCJournalDet.Size = New System.Drawing.Size(1002, 473)
+        Me.GCJournalDet.Size = New System.Drawing.Size(1002, 462)
         Me.GCJournalDet.TabIndex = 17
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
@@ -717,6 +727,11 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn15.FieldName = "acc_description"
         Me.GridColumn15.Name = "GridColumn15"
         '
+        'GridColumn38
+        '
+        Me.GridColumn38.FieldName = "acc_name"
+        Me.GridColumn38.Name = "GridColumn38"
+        '
         'RepositoryItemTextEdit2
         '
         Me.RepositoryItemTextEdit2.AutoHeight = False
@@ -743,7 +758,7 @@ Partial Class FormCashAdvanceReconcile
         'XTPListExpense
         '
         Me.XTPListExpense.Controls.Add(Me.GCJournalDet)
-        Me.XTPListExpense.Controls.Add(Me.PanelControl1)
+        Me.XTPListExpense.Controls.Add(Me.PCExp)
         Me.XTPListExpense.Controls.Add(Me.BLock)
         Me.XTPListExpense.Name = "XTPListExpense"
         Me.XTPListExpense.Size = New System.Drawing.Size(1002, 543)
@@ -762,6 +777,7 @@ Partial Class FormCashAdvanceReconcile
         'XTPWithdrawal
         '
         Me.XTPWithdrawal.Controls.Add(Me.GCBankWithdrawal)
+        Me.XTPWithdrawal.Controls.Add(Me.PCBBK)
         Me.XTPWithdrawal.Name = "XTPWithdrawal"
         Me.XTPWithdrawal.PageVisible = False
         Me.XTPWithdrawal.Size = New System.Drawing.Size(1002, 543)
@@ -770,11 +786,11 @@ Partial Class FormCashAdvanceReconcile
         'GCBankWithdrawal
         '
         Me.GCBankWithdrawal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBankWithdrawal.Location = New System.Drawing.Point(0, 0)
+        Me.GCBankWithdrawal.Location = New System.Drawing.Point(0, 48)
         Me.GCBankWithdrawal.MainView = Me.GVBankWithdrawal
         Me.GCBankWithdrawal.Name = "GCBankWithdrawal"
         Me.GCBankWithdrawal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.RSLECOABW})
-        Me.GCBankWithdrawal.Size = New System.Drawing.Size(1002, 543)
+        Me.GCBankWithdrawal.Size = New System.Drawing.Size(1002, 495)
         Me.GCBankWithdrawal.TabIndex = 18
         Me.GCBankWithdrawal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankWithdrawal})
         '
@@ -877,7 +893,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn26.FieldName = "value"
         Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_debit", "{0:N2}")})
+        Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 2
         Me.GridColumn26.Width = 123
@@ -899,6 +915,11 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn27.FieldName = "acc_description"
         Me.GridColumn27.Name = "GridColumn27"
         '
+        'GridColumn39
+        '
+        Me.GridColumn39.FieldName = "acc_name"
+        Me.GridColumn39.Name = "GridColumn39"
+        '
         'RepositoryItemTextEdit4
         '
         Me.RepositoryItemTextEdit4.AutoHeight = False
@@ -911,9 +932,42 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit4.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit4.Name = "RepositoryItemTextEdit4"
         '
+        'PCBBK
+        '
+        Me.PCBBK.Controls.Add(Me.BDelBBK)
+        Me.PCBBK.Controls.Add(Me.BAddBBK)
+        Me.PCBBK.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCBBK.Location = New System.Drawing.Point(0, 0)
+        Me.PCBBK.Name = "PCBBK"
+        Me.PCBBK.Size = New System.Drawing.Size(1002, 48)
+        Me.PCBBK.TabIndex = 19
+        '
+        'BDelBBK
+        '
+        Me.BDelBBK.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelBBK.ImageIndex = 1
+        Me.BDelBBK.ImageList = Me.LargeImageCollection
+        Me.BDelBBK.Location = New System.Drawing.Point(809, 2)
+        Me.BDelBBK.Name = "BDelBBK"
+        Me.BDelBBK.Size = New System.Drawing.Size(97, 44)
+        Me.BDelBBK.TabIndex = 3
+        Me.BDelBBK.Text = "Delete"
+        '
+        'BAddBBK
+        '
+        Me.BAddBBK.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddBBK.ImageIndex = 0
+        Me.BAddBBK.ImageList = Me.LargeImageCollection
+        Me.BAddBBK.Location = New System.Drawing.Point(906, 2)
+        Me.BAddBBK.Name = "BAddBBK"
+        Me.BAddBBK.Size = New System.Drawing.Size(94, 44)
+        Me.BAddBBK.TabIndex = 2
+        Me.BAddBBK.Text = "Add"
+        '
         'XTPDeposit
         '
         Me.XTPDeposit.Controls.Add(Me.GCBankDeposit)
+        Me.XTPDeposit.Controls.Add(Me.PCBBM)
         Me.XTPDeposit.Name = "XTPDeposit"
         Me.XTPDeposit.PageVisible = False
         Me.XTPDeposit.Size = New System.Drawing.Size(1002, 543)
@@ -922,11 +976,11 @@ Partial Class FormCashAdvanceReconcile
         'GCBankDeposit
         '
         Me.GCBankDeposit.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBankDeposit.Location = New System.Drawing.Point(0, 0)
+        Me.GCBankDeposit.Location = New System.Drawing.Point(0, 48)
         Me.GCBankDeposit.MainView = Me.GVBankDeposit
         Me.GCBankDeposit.Name = "GCBankDeposit"
         Me.GCBankDeposit.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit5, Me.RepositoryItemTextEdit6, Me.RSLECOABD})
-        Me.GCBankDeposit.Size = New System.Drawing.Size(1002, 543)
+        Me.GCBankDeposit.Size = New System.Drawing.Size(1002, 495)
         Me.GCBankDeposit.TabIndex = 18
         Me.GCBankDeposit.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankDeposit})
         '
@@ -1029,7 +1083,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn36.FieldName = "value"
         Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_debit", "{0:N2}")})
+        Me.GridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 2
         Me.GridColumn36.Width = 123
@@ -1051,6 +1105,11 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn37.FieldName = "acc_description"
         Me.GridColumn37.Name = "GridColumn37"
         '
+        'GridColumn40
+        '
+        Me.GridColumn40.FieldName = "acc_name"
+        Me.GridColumn40.Name = "GridColumn40"
+        '
         'RepositoryItemTextEdit6
         '
         Me.RepositoryItemTextEdit6.AutoHeight = False
@@ -1063,20 +1122,37 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit6.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit6.Name = "RepositoryItemTextEdit6"
         '
-        'GridColumn38
+        'PCBBM
         '
-        Me.GridColumn38.FieldName = "acc_name"
-        Me.GridColumn38.Name = "GridColumn38"
+        Me.PCBBM.Controls.Add(Me.BDelBBM)
+        Me.PCBBM.Controls.Add(Me.BAddBBM)
+        Me.PCBBM.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCBBM.Location = New System.Drawing.Point(0, 0)
+        Me.PCBBM.Name = "PCBBM"
+        Me.PCBBM.Size = New System.Drawing.Size(1002, 48)
+        Me.PCBBM.TabIndex = 20
         '
-        'GridColumn39
+        'BDelBBM
         '
-        Me.GridColumn39.FieldName = "acc_name"
-        Me.GridColumn39.Name = "GridColumn39"
+        Me.BDelBBM.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelBBM.ImageIndex = 1
+        Me.BDelBBM.ImageList = Me.LargeImageCollection
+        Me.BDelBBM.Location = New System.Drawing.Point(809, 2)
+        Me.BDelBBM.Name = "BDelBBM"
+        Me.BDelBBM.Size = New System.Drawing.Size(97, 44)
+        Me.BDelBBM.TabIndex = 3
+        Me.BDelBBM.Text = "Delete"
         '
-        'GridColumn40
+        'BAddBBM
         '
-        Me.GridColumn40.FieldName = "acc_name"
-        Me.GridColumn40.Name = "GridColumn40"
+        Me.BAddBBM.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddBBM.ImageIndex = 0
+        Me.BAddBBM.ImageList = Me.LargeImageCollection
+        Me.BAddBBM.Location = New System.Drawing.Point(906, 2)
+        Me.BAddBBM.Name = "BAddBBM"
+        Me.BAddBBM.Size = New System.Drawing.Size(94, 44)
+        Me.BAddBBM.TabIndex = 2
+        Me.BAddBBM.Text = "Add"
         '
         'FormCashAdvanceReconcile
         '
@@ -1117,8 +1193,8 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PCExp, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCExp.ResumeLayout(False)
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RSLECOA, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1135,6 +1211,8 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCBBK, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCBBK.ResumeLayout(False)
         Me.XTPDeposit.ResumeLayout(False)
         CType(Me.GCBankDeposit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBankDeposit, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1142,6 +1220,8 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCBBM, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCBBM.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1164,7 +1244,7 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCExp As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
@@ -1242,4 +1322,10 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCBBK As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDelBBK As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddBBK As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCBBM As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDelBBM As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddBBM As DevExpress.XtraEditors.SimpleButton
 End Class
