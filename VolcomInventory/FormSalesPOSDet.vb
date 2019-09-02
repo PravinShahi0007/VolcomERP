@@ -37,6 +37,7 @@ Public Class FormSalesPOSDet
     Public bof_xls_so As String = get_setup_field("bof_xls_inv")
     Public is_block_no_stock As String = get_setup_field("is_block_no_stock")
     Public is_use_unique_code As String = "2"
+    Dim print_title As String = ""
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -60,18 +61,21 @@ Public Class FormSalesPOSDet
         If id_menu = "1" Then
             Text = "Invoice"
             LEInvType.Focus()
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "2" Then
             Text = "Credit Note"
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Text = "Credit Note Missing"
             TxtCodeCompFrom.Focus()
+            print_title = "CREDIT NOTE SLIP"
         ElseIf id_menu = "3" Then
             Text = "Invoice Missing Promo"
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "4" Then
             Text = "Invoice Different Margin"
             LEInvType.Enabled = False
@@ -82,6 +86,7 @@ Public Class FormSalesPOSDet
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
             BtnBrowseBillTo.Visible = True
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "5" Then
             Text = "Credit Note Online Store"
             LEInvType.Enabled = False
@@ -96,6 +101,7 @@ Public Class FormSalesPOSDet
             TxtOLStoreNumber.Properties.ReadOnly = False
             GridColumnOrder.Visible = False
             GridColumnDel.Visible = False
+            print_title = "CREDIT NOTE SLIP"
         End If
 
 
@@ -887,23 +893,23 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportSalesInvoice.id_sales_pos = id_sales_pos
+        'ReportSalesInvoice.id_sales_pos = id_sales_pos
         Dim Report As New ReportSalesInvoice()
-        If id_memo_type = "1" Then
-            Report.LTitle.Text = "SALES INVOICE"
-        ElseIf id_memo_type = "2" Then
-            Report.LTitle.Text = "SALES CREDIT NOTE"
-        ElseIf id_memo_type = "3" Then
-            Report.LTitle.Text = "MISSING INVOICE"
-        ElseIf id_memo_type = "4" Then
-            Report.LTitle.Text = "MISSING CREDIT NOTE"
-        ElseIf id_memo_type = "5" Then
-            Report.LTitle.Text = "MISSING INVOICE PROMO"
-        End If
+        'If id_memo_type = "1" Then
+        '    Report.LTitle.Text = "SALES INVOICE"
+        'ElseIf id_memo_type = "2" Then
+        '    Report.LTitle.Text = "SALES CREDIT NOTE"
+        'ElseIf id_memo_type = "3" Then
+        '    Report.LTitle.Text = "MISSING INVOICE"
+        'ElseIf id_memo_type = "4" Then
+        '    Report.LTitle.Text = "MISSING CREDIT NOTE"
+        'ElseIf id_memo_type = "5" Then
+        '    Report.LTitle.Text = "MISSING INVOICE PROMO"
+        'End If
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
+        ''Show the report's preview. 
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 

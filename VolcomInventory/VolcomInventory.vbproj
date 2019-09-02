@@ -6832,6 +6832,12 @@
     <Compile Include="ReportSalesInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesInvoiceNew.Designer.vb">
+      <DependentUpon>ReportSalesInvoiceNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesInvoiceNew.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesOrder.Designer.vb">
       <DependentUpon>ReportSalesOrder.vb</DependentUpon>
     </Compile>
@@ -10933,6 +10939,9 @@
     <EmbeddedResource Include="ReportSalesInvoice.resx">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesInvoiceNew.resx">
+      <DependentUpon>ReportSalesInvoiceNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrder.resx">
       <DependentUpon>ReportSalesOrder.vb</DependentUpon>

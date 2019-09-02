@@ -160,6 +160,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2003,4 +2004,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents BtnExportToReport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnLoadPOS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnid_pos_combine_summary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class
