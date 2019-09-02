@@ -56,6 +56,7 @@ Partial Class FormCashAdvance
         Me.GCDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCashInAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCProposalStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackStatus = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,7 +79,7 @@ Partial Class FormCashAdvance
         Me.DateFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,13 +335,14 @@ Partial Class FormCashAdvance
         Me.GVListOpen.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVListOpen.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVListOpen.ColumnPanelRowHeight = 32
-        Me.GVListOpen.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNumber, Me.GCType, Me.GCCreatedDate, Me.GCCreatedBy, Me.GCNote, Me.GCEmployee, Me.GCDepartement, Me.GCCashInAdvance, Me.GCProposalStatus, Me.GridColumn3, Me.GCReportBackDate, Me.GCReportBackDueDate, Me.GCReportBackStatus, Me.GCIdReportStatus})
+        Me.GVListOpen.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNumber, Me.GCType, Me.GCCreatedDate, Me.GCCreatedBy, Me.GCNote, Me.GCEmployee, Me.GCDepartement, Me.GCCashInAdvance, Me.GCProposalStatus, Me.GridColumn3, Me.GCReportBackDate, Me.GCReportBackDueDate, Me.GCReportBackStatus, Me.GCIdReportStatus, Me.GridColumn4})
         Me.GVListOpen.GridControl = Me.GCListOpen
         Me.GVListOpen.Name = "GVListOpen"
         Me.GVListOpen.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVListOpen.OptionsBehavior.Editable = False
         Me.GVListOpen.OptionsView.ColumnAutoWidth = False
         Me.GVListOpen.OptionsView.RowAutoHeight = True
+        Me.GVListOpen.OptionsView.ShowFooter = True
         Me.GVListOpen.OptionsView.ShowGroupPanel = False
         '
         'GCId
@@ -441,6 +443,22 @@ Partial Class FormCashAdvance
         Me.GCProposalStatus.Visible = True
         Me.GCProposalStatus.VisibleIndex = 7
         Me.GCProposalStatus.Width = 85
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.Caption = "Reconcile Value"
+        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "recon_value"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "recon_value", "{0:N2}")})
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.Width = 100
         '
         'GCReportBackDate
         '
@@ -650,21 +668,14 @@ Partial Class FormCashAdvance
         Me.LabelControl4.TabIndex = 8926
         Me.LabelControl4.Text = "Reconcile Date:"
         '
-        'GridColumn3
+        'GridColumn4
         '
-        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "Reconcile Value"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "recon_value"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "recon_value", "{0:N2}")})
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 10
-        Me.GridColumn3.Width = 100
+        Me.GridColumn4.Caption = "Overdue (days)"
+        Me.GridColumn4.FieldName = "overdue"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 12
+        Me.GridColumn4.Width = 84
         '
         'FormCashAdvance
         '
@@ -769,4 +780,5 @@ Partial Class FormCashAdvance
     Friend WithEvents DateTo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DateFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

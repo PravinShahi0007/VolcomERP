@@ -31,8 +31,10 @@
     Sub load_status()
         Dim query As String = "SELECT 0 as id_status,'All status' AS status 
 UNION SELECT 1 as id_status,'Open' AS status 
-UNION SELECT 2 as id_status,'On Process' AS status 
-UNION SELECT 3 as id_status,'Closed' AS status 
+UNION SELECT 2 as id_status,'Overdue' AS status 
+UNION SELECT 3 as id_status,'On Process' AS status 
+UNION SELECT 4 as id_status,'Closed' AS status 
+UNION SELECT 5 as id_status,'Cancelled' AS status 
 "
         viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
     End Sub
@@ -94,11 +96,15 @@ SELECT id_employee,employee_name FROM tb_m_employee"
 
             If Not SLEStatus.EditValue.ToString = "0" Then
                 If SLEStatus.EditValue.ToString = "1" Then 'open
-                    where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0"
-                ElseIf SLEStatus.EditValue.ToString = "2" Then 'on process
-                    where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) > 0"
-                ElseIf SLEStatus.EditValue.ToString = "3" Then '
+                    where_string += " AND ca.rb_id_report_status !=6 AND ca.id_report_status !=5 AND IFNULL(recon.jml,0) <= 0 AND DATE(ca.report_back_due_date)>=DATE(NOW())"
+                ElseIf SLEStatus.EditValue.ToString = "2" Then 'overdue
+                    where_string += " AND ca.rb_id_report_status !=6 AND ca.id_report_status !=5 AND IFNULL(recon.jml,0) <= 0 AND DATE(ca.report_back_due_date)<DATE(NOW())"
+                ElseIf SLEStatus.EditValue.ToString = "3" Then 'on process
+                    where_string += " AND ca.rb_id_report_status !=6 AND ca.id_report_status !=5 AND IFNULL(recon.jml,0) > 0"
+                ElseIf SLEStatus.EditValue.ToString = "4" Then 'closed
                     where_string += " AND ca.rb_id_report_status =6"
+                ElseIf SLEStatus.EditValue.ToString = "4" Then 'cancelled
+                    where_string += " AND ca.rb_id_report_status =5"
                 End If
             End If
 
@@ -114,7 +120,9 @@ SELECT id_employee,employee_name FROM tb_m_employee"
 
         Dim query As String = "SELECT 'no' AS is_check,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status
-,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml,recon.recon_value, IF(ca.id_report_status=5, 'Cancelled', IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,'Open',IF(ca.rb_id_report_status =6,'Closed','On Process'))) AS rb_status
+,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml,IFNULL(recon.recon_value,ca.`val_ca`) AS recon_value
+,IF(ca.id_report_status=5, 'Cancelled', IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,IF(DATE(ca.report_back_due_date)<DATE(NOW()),'Overdue','Open'),IF(ca.rb_id_report_status =6,'Closed','On Process'))) AS rb_status
+,IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0 AND ca.id_report_status!=5,DATEDIFF(NOW(),ca.report_back_due_date),0) AS overdue
 FROM tb_cash_advance ca
 INNER JOIN tb_lookup_cash_advance_type cat ON cat.`id_cash_advance_type`=ca.`id_cash_advance_type`
 INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=ca.`created_by`
