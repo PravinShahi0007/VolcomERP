@@ -1113,6 +1113,12 @@
     <Compile Include="FormEmpPayrollReportOTEvent.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollReportPajak.Designer.vb">
+      <DependentUpon>FormEmpPayrollReportPajak.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportPajak.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollReportSummary.Designer.vb">
       <DependentUpon>FormEmpPayrollReportSummary.vb</DependentUpon>
     </Compile>
@@ -6174,6 +6180,12 @@
     <Compile Include="ReportEmpPayrollReportBPJSTKDetail.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpPayrollReportPajak.Designer.vb">
+      <DependentUpon>ReportEmpPayrollReportPajak.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportPajak.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -7578,6 +7590,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollReportOTEvent.resx">
       <DependentUpon>FormEmpPayrollReportOTEvent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollReportPajak.resx">
+      <DependentUpon>FormEmpPayrollReportPajak.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollReportSummary.resx">
       <DependentUpon>FormEmpPayrollReportSummary.vb</DependentUpon>
@@ -10549,6 +10564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPayrollReportBPJSTKDetail.resx">
       <DependentUpon>ReportEmpPayrollReportBPJSTKDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollReportPajak.resx">
+      <DependentUpon>ReportEmpPayrollReportPajak.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>

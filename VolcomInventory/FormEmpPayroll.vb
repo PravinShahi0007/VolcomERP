@@ -844,4 +844,9 @@
             BandedGridColumnSent.Visible = False
         End If
     End Sub
+
+    Private Sub BarButtonItem6_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem6.ItemClick
+        FormEmpPayrollReportPajak.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        FormEmpPayrollReportPajak.ShowDialog()
+    End Sub
 End Class
