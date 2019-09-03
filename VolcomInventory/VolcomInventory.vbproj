@@ -711,6 +711,12 @@
     <Compile Include="FormCashAdvanceReconcile.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvanceReport.Designer.vb">
+      <DependentUpon>FormCashAdvanceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -7391,6 +7397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCashAdvanceReconcile.resx">
       <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceReport.resx">
+      <DependentUpon>FormCashAdvanceReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
