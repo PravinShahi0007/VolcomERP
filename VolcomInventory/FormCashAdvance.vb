@@ -195,4 +195,8 @@ WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
         GCReportBackDueDate.VisibleIndex = 9
         GCReportBackStatus.VisibleIndex = 10
     End Sub
+
+    Private Sub BCreateReport_Click(sender As Object, e As EventArgs) Handles BCreateReport.Click
+        FormCashAdvanceReport.ShowDialog()
+    End Sub
 End Class
