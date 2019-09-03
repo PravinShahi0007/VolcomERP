@@ -199,7 +199,7 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         'check
         Dim acc_selected = True
-        Dim val_ok = False
+        Dim val_ok = True
 
         If XTPWithdrawal.PageVisible Then
             For i = 0 To GVBankWithdrawal.RowCount - 1
@@ -208,8 +208,8 @@
                 End If
             Next
             '
-            If GVJournalDet.Columns("value").SummaryItem.SummaryValue - GVBankWithdrawal.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
-                val_ok = True
+            If Not GVJournalDet.Columns("value").SummaryItem.SummaryValue - GVBankWithdrawal.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
+                val_ok = False
             End If
         ElseIf XTPDeposit.PageVisible Then
             For i = 0 To GVBankDeposit.RowCount - 1
@@ -218,8 +218,8 @@
                 End If
             Next
             '
-            If GVBankDeposit.Columns("value").SummaryItem.SummaryValue + GVJournalDet.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
-                val_ok = True
+            If Not GVBankDeposit.Columns("value").SummaryItem.SummaryValue + GVJournalDet.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
+                val_ok = False
             End If
         End If
 
