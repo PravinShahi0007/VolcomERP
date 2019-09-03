@@ -42,12 +42,12 @@
         End If
 
         'where organic or dw
-        Dim where_staff As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "emp.id_employee_status = 3", "emp.id_employee_status <> 3")
+        Dim where_staff As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "IFNULL(sts.`id_employee_status`, sts_ori.`id_employee_status`) = 3", "IFNULL(sts.`id_employee_status`, sts_ori.`id_employee_status`) <> 3")
 
         'where wages dw
         Dim where_wages As String = "IF(p.increase = 0.00, (SELECT (" + If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "sal.`basic_salary` * (IFNULL(dep.total_workdays, dep_ori.total_workdays))", "sal.`basic_salary` + sal.`allow_job` + sal.`allow_meal` + sal.`allow_trans`") + ") FROM tb_emp_payroll_det AS pd LEFT JOIN tb_m_employee_salary AS sal ON pd.id_salary = sal.id_employee_salary WHERE pd.id_employee = p.`id_employee` AND pd.id_payroll = '" & id_periode & "'), p.increase)"
 
-        Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,p.`id_employee`,p.`id_ot_type`,DATE_FORMAT(p.`ot_start`, '%d %M %Y') AS ot_date, DATE_FORMAT(p.`ot_start`, '%d %b %Y %H:%i:%s') AS ot_start, DATE_FORMAT(p.`ot_end`, '%d %b %Y %H:%i:%s') AS ot_end,p.`total_break`,ROUND((TIMESTAMPDIFF(MINUTE, p.`ot_start`, p.`ot_end`) / 60) - p.`total_break`, 1) AS total_hour_actual,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status,emp.`employee_name`,emp.`employee_code`,CONCAT(IF(ott.`is_event` = 1, 'Event ', ''), ott.`ot_type`) AS ot_type, ROUND(IF(ott.`is_event` = 1, p.wages_per_point, (" + where_wages + " * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point, ROUND(IF(ott.`is_event` = 1, p.`total_point` * p.wages_per_point, p.`total_point` * (" + where_wages + " * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point_total, p.note, dep.is_office_payroll
+        Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,p.`id_employee`,p.`id_ot_type`,DATE_FORMAT(p.`ot_start`, '%d %M %Y') AS ot_date, DATE_FORMAT(p.`ot_start`, '%d %b %Y %H:%i:%s') AS ot_start, DATE_FORMAT(p.`ot_end`, '%d %b %Y %H:%i:%s') AS ot_end,p.`total_break`,ROUND((TIMESTAMPDIFF(MINUTE, p.`ot_start`, p.`ot_end`) / 60) - p.`total_break`, 1) AS total_hour_actual,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status,emp.`employee_name`,emp.`employee_code`,CONCAT(IF(ott.`is_event` = 1, 'Event ', ''), ott.`ot_type`) AS ot_type, ROUND(IF(ott.`is_event` = 1, p.wages_per_point, (" + where_wages + " * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point, ROUND(IF(ott.`is_event` = 1, p.`total_point` * p.wages_per_point, p.`total_point` * (" + where_wages + " * (pay.ot_reg_pembilang / pay.ot_reg_penyebut))),10) AS wages_per_point_total, p.note, dep.is_office_payroll, ott.`id_ot_type`
                 FROM tb_emp_payroll_ot p
                 LEFT JOIN `tb_lookup_ot_type` ott ON ott.`id_ot_type`=p.`id_ot_type`
                 LEFT JOIN tb_m_employee emp ON emp.`id_employee`=p.`id_employee`
@@ -82,17 +82,23 @@
         GVOvertime.BestFitColumns()
     End Sub
     Sub load_payroll_dp()
-        Dim query As String = "SELECT ot_det.id_employee, employee.employee_code, employee.employee_name, dep.departement, employee.employee_position, employee_status.employee_status, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot_det.start_work, '%l:%i:%s %p') AS ot_start, DATE_FORMAT(ot_det.end_work, '%l:%i:%s %p') AS ot_end, ot_det.break_hours AS total_break, (TIMESTAMPDIFF(HOUR, ot_det.start_work, ot_det.end_work) - ot_det.break_hours) AS total_hour, ot.ot_note AS note
-                                FROM tb_ot_det AS ot_det
-                                LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
-                                LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
-                                LEFT JOIN tb_m_departement dep ON dep.`id_departement`=employee.`id_departement`
-                                LEFT JOIN tb_lookup_employee_status AS employee_status ON employee.id_employee_status = employee_status.id_employee_status
-                                WHERE ot_det.conversion_type = 2 AND ot_det.is_valid = 1 AND ot.id_check_status = 6 AND ot.id_payroll = '" + id_periode + "'
-                                ORDER BY employee.id_employee_status ASC, employee.employee_code ASC, ot.ot_date ASC"
+        Dim query As String = "SELECT ot_det.id_employee, employee.employee_code, employee.employee_name, dep.departement, employee.employee_position, employee_status.employee_status, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot_det.start_work, '%l:%i:%s %p') AS ot_start, DATE_FORMAT(ot_det.end_work, '%l:%i:%s %p') AS ot_end, ot_det.break_hours AS total_break, ot_det.overtime_hours, 0.0 AS total_hour, ot.ot_note AS note, IF((IFNULL(ot_det.is_day_off, (IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND DATE = ot.ot_date) = 1) AND (SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot.ot_date AND id_religion IN (0, IF(dep.is_store = 1, 0, employee.id_religion))) IS NULL, 2, 1)))) = 1, 'Yes', 'No') AS is_day_off, dep.is_store, ot_type.is_point_ho, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp
+            FROM tb_ot_det AS ot_det
+            LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
+            LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
+            LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
+            LEFT JOIN tb_m_departement dep ON dep.`id_departement`=employee.`id_departement`
+            LEFT JOIN tb_lookup_employee_status AS employee_status ON employee.id_employee_status = employee_status.id_employee_status
+            LEFT JOIN (
+                SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
+                FROM tb_m_employee
+            ) AS salary ON ot_det.id_employee = salary.id_employee
+            WHERE ot_det.conversion_type = 2 AND ot_det.is_valid = 1 AND ot.id_check_status = 6 AND ot.id_payroll = " + id_periode + "
+            ORDER BY employee.id_employee_status ASC, employee.employee_code ASC, ot.ot_date ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDP.DataSource = data
         GVDP.BestFitColumns()
+        calculatePoint()
     End Sub
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         load_add()
@@ -268,7 +274,7 @@
     End Sub
 
     Private Sub GVOvertime_RowCellClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs) Handles GVOvertime.RowCellClick
-        If id_report_status = "0" Then
+        If id_report_status = "0" And GVOvertime.GetFocusedRowCellValue("id_ot_type").ToString = "1" Then
             If e.Button = MouseButtons.Right And e.Column.FieldName = "wages_per_point" Then
                 PMSalary.ClearLinks()
 
@@ -304,5 +310,32 @@
         execute_non_query("UPDATE tb_emp_payroll_ot SET increase = '" + decimalSQL(salary) + "' WHERE id_payroll_ot = " + GVOvertime.GetFocusedRowCellValue("id_payroll_ot").ToString, True, "", "", "", "")
 
         load_payroll_ot()
+    End Sub
+
+    Sub calculatePoint()
+        For i = 0 To GVDP.RowCount - 1
+            If GVDP.IsValidRowHandle(i) Then
+                Dim overtime_hours As String = GVDP.GetRowCellValue(i, "overtime_hours").ToString
+
+                If Not overtime_hours = "" Then
+                    Dim is_day_off As String = If(GVDP.GetRowCellValue(i, "is_day_off").ToString = "Yes", "1", "2")
+                    Dim is_store As String = GVDP.GetRowCellValue(i, "is_store").ToString
+
+                    If GVDP.GetRowCellValue(i, "is_point_ho").ToString = "1" Then
+                        is_store = "2"
+                    End If
+
+                    GVDP.SetRowCellValue(i, "total_hour", FormEmpOvertimeDet.calc_point(Decimal.Parse(overtime_hours), is_day_off, is_store))
+                Else
+                    GVDP.SetRowCellValue(i, "total_hour", "")
+                End If
+
+                Dim only_dp As String = GVDP.GetRowCellValue(i, "only_dp").ToString
+
+                If only_dp = "yes" Then
+                    GVDP.SetRowCellValue(i, "total_hour", overtime_hours)
+                End If
+            End If
+        Next
     End Sub
 End Class
