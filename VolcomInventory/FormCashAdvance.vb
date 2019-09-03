@@ -112,16 +112,16 @@ SELECT id_employee,employee_name FROM tb_m_employee"
             End If
 
             If Not date_from = "" Then
-                where_string += " AND ca.report_back_date >= '" + date_from + "'"
+                where_string += " AND ca.date_created >= '" + date_from + "'"
             End If
 
             If Not date_to = "" Then
-                where_string += " AND ca.report_back_date <= '" + date_to + "'"
+                where_string += " AND ca.date_created <= '" + date_to + "'"
             End If
         Catch ex As Exception
         End Try
 
-        Dim query As String = "SELECT 'no' AS is_check,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
+        Dim query As String = "SELECT 'no' AS is_check,ca.act_report_back_date,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status
 ,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml,IFNULL(recon.recon_value,ca.`val_ca`) AS recon_value
 ,IF(ca.id_report_status=5, 'Cancelled', IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,IF(DATE(ca.report_back_due_date)<DATE(NOW()),'Overdue','Open'),IF(ca.rb_id_report_status =6,'Closed','On Process'))) AS rb_status
