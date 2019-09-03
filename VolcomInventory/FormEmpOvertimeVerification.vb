@@ -75,8 +75,6 @@
         GVEmployee.BestFitColumns()
 
         'limit date search
-        DESearch.EditValue = Date.Now
-
         DESearch.Properties.MinValue = Date.Parse(data_pro.Rows(0)("date"))
         DESearch.Properties.MaxValue = Date.Parse(data_pro.Rows(data_pro.Rows.Count - 1)("date"))
     End Sub

@@ -8,8 +8,6 @@
             Text = "Overtime Management Pick"
         End If
 
-        viewSearchLookupQuery(SLUEPayrollPeriod, "SELECT id_payroll, DATE_FORMAT(periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(periode_end, '%d %M %Y') AS periode_end, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY periode_end DESC", "id_payroll", "periode", "id_payroll")
-
         Dim min_date As DateTime = Now.AddDays(1)
 
         'permission
@@ -42,17 +40,6 @@
 
     Private Sub DEOvertimeDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEOvertimeDate.EditValueChanged
         If Not DEOvertimeDate.EditValue Is Nothing Then
-            'change payroll period
-            Dim data As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %b %Y') AS ot_periode_start, DATE_FORMAT(ot_periode_end, '%d %b %Y') AS ot_periode_end FROM tb_emp_payroll WHERE id_payroll_type = 1", -1, True, "", "", "", "")
-
-            For i = 0 To data.Rows.Count - 1
-                If Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") >= Date.Parse(data.Rows(i)("ot_periode_start")) And Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") <= Date.Parse(data.Rows(i)("ot_periode_end")) Then
-                    SLUEPayrollPeriod.EditValue = data.Rows(i)("id_payroll")
-
-                    Exit For
-                End If
-            Next
-
             'time
             Dim ot_date As DateTime = DEOvertimeDate.EditValue
 
@@ -91,7 +78,6 @@
         FormEmpOvertimePick.overtime_start_time = TEOvertimeStart.EditValue
         FormEmpOvertimePick.overtime_end_time = TEOvertimeEnd.EditValue
         FormEmpOvertimePick.overtime_break = TEOvertimeBreak.EditValue
-        FormEmpOvertimePick.id_payroll = SLUEPayrollPeriod.EditValue
 
         FormEmpOvertimePick.ShowDialog()
 

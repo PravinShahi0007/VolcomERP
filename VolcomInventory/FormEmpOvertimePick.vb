@@ -13,14 +13,11 @@
             Text = "Overtime Management Pick"
         End If
 
-        viewSearchLookupQuery(SLUEPayrollPeriod, "SELECT id_payroll, DATE_FORMAT(periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(periode_end, '%d %M %Y') AS periode_end, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY periode_end DESC", "id_payroll", "periode", "id_payroll")
-
         'load
         DEOvertimeDate.EditValue = overtime_date
         TEOvertimeStart.EditValue = overtime_start_time
         TEOvertimeEnd.EditValue = overtime_end_time
         TEOvertimeBreak.EditValue = overtime_break
-        SLUEPayrollPeriod.EditValue = id_payroll
 
         Dim whereHrd As String = If(is_hrd = "-1", "AND e.id_departement = " + id_departement_user + "", "")
 
@@ -100,26 +97,16 @@
                               GVList.GetRowCellValue(i, "id_departement_sub"),
                               GVList.GetRowCellValue(i, "departement"),
                               Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("dd MMM yyyy"),
-                              GVList.GetRowCellValue(i, "is_store"),
                               GVList.GetRowCellValue(i, "employee_code"),
                               GVList.GetRowCellValue(i, "employee_name"),
                               GVList.GetRowCellValue(i, "employee_position"),
                               GVList.GetRowCellValue(i, "id_employee_status"),
                               GVList.GetRowCellValue(i, "employee_status"),
                               conversion_type,
-                              "",
-                              SLUEPayrollPeriod.EditValue.ToString,
                               TEOvertimeStart.EditValue,
                               TEOvertimeEnd.EditValue,
                               TEOvertimeBreak.EditValue,
-                              TETotalHours.EditValue,
-                              Date.Parse(Now.ToString).ToString("dd MMM yyyy"),
-                              Date.Parse(Now.ToString).ToString("dd MMM yyyy"),
-                              0.0,
-                              0.0,
-                              0.0,
-                              0.0,
-                              "no")
+                              TETotalHours.EditValue)
             End If
         Next
 

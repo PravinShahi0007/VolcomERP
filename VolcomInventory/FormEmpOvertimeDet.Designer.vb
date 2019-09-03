@@ -19,6 +19,7 @@ Partial Class FormEmpOvertimeDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpOvertimeDet))
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -30,7 +31,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCIdDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeePosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -41,18 +41,6 @@ Partial Class FormEmpOvertimeDet
         Me.RISLUETypeView = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RISLUEDayOff = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCPayrollPeriod = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RISLUEPayroll = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCStartWorkSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceStartSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -87,16 +75,12 @@ Partial Class FormEmpOvertimeDet
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLUEDayOff, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLUEPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceStartSub, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceStartSub.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceEndSub, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,7 +135,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployee.Location = New System.Drawing.Point(2, 2)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RISLUEDayOff, Me.RISLUEPayroll, Me.RITEAttendanceStartSub, Me.RITEAttendanceEndSub, Me.RITEBreak})
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RITEAttendanceStartSub, Me.RITEAttendanceEndSub, Me.RITEBreak})
         Me.GCEmployee.Size = New System.Drawing.Size(982, 426)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
@@ -160,7 +144,7 @@ Partial Class FormEmpOvertimeDet
         '
         Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GCInfo1, Me.GBProposed})
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCIsStore, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCIsDayOff, Me.GCPayrollPeriod, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 2
         Me.GVEmployee.Name = "GVEmployee"
@@ -177,18 +161,15 @@ Partial Class FormEmpOvertimeDet
         Me.GCInfo1.Columns.Add(Me.GCIdDepartement)
         Me.GCInfo1.Columns.Add(Me.GCDepartement)
         Me.GCInfo1.Columns.Add(Me.GCDate)
-        Me.GCInfo1.Columns.Add(Me.GCIsStore)
         Me.GCInfo1.Columns.Add(Me.GCEmployeeCode)
         Me.GCInfo1.Columns.Add(Me.GCEmployeeName)
         Me.GCInfo1.Columns.Add(Me.GCEmployeePosition)
         Me.GCInfo1.Columns.Add(Me.GCIdEmployeeStatus)
         Me.GCInfo1.Columns.Add(Me.GCEmployeeStatus)
         Me.GCInfo1.Columns.Add(Me.GCConversionType)
-        Me.GCInfo1.Columns.Add(Me.GCIsDayOff)
-        Me.GCInfo1.Columns.Add(Me.GCPayrollPeriod)
         Me.GCInfo1.Name = "GCInfo1"
         Me.GCInfo1.VisibleIndex = 0
-        Me.GCInfo1.Width = 566
+        Me.GCInfo1.Width = 416
         '
         'GCIdEmployee
         '
@@ -228,12 +209,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCDate.Name = "GCDate"
         Me.GCDate.OptionsColumn.AllowEdit = False
         Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCIsStore
-        '
-        Me.GCIsStore.FieldName = "is_store"
-        Me.GCIsStore.Name = "GCIsStore"
-        Me.GCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCEmployeeCode
         '
@@ -319,90 +294,6 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 0
-        '
-        'GCIsDayOff
-        '
-        Me.GCIsDayOff.Caption = "Day Off"
-        Me.GCIsDayOff.ColumnEdit = Me.RISLUEDayOff
-        Me.GCIsDayOff.FieldName = "is_day_off"
-        Me.GCIsDayOff.Name = "GCIsDayOff"
-        Me.GCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCIsDayOff.Visible = True
-        '
-        'RISLUEDayOff
-        '
-        Me.RISLUEDayOff.AutoHeight = False
-        Me.RISLUEDayOff.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLUEDayOff.Name = "RISLUEDayOff"
-        Me.RISLUEDayOff.View = Me.RepositoryItemSearchLookUpEdit1View
-        '
-        'RepositoryItemSearchLookUpEdit1View
-        '
-        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "id_day_off"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Day Off"
-        Me.GridColumn2.FieldName = "day_off"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GCPayrollPeriod
-        '
-        Me.GCPayrollPeriod.Caption = "Payroll Period"
-        Me.GCPayrollPeriod.ColumnEdit = Me.RISLUEPayroll
-        Me.GCPayrollPeriod.FieldName = "id_payroll"
-        Me.GCPayrollPeriod.Name = "GCPayrollPeriod"
-        Me.GCPayrollPeriod.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCPayrollPeriod.Visible = True
-        '
-        'RISLUEPayroll
-        '
-        Me.RISLUEPayroll.AutoHeight = False
-        Me.RISLUEPayroll.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLUEPayroll.Name = "RISLUEPayroll"
-        Me.RISLUEPayroll.View = Me.GridView1
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.FieldName = "id_payroll"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.FieldName = "periode_start"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.FieldName = "periode_end"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Periode"
-        Me.GridColumn6.FieldName = "periode"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
         '
         'GBProposed
         '
@@ -516,7 +407,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCIdDepartementSub.Name = "GCIdDepartementSub"
         Me.GCIdDepartementSub.OptionsColumn.AllowEdit = False
         Me.GCIdDepartementSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCIdDepartementSub.Visible = True
         Me.GCIdDepartementSub.Width = 109
         '
         'GroupControl1
@@ -795,10 +685,6 @@ Partial Class FormEmpOvertimeDet
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLUEDayOff, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLUEPayroll, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceStartSub.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceStartSub, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceEndSub.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -868,35 +754,22 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents RISLUEDayOff As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
-    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GCIdEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCOnlyDp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCIsStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeeCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeeName As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeePosition As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCIdEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCConversionType As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCIsDayOff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCStartWorkSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEndWorkSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCBreakHoursSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCTotalHoursSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCPayrollPeriod As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents RISLUEPayroll As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITEAttendanceStartSub As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RITEAttendanceEndSub As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GCInfo1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand

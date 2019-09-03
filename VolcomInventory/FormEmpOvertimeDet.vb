@@ -1,6 +1,4 @@
-﻿Imports System.IO
-
-Public Class FormEmpOvertimeDet
+﻿Public Class FormEmpOvertimeDet
     Public is_hrd As String = "-1"
     Public is_check As String = "-1"
     Public id As String = "0"
@@ -21,8 +19,6 @@ Public Class FormEmpOvertimeDet
         ' default
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT 1 AS id_type, 'Salary' AS type UNION SELECT 2 AS id_type, 'DP' AS type", 0, "type", "id_type")
-        viewSearchLookupRepositoryQuery(RISLUEDayOff, "SELECT 1 AS id_day_off, 'Yes' AS day_off UNION SELECT 2 AS id_day_off, 'No' AS day_off", 0, "day_off", "id_day_off")
-        viewSearchLookupRepositoryQuery(RISLUEPayroll, "SELECT id_payroll, DATE_FORMAT(periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(periode_end, '%d %M %Y') AS periode_end, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY periode_end DESC", 0, "periode", "id_payroll")
 
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         TECreatedAt.EditValue = DateTime.Parse(Now).ToString("dd MMM yyyy HH:mm:ss")
@@ -35,26 +31,16 @@ Public Class FormEmpOvertimeDet
         data.Columns.Add("id_departement_sub", GetType(String))
         data.Columns.Add("departement", GetType(String))
         data.Columns.Add("date", GetType(String))
-        data.Columns.Add("is_store", GetType(String))
         data.Columns.Add("employee_code", GetType(String))
         data.Columns.Add("employee_name", GetType(String))
         data.Columns.Add("employee_position", GetType(String))
         data.Columns.Add("id_employee_status", GetType(String))
         data.Columns.Add("employee_status", GetType(String))
         data.Columns.Add("conversion_type", GetType(String))
-        data.Columns.Add("is_day_off", GetType(String))
-        data.Columns.Add("id_payroll", GetType(String))
         data.Columns.Add("start_work_sub", GetType(DateTime))
         data.Columns.Add("end_work_sub", GetType(DateTime))
         data.Columns.Add("break_hours_sub", GetType(Decimal))
         data.Columns.Add("total_hours_sub", GetType(Decimal))
-        data.Columns.Add("start_work", GetType(DateTime))
-        data.Columns.Add("end_work", GetType(DateTime))
-        data.Columns.Add("break_hours", GetType(Decimal))
-        data.Columns.Add("total_hours", GetType(Decimal))
-        data.Columns.Add("overtime_hours", GetType(Decimal))
-        data.Columns.Add("point", GetType(Decimal))
-        data.Columns.Add("valid", GetType(String))
 
         GCEmployee.DataSource = data
 
@@ -81,37 +67,23 @@ Public Class FormEmpOvertimeDet
 
             ' load employee
             ' column
-            Dim whereCheckColumn As String = "DATE_FORMAT(IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), ot_det.ot_start_time, att_in.datetime), '%d %b %Y %H:%i:%s') AS start_work, DATE_FORMAT(att_out.datetime, '%d %b %Y %H:%i:%s') AS end_work, ot_det.ot_break AS break_hours, ROUND((TIMESTAMPDIFF(MINUTE, IF(sch.id_schedule_type = 1, ot_det.ot_start_time, att_in.datetime), att_out.datetime) / 60) - ot_det.ot_break, 1) AS total_hours, 0.0 AS overtime_hours, IFNULL(ot_det.is_day_off, (IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND (SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL, 2, 1))) AS is_day_off, 0.0 AS point"
-
-            If data_ot.Rows(0)("hrd_check").ToString = "1" Then
-                whereCheckColumn = "DATE_FORMAT(ot_det.start_work, '%d %b %Y %H:%i:%s') AS start_work, DATE_FORMAT(ot_det.end_work, '%d %b %Y %H:%i:%s') AS end_work, ot_det.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.start_work, ot_det.end_work) / 60) - ot_det.break_hours, 1) AS total_hours, IFNULL(ot_det.overtime_hours, 0.0) AS overtime_hours, IFNULL(ot_det.is_day_off, (IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND (SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL, 2, 1))) AS is_day_off, 0.0 AS point"
-            End If
-
-            ' table join
-            Dim whereCheckJoin As String = "
-                LEFT JOIN (
-                    SELECT id_employee, MIN(datetime) AS datetime
-                    FROM tb_emp_attn
-                    WHERE type_log = 1 AND DATE(datetime) BETWEEN '" + Date.Parse(data_ot.Rows(0)("min_ot_date").ToString).ToString("yyyy-MM-dd") + "' AND '" + Date.Parse(data_ot.Rows(0)("max_ot_date").ToString).ToString("yyyy-MM-dd") + "'
-                    GROUP BY id_employee
-                ) att_in ON ot_det.id_employee = att_in.id_employee
-                LEFT JOIN (
-                    SELECT id_employee, MAX(datetime) AS datetime
-                    FROM tb_emp_attn
-                    WHERE type_log = 2 AND DATE(datetime) BETWEEN '" + Date.Parse(data_ot.Rows(0)("min_ot_date").ToString).ToString("yyyy-MM-dd") + "' AND '" + Date.Parse(data_ot.Rows(0)("max_ot_date").ToString).ToString("yyyy-MM-dd") + "'
-                    GROUP BY id_employee
-                ) att_out ON ot_det.id_employee = att_out.id_employee
-                LEFT JOIN (
-                    SELECT id_employee, id_schedule_type, date FROM tb_emp_schedule WHERE date BETWEEN '" + Date.Parse(data_ot.Rows(0)("min_ot_date").ToString).ToString("yyyy-MM-dd") + "' AND '" + Date.Parse(data_ot.Rows(0)("max_ot_date").ToString).ToString("yyyy-MM-dd") + "'
-                ) sch ON ot_det.id_employee = sch.id_employee AND ot_det.ot_date = sch.date
-            "
-
-            If data_ot.Rows(0)("hrd_check").ToString = "1" Then
-                whereCheckJoin = ""
-            End If
-
             Dim query_ot_det As String = "
-                SELECT ot_det.id_employee, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, departement.is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, ot_det.ot_break AS break_hours_sub, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub, ot_det.id_payroll, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, " + whereCheckColumn + ", IF(is_valid = 1, 'yes', 'no') AS valid
+                SELECT ot_det.id_employee, 
+                    IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT ump FROM tb_m_departement_sub WHERE id_departement_sub = ot_det.id_departement_sub), 'yes', 'no')) AS only_dp, 
+                    ot_det.id_departement, 
+                    ot_det.id_departement_sub, 
+                    departement.departement, 
+                    DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, 
+                    employee.employee_code, 
+                    employee.employee_name, 
+                    ot_det.employee_position, 
+                    ot_det.id_employee_status, 
+                    employee_status.employee_status, 
+                    ot_det.conversion_type, 
+                    DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, 
+                    DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, 
+                    ot_det.ot_break AS break_hours_sub, 
+                    ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -121,8 +93,6 @@ Public Class FormEmpOvertimeDet
                     SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
                     FROM tb_m_employee
                 ) AS salary ON ot_det.id_employee = salary.id_employee
-                LEFT JOIN tb_emp_payroll AS payroll ON ot_det.id_payroll = payroll.id_payroll
-                " + whereCheckJoin + "
                 WHERE ot_det.id_ot = " + id + "
                 ORDER BY ot_det.ot_date ASC, employee.id_employee_level ASC, employee.employee_code ASC
             "
@@ -130,16 +100,6 @@ Public Class FormEmpOvertimeDet
             Dim data_ot_det As DataTable = execute_query(query_ot_det, -1, True, "", "", "", "")
 
             GCEmployee.DataSource = data_ot_det
-
-            For i = 0 To GVEmployee.RowCount - 1
-                If GVEmployee.IsValidRowHandle(i) Then
-                    If Not data_ot.Rows(0)("hrd_check").ToString = "1" Then
-                        calculateTotalHoursList(i)
-                    End If
-
-                    calculatePointList(i)
-                End If
-            Next
 
             GVEmployee.BestFitColumns()
         End If
@@ -158,34 +118,6 @@ Public Class FormEmpOvertimeDet
             SBMark.Enabled = True
             SBPrint.Enabled = True
             SBSave.Enabled = False
-        End If
-
-        If is_check = "-1" Then
-            GCIsDayOff.Visible = False
-
-            SBSave.Visible = True
-        Else
-            Dim query_check As String = "SELECT id_check_status FROM tb_ot WHERE id_ot = " + id + ""
-
-            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-
-            If data_check.Rows(0)("id_check_status").ToString = "" Then
-                RISLUEType.ReadOnly = False
-
-                SBMark.Enabled = False
-                SBPrint.Enabled = False
-            Else
-                RISLUEType.ReadOnly = True
-
-                SBMark.Enabled = True
-                SBPrint.Enabled = True
-
-                GCIsDayOff.OptionsColumn.AllowEdit = False
-            End If
-
-            GCIsDayOff.Visible = True
-
-            SBSave.Visible = False
         End If
     End Sub
 
@@ -368,7 +300,7 @@ Public Class FormEmpOvertimeDet
                         Dim ot_start_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "start_work_sub").ToString).ToString("yyyy-MM-dd HH:mm:ss")
                         Dim ot_end_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "end_work_sub").ToString).ToString("yyyy-MM-dd HH:mm:ss")
 
-                        query = "INSERT INTO tb_ot_det (id_ot, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, conversion_type, ot_date, ot_start_time, ot_end_time, ot_break, id_payroll) VALUES (" + id + ", " + GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement_sub").ToString + ", '" + addSlashes(GVEmployee.GetRowCellValue(i, "employee_position").ToString) + "', " + GVEmployee.GetRowCellValue(i, "id_employee_status").ToString + ", " + GVEmployee.GetRowCellValue(i, "conversion_type").ToString + ", '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(GVEmployee.GetRowCellValue(i, "break_hours_sub").ToString) + ", " + GVEmployee.GetRowCellValue(i, "id_payroll").ToString + ")"
+                        query = "INSERT INTO tb_ot_det (id_ot, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, conversion_type, ot_date, ot_start_time, ot_end_time, ot_break) VALUES (" + id + ", " + GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement_sub").ToString + ", '" + addSlashes(GVEmployee.GetRowCellValue(i, "employee_position").ToString) + "', " + GVEmployee.GetRowCellValue(i, "id_employee_status").ToString + ", " + GVEmployee.GetRowCellValue(i, "conversion_type").ToString + ", '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(GVEmployee.GetRowCellValue(i, "break_hours_sub").ToString) + ")"
 
                         execute_non_query(query, True, "", "", "", "")
                     End If
@@ -400,7 +332,7 @@ Public Class FormEmpOvertimeDet
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
         Cursor = Cursors.WaitCursor
 
-        FormReportMark.report_mark_type = If(is_check = "-1", "184", "187")
+        FormReportMark.report_mark_type = "184"
         FormReportMark.id_report = id
 
         FormReportMark.ShowDialog()
@@ -422,12 +354,13 @@ Public Class FormEmpOvertimeDet
 
         Report.id = id
         Report.data = GCEmployee.DataSource
-        Report.is_check = is_check
-        If is_check = "-1" Then
-            Report.id_pre = If(data_ot.Rows(0)("id_report_status").ToString = "6", "-1", "1")
-        Else
-            Report.id_pre = If(data_ot.Rows(0)("id_check_status").ToString = "6", "-1", "1")
-        End If
+        'Report.is_check = is_check
+
+        'If is_check = "-1" Then
+        '    Report.id_pre = If(data_ot.Rows(0)("id_report_status").ToString = "6", "-1", "1")
+        'Else
+        '    Report.id_pre = If(data_ot.Rows(0)("id_check_status").ToString = "6", "-1", "1")
+        'End If
 
         Report.XLNumber.Text = TENumber.Text.ToString
         Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
@@ -644,7 +577,7 @@ Public Class FormEmpOvertimeDet
         Next
     End Sub
 
-    Private Sub RISLUEDayOff_EditValueChanged(sender As Object, e As EventArgs) Handles RISLUEDayOff.EditValueChanged
+    Private Sub RISLUEDayOff_EditValueChanged(sender As Object, e As EventArgs)
         calculatePointList(GVEmployee.FocusedRowHandle)
     End Sub
 End Class

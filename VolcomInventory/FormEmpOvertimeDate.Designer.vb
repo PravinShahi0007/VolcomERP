@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpOvertimeDate
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormEmpOvertimeDate
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpOvertimeDate))
         Me.TEOvertimeEnd = New DevExpress.XtraEditors.DateEdit()
@@ -33,13 +33,6 @@ Partial Class FormEmpOvertimeDate
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLUEPayrollPeriod = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SLUEPayrollPeriodView = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.TEOvertimeEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOvertimeStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,8 +43,6 @@ Partial Class FormEmpOvertimeDate
         CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.SLUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEPayrollPeriodView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TEOvertimeEnd
@@ -174,7 +165,7 @@ Partial Class FormEmpOvertimeDate
         Me.PanelControl1.Controls.Add(Me.SBClose)
         Me.PanelControl1.Controls.Add(Me.SBAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 123)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 95)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(434, 42)
         Me.PanelControl1.TabIndex = 36
@@ -199,63 +190,11 @@ Partial Class FormEmpOvertimeDate
         Me.SBAdd.TabIndex = 0
         Me.SBAdd.Text = "Add"
         '
-        'SLUEPayrollPeriod
-        '
-        Me.SLUEPayrollPeriod.Location = New System.Drawing.Point(97, 90)
-        Me.SLUEPayrollPeriod.Name = "SLUEPayrollPeriod"
-        Me.SLUEPayrollPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEPayrollPeriod.Properties.View = Me.SLUEPayrollPeriodView
-        Me.SLUEPayrollPeriod.Size = New System.Drawing.Size(325, 20)
-        Me.SLUEPayrollPeriod.TabIndex = 38
-        '
-        'SLUEPayrollPeriodView
-        '
-        Me.SLUEPayrollPeriodView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
-        Me.SLUEPayrollPeriodView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SLUEPayrollPeriodView.Name = "SLUEPayrollPeriodView"
-        Me.SLUEPayrollPeriodView.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SLUEPayrollPeriodView.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.FieldName = "id_payroll"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Periode Start"
-        Me.GridColumn14.FieldName = "periode_start"
-        Me.GridColumn14.Name = "GridColumn14"
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Periode End"
-        Me.GridColumn15.FieldName = "periode_end"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Periode"
-        Me.GridColumn16.FieldName = "periode"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(11, 93)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl7.TabIndex = 37
-        Me.LabelControl7.Text = "Payroll Period"
-        '
         'FormEmpOvertimeDate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(434, 165)
-        Me.Controls.Add(Me.SLUEPayrollPeriod)
-        Me.Controls.Add(Me.LabelControl7)
+        Me.ClientSize = New System.Drawing.Size(434, 137)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TEOvertimeEnd)
         Me.Controls.Add(Me.TEOvertimeStart)
@@ -282,8 +221,6 @@ Partial Class FormEmpOvertimeDate
         CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.SLUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEPayrollPeriodView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -302,11 +239,4 @@ Partial Class FormEmpOvertimeDate
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBAdd As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SLUEPayrollPeriod As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SLUEPayrollPeriodView As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
 End Class
