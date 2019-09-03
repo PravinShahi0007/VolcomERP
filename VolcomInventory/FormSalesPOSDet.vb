@@ -733,22 +733,24 @@ Public Class FormSalesPOSDet
         BtnNoStock.Visible = False
         GridColumnIsSelect.Visible = False
 
+        BtnPrint.Enabled = True
+
         If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
         End If
 
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
-        Else
-            BtnPrint.Enabled = False
-        End If
+
 
         If id_report_status <> "5" And bof_column = "1" Then
             BtnXlsBOF.Visible = True
         Else
             BtnXlsBOF.Visible = False
+        End If
+
+        If id_report_status = "5" Then
+            BtnPrint.Enabled = False
         End If
         TxtVirtualPosNumber.Focus()
     End Sub
@@ -894,6 +896,8 @@ Public Class FormSalesPOSDet
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
+        ReportSalesInvoiceNew.id_report_status = id_report_status
+        ReportSalesInvoiceNew.rmt = report_mark_type
         Dim Report As New ReportSalesInvoiceNew()
         Report.LabelTitle.Text = print_title
         'If id_memo_type = "1" Then
