@@ -44,6 +44,13 @@ Public Class FormSalesPOSDet
         actionLoad()
     End Sub
 
+    Sub viewPrintOpt()
+        Dim query As String = "SELECT '1' AS id , '" + print_title + "' AS `opt`
+        UNION 
+        SELECT '2' AS id , 'DELIVERY SLIP' AS `opt` "
+        viewLookupQuery(LEPrintOpt, query, 0, "opt", "id")
+    End Sub
+
     Sub actionLoad()
         'get currency default
         Dim query_currency As String = "SELECT b.id_currency FROM tb_opt a INNER JOIN tb_lookup_currency b ON a.id_currency_default = b.id_currency "
@@ -104,6 +111,8 @@ Public Class FormSalesPOSDet
             print_title = "CREDIT NOTE SLIP"
         End If
 
+        'print opt
+        viewPrintOpt()
 
         If action = "ins" Then
             TxtDiscount.EditValue = 0.0
@@ -895,26 +904,23 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
-        ReportSalesInvoiceNew.id_report_status = id_report_status
-        ReportSalesInvoiceNew.rmt = report_mark_type
-        Dim Report As New ReportSalesInvoiceNew()
-        Report.LabelTitle.Text = print_title
-        'If id_memo_type = "1" Then
-        '    Report.LTitle.Text = "SALES INVOICE"
-        'ElseIf id_memo_type = "2" Then
-        '    Report.LTitle.Text = "SALES CREDIT NOTE"
-        'ElseIf id_memo_type = "3" Then
-        '    Report.LTitle.Text = "MISSING INVOICE"
-        'ElseIf id_memo_type = "4" Then
-        '    Report.LTitle.Text = "MISSING CREDIT NOTE"
-        'ElseIf id_memo_type = "5" Then
-        '    Report.LTitle.Text = "MISSING INVOICE PROMO"
-        'End If
-
-        ''Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
+        If LEPrintOpt.EditValue = "1" Then
+            ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
+            ReportSalesInvoiceNew.id_report_status = id_report_status
+            ReportSalesInvoiceNew.rmt = report_mark_type
+            Dim Report As New ReportSalesInvoiceNew()
+            Report.LabelTitle.Text = print_title
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            ReportSalesInvoceDelSlip.id_sales_pos = id_sales_pos
+            ReportSalesInvoceDelSlip.id_report_status = id_report_status
+            ReportSalesInvoceDelSlip.rmt = report_mark_type
+            Dim Report As New ReportSalesInvoceDelSlip()
+            Report.LabelTitle.Text = "DELIVERY SLIP"
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 

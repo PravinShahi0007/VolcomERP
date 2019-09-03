@@ -161,6 +161,9 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.LEPrintOpt = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -228,6 +231,9 @@ Partial Class FormSalesPOSDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPrintOpt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -706,13 +712,14 @@ Partial Class FormSalesPOSDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelControl1)
+        Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BtnDel)
         Me.PanelControl3.Controls.Add(Me.BtnEdit)
         Me.PanelControl3.Controls.Add(Me.BtnAdd)
         Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
-        Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
@@ -791,7 +798,7 @@ Partial Class FormSalesPOSDet
         Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
         Me.BtnXlsBOF.ImageIndex = 11
         Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(514, 2)
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(589, 2)
         Me.BtnXlsBOF.Name = "BtnXlsBOF"
         Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
         Me.BtnXlsBOF.TabIndex = 24
@@ -804,7 +811,7 @@ Partial Class FormSalesPOSDet
         Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
         Me.BtnDraftJournal.ImageIndex = 13
         Me.BtnDraftJournal.ImageList = Me.LargeImageCollection
-        Me.BtnDraftJournal.Location = New System.Drawing.Point(630, 2)
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(705, 2)
         Me.BtnDraftJournal.Name = "BtnDraftJournal"
         Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 34)
         Me.BtnDraftJournal.TabIndex = 14
@@ -816,7 +823,7 @@ Partial Class FormSalesPOSDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 16
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(739, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(814, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 34)
         Me.BtnAttachment.TabIndex = 13
@@ -828,7 +835,7 @@ Partial Class FormSalesPOSDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(842, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(514, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 34)
         Me.BtnPrint.TabIndex = 9
@@ -1773,6 +1780,33 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
+        'LEPrintOpt
+        '
+        Me.LEPrintOpt.Location = New System.Drawing.Point(66, 7)
+        Me.LEPrintOpt.Name = "LEPrintOpt"
+        Me.LEPrintOpt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPrintOpt.Size = New System.Drawing.Size(139, 20)
+        Me.LEPrintOpt.TabIndex = 25
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(5, 10)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl12.TabIndex = 26
+        Me.LabelControl12.Text = "Print Option"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl12)
+        Me.PanelControl1.Controls.Add(Me.LEPrintOpt)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(304, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(210, 34)
+        Me.PanelControl1.TabIndex = 25
+        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1862,6 +1896,10 @@ Partial Class FormSalesPOSDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPrintOpt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2005,4 +2043,7 @@ Partial Class FormSalesPOSDet
     Friend WithEvents BtnLoadPOS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnid_pos_combine_summary As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEPrintOpt As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
 End Class
