@@ -142,7 +142,13 @@
         If data.Rows.Count > 0 Then
             TENumber.Text = data.Rows(0)("number").ToString
             '
-            DEActualReconcile.EditValue = data.Rows(0)("report_back_date")
+            If data.Rows(0)("act_report_back_date").ToString = "" Then
+                DEActualReconcileDate.EditValue = Now
+            Else
+                DEActualReconcileDate.EditValue = data.Rows(0)("act_report_back_date").ToString
+            End If
+            '
+            DEStartReconcile.EditValue = data.Rows(0)("report_back_date")
             DEDueDate.EditValue = data.Rows(0)("report_back_due_date")
             '
             SLEType.EditValue = data.Rows(0)("id_cash_advance_type").ToString
@@ -419,7 +425,7 @@
         Report.XLCashAdvance.Text = "Rp. " + TECashInAdvance.Text
         Report.XLPropose.Text = MENote.Text
         Report.XLTypeCash.Text = SLEType.Text
-        Report.XLRecDate.Text = DEActualReconcile.Text
+        Report.XLRecDate.Text = DEStartReconcile.Text
         Report.XLRecDueDate.Text = DEDueDate.Text
         If XTPWithdrawal.PageVisible Then
             Report.XLType.Text = "Bank Withdrawal (BBK)"

@@ -45,10 +45,12 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DEActualReconcileDate = New DevExpress.XtraEditors.DateEdit()
         Me.TEStatus = New DevExpress.XtraEditors.TextEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.DEActualReconcile = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStartReconcile = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -138,9 +140,11 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.DEActualReconcileDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEActualReconcileDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEActualReconcile.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEActualReconcile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartReconcile.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartReconcile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -397,10 +401,12 @@ Partial Class FormCashAdvanceReconcile
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.Label4)
+        Me.PanelControl2.Controls.Add(Me.DEActualReconcileDate)
         Me.PanelControl2.Controls.Add(Me.TEStatus)
         Me.PanelControl2.Controls.Add(Me.Label3)
         Me.PanelControl2.Controls.Add(Me.Label1)
-        Me.PanelControl2.Controls.Add(Me.DEActualReconcile)
+        Me.PanelControl2.Controls.Add(Me.DEStartReconcile)
         Me.PanelControl2.Controls.Add(Me.Label2)
         Me.PanelControl2.Controls.Add(Me.DEDueDate)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
@@ -408,6 +414,28 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(434, 117)
         Me.PanelControl2.TabIndex = 8928
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(3, 91)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(111, 13)
+        Me.Label4.TabIndex = 8936
+        Me.Label4.Text = "Actual Reconcile Date"
+        '
+        'DEActualReconcileDate
+        '
+        Me.DEActualReconcileDate.EditValue = Nothing
+        Me.DEActualReconcileDate.Location = New System.Drawing.Point(124, 88)
+        Me.DEActualReconcileDate.Name = "DEActualReconcileDate"
+        Me.DEActualReconcileDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEActualReconcileDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEActualReconcileDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEActualReconcileDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEActualReconcileDate.Properties.ReadOnly = True
+        Me.DEActualReconcileDate.Size = New System.Drawing.Size(300, 20)
+        Me.DEActualReconcileDate.TabIndex = 8937
         '
         'TEStatus
         '
@@ -431,22 +459,22 @@ Partial Class FormCashAdvanceReconcile
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(3, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 13)
+        Me.Label1.Size = New System.Drawing.Size(105, 13)
         Me.Label1.TabIndex = 8931
-        Me.Label1.Text = "Reconcile Date"
+        Me.Label1.Text = "Start Reconcile Date"
         '
-        'DEActualReconcile
+        'DEStartReconcile
         '
-        Me.DEActualReconcile.EditValue = Nothing
-        Me.DEActualReconcile.Location = New System.Drawing.Point(124, 10)
-        Me.DEActualReconcile.Name = "DEActualReconcile"
-        Me.DEActualReconcile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEActualReconcile.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEActualReconcile.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEActualReconcile.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEActualReconcile.Properties.ReadOnly = True
-        Me.DEActualReconcile.Size = New System.Drawing.Size(300, 20)
-        Me.DEActualReconcile.TabIndex = 8932
+        Me.DEStartReconcile.EditValue = Nothing
+        Me.DEStartReconcile.Location = New System.Drawing.Point(124, 10)
+        Me.DEStartReconcile.Name = "DEStartReconcile"
+        Me.DEStartReconcile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartReconcile.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartReconcile.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStartReconcile.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartReconcile.Properties.ReadOnly = True
+        Me.DEStartReconcile.Size = New System.Drawing.Size(300, 20)
+        Me.DEStartReconcile.TabIndex = 8932
         '
         'Label2
         '
@@ -1185,9 +1213,11 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.DEActualReconcileDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEActualReconcileDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEActualReconcile.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEActualReconcile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartReconcile.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartReconcile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1256,7 +1286,7 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents Label1 As Label
-    Friend WithEvents DEActualReconcile As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStartReconcile As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
@@ -1328,4 +1358,6 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents PCBBM As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDelBBM As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddBBM As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label4 As Label
+    Friend WithEvents DEActualReconcileDate As DevExpress.XtraEditors.DateEdit
 End Class
