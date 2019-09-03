@@ -6180,6 +6180,12 @@
     <Compile Include="ReportEmpPayrollReportBPJSTKDetail.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpPayrollReportPajak.Designer.vb">
+      <DependentUpon>ReportEmpPayrollReportPajak.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportPajak.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -10558,6 +10564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPayrollReportBPJSTKDetail.resx">
       <DependentUpon>ReportEmpPayrollReportBPJSTKDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollReportPajak.resx">
+      <DependentUpon>ReportEmpPayrollReportPajak.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
