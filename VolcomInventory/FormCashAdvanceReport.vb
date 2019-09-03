@@ -31,4 +31,8 @@
             stopCustom(ex.ToString)
         End Try
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print(Me.GCReport, "Cash Advance (" & DateTime.Parse(DateFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & DateTime.Parse(DateTo.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+    End Sub
 End Class

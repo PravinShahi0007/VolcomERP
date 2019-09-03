@@ -20,14 +20,14 @@ Partial Class FormCashAdvanceReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCReport = New DevExpress.XtraGrid.GridControl()
-        Me.GVReport = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.DateTo = New DevExpress.XtraEditors.DateEdit()
         Me.DateFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCReport = New DevExpress.XtraGrid.GridControl()
+        Me.GVReport = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -38,16 +38,16 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCReport, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVReport, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -63,6 +63,70 @@ Partial Class FormCashAdvanceReport
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1012, 48)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BPrint
+        '
+        Me.BPrint.Location = New System.Drawing.Point(457, 10)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(60, 23)
+        Me.BPrint.TabIndex = 8938
+        Me.BPrint.Text = "Print"
+        '
+        'BView
+        '
+        Me.BView.Location = New System.Drawing.Point(391, 10)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(60, 23)
+        Me.BView.TabIndex = 8937
+        Me.BView.Text = "view"
+        '
+        'DateTo
+        '
+        Me.DateTo.EditValue = Nothing
+        Me.DateTo.Location = New System.Drawing.Point(245, 12)
+        Me.DateTo.Name = "DateTo"
+        Me.DateTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateTo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DateTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateTo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DateTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateTo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DateTo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DateTo.Size = New System.Drawing.Size(140, 20)
+        Me.DateTo.TabIndex = 8936
+        '
+        'DateFrom
+        '
+        Me.DateFrom.EditValue = Nothing
+        Me.DateFrom.Location = New System.Drawing.Point(89, 12)
+        Me.DateFrom.Name = "DateFrom"
+        Me.DateFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DateFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DateFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DateFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DateFrom.Size = New System.Drawing.Size(140, 20)
+        Me.DateFrom.TabIndex = 8935
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(235, 15)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl6.TabIndex = 8934
+        Me.LabelControl6.Text = "-"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl4.TabIndex = 8933
+        Me.LabelControl4.Text = "Report Date : "
         '
         'GCReport
         '
@@ -114,69 +178,6 @@ Partial Class FormCashAdvanceReport
         Me.GVReport.OptionsView.ShowFooter = True
         Me.GVReport.OptionsView.ShowGroupPanel = False
         '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
-        'DateTo
-        '
-        Me.DateTo.EditValue = Nothing
-        Me.DateTo.Location = New System.Drawing.Point(245, 12)
-        Me.DateTo.Name = "DateTo"
-        Me.DateTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateTo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DateTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateTo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DateTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateTo.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DateTo.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DateTo.Size = New System.Drawing.Size(140, 20)
-        Me.DateTo.TabIndex = 8936
-        '
-        'DateFrom
-        '
-        Me.DateFrom.EditValue = Nothing
-        Me.DateFrom.Location = New System.Drawing.Point(89, 12)
-        Me.DateFrom.Name = "DateFrom"
-        Me.DateFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DateFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DateFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DateFrom.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DateFrom.Size = New System.Drawing.Size(140, 20)
-        Me.DateFrom.TabIndex = 8935
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(235, 15)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl6.TabIndex = 8934
-        Me.LabelControl6.Text = "-"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 15)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(69, 13)
-        Me.LabelControl4.TabIndex = 8933
-        Me.LabelControl4.Text = "Report Date : "
-        '
-        'BView
-        '
-        Me.BView.Location = New System.Drawing.Point(391, 10)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(60, 23)
-        Me.BView.TabIndex = 8937
-        Me.BView.Text = "view"
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
@@ -209,7 +210,7 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn4.FieldName = "report_back_due_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumn5
         '
@@ -219,7 +220,7 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn5.FieldName = "act_report_back_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 4
         '
         'GridColumn6
         '
@@ -230,7 +231,7 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_ca", "{0:N2}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         '
         'GridColumn7
         '
@@ -241,7 +242,7 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.VisibleIndex = 6
         '
         'GridColumn8
         '
@@ -252,7 +253,7 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "advance", "{0:N2}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 7
         '
         'GridColumn9
         '
@@ -263,7 +264,7 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.VisibleIndex = 8
         '
         'GridColumn10
         '
@@ -271,15 +272,14 @@ Partial Class FormCashAdvanceReport
         Me.GridColumn10.FieldName = "report_status"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 8
+        Me.GridColumn10.VisibleIndex = 2
         '
-        'BPrint
+        'RepositoryItemCheckEdit1
         '
-        Me.BPrint.Location = New System.Drawing.Point(457, 10)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(60, 23)
-        Me.BPrint.TabIndex = 8938
-        Me.BPrint.Text = "Print"
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
         'FormCashAdvanceReport
         '
@@ -297,13 +297,13 @@ Partial Class FormCashAdvanceReport
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.GCReport, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVReport, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCReport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
