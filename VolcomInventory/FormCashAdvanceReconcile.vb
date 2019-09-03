@@ -278,7 +278,10 @@
 
                 execute_non_query(query, True, "", "", "", "")
             End If
-
+            '
+            query = "UPDATE tb_cash_advance SET act_report_back_date=NOW() WHERE id_cash_advance='" & id_ca & "'"
+            execute_non_query(query, True, "", "", "", "")
+            '
             infoCustom("Report saved")
 
             'add mark
