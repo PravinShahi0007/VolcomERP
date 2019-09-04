@@ -406,34 +406,38 @@ Public Class FormSalesPOSDet
             Dim id_memo_type As String = ""
             Dim sales_pos_number As String = ""
             If id_menu = "1" Then
+                'sales invoice
                 If CheckEditInvType.EditValue = True Then
                     report_mark_type = "54"
                     id_memo_type = "3"
-                    sales_pos_number = header_number_sales("10")
+                    sales_pos_number = header_number_sales("6")
                 Else
                     report_mark_type = "48"
                     id_memo_type = "1"
                     sales_pos_number = header_number_sales("6")
                 End If
             ElseIf id_menu = "2" Then
+                'credit note
                 If CheckEditInvType.EditValue = True Then
                     report_mark_type = "67"
                     id_memo_type = "4"
-                    sales_pos_number = header_number_sales("18")
+                    sales_pos_number = header_number_sales("17")
                 Else
                     report_mark_type = "66"
                     id_memo_type = "2"
                     sales_pos_number = header_number_sales("17")
                 End If
             ElseIf id_menu = "3" Then
+                'invoice missing promo
                 report_mark_type = "116"
                 id_memo_type = "5"
                 sales_pos_number = header_number_sales("33")
             ElseIf id_menu = "4" Then
+                'invoice diff margin
                 If CheckEditInvType.EditValue = True Then
                     report_mark_type = "117"
                     id_memo_type = "8"
-                    sales_pos_number = header_number_sales("34")
+                    sales_pos_number = header_number_sales("6")
                 Else
                     report_mark_type = "183"
                     id_memo_type = "9"
@@ -463,18 +467,15 @@ Public Class FormSalesPOSDet
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
-                    If report_mark_type = "48" Or report_mark_type = "183" Then
+                    If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "117" Or report_mark_type = "183" Then
+                        'invoice
                         increase_inc_sales("6")
-                    ElseIf report_mark_type = "54" Then
-                        increase_inc_sales("10")
-                    ElseIf report_mark_type = "66" Or report_mark_type = "118" Then
+                    ElseIf report_mark_type = "66" Or report_mark_type = "67" Or report_mark_type = "118" Then
+                        'credit note
                         increase_inc_sales("17")
-                    ElseIf report_mark_type = "67" Then
-                        increase_inc_sales("18")
                     ElseIf report_mark_type = "116" Then
+                        'invoice missing promo
                         increase_inc_sales("33")
-                    ElseIf report_mark_type = "117" Then
-                        increase_inc_sales("34")
                     End If
 
                     'insert who prepared
