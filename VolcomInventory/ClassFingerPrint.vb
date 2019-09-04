@@ -82,6 +82,45 @@
 
         enable_fp()
     End Sub
+
+    Sub maintenance_datetime()
+        connect()
+
+        Dim idwErrorCode As Integer
+        If axCZKEM1.SetDeviceTime(iMachineNumber) = False Then
+            axCZKEM1.GetLastError(idwErrorCode)
+            log_fp("Operation failed,ErrorCode=" & idwErrorCode.ToString())
+        End If
+
+        disconnect()
+    End Sub
+
+    Sub get_datetime()
+        connect()
+
+        Dim idwErrorCode As Integer
+        Dim year As Integer = 0
+        Dim month As Integer = 0
+        Dim day As Integer = 0
+        Dim hour As Integer = 0
+        Dim minute As Integer = 0
+        Dim second As Integer = 0
+
+        If axCZKEM1.GetDeviceTime(iMachineNumber, year, month, day, hour, minute, second) = False Then
+            axCZKEM1.GetLastError(idwErrorCode)
+            log_fp("Operation failed,ErrorCode=" & idwErrorCode.ToString())
+        Else
+            MsgBox("Year : " & year.ToString & " Month : " & month.ToString & " Day : " & day.ToString & " Hour : " & hour.ToString & " Minute : " & minute.ToString & " Second : " & second.ToString)
+        End If
+
+        disconnect()
+    End Sub
+
+    Sub log_fp(ByVal log As String)
+        Dim query_log As String = "INSERT INTO tb_scheduler_attn_log(datetime,log) VALUES(NOW(),'" & log & "')"
+        execute_non_query(query_log, True, "", "", "", "")
+    End Sub
+
     Sub clear_attlog()
         Dim idwErrorCode As Integer
 

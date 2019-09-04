@@ -117,7 +117,7 @@ Partial Class FormSetupBudgetOPEX
         Me.XTCSampleBudget.Location = New System.Drawing.Point(0, 0)
         Me.XTCSampleBudget.Name = "XTCSampleBudget"
         Me.XTCSampleBudget.SelectedTabPage = Me.XTPBudget
-        Me.XTCSampleBudget.Size = New System.Drawing.Size(942, 619)
+        Me.XTCSampleBudget.Size = New System.Drawing.Size(984, 612)
         Me.XTCSampleBudget.TabIndex = 8
         Me.XTCSampleBudget.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPProposal, Me.XTPMutasiBudget})
         '
@@ -127,7 +127,7 @@ Partial Class FormSetupBudgetOPEX
         Me.XTPBudget.Controls.Add(Me.PanelControl1)
         Me.XTPBudget.Controls.Add(Me.PanelControl2)
         Me.XTPBudget.Name = "XTPBudget"
-        Me.XTPBudget.Size = New System.Drawing.Size(936, 591)
+        Me.XTPBudget.Size = New System.Drawing.Size(978, 584)
         Me.XTPBudget.Text = "List Budget"
         '
         'GCBudgetList
@@ -137,7 +137,7 @@ Partial Class FormSetupBudgetOPEX
         Me.GCBudgetList.MainView = Me.GVBudgetList
         Me.GCBudgetList.Name = "GCBudgetList"
         Me.GCBudgetList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudget})
-        Me.GCBudgetList.Size = New System.Drawing.Size(936, 506)
+        Me.GCBudgetList.Size = New System.Drawing.Size(978, 499)
         Me.GCBudgetList.TabIndex = 5
         Me.GCBudgetList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetList})
         '
@@ -172,7 +172,7 @@ Partial Class FormSetupBudgetOPEX
         'GridColumnDivision
         '
         Me.GridColumnDivision.Caption = "Category"
-        Me.GridColumnDivision.FieldName = "item_cat"
+        Me.GridColumnDivision.FieldName = "item_cat_main"
         Me.GridColumnDivision.Name = "GridColumnDivision"
         Me.GridColumnDivision.OptionsColumn.AllowEdit = False
         Me.GridColumnDivision.OptionsColumn.ReadOnly = True
@@ -209,7 +209,7 @@ Partial Class FormSetupBudgetOPEX
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(936, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(978, 38)
         Me.PanelControl1.TabIndex = 4
         '
         'DEYearBudget
@@ -251,9 +251,9 @@ Partial Class FormSetupBudgetOPEX
         '
         Me.PanelControl2.Controls.Add(Me.BRevision)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 544)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 537)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(936, 47)
+        Me.PanelControl2.Size = New System.Drawing.Size(978, 47)
         Me.PanelControl2.TabIndex = 6
         '
         'BRevision
@@ -271,7 +271,7 @@ Partial Class FormSetupBudgetOPEX
         Me.BRevision.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BRevision.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BRevision.Name = "BRevision"
-        Me.BRevision.Size = New System.Drawing.Size(932, 43)
+        Me.BRevision.Size = New System.Drawing.Size(974, 43)
         Me.BRevision.TabIndex = 14
         Me.BRevision.Text = "Setup Budget"
         '
@@ -678,7 +678,7 @@ Partial Class FormSetupBudgetOPEX
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(942, 619)
+        Me.ClientSize = New System.Drawing.Size(984, 612)
         Me.Controls.Add(Me.XTCSampleBudget)
         Me.MaximizeBox = False
         Me.MinimizeBox = False

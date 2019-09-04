@@ -172,6 +172,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCEmployee.FieldName = "Employee"
         Me.GCEmployee.MinWidth = 185
         Me.GCEmployee.Name = "GCEmployee"
+        Me.GCEmployee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GCEmployee.Visible = True
         Me.GCEmployee.Width = 195
         '

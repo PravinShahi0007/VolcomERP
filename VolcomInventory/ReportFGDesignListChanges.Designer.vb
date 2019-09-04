@@ -177,7 +177,7 @@ Partial Public Class ReportFGDesignListChanges
         'XrLabel8
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.ForeColor = System.Drawing.Color.DarkGray
+        Me.XrLabel8.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -239,7 +239,7 @@ Partial Public Class ReportFGDesignListChanges
         '
         'LNote
         '
-        Me.LNote.BorderColor = System.Drawing.Color.DimGray
+        Me.LNote.BorderColor = System.Drawing.Color.Black
         Me.LNote.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNote.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -268,7 +268,7 @@ Partial Public Class ReportFGDesignListChanges
         '
         'LNotex
         '
-        Me.LNotex.BorderColor = System.Drawing.Color.DimGray
+        Me.LNotex.BorderColor = System.Drawing.Color.Black
         Me.LNotex.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNotex.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

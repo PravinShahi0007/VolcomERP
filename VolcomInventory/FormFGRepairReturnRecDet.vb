@@ -560,7 +560,7 @@ Public Class FormFGRepairReturnRecDet
             Else 'delete scan
                 GVScan.ActiveFilterString = "[code]='" + TxtScannedCode.Text + "'"
                 If GVScan.RowCount <= 0 Then
-                    stopCustom("Code not found.")
+                    stopCustomDialog("Code not found.")
                     GVScan.ActiveFilterString = ""
                     TxtScannedCode.Text = ""
                     TxtScannedCode.Focus()
@@ -593,7 +593,7 @@ Public Class FormFGRepairReturnRecDet
                 GVScan.ActiveFilterString = "[code]='" + code_par + "'"
                 If GVScan.RowCount > 0 Then
                     GVScan.ActiveFilterString = ""
-                    stopCustom("Duplicate code")
+                    stopCustomDialog("Duplicate code")
                     Exit Sub
                 Else
                     GVScan.ActiveFilterString = ""
@@ -606,9 +606,9 @@ Public Class FormFGRepairReturnRecDet
             If id_wh_type = "1" Or id_wh_type = "2" Then
                 If (id_wh_type <> id_design_cat) And prc > 0 Then
                     If id_wh_type = "1" Then
-                        stopCustom(TxtCodeWH.Text + " is only for normal product. ")
+                        stopCustomDialog(TxtCodeWH.Text + " is only for normal product. ")
                     Else
-                        stopCustom(TxtCodeWH.Text + " is only for sale product. ")
+                        stopCustomDialog(TxtCodeWH.Text + " is only for sale product. ")
                     End If
                     Cursor = Cursors.Default
                     Exit Sub
@@ -631,7 +631,7 @@ Public Class FormFGRepairReturnRecDet
             GVScan.RefreshData()
             GVScan.FocusedRowHandle = GVScan.RowCount - 1
         Else
-            stopCustom("Code not found!")
+            stopCustomDialog("Code not found!")
         End If
     End Sub
 

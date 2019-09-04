@@ -26,6 +26,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GVSummaryAll = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCInformation = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCVCIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCVCINSOGO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCVCBC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCVCKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCVCSM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -172,7 +173,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GVSummaryAll.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVSummaryAll.AppearancePrint.Row.Options.UseFont = True
         Me.GVSummaryAll.ColumnPanelRowHeight = 32
-        Me.GVSummaryAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCInformation, Me.GCVCIN, Me.GCVCBC, Me.GCVCKS, Me.GCVCSM, Me.GCTotal})
+        Me.GVSummaryAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCInformation, Me.GCVCIN, Me.GCVCINSOGO, Me.GCVCBC, Me.GCVCKS, Me.GCVCSM, Me.GCTotal})
         Me.GVSummaryAll.GridControl = Me.GCSummaryAll
         Me.GVSummaryAll.Name = "GVSummaryAll"
         Me.GVSummaryAll.OptionsBehavior.Editable = False
@@ -212,6 +213,23 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCIN.VisibleIndex = 1
         Me.GCVCIN.Width = 100
         '
+        'GCVCINSOGO
+        '
+        Me.GCVCINSOGO.AppearanceCell.Options.UseTextOptions = True
+        Me.GCVCINSOGO.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCVCINSOGO.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCVCINSOGO.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCVCINSOGO.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCVCINSOGO.Caption = "VOLCOM SOGO (VCIN)"
+        Me.GCVCINSOGO.DisplayFormat.FormatString = "N0"
+        Me.GCVCINSOGO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCVCINSOGO.FieldName = "volcom_sogo"
+        Me.GCVCINSOGO.Name = "GCVCINSOGO"
+        Me.GCVCINSOGO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "volcom_sogo", "{0:N0}")})
+        Me.GCVCINSOGO.Visible = True
+        Me.GCVCINSOGO.VisibleIndex = 2
+        Me.GCVCINSOGO.Width = 100
+        '
         'GCVCBC
         '
         Me.GCVCBC.AppearanceCell.Options.UseTextOptions = True
@@ -227,7 +245,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCBC.Name = "GCVCBC"
         Me.GCVCBC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bemo_corner", "{0:N0}")})
         Me.GCVCBC.Visible = True
-        Me.GCVCBC.VisibleIndex = 2
+        Me.GCVCBC.VisibleIndex = 3
         Me.GCVCBC.Width = 100
         '
         'GCVCKS
@@ -245,7 +263,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCKS.Name = "GCVCKS"
         Me.GCVCKS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "kuta_square", "{0:N0}")})
         Me.GCVCKS.Visible = True
-        Me.GCVCKS.VisibleIndex = 3
+        Me.GCVCKS.VisibleIndex = 4
         Me.GCVCKS.Width = 100
         '
         'GCVCSM
@@ -263,7 +281,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCSM.Name = "GCVCSM"
         Me.GCVCSM.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "seminyak", "{0:N0}")})
         Me.GCVCSM.Visible = True
-        Me.GCVCSM.VisibleIndex = 4
+        Me.GCVCSM.VisibleIndex = 5
         Me.GCVCSM.Width = 100
         '
         'GCTotal
@@ -279,10 +297,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCTotal.MaxWidth = 100
         Me.GCTotal.Name = "GCTotal"
         Me.GCTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
-        Me.GCTotal.UnboundExpression = "[volcom_indonesia] + [bemo_corner] + [kuta_square] + [seminyak]"
+        Me.GCTotal.UnboundExpression = "[volcom_indonesia] +[volcom_sogo]+ [bemo_corner] + [kuta_square] + [seminyak]"
         Me.GCTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GCTotal.Visible = True
-        Me.GCTotal.VisibleIndex = 5
+        Me.GCTotal.VisibleIndex = 6
         Me.GCTotal.Width = 100
         '
         'XLLocation
@@ -1390,4 +1408,5 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
     Friend WithEvents Detail2 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents DetailReport2 As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail3 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents GCVCINSOGO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

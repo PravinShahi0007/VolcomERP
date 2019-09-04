@@ -207,11 +207,13 @@
 
         GCDeduction.DataSource = data
 
+        GCEmployee.SummaryItem.DisplayFormat = "Grand Total: " + XLLocation.Text.ToUpper
+
         'mark
         If id_pre = "-1" Then
-            load_mark_horz("192", id_payroll, "2", "1", XrTable1)
+            load_mark_horz_plain("192", id_payroll, "2", "1", XrTable1)
         Else
-            pre_load_mark_horz("192", id_payroll, "2", "2", XrTable1)
+            pre_load_mark_horz_plain("192", id_payroll, "2", "2", XrTable1)
         End If
     End Sub
 
@@ -262,7 +264,7 @@
                     ORDER BY det.id_employee_status_det DESC
                 ) AS tab
                 GROUP BY id_employee
-            ) AS sts ON p.id_employee = sts.id_employee
+            ) AS sts ON pyd.id_employee = sts.id_employee
             LEFT JOIN `tb_lookup_employee_status` sts_ori ON sts_ori.`id_employee_status`=emp.`id_employee_status`
             LEFT JOIN tb_lookup_salary_" + type + " sald ON sald.id_salary_" + type + "=pyd.id_salary_" + If(type = "adjustment", "adj", type) + "
             LEFT JOIN tb_lookup_salary_" + type + "_cat saldc ON saldc.id_salary_" + type + "_cat=sald.id_salary_" + type + "_cat

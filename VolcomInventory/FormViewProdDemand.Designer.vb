@@ -20,6 +20,7 @@ Partial Class FormViewProdDemand
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormViewProdDemand))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelBudgetType = New DevExpress.XtraEditors.LabelControl()
         Me.LabelStatus = New DevExpress.XtraEditors.LabelControl()
@@ -52,6 +53,7 @@ Partial Class FormViewProdDemand
         Me.GridColumnCostEstimate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAdditionalCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCostEstimateNonAddition = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRATECOP_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRateCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceEstimate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAdditionalPrice = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -85,6 +87,7 @@ Partial Class FormViewProdDemand
         Me.GridColumnTOTALCOSTCORE_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTOTALAMOUNTCORE_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSizeDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -101,7 +104,13 @@ Partial Class FormViewProdDemand
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRATECOP_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CEBreakSizeDetail = New DevExpress.XtraEditors.CheckEdit()
+        Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPSize = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSize = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVSize = New VolcomMRP.MyXtraGrid.MyGridView()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +130,14 @@ Partial Class FormViewProdDemand
         Me.XTPRevision.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBreakSizeDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCDetail.SuspendLayout()
+        Me.XTPPropose.SuspendLayout()
+        Me.XTPSize.SuspendLayout()
+        CType(Me.GCSize, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSize, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -224,16 +241,16 @@ Partial Class FormViewProdDemand
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(824, 304)
+        Me.GroupControl2.Size = New System.Drawing.Size(795, 298)
         Me.GroupControl2.TabIndex = 149
         '
         'GCProduct
         '
         Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProduct.Location = New System.Drawing.Point(20, 34)
+        Me.GCProduct.Location = New System.Drawing.Point(20, 41)
         Me.GCProduct.MainView = Me.BGVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(802, 268)
+        Me.GCProduct.Size = New System.Drawing.Size(773, 255)
         Me.GCProduct.TabIndex = 43
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVProduct})
         '
@@ -500,6 +517,18 @@ Partial Class FormViewProdDemand
         Me.GridColumnCostEstimateNonAddition.Name = "GridColumnCostEstimateNonAddition"
         Me.GridColumnCostEstimateNonAddition.Visible = True
         Me.GridColumnCostEstimateNonAddition.VisibleIndex = 20
+        '
+        'GridColumnRATECOP_add_report_column
+        '
+        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnRATECOP_add_report_column.Caption = "RATE COP"
+        Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatString = "N0"
+        Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRATECOP_add_report_column.FieldName = "RATE COP_add_report_column"
+        Me.GridColumnRATECOP_add_report_column.Name = "GridColumnRATECOP_add_report_column"
+        Me.GridColumnRATECOP_add_report_column.Visible = True
+        Me.GridColumnRATECOP_add_report_column.VisibleIndex = 22
         '
         'GridColumnRateCurrent
         '
@@ -899,18 +928,30 @@ Partial Class FormViewProdDemand
         'PanelControlCompleted
         '
         Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlCompleted.Controls.Add(Me.CEBreakSizeDetail)
+        Me.PanelControlCompleted.Controls.Add(Me.BtnSizeDetail)
         Me.PanelControlCompleted.Controls.Add(Me.CEBreakSize)
         Me.PanelControlCompleted.Controls.Add(Me.CheckEditShowNonActive)
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
-        Me.PanelControlCompleted.Size = New System.Drawing.Size(802, 32)
+        Me.PanelControlCompleted.Size = New System.Drawing.Size(773, 39)
         Me.PanelControlCompleted.TabIndex = 42
         Me.PanelControlCompleted.Visible = False
         '
+        'BtnSizeDetail
+        '
+        Me.BtnSizeDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSizeDetail.Image = CType(resources.GetObject("BtnSizeDetail.Image"), System.Drawing.Image)
+        Me.BtnSizeDetail.Location = New System.Drawing.Point(676, 0)
+        Me.BtnSizeDetail.Name = "BtnSizeDetail"
+        Me.BtnSizeDetail.Size = New System.Drawing.Size(97, 39)
+        Me.BtnSizeDetail.TabIndex = 166
+        Me.BtnSizeDetail.Text = "Size Detail"
+        '
         'CEBreakSize
         '
-        Me.CEBreakSize.Location = New System.Drawing.Point(8, 6)
+        Me.CEBreakSize.Location = New System.Drawing.Point(8, 10)
         Me.CEBreakSize.Name = "CEBreakSize"
         Me.CEBreakSize.Properties.Caption = "show breakdown size"
         Me.CEBreakSize.Size = New System.Drawing.Size(123, 19)
@@ -918,7 +959,7 @@ Partial Class FormViewProdDemand
         '
         'CheckEditShowNonActive
         '
-        Me.CheckEditShowNonActive.Location = New System.Drawing.Point(137, 6)
+        Me.CheckEditShowNonActive.Location = New System.Drawing.Point(137, 10)
         Me.CheckEditShowNonActive.Name = "CheckEditShowNonActive"
         Me.CheckEditShowNonActive.Properties.Caption = "show non active status"
         Me.CheckEditShowNonActive.Size = New System.Drawing.Size(150, 19)
@@ -955,7 +996,7 @@ Partial Class FormViewProdDemand
         '
         'XTPDetail
         '
-        Me.XTPDetail.Controls.Add(Me.GroupControl2)
+        Me.XTPDetail.Controls.Add(Me.XTCDetail)
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(824, 304)
         Me.XTPDetail.Text = "Detail"
@@ -1037,17 +1078,79 @@ Partial Class FormViewProdDemand
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
-        'GridColumnRATECOP_add_report_column
+        'CEBreakSizeDetail
         '
-        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridColumnRATECOP_add_report_column.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnRATECOP_add_report_column.Caption = "RATE COP"
-        Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatString = "N0"
-        Me.GridColumnRATECOP_add_report_column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnRATECOP_add_report_column.FieldName = "RATE COP_add_report_column"
-        Me.GridColumnRATECOP_add_report_column.Name = "GridColumnRATECOP_add_report_column"
-        Me.GridColumnRATECOP_add_report_column.Visible = True
-        Me.GridColumnRATECOP_add_report_column.VisibleIndex = 22
+        Me.CEBreakSizeDetail.Location = New System.Drawing.Point(274, 10)
+        Me.CEBreakSizeDetail.Name = "CEBreakSizeDetail"
+        Me.CEBreakSizeDetail.Properties.Caption = "print with breakdown size detail"
+        Me.CEBreakSizeDetail.Size = New System.Drawing.Size(182, 19)
+        Me.CEBreakSizeDetail.TabIndex = 167
+        '
+        'XTCDetail
+        '
+        Me.XTCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCDetail.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
+        Me.XTCDetail.Name = "XTCDetail"
+        Me.XTCDetail.SelectedTabPage = Me.XTPPropose
+        Me.XTCDetail.Size = New System.Drawing.Size(824, 304)
+        Me.XTCDetail.TabIndex = 150
+        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPropose, Me.XTPSize})
+        '
+        'XTPPropose
+        '
+        Me.XTPPropose.Controls.Add(Me.GroupControl2)
+        Me.XTPPropose.Name = "XTPPropose"
+        Me.XTPPropose.Size = New System.Drawing.Size(795, 298)
+        Me.XTPPropose.Text = "Propose"
+        '
+        'XTPSize
+        '
+        Me.XTPSize.Controls.Add(Me.GCSize)
+        Me.XTPSize.Name = "XTPSize"
+        Me.XTPSize.Size = New System.Drawing.Size(795, 298)
+        Me.XTPSize.Text = "Breakdown Size Detail"
+        '
+        'GCSize
+        '
+        Me.GCSize.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSize.Location = New System.Drawing.Point(0, 0)
+        Me.GCSize.MainView = Me.GVSize
+        Me.GCSize.Name = "GCSize"
+        Me.GCSize.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
+        Me.GCSize.Size = New System.Drawing.Size(795, 298)
+        Me.GCSize.TabIndex = 44
+        Me.GCSize.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSize})
+        '
+        'GVSize
+        '
+        Me.GVSize.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVSize.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GVSize.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVSize.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVSize.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVSize.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVSize.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVSize.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVSize.ColumnPanelRowHeight = 30
+        Me.GVSize.GridControl = Me.GCSize
+        Me.GVSize.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", Nothing, "{0:N0}")})
+        Me.GVSize.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
+        Me.GVSize.Name = "GVSize"
+        Me.GVSize.OptionsBehavior.ReadOnly = True
+        Me.GVSize.OptionsCustomization.AllowRowSizing = True
+        Me.GVSize.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVSize.OptionsView.ColumnAutoWidth = False
+        Me.GVSize.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVSize.OptionsView.RowAutoHeight = True
+        Me.GVSize.OptionsView.ShowFooter = True
+        Me.GVSize.OptionsView.ShowGroupPanel = False
+        Me.GVSize.RowHeight = 15
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
         '
         'FormViewProdDemand
         '
@@ -1083,6 +1186,14 @@ Partial Class FormViewProdDemand
         Me.XTPRevision.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBreakSizeDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCDetail.ResumeLayout(False)
+        Me.XTPPropose.ResumeLayout(False)
+        Me.XTPSize.ResumeLayout(False)
+        CType(Me.GCSize, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSize, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1168,4 +1279,12 @@ Partial Class FormViewProdDemand
     Friend WithEvents GridColumnTOTALCOSTCORE_add_report_column As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTOTALAMOUNTCORE_add_report_column As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRATECOP_add_report_column As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSizeDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEBreakSizeDetail As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTCDetail As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPPropose As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPSize As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSize As MyXtraGrid.MyGridControl
+    Friend WithEvents GVSize As MyXtraGrid.MyGridView
+    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

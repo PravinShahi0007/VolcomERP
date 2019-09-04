@@ -379,68 +379,157 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub printStyleReport(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        gv.OptionsPrint.UsePrintStyles = True
+        gv.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        gv.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        gv.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+
+        gv.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        gv.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        gv.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        gv.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        gv.AppearancePrint.GroupRow.ForeColor = Color.Black
+        gv.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+
+        gv.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        gv.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        gv.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        gv.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        gv.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        gv.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+
+        gv.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        gv.OptionsPrint.ExpandAllDetails = True
+        gv.OptionsPrint.UsePrintStyles = True
+        gv.OptionsPrint.PrintDetails = True
+        gv.OptionsPrint.PrintFooter = True
+    End Sub
+
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportProdDemandNew.dt = GCProduct.DataSource
-        ReportProdDemandNew.id_prod_demand = id_prod_demand
-        ReportProdDemandNew.is_pre = "-1"
-        ReportProdDemandNew.is_hidden_mark = "1"
-        ReportProdDemandNew.id_report_status = id_report_status
 
-        ReportProdDemandNew.rmt = rmt
-        Dim Report As New ReportProdDemandNew()
+        If CEBreakSizeDetail.EditValue = False Then
+            ReportProdDemandNew.dt = GCProduct.DataSource
+            ReportProdDemandNew.id_prod_demand = id_prod_demand
+            ReportProdDemandNew.is_pre = "-1"
+            ReportProdDemandNew.is_hidden_mark = "1"
+            ReportProdDemandNew.id_report_status = id_report_status
 
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        BGVProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ReportProdDemandNew.rmt = rmt
+            Dim Report As New ReportProdDemandNew()
 
-        'style
-        Report.GVDesign.OptionsPrint.UsePrintStyles = True
-        Report.GVDesign.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        Report.GVDesign.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+            '' '... 
+            '' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            BGVProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        Report.GVDesign.AppearancePrint.GroupFooter.BackColor = Color.Transparent
-        Report.GVDesign.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            'style
+            printStyleReport(Report.GVDesign)
 
-        Report.GVDesign.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        Report.GVDesign.AppearancePrint.GroupRow.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            'value
+            Report.LabelNumber.Text = LabelTitle.Text
+            Report.LabelDate.Text = created_date
+            Report.LabelSeason.Text = season
+            Report.LabelDivision.Text = division
+            Report.LabelStatus.Text = status
+            Report.LabelRateCurrent.Text = rate_current
+            Report.LNote.Text = note
 
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            'with break down size detail
+            XTCDetail.SelectedTabPageIndex = 1
 
-        Report.GVDesign.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        Report.GVDesign.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            ReportProdDemandNewBreakSize.dt = GCProduct.DataSource
+            ReportProdDemandNewBreakSize.dt2 = GCSize.DataSource
+            ReportProdDemandNewBreakSize.id_prod_demand = id_prod_demand
+            ReportProdDemandNewBreakSize.is_pre = "-1"
+            ReportProdDemandNewBreakSize.is_hidden_mark = "1"
+            ReportProdDemandNewBreakSize.id_report_status = id_report_status
 
-        Report.GVDesign.AppearancePrint.FooterPanel.BackColor = Color.Transparent
-        Report.GVDesign.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            ReportProdDemandNewBreakSize.rmt = rmt
+            Dim Report As New ReportProdDemandNewBreakSize()
 
-        Report.GVDesign.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            '' '... 
+            '' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            BGVProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        Report.GVDesign.OptionsPrint.ExpandAllDetails = True
-        Report.GVDesign.OptionsPrint.UsePrintStyles = True
-        Report.GVDesign.OptionsPrint.PrintDetails = True
-        Report.GVDesign.OptionsPrint.PrintFooter = True
+            str = New System.IO.MemoryStream()
+            GVSize.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVSize.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
+            'style
+            printStyleReport(Report.GVDesign)
+            printStyleReport(Report.GVSize)
 
-        Report.LabelNumber.Text = LabelTitle.Text
-        Report.LabelDate.Text = created_date
-        Report.LabelSeason.Text = season
-        Report.LabelDivision.Text = division
-        Report.LabelStatus.Text = status
-        Report.LabelRateCurrent.Text = rate_current
-        Report.LNote.Text = note
+            'value
+            Report.LabelNumber.Text = LabelTitle.Text
+            Report.LabelDate.Text = created_date
+            Report.LabelSeason.Text = season
+            Report.LabelDivision.Text = division
+            Report.LabelStatus.Text = status
+            Report.LabelRateCurrent.Text = rate_current
+            Report.LNote.Text = note
 
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        End If
+
+        'set default
+        If CEBreakSizeDetail.EditValue = True Then
+            XTCDetail.SelectedTabPageIndex = 0
+        End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSizeDetail_Click(sender As Object, e As EventArgs) Handles BtnSizeDetail.Click
+        Cursor = Cursors.WaitCursor
+        FormProdDemandSize.rmt = rmt
+        FormProdDemandSize.id_report_status = id_report_status
+        FormProdDemandSize.status = status
+        FormProdDemandSize.season = season
+        FormProdDemandSize.created_date = created_date
+        FormProdDemandSize.division = division
+        FormProdDemandSize.id = id_prod_demand
+        FormProdDemandSize.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewBreakdownSize()
+        Cursor = Cursors.WaitCursor
+        Dim pd As New ClassProdDemand()
+        pd.viewBreakSizeDetail(id_prod_demand, GCSize, GVSize)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCDetail_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCDetail.SelectedPageChanged
+        If XTCDetail.SelectedTabPageIndex = 1 Then
+            viewBreakdownSize()
+        End If
+    End Sub
+
+    Private Sub GVSize_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSize.CustomColumnDisplayText
+        If e.Column.FieldName = "NO" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

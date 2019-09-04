@@ -5,6 +5,7 @@ Public Class FormSalesDelOrderDet
     Public id_pl_sales_order_del As String = "-1"
     Public id_sales_order As String = "-1"
     Public id_store_contact_to As String = "-1"
+    Dim id_store As String = "-1"
     Public id_comp_contact_from As String = "-1"
     Public id_report_status As String
     Public id_pl_sales_order_del_det_list As New List(Of String)
@@ -88,6 +89,7 @@ Public Class FormSalesDelOrderDet
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store_contact_to = data.Rows(0)("id_store_contact_to").ToString
+            id_store = data.Rows(0)("id_store").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
             TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
             TxtNameCompFrom.Text = data.Rows(0)("wh_name").ToString
@@ -108,6 +110,7 @@ Public Class FormSalesDelOrderDet
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
             TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
+            is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
 
             'uniform
             Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
@@ -1080,7 +1083,7 @@ Public Class FormSalesDelOrderDet
         If Not code_found Then
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
             GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-            stopCustom("Data not found!")
+            stopCustomDialog("Data not found!")
         Else
             'jika akun normal/sale
             If (id_store_type = "1" Or id_store_type = "2") And id_so_status <> 8 Then
@@ -1088,9 +1091,9 @@ Public Class FormSalesDelOrderDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
                     If id_store_type = "1" Then
-                        stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for normal product. ")
                     Else
-                        stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for sale product. ")
                     End If
                     Cursor = Cursors.Default
                     Exit Sub
@@ -1101,11 +1104,11 @@ Public Class FormSalesDelOrderDet
                 If jum_limit <= 0 Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("This item cannot scan, because limit qty is zero.")
+                    stopCustomDialog("This item cannot scan, because limit qty is zero.")
                 ElseIf jum_scan >= jum_limit Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Maximum qty : " + jum_limit.ToString)
+                    stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                 Else
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_sales_order_del_det_counting", "0")
@@ -1130,20 +1133,20 @@ Public Class FormSalesDelOrderDet
                 If Not code_found Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data not found or duplicate!")
+                    stopCustomDialog("Data not found or duplicate!")
                 ElseIf code_duplicate Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data duplicate !")
+                    stopCustomDialog("Data duplicate !")
                 Else
                     If jum_limit <= 0 Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("This item cannot scan, because limit qty is zero.")
+                        stopCustomDialog("This item cannot scan, because limit qty is zero.")
                     ElseIf jum_scan >= jum_limit Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Maximum qty : " + jum_limit.ToString)
+                        stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                     Else
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_sales_order_del_det_counting", "0")
@@ -1161,7 +1164,7 @@ Public Class FormSalesDelOrderDet
             Else 'not found
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                 GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Data not found !")
+                stopCustomDialog("Data not found !")
             End If
         End If
     End Sub
@@ -1243,47 +1246,83 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Sub getReport()
-        GridColumnNo.VisibleIndex = 0
-        GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
-        For i As Integer = 0 To GVItemList.RowCount - 1
-            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
-        Next
-        GCItemList.RefreshDataSource()
-        GVItemList.RefreshData()
-        ReportSalesDelOrderDet.dt = GCItemList.DataSource
-        ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
-        Dim Report As New ReportSalesDelOrderDet()
+        If is_use_unique_code = "-1" Then
+            GridColumnNo.VisibleIndex = 0
+            GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
+            For i As Integer = 0 To GVItemList.RowCount - 1
+                GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+            Next
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+            ReportSalesDelOrderDet.dt = GCItemList.DataSource
+            ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
+            Dim Report As New ReportSalesDelOrderDet()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVItemList)
+            'Grid Detail
+            ReportStyleGridview(Report.GVItemList)
 
-        'Parse val
-        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-        Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-        Report.LabelAddress.Text = MEAdrressCompTo.Text
-        Report.LRecDate.Text = DEForm.Text
-        Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
-        Report.LabelNote.Text = MENote.Text
-        Report.LabelPrepare.Text = TxtSalesOrder.Text
-        Report.LabelCat.Text = LEStatusSO.Text
-        Report.LabelUni3.Text = TxtNIK.Text
-        Report.LabelUni6.Text = TxtEmployee.Text
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPrepare.Text = TxtSalesOrder.Text
+            Report.LabelCat.Text = LEStatusSO.Text
+            Report.LabelUni3.Text = TxtNIK.Text
+            Report.LabelUni6.Text = TxtEmployee.Text
 
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        GVItemList.ActiveFilterString = ""
-        GridColumnNo.Visible = False
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            GVItemList.ActiveFilterString = ""
+            GridColumnNo.Visible = False
+        Else
+            ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del
+            ReportSalesDelOrderOwnStore.rmt = "43"
+            ReportSalesDelOrderOwnStore.id_report_status = id_report_status
+            ReportSalesDelOrderOwnStore.id_store = id_store
+            ReportSalesDelOrderOwnStore.is_combine = "2"
+            ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
+            ReportSalesDelOrderOwnStore.is_no_print = "-1"
+            Dim Report As New ReportSalesDelOrderOwnStore()
+
+
+            'Grid Detail
+            ReportStyleGridviewBlackLine(Report.GVItemList)
+
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPrepare.Text = TxtSalesOrder.Text
+            Report.LabelCat.Text = LEStatusSO.Text
+            Report.LabelUni3.Text = TxtNIK.Text
+            Report.LabelUni6.Text = TxtEmployee.Text
+            If id_so_status = "7" Or id_so_status = "9" Then
+                Report.PanelUni.Visible = True
+            Else
+                Report.PanelUni.Visible = False
+            End If
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
     End Sub
 
     'Color Cell
@@ -1342,7 +1381,11 @@ Public Class FormSalesDelOrderDet
 
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderDet.id_pre = "1"
+        If is_use_unique_code = "-1" Then
+            ReportSalesDelOrderDet.id_pre = "1"
+        Else
+            ReportSalesDelOrderOwnStore.id_pre = "1"
+        End If
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -1353,7 +1396,12 @@ Public Class FormSalesDelOrderDet
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderDet.id_pre = "-1"
+        If is_use_unique_code = "-1" Then
+            ReportSalesDelOrderDet.id_pre = "-1"
+        Else
+            ReportSalesDelOrderOwnStore.id_pre = "-1"
+        End If
+
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -1386,7 +1434,7 @@ Public Class FormSalesDelOrderDet
             Cursor = Cursors.WaitCursor
             GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
             If GVBarcode.RowCount <= 0 Then
-                stopCustom("Code not found.")
+                stopCustomDialog("Code not found.")
                 GVBarcode.ActiveFilterString = ""
                 TxtDeleteScan.Text = ""
                 TxtDeleteScan.Focus()

@@ -37,10 +37,18 @@ Public Class FormSalesPOSDet
     Public bof_xls_so As String = get_setup_field("bof_xls_inv")
     Public is_block_no_stock As String = get_setup_field("is_block_no_stock")
     Public is_use_unique_code As String = "2"
+    Dim print_title As String = ""
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
+    End Sub
+
+    Sub viewPrintOpt()
+        Dim query As String = "SELECT '1' AS id , '" + print_title + "' AS `opt`
+        UNION 
+        SELECT '2' AS id , 'DELIVERY SLIP' AS `opt` "
+        viewLookupQuery(LEPrintOpt, query, 0, "opt", "id")
     End Sub
 
     Sub actionLoad()
@@ -60,18 +68,21 @@ Public Class FormSalesPOSDet
         If id_menu = "1" Then
             Text = "Invoice"
             LEInvType.Focus()
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "2" Then
             Text = "Credit Note"
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Text = "Credit Note Missing"
             TxtCodeCompFrom.Focus()
+            print_title = "CREDIT NOTE SLIP"
         ElseIf id_menu = "3" Then
             Text = "Invoice Missing Promo"
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "4" Then
             Text = "Invoice Different Margin"
             LEInvType.Enabled = False
@@ -82,6 +93,7 @@ Public Class FormSalesPOSDet
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
             BtnBrowseBillTo.Visible = True
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "5" Then
             Text = "Credit Note Online Store"
             LEInvType.Enabled = False
@@ -96,8 +108,11 @@ Public Class FormSalesPOSDet
             TxtOLStoreNumber.Properties.ReadOnly = False
             GridColumnOrder.Visible = False
             GridColumnDel.Visible = False
+            print_title = "CREDIT NOTE SLIP"
         End If
 
+        'print opt
+        viewPrintOpt()
 
         If action = "ins" Then
             TxtDiscount.EditValue = 0.0
@@ -468,7 +483,7 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
@@ -484,6 +499,9 @@ Public Class FormSalesPOSDet
                         Dim id_sales_pos_det_ref As String = "NULL "
                         Try
                             id_sales_pos_det_ref = GVItemList.GetRowCellValue(i, "id_sales_pos_det_ref").ToString
+                            If id_sales_pos_det_ref = "0" Or id_sales_pos_det_ref = "" Then
+                                id_sales_pos_det_ref = "NULL "
+                            End If
                         Catch ex As Exception
                         End Try
                         Dim id_pl_sales_order_del_det As String = "NULL "
@@ -494,11 +512,19 @@ Public Class FormSalesPOSDet
                             End If
                         Catch ex As Exception
                         End Try
+                        Dim id_pos_combine_summary As String = "NULL "
+                        Try
+                            id_pos_combine_summary = GVItemList.GetRowCellValue(i, "id_pos_combine_summary").ToString
+                            If id_pos_combine_summary = "0" Or id_pos_combine_summary = "" Then
+                                id_pos_combine_summary = "NULL "
+                            End If
+                        Catch ex As Exception
+                        End Try
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ") "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -716,22 +742,24 @@ Public Class FormSalesPOSDet
         BtnNoStock.Visible = False
         GridColumnIsSelect.Visible = False
 
+        BtnPrint.Enabled = True
+
         If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
         End If
 
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
-        Else
-            BtnPrint.Enabled = False
-        End If
+
 
         If id_report_status <> "5" And bof_column = "1" Then
             BtnXlsBOF.Visible = True
         Else
             BtnXlsBOF.Visible = False
+        End If
+
+        If id_report_status = "5" Then
+            BtnPrint.Enabled = False
         End If
         TxtVirtualPosNumber.Focus()
     End Sub
@@ -876,23 +904,23 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportSalesInvoice.id_sales_pos = id_sales_pos
-        Dim Report As New ReportSalesInvoice()
-        If id_memo_type = "1" Then
-            Report.LTitle.Text = "SALES INVOICE"
-        ElseIf id_memo_type = "2" Then
-            Report.LTitle.Text = "SALES CREDIT NOTE"
-        ElseIf id_memo_type = "3" Then
-            Report.LTitle.Text = "MISSING INVOICE"
-        ElseIf id_memo_type = "4" Then
-            Report.LTitle.Text = "MISSING CREDIT NOTE"
-        ElseIf id_memo_type = "5" Then
-            Report.LTitle.Text = "MISSING INVOICE PROMO"
+        If LEPrintOpt.EditValue = "1" Then
+            ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
+            ReportSalesInvoiceNew.id_report_status = id_report_status
+            ReportSalesInvoiceNew.rmt = report_mark_type
+            Dim Report As New ReportSalesInvoiceNew()
+            Report.LabelTitle.Text = print_title
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            ReportSalesInvoceDelSlip.id_sales_pos = id_sales_pos
+            ReportSalesInvoceDelSlip.id_report_status = id_report_status
+            ReportSalesInvoceDelSlip.rmt = report_mark_type
+            Dim Report As New ReportSalesInvoceDelSlip()
+            Report.LabelTitle.Text = "DELIVERY SLIP"
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         End If
-
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 
@@ -1090,6 +1118,30 @@ Public Class FormSalesPOSDet
 
         'show form cek koleksi code
         FormSalesPOSDetCheckCollectionCode.ShowDialog()
+    End Sub
+
+    Sub load_data_pos()
+        Cursor = Cursors.WaitCursor
+        Dim start_period As String = "1945-01-01"
+        Try
+            start_period = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim end_period As String = "9999-12-01"
+        Try
+            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        If id_comp = "-1" Or start_period = "1945-01-01" Or end_period = "9999-12-01" Then
+            stopCustom("Please complete data store & sales period")
+        Else
+            FormSalesPOSCheck.id_store = id_comp
+            FormSalesPOSCheck.start_period = start_period
+            FormSalesPOSCheck.end_period = end_period
+            FormSalesPOSCheck.ShowDialog()
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Public is_continue_load As Boolean = True
@@ -1402,6 +1454,9 @@ Public Class FormSalesPOSDet
                 id_wh_locator = data.Rows(0)("id_wh_locator").ToString
                 id_wh_rack = data.Rows(0)("id_wh_rack").ToString
                 is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
+                If is_use_unique_code = "1" Then
+                    QtyToolStripMenuItem.Visible = False
+                End If
                 '
                 LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
                 '
@@ -2032,6 +2087,13 @@ Public Class FormSalesPOSDet
     Private Sub BtnExportToReport_Click(sender As Object, e As EventArgs) Handles BtnExportToReport.Click
         Cursor = Cursors.WaitCursor
         print_raw(GCItemList, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnLoadPOS_Click(sender As Object, e As EventArgs) Handles BtnLoadPOS.Click
+        Cursor = Cursors.WaitCursor
+        load_data_pos()
+        calculate()
         Cursor = Cursors.Default
     End Sub
 End Class

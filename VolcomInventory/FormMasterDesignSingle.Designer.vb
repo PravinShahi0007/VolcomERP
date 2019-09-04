@@ -86,6 +86,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumntarget_cost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmarkup = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.PCChanges = New DevExpress.XtraEditors.PanelControl()
         Me.LCChangesRequest = New DevExpress.XtraEditors.LabelControl()
@@ -209,6 +210,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DNCodeNonMD = New DevExpress.XtraEditors.DataNavigator()
         Me.PanC5 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEPRM = New DevExpress.XtraEditors.CheckEdit()
         Me.TEDisplayNameNonMD = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.BGenerateNonMD = New DevExpress.XtraEditors.SimpleButton()
@@ -271,7 +273,6 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -369,6 +370,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanC5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC5.SuspendLayout()
+        CType(Me.CEPRM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDisplayNameNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECodeNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1087,6 +1089,14 @@ Partial Class FormMasterDesignSingle
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.Visible = True
         Me.GridColumnClass.VisibleIndex = 0
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 2
         '
         'LabelControl20
         '
@@ -2281,6 +2291,7 @@ Partial Class FormMasterDesignSingle
         'PanC5
         '
         Me.PanC5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanC5.Controls.Add(Me.CEPRM)
         Me.PanC5.Controls.Add(Me.TEDisplayNameNonMD)
         Me.PanC5.Controls.Add(Me.LabelControl19)
         Me.PanC5.Controls.Add(Me.BGenerateNonMD)
@@ -2292,6 +2303,15 @@ Partial Class FormMasterDesignSingle
         Me.PanC5.Name = "PanC5"
         Me.PanC5.Size = New System.Drawing.Size(499, 131)
         Me.PanC5.TabIndex = 100
+        '
+        'CEPRM
+        '
+        Me.CEPRM.EditValue = True
+        Me.CEPRM.Location = New System.Drawing.Point(72, 61)
+        Me.CEPRM.Name = "CEPRM"
+        Me.CEPRM.Properties.Caption = "Use 'PRM' as Description"
+        Me.CEPRM.Size = New System.Drawing.Size(141, 19)
+        Me.CEPRM.TabIndex = 1893
         '
         'TEDisplayNameNonMD
         '
@@ -2896,14 +2916,6 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
         '
-        'GridColumncolor
-        '
-        Me.GridColumncolor.Caption = "Color"
-        Me.GridColumncolor.FieldName = "color"
-        Me.GridColumncolor.Name = "GridColumncolor"
-        Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 2
-        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3023,6 +3035,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanC5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanC5.ResumeLayout(False)
         Me.PanC5.PerformLayout()
+        CType(Me.CEPRM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDisplayNameNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECodeNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3305,4 +3318,5 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnClass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEPRM As DevExpress.XtraEditors.CheckEdit
 End Class

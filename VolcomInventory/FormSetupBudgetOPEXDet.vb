@@ -48,8 +48,8 @@ WHERE pps.id_b_opex_pps = '" & id_pps & "'"
                         Dim newRow_before As DataRow = (TryCast(GCBefore.DataSource, DataTable)).NewRow()
                         newRow_before("value_before") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "value_expense").ToString
                         newRow_before("year") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "year").ToString
-                        newRow_before("item_cat") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "item_cat").ToString
-                        newRow_before("id_item_cat") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "id_item_cat").ToString
+                        newRow_before("item_cat_main") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "item_cat_main").ToString
+                        newRow_before("id_item_cat_main") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "id_item_cat_main").ToString
                         TryCast(GCBefore.DataSource, DataTable).Rows.Add(newRow_before)
                         GCBefore.RefreshDataSource()
                         GVBefore.RefreshData()
@@ -59,8 +59,8 @@ WHERE pps.id_b_opex_pps = '" & id_pps & "'"
                         newRow_after("value_before") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "value_expense").ToString
                         newRow_after("value_after") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "value_expense").ToString
                         newRow_after("year") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "year").ToString
-                        newRow_after("item_cat") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "item_cat").ToString
-                        newRow_after("id_item_cat") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "id_item_cat").ToString
+                        newRow_after("item_cat_main") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "item_cat_main").ToString
+                        newRow_after("id_item_cat_main") = FormSetupBudgetOPEX.GVBudgetList.GetRowCellValue(i, "id_item_cat_main").ToString
                         TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after)
                         GCAfter.RefreshDataSource()
                         GVAfter.RefreshData()
@@ -80,14 +80,14 @@ WHERE pps.id_b_opex_pps = '" & id_pps & "'"
                 'get year
                 Dim year_str As String = FormSetupBudgetOPEX.DEYearBudget.Text
 
-                Dim str_code_lokal As String = "SELECT * FROM tb_item_cat WHERE id_expense_type='1' AND is_active='1'"
+                Dim str_code_lokal As String = "SELECT * FROM tb_item_cat_main WHERE id_expense_type='1' AND is_active='1'"
                 Dim data_code_lokal As DataTable = execute_query(str_code_lokal, -1, True, "", "", "", "")
 
                 'budget category
                 For i As Integer = 0 To data_code_lokal.Rows.Count - 1
                     Dim newRow_after As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
-                    newRow_after("id_item_cat") = data_code_lokal.Rows(i)("id_item_cat").ToString
-                    newRow_after("item_cat") = data_code_lokal.Rows(i)("item_cat").ToString
+                    newRow_after("id_item_cat_main") = data_code_lokal.Rows(i)("id_item_cat_main").ToString
+                    newRow_after("item_cat_main") = data_code_lokal.Rows(i)("item_cat_main").ToString
                     newRow_after("year") = year_str
                     newRow_after("value_after") = 0.00
                     TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after)
@@ -103,9 +103,9 @@ WHERE pps.id_b_opex_pps = '" & id_pps & "'"
     End Sub
 
     Sub load_before_det()
-        Dim query As String = "SELECT ppd.id_b_opex_pps_det,ppd.id_item_cat,ic.`item_cat`,ppd.`year`,ppd.value_before 
+        Dim query As String = "SELECT ppd.id_b_opex_pps_det,ppd.id_item_cat_main,ic.`item_cat_main`,ppd.`year`,ppd.value_before 
 FROM `tb_b_opex_pps_det` ppd
-INNER JOIN tb_item_cat ic ON ic.`id_item_cat`=ppd.id_item_cat
+INNER JOIN tb_item_cat_main ic ON ic.`id_item_cat_main`=ppd.id_item_cat_main
 WHERE ppd.id_b_opex_pps='" & id_pps & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBefore.DataSource = data
@@ -113,9 +113,9 @@ WHERE ppd.id_b_opex_pps='" & id_pps & "'"
     End Sub
 
     Sub load_after_det()
-        Dim query As String = "SELECT ppd.id_b_opex_pps_det,ppd.id_item_cat,ic.`item_cat`,ppd.`year`,ppd.value_before,ppd.value_after 
+        Dim query As String = "SELECT ppd.id_b_opex_pps_det,ppd.id_item_cat_main,ic.`item_cat_main`,ppd.`year`,ppd.value_before,ppd.value_after 
 FROM `tb_b_opex_pps_det` ppd
-INNER JOIN tb_item_cat ic ON ic.`id_item_cat`=ppd.id_item_cat
+INNER JOIN tb_item_cat_main ic ON ic.`id_item_cat_main`=ppd.id_item_cat_main
 WHERE ppd.id_b_opex_pps='" & id_pps & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAfter.DataSource = data
@@ -128,14 +128,6 @@ WHERE ppd.id_b_opex_pps='" & id_pps & "'"
 
     Private Sub FormSampleBudgetDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
-    End Sub
-
-    Private Sub BDel_Click(sender As Object, e As EventArgs)
-        GVAfter.DeleteSelectedRows()
-    End Sub
-
-    Private Sub BAdd_Click(sender As Object, e As EventArgs)
-        FormSampleBudgetSingle.ShowDialog()
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
@@ -153,8 +145,8 @@ VALUES('2',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
 
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
-                    Dim query_det As String = "INSERT INTO `tb_b_opex_pps_det`(`id_b_opex_pps`,`id_item_cat`,`year`,`value_before`,`value_after`)
-VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat").ToString & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query_det As String = "INSERT INTO `tb_b_opex_pps_det`(`id_b_opex_pps`,`id_item_cat_main`,`year`,`value_before`,`value_after`)
+VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
 
@@ -175,8 +167,8 @@ VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 execute_non_query(query, True, "", "", "", "")
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
-                    Dim query_det As String = "INSERT INTO `tb_b_opex_pps_det`(`id_b_opex_pps`,id_item_cat,`year`,`value_before`,`value_after`)
-VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',NULL,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query_det As String = "INSERT INTO `tb_b_opex_pps_det`(`id_b_opex_pps`,id_item_cat_main,`year`,`value_before`,`value_after`)
+VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat_main").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year").ToString) & "',NULL,'" & decimalSQL(GVAfter.GetRowCellValue(i, "value_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                 Next
                 '
@@ -207,9 +199,9 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         '
-        ReportSampleBudget.id_report = id_pps
-        ReportSampleBudget.dt = GCAfter.DataSource
-        Dim Report As New ReportSampleBudget()
+        ReportSetupBudgetOPEX.id_report = id_pps
+        ReportSetupBudgetOPEX.dt = GCAfter.DataSource
+        Dim Report As New ReportSetupBudgetOPEX()
         Report.LNumber.Text = TENumber.Text
         Report.LNote.Text = MENote.Text
         Report.LPrroposedBy.Text = TECreatedBy.Text
@@ -217,18 +209,20 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "id_item_cat
 
         If is_rev = "1" Then
             Report.GBBefore.Visible = True
-            Report.LTypePropose.Text = "Revision"
+            Report.LType.Text = "Revision"
+            Report.report_mark_type = "204"
         Else
             Report.GBBefore.Visible = False
-            Report.LTypePropose.Text = "Propose new budget"
+            Report.LType.Text = "Propose new budget"
+            Report.report_mark_type = "203"
         End If
 
-        ReportStyleGridview(Report.GVReportBudgetSample)
-        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        ReportStyleGridview(Report.GVBudgetPropose)
+        Report.GVBudgetPropose.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetPropose.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
