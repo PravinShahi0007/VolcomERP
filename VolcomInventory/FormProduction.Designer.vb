@@ -65,6 +65,7 @@ Partial Class FormProduction
         Me.GridColumnDiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCFilterDate = New DevExpress.XtraEditors.PanelControl()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -249,7 +250,7 @@ Partial Class FormProduction
         Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKP = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -359,7 +360,7 @@ Partial Class FormProduction
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumn55, Me.GridColumn58, Me.GridColumn57, Me.GridColumn56, Me.GridColumnIdReportStatus, Me.GridColumn64, Me.GridColumn65, Me.GridColumn63, Me.GridColumn62, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumn42, Me.GridColumn41, Me.GridColumn43, Me.GridColumn45, Me.GridColumn44, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumnDiff, Me.GridColumn27, Me.GridColumn30, Me.GridColumn76})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumn55, Me.GridColumn58, Me.GridColumn57, Me.GridColumn56, Me.GridColumnIdReportStatus, Me.GridColumn64, Me.GridColumn65, Me.GridColumn63, Me.GridColumn62, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumn42, Me.GridColumn41, Me.GridColumn43, Me.GridColumn45, Me.GridColumn44, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumn77, Me.GridColumnDiff, Me.GridColumn27, Me.GridColumn30, Me.GridColumn76})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -371,6 +372,8 @@ Partial Class FormProduction
         '
         'GridColumn54
         '
+        Me.GridColumn54.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn54.Caption = "*"
         Me.GridColumn54.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.GridColumn54.FieldName = "is_check"
@@ -788,6 +791,16 @@ Partial Class FormProduction
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 26
+        '
+        'GridColumn76
+        '
+        Me.GridColumn76.Caption = "Sample Proto 2 Date"
+        Me.GridColumn76.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn76.FieldName = "sample_proto_2"
+        Me.GridColumn76.Name = "GridColumn76"
+        Me.GridColumn76.Visible = True
+        Me.GridColumn76.VisibleIndex = 27
         '
         'PCFilterDate
         '
@@ -2492,15 +2505,11 @@ Partial Class FormProduction
         Me.LabelControl12.TabIndex = 8901
         Me.LabelControl12.Text = "Vendor"
         '
-        'GridColumn76
+        'GridColumn77
         '
-        Me.GridColumn76.Caption = "Sample Proto 2 Date"
-        Me.GridColumn76.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn76.FieldName = "sample_proto_2"
-        Me.GridColumn76.Name = "GridColumn76"
-        Me.GridColumn76.Visible = True
-        Me.GridColumn76.VisibleIndex = 27
+        Me.GridColumn77.Caption = "Design Code Import"
+        Me.GridColumn77.FieldName = "design_code_import"
+        Me.GridColumn77.Name = "GridColumn77"
         '
         'FormProduction
         '
@@ -2828,4 +2837,5 @@ Partial Class FormProduction
     Friend WithEvents BViewKP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -37,10 +37,18 @@ Public Class FormSalesPOSDet
     Public bof_xls_so As String = get_setup_field("bof_xls_inv")
     Public is_block_no_stock As String = get_setup_field("is_block_no_stock")
     Public is_use_unique_code As String = "2"
+    Dim print_title As String = ""
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
+    End Sub
+
+    Sub viewPrintOpt()
+        Dim query As String = "SELECT '1' AS id , '" + print_title + "' AS `opt`
+        UNION 
+        SELECT '2' AS id , 'DELIVERY SLIP' AS `opt` "
+        viewLookupQuery(LEPrintOpt, query, 0, "opt", "id")
     End Sub
 
     Sub actionLoad()
@@ -60,18 +68,21 @@ Public Class FormSalesPOSDet
         If id_menu = "1" Then
             Text = "Invoice"
             LEInvType.Focus()
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "2" Then
             Text = "Credit Note"
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Text = "Credit Note Missing"
             TxtCodeCompFrom.Focus()
+            print_title = "CREDIT NOTE SLIP"
         ElseIf id_menu = "3" Then
             Text = "Invoice Missing Promo"
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "4" Then
             Text = "Invoice Different Margin"
             LEInvType.Enabled = False
@@ -82,6 +93,7 @@ Public Class FormSalesPOSDet
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
             BtnBrowseBillTo.Visible = True
+            print_title = "INVOICE SLIP"
         ElseIf id_menu = "5" Then
             Text = "Credit Note Online Store"
             LEInvType.Enabled = False
@@ -96,8 +108,11 @@ Public Class FormSalesPOSDet
             TxtOLStoreNumber.Properties.ReadOnly = False
             GridColumnOrder.Visible = False
             GridColumnDel.Visible = False
+            print_title = "CREDIT NOTE SLIP"
         End If
 
+        'print opt
+        viewPrintOpt()
 
         If action = "ins" Then
             TxtDiscount.EditValue = 0.0
@@ -727,22 +742,24 @@ Public Class FormSalesPOSDet
         BtnNoStock.Visible = False
         GridColumnIsSelect.Visible = False
 
+        BtnPrint.Enabled = True
+
         If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
         End If
 
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
-        Else
-            BtnPrint.Enabled = False
-        End If
+
 
         If id_report_status <> "5" And bof_column = "1" Then
             BtnXlsBOF.Visible = True
         Else
             BtnXlsBOF.Visible = False
+        End If
+
+        If id_report_status = "5" Then
+            BtnPrint.Enabled = False
         End If
         TxtVirtualPosNumber.Focus()
     End Sub
@@ -887,23 +904,23 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportSalesInvoice.id_sales_pos = id_sales_pos
-        Dim Report As New ReportSalesInvoice()
-        If id_memo_type = "1" Then
-            Report.LTitle.Text = "SALES INVOICE"
-        ElseIf id_memo_type = "2" Then
-            Report.LTitle.Text = "SALES CREDIT NOTE"
-        ElseIf id_memo_type = "3" Then
-            Report.LTitle.Text = "MISSING INVOICE"
-        ElseIf id_memo_type = "4" Then
-            Report.LTitle.Text = "MISSING CREDIT NOTE"
-        ElseIf id_memo_type = "5" Then
-            Report.LTitle.Text = "MISSING INVOICE PROMO"
+        If LEPrintOpt.EditValue = "1" Then
+            ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
+            ReportSalesInvoiceNew.id_report_status = id_report_status
+            ReportSalesInvoiceNew.rmt = report_mark_type
+            Dim Report As New ReportSalesInvoiceNew()
+            Report.LabelTitle.Text = print_title
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            ReportSalesInvoceDelSlip.id_sales_pos = id_sales_pos
+            ReportSalesInvoceDelSlip.id_report_status = id_report_status
+            ReportSalesInvoceDelSlip.rmt = report_mark_type
+            Dim Report As New ReportSalesInvoceDelSlip()
+            Report.LabelTitle.Text = "DELIVERY SLIP"
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         End If
-
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 
