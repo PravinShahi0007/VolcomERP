@@ -3016,7 +3016,7 @@ Public Class ClassSendEmail
 FROM `tb_mail_to` mt
 INNER JOIN tb_m_user usr ON usr.`id_user`=mt.id_user
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE is_to='1' AND report_mark_type='" & rmt & "'"
+WHERE is_to='1' AND emp.`email_external`!='' AND report_mark_type='" & rmt & "'"
         Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
         For i As Integer = 0 To data_send_mail.Rows.Count - 1
             Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
@@ -3027,7 +3027,7 @@ WHERE is_to='1' AND report_mark_type='" & rmt & "'"
 FROM `tb_mail_to` mt
 INNER JOIN tb_m_user usr ON usr.`id_user`=mt.id_user
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE is_to='2' AND report_mark_type='" & rmt & "'"
+WHERE is_to='2' AND emp.`email_external`!='' AND report_mark_type='" & rmt & "'"
         Dim datacc As DataTable = execute_query(querycc, -1, True, "", "", "", "")
         If datacc.Rows.Count > 0 Then
             For i As Integer = 0 To datacc.Rows.Count - 1
