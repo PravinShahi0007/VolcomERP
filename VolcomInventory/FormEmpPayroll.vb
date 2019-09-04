@@ -11,7 +11,7 @@
     End Sub
     '
     Sub load_payroll()
-        Dim query As String = "SELECT pr.*,emp.`employee_name`,type.payroll_type as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name, IFNULL((SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = pr.id_report_status), 'Not Submitted') AS report_status FROM tb_emp_payroll pr
+        Dim query As String = "SELECT 'no' AS is_check, pr.*,emp.`employee_name`,type.payroll_type as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name, IFNULL((SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = pr.id_report_status), 'Not Submitted') AS report_status FROM tb_emp_payroll pr
                                 INNER JOIn tb_emp_payroll_type type ON type.id_payroll_type=pr.id_payroll_type
                                 INNER JOIN tb_m_user usr ON usr.id_user=pr.id_user_upd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.id_employee
@@ -848,5 +848,46 @@
     Private Sub BarButtonItem6_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem6.ItemClick
         FormEmpPayrollReportPajak.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         FormEmpPayrollReportPajak.ShowDialog()
+    End Sub
+
+    Private Sub SBExportExcel_Click(sender As Object, e As EventArgs) Handles SBExportExcel.Click
+        Dim exist As Boolean = False
+
+        For i = 0 To GVPayrollPeriode.RowCount - 1
+            If GVPayrollPeriode.GetRowCellValue(i, "is_check").ToString = "yes" Then
+                exist = True
+            End If
+        Next
+
+        If exist Then
+            Dim save As SaveFileDialog = New SaveFileDialog
+
+            save.Filter = "Excel File | *.xls"
+            save.ShowDialog()
+
+            If Not save.FileName = "" Then
+                Dim op As DevExpress.XtraPrinting.XlsExportOptionsEx = New DevExpress.XtraPrinting.XlsExportOptionsEx
+
+                op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+                Dim data As DataTable = execute_query("CALL view_payroll(-1)", -1, True, "", "", "", "")
+
+                For i = 0 To GVPayrollPeriode.RowCount - 1
+                    If GVPayrollPeriode.GetRowCellValue(i, "is_check").ToString = "yes" Then
+                        Dim data_include As DataTable = execute_query("CALL view_payroll(" + GVPayrollPeriode.GetRowCellValue(i, "id_payroll").ToString + ")", -1, True, "", "", "", "")
+
+                        data.Merge(data_include)
+                    End If
+                Next
+
+                GCExportExcel.DataSource = data
+
+                GVExportExcel.ExportToXls(save.FileName, op)
+
+                infoCustom("File saved.")
+            End If
+        Else
+            errorCustom("Please select payroll period.")
+        End If
     End Sub
 End Class
