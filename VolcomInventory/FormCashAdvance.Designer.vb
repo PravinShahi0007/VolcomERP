@@ -57,10 +57,12 @@ Partial Class FormCashAdvance
         Me.GCCashInAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCProposalStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BAccountability = New DevExpress.XtraEditors.SimpleButton()
         Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
@@ -75,11 +77,11 @@ Partial Class FormCashAdvance
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMMainVendor = New System.Windows.Forms.ToolStripMenuItem()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.BCreateReport = New DevExpress.XtraEditors.SimpleButton()
         Me.DateTo = New DevExpress.XtraEditors.DateEdit()
         Me.DateFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,7 +147,7 @@ Partial Class FormCashAdvance
         '
         'BPrint
         '
-        Me.BPrint.Location = New System.Drawing.Point(1085, 31)
+        Me.BPrint.Location = New System.Drawing.Point(1073, 31)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(60, 23)
         Me.BPrint.TabIndex = 8923
@@ -262,7 +264,7 @@ Partial Class FormCashAdvance
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(1019, 31)
+        Me.BView.Location = New System.Drawing.Point(1007, 31)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 23)
         Me.BView.TabIndex = 8913
@@ -335,7 +337,7 @@ Partial Class FormCashAdvance
         Me.GVListOpen.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVListOpen.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVListOpen.ColumnPanelRowHeight = 32
-        Me.GVListOpen.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNumber, Me.GCType, Me.GCCreatedDate, Me.GCCreatedBy, Me.GCNote, Me.GCEmployee, Me.GCDepartement, Me.GCCashInAdvance, Me.GCProposalStatus, Me.GridColumn3, Me.GCReportBackDate, Me.GCReportBackDueDate, Me.GCReportBackStatus, Me.GCIdReportStatus, Me.GridColumn4})
+        Me.GVListOpen.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNumber, Me.GCType, Me.GCCreatedDate, Me.GCCreatedBy, Me.GCNote, Me.GCEmployee, Me.GCDepartement, Me.GCCashInAdvance, Me.GCProposalStatus, Me.GridColumn3, Me.GridColumn5, Me.GCReportBackDate, Me.GCReportBackDueDate, Me.GCReportBackStatus, Me.GCIdReportStatus, Me.GridColumn4})
         Me.GVListOpen.GridControl = Me.GCListOpen
         Me.GVListOpen.Name = "GVListOpen"
         Me.GVListOpen.OptionsBehavior.AutoExpandAllGroups = True
@@ -457,12 +459,22 @@ Partial Class FormCashAdvance
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "recon_value", "{0:N2}")})
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.VisibleIndex = 11
         Me.GridColumn3.Width = 100
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Actual Reconcile Date"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "act_report_back_date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 10
         '
         'GCReportBackDate
         '
-        Me.GCReportBackDate.Caption = "Reconcile Date"
+        Me.GCReportBackDate.Caption = "Start Reconcile Date"
         Me.GCReportBackDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GCReportBackDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCReportBackDate.FieldName = "report_back_date"
@@ -488,7 +500,7 @@ Partial Class FormCashAdvance
         Me.GCReportBackStatus.FieldName = "rb_status"
         Me.GCReportBackStatus.Name = "GCReportBackStatus"
         Me.GCReportBackStatus.Visible = True
-        Me.GCReportBackStatus.VisibleIndex = 11
+        Me.GCReportBackStatus.VisibleIndex = 12
         Me.GCReportBackStatus.Width = 86
         '
         'GCIdReportStatus
@@ -496,6 +508,15 @@ Partial Class FormCashAdvance
         Me.GCIdReportStatus.Caption = "Id Report Status"
         Me.GCIdReportStatus.FieldName = "id_report_status"
         Me.GCIdReportStatus.Name = "GCIdReportStatus"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Overdue (days)"
+        Me.GridColumn4.FieldName = "overdue"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 13
+        Me.GridColumn4.Width = 84
         '
         'RepositoryItemCheckEdit1
         '
@@ -598,6 +619,7 @@ Partial Class FormCashAdvance
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.BCreateReport)
         Me.XtraScrollableControl1.Controls.Add(Me.DateTo)
         Me.XtraScrollableControl1.Controls.Add(Me.DateFrom)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl6)
@@ -617,6 +639,14 @@ Partial Class FormCashAdvance
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
         Me.XtraScrollableControl1.Size = New System.Drawing.Size(1264, 87)
         Me.XtraScrollableControl1.TabIndex = 8926
+        '
+        'BCreateReport
+        '
+        Me.BCreateReport.Location = New System.Drawing.Point(1139, 31)
+        Me.BCreateReport.Name = "BCreateReport"
+        Me.BCreateReport.Size = New System.Drawing.Size(87, 23)
+        Me.BCreateReport.TabIndex = 8933
+        Me.BCreateReport.Text = "create report"
         '
         'DateTo
         '
@@ -664,18 +694,9 @@ Partial Class FormCashAdvance
         '
         Me.LabelControl4.Location = New System.Drawing.Point(705, 14)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(72, 13)
         Me.LabelControl4.TabIndex = 8926
-        Me.LabelControl4.Text = "Reconcile Date:"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Overdue (days)"
-        Me.GridColumn4.FieldName = "overdue"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 12
-        Me.GridColumn4.Width = 84
+        Me.LabelControl4.Text = "Date Created :"
         '
         'FormCashAdvance
         '
@@ -781,4 +802,6 @@ Partial Class FormCashAdvance
     Friend WithEvents DateFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCreateReport As DevExpress.XtraEditors.SimpleButton
 End Class
