@@ -711,6 +711,12 @@
     <Compile Include="FormCashAdvanceReconcile.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvanceReport.Designer.vb">
+      <DependentUpon>FormCashAdvanceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -1111,6 +1117,12 @@
       <DependentUpon>FormEmpPayrollReportOTEvent.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpPayrollReportOTEvent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportPajak.Designer.vb">
+      <DependentUpon>FormEmpPayrollReportPajak.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportPajak.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpPayrollReportSummary.Designer.vb">
@@ -6174,6 +6186,12 @@
     <Compile Include="ReportEmpPayrollReportBPJSTKDetail.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpPayrollReportPajak.Designer.vb">
+      <DependentUpon>ReportEmpPayrollReportPajak.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPayrollReportPajak.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -6826,10 +6844,28 @@
     <Compile Include="ReportSalesDelOrderSlip.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesInvoceDelSlip.Designer.vb">
+      <DependentUpon>ReportSalesInvoceDelSlip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesInvoceDelSlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesInvoice.designer.vb">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesInvoice.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesInvoiceDS.Designer.vb">
+      <DependentUpon>ReportSalesInvoiceDS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesInvoiceDS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSalesInvoiceNew.Designer.vb">
+      <DependentUpon>ReportSalesInvoiceNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesInvoiceNew.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesOrder.Designer.vb">
@@ -7380,6 +7416,9 @@
     <EmbeddedResource Include="FormCashAdvanceReconcile.resx">
       <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceReport.resx">
+      <DependentUpon>FormCashAdvanceReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </EmbeddedResource>
@@ -7578,6 +7617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollReportOTEvent.resx">
       <DependentUpon>FormEmpPayrollReportOTEvent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollReportPajak.resx">
+      <DependentUpon>FormEmpPayrollReportPajak.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollReportSummary.resx">
       <DependentUpon>FormEmpPayrollReportSummary.vb</DependentUpon>
@@ -10550,6 +10592,9 @@
     <EmbeddedResource Include="ReportEmpPayrollReportBPJSTKDetail.resx">
       <DependentUpon>ReportEmpPayrollReportBPJSTKDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPayrollReportPajak.resx">
+      <DependentUpon>ReportEmpPayrollReportPajak.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </EmbeddedResource>
@@ -10930,9 +10975,15 @@
     <EmbeddedResource Include="ReportSalesDelOrderOwnStore.resx">
       <DependentUpon>ReportSalesDelOrderOwnStore.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesInvoceDelSlip.resx">
+      <DependentUpon>ReportSalesInvoceDelSlip.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvoice.resx">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesInvoiceNew.resx">
+      <DependentUpon>ReportSalesInvoiceNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrder.resx">
       <DependentUpon>ReportSalesOrder.vb</DependentUpon>
