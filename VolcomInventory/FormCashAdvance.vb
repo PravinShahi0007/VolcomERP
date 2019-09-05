@@ -112,11 +112,11 @@ SELECT id_employee,employee_name FROM tb_m_employee"
             End If
 
             If Not date_from = "" Then
-                where_string += " AND ca.report_back_date >= '" + date_from + "'"
+                where_string += " AND ca.date_created >= '" + date_from + "'"
             End If
 
             If Not date_to = "" Then
-                where_string += " AND ca.report_back_date <= '" + date_to + "'"
+                where_string += " AND ca.date_created <= '" + date_to + "'"
             End If
         Catch ex As Exception
         End Try
@@ -194,5 +194,9 @@ WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
         GCReportBackDate.VisibleIndex = 8
         GCReportBackDueDate.VisibleIndex = 9
         GCReportBackStatus.VisibleIndex = 10
+    End Sub
+
+    Private Sub BCreateReport_Click(sender As Object, e As EventArgs) Handles BCreateReport.Click
+        FormCashAdvanceReport.ShowDialog()
     End Sub
 End Class

@@ -57,6 +57,7 @@ Partial Class FormCashAdvance
         Me.GCCashInAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCProposalStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReportBackStatus = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,12 +77,11 @@ Partial Class FormCashAdvance
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMMainVendor = New System.Windows.Forms.ToolStripMenuItem()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.BCreateReport = New DevExpress.XtraEditors.SimpleButton()
         Me.DateTo = New DevExpress.XtraEditors.DateEdit()
         Me.DateFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BCreateReport = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -462,6 +462,16 @@ Partial Class FormCashAdvance
         Me.GridColumn3.VisibleIndex = 11
         Me.GridColumn3.Width = 100
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Actual Reconcile Date"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "act_report_back_date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 10
+        '
         'GCReportBackDate
         '
         Me.GCReportBackDate.Caption = "Start Reconcile Date"
@@ -630,6 +640,14 @@ Partial Class FormCashAdvance
         Me.XtraScrollableControl1.Size = New System.Drawing.Size(1264, 87)
         Me.XtraScrollableControl1.TabIndex = 8926
         '
+        'BCreateReport
+        '
+        Me.BCreateReport.Location = New System.Drawing.Point(1139, 31)
+        Me.BCreateReport.Name = "BCreateReport"
+        Me.BCreateReport.Size = New System.Drawing.Size(87, 23)
+        Me.BCreateReport.TabIndex = 8933
+        Me.BCreateReport.Text = "create report"
+        '
         'DateTo
         '
         Me.DateTo.EditValue = Nothing
@@ -676,27 +694,9 @@ Partial Class FormCashAdvance
         '
         Me.LabelControl4.Location = New System.Drawing.Point(705, 14)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(72, 13)
         Me.LabelControl4.TabIndex = 8926
-        Me.LabelControl4.Text = "Reconcile Date:"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Actual Reconcile Date"
-        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "act_report_back_date"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 10
-        '
-        'BCreateReport
-        '
-        Me.BCreateReport.Location = New System.Drawing.Point(1139, 31)
-        Me.BCreateReport.Name = "BCreateReport"
-        Me.BCreateReport.Size = New System.Drawing.Size(87, 23)
-        Me.BCreateReport.TabIndex = 8933
-        Me.BCreateReport.Text = "create report"
+        Me.LabelControl4.Text = "Date Created :"
         '
         'FormCashAdvance
         '

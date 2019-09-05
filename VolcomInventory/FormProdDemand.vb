@@ -14,7 +14,7 @@
     'View Production Demand
     Sub viewProdDemand()
         Dim query_c As ClassProdDemand = New ClassProdDemand()
-        If id_role_login <> super_user Then
+        If id_role_login <> super_user And id_role_login <> "18" Then
             cond_view = "AND rg.id_departement =''" + id_departement_user + "'' "
         End If
         Dim query As String = query_c.queryMain(cond_view, sort_view)
