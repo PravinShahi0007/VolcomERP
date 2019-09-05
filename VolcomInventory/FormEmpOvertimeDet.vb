@@ -18,7 +18,7 @@
     Sub form_load()
         ' default
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
-        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT 1 AS id_type, 'Salary' AS type UNION SELECT 2 AS id_type, 'DP' AS type", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         TECreatedAt.EditValue = DateTime.Parse(Now).ToString("dd MMM yyyy HH:mm:ss")

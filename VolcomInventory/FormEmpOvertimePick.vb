@@ -39,17 +39,18 @@
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) AS id_departement_sub, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no') AS only_dp
-            FROM tb_m_employee AS e 
+            SELECT e.id_employee, IF(salary.salary > (ds.ump + 1000000), 'yes', 'no') AS only_dp, 'no' AS is_checked, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_active, la.employee_active, e.id_employee_status, st.employee_status
+            FROM tb_m_employee AS e
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
+            LEFT JOIN tb_m_departement_sub AS ds ON IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) = ds.id_departement_sub
             LEFT JOIN tb_lookup_employee_status AS st ON e.id_employee_status = st.id_employee_status
             LEFT JOIN tb_lookup_employee_active AS la ON e.id_employee_active = la.id_employee_active
             LEFT JOIN (
-                SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
-                FROM tb_m_employee
+	            SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
+	            FROM tb_m_employee
             ) AS salary ON e.id_employee = salary.id_employee
             WHERE 1 " + whereHrd + " " + whereNotInclude + "
-            ORDER BY e.id_employee_level ASC, e.employee_code ASC
+            ORDER BY d.departement ASC, e.id_employee_level ASC, e.employee_code ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

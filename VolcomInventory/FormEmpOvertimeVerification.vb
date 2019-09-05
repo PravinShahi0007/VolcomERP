@@ -2,25 +2,19 @@
     Public id_ot As String = ""
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
-        Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
+        Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
 
         'attendance
         Dim query_att As String = "
-            SELECT emp.id_employee, emp.employee_code, emp.employee_name, att_in.datetime AS start_work, att_out.datetime AS end_work, 'no' AS is_valid
-            FROM tb_m_employee AS emp
-            LEFT JOIN (
-                SELECT MIN(datetime) AS datetime, id_employee
-                FROM tb_emp_attn
-                WHERE type_log = 1 AND DATE(datetime) = '" + date_search.ToString + "'
-                GROUP BY id_employee
-            ) AS att_in ON emp.id_employee = att_in.id_employee
-            LEFT JOIN (
-                SELECT MAX(datetime) AS datetime, id_employee
-                FROM tb_emp_attn
-                WHERE type_log = 2 AND DATE(datetime) = '" + date_search.ToString + "'
-                GROUP BY id_employee
-            ) AS att_out ON emp.id_employee = att_out.id_employee
-            WHERE att_in.datetime IS NOT NULL AND att_out.datetime IS NOT NULL AND emp.id_departement = " + id_departement_user + "
+            SELECT sch.id_employee, emp.employee_code, emp.employee_name, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 'no' AS is_valid
+            FROM tb_emp_schedule AS sch
+            LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
+            LEFT JOIN tb_emp_attn AS at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 1 DAY) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
+            LEFT JOIN tb_emp_attn AS at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
+            LEFT JOIN tb_emp_attn AS at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
+            LEFT JOIN tb_emp_attn AS at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
+            WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + id_departement_user + "
+            GROUP BY sch.id_schedule
         "
 
         Dim data_att As DataTable = execute_query(query_att, -1, True, "", "", "", "")
@@ -31,7 +25,7 @@
     End Sub
 
     Private Sub FormEmpOvertimeVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT 1 AS id_type, 'Salary' AS type UNION SELECT 2 AS id_type, 'DP' AS type", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
         'overtime
         Dim query_ot As String = "
