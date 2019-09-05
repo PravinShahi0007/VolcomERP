@@ -3045,7 +3045,7 @@
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        stopCustom(ex.ToString)
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 Else
                     'non reguler - ada normal & sale price
@@ -3095,7 +3095,7 @@
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        stopCustom(ex.ToString)
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 End If
             End If
