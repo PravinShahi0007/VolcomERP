@@ -204,6 +204,8 @@
             errorInput()
         ElseIf Not cond_qty Or GVRetDetail.RowCount = 0 Then
             errorCustom("Qty can't blank or zero value !")
+        ElseIf id_comp_contact_from = "-1" Then
+            errorCustom("Please complete your input first !")
         Else
             Dim query As String
             Dim mat_prod_ret_in_number As String = addSlashes(TxtRetOutNumber.Text)
