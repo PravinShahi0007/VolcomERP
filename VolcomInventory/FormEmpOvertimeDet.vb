@@ -341,32 +341,14 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        'load data
-        Dim query_ot As String = "
-            SELECT id_report_status, id_check_status
-            FROM tb_ot
-            WHERE id_ot = " + id + "
-        "
-
-        Dim data_ot As DataTable = execute_query(query_ot, -1, True, "", "", "", "")
-
+        'overtime
         Dim Report As New ReportEmpOvertime()
 
         Report.id = id
         Report.data = GCEmployee.DataSource
-        'Report.is_check = is_check
-
-        'If is_check = "-1" Then
-        '    Report.id_pre = If(data_ot.Rows(0)("id_report_status").ToString = "6", "-1", "1")
-        'Else
-        '    Report.id_pre = If(data_ot.Rows(0)("id_check_status").ToString = "6", "-1", "1")
-        'End If
 
         Report.XLNumber.Text = TENumber.Text.ToString
         Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
-        'Report.XLOTDate.Text = DEOvertimeDate.Text.ToString
-        'Report.XLOTTime.Text = TEOvertimeStart.Text.ToString + Environment.NewLine + TEOvertimeEnd.Text.ToString + " (" + TETotalHours.Text.ToString + " Hours)"
-        'Report.XLPayrollPeriod.Text = SLUEPayrollPeriod.Text.ToString
         Report.XLCreatedAt.Text = TECreatedBy.Text.ToString
         Report.XLCreatedBy.Text = TECreatedAt.Text.ToString
         Report.XLOTNote.Text = MEOvertimeNote.Text.ToString
@@ -375,6 +357,19 @@
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
+
+        'memo
+        Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
+
+        Dim data As DataTable = GCEmployee.DataSource
+
+        Dim employee As DataTable = data.Clone
+
+        For i = 0 To data.Rows.Count - 1
+            If data.Rows(i)("total_hours_sub") >= hours Then
+                employee.ImportRow(data.Rows(i))
+            End If
+        Next
     End Sub
 
     Private clone As DataView = Nothing

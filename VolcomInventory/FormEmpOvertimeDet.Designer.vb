@@ -24,32 +24,13 @@ Partial Class FormEmpOvertimeDet
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
-        Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GCInfo1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GCIdEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCOnlyDp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCIdDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCEmployeeCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCEmployeeName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCEmployeePosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCConversionType = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RISLUEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RISLUETypeView = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GCStartWorkSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceStartSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GCEndWorkSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEAttendanceEndSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GCBreakHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEBreak = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GCTotalHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCIdDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -76,9 +57,25 @@ Partial Class FormEmpOvertimeDet
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOnlyDp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIdDepartementSub = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployeeCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployeeName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployeePosition = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCConversionType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCStartWorkSub = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEndWorkSub = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCBreakHoursSub = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCTotalHoursSub = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEAttendanceStartSub, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +107,7 @@ Partial Class FormEmpOvertimeDet
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TENumber
@@ -140,132 +138,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
-        'GVEmployee
-        '
-        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GCInfo1, Me.GBProposed})
-        Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
-        Me.GVEmployee.GridControl = Me.GCEmployee
-        Me.GVEmployee.GroupCount = 2
-        Me.GVEmployee.Name = "GVEmployee"
-        Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVEmployee.OptionsView.AllowCellMerge = True
-        Me.GVEmployee.OptionsView.ColumnAutoWidth = False
-        Me.GVEmployee.OptionsView.ShowGroupPanel = False
-        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDate, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GCInfo1
-        '
-        Me.GCInfo1.Columns.Add(Me.GCIdEmployee)
-        Me.GCInfo1.Columns.Add(Me.GCOnlyDp)
-        Me.GCInfo1.Columns.Add(Me.GCIdDepartement)
-        Me.GCInfo1.Columns.Add(Me.GCDepartement)
-        Me.GCInfo1.Columns.Add(Me.GCDate)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeCode)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeName)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeePosition)
-        Me.GCInfo1.Columns.Add(Me.GCIdEmployeeStatus)
-        Me.GCInfo1.Columns.Add(Me.GCEmployeeStatus)
-        Me.GCInfo1.Columns.Add(Me.GCConversionType)
-        Me.GCInfo1.Name = "GCInfo1"
-        Me.GCInfo1.VisibleIndex = 0
-        Me.GCInfo1.Width = 416
-        '
-        'GCIdEmployee
-        '
-        Me.GCIdEmployee.FieldName = "id_employee"
-        Me.GCIdEmployee.Name = "GCIdEmployee"
-        Me.GCIdEmployee.OptionsColumn.AllowEdit = False
-        Me.GCIdEmployee.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCOnlyDp
-        '
-        Me.GCOnlyDp.FieldName = "only_dp"
-        Me.GCOnlyDp.Name = "GCOnlyDp"
-        Me.GCOnlyDp.OptionsColumn.AllowEdit = False
-        Me.GCOnlyDp.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCIdDepartement
-        '
-        Me.GCIdDepartement.FieldName = "id_departement"
-        Me.GCIdDepartement.Name = "GCIdDepartement"
-        Me.GCIdDepartement.OptionsColumn.AllowEdit = False
-        Me.GCIdDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCDepartement
-        '
-        Me.GCDepartement.Caption = "Departement"
-        Me.GCDepartement.FieldName = "departement"
-        Me.GCDepartement.Name = "GCDepartement"
-        Me.GCDepartement.OptionsColumn.AllowEdit = False
-        Me.GCDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCDate
-        '
-        Me.GCDate.Caption = "Date"
-        Me.GCDate.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GCDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCDate.FieldName = "date"
-        Me.GCDate.Name = "GCDate"
-        Me.GCDate.OptionsColumn.AllowEdit = False
-        Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCEmployeeCode
-        '
-        Me.GCEmployeeCode.Caption = "Code"
-        Me.GCEmployeeCode.FieldName = "employee_code"
-        Me.GCEmployeeCode.Name = "GCEmployeeCode"
-        Me.GCEmployeeCode.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeCode.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCEmployeeCode.Visible = True
-        '
-        'GCEmployeeName
-        '
-        Me.GCEmployeeName.Caption = "Name"
-        Me.GCEmployeeName.FieldName = "employee_name"
-        Me.GCEmployeeName.Name = "GCEmployeeName"
-        Me.GCEmployeeName.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCEmployeeName.Visible = True
-        '
-        'GCEmployeePosition
-        '
-        Me.GCEmployeePosition.Caption = "Position"
-        Me.GCEmployeePosition.FieldName = "employee_position"
-        Me.GCEmployeePosition.Name = "GCEmployeePosition"
-        Me.GCEmployeePosition.OptionsColumn.AllowEdit = False
-        Me.GCEmployeePosition.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCEmployeePosition.Visible = True
-        Me.GCEmployeePosition.Width = 100
-        '
-        'GCIdEmployeeStatus
-        '
-        Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
-        Me.GCIdEmployeeStatus.Name = "GCIdEmployeeStatus"
-        Me.GCIdEmployeeStatus.OptionsColumn.AllowEdit = False
-        Me.GCIdEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCEmployeeStatus
-        '
-        Me.GCEmployeeStatus.Caption = "Status"
-        Me.GCEmployeeStatus.FieldName = "employee_status"
-        Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
-        Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCEmployeeStatus.Visible = True
-        '
-        'GCConversionType
-        '
-        Me.GCConversionType.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCConversionType.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCConversionType.Caption = "Conversion Type"
-        Me.GCConversionType.ColumnEdit = Me.RISLUEType
-        Me.GCConversionType.FieldName = "conversion_type"
-        Me.GCConversionType.Name = "GCConversionType"
-        Me.GCConversionType.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCConversionType.Visible = True
-        Me.GCConversionType.Width = 91
-        '
         'RISLUEType
         '
         Me.RISLUEType.AutoHeight = False
@@ -295,32 +167,6 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 0
         '
-        'GBProposed
-        '
-        Me.GBProposed.Caption = "Proposed"
-        Me.GBProposed.Columns.Add(Me.GCStartWorkSub)
-        Me.GBProposed.Columns.Add(Me.GCEndWorkSub)
-        Me.GBProposed.Columns.Add(Me.GCBreakHoursSub)
-        Me.GBProposed.Columns.Add(Me.GCTotalHoursSub)
-        Me.GBProposed.Name = "GBProposed"
-        Me.GBProposed.VisibleIndex = 1
-        Me.GBProposed.Width = 447
-        '
-        'GCStartWorkSub
-        '
-        Me.GCStartWorkSub.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCStartWorkSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCStartWorkSub.Caption = "Start Work"
-        Me.GCStartWorkSub.ColumnEdit = Me.RITEAttendanceStartSub
-        Me.GCStartWorkSub.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
-        Me.GCStartWorkSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCStartWorkSub.FieldName = "start_work_sub"
-        Me.GCStartWorkSub.MinWidth = 150
-        Me.GCStartWorkSub.Name = "GCStartWorkSub"
-        Me.GCStartWorkSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCStartWorkSub.Visible = True
-        Me.GCStartWorkSub.Width = 150
-        '
         'RITEAttendanceStartSub
         '
         Me.RITEAttendanceStartSub.AutoHeight = False
@@ -333,21 +179,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEAttendanceStartSub.Mask.EditMask = "dd MMM yyyy HH:mm:ss"
         Me.RITEAttendanceStartSub.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendanceStartSub.Name = "RITEAttendanceStartSub"
-        '
-        'GCEndWorkSub
-        '
-        Me.GCEndWorkSub.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCEndWorkSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCEndWorkSub.Caption = "End Work"
-        Me.GCEndWorkSub.ColumnEdit = Me.RITEAttendanceEndSub
-        Me.GCEndWorkSub.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
-        Me.GCEndWorkSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCEndWorkSub.FieldName = "end_work_sub"
-        Me.GCEndWorkSub.MinWidth = 150
-        Me.GCEndWorkSub.Name = "GCEndWorkSub"
-        Me.GCEndWorkSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCEndWorkSub.Visible = True
-        Me.GCEndWorkSub.Width = 150
         '
         'RITEAttendanceEndSub
         '
@@ -362,19 +193,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEAttendanceEndSub.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendanceEndSub.Name = "RITEAttendanceEndSub"
         '
-        'GCBreakHoursSub
-        '
-        Me.GCBreakHoursSub.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCBreakHoursSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCBreakHoursSub.Caption = "Break (hours)"
-        Me.GCBreakHoursSub.ColumnEdit = Me.RITEBreak
-        Me.GCBreakHoursSub.DisplayFormat.FormatString = "N1"
-        Me.GCBreakHoursSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCBreakHoursSub.FieldName = "break_hours_sub"
-        Me.GCBreakHoursSub.Name = "GCBreakHoursSub"
-        Me.GCBreakHoursSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCBreakHoursSub.Visible = True
-        '
         'RITEBreak
         '
         Me.RITEBreak.AutoHeight = False
@@ -386,28 +204,6 @@ Partial Class FormEmpOvertimeDet
         Me.RITEBreak.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEBreak.Mask.UseMaskAsDisplayFormat = True
         Me.RITEBreak.Name = "RITEBreak"
-        '
-        'GCTotalHoursSub
-        '
-        Me.GCTotalHoursSub.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCTotalHoursSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCTotalHoursSub.Caption = "Total (hours)"
-        Me.GCTotalHoursSub.DisplayFormat.FormatString = "N1"
-        Me.GCTotalHoursSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCTotalHoursSub.FieldName = "total_hours_sub"
-        Me.GCTotalHoursSub.Name = "GCTotalHoursSub"
-        Me.GCTotalHoursSub.OptionsColumn.AllowEdit = False
-        Me.GCTotalHoursSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCTotalHoursSub.Visible = True
-        Me.GCTotalHoursSub.Width = 72
-        '
-        'GCIdDepartementSub
-        '
-        Me.GCIdDepartementSub.FieldName = "id_departement_sub"
-        Me.GCIdDepartementSub.Name = "GCIdDepartementSub"
-        Me.GCIdDepartementSub.OptionsColumn.AllowEdit = False
-        Me.GCIdDepartementSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCIdDepartementSub.Width = 109
         '
         'GroupControl1
         '
@@ -666,6 +462,192 @@ Partial Class FormEmpOvertimeDet
         '
         Me.ErrorProvider.ContainerControl = Me
         '
+        'GVEmployee
+        '
+        Me.GVEmployee.ColumnPanelRowHeight = 32
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
+        Me.GVEmployee.GridControl = Me.GCEmployee
+        Me.GVEmployee.GroupCount = 2
+        Me.GVEmployee.Name = "GVEmployee"
+        Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVEmployee.OptionsView.AllowCellMerge = True
+        Me.GVEmployee.OptionsView.ColumnAutoWidth = False
+        Me.GVEmployee.OptionsView.ShowGroupPanel = False
+        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDate, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GCIdEmployee
+        '
+        Me.GCIdEmployee.FieldName = "id_employee"
+        Me.GCIdEmployee.Name = "GCIdEmployee"
+        Me.GCIdEmployee.OptionsColumn.AllowEdit = False
+        Me.GCIdEmployee.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GCOnlyDp
+        '
+        Me.GCOnlyDp.FieldName = "only_dp"
+        Me.GCOnlyDp.Name = "GCOnlyDp"
+        Me.GCOnlyDp.OptionsColumn.AllowEdit = False
+        Me.GCOnlyDp.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GCIdDepartement
+        '
+        Me.GCIdDepartement.FieldName = "id_departement"
+        Me.GCIdDepartement.Name = "GCIdDepartement"
+        Me.GCIdDepartement.OptionsColumn.AllowEdit = False
+        Me.GCIdDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GCIdDepartementSub
+        '
+        Me.GCIdDepartementSub.FieldName = "id_departement_sub"
+        Me.GCIdDepartementSub.Name = "GCIdDepartementSub"
+        Me.GCIdDepartementSub.OptionsColumn.AllowEdit = False
+        Me.GCIdDepartementSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCIdDepartementSub.Width = 109
+        '
+        'GCDepartement
+        '
+        Me.GCDepartement.Caption = "Departement"
+        Me.GCDepartement.FieldName = "departement"
+        Me.GCDepartement.Name = "GCDepartement"
+        Me.GCDepartement.OptionsColumn.AllowEdit = False
+        Me.GCDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCDepartement.Visible = True
+        Me.GCDepartement.VisibleIndex = 4
+        '
+        'GCDate
+        '
+        Me.GCDate.Caption = "Date"
+        Me.GCDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GCDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCDate.FieldName = "date"
+        Me.GCDate.Name = "GCDate"
+        Me.GCDate.OptionsColumn.AllowEdit = False
+        Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCDate.Visible = True
+        Me.GCDate.VisibleIndex = 5
+        '
+        'GCEmployeeCode
+        '
+        Me.GCEmployeeCode.Caption = "Code"
+        Me.GCEmployeeCode.FieldName = "employee_code"
+        Me.GCEmployeeCode.Name = "GCEmployeeCode"
+        Me.GCEmployeeCode.OptionsColumn.AllowEdit = False
+        Me.GCEmployeeCode.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCEmployeeCode.Visible = True
+        Me.GCEmployeeCode.VisibleIndex = 0
+        '
+        'GCEmployeeName
+        '
+        Me.GCEmployeeName.Caption = "Name"
+        Me.GCEmployeeName.FieldName = "employee_name"
+        Me.GCEmployeeName.Name = "GCEmployeeName"
+        Me.GCEmployeeName.OptionsColumn.AllowEdit = False
+        Me.GCEmployeeName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCEmployeeName.Visible = True
+        Me.GCEmployeeName.VisibleIndex = 1
+        '
+        'GCEmployeePosition
+        '
+        Me.GCEmployeePosition.Caption = "Position"
+        Me.GCEmployeePosition.FieldName = "employee_position"
+        Me.GCEmployeePosition.Name = "GCEmployeePosition"
+        Me.GCEmployeePosition.OptionsColumn.AllowEdit = False
+        Me.GCEmployeePosition.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCEmployeePosition.Visible = True
+        Me.GCEmployeePosition.VisibleIndex = 2
+        Me.GCEmployeePosition.Width = 100
+        '
+        'GCIdEmployeeStatus
+        '
+        Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
+        Me.GCIdEmployeeStatus.Name = "GCIdEmployeeStatus"
+        Me.GCIdEmployeeStatus.OptionsColumn.AllowEdit = False
+        Me.GCIdEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GCEmployeeStatus
+        '
+        Me.GCEmployeeStatus.Caption = "Status"
+        Me.GCEmployeeStatus.FieldName = "employee_status"
+        Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
+        Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
+        Me.GCEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCEmployeeStatus.Visible = True
+        Me.GCEmployeeStatus.VisibleIndex = 3
+        '
+        'GCConversionType
+        '
+        Me.GCConversionType.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCConversionType.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCConversionType.Caption = "Conversion Type"
+        Me.GCConversionType.ColumnEdit = Me.RISLUEType
+        Me.GCConversionType.FieldName = "conversion_type"
+        Me.GCConversionType.Name = "GCConversionType"
+        Me.GCConversionType.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCConversionType.Visible = True
+        Me.GCConversionType.VisibleIndex = 4
+        Me.GCConversionType.Width = 91
+        '
+        'GCStartWorkSub
+        '
+        Me.GCStartWorkSub.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCStartWorkSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCStartWorkSub.Caption = "Start Work"
+        Me.GCStartWorkSub.ColumnEdit = Me.RITEAttendanceStartSub
+        Me.GCStartWorkSub.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.GCStartWorkSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCStartWorkSub.FieldName = "start_work_sub"
+        Me.GCStartWorkSub.MinWidth = 150
+        Me.GCStartWorkSub.Name = "GCStartWorkSub"
+        Me.GCStartWorkSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCStartWorkSub.Visible = True
+        Me.GCStartWorkSub.VisibleIndex = 5
+        Me.GCStartWorkSub.Width = 150
+        '
+        'GCEndWorkSub
+        '
+        Me.GCEndWorkSub.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCEndWorkSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCEndWorkSub.Caption = "End Work"
+        Me.GCEndWorkSub.ColumnEdit = Me.RITEAttendanceEndSub
+        Me.GCEndWorkSub.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.GCEndWorkSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCEndWorkSub.FieldName = "end_work_sub"
+        Me.GCEndWorkSub.MinWidth = 150
+        Me.GCEndWorkSub.Name = "GCEndWorkSub"
+        Me.GCEndWorkSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCEndWorkSub.Visible = True
+        Me.GCEndWorkSub.VisibleIndex = 6
+        Me.GCEndWorkSub.Width = 150
+        '
+        'GCBreakHoursSub
+        '
+        Me.GCBreakHoursSub.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCBreakHoursSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCBreakHoursSub.Caption = "Break (hours)"
+        Me.GCBreakHoursSub.ColumnEdit = Me.RITEBreak
+        Me.GCBreakHoursSub.DisplayFormat.FormatString = "N1"
+        Me.GCBreakHoursSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCBreakHoursSub.FieldName = "break_hours_sub"
+        Me.GCBreakHoursSub.Name = "GCBreakHoursSub"
+        Me.GCBreakHoursSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCBreakHoursSub.Visible = True
+        Me.GCBreakHoursSub.VisibleIndex = 7
+        '
+        'GCTotalHoursSub
+        '
+        Me.GCTotalHoursSub.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCTotalHoursSub.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCTotalHoursSub.Caption = "Total (hours)"
+        Me.GCTotalHoursSub.DisplayFormat.FormatString = "N1"
+        Me.GCTotalHoursSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalHoursSub.FieldName = "total_hours_sub"
+        Me.GCTotalHoursSub.Name = "GCTotalHoursSub"
+        Me.GCTotalHoursSub.OptionsColumn.AllowEdit = False
+        Me.GCTotalHoursSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCTotalHoursSub.Visible = True
+        Me.GCTotalHoursSub.VisibleIndex = 8
+        Me.GCTotalHoursSub.Width = 72
+        '
         'FormEmpOvertimeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -682,7 +664,6 @@ Partial Class FormEmpOvertimeDet
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEAttendanceStartSub.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -717,6 +698,7 @@ Partial Class FormEmpOvertimeDet
         Me.PCReportStatus.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -754,26 +736,24 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GCIdEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCOnlyDp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCEmployeeCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCEmployeeName As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCEmployeePosition As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCIdEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCConversionType As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCStartWorkSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCEndWorkSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCBreakHoursSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCTotalHoursSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RITEAttendanceStartSub As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RITEAttendanceEndSub As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents GCInfo1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBProposed As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GCIdDepartementSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RITEBreak As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCIdEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOnlyDp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIdDepartementSub As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCDepartement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployeeCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployeeName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployeePosition As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIdEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCConversionType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCStartWorkSub As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEndWorkSub As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCBreakHoursSub As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCTotalHoursSub As DevExpress.XtraGrid.Columns.GridColumn
 End Class
