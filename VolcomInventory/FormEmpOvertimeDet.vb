@@ -18,7 +18,7 @@
     Sub form_load()
         ' default
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
-        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         TECreatedAt.EditValue = DateTime.Parse(Now).ToString("dd MMM yyyy HH:mm:ss")
@@ -69,7 +69,7 @@
             ' column
             Dim query_ot_det As String = "
                 SELECT ot_det.id_employee, 
-                    IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT ump FROM tb_m_departement_sub WHERE id_departement_sub = ot_det.id_departement_sub), 'yes', 'no')) AS only_dp, 
+                    ot_det.only_dp,
                     ot_det.id_departement, 
                     ot_det.id_departement_sub, 
                     departement.departement, 
@@ -89,10 +89,6 @@
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
                 LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
                 LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_det.id_employee_status = employee_status.id_employee_status
-                LEFT JOIN (
-                    SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
-                    FROM tb_m_employee
-                ) AS salary ON ot_det.id_employee = salary.id_employee
                 WHERE ot_det.id_ot = " + id + "
                 ORDER BY ot_det.ot_date ASC, employee.id_employee_level ASC, employee.employee_code ASC
             "
@@ -342,21 +338,20 @@
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
         'overtime
-        Dim Report As New ReportEmpOvertime()
+        Dim ReportOvertime As New ReportEmpOvertime()
 
-        Report.id = id
-        Report.data = GCEmployee.DataSource
+        ReportOvertime.id = id
+        ReportOvertime.data = GCEmployee.DataSource
 
-        Report.XLNumber.Text = TENumber.Text.ToString
-        Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
-        Report.XLCreatedAt.Text = TECreatedBy.Text.ToString
-        Report.XLCreatedBy.Text = TECreatedAt.Text.ToString
-        Report.XLOTNote.Text = MEOvertimeNote.Text.ToString
+        ReportOvertime.XLNumber.Text = TENumber.Text.ToString
+        ReportOvertime.XLOTtype.Text = LUEOvertimeType.Text.ToString
+        ReportOvertime.XLCreatedAt.Text = TECreatedBy.Text.ToString
+        ReportOvertime.XLCreatedBy.Text = TECreatedAt.Text.ToString
+        ReportOvertime.XLOTNote.Text = MEOvertimeNote.Text.ToString
 
-        Report.GVEmployee.BestFitColumns()
+        ReportOvertime.GVEmployee.BestFitColumns()
 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
+        ReportOvertime.CreateDocument()
 
         'memo
         Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
@@ -370,6 +365,28 @@
                 employee.ImportRow(data.Rows(i))
             End If
         Next
+
+        Dim ReportMemo As New ReportEmpOvertimeMemo()
+
+        ReportMemo.CreateDocument()
+
+        'combine
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+
+        For i = 0 To ReportOvertime.Pages.Count - 1
+            list.Add(ReportOvertime.Pages(i))
+        Next
+
+        If employee.Rows.Count > 0 Then
+            For i = 0 To ReportMemo.Pages.Count - 1
+                list.Add(ReportMemo.Pages(i))
+            Next
+        End If
+
+        ReportOvertime.Pages.AddRange(list)
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(ReportOvertime)
+        Tool.ShowPreviewDialog()
     End Sub
 
     Private clone As DataView = Nothing
@@ -395,7 +412,7 @@
             row = view.GetDataRow(view.FocusedRowHandle)
 
             If view.GetFocusedRowCellValue("only_dp").ToString = "yes" Then
-                clone.RowFilter = "[id_type] = 2"
+                clone.RowFilter = "[to_salary] = 2"
             Else
                 clone.RowFilter = ""
             End If

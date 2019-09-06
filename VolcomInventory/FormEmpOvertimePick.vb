@@ -39,7 +39,7 @@
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, IF(salary.salary > (ds.ump + 1000000), 'yes', 'no') AS only_dp, 'no' AS is_checked, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_active, la.employee_active, e.id_employee_status, st.employee_status
+            SELECT e.id_employee, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, 'no' AS is_checked, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_active, la.employee_active, e.id_employee_status, st.employee_status
             FROM tb_m_employee AS e
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_m_departement_sub AS ds ON IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) = ds.id_departement_sub

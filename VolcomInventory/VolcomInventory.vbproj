@@ -10595,6 +10595,9 @@
     <EmbeddedResource Include="ReportEmpOvertime.resx">
       <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpOvertimeMemo.resx">
+      <DependentUpon>ReportEmpOvertimeMemo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPayrollDeduction.resx">
       <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
     </EmbeddedResource>
