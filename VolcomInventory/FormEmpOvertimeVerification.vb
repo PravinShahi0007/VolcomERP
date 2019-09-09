@@ -1,29 +1,6 @@
 ﻿Public Class FormEmpOvertimeVerification
     Public id_ot As String = ""
 
-    Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
-        Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
-
-        'attendance
-        Dim query_att As String = "
-            SELECT sch.id_employee, emp.employee_code, emp.employee_name, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 'no' AS is_valid
-            FROM tb_emp_schedule AS sch
-            LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
-            LEFT JOIN tb_emp_attn AS at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 1 DAY) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
-            LEFT JOIN tb_emp_attn AS at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
-            LEFT JOIN tb_emp_attn AS at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
-            LEFT JOIN tb_emp_attn AS at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
-            WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + id_departement_user + "
-            GROUP BY sch.id_schedule
-        "
-
-        Dim data_att As DataTable = execute_query(query_att, -1, True, "", "", "", "")
-
-        GCAttendance.DataSource = data_att
-
-        GVAttendance.BestFitColumns()
-    End Sub
-
     Private Sub FormEmpOvertimeVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
@@ -73,20 +50,98 @@
         DESearch.Properties.MaxValue = Date.Parse(data_pro.Rows(data_pro.Rows.Count - 1)("date"))
     End Sub
 
+    Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        'attendance
+        Dim query_att As String = "
+            SELECT * FROM (
+                SELECT sch.id_employee, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, sch.date, emp.id_departement, dep_sub.id_departement_sub, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, 1 AS conversion_type, sch.id_schedule_type, sch.in, sch.out, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0 AS break_hours, 0 AS total_hours, 'no' AS is_valid
+                FROM tb_emp_schedule AS sch
+                LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
+                LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement 
+                LEFT JOIN tb_m_departement_sub AS dep_sub ON IFNULL(emp.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = emp.id_departement LIMIT 1)) = dep_sub.id_departement_sub
+                LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+                LEFT JOIN (
+                    SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
+                    FROM tb_m_employee
+                ) AS salary ON emp.id_employee = salary.id_employee
+                LEFT JOIN tb_emp_attn AS at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 1 DAY) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
+                LEFT JOIN tb_emp_attn AS at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
+                LEFT JOIN tb_emp_attn AS at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
+                LEFT JOIN tb_emp_attn AS at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
+                WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + id_departement_user + "
+                GROUP BY sch.id_schedule
+            ) AS tb
+            WHERE tb.start_work IS NOT NULL AND tb.end_work IS NOT NULL
+        "
+
+        Dim data_att As DataTable = execute_query(query_att, -1, True, "", "", "", "")
+
+        GCAttendance.DataSource = data_att
+
+        'verification
+        For i = 0 To GVEmployee.RowCount - 1
+            If GVEmployee.IsValidRowHandle(i) Then
+                For j = 0 To GVAttendance.RowCount - 1
+                    If GVAttendance.IsValidRowHandle(j) Then
+                        If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(j, "id_employee").ToString Then
+                            If GVAttendance.GetRowCellValue(j, "id_schedule_type").ToString = "1" Then
+                                Dim schedule_in As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "in").ToString)
+                                Dim schedule_out As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "out").ToString)
+                                Dim start_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "start_work").ToString)
+                                Dim end_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "end_work").ToString)
+
+                                Dim last_duration As TimeSpan = end_work - schedule_out
+
+                                If last_duration.TotalHours >= 1 Then
+                                    GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+                                End If
+                            Else
+                                GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+                            End If
+                        End If
+                    End If
+                Next
+            End If
+        Next
+
+        'check not valid
+        Dim employee_not_valid As List(Of String) = New List(Of String)
+
+        For i = 0 To GVEmployee.RowCount - 1
+            If GVEmployee.IsValidRowHandle(i) Then
+                employee_not_valid.Add(GVEmployee.GetRowCellValue(i, "id_employee").ToString)
+
+                For j = 0 To GVAttendance.RowCount - 1
+                    If GVAttendance.IsValidRowHandle(j) Then
+                        If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(j, "id_employee").ToString And GVAttendance.GetRowCellValue(j, "is_valid").ToString = "yes" Then
+                            employee_not_valid.Remove(GVEmployee.GetRowCellValue(i, "id_employee").ToString)
+                        End If
+                    End If
+                Next
+            End If
+        Next
+
+        GVAttendance.BestFitColumns()
+    End Sub
+
     Private Sub FormEmpOvertimeVerification_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
 
     Private Sub FormEmpOvertimeVerification_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        GroupControl1.Width = Convert.ToInt32(Me.Width * 0.6) - 10
-        GroupControl2.Width = Convert.ToInt32(Me.Width * 0.4) - 10
+        GroupControl1.Width = Convert.ToInt32(Me.Width * 0.5) - 10
+        GroupControl2.Width = Convert.ToInt32(Me.Width * 0.5) - 10
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
-
+        Dim query As String = "
+            INSERT INTO tb_ot_det (id_ot_det, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, only_dp, conversion_type, is_day_off, start_work, end_work, break_hours, overtime_hours, id_payroll) VALUES ()
+        "
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
-        Close()
+        Dispose()
     End Sub
 End Class
