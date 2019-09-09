@@ -107,7 +107,7 @@
     'type
     Sub viewKind()
         Dim query As String = "SELECT * FROM tb_lookup_pd_kind "
-        If id_role_login <> id_role_super_admin Then
+        If id_role_login <> id_role_super_admin And id_role_login <> "18" Then
             query += "WHERE id_departement='" + id_departement_user + "' "
         End If
         query += "ORDER BY id_pd_kind ASC "

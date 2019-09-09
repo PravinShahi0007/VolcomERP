@@ -93,16 +93,17 @@
         GCMarkHistory.DataSource = data
         GVMarkHistory.BestFitColumns()
     End Sub
-    Private Sub GVMarkNeed_RowCellStyle(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVMarkNeed.RowCellStyle
-        Dim lead_time As String = sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("time_miss"))
-        'condition
-        If Not lead_time = "" Then
-            If Integer.Parse(lead_time) > 0 Then
-                e.Appearance.BackColor = Color.Salmon
-                e.Appearance.BackColor2 = Color.Salmon
-            End If
-        End If
-    End Sub
+
+    'Private Sub GVMarkNeed_RowCellStyle(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVMarkNeed.RowCellStyle
+    '    Dim lead_time As String = sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("time_miss"))
+    '    'condition
+    '    If Not lead_time = "" Then
+    '        If Integer.Parse(lead_time) > 0 Then
+    '            e.Appearance.BackColor = Color.Salmon
+    '            e.Appearance.BackColor2 = Color.Salmon
+    '        End If
+    '    End If
+    'End Sub
 
     Private Sub GVMarkNeed_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVMarkNeed.DoubleClick
         view_popup_gv_mark()

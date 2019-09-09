@@ -1174,9 +1174,13 @@
                 End If
 
                 'notif email
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_notif(report_mark_type, id_report)
+                Try
+                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                    mail.report_mark_type = report_mark_type
+                    mail.send_email_notif(report_mark_type, id_report)
+                Catch ex As Exception
+                    execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                End Try
             End If
 
             'update status
@@ -3041,7 +3045,7 @@
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        stopCustom(ex.ToString)
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 Else
                     'non reguler - ada normal & sale price
@@ -3091,7 +3095,7 @@
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        stopCustom(ex.ToString)
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 End If
             End If
