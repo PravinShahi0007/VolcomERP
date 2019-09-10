@@ -3,6 +3,7 @@
 
     Private Sub FormEmpOvertimeVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType2, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
         'overtime
         Dim query_ot As String = "
@@ -25,16 +26,12 @@
 
         'propose
         Dim query_pro As String = "
-            SELECT ot_det.id_employee, IFNULL(ot_det.only_dp, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no')) AS only_dp, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, ot_det.id_departement, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, ot_det.ot_break AS break_hours_sub, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub
+            SELECT ot_det.id_employee, ot_det.only_dp, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, ot_det.ot_break AS break_hours_sub, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub
             FROM tb_ot_det AS ot_det
             LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
             LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
             LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
             LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_det.id_employee_status = employee_status.id_employee_status
-            LEFT JOIN (
-                SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
-                FROM tb_m_employee
-            ) AS salary ON ot_det.id_employee = salary.id_employee
             WHERE ot_det.id_ot = " + id_ot + "
             ORDER BY ot_det.ot_date ASC, employee.id_employee_level ASC, employee.employee_code ASC
         "
@@ -56,7 +53,7 @@
         'attendance
         Dim query_att As String = "
             SELECT * FROM (
-                SELECT sch.id_employee, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, sch.date, emp.id_departement, dep_sub.id_departement_sub, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, 1 AS conversion_type, sch.id_schedule_type, sch.in, sch.out, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0 AS break_hours, 0 AS total_hours, 'no' AS is_valid
+                SELECT sch.id_employee, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, sch.date, emp.id_departement, dep_sub.id_departement_sub, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, 1 AS conversion_type, sch.id_schedule_type, sch.in, sch.out, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0 AS break_hours, 0 AS total_hours, 'no' AS is_valid, 0 AS id_employee_change
                 FROM tb_emp_schedule AS sch
                 LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
                 LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement 
@@ -85,20 +82,36 @@
             If GVEmployee.IsValidRowHandle(i) Then
                 For j = 0 To GVAttendance.RowCount - 1
                     If GVAttendance.IsValidRowHandle(j) Then
+                        Dim overtime_in As DateTime = DateTime.Parse(GVEmployee.GetRowCellValue(i, "start_work_sub").ToString)
+                        Dim overtime_out As DateTime = DateTime.Parse(GVEmployee.GetRowCellValue(i, "end_work_sub").ToString)
+
+                        Dim schedule_in As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "in").ToString)
+                        Dim schedule_out As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "out").ToString)
+
+                        Dim start_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "start_work").ToString)
+                        Dim end_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "end_work").ToString)
+
+                        Dim after_work As TimeSpan = end_work - schedule_out
+                        Dim before_work As TimeSpan = schedule_in - start_work
+
+                        Dim after_work_ot As TimeSpan = end_work - overtime_in
+                        Dim before_work_ot As TimeSpan = overtime_out - start_work
+
                         If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(j, "id_employee").ToString Then
                             If GVAttendance.GetRowCellValue(j, "id_schedule_type").ToString = "1" Then
-                                Dim schedule_in As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "in").ToString)
-                                Dim schedule_out As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "out").ToString)
-                                Dim start_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "start_work").ToString)
-                                Dim end_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "end_work").ToString)
-
-                                Dim last_duration As TimeSpan = end_work - schedule_out
-
-                                If last_duration.TotalHours >= 1 Then
+                                If after_work.TotalHours >= 1 And after_work_ot.TotalHours >= 1 Then
+                                    GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+                                ElseIf before_work.TotalHours >= 1 And before_work_ot.TotalHours Then
                                     GVAttendance.SetRowCellValue(j, "is_valid", "yes")
                                 End If
                             Else
                                 GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+                            End If
+                        Else
+                            If after_work.TotalHours >= 1 And after_work_ot.TotalHours >= 1 Then
+                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "employee_name").ToString)
+                            ElseIf before_work.TotalHours >= 1 And before_work_ot.TotalHours Then
+                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "employee_name").ToString)
                             End If
                         End If
                     End If
@@ -123,6 +136,11 @@
             End If
         Next
 
+        'employee replaced
+        For i = 0 To employee_not_valid.Count - 1
+
+        Next
+
         GVAttendance.BestFitColumns()
     End Sub
 
@@ -143,5 +161,15 @@
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
         Dispose()
+    End Sub
+
+    Private Sub GVEmployee_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVEmployee.RowStyle
+
+    End Sub
+
+    Private Sub GVAttendance_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVAttendance.RowStyle
+        If Not GVAttendance.GetRowCellValue(e.RowHandle, "id_employee_change").ToString = "0" Then
+
+        End If
     End Sub
 End Class

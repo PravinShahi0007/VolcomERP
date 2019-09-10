@@ -68,22 +68,7 @@
             ' load employee
             ' column
             Dim query_ot_det As String = "
-                SELECT ot_det.id_employee, 
-                    ot_det.only_dp,
-                    ot_det.id_departement, 
-                    ot_det.id_departement_sub, 
-                    departement.departement, 
-                    DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, 
-                    employee.employee_code, 
-                    employee.employee_name, 
-                    ot_det.employee_position, 
-                    ot_det.id_employee_status, 
-                    employee_status.employee_status, 
-                    ot_det.conversion_type, 
-                    DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, 
-                    DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, 
-                    ot_det.ot_break AS break_hours_sub, 
-                    ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub
+                SELECT ot_det.id_employee, ot_det.only_dp, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, ot_det.ot_break AS break_hours_sub, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee

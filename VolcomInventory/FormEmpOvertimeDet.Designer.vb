@@ -147,7 +147,6 @@ Partial Class FormEmpOvertimeDet
         Me.GVEmployee.GroupCount = 2
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVEmployee.OptionsView.AllowCellMerge = True
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDate, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -157,28 +156,24 @@ Partial Class FormEmpOvertimeDet
         Me.GCIdEmployee.FieldName = "id_employee"
         Me.GCIdEmployee.Name = "GCIdEmployee"
         Me.GCIdEmployee.OptionsColumn.AllowEdit = False
-        Me.GCIdEmployee.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCOnlyDp
         '
         Me.GCOnlyDp.FieldName = "only_dp"
         Me.GCOnlyDp.Name = "GCOnlyDp"
         Me.GCOnlyDp.OptionsColumn.AllowEdit = False
-        Me.GCOnlyDp.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCIdDepartement
         '
         Me.GCIdDepartement.FieldName = "id_departement"
         Me.GCIdDepartement.Name = "GCIdDepartement"
         Me.GCIdDepartement.OptionsColumn.AllowEdit = False
-        Me.GCIdDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCIdDepartementSub
         '
         Me.GCIdDepartementSub.FieldName = "id_departement_sub"
         Me.GCIdDepartementSub.Name = "GCIdDepartementSub"
         Me.GCIdDepartementSub.OptionsColumn.AllowEdit = False
-        Me.GCIdDepartementSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCIdDepartementSub.Width = 109
         '
         'GCDepartement
@@ -187,7 +182,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCDepartement.FieldName = "departement"
         Me.GCDepartement.Name = "GCDepartement"
         Me.GCDepartement.OptionsColumn.AllowEdit = False
-        Me.GCDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCDepartement.Visible = True
         Me.GCDepartement.VisibleIndex = 4
         '
@@ -199,7 +193,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCDate.FieldName = "date"
         Me.GCDate.Name = "GCDate"
         Me.GCDate.OptionsColumn.AllowEdit = False
-        Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCDate.Visible = True
         Me.GCDate.VisibleIndex = 5
         '
@@ -209,7 +202,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployeeCode.FieldName = "employee_code"
         Me.GCEmployeeCode.Name = "GCEmployeeCode"
         Me.GCEmployeeCode.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeCode.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeeCode.Visible = True
         Me.GCEmployeeCode.VisibleIndex = 0
         '
@@ -219,7 +211,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployeeName.FieldName = "employee_name"
         Me.GCEmployeeName.Name = "GCEmployeeName"
         Me.GCEmployeeName.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeeName.Visible = True
         Me.GCEmployeeName.VisibleIndex = 1
         '
@@ -229,7 +220,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployeePosition.FieldName = "employee_position"
         Me.GCEmployeePosition.Name = "GCEmployeePosition"
         Me.GCEmployeePosition.OptionsColumn.AllowEdit = False
-        Me.GCEmployeePosition.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeePosition.Visible = True
         Me.GCEmployeePosition.VisibleIndex = 2
         Me.GCEmployeePosition.Width = 100
@@ -239,7 +229,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
         Me.GCIdEmployeeStatus.Name = "GCIdEmployeeStatus"
         Me.GCIdEmployeeStatus.OptionsColumn.AllowEdit = False
-        Me.GCIdEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCEmployeeStatus
         '
@@ -247,7 +236,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployeeStatus.FieldName = "employee_status"
         Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
         Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeeStatus.Visible = True
         Me.GCEmployeeStatus.VisibleIndex = 3
         '
@@ -259,7 +247,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCConversionType.ColumnEdit = Me.RISLUEType
         Me.GCConversionType.FieldName = "conversion_type"
         Me.GCConversionType.Name = "GCConversionType"
-        Me.GCConversionType.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCConversionType.Visible = True
         Me.GCConversionType.VisibleIndex = 4
         Me.GCConversionType.Width = 91
@@ -310,7 +297,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCStartWorkSub.FieldName = "start_work_sub"
         Me.GCStartWorkSub.MinWidth = 150
         Me.GCStartWorkSub.Name = "GCStartWorkSub"
-        Me.GCStartWorkSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCStartWorkSub.Visible = True
         Me.GCStartWorkSub.VisibleIndex = 5
         Me.GCStartWorkSub.Width = 150
@@ -339,7 +325,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCEndWorkSub.FieldName = "end_work_sub"
         Me.GCEndWorkSub.MinWidth = 150
         Me.GCEndWorkSub.Name = "GCEndWorkSub"
-        Me.GCEndWorkSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEndWorkSub.Visible = True
         Me.GCEndWorkSub.VisibleIndex = 6
         Me.GCEndWorkSub.Width = 150
@@ -367,7 +352,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCBreakHoursSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCBreakHoursSub.FieldName = "break_hours_sub"
         Me.GCBreakHoursSub.Name = "GCBreakHoursSub"
-        Me.GCBreakHoursSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCBreakHoursSub.Visible = True
         Me.GCBreakHoursSub.VisibleIndex = 7
         '
@@ -393,7 +377,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCTotalHoursSub.FieldName = "total_hours_sub"
         Me.GCTotalHoursSub.Name = "GCTotalHoursSub"
         Me.GCTotalHoursSub.OptionsColumn.AllowEdit = False
-        Me.GCTotalHoursSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCTotalHoursSub.Visible = True
         Me.GCTotalHoursSub.VisibleIndex = 8
         Me.GCTotalHoursSub.Width = 72
