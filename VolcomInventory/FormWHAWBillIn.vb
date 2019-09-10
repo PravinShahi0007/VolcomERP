@@ -109,7 +109,10 @@
         If id_awb <> "-1" Then
             BBrowse.Enabled = False
             BRemoveDO.Enabled = False
-            GVDO.OptionsBehavior.ReadOnly = True
+            'GVDO.OptionsBehavior.ReadOnly = True
+            GridColumnRetNo.OptionsColumn.AllowEdit = False
+            GridColumnQtySuratJalan.OptionsColumn.AllowEdit = False
+            BUpdateCheckFisik.Visible = True
         End If
     End Sub
     Private Sub BBrowse_Click(sender As Object, e As EventArgs) Handles BBrowse.Click
@@ -547,7 +550,7 @@
                 If GVDO.FocusedColumn.FieldName.ToString = "do_no" Then
                     GVDO.CloseEditor()
                     GVDO.FocusedRowHandle = rh
-                    GVDO.FocusedColumn = GridColumnQty
+                    GVDO.FocusedColumn = GridColumnQtySuratJalan
                 ElseIf GVDO.FocusedColumn.FieldName.ToString = "qty" Then
                     GVDO.CloseEditor()
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Add return order again ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
@@ -568,6 +571,16 @@
         If (e.KeyData = Keys.Enter) Then
             e.SuppressKeyPress = True
             MENote.Focus()
+        End If
+    End Sub
+
+    Private Sub BUpdateCheckFisik_Click(sender As Object, e As EventArgs) Handles BUpdateCheckFisik.Click
+        Dim query As String = ""
+        If GVDO.RowCount > 0 Then
+            For i As Integer = 0 To GVDO.RowCount - 1
+                query = "UPDATE tb_wh_awbill_det_in SET act_qty='" & GVDO.GetRowCellValue(i, "act_qty").ToString & "' WHERE id_wh_awb_det='" & GVDO.GetRowCellValue(i, "id_wh_awb_det").ToString & "'"
+                execute_non_query(query, True, "", "", "", "")
+            Next
         End If
     End Sub
 End Class
