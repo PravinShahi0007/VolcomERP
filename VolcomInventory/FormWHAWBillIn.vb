@@ -581,6 +581,7 @@
                 query = "UPDATE tb_wh_awbill_det_in SET act_qty='" & GVDO.GetRowCellValue(i, "act_qty").ToString & "' WHERE id_wh_awb_det='" & GVDO.GetRowCellValue(i, "id_wh_awb_det").ToString & "'"
                 execute_non_query(query, True, "", "", "", "")
             Next
+            infoCustom("Qty hitung fisik updated")
         End If
     End Sub
 End Class
