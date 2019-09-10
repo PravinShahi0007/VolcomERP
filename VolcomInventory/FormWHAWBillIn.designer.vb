@@ -68,7 +68,7 @@ Partial Class FormWHAWBillIn
         Me.GVDO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRetNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtySuratJalan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -113,6 +113,8 @@ Partial Class FormWHAWBillIn
         Me.TEPriceVolcom = New DevExpress.XtraEditors.TextEdit()
         Me.TEVolumeVolc = New DevExpress.XtraEditors.TextEdit()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.GridColumnActQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BUpdateCheckFisik = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -604,10 +606,11 @@ Partial Class FormWHAWBillIn
         '
         'XTPInvoice
         '
+        Me.XTPInvoice.Controls.Add(Me.GCDO)
+        Me.XTPInvoice.Controls.Add(Me.BUpdateCheckFisik)
         Me.XTPInvoice.Controls.Add(Me.Label22)
         Me.XTPInvoice.Controls.Add(Me.TEAWBNo)
         Me.XTPInvoice.Controls.Add(Me.BRemoveDO)
-        Me.XTPInvoice.Controls.Add(Me.GCDO)
         Me.XTPInvoice.Controls.Add(Me.Label18)
         Me.XTPInvoice.Controls.Add(Me.MENote)
         Me.XTPInvoice.Controls.Add(Me.BBrowse)
@@ -647,13 +650,13 @@ Partial Class FormWHAWBillIn
         Me.GCDO.Location = New System.Drawing.Point(0, 110)
         Me.GCDO.MainView = Me.GVDO
         Me.GCDO.Name = "GCDO"
-        Me.GCDO.Size = New System.Drawing.Size(797, 186)
+        Me.GCDO.Size = New System.Drawing.Size(797, 151)
         Me.GCDO.TabIndex = 1
         Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO, Me.GridView2})
         '
         'GVDO
         '
-        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnRetNo, Me.GridColumnQty})
+        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnRetNo, Me.GridColumnQtySuratJalan, Me.GridColumnActQty})
         Me.GVDO.GridControl = Me.GCDO
         Me.GVDO.Name = "GVDO"
         Me.GVDO.OptionsCustomization.AllowColumnMoving = False
@@ -671,6 +674,7 @@ Partial Class FormWHAWBillIn
         Me.GridColumn1.Caption = "IDDet"
         Me.GridColumn1.FieldName = "id_wh_awb_det"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
         'GridColumnRetNo
         '
@@ -680,13 +684,17 @@ Partial Class FormWHAWBillIn
         Me.GridColumnRetNo.Visible = True
         Me.GridColumnRetNo.VisibleIndex = 0
         '
-        'GridColumnQty
+        'GridColumnQtySuratJalan
         '
-        Me.GridColumnQty.Caption = "Qty"
-        Me.GridColumnQty.FieldName = "qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 1
+        Me.GridColumnQtySuratJalan.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtySuratJalan.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtySuratJalan.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtySuratJalan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtySuratJalan.Caption = "Qty Surat Jalan"
+        Me.GridColumnQtySuratJalan.FieldName = "qty"
+        Me.GridColumnQtySuratJalan.Name = "GridColumnQtySuratJalan"
+        Me.GridColumnQtySuratJalan.Visible = True
+        Me.GridColumnQtySuratJalan.VisibleIndex = 1
         '
         'GridView2
         '
@@ -1161,6 +1169,28 @@ Partial Class FormWHAWBillIn
         Me.Label7.TabIndex = 91
         Me.Label7.Text = "Total Price"
         '
+        'GridColumnActQty
+        '
+        Me.GridColumnActQty.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnActQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnActQty.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnActQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnActQty.Caption = "Qty Hitung Fisik"
+        Me.GridColumnActQty.FieldName = "act_qty"
+        Me.GridColumnActQty.Name = "GridColumnActQty"
+        Me.GridColumnActQty.Visible = True
+        Me.GridColumnActQty.VisibleIndex = 2
+        '
+        'BUpdateCheckFisik
+        '
+        Me.BUpdateCheckFisik.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BUpdateCheckFisik.Location = New System.Drawing.Point(0, 261)
+        Me.BUpdateCheckFisik.Name = "BUpdateCheckFisik"
+        Me.BUpdateCheckFisik.Size = New System.Drawing.Size(797, 35)
+        Me.BUpdateCheckFisik.TabIndex = 105
+        Me.BUpdateCheckFisik.Text = "Update Qty Hitung Fisk"
+        Me.BUpdateCheckFisik.Visible = False
+        '
         'FormWHAWBillIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1328,7 +1358,7 @@ Partial Class FormWHAWBillIn
     Friend WithEvents GVDO As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRetNo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtySuratJalan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label18 As Label
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BBrowse As DevExpress.XtraEditors.SimpleButton
@@ -1339,4 +1369,6 @@ Partial Class FormWHAWBillIn
     Friend WithEvents CEPaid As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents TEAWBNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label22 As Label
+    Friend WithEvents GridColumnActQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BUpdateCheckFisik As DevExpress.XtraEditors.SimpleButton
 End Class
