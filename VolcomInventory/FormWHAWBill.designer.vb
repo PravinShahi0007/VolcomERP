@@ -161,7 +161,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCLockIn = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAllInboud = New DevExpress.XtraEditors.CheckEdit()
         Me.BLockInbound = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -205,8 +205,8 @@ Partial Class FormWHAWBill
         CType(Me.GVAwbillIn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICESelectInbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICELockInbound, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCLockIn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCLockIn.SuspendLayout()
         CType(Me.CESelAllInboud.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -1098,7 +1098,7 @@ Partial Class FormWHAWBill
         'XTPInbound
         '
         Me.XTPInbound.Controls.Add(Me.GCAwbillIn)
-        Me.XTPInbound.Controls.Add(Me.PanelControl3)
+        Me.XTPInbound.Controls.Add(Me.PCLockIn)
         Me.XTPInbound.Controls.Add(Me.PanelControl2)
         Me.XTPInbound.Name = "XTPInbound"
         Me.XTPInbound.Size = New System.Drawing.Size(1273, 515)
@@ -1703,15 +1703,15 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn24.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn24.Visible = True
         '
-        'PanelControl3
+        'PCLockIn
         '
-        Me.PanelControl3.Controls.Add(Me.CESelAllInboud)
-        Me.PanelControl3.Controls.Add(Me.BLockInbound)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 476)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1273, 39)
-        Me.PanelControl3.TabIndex = 4
+        Me.PCLockIn.Controls.Add(Me.CESelAllInboud)
+        Me.PCLockIn.Controls.Add(Me.BLockInbound)
+        Me.PCLockIn.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCLockIn.Location = New System.Drawing.Point(0, 476)
+        Me.PCLockIn.Name = "PCLockIn"
+        Me.PCLockIn.Size = New System.Drawing.Size(1273, 39)
+        Me.PCLockIn.TabIndex = 4
         '
         'CESelAllInboud
         '
@@ -1907,8 +1907,8 @@ Partial Class FormWHAWBill
         CType(Me.GVAwbillIn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICESelectInbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICELockInbound, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCLockIn, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCLockIn.ResumeLayout(False)
         CType(Me.CESelAllInboud.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -2060,7 +2060,7 @@ Partial Class FormWHAWBill
     Friend WithEvents BImportAwb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn43 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn44 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCLockIn As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelAllInboud As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BLockInbound As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn46 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn

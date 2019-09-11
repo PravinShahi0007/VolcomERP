@@ -557,8 +557,10 @@
     Private Sub FormWHAWBill_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_lock = "1" Then
             PCLock.Visible = True
+            PCLockIn.Visible = True
         Else
             PCLock.Visible = False
+            PCLockIn.Visible = False
         End If
     End Sub
 
