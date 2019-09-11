@@ -341,7 +341,7 @@
         Else
             If CERO.Checked = True Then 'view do
                 gridBandRO.Visible = True
-                query = "SELECT awb.awbill_no,'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no,awbd.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
+                query = "SELECT awb.awbill_no,awbd.qty,awbd.act_qty,'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no,awbd.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
                             DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,
                             DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,
                             (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,
