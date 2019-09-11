@@ -21,6 +21,7 @@
     End Sub
 
     Sub load_status_payment()
+        Cursor = Cursors.WaitCursor
         Dim query As String = "
         SELECT 0 AS id_status_payment,'All' AS status_payment
         UNION
@@ -28,20 +29,39 @@
         UNION
         SELECT 2 AS id_status_payment,'Close' AS status_payment "
         viewSearchLookupQuery(SLEStatusInvoice, query, "id_status_payment", "status_payment", "id_status_payment")
+        Cursor = Cursors.Default
     End Sub
 
     Sub load_vendor()
+        Cursor = Cursors.WaitCursor
+        Dim id_group As String = "1"
+        Try
+            id_group = SLEStoreGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
         Dim query As String = "SELECT 0 AS id_comp,'All' as comp_name
         UNION
         SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='6' "
+                                WHERE c.id_comp_cat='6' AND c.id_comp_group='" + id_group + "' "
         viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp", "comp_name", "id_comp")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_group_store()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS id_comp_group, 'All' AS comp_group, 'All Group' AS description 
+        UNION
+        SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg "
+        viewSearchLookupQuery(SLEStoreGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormARAging_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        load_vendor()
+        load_group_store()
         load_status_payment()
     End Sub
 
@@ -51,10 +71,17 @@
 
     Sub loadData()
         Cursor = Cursors.WaitCursor
+        'cond group
+        Dim cond_group As String = ""
+        If SLEStoreGroup.EditValue.ToString <> "0" Then
+            cond_group = "AND c.id_comp_group=" + SLEStoreGroup.EditValue.ToString + " "
+        End If
+        'cond store
         Dim cond_vendor As String = ""
         If SLEStoreInvoice.EditValue.ToString <> "0" Then
             cond_vendor = "AND cc.id_comp=" + SLEStoreInvoice.EditValue.ToString + " "
         End If
+        'cond status
         Dim cond As String = ""
         If SLEStatusInvoice.EditValue.ToString = "1" Then 'All open
             cond = " AND p.is_close_rec_payment='2'"
@@ -64,7 +91,7 @@
 
 
 
-        Dim query As String = "SELECT p.id_sales_pos, p.id_comp_contact, p.id_comp, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`,
+        Dim query As String = "SELECT p.id_sales_pos, p.id_comp_contact, p.id_comp, CONCAT(p.comp_number,' - ', p.comp_name) AS `comp`,
         p.sales_pos_date, p.sales_pos_due_date, p.sales_pos_number, p.sales_pos_note, 
         p.sales_pos_total, p.sales_pos_discount, p.sales_pos_potongan,
         IF(typ.`is_receive_payment`=2,-1,1) * ((p.`sales_pos_total`*((100-p.sales_pos_discount)/100))-p.`sales_pos_potongan`) AS `amount`,
@@ -78,19 +105,21 @@
         pyd.`number` AS `paid_number`, pyd.date_created AS `paid_date`, IFNULL(pyd.total_on_process,0) AS `on_process`,
         IF(p.is_close_rec_payment=1,'Close','Open') AS `rec_payment_status`
         FROM (	
-	        SELECT p.id_sales_pos, p.id_store_contact_from AS `id_comp_contact`, cc.id_comp, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
+	        SELECT p.id_sales_pos, p.id_store_contact_from AS `id_comp_contact`, cc.id_comp, c.comp_number, c.comp_name, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
 	        p.sales_pos_date, p.sales_pos_due_date, p.sales_pos_number, p.sales_pos_note, 
 	        p.sales_pos_total, p.sales_pos_discount, p.sales_pos_potongan
 	        FROM tb_sales_pos p
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from
-	        WHERE p.id_report_status=6 AND p.id_memo_type!=9 AND p.sales_pos_total>0 " + cond_vendor + "
+            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE p.id_report_status=6 AND p.id_memo_type!=9 AND p.sales_pos_total>0 " + cond_group + " " + cond_vendor + "
 	        UNION ALL
-	        SELECT p.id_sales_pos, p.id_comp_contact_bill AS `id_comp_contact`, cc.id_comp,p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
+	        SELECT p.id_sales_pos, p.id_comp_contact_bill AS `id_comp_contact`, cc.id_comp, c.comp_number, c.comp_name, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
 	        p.sales_pos_date, p.sales_pos_due_date, p.sales_pos_number, p.sales_pos_note, 
 	        p.sales_pos_total, p.sales_pos_discount, p.sales_pos_potongan
 	        FROM tb_sales_pos p
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_comp_contact_bill
-	        WHERE p.id_report_status=6 AND p.id_memo_type=9 AND p.sales_pos_total>0 " + cond_vendor + "
+            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE p.id_report_status=6 AND p.id_memo_type=9 AND p.sales_pos_total>0 " + cond_group + " " + cond_vendor + "
         ) p
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type` = p.`id_memo_type`
         LEFT JOIN (
@@ -100,12 +129,15 @@
 	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`!=5
 	        GROUP BY pyd.id_report, pyd.report_mark_type
         ) pyd ON pyd.`id_report`=p.`id_sales_pos` AND pyd.`report_mark_type`=p.`report_mark_type`
-        INNER JOIN tb_m_comp c ON c.id_comp = p.id_comp
         WHERE 1=1 " + cond + "
         ORDER BY p.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        load_vendor()
     End Sub
 End Class
