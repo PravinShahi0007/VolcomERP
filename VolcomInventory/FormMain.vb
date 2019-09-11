@@ -8367,6 +8367,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSetupBudgetCAPEX" Then
             FormSetupBudgetCAPEX.Close()
             FormSetupBudgetCAPEX.Dispose()
+        ElseIf formName = "FormARAging" Then
+            FormARAging.Close()
+            FormARAging.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

@@ -38,20 +38,25 @@ Partial Class FormARAging
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_pos_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_pos_due_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn90 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn90_up = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpaid_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpaid_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnon_process = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrec_payment_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnsales_pos_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnsales_pos_due_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn90 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn90_up = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnpaid_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnpaid_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnon_process = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnrec_payment_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumncomp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnpaid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBandInvoice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandAgingAR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandPaid = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandStatus = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,8 +66,8 @@ Partial Class FormARAging
         CType(Me.SLEStoreInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -224,9 +229,15 @@ Partial Class FormARAging
         Me.GCData.TabIndex = 4
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnsales_pos_number, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumn30, Me.GridColumn60, Me.GridColumn90, Me.GridColumn90_up, Me.GridColumnpaid_number, Me.GridColumnpaid_date, Me.GridColumnon_process, Me.GridColumnrec_payment_status, Me.GridColumncomp})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandInvoice, Me.gridBandAgingAR, Me.gridBandPaid, Me.gridBandStatus})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnsales_pos_number, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumn30, Me.GridColumn60, Me.GridColumn90, Me.GridColumn90_up, Me.GridColumnpaid_number, Me.GridColumnpaid_date, Me.GridColumnon_process, Me.GridColumnrec_payment_status, Me.GridColumncomp, Me.GridColumnpaid})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -241,7 +252,6 @@ Partial Class FormARAging
         Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
         Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
         Me.GridColumnsales_pos_number.Visible = True
-        Me.GridColumnsales_pos_number.VisibleIndex = 0
         '
         'GridColumnsales_pos_date
         '
@@ -251,7 +261,6 @@ Partial Class FormARAging
         Me.GridColumnsales_pos_date.FieldName = "sales_pos_date"
         Me.GridColumnsales_pos_date.Name = "GridColumnsales_pos_date"
         Me.GridColumnsales_pos_date.Visible = True
-        Me.GridColumnsales_pos_date.VisibleIndex = 2
         '
         'GridColumnsales_pos_due_date
         '
@@ -261,7 +270,6 @@ Partial Class FormARAging
         Me.GridColumnsales_pos_due_date.FieldName = "sales_pos_due_date"
         Me.GridColumnsales_pos_due_date.Name = "GridColumnsales_pos_due_date"
         Me.GridColumnsales_pos_due_date.Visible = True
-        Me.GridColumnsales_pos_due_date.VisibleIndex = 3
         '
         'GridColumn30
         '
@@ -273,12 +281,6 @@ Partial Class FormARAging
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "30", "{0:N2}")})
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 4
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumn60
         '
@@ -290,7 +292,6 @@ Partial Class FormARAging
         Me.GridColumn60.Name = "GridColumn60"
         Me.GridColumn60.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "60", "{0:N2}")})
         Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 5
         '
         'GridColumn90
         '
@@ -302,7 +303,6 @@ Partial Class FormARAging
         Me.GridColumn90.Name = "GridColumn90"
         Me.GridColumn90.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "90", "{0:N2}")})
         Me.GridColumn90.Visible = True
-        Me.GridColumn90.VisibleIndex = 6
         '
         'GridColumn90_up
         '
@@ -314,7 +314,6 @@ Partial Class FormARAging
         Me.GridColumn90_up.Name = "GridColumn90_up"
         Me.GridColumn90_up.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "90_up", "{0:N2}")})
         Me.GridColumn90_up.Visible = True
-        Me.GridColumn90_up.VisibleIndex = 7
         '
         'GridColumnpaid_number
         '
@@ -322,7 +321,6 @@ Partial Class FormARAging
         Me.GridColumnpaid_number.FieldName = "paid_number"
         Me.GridColumnpaid_number.Name = "GridColumnpaid_number"
         Me.GridColumnpaid_number.Visible = True
-        Me.GridColumnpaid_number.VisibleIndex = 8
         '
         'GridColumnpaid_date
         '
@@ -332,7 +330,6 @@ Partial Class FormARAging
         Me.GridColumnpaid_date.FieldName = "paid_date"
         Me.GridColumnpaid_date.Name = "GridColumnpaid_date"
         Me.GridColumnpaid_date.Visible = True
-        Me.GridColumnpaid_date.VisibleIndex = 9
         '
         'GridColumnon_process
         '
@@ -340,7 +337,6 @@ Partial Class FormARAging
         Me.GridColumnon_process.FieldName = "on_process"
         Me.GridColumnon_process.Name = "GridColumnon_process"
         Me.GridColumnon_process.Visible = True
-        Me.GridColumnon_process.VisibleIndex = 10
         '
         'GridColumnrec_payment_status
         '
@@ -348,7 +344,6 @@ Partial Class FormARAging
         Me.GridColumnrec_payment_status.FieldName = "rec_payment_status"
         Me.GridColumnrec_payment_status.Name = "GridColumnrec_payment_status"
         Me.GridColumnrec_payment_status.Visible = True
-        Me.GridColumnrec_payment_status.VisibleIndex = 11
         '
         'GridColumncomp
         '
@@ -356,7 +351,55 @@ Partial Class FormARAging
         Me.GridColumncomp.FieldName = "comp"
         Me.GridColumncomp.Name = "GridColumncomp"
         Me.GridColumncomp.Visible = True
-        Me.GridColumncomp.VisibleIndex = 1
+        '
+        'GridColumnpaid
+        '
+        Me.GridColumnpaid.Caption = "Paid"
+        Me.GridColumnpaid.DisplayFormat.FormatString = "N2"
+        Me.GridColumnpaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpaid.FieldName = "paid"
+        Me.GridColumnpaid.Name = "GridColumnpaid"
+        Me.GridColumnpaid.Visible = True
+        '
+        'GridBandInvoice
+        '
+        Me.GridBandInvoice.Caption = "INVOICE"
+        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_number)
+        Me.GridBandInvoice.Columns.Add(Me.GridColumncomp)
+        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_date)
+        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_due_date)
+        Me.GridBandInvoice.Name = "GridBandInvoice"
+        Me.GridBandInvoice.VisibleIndex = 0
+        Me.GridBandInvoice.Width = 300
+        '
+        'gridBandAgingAR
+        '
+        Me.gridBandAgingAR.Caption = "AGING AR"
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn30)
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn60)
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn90)
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn90_up)
+        Me.gridBandAgingAR.Name = "gridBandAgingAR"
+        Me.gridBandAgingAR.VisibleIndex = 1
+        Me.gridBandAgingAR.Width = 300
+        '
+        'gridBandPaid
+        '
+        Me.gridBandPaid.Caption = "PAID"
+        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid_number)
+        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid)
+        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid_date)
+        Me.gridBandPaid.Columns.Add(Me.GridColumnon_process)
+        Me.gridBandPaid.Name = "gridBandPaid"
+        Me.gridBandPaid.VisibleIndex = 2
+        Me.gridBandPaid.Width = 300
+        '
+        'gridBandStatus
+        '
+        Me.gridBandStatus.Columns.Add(Me.GridColumnrec_payment_status)
+        Me.gridBandStatus.Name = "gridBandStatus"
+        Me.gridBandStatus.VisibleIndex = 3
+        Me.gridBandStatus.Width = 75
         '
         'FormARAging
         '
@@ -367,7 +410,7 @@ Partial Class FormARAging
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormARAging"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Aging AR"
+        Me.Text = "AR Report"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -378,8 +421,8 @@ Partial Class FormARAging
         CType(Me.SLEStoreInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -397,24 +440,29 @@ Partial Class FormARAging
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnsales_pos_number As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnsales_pos_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnsales_pos_due_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn90 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn90_up As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnpaid_number As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnpaid_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnon_process As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnrec_payment_status As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumncomp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SLEStoreGroup As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBandInvoice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumnsales_pos_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumncomp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnsales_pos_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnsales_pos_due_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandAgingAR As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn90 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn90_up As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandPaid As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumnpaid_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnpaid As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnpaid_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnon_process As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandStatus As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumnrec_payment_status As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

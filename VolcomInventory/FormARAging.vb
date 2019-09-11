@@ -34,18 +34,23 @@
 
     Sub load_vendor()
         Cursor = Cursors.WaitCursor
-        Dim id_group As String = "1"
+        Dim id_group As String = "-1"
         Try
             id_group = SLEStoreGroup.EditValue.ToString
         Catch ex As Exception
         End Try
+
+        Dim cond_group As String = ""
+        If id_group <> "0" Then
+            cond_group = "AND c.id_comp_group='" + id_group + "' "
+        End If
 
         Dim query As String = "SELECT 0 AS id_comp,'All' as comp_name
         UNION
         SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='6' AND c.id_comp_group='" + id_group + "' "
+                                WHERE c.id_comp_cat='6' " + cond_group + " "
         viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp", "comp_name", "id_comp")
         Cursor = Cursors.Default
     End Sub
@@ -85,8 +90,25 @@
         Dim cond As String = ""
         If SLEStatusInvoice.EditValue.ToString = "1" Then 'All open
             cond = " AND p.is_close_rec_payment='2'"
+            gridBandAgingAR.Visible = True
+            gridBandPaid.Visible = False
+            GridBandInvoice.VisibleIndex = 0
+            gridBandAgingAR.VisibleIndex = 1
+            gridBandStatus.VisibleIndex = 2
         ElseIf SLEStatusInvoice.EditValue.ToString = "2" Then 'closed
             cond = " AND p.is_close_rec_payment='1'"
+            gridBandAgingAR.Visible = False
+            gridBandPaid.Visible = True
+            GridBandInvoice.VisibleIndex = 0
+            gridBandPaid.VisibleIndex = 1
+            gridBandStatus.VisibleIndex = 2
+        Else 'all
+            gridBandAgingAR.Visible = True
+            gridBandPaid.Visible = True
+            GridBandInvoice.VisibleIndex = 0
+            gridBandAgingAR.VisibleIndex = 1
+            gridBandPaid.VisibleIndex = 2
+            gridBandStatus.VisibleIndex = 3
         End If
 
 
@@ -102,7 +124,7 @@
         IF(DATE(NOW()) > DATE_ADD(p.sales_pos_due_date,INTERVAL 30 DAY) AND DATE(NOW()) <=DATE_ADD(p.sales_pos_due_date,INTERVAL 60 DAY),(SELECT balance_view) ,NULL) AS `60`,
         IF(DATE(NOW()) > DATE_ADD(p.sales_pos_due_date,INTERVAL 60 DAY) AND DATE(NOW()) <=DATE_ADD(p.sales_pos_due_date,INTERVAL 90 DAY),(SELECT balance_view) ,NULL) AS `90`,
         IF(DATE(NOW()) > DATE_ADD(p.sales_pos_due_date,INTERVAL 90 DAY),(SELECT balance_view) ,NULL) AS `90_up`,
-        pyd.`number` AS `paid_number`, pyd.date_created AS `paid_date`, IFNULL(pyd.total_on_process,0) AS `on_process`,
+        pyd.`number` AS `paid_number`, IFNULL(pyd.`value`,0) AS `paid`, pyd.date_created AS `paid_date`, IFNULL(pyd.total_on_process,0) AS `on_process`,
         IF(p.is_close_rec_payment=1,'Close','Open') AS `rec_payment_status`
         FROM (	
 	        SELECT p.id_sales_pos, p.id_store_contact_from AS `id_comp_contact`, cc.id_comp, c.comp_number, c.comp_name, p.id_memo_type, p.report_mark_type, p.is_close_rec_payment,
