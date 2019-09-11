@@ -48,12 +48,14 @@
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        GVAttendance.ActiveFilterString = ""
+
         Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
 
         'attendance
         Dim query_att As String = "
             SELECT * FROM (
-                SELECT sch.id_employee, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, sch.date, emp.id_departement, dep_sub.id_departement_sub, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, 1 AS conversion_type, sch.id_schedule_type, sch.in, sch.out, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0 AS break_hours, 0 AS total_hours, 'no' AS is_valid, 0 AS id_employee_change
+                SELECT sch.id_employee, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, sch.date, emp.id_departement, dep_sub.id_departement_sub, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, 1 AS conversion_type, sch.id_schedule_type, sch.in, sch.out, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0.0 AS break_hours, 0.0 AS total_hours, 'no' AS is_valid, 0 AS id_employee_change, '' AS start_work_ot, '' AS end_work_ot
                 FROM tb_emp_schedule AS sch
                 LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
                 LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement 
@@ -101,18 +103,36 @@
                             If GVAttendance.GetRowCellValue(j, "id_schedule_type").ToString = "1" Then
                                 If after_work.TotalHours >= 1 And after_work_ot.TotalHours >= 1 Then
                                     GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+
+                                    Dim total_hours As Decimal = Math.Floor(after_work_ot.TotalHours / 0.5) * 0.5
+
+                                    GVAttendance.SetRowCellValue(j, "start_work_ot", GVEmployee.GetRowCellValue(i, "start_work_sub"))
+                                    GVAttendance.SetRowCellValue(j, "end_work_ot", GVAttendance.GetRowCellValue(j, "end_work"))
+                                    GVAttendance.SetRowCellValue(j, "break_hours", GVEmployee.GetRowCellValue(i, "break_hours_sub"))
+                                    GVAttendance.SetRowCellValue(j, "total_hours", total_hours)
                                 ElseIf before_work.TotalHours >= 1 And before_work_ot.TotalHours Then
                                     GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+
+                                    Dim total_hours As Decimal = Math.Floor(before_work_ot.TotalHours / 0.5) * 0.5
+
+                                    GVAttendance.SetRowCellValue(j, "start_work_ot", GVAttendance.GetRowCellValue(j, "start_work"))
+                                    GVAttendance.SetRowCellValue(j, "end_work_ot", GVEmployee.GetRowCellValue(i, "end_work_sub"))
+                                    GVAttendance.SetRowCellValue(j, "break_hours", GVEmployee.GetRowCellValue(i, "break_hours_sub"))
+                                    GVAttendance.SetRowCellValue(j, "total_hours", total_hours)
                                 End If
                             Else
                                 GVAttendance.SetRowCellValue(j, "is_valid", "yes")
                             End If
                         Else
                             If after_work.TotalHours >= 1 And after_work_ot.TotalHours >= 1 Then
-                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "employee_name").ToString)
+                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
                             ElseIf before_work.TotalHours >= 1 And before_work_ot.TotalHours Then
-                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "employee_name").ToString)
+                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
                             End If
+                        End If
+
+                        If GVAttendance.GetRowCellValue(j, "is_valid").ToString = "yes" Then
+                            GVAttendance.SetRowCellValue(j, "id_employee_change", "0")
                         End If
                     End If
                 Next
@@ -141,6 +161,9 @@
 
         Next
 
+        'remove employee
+        GVAttendance.ActiveFilterString = "[is_valid] = 'yes' OR [id_employee_change] > 0"
+
         GVAttendance.BestFitColumns()
     End Sub
 
@@ -154,22 +177,18 @@
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
-        Dim query As String = "
-            INSERT INTO tb_ot_det (id_ot_det, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, only_dp, conversion_type, is_day_off, start_work, end_work, break_hours, overtime_hours, id_payroll) VALUES ()
-        "
+        For i = 0 To GVAttendance.RowCount - 1
+            If GVAttendance.IsValidRowHandle(i) Then
+                If GVAttendance.GetRowCellValue(i, "is_valid").ToString = "yes" Then
+                    Dim query As String = "
+                        INSERT INTO tb_ot_det (id_ot_det, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, only_dp, conversion_type, is_day_off, start_work, end_work, break_hours, overtime_hours, id_payroll) VALUES ()
+                    "
+                End If
+            End If
+        Next
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
         Dispose()
-    End Sub
-
-    Private Sub GVEmployee_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVEmployee.RowStyle
-
-    End Sub
-
-    Private Sub GVAttendance_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVAttendance.RowStyle
-        If Not GVAttendance.GetRowCellValue(e.RowHandle, "id_employee_change").ToString = "0" Then
-
-        End If
     End Sub
 End Class

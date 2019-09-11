@@ -41,7 +41,6 @@ Partial Class FormEmpOvertimeVerification
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCAttendance = New DevExpress.XtraGrid.GridControl()
         Me.GVAttendance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -57,7 +56,6 @@ Partial Class FormEmpOvertimeVerification
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -91,6 +89,11 @@ Partial Class FormEmpOvertimeVerification
         Me.GCBreakHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalHoursSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -324,9 +327,9 @@ Partial Class FormEmpOvertimeVerification
         '
         'GVAttendance
         '
-        Me.GVAttendance.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2})
+        Me.GVAttendance.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.gridBand3})
         Me.GVAttendance.ColumnPanelRowHeight = 32
-        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn5, Me.BandedGridColumn3, Me.BandedGridColumn16, Me.BandedGridColumn4, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn17, Me.BandedGridColumn18})
+        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn5, Me.BandedGridColumn3, Me.BandedGridColumn16, Me.BandedGridColumn4, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20})
         Me.GVAttendance.GridControl = Me.GCAttendance
         Me.GVAttendance.GroupCount = 2
         Me.GVAttendance.Name = "GVAttendance"
@@ -334,23 +337,6 @@ Partial Class FormEmpOvertimeVerification
         Me.GVAttendance.OptionsView.ColumnAutoWidth = False
         Me.GVAttendance.OptionsView.ShowGroupPanel = False
         Me.GVAttendance.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn5, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn4, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn5)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn6)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn7)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn8)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn9)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn10)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn11)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 431
         '
         'BandedGridColumn1
         '
@@ -466,18 +452,6 @@ Partial Class FormEmpOvertimeVerification
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 0
         '
-        'GridBand2
-        '
-        Me.GridBand2.Caption = "Realization"
-        Me.GridBand2.Columns.Add(Me.BandedGridColumn12)
-        Me.GridBand2.Columns.Add(Me.BandedGridColumn13)
-        Me.GridBand2.Columns.Add(Me.BandedGridColumn14)
-        Me.GridBand2.Columns.Add(Me.BandedGridColumn15)
-        Me.GridBand2.Columns.Add(Me.BandedGridColumn17)
-        Me.GridBand2.Name = "GridBand2"
-        Me.GridBand2.VisibleIndex = 1
-        Me.GridBand2.Width = 522
-        '
         'BandedGridColumn12
         '
         Me.BandedGridColumn12.AppearanceHeader.Options.UseTextOptions = True
@@ -486,11 +460,10 @@ Partial Class FormEmpOvertimeVerification
         Me.BandedGridColumn12.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
         Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn12.FieldName = "start_work"
-        Me.BandedGridColumn12.MinWidth = 150
         Me.BandedGridColumn12.Name = "BandedGridColumn12"
         Me.BandedGridColumn12.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn12.Visible = True
-        Me.BandedGridColumn12.Width = 150
+        Me.BandedGridColumn12.Width = 62
         '
         'BandedGridColumn13
         '
@@ -500,11 +473,10 @@ Partial Class FormEmpOvertimeVerification
         Me.BandedGridColumn13.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
         Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn13.FieldName = "end_work"
-        Me.BandedGridColumn13.MinWidth = 150
         Me.BandedGridColumn13.Name = "BandedGridColumn13"
         Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn13.Visible = True
-        Me.BandedGridColumn13.Width = 150
+        Me.BandedGridColumn13.Width = 56
         '
         'BandedGridColumn14
         '
@@ -538,6 +510,7 @@ Partial Class FormEmpOvertimeVerification
         Me.BandedGridColumn17.FieldName = "is_valid"
         Me.BandedGridColumn17.Name = "BandedGridColumn17"
         Me.BandedGridColumn17.Visible = True
+        Me.BandedGridColumn17.Width = 61
         '
         'RICEValid
         '
@@ -794,6 +767,66 @@ Partial Class FormEmpOvertimeVerification
         Me.GCIdDepartementSub.Name = "GCIdDepartementSub"
         Me.GCIdDepartementSub.OptionsColumn.AllowEdit = False
         '
+        'BandedGridColumn19
+        '
+        Me.BandedGridColumn19.Caption = "Start Work"
+        Me.BandedGridColumn19.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.BandedGridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn19.FieldName = "start_work_ot"
+        Me.BandedGridColumn19.Name = "BandedGridColumn19"
+        Me.BandedGridColumn19.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn19.Visible = True
+        Me.BandedGridColumn19.Width = 62
+        '
+        'BandedGridColumn20
+        '
+        Me.BandedGridColumn20.Caption = "End Work"
+        Me.BandedGridColumn20.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.BandedGridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn20.FieldName = "end_work_ot"
+        Me.BandedGridColumn20.Name = "BandedGridColumn20"
+        Me.BandedGridColumn20.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn20.Visible = True
+        Me.BandedGridColumn20.Width = 56
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn5)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn7)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 431
+        '
+        'GridBand2
+        '
+        Me.GridBand2.Caption = "Attendance"
+        Me.GridBand2.Columns.Add(Me.BandedGridColumn12)
+        Me.GridBand2.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBand2.Name = "GridBand2"
+        Me.GridBand2.VisibleIndex = 1
+        Me.GridBand2.Width = 118
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Overtime"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn19)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn20)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn14)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn15)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn17)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 326
+        '
         'FormEmpOvertimeVerification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -905,7 +938,10 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents GCIdDepartementSub As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RICEValid As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn19 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn20 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
