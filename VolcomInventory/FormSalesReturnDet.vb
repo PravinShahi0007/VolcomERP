@@ -1019,19 +1019,20 @@ Public Class FormSalesReturnDet
         makeSafeGV(GVBarcodeProb)
 
         'check limit
-        GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
         Dim error_list As String = ""
         Dim cond_list As Boolean = True
-        If action = "ins" Then
-            cond_list = verifyTrans()
+        If id_ret_type <> "2" Then
+            GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
+            If action = "ins" Then
+                cond_list = verifyTrans()
+            End If
+            GVItemList.ActiveFilterString = ""
+            makeSafeGV(GVItemList)
         End If
-        GVItemList.ActiveFilterString = ""
-        makeSafeGV(GVItemList)
-
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopRight) Then
             errorInput()
-        ElseIf GVItemList.RowCount = 0 Then
+        ElseIf GVItemList.RowCount = 0 And id_ret_type <> "2" Then
             errorCustom("Return item data can't blank")
         ElseIf TxtStoreReturnNumber.Text = "" Then
             stopCustom("Store return number can't blank")
