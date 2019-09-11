@@ -331,7 +331,7 @@ Public Class FormSalesReturnDet
         Dim query As String = "SELECT ad.id_wh_awb_det, ad.id_awbill, ad.do_no, ad.qty, ad.is_active 
         FROM tb_wh_awbill_det_in ad
         INNER JOIN tb_wh_awbill a ON a.id_awbill = ad.id_awbill
-        WHERE a.id_store=" + id_store_par + " AND ad.is_active=1 "
+        WHERE a.id_store=" + id_store_par + " AND ad.is_active=1 AND a.is_lock=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
