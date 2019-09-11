@@ -241,6 +241,10 @@
                     BApproval.Text = "Submit"
                 Else
                     BApproval.Text = "Approval"
+
+                    If Not is_view = "1" Then
+                        BResetMark.Visible = True
+                    End If
                 End If
             End If
 
@@ -248,9 +252,11 @@
             If LEStatus.EditValue.ToString = "3" Then 'created
                 BSave.Visible = True
                 BAddLegal.Visible = True
+                BDeleteLegal.Visible = True
             Else
                 BSave.Visible = False
                 BAddLegal.Visible = False
+                BDeleteLegal.Visible = False
             End If
         End If
     End Sub
@@ -1136,6 +1142,16 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
             Catch ex As Exception
 
             End Try
+        End If
+    End Sub
+
+    Private Sub BResetMark_Click(sender As Object, e As EventArgs) Handles BResetMark.Click
+        Cursor = Cursors.WaitCursor
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to reset this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim query As String = "DELETE FROM tb_report_mark WHERE id_report='" & id_company & "' AND report_mark_type='153';UPDATE tb_m_comp SET is_active='3',id_report_status='1' WHERE id_comp='" & id_company & "'"
+            execute_non_query(query, True, "", "", "", "")
+            action_load()
         End If
     End Sub
 End Class
