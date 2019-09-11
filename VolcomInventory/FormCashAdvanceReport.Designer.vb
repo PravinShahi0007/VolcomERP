@@ -28,17 +28,23 @@ Partial Class FormCashAdvanceReport
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.GCReport = New DevExpress.XtraGrid.GridControl()
         Me.GVReport = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDateCreated = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReconcileDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReconcileActualDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCashInAdvancePeriode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnExpense = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCashOnHandOut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnPurpose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCashInAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOverdue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BPrintAdvance = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintDefault = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +58,8 @@ Partial Class FormCashAdvanceReport
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BPrintDefault)
+        Me.PanelControl1.Controls.Add(Me.BPrintAdvance)
         Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.DateTo)
@@ -68,9 +76,9 @@ Partial Class FormCashAdvanceReport
         '
         Me.BPrint.Location = New System.Drawing.Point(457, 10)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(60, 23)
+        Me.BPrint.Size = New System.Drawing.Size(123, 23)
         Me.BPrint.TabIndex = 8938
-        Me.BPrint.Text = "Print"
+        Me.BPrint.Text = "Print Expense Report"
         '
         'BView
         '
@@ -168,7 +176,7 @@ Partial Class FormCashAdvanceReport
         Me.GVReport.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVReport.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVReport.ColumnPanelRowHeight = 32
-        Me.GVReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GVReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumnEmployee, Me.GridColumnPurpose, Me.GridColumnDateCreated, Me.GridColumnReconcileDueDate, Me.GridColumnReconcileActualDate, Me.GridColumnCashInAdvance, Me.GridColumnCashInAdvancePeriode, Me.GridColumnExpense, Me.GridColumnAdvance, Me.GridColumnCashOnHandOut, Me.GridColumnStatus, Me.GridColumnOverdue})
         Me.GVReport.GridControl = Me.GCReport
         Me.GVReport.Name = "GVReport"
         Me.GVReport.OptionsBehavior.AutoExpandAllGroups = True
@@ -178,101 +186,101 @@ Partial Class FormCashAdvanceReport
         Me.GVReport.OptionsView.ShowFooter = True
         Me.GVReport.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'GridColumnId
         '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_cash_advance"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumnId.Caption = "ID"
+        Me.GridColumnId.FieldName = "id_cash_advance"
+        Me.GridColumnId.Name = "GridColumnId"
         '
-        'GridColumn2
+        'GridColumnNumber
         '
-        Me.GridColumn2.Caption = "Number"
-        Me.GridColumn2.FieldName = "number"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.Visible = True
+        Me.GridColumnNumber.VisibleIndex = 0
         '
-        'GridColumn3
+        'GridColumnDateCreated
         '
-        Me.GridColumn3.Caption = "Date Created"
-        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn3.FieldName = "date_created"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumnDateCreated.Caption = "Date Created"
+        Me.GridColumnDateCreated.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnDateCreated.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDateCreated.FieldName = "date_created"
+        Me.GridColumnDateCreated.Name = "GridColumnDateCreated"
+        Me.GridColumnDateCreated.Visible = True
+        Me.GridColumnDateCreated.VisibleIndex = 1
         '
-        'GridColumn4
+        'GridColumnReconcileDueDate
         '
-        Me.GridColumn4.Caption = "Reconcile Due Date"
-        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn4.FieldName = "report_back_due_date"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumnReconcileDueDate.Caption = "Reconcile Due Date"
+        Me.GridColumnReconcileDueDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnReconcileDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnReconcileDueDate.FieldName = "report_back_due_date"
+        Me.GridColumnReconcileDueDate.Name = "GridColumnReconcileDueDate"
+        Me.GridColumnReconcileDueDate.Visible = True
+        Me.GridColumnReconcileDueDate.VisibleIndex = 5
         '
-        'GridColumn5
+        'GridColumnReconcileActualDate
         '
-        Me.GridColumn5.Caption = "Actual Reconcile Date"
-        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "act_report_back_date"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumnReconcileActualDate.Caption = "Actual Reconcile Date"
+        Me.GridColumnReconcileActualDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnReconcileActualDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnReconcileActualDate.FieldName = "act_report_back_date"
+        Me.GridColumnReconcileActualDate.Name = "GridColumnReconcileActualDate"
+        Me.GridColumnReconcileActualDate.Visible = True
+        Me.GridColumnReconcileActualDate.VisibleIndex = 6
         '
-        'GridColumn6
+        'GridColumnCashInAdvancePeriode
         '
-        Me.GridColumn6.Caption = "Cash In Advance"
-        Me.GridColumn6.DisplayFormat.FormatString = "N2"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "val_ca"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_ca", "{0:N2}")})
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumnCashInAdvancePeriode.Caption = "Cash In Advance (Periode)"
+        Me.GridColumnCashInAdvancePeriode.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCashInAdvancePeriode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCashInAdvancePeriode.FieldName = "val_ca"
+        Me.GridColumnCashInAdvancePeriode.Name = "GridColumnCashInAdvancePeriode"
+        Me.GridColumnCashInAdvancePeriode.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_ca", "{0:N2}")})
+        Me.GridColumnCashInAdvancePeriode.Visible = True
+        Me.GridColumnCashInAdvancePeriode.VisibleIndex = 7
         '
-        'GridColumn7
+        'GridColumnExpense
         '
-        Me.GridColumn7.Caption = "Expense"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "expense"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumnExpense.Caption = "Expense"
+        Me.GridColumnExpense.DisplayFormat.FormatString = "N2"
+        Me.GridColumnExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnExpense.FieldName = "expense"
+        Me.GridColumnExpense.Name = "GridColumnExpense"
+        Me.GridColumnExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
+        Me.GridColumnExpense.Visible = True
+        Me.GridColumnExpense.VisibleIndex = 9
         '
-        'GridColumn8
+        'GridColumnAdvance
         '
-        Me.GridColumn8.Caption = "Advance"
-        Me.GridColumn8.DisplayFormat.FormatString = "N2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "advance"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "advance", "{0:N2}")})
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumnAdvance.Caption = "Advance"
+        Me.GridColumnAdvance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAdvance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAdvance.FieldName = "advance"
+        Me.GridColumnAdvance.Name = "GridColumnAdvance"
+        Me.GridColumnAdvance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "advance", "{0:N2}")})
+        Me.GridColumnAdvance.Visible = True
+        Me.GridColumnAdvance.VisibleIndex = 10
         '
-        'GridColumn9
+        'GridColumnCashOnHandOut
         '
-        Me.GridColumn9.Caption = "Cash Out"
-        Me.GridColumn9.DisplayFormat.FormatString = "N2"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "cash_out"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumnCashOnHandOut.Caption = "Cash On Hand Out"
+        Me.GridColumnCashOnHandOut.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCashOnHandOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCashOnHandOut.FieldName = "cash_out"
+        Me.GridColumnCashOnHandOut.Name = "GridColumnCashOnHandOut"
+        Me.GridColumnCashOnHandOut.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
+        Me.GridColumnCashOnHandOut.Visible = True
+        Me.GridColumnCashOnHandOut.VisibleIndex = 11
         '
-        'GridColumn10
+        'GridColumnStatus
         '
-        Me.GridColumn10.Caption = "Proposal Status (updated)"
-        Me.GridColumn10.FieldName = "report_status"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumnStatus.Caption = "Proposal Status (updated)"
+        Me.GridColumnStatus.FieldName = "report_status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 4
         '
         'RepositoryItemCheckEdit1
         '
@@ -280,6 +288,60 @@ Partial Class FormCashAdvanceReport
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumnPurpose
+        '
+        Me.GridColumnPurpose.Caption = "Purpose"
+        Me.GridColumnPurpose.FieldName = "note"
+        Me.GridColumnPurpose.Name = "GridColumnPurpose"
+        Me.GridColumnPurpose.Visible = True
+        Me.GridColumnPurpose.VisibleIndex = 3
+        '
+        'GridColumnEmployee
+        '
+        Me.GridColumnEmployee.Caption = "Employee"
+        Me.GridColumnEmployee.FieldName = "employee_name"
+        Me.GridColumnEmployee.Name = "GridColumnEmployee"
+        Me.GridColumnEmployee.Visible = True
+        Me.GridColumnEmployee.VisibleIndex = 2
+        '
+        'GridColumnCashInAdvance
+        '
+        Me.GridColumnCashInAdvance.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCashInAdvance.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnCashInAdvance.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCashInAdvance.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnCashInAdvance.Caption = "Cash In Advance"
+        Me.GridColumnCashInAdvance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCashInAdvance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCashInAdvance.FieldName = "val_ca_actual"
+        Me.GridColumnCashInAdvance.Name = "GridColumnCashInAdvance"
+        Me.GridColumnCashInAdvance.Visible = True
+        Me.GridColumnCashInAdvance.VisibleIndex = 8
+        '
+        'GridColumnOverdue
+        '
+        Me.GridColumnOverdue.Caption = "Overdue (days)"
+        Me.GridColumnOverdue.FieldName = "overdue"
+        Me.GridColumnOverdue.Name = "GridColumnOverdue"
+        Me.GridColumnOverdue.Visible = True
+        Me.GridColumnOverdue.VisibleIndex = 12
+        '
+        'BPrintAdvance
+        '
+        Me.BPrintAdvance.Location = New System.Drawing.Point(586, 10)
+        Me.BPrintAdvance.Name = "BPrintAdvance"
+        Me.BPrintAdvance.Size = New System.Drawing.Size(131, 23)
+        Me.BPrintAdvance.TabIndex = 8939
+        Me.BPrintAdvance.Text = "Print Advance Report"
+        '
+        'BPrintDefault
+        '
+        Me.BPrintDefault.Location = New System.Drawing.Point(723, 10)
+        Me.BPrintDefault.Name = "BPrintDefault"
+        Me.BPrintDefault.Size = New System.Drawing.Size(48, 23)
+        Me.BPrintDefault.TabIndex = 8940
+        Me.BPrintDefault.Text = "Print"
         '
         'FormCashAdvanceReport
         '
@@ -317,15 +379,21 @@ Partial Class FormCashAdvanceReport
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDateCreated As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReconcileDueDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReconcileActualDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCashInAdvancePeriode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnExpense As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAdvance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCashOnHandOut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPurpose As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCashInAdvance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOverdue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrintAdvance As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrintDefault As DevExpress.XtraEditors.SimpleButton
 End Class
