@@ -23,8 +23,6 @@ Partial Class FormProposeEmpSalaryPick
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCCheckbox = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheckbox = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GCNIP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,7 +39,6 @@ Partial Class FormProposeEmpSalaryPick
         Me.SBInsert = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICECheckbox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
@@ -52,19 +49,21 @@ Partial Class FormProposeEmpSalaryPick
         Me.GCEmployee.Location = New System.Drawing.Point(0, 0)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckbox})
         Me.GCEmployee.Size = New System.Drawing.Size(1008, 690)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCCheckbox, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeActive, Me.GCActiveStatus, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeActive, Me.GCActiveStatus, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
+        Me.GVEmployee.OptionsSelection.MultiSelect = True
+        Me.GVEmployee.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
+        Me.GVEmployee.OptionsSelection.ShowCheckBoxSelectorInGroupRow = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -74,22 +73,6 @@ Partial Class FormProposeEmpSalaryPick
         Me.GCIdEmployee.FieldName = "id_employee"
         Me.GCIdEmployee.Name = "GCIdEmployee"
         Me.GCIdEmployee.OptionsColumn.AllowEdit = False
-        '
-        'GCCheckbox
-        '
-        Me.GCCheckbox.Caption = "*"
-        Me.GCCheckbox.ColumnEdit = Me.RICECheckbox
-        Me.GCCheckbox.FieldName = "is_checked"
-        Me.GCCheckbox.Name = "GCCheckbox"
-        Me.GCCheckbox.Visible = True
-        Me.GCCheckbox.VisibleIndex = 0
-        '
-        'RICECheckbox
-        '
-        Me.RICECheckbox.AutoHeight = False
-        Me.RICECheckbox.Name = "RICECheckbox"
-        Me.RICECheckbox.ValueChecked = "Yes"
-        Me.RICECheckbox.ValueUnchecked = "No"
         '
         'GCNIP
         '
@@ -216,7 +199,6 @@ Partial Class FormProposeEmpSalaryPick
         Me.Text = "Insert Employee"
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICECheckbox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -236,8 +218,6 @@ Partial Class FormProposeEmpSalaryPick
     Friend WithEvents GCLevel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdEmployee As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCCheckbox As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RICECheckbox As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdEmployeeActive As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdEmployeeStatus As DevExpress.XtraGrid.Columns.GridColumn

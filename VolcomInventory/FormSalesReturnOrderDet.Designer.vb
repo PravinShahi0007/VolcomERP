@@ -101,6 +101,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_rate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_lead_time = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_min_weight = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnExportAsFile = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,7 +152,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(785, 134)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(902, 134)
         Me.GroupGeneralHeader.TabIndex = 184
         '
         'PanelControlTopRight
@@ -166,7 +167,7 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DEForm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(520, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(637, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(263, 130)
         Me.PanelControlTopRight.TabIndex = 8892
@@ -366,7 +367,7 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(785, 38)
+        Me.PanelControl3.Size = New System.Drawing.Size(902, 38)
         Me.PanelControl3.TabIndex = 187
         '
         'BtnAttachment
@@ -374,7 +375,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(460, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(577, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(98, 34)
         Me.BtnAttachment.TabIndex = 10
@@ -402,7 +403,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(558, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(675, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 34)
         Me.BtnPrint.TabIndex = 9
@@ -434,7 +435,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(633, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(750, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 8
@@ -445,7 +446,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(708, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(825, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 7
@@ -460,7 +461,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 428)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(785, 75)
+        Me.GroupControl3.Size = New System.Drawing.Size(902, 75)
         Me.GroupControl3.TabIndex = 186
         '
         'PanelControlBottomRight
@@ -469,7 +470,7 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(463, 2)
+        Me.PanelControlBottomRight.Location = New System.Drawing.Point(580, 2)
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
         Me.PanelControlBottomRight.Size = New System.Drawing.Size(320, 71)
         Me.PanelControlBottomRight.TabIndex = 145
@@ -520,7 +521,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(779, 266)
+        Me.GroupControlList.Size = New System.Drawing.Size(896, 266)
         Me.GroupControlList.TabIndex = 185
         Me.GroupControlList.Text = "Item List"
         '
@@ -532,7 +533,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(756, 227)
+        Me.GCItemList.Size = New System.Drawing.Size(873, 227)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -763,6 +764,7 @@ Partial Class FormSalesReturnOrderDet
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnExportAsFile)
         Me.PanelControlNav.Controls.Add(Me.BtnOnHoldList)
         Me.PanelControlNav.Controls.Add(Me.BtnImport2)
         Me.PanelControlNav.Controls.Add(Me.BtnEdit)
@@ -773,7 +775,7 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(21, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(756, 35)
+        Me.PanelControlNav.Size = New System.Drawing.Size(873, 35)
         Me.PanelControlNav.TabIndex = 0
         '
         'BtnOnHoldList
@@ -781,7 +783,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnOnHoldList.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOnHoldList.Image = CType(resources.GetObject("BtnOnHoldList.Image"), System.Drawing.Image)
         Me.BtnOnHoldList.ImageList = Me.LargeImageCollection
-        Me.BtnOnHoldList.Location = New System.Drawing.Point(329, 0)
+        Me.BtnOnHoldList.Location = New System.Drawing.Point(446, 0)
         Me.BtnOnHoldList.Name = "BtnOnHoldList"
         Me.BtnOnHoldList.Size = New System.Drawing.Size(112, 35)
         Me.BtnOnHoldList.TabIndex = 7
@@ -803,7 +805,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(441, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(558, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(34, 35)
         Me.BtnEdit.TabIndex = 4
@@ -826,7 +828,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(475, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(592, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(80, 35)
         Me.BtnDel.TabIndex = 4
@@ -837,7 +839,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(555, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(672, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(78, 35)
         Me.BtnAdd.TabIndex = 2
@@ -848,7 +850,7 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnAddMultiple.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddMultiple.ImageIndex = 11
         Me.BtnAddMultiple.ImageList = Me.LargeImageCollection
-        Me.BtnAddMultiple.Location = New System.Drawing.Point(633, 0)
+        Me.BtnAddMultiple.Location = New System.Drawing.Point(750, 0)
         Me.BtnAddMultiple.Name = "BtnAddMultiple"
         Me.BtnAddMultiple.Size = New System.Drawing.Size(123, 35)
         Me.BtnAddMultiple.TabIndex = 3
@@ -882,7 +884,7 @@ Partial Class FormSalesReturnOrderDet
         Me.XTCRO.Location = New System.Drawing.Point(0, 134)
         Me.XTCRO.Name = "XTCRO"
         Me.XTCRO.SelectedTabPage = Me.XTPItems
-        Me.XTCRO.Size = New System.Drawing.Size(785, 294)
+        Me.XTCRO.Size = New System.Drawing.Size(902, 294)
         Me.XTCRO.TabIndex = 188
         Me.XTCRO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItems, Me.XTPRate})
         '
@@ -890,7 +892,7 @@ Partial Class FormSalesReturnOrderDet
         '
         Me.XTPItems.Controls.Add(Me.GroupControlList)
         Me.XTPItems.Name = "XTPItems"
-        Me.XTPItems.Size = New System.Drawing.Size(779, 266)
+        Me.XTPItems.Size = New System.Drawing.Size(896, 266)
         Me.XTPItems.Text = "Items"
         '
         'XTPRate
@@ -963,11 +965,22 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_min_weight.Visible = True
         Me.GridColumncargo_min_weight.VisibleIndex = 3
         '
+        'BtnExportAsFile
+        '
+        Me.BtnExportAsFile.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportAsFile.Image = CType(resources.GetObject("BtnExportAsFile.Image"), System.Drawing.Image)
+        Me.BtnExportAsFile.ImageList = Me.LargeImageCollection
+        Me.BtnExportAsFile.Location = New System.Drawing.Point(334, 0)
+        Me.BtnExportAsFile.Name = "BtnExportAsFile"
+        Me.BtnExportAsFile.Size = New System.Drawing.Size(112, 35)
+        Me.BtnExportAsFile.TabIndex = 8
+        Me.BtnExportAsFile.Text = "Export as File"
+        '
         'FormSalesReturnOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(785, 541)
+        Me.ClientSize = New System.Drawing.Size(902, 541)
         Me.Controls.Add(Me.XTCRO)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -1108,4 +1121,5 @@ Partial Class FormSalesReturnOrderDet
     Friend WithEvents GridColumnid_detail_on_hold As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEOnHold As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BtnOnHoldList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportAsFile As DevExpress.XtraEditors.SimpleButton
 End Class

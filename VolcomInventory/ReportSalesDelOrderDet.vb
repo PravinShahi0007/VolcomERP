@@ -2,14 +2,15 @@
     Public Shared id_pl_sales_order_del As String
     Public Shared dt As DataTable
     Public Shared id_pre As String = "-1"
+    Public Shared rmt As String = "43"
 
 
     Private Sub ReportSalesDelOrderDet_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCItemList.DataSource = dt
         If id_pre = "-1" Then
-            load_mark_horz("43", id_pl_sales_order_del, "2", "1", XrTable1)
+            load_mark_horz(rmt, id_pl_sales_order_del, "2", "1", XrTable1)
         Else
-            pre_load_mark_horz("43", id_pl_sales_order_del, "2", "2", XrTable1)
+            pre_load_mark_horz(rmt, id_pl_sales_order_del, "2", "2", XrTable1)
         End If
 
         If LabelUni6.Text = "" Then

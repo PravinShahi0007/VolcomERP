@@ -29,7 +29,7 @@
                 Next
             ElseIf id_popup = "2" Then 'PO cant receive anymore
                 For i As Integer = 0 To FormPurcOrder.GVPurcReq.RowCount - 1
-                    'return the budget
+                    'close the PO
                     Dim query_upd As String = "UPDATE tb_purc_order SET is_close_rec=1,close_rec_season='" & addSlashes(MEReason.Text) & "' WHERE id_purc_rec='" & FormPurcOrder.GVPO.GetRowCellValue(i, "id_purc_order").ToString & "'"
                     execute_non_query(query_upd, True, "", "", "", "")
                     infoCustom("Status updated")
@@ -39,9 +39,5 @@
             End If
         End If
         Cursor = Cursors.Default
-    End Sub
-
-    Private Sub FormPurcReqItemUnableFulfill_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
     End Sub
 End Class

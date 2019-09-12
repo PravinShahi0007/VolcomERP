@@ -56,7 +56,7 @@
             check_design_vendor()
         Else
             'edit
-            Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number` FROM tb_prod_order po
+            Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number`,po.reff_number FROM tb_prod_order po
 LEFT JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`='1'
 LEFT JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
 LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
@@ -71,6 +71,7 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             MENote.Text = data.Rows(0)("prod_order_note").ToString
             LEPOType.EditValue = data.Rows(0)("id_po_type").ToString()
             LECategory.EditValue = data.Rows(0)("id_term_production").ToString()
+            TEReff.Text = data.Rows(0)("reff_number").ToString
             '
             date_created = data.Rows(0)("prod_order_date")
             TELeadTime.Text = data.Rows(0)("prod_order_lead_time").ToString

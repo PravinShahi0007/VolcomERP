@@ -129,6 +129,12 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnSC4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSC5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoBtnAddSize = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
@@ -164,6 +170,8 @@ Partial Class FormEmpUniPeriodDet
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnSC12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1218,7 +1226,7 @@ Partial Class FormEmpUniPeriodDet
         '
         'GVSizeProfile
         '
-        Me.GVSizeProfile.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_departement, Me.GridColumnSPdepartement, Me.GridColumnSPid_employee, Me.GridColumnSPNIK, Me.GridColumnSPemployee_name, Me.GridColumnSC1, Me.GridColumnSC2, Me.GridColumnSC3, Me.GridColumnSC4, Me.GridColumnSC5, Me.GridColumnIdSex})
+        Me.GVSizeProfile.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_departement, Me.GridColumnSPdepartement, Me.GridColumnSPid_employee, Me.GridColumnSPNIK, Me.GridColumnSPemployee_name, Me.GridColumnSC1, Me.GridColumnSC2, Me.GridColumnSC3, Me.GridColumnSC4, Me.GridColumnSC5, Me.GridColumnIdSex, Me.GridColumnSC6, Me.GridColumnSC7, Me.GridColumnSC8, Me.GridColumnSC9, Me.GridColumnSC10, Me.GridColumnSC11, Me.GridColumnSC12, Me.GridColumnSC13})
         Me.GVSizeProfile.GridControl = Me.GCSizeProfile
         Me.GVSizeProfile.GroupCount = 1
         Me.GVSizeProfile.Name = "GVSizeProfile"
@@ -1288,7 +1296,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnSC3.FieldName = "3"
         Me.GridColumnSC3.Name = "GridColumnSC3"
         Me.GridColumnSC3.Visible = True
-        Me.GridColumnSC3.VisibleIndex = 5
+        Me.GridColumnSC3.VisibleIndex = 9
         '
         'GridColumnSC4
         '
@@ -1296,7 +1304,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnSC4.FieldName = "4"
         Me.GridColumnSC4.Name = "GridColumnSC4"
         Me.GridColumnSC4.Visible = True
-        Me.GridColumnSC4.VisibleIndex = 6
+        Me.GridColumnSC4.VisibleIndex = 10
         '
         'GridColumnSC5
         '
@@ -1304,13 +1312,61 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnSC5.FieldName = "5"
         Me.GridColumnSC5.Name = "GridColumnSC5"
         Me.GridColumnSC5.Visible = True
-        Me.GridColumnSC5.VisibleIndex = 7
+        Me.GridColumnSC5.VisibleIndex = 11
         '
         'GridColumnIdSex
         '
         Me.GridColumnIdSex.Caption = "Id Sex"
         Me.GridColumnIdSex.FieldName = "id_sex"
         Me.GridColumnIdSex.Name = "GridColumnIdSex"
+        '
+        'GridColumnSC6
+        '
+        Me.GridColumnSC6.Caption = "6"
+        Me.GridColumnSC6.FieldName = "6"
+        Me.GridColumnSC6.Name = "GridColumnSC6"
+        Me.GridColumnSC6.Visible = True
+        Me.GridColumnSC6.VisibleIndex = 6
+        '
+        'GridColumnSC7
+        '
+        Me.GridColumnSC7.Caption = "7"
+        Me.GridColumnSC7.FieldName = "7"
+        Me.GridColumnSC7.Name = "GridColumnSC7"
+        Me.GridColumnSC7.Visible = True
+        Me.GridColumnSC7.VisibleIndex = 8
+        '
+        'GridColumnSC8
+        '
+        Me.GridColumnSC8.Caption = "8"
+        Me.GridColumnSC8.FieldName = "8"
+        Me.GridColumnSC8.Name = "GridColumnSC8"
+        Me.GridColumnSC8.Visible = True
+        Me.GridColumnSC8.VisibleIndex = 13
+        '
+        'GridColumnSC9
+        '
+        Me.GridColumnSC9.Caption = "9"
+        Me.GridColumnSC9.FieldName = "9"
+        Me.GridColumnSC9.Name = "GridColumnSC9"
+        Me.GridColumnSC9.Visible = True
+        Me.GridColumnSC9.VisibleIndex = 15
+        '
+        'GridColumnSC10
+        '
+        Me.GridColumnSC10.Caption = "10"
+        Me.GridColumnSC10.FieldName = "10"
+        Me.GridColumnSC10.Name = "GridColumnSC10"
+        Me.GridColumnSC10.Visible = True
+        Me.GridColumnSC10.VisibleIndex = 7
+        '
+        'GridColumnSC11
+        '
+        Me.GridColumnSC11.Caption = "11"
+        Me.GridColumnSC11.FieldName = "11"
+        Me.GridColumnSC11.Name = "GridColumnSC11"
+        Me.GridColumnSC11.Visible = True
+        Me.GridColumnSC11.VisibleIndex = 14
         '
         'RepoBtnAddSize
         '
@@ -1623,6 +1679,22 @@ Partial Class FormEmpUniPeriodDet
         Me.EditSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
         Me.EditSizeToolStripMenuItem.Text = "Reset Size"
         '
+        'GridColumnSC12
+        '
+        Me.GridColumnSC12.Caption = "12"
+        Me.GridColumnSC12.FieldName = "12"
+        Me.GridColumnSC12.Name = "GridColumnSC12"
+        Me.GridColumnSC12.Visible = True
+        Me.GridColumnSC12.VisibleIndex = 5
+        '
+        'GridColumnSC13
+        '
+        Me.GridColumnSC13.Caption = "13"
+        Me.GridColumnSC13.FieldName = "13"
+        Me.GridColumnSC13.Name = "GridColumnSC13"
+        Me.GridColumnSC13.Visible = True
+        Me.GridColumnSC13.VisibleIndex = 12
+        '
         'FormEmpUniPeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1839,4 +1911,12 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents GridColumnSC4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSC5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdSex As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

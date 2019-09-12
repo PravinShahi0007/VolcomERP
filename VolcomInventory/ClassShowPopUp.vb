@@ -192,7 +192,7 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase Request
             FormPurcReqDet.Close()
         ElseIf report_mark_type = "138" Then
@@ -291,6 +291,21 @@
         ElseIf report_mark_type = "197" Then
             'propose employee salary
             FormProposeEmpSalaryDet.Close()
+        ElseIf report_mark_type = "200" Then
+            'propose design changes
+            FormFGDesignListChanges.Close()
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'propose budget OPEX
+            FormSetupBudgetOPEX.Close()
+        ElseIf report_mark_type = "206" Then
+            'prod demand sales
+            FormViewProdDemand.Close()
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            FormItemCatMainDet.Close()
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            FormSetupBudgetCAPEXDet.Close()
         End If
     End Sub
     Sub show()
@@ -605,7 +620,7 @@
             FormViewBOM.id_bom_approve = id_report
             FormViewBOM.id_bom = data.Rows(0)("id_bom").ToString
             FormViewBOM.ShowDialog()
-        ElseIf report_mark_type = "80" Then
+        ElseIf report_mark_type = "80" Or report_mark_type = "206" Then
             'prod demand mkt
             FormViewProdDemand.id_prod_demand = id_report
             FormViewProdDemand.report_mark_type = report_mark_type
@@ -839,7 +854,7 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'Purchase Request
             FormPurcReqDet.is_view = "1"
             FormPurcReqDet.id_req = id_report
@@ -1037,6 +1052,7 @@
             FormWorkOrderDet.id_wo = id_report
             FormWorkOrderDet.ShowDialog()
         ElseIf report_mark_type = "192" Then
+            FormEmpPayroll.is_view = "1"
             FormEmpPayroll.MdiParent = FormMain
             FormEmpPayroll.Show()
             FormEmpPayroll.WindowState = FormWindowState.Maximized
@@ -1053,6 +1069,26 @@
             FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
+        ElseIf report_mark_type = "200" Then
+            'propose design changes
+            FormFGDesignListChanges.id = id_report
+            FormFGDesignListChanges.is_view = "1"
+            FormFGDesignListChanges.ShowDialog()
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'propose budget OPEX
+            FormSetupBudgetOPEXDet.id_pps = id_report
+            FormSetupBudgetOPEXDet.is_view = "1"
+            FormSetupBudgetOPEXDet.ShowDialog()
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            FormItemCatMainDet.id_propose = id_report
+            FormItemCatMainDet.is_view = "1"
+            FormItemCatMainDet.ShowDialog()
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            FormSetupBudgetCAPEXDet.id_pps = id_report
+            FormSetupBudgetCAPEXDet.is_view = "1"
+            FormSetupBudgetCAPEXDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1749,7 +1785,7 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
             'purchase request
             table_name = "tb_purc_req"
             field_id = "id_purc_req"
@@ -1899,6 +1935,54 @@
             field_id = "id_work_order"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "192" Then
+            'payroll
+            table_name = "tb_emp_payroll"
+            field_id = "id_payroll"
+            field_number = "report_number"
+            field_date = "NOW()"
+        ElseIf report_mark_type = "197" Then
+            'propose employee salary
+            table_name = "tb_employee_sal_pps"
+            field_id = "id_employee_sal_pps"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "184" Then
+            'Overtime employee
+            table_name = "tb_ot"
+            field_id = "id_ot"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "187" Then
+            'Overtime employee report
+            table_name = "tb_ot"
+            field_id = "id_ot"
+            field_number = "number"
+            field_date = "NOW()"
+        ElseIf report_mark_type = "200" Then
+            'propose design changes
+            table_name = "tb_m_design_changes"
+            field_id = "id_changes"
+            field_number = "number"
+            field_date = "NOW()"
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'propose budget OPEX
+            table_name = "tb_b_opex_pps"
+            field_id = "id_b_opex_pps"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            table_name = "tb_item_cat_main_pps"
+            field_id = "id_item_cat_main_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            table_name = "tb_b_expense_propose"
+            field_id = "id_b_expense_propose"
+            field_number = "number"
+            field_date = "date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2318,6 +2402,24 @@
                     If datax.Rows.Count > 0 Then
                         report_number = datax.Rows(0)("report_number").ToString
                     End If
+                ElseIf report_mark_type = "180" Then
+                    'employee propose
+                    query = "SELECT employee_name
+                    FROM tb_employee_pps
+                    WHERE id_employee_pps = " + id_report + ""
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_design = "Employee: " + datax.Rows(0)("employee_name").ToString
+                    End If
+                ElseIf report_mark_type = "192" Then
+                    'payroll
+                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period
+                    FROM tb_emp_payroll
+                    WHERE id_payroll = " + id_report + ""
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_design = "Period: " + datax.Rows(0)("period").ToString
+                    End If
                 End If
             End If
         Else
@@ -2327,7 +2429,7 @@
             If report_mark_type = "x" Then
 
             ElseIf report_mark_type = "13" Then
-                query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
                                 ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
                                 FROM " & table_name & " tb
                                 INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`

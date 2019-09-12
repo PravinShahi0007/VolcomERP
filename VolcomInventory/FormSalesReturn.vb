@@ -39,6 +39,7 @@
         Dim query As String = query_c.queryMain("AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturn.DataSource = data
+        GVSalesReturn.BestFitColumns()
         check_menu()
     End Sub
 

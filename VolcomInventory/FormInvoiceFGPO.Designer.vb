@@ -86,9 +86,17 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEDesignStockStore = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BFilterDesign = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.BCreateBPLRec = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPExtra = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
@@ -113,7 +121,6 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPPrePayment.SuspendLayout()
@@ -141,6 +148,10 @@ Partial Class FormInvoiceFGPO
         CType(Me.GCRecFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRecFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPExtra.SuspendLayout()
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl2.SuspendLayout()
@@ -709,6 +720,7 @@ Partial Class FormInvoiceFGPO
         'XTPReceivingList
         '
         Me.XTPReceivingList.Controls.Add(Me.GCRecFGPO)
+        Me.XTPReceivingList.Controls.Add(Me.PanelControl2)
         Me.XTPReceivingList.Controls.Add(Me.BCreateBPLRec)
         Me.XTPReceivingList.Name = "XTPReceivingList"
         Me.XTPReceivingList.Size = New System.Drawing.Size(1149, 530)
@@ -717,11 +729,11 @@ Partial Class FormInvoiceFGPO
         'GCRecFGPO
         '
         Me.GCRecFGPO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRecFGPO.Location = New System.Drawing.Point(0, 0)
+        Me.GCRecFGPO.Location = New System.Drawing.Point(0, 43)
         Me.GCRecFGPO.MainView = Me.GVRecFGPO
         Me.GCRecFGPO.Name = "GCRecFGPO"
         Me.GCRecFGPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCRecFGPO.Size = New System.Drawing.Size(1149, 491)
+        Me.GCRecFGPO.Size = New System.Drawing.Size(1149, 448)
         Me.GCRecFGPO.TabIndex = 21
         Me.GCRecFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRecFGPO})
         '
@@ -757,18 +769,23 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn19.FieldName = "id_prod_order"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
         '
         'GridColumn44
         '
         Me.GridColumn44.Caption = "ID Rec"
         Me.GridColumn44.FieldName = "id_prod_order_rec"
         Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.OptionsColumn.AllowEdit = False
+        Me.GridColumn44.OptionsColumn.ReadOnly = True
         '
         'GridColumn41
         '
         Me.GridColumn41.Caption = "Receiving Number"
         Me.GridColumn41.FieldName = "prod_order_rec_number"
         Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.OptionsColumn.AllowEdit = False
+        Me.GridColumn41.OptionsColumn.ReadOnly = True
         Me.GridColumn41.Visible = True
         Me.GridColumn41.VisibleIndex = 1
         Me.GridColumn41.Width = 122
@@ -779,6 +796,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn20.FieldName = "prod_order_number"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         Me.GridColumn20.Width = 115
@@ -789,6 +807,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn21.FieldName = "comp_number"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
+        Me.GridColumn21.OptionsColumn.ReadOnly = True
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 3
         Me.GridColumn21.Width = 103
@@ -799,6 +818,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn39.FieldName = "comp_name"
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.OptionsColumn.AllowEdit = False
+        Me.GridColumn39.OptionsColumn.ReadOnly = True
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 4
         Me.GridColumn39.Width = 230
@@ -809,9 +829,21 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn40.FieldName = "design_display_name"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.OptionsColumn.AllowEdit = False
+        Me.GridColumn40.OptionsColumn.ReadOnly = True
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 6
         Me.GridColumn40.Width = 228
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Design Code"
+        Me.GridColumn46.FieldName = "design_code"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.OptionsColumn.AllowEdit = False
+        Me.GridColumn46.OptionsColumn.ReadOnly = True
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 5
+        Me.GridColumn46.Width = 140
         '
         'GridColumn42
         '
@@ -825,6 +857,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn42.FieldName = "amount_rec"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.OptionsColumn.AllowEdit = False
+        Me.GridColumn42.OptionsColumn.ReadOnly = True
         Me.GridColumn42.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount", "{0:N2}")})
         Me.GridColumn42.Visible = True
         Me.GridColumn42.VisibleIndex = 8
@@ -842,6 +875,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn43.FieldName = "vat_rec"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.OptionsColumn.AllowEdit = False
+        Me.GridColumn43.OptionsColumn.ReadOnly = True
         Me.GridColumn43.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount_vat", "{0:N2}")})
         Me.GridColumn43.Visible = True
         Me.GridColumn43.VisibleIndex = 9
@@ -859,9 +893,73 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn45.FieldName = "qty_rec"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.OptionsColumn.AllowEdit = False
+        Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 7
         Me.GridColumn45.Width = 174
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SLEDesignStockStore)
+        Me.PanelControl2.Controls.Add(Me.BFilterDesign)
+        Me.PanelControl2.Controls.Add(Me.LabelControl9)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1149, 43)
+        Me.PanelControl2.TabIndex = 2
+        '
+        'SLEDesignStockStore
+        '
+        Me.SLEDesignStockStore.Location = New System.Drawing.Point(52, 13)
+        Me.SLEDesignStockStore.Name = "SLEDesignStockStore"
+        Me.SLEDesignStockStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDesignStockStore.Properties.View = Me.GVSLEDesgSearch
+        Me.SLEDesignStockStore.Size = New System.Drawing.Size(175, 20)
+        Me.SLEDesignStockStore.TabIndex = 8923
+        '
+        'GVSLEDesgSearch
+        '
+        Me.GVSLEDesgSearch.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSearch, Me.GridColumn47})
+        Me.GVSLEDesgSearch.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GVSLEDesgSearch.Name = "GVSLEDesgSearch"
+        Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GVSLEDesgSearch.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnCodeSearch
+        '
+        Me.GridColumnCodeSearch.Caption = "Code"
+        Me.GridColumnCodeSearch.FieldName = "design_code"
+        Me.GridColumnCodeSearch.Name = "GridColumnCodeSearch"
+        Me.GridColumnCodeSearch.Visible = True
+        Me.GridColumnCodeSearch.VisibleIndex = 0
+        Me.GridColumnCodeSearch.Width = 186
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "Description"
+        Me.GridColumn47.FieldName = "design_display_name"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 1
+        Me.GridColumn47.Width = 360
+        '
+        'BFilterDesign
+        '
+        Me.BFilterDesign.Location = New System.Drawing.Point(233, 11)
+        Me.BFilterDesign.Name = "BFilterDesign"
+        Me.BFilterDesign.Size = New System.Drawing.Size(78, 23)
+        Me.BFilterDesign.TabIndex = 8919
+        Me.BFilterDesign.Text = "filter design"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(10, 16)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl9.TabIndex = 8922
+        Me.LabelControl9.Text = "Design"
         '
         'BCreateBPLRec
         '
@@ -1057,20 +1155,11 @@ Partial Class FormInvoiceFGPO
         '
         'BViewPayment
         '
-        Me.BViewPayment.Location = New System.Drawing.Point(236, 10)
+        Me.BViewPayment.Location = New System.Drawing.Point(234, 10)
         Me.BViewPayment.Name = "BViewPayment"
         Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
-        '
-        'GridColumn46
-        '
-        Me.GridColumn46.Caption = "Design Code"
-        Me.GridColumn46.FieldName = "design_code"
-        Me.GridColumn46.Name = "GridColumn46"
-        Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 5
-        Me.GridColumn46.Width = 140
         '
         'FormInvoiceFGPO
         '
@@ -1112,6 +1201,11 @@ Partial Class FormInvoiceFGPO
         CType(Me.GCRecFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRecFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPExtra.ResumeLayout(False)
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl2.ResumeLayout(False)
@@ -1225,4 +1319,11 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEDesignStockStore As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GVSLEDesgSearch As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnCodeSearch As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BFilterDesign As DevExpress.XtraEditors.SimpleButton
 End Class

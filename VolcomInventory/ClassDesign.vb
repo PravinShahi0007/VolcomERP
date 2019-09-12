@@ -35,6 +35,31 @@
         Return query
     End Function
 
+    Public Function queryOldDesignCodeLess(ByVal product_param As String)
+        Dim query As String = ""
+        query += "Select CAST(prod.id_product AS CHAR(15)) AS `id_product`, ('0') AS `id_pl_prod_order_rec_det_unique`, "
+        query += "(prod.product_full_code) As `product_code`, ('') As `product_counting_code`, "
+        query += "(prod.product_full_code) AS `product_full_code`, (dsg.design_display_name) AS `name`,  cod.display_name AS `size`, ('1') AS `is_old_design`, ('2') AS `is_rec`, "
+        query += "(dsg.design_cop) AS `bom_unit_price`, CAST(prc.id_design_price AS CHAR(15)) AS `id_design_price`, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat, ('0') AS `id_sales_return_det_counting`, 2 AS `is_unique_report` "
+        query += "From tb_m_product prod "
+        query += "JOIN tb_opt o
+        INNER JOIN tb_m_product_code cc ON cc.id_product = prod.id_product 
+        INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
+        query += "INNER Join tb_m_design dsg ON dsg.id_design = prod.id_design "
+        query += "Left Join( "
+        query += "Select * FROM ( "
+        query += "Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, price.id_design_price_type, price_type.design_price_type, cat.id_design_cat, cat.design_cat "
+        query += "From tb_m_design_price price "
+        query += "INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type "
+        query += "INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat "
+        query += "WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() "
+        query += "ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a "
+        query += "GROUP BY a.id_design "
+        query += ") prc ON prc.id_design = dsg.id_design "
+        query += "WHERE dsg.is_old_design = '1' AND prod.id_product IN (" + product_param + ") "
+        Return query
+    End Function
+
     Public Function queryOldDesignCodeByDrawer(ByVal id_drawer As String)
         Dim query As String = "SELECT 0 AS `id_pl_prod_order_rec_det_unique`,j.id_product, prod.product_full_code AS `product_code`, '' AS `counting_code`, '' AS `product_counting_code`, prod.product_full_code, prod.product_full_code AS `code`,
         d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.design_cop AS `bom_unit_price`,
@@ -135,6 +160,7 @@
         Dim query As String = "UPDATE tb_m_design Set last_updated=NOW(), updated_by='" + id_user + "' WHERE id_design='" + id_design_par + "' "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
 
     '***************
     'LINE LIST
@@ -451,10 +477,13 @@
                     item.ShowInGroupColumnFooter = BGVParam.Columns(data.Columns(i).ColumnName.ToString)
                     BGVParam.GroupSummary.Add(item)
                 ElseIf Not data.Columns(i).ColumnName.ToString = "RATE IN RP_Prc" _
+                    And Not data.Columns(i).ColumnName.ToString = "RATE COP_Prc" _
                     And Not data.Columns(i).ColumnName.ToString = "CURRENCY ORIGIN_Prc" _
                     And Not data.Columns(i).ColumnName.ToString = "MSRP_Prc" _
                        And Not data.Columns(i).ColumnName.ToString = "MSRP IN RP_Prc" _
-                       And Not data.Columns(i).ColumnName.ToString = "TARGET PRICE BASE ON MARKUP_Prc" Then
+                       And Not data.Columns(i).ColumnName.ToString = "TARGET PRICE BASE ON MARKUP_Prc" _
+                       And Not data.Columns(i).ColumnName.ToString = "TARGET PRICE_Prc" _
+                       And Not data.Columns(i).ColumnName.ToString = "TARGET COST_Prc" Then
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
 
@@ -553,6 +582,7 @@
         BGVParam.Columns("id_prod_demand_design_line").Visible = False
         BGVParam.Columns("id_prod_demand_design_line_upd").Visible = False
         BGVParam.Columns("id_prod_demand_design_line_final").Visible = False
+        BGVParam.Columns("TARGET PRICE BASE ON MARKUP_Prc").Visible = False
 
 
         'hide band
@@ -1832,7 +1862,7 @@
 	        GROUP BY u.unique_code
             HAVING qty=1
 	        UNION ALL
-	        SELECT deld.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
+            SELECT deld.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_full_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
 	        FROM tb_pl_sales_order_del del
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
 	        INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del
@@ -1840,6 +1870,12 @@
 	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
 	        WHERE del.id_report_status=6 AND cc.id_comp=" + id_store + " AND dsg.is_old_design=1
 	        GROUP BY deld.id_product
+            UNION
+            SELECT prod.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_full_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
+            FROM tb_m_product prod 
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+            WHERE dsg.is_old_design=1 
+            GROUP BY prod.id_product
         ) a
         INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = a.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodcode.id_code_detail "
@@ -1862,31 +1898,31 @@
             INNER JOIN tb_pl_prod_order_rec_det_counting c ON c.id_product = u.id_product AND c.pl_prod_order_rec_det_counting = RIGHT(u.unique_code,4)
             LEFT JOIN (
 	            SELECT * FROM (
-		            SELECT u.id_unique_code, u.id_type, u.unique_code, u.input_date
+		            SELECT u.id_type, u.unique_code, u.input_date
 		            FROM tb_m_unique_code u
 		            INNER JOIN tb_pl_sales_order_del_det_counting delc ON delc.id_pl_sales_order_del_det_counting = u.id_pl_sales_order_del_det_counting
 		            WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1 AND u.id_type=1
 		            UNION ALL
-		            SELECT u.id_unique_code, u.id_type, u.unique_code, u.input_date
+		            SELECT u.id_type, u.unique_code, u.input_date
 		            FROM tb_m_unique_code u
 		            INNER JOIN tb_sales_pos_det_counting salc ON salc.id_sales_pos_det_counting = u.id_sales_pos_det_counting
 		            INNER JOIN tb_sales_pos sal ON sal.id_sales_pos = salc.id_sales_pos
 		            WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1 AND u.id_type=2 AND sal.id_report_status=6
 		            UNION ALL
-		            SELECT u.id_unique_code, u.id_type, u.unique_code, u.input_date
+		            SELECT u.id_type, u.unique_code, u.input_date
 		            FROM tb_m_unique_code u
 		            INNER JOIN tb_sales_pos_det_counting cnc ON cnc.id_sales_pos_det_counting = u.id_sales_pos_det_counting_cn
 		            INNER JOIN tb_sales_pos cn ON cn.id_sales_pos = cnc.id_sales_pos
 		            WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1 AND u.id_type=3 AND cn.id_report_status!=5
 		            UNION ALL
-		            SELECT u.id_unique_code, u.id_type, u.unique_code, u.input_date
+		            SELECT u.id_type, u.unique_code, u.input_date
 		            FROM tb_m_unique_code u
 		            INNER JOIN tb_sales_return_det_counting retc ON retc.id_sales_return_det_counting = u.id_sales_return_det_counting
 		            INNER JOIN tb_sales_return_det retd ON retd.id_sales_return_det = retc.id_sales_return_det
 		            INNER JOIN tb_sales_return ret ON ret.id_sales_return = retd.id_sales_return
 		            WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1 AND u.id_type=4 AND ret.id_report_status!=5
 		            UNION ALL
-		            SELECT u.id_unique_code, u.id_type, u.unique_code, u.input_date
+		            SELECT u.id_type, u.unique_code, u.input_date
 		            FROM tb_m_unique_code u
 		            WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1 AND u.id_type=5
 		            ORDER BY input_date DESC
@@ -1906,7 +1942,7 @@
             WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1 AND lt.id_type=2 AND ISNULL(o.`full_code`)
             GROUP BY u.unique_code
 	        UNION ALL
-	        SELECT deld.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
+	        SELECT deld.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_full_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
 	        FROM tb_pl_sales_order_del del
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
 	        INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del
@@ -1914,10 +1950,130 @@
 	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
 	        WHERE del.id_report_status=6 AND cc.id_comp=" + id_store + " AND dsg.is_old_design=1
 	        GROUP BY deld.id_product
+            UNION
+            SELECT prod.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_full_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
+            FROM tb_m_product prod 
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+            WHERE dsg.is_old_design=1 
+            GROUP BY prod.id_product
         ) a
         INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = a.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodcode.id_code_detail "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
+    End Function
+
+    Public Function queryProposeChanges(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT dc.id_changes, dc.number, dc.created_date, dc.note, dc.id_report_status, rs.report_status , dc.is_confirm, dc.is_md
+        FROM tb_m_design_changes dc
+        INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = dc.id_report_status
+        WHERE dc.id_changes>0 " + condition
+        query += "ORDER BY dc.id_changes  " + order_type
+        Return query
+    End Function
+
+    Public Function queryPCDBodyDetail(ByVal id) As String
+        Dim query As String = "FROM tb_m_design_changes_det det
+        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = det.id_prod_demand_design
+        INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1
+        LEFT JOIN tb_prod_order po ON po.id_prod_order = det.id_prod_order
+        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+        INNER JOIN tb_season_orign sor ON sor.id_season_orign = d.id_season_orign
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=5
+        ) src_new ON src_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `division_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=32
+        ) dvs_new ON dvs_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `sub_category_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=31
+        ) subcat_new ON subcat_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `class_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=30
+        ) cls_new ON cls_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `color_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=14
+        ) col_new ON col_new.id_design = d.id_design
+        INNER JOIN tb_m_design dr ON dr.id_design = d.id_design_rev_from
+        INNER JOIN tb_season_orign sordr ON sordr.id_season_orign = dr.id_season_orign
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=5
+        ) src ON src.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `division`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=32
+        ) dvs ON dvs.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `sub_category`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=31
+        ) subcat ON subcat.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `class`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=30
+        ) cls ON cls.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `color`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=14
+        ) col ON col.id_design = dr.id_design
+        WHERE det.id_changes=" + id + " "
+        Return query
     End Function
 End Class

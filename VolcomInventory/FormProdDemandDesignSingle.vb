@@ -650,7 +650,7 @@ Public Class FormProdDemandDesignSingle
         If confirm = Windows.Forms.DialogResult.Yes Then
             'query get cost
             Dim q_cost As String = "SELECT dsg.id_design, "
-            q_cost += "CAST(IF(dsg.prod_order_cop_pd_curr!=opt.id_currency_default, dsg.prod_order_cop_pd*dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd) AS DECIMAL(15,2)) as `cost_upd`, "
+            q_cost += "CAST(dsg.prod_order_cop_pd AS DECIMAL(15,2)) as `cost_upd`, "
             q_cost += "dsg.prod_order_cop_pd_addcost, IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0) AS `default_add_price`, "
             q_cost += "dsg.prod_order_cop_pd, dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd_curr "
             q_cost += "FROM tb_m_design dsg "

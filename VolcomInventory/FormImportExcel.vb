@@ -798,7 +798,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "15" Then
             'RETURN ORDER
             Try
-                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list('0', '" + FormSalesOrderDet.id_comp_par + "', '" + FormSalesOrderDet.id_store + "')", -1, True, "", "", "", "")
+                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list_less('0', '" + FormSalesOrderDet.id_comp_par + "')", -1, True, "", "", "", "")
                 Dim tb1 = data_temp.AsEnumerable()
                 Dim tb2 = dt.AsEnumerable()
                 Dim query = From table1 In tb1
@@ -1521,7 +1521,7 @@ Public Class FormImportExcel
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_wh").Visible = False
             GVData.Columns("id_user").Visible = False
-            GVData.Columns("Class").Visible = False
+            'GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
             GVData.Columns("Style").VisibleIndex = 1
             GVData.Columns("Size").VisibleIndex = 2
@@ -1703,7 +1703,6 @@ Public Class FormImportExcel
                                 .CodeImport = If(result_prod Is Nothing, "0", result_prod("design_code_import")),
                                 .Code = If(result_prod Is Nothing, "0", result_prod("design_code")),
                                 .Description = If(result_prod Is Nothing, "0", result_prod("design_display_name")),
-                                .POOldSistem = table1("po_sistem_lama"),
                                 .hs_code = table1("hs_kode"),
                                 .AjuNumber = table1("aju_number"),
                                 .PibNumber = table1("pib_number"),
@@ -1745,7 +1744,6 @@ Public Class FormImportExcel
                 GVData.Columns("IdPO").Visible = False
                 GVData.Columns("hs_code").Caption = "HS Code"
                 GVData.Columns("CodeImport").Caption = "Code Import"
-                GVData.Columns("POOldSistem").Caption = "PO Reff #"
                 GVData.Columns("AjuNumber").Caption = "Aju Number"
                 GVData.Columns("PibNumber").Caption = "PIB Number"
                 GVData.Columns("PibDate").Caption = "PIB Date"
@@ -2126,7 +2124,7 @@ Public Class FormImportExcel
                 GVData.Columns("NIK").Caption = "NIK"
 
                 GVData.Columns("Deduction").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GVData.Columns("Deduction").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("Deduction").DisplayFormat.FormatString = "{0:N0}"
 
                 GVData.OptionsView.ColumnAutoWidth = False
                 GVData.BestFitColumns()
@@ -2333,7 +2331,7 @@ Public Class FormImportExcel
                 Next
             Next
             qry += ") a ); ALTER TABLE tb_bex_month_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
@@ -2676,6 +2674,10 @@ Public Class FormImportExcel
             Dim qdel As String = "SELECT * FROM tb_season_delivery d WHERE d.id_season=" + FormFGLinePlan.SLESeason.EditValue.ToString + "; "
             Dim ddel As DataTable = execute_query(qdel, -1, True, "", "", "", "")
 
+            'line plan type
+            Dim qtyp As String = "SELECT * FROM tb_lookup_line_plan_cat "
+            Dim dtyp As DataTable = execute_query(qtyp, -1, True, "", "", "", "")
+
             Dim tb1 = data_temp.AsEnumerable() 'datatable xls
             Dim tb2 = ddv.AsEnumerable() 'datatable division
             Dim tb3 = dcat.AsEnumerable() 'datatable cat
@@ -2683,6 +2685,8 @@ Public Class FormImportExcel
             Dim tb5 = dcl.AsEnumerable() 'datatable class
             Dim tb6 = dcol.AsEnumerable() 'datatable color
             Dim tb7 = ddel.AsEnumerable()
+            Dim tb8 = dtyp.AsEnumerable()
+
             Dim query = From xls In tb1
                         Group Join div In tb2
                         On xls("SEX").ToString.ToUpper Equals div("display_name").ToString.ToUpper Into divjoin = Group
@@ -2702,7 +2706,12 @@ Public Class FormImportExcel
                         Group Join del In tb7
                         On xls("DEL").ToString Equals del("delivery").ToString Into deljoin = Group
                         From delresult In deljoin.DefaultIfEmpty()
+                        Group Join typ In tb8
+                        On xls("TYPE").ToString.ToUpper Equals typ("line_plan_cat").ToString.ToUpper Into typjoin = Group
+                        From typresult In typjoin.DefaultIfEmpty()
                         Select New With {
+                                    .id_line_plan_cat = If(typresult Is Nothing, "0", typresult("id_line_plan_cat").ToString),
+                                    .PlanType = If(typresult Is Nothing, "", typresult("line_plan_cat").ToString),
                                     .id_division = If(divresult Is Nothing, "0", divresult("id_code_detail").ToString),
                                     .Division = If(divresult Is Nothing, "", divresult("display_name").ToString),
                                     .id_category = If(catresult Is Nothing, "0", catresult("id_code_detail").ToString),
@@ -2720,7 +2729,7 @@ Public Class FormImportExcel
                                     .Qty = If(xls("QTY").ToString = "", 0, xls("QTY")),
                                     .MarkUp = If(xls("QTY").ToString = "", 0, xls("MARK UP")),
                                     .TargetPrice = If(xls("TARGET PRICE").ToString = "", 0, xls("TARGET PRICE")),
-                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", ""), "OK")
+                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing Or typresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", "") + If(typresult Is Nothing, "Plan Type not found", ""), "OK")
                                 }
 
             GCData.DataSource = Nothing
@@ -2729,6 +2738,7 @@ Public Class FormImportExcel
             GVData.PopulateColumns()
 
             'hide
+            GVData.Columns("id_line_plan_cat").Visible = False
             GVData.Columns("id_delivery").Visible = False
             GVData.Columns("id_division").Visible = False
             GVData.Columns("id_category").Visible = False
@@ -4098,7 +4108,6 @@ Public Class FormImportExcel
                             End If
 
                             Dim query_exec As String = "UPDATE tb_prod_order SET 
-                                                        po_lama_no='" & GVData.GetRowCellValue(i, "POOldSistem").ToString & "',
                                                         hs_code='" & GVData.GetRowCellValue(i, "hs_code").ToString & "',
                                                         aju_no='" & GVData.GetRowCellValue(i, "AjuNumber").ToString & "',
                                                         pib_no='" & GVData.GetRowCellValue(i, "PibNumber").ToString & "', 
@@ -4311,7 +4320,7 @@ Public Class FormImportExcel
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
                             Dim query_exec As String = "INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction,note)
-                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & "','" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
+                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "',ROUND(" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & ",0),'" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '
@@ -4715,6 +4724,7 @@ Public Class FormImportExcel
 
                         Dim id_season As String = FormFGLinePlan.SLESeason.EditValue.ToString
                         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_line_plan_cat As String = GVData.GetRowCellValue(i, "id_line_plan_cat").ToString
                             Dim id_delivery As String = GVData.GetRowCellValue(i, "id_delivery").ToString
                             Dim id_division As String = GVData.GetRowCellValue(i, "id_division").ToString
                             Dim id_category As String = GVData.GetRowCellValue(i, "id_category").ToString
@@ -4732,6 +4742,7 @@ Public Class FormImportExcel
 
                             'query
                             Dim query_ins As String = "INSERT INTO tb_fg_line_plan (
+                                `id_line_plan_cat`,
 	                            `id_season` ,
 	                            `id_delivery` ,
 	                            `id_division`,
@@ -4747,6 +4758,7 @@ Public Class FormImportExcel
                                 `input_date`
                             ) 
                             VALUES(
+                                '" + id_line_plan_cat + "',
                                 '" + id_season + "' ,
                                 '" + id_delivery + "' ,
                                 '" + id_division + "',
@@ -4766,6 +4778,7 @@ Public Class FormImportExcel
                             PBC.PerformStep()
                             PBC.Update()
                         Next
+                        FormFGLinePlan.viewlinePlanCat()
                         FormFGLinePlan.viewData()
                         Close()
                     Else

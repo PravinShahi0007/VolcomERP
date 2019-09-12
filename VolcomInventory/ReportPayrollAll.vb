@@ -1,54 +1,245 @@
 ﻿Public Class ReportPayrollAll
-    Public Shared id_payroll As String = ""
-    Public Shared dt As DataTable
-    Public Shared no_column As Integer = 1
+    Public id_pre As String
+    Public id_payroll As String = ""
+    Public type As String = ""
+    Public dt As DataTable
+    Public last_alphabet As Integer = 0
+
     Private Sub ReportEmpUni_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        dt.DefaultView.Sort = "departement ASC, departement_sub ASC"
+        dt = dt.DefaultView.ToTable
+
+        Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+
+        Dim iAlphabet As Integer = last_alphabet
+        Dim iInterger As Integer = 0
+
+        Dim last_departement As String = ""
+        Dim last_departement_sub As String = ""
+
+        For i = 0 To dt.Rows.Count - 1
+            Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(dt.Rows(i)("departement").ToString, "\(([A-Z])\)", "").ToString()
+            Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(dt.Rows(i)("departement_sub").ToString, "\(([A-Z])\)", "").ToString()
+
+            If i = 0 Then
+                last_departement = curr_departement
+                last_departement_sub = curr_departement_sub
+            End If
+
+            If Not last_departement = curr_departement Then
+                iAlphabet += 1
+                iInterger = 0
+            End If
+
+            If Not last_departement_sub = curr_departement_sub Then
+                iInterger += 1
+            End If
+
+            dt.Rows(i)("departement") = curr_departement + " (" + alphabet(iAlphabet) + ")"
+            dt.Rows(i)("departement_sub") = curr_departement_sub + " (" + alphabet(iAlphabet) + iInterger.ToString + ")"
+
+            last_departement = curr_departement
+            last_departement_sub = curr_departement_sub
+        Next
+
         GCPayroll.DataSource = dt
-        '
-        LPeriode.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_name").ToString
-        '
-        GVPayroll.Columns("employee_code").Caption = "NIP" + vbNewLine + "(1)"
-        GVPayroll.Columns("employee_name").Caption = "Name" + vbNewLine + "(2)"
-        GVPayroll.Columns("departement").Caption = "Departement" + vbNewLine + "(3)"
-        GVPayroll.Columns("employee_level").Caption = "Level" + vbNewLine + "(4)"
-        GVPayroll.Columns("employee_position").Caption = "Position" + vbNewLine + "(5)"
-        GVPayroll.Columns("employee_status").Caption = "Status" + vbNewLine + "(6)"
-        GVPayroll.Columns("start_period").Caption = "Start" + vbNewLine + "(7)"
-        GVPayroll.Columns("end_period").Caption = "End" + vbNewLine + "(8)"
-        GVPayroll.Columns("actual_workdays").Caption = "Actual Workdays" + vbNewLine + "(9)"
-        GVPayroll.Columns("basic_salary").Caption = "Basic Salary" + vbNewLine + "(10)"
-        GVPayroll.Columns("allow_job").Caption = "Job Allowance" + vbNewLine + "(11)"
-        GVPayroll.Columns("allow_meal").Caption = "Meal Allowance" + vbNewLine + "(12)"
-        GVPayroll.Columns("allow_trans").Caption = "Transport Allowance" + vbNewLine + "(13)"
-        GVPayroll.Columns("allow_house").Caption = "Housing Allowance" + vbNewLine + "(14)"
-        GVPayroll.Columns("allow_car").Caption = "Attendance Allowance" + vbNewLine + "(15)"
-        GVPayroll.Columns("tot_thp").Caption = "THP Total" + vbNewLine + "(16)"
-        Dim before_gb_column_number As Integer = no_column
-        fix_column("reg_total_point", no_column)
-        fix_column("reg_total_wages", no_column)
-        fix_column("mkt_total_point", no_column)
-        fix_column("mkt_total_wages", no_column)
-        fix_column("ia_total_point", no_column)
-        fix_column("ia_total_wages", no_column)
-        fix_column("sales_total_point", no_column)
-        fix_column("sales_total_wages", no_column)
-        fix_column("prod_total_point", no_column)
-        fix_column("prod_total_wages", no_column)
-        fix_column("general_total_point", no_column)
-        fix_column("general_total_wages", no_column)
-        fix_column("total_ot_wages", no_column)
-        If before_gb_column_number = no_column Then
-            gridBandOT.Visible = False
+
+        If type = "1" Then
+            GBWorkingDays.Visible = True
+            GBSalary.Visible = True
+
+            GBDW.Visible = False
+
+            GCPosition.Caption = "Employee" + Environment.NewLine + "Position"
+            GCStatus.Caption = "Employee" + Environment.NewLine + "Status"
+            GCActualWorkingDays.Caption = "Actual" + Environment.NewLine + "WD"
+            GCOvertimeHours.Caption = "Overtime" + Environment.NewLine + "(Hours)"
+            GCTotalTHP.Caption = "Total" + Environment.NewLine + "THP"
+            GCTotalAdjustment.Caption = "Total" + Environment.NewLine + "Bonus / Adj"
+            GCTotalDeduction.Caption = "Total" + Environment.NewLine + "Deduction"
+            GCTotalPaymentOvertime.Caption = "Total" + Environment.NewLine + "Overtime"
+            GCGrandTotal.Caption = "Grand" + Environment.NewLine + "Total"
         End If
-        FormEmpPayroll.no_column = no_column
+
+        If type = "4" Then
+            GCActualWorkingDaysDW.Caption = "Actual" + Environment.NewLine + "Working Days"
+            GCTotalAdjustment.Caption = "Total" + Environment.NewLine + "Bonus / Adj"
+            GCTotalDeduction.Caption = "Total" + Environment.NewLine + "Deduction"
+            GCTotalPaymentOvertime.Caption = "Total" + Environment.NewLine + "Overtime"
+            GCGrandTotal.Caption = "Grand" + Environment.NewLine + "Total"
+
+            GBWorkingDays.Visible = False
+
+            GCTotalTHP.Visible = False
+
+            GBDW.Visible = True
+
+            GCStatus.Width = 100
+        End If
+
+        GCName.SummaryItem.DisplayFormat = "Grand Total: " + XLLocation.Text.ToUpper
+
+        'mark
+        If id_pre = "-1" Then
+            load_mark_horz("192", id_payroll, "2", "1", XrTable1)
+        Else
+            pre_load_mark_horz("192", id_payroll, "2", "2", XrTable1)
+        End If
     End Sub
 
-    Sub fix_column(ByVal column_name As String, ByRef column_number As Integer)
-        If FormEmpPayroll.GVPayroll.Columns(column_name).SummaryItem.SummaryValue = 0 Then
-            GVPayroll.Columns(column_name).Visible = False
-        Else
-            GVPayroll.Columns(column_name).Caption = GVPayroll.Columns(column_name).Caption + vbNewLine + "(" + column_number.ToString + ")"
-            column_number += 1
+    Private Sub GVPayroll_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVPayroll.CustomColumnDisplayText
+        If e.IsForGroupRow Then
+            'sogo
+            If e.DisplayText.ToString.Contains("SOGO") Then
+                If e.Column.Caption = "Departement" Then
+                    e.DisplayText = "Departement: " + e.DisplayText
+                ElseIf e.Column.Caption = "Sub Departement" Then
+                    e.DisplayText = "Sub Departement: " + e.DisplayText
+                End If
+            Else
+                If e.Column.Caption = "Departement" Then
+                    e.DisplayText = "Departement: " + e.DisplayText
+                ElseIf e.Column.Caption = "Sub Departement" Then
+                    e.DisplayText = ""
+                End If
+            End If
+        End If
+    End Sub
+
+    Dim sum_tot_thp As Double = 0
+    Dim sum_tot_adj As Double = 0
+    Dim sum_tot_ded As Double = 0
+    Dim sum_tot_ot As Double = 0
+    Dim sum_tot_dw As Double = 0
+    Dim sum_tot As Double = 0
+
+    Private Sub GVPayroll_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVPayroll.CustomSummaryCalculate
+
+        Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
+
+        If item.FieldName.ToString = "tot_thp" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    sum_tot_thp = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    sum_tot_thp += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        e.TotalValue = sum_tot_thp
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = sum_tot_thp
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_adjustment" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    sum_tot_adj = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    sum_tot_adj += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        e.TotalValue = sum_tot_adj
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = sum_tot_adj
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_deduction" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    sum_tot_ded = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    sum_tot_ded += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        e.TotalValue = sum_tot_ded
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = sum_tot_ded
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_ot_wages" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    sum_tot_ot = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    sum_tot_ot += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        e.TotalValue = sum_tot_ot
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = sum_tot_ot
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_salary_dw" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    sum_tot_dw = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    sum_tot_dw += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        e.TotalValue = sum_tot_dw
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = sum_tot_dw
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "grand_total" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    sum_tot = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    sum_tot += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        e.TotalValue = sum_tot
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = sum_tot
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "employee_name" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVPayroll.GetRowCellValue(e.RowHandle, "departement").ToString, "\(([A-Z])\)", "").ToString()
+                    Dim alphabet As String = GVPayroll.GetRowCellValue(e.RowHandle, "departement").ToString.Replace(curr_departement, "")
+
+                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                    Dim alphabet_sub As String = GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Replace(curr_departement_sub, "")
+
+                    If GVPayroll.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        If e.GroupLevel = 1 Then
+                            e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
+                        Else
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    End If
+            End Select
         End If
     End Sub
 End Class

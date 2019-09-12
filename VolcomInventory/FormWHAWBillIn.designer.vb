@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormWHAWBillIn
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormWHAWBillIn
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
@@ -61,15 +61,16 @@ Partial Class FormWHAWBillIn
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.TEAWBNo = New DevExpress.XtraEditors.TextEdit()
-        Me.BRemoveDO = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDO = New DevExpress.XtraGrid.GridControl()
         Me.GVDO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRetNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtySuratJalan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnActQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.TEAWBNo = New DevExpress.XtraEditors.TextEdit()
+        Me.BRemoveDO = New DevExpress.XtraEditors.SimpleButton()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.BBrowse = New DevExpress.XtraEditors.SimpleButton()
@@ -142,10 +143,10 @@ Partial Class FormWHAWBillIn
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
-        CType(Me.TEAWBNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEAWBNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCargoRate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -604,16 +605,85 @@ Partial Class FormWHAWBillIn
         '
         'XTPInvoice
         '
+        Me.XTPInvoice.Controls.Add(Me.GCDO)
         Me.XTPInvoice.Controls.Add(Me.Label22)
         Me.XTPInvoice.Controls.Add(Me.TEAWBNo)
         Me.XTPInvoice.Controls.Add(Me.BRemoveDO)
-        Me.XTPInvoice.Controls.Add(Me.GCDO)
         Me.XTPInvoice.Controls.Add(Me.Label18)
         Me.XTPInvoice.Controls.Add(Me.MENote)
         Me.XTPInvoice.Controls.Add(Me.BBrowse)
         Me.XTPInvoice.Name = "XTPInvoice"
         Me.XTPInvoice.Size = New System.Drawing.Size(797, 296)
         Me.XTPInvoice.Text = "AWB"
+        '
+        'GCDO
+        '
+        Me.GCDO.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GCDO.Location = New System.Drawing.Point(0, 110)
+        Me.GCDO.MainView = Me.GVDO
+        Me.GCDO.Name = "GCDO"
+        Me.GCDO.Size = New System.Drawing.Size(797, 186)
+        Me.GCDO.TabIndex = 1
+        Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO, Me.GridView2})
+        '
+        'GVDO
+        '
+        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnRetNo, Me.GridColumnQtySuratJalan, Me.GridColumnActQty})
+        Me.GVDO.GridControl = Me.GCDO
+        Me.GVDO.Name = "GVDO"
+        Me.GVDO.OptionsCustomization.AllowColumnMoving = False
+        Me.GVDO.OptionsCustomization.AllowColumnResizing = False
+        Me.GVDO.OptionsCustomization.AllowFilter = False
+        Me.GVDO.OptionsCustomization.AllowGroup = False
+        Me.GVDO.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVDO.OptionsCustomization.AllowRowSizing = True
+        Me.GVDO.OptionsCustomization.AllowSort = False
+        Me.GVDO.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVDO.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "IDDet"
+        Me.GridColumn1.FieldName = "id_wh_awb_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnRetNo
+        '
+        Me.GridColumnRetNo.Caption = "Store Return Number"
+        Me.GridColumnRetNo.FieldName = "do_no"
+        Me.GridColumnRetNo.Name = "GridColumnRetNo"
+        Me.GridColumnRetNo.Visible = True
+        Me.GridColumnRetNo.VisibleIndex = 0
+        '
+        'GridColumnQtySuratJalan
+        '
+        Me.GridColumnQtySuratJalan.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtySuratJalan.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtySuratJalan.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtySuratJalan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtySuratJalan.Caption = "Qty Surat Jalan"
+        Me.GridColumnQtySuratJalan.FieldName = "qty"
+        Me.GridColumnQtySuratJalan.Name = "GridColumnQtySuratJalan"
+        Me.GridColumnQtySuratJalan.Visible = True
+        Me.GridColumnQtySuratJalan.VisibleIndex = 1
+        '
+        'GridColumnActQty
+        '
+        Me.GridColumnActQty.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnActQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnActQty.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnActQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnActQty.Caption = "Qty Hitung Fisik"
+        Me.GridColumnActQty.FieldName = "act_qty"
+        Me.GridColumnActQty.Name = "GridColumnActQty"
+        Me.GridColumnActQty.Visible = True
+        Me.GridColumnActQty.VisibleIndex = 2
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GCDO
+        Me.GridView2.Name = "GridView2"
         '
         'Label22
         '
@@ -641,58 +711,6 @@ Partial Class FormWHAWBillIn
         Me.BRemoveDO.TabIndex = 92
         Me.BRemoveDO.Text = "-"
         '
-        'GCDO
-        '
-        Me.GCDO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GCDO.Location = New System.Drawing.Point(0, 110)
-        Me.GCDO.MainView = Me.GVDO
-        Me.GCDO.Name = "GCDO"
-        Me.GCDO.Size = New System.Drawing.Size(797, 186)
-        Me.GCDO.TabIndex = 1
-        Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO, Me.GridView2})
-        '
-        'GVDO
-        '
-        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnRetNo, Me.GridColumnQty})
-        Me.GVDO.GridControl = Me.GCDO
-        Me.GVDO.Name = "GVDO"
-        Me.GVDO.OptionsCustomization.AllowColumnMoving = False
-        Me.GVDO.OptionsCustomization.AllowColumnResizing = False
-        Me.GVDO.OptionsCustomization.AllowFilter = False
-        Me.GVDO.OptionsCustomization.AllowGroup = False
-        Me.GVDO.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVDO.OptionsCustomization.AllowRowSizing = True
-        Me.GVDO.OptionsCustomization.AllowSort = False
-        Me.GVDO.OptionsCustomization.CustomizationFormSearchBoxVisible = True
-        Me.GVDO.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "IDDet"
-        Me.GridColumn1.FieldName = "id_wh_awb_det"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumnRetNo
-        '
-        Me.GridColumnRetNo.Caption = "Return Order Number"
-        Me.GridColumnRetNo.FieldName = "do_no"
-        Me.GridColumnRetNo.Name = "GridColumnRetNo"
-        Me.GridColumnRetNo.Visible = True
-        Me.GridColumnRetNo.VisibleIndex = 0
-        '
-        'GridColumnQty
-        '
-        Me.GridColumnQty.Caption = "Qty"
-        Me.GridColumnQty.FieldName = "qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 1
-        '
-        'GridView2
-        '
-        Me.GridView2.GridControl = Me.GCDO
-        Me.GridView2.Name = "GridView2"
-        '
         'Label18
         '
         Me.Label18.AutoSize = True
@@ -712,11 +730,11 @@ Partial Class FormWHAWBillIn
         '
         'BBrowse
         '
-        Me.BBrowse.Location = New System.Drawing.Point(663, 81)
+        Me.BBrowse.Location = New System.Drawing.Point(607, 81)
         Me.BBrowse.Name = "BBrowse"
-        Me.BBrowse.Size = New System.Drawing.Size(87, 23)
+        Me.BBrowse.Size = New System.Drawing.Size(143, 23)
         Me.BBrowse.TabIndex = 1
-        Me.BBrowse.Text = "Return Order"
+        Me.BBrowse.Text = "(+) Store Return Number"
         '
         'XTPDetail
         '
@@ -1209,10 +1227,10 @@ Partial Class FormWHAWBillIn
         Me.XTCDetail.ResumeLayout(False)
         Me.XTPInvoice.ResumeLayout(False)
         Me.XTPInvoice.PerformLayout()
-        CType(Me.TEAWBNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEAWBNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCargoRate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1328,7 +1346,7 @@ Partial Class FormWHAWBillIn
     Friend WithEvents GVDO As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRetNo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtySuratJalan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label18 As Label
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BBrowse As DevExpress.XtraEditors.SimpleButton
@@ -1339,4 +1357,5 @@ Partial Class FormWHAWBillIn
     Friend WithEvents CEPaid As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents TEAWBNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label22 As Label
+    Friend WithEvents GridColumnActQty As DevExpress.XtraGrid.Columns.GridColumn
 End Class

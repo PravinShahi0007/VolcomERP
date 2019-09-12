@@ -21,16 +21,21 @@
         If Not notIncluded = "" Then
             notIncluded = notIncluded.Substring(0, notIncluded.Length - 2)
 
-            notIncluded = "AND id_employee NOT IN (" + notIncluded + ")"
+            notIncluded = "AND e.id_employee NOT IN (" + notIncluded + ")"
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, ll.employee_level, e.id_employee_active, la.employee_active, IF(e.id_employee_level < 13, 'yes', 'no') AS only_dp
+            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, ll.employee_level, e.id_employee_active, la.employee_active, IF(salary.salary > (SELECT (ump + 1000000) AS ump FROM tb_emp_payroll WHERE ump IS NOT NULL ORDER BY periode_end DESC LIMIT 1), 'yes', 'no') AS only_dp
             FROM tb_m_employee AS e 
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_lookup_employee_level AS ll ON e.id_employee_level = ll.id_employee_level
             LEFT JOIN tb_lookup_employee_active AS la ON e.id_employee_active = la.id_employee_active
+            LEFT JOIN (
+                SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
+                FROM tb_m_employee
+            ) AS salary ON e.id_employee = salary.id_employee
             WHERE 1 " + whereHrd + " " + notIncluded + "
+            ORDER BY e.id_employee_level ASC, e.employee_code ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -76,14 +81,20 @@
                               GVList.GetRowCellValue(i, "only_dp"),
                               GVList.GetRowCellValue(i, "id_departement"),
                               GVList.GetRowCellValue(i, "departement"),
+                              GVList.GetRowCellValue(i, "is_store"),
                               GVList.GetRowCellValue(i, "employee_code"),
                               GVList.GetRowCellValue(i, "employee_name"),
                               GVList.GetRowCellValue(i, "employee_position"),
                               GVList.GetRowCellValue(i, "id_employee_level"),
                               GVList.GetRowCellValue(i, "employee_level"),
                               conversion_type,
+                              FormEmpOvertimeDet.TEOvertimeStart.EditValue,
+                              FormEmpOvertimeDet.TEOvertimeEnd.EditValue,
+                              0.0,
+                              0.0,
+                              0.0,
                               "",
-                              "",
+                              0.0,
                               "no")
             End If
         Next

@@ -9,8 +9,9 @@
 
     Sub load_pps()
         Dim query As String = "
-            SELECT sal.id_employee_sal_pps, sal.number, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date, sal.note, sts.report_status, emp.employee_name AS created_by, DATE_FORMAT(sal.created_at, '%d %M %Y %H:%i:%s') AS created_at
+            SELECT sal.id_employee_sal_pps, sal.number, typ.sal_pps_type, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date, sal.note, IFNULL(sts.report_status, 'Draft') AS report_status, emp.employee_name AS created_by, DATE_FORMAT(sal.created_at, '%d %M %Y %H:%i:%s') AS created_at
             FROM tb_employee_sal_pps AS sal
+            LEFT JOIN tb_lookup_employee_sal_pps_type AS typ ON sal.id_sal_pps_type = typ.id_sal_pps_type
             LEFT JOIN tb_m_employee AS emp ON sal.created_by = emp.id_employee
             LEFT JOIN tb_lookup_report_status AS sts ON sal.id_report_status = sts.id_report_status
             ORDER BY sal.id_employee_sal_pps DESC

@@ -26,7 +26,15 @@
 
     Private Sub FormInvoiceFGPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
-        load_list()
+        load_list("0")
+        load_design()
+    End Sub
+
+    Sub load_design()
+        Dim query As String = "SELECT 0 AS id_design,'All' as design_code,'All' as design_display_name
+                                UNION 
+                                Select id_design,design_code,design_display_name FROM tb_m_design"
+        viewSearchLookupQuery(SLEDesignStockStore, query, "id_design", "design_display_name", "id_design")
     End Sub
 
     Sub load_vendor()
@@ -39,13 +47,13 @@
         viewSearchLookupQuery(SLEVendorPayment, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
-    Sub load_list()
-        Dim query_vendor As String = ""
+    Sub load_list(ByVal is_filter_design As String)
+        Dim query_where As String = ""
 
         If SLEVendorPayment.EditValue.ToString = "0" Then
             is_all_vendor = "1"
         Else
-            query_vendor = " AND c.id_comp = '" & SLEVendorPayment.EditValue.ToString & "'"
+            query_where = " AND c.id_comp = '" & SLEVendorPayment.EditValue.ToString & "'"
         End If
         '
         If XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
@@ -54,7 +62,13 @@
 
             ElseIf XTCPelunasan.SelectedTabPageIndex = 1 Then
                 'list Receiving
-                Dim query As String = "SELECT 'no' AS is_check,rec.`id_prod_order_rec`,rec.`prod_order_rec_number`
+                If is_filter_design = "1" Then
+                    If Not SLEDesignStockStore.EditValue.ToString = "0" Then
+                        query_where = " AND dsg.id_design = '" & SLEDesignStockStore.EditValue.ToString & "'"
+                    End If
+                End If
+
+                Dim query As String = "SELECT 'no' AS is_check,rec.id_prod_order,rec.`id_prod_order_rec`,rec.`prod_order_rec_number`
 ,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec
 ,SUM(recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS amount_rec
 ,SUM((wod.prod_order_wo_vat/100)*recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS vat_rec
@@ -78,12 +92,13 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 INNER JOIN tb_prod_order po ON po.id_prod_order=pod.`id_prod_order` 
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
-WHERE 1=1 " & query_vendor & "
+WHERE 1=1 " & query_where & "
 GROUP BY rec.`id_prod_order_rec`"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCRecFGPO.DataSource = data
                 GVRecFGPO.BestFitColumns()
-                If SLEVendorPayment.EditValue.ToString = "0" Then
+
+                If SLEVendorPayment.EditValue.ToString = "0" Or SLEDesignStockStore.EditValue.ToString = "0" Or Not is_filter_design = "1" Then
                     BCreateBPLRec.Visible = False
                 Else
                     BCreateBPLRec.Visible = True
@@ -101,7 +116,7 @@ INNER JOIN (
 	GROUP BY pnd.`id_pn_fgpo`
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE 1=1 " & query_vendor
+WHERE 1=1 " & query_where
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDP.DataSource = data
                 GVDP.BestFitColumns()
@@ -118,7 +133,7 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=wo.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
-WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_vendor & " GROUP BY wo.`id_prod_order_wo`"
+WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & " GROUP BY wo.`id_prod_order_wo`"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDPFGPO.DataSource = data
                 GVDPFGPO.BestFitColumns()
@@ -133,7 +148,7 @@ WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_vendor & " GROUP
     End Sub
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
-        load_list()
+        load_list("0")
     End Sub
 
     Sub print_list()
@@ -212,5 +227,9 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='28'"
             End If
         End If
         GVRecFGPO.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BFilterDesign_Click(sender As Object, e As EventArgs) Handles BFilterDesign.Click
+        load_list("1")
     End Sub
 End Class

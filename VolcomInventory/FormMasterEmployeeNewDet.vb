@@ -83,6 +83,7 @@
         query += "ORDER BY pos.id_employee_position DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPosition.DataSource = data
+        GVPosition.BestFitColumns()
         If GVPosition.RowCount > 0 Then
             BtnDeletePosition.Enabled = True
         Else
@@ -231,7 +232,7 @@
             LENPWPStatus.ItemIndex = LENPWPStatus.Properties.GetDataSourceRowIndex("id_npwp_status", data.Rows(0)("id_npwp_status").ToString)
             LENPWPStatus.ReadOnly = True
             TENoRek.Text = datarow("employee_no_rek").ToString
-            TENoRek.Text = datarow("employee_rek_name").ToString
+            TERekeningName.Text = datarow("employee_rek_name").ToString
             TxtPhone.Text = datarow("phone").ToString
             TxtMobilePhone.Text = datarow("phone_mobile").ToString
             TxtPhoneExt.Text = datarow("phone_ext").ToString

@@ -41,7 +41,6 @@
                 '
                 BSubmit.Text = "Mark"
             End If
-
         Else
             'not view
             If id_report_mark_cancel = "-1" Then 'new
@@ -98,6 +97,7 @@
         If is_complete = "1" Then
             Dim query_comp As String = "SELECT * FROM tb_doc WHERE id_user_upload='" & id_user & "' AND report_mark_type='142' AND id_report='" & id_report_mark_cancel & "'"
             Dim data_comp As DataTable = execute_query(query_comp, -1, True, "", "", "", "")
+            'Button tak muncul? attach first !
             If data_comp.Rows.Count > 0 Then
                 PCSubmit.Visible = True
                 BSubmit.Text = "Complete"
@@ -275,9 +275,21 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        'set who assign
+        FormProdDemandPrintOpt.rmt = "142"
+        Dim q_c As String = "SELECT * FROM tb_report_mark
+WHERE report_mark_type='142' AND id_report='" & id_report_mark_cancel & "' AND id_report_status>1 AND id_mark='2'"
+        Dim dt_c As DataTable = execute_query(q_c, -1, True, "", "", "", "")
+
+        If dt_c.Rows.Count = 0 Or get_setup_field("id_role_super_admin") = id_role_login Then
+            FormProdDemandPrintOpt.id = id_report_mark_cancel
+            FormProdDemandPrintOpt.ShowDialog()
+        End If
+
         'print(GCBOM, "Bill Of Material - " & TEDesign.Text & " - " & TEDesignCode.Text)
         '... 
         ' creating and saving the view's layout to a new memory stream 
+
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVReportList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)

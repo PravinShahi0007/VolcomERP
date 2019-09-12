@@ -179,6 +179,17 @@
         If is_must_active = "1" Then
             query += " AND tb_m_comp.is_active=1 "
         End If
+
+        If id_pop_up = "86" Then
+            'search vendor type minimum
+            Dim max_vendor_type As Integer = 1
+            For i As Integer = 0 To FormPurcOrderDet.GVPurcReq.RowCount - 1
+                If FormPurcOrderDet.GVPurcReq.GetRowCellValue(i, "id_vendor_type") > max_vendor_type Then
+                    max_vendor_type = FormPurcOrderDet.GVPurcReq.GetRowCellValue(i, "id_vendor_type")
+                End If
+            Next
+            query += " AND tb_m_comp.id_vendor_type >= '" & max_vendor_type.ToString & "' "
+        End If
         '
         query += "ORDER BY comp_name "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -516,6 +527,7 @@
             FormSalesReturnOrderDet.id_wh_drawer = GVCompanyContactList.GetFocusedRowCellDisplayText("id_wh_drawer").ToString
             FormSalesReturnOrderDet.id_wh_rack = GVCompanyContactList.GetFocusedRowCellDisplayText("id_wh_rack").ToString
             FormSalesReturnOrderDet.id_wh_locator = GVCompanyContactList.GetFocusedRowCellDisplayText("id_wh_locator").ToString
+            FormSalesReturnOrderDet.loadStock()
             FormSalesReturnOrderDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
             FormSalesReturnOrderDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormSalesReturnOrderDet.MEAdrressCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
@@ -923,7 +935,7 @@
                 Dim id_comp As String = GVCompany.GetFocusedRowCellValue("id_comp").ToString
                 Dim dtcomp As DataTable = execute_query("SELECT * FROM tb_m_comp WHERE id_comp=" + id_comp + "", -1, True, "", "", "", "")
                 Dim qinscomp As String = "INSERT INTO tb_m_comp(id_comp, id_comp_cat, comp_number, id_city, comp_name, comp_display_name, address_primary, address_other, fax, postal_code, email, website, id_tax, npwp, is_active, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_comp_group, id_pd_alloc, id_wh_type, id_wh, id_acc_sale_ar, id_acc_sale_fg, id_so_type, id_drawer_def, awb_destination, awb_zone, awb_cargo_code, awb_rank, is_own_store) "
-                qinscomp += "SELECT '" + dtcomp.Rows(0)("id_comp").ToString + "', '" + dtcomp.Rows(0)("id_comp_cat").ToString + "', '" + dtcomp.Rows(0)("comp_number").ToString + "', '" + dtcomp.Rows(0)("id_city").ToString + "', '" + dtcomp.Rows(0)("comp_name").ToString + "', '" + dtcomp.Rows(0)("comp_display_name").ToString + "', '" + dtcomp.Rows(0)("address_primary").ToString + "', '" + dtcomp.Rows(0)("address_other").ToString + "', '" + dtcomp.Rows(0)("fax").ToString + "', '" + dtcomp.Rows(0)("postal_code").ToString + "', '" + dtcomp.Rows(0)("email").ToString + "', '" + dtcomp.Rows(0)("website").ToString + "', '" + dtcomp.Rows(0)("id_tax").ToString + "', '" + dtcomp.Rows(0)("npwp").ToString + "', '" + dtcomp.Rows(0)("is_active").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_departement").ToString) + ", '" + decimalSQL(dtcomp.Rows(0)("comp_commission").ToString) + "', '" + dtcomp.Rows(0)("id_store_type").ToString + "', '" + dtcomp.Rows(0)("id_area").ToString + "', '" + dtcomp.Rows(0)("id_employee_rep").ToString + "', '" + dtcomp.Rows(0)("id_comp_group").ToString + "', '" + dtcomp.Rows(0)("id_pd_alloc").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_wh_type").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_wh").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_ar").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_fg").ToString) + ", '" + dtcomp.Rows(0)("id_so_type").ToString + "', '" + dtcomp.Rows(0)("id_drawer_def").ToString + "', " + checkNullInput(dtcomp.Rows(0)("awb_destination").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_zone").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_cargo_code").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_rank").ToString) + ", '" + dtcomp.Rows(0)("is_own_store").ToString + "'; SELECT LAST_INSERT_ID() "
+                qinscomp += "SELECT '" + dtcomp.Rows(0)("id_comp").ToString + "', '" + dtcomp.Rows(0)("id_comp_cat").ToString + "', '" + dtcomp.Rows(0)("comp_number").ToString + "', '" + dtcomp.Rows(0)("id_city").ToString + "', '" + dtcomp.Rows(0)("comp_name").ToString + "', '" + dtcomp.Rows(0)("comp_display_name").ToString + "', '" + dtcomp.Rows(0)("address_primary").ToString + "', '" + dtcomp.Rows(0)("address_other").ToString + "', '" + dtcomp.Rows(0)("fax").ToString + "', '" + dtcomp.Rows(0)("postal_code").ToString + "', '" + dtcomp.Rows(0)("email").ToString + "', '" + dtcomp.Rows(0)("website").ToString + "', '" + dtcomp.Rows(0)("id_tax").ToString + "', '" + dtcomp.Rows(0)("npwp").ToString + "', '" + dtcomp.Rows(0)("is_active").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_departement").ToString) + ", '" + decimalSQL(dtcomp.Rows(0)("comp_commission").ToString) + "', " + checkNullInput(dtcomp.Rows(0)("id_store_type").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_area").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_employee_rep").ToString) + ", '" + dtcomp.Rows(0)("id_comp_group").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_pd_alloc").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_wh_type").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_wh").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_ar").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_fg").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_so_type").ToString) + ", '" + dtcomp.Rows(0)("id_drawer_def").ToString + "', " + checkNullInput(dtcomp.Rows(0)("awb_destination").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_zone").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_cargo_code").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_rank").ToString) + ", '" + dtcomp.Rows(0)("is_own_store").ToString + "'; SELECT LAST_INSERT_ID() "
                 execute_non_query(qinscomp, False, host, username, pass, db)
 
                 'contact

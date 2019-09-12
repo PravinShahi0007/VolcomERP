@@ -283,7 +283,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Then
             RGAreaManage.Visible = False
         End If
 
@@ -417,7 +417,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Then
             RGAreaManage.Visible = True
         End If
 
@@ -513,7 +513,8 @@ Public Class FormMain
     'Exit Strip
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         NotifyIconVI.Visible = False
-        Application.Exit()
+        Close()
+        'Application.Exit()
     End Sub
     'Dashboard Strip
     Private Sub DashboardToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DashboardToolStripMenuItem.Click
@@ -981,9 +982,18 @@ Public Class FormMain
                 FormProductionDet.id_prod_order = "-1"
                 FormProductionDet.ShowDialog()
             Else 'prod demand design
-                FormProductionDet.id_prod_demand_design = FormProduction.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                FormProductionDet.is_pd_base = "1"
-                FormProductionDet.ShowDialog()
+                'check first
+                Dim query_cek As String = "SELECT * FROM `tb_prod_demand_design_rev` pddr 
+INNER JOIN `tb_prod_demand_rev` pdr ON pdr.id_prod_demand_rev=pddr.id_prod_demand_rev
+WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString & "' AND pdr.id_report_status!='5'"
+                Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+                If data_cek.Rows.Count > 0 Then
+                    warningCustom("PD sedang diproses revisi.")
+                Else
+                    FormProductionDet.id_prod_demand_design = FormProduction.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                    FormProductionDet.is_pd_base = "1"
+                    FormProductionDet.ShowDialog()
+                End If
             End If
         ElseIf formName = "FormMatPL" Then
             If FormMatPL.XTCPL.SelectedTabPageIndex = 0 Then 'Production
@@ -1479,11 +1489,15 @@ Public Class FormMain
             FormSampleReturnPLDet.ShowDialog()
         ElseIf formName = "FormFGDesignList" Then
             'DESIGN LIST
-            FormMasterDesignSingle.id_pop_up = "5"
-            FormMasterDesignSingle.id_season_par = FormFGDesignList.SLESeason.EditValue.ToString
-            FormMasterDesignSingle.form_name = "FormFGDesignList"
-            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
-            FormMasterDesignSingle.ShowDialog()
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                FormMasterDesignSingle.id_pop_up = "5"
+                FormMasterDesignSingle.id_season_par = FormFGDesignList.SLESeason.EditValue.ToString
+                FormMasterDesignSingle.form_name = "FormFGDesignList"
+                FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+                FormMasterDesignSingle.ShowDialog()
+            Else
+                FormFGDesignListChangesNew.ShowDialog()
+            End If
         ElseIf formName = "FormEmpShift" Then
             'DESIGN LIST
             FormEmpShiftDet.id_shift = "-1"
@@ -1716,6 +1730,20 @@ Public Class FormMain
             FormProposeEmpSalaryDet.id_employee_sal_pps = "-1"
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
+        ElseIf formName = "FormItemSubCat" Then
+            'purchase category
+            FormItemSubCatDet.id_sub_cat = "-1"
+            FormItemSubCatDet.ShowDialog()
+        ElseIf formName = "FormItemCatMain" Then
+            'Main Category
+            Dim query As String = "INSERT INTO tb_item_cat_main_pps(created_date,created_by, note, id_report_status) 
+            VALUES(NOW(),'" & id_user & "', '',1);SELECT LAST_INSERT_ID(); "
+            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            execute_non_query("CALL gen_number('" & id & "','207')", True, "", "", "", "")
+            FormItemCatMain.view_propose()
+            FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id)
+            FormItemCatMainDet.id_propose = id
+            FormItemCatMainDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2529,11 +2557,16 @@ Public Class FormMain
                 FormMasterPriceSingle.id_fg_price = FormMasterPrice.GVPrice.GetFocusedRowCellValue("id_fg_price").ToString
                 FormMasterPriceSingle.ShowDialog()
             ElseIf formName = "FormFGDesignList" Then
-                FormMasterDesignSingle.id_pop_up = "5"
-                FormMasterDesignSingle.form_name = "FormFGDesignList"
-                FormMasterDesignSingle.id_design = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                FormMasterDesignSingle.WindowState = FormWindowState.Maximized
-                FormMasterDesignSingle.ShowDialog()
+                If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                    FormMasterDesignSingle.id_pop_up = "5"
+                    FormMasterDesignSingle.form_name = "FormFGDesignList"
+                    FormMasterDesignSingle.id_design = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                    FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+                    FormMasterDesignSingle.ShowDialog()
+                Else
+                    FormFGDesignListChanges.id = FormFGDesignList.GVPropose.GetFocusedRowCellValue("id_changes").ToString
+                    FormFGDesignListChanges.ShowDialog()
+                End If
             ElseIf formName = "FormSamplePLToWH" Then
                 'PACING LIST SAMPLE
                 FormSamplePLToWHDet.action = "upd"
@@ -2773,9 +2806,19 @@ Public Class FormMain
                 End If
             ElseIf formName = "FormProposeEmpSalary" Then
                 'propose employee salary
-                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
-                FormProposeEmpSalaryDet.is_duplicate = "-1"
-                FormProposeEmpSalaryDet.ShowDialog()
+                If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                    FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                    FormProposeEmpSalaryDet.is_duplicate = "-1"
+                    FormProposeEmpSalaryDet.ShowDialog()
+                End If
+            ElseIf formName = "FormItemSubCat" Then
+                'purchase category
+                FormItemSubCatDet.id_sub_cat = FormItemSubCat.GVPurchaseCategory.GetFocusedRowCellValue("id_item_cat_detail").ToString
+                FormItemSubCatDet.ShowDialog()
+            ElseIf formName = "FormItemCatMain" Then
+                'main category
+                FormItemCatMainDet.id_propose = FormItemCatMain.GVData.GetFocusedRowCellValue("id_item_cat_main_pps").ToString
+                FormItemCatMainDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -2798,7 +2841,7 @@ Public Class FormMain
                     Cursor = Cursors.WaitCursor
                     Try
                         query = String.Format("DELETE FROM tb_m_country WHERE id_country = '{0}'", id_country)
-                        execute_non_query(query, True, "", "", "", "")
+            execute_non_query(query, True, "", "", "", "")
                         FormMasterArea.view_country()
                     Catch ex As Exception
                         XtraMessageBox.Show("This country already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -3227,6 +3270,8 @@ Public Class FormMain
                     rmt = "80"
                 ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "3" Then 'HRDSCR
                     rmt = "81"
+                ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "4" Then 'SALES
+                    rmt = "206"
                 End If
             End If
             '
@@ -5727,16 +5772,20 @@ Public Class FormMain
                 stopCustom("This data already marked")
             End If
         ElseIf formName = "FormFGDesignList" Then
-            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Try
-                    Dim id_design As String = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                    query = String.Format("DELETE FROM tb_m_design WHERE id_design='{0}'", id_design)
-                    execute_non_query(query, True, "", "", "", "")
-                    FormFGDesignList.viewData()
-                Catch ex As Exception
-                    errorDelete()
-                End Try
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_design As String = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                        query = String.Format("DELETE FROM tb_m_design WHERE id_design='{0}'", id_design)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGDesignList.viewData()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+
             End If
         ElseIf formName = "FormEmpShift" Then
             confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -7193,7 +7242,11 @@ Public Class FormMain
             print(FormWHImportDO.GCImportDO, "DELIVERY ORDER LIST")
         ElseIf formName = "FormFGDesignList" Then
             'DESIGN LIST
-            print(FormFGDesignList.GCDesign, FormFGDesignList.SLESeason.Text.ToString.ToUpper)
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                print(FormFGDesignList.GCDesign, FormFGDesignList.SLESeason.Text.ToString.ToUpper)
+            Else
+                print(FormFGDesignList.GCPropose, "PROPOSE CHANGES")
+            End If
         ElseIf formName = "FormWHSvcLevel" Then
             If FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 0 Then
                 print(FormWHSvcLevel.GCBySO, "SERVICE LEVEL BY PREPARE ORDER" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFrom.Text + " - " + FormWHSvcLevel.DEUntil.Text)
@@ -7521,6 +7574,8 @@ Public Class FormMain
                 print_raw(FormProductionHO.GCList, "")
             ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 1 Then
                 print_raw(FormProductionHO.GCDetail, "")
+            ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 2 Then
+                print_raw(FormProductionHO.GCSummary, "")
             End If
         ElseIf formName = "FormSalesOrderReport" Then
             If FormSalesOrderReport.XTCSO.SelectedTabPageIndex = 0 Then
@@ -7531,6 +7586,19 @@ Public Class FormMain
         ElseIf formName = "FormProposeEmpSalary" Then
             'employee propose
             print(FormProposeEmpSalary.GCList, "List Propose Employee Salary")
+        ElseIf formName = "FormItemSubCat" Then
+            'purchase category
+            print(FormItemSubCat.GCPurchaseCategory, "List Purchase Category")
+        ElseIf formName = "FormItemCatMain" Then
+            If FormItemCatMain.XTCCat.SelectedTabPageIndex = 0 Then
+                print_raw(FormItemCatMain.GCItemCat, "")
+            ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
+                print_raw(FormItemCatMain.GCData, "")
+            End If
+        ElseIf formName = "FormSalesRecord" Then
+            print_raw(FormSalesRecord.GCData, "")
+        ElseIf formName = "FormARAging" Then
+            print_raw(FormARAging.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8284,6 +8352,24 @@ Public Class FormMain
         ElseIf formName = "FormProposeEmpSalary" Then
             FormProposeEmpSalary.Close()
             FormProposeEmpSalary.Dispose()
+        ElseIf formName = "FormItemSubCat" Then
+            FormItemSubCat.Close()
+            FormItemSubCat.Dispose()
+        ElseIf formName = "FormItemCatMain" Then
+            FormItemCatMain.Close()
+            FormItemCatMain.Dispose()
+        ElseIf formName = "FormSalesRecord" Then
+            FormSalesRecord.Close()
+            FormSalesRecord.Dispose()
+        ElseIf formName = "FormSetupBudgetOPEX" Then
+            FormSetupBudgetOPEX.Close()
+            FormSetupBudgetOPEX.Dispose()
+        ElseIf formName = "FormSetupBudgetCAPEX" Then
+            FormSetupBudgetCAPEX.Close()
+            FormSetupBudgetCAPEX.Dispose()
+        ElseIf formName = "FormARAging" Then
+            FormARAging.Close()
+            FormARAging.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8350,21 +8436,27 @@ Public Class FormMain
             FormMasterSampleDet.ShowDialog()
         ElseIf formName = "FormFGDesignList" Then
             'LINE LIST DESIGN
-            FormMasterDesignSingle.id_pop_up = "5"
-            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
-            FormMasterDesignSingle.form_name = "FormFGDesignList"
-            FormMasterDesignSingle.dupe = "1"
-            Dim id_dsg_param As String = "-1"
-            Try
-                id_dsg_param = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
-            Catch ex As Exception
-            End Try
-            FormMasterDesignSingle.id_design = id_dsg_param
-            FormMasterDesignSingle.ShowDialog()
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                FormMasterDesignSingle.id_pop_up = "5"
+                FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+                FormMasterDesignSingle.form_name = "FormFGDesignList"
+                FormMasterDesignSingle.dupe = "1"
+                Dim id_dsg_param As String = "-1"
+                Try
+                    id_dsg_param = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                Catch ex As Exception
+                End Try
+                FormMasterDesignSingle.id_design = id_dsg_param
+                FormMasterDesignSingle.ShowDialog()
+            Else
+
+            End If
         ElseIf formName = "FormProposeEmpSalary" Then
-            FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
-            FormProposeEmpSalaryDet.is_duplicate = "1"
-            FormProposeEmpSalaryDet.ShowDialog()
+            If FormProposeEmpSalary.GVList.RowCount > 0 Then
+                FormProposeEmpSalaryDet.id_employee_sal_pps = FormProposeEmpSalary.GVList.GetFocusedRowCellValue("id_employee_sal_pps")
+                FormProposeEmpSalaryDet.is_duplicate = "1"
+                FormProposeEmpSalaryDet.ShowDialog()
+            End If
         End If
     End Sub
     'Contact 
@@ -8468,7 +8560,6 @@ Public Class FormMain
             If FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 0 Then 'purchase order
                 FormMatPurchase.view_mat_purc()
             ElseIf FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 1 Then 'prod demand
-                FormMatPurchase.viewProdDemand()
             End If
         ElseIf formName = "FormMatWO" Then
             'Material WO
@@ -8895,7 +8986,11 @@ Public Class FormMain
                 FormMasterRawMaterial.viewMatDetailList()
             End If
         ElseIf formName = "FormFGDesignList" Then
-            FormFGDesignList.viewData()
+            If FormFGDesignList.XTPDesign.SelectedTabPageIndex = 0 Then
+                FormFGDesignList.viewData()
+            Else
+                FormFGDesignList.viewPropose()
+            End If
         ElseIf formName = "FormWHSvcLevel" Then
             If FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 0 Then
                 FormWHSvcLevel.viewSvcBySO()
@@ -9085,7 +9180,7 @@ Public Class FormMain
             FormEmpOvertime.form_load()
             FormEmpOvertime.load_overtime("created_at")
         ElseIf formName = "FormInvoiceFGPO" Then
-            FormInvoiceFGPO.load_list()
+            FormInvoiceFGPO.load_list("0")
         ElseIf formName = "FormFGLinePlan" Then
             FormFGLinePlan.viewData()
         ElseIf formName = "FormWorkOrder" Then
@@ -9106,6 +9201,14 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProposeEmpSalary" Then
             FormProposeEmpSalary.load_pps()
+        ElseIf formName = "FormItemSubCat" Then
+            FormItemSubCat.load_cat()
+        ElseIf formName = "FormItemCatMain" Then
+            If FormItemCatMain.XTCCat.SelectedTabPageIndex = 0 Then
+                FormItemCatMain.view_cat()
+            ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
+                FormItemCatMain.view_propose()
+            End If
         End If
     End Sub
     'Switch
@@ -11452,9 +11555,14 @@ Public Class FormMain
     End Sub
 
     Private Sub FormMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        'log
-        Dim u As New ClassUser()
-        u.logLogin("2")
+        Dim confirm As DialogResult = XtraMessageBox.Show("Are you sure want to close application?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            'log
+            Dim u As New ClassUser()
+            u.logLogin("2")
+        Else
+            e.Cancel = True
+        End If
     End Sub
 
     Private Sub NBChSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBChSchedule.LinkClicked
@@ -11942,6 +12050,7 @@ Public Class FormMain
     Private Sub NBPayroll_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayroll.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormEmpPayroll.is_view = "2"
             FormEmpPayroll.MdiParent = Me
             FormEmpPayroll.Show()
             FormEmpPayroll.WindowState = FormWindowState.Maximized
@@ -13097,6 +13206,127 @@ Public Class FormMain
             FormProposeEmpSalary.Show()
             FormProposeEmpSalary.WindowState = FormWindowState.Maximized
             FormProposeEmpSalary.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemSubCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemSubCat.LinkClicked
+        'Sub Category/purchase category
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemSubCat.MdiParent = Me
+            FormItemSubCat.Show()
+            FormItemSubCat.WindowState = FormWindowState.Maximized
+            FormItemSubCat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemSubCatAcc_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemSubCatAcc.LinkClicked
+        'Sub Category/purchase category
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemSubCat.MdiParent = Me
+            FormItemSubCat.is_accounting = "1"
+            FormItemSubCat.Show()
+            FormItemSubCat.WindowState = FormWindowState.Maximized
+            FormItemSubCat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPayrollApprove_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayrollApprove.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPayroll.is_view = "1"
+            FormEmpPayroll.MdiParent = Me
+            FormEmpPayroll.Show()
+            FormEmpPayroll.WindowState = FormWindowState.Maximized
+            FormEmpPayroll.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSetupBudgetOPEX_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupBudgetOPEX.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSetupBudgetOPEX.MdiParent = Me
+            FormSetupBudgetOPEX.Show()
+            FormSetupBudgetOPEX.WindowState = FormWindowState.Maximized
+            FormSetupBudgetOPEX.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSampleDev_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSampleDev.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSampleDevelopment.MdiParent = Me
+            FormSampleDevelopment.Show()
+            FormSampleDevelopment.WindowState = FormWindowState.Maximized
+            FormSampleDevelopment.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSetupItemMainCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupItemMainCat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemCatMain.MdiParent = Me
+            FormItemCatMain.Show()
+            FormItemCatMain.WindowState = FormWindowState.Maximized
+            FormItemCatMain.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSalesRecord_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesRecord.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesRecord.MdiParent = Me
+            FormSalesRecord.Show()
+            FormSalesRecord.WindowState = FormWindowState.Maximized
+            FormSalesRecord.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSetupBudgetCAPEX_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupBudgetCAPEX.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSetupBudgetCAPEX.MdiParent = Me
+            FormSetupBudgetCAPEX.Show()
+            FormSetupBudgetCAPEX.WindowState = FormWindowState.Maximized
+            FormSetupBudgetCAPEX.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAgingAR_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAgingAR.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormARAging.MdiParent = Me
+            FormARAging.Show()
+            FormARAging.WindowState = FormWindowState.Maximized
+            FormARAging.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

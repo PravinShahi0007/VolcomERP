@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpPayrollOvertime
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormEmpPayrollOvertime
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollOvertime))
@@ -30,47 +30,65 @@ Partial Class FormEmpPayrollOvertime
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCOverTime = New DevExpress.XtraGrid.GridControl()
-        Me.GVOverTime = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCOvertime = New DevExpress.XtraGrid.GridControl()
+        Me.GVOvertime = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotHour = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOvertime = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDP = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDP = New DevExpress.XtraGrid.GridControl()
         Me.GVDP = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PMSalary = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BarEditItem2 = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.BMSalary = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCOverTime, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVOverTime, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPOvertime.SuspendLayout()
@@ -79,6 +97,10 @@ Partial Class FormEmpPayrollOvertime
         Me.XTPDP.SuspendLayout()
         CType(Me.GCDP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PMSalary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BMSalary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -92,6 +114,7 @@ Partial Class FormEmpPayrollOvertime
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 40)
         Me.PanelControl1.TabIndex = 0
+        Me.PanelControl1.Visible = False
         '
         'BRefresh
         '
@@ -169,6 +192,7 @@ Partial Class FormEmpPayrollOvertime
         Me.BDelete.Size = New System.Drawing.Size(98, 36)
         Me.BDelete.TabIndex = 3
         Me.BDelete.Text = "Delete"
+        Me.BDelete.Visible = False
         '
         'BEdit
         '
@@ -180,6 +204,7 @@ Partial Class FormEmpPayrollOvertime
         Me.BEdit.Size = New System.Drawing.Size(94, 36)
         Me.BEdit.TabIndex = 2
         Me.BEdit.Text = "Edit"
+        Me.BEdit.Visible = False
         '
         'BAdd
         '
@@ -191,33 +216,38 @@ Partial Class FormEmpPayrollOvertime
         Me.BAdd.Size = New System.Drawing.Size(91, 36)
         Me.BAdd.TabIndex = 1
         Me.BAdd.Text = "Add"
+        Me.BAdd.Visible = False
         '
-        'GCOverTime
+        'GCOvertime
         '
-        Me.GCOverTime.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCOverTime.Location = New System.Drawing.Point(0, 40)
-        Me.GCOverTime.MainView = Me.GVOverTime
-        Me.GCOverTime.Name = "GCOverTime"
-        Me.GCOverTime.Size = New System.Drawing.Size(1002, 621)
-        Me.GCOverTime.TabIndex = 1
-        Me.GCOverTime.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOverTime})
+        Me.GCOvertime.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCOvertime.Location = New System.Drawing.Point(0, 40)
+        Me.GCOvertime.MainView = Me.GVOvertime
+        Me.GCOvertime.Name = "GCOvertime"
+        Me.GCOvertime.Size = New System.Drawing.Size(1002, 621)
+        Me.GCOvertime.TabIndex = 1
+        Me.GCOvertime.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOvertime})
         '
-        'GVOverTime
+        'GVOvertime
         '
-        Me.GVOverTime.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn11, Me.GridColumn3, Me.GridColumn24, Me.GridColumn4, Me.GridColumn18, Me.GridColumn7, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GridColumn9, Me.GridColumnTotHour, Me.GridColumnTotPoint, Me.GridColumn14, Me.GridColumn21, Me.GridColumn22})
-        Me.GVOverTime.GridControl = Me.GCOverTime
-        Me.GVOverTime.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hour", Me.GridColumnTotHour, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wages_per_point_total", Me.GridColumn21, "{0:N2}")})
-        Me.GVOverTime.Name = "GVOverTime"
-        Me.GVOverTime.OptionsBehavior.ReadOnly = True
-        Me.GVOverTime.OptionsFind.AlwaysVisible = True
-        Me.GVOverTime.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GVOverTime.OptionsView.ShowFooter = True
-        Me.GVOverTime.OptionsView.ShowGroupPanel = False
+        Me.GVOvertime.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn32, Me.GridColumn30, Me.GridColumn26, Me.GridColumn29, Me.GridColumn11, Me.GridColumn3, Me.GridColumn24, Me.GridColumn4, Me.GridColumn18, Me.GridColumn7, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GridColumn9, Me.GridColumn28, Me.GridColumnTotHour, Me.GridColumnTotPoint, Me.GridColumn14, Me.GridColumn21, Me.GridColumn22})
+        Me.GVOvertime.GridControl = Me.GCOvertime
+        Me.GVOvertime.GroupCount = 3
+        Me.GVOvertime.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hour_actual", Me.GridColumn28, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hour", Me.GridColumnTotHour, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_point", Me.GridColumnTotPoint, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wages_per_point_total", Me.GridColumn21, "{0:N0}")})
+        Me.GVOvertime.Name = "GVOvertime"
+        Me.GVOvertime.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVOvertime.OptionsBehavior.Editable = False
+        Me.GVOvertime.OptionsFind.AlwaysVisible = True
+        Me.GVOvertime.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVOvertime.OptionsView.ShowFooter = True
+        Me.GVOvertime.OptionsView.ShowGroupExpandCollapseButtons = False
+        Me.GVOvertime.OptionsView.ShowGroupPanel = False
+        Me.GVOvertime.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn30, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn26, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn29, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_overtime"
+        Me.GridColumn1.FieldName = "id_payroll_ot"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
@@ -226,6 +256,30 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn2.FieldName = "id_employee"
         Me.GridColumn2.Name = "GridColumn2"
         '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Group"
+        Me.GridColumn30.FieldName = "group_report"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 2
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Departement"
+        Me.GridColumn26.FieldName = "departement"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 2
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Sub Departement"
+        Me.GridColumn29.FieldName = "departement_sub"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 2
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "NIP"
@@ -233,7 +287,7 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 68
+        Me.GridColumn11.Width = 83
         '
         'GridColumn3
         '
@@ -244,10 +298,18 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 124
         '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Employee Position"
+        Me.GridColumn24.FieldName = "employee_position"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 2
+        '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Employee Level"
-        Me.GridColumn4.FieldName = "employee_level"
+        Me.GridColumn4.Caption = "Employee Status"
+        Me.GridColumn4.FieldName = "employee_status"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
@@ -260,6 +322,15 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Day Off"
+        Me.GridColumn7.FieldName = "day_off"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.Width = 60
         '
         'GridColumn5
         '
@@ -278,15 +349,6 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
         Me.GridColumn6.Width = 59
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Day Off"
-        Me.GridColumn7.FieldName = "day_off"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
-        Me.GridColumn7.Width = 60
         '
         'GridColumn8
         '
@@ -307,16 +369,27 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 9
         '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Total (hours)"
+        Me.GridColumn28.DisplayFormat.FormatString = "N1"
+        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn28.FieldName = "total_hour_actual"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hour_actual", "{0:N1}")})
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 10
+        '
         'GridColumnTotHour
         '
-        Me.GridColumnTotHour.Caption = "Total (hours)"
+        Me.GridColumnTotHour.Caption = "Overtime (hours)"
         Me.GridColumnTotHour.DisplayFormat.FormatString = "N1"
         Me.GridColumnTotHour.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotHour.FieldName = "total_hour"
         Me.GridColumnTotHour.Name = "GridColumnTotHour"
         Me.GridColumnTotHour.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hour", "{0:N1}")})
         Me.GridColumnTotHour.Visible = True
-        Me.GridColumnTotHour.VisibleIndex = 10
+        Me.GridColumnTotHour.VisibleIndex = 11
         Me.GridColumnTotHour.Width = 95
         '
         'GridColumnTotPoint
@@ -326,30 +399,39 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumnTotPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotPoint.FieldName = "total_point"
         Me.GridColumnTotPoint.Name = "GridColumnTotPoint"
+        Me.GridColumnTotPoint.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_point", "{0:N1}")})
         Me.GridColumnTotPoint.Visible = True
-        Me.GridColumnTotPoint.VisibleIndex = 11
+        Me.GridColumnTotPoint.VisibleIndex = 12
         Me.GridColumnTotPoint.Width = 77
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Wages"
-        Me.GridColumn14.DisplayFormat.FormatString = "N2"
+        Me.GridColumn14.DisplayFormat.FormatString = "N0"
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "wages_per_point"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 12
+        Me.GridColumn14.VisibleIndex = 13
         '
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Wages X Point"
-        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatString = "N0"
         Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "wages_per_point_total"
         Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wages_per_point_total", "{0:N2}")})
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wages_per_point_total", "{0:N0}")})
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 13
+        Me.GridColumn21.VisibleIndex = 14
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Note"
+        Me.GridColumn22.FieldName = "note"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 15
         '
         'XtraTabControl1
         '
@@ -363,7 +445,7 @@ Partial Class FormEmpPayrollOvertime
         '
         'XTPOvertime
         '
-        Me.XTPOvertime.Controls.Add(Me.GCOverTime)
+        Me.XTPOvertime.Controls.Add(Me.GCOvertime)
         Me.XTPOvertime.Controls.Add(Me.PanelControl2)
         Me.XTPOvertime.Name = "XTPOvertime"
         Me.XTPOvertime.Size = New System.Drawing.Size(1002, 661)
@@ -371,6 +453,7 @@ Partial Class FormEmpPayrollOvertime
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.BDelete)
         Me.PanelControl2.Controls.Add(Me.BEdit)
         Me.PanelControl2.Controls.Add(Me.BAdd)
@@ -379,7 +462,18 @@ Partial Class FormEmpPayrollOvertime
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1002, 40)
         Me.PanelControl2.TabIndex = 2
-        Me.PanelControl2.Visible = False
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Enabled = False
+        Me.SBPrint.ImageIndex = 6
+        Me.SBPrint.ImageList = Me.LargeImageCollection
+        Me.SBPrint.Location = New System.Drawing.Point(636, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(81, 36)
+        Me.SBPrint.TabIndex = 112
+        Me.SBPrint.Text = "Print"
         '
         'XTPDP
         '
@@ -400,14 +494,25 @@ Partial Class FormEmpPayrollOvertime
         '
         'GVDP
         '
-        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn12, Me.GridColumn25, Me.GridColumn13, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn20, Me.GridColumn23})
+        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn10, Me.GridColumn12, Me.GridColumn25, Me.GridColumn13, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn20, Me.GridColumn31, Me.GridColumn23})
         Me.GVDP.GridControl = Me.GCDP
-        Me.GVDP.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hour", Me.GridColumn20, "{0:N1}")})
+        Me.GVDP.GroupCount = 1
+        Me.GVDP.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hour", Me.GridColumn20, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "overtime_hours", Me.GridColumn31, "{0:N1}")})
         Me.GVDP.Name = "GVDP"
-        Me.GVDP.OptionsBehavior.ReadOnly = True
+        Me.GVDP.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDP.OptionsBehavior.Editable = False
         Me.GVDP.OptionsFind.AlwaysVisible = True
         Me.GVDP.OptionsView.ShowFooter = True
         Me.GVDP.OptionsView.ShowGroupPanel = False
+        Me.GVDP.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn27, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Departement"
+        Me.GridColumn27.FieldName = "departement"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 0
         '
         'GridColumn10
         '
@@ -425,10 +530,18 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 1
         '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Employee Position"
+        Me.GridColumn25.FieldName = "employee_position"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 2
+        '
         'GridColumn13
         '
-        Me.GridColumn13.Caption = "Employee Level"
-        Me.GridColumn13.FieldName = "employee_level"
+        Me.GridColumn13.Caption = "Employee Status"
+        Me.GridColumn13.FieldName = "employee_status"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 3
@@ -478,13 +591,14 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 8
         '
-        'GridColumn22
+        'GridColumn31
         '
-        Me.GridColumn22.Caption = "Note"
-        Me.GridColumn22.FieldName = "note"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 14
+        Me.GridColumn31.Caption = "Overtime (hours)"
+        Me.GridColumn31.DisplayFormat.FormatString = "N1"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn31.FieldName = "overtime_hours"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "overtime_hours", "{0:N1}")})
         '
         'GridColumn23
         '
@@ -494,21 +608,80 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 9
         '
-        'GridColumn24
+        'PMSalary
         '
-        Me.GridColumn24.Caption = "Employee Position"
-        Me.GridColumn24.FieldName = "employee_position"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 2
+        Me.PMSalary.Manager = Me.BMSalary
+        Me.PMSalary.Name = "PMSalary"
         '
-        'GridColumn25
+        'BarEditItem2
         '
-        Me.GridColumn25.Caption = "Employee Position"
-        Me.GridColumn25.FieldName = "employee_position"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 2
+        Me.BarEditItem2.Caption = "Insert Fixed Salary"
+        Me.BarEditItem2.Edit = Me.RepositoryItemTextEdit2
+        Me.BarEditItem2.Id = 1
+        Me.BarEditItem2.Name = "BarEditItem2"
+        Me.BarEditItem2.Width = 200
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        '
+        'BMSalary
+        '
+        Me.BMSalary.DockControls.Add(Me.barDockControlTop)
+        Me.BMSalary.DockControls.Add(Me.barDockControlBottom)
+        Me.BMSalary.DockControls.Add(Me.barDockControlLeft)
+        Me.BMSalary.DockControls.Add(Me.barDockControlRight)
+        Me.BMSalary.Form = Me
+        Me.BMSalary.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarEditItem1, Me.BarEditItem2})
+        Me.BMSalary.MaxItemId = 2
+        Me.BMSalary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 729)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
+        '
+        'BarEditItem1
+        '
+        Me.BarEditItem1.Caption = "Insert Fixed Salary"
+        Me.BarEditItem1.Edit = Me.RepositoryItemTextEdit1
+        Me.BarEditItem1.Id = 0
+        Me.BarEditItem1.Name = "BarEditItem1"
+        Me.BarEditItem1.Width = 200
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.FieldName = "id_ot_type"
+        Me.GridColumn32.Name = "GridColumn32"
         '
         'FormEmpPayrollOvertime
         '
@@ -517,6 +690,10 @@ Partial Class FormEmpPayrollOvertime
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
         Me.MinimizeBox = False
@@ -529,8 +706,8 @@ Partial Class FormEmpPayrollOvertime
         Me.PanelControl1.PerformLayout()
         CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCOverTime, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVOverTime, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPOvertime.ResumeLayout(False)
@@ -539,15 +716,20 @@ Partial Class FormEmpPayrollOvertime
         Me.XTPDP.ResumeLayout(False)
         CType(Me.GCDP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PMSalary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BMSalary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEPayrollPeriode As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents GCOverTime As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVOverTime As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCOvertime As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVOvertime As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -587,4 +769,22 @@ Partial Class FormEmpPayrollOvertime
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PMSalary As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BMSalary As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BarEditItem1 As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents BarEditItem2 As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

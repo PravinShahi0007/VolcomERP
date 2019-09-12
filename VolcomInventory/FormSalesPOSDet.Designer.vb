@@ -61,11 +61,18 @@ Partial Class FormSalesPOSDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEPrintPreview = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEPrintOpt = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -132,14 +139,14 @@ Partial Class FormSalesPOSDet
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnid_pos_combine_summary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnLoadPOS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToReport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStoreNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNoStock = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnListProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.XTCInvoice = New DevExpress.XtraTab.XtraTabControl()
@@ -157,6 +164,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,6 +198,10 @@ Partial Class FormSalesPOSDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPrintOpt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -235,7 +247,7 @@ Partial Class FormSalesPOSDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(954, 178)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1069, 178)
         Me.GroupGeneralHeader.TabIndex = 184
         '
         'PanelControlTopLeft
@@ -259,7 +271,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(390, 174)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(505, 174)
         Me.PanelControlTopLeft.TabIndex = 8933
         '
         'LabelBillTo
@@ -277,7 +289,7 @@ Partial Class FormSalesPOSDet
         Me.BtnBrowseBillTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseBillTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseBillTo.Appearance.Options.UseFont = True
-        Me.BtnBrowseBillTo.Location = New System.Drawing.Point(344, 140)
+        Me.BtnBrowseBillTo.Location = New System.Drawing.Point(459, 140)
         Me.BtnBrowseBillTo.Name = "BtnBrowseBillTo"
         Me.BtnBrowseBillTo.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseBillTo.TabIndex = 8897
@@ -300,7 +312,7 @@ Partial Class FormSalesPOSDet
         Me.TxtNameBillTo.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TxtNameBillTo.Properties.EditValueChangedDelay = 1
         Me.TxtNameBillTo.Properties.ReadOnly = True
-        Me.TxtNameBillTo.Size = New System.Drawing.Size(175, 20)
+        Me.TxtNameBillTo.Size = New System.Drawing.Size(290, 20)
         Me.TxtNameBillTo.TabIndex = 8896
         Me.TxtNameBillTo.TabStop = False
         Me.TxtNameBillTo.Visible = False
@@ -339,7 +351,7 @@ Partial Class FormSalesPOSDet
         Me.TEDO.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TEDO.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TEDO.Properties.EditValueChangedDelay = 1
-        Me.TEDO.Size = New System.Drawing.Size(204, 20)
+        Me.TEDO.Size = New System.Drawing.Size(319, 20)
         Me.TEDO.TabIndex = 6
         '
         'LabelControl11
@@ -364,7 +376,7 @@ Partial Class FormSalesPOSDet
         Me.TENPWP.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TENPWP.Properties.EditValueChangedDelay = 1
         Me.TENPWP.Properties.ReadOnly = True
-        Me.TENPWP.Size = New System.Drawing.Size(289, 20)
+        Me.TENPWP.Size = New System.Drawing.Size(404, 20)
         Me.TENPWP.TabIndex = 8890
         Me.TENPWP.TabStop = False
         '
@@ -379,7 +391,7 @@ Partial Class FormSalesPOSDet
         Me.MEAdrressCompFrom.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.MEAdrressCompFrom.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.MEAdrressCompFrom.Properties.ReadOnly = True
-        Me.MEAdrressCompFrom.Size = New System.Drawing.Size(289, 46)
+        Me.MEAdrressCompFrom.Size = New System.Drawing.Size(404, 46)
         Me.MEAdrressCompFrom.TabIndex = 4444
         Me.MEAdrressCompFrom.TabStop = False
         '
@@ -429,7 +441,7 @@ Partial Class FormSalesPOSDet
         Me.TxtNameCompFrom.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(175, 20)
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(290, 20)
         Me.TxtNameCompFrom.TabIndex = 8888
         Me.TxtNameCompFrom.TabStop = False
         '
@@ -438,7 +450,7 @@ Partial Class FormSalesPOSDet
         Me.BtnBrowseContactFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseContactFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactFrom.Appearance.Options.UseFont = True
-        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(344, 36)
+        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(459, 36)
         Me.BtnBrowseContactFrom.Name = "BtnBrowseContactFrom"
         Me.BtnBrowseContactFrom.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseContactFrom.TabIndex = 1
@@ -467,7 +479,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl8)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl4)
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopMiddle.Location = New System.Drawing.Point(410, 2)
+        Me.PanelControlTopMiddle.Location = New System.Drawing.Point(525, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(330, 174)
         Me.PanelControlTopMiddle.TabIndex = 8934
@@ -582,7 +594,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DEForm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(740, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(855, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(212, 174)
         Me.PanelControlTopRight.TabIndex = 8935
@@ -689,7 +701,7 @@ Partial Class FormSalesPOSDet
         Me.MENote.Location = New System.Drawing.Point(57, 34)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(268, 60)
+        Me.MENote.Size = New System.Drawing.Size(383, 60)
         Me.MENote.TabIndex = 6
         '
         'LabelControl18
@@ -702,10 +714,14 @@ Partial Class FormSalesPOSDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelControl1)
+        Me.PanelControl3.Controls.Add(Me.BtnPrint)
+        Me.PanelControl3.Controls.Add(Me.BtnDel)
+        Me.PanelControl3.Controls.Add(Me.BtnEdit)
+        Me.PanelControl3.Controls.Add(Me.BtnAdd)
         Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
-        Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
@@ -715,21 +731,56 @@ Partial Class FormSalesPOSDet
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(954, 38)
+        Me.PanelControl3.Size = New System.Drawing.Size(1069, 38)
         Me.PanelControl3.TabIndex = 185
         '
-        'BtnXlsBOF
+        'PanelControl1
         '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(399, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
-        Me.BtnXlsBOF.TabIndex = 24
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.CEPrintPreview)
+        Me.PanelControl1.Controls.Add(Me.LabelControl12)
+        Me.PanelControl1.Controls.Add(Me.LEPrintOpt)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(243, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(271, 34)
+        Me.PanelControl1.TabIndex = 25
+        '
+        'CEPrintPreview
+        '
+        Me.CEPrintPreview.Location = New System.Drawing.Point(210, 7)
+        Me.CEPrintPreview.Name = "CEPrintPreview"
+        Me.CEPrintPreview.Properties.Caption = "Preview"
+        Me.CEPrintPreview.Size = New System.Drawing.Size(60, 19)
+        Me.CEPrintPreview.TabIndex = 145
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(5, 10)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl12.TabIndex = 26
+        Me.LabelControl12.Text = "Print Option"
+        '
+        'LEPrintOpt
+        '
+        Me.LEPrintOpt.Location = New System.Drawing.Point(66, 7)
+        Me.LEPrintOpt.Name = "LEPrintOpt"
+        Me.LEPrintOpt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPrintOpt.Size = New System.Drawing.Size(139, 20)
+        Me.LEPrintOpt.TabIndex = 25
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.ImageIndex = 6
+        Me.BtnPrint.ImageList = Me.LargeImageCollection
+        Me.BtnPrint.Location = New System.Drawing.Point(514, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 34)
+        Me.BtnPrint.TabIndex = 9
+        Me.BtnPrint.TabStop = False
+        Me.BtnPrint.Text = "Print"
         '
         'LargeImageCollection
         '
@@ -752,13 +803,65 @@ Partial Class FormSalesPOSDet
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
+        'BtnDel
+        '
+        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDel.ImageIndex = 1
+        Me.BtnDel.ImageList = Me.LargeImageCollection
+        Me.BtnDel.Location = New System.Drawing.Point(159, 2)
+        Me.BtnDel.Name = "BtnDel"
+        Me.BtnDel.Size = New System.Drawing.Size(35, 34)
+        Me.BtnDel.TabIndex = 5
+        Me.BtnDel.TabStop = False
+        Me.BtnDel.Text = "Delete"
+        Me.BtnDel.Visible = False
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnEdit.ImageIndex = 2
+        Me.BtnEdit.ImageList = Me.LargeImageCollection
+        Me.BtnEdit.Location = New System.Drawing.Point(122, 2)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(37, 34)
+        Me.BtnEdit.TabIndex = 4
+        Me.BtnEdit.TabStop = False
+        Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Visible = False
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAdd.ImageIndex = 0
+        Me.BtnAdd.ImageList = Me.LargeImageCollection
+        Me.BtnAdd.Location = New System.Drawing.Point(87, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(35, 34)
+        Me.BtnAdd.TabIndex = 3
+        Me.BtnAdd.TabStop = False
+        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Visible = False
+        '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(589, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
+        Me.BtnXlsBOF.TabIndex = 24
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
+        '
         'BtnDraftJournal
         '
         Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
         Me.BtnDraftJournal.ImageIndex = 13
         Me.BtnDraftJournal.ImageList = Me.LargeImageCollection
-        Me.BtnDraftJournal.Location = New System.Drawing.Point(515, 2)
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(705, 2)
         Me.BtnDraftJournal.Name = "BtnDraftJournal"
         Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 34)
         Me.BtnDraftJournal.TabIndex = 14
@@ -770,31 +873,19 @@ Partial Class FormSalesPOSDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 16
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(624, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(814, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 34)
         Me.BtnAttachment.TabIndex = 13
         Me.BtnAttachment.TabStop = False
         Me.BtnAttachment.Text = "Attachment"
         '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.ImageIndex = 6
-        Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(727, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 34)
-        Me.BtnPrint.TabIndex = 9
-        Me.BtnPrint.TabStop = False
-        Me.BtnPrint.Text = "Print"
-        '
         'SimpleButton1
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
         Me.SimpleButton1.Location = New System.Drawing.Point(77, 2)
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 34)
+        Me.SimpleButton1.Size = New System.Drawing.Size(10, 34)
         Me.SimpleButton1.TabIndex = 12
         Me.SimpleButton1.TabStop = False
         Me.SimpleButton1.Text = "Test"
@@ -817,7 +908,7 @@ Partial Class FormSalesPOSDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(802, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(917, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 10
@@ -829,7 +920,7 @@ Partial Class FormSalesPOSDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(877, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(992, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 8
@@ -845,7 +936,7 @@ Partial Class FormSalesPOSDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 412)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(954, 145)
+        Me.GroupControl3.Size = New System.Drawing.Size(1069, 145)
         Me.GroupControl3.TabIndex = 186
         '
         'PanelControlBottomLeft
@@ -858,7 +949,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(345, 141)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(460, 141)
         Me.PanelControlBottomLeft.TabIndex = 170
         '
         'LabelControl21
@@ -882,7 +973,7 @@ Partial Class FormSalesPOSDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(268, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(383, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'PanelControlBottomMiddle
@@ -891,7 +982,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomMiddle.Controls.Add(Me.METotSay)
         Me.PanelControlBottomMiddle.Controls.Add(Me.LabelControl19)
         Me.PanelControlBottomMiddle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(365, 2)
+        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(480, 2)
         Me.PanelControlBottomMiddle.Name = "PanelControlBottomMiddle"
         Me.PanelControlBottomMiddle.Size = New System.Drawing.Size(329, 141)
         Me.PanelControlBottomMiddle.TabIndex = 171
@@ -932,7 +1023,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomRight.Controls.Add(Me.SPVat)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl22)
         Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(694, 2)
+        Me.PanelControlBottomRight.Location = New System.Drawing.Point(809, 2)
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
         Me.PanelControlBottomRight.Size = New System.Drawing.Size(258, 141)
         Me.PanelControlBottomRight.TabIndex = 172
@@ -1109,7 +1200,7 @@ Partial Class FormSalesPOSDet
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(948, 206)
+        Me.GroupControlList.Size = New System.Drawing.Size(1063, 206)
         Me.GroupControlList.TabIndex = 187
         Me.GroupControlList.Text = "Item List"
         '
@@ -1122,7 +1213,7 @@ Partial Class FormSalesPOSDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemCheckEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(926, 166)
+        Me.GCItemList.Size = New System.Drawing.Size(1041, 166)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1152,7 +1243,7 @@ Partial Class FormSalesPOSDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect, Me.GridColumnid_pos_combine_summary})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1492,22 +1583,49 @@ Partial Class FormSalesPOSDet
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
+        'GridColumnid_pos_combine_summary
+        '
+        Me.GridColumnid_pos_combine_summary.Caption = "id_pos_combine_summary"
+        Me.GridColumnid_pos_combine_summary.FieldName = "id_pos_combine_summary"
+        Me.GridColumnid_pos_combine_summary.Name = "GridColumnid_pos_combine_summary"
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnLoadPOS)
+        Me.PanelControlNav.Controls.Add(Me.BtnExportToReport)
         Me.PanelControlNav.Controls.Add(Me.BtnImportOLStoreNew)
         Me.PanelControlNav.Controls.Add(Me.BtnNoStock)
         Me.PanelControlNav.Controls.Add(Me.BtnImportOLStore)
         Me.PanelControlNav.Controls.Add(Me.BtnImport)
-        Me.PanelControlNav.Controls.Add(Me.BtnDel)
-        Me.PanelControlNav.Controls.Add(Me.BtnEdit)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Controls.Add(Me.BtnListProduct)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(926, 36)
+        Me.PanelControlNav.Size = New System.Drawing.Size(1041, 36)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnLoadPOS
+        '
+        Me.BtnLoadPOS.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLoadPOS.Image = CType(resources.GetObject("BtnLoadPOS.Image"), System.Drawing.Image)
+        Me.BtnLoadPOS.ImageIndex = 3
+        Me.BtnLoadPOS.ImageList = Me.LargeImageCollection
+        Me.BtnLoadPOS.Location = New System.Drawing.Point(425, 0)
+        Me.BtnLoadPOS.Name = "BtnLoadPOS"
+        Me.BtnLoadPOS.Size = New System.Drawing.Size(120, 36)
+        Me.BtnLoadPOS.TabIndex = 28
+        Me.BtnLoadPOS.Text = "Load from POS"
+        '
+        'BtnExportToReport
+        '
+        Me.BtnExportToReport.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToReport.Image = CType(resources.GetObject("BtnExportToReport.Image"), System.Drawing.Image)
+        Me.BtnExportToReport.Location = New System.Drawing.Point(717, 0)
+        Me.BtnExportToReport.Name = "BtnExportToReport"
+        Me.BtnExportToReport.Size = New System.Drawing.Size(111, 36)
+        Me.BtnExportToReport.TabIndex = 27
+        Me.BtnExportToReport.Text = "Export Data"
         '
         'BtnImportOLStoreNew
         '
@@ -1515,17 +1633,17 @@ Partial Class FormSalesPOSDet
         Me.BtnImportOLStoreNew.Image = CType(resources.GetObject("BtnImportOLStoreNew.Image"), System.Drawing.Image)
         Me.BtnImportOLStoreNew.ImageIndex = 3
         Me.BtnImportOLStoreNew.ImageList = Me.LargeImageCollection
-        Me.BtnImportOLStoreNew.Location = New System.Drawing.Point(273, 0)
+        Me.BtnImportOLStoreNew.Location = New System.Drawing.Point(254, 0)
         Me.BtnImportOLStoreNew.Name = "BtnImportOLStoreNew"
-        Me.BtnImportOLStoreNew.Size = New System.Drawing.Size(191, 36)
+        Me.BtnImportOLStoreNew.Size = New System.Drawing.Size(171, 36)
         Me.BtnImportOLStoreNew.TabIndex = 26
-        Me.BtnImportOLStoreNew.Text = "Load XLS Online Store (Detail)"
+        Me.BtnImportOLStoreNew.Text = "Load XLS OL Store (Detail)"
         '
         'BtnNoStock
         '
         Me.BtnNoStock.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNoStock.Image = CType(resources.GetObject("BtnNoStock.Image"), System.Drawing.Image)
-        Me.BtnNoStock.Location = New System.Drawing.Point(506, 0)
+        Me.BtnNoStock.Location = New System.Drawing.Point(828, 0)
         Me.BtnNoStock.Name = "BtnNoStock"
         Me.BtnNoStock.Size = New System.Drawing.Size(111, 36)
         Me.BtnNoStock.TabIndex = 25
@@ -1539,9 +1657,9 @@ Partial Class FormSalesPOSDet
         Me.BtnImportOLStore.ImageList = Me.LargeImageCollection
         Me.BtnImportOLStore.Location = New System.Drawing.Point(116, 0)
         Me.BtnImportOLStore.Name = "BtnImportOLStore"
-        Me.BtnImportOLStore.Size = New System.Drawing.Size(157, 36)
+        Me.BtnImportOLStore.Size = New System.Drawing.Size(138, 36)
         Me.BtnImportOLStore.TabIndex = 24
-        Me.BtnImportOLStore.Text = "Load XLS Online Store"
+        Me.BtnImportOLStore.Text = "Load XLS OL Store"
         '
         'BtnImport
         '
@@ -1554,51 +1672,12 @@ Partial Class FormSalesPOSDet
         Me.BtnImport.TabIndex = 22
         Me.BtnImport.Text = "Load from Excel"
         '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.ImageIndex = 1
-        Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(617, 0)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(73, 36)
-        Me.BtnDel.TabIndex = 5
-        Me.BtnDel.TabStop = False
-        Me.BtnDel.Text = "Delete"
-        Me.BtnDel.Visible = False
-        '
-        'BtnEdit
-        '
-        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnEdit.ImageIndex = 2
-        Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(690, 0)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(67, 36)
-        Me.BtnEdit.TabIndex = 4
-        Me.BtnEdit.TabStop = False
-        Me.BtnEdit.Text = "Edit"
-        Me.BtnEdit.Visible = False
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.ImageIndex = 0
-        Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(757, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(67, 36)
-        Me.BtnAdd.TabIndex = 3
-        Me.BtnAdd.TabStop = False
-        Me.BtnAdd.Text = "Add"
-        Me.BtnAdd.Visible = False
-        '
         'BtnListProduct
         '
         Me.BtnListProduct.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnListProduct.Image = CType(resources.GetObject("BtnListProduct.Image"), System.Drawing.Image)
         Me.BtnListProduct.ImageList = Me.LargeImageCollection
-        Me.BtnListProduct.Location = New System.Drawing.Point(824, 0)
+        Me.BtnListProduct.Location = New System.Drawing.Point(939, 0)
         Me.BtnListProduct.Name = "BtnListProduct"
         Me.BtnListProduct.Size = New System.Drawing.Size(102, 36)
         Me.BtnListProduct.TabIndex = 23
@@ -1616,7 +1695,7 @@ Partial Class FormSalesPOSDet
         Me.XTCInvoice.Location = New System.Drawing.Point(0, 178)
         Me.XTCInvoice.Name = "XTCInvoice"
         Me.XTCInvoice.SelectedTabPage = Me.XTPSummary
-        Me.XTCInvoice.Size = New System.Drawing.Size(954, 234)
+        Me.XTCInvoice.Size = New System.Drawing.Size(1069, 234)
         Me.XTCInvoice.TabIndex = 188
         Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
         '
@@ -1624,14 +1703,14 @@ Partial Class FormSalesPOSDet
         '
         Me.XTPSummary.Controls.Add(Me.GroupControlList)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(948, 206)
+        Me.XTPSummary.Size = New System.Drawing.Size(1063, 206)
         Me.XTPSummary.Text = "Invoice"
         '
         'XTPDetail
         '
         Me.XTPDetail.Controls.Add(Me.GCCode)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(948, 206)
+        Me.XTPDetail.Size = New System.Drawing.Size(1063, 206)
         Me.XTPDetail.Text = "Detail Unique Code"
         '
         'GCCode
@@ -1640,7 +1719,7 @@ Partial Class FormSalesPOSDet
         Me.GCCode.Location = New System.Drawing.Point(0, 0)
         Me.GCCode.MainView = Me.GVCode
         Me.GCCode.Name = "GCCode"
-        Me.GCCode.Size = New System.Drawing.Size(948, 206)
+        Me.GCCode.Size = New System.Drawing.Size(1063, 206)
         Me.GCCode.TabIndex = 0
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '
@@ -1743,7 +1822,7 @@ Partial Class FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(954, 595)
+        Me.ClientSize = New System.Drawing.Size(1069, 595)
         Me.Controls.Add(Me.XTCInvoice)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -1791,6 +1870,11 @@ Partial Class FormSalesPOSDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPrintOpt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
@@ -1967,4 +2051,12 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDesignPriceCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPriceCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportToReport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnLoadPOS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_pos_combine_summary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEPrintOpt As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEPrintPreview As DevExpress.XtraEditors.CheckEdit
 End Class

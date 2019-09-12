@@ -125,8 +125,10 @@
                 rmt = "9"
             ElseIf id_pd_kind = "2" Then
                 rmt = "80"
-            Else
+            ElseIf id_pd_kind = "3" Then
                 rmt = "81"
+            ElseIf id_pd_kind = "4" Then
+                rmt = "206"
             End If
             p.report_mark_type = rmt
             p.show()

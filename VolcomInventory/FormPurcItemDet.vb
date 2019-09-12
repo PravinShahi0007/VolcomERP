@@ -1,5 +1,6 @@
 ﻿Public Class FormPurcItemDet
     Public id_item As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
         Close()
@@ -8,28 +9,54 @@
     Private Sub FormPurcItemDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_uom()
         load_item_type()
+        load_purc_cat()
         load_cat()
+        load_vendor_type()
         '
         If Not id_item = "-1" Then 'edit
             Dim query As String = "SELECT * FROM tb_item WHERE id_item='" & id_item & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TECode.Text = data.Rows(0)("id_item").ToString
             TEDesc.Text = data.Rows(0)("item_desc").ToString
-            SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
+
             SLEUOM.EditValue = data.Rows(0)("id_uom").ToString
             SLEItemType.EditValue = data.Rows(0)("id_item_type").ToString
+            '
+            SLEPurchaseCategory.EditValue = data.Rows(0)("id_item_cat_detail").ToString
+            SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
             '
             load_price()
             load_doc()
             '
             XTPAttachment.PageVisible = True
             XTPPriceList.PageVisible = True
+
+            'check if item already PR
+            query = "SELECT * FROM tb_purc_req_det prd 
+INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
+WHERE pr.id_report_status!=5"
+            data = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                BSave.Visible = False
+            Else
+                BSave.Visible = True
+            End If
+            '
+            If is_view = "1" Then
+                XTCDetail.SelectedTabPageIndex = 1
+                PCSetPrice.Visible = True
+            End If
         Else
             TECode.Text = "[Auto Generate]"
             '
             XTPAttachment.PageVisible = False
             XTPPriceList.PageVisible = False
         End If
+    End Sub
+
+    Sub load_vendor_type()
+        Dim query As String = "SELECT * FROM tb_vendor_type"
+        viewSearchLookupQuery(SLEVendorType, query, "id_vendor_type", "vendor_type", "id_vendor_type")
     End Sub
 
     Sub load_price()
@@ -66,6 +93,15 @@ GROUP BY cat.`id_item_cat`"
         viewSearchLookupQuery(SLECat, query, "id_item_cat", "item_cat", "id_item_cat")
     End Sub
 
+    Sub load_purc_cat()
+        Dim query As String = "SELECT icd.`id_item_cat_detail`,ic.`item_cat`,vt.`vendor_type`,icd.`item_cat_detail`,icd.id_item_cat,icd.id_vendor_type
+FROM `tb_item_cat_detail` icd
+INNER JOIN `tb_item_cat` ic ON ic.`id_item_cat`=icd.`id_item_cat`
+INNER JOIN tb_vendor_type vt ON vt.`id_vendor_type`=icd.`id_vendor_type`
+WHERE id_status='2'"
+        viewSearchLookupQuery(SLEPurchaseCategory, query, "id_item_cat_detail", "item_cat_detail", "id_item_cat_detail")
+    End Sub
+
     Sub load_item_type()
         Dim query As String = "SELECT id_item_type,item_type FROM tb_lookup_purc_item_type WHERE is_active='1'"
         viewSearchLookupQuery(SLEItemType, query, "id_item_type", "item_type", "id_item_type")
@@ -77,7 +113,7 @@ GROUP BY cat.`id_item_cat`"
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If id_item = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat,id_item_type,id_uom,date_created,id_user_created,is_active) VALUES('" & TEDesc.Text & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,date_created,id_user_created,is_active) VALUES('" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
             id_item = execute_query(query, 0, True, "", "", "", "")
             'insert price
             query = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),0.00)"
@@ -114,6 +150,29 @@ GROUP BY cat.`id_item_cat`"
     Private Sub GVFileList_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVFileList.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub SLEPurchaseCategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPurchaseCategory.EditValueChanged
+        Try
+            SLECat.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_item_cat").ToString
+            SLEVendorType.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_vendor_type").ToString
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BSetSameItemPrice.Click
+        If GVPriceList.RowCount > 0 Then
+            FormPurcOrderDet.set_price(id_item, Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
+            Close()
+        End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BSetSameSpecPrice.Click
+        If GVPriceList.RowCount > 0 Then
+            FormPurcOrderDet.set_same_detail_price(Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
+            Close()
         End If
     End Sub
 End Class
