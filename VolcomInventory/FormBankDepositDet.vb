@@ -28,7 +28,7 @@ INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp
 WHERE cc.id_comp_contact='" & FormBankDeposit.SLEStoreInvoice.EditValue & "'"
                 Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
                 If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
-                    warningCustom("This vendor AP account is not set.")
+                    warningCustom("This vendor AR account is not set.")
                     Close()
                 End If
                 'load header

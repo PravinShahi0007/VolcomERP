@@ -1505,7 +1505,7 @@ Partial Class FormMain
         '
         'NBAgingAR
         '
-        Me.NBAgingAR.Caption = "Aging AR"
+        Me.NBAgingAR.Caption = "AR Report"
         Me.NBAgingAR.Name = "NBAgingAR"
         Me.NBAgingAR.SmallImage = CType(resources.GetObject("NBAgingAR.SmallImage"), System.Drawing.Image)
         '
