@@ -368,9 +368,10 @@
 
         'Grid Detail
         ReportStyleGridview(Report.GVItemList)
+        Report.GVItemList.BestFitColumns()
 
         'Parse val
-        Dim query As String = "SELECT req.`purc_req_number`,DATE_FORMAT(req.requirement_date,'%d %M %Y') AS requirement_date,req.`note`,emp.`employee_name` as req_by,DATE_FORMAT(req.`date_created`,'%d %M %Y %H:%m') AS date_created,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
+        Dim query As String = "SELECT req.`purc_req_number`,DATE_FORMAT(req.requirement_date,'%d %M %Y') AS requirement_date,req.`note`,emp.`employee_name` as req_by,DATE_FORMAT(req.`date_created`,'%d %M %Y') AS date_created,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
 INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
