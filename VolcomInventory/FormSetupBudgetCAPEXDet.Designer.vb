@@ -176,7 +176,7 @@ Partial Class FormSetupBudgetCAPEXDet
         Me.GridColumnValRp.FieldName = "value_before"
         Me.GridColumnValRp.Name = "GridColumnValRp"
         Me.GridColumnValRp.OptionsColumn.AllowEdit = False
-        Me.GridColumnValRp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_before", "{0:N2}")})
+        Me.GridColumnValRp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_before", "{0:N2}")})
         Me.GridColumnValRp.Visible = True
         Me.GridColumnValRp.VisibleIndex = 2
         Me.GridColumnValRp.Width = 170
