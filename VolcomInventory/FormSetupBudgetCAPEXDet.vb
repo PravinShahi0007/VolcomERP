@@ -17,7 +17,7 @@
             BtnPrint.Visible = False
             BMark.Visible = False
         Else 'view
-            Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_b_expense_propose` pps
+            Dim query As String = "SELECT pps.*,dep.`departement`,emp.employee_name,sts.report_status FROM `tb_b_expense_propose` pps
 INNER JOIN tb_m_departement dep ON dep.id_departement=pps.id_departement
 INNER JOIN tb_m_user usr ON usr.id_user=pps.id_created_user
 INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
