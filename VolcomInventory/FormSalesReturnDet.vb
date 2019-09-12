@@ -2843,7 +2843,7 @@ Public Class FormSalesReturnDet
             UPDATE tb_sales_return r SET r.combine_number='" + combine_number + "' 
             WHERE r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
             AND r.id_store_contact_from=" + id_store_contact_from + " 
-            AND r.id_report_status=1 AND r.combine_number=''; 
+            AND r.id_report_status=1 AND r.combine_number='' AND r.last_update_by='" + id_user + "' ; 
             /*update deskripsi report mark*/
             UPDATE tb_report_mark rm 
             INNER JOIN tb_sales_return r ON r.id_sales_return = rm.id_report
