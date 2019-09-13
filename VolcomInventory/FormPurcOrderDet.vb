@@ -393,6 +393,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Else
                 'still draft
                 Dim is_check As String = "1"
+
                 If CEPercent.Checked = True Then
                     is_check = "1"
                 Else
@@ -731,26 +732,26 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Next
 
         If is_ok_budget Then
-            'generate number
-            Dim query As String = "CALL gen_number('" & id_po & "','" & rmt & "')"
-            execute_non_query(query, True, "", "", "", "")
-
             If SLEPurcType.EditValue.ToString = "1" Then
                 rmt = "139" 'opex
             Else
                 rmt = "202" 'capex
             End If
 
+            'generate number
+            Dim query As String = "CALL gen_number('" & id_po & "','" & rmt & "')"
+            execute_non_query(query, True, "", "", "", "")
+
             Dim query_trans As String = ""
             If rmt = "139" Then 'opex
-                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,date_trans,`value`,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense_opex,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
+                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                            SELECT prd.id_b_expense_opex,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
                                             FROM `tb_purc_order_det` pod
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'"
             Else 'capex
-                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                            SELECT prd.id_b_expense,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
                                             FROM `tb_purc_order_det` pod
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'"
