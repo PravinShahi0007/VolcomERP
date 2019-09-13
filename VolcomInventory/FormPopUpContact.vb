@@ -98,7 +98,7 @@
             id_company = "-1"
         End If
 
-        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number, email,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number, email,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' AND is_default =1", id_company), -1, True, "", "", "", "")
         GCCompanyContactList.DataSource = data
         If Not data.Rows.Count > 0 Or id_company = "-1" Then
             BtnSave.Enabled = False
@@ -113,8 +113,23 @@
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
-            query += "AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
+            If id_cat.Contains(",") Then
+                Dim cat_split = id_cat.Split(",")
+                Dim q_tmbh As String = ""
+                For i = 0 To UBound(cat_split)
+                    If i = 0 Then
+                        q_tmbh += " tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    Else
+                        q_tmbh += " OR tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    End If
+                Next i
+                '
+                query += " AND (" & q_tmbh & ")"
+            Else
+                query += " AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
+            End If
         End If
+
         If id_pop_up = "38" Then
             query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 "
         End If
