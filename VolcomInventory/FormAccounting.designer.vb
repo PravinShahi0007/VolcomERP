@@ -62,6 +62,7 @@ Partial Class FormAccounting
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSalesAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSalesReturnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_commission = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewCompany = New DevExpress.XtraEditors.SimpleButton()
@@ -82,7 +83,6 @@ Partial Class FormAccounting
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumncomp_commission = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -373,6 +373,7 @@ Partial Class FormAccounting
         Me.GVCompany.GridControl = Me.GCCompany
         Me.GVCompany.Name = "GVCompany"
         Me.GVCompany.OptionsBehavior.Editable = False
+        Me.GVCompany.OptionsFind.AlwaysVisible = True
         Me.GVCompany.OptionsView.ShowGroupPanel = False
         '
         'GridColumn4
@@ -422,8 +423,8 @@ Partial Class FormAccounting
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.ValueChecked = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.RepositoryItemCheckEdit2.ValueUnchecked = New Decimal(New Integer() {2, 0, 0, 0})
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
         '
         'Category
         '
@@ -465,7 +466,7 @@ Partial Class FormAccounting
         Me.GridColumn9.FieldName = "acc_ar"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.VisibleIndex = 4
         '
         'GridColumnSalesAccount
         '
@@ -474,7 +475,7 @@ Partial Class FormAccounting
         Me.GridColumnSalesAccount.FieldName = "acc_sales"
         Me.GridColumnSalesAccount.Name = "GridColumnSalesAccount"
         Me.GridColumnSalesAccount.Visible = True
-        Me.GridColumnSalesAccount.VisibleIndex = 4
+        Me.GridColumnSalesAccount.VisibleIndex = 5
         '
         'GridColumnSalesReturnAccount
         '
@@ -483,7 +484,17 @@ Partial Class FormAccounting
         Me.GridColumnSalesReturnAccount.FieldName = "acc_sales_return"
         Me.GridColumnSalesReturnAccount.Name = "GridColumnSalesReturnAccount"
         Me.GridColumnSalesReturnAccount.Visible = True
-        Me.GridColumnSalesReturnAccount.VisibleIndex = 5
+        Me.GridColumnSalesReturnAccount.VisibleIndex = 6
+        '
+        'GridColumncomp_commission
+        '
+        Me.GridColumncomp_commission.Caption = "Store Discount (%)"
+        Me.GridColumncomp_commission.DisplayFormat.FormatString = "N2"
+        Me.GridColumncomp_commission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncomp_commission.FieldName = "comp_commission"
+        Me.GridColumncomp_commission.Name = "GridColumncomp_commission"
+        Me.GridColumncomp_commission.Visible = True
+        Me.GridColumncomp_commission.VisibleIndex = 3
         '
         'RepositoryItemCheckEdit3
         '
@@ -682,16 +693,6 @@ Partial Class FormAccounting
         Me.SMViewTransaction.Name = "SMViewTransaction"
         Me.SMViewTransaction.Size = New System.Drawing.Size(134, 22)
         Me.SMViewTransaction.Text = "Transaction"
-        '
-        'GridColumncomp_commission
-        '
-        Me.GridColumncomp_commission.Caption = "Store Discount (%)"
-        Me.GridColumncomp_commission.DisplayFormat.FormatString = "N2"
-        Me.GridColumncomp_commission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumncomp_commission.FieldName = "comp_commission"
-        Me.GridColumncomp_commission.Name = "GridColumncomp_commission"
-        Me.GridColumncomp_commission.Visible = True
-        Me.GridColumncomp_commission.VisibleIndex = 3
         '
         'FormAccounting
         '
