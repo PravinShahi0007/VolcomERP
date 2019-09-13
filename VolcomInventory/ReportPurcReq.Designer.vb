@@ -24,6 +24,16 @@ Partial Public Class ReportPurcReq
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RISLEItem = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,14 +43,6 @@ Partial Public Class ReportPurcReq
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCValue = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSubTot = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
@@ -48,6 +50,9 @@ Partial Public Class ReportPurcReq
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
@@ -66,17 +71,13 @@ Partial Public Class ReportPurcReq
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LTotalAmountText = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LTotalAmount = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -92,7 +93,7 @@ Partial Public Class ReportPurcReq
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(627.0!, 157.2917!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(736.9996!, 157.2917!)
         Me.WinControlContainer1.WinControl = Me.GCItemList
         '
         'GCItemList
@@ -101,18 +102,20 @@ Partial Public Class ReportPurcReq
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
-        Me.GCItemList.Size = New System.Drawing.Size(602, 151)
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoEdit2})
+        Me.GCItemList.Size = New System.Drawing.Size(708, 151)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
         '
+        Me.GVItemList.AppearancePrint.Preview.Options.UseTextOptions = True
+        Me.GVItemList.AppearancePrint.Preview.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVItemList.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVItemList.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn4, Me.GCValue, Me.GridColumnSubTot, Me.GridColumnUOM, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumnUOM, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15})
         Me.GVItemList.GridControl = Me.GCItemList
-        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Me.GridColumnSubTot, "{0:N2}")})
+        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Nothing, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -120,8 +123,105 @@ Partial Public Class ReportPurcReq
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVItemList.OptionsCustomization.AllowSort = False
         Me.GVItemList.OptionsFilter.AllowFilterEditor = False
+        Me.GVItemList.OptionsView.RowAutoHeight = True
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Item"
+        Me.GridColumn2.FieldName = "item_desc"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 169
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.FieldName = "item_detail"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 250
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.Caption = "Qty"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "qty"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 88
+        '
+        'GridColumnUOM
+        '
+        Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnUOM.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnUOM.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnUOM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnUOM.Caption = "UOM"
+        Me.GridColumnUOM.FieldName = "uom"
+        Me.GridColumnUOM.Name = "GridColumnUOM"
+        Me.GridColumnUOM.OptionsColumn.AllowEdit = False
+        Me.GridColumnUOM.Visible = True
+        Me.GridColumnUOM.VisibleIndex = 3
+        Me.GridColumnUOM.Width = 68
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Note"
+        Me.GridColumn14.FieldName = "note"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 6
+        Me.GridColumn14.Width = 467
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.GridColumn17.Caption = "Shipping Destination"
+        Me.GridColumn17.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn17.FieldName = "ship_destination"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 4
+        Me.GridColumn17.Width = 322
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.GridColumn15.Caption = "Shipping Address"
+        Me.GridColumn15.ColumnEdit = Me.RepositoryItemMemoEdit2
+        Me.GridColumn15.FieldName = "ship_address"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 5
+        Me.GridColumn15.Width = 268
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'RISLEItem
         '
@@ -199,104 +299,6 @@ Partial Public Class ReportPurcReq
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 5
         '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Qty"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "qty"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 90
-        '
-        'GCValue
-        '
-        Me.GCValue.AppearanceCell.Options.UseTextOptions = True
-        Me.GCValue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GCValue.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GCValue.Caption = "Value"
-        Me.GCValue.DisplayFormat.FormatString = "N2"
-        Me.GCValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCValue.FieldName = "value"
-        Me.GCValue.Name = "GCValue"
-        Me.GCValue.Visible = True
-        Me.GCValue.VisibleIndex = 3
-        Me.GCValue.Width = 137
-        '
-        'GridColumnSubTot
-        '
-        Me.GridColumnSubTot.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnSubTot.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnSubTot.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnSubTot.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnSubTot.Caption = "Sub Total"
-        Me.GridColumnSubTot.DisplayFormat.FormatString = "N2"
-        Me.GridColumnSubTot.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnSubTot.FieldName = "sub_tot"
-        Me.GridColumnSubTot.Name = "GridColumnSubTot"
-        Me.GridColumnSubTot.OptionsColumn.AllowEdit = False
-        Me.GridColumnSubTot.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", "{0:N2}")})
-        Me.GridColumnSubTot.UnboundExpression = "[qty] * [value]"
-        Me.GridColumnSubTot.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnSubTot.Visible = True
-        Me.GridColumnSubTot.VisibleIndex = 4
-        Me.GridColumnSubTot.Width = 138
-        '
-        'GridColumnUOM
-        '
-        Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.Caption = "UOM"
-        Me.GridColumnUOM.FieldName = "uom"
-        Me.GridColumnUOM.Name = "GridColumnUOM"
-        Me.GridColumnUOM.OptionsColumn.AllowEdit = False
-        Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 2
-        Me.GridColumnUOM.Width = 59
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Note"
-        Me.GridColumn14.FieldName = "note"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 7
-        Me.GridColumn14.Width = 447
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Shipping Destination"
-        Me.GridColumn17.FieldName = "ship_destination"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 5
-        Me.GridColumn17.Width = 326
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Shipping Address"
-        Me.GridColumn15.FieldName = "ship_address"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 6
-        Me.GridColumn15.Width = 272
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XrLabel7, Me.XrPictureBox1})
@@ -307,14 +309,14 @@ Partial Public Class ReportPurcReq
         '
         'XrLine1
         '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.00009536743!, 56.00005!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.00009536743!, 56.00004!)
         Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(626.9999!, 9.458328!)
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(736.9999!, 9.458324!)
         '
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Franklin Gothic Demi", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(282.2915!, 16.00001!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(392.2915!, 16.00001!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(344.7085!, 26.4167!)
@@ -334,7 +336,7 @@ Partial Public Class ReportPurcReq
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 19.7596!
+        Me.BottomMargin.HeightF = 20.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -344,7 +346,7 @@ Partial Public Class ReportPurcReq
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(477.0001!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(586.9995!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 19.7596!)
@@ -359,10 +361,46 @@ Partial Public Class ReportPurcReq
         Me.ReportHeader.HeightF = 79.16666!
         Me.ReportHeader.Name = "ReportHeader"
         '
+        'XrLabel15
+        '
+        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(436.0415!, 46.16668!)
+        Me.XrLabel15.Name = "XrLabel15"
+        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel15.SizeF = New System.Drawing.SizeF(93.75!, 23.0!)
+        Me.XrLabel15.StylePriority.UseFont = False
+        Me.XrLabel15.StylePriority.UseTextAlignment = False
+        Me.XrLabel15.Text = "Requirement Date"
+        Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel16
+        '
+        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(529.7915!, 46.16668!)
+        Me.XrLabel16.Name = "XrLabel16"
+        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
+        Me.XrLabel16.StylePriority.UseFont = False
+        Me.XrLabel16.StylePriority.UseTextAlignment = False
+        Me.XrLabel16.Text = ":"
+        Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel17
+        '
+        Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(544.3745!, 46.16668!)
+        Me.XrLabel17.Name = "XrLabel17"
+        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(192.6252!, 23.0!)
+        Me.XrLabel17.StylePriority.UseFont = False
+        Me.XrLabel17.StylePriority.UseTextAlignment = False
+        Me.XrLabel17.Text = "[requirement_date]"
+        Me.XrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'XrLabel9
         '
         Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(434.3748!, 22.99998!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(544.3748!, 22.99998!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(192.6252!, 23.0!)
@@ -374,7 +412,7 @@ Partial Public Class ReportPurcReq
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(419.7917!, 22.99998!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(529.7917!, 22.99998!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel11.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
@@ -386,7 +424,7 @@ Partial Public Class ReportPurcReq
         'XrLabel13
         '
         Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(326.0414!, 22.99999!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(436.0414!, 22.99999!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(93.75021!, 23.0!)
@@ -410,7 +448,7 @@ Partial Public Class ReportPurcReq
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(326.0414!, 0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(436.0414!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(93.75021!, 23.0!)
@@ -434,7 +472,7 @@ Partial Public Class ReportPurcReq
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(419.7917!, 0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(529.7917!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
@@ -458,7 +496,7 @@ Partial Public Class ReportPurcReq
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(434.3748!, 0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(544.3748!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(192.6252!, 23.0!)
@@ -505,8 +543,8 @@ Partial Public Class ReportPurcReq
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTotalAmountText, Me.LTotalAmount, Me.LNote, Me.XrTable1, Me.XrLabel14})
-        Me.ReportFooter.HeightF = 128.5!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LNote, Me.XrTable1, Me.XrLabel14})
+        Me.ReportFooter.HeightF = 106.6667!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'LNote
@@ -514,7 +552,7 @@ Partial Public Class ReportPurcReq
         Me.LNote.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNote.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 21.83329!)
+        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 0!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.LNote.SizeF = New System.Drawing.SizeF(108.3331!, 81.66673!)
@@ -528,10 +566,10 @@ Partial Public Class ReportPurcReq
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.00006103516!, 103.5!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 81.66669!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(626.9999!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(736.9995!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -554,10 +592,10 @@ Partial Public Class ReportPurcReq
         Me.XrLabel14.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel14.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(108.3331!, 21.83329!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(108.3331!, 0!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(518.6667!, 81.66672!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(628.6664!, 81.66672!)
         Me.XrLabel14.StylePriority.UseBorders = False
         Me.XrLabel14.StylePriority.UseFont = False
         Me.XrLabel14.StylePriority.UsePadding = False
@@ -565,85 +603,10 @@ Partial Public Class ReportPurcReq
         Me.XrLabel14.Text = "[note]"
         Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel15
-        '
-        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(326.0415!, 46.16668!)
-        Me.XrLabel15.Name = "XrLabel15"
-        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel15.SizeF = New System.Drawing.SizeF(93.75!, 23.0!)
-        Me.XrLabel15.StylePriority.UseFont = False
-        Me.XrLabel15.StylePriority.UseTextAlignment = False
-        Me.XrLabel15.Text = "Requirement Date"
-        Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel16
-        '
-        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(419.7915!, 46.16668!)
-        Me.XrLabel16.Name = "XrLabel16"
-        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
-        Me.XrLabel16.StylePriority.UseFont = False
-        Me.XrLabel16.StylePriority.UseTextAlignment = False
-        Me.XrLabel16.Text = ":"
-        Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel17
-        '
-        Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(434.3745!, 46.16668!)
-        Me.XrLabel17.Name = "XrLabel17"
-        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(192.6252!, 23.0!)
-        Me.XrLabel17.StylePriority.UseFont = False
-        Me.XrLabel17.StylePriority.UseTextAlignment = False
-        Me.XrLabel17.Text = "[requirement_date]"
-        Me.XrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LTotalAmountText
-        '
-        Me.LTotalAmountText.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.LTotalAmountText.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTotalAmountText.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.LTotalAmountText.Name = "LTotalAmountText"
-        Me.LTotalAmountText.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.LTotalAmountText.SizeF = New System.Drawing.SizeF(137.4998!, 21.83329!)
-        Me.LTotalAmountText.StylePriority.UseBorders = False
-        Me.LTotalAmountText.StylePriority.UseFont = False
-        Me.LTotalAmountText.StylePriority.UsePadding = False
-        Me.LTotalAmountText.StylePriority.UseTextAlignment = False
-        Me.LTotalAmountText.Text = "TOTAL AMOUNT"
-        Me.LTotalAmountText.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LTotalAmount
-        '
-        Me.LTotalAmount.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.LTotalAmount.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTotalAmount.LocationFloat = New DevExpress.Utils.PointFloat(137.5002!, 0!)
-        Me.LTotalAmount.Name = "LTotalAmount"
-        Me.LTotalAmount.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.LTotalAmount.SizeF = New System.Drawing.SizeF(489.4998!, 21.83329!)
-        Me.LTotalAmount.StylePriority.UseBorders = False
-        Me.LTotalAmount.StylePriority.UseFont = False
-        Me.LTotalAmount.StylePriority.UsePadding = False
-        Me.LTotalAmount.StylePriority.UseTextAlignment = False
-        Me.LTotalAmount.Text = "[total_amount]"
-        Me.LTotalAmount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Item"
-        Me.GridColumn2.FieldName = "item_desc"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 163
-        '
         'ReportPurcReq
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 65, 20)
+        Me.Margins = New System.Drawing.Printing.Margins(25, 65, 65, 20)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -651,9 +614,11 @@ Partial Public Class ReportPurcReq
         Me.Version = "15.1"
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -675,8 +640,6 @@ Partial Public Class ReportPurcReq
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCValue As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnSubTot As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
@@ -707,7 +670,8 @@ Partial Public Class ReportPurcReq
     Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LTotalAmountText As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LTotalAmount As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

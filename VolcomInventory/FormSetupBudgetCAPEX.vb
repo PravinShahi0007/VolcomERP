@@ -6,7 +6,7 @@
     Dim report_desc As String = ""
     Dim report_year As String = ""
 
-    Dim is_admin As String = "-1"
+    Dim is_admin As String = "1"
 
     Sub check_menu()
         bnew_active = "0"
