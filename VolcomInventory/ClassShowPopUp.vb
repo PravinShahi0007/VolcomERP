@@ -300,6 +300,12 @@
         ElseIf report_mark_type = "206" Then
             'prod demand sales
             FormViewProdDemand.Close()
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            FormItemCatMainDet.Close()
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            FormSetupBudgetCAPEXDet.Close()
         End If
     End Sub
     Sub show()
@@ -1073,6 +1079,16 @@
             FormSetupBudgetOPEXDet.id_pps = id_report
             FormSetupBudgetOPEXDet.is_view = "1"
             FormSetupBudgetOPEXDet.ShowDialog()
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            FormItemCatMainDet.id_propose = id_report
+            FormItemCatMainDet.is_view = "1"
+            FormItemCatMainDet.ShowDialog()
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            FormSetupBudgetCAPEXDet.id_pps = id_report
+            FormSetupBudgetCAPEXDet.is_view = "1"
+            FormSetupBudgetCAPEXDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1953,6 +1969,18 @@
             'propose budget OPEX
             table_name = "tb_b_opex_pps"
             field_id = "id_b_opex_pps"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            table_name = "tb_item_cat_main_pps"
+            field_id = "id_item_cat_main_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            table_name = "tb_b_expense_propose"
+            field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "date_created"
         Else
