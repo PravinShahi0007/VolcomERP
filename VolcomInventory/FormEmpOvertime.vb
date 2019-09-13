@@ -7,8 +7,6 @@
         If is_hrd = "-1" Then
             Text = "Propose Overtime"
 
-            GCCheckStatus.Visible = False
-
             GCEValid.Visible = False
             GBEActual.Visible = False
             GCECheckStatus.Visible = False
@@ -94,11 +92,10 @@
             '" + where_date + "
 
             Dim query As String = "
-                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.ot_note, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %H:%i:%s') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.number, ot.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %H:%i:%s') AS created_at
                 FROM tb_ot AS ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
-                LEFT JOIN tb_lookup_report_status AS check_status ON ot.id_check_status = check_status.id_report_status
                 LEFT JOIN tb_m_employee AS employee ON ot.created_by = employee.id_employee
                 WHERE 1 " + whereDept + " 
                 ORDER BY ot.number DESC

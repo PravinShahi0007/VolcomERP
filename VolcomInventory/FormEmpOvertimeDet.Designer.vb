@@ -26,7 +26,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOnlyDp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartementSub = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,12 +35,14 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployeePosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCToSalary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCConversionType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLUEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RISLUETypeView = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWorkSub = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEAttendanceStartSub = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GCEndWorkSub = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -141,8 +142,7 @@ Partial Class FormEmpOvertimeDet
         '
         'GVEmployee
         '
-        Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCOnlyDp, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCConversionType, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCStartWorkSub, Me.GCEndWorkSub, Me.GCBreakHoursSub, Me.GCTotalHoursSub})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 2
         Me.GVEmployee.Name = "GVEmployee"
@@ -156,12 +156,6 @@ Partial Class FormEmpOvertimeDet
         Me.GCIdEmployee.FieldName = "id_employee"
         Me.GCIdEmployee.Name = "GCIdEmployee"
         Me.GCIdEmployee.OptionsColumn.AllowEdit = False
-        '
-        'GCOnlyDp
-        '
-        Me.GCOnlyDp.FieldName = "only_dp"
-        Me.GCOnlyDp.Name = "GCOnlyDp"
-        Me.GCOnlyDp.OptionsColumn.AllowEdit = False
         '
         'GCIdDepartement
         '
@@ -190,7 +184,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCDate.Caption = "Date"
         Me.GCDate.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GCDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCDate.FieldName = "date"
+        Me.GCDate.FieldName = "ot_date"
         Me.GCDate.Name = "GCDate"
         Me.GCDate.OptionsColumn.AllowEdit = False
         Me.GCDate.Visible = True
@@ -239,6 +233,12 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployeeStatus.Visible = True
         Me.GCEmployeeStatus.VisibleIndex = 3
         '
+        'GCToSalary
+        '
+        Me.GCToSalary.FieldName = "to_salary"
+        Me.GCToSalary.Name = "GCToSalary"
+        Me.GCToSalary.OptionsColumn.AllowEdit = False
+        '
         'GCConversionType
         '
         Me.GCConversionType.AppearanceHeader.Options.UseTextOptions = True
@@ -286,6 +286,11 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn1.FieldName = "to_salary"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GCIsDayOff
+        '
+        Me.GCIsDayOff.FieldName = "is_day_off"
+        Me.GCIsDayOff.Name = "GCIsDayOff"
+        '
         'GCStartWorkSub
         '
         Me.GCStartWorkSub.AppearanceHeader.Options.UseTextOptions = True
@@ -294,7 +299,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCStartWorkSub.ColumnEdit = Me.RITEAttendanceStartSub
         Me.GCStartWorkSub.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
         Me.GCStartWorkSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCStartWorkSub.FieldName = "start_work_sub"
+        Me.GCStartWorkSub.FieldName = "ot_start_time"
         Me.GCStartWorkSub.MinWidth = 150
         Me.GCStartWorkSub.Name = "GCStartWorkSub"
         Me.GCStartWorkSub.Visible = True
@@ -322,7 +327,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCEndWorkSub.ColumnEdit = Me.RITEAttendanceEndSub
         Me.GCEndWorkSub.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
         Me.GCEndWorkSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCEndWorkSub.FieldName = "end_work_sub"
+        Me.GCEndWorkSub.FieldName = "ot_end_time"
         Me.GCEndWorkSub.MinWidth = 150
         Me.GCEndWorkSub.Name = "GCEndWorkSub"
         Me.GCEndWorkSub.Visible = True
@@ -350,7 +355,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCBreakHoursSub.ColumnEdit = Me.RITEBreak
         Me.GCBreakHoursSub.DisplayFormat.FormatString = "N1"
         Me.GCBreakHoursSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCBreakHoursSub.FieldName = "break_hours_sub"
+        Me.GCBreakHoursSub.FieldName = "ot_break"
         Me.GCBreakHoursSub.Name = "GCBreakHoursSub"
         Me.GCBreakHoursSub.Visible = True
         Me.GCBreakHoursSub.VisibleIndex = 7
@@ -374,7 +379,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCTotalHoursSub.Caption = "Total (hours)"
         Me.GCTotalHoursSub.DisplayFormat.FormatString = "N1"
         Me.GCTotalHoursSub.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCTotalHoursSub.FieldName = "total_hours_sub"
+        Me.GCTotalHoursSub.FieldName = "ot_total_hours"
         Me.GCTotalHoursSub.Name = "GCTotalHoursSub"
         Me.GCTotalHoursSub.OptionsColumn.AllowEdit = False
         Me.GCTotalHoursSub.Visible = True
@@ -731,7 +736,7 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents RITEBreak As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCIdEmployee As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCOnlyDp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCToSalary As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdDepartementSub As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDepartement As DevExpress.XtraGrid.Columns.GridColumn
@@ -747,4 +752,5 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents GCBreakHoursSub As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCTotalHoursSub As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIsDayOff As DevExpress.XtraGrid.Columns.GridColumn
 End Class

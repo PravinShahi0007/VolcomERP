@@ -39,7 +39,7 @@
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, 'no' AS is_checked, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_active, la.employee_active, e.id_employee_status, st.employee_status
+            SELECT e.id_employee, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, 'no' AS is_checked, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_active, la.employee_active, e.id_employee_status, st.employee_status
             FROM tb_m_employee AS e
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_m_departement_sub AS ds ON IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) = ds.id_departement_sub
@@ -90,24 +90,25 @@
 
         For i = 0 To GVList.RowCount - 1
             If GVList.GetRowCellValue(i, "is_checked") = "yes" Then
-                Dim conversion_type As String = If(GVList.GetRowCellValue(i, "only_dp") = "yes", "2", "1")
+                Dim conversion_type As String = If(GVList.GetRowCellValue(i, "to_salary") = "1", "1", "2")
 
                 data.Rows.Add(GVList.GetRowCellValue(i, "id_employee"),
-                              GVList.GetRowCellValue(i, "only_dp"),
-                              GVList.GetRowCellValue(i, "id_departement"),
-                              GVList.GetRowCellValue(i, "id_departement_sub"),
-                              GVList.GetRowCellValue(i, "departement"),
-                              Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("dd MMM yyyy"),
-                              GVList.GetRowCellValue(i, "employee_code"),
-                              GVList.GetRowCellValue(i, "employee_name"),
-                              GVList.GetRowCellValue(i, "employee_position"),
-                              GVList.GetRowCellValue(i, "id_employee_status"),
-                              GVList.GetRowCellValue(i, "employee_status"),
-                              conversion_type,
-                              TEOvertimeStart.EditValue,
-                              TEOvertimeEnd.EditValue,
-                              TEOvertimeBreak.EditValue,
-                              TETotalHours.EditValue)
+                            GVList.GetRowCellValue(i, "id_departement"),
+                            GVList.GetRowCellValue(i, "id_departement_sub"),
+                            GVList.GetRowCellValue(i, "departement"),
+                            Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("dd MMM yyyy"),
+                            GVList.GetRowCellValue(i, "employee_code"),
+                            GVList.GetRowCellValue(i, "employee_name"),
+                            GVList.GetRowCellValue(i, "employee_position"),
+                            GVList.GetRowCellValue(i, "id_employee_status"),
+                            GVList.GetRowCellValue(i, "employee_status"),
+                            GVList.GetRowCellValue(i, "to_salary"),
+                            conversion_type,
+                            GVList.GetRowCellValue(i, "is_day_off"),
+                            TEOvertimeStart.EditValue,
+                            TEOvertimeEnd.EditValue,
+                            TEOvertimeBreak.EditValue,
+                            TETotalHours.EditValue)
             End If
         Next
 

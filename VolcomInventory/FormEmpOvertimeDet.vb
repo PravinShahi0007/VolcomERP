@@ -26,32 +26,32 @@
         Dim data As DataTable = New DataTable
 
         data.Columns.Add("id_employee", GetType(String))
-        data.Columns.Add("only_dp", GetType(String))
         data.Columns.Add("id_departement", GetType(String))
         data.Columns.Add("id_departement_sub", GetType(String))
         data.Columns.Add("departement", GetType(String))
-        data.Columns.Add("date", GetType(String))
+        data.Columns.Add("ot_date", GetType(String))
         data.Columns.Add("employee_code", GetType(String))
         data.Columns.Add("employee_name", GetType(String))
         data.Columns.Add("employee_position", GetType(String))
         data.Columns.Add("id_employee_status", GetType(String))
         data.Columns.Add("employee_status", GetType(String))
+        data.Columns.Add("to_salary", GetType(String))
         data.Columns.Add("conversion_type", GetType(String))
-        data.Columns.Add("start_work_sub", GetType(DateTime))
-        data.Columns.Add("end_work_sub", GetType(DateTime))
-        data.Columns.Add("break_hours_sub", GetType(Decimal))
-        data.Columns.Add("total_hours_sub", GetType(Decimal))
+        data.Columns.Add("is_day_off", GetType(String))
+        data.Columns.Add("ot_start_time", GetType(DateTime))
+        data.Columns.Add("ot_end_time", GetType(DateTime))
+        data.Columns.Add("ot_break", GetType(Decimal))
+        data.Columns.Add("ot_total_hours", GetType(Decimal))
 
         GCEmployee.DataSource = data
 
         'load database
         If Not id = "0" Then
             Dim query_ot As String = "
-                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.ot_note, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, ot.hrd_check, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %H:%i:%s') AS created_at, (SELECT MIN(ot_date) FROM tb_ot_det WHERE id_ot = ot.id_ot) AS min_ot_date, (SELECT MAX(ot_date) FROM tb_ot_det WHERE id_ot = ot.id_ot) AS max_ot_date
+                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.ot_note, ot.id_report_status, report_status.report_status, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %H:%i:%s') AS created_at, (SELECT MIN(ot_date) FROM tb_ot_det WHERE id_ot = ot.id_ot) AS min_ot_date, (SELECT MAX(ot_date) FROM tb_ot_det WHERE id_ot = ot.id_ot) AS max_ot_date
                 FROM tb_ot AS ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
-                LEFT JOIN tb_lookup_report_status AS check_status ON ot.id_check_status = check_status.id_report_status
                 LEFT JOIN tb_m_employee AS employee ON ot.created_by = employee.id_employee
                 WHERE ot.id_ot = " + id + "
             "
@@ -68,7 +68,7 @@
             ' load employee
             ' column
             Dim query_ot_det As String = "
-                SELECT ot_det.id_employee, ot_det.only_dp, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS start_work_sub, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS end_work_sub, ot_det.ot_break AS break_hours_sub, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS total_hours_sub
+                SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -277,11 +277,19 @@
 
                 For i = 0 To GVEmployee.RowCount - 1
                     If GVEmployee.IsValidRowHandle(i) Then
-                        Dim ot_date As String = Date.Parse(GVEmployee.GetRowCellValue(i, "date").ToString).ToString("yyyy-MM-dd")
-                        Dim ot_start_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "start_work_sub").ToString).ToString("yyyy-MM-dd HH:mm:ss")
-                        Dim ot_end_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "end_work_sub").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                        Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
+                        Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
+                        Dim id_departement_sub As String = GVEmployee.GetRowCellValue(i, "id_departement_sub").ToString
+                        Dim employee_position As String = GVEmployee.GetRowCellValue(i, "employee_position").ToString
+                        Dim id_employee_status As String = GVEmployee.GetRowCellValue(i, "id_employee_status").ToString
+                        Dim to_salary As String = GVEmployee.GetRowCellValue(i, "to_salary").ToString
+                        Dim conversion_type As String = GVEmployee.GetRowCellValue(i, "conversion_type").ToString
+                        Dim ot_date As String = Date.Parse(GVEmployee.GetRowCellValue(i, "ot_date").ToString).ToString("yyyy-MM-dd")
+                        Dim ot_start_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "ot_start_time").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                        Dim ot_end_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "ot_end_time").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                        Dim ot_break As String = GVEmployee.GetRowCellValue(i, "ot_break").ToString
 
-                        query = "INSERT INTO tb_ot_det (id_ot, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, conversion_type, ot_date, ot_start_time, ot_end_time, ot_break) VALUES (" + id + ", " + GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement").ToString + ", " + GVEmployee.GetRowCellValue(i, "id_departement_sub").ToString + ", '" + addSlashes(GVEmployee.GetRowCellValue(i, "employee_position").ToString) + "', " + GVEmployee.GetRowCellValue(i, "id_employee_status").ToString + ", " + GVEmployee.GetRowCellValue(i, "conversion_type").ToString + ", '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(GVEmployee.GetRowCellValue(i, "break_hours_sub").ToString) + ")"
+                        query = "INSERT INTO tb_ot_det (id_ot, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, is_day_off, ot_date, ot_start_time, ot_end_time, ot_break) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", 1, '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(ot_break) + ")"
 
                         execute_non_query(query, True, "", "", "", "")
                     End If
@@ -346,7 +354,7 @@
         Dim employee As DataTable = data.Clone
 
         For i = 0 To data.Rows.Count - 1
-            If data.Rows(i)("total_hours_sub") >= hours Then
+            If data.Rows(i)("ot_total_hours") >= hours Then
                 employee.ImportRow(data.Rows(i))
             End If
         Next
@@ -376,7 +384,7 @@
 
     Private clone As DataView = Nothing
 
-    Private Sub GVEmployee_ShownEditor(sender As Object, e As EventArgs)
+    Private Sub GVEmployee_ShownEditor(sender As Object, e As EventArgs) Handles GVEmployee.ShownEditor
         Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
         If view.FocusedColumn.FieldName = "conversion_type" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.SearchLookUpEdit Then
@@ -396,10 +404,10 @@
 
             row = view.GetDataRow(view.FocusedRowHandle)
 
-            If view.GetFocusedRowCellValue("only_dp").ToString = "yes" Then
-                clone.RowFilter = "[to_salary] = 2"
-            Else
+            If view.GetFocusedRowCellValue("to_salary").ToString = "1" Then
                 clone.RowFilter = ""
+            Else
+                clone.RowFilter = "[to_salary] = 2"
             End If
 
             edit.Properties.DataSource = clone
