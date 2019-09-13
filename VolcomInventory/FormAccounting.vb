@@ -68,7 +68,7 @@ Public Class FormAccounting
         Dim id_comp_cat As String = LECompanyCategory.EditValue.ToString
         Dim query As String = "SELECT tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,
         tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active,
-        tb_m_comp_cat.comp_cat_name as company_category ,
+        tb_m_comp_cat.comp_cat_name as company_category , tb_m_comp.comp_commission,
         IFNULL(tb_m_comp.id_acc_ap,0) AS `id_acc_ap`, 
         IFNULL(tb_m_comp.id_acc_dp,0) AS `id_acc_dp`,
         IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar`,

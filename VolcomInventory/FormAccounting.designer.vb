@@ -82,6 +82,7 @@ Partial Class FormAccounting
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumncomp_commission = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -368,7 +369,7 @@ Partial Class FormAccounting
         '
         'GVCompany
         '
-        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount})
+        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount, Me.GridColumncomp_commission})
         Me.GVCompany.GridControl = Me.GCCompany
         Me.GVCompany.Name = "GVCompany"
         Me.GVCompany.OptionsBehavior.Editable = False
@@ -414,7 +415,7 @@ Partial Class FormAccounting
         Me.GridColumn7.FieldName = "is_active"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.VisibleIndex = 9
         Me.GridColumn7.Width = 52
         '
         'RepositoryItemCheckEdit2
@@ -440,7 +441,7 @@ Partial Class FormAccounting
         Me.GridColumn8.FieldName = "acc_ap"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 7
         '
         'RepositoryItemTextEdit1
         '
@@ -455,7 +456,7 @@ Partial Class FormAccounting
         Me.GridColumn10.FieldName = "acc_dp"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
+        Me.GridColumn10.VisibleIndex = 8
         '
         'GridColumn9
         '
@@ -464,7 +465,7 @@ Partial Class FormAccounting
         Me.GridColumn9.FieldName = "acc_ar"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.VisibleIndex = 6
         '
         'GridColumnSalesAccount
         '
@@ -473,7 +474,7 @@ Partial Class FormAccounting
         Me.GridColumnSalesAccount.FieldName = "acc_sales"
         Me.GridColumnSalesAccount.Name = "GridColumnSalesAccount"
         Me.GridColumnSalesAccount.Visible = True
-        Me.GridColumnSalesAccount.VisibleIndex = 3
+        Me.GridColumnSalesAccount.VisibleIndex = 4
         '
         'GridColumnSalesReturnAccount
         '
@@ -482,7 +483,7 @@ Partial Class FormAccounting
         Me.GridColumnSalesReturnAccount.FieldName = "acc_sales_return"
         Me.GridColumnSalesReturnAccount.Name = "GridColumnSalesReturnAccount"
         Me.GridColumnSalesReturnAccount.Visible = True
-        Me.GridColumnSalesReturnAccount.VisibleIndex = 4
+        Me.GridColumnSalesReturnAccount.VisibleIndex = 5
         '
         'RepositoryItemCheckEdit3
         '
@@ -674,13 +675,23 @@ Partial Class FormAccounting
         '
         Me.BalanceMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewTransaction})
         Me.BalanceMenu.Name = "ContextMenuStripYM"
-        Me.BalanceMenu.Size = New System.Drawing.Size(136, 26)
+        Me.BalanceMenu.Size = New System.Drawing.Size(135, 26)
         '
         'SMViewTransaction
         '
         Me.SMViewTransaction.Name = "SMViewTransaction"
-        Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
+        Me.SMViewTransaction.Size = New System.Drawing.Size(134, 22)
         Me.SMViewTransaction.Text = "Transaction"
+        '
+        'GridColumncomp_commission
+        '
+        Me.GridColumncomp_commission.Caption = "Store Discount (%)"
+        Me.GridColumncomp_commission.DisplayFormat.FormatString = "N2"
+        Me.GridColumncomp_commission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncomp_commission.FieldName = "comp_commission"
+        Me.GridColumncomp_commission.Name = "GridColumncomp_commission"
+        Me.GridColumncomp_commission.Visible = True
+        Me.GridColumncomp_commission.VisibleIndex = 3
         '
         'FormAccounting
         '
@@ -788,4 +799,5 @@ Partial Class FormAccounting
     Friend WithEvents TxtRecDesc As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtRecAccount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumncomp_commission As DevExpress.XtraGrid.Columns.GridColumn
 End Class
