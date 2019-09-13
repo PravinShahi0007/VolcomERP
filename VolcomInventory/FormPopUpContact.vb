@@ -115,15 +115,21 @@
         If id_cat <> "-1" Then
             If id_cat.Contains(",") Then
                 Dim cat_split = id_cat.Split(",")
-
+                Dim q_tmbh As String = ""
                 For i = 0 To UBound(cat_split)
-                    query += "AND tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    If i = 0 Then
+                        q_tmbh += " tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    Else
+                        q_tmbh += " OR tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    End If
                 Next i
+                '
+                query += " AND (" & q_tmbh & ")"
             Else
-                query += "AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
+                query += " AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
             End If
-
         End If
+
         If id_pop_up = "38" Then
             query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 "
         End If
