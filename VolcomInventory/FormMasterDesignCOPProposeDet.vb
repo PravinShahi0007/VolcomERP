@@ -226,7 +226,12 @@
             Next
 
             If check = False Then
-                If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" And BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString = "" Then
+                Dim query_pd As String = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
+INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocusedRowCellValue("id_design").ToString & "' AND pd.is_pd='1'"
+                Dim data_pd As DataTable = execute_query(query_pd, -1, True, "", "", "", "")
+
+                If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" And data_pd.Rows.Count <= 0 Then
                     warningCustom("This design dont have PD created, please change the cost normally.")
                 Else
                     Dim check_rec_qc As String = "SELECT prod_det.id_prod_order_det,SUM(prod_rec_d.prod_order_rec_det_qty) AS receive_created_qty
