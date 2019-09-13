@@ -54,6 +54,9 @@
                 Close()
             End If
 
+            'cek coa biaya
+
+
             'purc order detail
             TxtDO.Focus()
             TxtNumber.Text = "[auto generate]"

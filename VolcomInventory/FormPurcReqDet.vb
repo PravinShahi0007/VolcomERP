@@ -36,9 +36,12 @@
             DERequirementDate.EditValue = Now
             '
             GVItemList.OptionsBehavior.Editable = True
+            BtnAttachment.Visible = False
             '
         Else 'edit
+
             load_item_pil()
+            BtnAttachment.Visible = True
             SLEItemType.Enabled = False
             BSetShipping.Visible = False
             DERequirementDate.Properties.ReadOnly = True
@@ -482,5 +485,25 @@ GROUP BY req.`id_purc_req`"
             '
             is_reload = "2"
         End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim rmt As String = "1"
+        If SLEPurcType.EditValue.ToString = "1" Then
+            rmt = "137"
+        Else
+            rmt = "201"
+        End If
+
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.id_report = id_req
+        FormDocumentUpload.is_only_pdf = True
+        If is_view = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
