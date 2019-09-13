@@ -7,6 +7,7 @@
         id_comp = FormAccounting.GVCompany.GetFocusedRowCellValue("id_comp").ToString
         TxtCompNumber.Text = FormAccounting.GVCompany.GetFocusedRowCellValue("comp_number").ToString
         TxtCompName.Text = FormAccounting.GVCompany.GetFocusedRowCellValue("comp_name").ToString
+        TxtStoreDiscount.Text = FormAccounting.GVCompany.GetFocusedRowCellValue("comp_commission").ToString
         Dim id_ap As String = FormAccounting.GVCompany.GetFocusedRowCellValue("id_acc_ap").ToString
         If id_ap = "0" Then
             SLEAP.EditValue = Nothing
@@ -51,12 +52,31 @@
             SLEAR.EditValue = id_ar
             TxtARCode.Text = getAccNo(id_ar)
         End If
+
+        viewOtherDiscount()
     End Sub
 
     Private Function getAccNo(ByVal id_acc As String) As String
         Dim code As String = execute_query("SELECT acc_name FROM tb_a_acc WHERE id_acc='" + id_acc + "' ", 0, True, "", "", "", "")
         Return code
     End Function
+
+    Sub viewOtherDiscount()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT d.id_comp_comm_extra, d.comp_commission, 
+        d.id_acc_sales, sal.acc_name AS `acc_name_sales`, sal.acc_description AS `acc_description_sales`, 
+        d.id_acc_sales_return, sal_ret.acc_name AS `acc_name_sales_ret`, sal_ret.acc_description AS `acc_description_sales_ret`,
+        d.id_acc_ar, ar.acc_name AS `acc_name_ar`, ar.acc_description AS `acc_description_ar`
+        FROM tb_m_comp_comm_extra d
+        INNER JOIN tb_a_acc ar ON ar.id_acc = d.id_acc_ar
+        INNER JOIN tb_a_acc sal ON sal.id_acc = d.id_acc_sales
+        INNER JOIN tb_a_acc sal_ret ON sal_ret.id_acc = d.id_acc_sales_return
+        WHERE d.id_comp=" + id_comp + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCOtherDiscount.DataSource = data
+        GVOtherDiscount.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
 
 
     Sub viewCOA()
@@ -129,10 +149,13 @@
             id_acc_dp = SLEDP.EditValue.ToString
         End If
 
+        'discount
+        Dim comp_commission As String = decimalSQL(TxtStoreDiscount.EditValue.ToString)
+
         If id_comp = "-1" Then
             warningCustom("Store not found")
         Else
-            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + " WHERE id_comp='" + id_comp + "' "
+            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + ", comp_commission='" + comp_commission + "' WHERE id_comp='" + id_comp + "' "
             execute_non_query(query, True, "", "", "", "")
             FormAccounting.viewCompany()
             FormAccounting.GVCompany.FocusedRowHandle = find_row(FormAccounting.GVCompany, "id_comp", id_comp)
@@ -202,6 +225,33 @@
                 TxtDPCode.Text = SLEDP.Properties.View.GetFocusedRowCellValue("acc_name").ToString
             Catch ex As Exception
             End Try
+        End If
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormAccountingARAPOtherDiscount.id_comp = id_comp
+        FormAccountingARAPOtherDiscount.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If GVOtherDiscount.RowCount > 0 And GVOtherDiscount.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this discount? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id As String = GVOtherDiscount.GetFocusedRowCellValue("id_comp_comm_extra").ToString
+                Dim query As String = "DELETE FROM tb_m_comp_comm_extra WHERE id_comp_comm_extra='" + id + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewOtherDiscount()
+            End If
+        End If
+    End Sub
+
+    Private Sub GVOtherDiscount_DoubleClick(sender As Object, e As EventArgs) Handles GVOtherDiscount.DoubleClick
+        If GVOtherDiscount.RowCount > 0 And GVOtherDiscount.FocusedRowHandle >= 0 Then
+            FormAccountingARAPOtherDiscount.id_comp = id_comp
+            FormAccountingARAPOtherDiscount.id_comp_comm_extra = GVOtherDiscount.GetFocusedRowCellValue("id_comp_comm_extra").ToString
+            FormAccountingARAPOtherDiscount.ShowDialog()
         End If
     End Sub
 End Class
