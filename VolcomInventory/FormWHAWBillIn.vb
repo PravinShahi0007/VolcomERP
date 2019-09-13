@@ -348,12 +348,12 @@
                 id_awb = execute_query(query, 0, True, "", "", "", "")
                 'detail do
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "')"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If

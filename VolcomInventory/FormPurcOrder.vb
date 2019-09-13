@@ -429,7 +429,7 @@ GROUP BY pod.id_purc_order_det"
                     'budget remove
                     'opex
                     If Not q_opex = "" Then
-                        query = "INSERT INTO tb_b_expense_opex_trans(id_b_expense_opex,date_trans,value_expense,id_report,report_mark_type,note) VALUES " & q_opex
+                        query = "INSERT INTO tb_b_expense_opex_trans(id_b_expense_opex,date_trans,value,id_report,report_mark_type,note) VALUES " & q_opex
                         execute_non_query(query, True, "", "", "", "")
                     End If
                     'capex

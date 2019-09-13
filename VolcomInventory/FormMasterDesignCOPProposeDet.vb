@@ -177,7 +177,7 @@
             Dim query As String = "select cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type "
             query += " From tb_m_comp_contact cc "
             query += " inner join tb_m_comp c On c.id_comp=cc.id_comp"
-            query += " where cc.is_default=1 and c.id_comp_cat='1' AND c.comp_number='" + TEVendor.Text + "'"
+            query += " where cc.is_default=1 and (c.id_comp_cat='1' OR c.id_comp_cat='8') AND c.comp_number='" + TEVendor.Text + "'"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
@@ -316,7 +316,7 @@
 
     Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
         FormPopUpContact.id_pop_up = "88"
-        FormPopUpContact.id_cat = 1
+        FormPopUpContact.id_cat = "1,8"
         FormPopUpContact.ShowDialog()
     End Sub
 

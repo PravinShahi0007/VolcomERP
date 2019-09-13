@@ -74,6 +74,7 @@
                 infoCustom(ex.ToString)
             End Try
             BtnPrint.Visible = False
+            BAttachment.Visible = False
             BMark.Visible = False
         Else 'edit
             'load header
@@ -135,6 +136,7 @@ WHERE po.id_purc_order='" & id_po & "'"
 
             End If
             '
+            BAttachment.Visible = True
             If is_submit = "1" Then
                 BtnPrint.Visible = True
                 BSubmit.Visible = False
@@ -222,7 +224,7 @@ WHERE po.id_purc_order='" & id_po & "'"
             'check budget
             Dim q_budget As String = ""
             If GVPurcReq.GetRowCellValue(i, "id_expense_type").ToString = "1" Then 'opex
-                q_budget = "SELECT bdg.value_expense-IFNULL(SUM(bdgu.value_expense),0) AS remaining_budget FROM `tb_b_expense_opex` bdg 
+                q_budget = "SELECT bdg.value_expense-IFNULL(SUM(bdgu.value),0) AS remaining_budget FROM `tb_b_expense_opex` bdg 
 LEFT JOIN `tb_b_expense_opex_trans` bdgu ON bdgu.`id_b_expense_opex`=bdg.`id_b_expense_opex`
 WHERE bdg.`id_b_expense_opex`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense_opex").ToString & "'"
             Else
@@ -391,6 +393,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Else
                 'still draft
                 Dim is_check As String = "1"
+
                 If CEPercent.Checked = True Then
                     is_check = "1"
                 Else
@@ -442,7 +445,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
     Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
         FormPopUpContact.id_pop_up = "86"
-        FormPopUpContact.id_cat = "8"
+        FormPopUpContact.id_cat = "1,8"
         FormPopUpContact.is_must_active = "1"
         FormPopUpContact.ShowDialog()
     End Sub
@@ -566,7 +569,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 	                                    WHERE cc.`is_default`='1'
 	                                    GROUP BY cc.`id_comp`
                                     )cc ON cc.id_comp=c.`id_comp`
-                                    WHERE c.id_comp_cat='8'
+                                    WHERE (c.id_comp_cat='8' or c.id_comp_cat='1') AND c.is_active='1'
                                     AND c.comp_number='" & TEVendorCode.Text & "' "
             query += " AND c.id_vendor_type >= '" & max_vendor_type.ToString & "' "
 
@@ -729,26 +732,26 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Next
 
         If is_ok_budget Then
-            'generate number
-            Dim query As String = "CALL gen_number('" & id_po & "','" & rmt & "')"
-            execute_non_query(query, True, "", "", "", "")
-
             If SLEPurcType.EditValue.ToString = "1" Then
                 rmt = "139" 'opex
             Else
                 rmt = "202" 'capex
             End If
 
+            'generate number
+            Dim query As String = "CALL gen_number('" & id_po & "','" & rmt & "')"
+            execute_non_query(query, True, "", "", "", "")
+
             Dim query_trans As String = ""
             If rmt = "139" Then 'opex
-                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,date_trans,`value_expense`,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense_opex,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
+                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                            SELECT prd.id_b_expense_opex,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
                                             FROM `tb_purc_order_det` pod
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'"
             Else 'capex
-                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                            SELECT prd.id_b_expense,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
                                             FROM `tb_purc_order_det` pod
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'"
@@ -764,5 +767,21 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Else
             warningCustom("Please make sure all budget is Ok")
         End If
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim rmt As String = "-1"
+        If SLEPurcType.EditValue.ToString = "1" Then
+            rmt = "139" 'opex
+        Else
+            rmt = "202" 'capex
+        End If
+
+        FormDocumentUpload.id_report = id_po
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
