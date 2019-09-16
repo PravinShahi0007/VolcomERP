@@ -40,6 +40,13 @@ Public Class FormSalesPOSDet
     Public is_use_unique_code As String = "2"
     Dim print_title As String = ""
 
+    'accounting coa
+    Public cond_coa As Boolean = True
+    Public id_acc_sales As String = "-1"
+    Public id_acc_sales_return As String = "-1"
+    Public id_acc_ar As String = "-1"
+    Dim is_use_inv_mapping As String = get_setup_field("is_use_inv_mapping")
+
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -300,6 +307,20 @@ Public Class FormSalesPOSDet
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCode.DataSource = data
         GVCode.BestFitColumns()
+    End Sub
+
+    Sub viewCheckCOA(ByVal label As String)
+        If is_use_inv_mapping = "1" Then
+            If id_acc_ar = "0" Or id_acc_sales = "0" Or id_acc_sales_return = "0" Then
+                stopCustom("Can't process invoice to " + label + ". Please mapping COA AR/Sales for this store first.")
+                cond_coa = False
+                Try
+                    FormPopUpContact.Close()
+                Catch ex As Exception
+                End Try
+                Close()
+            End If
+        End If
     End Sub
 
     Sub viewStockStore()
@@ -1445,7 +1466,7 @@ Public Class FormSalesPOSDet
     End Sub
     Private Sub TxtCodeCompFrom_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code "
+            Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
             query += " From tb_m_comp_contact cc "
             query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
             query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
@@ -1485,7 +1506,16 @@ Public Class FormSalesPOSDet
                 End If
                 '
                 LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
-                '
+
+                'isi coa
+                If id_menu <> "3" And id_menu <> "4" Then
+                    id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                    id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
+                    id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+                    viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+                End If
+
+
                 viewDetail()
                 viewDetailCode()
                 check_but()
@@ -1506,6 +1536,10 @@ Public Class FormSalesPOSDet
             defaultReset()
         End If
     End Sub
+
+
+
+
     Function check_acc(ByVal id_cc As String)
         Dim query As String = ""
         query = "SELECT coa_map_d.id_coa_map_det,comp_coa.id_acc,acc.acc_name,acc.acc_description "
@@ -1736,7 +1770,7 @@ Public Class FormSalesPOSDet
 
     Private Sub TxtCodeBillTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeBillTo.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator,cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type "
+            Dim query As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator,cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
             query += " From tb_m_comp_contact cc "
             query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
             query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
@@ -1760,6 +1794,15 @@ Public Class FormSalesPOSDet
                 id_comp_contact_bill = data.Rows(0)("id_comp_contact").ToString
                 TxtNameBillTo.Text = data.Rows(0)("comp_name").ToString
                 TxtCodeBillTo.Text = data.Rows(0)("comp_number").ToString
+
+                'isi COA
+                If id_menu = "4" Then
+                    id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                    id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
+                    id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+                    viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+                End If
+
                 calculate()
                 check_do()
                 '
