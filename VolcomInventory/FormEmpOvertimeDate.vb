@@ -8,7 +8,9 @@
             Text = "Overtime Management Pick"
         End If
 
-        Dim min_date As DateTime = Now.AddDays(1)
+        Dim ot_min_days As Decimal = get_opt_emp_field("ot_min_days")
+
+        Dim min_date As DateTime = Now.AddDays(ot_min_days)
 
         'permission
         If is_hrd = "-1" Then
@@ -73,15 +75,21 @@
     End Sub
 
     Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
-        FormEmpOvertimePick.is_hrd = is_hrd
-        FormEmpOvertimePick.overtime_date = DEOvertimeDate.EditValue
-        FormEmpOvertimePick.overtime_start_time = TEOvertimeStart.EditValue
-        FormEmpOvertimePick.overtime_end_time = TEOvertimeEnd.EditValue
-        FormEmpOvertimePick.overtime_break = TEOvertimeBreak.EditValue
+        Dim ot_min_staff As Decimal = get_opt_emp_field("ot_min_staff")
 
-        FormEmpOvertimePick.ShowDialog()
+        If TETotalHours.EditValue < ot_min_staff Then
+            errorCustom("Overtime at least " + ot_min_staff.ToString + " Hours")
+        Else
+            FormEmpOvertimePick.is_hrd = is_hrd
+            FormEmpOvertimePick.overtime_date = DEOvertimeDate.EditValue
+            FormEmpOvertimePick.overtime_start_time = TEOvertimeStart.EditValue
+            FormEmpOvertimePick.overtime_end_time = TEOvertimeEnd.EditValue
+            FormEmpOvertimePick.overtime_break = TEOvertimeBreak.EditValue
 
-        Close()
+            FormEmpOvertimePick.ShowDialog()
+
+            Close()
+        End If
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click

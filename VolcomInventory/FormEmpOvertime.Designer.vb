@@ -22,7 +22,6 @@ Partial Class FormEmpOvertime
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpOvertime))
         Me.GCOvertime = New DevExpress.XtraGrid.GridControl()
         Me.GVOvertime = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -98,6 +97,10 @@ Partial Class FormEmpOvertime
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.RIMEMultiline = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +128,7 @@ Partial Class FormEmpOvertime
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCOvertime
@@ -133,6 +137,7 @@ Partial Class FormEmpOvertime
         Me.GCOvertime.Location = New System.Drawing.Point(0, 0)
         Me.GCOvertime.MainView = Me.GVOvertime
         Me.GCOvertime.Name = "GCOvertime"
+        Me.GCOvertime.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMEMultiline})
         Me.GCOvertime.Size = New System.Drawing.Size(998, 588)
         Me.GCOvertime.TabIndex = 0
         Me.GCOvertime.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOvertime})
@@ -140,29 +145,16 @@ Partial Class FormEmpOvertime
         'GVOvertime
         '
         Me.GVOvertime.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand3})
-        Me.GVOvertime.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn9, Me.GridColumn40, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GVOvertime.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.BandedGridColumn11, Me.BandedGridColumn10, Me.GridColumn9, Me.GridColumn40, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
         Me.GVOvertime.GridControl = Me.GCOvertime
         Me.GVOvertime.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Nothing, "{0:N1}")})
         Me.GVOvertime.Name = "GVOvertime"
         Me.GVOvertime.OptionsBehavior.Editable = False
         Me.GVOvertime.OptionsFind.AlwaysVisible = True
         Me.GVOvertime.OptionsView.ColumnAutoWidth = False
+        Me.GVOvertime.OptionsView.RowAutoHeight = True
         Me.GVOvertime.OptionsView.ShowFooter = True
         Me.GVOvertime.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand3
-        '
-        Me.GridBand3.Columns.Add(Me.GridColumn1)
-        Me.GridBand3.Columns.Add(Me.GridColumn2)
-        Me.GridBand3.Columns.Add(Me.GridColumn3)
-        Me.GridBand3.Columns.Add(Me.GridColumn9)
-        Me.GridBand3.Columns.Add(Me.GridColumn40)
-        Me.GridBand3.Columns.Add(Me.GridColumn10)
-        Me.GridBand3.Columns.Add(Me.GridColumn11)
-        Me.GridBand3.Columns.Add(Me.GridColumn12)
-        Me.GridBand3.Name = "GridBand3"
-        Me.GridBand3.VisibleIndex = 0
-        Me.GridBand3.Width = 479
         '
         'GridColumn1
         '
@@ -814,6 +806,47 @@ Partial Class FormEmpOvertime
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
         '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn10.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumn10.Caption = "Date"
+        Me.BandedGridColumn10.ColumnEdit = Me.RIMEMultiline
+        Me.BandedGridColumn10.FieldName = "ot_date"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Visible = True
+        Me.BandedGridColumn10.Width = 33
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn11.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumn11.Caption = "Departement"
+        Me.BandedGridColumn11.ColumnEdit = Me.RIMEMultiline
+        Me.BandedGridColumn11.FieldName = "departement"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.Visible = True
+        '
+        'GridBand3
+        '
+        Me.GridBand3.Columns.Add(Me.GridColumn1)
+        Me.GridBand3.Columns.Add(Me.GridColumn2)
+        Me.GridBand3.Columns.Add(Me.GridColumn3)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand3.Columns.Add(Me.GridColumn9)
+        Me.GridBand3.Columns.Add(Me.GridColumn40)
+        Me.GridBand3.Columns.Add(Me.GridColumn10)
+        Me.GridBand3.Columns.Add(Me.GridColumn11)
+        Me.GridBand3.Columns.Add(Me.GridColumn12)
+        Me.GridBand3.Name = "GridBand3"
+        Me.GridBand3.VisibleIndex = 0
+        Me.GridBand3.Width = 587
+        '
+        'RIMEMultiline
+        '
+        Me.RIMEMultiline.Name = "RIMEMultiline"
+        '
         'FormEmpOvertime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -852,6 +885,7 @@ Partial Class FormEmpOvertime
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -924,7 +958,6 @@ Partial Class FormEmpOvertime
     Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GVOvertime As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -934,4 +967,8 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SBVerification As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RIMEMultiline As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

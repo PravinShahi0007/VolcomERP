@@ -4,7 +4,6 @@
     Public overtime_start_time As DateTime = New DateTime(Now.Year, Now.Month, Now.Day, 8, 30, 0)
     Public overtime_end_time As DateTime = New DateTime(Now.Year, Now.Month, Now.Day, 17, 30, 0)
     Public overtime_break As Decimal = 0.0
-    Public id_payroll As String = "-1"
 
     Private Sub FormEmpOvertimePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -19,13 +18,23 @@
         TEOvertimeEnd.EditValue = overtime_end_time
         TEOvertimeBreak.EditValue = overtime_break
 
-        Dim whereHrd As String = If(is_hrd = "-1", "AND e.id_departement = " + id_departement_user + "", "")
+        Dim include_all_dept As String = execute_query("SELECT include_all_dept FROM tb_lookup_ot_type WHERE id_ot_type = " + FormEmpOvertimeDet.LUEOvertimeType.EditValue.ToString, 0, True, "", "", "", "")
+
+        Dim whereDept As String = ""
+
+        If is_hrd = "-1" Then
+            whereDept = "AND e.id_departement = " + id_departement_user
+        End If
+
+        If include_all_dept = "1" Then
+            whereDept = ""
+        End If
 
         Dim whereNotInclude As String = ""
 
         For i = 0 To FormEmpOvertimeDet.GVEmployee.RowCount - 1
             If FormEmpOvertimeDet.GVEmployee.IsValidRowHandle(i) Then
-                Dim date_1 As String = Date.Parse(FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "date").ToString).ToString("yyyy-MM-dd")
+                Dim date_1 As String = Date.Parse(FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "ot_date").ToString).ToString("yyyy-MM-dd")
                 Dim date_2 As String = Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("yyyy-MM-dd")
 
                 If date_2 = date_1 Then
@@ -39,7 +48,7 @@
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, 'no' AS is_checked, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_active, la.employee_active, e.id_employee_status, st.employee_status
+            SELECT 'no' AS is_checked, e.id_employee, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + Date.Parse(overtime_date.ToString).ToString("yyyy-MM-dd") + "' AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off
             FROM tb_m_employee AS e
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_m_departement_sub AS ds ON IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) = ds.id_departement_sub
@@ -49,7 +58,8 @@
 	            SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
 	            FROM tb_m_employee
             ) AS salary ON e.id_employee = salary.id_employee
-            WHERE 1 " + whereHrd + " " + whereNotInclude + "
+            LEFT JOIN tb_emp_schedule AS sch ON sch.id_employee = e.id_employee AND sch.date = '" + Date.Parse(overtime_date.ToString).ToString("yyyy-MM-dd") + "'
+            WHERE 1 " + whereDept + " " + whereNotInclude + "
             ORDER BY d.departement ASC, e.id_employee_level ASC, e.employee_code ASC
         "
 
@@ -57,7 +67,7 @@
 
         GCList.DataSource = data
 
-        ' find Active by id
+        'find Active by id
         Dim active As String = ""
 
         For i = 1 To data.Rows.Count - 1
@@ -69,6 +79,13 @@
         Next
 
         GVList.ActiveFilter.Add(GVList.Columns("employee_active"), New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[employee_active] = '" + active + "'"))
+
+        'filter employee get overtime
+        Dim ot_min_spv As Decimal = get_opt_emp_field("ot_min_spv")
+
+        If TETotalHours.EditValue < ot_min_spv Then
+            GVList.ActiveFilter.Add(GVList.Columns("to_salary"), New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[to_salary] = '1'"))
+        End If
 
         GVList.BestFitColumns()
     End Sub
