@@ -62,6 +62,7 @@ Partial Class FormAccounting
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSalesAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSalesReturnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_commission = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewCompany = New DevExpress.XtraEditors.SimpleButton()
@@ -82,6 +83,7 @@ Partial Class FormAccounting
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CEOtherDiscount = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -109,6 +111,7 @@ Partial Class FormAccounting
         CType(Me.TxtRecDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRecAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BalanceMenu.SuspendLayout()
+        CType(Me.CEOtherDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCGeneral
@@ -368,10 +371,11 @@ Partial Class FormAccounting
         '
         'GVCompany
         '
-        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount})
+        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount, Me.GridColumncomp_commission})
         Me.GVCompany.GridControl = Me.GCCompany
         Me.GVCompany.Name = "GVCompany"
         Me.GVCompany.OptionsBehavior.Editable = False
+        Me.GVCompany.OptionsFind.AlwaysVisible = True
         Me.GVCompany.OptionsView.ShowGroupPanel = False
         '
         'GridColumn4
@@ -414,15 +418,15 @@ Partial Class FormAccounting
         Me.GridColumn7.FieldName = "is_active"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.VisibleIndex = 9
         Me.GridColumn7.Width = 52
         '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.ValueChecked = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.RepositoryItemCheckEdit2.ValueUnchecked = New Decimal(New Integer() {2, 0, 0, 0})
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
         '
         'Category
         '
@@ -440,7 +444,7 @@ Partial Class FormAccounting
         Me.GridColumn8.FieldName = "acc_ap"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 7
         '
         'RepositoryItemTextEdit1
         '
@@ -455,7 +459,7 @@ Partial Class FormAccounting
         Me.GridColumn10.FieldName = "acc_dp"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
+        Me.GridColumn10.VisibleIndex = 8
         '
         'GridColumn9
         '
@@ -464,7 +468,7 @@ Partial Class FormAccounting
         Me.GridColumn9.FieldName = "acc_ar"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.VisibleIndex = 4
         '
         'GridColumnSalesAccount
         '
@@ -473,7 +477,7 @@ Partial Class FormAccounting
         Me.GridColumnSalesAccount.FieldName = "acc_sales"
         Me.GridColumnSalesAccount.Name = "GridColumnSalesAccount"
         Me.GridColumnSalesAccount.Visible = True
-        Me.GridColumnSalesAccount.VisibleIndex = 3
+        Me.GridColumnSalesAccount.VisibleIndex = 5
         '
         'GridColumnSalesReturnAccount
         '
@@ -482,7 +486,17 @@ Partial Class FormAccounting
         Me.GridColumnSalesReturnAccount.FieldName = "acc_sales_return"
         Me.GridColumnSalesReturnAccount.Name = "GridColumnSalesReturnAccount"
         Me.GridColumnSalesReturnAccount.Visible = True
-        Me.GridColumnSalesReturnAccount.VisibleIndex = 4
+        Me.GridColumnSalesReturnAccount.VisibleIndex = 6
+        '
+        'GridColumncomp_commission
+        '
+        Me.GridColumncomp_commission.Caption = "Store Discount (%)"
+        Me.GridColumncomp_commission.DisplayFormat.FormatString = "N2"
+        Me.GridColumncomp_commission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncomp_commission.FieldName = "comp_commission"
+        Me.GridColumncomp_commission.Name = "GridColumncomp_commission"
+        Me.GridColumncomp_commission.Visible = True
+        Me.GridColumncomp_commission.VisibleIndex = 3
         '
         'RepositoryItemCheckEdit3
         '
@@ -493,6 +507,7 @@ Partial Class FormAccounting
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CEOtherDiscount)
         Me.PanelControl1.Controls.Add(Me.BtnViewCompany)
         Me.PanelControl1.Controls.Add(Me.LECompanyCategory)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -504,7 +519,7 @@ Partial Class FormAccounting
         '
         'BtnViewCompany
         '
-        Me.BtnViewCompany.Location = New System.Drawing.Point(251, 11)
+        Me.BtnViewCompany.Location = New System.Drawing.Point(415, 11)
         Me.BtnViewCompany.Name = "BtnViewCompany"
         Me.BtnViewCompany.Size = New System.Drawing.Size(75, 23)
         Me.BtnViewCompany.TabIndex = 6
@@ -674,13 +689,21 @@ Partial Class FormAccounting
         '
         Me.BalanceMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewTransaction})
         Me.BalanceMenu.Name = "ContextMenuStripYM"
-        Me.BalanceMenu.Size = New System.Drawing.Size(136, 26)
+        Me.BalanceMenu.Size = New System.Drawing.Size(135, 26)
         '
         'SMViewTransaction
         '
         Me.SMViewTransaction.Name = "SMViewTransaction"
-        Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
+        Me.SMViewTransaction.Size = New System.Drawing.Size(134, 22)
         Me.SMViewTransaction.Text = "Transaction"
+        '
+        'CEOtherDiscount
+        '
+        Me.CEOtherDiscount.Location = New System.Drawing.Point(253, 13)
+        Me.CEOtherDiscount.Name = "CEOtherDiscount"
+        Me.CEOtherDiscount.Properties.Caption = "Show Other Discount (Store)"
+        Me.CEOtherDiscount.Size = New System.Drawing.Size(157, 19)
+        Me.CEOtherDiscount.TabIndex = 7
         '
         'FormAccounting
         '
@@ -724,6 +747,7 @@ Partial Class FormAccounting
         CType(Me.TxtRecDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRecAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BalanceMenu.ResumeLayout(False)
+        CType(Me.CEOtherDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -788,4 +812,6 @@ Partial Class FormAccounting
     Friend WithEvents TxtRecDesc As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtRecAccount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumncomp_commission As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEOtherDiscount As DevExpress.XtraEditors.CheckEdit
 End Class

@@ -146,7 +146,8 @@
             where_dep = " WHERE dep.id_departement='" & SLEDepartement.EditValue.ToString() & "'"
         End If
         '
-        Dim query As String = "SELECT pr.`id_purc_req`,dep.`departement`,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
+        Dim query As String = "SELECT pr.`id_purc_req`,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
+                                INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=pr.id_expense_type
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
                                 INNER JOIN tb_m_user usrc ON usrc.`id_user`=pr.`id_user_created`
                                 INNER JOIN tb_m_employee empc ON empc.`id_employee`=usrc.`id_employee`
@@ -155,6 +156,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
+        check_menu()
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
