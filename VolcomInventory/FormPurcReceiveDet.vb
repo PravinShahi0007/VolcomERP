@@ -36,6 +36,24 @@
                 cond_coa = False
             End If
 
+            'cek coa biaya
+            Dim cond_coa_biaya As Boolean = True
+            Dim qcoa_biaya As String = "SELECT itm.`id_item_cat`,cat.`item_cat`,coa.`id_item_coa`,dep.`departement` FROM tb_purc_order_det pod
+INNER JOIN tb_purc_req_det rd ON rd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_purc_req req ON req.`id_purc_req`=rd.`id_purc_req`
+INNER JOIN tb_item itm ON rd.`id_item`=itm.`id_item`
+INNER JOIN `tb_item_cat` cat ON cat.`id_item_cat` = itm.`id_item_cat`
+INNER JOIN tb_m_departement dep ON dep.`id_departement`=req.`id_departement`
+LEFT JOIN tb_item_coa coa ON coa.`id_item_cat`=itm.`id_item_cat` AND req.`id_departement`=coa.`id_departement`
+WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
+            Dim dcoa_biaya As DataTable = execute_query(qcoa_biaya, -1, True, "", "", "", "")
+            If dcoa_biaya.Rows.Count > 0 Then
+                For i = 0 To dcoa_biaya.Rows.Count - 1
+                    err_coa += "- COA : Mapping Category " & dcoa_biaya.Rows(i)("item_cat").ToString & " for Departement " & dcoa_biaya.Rows(i)("departement").ToString & System.Environment.NewLine
+                Next
+                cond_coa_biaya = False
+            End If
+
             'cek coa vendor
             Dim cond_coa_vendor As Boolean = True
             Dim qcoa_vendor As String = "SELECT c.id_comp, ap.id_acc 
@@ -49,7 +67,7 @@
                 cond_coa_vendor = False
             End If
 
-            If Not cond_coa Or Not cond_coa_vendor Then
+            If Not cond_coa Or Not cond_coa_vendor Or Not cond_coa_biaya Then
                 warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
                 Close()
             End If
