@@ -144,8 +144,9 @@ Public Class FormSalesPOSDet
             GCItemList.DataSource = Nothing
 
             'discount disable
-            'butuh diedit untuk volcom canggu, barang EOS jadi 35% (by septian)
-            'SPDiscount.Enabled = False
+            If is_use_inv_mapping = "1" Then
+                SPDiscount.Enabled = False
+            End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
@@ -368,6 +369,17 @@ Public Class FormSalesPOSDet
             do_q = "'" + id_do + "'"
         End If
 
+        'cek coa
+        If id_acc_ar = "0" Then
+            id_acc_ar = "NULL"
+        End If
+        If id_acc_sales = "0" Then
+            id_acc_sales = "NULL"
+        End If
+        If id_acc_sales_return = "0" Then
+            id_acc_sales_return = "NULL"
+        End If
+
         'cek bill
         Dim cond_bill_to As Boolean = True
         If id_menu = "4" And id_comp_contact_bill = "-1" Then
@@ -413,6 +425,8 @@ Public Class FormSalesPOSDet
             stopCustom("Bill to can't blank")
         ElseIf cond_no_stock Then
             stopCustom("Some items have problems. Please see note and check these items.")
+        ElseIf id_acc_ar = "-1" Or id_acc_sales = "-1" Or id_acc_sales_return = "-1" Then
+            stopCustom("Please mapping COA AR/Sales for this store first.")
         Else
             Dim sales_pos_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
@@ -483,8 +497,8 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -619,7 +633,15 @@ Public Class FormSalesPOSDet
                     'draft journal
                     Dim acc As New ClassAccounting()
                     If id_menu = "1" Or id_menu = "2" Or id_menu = "4" Or id_menu = "5" Then
-                        acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
+                        Try
+                            If is_use_inv_mapping = "1" Then
+                                acc.generateJournalSalesDraftWithMapping(id_sales_pos, report_mark_type)
+                            Else
+                                acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
+                            End If
+                        Catch ex As Exception
+                            stopCustom("Automatic journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
+                        End Try
                     End If
 
                     'auto submit
@@ -2163,6 +2185,13 @@ Public Class FormSalesPOSDet
         Cursor = Cursors.WaitCursor
         load_data_pos()
         calculate()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSelectDiscount_Click(sender As Object, e As EventArgs) Handles BtnSelectDiscount.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesPOSDiscount.id_comp = id_comp
+        FormSalesPOSDiscount.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

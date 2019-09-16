@@ -4251,6 +4251,12 @@
     <Compile Include="FormSalesPOSDetCheckCollectionCode.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSDiscount.Designer.vb">
+      <DependentUpon>FormSalesPOSDiscount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSDiscount.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </Compile>
@@ -9450,6 +9456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSDetCheckCollectionCode.resx">
       <DependentUpon>FormSalesPOSDetCheckCollectionCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSDiscount.resx">
+      <DependentUpon>FormSalesPOSDiscount.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
