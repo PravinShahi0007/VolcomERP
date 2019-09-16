@@ -36,9 +36,12 @@
             DERequirementDate.EditValue = Now
             '
             GVItemList.OptionsBehavior.Editable = True
+            BtnAttachment.Visible = False
             '
         Else 'edit
+
             load_item_pil()
+            BtnAttachment.Visible = True
             SLEItemType.Enabled = False
             BSetShipping.Visible = False
             DERequirementDate.Properties.ReadOnly = True
@@ -134,34 +137,32 @@
     Sub load_item_pil()
         Dim query As String = ""
         query = "SELECT it.id_item,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
-                FROM tb_item it
-                INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
-                INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
-                LEFT JOIN
-                (
-	                SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense`,itc.`id_item_cat` FROM tb_item_coa itc
-	                INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND itc.`id_departement`='" & id_departement & "'
-	                LEFT JOIN 
-	                (
-		                SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val
-		                FROM `tb_purc_req_det` reqd
-		                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND NOT ISNULL(reqd.`id_b_expense`) AND req.`id_report_status`!=5 AND is_cancel!=1 
-		                GROUP BY reqd.id_b_expense
-	                ) used ON used.id_b_expense=ex.`id_b_expense`
-                )used ON used.id_item_cat=cat.`id_item_cat`
-                LEFT JOIN
-                (
-	                SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense_opex`,ex.`id_item_cat` FROM tb_b_expense_opex ex 
-	                LEFT JOIN 
-	                (
-		                SELECT reqd.id_b_expense_opex,SUM(`qty`*`value`) AS val
-		                FROM `tb_purc_req_det` reqd
-		                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND NOT ISNULL(reqd.`id_b_expense_opex`) AND req.`id_report_status`!=5 AND is_cancel!=1
-		                GROUP BY reqd.id_b_expense_opex
-	                ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
-                )used_opex ON used_opex.id_item_cat=cat.`id_item_cat`
-                WHERE it.is_active='1' AND cat.id_expense_type='" & SLEItemType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
-
+                    FROM tb_item it
+                    INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
+                    INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+                    LEFT JOIN
+                    (
+	                    SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense`,ex.`id_item_cat_main` 
+	                    FROM tb_b_expense ex 
+	                    LEFT JOIN 
+	                    (
+		                    SELECT trx.id_b_expense,SUM(`value`) AS val
+		                    FROM `tb_b_expense_trans` trx
+		                    GROUP BY trx.id_b_expense
+	                    ) used ON used.id_b_expense=ex.`id_b_expense` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
+                    )used ON used.id_item_cat_main=cat.`id_item_cat_main`
+                    LEFT JOIN
+                    (
+	                    SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense_opex`,ex.`id_item_cat_main` 
+	                    FROM tb_b_expense_opex ex 
+	                    LEFT JOIN 
+	                    (
+		                    SELECT trx.id_b_expense_opex,SUM(`value`) AS val
+		                    FROM `tb_b_expense_opex_trans` trx
+		                    GROUP BY trx.id_b_expense_opex
+	                    ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+                    )used_opex ON used_opex.id_item_cat_main=cat.`id_item_cat_main`
+                    WHERE it.is_active='1' AND cat.id_expense_type='" & SLEItemType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
 
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
     End Sub
@@ -248,17 +249,23 @@
         'validate
         Dim is_exceed_budget As Boolean = False
         Dim is_no_shipping As Boolean = False
+        Dim qty_is_0 As Boolean = False
 
         If GVItemList.RowCount > 0 Then
             'check 
             For i As Integer = 0 To GVItemList.RowCount - 1
                 'exceed budget
-                If GVItemList.GetRowCellValue(i, "budget") <= 0 Then
+                If GVItemList.GetRowCellValue(i, "budget").ToString = "" OrElse GVItemList.GetRowCellValue(i, "budget") <= 0 Then
                     is_exceed_budget = True
                 End If
                 'no shipping destination
                 If GVItemList.GetRowCellValue(i, "ship_destination").ToString = "" Then
                     is_no_shipping = True
+                End If
+                'no qty
+                If GVItemList.GetRowCellValue(i, "qty").ToString = "" OrElse GVItemList.GetRowCellValue(i, "qty") <= 0 Then
+                    qty_is_0 = True
+                    Exit For
                 End If
             Next
             '
@@ -266,6 +273,8 @@
                 stopCustom("Please make sure you have budget.")
             ElseIf is_no_shipping = True Then
                 stopCustom("Please make sure fill the shipping destination.")
+            ElseIf qty_is_0 = True Then
+                stopCustom("Please make sure Qty is not 0.")
             Else
                 If id_req = "-1" Then 'new
                     Dim query As String = "INSERT INTO tb_purc_req(id_departement,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date,id_item_type) VALUES('" & id_departement & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEItemType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
@@ -273,21 +282,6 @@
                     '
                     Dim query_det As String = ""
                     For i As Integer = 0 To GVItemList.RowCount - 1
-                        ''check budget again
-                        'Dim query_check As String = "SELECT (ex.value_expense-IFNULL(used_ex.val,0)) AS remaining FROM tb_b_expense ex
-                        '                             LEFT JOIN
-                        '                             (
-                        '                             SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val
-                        '                             FROM `tb_purc_req_det` reqd
-                        '                             INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND req.`id_report_status`!=5 AND is_cancel!=1
-                        '                             WHERE reqd.`id_b_expense` = '" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "'
-                        '                             GROUP BY reqd.id_b_expense
-                        '                             )used_ex ON used_ex.id_b_expense=ex.`id_b_expense`
-                        '                             WHERE ex.id_b_expense='" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "' AND ex.is_active='1'"
-                        'Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-                        'If Not data_check.Rows(0)("remaining") - (GVItemList.GetRowCellValue(i, "qty") * GVItemList.GetRowCellValue(i, "value")) < 0 Then
-
-                        'End If
                         If Not query_det = "" Then
                             query_det += ","
                         End If
@@ -298,13 +292,6 @@
                                                 VALUES" & query_det
                     '
                     execute_non_query(query_det, True, "", "", "", "")
-
-                    'insert to expense trans
-                    'Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
-                    '                             SELECT id_b_expense,NOW(),`value`,id_purc_req AS id_report,'137' AS report_mark_type,'Purchase Request'
-                    '                             FROM tb_purc_req_det prd
-                    '                             WHERE prd.`id_purc_req`='" & id_req & "'"
-                    'execute_non_query(query_trans, True, "", "", "", "")
 
                     'generate number
                     If SLEPurcType.EditValue.ToString = "1" Then
@@ -343,33 +330,10 @@
             Catch ex As Exception
             End Try
         End If
-        'If e.Column.FieldName = "budget_after" Then
-        '    Try
-        '        If calculate_in_proc = False Then
-        '            update_remaining_budget()
-        '        End If
-        '    Catch ex As Exception
-        '        calculate_in_proc = False
-        '    End Try
-        'End If
     End Sub
-
-    'Sub update_remaining_budget()
-    '    calculate_in_proc = True
-    '    For i As Integer = 0 To GVItemList.RowCount - 1
-    '        'check per item
-    '        For j As Integer = i + 1 To GVItemList.RowCount - 1
-    '            If GVItemList.GetRowCellValue(i, "id_b_expense").ToString = GVItemList.GetRowCellValue(j, "id_b_expense").ToString Then
-    '                GVItemList.SetRowCellValue(j, "budget_remaining", GVItemList.GetRowCellValue(i, "budget_after"))
-    '            End If
-    '        Next
-    '    Next
-    '    calculate_in_proc = False
-    'End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
         GVItemList.DeleteSelectedRows()
-        'update_remaining_budget()
         check_but()
     End Sub
 
@@ -407,9 +371,10 @@
 
         'Grid Detail
         ReportStyleGridview(Report.GVItemList)
+        Report.GVItemList.BestFitColumns()
 
         'Parse val
-        Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
+        Dim query As String = "SELECT req.`purc_req_number`,DATE_FORMAT(req.requirement_date,'%d %M %Y') AS requirement_date,req.`note`,emp.`employee_name` as req_by,DATE_FORMAT(req.`date_created`,'%d %M %Y') AS date_created,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
 INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
@@ -520,5 +485,25 @@ GROUP BY req.`id_purc_req`"
             '
             is_reload = "2"
         End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim rmt As String = "1"
+        If SLEPurcType.EditValue.ToString = "1" Then
+            rmt = "137"
+        Else
+            rmt = "201"
+        End If
+
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.id_report = id_req
+        FormDocumentUpload.is_only_pdf = True
+        If is_view = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
