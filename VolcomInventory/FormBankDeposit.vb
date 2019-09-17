@@ -26,7 +26,8 @@
         load_vendor()
         load_status_payment()
 
-        load_vendor_po()
+        'invoice list
+        load_group_store()
     End Sub
 
     Sub load_status_payment()
@@ -50,12 +51,38 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         viewSearchLookupQuery(SLEStoreDeposit, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
+    Sub load_group_store()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS id_comp_group, 'All' AS comp_group, 'All Group' AS description 
+        UNION
+        SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg "
+        viewSearchLookupQuery(SLEStoreGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub load_vendor_po()
-        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Cursor = Cursors.WaitCursor
+        Dim id_group As String = "-1"
+        Try
+            id_group = SLEStoreGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        Dim cond_group As String = ""
+        If id_group <> "0" Then
+            cond_group = "AND c.id_comp_group='" + id_group + "' "
+        End If
+
+
+        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name
+        UNION
+        SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='6'"
+                                WHERE c.id_comp_cat='6' " + cond_group + " "
         viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp_contact", "comp_name", "id_comp_contact")
+        Cursor = Cursors.Default
     End Sub
 
     Sub load_deposit()
@@ -168,5 +195,9 @@ WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
             FormBankDepositDet.id_deposit = GVList.GetFocusedRowCellValue("id_rec_payment")
             FormBankDepositDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        load_vendor_po()
     End Sub
 End Class

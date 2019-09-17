@@ -78,6 +78,8 @@ WHERE cc.id_comp_contact='" & FormBankDeposit.SLEStoreInvoice.EditValue & "'"
                 End If
                 '
                 load_det()
+                GridColumnAlreadyReceived.Visible = False
+                GridColumnBBaldue.Visible = False
                 GridColumnReceive.OptionsColumn.AllowEdit = False
                 GridColumnNote.OptionsColumn.AllowEdit = False
                 calculate_amount()

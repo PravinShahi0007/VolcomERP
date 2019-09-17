@@ -69,11 +69,13 @@ Partial Class FormBankDepositDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAlreadyReceived = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReceive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,7 +180,7 @@ Partial Class FormBankDepositDet
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.Label1.Location = New System.Drawing.Point(6, 14)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(149, 21)
+        Me.Label1.Size = New System.Drawing.Size(146, 21)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Receive Payment To"
         '
@@ -321,8 +323,8 @@ Partial Class FormBankDepositDet
         '
         'PanelControl7
         '
-        Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
+        Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BMark)
         Me.PanelControl7.Controls.Add(Me.BtnCancel)
         Me.PanelControl7.Controls.Add(Me.BtnSave)
@@ -336,7 +338,7 @@ Partial Class FormBankDepositDet
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(627, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(702, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
         Me.BtnViewJournal.TabIndex = 20
@@ -348,7 +350,7 @@ Partial Class FormBankDepositDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(732, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(627, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 17
@@ -550,7 +552,7 @@ Partial Class FormBankDepositDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumn2, Me.GridColumnReceive, Me.GridColumnBBaldue})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumnAlreadyReceived, Me.GridColumnReceive, Me.GridColumnBBaldue, Me.GridColumnno, Me.GridColumnCOA})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -566,12 +568,13 @@ Partial Class FormBankDepositDet
         '
         'GridColumnNumber
         '
-        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.Caption = "Reference"
         Me.GridColumnNumber.FieldName = "number"
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 1
+        Me.GridColumnNumber.VisibleIndex = 2
+        Me.GridColumnNumber.Width = 258
         '
         'GridColumn1
         '
@@ -579,8 +582,7 @@ Partial Class FormBankDepositDet
         Me.GridColumn1.FieldName = "report_mark_type_name"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 258
         '
         'GridColumnNote
         '
@@ -588,23 +590,25 @@ Partial Class FormBankDepositDet
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 5
+        Me.GridColumnNote.VisibleIndex = 6
+        Me.GridColumnNote.Width = 262
         '
-        'GridColumn2
+        'GridColumnAlreadyReceived
         '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "Already received"
-        Me.GridColumn2.DisplayFormat.FormatString = "N2"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "total_rec"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumnAlreadyReceived.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAlreadyReceived.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAlreadyReceived.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAlreadyReceived.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAlreadyReceived.Caption = "Already received"
+        Me.GridColumnAlreadyReceived.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAlreadyReceived.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAlreadyReceived.FieldName = "total_rec"
+        Me.GridColumnAlreadyReceived.Name = "GridColumnAlreadyReceived"
+        Me.GridColumnAlreadyReceived.OptionsColumn.AllowEdit = False
+        Me.GridColumnAlreadyReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
+        Me.GridColumnAlreadyReceived.Visible = True
+        Me.GridColumnAlreadyReceived.VisibleIndex = 3
+        Me.GridColumnAlreadyReceived.Width = 258
         '
         'GridColumnReceive
         '
@@ -620,7 +624,8 @@ Partial Class FormBankDepositDet
         Me.GridColumnReceive.Name = "GridColumnReceive"
         Me.GridColumnReceive.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnReceive.Visible = True
-        Me.GridColumnReceive.VisibleIndex = 4
+        Me.GridColumnReceive.VisibleIndex = 5
+        Me.GridColumnReceive.Width = 258
         '
         'RITEDecimal
         '
@@ -643,7 +648,8 @@ Partial Class FormBankDepositDet
         Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         Me.GridColumnBBaldue.Visible = True
-        Me.GridColumnBBaldue.VisibleIndex = 3
+        Me.GridColumnBBaldue.VisibleIndex = 4
+        Me.GridColumnBBaldue.Width = 258
         '
         'RICECheckReceive
         '
@@ -651,6 +657,23 @@ Partial Class FormBankDepositDet
         Me.RICECheckReceive.Name = "RICECheckReceive"
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
+        Me.GridColumnno.Width = 80
+        '
+        'GridColumnCOA
+        '
+        Me.GridColumnCOA.Caption = "COA"
+        Me.GridColumnCOA.FieldName = "coa"
+        Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.Visible = True
+        Me.GridColumnCOA.VisibleIndex = 1
         '
         'FormBankDepositDet
         '
@@ -750,7 +773,7 @@ Partial Class FormBankDepositDet
     Friend WithEvents GridColumnIdRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAlreadyReceived As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReceive As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITEDecimal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnBBaldue As DevExpress.XtraGrid.Columns.GridColumn
@@ -764,4 +787,6 @@ Partial Class FormBankDepositDet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOA As DevExpress.XtraGrid.Columns.GridColumn
 End Class
