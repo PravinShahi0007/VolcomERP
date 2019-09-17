@@ -65,7 +65,11 @@
         execute_non_query(query, True, "", "", "", "")
 
         'posting journal
-        postingJournal(id_report_param, report_mark_type_param)
+        Dim query_cek As String = "SELECT * FROM tb_a_acc_trans_draft d WHERE d.report_mark_type=" + report_mark_type_param + " AND d.id_report=" + id_report_param + " "
+        Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+        If data_cek.Rows.Count > 0 Then
+            postingJournal(id_report_param, report_mark_type_param)
+        End If
     End Sub
 
     Public Sub postingJournal(ByVal id_report_param As String, ByVal report_mark_type_param As String)
