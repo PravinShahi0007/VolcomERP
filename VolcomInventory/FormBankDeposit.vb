@@ -108,6 +108,10 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
     Sub load_invoice()
         Dim where_string As String = ""
 
+        If Not SLEStoreGroup.EditValue.ToString = "0" Then
+            where_string += " AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'"
+        End If
+
         If Not SLEStoreInvoice.EditValue.ToString = "0" Then
             where_string += " AND sp.id_store_contact_from='" & SLEStoreInvoice.EditValue.ToString & "'"
         End If
