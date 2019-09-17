@@ -22,17 +22,10 @@
                 BtnPrint.Visible = False
                 BMark.Visible = False
                 BtnSave.Visible = True
-                'check account
-                Dim query_check As String = "SELECT IFNULL(id_acc_ar,0) AS id_acc_ar FROM tb_m_comp c
-INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp
-WHERE cc.id_comp_contact='" & FormBankDeposit.SLEStoreInvoice.EditValue & "'"
-                Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-                If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
-                    warningCustom("This vendor AR account is not set.")
-                    Close()
-                End If
+
                 'load header
                 SLEStore.EditValue = FormBankDeposit.SLEStoreInvoice.EditValue
+
                 'load detail
                 For i As Integer = 0 To FormBankDeposit.GVInvoiceList.RowCount - 1
                     'id_report,number,total,balance due
@@ -107,8 +100,8 @@ WHERE recd.id_rec_payment='" & id_deposit & "'"
     End Sub
 
     Sub load_receive_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayRecTo, query, "id_acc", "acc_description", "id_acc")
+        'Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        'viewSearchLookupQuery(SLEPayRecTo, query, "id_acc", "acc_description", "id_acc")
     End Sub
     '
     Sub load_pay_from()

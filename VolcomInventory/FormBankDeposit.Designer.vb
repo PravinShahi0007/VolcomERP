@@ -39,6 +39,7 @@ Partial Class FormBankDeposit
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -85,7 +86,7 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_list = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -143,7 +144,7 @@ Partial Class FormBankDeposit
         '
         'GVInvoiceList
         '
-        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnid_acc_ar, Me.GridColumnid_acc_sales, Me.GridColumnid_acc_sales_return})
+        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnid_acc_ar, Me.GridColumnid_acc_sales, Me.GridColumnid_acc_sales_return, Me.GridColumncomp_group_list})
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.Name = "GVInvoiceList"
         Me.GVInvoiceList.OptionsBehavior.AutoExpandAllGroups = True
@@ -183,7 +184,7 @@ Partial Class FormBankDeposit
         Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
         Me.GridColumnOrderNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderNumber.Visible = True
-        Me.GridColumnOrderNumber.VisibleIndex = 4
+        Me.GridColumnOrderNumber.VisibleIndex = 5
         Me.GridColumnOrderNumber.Width = 165
         '
         'GridColumnCreatedDate
@@ -195,7 +196,7 @@ Partial Class FormBankDeposit
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 6
+        Me.GridColumnCreatedDate.VisibleIndex = 7
         Me.GridColumnCreatedDate.Width = 92
         '
         'GridColumnNote
@@ -205,7 +206,7 @@ Partial Class FormBankDeposit
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 11
+        Me.GridColumnNote.VisibleIndex = 12
         '
         'GridColumn7
         '
@@ -215,7 +216,7 @@ Partial Class FormBankDeposit
         Me.GridColumn7.FieldName = "sales_pos_total"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
         '
         'GridColumn4
         '
@@ -225,7 +226,7 @@ Partial Class FormBankDeposit
         Me.GridColumn4.FieldName = "sales_pos_discount"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 8
+        Me.GridColumn4.VisibleIndex = 9
         Me.GridColumn4.Width = 127
         '
         'GridColumn19
@@ -244,7 +245,7 @@ Partial Class FormBankDeposit
         Me.GridColumn23.FieldName = "sales_pos_potongan"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 9
+        Me.GridColumn23.VisibleIndex = 10
         '
         'GridColumn3
         '
@@ -259,7 +260,7 @@ Partial Class FormBankDeposit
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.VisibleIndex = 11
         Me.GridColumn3.Width = 111
         '
         'GridColumn27
@@ -275,7 +276,7 @@ Partial Class FormBankDeposit
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 12
+        Me.GridColumn27.VisibleIndex = 13
         Me.GridColumn27.Width = 153
         '
         'GridColumn28
@@ -291,7 +292,7 @@ Partial Class FormBankDeposit
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 13
+        Me.GridColumn28.VisibleIndex = 14
         '
         'GridColumn12
         '
@@ -302,7 +303,7 @@ Partial Class FormBankDeposit
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 14
+        Me.GridColumn12.VisibleIndex = 15
         Me.GridColumn12.Width = 108
         '
         'GridColumn6
@@ -320,6 +321,14 @@ Partial Class FormBankDeposit
         Me.GridColumnVendor.Visible = True
         Me.GridColumnVendor.VisibleIndex = 2
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Store Code"
+        Me.GridColumn10.FieldName = "comp_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
         'GridColumn32
         '
         Me.GridColumn32.Caption = "Pending Document"
@@ -329,7 +338,7 @@ Partial Class FormBankDeposit
         Me.GridColumn32.Name = "GridColumn32"
         Me.GridColumn32.OptionsColumn.AllowEdit = False
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 5
+        Me.GridColumn32.VisibleIndex = 6
         Me.GridColumn32.Width = 107
         '
         'GridColumn24
@@ -338,7 +347,7 @@ Partial Class FormBankDeposit
         Me.GridColumn24.FieldName = "close_receive_payment"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 15
+        Me.GridColumn24.VisibleIndex = 16
         '
         'GridColumn25
         '
@@ -346,7 +355,7 @@ Partial Class FormBankDeposit
         Me.GridColumn25.FieldName = "report_mark_type_name"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 3
+        Me.GridColumn25.VisibleIndex = 4
         Me.GridColumn25.Width = 115
         '
         'GridColumn26
@@ -732,13 +741,13 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
-        'GridColumn10
+        'GridColumncomp_group_list
         '
-        Me.GridColumn10.Caption = "Store Code"
-        Me.GridColumn10.FieldName = "comp_number"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumncomp_group_list.Caption = "Group Store"
+        Me.GridColumncomp_group_list.FieldName = "comp_group"
+        Me.GridColumncomp_group_list.Name = "GridColumncomp_group_list"
+        Me.GridColumncomp_group_list.Visible = True
+        Me.GridColumncomp_group_list.VisibleIndex = 3
         '
         'FormBankDeposit
         '
@@ -847,4 +856,5 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_list As DevExpress.XtraGrid.Columns.GridColumn
 End Class
