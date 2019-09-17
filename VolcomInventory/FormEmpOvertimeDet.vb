@@ -20,6 +20,8 @@
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
+        TEDepartement.EditValue = get_departement_x(id_departement_user, "1")
+
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         TECreatedAt.EditValue = DateTime.Parse(Now).ToString("dd MMM yyyy HH:mm:ss")
 
@@ -28,9 +30,10 @@
         'load database
         If Not id = "0" Then
             Dim query_ot As String = "
-                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.number, ot.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.id_departement, departement.departement, ot.number, ot.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot AS ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
+                LEFT JOIN tb_m_departement AS departement ON ot.id_departement = departement.id_departement
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
                 LEFT JOIN tb_m_employee AS employee ON ot.created_by = employee.id_employee
                 WHERE ot.id_ot = " + id + "
@@ -39,9 +42,10 @@
             Dim data_ot As DataTable = execute_query(query_ot, -1, True, "", "", "", "")
 
             TENumber.EditValue = data_ot.Rows(0)("number").ToString
+            LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
+            TEDepartement.EditValue = data_ot.Rows(0)("departement").ToString
             TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
             TECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
-            LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
             MEOvertimeNote.EditValue = data_ot.Rows(0)("ot_note").ToString
             TEReportStatus.EditValue = data_ot.Rows(0)("report_status").ToString
 
@@ -162,18 +166,6 @@
         GVEmployee.RefreshData()
     End Sub
 
-    Private Sub RITEAttendanceStart_EditValueChanged(sender As Object, e As EventArgs)
-        calculateTotalHoursList(GVEmployee.FocusedRowHandle)
-    End Sub
-
-    Private Sub RITEAttendanceEnd_EditValueChanged(sender As Object, e As EventArgs)
-        calculateTotalHoursList(GVEmployee.FocusedRowHandle)
-    End Sub
-
-    Private Sub RITEBreakHours_EditValueChanged(sender As Object, e As EventArgs)
-        calculateTotalHoursList(GVEmployee.FocusedRowHandle)
-    End Sub
-
     Private Sub FormEmpOvertimeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Try
             Dim include As String = ""
@@ -246,7 +238,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim query As String = ""
 
-                query = "INSERT INTO tb_ot (id_ot_type, ot_note, id_report_status, created_by, created_at) VALUES (" + LUEOvertimeType.EditValue.ToString + ", '" + addSlashes(MEOvertimeNote.Text.ToString) + "', 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
+                query = "INSERT INTO tb_ot (id_ot_type, id_departement, ot_note, id_report_status, created_by, created_at) VALUES (" + LUEOvertimeType.EditValue.ToString + ", " + id_departement_user + ", '" + addSlashes(MEOvertimeNote.Text.ToString) + "', 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
 
                 id = execute_query(query, 0, True, "", "", "", "")
 
@@ -326,12 +318,11 @@
 
         'memo
         Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
+        Dim ot_consumption As Decimal = get_opt_emp_field("ot_consumption")
 
         Dim data As DataTable = GCEmployee.DataSource
 
         Dim employee As DataTable = data.Clone
-
-        Dim ot_consumption As Decimal = get_opt_emp_field("ot_consumption")
 
         For i = 0 To data.Rows.Count - 1
             If data.Rows(i)("ot_total_hours") >= hours Then
@@ -339,13 +330,55 @@
             End If
         Next
 
-        Dim ot_date As String = ""
+        'date
+        Dim date_include As List(Of String) = New List(Of String)
+
+        For i = 0 To employee.Rows.Count - 1
+            If Not date_include.Contains(employee.Rows(i)("ot_date").ToString) Then
+                date_include.Add(employee.Rows(i)("ot_date").ToString)
+            End If
+        Next
+
+        'departement
+        Dim departement_include As List(Of String) = New List(Of String)
+
+        For i = 0 To employee.Rows.Count - 1
+            If Not departement_include.Contains(employee.Rows(i)("departement").ToString) Then
+                departement_include.Add(employee.Rows(i)("departement").ToString)
+            End If
+        Next
+
+        Dim departement As String = String.Join(", ", departement_include)
+        Dim ot_date As String = String.Join(", ", date_include)
         Dim total_consumption As Decimal = ot_consumption * employee.Rows.Count()
+
+        'employee
+        Dim data_employee As DataTable = execute_query("
+            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_to FROM tb_opt_emp LIMIT 1)
+            UNION ALL
+            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_cc1 FROM tb_opt_emp LIMIT 1)
+            UNION ALL
+            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_cc2 FROM tb_opt_emp LIMIT 1)
+            UNION ALL
+            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_from FROM tb_opt_emp LIMIT 1)
+        ", -1, True, "", "", "", "")
 
         Dim ReportMemo As New ReportEmpOvertimeMemo()
 
-        ReportMemo.ot_date = ot_date
-        ReportMemo.total_consumption = total_consumption
+        ReportMemo.id = id
+
+        ReportMemo.XLTo.Text = data_employee.Rows(0)("employee_name").ToString
+        ReportMemo.XLToPosition.Text = "- " + data_employee.Rows(0)("employee_position").ToString
+        ReportMemo.XLCC1.Text = data_employee.Rows(1)("employee_name").ToString
+        ReportMemo.XLCC1Position.Text = "- " + data_employee.Rows(1)("employee_position").ToString
+        ReportMemo.XLCC2.Text = data_employee.Rows(2)("employee_name").ToString
+        ReportMemo.XLCC2Position.Text = "- " + data_employee.Rows(2)("employee_position").ToString
+        ReportMemo.XLFrom.Text = data_employee.Rows(3)("employee_name").ToString
+        ReportMemo.XLFromPosition.Text = "- " + data_employee.Rows(3)("employee_position").ToString
+
+        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", TEDepartement.EditValue.ToString)
+        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[ot_date]", ot_date)
+        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[total_consumption]", Format(total_consumption, "##,##0"))
 
         ReportMemo.CreateDocument()
 
@@ -542,35 +575,6 @@
 
         Return tot_point
     End Function
-
-    Private Sub RITEOvertimeHours_EditValueChanged(sender As Object, e As EventArgs)
-        calculatePointList(GVEmployee.FocusedRowHandle)
-    End Sub
-
-    Private Sub SBFill_Click(sender As Object, e As EventArgs)
-        For i = 0 To GVEmployee.RowCount - 1
-            Dim start_work_sub As DateTime = GVEmployee.GetRowCellValue(i, "start_work_sub")
-            Dim end_work_sub As DateTime = GVEmployee.GetRowCellValue(i, "end_work_sub")
-
-            If GVEmployee.IsValidRowHandle(i) Then
-                If GVEmployee.GetRowCellValue(i, "start_work").ToString = "" Then
-                    GVEmployee.SetRowCellValue(i, "start_work", start_work_sub)
-
-                    calculateTotalHoursList(i)
-                End If
-
-                If GVEmployee.GetRowCellValue(i, "end_work").ToString = "" Then
-                    GVEmployee.SetRowCellValue(i, "end_work", end_work_sub)
-
-                    calculateTotalHoursList(i)
-                End If
-            End If
-        Next
-    End Sub
-
-    Private Sub RISLUEDayOff_EditValueChanged(sender As Object, e As EventArgs)
-        calculatePointList(GVEmployee.FocusedRowHandle)
-    End Sub
 
     Private Sub LUEOvertimeType_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles LUEOvertimeType.EditValueChanging
         If Not GVEmployee.RowCount = 0 Then

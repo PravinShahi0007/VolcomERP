@@ -1,7 +1,6 @@
 ﻿Public Class ReportEmpOvertime
     Public id As String = "0"
     Public data As DataTable = New DataTable
-    Public is_check As String = "-1"
     Public id_pre As String = "-1"
 
     Private Sub ReportEmpOvertime_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
@@ -9,7 +8,11 @@
 
         GCEmployee.DataSource = data
 
+        GCEmployeePosition.Caption = GCEmployeePosition.Caption.Replace(" ", Environment.NewLine)
+        GCEmployeeStatus.Caption = GCEmployeeStatus.Caption.Replace(" ", Environment.NewLine)
         GCConversionType.Caption = GCConversionType.Caption.Replace(" ", Environment.NewLine)
+        GCBreakHours.Caption = GCBreakHours.Caption.Replace(" ", Environment.NewLine)
+        GCTotalHours.Caption = GCTotalHours.Caption.Replace(" ", Environment.NewLine)
 
         GVEmployee.BestFitColumns()
 

@@ -87,16 +87,16 @@
 
             GVEmployee.BestFitColumns()
         Else
-            Dim whereDept As String = If(is_hrd = "-1", "AND (SELECT COUNT(id_employee) FROM tb_ot_det WHERE id_ot = ot.id_ot AND id_departement = " + id_departement_user + ") > 0", "")
+            Dim whereDept As String = If(is_hrd = "-1", "AND ot.id_departement = " + id_departement_user, "")
 
             Dim query As String = "
-                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, CONCAT('- ', GROUP_CONCAT(DISTINCT departement.departement SEPARATOR '\n- ')) AS departement, CONCAT('- ', GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') SEPARATOR '\n- ')) AS ot_date, ot.number, ot.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, CONCAT('- ', GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') SEPARATOR '\n- ')) AS ot_date, ot.number, ot.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
+                LEFT JOIN tb_m_departement AS departement ON ot.id_departement = departement.id_departement
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
                 LEFT JOIN tb_m_employee AS employee ON ot.created_by = employee.id_employee
-                LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
                 WHERE 1 " + whereDept + " 
                 GROUP BY ot.id_ot
                 ORDER BY ot.number DESC

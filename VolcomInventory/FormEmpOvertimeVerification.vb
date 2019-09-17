@@ -2,15 +2,17 @@
     Public id_ot As String = ""
 
     Private Sub FormEmpOvertimeVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
         viewSearchLookupRepositoryQuery(RISLUEType2, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
         viewSearchLookupQuery(SLUEPayroll, "SELECT id_payroll, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY periode_end DESC", "id_payroll", "periode", "id_payroll")
 
         'overtime
         Dim query_ot As String = "
-            SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.ot_note, ot.id_report_status, report_status.report_status, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %b %Y %H:%i:%s') AS created_at, (SELECT MIN(ot_date) FROM tb_ot_det WHERE id_ot = ot.id_ot) AS min_ot_date, (SELECT MAX(ot_date) FROM tb_ot_det WHERE id_ot = ot.id_ot) AS max_ot_date
+            SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.id_departement, departement.departement, ot.number, ot.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
             FROM tb_ot AS ot
             LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
+            LEFT JOIN tb_m_departement AS departement ON ot.id_departement = departement.id_departement
             LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
             LEFT JOIN tb_m_employee AS employee ON ot.created_by = employee.id_employee
             WHERE ot.id_ot = " + id_ot + "
@@ -19,21 +21,27 @@
         Dim data_ot As DataTable = execute_query(query_ot, -1, True, "", "", "", "")
 
         TENumber.EditValue = data_ot.Rows(0)("number").ToString
+        LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
+        TEDepartement.EditValue = data_ot.Rows(0)("departement").ToString
         TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
         TECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
-        LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
         MEOvertimeNote.EditValue = data_ot.Rows(0)("ot_note").ToString
+
+        LUEOvertimeType.ReadOnly = True
+
+        RISLUEType.ReadOnly = True
+        RISLUEType2.ReadOnly = True
 
         'propose
         Dim query_pro As String = "
-            SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %b %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %b %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %b %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours
+            SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, ot_det.is_day_off, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours
             FROM tb_ot_det AS ot_det
             LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
             LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
             LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
             LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_det.id_employee_status = employee_status.id_employee_status
             WHERE ot_det.id_ot = " + id_ot + "
-            ORDER BY ot_det.ot_date ASC, employee.id_employee_level ASC, employee.employee_code ASC
+            ORDER BY ot_det.ot_date ASC, departement.departement ASC, employee.id_employee_level ASC, employee.employee_code ASC
         "
 
         Dim data_pro As DataTable = execute_query(query_pro, -1, True, "", "", "", "")
@@ -43,8 +51,8 @@
         GVEmployee.BestFitColumns()
 
         'limit date search
-        DESearch.Properties.MinValue = Date.Parse(data_pro.Rows(0)("date"))
-        DESearch.Properties.MaxValue = Date.Parse(data_pro.Rows(data_pro.Rows.Count - 1)("date"))
+        DESearch.Properties.MinValue = Date.Parse(data_pro.Rows(0)("ot_date"))
+        DESearch.Properties.MaxValue = Date.Parse(data_pro.Rows(data_pro.Rows.Count - 1)("ot_date"))
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
@@ -57,7 +65,7 @@
         'attendance
         Dim query_att As String = "
             SELECT * FROM (
-                SELECT sch.id_employee, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), 'yes', 'no') AS only_dp, sch.date, emp.id_departement, dep_sub.id_departement_sub, dep.departement, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, 1 AS conversion_type, sch.id_schedule_type, sch.in, sch.out, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0.0 AS break_hours, 0.0 AS total_hours, 'no' AS is_valid, 0 AS id_employee_change, '' AS start_work_ot, '' AS end_work_ot
+                SELECT sch.id_employee, emp.id_departement, dep_sub.id_departement_sub, dep.departement, sch.date, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((SELECT to_salary) = 1, 1, 2) AS conversion_type, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search.ToString + "' AND id_religion IN (0, IF(dep.is_store = 1, 0, emp.id_religion))) IS NULL), 2, 1) AS is_day_off, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0.0 AS break_hours, '' AS start_work_ot, '' AS end_work_ot, 0.0 AS total_hours, 'no' AS is_valid, sch.in, sch.out
                 FROM tb_emp_schedule AS sch
                 LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
                 LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement 
@@ -127,14 +135,14 @@
                             End If
                         Else
                             If after_work.TotalHours >= 1 And after_work_ot.TotalHours >= 1 Then
-                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
+                                'GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
                             ElseIf before_work.TotalHours >= 1 And before_work_ot.TotalHours Then
-                                GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
+                                'GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
                             End If
                         End If
 
                         If GVAttendance.GetRowCellValue(j, "is_valid").ToString = "yes" Then
-                            GVAttendance.SetRowCellValue(j, "id_employee_change", "0")
+                            'GVAttendance.SetRowCellValue(j, "id_employee_change", "0")
                         End If
                     End If
                 Next
@@ -164,7 +172,8 @@
         Next
 
         'remove employee
-        GVAttendance.ActiveFilterString = "[is_valid] = 'yes' OR [id_employee_change] > 0"
+        'GVAttendance.ActiveFilterString = "[is_valid] = 'yes' OR [id_employee_change] > 0"
+        GVAttendance.ActiveFilterString = "[is_valid] = 'yes'"
 
         GVAttendance.BestFitColumns()
     End Sub

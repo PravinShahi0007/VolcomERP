@@ -53,11 +53,11 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.TEOvertimeEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEOvertimeEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeEnd.Properties.EditFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.TEOvertimeEnd.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeEnd.Properties.Mask.EditMask = "dd MMM yyyy HH:mm:ss"
+        Me.TEOvertimeEnd.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeEnd.Size = New System.Drawing.Size(150, 20)
         Me.TEOvertimeEnd.TabIndex = 35
         '
@@ -69,11 +69,11 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.TEOvertimeStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEOvertimeStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.TEOvertimeStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeStart.Properties.EditFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.TEOvertimeStart.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeStart.Properties.Mask.EditMask = "dd MMM yyyy HH:mm:ss"
+        Me.TEOvertimeStart.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeStart.Size = New System.Drawing.Size(150, 20)
         Me.TEOvertimeStart.TabIndex = 34
         '
@@ -144,11 +144,11 @@ Partial Class FormEmpOvertimeDate
         Me.DEOvertimeDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEOvertimeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEOvertimeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEOvertimeDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEOvertimeDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEOvertimeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEOvertimeDate.Properties.EditFormat.FormatString = "dd MMM yyyy"
+        Me.DEOvertimeDate.Properties.EditFormat.FormatString = "dd MMMM yyyy"
         Me.DEOvertimeDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEOvertimeDate.Properties.Mask.EditMask = "dd MMM yyyy"
+        Me.DEOvertimeDate.Properties.Mask.EditMask = "dd MMMM yyyy"
         Me.DEOvertimeDate.Size = New System.Drawing.Size(325, 20)
         Me.DEOvertimeDate.TabIndex = 27
         '
