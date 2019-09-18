@@ -631,7 +631,7 @@ Partial Class FormBankDeposit
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.VisibleIndex = 0
         Me.GridColumn9.Width = 117
         '
         'GridColumn11
@@ -643,7 +643,7 @@ Partial Class FormBankDeposit
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.VisibleIndex = 1
         Me.GridColumn11.Width = 107
         '
         'GridColumn15
@@ -653,7 +653,7 @@ Partial Class FormBankDeposit
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 3
+        Me.GridColumn15.VisibleIndex = 2
         Me.GridColumn15.Width = 109
         '
         'GridColumn20
@@ -669,7 +669,7 @@ Partial Class FormBankDeposit
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 4
+        Me.GridColumn20.VisibleIndex = 3
         Me.GridColumn20.Width = 120
         '
         'GridColumn5
@@ -684,7 +684,7 @@ Partial Class FormBankDeposit
         Me.GridColumn5.FieldName = "val_need_pay"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 4
         Me.GridColumn5.Width = 136
         '
         'GridColumn22
@@ -694,7 +694,7 @@ Partial Class FormBankDeposit
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.VisibleIndex = 6
         Me.GridColumn22.Width = 109
         '
         'GridColumn18
@@ -704,7 +704,7 @@ Partial Class FormBankDeposit
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.VisibleIndex = 5
         '
         'GridColumn21
         '
@@ -712,8 +712,6 @@ Partial Class FormBankDeposit
         Me.GridColumn21.FieldName = "comp_name"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 0
         Me.GridColumn21.Width = 103
         '
         'RepositoryItemCheckEdit1

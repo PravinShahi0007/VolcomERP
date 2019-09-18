@@ -92,10 +92,11 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
             where_string = " AND rec_py.id_comp_contact='" & SLEStoreDeposit.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+        'Left Join tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
+        'Left Join tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        ',CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name
+        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note
 FROM tb_rec_payment rec_py
-INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status

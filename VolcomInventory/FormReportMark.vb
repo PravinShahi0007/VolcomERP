@@ -5398,6 +5398,7 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
+            FormBankDepositDet.form_load()
             FormBankDeposit.load_deposit()
             FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
         ElseIf report_mark_type = "167" Then
