@@ -61,6 +61,7 @@ Partial Class FormPurcOrderDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -121,6 +122,7 @@ Partial Class FormPurcOrderDet
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPOIdItem = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOUOM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -139,7 +141,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,6 +201,7 @@ Partial Class FormPurcOrderDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEVal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -682,6 +684,18 @@ Partial Class FormPurcOrderDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1044, 41)
         Me.PanelControl1.TabIndex = 6
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 13
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(711, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(106, 37)
+        Me.BAttachment.TabIndex = 17
+        Me.BAttachment.TabStop = False
+        Me.BAttachment.Text = "Attachment"
         '
         'BSubmit
         '
@@ -1308,7 +1322,7 @@ Partial Class FormPurcOrderDet
         Me.GCSummary.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RITEVal})
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RITEVal, Me.RepositoryItemMemoEdit1})
         Me.GCSummary.Size = New System.Drawing.Size(1038, 246)
         Me.GCSummary.TabIndex = 5
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
@@ -1331,6 +1345,8 @@ Partial Class FormPurcOrderDet
         Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseForeColor = True
         Me.GVSummary.AppearancePrint.Row.Font = New System.Drawing.Font("Segoe UI", 6.0!)
         Me.GVSummary.AppearancePrint.Row.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.Row.Options.UseTextOptions = True
+        Me.GVSummary.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPOIdItem, Me.GridColumnPOItemDesc, Me.GridColumn15, Me.GridColumnQtyPO, Me.GridColumnPOUOM, Me.GridColumnValQty, Me.GridColumnPOSubTot, Me.GridColumnPOVal, Me.GridColumnDiscPercent, Me.GridColumnDisc, Me.GridColumn7})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Nothing, "{0:N2}")})
@@ -1341,6 +1357,7 @@ Partial Class FormPurcOrderDet
         Me.GVSummary.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVSummary.OptionsCustomization.AllowSort = False
         Me.GVSummary.OptionsFilter.AllowFilterEditor = False
+        Me.GVSummary.OptionsView.RowAutoHeight = True
         Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
@@ -1353,7 +1370,10 @@ Partial Class FormPurcOrderDet
         '
         'GridColumnPOItemDesc
         '
+        Me.GridColumnPOItemDesc.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPOItemDesc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnPOItemDesc.Caption = "Item"
+        Me.GridColumnPOItemDesc.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnPOItemDesc.FieldName = "item_desc"
         Me.GridColumnPOItemDesc.Name = "GridColumnPOItemDesc"
         Me.GridColumnPOItemDesc.OptionsColumn.AllowEdit = False
@@ -1361,9 +1381,16 @@ Partial Class FormPurcOrderDet
         Me.GridColumnPOItemDesc.VisibleIndex = 0
         Me.GridColumnPOItemDesc.Width = 153
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'GridColumn15
         '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn15.Caption = "Item Detail"
+        Me.GridColumn15.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumn15.FieldName = "item_detail"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
@@ -1378,6 +1405,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumnQtyPO.FieldName = "qty_po"
         Me.GridColumnQtyPO.Name = "GridColumnQtyPO"
         Me.GridColumnQtyPO.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyPO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", "{0:N2}")})
         Me.GridColumnQtyPO.Visible = True
         Me.GridColumnQtyPO.VisibleIndex = 2
         Me.GridColumnQtyPO.Width = 104
@@ -1470,8 +1498,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn7.Caption = "Note"
         Me.GridColumn7.FieldName = "note"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
         Me.GridColumn7.Width = 126
         '
         'RepositoryItemSpinEdit2
@@ -1537,18 +1563,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
-        '
-        'BAttachment
-        '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttachment.ImageIndex = 13
-        Me.BAttachment.ImageList = Me.LargeImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(711, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(106, 37)
-        Me.BAttachment.TabIndex = 17
-        Me.BAttachment.TabStop = False
-        Me.BAttachment.Text = "Attachment"
         '
         'FormPurcOrderDet
         '
@@ -1630,6 +1644,7 @@ Partial Class FormPurcOrderDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEVal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1757,4 +1772,5 @@ Partial Class FormPurcOrderDet
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSubmit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

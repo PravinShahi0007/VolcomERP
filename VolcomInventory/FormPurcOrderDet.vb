@@ -666,11 +666,11 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
         'Grid Detail
         ReportStyleGridview(Report.GVSummary)
-
+        Report.GVSummary.BestFitColumns()
         'Parse val
         Report.LPoNumber.Text = "Number : " & TEPONumber.Text
         Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
-        Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LCreateDate.Text = "Created date : " & Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
         Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
         Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
         Report.LShipVia.Text = LEShipVia.Text.ToUpper

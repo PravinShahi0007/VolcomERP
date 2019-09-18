@@ -5124,6 +5124,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
     Sub ReportStyleGridview(ByVal BandedGridView1 As DevExpress.XtraGrid.Views.Grid.GridView)
         BandedGridView1.OptionsPrint.UsePrintStyles = True
 
+        BandedGridView1.AppearancePrint.Lines.BackColor = Color.Black
+
         BandedGridView1.AppearancePrint.FilterPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.FilterPanel.ForeColor = Color.Black
         BandedGridView1.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 7, FontStyle.Regular)
@@ -5139,10 +5141,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         BandedGridView1.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        BandedGridView1.AppearancePrint.HeaderPanel.BorderColor = Color.Black
         BandedGridView1.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.FooterPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        BandedGridView1.AppearancePrint.FooterPanel.BorderColor = Color.Black
         BandedGridView1.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
