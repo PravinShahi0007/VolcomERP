@@ -19,6 +19,7 @@ Partial Class FormBankDeposit
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankDeposit))
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoiceList = New DevExpress.XtraGrid.GridControl()
@@ -47,6 +48,10 @@ Partial Class FormBankDeposit
         Me.GridColumnid_acc_ar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_acc_sales = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_acc_sales_return = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_list = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_acc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -86,13 +91,14 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumncomp_group_list = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
         CType(Me.GCInvoiceList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoiceList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,14 +143,14 @@ Partial Class FormBankDeposit
         Me.GCInvoiceList.Location = New System.Drawing.Point(0, 43)
         Me.GCInvoiceList.MainView = Me.GVInvoiceList
         Me.GCInvoiceList.Name = "GCInvoiceList"
-        Me.GCInvoiceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive})
+        Me.GCInvoiceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RepositoryItemCheckEdit2})
         Me.GCInvoiceList.Size = New System.Drawing.Size(995, 458)
         Me.GCInvoiceList.TabIndex = 17
         Me.GCInvoiceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceList})
         '
         'GVInvoiceList
         '
-        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnid_acc_ar, Me.GridColumnid_acc_sales, Me.GridColumnid_acc_sales_return, Me.GridColumncomp_group_list})
+        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnid_acc_ar, Me.GridColumnid_acc_sales, Me.GridColumnid_acc_sales_return, Me.GridColumncomp_group_list, Me.GridColumnid_acc, Me.GridColumnCOA, Me.GridColumnid_comp})
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.Name = "GVInvoiceList"
         Me.GVInvoiceList.OptionsBehavior.AutoExpandAllGroups = True
@@ -381,6 +387,40 @@ Partial Class FormBankDeposit
         Me.GridColumnid_acc_sales_return.Caption = "COA Sales Return"
         Me.GridColumnid_acc_sales_return.FieldName = "id_acc_sales_return"
         Me.GridColumnid_acc_sales_return.Name = "GridColumnid_acc_sales_return"
+        '
+        'GridColumncomp_group_list
+        '
+        Me.GridColumncomp_group_list.Caption = "Group Store"
+        Me.GridColumncomp_group_list.FieldName = "comp_group"
+        Me.GridColumncomp_group_list.Name = "GridColumncomp_group_list"
+        Me.GridColumncomp_group_list.Visible = True
+        Me.GridColumncomp_group_list.VisibleIndex = 3
+        '
+        'GridColumnid_acc
+        '
+        Me.GridColumnid_acc.Caption = "id_acc"
+        Me.GridColumnid_acc.FieldName = "id_acc"
+        Me.GridColumnid_acc.Name = "GridColumnid_acc"
+        '
+        'GridColumnCOA
+        '
+        Me.GridColumnCOA.Caption = "COA"
+        Me.GridColumnCOA.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumnCOA.FieldName = "is_found_coa"
+        Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.UnboundExpression = "Iif([id_acc] <> 0, 'Yes', 'No')"
+        Me.GridColumnCOA.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnCOA.Visible = True
+        Me.GridColumnCOA.VisibleIndex = 17
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit2.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "No"
         '
         'BCreatePO
         '
@@ -741,13 +781,11 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
-        'GridColumncomp_group_list
+        'GridColumnid_comp
         '
-        Me.GridColumncomp_group_list.Caption = "Group Store"
-        Me.GridColumncomp_group_list.FieldName = "comp_group"
-        Me.GridColumncomp_group_list.Name = "GridColumncomp_group_list"
-        Me.GridColumncomp_group_list.Visible = True
-        Me.GridColumncomp_group_list.VisibleIndex = 3
+        Me.GridColumnid_comp.Caption = "id_comp"
+        Me.GridColumnid_comp.FieldName = "id_comp"
+        Me.GridColumnid_comp.Name = "GridColumnid_comp"
         '
         'FormBankDeposit
         '
@@ -767,6 +805,7 @@ Partial Class FormBankDeposit
         CType(Me.GCInvoiceList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoiceList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -857,4 +896,8 @@ Partial Class FormBankDeposit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group_list As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_acc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnid_comp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

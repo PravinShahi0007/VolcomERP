@@ -11,75 +11,73 @@
         load_pay_from()
         load_store()
         '
-        Try
-            TEPayNumber.Text = "[auto_generate]"
-            DEDateCreated.EditValue = Now()
-            TETotal.EditValue = 0.00
-            TENeedToPay.EditValue = 0.00
+        TEPayNumber.Text = "[auto_generate]"
+        DEDateCreated.EditValue = Now()
+        TETotal.EditValue = 0.00
+        TENeedToPay.EditValue = 0.00
+        '
+        If id_deposit = "-1" Then 'new
+            load_det()
+            BtnPrint.Visible = False
+            BMark.Visible = False
+            BtnSave.Visible = True
+
+            'load header
+            SLEStore.EditValue = FormBankDeposit.SLEStoreInvoice.EditValue
+
+            'load detail
+            For i As Integer = 0 To FormBankDeposit.GVInvoiceList.RowCount - 1
+                'id_report,number,total,balance due
+                Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                newRow("id_report") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_sales_pos").ToString
+                newRow("report_mark_type") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type").ToString
+                newRow("report_mark_type_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type_name").ToString
+                newRow("number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "sales_pos_number").ToString
+                newRow("acc_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_name").ToString
+                newRow("comp_number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
+                newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec").ToString
+                newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due").ToString
+                newRow("balance_due") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due").ToString
+                newRow("note") = ""
+                TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+            Next
+            calculate_amount()
+        Else
+            BtnPrint.Visible = True
+            BMark.Visible = True
+            BtnSave.Visible = False
+            SLEPayFrom.Enabled = False
+            SLEPayRecTo.Enabled = False
+            MENote.Enabled = False
             '
-            If id_deposit = "-1" Then 'new
-                load_det()
-                BtnPrint.Visible = False
-                BMark.Visible = False
-                BtnSave.Visible = True
-
-                'load header
-                SLEStore.EditValue = FormBankDeposit.SLEStoreInvoice.EditValue
-
-                'load detail
-                For i As Integer = 0 To FormBankDeposit.GVInvoiceList.RowCount - 1
-                    'id_report,number,total,balance due
-                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                    newRow("id_report") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_sales_pos").ToString
-                    newRow("report_mark_type") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type").ToString
-                    newRow("report_mark_type_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type_name").ToString
-                    newRow("number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "sales_pos_number").ToString
-                    newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec").ToString
-                    newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due").ToString
-                    newRow("balance_due") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due").ToString
-                    newRow("note") = ""
-                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                Next
-                calculate_amount()
-            Else
-                BtnPrint.Visible = True
-                BMark.Visible = True
-                BtnSave.Visible = False
-                SLEPayFrom.Enabled = False
-                SLEPayRecTo.Enabled = False
-                MENote.Enabled = False
+            Dim query As String = "SELECT * FROM tb_rec_payment WHERE id_rec_payment='" & id_deposit & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                TEPayNumber.Text = data.Rows(0)("number").ToString
+                SLEStore.EditValue = data.Rows(0)("id_comp_contact").ToString
                 '
-                Dim query As String = "SELECT * FROM tb_rec_payment WHERE id_rec_payment='" & id_deposit & "'"
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                If data.Rows.Count > 0 Then
-                    TEPayNumber.Text = data.Rows(0)("number").ToString
-                    SLEStore.EditValue = data.Rows(0)("id_comp_contact").ToString
-                    '
-                    If data.Rows(0)("id_report_status").ToString = "6" Then
-                        BtnViewJournal.Visible = True
-                    Else
-                        BtnViewJournal.Visible = False
-                    End If
-                    '
-                    DEDateCreated.EditValue = data.Rows(0)("date_created")
-                    SLEPayRecTo.EditValue = data.Rows(0)("id_acc_pay_rec").ToString
-                    '
-                    SLEPayFrom.EditValue = data.Rows(0)("id_acc_pay_to").ToString
-                    TENeedToPay.EditValue = data.Rows(0)("val_need_pay")
-                    '
-                    MENote.EditValue = data.Rows(0)("note").ToString
+                If data.Rows(0)("id_report_status").ToString = "6" Then
+                    BtnViewJournal.Visible = True
+                Else
+                    BtnViewJournal.Visible = False
                 End If
                 '
-                load_det()
-                GridColumnAlreadyReceived.Visible = False
-                GridColumnBBaldue.Visible = False
-                GridColumnReceive.OptionsColumn.AllowEdit = False
-                GridColumnNote.OptionsColumn.AllowEdit = False
-                calculate_amount()
+                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                SLEPayRecTo.EditValue = data.Rows(0)("id_acc_pay_rec").ToString
+                '
+                SLEPayFrom.EditValue = data.Rows(0)("id_acc_pay_to").ToString
+                TENeedToPay.EditValue = data.Rows(0)("val_need_pay")
+                '
+                MENote.EditValue = data.Rows(0)("note").ToString
             End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
+            '
+            load_det()
+            GridColumnAlreadyReceived.Visible = False
+            GridColumnBBaldue.Visible = False
+            GridColumnReceive.OptionsColumn.AllowEdit = False
+            GridColumnNote.OptionsColumn.AllowEdit = False
+            calculate_amount()
+        End If
     End Sub
 
     Private Sub GVList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVList.CellValueChanged
@@ -90,10 +88,14 @@
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT recd.id_rec_payment_det,recd.id_report,recd.report_mark_type,rmt.report_mark_type_name,recd.number,recd.total_rec,recd.`value`,recd.balance_due,recd.note 
-FROM tb_rec_payment_det recd 
-INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
-WHERE recd.id_rec_payment='" & id_deposit & "'"
+        Dim query As String = "SELECT recd.id_rec_payment_det,recd.id_report,recd.report_mark_type,
+        rmt.report_mark_type_name,recd.number,recd.total_rec,recd.`value`,recd.balance_due,recd.note,
+        recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description
+        FROM tb_rec_payment_det recd 
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
+        INNER JOIN tb_m_comp c ON c.id_comp = recd.id_comp
+        INNER JOIN tb_a_acc coa ON coa.id_acc = recd.id_acc
+        WHERE recd.id_rec_payment='" & id_deposit & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()

@@ -43,8 +43,8 @@ Partial Class FormBankDepositDet
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -73,9 +73,12 @@ Partial Class FormBankDepositDet
         Me.GridColumnReceive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEJournalNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +114,7 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEJournalNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -191,7 +195,7 @@ Partial Class FormBankDepositDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 59)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(959, 70)
+        Me.PanelControl2.Size = New System.Drawing.Size(959, 80)
         Me.PanelControl2.TabIndex = 2
         '
         'PanelControl6
@@ -202,7 +206,7 @@ Partial Class FormBankDepositDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(543, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(414, 66)
+        Me.PanelControl6.Size = New System.Drawing.Size(414, 76)
         Me.PanelControl6.TabIndex = 166
         '
         'DEDateCreated
@@ -230,6 +234,8 @@ Partial Class FormBankDepositDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.TEJournalNumber)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.SLEStore)
         Me.PanelControl3.Controls.Add(Me.TEPayNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
@@ -237,12 +243,12 @@ Partial Class FormBankDepositDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(390, 66)
+        Me.PanelControl3.Size = New System.Drawing.Size(375, 76)
         Me.PanelControl3.TabIndex = 165
         '
         'SLEStore
         '
-        Me.SLEStore.Location = New System.Drawing.Point(88, 38)
+        Me.SLEStore.Location = New System.Drawing.Point(88, 100)
         Me.SLEStore.Name = "SLEStore"
         Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStore.Properties.ReadOnly = True
@@ -275,7 +281,7 @@ Partial Class FormBankDepositDet
         'TEPayNumber
         '
         Me.TEPayNumber.EditValue = ""
-        Me.TEPayNumber.Location = New System.Drawing.Point(88, 12)
+        Me.TEPayNumber.Location = New System.Drawing.Point(74, 12)
         Me.TEPayNumber.Name = "TEPayNumber"
         Me.TEPayNumber.Properties.EditValueChangedDelay = 1
         Me.TEPayNumber.Properties.ReadOnly = True
@@ -285,7 +291,7 @@ Partial Class FormBankDepositDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 41)
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 103)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(26, 13)
         Me.LabelControl2.TabIndex = 8913
@@ -334,17 +340,6 @@ Partial Class FormBankDepositDet
         Me.PanelControl7.Size = New System.Drawing.Size(959, 40)
         Me.PanelControl7.TabIndex = 3
         '
-        'BtnViewJournal
-        '
-        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(702, 2)
-        Me.BtnViewJournal.Name = "BtnViewJournal"
-        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
-        Me.BtnViewJournal.TabIndex = 20
-        Me.BtnViewJournal.Text = "View Journal"
-        Me.BtnViewJournal.Visible = False
-        '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
@@ -356,6 +351,17 @@ Partial Class FormBankDepositDet
         Me.BtnPrint.TabIndex = 17
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(702, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
+        Me.BtnViewJournal.TabIndex = 20
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
         '
         'BMark
         '
@@ -542,17 +548,17 @@ Partial Class FormBankDepositDet
         'GCList
         '
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 129)
+        Me.GCList.Location = New System.Drawing.Point(0, 139)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
-        Me.GCList.Size = New System.Drawing.Size(959, 253)
+        Me.GCList.Size = New System.Drawing.Size(959, 243)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumnAlreadyReceived, Me.GridColumnReceive, Me.GridColumnBBaldue, Me.GridColumnno, Me.GridColumnCOA})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumnAlreadyReceived, Me.GridColumnReceive, Me.GridColumnBBaldue, Me.GridColumnno, Me.GridColumnCOA, Me.GridColumncomp_number})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -590,7 +596,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 6
+        Me.GridColumnNote.VisibleIndex = 7
         Me.GridColumnNote.Width = 262
         '
         'GridColumnAlreadyReceived
@@ -607,7 +613,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnAlreadyReceived.OptionsColumn.AllowEdit = False
         Me.GridColumnAlreadyReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
         Me.GridColumnAlreadyReceived.Visible = True
-        Me.GridColumnAlreadyReceived.VisibleIndex = 3
+        Me.GridColumnAlreadyReceived.VisibleIndex = 4
         Me.GridColumnAlreadyReceived.Width = 258
         '
         'GridColumnReceive
@@ -624,7 +630,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnReceive.Name = "GridColumnReceive"
         Me.GridColumnReceive.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnReceive.Visible = True
-        Me.GridColumnReceive.VisibleIndex = 5
+        Me.GridColumnReceive.VisibleIndex = 6
         Me.GridColumnReceive.Width = 258
         '
         'RITEDecimal
@@ -648,15 +654,8 @@ Partial Class FormBankDepositDet
         Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         Me.GridColumnBBaldue.Visible = True
-        Me.GridColumnBBaldue.VisibleIndex = 4
+        Me.GridColumnBBaldue.VisibleIndex = 5
         Me.GridColumnBBaldue.Width = 258
-        '
-        'RICECheckReceive
-        '
-        Me.RICECheckReceive.AutoHeight = False
-        Me.RICECheckReceive.Name = "RICECheckReceive"
-        Me.RICECheckReceive.ValueChecked = "yes"
-        Me.RICECheckReceive.ValueUnchecked = "no"
         '
         'GridColumnno
         '
@@ -670,10 +669,45 @@ Partial Class FormBankDepositDet
         'GridColumnCOA
         '
         Me.GridColumnCOA.Caption = "COA"
-        Me.GridColumnCOA.FieldName = "coa"
+        Me.GridColumnCOA.FieldName = "acc_name"
         Me.GridColumnCOA.Name = "GridColumnCOA"
         Me.GridColumnCOA.Visible = True
         Me.GridColumnCOA.VisibleIndex = 1
+        '
+        'RICECheckReceive
+        '
+        Me.RICECheckReceive.AutoHeight = False
+        Me.RICECheckReceive.Name = "RICECheckReceive"
+        Me.RICECheckReceive.ValueChecked = "yes"
+        Me.RICECheckReceive.ValueUnchecked = "no"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(10, 41)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl3.TabIndex = 8915
+        Me.LabelControl3.Text = "Journal No."
+        '
+        'TEJournalNumber
+        '
+        Me.TEJournalNumber.EditValue = ""
+        Me.TEJournalNumber.Location = New System.Drawing.Point(74, 38)
+        Me.TEJournalNumber.Name = "TEJournalNumber"
+        Me.TEJournalNumber.Properties.EditValueChangedDelay = 1
+        Me.TEJournalNumber.Properties.ReadOnly = True
+        Me.TEJournalNumber.Size = New System.Drawing.Size(287, 20)
+        Me.TEJournalNumber.TabIndex = 8916
+        Me.TEJournalNumber.TabStop = False
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Customer"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 3
         '
         'FormBankDepositDet
         '
@@ -730,6 +764,7 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEJournalNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -789,4 +824,7 @@ Partial Class FormBankDepositDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCOA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEJournalNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
 End Class
