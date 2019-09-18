@@ -58,14 +58,21 @@
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
         change_payroll()
 
+        Dim ot_min_staff As Integer = get_opt_emp_field("ot_min_staff")
+        Dim ot_min_spv As Integer = get_opt_emp_field("ot_min_spv")
+
+        GVEmployee.ActiveFilterString = "[ot_date] = '" + Date.Parse(DESearch.EditValue.ToString).ToString("dd MMMM yyyy") + "'"
+
         GVAttendance.ActiveFilterString = ""
 
         Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
 
+        Dim id_departement As String = execute_query("SELECT id_departement FROM tb_ot WHERE id_ot = " + id_ot, 0, True, "", "", "", "")
+
         'attendance
         Dim query_att As String = "
             SELECT * FROM (
-                SELECT sch.id_employee, emp.id_departement, dep_sub.id_departement_sub, dep.departement, sch.date, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((SELECT to_salary) = 1, 1, 2) AS conversion_type, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search.ToString + "' AND id_religion IN (0, IF(dep.is_store = 1, 0, emp.id_religion))) IS NULL), 2, 1) AS is_day_off, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0.0 AS break_hours, '' AS start_work_ot, '' AS end_work_ot, 0.0 AS total_hours, 'no' AS is_valid, sch.in, sch.out
+                SELECT sch.id_employee, emp.id_departement, dep_sub.id_departement_sub, dep.departement, sch.date, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_status, sts.employee_status, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((SELECT to_salary) = 1, 1, 2) AS conversion_type, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search.ToString + "' AND id_religion IN (0, IF(dep.is_store = 1, 0, emp.id_religion))) IS NULL), 2, 1) AS is_day_off, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS start_work, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS end_work, 0.0 AS break_hours, '' AS start_work_ot, '' AS end_work_ot, 0.0 AS total_hours, 'no' AS is_valid, sch.id_schedule_type, sch.in, sch.out, 2 AS ot_potention
                 FROM tb_emp_schedule AS sch
                 LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
                 LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement 
@@ -79,7 +86,7 @@
                 LEFT JOIN tb_emp_attn AS at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
                 LEFT JOIN tb_emp_attn AS at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
                 LEFT JOIN tb_emp_attn AS at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
-                WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + id_departement_user + "
+                WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + id_departement + "
                 GROUP BY sch.id_schedule
             ) AS tb
             WHERE tb.start_work IS NOT NULL AND tb.end_work IS NOT NULL
@@ -90,90 +97,97 @@
         GCAttendance.DataSource = data_att
 
         'verification
-        For i = 0 To GVEmployee.RowCount - 1
-            If GVEmployee.IsValidRowHandle(i) Then
-                For j = 0 To GVAttendance.RowCount - 1
-                    If GVAttendance.IsValidRowHandle(j) Then
-                        Dim overtime_in As DateTime = DateTime.Parse(GVEmployee.GetRowCellValue(i, "start_work_sub").ToString)
-                        Dim overtime_out As DateTime = DateTime.Parse(GVEmployee.GetRowCellValue(i, "end_work_sub").ToString)
+        For i = 1 To GVAttendance.RowCount - 1
+            If GVAttendance.IsValidRowHandle(i) Then
+                For j = 0 To GVEmployee.RowCount - 1
+                    If GVEmployee.IsValidRowHandle(j) Then
+                        Dim ot_min As Integer = If(GVAttendance.GetRowCellValue(i, "to_salary").ToString = "1", ot_min_staff, ot_min_spv)
 
-                        Dim schedule_in As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "in").ToString)
-                        Dim schedule_out As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "out").ToString)
+                        Dim after_work As Decimal = 0.0
+                        Dim before_work As Decimal = 0.0
 
-                        Dim start_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "start_work").ToString)
-                        Dim end_work As DateTime = DateTime.Parse(GVAttendance.GetRowCellValue(j, "end_work").ToString)
+                        Dim after_work_ot As Decimal = 0.0
+                        Dim before_work_ot As Decimal = 0.0
 
-                        Dim after_work As TimeSpan = end_work - schedule_out
-                        Dim before_work As TimeSpan = schedule_in - start_work
+                        Dim work_hours As Decimal = 0.0
 
-                        Dim after_work_ot As TimeSpan = end_work - overtime_in
-                        Dim before_work_ot As TimeSpan = overtime_out - start_work
+                        Dim overtime_in As DateTime = New DateTime
+                        Dim overtime_out As DateTime = New DateTime
 
-                        If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(j, "id_employee").ToString Then
-                            If GVAttendance.GetRowCellValue(j, "id_schedule_type").ToString = "1" Then
-                                If after_work.TotalHours >= 1 And after_work_ot.TotalHours >= 1 Then
-                                    GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+                        Dim schedule_in As DateTime = New DateTime
+                        Dim schedule_out As DateTime = New DateTime
 
-                                    Dim total_hours As Decimal = Math.Floor(after_work_ot.TotalHours / 0.5) * 0.5
+                        Dim start_work As DateTime = New DateTime
+                        Dim end_work As DateTime = New DateTime
 
-                                    GVAttendance.SetRowCellValue(j, "start_work_ot", GVEmployee.GetRowCellValue(i, "start_work_sub"))
-                                    GVAttendance.SetRowCellValue(j, "end_work_ot", GVAttendance.GetRowCellValue(j, "end_work"))
-                                    GVAttendance.SetRowCellValue(j, "break_hours", GVEmployee.GetRowCellValue(i, "break_hours_sub"))
-                                    GVAttendance.SetRowCellValue(j, "total_hours", total_hours)
-                                ElseIf before_work.TotalHours >= 1 And before_work_ot.TotalHours Then
-                                    GVAttendance.SetRowCellValue(j, "is_valid", "yes")
+                        Try
+                            overtime_in = DateTime.Parse(GVEmployee.GetRowCellValue(j, "ot_start_time").ToString)
+                            overtime_out = DateTime.Parse(GVEmployee.GetRowCellValue(j, "ot_end_time").ToString)
+                        Catch ex As Exception
+                        End Try
 
-                                    Dim total_hours As Decimal = Math.Floor(before_work_ot.TotalHours / 0.5) * 0.5
+                        Try
+                            schedule_in = DateTime.Parse(GVAttendance.GetRowCellValue(i, "in").ToString)
+                            schedule_out = DateTime.Parse(GVAttendance.GetRowCellValue(i, "out").ToString)
+                        Catch ex As Exception
+                        End Try
 
-                                    GVAttendance.SetRowCellValue(j, "start_work_ot", GVAttendance.GetRowCellValue(j, "start_work"))
-                                    GVAttendance.SetRowCellValue(j, "end_work_ot", GVEmployee.GetRowCellValue(i, "end_work_sub"))
-                                    GVAttendance.SetRowCellValue(j, "break_hours", GVEmployee.GetRowCellValue(i, "break_hours_sub"))
-                                    GVAttendance.SetRowCellValue(j, "total_hours", total_hours)
+                        Try
+                            start_work = DateTime.Parse(GVAttendance.GetRowCellValue(i, "start_work").ToString)
+                            end_work = DateTime.Parse(GVAttendance.GetRowCellValue(i, "end_work").ToString)
+                        Catch ex As Exception
+                        End Try
+
+                        after_work = (end_work - schedule_out).TotalHours
+                        before_work = (schedule_in - start_work).TotalHours
+
+                        after_work_ot = (end_work - overtime_in).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
+                        before_work_ot = (overtime_out - start_work).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
+
+                        work_hours = (end_work - start_work).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
+
+                        If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
+                            If GVAttendance.GetRowCellValue(i, "id_schedule_type").ToString = "1" Then
+                                If after_work >= ot_min And after_work_ot >= ot_min Then
+                                    GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+
+                                    Dim total_hours As Decimal = Math.Floor(after_work_ot / 0.5) * 0.5
+
+                                    GVAttendance.SetRowCellValue(i, "start_work_ot", GVEmployee.GetRowCellValue(j, "ot_start_time"))
+                                    GVAttendance.SetRowCellValue(i, "end_work_ot", GVAttendance.GetRowCellValue(i, "end_work"))
+                                    GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                    GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
+                                ElseIf before_work >= ot_min And before_work_ot >= ot_min Then
+                                    GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+
+                                    Dim total_hours As Decimal = Math.Floor(before_work_ot / 0.5) * 0.5
+
+                                    GVAttendance.SetRowCellValue(i, "start_work_ot", GVAttendance.GetRowCellValue(i, "start_work"))
+                                    GVAttendance.SetRowCellValue(i, "end_work_ot", GVEmployee.GetRowCellValue(j, "ot_end_time"))
+                                    GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                    GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
                                 End If
                             Else
-                                GVAttendance.SetRowCellValue(j, "is_valid", "yes")
-                            End If
-                        Else
-                            If after_work.TotalHours >= 1 And after_work_ot.TotalHours >= 1 Then
-                                'GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
-                            ElseIf before_work.TotalHours >= 1 And before_work_ot.TotalHours Then
-                                'GVAttendance.SetRowCellValue(j, "id_employee_change", GVEmployee.GetRowCellValue(i, "id_employee").ToString)
+                                GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+
+                                Dim total_hours As Decimal = Math.Floor(work_hours / 0.5) * 0.5
+
+                                GVAttendance.SetRowCellValue(i, "start_work_ot", GVAttendance.GetRowCellValue(i, "start_work"))
+                                GVAttendance.SetRowCellValue(i, "end_work_ot", GVAttendance.GetRowCellValue(i, "end_work"))
+                                GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
                             End If
                         End If
 
-                        If GVAttendance.GetRowCellValue(j, "is_valid").ToString = "yes" Then
-                            'GVAttendance.SetRowCellValue(j, "id_employee_change", "0")
+                        If after_work >= ot_min And after_work_ot >= ot_min Then
+                            GVAttendance.SetRowCellValue(i, "ot_potention", "1")
+                        ElseIf before_work >= ot_min And before_work_ot >= ot_min Then
+                            GVAttendance.SetRowCellValue(i, "ot_potention", "1")
                         End If
                     End If
                 Next
             End If
         Next
-
-        'check not valid
-        Dim employee_not_valid As List(Of String) = New List(Of String)
-
-        For i = 0 To GVEmployee.RowCount - 1
-            If GVEmployee.IsValidRowHandle(i) Then
-                employee_not_valid.Add(GVEmployee.GetRowCellValue(i, "id_employee").ToString)
-
-                For j = 0 To GVAttendance.RowCount - 1
-                    If GVAttendance.IsValidRowHandle(j) Then
-                        If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(j, "id_employee").ToString And GVAttendance.GetRowCellValue(j, "is_valid").ToString = "yes" Then
-                            employee_not_valid.Remove(GVEmployee.GetRowCellValue(i, "id_employee").ToString)
-                        End If
-                    End If
-                Next
-            End If
-        Next
-
-        'employee replaced
-        For i = 0 To employee_not_valid.Count - 1
-
-        Next
-
-        'remove employee
-        'GVAttendance.ActiveFilterString = "[is_valid] = 'yes' OR [id_employee_change] > 0"
-        GVAttendance.ActiveFilterString = "[is_valid] = 'yes'"
 
         GVAttendance.BestFitColumns()
     End Sub

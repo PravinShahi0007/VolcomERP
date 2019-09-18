@@ -71,7 +71,10 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCTotalHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCValid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEValid = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BGCIn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BGCOut = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCIdDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BGCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -97,13 +100,12 @@ Partial Class FormEmpOvertimeVerification
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCTotalHours = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BGCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BGCIn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BGCOut = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BGCIdScheduleType = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BGCOtPotention = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -401,7 +403,7 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.GVAttendance.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.gridBand3, Me.gridBand4})
         Me.GVAttendance.ColumnPanelRowHeight = 32
-        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BGCIdEmployee, Me.BGCIdDepartement, Me.BGCIdDepartementSub, Me.BGCDepartement, Me.BGCDate, Me.BGCNIP, Me.BGCEmployeeName, Me.BGCEmployeePosition, Me.BGCIdEmployeeStatus, Me.BGCEmployeeStatus, Me.BGCToSalary, Me.BGCConversionType, Me.BGCIsDayOff, Me.BGCStartWork, Me.BGCEndWork, Me.BGCBreakHours, Me.BGCStartWorkOt, Me.BGCEndWorkOt, Me.BGCTotalHours, Me.BGCValid, Me.BGCIn, Me.BGCOut})
+        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BGCIdEmployee, Me.BGCIdDepartement, Me.BGCIdDepartementSub, Me.BGCDepartement, Me.BGCDate, Me.BGCNIP, Me.BGCEmployeeName, Me.BGCEmployeePosition, Me.BGCIdEmployeeStatus, Me.BGCEmployeeStatus, Me.BGCToSalary, Me.BGCConversionType, Me.BGCIsDayOff, Me.BGCStartWork, Me.BGCEndWork, Me.BGCBreakHours, Me.BGCStartWorkOt, Me.BGCEndWorkOt, Me.BGCTotalHours, Me.BGCValid, Me.BGCIdScheduleType, Me.BGCIn, Me.BGCOut, Me.BGCOtPotention})
         Me.GVAttendance.GridControl = Me.GCAttendance
         Me.GVAttendance.GroupCount = 1
         Me.GVAttendance.Name = "GVAttendance"
@@ -632,6 +634,24 @@ Partial Class FormEmpOvertimeVerification
         Me.RICEValid.ValueChecked = "yes"
         Me.RICEValid.ValueUnchecked = "no"
         '
+        'BGCIn
+        '
+        Me.BGCIn.Caption = "In"
+        Me.BGCIn.FieldName = "in"
+        Me.BGCIn.Name = "BGCIn"
+        Me.BGCIn.OptionsColumn.AllowEdit = False
+        Me.BGCIn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BGCIn.Visible = True
+        '
+        'BGCOut
+        '
+        Me.BGCOut.Caption = "Out"
+        Me.BGCOut.FieldName = "out"
+        Me.BGCOut.Name = "BGCOut"
+        Me.BGCOut.OptionsColumn.AllowEdit = False
+        Me.BGCOut.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BGCOut.Visible = True
+        '
         'BGCIdDepartementSub
         '
         Me.BGCIdDepartementSub.FieldName = "id_departement_sub"
@@ -640,6 +660,13 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIdDepartementSub.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BGCIdDepartementSub.Visible = True
         Me.BGCIdDepartementSub.Width = 109
+        '
+        'BGCIsDayOff
+        '
+        Me.BGCIsDayOff.FieldName = "is_day_off"
+        Me.BGCIsDayOff.Name = "BGCIsDayOff"
+        Me.BGCIsDayOff.OptionsColumn.AllowEdit = False
+        Me.BGCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GroupControl1
         '
@@ -927,30 +954,10 @@ Partial Class FormEmpOvertimeVerification
         Me.GCTotalHours.VisibleIndex = 9
         Me.GCTotalHours.Width = 72
         '
-        'BGCIsDayOff
+        'BGCIdScheduleType
         '
-        Me.BGCIsDayOff.FieldName = "is_day_off"
-        Me.BGCIsDayOff.Name = "BGCIsDayOff"
-        Me.BGCIsDayOff.OptionsColumn.AllowEdit = False
-        Me.BGCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'BGCIn
-        '
-        Me.BGCIn.Caption = "In"
-        Me.BGCIn.FieldName = "in"
-        Me.BGCIn.Name = "BGCIn"
-        Me.BGCIn.OptionsColumn.AllowEdit = False
-        Me.BGCIn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.BGCIn.Visible = True
-        '
-        'BGCOut
-        '
-        Me.BGCOut.Caption = "Out"
-        Me.BGCOut.FieldName = "out"
-        Me.BGCOut.Name = "BGCOut"
-        Me.BGCOut.OptionsColumn.AllowEdit = False
-        Me.BGCOut.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.BGCOut.Visible = True
+        Me.BGCIdScheduleType.FieldName = "id_schedule_type"
+        Me.BGCIdScheduleType.Name = "BGCIdScheduleType"
         '
         'GridBand1
         '
@@ -993,12 +1000,20 @@ Partial Class FormEmpOvertimeVerification
         'gridBand4
         '
         Me.gridBand4.Caption = "Schedule"
+        Me.gridBand4.Columns.Add(Me.BGCIdScheduleType)
         Me.gridBand4.Columns.Add(Me.BGCIn)
         Me.gridBand4.Columns.Add(Me.BGCOut)
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.Visible = False
         Me.gridBand4.VisibleIndex = -1
         Me.gridBand4.Width = 150
+        '
+        'BGCOtPotention
+        '
+        Me.BGCOtPotention.FieldName = "ot_potention"
+        Me.BGCOtPotention.Name = "BGCOtPotention"
+        Me.BGCOtPotention.OptionsColumn.AllowEdit = False
+        Me.BGCOtPotention.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'FormEmpOvertimeVerification
         '
@@ -1124,10 +1139,12 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents BGCIsDayOff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BGCIdEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BGCConversionType As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BGCIn As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BGCOut As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BGCIn As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BGCOut As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BGCIdScheduleType As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BGCOtPotention As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
