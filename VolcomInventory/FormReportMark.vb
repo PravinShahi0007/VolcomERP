@@ -5343,7 +5343,6 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             End If
 
             'completed
-            Dim id_acc_trans As String = "NULL"
             If id_status_reportx = "6" Then
                 'auto jurnal
                 'Select user prepared
@@ -5357,7 +5356,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     'main journal
                     Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
                         VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                    id_acc_trans = execute_query(qjm, 0, True, "", "", "", "")
+                    Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                     increase_inc_acc("1")
 
                     'det journal
@@ -5365,7 +5364,6 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                     -- kas masuk
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, NULL,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,py.note AS `note`,162,py.id_rec_payment, py.number
                                     FROM tb_rec_payment py
-                                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
                                     WHERE py.id_rec_payment=" & id_report & " AND py.`value` > 0
                                     UNION ALL
                                     -- kurangi piutang (AR) => invoice
@@ -5411,13 +5409,18 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             End If
 
             'update
-            query = String.Format("UPDATE tb_rec_payment SET id_report_status='{0}', id_acc_trans={1} WHERE id_rec_payment ='{2}'", id_status_reportx, id_acc_trans, id_report)
+            query = String.Format("UPDATE tb_rec_payment SET id_report_status='{0}' WHERE id_rec_payment ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
             FormBankDepositDet.form_load()
-            FormBankDeposit.load_deposit()
-            FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
+            Try
+                FormBankDeposit.load_deposit()
+                FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
+                FormBankDeposit.load_invoice()
+            Catch ex As Exception
+
+            End Try
         ElseIf report_mark_type = "167" Then
             'Cash Advance
             'auto completed

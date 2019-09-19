@@ -1,6 +1,9 @@
-﻿Public Class FormBankDepositDet
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormBankDepositDet
     Public id_deposit As String = "-1"
     Public is_view As String = "-1"
+    Dim id_report_status As String = "-1"
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
@@ -52,6 +55,7 @@
             SLEPayFrom.Enabled = False
             SLEPayRecTo.Enabled = False
             MENote.Enabled = False
+            PanelControlPreview.Visible = True
             '
             Dim query As String = "SELECT * FROM tb_rec_payment WHERE id_rec_payment='" & id_deposit & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -72,6 +76,7 @@
                 TENeedToPay.EditValue = data.Rows(0)("val_need_pay")
                 '
                 MENote.EditValue = data.Rows(0)("note").ToString
+                id_report_status = data.Rows(0)("id_report_status").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             End If
             '
@@ -103,8 +108,8 @@
         recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description
         FROM tb_rec_payment_det recd 
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
-        LEFT JOIN tb_m_comp c ON c.id_comp = recd.id_comp
-        LEFT JOIN tb_a_acc coa ON coa.id_acc = recd.id_acc
+        INNER JOIN tb_m_comp c ON c.id_comp = recd.id_comp
+        INNER JOIN tb_a_acc coa ON coa.id_acc = recd.id_acc
         WHERE recd.id_rec_payment='" & id_deposit & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
@@ -228,7 +233,7 @@
                     FormBankDeposit.load_deposit()
                     FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankDeposit.GVList, "id_rec_payment", id_deposit)
                     FormBankDeposit.XTCPO.SelectedTabPageIndex = 0
-                    Close()
+                    form_load()
                 End If
             End If
         End If
@@ -267,53 +272,73 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportBankDeposit.id_deposit = id_deposit
-        ReportBankDeposit.dt = GCList.DataSource
-        Dim Report As New ReportBankDeposit()
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+        ReportBankDepositNew.id = id_deposit
+        ReportBankDepositNew.id_report_status = id_report_status
+        ReportBankDepositNew.rmt = "162"
+        Dim Report As New ReportBankDepositNew()
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVList)
-
-        'Parse val
-        Dim query As String = "SELECT rec_py.id_report_status,acc.`acc_description` AS acc_pay_rec,IFNULL(acc_pay.`acc_description`,'') AS acc_pay_to,rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, FORMAT(rec_py.val_need_pay,2,'id_ID') AS total_need_pay, rec_py.`id_rec_payment`,FORMAT(rec_py.`value`,2,'ID_id') AS total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
-FROM tb_rec_payment rec_py
-INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
-INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
-INNER JOIN tb_a_acc acc ON acc.`id_acc`=rec_py.`id_acc_pay_rec`
-LEFT JOIN tb_a_acc acc_pay ON acc_pay.`id_acc`=rec_py.`id_acc_pay_to`
-WHERE rec_py.`id_rec_payment`='" & id_deposit & "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        '
-        If Not data.Rows(0)("acc_pay_to").ToString = "" Then
-            Report.LRecTo.Text = "[acc_pay_to]"
-            Report.LTotalAmount.Text = "[total_need_pay]"
-            '
-            Report.LRecToText.Text = "Pay From"
-            Report.LTotalAmountText.Text = "Amount"
-        End If
-        '
-        Report.DataSource = data
-
-        If Not data.Rows(0)("id_report_status").ToString = "6" Then
-            Report.id_pre = "2"
+        If CEPrintPreview.EditValue = True Then
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         Else
-            Report.id_pre = "1"
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            Report.PrinterName = DefaultPrinter
+            Report.CreateDocument()
+            Report.PrintingSystem.ShowMarginsWarning = False
+            Report.Print()
         End If
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+
+        '        ReportBankDeposit.id_deposit = id_deposit
+        '        ReportBankDeposit.dt = GCList.DataSource
+        '        Dim Report As New ReportBankDeposit()
+        '        ' '... 
+        '        ' ' creating and saving the view's layout to a new memory stream 
+        '        Dim str As System.IO.Stream
+        '        str = New System.IO.MemoryStream()
+        '        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '        str.Seek(0, System.IO.SeekOrigin.Begin)
+        '        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        '        'Grid Detail
+        '        ReportStyleGridview(Report.GVList)
+
+        '        'Parse val
+        '        Dim query As String = "SELECT rec_py.id_report_status,acc.`acc_description` AS acc_pay_rec,IFNULL(acc_pay.`acc_description`,'') AS acc_pay_to,rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, FORMAT(rec_py.val_need_pay,2,'id_ID') AS total_need_pay, rec_py.`id_rec_payment`,FORMAT(rec_py.`value`,2,'ID_id') AS total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+        'FROM tb_rec_payment rec_py
+        'INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        'INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
+        'INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+        'INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
+        'INNER JOIN tb_a_acc acc ON acc.`id_acc`=rec_py.`id_acc_pay_rec`
+        'LEFT JOIN tb_a_acc acc_pay ON acc_pay.`id_acc`=rec_py.`id_acc_pay_to`
+        'WHERE rec_py.`id_rec_payment`='" & id_deposit & "'"
+        '        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '        '
+        '        If Not data.Rows(0)("acc_pay_to").ToString = "" Then
+        '            Report.LRecTo.Text = "[acc_pay_to]"
+        '            Report.LTotalAmount.Text = "[total_need_pay]"
+        '            '
+        '            Report.LRecToText.Text = "Pay From"
+        '            Report.LTotalAmountText.Text = "Amount"
+        '        End If
+        '        '
+        '        Report.DataSource = data
+
+        '        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+        '            Report.id_pre = "2"
+        '        Else
+        '            Report.id_pre = "1"
+        '        End If
+
+        '        'Show the report's preview. 
+        '        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '        Tool.ShowPreview()
         Cursor = Cursors.Default
     End Sub
 

@@ -31,8 +31,10 @@ Partial Class FormBankDepositDet
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -43,6 +45,8 @@ Partial Class FormBankDepositDet
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlPreview = New DevExpress.XtraEditors.PanelControl()
+        Me.CEPrintPreview = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -75,14 +79,10 @@ Partial Class FormBankDepositDet
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEJournalNumber = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_acc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,6 +95,7 @@ Partial Class FormBankDepositDet
         Me.PanelControl6.SuspendLayout()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +104,9 @@ Partial Class FormBankDepositDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
+        CType(Me.PanelControlPreview, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlPreview.SuspendLayout()
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,8 +122,6 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEJournalNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -216,6 +218,14 @@ Partial Class FormBankDepositDet
         Me.PanelControl6.Size = New System.Drawing.Size(297, 73)
         Me.PanelControl6.TabIndex = 166
         '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(12, 41)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 168
+        Me.LabelControl21.Text = "Status"
+        '
         'DEDateCreated
         '
         Me.DEDateCreated.EditValue = Nothing
@@ -238,11 +248,25 @@ Partial Class FormBankDepositDet
         Me.LabelControl7.TabIndex = 163
         Me.LabelControl7.Text = "Date Created"
         '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(90, 38)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(189, 20)
+        Me.LEReportStatus.TabIndex = 167
+        '
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.TEJournalNumber)
-        Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.SLEStore)
         Me.PanelControl3.Controls.Add(Me.TEPayNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
@@ -336,6 +360,7 @@ Partial Class FormBankDepositDet
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.PanelControlPreview)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BMark)
@@ -346,6 +371,25 @@ Partial Class FormBankDepositDet
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(959, 40)
         Me.PanelControl7.TabIndex = 3
+        '
+        'PanelControlPreview
+        '
+        Me.PanelControlPreview.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlPreview.Controls.Add(Me.CEPrintPreview)
+        Me.PanelControlPreview.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlPreview.Location = New System.Drawing.Point(555, 2)
+        Me.PanelControlPreview.Name = "PanelControlPreview"
+        Me.PanelControlPreview.Size = New System.Drawing.Size(72, 36)
+        Me.PanelControlPreview.TabIndex = 26
+        Me.PanelControlPreview.Visible = False
+        '
+        'CEPrintPreview
+        '
+        Me.CEPrintPreview.Location = New System.Drawing.Point(3, 8)
+        Me.CEPrintPreview.Name = "CEPrintPreview"
+        Me.CEPrintPreview.Properties.Caption = "Preview"
+        Me.CEPrintPreview.Size = New System.Drawing.Size(60, 19)
+        Me.CEPrintPreview.TabIndex = 145
         '
         'BtnPrint
         '
@@ -681,33 +725,6 @@ Partial Class FormBankDepositDet
         Me.GridColumnCOA.Visible = True
         Me.GridColumnCOA.VisibleIndex = 1
         '
-        'RICECheckReceive
-        '
-        Me.RICECheckReceive.AutoHeight = False
-        Me.RICECheckReceive.Name = "RICECheckReceive"
-        Me.RICECheckReceive.ValueChecked = "yes"
-        Me.RICECheckReceive.ValueUnchecked = "no"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(10, 41)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(55, 13)
-        Me.LabelControl3.TabIndex = 8915
-        Me.LabelControl3.Text = "Journal No."
-        '
-        'TEJournalNumber
-        '
-        Me.TEJournalNumber.EditValue = ""
-        Me.TEJournalNumber.Location = New System.Drawing.Point(74, 38)
-        Me.TEJournalNumber.Name = "TEJournalNumber"
-        Me.TEJournalNumber.Properties.EditValueChangedDelay = 1
-        Me.TEJournalNumber.Properties.ReadOnly = True
-        Me.TEJournalNumber.Size = New System.Drawing.Size(287, 20)
-        Me.TEJournalNumber.TabIndex = 8916
-        Me.TEJournalNumber.TabStop = False
-        '
         'GridColumncomp_number
         '
         Me.GridColumncomp_number.Caption = "Customer"
@@ -728,29 +745,12 @@ Partial Class FormBankDepositDet
         Me.GridColumnid_acc.FieldName = "id_acc"
         Me.GridColumnid_acc.Name = "GridColumnid_acc"
         '
-        'LabelControl21
+        'RICECheckReceive
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(12, 41)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 168
-        Me.LabelControl21.Text = "Status"
-        '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(90, 38)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(189, 20)
-        Me.LEReportStatus.TabIndex = 167
+        Me.RICECheckReceive.AutoHeight = False
+        Me.RICECheckReceive.Name = "RICECheckReceive"
+        Me.RICECheckReceive.ValueChecked = "yes"
+        Me.RICECheckReceive.ValueUnchecked = "no"
         '
         'FormBankDepositDet
         '
@@ -781,6 +781,7 @@ Partial Class FormBankDepositDet
         Me.PanelControl6.PerformLayout()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -790,6 +791,9 @@ Partial Class FormBankDepositDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
+        CType(Me.PanelControlPreview, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlPreview.ResumeLayout(False)
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
@@ -807,8 +811,6 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEJournalNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -868,11 +870,11 @@ Partial Class FormBankDepositDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCOA As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TEJournalNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_comp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_acc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents PanelControlPreview As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEPrintPreview As DevExpress.XtraEditors.CheckEdit
 End Class
