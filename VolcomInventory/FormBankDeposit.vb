@@ -130,8 +130,8 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         Dim var_acc As String = "IFNULL(IF(sp.id_memo_type=2 OR sp.id_memo_type=4 OR sp.id_memo_type=6, sp.id_acc_sales_return, sp.id_acc_sales),0)"
         Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
         ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
-        ,sp.report_mark_type,rmt.report_mark_type_name,SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-SUM(IFNULL(pyd.`value`,0.00)) AS total_due
-        ,COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS total_pending
+        ,sp.report_mark_type,rmt.report_mark_type_name,IFNULL(pyd.`value`,0.00) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS total_due
+        ,IFNULL(pyd.total_pending,0) AS `total_pending`
         ,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days,
         " + var_acc + " AS `id_acc`, coa.acc_name
         FROM tb_sales_pos sp 
@@ -140,8 +140,15 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
-        LEFT JOIN tb_rec_payment_det pyd ON pyd.`id_report`=sp.`id_sales_pos` AND pyd.`report_mark_type`=sp.`report_mark_type`
-        LEFT JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`!=5
+        LEFT JOIN (
+	        SELECT pyd.id_report, pyd.report_mark_type, 
+	        COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+	        SUM(pyd.value) AS  `value`
+	        FROM tb_rec_payment_det pyd
+	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+	        WHERE py.`id_report_status`!=5
+	        GROUP BY pyd.id_report, pyd.report_mark_type
+        ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
         LEFT JOIN tb_a_acc coa ON coa.id_acc = " + var_acc + "
         WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

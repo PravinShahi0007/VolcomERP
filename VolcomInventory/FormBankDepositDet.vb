@@ -103,8 +103,8 @@
         recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description
         FROM tb_rec_payment_det recd 
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
-        INNER JOIN tb_m_comp c ON c.id_comp = recd.id_comp
-        INNER JOIN tb_a_acc coa ON coa.id_acc = recd.id_acc
+        LEFT JOIN tb_m_comp c ON c.id_comp = recd.id_comp
+        LEFT JOIN tb_a_acc coa ON coa.id_acc = recd.id_acc
         WHERE recd.id_rec_payment='" & id_deposit & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
