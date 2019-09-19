@@ -4710,7 +4710,7 @@
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.item_type='1'; "
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'; "
                 execute_non_query(qs, True, "", "", "", "")
 
                 'asset
