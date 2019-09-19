@@ -462,7 +462,7 @@ Public Class FormSalesReturnDet
                 FROM tb_sales_return r
                 WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' "
         If BtnCombineReturn.Visible = True Then
-            qm += "AND r.last_update_by='" + id_user + "' "
+            qm += "AND r.last_update_by='" + id_user + "' AND r.id_ret_type!=2 "
         End If
         qm += "GROUP BY r.combine_number "
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
