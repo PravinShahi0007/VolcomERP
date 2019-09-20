@@ -21,6 +21,7 @@
         DEOvertimeDate.EditValue = min_date
         TEOvertimeStart.EditValue = New DateTime(min_date.Year, min_date.Month, min_date.Day, 8, 30, 0)
         TEOvertimeEnd.EditValue = New DateTime(min_date.Year, min_date.Month, min_date.Day, 17, 30, 0)
+        TEOvertimeBreak.EditValue = 1.0
     End Sub
 
     Sub calculateTotalHours()
