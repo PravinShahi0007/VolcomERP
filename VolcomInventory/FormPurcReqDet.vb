@@ -374,11 +374,12 @@
         Report.GVItemList.BestFitColumns()
 
         'Parse val
-        Dim query As String = "SELECT req.`purc_req_number`,DATE_FORMAT(req.requirement_date,'%d %M %Y') AS requirement_date,req.`note`,emp.`employee_name` as req_by,DATE_FORMAT(req.`date_created`,'%d %M %Y') AS date_created,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
+        Dim query As String = "SELECT req.`purc_req_number`,et.`expense_type`,DATE_FORMAT(req.requirement_date,'%d %M %Y') AS requirement_date,req.`note`,emp.`employee_name` AS req_by,DATE_FORMAT(req.`date_created`,'%d %M %Y') AS date_created,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
 INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req`=req.`id_purc_req`
+INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=req.`id_expense_type`
 WHERE req.id_purc_req='" & id_req & "'
 GROUP BY req.`id_purc_req`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
