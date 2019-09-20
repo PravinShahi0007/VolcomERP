@@ -60,6 +60,13 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub actionLoad()
+        'load from bof
+        If bof_column = "1" And action = "ins" Then
+            BtnLoadFromBOF.Visible = True
+        Else
+            BtnLoadFromBOF.Visible = False
+        End If
+
         'get currency default
         Dim query_currency As String = "SELECT b.id_currency FROM tb_opt a INNER JOIN tb_lookup_currency b ON a.id_currency_default = b.id_currency "
         currency = execute_query(query_currency, 0, True, "", "", "", "")
@@ -344,6 +351,18 @@ Public Class FormSalesPOSDet
         GCItemList.RefreshDataSource()
         GVItemList.RefreshData()
         calculate()
+
+        'cek bof
+        If is_load_from_bof = True Then
+            Dim bof_number As String = addSlashes(TxtBOF.Text)
+            Dim qcek As String = "SELECT p.id_sales_pos FROM tb_sales_pos p WHERE p.bof_number='" + bof_number + "' AND p.id_report_status!=5 "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            If dcek.Rows.Count > 0 Then
+                stopCustom("This invoice already input on ERP system.")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+        End If
 
         'cek periode
         Dim start_period_cek As String = "0000-01-01"
@@ -1041,6 +1060,7 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnImport.Click
         Cursor = Cursors.WaitCursor
+        is_load_from_bof = False
         Dim start_period As String = "1945-01-01"
         Try
             start_period = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -1497,75 +1517,83 @@ Public Class FormSalesPOSDet
         '    Cursor = Cursors.Default
         'End If
     End Sub
+
+    Dim is_valid_from As Boolean = True
+    Sub actionCompFrom()
+        is_valid_from = True
+        Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
+        query += " From tb_m_comp_contact cc "
+        query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
+        query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
+        query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
+        query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
+        query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + addSlashes(TxtCodeCompFrom.Text) + "'"
+        Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+
+        If data.Rows.Count <= 0 Then
+            stopCustom("Store not found.")
+            defaultReset()
+            TxtCodeCompFrom.Focus()
+            is_valid_from = False
+        ElseIf data.Rows.Count > 1 Then
+            FormPopUpContact.id_pop_up = "42"
+            FormPopUpContact.id_cat = id_comp_cat_store
+            FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeCompFrom.Text) + "'"
+            FormPopUpContact.ShowDialog()
+        Else
+            'If check_acc(data.Rows(0)("id_comp").ToString) Then
+
+            If id_menu <> "4" Then
+                SPDiscount.EditValue = data.Rows(0)("comp_commission")
+            End If
+            id_comp = data.Rows(0)("id_comp").ToString
+            id_store_contact_from = data.Rows(0)("id_comp_contact").ToString
+            TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+            TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+            MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
+            TENPWP.Text = data.Rows(0)("npwp").ToString
+            '
+            id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
+            id_wh_locator = data.Rows(0)("id_wh_locator").ToString
+            id_wh_rack = data.Rows(0)("id_wh_rack").ToString
+            is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
+            If is_use_unique_code = "1" Then
+                QtyToolStripMenuItem.Visible = False
+            End If
+            '
+            LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
+
+            'isi coa
+            If id_menu <> "3" And id_menu <> "4" Then
+                id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
+                id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+                viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+            End If
+
+
+            viewDetail()
+            viewDetailCode()
+            check_but()
+            GroupControlList.Enabled = True
+            calculate()
+            check_do()
+            '
+            If id_menu = "4" Then
+                TxtCodeBillTo.Focus()
+            Else
+                DEDueDate.Focus()
+            End If
+            'Else
+            '    stopCustom("Store not registered for auto posting journal.")
+            'End If
+        End If
+    End Sub
+
     Private Sub TxtCodeCompFrom_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If action = "ins" Then
             If e.KeyCode = Keys.Enter Then
-                Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
-                query += " From tb_m_comp_contact cc "
-                query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
-                query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
-                query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
-                query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
-                query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + addSlashes(TxtCodeCompFrom.Text) + "'"
-                Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-
-                If data.Rows.Count <= 0 Then
-                    stopCustom("Store not found.")
-                    defaultReset()
-                    TxtCodeCompFrom.Focus()
-                ElseIf data.Rows.Count > 1 Then
-                    FormPopUpContact.id_pop_up = "42"
-                    FormPopUpContact.id_cat = id_comp_cat_store
-                    FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeCompFrom.Text) + "'"
-                    FormPopUpContact.ShowDialog()
-                Else
-                    'If check_acc(data.Rows(0)("id_comp").ToString) Then
-
-                    If id_menu <> "4" Then
-                        SPDiscount.EditValue = data.Rows(0)("comp_commission")
-                    End If
-                    id_comp = data.Rows(0)("id_comp").ToString
-                    id_store_contact_from = data.Rows(0)("id_comp_contact").ToString
-                    TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
-                    TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
-                    MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
-                    TENPWP.Text = data.Rows(0)("npwp").ToString
-                    '
-                    id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
-                    id_wh_locator = data.Rows(0)("id_wh_locator").ToString
-                    id_wh_rack = data.Rows(0)("id_wh_rack").ToString
-                    is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
-                    If is_use_unique_code = "1" Then
-                        QtyToolStripMenuItem.Visible = False
-                    End If
-                    '
-                    LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
-
-                    'isi coa
-                    If id_menu <> "3" And id_menu <> "4" Then
-                        id_acc_sales = data.Rows(0)("id_acc_sales").ToString
-                        id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
-                        id_acc_ar = data.Rows(0)("id_acc_ar").ToString
-                        viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
-                    End If
-
-
-                    viewDetail()
-                    viewDetailCode()
-                    check_but()
-                    GroupControlList.Enabled = True
-                    calculate()
-                    check_do()
-                    '
-                    If id_menu = "4" Then
-                        TxtCodeBillTo.Focus()
-                    Else
-                        DEDueDate.Focus()
-                    End If
-                    'Else
-                    '    stopCustom("Store not registered for auto posting journal.")
-                    'End If
-                End If
+                actionCompFrom()
             Else
                 defaultReset()
             End If
@@ -1877,6 +1905,7 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnImportOLStore_Click(sender As Object, e As EventArgs) Handles BtnImportOLStore.Click
         Cursor = Cursors.WaitCursor
+        is_load_from_bof = False
         If id_store_contact_from = "-1" Then
             stopCustom("Store can't blank")
         Else
@@ -2179,6 +2208,7 @@ Public Class FormSalesPOSDet
 
     Private Sub Btn_Click(sender As Object, e As EventArgs) Handles BtnImportOLStoreNew.Click
         Cursor = Cursors.WaitCursor
+        is_load_from_bof = False
         If id_store_contact_from = "-1" Then
             stopCustom("Store can't blank")
         Else
@@ -2202,6 +2232,7 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnLoadPOS_Click(sender As Object, e As EventArgs) Handles BtnLoadPOS.Click
         Cursor = Cursors.WaitCursor
+        is_load_from_bof = False
         load_data_pos()
         calculate()
         Cursor = Cursors.Default
@@ -2213,4 +2244,56 @@ Public Class FormSalesPOSDet
         FormSalesPOSDiscount.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Dim is_load_from_bof As Boolean = False
+    Dim data_bof_main As New DataTable
+    Private Sub BtnLoadFromBOF_Click(sender As Object, e As EventArgs) Handles BtnLoadFromBOF.Click
+        Cursor = Cursors.WaitCursor
+        is_load_from_bof = True
+
+        'reset
+        Try
+            data_bof_main.Clear()
+        Catch ex As Exception
+        End Try
+
+        Dim oledbconn As New OleDbConnection
+        Dim strConn As String
+        Dim bof_xls_path As String = get_setup_field("bof_xls_bill_bof_path")
+        Dim bof_xls_ws As String = get_setup_field("bof_xls_bill_bof_worksheet")
+
+        'find store
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        oledbconn.ConnectionString = strConn
+        Dim MyCommand As OleDbDataAdapter
+        MyCommand = New OleDbDataAdapter("select top 1 * from [" & bof_xls_ws & "] ", oledbconn)
+        MyCommand.Fill(data_bof_main)
+        MyCommand.Dispose()
+        TxtCodeCompFrom.Text = data_bof_main.Rows(0)(4).ToString
+        actionCompFrom()
+        If is_valid_from = False Then
+            'jika gak valid codenya
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
+        'fill date & type & number
+        DEDueDate.EditValue = data_bof_main.Rows(0)(7)
+        DEStart.EditValue = data_bof_main.Rows(0)(5)
+        DEEnd.EditValue = data_bof_main.Rows(0)(6)
+        If data_bof_main.Rows(0)(8).ToString = "2" Then
+            CheckEditInvType.EditValue = True
+        End If
+        TxtBOF.Text = data_bof_main.Rows(0)(3).ToString
+
+        'detail
+        Dim data_temp As New DataTable
+        MyCommand = New OleDbDataAdapter("select [F1] as code,SUM([F2]) as qty,'' AS price from [" & bof_xls_ws & "] WHERE [F2]>0 AND NOT [F1] IS NULL AND NOT [F2]  IS NULL GROUP BY [F1]", oledbconn)
+        MyCommand.Fill(data_temp)
+        MyCommand.Dispose()
+        checkSOH(data_temp)
+        calculate()
+        Cursor = Cursors.Default
+    End Sub
+
 End Class
