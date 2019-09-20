@@ -333,6 +333,12 @@
     <Compile Include="FormAccountingARAP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAccountingARAPOtherDiscount.Designer.vb">
+      <DependentUpon>FormAccountingARAPOtherDiscount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingARAPOtherDiscount.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccountingDraftJournal.Designer.vb">
       <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>
     </Compile>
@@ -4245,6 +4251,12 @@
     <Compile Include="FormSalesPOSDetCheckCollectionCode.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSDiscount.Designer.vb">
+      <DependentUpon>FormSalesPOSDiscount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSDiscount.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </Compile>
@@ -6021,6 +6033,12 @@
     <Compile Include="ReportBankDeposit.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBankDepositNew.Designer.vb">
+      <DependentUpon>ReportBankDepositNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBankDepositNew.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBankWithdrawal.Designer.vb">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
     </Compile>
@@ -7204,6 +7222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingARAP.resx">
       <DependentUpon>FormAccountingARAP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingARAPOtherDiscount.resx">
+      <DependentUpon>FormAccountingARAPOtherDiscount.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingDraftJournal.resx">
       <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>
@@ -9442,6 +9463,9 @@
     <EmbeddedResource Include="FormSalesPOSDetCheckCollectionCode.resx">
       <DependentUpon>FormSalesPOSDetCheckCollectionCode.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSDiscount.resx">
+      <DependentUpon>FormSalesPOSDiscount.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </EmbeddedResource>
@@ -10513,6 +10537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankDeposit.resx">
       <DependentUpon>ReportBankDeposit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBankDepositNew.resx">
+      <DependentUpon>ReportBankDepositNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankWithdrawal.resx">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>

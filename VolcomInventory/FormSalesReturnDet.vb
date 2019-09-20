@@ -448,7 +448,7 @@ Public Class FormSalesReturnDet
         WHERE r.id_sales_return>0 AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
         AND r.id_store_contact_from=" + id_store_contact_from + " "
         If BtnCombineReturn.Visible = True Then
-            query += "AND r.id_report_status=1 AND r.combine_number='' "
+            query += "AND r.id_report_status=1 AND r.combine_number='' AND r.last_update_by='" + id_user + "' "
         Else
             query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
         End If
@@ -460,8 +460,11 @@ Public Class FormSalesReturnDet
         'member number
         Dim qm As String = "SELECT GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `number`
                 FROM tb_sales_return r
-                WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "'
-                GROUP BY r.combine_number "
+                WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' "
+        If BtnCombineReturn.Visible = True Then
+            qm += "AND r.last_update_by='" + id_user + "' AND r.id_ret_type!=2 "
+        End If
+        qm += "GROUP BY r.combine_number "
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         If dm.Rows.Count > 0 Then
             TxtCombineFrom.Text = dm.Rows(0)("number").ToString
@@ -2840,7 +2843,7 @@ Public Class FormSalesReturnDet
             UPDATE tb_sales_return r SET r.combine_number='" + combine_number + "' 
             WHERE r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
             AND r.id_store_contact_from=" + id_store_contact_from + " 
-            AND r.id_report_status=1 AND r.combine_number=''; 
+            AND r.id_report_status=1 AND r.combine_number='' AND r.last_update_by='" + id_user + "' ; 
             /*update deskripsi report mark*/
             UPDATE tb_report_mark rm 
             INNER JOIN tb_sales_return r ON r.id_sales_return = rm.id_report

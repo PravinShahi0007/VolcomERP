@@ -283,7 +283,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Then
             RGAreaManage.Visible = False
         End If
 
@@ -417,7 +417,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Then
             RGAreaManage.Visible = True
         End If
 
@@ -5989,12 +5989,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormAssetRec.load_rec()
             End If
         ElseIf formName = "FormPurcReq" Then
-            If check_edit_report_status(FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_report_status").ToString, "137", FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_purc_req")) Then
+            If check_edit_report_status(FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_report_status").ToString, FormPurcReq.GVPurcReq.GetFocusedRowCellValue("pr_report_mark_type").ToString, FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_purc_req")) Then
                 Dim id As String = FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
                 confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = DialogResult.Yes Then
                     Dim query_del As String = "DELETE FROM tb_purc_req WHERE id_purc_req='" + id + "'"
                     execute_non_query(query_del, True, "", "", "", "")
+                    delete_all_mark_related(FormPurcReq.GVPurcReq.GetFocusedRowCellValue("pr_report_mark_type").ToString, id)
                     FormPurcReq.load_req()
                 End If
             Else
@@ -7597,6 +7598,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormSalesRecord" Then
             print_raw(FormSalesRecord.GCData, "")
+        ElseIf formName = "FormARAging" Then
+            print_raw(FormARAging.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8365,6 +8368,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSetupBudgetCAPEX" Then
             FormSetupBudgetCAPEX.Close()
             FormSetupBudgetCAPEX.Dispose()
+        ElseIf formName = "FormARAging" Then
+            FormARAging.Close()
+            FormARAging.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
