@@ -167,7 +167,7 @@ Public Class FormSalesPOSDet
             'query view based on edit id's
             Dim query As String = ""
             query += "SELECT a.is_use_unique_code,pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
-            query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
+            query += "a.sales_pos_number, a.bof_number, (c.comp_name) AS store_name_from,c.npwp, "
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
@@ -209,6 +209,7 @@ Public Class FormSalesPOSDet
 
             DEForm.Text = view_date_from(data.Rows(0)("sales_pos_datex").ToString, 0)
             TxtVirtualPosNumber.Text = data.Rows(0)("sales_pos_number").ToString
+            TxtBOF.Text = data.Rows(0)("bof_number").ToString
             If id_menu = "5" Then
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
                 TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
@@ -327,6 +328,8 @@ Public Class FormSalesPOSDet
                 Catch ex As Exception
                 End Try
                 Close()
+            Else
+                cond_coa = True
             End If
         End If
     End Sub
@@ -358,7 +361,7 @@ Public Class FormSalesPOSDet
             Dim qcek As String = "SELECT p.id_sales_pos FROM tb_sales_pos p WHERE p.bof_number='" + bof_number + "' AND p.id_report_status!=5 "
             Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
             If dcek.Rows.Count > 0 Then
-                stopCustom("This invoice already input on ERP system.")
+                stopCustom("This invoice already input on ERP.")
                 Cursor = Cursors.Default
                 Exit Sub
             End If
@@ -447,6 +450,7 @@ Public Class FormSalesPOSDet
         ElseIf id_acc_ar = "-1" Or id_acc_sales = "-1" Or id_acc_sales_return = "-1" Then
             stopCustom("Please mapping COA AR/Sales for this store first.")
         Else
+            Dim bof_number As String = addSlashes(TxtBOF.Text)
             Dim sales_pos_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim id_so_type As String = LETypeSO.EditValue
@@ -526,8 +530,8 @@ Public Class FormSalesPOSDet
 
                     'Main tbale
                     BtnSave.Enabled = False
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -680,7 +684,7 @@ Public Class FormSalesPOSDet
                     FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
                     action = "upd"
                     actionLoad()
-                    exportToBOF(False)
+                    'exportToBOF(False)
 
                     If id_menu = "1" Then
                         infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
@@ -1061,6 +1065,7 @@ Public Class FormSalesPOSDet
     Private Sub BtnImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnImport.Click
         Cursor = Cursors.WaitCursor
         is_load_from_bof = False
+        TxtBOF.Text = ""
         Dim start_period As String = "1945-01-01"
         Try
             start_period = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -1569,6 +1574,11 @@ Public Class FormSalesPOSDet
                 id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
                 id_acc_ar = data.Rows(0)("id_acc_ar").ToString
                 viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+                If cond_coa = False Then
+                    Cursor = Cursors.Default
+                    is_valid_from = False
+                    Exit Sub
+                End If
             End If
 
 
@@ -1906,6 +1916,7 @@ Public Class FormSalesPOSDet
     Private Sub BtnImportOLStore_Click(sender As Object, e As EventArgs) Handles BtnImportOLStore.Click
         Cursor = Cursors.WaitCursor
         is_load_from_bof = False
+        TxtBOF.Text = ""
         If id_store_contact_from = "-1" Then
             stopCustom("Store can't blank")
         Else
@@ -2209,6 +2220,7 @@ Public Class FormSalesPOSDet
     Private Sub Btn_Click(sender As Object, e As EventArgs) Handles BtnImportOLStoreNew.Click
         Cursor = Cursors.WaitCursor
         is_load_from_bof = False
+        TxtBOF.Text = ""
         If id_store_contact_from = "-1" Then
             stopCustom("Store can't blank")
         Else
@@ -2233,6 +2245,7 @@ Public Class FormSalesPOSDet
     Private Sub BtnLoadPOS_Click(sender As Object, e As EventArgs) Handles BtnLoadPOS.Click
         Cursor = Cursors.WaitCursor
         is_load_from_bof = False
+        TxtBOF.Text = ""
         load_data_pos()
         calculate()
         Cursor = Cursors.Default
