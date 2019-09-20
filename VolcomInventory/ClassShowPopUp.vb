@@ -269,7 +269,7 @@
             FormSamplePurcClose.Close()
         ElseIf report_mark_type = "187" Then
             'Overtime employee report
-            FormEmpOvertimeDet.Close()
+            FormEmpOvertimeVerification.Close()
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             FormFGProposePriceRev.Close()
@@ -1031,11 +1031,11 @@
 
             FormSamplePurcCloseDet.ShowDialog()
         ElseIf report_mark_type = "187" Then
-            FormEmpOvertimeDet.id = id_report
-            FormEmpOvertimeDet.is_hrd = "1"
-            FormEmpOvertimeDet.is_check = "1"
+            FormEmpOvertimeVerification.id = id_report
+            FormEmpOvertimeVerification.id_ot = execute_query("SELECT id_ot FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'", 0, True, "", "", "", "")
+            FormEmpOvertimeVerification.is_view = "1"
 
-            FormEmpOvertimeDet.ShowDialog()
+            FormEmpOvertimeVerification.ShowDialog()
         ElseIf report_mark_type = "183" Then
             'sales invuuce diff margin
             FormViewSalesPOS.id_menu = "4"

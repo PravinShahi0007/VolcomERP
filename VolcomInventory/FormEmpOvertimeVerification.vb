@@ -1,6 +1,7 @@
 ﻿Public Class FormEmpOvertimeVerification
     Public id As String = "0"
     Public id_ot As String = ""
+    Public is_view As String = "0"
 
     Private Sub FormEmpOvertimeVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
@@ -54,6 +55,25 @@
         'limit date search
         DESearch.Properties.MinValue = Date.Parse(data_pro.Rows(0)("ot_date"))
         DESearch.Properties.MaxValue = Date.Parse(data_pro.Rows(data_pro.Rows.Count - 1)("ot_date"))
+
+        'controls
+        SBSave.Enabled = False
+        SBPrint.Enabled = False
+        SBMark.Enabled = False
+
+        If is_view = "1" Then
+            DESearch.ReadOnly = True
+            SBView.Enabled = False
+        End If
+
+        'load
+        If Not id = "0" Then
+            Dim data_vr As DataTable = execute_query("SELECT ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id + "'", -1, True, "", "", "", "")
+
+            DESearch.EditValue = data_vr.Rows(0)("ot_date")
+
+            SBView_Click(SBView, New EventArgs)
+        End If
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
@@ -378,5 +398,9 @@
             'overtime
             query = "INSERT INTO tb_emp_payroll_ot (id_payroll, id_employee, id_ot_type, ot_start, ot_end, total_break, total_hour, total_point, is_day_off, wages_per_point, note, id_ot_det) VALUES (" + id_payroll + ", " + id_employee + ", " + id_ot_type + ", '" + ot_start + "', '" + ot_end + "', " + decimalSQL(total_break) + ", " + decimalSQL(total_hour) + ", " + decimalSQL(total_point) + ", " + is_day_off + ", " + decimalSQL(wages_per_point) + ", '" + addSlashes(note) + "', " + id_ot_verification_det + ")"
         Next
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+
     End Sub
 End Class

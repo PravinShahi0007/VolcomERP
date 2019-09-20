@@ -517,7 +517,7 @@
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_purc_close WHERE id_ot = '{0}'", id_report)
         ElseIf report_mark_type = "187" Then
             'overtime report
-            query = String.Format("SELECT id_check_status AS id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
+            query = String.Format("SELECT vr.id_report_status, ot.number FROM tb_ot_verification AS vr LEFT JOIN tb_ot AS ot ON vr.id_ot = ot.id_ot WHERE id_ot_verification = '{0}'", id_report)
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             query = String.Format("SELECT tb_fg_propose_price_rev.id_report_status AS id_report_status, CONCAT(tb_fg_propose_price.fg_propose_price_number,'/REV ', tb_fg_propose_price_rev.rev_count) as report_number 
@@ -5883,16 +5883,16 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             End If
 
             If id_status_reportx = "6" Then
-                FormEmpOvertimeDet.id = id_report
-                FormEmpOvertimeDet.updateChanges()
+                FormEmpOvertimeVerification.id = id_report
+                FormEmpOvertimeVerification.update_changes()
             End If
 
             'update
-            query = String.Format("UPDATE tb_ot SET id_check_status='{0}' WHERE id_ot ='{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_ot_verification SET id_report_status='{0}' WHERE id_ot_verification ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
-            FormEmpOvertimeDet.form_load()
+            'FormEmpOvertimeVerification
         ElseIf report_mark_type = "188" Then
             'FG PROPOSE PRICE
             If id_status_reportx = "2" Then
