@@ -85,6 +85,7 @@ Partial Class FormSalesPOSDet
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottomRight = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSelectDiscount = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtPotPenjualan = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTaxBase = New DevExpress.XtraEditors.TextEdit()
@@ -1008,6 +1009,7 @@ Partial Class FormSalesPOSDet
         'PanelControlBottomRight
         '
         Me.PanelControlBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlBottomRight.Controls.Add(Me.BtnSelectDiscount)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl1)
         Me.PanelControlBottomRight.Controls.Add(Me.TxtPotPenjualan)
         Me.PanelControlBottomRight.Controls.Add(Me.TxtTaxBase)
@@ -1027,6 +1029,16 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
         Me.PanelControlBottomRight.Size = New System.Drawing.Size(258, 141)
         Me.PanelControlBottomRight.TabIndex = 172
+        '
+        'BtnSelectDiscount
+        '
+        Me.BtnSelectDiscount.Image = CType(resources.GetObject("BtnSelectDiscount.Image"), System.Drawing.Image)
+        Me.BtnSelectDiscount.Location = New System.Drawing.Point(49, 5)
+        Me.BtnSelectDiscount.Name = "BtnSelectDiscount"
+        Me.BtnSelectDiscount.Size = New System.Drawing.Size(27, 20)
+        Me.BtnSelectDiscount.TabIndex = 147
+        Me.BtnSelectDiscount.ToolTip = "Select Other Discount"
+        Me.BtnSelectDiscount.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
         '
         'LabelControl1
         '
@@ -1137,7 +1149,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(6, 6)
+        Me.LabelControl10.Location = New System.Drawing.Point(5, 8)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl10.TabIndex = 167
@@ -2059,4 +2071,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents LEPrintOpt As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CEPrintPreview As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnSelectDiscount As DevExpress.XtraEditors.SimpleButton
 End Class
