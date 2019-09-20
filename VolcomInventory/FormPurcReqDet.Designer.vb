@@ -22,6 +22,7 @@ Partial Class FormPurcReqDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcReqDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -41,6 +42,7 @@ Partial Class FormPurcReqDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReqBy = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.CECashPurchase = New DevExpress.XtraEditors.CheckEdit()
         Me.DERequirementDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
@@ -93,7 +95,7 @@ Partial Class FormPurcReqDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +111,7 @@ Partial Class FormPurcReqDet
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.CECashPurchase.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,6 +149,17 @@ Partial Class FormPurcReqDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(955, 41)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.Location = New System.Drawing.Point(625, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 37)
+        Me.BtnAttachment.TabIndex = 16
+        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
         '
         'BtnPrint
         '
@@ -353,6 +367,8 @@ Partial Class FormPurcReqDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
+        Me.PanelControlTopRight.Controls.Add(Me.CECashPurchase)
         Me.PanelControlTopRight.Controls.Add(Me.DERequirementDate)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl8)
         Me.PanelControlTopRight.Controls.Add(Me.DEDateCreated)
@@ -364,6 +380,14 @@ Partial Class FormPurcReqDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(330, 113)
         Me.PanelControlTopRight.TabIndex = 8936
+        '
+        'CECashPurchase
+        '
+        Me.CECashPurchase.Location = New System.Drawing.Point(113, 88)
+        Me.CECashPurchase.Name = "CECashPurchase"
+        Me.CECashPurchase.Properties.Caption = ""
+        Me.CECashPurchase.Size = New System.Drawing.Size(111, 19)
+        Me.CECashPurchase.TabIndex = 163
         '
         'DERequirementDate
         '
@@ -906,16 +930,14 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
         '
-        'BtnAttachment
+        'LabelControl10
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(625, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(103, 37)
-        Me.BtnAttachment.TabIndex = 16
-        Me.BtnAttachment.Text = "Attachment"
-        Me.BtnAttachment.Visible = False
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(13, 91)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl10.TabIndex = 164
+        Me.LabelControl10.Text = "Cash Purchase"
         '
         'FormPurcReqDet
         '
@@ -951,6 +973,7 @@ Partial Class FormPurcReqDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.CECashPurchase.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERequirementDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1053,4 +1076,6 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CECashPurchase As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class
