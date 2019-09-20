@@ -34,7 +34,7 @@
             LEFT JOIN `tb_lookup_employee_status` sts_ori ON sts_ori.`id_employee_status`=emp.`id_employee_status`
             LEFT JOIN `tb_lookup_salary_deduction` sald ON sald.`id_salary_deduction` = pyd.`id_salary_deduction`
             LEFT JOIN tb_lookup_salary_deduction_cat saldc ON saldc.id_salary_deduction_cat = sald.id_salary_deduction_cat
-            WHERE pyd.`id_payroll`='" & id_payroll & "'
+            WHERE pyd.`id_payroll`='" & id_payroll & "' AND pyd.id_employee IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "')
             ORDER BY emp.`id_employee_level` ASC, emp.`employee_code` ASC, sald.`id_salary_deduction_cat` ASC, sald.`id_salary_deduction` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDeduction.DataSource = data

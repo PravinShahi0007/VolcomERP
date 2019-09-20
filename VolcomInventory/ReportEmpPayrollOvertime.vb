@@ -29,7 +29,7 @@
                 LEFT JOIN
                 (
                     SELECT ot.id_employee AS id_emp
-                    ,SUM(IF(ot.id_ot_type=1,total_hour,0)) AS reg_total_hour,SUM(IF(ot.id_ot_type=1,total_point,0)) AS reg_total_point,SUM(IF(ot.id_ot_type=1,ROUND(((IF(ot.increase = 0.00,IF((SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")=1,(SELECT ot_sal.basic_salary + ot_sal.allow_job + ot_sal.allow_meal + ot_sal.allow_trans),IFNULL(ot_py.dw_overtime_var,(ot_sal.basic_salary*22))),ot.increase)*(ot_py.ot_reg_pembilang/ot_py.ot_reg_penyebut)*total_point)),10),0)) AS reg_total_wages
+                    ,SUM(IF(ot.id_ot_type=1,total_hour,0)) AS reg_total_hour,SUM(IF(ot.id_ot_type=1,total_point,0)) AS reg_total_point,SUM(IF(ot.id_ot_type=1,ROUND(((IF(ot.increase = 0.00,IF((SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")=1,(SELECT ot_sal.basic_salary + ot_sal.allow_job + ot_sal.allow_meal + ot_sal.allow_trans),IFNULL(ot_py.dw_overtime_var,(ot_sal.basic_salary*ot_dep.total_workdays))),ot.increase)*(ot_py.ot_reg_pembilang/ot_py.ot_reg_penyebut)*total_point)),10),0)) AS reg_total_wages
                     ,SUM(IF(ot.id_ot_type=2,total_hour,0)) AS mkt_total_hour,SUM(IF(ot.id_ot_type=2,total_point,0)) AS mkt_total_point,SUM(IF(ot.id_ot_type=2,total_point*wages_per_point,0)) AS mkt_total_wages
                     ,SUM(IF(ot.id_ot_type=3,total_hour,0)) AS ia_total_hour,SUM(IF(ot.id_ot_type=3,total_point,0)) AS ia_total_point,SUM(IF(ot.id_ot_type=3,total_point*wages_per_point,0)) AS ia_total_wages
                     ,SUM(IF(ot.id_ot_type=4,total_hour,0)) AS sales_total_hour,SUM(IF(ot.id_ot_type=4,total_point,0)) AS sales_total_point,SUM(IF(ot.id_ot_type=4,total_point*wages_per_point,0)) AS sales_total_wages
@@ -39,10 +39,12 @@
                     FROM tb_emp_payroll_ot ot
                     LEFT JOIN tb_emp_payroll AS ot_py ON ot.id_payroll = ot_py.id_payroll
                     LEFT JOIN tb_emp_payroll_det AS ot_py_det ON ot_py.id_payroll = ot_py_det.id_payroll AND ot.id_employee = ot_py_det.id_employee
+                    LEFT JOIN tb_m_employee AS ot_emp ON ot.id_employee = ot_emp.id_employee
+                    LEFT JOIN tb_m_departement AS ot_dep ON ot_emp.id_departement = ot_dep.id_departement
                     LEFT JOIN (
-                SELECT *
-                FROM tb_m_employee_salary
-                WHERE id_employee_salary IN (SELECT id_salary FROM tb_emp_payroll_det WHERE id_payroll = " + id_payroll + ")
+                        SELECT *
+                        FROM tb_m_employee_salary
+                        WHERE id_employee_salary IN (SELECT id_salary FROM tb_emp_payroll_det WHERE id_payroll = " + id_payroll + ")
                     ) AS ot_sal ON ot.id_employee = ot_sal.id_employee
                     WHERE ot.id_payroll=IF((SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + " LIMIT 1) = 4, (SELECT id_payroll FROM tb_emp_payroll WHERE periode_start = (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + " LIMIT 1) AND periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + " LIMIT 1) AND id_payroll_type = 1 LIMIT 1), " + id_payroll + ")
                     GROUP BY ot.id_payroll,ot.id_employee
