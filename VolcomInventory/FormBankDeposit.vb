@@ -23,6 +23,10 @@
     End Sub
 
     Private Sub FormBankDeposit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
+        DEFromList.EditValue = dt_now.Rows(0)("tgl")
+        DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+
         load_vendor()
         load_status_payment()
 
@@ -91,6 +95,19 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         If Not SLEStoreDeposit.EditValue.ToString = "0" Then
             where_string = " AND rec_py.id_comp_contact='" & SLEStoreDeposit.EditValue.ToString & "'"
         End If
+
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        where_string += " AND (DATE(date_created)>='" + date_from_selected + "' AND DATE(date_created)<='" + date_until_selected + "') "
 
         'Left Join tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
         'Left Join tb_m_comp c ON c.`id_comp`=cc.`id_comp`
