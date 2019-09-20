@@ -1955,9 +1955,9 @@
             field_date = "created_at"
         ElseIf report_mark_type = "187" Then
             'Overtime employee report
-            table_name = "tb_ot"
-            field_id = "id_ot"
-            field_number = "number"
+            table_name = "tb_ot_verification"
+            field_id = "id_ot_verification"
+            field_number = "(SELECT number FROM tb_ot WHERE id_ot = tb_ot_verification.id_ot)"
             field_date = "NOW()"
         ElseIf report_mark_type = "200" Then
             'propose design changes

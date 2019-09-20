@@ -697,6 +697,7 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCPointOt.Caption = "Point"
         Me.BGCPointOt.FieldName = "point_ot"
         Me.BGCPointOt.Name = "BGCPointOt"
+        Me.BGCPointOt.OptionsColumn.AllowEdit = False
         Me.BGCPointOt.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BGCPointOt.Visible = True
         Me.BGCPointOt.Width = 34

@@ -215,6 +215,8 @@
 
             GVAttendance.ActiveFilterString = "[ot_potention] = '1'"
 
+            TEReportStatus.EditValue = ""
+
             'controls
             SBSave.Enabled = True
             SBPrint.Enabled = False
@@ -311,6 +313,8 @@
                 Next
 
                 submit_who_prepared("187", id_ot_verification, id_user)
+            Else
+                GVAttendance.ActiveFilterString = "[ot_potention] = '1'"
             End If
         Else
             errorCustom("No valid overtime.")
