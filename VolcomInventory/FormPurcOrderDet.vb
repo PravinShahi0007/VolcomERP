@@ -272,8 +272,10 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Next
             If is_found = False Then 'add new row
                 Dim newRow As DataRow = (TryCast(GCSummary.DataSource, DataTable)).NewRow()
+                newRow("no") = (GVSummary.RowCount + 1).ToString
                 newRow("id_item") = GVPurcReq.GetRowCellValue(i, "id_item").ToString
                 newRow("item_desc") = GVPurcReq.GetRowCellValue(i, "item_desc").ToString
+                newRow("item_desc_full") = GVPurcReq.GetRowCellValue(i, "item_desc").ToString & vbNewLine & "Note : " & GVPurcReq.GetRowCellValue(i, "item_detail").ToString
                 newRow("item_detail") = GVPurcReq.GetRowCellValue(i, "item_detail").ToString
                 newRow("uom") = GVPurcReq.GetRowCellValue(i, "uom")
                 newRow("qty_po") = GVPurcReq.GetRowCellValue(i, "qty_po")
@@ -306,7 +308,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         GVPurcReq.BestFitColumns()
 
         'summary_query
-        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,'' AS item_detail,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount"
+        Dim query_sum As String = "SELECT '' AS no,'' AS id_item,'' AS item_desc,'' AS item_desc_full,'' AS item_detail,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
         is_process = "2"
@@ -657,6 +659,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Dim Report As New ReportPurcOrder()
         ' ...
         ' creating and saving the view's layout to a new memory stream 
+        '
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
@@ -666,26 +669,48 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
         'Grid Detail
         ReportStyleGridview(Report.GVSummary)
-
+        '
+        Report.GVSummary.BestFitColumns()
         'Parse val
-        Report.LPoNumber.Text = "Number : " & TEPONumber.Text
-        Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
-        Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
-        Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        Report.LPONumber.Text = TEPONumber.Text
+        Report.LTOP.Text = LEPaymentTerm.Text.ToUpper
+        Report.LDateCreated.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LEtaDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
         Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
         Report.LShipVia.Text = LEShipVia.Text.ToUpper
-        Report.LPaymentDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        Report.LDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
         '
         Report.LTotal.Text = TETotal.Text
         Report.LDiscount.Text = TEDiscTotal.Text
         Report.LVat.Text = TEVATValue.Text
         Report.LGrandTotal.Text = TEGrandTotal.Text
-        Report.LNote.Text = MENote.Text
+        'Report.LNote.Text = MENote.Text
         '
         Report.LabelAttn.Text = TEVendorAttn.Text
         Report.LTo.Text = TEVendorName.Text
-        Report.LToAdress.Text = MEAdrressCompTo.Text & vbNewLine & TEVendorPhone.Text & vbNewLine & TEVendorEmail.Text
-
+        Report.LToAdress.Text = MEAdrressCompTo.Text
+        Report.LPhone.Text = TEVendorPhone.Text
+        Report.LEmail.Text = TEVendorEmail.Text
+        '
+        Dim query As String = "SELECT pr.purc_req_number
+                                FROM tb_purc_order_det pod
+                                INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
+                                INNER JOIN tb_m_departement dep ON dep.`id_departement`=pr.`id_departement`
+                                INNER JOIN `tb_item` item ON item.`id_item`=pod.`id_item`
+                                INNER JOIN `tb_item_cat` ic ON item.`id_item_cat`=ic.`id_item_cat`
+                                INNER JOIN tb_item_cat_detail icd ON icd.`id_item_cat_detail`=item.`id_item_cat_detail`
+                                INNER JOIN tb_vendor_type vt ON vt.id_vendor_type=icd.id_vendor_type
+                                INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
+                                WHERE pod.`id_purc_order`='" & id_po & "' GROUP BY pr.id_purc_req"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i = 0 To data.Rows.Count - 1
+            If i > 0 Then
+                Report.LPrNo.Text += ","
+            End If
+            Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString
+        Next
+        '
         Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
         Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
 
