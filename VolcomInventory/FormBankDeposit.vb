@@ -23,10 +23,15 @@
     End Sub
 
     Private Sub FormBankDeposit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
+        DEFromList.EditValue = dt_now.Rows(0)("tgl")
+        DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+
         load_vendor()
         load_status_payment()
 
-        load_vendor_po()
+        'invoice list
+        load_group_store()
     End Sub
 
     Sub load_status_payment()
@@ -50,12 +55,38 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         viewSearchLookupQuery(SLEStoreDeposit, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
+    Sub load_group_store()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS id_comp_group, 'All' AS comp_group, 'All Group' AS description 
+        UNION
+        SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg "
+        viewSearchLookupQuery(SLEStoreGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub load_vendor_po()
-        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Cursor = Cursors.WaitCursor
+        Dim id_group As String = "-1"
+        Try
+            id_group = SLEStoreGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        Dim cond_group As String = ""
+        If id_group <> "0" Then
+            cond_group = "AND c.id_comp_group='" + id_group + "' "
+        End If
+
+
+        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name
+        UNION
+        SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='6'"
+                                WHERE c.id_comp_cat='6' " + cond_group + " "
         viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp_contact", "comp_name", "id_comp_contact")
+        Cursor = Cursors.Default
     End Sub
 
     Sub load_deposit()
@@ -65,10 +96,24 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
             where_string = " AND rec_py.id_comp_contact='" & SLEStoreDeposit.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        where_string += " AND (DATE(date_created)>='" + date_from_selected + "' AND DATE(date_created)<='" + date_until_selected + "') "
+
+        'Left Join tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
+        'Left Join tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        ',CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name
+        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note
 FROM tb_rec_payment rec_py
-INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
@@ -81,8 +126,12 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
     Sub load_invoice()
         Dim where_string As String = ""
 
+        If Not SLEStoreGroup.EditValue.ToString = "0" Then
+            where_string += " AND c.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "'"
+        End If
+
         If Not SLEStoreInvoice.EditValue.ToString = "0" Then
-            where_string += " AND sp.id_store_contact_from='" & SLEStoreInvoice.EditValue.ToString & "'"
+            where_string += " AND cc.id_comp_contact='" & SLEStoreInvoice.EditValue.ToString & "'"
         End If
 
         If SLEStatusInvoice.EditValue.ToString = "1" Then 'All open
@@ -95,19 +144,30 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             where_string += " AND sp.is_close_rec_payment='2' AND DATE_SUB(sp.sales_pos_due_date, INTERVAL 7 DAY)<DATE(NOW())"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`,c.`comp_name`,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
-,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
-,sp.report_mark_type,rmt.report_mark_type_name,SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-SUM(IFNULL(pyd.`value`,0.00)) AS total_due
-,COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS total_pending
-,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days
-FROM tb_sales_pos sp 
-INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_store_contact_from`
-INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
-LEFT JOIN tb_rec_payment_det pyd ON pyd.`id_report`=sp.`id_sales_pos` AND pyd.`report_mark_type`=sp.`report_mark_type`
-LEFT JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`!=5
-WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
+        Dim var_acc As String = "IFNULL(IF(sp.id_memo_type=2 OR sp.id_memo_type=4 OR sp.id_memo_type=6, sp.id_acc_sales_return, sp.id_acc_sales),0)"
+        Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
+        ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
+        ,sp.report_mark_type,rmt.report_mark_type_name,IFNULL(pyd.`value`,0.00) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS total_due
+        ,IFNULL(pyd.total_pending,0) AS `total_pending`
+        ,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days,
+        " + var_acc + " AS `id_acc`, coa.acc_name
+        FROM tb_sales_pos sp 
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        LEFT JOIN (
+	        SELECT pyd.id_report, pyd.report_mark_type, 
+	        COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+	        SUM(pyd.value) AS  `value`
+	        FROM tb_rec_payment_det pyd
+	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+	        WHERE py.`id_report_status`!=5
+	        GROUP BY pyd.id_report, pyd.report_mark_type
+        ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+        LEFT JOIN tb_a_acc coa ON coa.id_acc = " + var_acc + "
+        WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoiceList.DataSource = data
         GVInvoiceList.BestFitColumns()
@@ -136,26 +196,48 @@ WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
-        GVInvoiceList.ActiveFilterString = ""
-        GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
+        makeSafeGV(GVInvoiceList)
 
-        Dim is_pending As Boolean = False
-        'check
-        For i As Integer = 0 To GVInvoiceList.RowCount - 1
-            If GVInvoiceList.GetRowCellValue(i, "total_pending") > 0 Then
-                is_pending = True
-            End If
-        Next
-        If is_pending = True Then
-            warningCustom("Please process all pending receive payment for selected purchase")
-        Else
-            If GVInvoiceList.RowCount > 0 Then
-                FormBankDepositDet.ShowDialog()
-            Else
-                warningCustom("No data selected")
-            End If
+        'check pending doc
+        GVInvoiceList.ActiveFilterString = "[is_check]='yes' AND [total_pending]>0"
+        If GVInvoiceList.RowCount > 0 Then
+            Dim err_pending As String = ""
+            For i As Integer = 0 To GVInvoiceList.RowCount - 1
+                If i > 0 Then
+                    err_pending += System.Environment.NewLine
+                End If
+                err_pending += "- " + GVInvoiceList.GetRowCellValue(i, "sales_pos_number").ToString
+            Next
+            warningCustom("Please process all pending receive payment for invoice number : " + System.Environment.NewLine + err_pending)
+            GVInvoiceList.ActiveFilterString = ""
+            Exit Sub
         End If
 
+        'check coa
+        makeSafeGV(GVInvoiceList)
+        GVInvoiceList.ActiveFilterString = "[is_check]='yes' AND [id_acc]=0"
+        If GVInvoiceList.RowCount > 0 Then
+            Dim err_coa As String = ""
+            For i As Integer = 0 To GVInvoiceList.RowCount - 1
+                If i > 0 Then
+                    err_coa += System.Environment.NewLine
+                End If
+                err_coa += "- " + GVInvoiceList.GetRowCellValue(i, "sales_pos_number").ToString
+            Next
+            warningCustom("AR account not found for invoice number : " + System.Environment.NewLine + err_coa)
+            GVInvoiceList.ActiveFilterString = ""
+            Exit Sub
+        End If
+
+        'process
+        GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
+        If GVInvoiceList.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositDet.ShowDialog()
+            Cursor = Cursors.Default
+        Else
+            warningCustom("No data selected")
+        End If
         GVInvoiceList.ActiveFilterString = ""
     End Sub
 
@@ -168,5 +250,9 @@ WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
             FormBankDepositDet.id_deposit = GVList.GetFocusedRowCellValue("id_rec_payment")
             FormBankDepositDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        load_vendor_po()
     End Sub
 End Class

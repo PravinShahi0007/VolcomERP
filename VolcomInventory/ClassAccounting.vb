@@ -4,6 +4,11 @@
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
+    Public Sub generateJournalSalesDraftWithMapping(ByVal id_report_par As String, rmt As String)
+        Dim query As String = "CALL generate_journal_sales_draft_with_mapping(" + id_report_par + "," + rmt + ")"
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
     Public Function viewJournalSalesDraft(ByVal condition As String, ByVal order_type As String) As String
         If order_type = "1" Then
             order_type = "ASC "
