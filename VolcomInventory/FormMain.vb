@@ -8360,6 +8360,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormReportBudget" Then
             FormReportBudget.Close()
             FormReportBudget.Dispose()
+        ElseIf formName = "FormEmpLeaveStock" Then
+            FormEmpLeaveStock.Close()
+            FormEmpLeaveStock.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
