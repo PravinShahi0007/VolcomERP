@@ -6186,6 +6186,12 @@
     <Compile Include="ReportEmpOvertimeMemo.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpOvertimeVerification.Designer.vb">
+      <DependentUpon>ReportEmpOvertimeVerification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpOvertimeVerification.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPayrollDeduction.Designer.vb">
       <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
     </Compile>
@@ -10633,6 +10639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpOvertimeMemo.resx">
       <DependentUpon>ReportEmpOvertimeMemo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpOvertimeVerification.resx">
+      <DependentUpon>ReportEmpOvertimeVerification.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPayrollDeduction.resx">
       <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
