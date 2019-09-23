@@ -367,7 +367,7 @@
         Dim query As String = ""
 
         query = "
-            SELECT vr.id_payroll, vrd.id_employee, ot.id_ot_type, vrd.start_work_ot AS ot_start, vrd.end_work_ot AS ot_end, vrd.break_hours AS total_break, vrd.total_hours AS total_hour, 0.0 AS total_point, vrd.is_day_off, ott.ot_point_wages AS wages_per_point, ot.ot_note AS note, vrd.id_ot_verification_det, py.periode_end, vrd.to_salary, vrd.conversion_type, d.is_store
+            SELECT vr.id_payroll, vrd.id_employee, ot.id_ot_type, vrd.start_work_ot AS ot_start, vrd.end_work_ot AS ot_end, vrd.break_hours AS total_break, vrd.total_hours AS total_hour, 0.0 AS total_point, vrd.is_day_off, ott.ot_point_wages AS wages_per_point, ot.ot_note AS note, vrd.id_ot_verification_det, py.periode_end, vrd.to_salary, vrd.conversion_type, IF(ott.is_point_ho, 1, 2, d.is_store) AS is_store
             FROM tb_ot_verification_det AS vrd
             LEFT JOIN tb_ot_verification AS vr ON vrd.id_ot_verification = vr.id_ot_verification
             LEFT JOIN tb_ot AS ot ON vr.id_ot = ot.id_ot
@@ -399,8 +399,20 @@
 
             total_point = If(to_salary = "1", calc_point(Decimal.Parse(total_hour), is_day_off, is_store), total_hour)
 
-            'overtime
-            query = "INSERT INTO tb_emp_payroll_ot (id_payroll, id_employee, id_ot_type, ot_start, ot_end, total_break, total_hour, total_point, is_day_off, wages_per_point, note, id_ot_det) VALUES (" + id_payroll + ", " + id_employee + ", " + id_ot_type + ", '" + ot_start + "', '" + ot_end + "', " + decimalSQL(total_break) + ", " + decimalSQL(total_hour) + ", " + decimalSQL(total_point) + ", " + is_day_off + ", " + decimalSQL(wages_per_point) + ", '" + addSlashes(note) + "', " + id_ot_verification_det + ")"
+            Dim qty As String = Math.Round((Decimal.Parse(total_point) * 60)).ToString
+            Dim date_expired As String = Date.Parse(periode_end).AddMonths(6).ToString("yyyy-MM-dd")
+
+            If conversion_type = "1" Then
+                'overtime
+                query = "INSERT INTO tb_emp_payroll_ot (id_payroll, id_employee, id_ot_type, ot_start, ot_end, total_break, total_hour, total_point, is_day_off, wages_per_point, note, id_ot_verification_det) VALUES (" + id_payroll + ", " + id_employee + ", " + id_ot_type + ", '" + ot_start + "', '" + ot_end + "', " + decimalSQL(total_break) + ", " + decimalSQL(total_hour) + ", " + decimalSQL(total_point) + ", " + is_day_off + ", " + decimalSQL(wages_per_point) + ", '" + addSlashes(note) + "', " + id_ot_verification_det + ")"
+
+                Console.WriteLine(query)
+            ElseIf conversion_type = "2" Then
+                'dp
+                query = "INSERT INTO tb_emp_stock_leave (id_ot_verification_det, id_emp, qty, plus_minus, date_leave, date_expired, is_process_exp, note, type) VALUES (" + id_ot_verification_det + ", " + id_employee + ", " + qty + ", 1, NOW(), '" + date_expired + "', 1, '" + note + "', 2)"
+
+                Console.WriteLine(query)
+            End If
         Next
     End Sub
 

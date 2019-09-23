@@ -21,19 +21,19 @@ Partial Class FormEmpOvertime
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpOvertime))
         Me.GCOvertime = New DevExpress.XtraGrid.GridControl()
-        Me.GVOvertime = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GVOvertime = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMEMultiline = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SBViewOD = New DevExpress.XtraEditors.SimpleButton()
         Me.SBViewCA = New DevExpress.XtraEditors.SimpleButton()
@@ -43,6 +43,8 @@ Partial Class FormEmpOvertime
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPByRequest = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPByEmployee = New DevExpress.XtraTab.XtraTabPage()
@@ -88,6 +90,21 @@ Partial Class FormEmpOvertime
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlCheck = New DevExpress.XtraEditors.PanelControl()
         Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCVerification = New DevExpress.XtraGrid.GridControl()
+        Me.GVVerification = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.PCEmployee = New DevExpress.XtraEditors.PanelControl()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -101,7 +118,6 @@ Partial Class FormEmpOvertime
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +131,9 @@ Partial Class FormEmpOvertime
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl.SuspendLayout()
         Me.XTPByRequest.SuspendLayout()
@@ -123,6 +142,9 @@ Partial Class FormEmpOvertime
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCheck.SuspendLayout()
+        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.GCVerification, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVVerification, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCEmployee.SuspendLayout()
@@ -139,14 +161,14 @@ Partial Class FormEmpOvertime
         Me.GCOvertime.MainView = Me.GVOvertime
         Me.GCOvertime.Name = "GCOvertime"
         Me.GCOvertime.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMEMultiline})
-        Me.GCOvertime.Size = New System.Drawing.Size(998, 588)
+        Me.GCOvertime.Size = New System.Drawing.Size(992, 560)
         Me.GCOvertime.TabIndex = 0
         Me.GCOvertime.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOvertime})
         '
         'GVOvertime
         '
-        Me.GVOvertime.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand3})
-        Me.GVOvertime.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.BandedGridColumn12, Me.BandedGridColumn11, Me.BandedGridColumn10, Me.GridColumn9, Me.GridColumn40, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GVOvertime.ColumnPanelRowHeight = 32
+        Me.GVOvertime.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.BandedGridColumn12, Me.BandedGridColumn11, Me.BandedGridColumn10, Me.GridColumn9, Me.GridColumn40, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
         Me.GVOvertime.GridControl = Me.GCOvertime
         Me.GVOvertime.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Nothing, "{0:N1}")})
         Me.GVOvertime.Name = "GVOvertime"
@@ -156,22 +178,6 @@ Partial Class FormEmpOvertime
         Me.GVOvertime.OptionsView.RowAutoHeight = True
         Me.GVOvertime.OptionsView.ShowFooter = True
         Me.GVOvertime.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand3
-        '
-        Me.GridBand3.Columns.Add(Me.GridColumn1)
-        Me.GridBand3.Columns.Add(Me.GridColumn2)
-        Me.GridBand3.Columns.Add(Me.GridColumn3)
-        Me.GridBand3.Columns.Add(Me.BandedGridColumn11)
-        Me.GridBand3.Columns.Add(Me.BandedGridColumn10)
-        Me.GridBand3.Columns.Add(Me.GridColumn9)
-        Me.GridBand3.Columns.Add(Me.GridColumn40)
-        Me.GridBand3.Columns.Add(Me.GridColumn10)
-        Me.GridBand3.Columns.Add(Me.GridColumn11)
-        Me.GridBand3.Columns.Add(Me.GridColumn12)
-        Me.GridBand3.Name = "GridBand3"
-        Me.GridBand3.VisibleIndex = 0
-        Me.GridBand3.Width = 587
         '
         'GridColumn1
         '
@@ -185,6 +191,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn2.FieldName = "number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
         '
         'GridColumn3
         '
@@ -192,7 +199,14 @@ Partial Class FormEmpOvertime
         Me.GridColumn3.FieldName = "ot_type"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 81
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "BandedGridColumn12"
+        Me.BandedGridColumn12.FieldName = "id_departement"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
         '
         'BandedGridColumn11
         '
@@ -200,10 +214,7 @@ Partial Class FormEmpOvertime
         Me.BandedGridColumn11.FieldName = "departement"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
         Me.BandedGridColumn11.Visible = True
-        '
-        'RIMEMultiline
-        '
-        Me.RIMEMultiline.Name = "RIMEMultiline"
+        Me.BandedGridColumn11.VisibleIndex = 2
         '
         'BandedGridColumn10
         '
@@ -214,7 +225,12 @@ Partial Class FormEmpOvertime
         Me.BandedGridColumn10.FieldName = "ot_date"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
         Me.BandedGridColumn10.Visible = True
+        Me.BandedGridColumn10.VisibleIndex = 3
         Me.BandedGridColumn10.Width = 33
+        '
+        'RIMEMultiline
+        '
+        Me.RIMEMultiline.Name = "RIMEMultiline"
         '
         'GridColumn9
         '
@@ -222,6 +238,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn9.FieldName = "ot_note"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 4
         Me.GridColumn9.Width = 96
         '
         'GridColumn40
@@ -237,6 +254,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn10.FieldName = "report_status"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 5
         Me.GridColumn10.Width = 77
         '
         'GridColumn11
@@ -245,6 +263,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn11.FieldName = "created_by"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 6
         '
         'GridColumn12
         '
@@ -252,6 +271,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn12.FieldName = "created_at"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 7
         '
         'PanelControl4
         '
@@ -261,7 +281,7 @@ Partial Class FormEmpOvertime
         Me.PanelControl4.Controls.Add(Me.SBViewOD)
         Me.PanelControl4.Controls.Add(Me.SBViewCA)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(943, 0)
+        Me.PanelControl4.Location = New System.Drawing.Point(962, 0)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(265, 40)
         Me.PanelControl4.TabIndex = 19
@@ -287,14 +307,16 @@ Partial Class FormEmpOvertime
         Me.PanelControl3.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanelControl3.Appearance.Options.UseBackColor = True
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.Label4)
         Me.PanelControl3.Controls.Add(Me.Label1)
+        Me.PanelControl3.Controls.Add(Me.SLUEDepartement)
         Me.PanelControl3.Controls.Add(Me.DEStart)
         Me.PanelControl3.Controls.Add(Me.Label2)
         Me.PanelControl3.Controls.Add(Me.DEUntil)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(414, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(692, 40)
         Me.PanelControl3.TabIndex = 18
         '
         'Label1
@@ -344,22 +366,39 @@ Partial Class FormEmpOvertime
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.XtraTabControl)
-        Me.PanelControl2.Controls.Add(Me.PanelControlCheck)
+        Me.PanelControl2.Controls.Add(Me.XtraTabControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 57)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 672)
         Me.PanelControl2.TabIndex = 2
         '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(2, 2)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1004, 668)
+        Me.XtraTabControl1.TabIndex = 2
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.XtraTabControl)
+        Me.XtraTabPage1.Controls.Add(Me.PanelControlCheck)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(998, 640)
+        Me.XtraTabPage1.Text = "Proposed"
+        '
         'XtraTabControl
         '
         Me.XtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl.Location = New System.Drawing.Point(2, 54)
+        Me.XtraTabControl.Location = New System.Drawing.Point(0, 52)
         Me.XtraTabControl.Name = "XtraTabControl"
         Me.XtraTabControl.SelectedTabPage = Me.XTPByRequest
-        Me.XtraTabControl.Size = New System.Drawing.Size(1004, 616)
+        Me.XtraTabControl.Size = New System.Drawing.Size(998, 588)
         Me.XtraTabControl.TabIndex = 1
         Me.XtraTabControl.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPByRequest, Me.XTPByEmployee})
         '
@@ -367,14 +406,14 @@ Partial Class FormEmpOvertime
         '
         Me.XTPByRequest.Controls.Add(Me.GCOvertime)
         Me.XTPByRequest.Name = "XTPByRequest"
-        Me.XTPByRequest.Size = New System.Drawing.Size(998, 588)
+        Me.XTPByRequest.Size = New System.Drawing.Size(992, 560)
         Me.XTPByRequest.Text = "By Request"
         '
         'XTPByEmployee
         '
         Me.XTPByEmployee.Controls.Add(Me.GCEmployee)
         Me.XTPByEmployee.Name = "XTPByEmployee"
-        Me.XTPByEmployee.Size = New System.Drawing.Size(998, 588)
+        Me.XTPByEmployee.Size = New System.Drawing.Size(992, 560)
         Me.XTPByEmployee.Text = "By Employee"
         '
         'GCEmployee
@@ -383,7 +422,7 @@ Partial Class FormEmpOvertime
         Me.GCEmployee.Location = New System.Drawing.Point(0, 0)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.Size = New System.Drawing.Size(998, 588)
+        Me.GCEmployee.Size = New System.Drawing.Size(992, 560)
         Me.GCEmployee.TabIndex = 1
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
@@ -715,20 +754,146 @@ Partial Class FormEmpOvertime
         '
         Me.PanelControlCheck.Controls.Add(Me.SBVerification)
         Me.PanelControlCheck.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlCheck.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlCheck.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlCheck.Name = "PanelControlCheck"
-        Me.PanelControlCheck.Size = New System.Drawing.Size(1004, 52)
+        Me.PanelControlCheck.Size = New System.Drawing.Size(998, 52)
         Me.PanelControlCheck.TabIndex = 1
         '
         'SBVerification
         '
         Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
-        Me.SBVerification.Location = New System.Drawing.Point(901, 2)
+        Me.SBVerification.Location = New System.Drawing.Point(895, 2)
         Me.SBVerification.Name = "SBVerification"
         Me.SBVerification.Size = New System.Drawing.Size(101, 48)
         Me.SBVerification.TabIndex = 0
         Me.SBVerification.Text = "Verification"
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GCVerification)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(998, 640)
+        Me.XtraTabPage2.Text = "Verification"
+        '
+        'GCVerification
+        '
+        Me.GCVerification.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCVerification.Location = New System.Drawing.Point(0, 0)
+        Me.GCVerification.MainView = Me.GVVerification
+        Me.GCVerification.Name = "GCVerification"
+        Me.GCVerification.Size = New System.Drawing.Size(998, 640)
+        Me.GCVerification.TabIndex = 1
+        Me.GCVerification.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVerification})
+        '
+        'GVVerification
+        '
+        Me.GVVerification.ColumnPanelRowHeight = 32
+        Me.GVVerification.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn47, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn38, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46})
+        Me.GVVerification.GridControl = Me.GCVerification
+        Me.GVVerification.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", Nothing, "{0:N1}")})
+        Me.GVVerification.Name = "GVVerification"
+        Me.GVVerification.OptionsBehavior.Editable = False
+        Me.GVVerification.OptionsFind.AlwaysVisible = True
+        Me.GVVerification.OptionsView.ColumnAutoWidth = False
+        Me.GVVerification.OptionsView.RowAutoHeight = True
+        Me.GVVerification.OptionsView.ShowFooter = True
+        Me.GVVerification.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "GridColumn47"
+        Me.GridColumn47.FieldName = "id_ot_verification"
+        Me.GridColumn47.Name = "GridColumn47"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "GridColumn1"
+        Me.GridColumn4.FieldName = "id_ot"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Number"
+        Me.GridColumn5.FieldName = "number"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Overtime Type"
+        Me.GridColumn6.FieldName = "ot_type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 81
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "BandedGridColumn12"
+        Me.GridColumn7.FieldName = "id_departement"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Departement"
+        Me.GridColumn8.FieldName = "departement"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn38.Caption = "Date"
+        Me.GridColumn38.FieldName = "ot_date"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 3
+        Me.GridColumn38.Width = 33
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Overtime Propose"
+        Me.GridColumn42.FieldName = "ot_note"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 4
+        Me.GridColumn42.Width = 96
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "GridColumn40"
+        Me.GridColumn43.FieldName = "id_report_status"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Width = 76
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Report Status"
+        Me.GridColumn44.FieldName = "report_status"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 5
+        Me.GridColumn44.Width = 77
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Created By"
+        Me.GridColumn45.FieldName = "created_by"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 6
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Created At"
+        Me.GridColumn46.FieldName = "created_at"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 7
         '
         'XtraScrollableControl1
         '
@@ -746,21 +911,19 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PCEmployee.Appearance.Options.UseBackColor = True
         Me.PCEmployee.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCEmployee.Controls.Add(Me.Label4)
         Me.PCEmployee.Controls.Add(Me.SLUEEmployee)
-        Me.PCEmployee.Controls.Add(Me.SLUEDepartement)
         Me.PCEmployee.Controls.Add(Me.Label3)
         Me.PCEmployee.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCEmployee.Location = New System.Drawing.Point(414, 0)
+        Me.PCEmployee.Location = New System.Drawing.Point(692, 0)
         Me.PCEmployee.Name = "PCEmployee"
-        Me.PCEmployee.Size = New System.Drawing.Size(529, 40)
+        Me.PCEmployee.Size = New System.Drawing.Size(270, 40)
         Me.PCEmployee.TabIndex = 20
         Me.PCEmployee.Visible = False
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 14)
+        Me.Label4.Location = New System.Drawing.Point(420, 14)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(77, 13)
         Me.Label4.TabIndex = 15
@@ -768,7 +931,7 @@ Partial Class FormEmpOvertime
         '
         'SLUEEmployee
         '
-        Me.SLUEEmployee.Location = New System.Drawing.Point(342, 11)
+        Me.SLUEEmployee.Location = New System.Drawing.Point(77, 11)
         Me.SLUEEmployee.Name = "SLUEEmployee"
         Me.SLUEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEEmployee.Properties.View = Me.SearchLookUpEdit2View
@@ -807,7 +970,7 @@ Partial Class FormEmpOvertime
         '
         'SLUEDepartement
         '
-        Me.SLUEDepartement.Location = New System.Drawing.Point(89, 11)
+        Me.SLUEDepartement.Location = New System.Drawing.Point(503, 11)
         Me.SLUEDepartement.Name = "SLUEDepartement"
         Me.SLUEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEDepartement.Properties.View = Me.SearchLookUpEdit1View
@@ -839,17 +1002,11 @@ Partial Class FormEmpOvertime
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(276, 14)
+        Me.Label3.Location = New System.Drawing.Point(11, 14)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(60, 13)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
-        '
-        'BandedGridColumn12
-        '
-        Me.BandedGridColumn12.Caption = "BandedGridColumn12"
-        Me.BandedGridColumn12.FieldName = "id_departement"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
         '
         'FormEmpOvertime
         '
@@ -874,6 +1031,9 @@ Partial Class FormEmpOvertime
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl.ResumeLayout(False)
         Me.XTPByRequest.ResumeLayout(False)
@@ -882,6 +1042,9 @@ Partial Class FormEmpOvertime
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlCheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCheck.ResumeLayout(False)
+        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.GCVerification, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVVerification, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCEmployee.ResumeLayout(False)
@@ -961,19 +1124,35 @@ Partial Class FormEmpOvertime
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GVOvertime As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SBVerification As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RIMEMultiline As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GVOvertime As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCVerification As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVVerification As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

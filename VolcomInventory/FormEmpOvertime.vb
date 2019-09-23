@@ -18,8 +18,8 @@
     End Sub
 
     Sub form_load()
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        DEStart.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-1")
+        DEUntil.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-" + Date.DaysInMonth(Now.Year, Now.Month))
 
         view_departement()
         view_employee()
@@ -110,6 +110,28 @@
         End If
     End Sub
 
+    Sub load_verification(ByVal type As String)
+        Dim whereDept As String = If(is_hrd = "-1", "AND ot_verification.id_departement = " + id_departement_user, "")
+
+        Dim query As String = "
+            SELECT ot_verification.id_ot_verification, ot_verification.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot_verification.id_departement, departement.departement, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot.number, ot.ot_note, ot_verification.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+            FROM tb_ot_verification AS ot_verification
+            LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
+            LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
+            LEFT JOIN tb_m_departement AS departement ON ot_verification.id_departement = departement.id_departement
+            LEFT JOIN tb_lookup_report_status AS report_status ON ot_verification.id_report_status = report_status.id_report_status
+            LEFT JOIN tb_m_employee AS employee ON ot_verification.created_by = employee.id_employee
+            WHERE 1 " + whereDept + " 
+            ORDER BY ot.number DESC, ot_verification.ot_date ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCVerification.DataSource = data
+
+        GVVerification.BestFitColumns()
+    End Sub
+
     Private Sub FormEmpOvertime_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
@@ -122,10 +144,12 @@
 
     Private Sub SBViewCA_Click(sender As Object, e As EventArgs) Handles SBViewCA.Click
         load_overtime("created_at")
+        load_verification("created_at")
     End Sub
 
     Private Sub SBViewOD_Click(sender As Object, e As EventArgs) Handles SBViewOD.Click
         load_overtime("ot_date")
+        load_verification("ot_date")
     End Sub
 
     Sub view_departement()
@@ -172,7 +196,6 @@
         Try
             FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
             FormEmpOvertimeDet.is_hrd = is_hrd
-            FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.ShowDialog()
         Catch ex As Exception
@@ -183,7 +206,6 @@
         Try
             FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
             FormEmpOvertimeDet.is_hrd = is_hrd
-            FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.ShowDialog()
         Catch ex As Exception
@@ -196,7 +218,6 @@
                 If GVEmployee.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
                     FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = is_hrd
-                    FormEmpOvertimeDet.is_check = "1"
 
                     FormEmpOvertimeDet.ShowDialog()
                 Else
@@ -209,7 +230,6 @@
                 If GVOvertime.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
                     FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = is_hrd
-                    FormEmpOvertimeDet.is_check = "1"
 
                     FormEmpOvertimeDet.ShowDialog()
                 Else
@@ -254,6 +274,17 @@
     Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
         Try
             FormEmpOvertimeVerification.id_ot = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
+
+            FormEmpOvertimeVerification.ShowDialog()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub GVVerification_DoubleClick(sender As Object, e As EventArgs) Handles GVVerification.DoubleClick
+        Try
+            FormEmpOvertimeVerification.id = GVVerification.GetFocusedRowCellValue("id_ot_verification").ToString
+            FormEmpOvertimeVerification.id_ot = GVVerification.GetFocusedRowCellValue("id_ot").ToString
+            FormEmpOvertimeVerification.is_view = "1"
 
             FormEmpOvertimeVerification.ShowDialog()
         Catch ex As Exception
