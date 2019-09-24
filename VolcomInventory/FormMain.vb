@@ -7586,6 +7586,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormSalesRecord.GCData, "")
         ElseIf formName = "FormARAging" Then
             print_raw(FormARAging.GCData, "")
+        ElseIf formName = "FormReportBudget" Then
+            'report budget
+            print(FormReportBudget.GCItemCat, "Summary Budget")
         Else
             RPSubMenu.Visible = False
         End If
