@@ -87,7 +87,6 @@ Partial Class FormViewJournal
         Me.GVJournalDet.OptionsBehavior.Editable = False
         Me.GVJournalDet.OptionsView.ShowFooter = True
         Me.GVJournalDet.OptionsView.ShowGroupPanel = False
-        Me.GVJournalDet.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumn6
         '

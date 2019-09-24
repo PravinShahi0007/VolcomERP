@@ -276,7 +276,6 @@ Partial Class FormPurcItemDet
         Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl5.TabIndex = 8904
         Me.LabelControl5.Text = "Item Type"
-        Me.LabelControl5.Visible = False
         '
         'SLEItemType
         '
@@ -286,7 +285,6 @@ Partial Class FormPurcItemDet
         Me.SLEItemType.Properties.View = Me.GridView3
         Me.SLEItemType.Size = New System.Drawing.Size(201, 20)
         Me.SLEItemType.TabIndex = 8903
-        Me.SLEItemType.Visible = False
         '
         'GridView3
         '

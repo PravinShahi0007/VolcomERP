@@ -175,7 +175,7 @@
         Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 
         Dim iAlphabet As Integer = last_alphabet
-        Dim iInterger As Integer = 0
+        Dim iInterger As Integer = 1
 
         Dim last_departement As String = ""
         Dim last_departement_sub As String = ""
