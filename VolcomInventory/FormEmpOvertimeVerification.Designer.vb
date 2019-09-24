@@ -113,6 +113,8 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.GCIsStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BGCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -253,7 +255,7 @@ Partial Class FormEmpOvertimeVerification
         Me.LUEOvertimeType.Location = New System.Drawing.Point(105, 38)
         Me.LUEOvertimeType.Name = "LUEOvertimeType"
         Me.LUEOvertimeType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LUEOvertimeType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_type", "Overtime Type")})
+        Me.LUEOvertimeType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ot_type", "", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_type", "Overtime Type"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_point_ho", "", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
         Me.LUEOvertimeType.Size = New System.Drawing.Size(320, 20)
         Me.LUEOvertimeType.TabIndex = 23
         '
@@ -439,7 +441,7 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.GVAttendance.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.gridBand3, Me.gridBand4})
         Me.GVAttendance.ColumnPanelRowHeight = 32
-        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BGCIdEmployee, Me.BGCIdDepartement, Me.BGCIdDepartementSub, Me.BGCDepartement, Me.BGCDate, Me.BGCNIP, Me.BGCEmployeeName, Me.BGCEmployeePosition, Me.BGCIdEmployeeStatus, Me.BGCEmployeeStatus, Me.BGCToSalary, Me.BGCConversionType, Me.BGCIsDayOff, Me.BGCStartWork, Me.BGCEndWork, Me.BGCStartWorkOt, Me.BGCEndWorkOt, Me.BGCBreakHours, Me.BGCTotalHours, Me.BGCPointOt, Me.BGCValid, Me.BGCIdScheduleType, Me.BGCIn, Me.BGCOut, Me.BGCOtPotention})
+        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BGCIdEmployee, Me.BGCIdDepartement, Me.BGCIdDepartementSub, Me.BGCDepartement, Me.BGCDate, Me.BGCNIP, Me.BGCEmployeeName, Me.BGCEmployeePosition, Me.BGCIdEmployeeStatus, Me.BGCEmployeeStatus, Me.BGCToSalary, Me.BGCConversionType, Me.BGCIsStore, Me.BGCIsDayOff, Me.BGCStartWork, Me.BGCEndWork, Me.BGCStartWorkOt, Me.BGCEndWorkOt, Me.BGCBreakHours, Me.BGCTotalHours, Me.BGCPointOt, Me.BGCValid, Me.BGCIdScheduleType, Me.BGCIn, Me.BGCOut, Me.BGCOtPotention})
         Me.GVAttendance.GridControl = Me.GCAttendance
         Me.GVAttendance.GroupCount = 1
         Me.GVAttendance.Name = "GVAttendance"
@@ -695,6 +697,8 @@ Partial Class FormEmpOvertimeVerification
         'BGCPointOt
         '
         Me.BGCPointOt.Caption = "Point"
+        Me.BGCPointOt.DisplayFormat.FormatString = "N1"
+        Me.BGCPointOt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BGCPointOt.FieldName = "point_ot"
         Me.BGCPointOt.Name = "BGCPointOt"
         Me.BGCPointOt.OptionsColumn.AllowEdit = False
@@ -739,6 +743,8 @@ Partial Class FormEmpOvertimeVerification
         'BGCIn
         '
         Me.BGCIn.Caption = "In"
+        Me.BGCIn.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.BGCIn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BGCIn.FieldName = "in"
         Me.BGCIn.Name = "BGCIn"
         Me.BGCIn.OptionsColumn.AllowEdit = False
@@ -748,6 +754,8 @@ Partial Class FormEmpOvertimeVerification
         'BGCOut
         '
         Me.BGCOut.Caption = "Out"
+        Me.BGCOut.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.BGCOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BGCOut.FieldName = "out"
         Me.BGCOut.Name = "BGCOut"
         Me.BGCOut.OptionsColumn.AllowEdit = False
@@ -833,7 +841,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsStore, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -1099,6 +1107,20 @@ Partial Class FormEmpOvertimeVerification
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.TEReportStatus.TabIndex = 21
         '
+        'GCIsStore
+        '
+        Me.GCIsStore.FieldName = "is_store"
+        Me.GCIsStore.Name = "GCIsStore"
+        Me.GCIsStore.OptionsColumn.AllowEdit = False
+        Me.GCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BGCIsStore
+        '
+        Me.BGCIsStore.FieldName = "is_store"
+        Me.BGCIsStore.Name = "BGCIsStore"
+        Me.BGCIsStore.OptionsColumn.AllowEdit = False
+        Me.BGCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
         'FormEmpOvertimeVerification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1245,4 +1267,6 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BGCPointOt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCIsStore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BGCIsStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

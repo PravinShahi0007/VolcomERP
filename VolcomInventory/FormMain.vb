@@ -2774,7 +2774,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
-                If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+                If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
                     FormEmpOvertimeDet.id = FormEmpOvertime.GVEmployee.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
                     FormEmpOvertimeDet.is_check = "-1"
@@ -7543,11 +7543,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSamplePurcClose" Then
             print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
         ElseIf formName = "FormEmpOvertime" Then
-            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByRequest" Then
+            If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByRequest" Then
                 print(FormEmpOvertime.GCOvertime, "List Overtime")
             End If
 
-            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+            If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
                 print(FormEmpOvertime.GCEmployee, "List Overtime")
             End If
         ElseIf formName = "FormInvoiceFGPO" Then

@@ -5884,15 +5884,15 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             If id_status_reportx = "6" Then
                 FormEmpOvertimeVerification.id = id_report
+                FormEmpOvertimeVerification.id_ot = execute_query("SELECT id_ot FROM tb_ot_verification WHERE id_ot_verification = " + id_report + " LIMIT 1", 0, True, "", "", "", "")
+                FormEmpOvertimeVerification.is_view = "0"
+
                 FormEmpOvertimeVerification.update_changes()
             End If
 
             'update
             query = String.Format("UPDATE tb_ot_verification SET id_report_status='{0}' WHERE id_ot_verification ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-            'refresh view
-            'FormEmpOvertimeVerification
         ElseIf report_mark_type = "188" Then
             'FG PROPOSE PRICE
             If id_status_reportx = "2" Then

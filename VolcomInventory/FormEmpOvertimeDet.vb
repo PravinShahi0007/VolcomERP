@@ -170,7 +170,7 @@
         Try
             Dim include As String = ""
 
-            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+            If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
                 For i = 0 To FormEmpOvertime.GVEmployee.RowCount - 1
                     If FormEmpOvertime.GVEmployee.IsValidRowHandle(i) Then
                         include += FormEmpOvertime.GVEmployee.GetRowCellValue(i, "id_ot_det").ToString + ", "
