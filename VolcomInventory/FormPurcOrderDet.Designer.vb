@@ -52,7 +52,6 @@ Partial Class FormPurcOrderDet
         Me.DEEstReceiveDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEPaymentTerm = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
@@ -143,6 +142,11 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LEPaymentTerm = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,7 +168,6 @@ Partial Class FormPurcOrderDet
         CType(Me.LEOrderTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstReceiveDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,6 +211,8 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -428,13 +433,13 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.Controls.Add(Me.DEEstReceiveDate)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl12)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
-        Me.PanelControlTopRight.Controls.Add(Me.LEPaymentTerm)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopRight.Controls.Add(Me.DEDateCreated)
         Me.PanelControlTopRight.Controls.Add(Me.TECreatedBy)
         Me.PanelControlTopRight.Controls.Add(Me.TEPONumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
+        Me.PanelControlTopRight.Controls.Add(Me.LEPaymentTerm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(578, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
@@ -483,7 +488,7 @@ Partial Class FormPurcOrderDet
         '
         'LabelControl24
         '
-        Me.LabelControl24.Location = New System.Drawing.Point(251, 91)
+        Me.LabelControl24.Location = New System.Drawing.Point(251, 116)
         Me.LabelControl24.Name = "LabelControl24"
         Me.LabelControl24.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl24.TabIndex = 171
@@ -492,7 +497,7 @@ Partial Class FormPurcOrderDet
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(323, 88)
+        Me.DEDueDate.Location = New System.Drawing.Point(323, 113)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -506,7 +511,7 @@ Partial Class FormPurcOrderDet
         '
         Me.LEShipVia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEShipVia.Location = New System.Drawing.Point(323, 114)
+        Me.LEShipVia.Location = New System.Drawing.Point(323, 88)
         Me.LEShipVia.Name = "LEShipVia"
         Me.LEShipVia.Properties.Appearance.Options.UseTextOptions = True
         Me.LEShipVia.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -519,7 +524,7 @@ Partial Class FormPurcOrderDet
         '
         'LabelControl17
         '
-        Me.LabelControl17.Location = New System.Drawing.Point(251, 117)
+        Me.LabelControl17.Location = New System.Drawing.Point(251, 91)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl17.TabIndex = 169
@@ -551,7 +556,7 @@ Partial Class FormPurcOrderDet
         'DEEstReceiveDate
         '
         Me.DEEstReceiveDate.EditValue = Nothing
-        Me.DEEstReceiveDate.Location = New System.Drawing.Point(102, 114)
+        Me.DEEstReceiveDate.Location = New System.Drawing.Point(102, 88)
         Me.DEEstReceiveDate.Name = "DEEstReceiveDate"
         Me.DEEstReceiveDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEstReceiveDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -562,7 +567,7 @@ Partial Class FormPurcOrderDet
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(10, 117)
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 91)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(86, 13)
         Me.LabelControl12.TabIndex = 165
@@ -570,26 +575,11 @@ Partial Class FormPurcOrderDet
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(10, 91)
+        Me.LabelControl10.Location = New System.Drawing.Point(10, 116)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(69, 13)
         Me.LabelControl10.TabIndex = 164
         Me.LabelControl10.Text = "Payment Term"
-        '
-        'LEPaymentTerm
-        '
-        Me.LEPaymentTerm.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEPaymentTerm.Location = New System.Drawing.Point(102, 88)
-        Me.LEPaymentTerm.Name = "LEPaymentTerm"
-        Me.LEPaymentTerm.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEPaymentTerm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEPaymentTerm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPaymentTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment_purchasing", "ID Payment Term", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment_purchasing", "Payment Term")})
-        Me.LEPaymentTerm.Properties.NullText = ""
-        Me.LEPaymentTerm.Properties.ShowFooter = False
-        Me.LEPaymentTerm.Size = New System.Drawing.Size(143, 20)
-        Me.LEPaymentTerm.TabIndex = 163
         '
         'LabelControl2
         '
@@ -1589,6 +1579,51 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
+        'LEPaymentTerm
+        '
+        Me.LEPaymentTerm.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEPaymentTerm.Location = New System.Drawing.Point(102, 113)
+        Me.LEPaymentTerm.Name = "LEPaymentTerm"
+        Me.LEPaymentTerm.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPaymentTerm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPaymentTerm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPaymentTerm.Properties.NullText = ""
+        Me.LEPaymentTerm.Properties.ShowFooter = False
+        Me.LEPaymentTerm.Properties.View = Me.SearchLookUpEdit1View
+        Me.LEPaymentTerm.Size = New System.Drawing.Size(143, 20)
+        Me.LEPaymentTerm.TabIndex = 163
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "ID"
+        Me.GridColumn27.FieldName = "id_payment_purchasing"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Payment Term"
+        Me.GridColumn28.FieldName = "payment_purchasing"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 0
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Due days"
+        Me.GridColumn29.FieldName = "val_day"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 1
+        '
         'FormPurcOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1627,7 +1662,6 @@ Partial Class FormPurcOrderDet
         CType(Me.LEOrderTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstReceiveDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1674,6 +1708,8 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1737,7 +1773,6 @@ Partial Class FormPurcOrderDet
     Friend WithEvents TEDiscPercent As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LEPaymentTerm As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TEVendorPhone As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEEstReceiveDate As DevExpress.XtraEditors.DateEdit
@@ -1800,4 +1835,9 @@ Partial Class FormPurcOrderDet
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEPaymentTerm As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
