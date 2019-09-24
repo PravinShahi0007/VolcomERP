@@ -346,23 +346,9 @@ Public Class FormMain
         If formName = "FormEmpLeave" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
-        ''mapping COA
-        'If formName = "FormSamplePurchase" _
-        'Or formName = "FormSampleReceive" _
-        'Or formName = "FormSampleAdjustment" _
-        'Or formName = "FormMatPurchase" _
-        'Or formName = "FormMatRecPurc" _
-        'Or formName = "FormMatWO" _
-        'Or formName = "FormMatRecWO" _
-        'Or formName = "FormMatRet" _
-        'Or formName = "FormMatAdj" _
-        'Or formName = "FormMatPL" _
-        'Then
-        '    BBMappingCOA.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
-        'End If
 
         'hide all except print n close
-        If formName = "FormBarcodeProduct" Then
+        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Then
             RGAreaManage.Visible = False
         End If
 
@@ -7600,6 +7586,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormSalesRecord.GCData, "")
         ElseIf formName = "FormARAging" Then
             print_raw(FormARAging.GCData, "")
+        ElseIf formName = "FormReportBudget" Then
+            'report budget
+            print(FormReportBudget.GCItemCat, "Summary Budget")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8371,6 +8360,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormARAging" Then
             FormARAging.Close()
             FormARAging.Dispose()
+        ElseIf formName = "FormReportBudget" Then
+            FormReportBudget.Close()
+            FormReportBudget.Dispose()
+        ElseIf formName = "FormEmpLeaveStock" Then
+            FormEmpLeaveStock.Close()
+            FormEmpLeaveStock.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -13328,6 +13323,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormARAging.Show()
             FormARAging.WindowState = FormWindowState.Maximized
             FormARAging.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBReportBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBReportBudget.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormReportBudget.MdiParent = Me
+            FormReportBudget.Show()
+            FormReportBudget.WindowState = FormWindowState.Maximized
+            FormReportBudget.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

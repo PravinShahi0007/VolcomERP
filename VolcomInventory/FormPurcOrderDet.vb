@@ -105,7 +105,8 @@ WHERE po.id_purc_order='" & id_po & "'"
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 TEPONumber.Text = data.Rows(0)("purc_order_number")
                 TECreatedBy.Text = data.Rows(0)("employee_name").ToString
-                LEPaymentTerm.ItemIndex = LEPaymentTerm.Properties.GetDataSourceRowIndex("id_payment_purchasing", data.Rows(0)("id_payment_purchasing").ToString)
+                'LEPaymentTerm.ItemIndex = LEPaymentTerm.Properties.GetDataSourceRowIndex("id_payment_purchasing", data.Rows(0)("id_payment_purchasing").ToString)
+                LEPaymentTerm.EditValue = data.Rows(0)("id_payment_purchasing").ToString
                 DEEstReceiveDate.EditValue = data.Rows(0)("est_date_receive")
                 DEDueDate.EditValue = data.Rows(0)("pay_due_date")
                 '
@@ -315,8 +316,9 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Sub load_payment_term()
-        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
-        viewLookupQuery(LEPaymentTerm, query, 0, "payment_purchasing", "id_payment_purchasing")
+        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
+        viewSearchLookupQuery(LEPaymentTerm, query, "id_payment_purchasing", "payment_purchasing", "id_payment_purchasing")
+        LEPaymentTerm.EditValue = Nothing
     End Sub
 
     Sub load_order_term()
@@ -769,17 +771,19 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
             Dim query_trans As String = ""
             If rmt = "139" Then 'opex
-                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense_opex,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
-                                            FROM `tb_purc_order_det` pod
-                                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                            WHERE pod.`id_purc_order`='" & id_po & "'"
+                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
+                                FROM `tb_purc_order_det` pod
+                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
+                                WHERE pod.`id_purc_order`='" & id_po & "'"
             Else 'capex
-                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
-                                            FROM `tb_purc_order_det` pod
-                                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                            WHERE pod.`id_purc_order`='" & id_po & "'"
+                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                SELECT prd.id_b_expense,pr.id_departement,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                                FROM `tb_purc_order_det` pod
+                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
+                                WHERE pod.`id_purc_order`='" & id_po & "'"
             End If
             '
             execute_non_query(query_trans, True, "", "", "", "")
@@ -808,5 +812,15 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEPaymentTerm_EditValueChanged(sender As Object, e As EventArgs) Handles LEPaymentTerm.EditValueChanged
+        Try
+            Dim val_day As Integer = 0
+            val_day = LEPaymentTerm.Properties.View.GetFocusedRowCellValue("val_day")
+            DEDueDate.EditValue = DateAdd(DateInterval.Day, val_day, Date.Parse(DEDateCreated.EditValue.ToString))
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
     End Sub
 End Class

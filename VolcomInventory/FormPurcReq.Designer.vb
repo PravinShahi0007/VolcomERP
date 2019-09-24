@@ -31,12 +31,16 @@ Partial Class FormPurcReq
         Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
         Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListReq = New DevExpress.XtraTab.XtraTabPage()
@@ -67,6 +71,13 @@ Partial Class FormPurcReq
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewReqList = New DevExpress.XtraEditors.SimpleButton()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BBUpdateBudget = New DevExpress.XtraBars.BarButtonItem()
         Me.BBClose = New DevExpress.XtraBars.BarButtonItem()
@@ -77,17 +88,6 @@ Partial Class FormPurcReq
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.BViewReqList = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,13 +105,13 @@ Partial Class FormPurcReq
         CType(Me.RICEUnableToFulfill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -188,6 +188,8 @@ Partial Class FormPurcReq
         Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn23, Me.GridColumn18, Me.GridColumn29, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn28})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
+        Me.GVPurcReq.OptionsBehavior.Editable = False
+        Me.GVPurcReq.OptionsBehavior.ReadOnly = True
         Me.GVPurcReq.OptionsFind.AlwaysVisible = True
         Me.GVPurcReq.OptionsView.ShowGroupPanel = False
         '
@@ -195,6 +197,43 @@ Partial Class FormPurcReq
         '
         Me.GridColumn2.Caption = "id_purc_req"
         Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.Caption = "Type"
+        Me.GridColumn23.FieldName = "expense_type"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        Me.GridColumn23.Width = 142
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.Caption = "Cash Purchase"
+        Me.GridColumn18.FieldName = "cash_purchase"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.Width = 131
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Requirement Date"
+        Me.GridColumn29.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn29.FieldName = "requirement_date"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 4
+        Me.GridColumn29.Width = 127
         '
         'GridColumn1
         '
@@ -245,6 +284,19 @@ Partial Class FormPurcReq
         Me.GridColumn7.Caption = "Last Update By"
         Me.GridColumn7.FieldName = "last_upd_by"
         Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn28.Caption = "Status"
+        Me.GridColumn28.FieldName = "report_status"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 7
+        Me.GridColumn28.Width = 99
         '
         'RICECheck
         '
@@ -509,6 +561,64 @@ Partial Class FormPurcReq
         Me.RITEQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEQty.Name = "RITEQty"
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SLEStatus)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Controls.Add(Me.BViewReqList)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(899, 39)
+        Me.PanelControl2.TabIndex = 12
+        '
+        'SLEStatus
+        '
+        Me.SLEStatus.Location = New System.Drawing.Point(91, 10)
+        Me.SLEStatus.Name = "SLEStatus"
+        Me.SLEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStatus.Properties.View = Me.GridView6
+        Me.SLEStatus.Size = New System.Drawing.Size(128, 20)
+        Me.SLEStatus.TabIndex = 8924
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn45, Me.GridColumn46})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "ID Status"
+        Me.GridColumn45.FieldName = "id_status"
+        Me.GridColumn45.Name = "GridColumn45"
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Status"
+        Me.GridColumn46.FieldName = "status"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 0
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(11, 13)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl6.TabIndex = 8923
+        Me.LabelControl6.Text = "Status Request"
+        '
+        'BViewReqList
+        '
+        Me.BViewReqList.Location = New System.Drawing.Point(225, 8)
+        Me.BViewReqList.Name = "BViewReqList"
+        Me.BViewReqList.Size = New System.Drawing.Size(128, 23)
+        Me.BViewReqList.TabIndex = 8922
+        Me.BViewReqList.Text = "view all item requested"
+        '
         'PUDD
         '
         Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBUpdateBudget), New DevExpress.XtraBars.LinkPersistInfo(Me.BBClose)})
@@ -580,114 +690,6 @@ Partial Class FormPurcReq
         Me.LargeImageCollection.Images.SetKeyName(3, "safari (4).png")
         Me.LargeImageCollection.Images.SetKeyName(4, "31-Document_32x32.png")
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.SLEStatus)
-        Me.PanelControl2.Controls.Add(Me.LabelControl6)
-        Me.PanelControl2.Controls.Add(Me.BViewReqList)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(899, 39)
-        Me.PanelControl2.TabIndex = 12
-        '
-        'SLEStatus
-        '
-        Me.SLEStatus.Location = New System.Drawing.Point(91, 10)
-        Me.SLEStatus.Name = "SLEStatus"
-        Me.SLEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStatus.Properties.View = Me.GridView6
-        Me.SLEStatus.Size = New System.Drawing.Size(128, 20)
-        Me.SLEStatus.TabIndex = 8924
-        '
-        'GridView6
-        '
-        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn45, Me.GridColumn46})
-        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView6.Name = "GridView6"
-        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView6.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn45
-        '
-        Me.GridColumn45.Caption = "ID Status"
-        Me.GridColumn45.FieldName = "id_status"
-        Me.GridColumn45.Name = "GridColumn45"
-        '
-        'GridColumn46
-        '
-        Me.GridColumn46.Caption = "Status"
-        Me.GridColumn46.FieldName = "status"
-        Me.GridColumn46.Name = "GridColumn46"
-        Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 0
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(11, 13)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(74, 13)
-        Me.LabelControl6.TabIndex = 8923
-        Me.LabelControl6.Text = "Status Request"
-        '
-        'BViewReqList
-        '
-        Me.BViewReqList.Location = New System.Drawing.Point(225, 8)
-        Me.BViewReqList.Name = "BViewReqList"
-        Me.BViewReqList.Size = New System.Drawing.Size(128, 23)
-        Me.BViewReqList.TabIndex = 8922
-        Me.BViewReqList.Text = "view all item requested"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn18.Caption = "Cash Purchase"
-        Me.GridColumn18.FieldName = "cash_purchase"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
-        Me.GridColumn18.Width = 131
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn23.Caption = "Type"
-        Me.GridColumn23.FieldName = "expense_type"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
-        Me.GridColumn23.Width = 142
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn28.Caption = "Status"
-        Me.GridColumn28.FieldName = "report_status"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 7
-        Me.GridColumn28.Width = 99
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Requirement Date"
-        Me.GridColumn29.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn29.FieldName = "requirement_date"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 4
-        Me.GridColumn29.Width = 127
-        '
         'FormPurcReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -723,14 +725,14 @@ Partial Class FormPurcReq
         CType(Me.RICEUnableToFulfill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
