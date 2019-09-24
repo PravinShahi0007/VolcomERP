@@ -50,12 +50,10 @@ Partial Class FormReportBudget
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelChart = New DevExpress.XtraEditors.PanelControl()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtActual = New DevExpress.XtraEditors.TextEdit()
         Me.TxtBudget = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GaugeControl1 = New DevExpress.XtraGauges.Win.GaugeControl()
         Me.CircularGauge1 = New DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge()
@@ -75,7 +73,6 @@ Partial Class FormReportBudget
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelChart, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelChart.SuspendLayout()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtActual.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CircularGauge1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,11 +208,14 @@ Partial Class FormReportBudget
         '
         'GridColumn8
         '
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn8.Caption = "Budget Used"
         Me.GridColumn8.DisplayFormat.FormatString = "{0:N2} %"
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "used_percent"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "used_percent", "{0:N2} %", "1")})
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 8
         '
@@ -371,12 +371,10 @@ Partial Class FormReportBudget
         '
         'PanelChart
         '
-        Me.PanelChart.Controls.Add(Me.LookUpEdit1)
         Me.PanelChart.Controls.Add(Me.Label3)
         Me.PanelChart.Controls.Add(Me.TxtActual)
         Me.PanelChart.Controls.Add(Me.TxtBudget)
         Me.PanelChart.Controls.Add(Me.Label2)
-        Me.PanelChart.Controls.Add(Me.Label1)
         Me.PanelChart.Controls.Add(Me.LabelControl3)
         Me.PanelChart.Controls.Add(Me.GaugeControl1)
         Me.PanelChart.Dock = System.Windows.Forms.DockStyle.Top
@@ -386,20 +384,11 @@ Partial Class FormReportBudget
         Me.PanelChart.TabIndex = 7
         Me.PanelChart.Visible = False
         '
-        'LookUpEdit1
-        '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(250, 61)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_item_cat", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("item_cat", "Category")})
-        Me.LookUpEdit1.Size = New System.Drawing.Size(232, 20)
-        Me.LookUpEdit1.TabIndex = 27
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(177, 123)
+        Me.Label3.Location = New System.Drawing.Point(177, 92)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(33, 15)
         Me.Label3.TabIndex = 9
@@ -408,7 +397,7 @@ Partial Class FormReportBudget
         'TxtActual
         '
         Me.TxtActual.Enabled = False
-        Me.TxtActual.Location = New System.Drawing.Point(250, 120)
+        Me.TxtActual.Location = New System.Drawing.Point(250, 89)
         Me.TxtActual.Name = "TxtActual"
         Me.TxtActual.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtActual.Properties.Appearance.Options.UseFont = True
@@ -420,7 +409,7 @@ Partial Class FormReportBudget
         'TxtBudget
         '
         Me.TxtBudget.Enabled = False
-        Me.TxtBudget.Location = New System.Drawing.Point(250, 90)
+        Me.TxtBudget.Location = New System.Drawing.Point(250, 59)
         Me.TxtBudget.Name = "TxtBudget"
         Me.TxtBudget.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtBudget.Properties.Appearance.Options.UseFont = True
@@ -433,21 +422,11 @@ Partial Class FormReportBudget
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(177, 93)
+        Me.Label2.Location = New System.Drawing.Point(177, 62)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(45, 15)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Budget"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(177, 63)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(49, 15)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Options"
         '
         'LabelControl3
         '
@@ -546,7 +525,6 @@ Partial Class FormReportBudget
         CType(Me.PanelChart, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelChart.ResumeLayout(False)
         Me.PanelChart.PerformLayout()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtActual.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CircularGauge1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -575,14 +553,12 @@ Partial Class FormReportBudget
     Friend WithEvents TxtActual As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtBudget As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GaugeControl1 As DevExpress.XtraGauges.Win.GaugeControl
     Friend WithEvents CircularGauge1 As DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge
     Private WithEvents LabelComponent3 As DevExpress.XtraGauges.Win.Base.LabelComponent
     Private WithEvents ArcScaleRangeBarComponent3 As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent
     Private WithEvents ArcScaleComponent3 As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SLEDepartement As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView

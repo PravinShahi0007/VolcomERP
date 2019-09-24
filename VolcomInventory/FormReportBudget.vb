@@ -14,6 +14,10 @@
         view_year()
         load_dep()
         DEUntil.EditValue = Now
+        '
+        ArcScaleComponent3.EnableAnimation = True
+        ArcScaleComponent3.EasingMode = DevExpress.XtraGauges.Core.Model.EasingMode.EaseIn
+        ArcScaleComponent3.EasingFunction = New DevExpress.XtraGauges.Core.Model.BounceEase
     End Sub
 
     Sub load_budget()
@@ -64,6 +68,18 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemCat.DataSource = data
         GVItemCat.BestFitColumns()
+        '
+        PanelChart.Visible = True
+        TxtBudget.EditValue = GVItemCat.Columns("budget").SummaryItem.SummaryValue
+        TxtActual.EditValue = GVItemCat.Columns("val_used").SummaryItem.SummaryValue
+
+        setGaugeInfo()
+    End Sub
+
+    Sub setGaugeInfo()
+        'isi gauge
+        ArcScaleComponent3.Value = GVItemCat.Columns("val_used").SummaryItem.SummaryValue / GVItemCat.Columns("budget").SummaryItem.SummaryValue * 100
+        LabelComponent3.Text = Decimal.Parse((GVItemCat.Columns("val_used").SummaryItem.SummaryValue / GVItemCat.Columns("budget").SummaryItem.SummaryValue) * 100).ToString("N2") + "%"
     End Sub
 
     Sub viewMainCategory()
@@ -112,5 +128,25 @@ GROUP BY `year`"
         bdel_active = "0"
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
+    End Sub
+
+    Dim tot_budget As Decimal
+    Dim tot_used As Decimal
+
+    Private Sub GVItemCat_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVItemCat.CustomSummaryCalculate
+        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        If summaryID = "1" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    tot_budget = 0
+                    tot_used = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    tot_budget += GVItemCat.GetRowCellValue(e.RowHandle, "budget")
+                    tot_used += GVItemCat.GetRowCellValue(e.RowHandle, "val_used")
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = (tot_used / tot_budget) * 100
+            End Select
+        End If
     End Sub
 End Class
