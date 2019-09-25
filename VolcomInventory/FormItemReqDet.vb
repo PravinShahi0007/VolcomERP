@@ -7,7 +7,6 @@
     Public is_for_store As String = "2"
     Dim rmt As String = ""
 
-
     Private Sub FormItemReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         actionLoad()
@@ -70,7 +69,7 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.qty, rd.remark 
+        Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.qty, rd.remark, IF(rd.is_store_request=1,'yes','no') AS  is_store_request
         FROM tb_item_req_det rd
         INNER JOIN tb_item i ON i.id_item = rd.id_item
         INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
@@ -332,16 +331,22 @@
                 execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
 
                 'query det
-                Dim qd As String = "INSERT INTO tb_item_req_det(id_item_req, id_item, qty, remark) VALUES "
+                Dim qd As String = "INSERT INTO tb_item_req_det(id_item_req, id_item, qty, is_store_request, remark) VALUES "
                 For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                     Dim id_item As String = GVData.GetRowCellValue(d, "id_item").ToString
                     Dim qty As String = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
+                    Dim is_store_request As String = ""
+                    If GVData.GetRowCellValue(d, "id_item").ToString = "yes" Then
+                        is_store_request = "1"
+                    Else
+                        is_store_request = "2"
+                    End If
                     Dim remark As String = addSlashes(GVData.GetRowCellValue(d, "remark").ToString)
 
                     If d > 0 Then
                         qd += ", "
                     End If
-                    qd += "(" + id + ", " + id_item + ", '" + qty + "', '" + remark + "') "
+                    qd += "(" + id + ", " + id_item + ", '" + qty + "','" + is_store_request + "', '" + remark + "') "
                 Next
                 If GVData.RowCount > 0 Then
                     execute_non_query(qd, True, "", "", "", "")
