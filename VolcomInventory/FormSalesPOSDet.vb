@@ -2276,7 +2276,7 @@ Public Class FormSalesPOSDet
         Dim bof_xls_ws As String = get_setup_field("bof_xls_bill_bof_worksheet")
 
         'find store
-        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
         MyCommand = New OleDbDataAdapter("select top 1 * from [" & bof_xls_ws & "] ", oledbconn)
@@ -2301,7 +2301,7 @@ Public Class FormSalesPOSDet
 
         'detail
         Dim data_temp As New DataTable
-        MyCommand = New OleDbDataAdapter("select [F1] as code,SUM([F2]) as qty,'' AS price from [" & bof_xls_ws & "] WHERE [F2]>0 AND NOT [F1] IS NULL AND NOT [F2]  IS NULL GROUP BY [F1]", oledbconn)
+        MyCommand = New OleDbDataAdapter("select kode as code,SUM(qty) as qty,'' AS price from [" & bof_xls_ws & "] WHERE qty>0 AND NOT kode IS NULL AND NOT qty  IS NULL GROUP BY kode", oledbconn)
         MyCommand.Fill(data_temp)
         MyCommand.Dispose()
         checkSOH(data_temp)
