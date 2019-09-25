@@ -441,6 +441,16 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_ot_verification WHERE id_ot_verification = 1", 0, True, "", "", "", "")
 
+        Dim Report As New ReportEmpOvertimeVerification()
+
+        Report.id = id
+        Report.data1 = GCEmployee.DataSource
+        Report.data2 = GCAttendance.DataSource
+        Report.id_pre = If(Not id_report_status = "6", "1", "-1")
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
     End Sub
 End Class

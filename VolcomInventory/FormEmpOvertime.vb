@@ -127,7 +127,7 @@
             End Try
 
             Dim query As String = "
-                SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot_verification_det.is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, ot.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot_verification_det.is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_verification_det AS ot_verification_det
                 LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
                 LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
@@ -143,9 +143,11 @@
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-            GCVerification.DataSource = data
+            GCVerificationEmployee.DataSource = data
 
-            GVVerification.BestFitColumns()
+            calculatePoint()
+
+            GVVerificationEmployee.BestFitColumns()
         Else
             Dim where_departement As String = ""
 
@@ -270,28 +272,18 @@
     End Sub
 
     Sub calculatePoint()
-        For i = 0 To GVProposeEmployee.RowCount - 1
-            If GVProposeEmployee.IsValidRowHandle(i) Then
-                Dim overtime_hours As String = GVProposeEmployee.GetRowCellValue(i, "ot_det_overtime_hours").ToString
+        For i = 0 To GVVerificationEmployee.RowCount - 1
+            If GVVerificationEmployee.IsValidRowHandle(i) Then
+                Dim to_salary As String = GVVerificationEmployee.GetRowCellValue(i, "to_salary").ToString
+                Dim is_day_off As String = GVVerificationEmployee.GetRowCellValue(i, "is_day_off").ToString
+                Dim total_hours As String = GVVerificationEmployee.GetRowCellValue(i, "total_hours").ToString
+                Dim is_store As String = GVVerificationEmployee.GetRowCellValue(i, "is_store").ToString
 
-                If Not overtime_hours = "" Then
-                    Dim is_day_off As String = If(GVProposeEmployee.GetRowCellValue(i, "is_day_off").ToString = "Yes", "1", "2")
-                    Dim is_store As String = GVProposeEmployee.GetRowCellValue(i, "is_store").ToString
+                Dim point_ot As String = GVVerificationEmployee.GetRowCellValue(i, "point_ot").ToString
 
-                    If GVProposeEmployee.GetRowCellValue(i, "is_point_ho").ToString = "1" Then
-                        is_store = "2"
-                    End If
+                point_ot = If(to_salary = "1", FormEmpOvertimeVerification.calc_point(Decimal.Parse(total_hours), is_day_off, is_store), total_hours)
 
-                    GVProposeEmployee.SetRowCellValue(i, "point", FormEmpOvertimeVerification.calc_point(Decimal.Parse(overtime_hours), is_day_off, is_store))
-                Else
-                    GVProposeEmployee.SetRowCellValue(i, "point", "")
-                End If
-
-                Dim only_dp As String = GVProposeEmployee.GetRowCellValue(i, "only_dp").ToString
-
-                If only_dp = "yes" Then
-                    GVProposeEmployee.SetRowCellValue(i, "point", overtime_hours)
-                End If
+                GVVerificationEmployee.SetRowCellValue(i, "point_ot", point_ot)
             End If
         Next
     End Sub
@@ -325,6 +317,18 @@
             Else
                 PCEmployee.Visible = False
             End If
+        Else
+            If XTCVerification.SelectedTabPage.Name = "XTPByEmployeeVerification" Then
+                PCEmployee.Visible = True
+            Else
+                PCEmployee.Visible = False
+            End If
+        End If
+    End Sub
+
+    Private Sub XTCVerification_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCVerification.SelectedPageChanged
+        If XTCVerification.SelectedTabPage.Name = "XTPByEmployeeVerification" Then
+            PCEmployee.Visible = True
         Else
             PCEmployee.Visible = False
         End If

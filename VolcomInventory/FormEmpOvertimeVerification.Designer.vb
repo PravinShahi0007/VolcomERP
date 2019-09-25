@@ -82,6 +82,7 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCOut = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCIdDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BGCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCOtPotention = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -104,6 +105,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIsStore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -113,8 +115,6 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.GCIsStore = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BGCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -771,6 +771,13 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIdDepartementSub.Visible = True
         Me.BGCIdDepartementSub.Width = 109
         '
+        'BGCIsStore
+        '
+        Me.BGCIsStore.FieldName = "is_store"
+        Me.BGCIsStore.Name = "BGCIsStore"
+        Me.BGCIsStore.OptionsColumn.AllowEdit = False
+        Me.BGCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
         'BGCIsDayOff
         '
         Me.BGCIsDayOff.FieldName = "is_day_off"
@@ -1005,6 +1012,13 @@ Partial Class FormEmpOvertimeVerification
         Me.GridColumn1.FieldName = "to_salary"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GCIsStore
+        '
+        Me.GCIsStore.FieldName = "is_store"
+        Me.GCIsStore.Name = "GCIsStore"
+        Me.GCIsStore.OptionsColumn.AllowEdit = False
+        Me.GCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
         'GCIsDayOff
         '
         Me.GCIsDayOff.FieldName = "is_day_off"
@@ -1106,20 +1120,6 @@ Partial Class FormEmpOvertimeVerification
         Me.TEReportStatus.Properties.ReadOnly = True
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.TEReportStatus.TabIndex = 21
-        '
-        'GCIsStore
-        '
-        Me.GCIsStore.FieldName = "is_store"
-        Me.GCIsStore.Name = "GCIsStore"
-        Me.GCIsStore.OptionsColumn.AllowEdit = False
-        Me.GCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'BGCIsStore
-        '
-        Me.BGCIsStore.FieldName = "is_store"
-        Me.BGCIsStore.Name = "BGCIsStore"
-        Me.BGCIsStore.OptionsColumn.AllowEdit = False
-        Me.BGCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'FormEmpOvertimeVerification
         '

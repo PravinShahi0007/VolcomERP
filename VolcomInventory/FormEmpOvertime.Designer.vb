@@ -52,6 +52,8 @@ Partial Class FormEmpOvertime
         Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCPropose = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPByRequest = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControlVerification = New DevExpress.XtraEditors.PanelControl()
+        Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPByEmployee = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProposeEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVProposeEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -86,9 +88,9 @@ Partial Class FormEmpOvertime
         Me.GCReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedAt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControlVerification = New DevExpress.XtraEditors.PanelControl()
-        Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPVerification = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCVerification = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPByRequestVerification = New DevExpress.XtraTab.XtraTabPage()
         Me.GCVerification = New DevExpress.XtraGrid.GridControl()
         Me.GVVerification = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -103,23 +105,14 @@ Partial Class FormEmpOvertime
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.PCEmployee = New DevExpress.XtraEditors.PanelControl()
-        Me.SLUEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.XTCVerification = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPByEmployeeVerification = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPByRequestVerification = New DevExpress.XtraTab.XtraTabPage()
         Me.GCVerificationEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVVerificationEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -142,11 +135,20 @@ Partial Class FormEmpOvertime
         Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.PCEmployee = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,29 +170,29 @@ Partial Class FormEmpOvertime
         CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPropose.SuspendLayout()
         Me.XTPByRequest.SuspendLayout()
+        CType(Me.PanelControlVerification, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlVerification.SuspendLayout()
         Me.XTPByEmployee.SuspendLayout()
         CType(Me.GCProposeEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProposeEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlVerification, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlVerification.SuspendLayout()
         Me.XTPVerification.SuspendLayout()
+        CType(Me.XTCVerification, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCVerification.SuspendLayout()
+        Me.XTPByRequestVerification.SuspendLayout()
         CType(Me.GCVerification, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVVerification, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPByEmployeeVerification.SuspendLayout()
+        CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCEmployee.SuspendLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XTCVerification, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCVerification.SuspendLayout()
-        Me.XTPByEmployeeVerification.SuspendLayout()
-        Me.XTPByRequestVerification.SuspendLayout()
-        CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCOvertime
@@ -487,6 +489,25 @@ Partial Class FormEmpOvertime
         Me.XTPByRequest.Name = "XTPByRequest"
         Me.XTPByRequest.Size = New System.Drawing.Size(992, 612)
         Me.XTPByRequest.Text = "By Request"
+        '
+        'PanelControlVerification
+        '
+        Me.PanelControlVerification.Controls.Add(Me.SBVerification)
+        Me.PanelControlVerification.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlVerification.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlVerification.Name = "PanelControlVerification"
+        Me.PanelControlVerification.Size = New System.Drawing.Size(992, 52)
+        Me.PanelControlVerification.TabIndex = 1
+        '
+        'SBVerification
+        '
+        Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
+        Me.SBVerification.Location = New System.Drawing.Point(889, 2)
+        Me.SBVerification.Name = "SBVerification"
+        Me.SBVerification.Size = New System.Drawing.Size(101, 48)
+        Me.SBVerification.TabIndex = 0
+        Me.SBVerification.Text = "Verification"
         '
         'XTPByEmployee
         '
@@ -810,31 +831,30 @@ Partial Class FormEmpOvertime
         Me.GCCreatedAt.Visible = True
         Me.GCCreatedAt.VisibleIndex = 15
         '
-        'PanelControlVerification
-        '
-        Me.PanelControlVerification.Controls.Add(Me.SBVerification)
-        Me.PanelControlVerification.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlVerification.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlVerification.Name = "PanelControlVerification"
-        Me.PanelControlVerification.Size = New System.Drawing.Size(992, 52)
-        Me.PanelControlVerification.TabIndex = 1
-        '
-        'SBVerification
-        '
-        Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
-        Me.SBVerification.Location = New System.Drawing.Point(889, 2)
-        Me.SBVerification.Name = "SBVerification"
-        Me.SBVerification.Size = New System.Drawing.Size(101, 48)
-        Me.SBVerification.TabIndex = 0
-        Me.SBVerification.Text = "Verification"
-        '
         'XTPVerification
         '
         Me.XTPVerification.Controls.Add(Me.XTCVerification)
         Me.XTPVerification.Name = "XTPVerification"
         Me.XTPVerification.Size = New System.Drawing.Size(998, 640)
         Me.XTPVerification.Text = "Verification"
+        '
+        'XTCVerification
+        '
+        Me.XTCVerification.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCVerification.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCVerification.Location = New System.Drawing.Point(0, 0)
+        Me.XTCVerification.Name = "XTCVerification"
+        Me.XTCVerification.SelectedTabPage = Me.XTPByRequestVerification
+        Me.XTCVerification.Size = New System.Drawing.Size(998, 640)
+        Me.XTCVerification.TabIndex = 2
+        Me.XTCVerification.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPByRequestVerification, Me.XTPByEmployeeVerification})
+        '
+        'XTPByRequestVerification
+        '
+        Me.XTPByRequestVerification.Controls.Add(Me.GCVerification)
+        Me.XTPByRequestVerification.Name = "XTPByRequestVerification"
+        Me.XTPByRequestVerification.Size = New System.Drawing.Size(992, 612)
+        Me.XTPByRequestVerification.Text = "By Request"
         '
         'GCVerification
         '
@@ -956,103 +976,12 @@ Partial Class FormEmpOvertime
         Me.GridColumn46.Visible = True
         Me.GridColumn46.VisibleIndex = 7
         '
-        'XtraScrollableControl1
-        '
-        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl4)
-        Me.XtraScrollableControl1.Controls.Add(Me.PCEmployee)
-        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl3)
-        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1008, 57)
-        Me.XtraScrollableControl1.TabIndex = 20
-        '
-        'PCEmployee
-        '
-        Me.PCEmployee.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.PCEmployee.Appearance.Options.UseBackColor = True
-        Me.PCEmployee.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCEmployee.Controls.Add(Me.SLUEEmployee)
-        Me.PCEmployee.Controls.Add(Me.Label3)
-        Me.PCEmployee.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCEmployee.Location = New System.Drawing.Point(692, 0)
-        Me.PCEmployee.Name = "PCEmployee"
-        Me.PCEmployee.Size = New System.Drawing.Size(270, 40)
-        Me.PCEmployee.TabIndex = 20
-        Me.PCEmployee.Visible = False
-        '
-        'SLUEEmployee
-        '
-        Me.SLUEEmployee.Location = New System.Drawing.Point(77, 11)
-        Me.SLUEEmployee.Name = "SLUEEmployee"
-        Me.SLUEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEEmployee.Properties.View = Me.SearchLookUpEdit2View
-        Me.SLUEEmployee.Size = New System.Drawing.Size(180, 20)
-        Me.SLUEEmployee.TabIndex = 17
-        '
-        'SearchLookUpEdit2View
-        '
-        Me.SearchLookUpEdit2View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
-        Me.SearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit2View.Name = "SearchLookUpEdit2View"
-        Me.SearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit2View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "GridColumn15"
-        Me.GridColumn15.FieldName = "id_employee"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Code"
-        Me.GridColumn16.FieldName = "employee_code"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Name"
-        Me.GridColumn17.FieldName = "employee_name"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 1
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(11, 14)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(60, 13)
-        Me.Label3.TabIndex = 13
-        Me.Label3.Text = "Employee :"
-        '
-        'XTCVerification
-        '
-        Me.XTCVerification.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCVerification.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCVerification.Location = New System.Drawing.Point(0, 0)
-        Me.XTCVerification.Name = "XTCVerification"
-        Me.XTCVerification.SelectedTabPage = Me.XTPByEmployeeVerification
-        Me.XTCVerification.Size = New System.Drawing.Size(998, 640)
-        Me.XTCVerification.TabIndex = 2
-        Me.XTCVerification.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPByEmployeeVerification, Me.XTPByRequestVerification})
-        '
         'XTPByEmployeeVerification
         '
-        Me.XTPByEmployeeVerification.Controls.Add(Me.GCVerification)
+        Me.XTPByEmployeeVerification.Controls.Add(Me.GCVerificationEmployee)
         Me.XTPByEmployeeVerification.Name = "XTPByEmployeeVerification"
         Me.XTPByEmployeeVerification.Size = New System.Drawing.Size(992, 612)
-        Me.XTPByEmployeeVerification.Text = "By Request"
-        '
-        'XTPByRequestVerification
-        '
-        Me.XTPByRequestVerification.Controls.Add(Me.GCVerificationEmployee)
-        Me.XTPByRequestVerification.Name = "XTPByRequestVerification"
-        Me.XTPByRequestVerification.Size = New System.Drawing.Size(992, 612)
-        Me.XTPByRequestVerification.Text = "By Employee"
+        Me.XTPByEmployeeVerification.Text = "By Employee"
         '
         'GCVerificationEmployee
         '
@@ -1100,7 +1029,7 @@ Partial Class FormEmpOvertime
         Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVVerificationEmployee.ColumnPanelRowHeight = 32
-        Me.GVVerificationEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn39, Me.GridColumn41, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
+        Me.GVVerificationEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn22, Me.GridColumn36, Me.GridColumn37, Me.GridColumn39, Me.GridColumn41, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn21, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
         Me.GVVerificationEmployee.GridControl = Me.GCVerificationEmployee
         Me.GVVerificationEmployee.GroupCount = 1
         Me.GVVerificationEmployee.Name = "GVVerificationEmployee"
@@ -1136,6 +1065,11 @@ Partial Class FormEmpOvertime
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 4
         Me.GridColumn35.Width = 86
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.FieldName = "is_store"
+        Me.GridColumn22.Name = "GridColumn22"
         '
         'GridColumn36
         '
@@ -1330,13 +1264,23 @@ Partial Class FormEmpOvertime
         Me.GridColumn63.VisibleIndex = 11
         Me.GridColumn63.Width = 72
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Point"
+        Me.GridColumn21.DisplayFormat.FormatString = "N1"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "point_ot"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 12
+        '
         'GridColumn64
         '
         Me.GridColumn64.Caption = "Overtime Propose"
         Me.GridColumn64.FieldName = "ot_note"
         Me.GridColumn64.Name = "GridColumn64"
         Me.GridColumn64.Visible = True
-        Me.GridColumn64.VisibleIndex = 12
+        Me.GridColumn64.VisibleIndex = 13
         Me.GridColumn64.Width = 96
         '
         'GridColumn65
@@ -1350,7 +1294,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn66.FieldName = "report_status"
         Me.GridColumn66.Name = "GridColumn66"
         Me.GridColumn66.Visible = True
-        Me.GridColumn66.VisibleIndex = 13
+        Me.GridColumn66.VisibleIndex = 14
         Me.GridColumn66.Width = 77
         '
         'GridColumn67
@@ -1359,7 +1303,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn67.FieldName = "created_by"
         Me.GridColumn67.Name = "GridColumn67"
         Me.GridColumn67.Visible = True
-        Me.GridColumn67.VisibleIndex = 14
+        Me.GridColumn67.VisibleIndex = 15
         '
         'GridColumn68
         '
@@ -1367,7 +1311,80 @@ Partial Class FormEmpOvertime
         Me.GridColumn68.FieldName = "created_at"
         Me.GridColumn68.Name = "GridColumn68"
         Me.GridColumn68.Visible = True
-        Me.GridColumn68.VisibleIndex = 15
+        Me.GridColumn68.VisibleIndex = 16
+        '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl4)
+        Me.XtraScrollableControl1.Controls.Add(Me.PCEmployee)
+        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl3)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1008, 57)
+        Me.XtraScrollableControl1.TabIndex = 20
+        '
+        'PCEmployee
+        '
+        Me.PCEmployee.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PCEmployee.Appearance.Options.UseBackColor = True
+        Me.PCEmployee.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCEmployee.Controls.Add(Me.SLUEEmployee)
+        Me.PCEmployee.Controls.Add(Me.Label3)
+        Me.PCEmployee.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCEmployee.Location = New System.Drawing.Point(692, 0)
+        Me.PCEmployee.Name = "PCEmployee"
+        Me.PCEmployee.Size = New System.Drawing.Size(270, 40)
+        Me.PCEmployee.TabIndex = 20
+        Me.PCEmployee.Visible = False
+        '
+        'SLUEEmployee
+        '
+        Me.SLUEEmployee.Location = New System.Drawing.Point(77, 11)
+        Me.SLUEEmployee.Name = "SLUEEmployee"
+        Me.SLUEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEEmployee.Properties.View = Me.SearchLookUpEdit2View
+        Me.SLUEEmployee.Size = New System.Drawing.Size(180, 20)
+        Me.SLUEEmployee.TabIndex = 17
+        '
+        'SearchLookUpEdit2View
+        '
+        Me.SearchLookUpEdit2View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
+        Me.SearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit2View.Name = "SearchLookUpEdit2View"
+        Me.SearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit2View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "GridColumn15"
+        Me.GridColumn15.FieldName = "id_employee"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Code"
+        Me.GridColumn16.FieldName = "employee_code"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Name"
+        Me.GridColumn17.FieldName = "employee_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(11, 14)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(60, 13)
+        Me.Label3.TabIndex = 13
+        Me.Label3.Text = "Employee :"
         '
         'FormEmpOvertime
         '
@@ -1400,30 +1417,30 @@ Partial Class FormEmpOvertime
         CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPropose.ResumeLayout(False)
         Me.XTPByRequest.ResumeLayout(False)
+        CType(Me.PanelControlVerification, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlVerification.ResumeLayout(False)
         Me.XTPByEmployee.ResumeLayout(False)
         CType(Me.GCProposeEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProposeEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlVerification, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlVerification.ResumeLayout(False)
         Me.XTPVerification.ResumeLayout(False)
+        CType(Me.XTCVerification, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCVerification.ResumeLayout(False)
+        Me.XTPByRequestVerification.ResumeLayout(False)
         CType(Me.GCVerification, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVVerification, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPByEmployeeVerification.ResumeLayout(False)
+        CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCEmployee.ResumeLayout(False)
         Me.PCEmployee.PerformLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XTCVerification, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCVerification.ResumeLayout(False)
-        Me.XTPByEmployeeVerification.ResumeLayout(False)
-        Me.XTPByRequestVerification.ResumeLayout(False)
-        CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1520,8 +1537,8 @@ Partial Class FormEmpOvertime
     Friend WithEvents GCIdOvertimeType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdOvertime As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCVerification As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPByEmployeeVerification As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPByRequestVerification As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPByEmployeeVerification As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCVerificationEmployee As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVVerificationEmployee As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1555,4 +1572,6 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
