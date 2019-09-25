@@ -2761,7 +2761,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
                 If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
-                    FormEmpOvertimeDet.id = FormEmpOvertime.GVEmployee.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.id = FormEmpOvertime.GVProposeEmployee.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
                     FormEmpOvertimeDet.is_check = "-1"
 
@@ -7534,7 +7534,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
 
             If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
-                print(FormEmpOvertime.GCEmployee, "List Overtime")
+                print(FormEmpOvertime.GCProposeEmployee, "List Overtime")
             End If
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.print_list()

@@ -53,8 +53,8 @@ Partial Class FormEmpOvertime
         Me.XTCPropose = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPByRequest = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPByEmployee = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
-        Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCProposeEmployee = New DevExpress.XtraGrid.GridControl()
+        Me.GVProposeEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartementSub = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,7 +86,7 @@ Partial Class FormEmpOvertime
         Me.GCReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedAt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControlCheck = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlVerification = New DevExpress.XtraEditors.PanelControl()
         Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPVerification = New DevExpress.XtraTab.XtraTabPage()
         Me.GCVerification = New DevExpress.XtraGrid.GridControl()
@@ -111,6 +111,42 @@ Partial Class FormEmpOvertime
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.XTCVerification = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPByEmployeeVerification = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPByRequestVerification = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCVerificationEmployee = New DevExpress.XtraGrid.GridControl()
+        Me.GVVerificationEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,12 +169,12 @@ Partial Class FormEmpOvertime
         Me.XTCPropose.SuspendLayout()
         Me.XTPByRequest.SuspendLayout()
         Me.XTPByEmployee.SuspendLayout()
-        CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCProposeEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProposeEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlCheck, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlCheck.SuspendLayout()
+        CType(Me.PanelControlVerification, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlVerification.SuspendLayout()
         Me.XTPVerification.SuspendLayout()
         CType(Me.GCVerification, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVVerification, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,12 +183,20 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.SuspendLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCVerification, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCVerification.SuspendLayout()
+        Me.XTPByEmployeeVerification.SuspendLayout()
+        Me.XTPByRequestVerification.SuspendLayout()
+        CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCOvertime
         '
         Me.GCOvertime.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCOvertime.Location = New System.Drawing.Point(0, 0)
+        Me.GCOvertime.Location = New System.Drawing.Point(0, 52)
         Me.GCOvertime.MainView = Me.GVOvertime
         Me.GCOvertime.Name = "GCOvertime"
         Me.GCOvertime.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMEMultiline})
@@ -421,7 +465,6 @@ Partial Class FormEmpOvertime
         'XTPPropose
         '
         Me.XTPPropose.Controls.Add(Me.XTCPropose)
-        Me.XTPPropose.Controls.Add(Me.PanelControlCheck)
         Me.XTPPropose.Name = "XTPPropose"
         Me.XTPPropose.Size = New System.Drawing.Size(998, 640)
         Me.XTPPropose.Text = "Proposed"
@@ -430,83 +473,85 @@ Partial Class FormEmpOvertime
         '
         Me.XTCPropose.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCPropose.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCPropose.Location = New System.Drawing.Point(0, 52)
+        Me.XTCPropose.Location = New System.Drawing.Point(0, 0)
         Me.XTCPropose.Name = "XTCPropose"
         Me.XTCPropose.SelectedTabPage = Me.XTPByRequest
-        Me.XTCPropose.Size = New System.Drawing.Size(998, 588)
+        Me.XTCPropose.Size = New System.Drawing.Size(998, 640)
         Me.XTCPropose.TabIndex = 1
         Me.XTCPropose.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPByRequest, Me.XTPByEmployee})
         '
         'XTPByRequest
         '
         Me.XTPByRequest.Controls.Add(Me.GCOvertime)
+        Me.XTPByRequest.Controls.Add(Me.PanelControlVerification)
         Me.XTPByRequest.Name = "XTPByRequest"
-        Me.XTPByRequest.Size = New System.Drawing.Size(992, 560)
+        Me.XTPByRequest.Size = New System.Drawing.Size(992, 612)
         Me.XTPByRequest.Text = "By Request"
         '
         'XTPByEmployee
         '
-        Me.XTPByEmployee.Controls.Add(Me.GCEmployee)
+        Me.XTPByEmployee.Controls.Add(Me.GCProposeEmployee)
         Me.XTPByEmployee.Name = "XTPByEmployee"
-        Me.XTPByEmployee.Size = New System.Drawing.Size(992, 560)
+        Me.XTPByEmployee.Size = New System.Drawing.Size(992, 612)
         Me.XTPByEmployee.Text = "By Employee"
         '
-        'GCEmployee
+        'GCProposeEmployee
         '
-        Me.GCEmployee.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCEmployee.Location = New System.Drawing.Point(0, 0)
-        Me.GCEmployee.MainView = Me.GVEmployee
-        Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType})
-        Me.GCEmployee.Size = New System.Drawing.Size(992, 560)
-        Me.GCEmployee.TabIndex = 1
-        Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
+        Me.GCProposeEmployee.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProposeEmployee.Location = New System.Drawing.Point(0, 0)
+        Me.GCProposeEmployee.MainView = Me.GVProposeEmployee
+        Me.GCProposeEmployee.Name = "GCProposeEmployee"
+        Me.GCProposeEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType})
+        Me.GCProposeEmployee.Size = New System.Drawing.Size(992, 612)
+        Me.GCProposeEmployee.TabIndex = 1
+        Me.GCProposeEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProposeEmployee})
         '
-        'GVEmployee
+        'GVProposeEmployee
         '
-        Me.GVEmployee.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
-        Me.GVEmployee.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBorderColor = True
-        Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
-        Me.GVEmployee.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBackColor = True
-        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBorderColor = True
-        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
-        Me.GVEmployee.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBackColor = True
-        Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBorderColor = True
-        Me.GVEmployee.AppearancePrint.GroupRow.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.GVEmployee.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.Lines.Options.UseBackColor = True
-        Me.GVEmployee.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.GVEmployee.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.GVEmployee.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVEmployee.AppearancePrint.Row.Options.UseBackColor = True
-        Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
-        Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIdOvertime, Me.GCNumber, Me.GCIdOvertimeType, Me.GCOvertimeType, Me.GCDate, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCOvertimePropse, Me.GCIdReportStatus, Me.GCReportStatus, Me.GCCreatedBy, Me.GCCreatedAt})
-        Me.GVEmployee.GridControl = Me.GCEmployee
-        Me.GVEmployee.GroupCount = 1
-        Me.GVEmployee.Name = "GVEmployee"
-        Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVEmployee.OptionsBehavior.Editable = False
-        Me.GVEmployee.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVEmployee.OptionsView.ColumnAutoWidth = False
-        Me.GVEmployee.OptionsView.ShowGroupPanel = False
-        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVProposeEmployee.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVProposeEmployee.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVProposeEmployee.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVProposeEmployee.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVProposeEmployee.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVProposeEmployee.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVProposeEmployee.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVProposeEmployee.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVProposeEmployee.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVProposeEmployee.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVProposeEmployee.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVProposeEmployee.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVProposeEmployee.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVProposeEmployee.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVProposeEmployee.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVProposeEmployee.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVProposeEmployee.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVProposeEmployee.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVProposeEmployee.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVProposeEmployee.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVProposeEmployee.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVProposeEmployee.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVProposeEmployee.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVProposeEmployee.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVProposeEmployee.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVProposeEmployee.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVProposeEmployee.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVProposeEmployee.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVProposeEmployee.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVProposeEmployee.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVProposeEmployee.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVProposeEmployee.AppearancePrint.Row.Options.UseFont = True
+        Me.GVProposeEmployee.ColumnPanelRowHeight = 32
+        Me.GVProposeEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIdOvertime, Me.GCNumber, Me.GCIdOvertimeType, Me.GCOvertimeType, Me.GCDate, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCOvertimePropse, Me.GCIdReportStatus, Me.GCReportStatus, Me.GCCreatedBy, Me.GCCreatedAt})
+        Me.GVProposeEmployee.GridControl = Me.GCProposeEmployee
+        Me.GVProposeEmployee.GroupCount = 1
+        Me.GVProposeEmployee.Name = "GVProposeEmployee"
+        Me.GVProposeEmployee.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVProposeEmployee.OptionsBehavior.Editable = False
+        Me.GVProposeEmployee.OptionsFind.AlwaysVisible = True
+        Me.GVProposeEmployee.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVProposeEmployee.OptionsView.ColumnAutoWidth = False
+        Me.GVProposeEmployee.OptionsView.ShowGroupPanel = False
+        Me.GVProposeEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GCIdEmployee
         '
@@ -765,20 +810,20 @@ Partial Class FormEmpOvertime
         Me.GCCreatedAt.Visible = True
         Me.GCCreatedAt.VisibleIndex = 15
         '
-        'PanelControlCheck
+        'PanelControlVerification
         '
-        Me.PanelControlCheck.Controls.Add(Me.SBVerification)
-        Me.PanelControlCheck.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlCheck.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlCheck.Name = "PanelControlCheck"
-        Me.PanelControlCheck.Size = New System.Drawing.Size(998, 52)
-        Me.PanelControlCheck.TabIndex = 1
+        Me.PanelControlVerification.Controls.Add(Me.SBVerification)
+        Me.PanelControlVerification.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlVerification.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlVerification.Name = "PanelControlVerification"
+        Me.PanelControlVerification.Size = New System.Drawing.Size(992, 52)
+        Me.PanelControlVerification.TabIndex = 1
         '
         'SBVerification
         '
         Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
-        Me.SBVerification.Location = New System.Drawing.Point(895, 2)
+        Me.SBVerification.Location = New System.Drawing.Point(889, 2)
         Me.SBVerification.Name = "SBVerification"
         Me.SBVerification.Size = New System.Drawing.Size(101, 48)
         Me.SBVerification.TabIndex = 0
@@ -786,7 +831,7 @@ Partial Class FormEmpOvertime
         '
         'XTPVerification
         '
-        Me.XTPVerification.Controls.Add(Me.GCVerification)
+        Me.XTPVerification.Controls.Add(Me.XTCVerification)
         Me.XTPVerification.Name = "XTPVerification"
         Me.XTPVerification.Size = New System.Drawing.Size(998, 640)
         Me.XTPVerification.Text = "Verification"
@@ -797,7 +842,7 @@ Partial Class FormEmpOvertime
         Me.GCVerification.Location = New System.Drawing.Point(0, 0)
         Me.GCVerification.MainView = Me.GVVerification
         Me.GCVerification.Name = "GCVerification"
-        Me.GCVerification.Size = New System.Drawing.Size(998, 640)
+        Me.GCVerification.Size = New System.Drawing.Size(992, 612)
         Me.GCVerification.TabIndex = 1
         Me.GCVerification.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVerification})
         '
@@ -832,6 +877,9 @@ Partial Class FormEmpOvertime
         Me.GridColumn5.Caption = "Number"
         Me.GridColumn5.FieldName = "number"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.Width = 47
         '
         'GridColumn6
         '
@@ -839,7 +887,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn6.FieldName = "ot_type"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.VisibleIndex = 1
         Me.GridColumn6.Width = 81
         '
         'GridColumn7
@@ -854,7 +902,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn8.FieldName = "departement"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 2
         '
         'GridColumn38
         '
@@ -864,7 +912,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn38.FieldName = "ot_date"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 2
+        Me.GridColumn38.VisibleIndex = 3
         Me.GridColumn38.Width = 33
         '
         'GridColumn42
@@ -873,7 +921,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn42.FieldName = "ot_note"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 3
+        Me.GridColumn42.VisibleIndex = 4
         Me.GridColumn42.Width = 96
         '
         'GridColumn43
@@ -889,7 +937,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn44.FieldName = "report_status"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 4
+        Me.GridColumn44.VisibleIndex = 5
         Me.GridColumn44.Width = 77
         '
         'GridColumn45
@@ -898,7 +946,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn45.FieldName = "created_by"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 5
+        Me.GridColumn45.VisibleIndex = 6
         '
         'GridColumn46
         '
@@ -906,7 +954,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn46.FieldName = "created_at"
         Me.GridColumn46.Name = "GridColumn46"
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 6
+        Me.GridColumn46.VisibleIndex = 7
         '
         'XtraScrollableControl1
         '
@@ -981,6 +1029,346 @@ Partial Class FormEmpOvertime
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
         '
+        'XTCVerification
+        '
+        Me.XTCVerification.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCVerification.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCVerification.Location = New System.Drawing.Point(0, 0)
+        Me.XTCVerification.Name = "XTCVerification"
+        Me.XTCVerification.SelectedTabPage = Me.XTPByEmployeeVerification
+        Me.XTCVerification.Size = New System.Drawing.Size(998, 640)
+        Me.XTCVerification.TabIndex = 2
+        Me.XTCVerification.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPByEmployeeVerification, Me.XTPByRequestVerification})
+        '
+        'XTPByEmployeeVerification
+        '
+        Me.XTPByEmployeeVerification.Controls.Add(Me.GCVerification)
+        Me.XTPByEmployeeVerification.Name = "XTPByEmployeeVerification"
+        Me.XTPByEmployeeVerification.Size = New System.Drawing.Size(992, 612)
+        Me.XTPByEmployeeVerification.Text = "By Request"
+        '
+        'XTPByRequestVerification
+        '
+        Me.XTPByRequestVerification.Controls.Add(Me.GCVerificationEmployee)
+        Me.XTPByRequestVerification.Name = "XTPByRequestVerification"
+        Me.XTPByRequestVerification.Size = New System.Drawing.Size(992, 612)
+        Me.XTPByRequestVerification.Text = "By Employee"
+        '
+        'GCVerificationEmployee
+        '
+        Me.GCVerificationEmployee.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCVerificationEmployee.Location = New System.Drawing.Point(0, 0)
+        Me.GCVerificationEmployee.MainView = Me.GVVerificationEmployee
+        Me.GCVerificationEmployee.Name = "GCVerificationEmployee"
+        Me.GCVerificationEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSearchLookUpEdit1})
+        Me.GCVerificationEmployee.Size = New System.Drawing.Size(992, 612)
+        Me.GCVerificationEmployee.TabIndex = 1
+        Me.GCVerificationEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVerificationEmployee})
+        '
+        'GVVerificationEmployee
+        '
+        Me.GVVerificationEmployee.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVVerificationEmployee.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVVerificationEmployee.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVVerificationEmployee.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVVerificationEmployee.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVVerificationEmployee.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVVerificationEmployee.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVVerificationEmployee.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVVerificationEmployee.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVVerificationEmployee.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVVerificationEmployee.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVVerificationEmployee.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVVerificationEmployee.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVVerificationEmployee.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVVerificationEmployee.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVVerificationEmployee.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVVerificationEmployee.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVVerificationEmployee.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVVerificationEmployee.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVVerificationEmployee.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVVerificationEmployee.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVVerificationEmployee.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVVerificationEmployee.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVVerificationEmployee.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVVerificationEmployee.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVVerificationEmployee.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVVerificationEmployee.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVVerificationEmployee.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVVerificationEmployee.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseFont = True
+        Me.GVVerificationEmployee.ColumnPanelRowHeight = 32
+        Me.GVVerificationEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn39, Me.GridColumn41, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
+        Me.GVVerificationEmployee.GridControl = Me.GCVerificationEmployee
+        Me.GVVerificationEmployee.GroupCount = 1
+        Me.GVVerificationEmployee.Name = "GVVerificationEmployee"
+        Me.GVVerificationEmployee.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVVerificationEmployee.OptionsBehavior.Editable = False
+        Me.GVVerificationEmployee.OptionsFind.AlwaysVisible = True
+        Me.GVVerificationEmployee.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVVerificationEmployee.OptionsView.ColumnAutoWidth = False
+        Me.GVVerificationEmployee.OptionsView.ShowGroupPanel = False
+        Me.GVVerificationEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn35, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.FieldName = "id_employee"
+        Me.GridColumn32.Name = "GridColumn32"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.FieldName = "id_departement"
+        Me.GridColumn33.Name = "GridColumn33"
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.FieldName = "id_departement_sub"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Width = 109
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Departement"
+        Me.GridColumn35.FieldName = "departement"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 4
+        Me.GridColumn35.Width = 86
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "NIP"
+        Me.GridColumn36.FieldName = "employee_code"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 0
+        Me.GridColumn36.Width = 41
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Employee"
+        Me.GridColumn37.FieldName = "employee_name"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 1
+        Me.GridColumn37.Width = 56
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn39.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn39.Caption = "Employee Position"
+        Me.GridColumn39.FieldName = "employee_position"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 2
+        Me.GridColumn39.Width = 100
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.FieldName = "id_employee_status"
+        Me.GridColumn41.Name = "GridColumn41"
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn48.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn48.Caption = "Employee Status"
+        Me.GridColumn48.FieldName = "employee_status"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 3
+        Me.GridColumn48.Width = 90
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.FieldName = "to_salary"
+        Me.GridColumn49.Name = "GridColumn49"
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn50.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn50.Caption = "Conversion Type"
+        Me.GridColumn50.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumn50.FieldName = "conversion_type"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 4
+        Me.GridColumn50.Width = 91
+        '
+        'RepositoryItemSearchLookUpEdit1
+        '
+        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView4
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn52, Me.GridColumn53})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "GridColumn8"
+        Me.GridColumn51.FieldName = "id_type"
+        Me.GridColumn51.Name = "GridColumn51"
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Conversion Type"
+        Me.GridColumn52.FieldName = "type"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 0
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.Caption = "GridColumn1"
+        Me.GridColumn53.FieldName = "to_salary"
+        Me.GridColumn53.Name = "GridColumn53"
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.FieldName = "id_ot_verification"
+        Me.GridColumn54.Name = "GridColumn54"
+        '
+        'GridColumn55
+        '
+        Me.GridColumn55.Caption = "Number"
+        Me.GridColumn55.FieldName = "number"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 5
+        Me.GridColumn55.Width = 47
+        '
+        'GridColumn56
+        '
+        Me.GridColumn56.Caption = "GridColumn21"
+        Me.GridColumn56.FieldName = "id_ot_type"
+        Me.GridColumn56.Name = "GridColumn56"
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.Caption = "Overtime Type"
+        Me.GridColumn57.FieldName = "ot_type"
+        Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.Visible = True
+        Me.GridColumn57.VisibleIndex = 6
+        Me.GridColumn57.Width = 81
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.Caption = "Date"
+        Me.GridColumn58.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn58.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn58.FieldName = "ot_date"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 7
+        Me.GridColumn58.Width = 33
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.FieldName = "is_day_off"
+        Me.GridColumn59.Name = "GridColumn59"
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn60.Caption = "Start Work"
+        Me.GridColumn60.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn60.FieldName = "start_work_ot"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 8
+        Me.GridColumn60.Width = 62
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn61.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn61.Caption = "End Work"
+        Me.GridColumn61.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn61.FieldName = "end_work_ot"
+        Me.GridColumn61.Name = "GridColumn61"
+        Me.GridColumn61.Visible = True
+        Me.GridColumn61.VisibleIndex = 9
+        Me.GridColumn61.Width = 56
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn62.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn62.Caption = "Break (hours)"
+        Me.GridColumn62.DisplayFormat.FormatString = "N1"
+        Me.GridColumn62.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn62.FieldName = "break_hours"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 10
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn63.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn63.Caption = "Total (hours)"
+        Me.GridColumn63.DisplayFormat.FormatString = "N1"
+        Me.GridColumn63.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn63.FieldName = "total_hours"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 11
+        Me.GridColumn63.Width = 72
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.Caption = "Overtime Propose"
+        Me.GridColumn64.FieldName = "ot_note"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 12
+        Me.GridColumn64.Width = 96
+        '
+        'GridColumn65
+        '
+        Me.GridColumn65.FieldName = "id_report_status"
+        Me.GridColumn65.Name = "GridColumn65"
+        '
+        'GridColumn66
+        '
+        Me.GridColumn66.Caption = "Report Status"
+        Me.GridColumn66.FieldName = "report_status"
+        Me.GridColumn66.Name = "GridColumn66"
+        Me.GridColumn66.Visible = True
+        Me.GridColumn66.VisibleIndex = 13
+        Me.GridColumn66.Width = 77
+        '
+        'GridColumn67
+        '
+        Me.GridColumn67.Caption = "Created By"
+        Me.GridColumn67.FieldName = "created_by"
+        Me.GridColumn67.Name = "GridColumn67"
+        Me.GridColumn67.Visible = True
+        Me.GridColumn67.VisibleIndex = 14
+        '
+        'GridColumn68
+        '
+        Me.GridColumn68.Caption = "Created At"
+        Me.GridColumn68.FieldName = "created_at"
+        Me.GridColumn68.Name = "GridColumn68"
+        Me.GridColumn68.Visible = True
+        Me.GridColumn68.VisibleIndex = 15
+        '
         'FormEmpOvertime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1013,12 +1401,12 @@ Partial Class FormEmpOvertime
         Me.XTCPropose.ResumeLayout(False)
         Me.XTPByRequest.ResumeLayout(False)
         Me.XTPByEmployee.ResumeLayout(False)
-        CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCProposeEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProposeEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlCheck, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlCheck.ResumeLayout(False)
+        CType(Me.PanelControlVerification, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlVerification.ResumeLayout(False)
         Me.XTPVerification.ResumeLayout(False)
         CType(Me.GCVerification, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVVerification, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1028,6 +1416,14 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.PerformLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCVerification, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCVerification.ResumeLayout(False)
+        Me.XTPByEmployeeVerification.ResumeLayout(False)
+        Me.XTPByRequestVerification.ResumeLayout(False)
+        CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1057,8 +1453,8 @@ Partial Class FormEmpOvertime
     Friend WithEvents XTCPropose As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPByRequest As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPByEmployee As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
-    Friend WithEvents PanelControlCheck As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GCProposeEmployee As DevExpress.XtraGrid.GridControl
+    Friend WithEvents PanelControlVerification As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents SBVerification As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RIMEMultiline As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
@@ -1091,7 +1487,7 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GVProposeEmployee As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCIdEmployee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdDepartement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdDepartementSub As DevExpress.XtraGrid.Columns.GridColumn
@@ -1123,4 +1519,40 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdOvertimeType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdOvertime As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCVerification As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPByEmployeeVerification As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPByRequestVerification As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCVerificationEmployee As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVVerificationEmployee As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

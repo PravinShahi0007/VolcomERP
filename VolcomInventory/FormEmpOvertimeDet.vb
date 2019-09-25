@@ -113,20 +113,20 @@
             Dim include As String = ""
 
             If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
-                For i = 0 To FormEmpOvertime.GVEmployee.RowCount - 1
-                    If FormEmpOvertime.GVEmployee.IsValidRowHandle(i) Then
-                        include += FormEmpOvertime.GVEmployee.GetRowCellValue(i, "id_ot_det").ToString + ", "
+                For i = 0 To FormEmpOvertime.GVProposeEmployee.RowCount - 1
+                    If FormEmpOvertime.GVProposeEmployee.IsValidRowHandle(i) Then
+                        include += FormEmpOvertime.GVProposeEmployee.GetRowCellValue(i, "id_ot_det").ToString + ", "
                     End If
                 Next
 
                 If Not include = "" Then
-                    Dim id_ot_det As String = FormEmpOvertime.GVEmployee.GetFocusedRowCellValue("id_ot_det").ToString
+                    Dim id_ot_det As String = FormEmpOvertime.GVProposeEmployee.GetFocusedRowCellValue("id_ot_det").ToString
 
                     include = include.Substring(0, include.Length - 2)
 
                     FormEmpOvertime.load_overtime("id_det" + include)
 
-                    FormEmpOvertime.GVEmployee.FocusedRowHandle = find_row(FormEmpOvertime.GVEmployee, "id_ot_det", id_ot_det)
+                    FormEmpOvertime.GVProposeEmployee.FocusedRowHandle = find_row(FormEmpOvertime.GVProposeEmployee, "id_ot_det", id_ot_det)
                 End If
             Else
                 For i = 0 To FormEmpOvertime.GVOvertime.RowCount - 1
