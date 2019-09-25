@@ -343,7 +343,7 @@ Public Class FormSalesPOSDet
                 end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Catch ex As Exception
             End Try
-            Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + end_period + "') "
+            Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', NOW()) "
             dt_stock_store = execute_query(query, -1, True, "", "", "", "")
         End If
     End Sub
@@ -2300,6 +2300,7 @@ Public Class FormSalesPOSDet
         TxtBOF.Text = data_bof_main.Rows(0)(3).ToString
 
         'detail
+        viewStockStore()
         Dim data_temp As New DataTable
         MyCommand = New OleDbDataAdapter("select kode as code,SUM(qty) as qty,'' AS price from [" & bof_xls_ws & "] WHERE qty>0 AND NOT kode IS NULL AND NOT qty  IS NULL GROUP BY kode", oledbconn)
         MyCommand.Fill(data_temp)
