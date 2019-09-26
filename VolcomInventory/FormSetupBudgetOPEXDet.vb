@@ -130,14 +130,6 @@ WHERE ppd.id_b_opex_pps='" & id_pps & "'"
         Dispose()
     End Sub
 
-    Private Sub BDel_Click(sender As Object, e As EventArgs)
-        GVAfter.DeleteSelectedRows()
-    End Sub
-
-    Private Sub BAdd_Click(sender As Object, e As EventArgs)
-        FormSampleBudgetSingle.ShowDialog()
-    End Sub
-
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If GVAfter.RowCount <= 0 Then
             warningCustom("Please input proposed budget")

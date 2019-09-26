@@ -7,6 +7,7 @@
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
     End Sub
+
     Sub view_do()
         Cursor = Cursors.WaitCursor
         Dim query As String = ""

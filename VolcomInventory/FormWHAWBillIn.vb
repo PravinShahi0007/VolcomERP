@@ -3,6 +3,8 @@
     Public id_comp As String = ""
 
     Public id_awb_type As String = "2"
+    '
+    Public is_lock As String = "2"
 
     Private Sub FormWHAWBillDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_awb()
@@ -49,6 +51,8 @@
             TEWeight.EditValue = data.Rows(0)("weight")
 
             TEBeratTerpakai.EditValue = data.Rows(0)("weight_calc").ToString
+
+            is_lock = data.Rows(0)("is_lock").ToString
 
             rate_table()
 
@@ -106,10 +110,11 @@
         GCDO.DataSource = data
 
         'permission 
-        If id_awb <> "-1" Then
+        If is_lock = "1" Then
             BBrowse.Enabled = False
             BRemoveDO.Enabled = False
             GVDO.OptionsBehavior.ReadOnly = True
+            BSave.Visible = False
         End If
     End Sub
     Private Sub BBrowse_Click(sender As Object, e As EventArgs) Handles BBrowse.Click
@@ -343,12 +348,12 @@
                 id_awb = execute_query(query, 0, True, "", "", "", "")
                 'detail do
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "')"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If
@@ -378,22 +383,21 @@
                 query = "UPDATE tb_wh_awbill SET is_paid_by_store='" + is_paid_by_store + "',id_store='" + id_comp + "',id_cargo='" + SLECargo.EditValue.ToString + "',cargo_rate='" + decimalSQL(TEChargeRate.EditValue.ToString) + "',cargo_lead_time='" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "',cargo_min_weight='" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "',weight='" + decimalSQL(TEWeight.EditValue.ToString) + "',`length`='" + decimalSQL(TELength.EditValue.ToString) + "',width='" + decimalSQL(TEWidth.EditValue.ToString) + "',height='" + decimalSQL(TEHeight.EditValue.ToString) + "',weight_calc='" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "',c_weight='" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "',a_weight='" + decimalSQL(TEVolumeAirport.EditValue.ToString) + "',a_tot_price='" + decimalSQL(TEPriceAirport.EditValue.ToString) + "',awbill_inv_no='" + TEInvNo.Text.ToString + "',awbill_no='" + TEAWBNo.Text.ToString + "',pick_up_date=" + date_pickup + ",rec_by_store_date=" + date_store + ",awbill_note='" + MENote.Text + "',id_cargo_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "id_cargo").ToString) + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "' WHERE id_awbill='" + id_awb + "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
+                query = "DELETE FROM tb_wh_awbill_det_in WHERE id_awbill='" + id_awb + "'"
+                execute_non_query(query, True, "", "", "", "")
+                '
+                If GVDO.RowCount > 0 Then
+                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty) VALUES"
+                    For i As Integer = 0 To GVDO.RowCount - 1
+                        If Not i = 0 Then
+                            query += ","
+                        End If
+                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "')"
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                End If
 
-                'query = "DELETE FROM tb_wh_awbill_det_in WHERE id_awbill='" + id_awb + "'"
-                'execute_non_query(query, True, "", "", "", "")
-                ''
-                'If GVDO.RowCount > 0 Then
-                '    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty) VALUES"
-                '    For i As Integer = 0 To GVDO.RowCount - 1
-                '        If Not i = 0 Then
-                '            query += ","
-                '        End If
-                '        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
-                '    Next
-                '    execute_non_query(query, True, "", "", "", "")
-                'End If
-
-                'infoCustom("AWB calculation updated.")
+                infoCustom("AWB calculation updated.")
 
                 If id_awb_type = "1" Then
                     FormWHAWBill.load_outbound()
@@ -547,7 +551,7 @@
                 If GVDO.FocusedColumn.FieldName.ToString = "do_no" Then
                     GVDO.CloseEditor()
                     GVDO.FocusedRowHandle = rh
-                    GVDO.FocusedColumn = GridColumnQty
+                    GVDO.FocusedColumn = GridColumnQtySuratJalan
                 ElseIf GVDO.FocusedColumn.FieldName.ToString = "qty" Then
                     GVDO.CloseEditor()
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Add return order again ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)

@@ -40,6 +40,8 @@
             rmt = "144"
         ElseIf data.Rows(0)("id_pd_kind").ToString = "3" Then
             rmt = "145"
+        ElseIf data.Rows(0)("id_pd_kind").ToString = "4" Then
+            rmt = "210"
         End If
         rmt_appr = data.Rows(0)("report_mark_type").ToString
         viewDetail()

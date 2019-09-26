@@ -331,7 +331,7 @@ Public Class FormSalesReturnDet
         Dim query As String = "SELECT ad.id_wh_awb_det, ad.id_awbill, ad.do_no, ad.qty, ad.is_active 
         FROM tb_wh_awbill_det_in ad
         INNER JOIN tb_wh_awbill a ON a.id_awbill = ad.id_awbill
-        WHERE a.id_store=" + id_store_par + " AND ad.is_active=1 "
+        WHERE a.id_store=" + id_store_par + " AND ad.is_active=1 AND a.is_lock=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
@@ -448,7 +448,7 @@ Public Class FormSalesReturnDet
         WHERE r.id_sales_return>0 AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
         AND r.id_store_contact_from=" + id_store_contact_from + " "
         If BtnCombineReturn.Visible = True Then
-            query += "AND r.id_report_status=1 AND r.combine_number='' "
+            query += "AND r.id_report_status=1 AND r.combine_number='' AND r.last_update_by='" + id_user + "' "
         Else
             query += "AND r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' "
         End If
@@ -460,8 +460,11 @@ Public Class FormSalesReturnDet
         'member number
         Dim qm As String = "SELECT GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `number`
                 FROM tb_sales_return r
-                WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "'
-                GROUP BY r.combine_number "
+                WHERE r.combine_number='" + addSlashes(TxtCombineNumber.Text) + "' AND r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' "
+        If BtnCombineReturn.Visible = True Then
+            qm += "AND r.last_update_by='" + id_user + "' AND r.id_ret_type!=2 "
+        End If
+        qm += "GROUP BY r.combine_number "
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         If dm.Rows.Count > 0 Then
             TxtCombineFrom.Text = dm.Rows(0)("number").ToString
@@ -1019,19 +1022,20 @@ Public Class FormSalesReturnDet
         makeSafeGV(GVBarcodeProb)
 
         'check limit
-        GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
         Dim error_list As String = ""
         Dim cond_list As Boolean = True
-        If action = "ins" Then
-            cond_list = verifyTrans()
+        If id_ret_type <> "2" Then
+            GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
+            If action = "ins" Then
+                cond_list = verifyTrans()
+            End If
+            GVItemList.ActiveFilterString = ""
+            makeSafeGV(GVItemList)
         End If
-        GVItemList.ActiveFilterString = ""
-        makeSafeGV(GVItemList)
-
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopRight) Then
             errorInput()
-        ElseIf GVItemList.RowCount = 0 Then
+        ElseIf GVItemList.RowCount = 0 And id_ret_type <> "2" Then
             errorCustom("Return item data can't blank")
         ElseIf TxtStoreReturnNumber.Text = "" Then
             stopCustom("Store return number can't blank")
@@ -1558,12 +1562,12 @@ Public Class FormSalesReturnDet
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                 GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
                 If drc.Rows(0)("is_non_list").ToString = "1" Then
-                    stopCustom("Stock not available")
+                    stopCustomDialog("Stock not available")
                 Else
                     If drc.Rows(0)("qty_limit") > 0 Then
-                        stopCustom("Please scan this product in regular process")
+                        stopCustomDialog("Please scan this product in regular process")
                     Else
-                        stopCustom("Stock not available")
+                        stopCustomDialog("Stock not available")
                     End If
                 End If
                 Exit Sub
@@ -1597,7 +1601,7 @@ Public Class FormSalesReturnDet
                     makeSafeGV(GVItemList)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Stock not available")
+                    stopCustomDialog("Stock not available")
                     Exit Sub
                 Else
                     Dim dtu As DataTable = Nothing
@@ -1651,7 +1655,7 @@ Public Class FormSalesReturnDet
                         makeSafeGV(GVItemList)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Code not found")
+                        stopCustomDialog("Code not found")
                         Exit Sub
                     End If
                 End If
@@ -1698,11 +1702,11 @@ Public Class FormSalesReturnDet
                 If jum_limit <= 0 Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("This item cannot scan, because limit qty is zero.")
+                    stopCustomDialog("This item cannot scan, because limit qty is zero.")
                 ElseIf jum_scan >= jum_limit Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Maximum qty : " + jum_limit.ToString)
+                    stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                 Else
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_sales_return_det_counting", "0")
@@ -1730,20 +1734,20 @@ Public Class FormSalesReturnDet
                 If Not code_found Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Code not found !")
+                    stopCustomDialog("Code not found !")
                 ElseIf code_duplicate Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data duplicate !")
+                    stopCustomDialog("Data duplicate !")
                 Else
                     If jum_limit <= 0 Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("This item cannot scan, because limit qty is zero.")
+                        stopCustomDialog("This item cannot scan, because limit qty is zero.")
                     ElseIf jum_scan >= jum_limit Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Maximum qty : " + jum_limit.ToString)
+                        stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                     Else
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_sales_return_det_counting", "0")
@@ -1764,12 +1768,12 @@ Public Class FormSalesReturnDet
             Else
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                 GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Code not found !")
+                stopCustomDialog("Code not found !")
             End If
         Else
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
             GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-            stopCustom("Product not found in return order list!")
+            stopCustomDialog("Product not found in return order list!")
         End If
         Cursor = Cursors.Default
     End Sub
@@ -2055,7 +2059,7 @@ Public Class FormSalesReturnDet
             Cursor = Cursors.WaitCursor
             GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
             If GVBarcode.RowCount <= 0 Then
-                stopCustom("Code not found.")
+                stopCustomDialog("Code not found.")
                 GVBarcode.ActiveFilterString = ""
                 TxtDeleteScan.Text = ""
                 TxtDeleteScan.Focus()
@@ -2538,7 +2542,7 @@ Public Class FormSalesReturnDet
                         Dim jum_duplicate As Integer = GVBarcodeProb.RowCount
                         GVBarcodeProb.ActiveFilterString = ""
                         If jum_duplicate > 0 Then
-                            stopCustom("Data duplicate")
+                            stopCustomDialog("Data duplicate")
                             TxtScanProb.Text = ""
                             TxtScanProb.Focus()
                             Exit Sub
@@ -2575,7 +2579,7 @@ Public Class FormSalesReturnDet
 
                     'cek
                     If Not cond_unique_not_found And Not cond_no_stock Then
-                        stopCustom("This product still has stock, please scan in Return-Non List")
+                        stopCustomDialog("This product still has stock, please scan in Return-Non List")
                         Exit Sub
                     End If
 
@@ -2603,7 +2607,7 @@ Public Class FormSalesReturnDet
                     TxtScanProb.Text = ""
                     TxtScanProb.Focus()
                 Else
-                    stopCustom("Data not found")
+                    stopCustomDialog("Data not found")
                     GVBarcodeProb.ActiveFilterString = ""
                     TxtScanProb.Text = ""
                     TxtScanProb.Focus()
@@ -2612,7 +2616,7 @@ Public Class FormSalesReturnDet
                 Cursor = Cursors.WaitCursor
                 GVBarcodeProb.ActiveFilterString = "[code]='" + TxtScanProb.Text + "'"
                 If GVBarcodeProb.RowCount <= 0 Then
-                    stopCustom("Code not found.")
+                    stopCustomDialog("Code not found.")
                     GVBarcodeProb.ActiveFilterString = ""
                     TxtScanProb.Text = ""
                     TxtScanProb.Focus()
@@ -2839,7 +2843,7 @@ Public Class FormSalesReturnDet
             UPDATE tb_sales_return r SET r.combine_number='" + combine_number + "' 
             WHERE r.sales_return_store_number='" + addSlashes(TxtStoreReturnNumber.Text) + "' 
             AND r.id_store_contact_from=" + id_store_contact_from + " 
-            AND r.id_report_status=1 AND r.combine_number=''; 
+            AND r.id_report_status=1 AND r.combine_number='' AND r.last_update_by='" + id_user + "' ; 
             /*update deskripsi report mark*/
             UPDATE tb_report_mark rm 
             INNER JOIN tb_sales_return r ON r.id_sales_return = rm.id_report

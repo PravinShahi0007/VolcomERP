@@ -98,7 +98,7 @@
             id_company = "-1"
         End If
 
-        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number, email,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number, email,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' AND is_default =1", id_company), -1, True, "", "", "", "")
         GCCompanyContactList.DataSource = data
         If Not data.Rows.Count > 0 Or id_company = "-1" Then
             BtnSave.Enabled = False
@@ -109,12 +109,27 @@
 
     Sub view_company()
         Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_store_type, tb_m_comp.id_wh_type, IFNULL(tb_m_comp.id_commerce_type,1) AS `id_commerce_type`,tb_m_comp.id_drawer_def,
-        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code "
+        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code, IFNULL(tb_m_comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(tb_m_comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar` "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
-            query += "AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
+            If id_cat.Contains(",") Then
+                Dim cat_split = id_cat.Split(",")
+                Dim q_tmbh As String = ""
+                For i = 0 To UBound(cat_split)
+                    If i = 0 Then
+                        q_tmbh += " tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    Else
+                        q_tmbh += " OR tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    End If
+                Next i
+                '
+                query += " AND (" & q_tmbh & ")"
+            Else
+                query += " AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
+            End If
         End If
+
         If id_pop_up = "38" Then
             query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 "
         End If
@@ -578,6 +593,19 @@
             FormSalesPOSDet.MEAdrressCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "3")
             FormSalesPOSDet.TENPWP.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "5")
             FormSalesPOSDet.LETypeSO.ItemIndex = FormSalesPOSDet.LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8"))
+
+            'isi coa
+            If FormSalesPOSDet.id_menu <> "3" And FormSalesPOSDet.id_menu <> "4" Then
+                FormSalesPOSDet.id_acc_sales = GVCompany.GetFocusedRowCellValue("id_acc_sales").ToString
+                FormSalesPOSDet.id_acc_sales_return = GVCompany.GetFocusedRowCellValue("id_acc_sales_return").ToString
+                FormSalesPOSDet.id_acc_ar = GVCompany.GetFocusedRowCellValue("id_acc_ar").ToString
+                FormSalesPOSDet.viewCheckCOA(FormSalesPOSDet.TxtCodeCompFrom.Text + " - " + FormSalesPOSDet.TxtNameCompFrom.Text)
+
+                If Not FormSalesPOSDet.cond_coa Then
+                    Exit Sub
+                End If
+            End If
+
             FormSalesPOSDet.viewDetail()
             FormSalesPOSDet.viewDetailCode()
             FormSalesPOSDet.viewStockStore()
@@ -1009,6 +1037,19 @@
             FormSalesPOSDet.id_comp_contact_bill = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormSalesPOSDet.TxtNameBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
             FormSalesPOSDet.TxtCodeBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+
+            'isi coa
+            If FormSalesPOSDet.id_menu = "4" Then
+                FormSalesPOSDet.id_acc_sales = GVCompany.GetFocusedRowCellValue("id_acc_sales").ToString
+                FormSalesPOSDet.id_acc_sales_return = GVCompany.GetFocusedRowCellValue("id_acc_sales_return").ToString
+                FormSalesPOSDet.id_acc_ar = GVCompany.GetFocusedRowCellValue("id_acc_ar").ToString
+                FormSalesPOSDet.viewCheckCOA(FormSalesPOSDet.TxtCodeBillTo.Text + " - " + FormSalesPOSDet.TxtNameBillTo.Text)
+
+                If Not FormSalesPOSDet.cond_coa Then
+                    Exit Sub
+                End If
+            End If
+
             FormSalesPOSDet.getDiscount()
             FormSalesPOSDet.getNetto()
             FormSalesPOSDet.getVat()

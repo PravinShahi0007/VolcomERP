@@ -190,6 +190,7 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.BResetMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -1518,6 +1519,7 @@ Partial Class FormMasterCompanySingle
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BResetMark)
         Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.BApproval)
         Me.PanelControl1.Controls.Add(Me.BCancel)
@@ -2019,6 +2021,18 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
         '
+        'BResetMark
+        '
+        Me.BResetMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BResetMark.ImageIndex = 1
+        Me.BResetMark.ImageList = Me.LargeImageCollection
+        Me.BResetMark.Location = New System.Drawing.Point(193, 2)
+        Me.BResetMark.Name = "BResetMark"
+        Me.BResetMark.Size = New System.Drawing.Size(94, 40)
+        Me.BResetMark.TabIndex = 27
+        Me.BResetMark.Text = "Reset"
+        Me.BResetMark.Visible = False
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2299,4 +2313,5 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents LabelControl39 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TENPWPName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl38 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BResetMark As DevExpress.XtraEditors.SimpleButton
 End Class

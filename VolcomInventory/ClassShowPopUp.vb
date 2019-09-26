@@ -204,7 +204,7 @@
         ElseIf report_mark_type = "142" Then
             'Cancel Form
             FormReportMarkCancel.Close()
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
             'PD REVISION
             FormProdDemandRevDet.Close()
         ElseIf report_mark_type = "147" Then
@@ -300,6 +300,12 @@
         ElseIf report_mark_type = "206" Then
             'prod demand sales
             FormViewProdDemand.Close()
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            FormItemCatMainDet.Close()
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            FormSetupBudgetCAPEXDet.Close()
         End If
     End Sub
     Sub show()
@@ -863,7 +869,7 @@
             FormPurcOrderDet.id_po = id_report
             FormPurcOrderDet.is_view = "1"
             FormPurcOrderDet.ShowDialog()
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
             'PD REVISION
             FormProdDemandRevDet.id = id_report
             FormProdDemandRevDet.is_view = "1"
@@ -1073,6 +1079,16 @@
             FormSetupBudgetOPEXDet.id_pps = id_report
             FormSetupBudgetOPEXDet.is_view = "1"
             FormSetupBudgetOPEXDet.ShowDialog()
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            FormItemCatMainDet.id_propose = id_report
+            FormItemCatMainDet.is_view = "1"
+            FormItemCatMainDet.ShowDialog()
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            FormSetupBudgetCAPEXDet.id_pps = id_report
+            FormSetupBudgetCAPEXDet.is_view = "1"
+            FormSetupBudgetCAPEXDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1787,7 +1803,7 @@
             field_id = "id_purc_order"
             field_number = "purc_order_number"
             field_date = "date_created"
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
             ' PD REV
             table_name = "tb_prod_demand_rev"
             field_id = "id_prod_demand_rev"
@@ -1953,6 +1969,18 @@
             'propose budget OPEX
             table_name = "tb_b_opex_pps"
             field_id = "id_b_opex_pps"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "207" Then
+            'Item Cat Main
+            table_name = "tb_item_cat_main_pps"
+            field_id = "id_item_cat_main_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'propose budget CAPEX
+            table_name = "tb_b_expense_propose"
+            field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "date_created"
         Else
@@ -2321,7 +2349,7 @@
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("year").ToString
                     End If
-                ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+                ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
                     'pd revision
                     query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number
                     FROM tb_prod_demand_rev

@@ -25,7 +25,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.CEPIC = New DevExpress.XtraEditors.CheckEdit()
         Me.DELastDay = New DevExpress.XtraEditors.DateEdit()
         Me.LabelLastDay = New System.Windows.Forms.Label()
-        Me.TxtFocus = New DevExpress.XtraEditors.TextEdit()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.LEActive = New DevExpress.XtraEditors.LookUpEdit()
         Me.DEJoinDate = New DevExpress.XtraEditors.DateEdit()
@@ -227,12 +226,14 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.TxtFocus = New DevExpress.XtraEditors.TextEdit()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.DEActualJoinDate = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELastDay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtFocus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -357,11 +358,16 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.SuspendLayout()
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtFocus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEActualJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEActualJoinDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
         '
         Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTop.Controls.Add(Me.DEActualJoinDate)
+        Me.PanelControlTop.Controls.Add(Me.Label47)
         Me.PanelControlTop.Controls.Add(Me.CEPIC)
         Me.PanelControlTop.Controls.Add(Me.DELastDay)
         Me.PanelControlTop.Controls.Add(Me.LabelLastDay)
@@ -422,16 +428,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.LabelLastDay.TabIndex = 57
         Me.LabelLastDay.Text = "Last Working Date"
         '
-        'TxtFocus
-        '
-        Me.TxtFocus.EditValue = ""
-        Me.TxtFocus.Location = New System.Drawing.Point(136, 183)
-        Me.TxtFocus.Name = "TxtFocus"
-        Me.TxtFocus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtFocus.Properties.Appearance.Options.UseFont = True
-        Me.TxtFocus.Size = New System.Drawing.Size(84, 20)
-        Me.TxtFocus.TabIndex = 6
-        '
         'Label32
         '
         Me.Label32.AutoSize = True
@@ -463,7 +459,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEJoinDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEJoinDate.Properties.ReadOnly = True
-        Me.DEJoinDate.Size = New System.Drawing.Size(596, 20)
+        Me.DEJoinDate.Size = New System.Drawing.Size(240, 20)
         Me.DEJoinDate.TabIndex = 4
         '
         'Label28
@@ -479,20 +475,20 @@ Partial Class FormMasterEmployeeNewDet
         'TxtInitialName
         '
         Me.TxtInitialName.EditValue = ""
-        Me.TxtInitialName.Location = New System.Drawing.Point(675, 61)
+        Me.TxtInitialName.Location = New System.Drawing.Point(586, 61)
         Me.TxtInitialName.Name = "TxtInitialName"
         Me.TxtInitialName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtInitialName.Properties.Appearance.Options.UseFont = True
         Me.TxtInitialName.Properties.MaxLength = 3
         Me.TxtInitialName.Properties.ReadOnly = True
-        Me.TxtInitialName.Size = New System.Drawing.Size(151, 20)
+        Me.TxtInitialName.Size = New System.Drawing.Size(240, 20)
         Me.TxtInitialName.TabIndex = 3
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(611, 64)
+        Me.Label4.Location = New System.Drawing.Point(490, 64)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(63, 13)
         Me.Label4.TabIndex = 7
@@ -506,7 +502,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtNickName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNickName.Properties.Appearance.Options.UseFont = True
         Me.TxtNickName.Properties.ReadOnly = True
-        Me.TxtNickName.Size = New System.Drawing.Size(372, 20)
+        Me.TxtNickName.Size = New System.Drawing.Size(241, 20)
         Me.TxtNickName.TabIndex = 2
         '
         'Label3
@@ -2480,6 +2476,41 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
+        'TxtFocus
+        '
+        Me.TxtFocus.EditValue = ""
+        Me.TxtFocus.Location = New System.Drawing.Point(136, 183)
+        Me.TxtFocus.Name = "TxtFocus"
+        Me.TxtFocus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtFocus.Properties.Appearance.Options.UseFont = True
+        Me.TxtFocus.Size = New System.Drawing.Size(84, 20)
+        Me.TxtFocus.TabIndex = 6
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.Location = New System.Drawing.Point(490, 90)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(85, 13)
+        Me.Label47.TabIndex = 8907
+        Me.Label47.Text = "Actual Join Date"
+        '
+        'DEActualJoinDate
+        '
+        Me.DEActualJoinDate.EditValue = Nothing
+        Me.DEActualJoinDate.Location = New System.Drawing.Point(586, 87)
+        Me.DEActualJoinDate.Name = "DEActualJoinDate"
+        Me.DEActualJoinDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEActualJoinDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEActualJoinDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEActualJoinDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEActualJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEActualJoinDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEActualJoinDate.Properties.ReadOnly = True
+        Me.DEActualJoinDate.Size = New System.Drawing.Size(240, 20)
+        Me.DEActualJoinDate.TabIndex = 8908
+        '
         'FormMasterEmployeeNewDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2500,7 +2531,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DELastDay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtFocus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2627,6 +2657,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.ResumeLayout(False)
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtFocus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEActualJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEActualJoinDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2709,7 +2742,6 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents BtnAddStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPPosition As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents TxtFocus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnAddNationality As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LEMarriageStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label33 As Label
@@ -2837,4 +2869,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtPersonalEmail As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label46 As Label
+    Friend WithEvents DEActualJoinDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label47 As Label
+    Friend WithEvents TxtFocus As DevExpress.XtraEditors.TextEdit
 End Class
