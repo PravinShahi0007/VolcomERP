@@ -242,11 +242,14 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "")
+
         'overtime
         Dim ReportOvertime As New ReportEmpOvertime()
 
         ReportOvertime.id = id
         ReportOvertime.data = GCEmployee.DataSource
+        ReportOvertime.id_pre = If(id_report_status = "6", "-1", "1")
 
         ReportOvertime.XLNumber.Text = TENumber.Text.ToString
         ReportOvertime.XLOTtype.Text = LUEOvertimeType.Text.ToString
@@ -308,6 +311,7 @@
         Dim ReportMemo As New ReportEmpOvertimeMemo()
 
         ReportMemo.id = id
+        ReportMemo.id_pre = If(id_report_status = "6", "-1", "1")
 
         ReportMemo.XLTo.Text = data_employee.Rows(0)("employee_name").ToString
         ReportMemo.XLToPosition.Text = "- " + data_employee.Rows(0)("employee_position").ToString

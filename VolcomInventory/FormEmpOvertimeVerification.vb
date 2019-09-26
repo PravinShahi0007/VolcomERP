@@ -2,6 +2,7 @@
     Public id As String = "0"
     Public id_ot As String = ""
     Public is_view As String = "0"
+    Public ot_date As Date = Nothing
 
     Private Sub FormEmpOvertimeVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type, is_point_ho FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
@@ -67,10 +68,10 @@
         End If
 
         'load
-        If Not id = "0" Then
+        If Not ot_date = Nothing Then
             Dim data_vr As DataTable = execute_query("SELECT ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id + "'", -1, True, "", "", "", "")
 
-            DESearch.EditValue = data_vr.Rows(0)("ot_date")
+            DESearch.EditValue = ot_date
 
             SBView_Click(SBView, New EventArgs)
         End If

@@ -5924,9 +5924,12 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             End If
 
             If id_status_reportx = "6" Then
+                Dim data_ver As DataTable = execute_query("SELECT id_ot, ot_date FROM tb_ot_verification WHERE id_ot_verification = " + id_report + " LIMIT 1", -1, True, "", "", "", "")
+
                 FormEmpOvertimeVerification.id = id_report
-                FormEmpOvertimeVerification.id_ot = execute_query("SELECT id_ot FROM tb_ot_verification WHERE id_ot_verification = " + id_report + " LIMIT 1", 0, True, "", "", "", "")
+                FormEmpOvertimeVerification.id_ot = data_ver.Rows(0)("id_ot").ToString
                 FormEmpOvertimeVerification.is_view = "0"
+                FormEmpOvertimeVerification.ot_date = Date.Parse(data_ver.Rows(0)("ot_date").ToString)
 
                 FormEmpOvertimeVerification.update_changes()
             End If
