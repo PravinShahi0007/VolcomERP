@@ -18,7 +18,7 @@
     Sub form_load()
         ' default
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
-        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
         TEDepartement.EditValue = get_departement_x(id_departement_user, "1")
 
@@ -368,7 +368,11 @@
             If view.GetFocusedRowCellValue("to_salary").ToString = "1" Then
                 clone.RowFilter = ""
             Else
-                clone.RowFilter = "[to_salary] = 2"
+                If view.GetFocusedRowCellValue("is_day_off").ToString = "1" Then
+                    clone.RowFilter = "[to_salary] = 2"
+                Else
+                    clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
+                End If
             End If
 
             edit.Properties.DataSource = clone

@@ -127,7 +127,7 @@
             End Try
 
             Dim query As String = "
-                SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot_verification_det.is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot_verification_det.is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_verification_det AS ot_verification_det
                 LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
                 LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
@@ -232,7 +232,8 @@
     End Sub
 
     Sub view_conversion_type()
-        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUETypeVerification, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
     End Sub
 
     Private Sub SLUEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEDepartement.EditValueChanged
@@ -249,7 +250,7 @@
 
     Private Sub GVOvertime_DoubleClick(sender As Object, e As EventArgs) Handles GVOvertime.DoubleClick
         Try
-            FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
+            FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
             FormEmpOvertimeDet.is_hrd = is_hrd
 
             FormEmpOvertimeDet.ShowDialog()
@@ -290,11 +291,15 @@
 
     Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
         Try
-            FormEmpOvertimeVerification.id = "0"
-            FormEmpOvertimeVerification.id_ot = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
-            FormEmpOvertimeVerification.is_view = "0"
+            If GVOvertime.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                FormEmpOvertimeVerification.id = "0"
+                FormEmpOvertimeVerification.id_ot = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
+                FormEmpOvertimeVerification.is_view = "0"
 
-            FormEmpOvertimeVerification.ShowDialog()
+                FormEmpOvertimeVerification.ShowDialog()
+            Else
+                errorCustom("Overtime has not been approved.")
+            End If
         Catch ex As Exception
         End Try
     End Sub
@@ -332,5 +337,16 @@
         Else
             PCEmployee.Visible = False
         End If
+    End Sub
+
+    Private Sub GVVerificationEmployee_DoubleClick(sender As Object, e As EventArgs) Handles GVVerificationEmployee.DoubleClick
+        Try
+            FormEmpOvertimeVerification.id = GVVerificationEmployee.GetFocusedRowCellValue("id_ot_verification").ToString
+            FormEmpOvertimeVerification.id_ot = GVVerificationEmployee.GetFocusedRowCellValue("id_ot").ToString
+            FormEmpOvertimeVerification.is_view = "1"
+
+            FormEmpOvertimeVerification.ShowDialog()
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

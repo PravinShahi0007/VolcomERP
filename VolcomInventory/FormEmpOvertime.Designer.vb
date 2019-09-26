@@ -70,9 +70,6 @@ Partial Class FormEmpOvertime
         Me.GCConversionType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLUEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdOvertime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdOvertimeType = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -120,11 +117,9 @@ Partial Class FormEmpOvertime
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RISLUETypeVerification = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -149,6 +144,14 @@ Partial Class FormEmpOvertime
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,7 +189,7 @@ Partial Class FormEmpOvertime
         Me.XTPByEmployeeVerification.SuspendLayout()
         CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLUETypeVerification, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -670,31 +673,11 @@ Partial Class FormEmpOvertime
         '
         'RepositoryItemSearchLookUpEdit1View
         '
-        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn27})
         Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "GridColumn8"
-        Me.GridColumn18.FieldName = "id_type"
-        Me.GridColumn18.Name = "GridColumn18"
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Conversion Type"
-        Me.GridColumn19.FieldName = "type"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 0
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "GridColumn1"
-        Me.GridColumn20.FieldName = "to_salary"
-        Me.GridColumn20.Name = "GridColumn20"
         '
         'GCIdOvertime
         '
@@ -712,7 +695,6 @@ Partial Class FormEmpOvertime
         '
         'GCIdOvertimeType
         '
-        Me.GCIdOvertimeType.Caption = "GridColumn21"
         Me.GCIdOvertimeType.FieldName = "id_ot_type"
         Me.GCIdOvertimeType.Name = "GCIdOvertimeType"
         '
@@ -989,7 +971,7 @@ Partial Class FormEmpOvertime
         Me.GCVerificationEmployee.Location = New System.Drawing.Point(0, 0)
         Me.GCVerificationEmployee.MainView = Me.GVVerificationEmployee
         Me.GCVerificationEmployee.Name = "GCVerificationEmployee"
-        Me.GCVerificationEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSearchLookUpEdit1})
+        Me.GCVerificationEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUETypeVerification})
         Me.GCVerificationEmployee.Size = New System.Drawing.Size(992, 612)
         Me.GCVerificationEmployee.TabIndex = 1
         Me.GCVerificationEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVerificationEmployee})
@@ -1029,7 +1011,7 @@ Partial Class FormEmpOvertime
         Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVVerificationEmployee.ColumnPanelRowHeight = 32
-        Me.GVVerificationEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn22, Me.GridColumn36, Me.GridColumn37, Me.GridColumn39, Me.GridColumn41, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn21, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
+        Me.GVVerificationEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn22, Me.GridColumn36, Me.GridColumn37, Me.GridColumn39, Me.GridColumn41, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn26, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn21, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
         Me.GVVerificationEmployee.GridControl = Me.GCVerificationEmployee
         Me.GVVerificationEmployee.GroupCount = 1
         Me.GVVerificationEmployee.Name = "GVVerificationEmployee"
@@ -1126,47 +1108,33 @@ Partial Class FormEmpOvertime
         Me.GridColumn50.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn50.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn50.Caption = "Conversion Type"
-        Me.GridColumn50.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumn50.ColumnEdit = Me.RISLUETypeVerification
         Me.GridColumn50.FieldName = "conversion_type"
         Me.GridColumn50.Name = "GridColumn50"
         Me.GridColumn50.Visible = True
         Me.GridColumn50.VisibleIndex = 4
         Me.GridColumn50.Width = 91
         '
-        'RepositoryItemSearchLookUpEdit1
+        'RISLUETypeVerification
         '
-        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
-        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
-        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView4
+        Me.RISLUETypeVerification.AutoHeight = False
+        Me.RISLUETypeVerification.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLUETypeVerification.Name = "RISLUETypeVerification"
+        Me.RISLUETypeVerification.View = Me.GridView4
         '
         'GridView4
         '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn52, Me.GridColumn53})
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn28})
         Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView4.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn51
+        'GridColumn26
         '
-        Me.GridColumn51.Caption = "GridColumn8"
-        Me.GridColumn51.FieldName = "id_type"
-        Me.GridColumn51.Name = "GridColumn51"
-        '
-        'GridColumn52
-        '
-        Me.GridColumn52.Caption = "Conversion Type"
-        Me.GridColumn52.FieldName = "type"
-        Me.GridColumn52.Name = "GridColumn52"
-        Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 0
-        '
-        'GridColumn53
-        '
-        Me.GridColumn53.Caption = "GridColumn1"
-        Me.GridColumn53.FieldName = "to_salary"
-        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn26.Caption = "GridColumn26"
+        Me.GridColumn26.FieldName = "id_ot"
+        Me.GridColumn26.Name = "GridColumn26"
         '
         'GridColumn54
         '
@@ -1184,7 +1152,6 @@ Partial Class FormEmpOvertime
         '
         'GridColumn56
         '
-        Me.GridColumn56.Caption = "GridColumn21"
         Me.GridColumn56.FieldName = "id_ot_type"
         Me.GridColumn56.Name = "GridColumn56"
         '
@@ -1386,6 +1353,58 @@ Partial Class FormEmpOvertime
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "GridColumn8"
+        Me.GridColumn18.FieldName = "id_type"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Conversion Type"
+        Me.GridColumn19.FieldName = "type"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 0
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "GridColumn1"
+        Me.GridColumn20.FieldName = "to_salary"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "GridColumn2"
+        Me.GridColumn27.FieldName = "to_dp"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "GridColumn8"
+        Me.GridColumn23.FieldName = "id_type"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Conversion Type"
+        Me.GridColumn24.FieldName = "type"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "GridColumn1"
+        Me.GridColumn25.FieldName = "to_salary"
+        Me.GridColumn25.Name = "GridColumn25"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "GridColumn2"
+        Me.GridColumn28.FieldName = "to_dp"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
         'FormEmpOvertime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1433,7 +1452,7 @@ Partial Class FormEmpOvertime
         Me.XTPByEmployeeVerification.ResumeLayout(False)
         CType(Me.GCVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVVerificationEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLUETypeVerification, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1531,9 +1550,6 @@ Partial Class FormEmpOvertime
     Friend WithEvents GCOvertimePropse As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLUEType As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdOvertimeType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIdOvertime As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCVerification As DevExpress.XtraTab.XtraTabControl
@@ -1552,11 +1568,8 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RISLUETypeVerification As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1574,4 +1587,13 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

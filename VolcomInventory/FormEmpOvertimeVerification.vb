@@ -5,8 +5,8 @@
 
     Private Sub FormEmpOvertimeVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type, is_point_ho FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
-        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
-        viewSearchLookupRepositoryQuery(RISLUEType2, "SELECT id_ot_conversion AS id_type, conversion_type AS type FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType2, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
         viewSearchLookupQuery(SLUEPayroll, "SELECT id_payroll, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY periode_end DESC", "id_payroll", "periode", "id_payroll")
 
         'overtime
@@ -449,6 +449,14 @@
         Report.data1 = GCEmployee.DataSource
         Report.data2 = GCAttendance.DataSource
         Report.id_pre = If(Not id_report_status = "6", "1", "-1")
+
+        Report.XLNumber.Text = TENumber.Text.ToString
+        Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
+        Report.XLDate.Text = DESearch.Text
+        Report.XLPayrollPeriod.Text = SLUEPayroll.Text
+        Report.XLCreatedAt.Text = TECreatedBy.Text.ToString
+        Report.XLCreatedBy.Text = TECreatedAt.Text.ToString
+        Report.XLOTNote.Text = MEOvertimeNote.Text.ToString
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()

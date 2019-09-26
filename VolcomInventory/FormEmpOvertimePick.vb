@@ -107,7 +107,7 @@
 
         For i = 0 To GVList.RowCount - 1
             If GVList.GetRowCellValue(i, "is_checked") = "yes" Then
-                Dim conversion_type As String = If(GVList.GetRowCellValue(i, "to_salary") = "1", "1", "2")
+                Dim conversion_type As String = If(GVList.GetRowCellValue(i, "to_salary") = "1", "1", If(GVList.GetRowCellValue(i, "is_day_off") = "1", "2", "3"))
 
                 data.Rows.Add(GVList.GetRowCellValue(i, "id_employee"),
                             GVList.GetRowCellValue(i, "id_departement"),

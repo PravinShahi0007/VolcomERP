@@ -69,6 +69,7 @@ Partial Public Class ReportEmpOvertime
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,7 +89,7 @@ Partial Public Class ReportEmpOvertime
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1079.0!, 221.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 221.0!)
         Me.WinControlContainer1.WinControl = Me.GCEmployee
         '
         'GCEmployee
@@ -97,7 +98,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType})
-        Me.GCEmployee.Size = New System.Drawing.Size(1036, 212)
+        Me.GCEmployee.Size = New System.Drawing.Size(1032, 212)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
@@ -139,6 +140,7 @@ Partial Public Class ReportEmpOvertime
         Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
+        Me.GVEmployee.LevelIndent = 0
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsPrint.AllowMultilineHeaders = True
@@ -186,31 +188,37 @@ Partial Public Class ReportEmpOvertime
         Me.GCDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GCDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCDate.FieldName = "ot_date"
+        Me.GCDate.MinWidth = 100
         Me.GCDate.Name = "GCDate"
         Me.GCDate.OptionsColumn.AllowEdit = False
         Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCDate.Visible = True
         Me.GCDate.VisibleIndex = 0
+        Me.GCDate.Width = 100
         '
         'GCEmployeeCode
         '
         Me.GCEmployeeCode.Caption = "NIP"
         Me.GCEmployeeCode.FieldName = "employee_code"
+        Me.GCEmployeeCode.MaxWidth = 65
         Me.GCEmployeeCode.Name = "GCEmployeeCode"
         Me.GCEmployeeCode.OptionsColumn.AllowEdit = False
         Me.GCEmployeeCode.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeeCode.Visible = True
         Me.GCEmployeeCode.VisibleIndex = 1
+        Me.GCEmployeeCode.Width = 65
         '
         'GCEmployeeName
         '
         Me.GCEmployeeName.Caption = "Employee"
         Me.GCEmployeeName.FieldName = "employee_name"
+        Me.GCEmployeeName.MinWidth = 195
         Me.GCEmployeeName.Name = "GCEmployeeName"
         Me.GCEmployeeName.OptionsColumn.AllowEdit = False
         Me.GCEmployeeName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeeName.Visible = True
         Me.GCEmployeeName.VisibleIndex = 2
+        Me.GCEmployeeName.Width = 195
         '
         'GCEmployeePosition
         '
@@ -218,12 +226,13 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployeePosition.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployeePosition.Caption = "Employee Position"
         Me.GCEmployeePosition.FieldName = "employee_position"
+        Me.GCEmployeePosition.MinWidth = 150
         Me.GCEmployeePosition.Name = "GCEmployeePosition"
         Me.GCEmployeePosition.OptionsColumn.AllowEdit = False
         Me.GCEmployeePosition.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeePosition.Visible = True
         Me.GCEmployeePosition.VisibleIndex = 3
-        Me.GCEmployeePosition.Width = 100
+        Me.GCEmployeePosition.Width = 150
         '
         'GCIdEmployeeStatus
         '
@@ -238,6 +247,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployeeStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployeeStatus.Caption = "Employee Status"
         Me.GCEmployeeStatus.FieldName = "employee_status"
+        Me.GCEmployeeStatus.MinWidth = 60
         Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
         Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
         Me.GCEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
@@ -274,7 +284,7 @@ Partial Public Class ReportEmpOvertime
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn2})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -312,7 +322,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCStartWork.AppearanceHeader.Options.UseTextOptions = True
         Me.GCStartWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCStartWork.Caption = "Start Work"
-        Me.GCStartWork.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GCStartWork.DisplayFormat.FormatString = "HH:mm"
         Me.GCStartWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCStartWork.FieldName = "ot_start_time"
         Me.GCStartWork.Name = "GCStartWork"
@@ -327,7 +337,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCEndWork.AppearanceHeader.Options.UseTextOptions = True
         Me.GCEndWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEndWork.Caption = "End Work"
-        Me.GCEndWork.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GCEndWork.DisplayFormat.FormatString = "HH:mm"
         Me.GCEndWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCEndWork.FieldName = "ot_end_time"
         Me.GCEndWork.Name = "GCEndWork"
@@ -393,14 +403,13 @@ Partial Public Class ReportEmpOvertime
         Me.XLOTNote.LocationFloat = New DevExpress.Utils.PointFloat(115.0!, 0!)
         Me.XLOTNote.Name = "XLOTNote"
         Me.XLOTNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLOTNote.SizeF = New System.Drawing.SizeF(621.9999!, 61.54167!)
+        Me.XLOTNote.SizeF = New System.Drawing.SizeF(960.0!, 61.54167!)
         Me.XLOTNote.StylePriority.UseFont = False
         Me.XLOTNote.Text = "[overtimenote]"
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLNumber, Me.XrLabel1, Me.XrLine1, Me.XrPictureBox1})
-        Me.TopMargin.HeightF = 74.15001!
+        Me.TopMargin.HeightF = 50.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -408,7 +417,7 @@ Partial Public Class ReportEmpOvertime
         'XLNumber
         '
         Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(517.0001!, 19.00001!)
+        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(854.0002!, 8.999999!)
         Me.XLNumber.Name = "XLNumber"
         Me.XLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLNumber.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
@@ -420,10 +429,10 @@ Partial Public Class ReportEmpOvertime
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(220.0001!, 19.00001!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(220.0001!, 8.999999!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(296.9999!, 23.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(634.0001!, 23.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "EMPLOYEE OVERTIME"
@@ -431,15 +440,15 @@ Partial Public Class ReportEmpOvertime
         '
         'XrLine1
         '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 51.15001!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 41.15!)
         Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(737.0!, 23.0!)
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(1074.0!, 23.0!)
         '
         'XrPictureBox1
         '
         Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.0!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
@@ -447,18 +456,18 @@ Partial Public Class ReportEmpOvertime
         'XLCreatedBy
         '
         Me.XLCreatedBy.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XLCreatedBy.LocationFloat = New DevExpress.Utils.PointFloat(527.0001!, 23.00002!)
+        Me.XLCreatedBy.LocationFloat = New DevExpress.Utils.PointFloat(869.0002!, 87.15003!)
         Me.XLCreatedBy.Multiline = True
         Me.XLCreatedBy.Name = "XLCreatedBy"
         Me.XLCreatedBy.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLCreatedBy.SizeF = New System.Drawing.SizeF(209.9999!, 23.0!)
+        Me.XLCreatedBy.SizeF = New System.Drawing.SizeF(205.9998!, 23.0!)
         Me.XLCreatedBy.StylePriority.UseFont = False
         Me.XLCreatedBy.Text = "[createdby]" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'XLOTtype
         '
         Me.XLOTtype.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XLOTtype.LocationFloat = New DevExpress.Utils.PointFloat(115.0!, 0!)
+        Me.XLOTtype.LocationFloat = New DevExpress.Utils.PointFloat(115.0!, 64.15002!)
         Me.XLOTtype.Name = "XLOTtype"
         Me.XLOTtype.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLOTtype.SizeF = New System.Drawing.SizeF(275.0!, 23.0!)
@@ -468,17 +477,17 @@ Partial Public Class ReportEmpOvertime
         'XLCreatedAt
         '
         Me.XLCreatedAt.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XLCreatedAt.LocationFloat = New DevExpress.Utils.PointFloat(527.0001!, 0!)
+        Me.XLCreatedAt.LocationFloat = New DevExpress.Utils.PointFloat(869.0002!, 64.15002!)
         Me.XLCreatedAt.Name = "XLCreatedAt"
         Me.XLCreatedAt.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLCreatedAt.SizeF = New System.Drawing.SizeF(209.9999!, 23.0!)
+        Me.XLCreatedAt.SizeF = New System.Drawing.SizeF(204.9999!, 23.0!)
         Me.XLCreatedAt.StylePriority.UseFont = False
         Me.XLCreatedAt.Text = "[createdat]"
         '
         'XrLabel13
         '
         Me.XrLabel13.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(512.0!, 0!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(854.0002!, 64.15002!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -488,7 +497,7 @@ Partial Public Class ReportEmpOvertime
         'XrLabel14
         '
         Me.XrLabel14.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(512.0!, 23.00002!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(854.0002!, 87.15003!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -498,7 +507,7 @@ Partial Public Class ReportEmpOvertime
         'XrLabel9
         '
         Me.XrLabel9.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(99.99999!, 0!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 64.15002!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -508,7 +517,7 @@ Partial Public Class ReportEmpOvertime
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(412.0001!, 0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(754.0002!, 64.15002!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -518,7 +527,7 @@ Partial Public Class ReportEmpOvertime
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(412.0001!, 23.00002!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(754.0002!, 87.15003!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -528,7 +537,7 @@ Partial Public Class ReportEmpOvertime
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 64.15002!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -548,7 +557,7 @@ Partial Public Class ReportEmpOvertime
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 71.54173!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(736.9999!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1075.0!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -568,8 +577,8 @@ Partial Public Class ReportEmpOvertime
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrLabel6, Me.XrLabel5, Me.XrLabel9, Me.XrLabel14, Me.XrLabel13, Me.XLCreatedAt, Me.XLOTtype, Me.XLCreatedBy})
-        Me.ReportHeader.HeightF = 61.00002!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrLabel6, Me.XrLabel5, Me.XrLabel9, Me.XrLabel14, Me.XrLabel13, Me.XLCreatedAt, Me.XLOTtype, Me.XLCreatedBy, Me.XrPictureBox1, Me.XrLine1, Me.XrLabel1, Me.XLNumber})
+        Me.ReportHeader.HeightF = 120.15!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'ReportFooter
@@ -578,11 +587,17 @@ Partial Public Class ReportEmpOvertime
         Me.ReportFooter.HeightF = 96.54173!
         Me.ReportFooter.Name = "ReportFooter"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "to_dp"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'ReportEmpOvertime
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(30, 60, 74, 60)
+        Me.Margins = New System.Drawing.Printing.Margins(25, 69, 50, 60)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -645,4 +660,5 @@ Partial Public Class ReportEmpOvertime
     Friend WithEvents GCEndWork As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCTotalHours As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -4,7 +4,13 @@
     Public id_pre As String = "-1"
 
     Private Sub ReportEmpOvertime_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+
+        'date format
+        For i = 0 To data.Rows.Count - 1
+            data.Rows(i)("ot_start_time") = Date.Parse(data.Rows(i)("ot_start_time").ToString).ToString("HH:mm")
+            data.Rows(i)("ot_end_time") = Date.Parse(data.Rows(i)("ot_end_time").ToString).ToString("HH:mm")
+        Next
 
         GCEmployee.DataSource = data
 

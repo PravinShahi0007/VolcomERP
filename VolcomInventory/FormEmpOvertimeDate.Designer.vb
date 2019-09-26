@@ -48,7 +48,7 @@ Partial Class FormEmpOvertimeDate
         'TEOvertimeEnd
         '
         Me.TEOvertimeEnd.EditValue = Nothing
-        Me.TEOvertimeEnd.Location = New System.Drawing.Point(272, 38)
+        Me.TEOvertimeEnd.Location = New System.Drawing.Point(302, 38)
         Me.TEOvertimeEnd.Name = "TEOvertimeEnd"
         Me.TEOvertimeEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.TEOvertimeEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -58,7 +58,7 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeEnd.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TEOvertimeEnd.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeEnd.Size = New System.Drawing.Size(150, 20)
+        Me.TEOvertimeEnd.Size = New System.Drawing.Size(170, 20)
         Me.TEOvertimeEnd.TabIndex = 35
         '
         'TEOvertimeStart
@@ -74,7 +74,7 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeStart.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TEOvertimeStart.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeStart.Size = New System.Drawing.Size(150, 20)
+        Me.TEOvertimeStart.Size = New System.Drawing.Size(170, 20)
         Me.TEOvertimeStart.TabIndex = 34
         '
         'TEOvertimeBreak
@@ -88,12 +88,12 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeBreak.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEOvertimeBreak.Properties.Mask.EditMask = "N1"
         Me.TEOvertimeBreak.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEOvertimeBreak.Size = New System.Drawing.Size(100, 20)
+        Me.TEOvertimeBreak.Size = New System.Drawing.Size(120, 20)
         Me.TEOvertimeBreak.TabIndex = 33
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(207, 67)
+        Me.LabelControl12.Location = New System.Drawing.Point(237, 67)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(109, 13)
         Me.LabelControl12.TabIndex = 32
@@ -110,19 +110,19 @@ Partial Class FormEmpOvertimeDate
         'TETotalHours
         '
         Me.TETotalHours.EditValue = ""
-        Me.TETotalHours.Location = New System.Drawing.Point(322, 64)
+        Me.TETotalHours.Location = New System.Drawing.Point(352, 64)
         Me.TETotalHours.Name = "TETotalHours"
         Me.TETotalHours.Properties.DisplayFormat.FormatString = "N1"
         Me.TETotalHours.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotalHours.Properties.EditFormat.FormatString = "N1"
         Me.TETotalHours.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotalHours.Properties.ReadOnly = True
-        Me.TETotalHours.Size = New System.Drawing.Size(100, 20)
+        Me.TETotalHours.Size = New System.Drawing.Size(120, 20)
         Me.TETotalHours.TabIndex = 30
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(257, 40)
+        Me.LabelControl9.Location = New System.Drawing.Point(282, 41)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl9.TabIndex = 29
@@ -149,7 +149,7 @@ Partial Class FormEmpOvertimeDate
         Me.DEOvertimeDate.Properties.EditFormat.FormatString = "dd MMMM yyyy"
         Me.DEOvertimeDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEOvertimeDate.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEOvertimeDate.Size = New System.Drawing.Size(325, 20)
+        Me.DEOvertimeDate.Size = New System.Drawing.Size(375, 20)
         Me.DEOvertimeDate.TabIndex = 27
         '
         'LabelControl2
@@ -167,14 +167,14 @@ Partial Class FormEmpOvertimeDate
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 95)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(434, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(484, 42)
         Me.PanelControl1.TabIndex = 36
         '
         'SBClose
         '
         Me.SBClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(262, 6)
+        Me.SBClose.Location = New System.Drawing.Point(312, 6)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(78, 29)
         Me.SBClose.TabIndex = 1
@@ -184,7 +184,7 @@ Partial Class FormEmpOvertimeDate
         '
         Me.SBAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
-        Me.SBAdd.Location = New System.Drawing.Point(344, 6)
+        Me.SBAdd.Location = New System.Drawing.Point(394, 6)
         Me.SBAdd.Name = "SBAdd"
         Me.SBAdd.Size = New System.Drawing.Size(78, 29)
         Me.SBAdd.TabIndex = 0
@@ -194,7 +194,7 @@ Partial Class FormEmpOvertimeDate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(434, 137)
+        Me.ClientSize = New System.Drawing.Size(484, 137)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TEOvertimeEnd)
         Me.Controls.Add(Me.TEOvertimeStart)

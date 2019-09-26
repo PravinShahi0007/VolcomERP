@@ -64,8 +64,6 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCConversionType = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RISLUEType2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BGCStartWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCEndWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -115,6 +113,11 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -439,6 +442,46 @@ Partial Class FormEmpOvertimeVerification
         '
         'GVAttendance
         '
+        Me.GVAttendance.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.GVAttendance.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVAttendance.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVAttendance.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.GVAttendance.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.GVAttendance.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.GVAttendance.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVAttendance.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVAttendance.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVAttendance.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVAttendance.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVAttendance.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVAttendance.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVAttendance.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVAttendance.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVAttendance.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVAttendance.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVAttendance.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVAttendance.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVAttendance.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVAttendance.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVAttendance.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVAttendance.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVAttendance.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVAttendance.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVAttendance.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVAttendance.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVAttendance.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVAttendance.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVAttendance.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVAttendance.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVAttendance.AppearancePrint.Lines.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVAttendance.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVAttendance.AppearancePrint.Lines.Options.UseFont = True
+        Me.GVAttendance.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVAttendance.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVAttendance.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVAttendance.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVAttendance.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVAttendance.AppearancePrint.Row.Options.UseFont = True
         Me.GVAttendance.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.gridBand3, Me.gridBand4})
         Me.GVAttendance.ColumnPanelRowHeight = 32
         Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BGCIdEmployee, Me.BGCIdDepartement, Me.BGCIdDepartementSub, Me.BGCDepartement, Me.BGCDate, Me.BGCNIP, Me.BGCEmployeeName, Me.BGCEmployeePosition, Me.BGCIdEmployeeStatus, Me.BGCEmployeeStatus, Me.BGCToSalary, Me.BGCConversionType, Me.BGCIsStore, Me.BGCIsDayOff, Me.BGCStartWork, Me.BGCEndWork, Me.BGCStartWorkOt, Me.BGCEndWorkOt, Me.BGCBreakHours, Me.BGCTotalHours, Me.BGCPointOt, Me.BGCValid, Me.BGCIdScheduleType, Me.BGCIn, Me.BGCOut, Me.BGCOtPotention})
@@ -574,24 +617,11 @@ Partial Class FormEmpOvertimeVerification
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn7, Me.GridColumn10})
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.FieldName = "id_type"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Conversion Type"
-        Me.GridColumn4.FieldName = "type"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
         '
         'GridBand2
         '
@@ -986,7 +1016,7 @@ Partial Class FormEmpOvertimeVerification
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn2})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -1121,6 +1151,38 @@ Partial Class FormEmpOvertimeVerification
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.TEReportStatus.TabIndex = 21
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "to_dp"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn8"
+        Me.GridColumn3.FieldName = "id_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Conversion Type"
+        Me.GridColumn4.FieldName = "type"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "GridColumn1"
+        Me.GridColumn7.FieldName = "to_salary"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "GridColumn2"
+        Me.GridColumn10.FieldName = "to_dp"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
         'FormEmpOvertimeVerification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1207,8 +1269,6 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents BGCEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RISLUEType2 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGCStartWork As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BGCEndWork As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BGCBreakHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1269,4 +1329,9 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GCIsStore As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGCIsStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
