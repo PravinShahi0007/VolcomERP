@@ -1730,6 +1730,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id)
             FormItemCatMainDet.id_propose = id
             FormItemCatMainDet.ShowDialog()
+        ElseIf formName = "FormVoucherPOS" Then
+            'Voucher POS
+
         Else
             RPSubMenu.Visible = False
         End If
