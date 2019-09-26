@@ -304,7 +304,6 @@
                                                 VALUES" & query_det
                     '
                     execute_non_query(query_det, True, "", "", "", "")
-
                     'generate number
                     If SLEPurcType.EditValue.ToString = "1" Then
                         query = "CALL gen_number('" & id_req & "','137')"

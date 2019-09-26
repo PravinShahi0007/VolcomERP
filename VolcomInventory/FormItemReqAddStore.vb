@@ -162,7 +162,8 @@
                 newRow("comp_number") = col_foc_str(0)
                 newRow("comp_name") = col_foc_str(1)
                 newRow("qty") = TxtQty.EditValue
-                If CEStoreRequest.Checked = True = True Then
+                '
+                If CEStoreRequest.Checked = True Then
                     newRow("is_store_request") = "yes"
                 Else
                     newRow("is_store_request") = "no"
