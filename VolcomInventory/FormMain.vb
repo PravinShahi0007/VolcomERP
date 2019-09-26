@@ -8363,6 +8363,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormReportBudget" Then
             FormReportBudget.Close()
             FormReportBudget.Dispose()
+        ElseIf formName = "FormEmpLeaveStock" Then
+            FormEmpLeaveStock.Close()
+            FormEmpLeaveStock.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -13333,6 +13336,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormReportBudget.Show()
             FormReportBudget.WindowState = FormWindowState.Maximized
             FormReportBudget.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBVoucherPOS_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBVoucherPOS.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormVoucherPOS.MdiParent = Me
+            FormVoucherPOS.Show()
+            FormVoucherPOS.WindowState = FormWindowState.Maximized
+            FormVoucherPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -223,6 +223,7 @@ Public Class FormMasterRawMaterialDetSingle
                     Next
                 End If
             End If
+
             'check if used
             Dim query_check As String = "SELECT mdprice.`id_mat_det` FROM `tb_mat_purc_det` mpd
                                         INNER JOIN `tb_mat_purc` mp ON mp.`id_mat_purc`=mpd.`id_mat_purc` AND mp.`id_report_status`!=5
@@ -241,9 +242,9 @@ Public Class FormMasterRawMaterialDetSingle
             Else
                 PCSave.Visible = True
             End If
-            '
         End If
     End Sub
+
     'View Inventory Method
     Sub viewInventoryMethod()
         Dim query As String = "(SELECT ('0') AS id_method, ('-Select Method-') AS method) "
@@ -251,11 +252,13 @@ Public Class FormMasterRawMaterialDetSingle
         query += "(SELECT id_method, method FROM tb_lookup_inventory_method ORDER BY method ASC) "
         viewLookupQuery(LEMethod, query, 0, "method", "id_method")
     End Sub
+
     'View fabric type
     Sub viewFabType()
         Dim query As String = "SELECT id_fab_type, fab_type FROM tb_lookup_fab_type ORDER BY id_fab_type DESC "
         viewLookupQuery(LEFabType, query, 0, "fab_type", "id_fab_type")
     End Sub
+
     'View Template
     Private Sub viewTemplate(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
         Dim query As String = "SELECT id_template_code,template_code FROM tb_template_code ORDER BY template_code ASC"

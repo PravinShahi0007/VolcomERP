@@ -64,9 +64,9 @@
             Dim query As String = "SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active
                                 ,SUM(IF(emp_sl.type='1',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0)) AS qty_leave
                                 ,SUM(IF(emp_sl.type='2',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0)) AS qty_dp
-                                ,SUM(IFNULL(adv.qty_leave,0)) AS adv_leave
+                                ,IFNULL(adv.qty_leave,0) AS adv_leave
                                 FROM tb_m_employee emp
-                                LEFT JOIN tb_emp_stock_leave emp_sl ON emp.id_employee=emp_sl.id_emp AND emp_sl.is_process_exp = '2' 
+                                LEFT JOIN tb_emp_stock_leave emp_sl ON emp.id_employee=emp_sl.id_emp
                                 LEFT JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
                                 LEFT JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 LEFT JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
@@ -111,7 +111,7 @@
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
-                                WHERE emp_sl.is_process_exp = '2'
+                                WHERE 1=1
                                 " & dep_search & "
                                 " & emp_search & "
                                 GROUP BY emp_sl.id_emp,emp_sl.type,emp_sl.date_expired
