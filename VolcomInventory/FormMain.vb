@@ -1693,7 +1693,6 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertimeDet.id = "0"
             FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
-            FormEmpOvertimeDet.is_check = "-1"
             FormEmpOvertimeDet.ShowDialog()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcCloseDet.ShowDialog()
@@ -2763,13 +2762,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
                     FormEmpOvertimeDet.id = FormEmpOvertime.GVProposeEmployee.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
-                    FormEmpOvertimeDet.is_check = "-1"
 
                     FormEmpOvertimeDet.Show()
                 Else
                     FormEmpOvertimeDet.id = FormEmpOvertime.GVOvertime.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
-                    FormEmpOvertimeDet.is_check = "-1"
 
                     FormEmpOvertimeDet.Show()
                 End If

@@ -64,6 +64,10 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCConversionType = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RISLUEType2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BGCStartWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCEndWork = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -103,6 +107,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsStore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -113,11 +118,6 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -491,6 +491,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GVAttendance.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVAttendance.OptionsView.AllowCellMerge = True
         Me.GVAttendance.OptionsView.ColumnAutoWidth = False
+        Me.GVAttendance.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.GVAttendance.OptionsView.ShowGroupPanel = False
         Me.GVAttendance.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BGCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -622,6 +623,32 @@ Partial Class FormEmpOvertimeVerification
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn8"
+        Me.GridColumn3.FieldName = "id_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Conversion Type"
+        Me.GridColumn4.FieldName = "type"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "GridColumn1"
+        Me.GridColumn7.FieldName = "to_salary"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "GridColumn2"
+        Me.GridColumn10.FieldName = "to_dp"
+        Me.GridColumn10.Name = "GridColumn10"
         '
         'GridBand2
         '
@@ -886,6 +913,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GVEmployee.OptionsPrint.AllowMultilineHeaders = True
         Me.GVEmployee.OptionsView.AllowCellMerge = True
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
+        Me.GVEmployee.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -1042,6 +1070,12 @@ Partial Class FormEmpOvertimeVerification
         Me.GridColumn1.FieldName = "to_salary"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "to_dp"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'GCIsStore
         '
         Me.GCIsStore.FieldName = "is_store"
@@ -1150,38 +1184,6 @@ Partial Class FormEmpOvertimeVerification
         Me.TEReportStatus.Properties.ReadOnly = True
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.TEReportStatus.TabIndex = 21
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.FieldName = "to_dp"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "GridColumn8"
-        Me.GridColumn3.FieldName = "id_type"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Conversion Type"
-        Me.GridColumn4.FieldName = "type"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "GridColumn1"
-        Me.GridColumn7.FieldName = "to_salary"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "GridColumn2"
-        Me.GridColumn10.FieldName = "to_dp"
-        Me.GridColumn10.Name = "GridColumn10"
         '
         'FormEmpOvertimeVerification
         '

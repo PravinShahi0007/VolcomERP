@@ -21,6 +21,9 @@ Partial Public Class ReportEmpOvertimeMemo
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportEmpOvertimeMemo))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XLText = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
@@ -49,9 +52,6 @@ Partial Public Class ReportEmpOvertimeMemo
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -62,6 +62,30 @@ Partial Public Class ReportEmpOvertimeMemo
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrTable1
+        '
+        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 327.0!)
+        Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(687.0!, 25.0!)
+        Me.XrTable1.StylePriority.UseFont = False
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.Font = New System.Drawing.Font("Lucida Console", 8.0!)
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseFont = False
+        Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
+        Me.XrTableCell1.Visible = False
+        Me.XrTableCell1.Weight = 2.99999986405489R
         '
         'XLText
         '
@@ -268,7 +292,7 @@ Partial Public Class ReportEmpOvertimeMemo
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 20.0!
+        Me.TopMargin.HeightF = 30.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -325,34 +349,10 @@ Partial Public Class ReportEmpOvertimeMemo
         Me.ReportFooter.HeightF = 100.0!
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'XrTable1
-        '
-        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 327.0!)
-        Me.XrTable1.Name = "XrTable1"
-        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(687.0!, 25.0!)
-        Me.XrTable1.StylePriority.UseFont = False
-        '
-        'XrTableRow1
-        '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1})
-        Me.XrTableRow1.Name = "XrTableRow1"
-        Me.XrTableRow1.Weight = 1.0R
-        '
-        'XrTableCell1
-        '
-        Me.XrTableCell1.Font = New System.Drawing.Font("Lucida Console", 8.0!)
-        Me.XrTableCell1.Name = "XrTableCell1"
-        Me.XrTableCell1.StylePriority.UseFont = False
-        Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
-        Me.XrTableCell1.Visible = False
-        Me.XrTableCell1.Weight = 2.99999986405489R
-        '
         'ReportEmpOvertimeMemo
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(70, 70, 20, 70)
+        Me.Margins = New System.Drawing.Printing.Margins(70, 70, 30, 70)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4

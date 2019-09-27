@@ -127,18 +127,30 @@
             End Try
 
             Dim query As String = "
-                SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot_verification_det.is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
-                FROM tb_ot_verification_det AS ot_verification_det
-                LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
-                LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
-                LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
-                LEFT JOIN tb_m_employee AS employee ON ot_verification_det.id_employee = employee.id_employee
-                LEFT JOIN tb_m_departement AS departement ON ot_verification_det.id_departement = departement.id_departement
-                LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_verification_det.id_employee_status = employee_status.id_employee_status
-                LEFT JOIN tb_lookup_report_status AS report_status ON ot_verification.id_report_status = report_status.id_report_status
-                LEFT JOIN tb_m_employee AS created_by ON ot_verification.created_by = created_by.id_employee
-                WHERE 1 " + where_date + " " + where_departement + " " + where_employee + "
-                ORDER BY departement.departement ASC, employee.id_employee_level ASC, employee.employee_code ASC, ot.number DESC, ot_verification.ot_date ASC
+                SELECT * 
+                FROM (
+                    (SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot_verification_det.is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                    FROM tb_ot_verification_det AS ot_verification_det
+                    LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
+                    LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
+                    LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
+                    LEFT JOIN tb_m_employee AS employee ON ot_verification_det.id_employee = employee.id_employee
+                    LEFT JOIN tb_m_departement AS departement ON ot_verification_det.id_departement = departement.id_departement
+                    LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_verification_det.id_employee_status = employee_status.id_employee_status
+                    LEFT JOIN tb_lookup_report_status AS report_status ON ot_verification.id_report_status = report_status.id_report_status
+                    LEFT JOIN tb_m_employee AS created_by ON ot_verification.created_by = created_by.id_employee
+                    WHERE 1 " + where_date + " " + where_departement + " " + where_employee + ")
+                    UNION ALL
+                    (SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_det.to_salary, ot_det.conversion_type, ot_det.id_ot, 0 AS id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, ot_det.is_day_off, '' AS start_work_ot, '' AS end_work_ot, ot_det.ot_break AS break_hours, 0.0 AS total_hours, 0.0 AS point_ot, ot.ot_note, 0 AS id_report_status, 'Need Verify' AS report_status, '' AS created_by, '' AS created_at
+                    FROM tb_ot_det AS ot_det
+                    LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
+                    LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
+                    LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
+                    LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
+                    LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_det.id_employee_status = employee_status.id_employee_status
+                    WHERE 1 " + If(type = "created_at", "", where_date.Replace("ot_verification", "ot_det")) + " " + where_departement + " AND (ot_det.id_ot NOT IN (SELECT id_ot FROM tb_ot_verification) OR ot_det.ot_date NOT IN (SELECT ot_date FROM tb_ot_verification)) AND ot.id_report_status = 6)
+                ) AS tb
+                ORDER BY departement ASC, id_employee_level ASC, employee_code ASC, number DESC, ot_date ASC
             "
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -161,7 +173,7 @@
             Dim query As String = "
                 SELECT *
                 FROM (
-                    (SELECT ot_verification.id_ot_verification, ot_verification.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot_verification.id_departement, departement.departement, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot.number, ot.ot_note, ot_verification.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                    (SELECT ot_verification.id_ot_verification, ot_verification.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot_verification.id_departement, departement.departement, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot.number, ot.ot_note, ot_verification.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
                     FROM tb_ot_verification AS ot_verification
                     LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
                     LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -175,7 +187,7 @@
                     LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                     LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                     LEFT JOIN tb_m_departement AS departement ON ot.id_departement = departement.id_departement
-                    WHERE 1 " + If(type = "created_at", "", where_date.Replace("ot_verification", "ot_det")) + " " + where_departement + " AND ot_det.id_ot NOT IN (SELECT id_ot FROM tb_ot_verification) AND ot_det.ot_date NOT IN (SELECT ot_date FROM tb_ot_verification) AND ot.id_report_status = 6
+                    WHERE 1 " + If(type = "created_at", "", where_date.Replace("ot_verification", "ot_det")) + " " + where_departement + " AND (ot_det.id_ot NOT IN (SELECT id_ot FROM tb_ot_verification) OR ot_det.ot_date NOT IN (SELECT ot_date FROM tb_ot_verification)) AND ot.id_report_status = 6
                     GROUP BY ot.number, ot_det.ot_date)
                 ) AS tb
                 ORDER BY number DESC, ot_date DESC

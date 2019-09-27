@@ -1,6 +1,5 @@
 ﻿Public Class FormEmpOvertimeDet
     Public is_hrd As String = "-1"
-    Public is_check As String = "-1"
     Public id As String = "0"
 
     Private is_point_ho As String = "0"
@@ -294,7 +293,7 @@
         Next
 
         Dim departement As String = String.Join(", ", departement_include)
-        Dim ot_date As String = String.Join(", ", date_include)
+        Dim ot_date As String = If(date_include.Count = 0, "", date_include(0) + " - " + date_include.Last)
         Dim total_consumption As Decimal = ot_consumption * employee.Rows.Count()
 
         'employee
@@ -321,8 +320,9 @@
         ReportMemo.XLCC2Position.Text = "- " + data_employee.Rows(2)("employee_position").ToString
         ReportMemo.XLFrom.Text = data_employee.Rows(3)("employee_name").ToString
         ReportMemo.XLFromPosition.Text = "- " + data_employee.Rows(3)("employee_position").ToString
+        ReportMemo.XLHal.Text = "Budget Konsumsi Lembur " + StrConv(TEDepartement.EditValue.ToString, VbStrConv.ProperCase) + " " + ot_date
 
-        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", TEDepartement.EditValue.ToString)
+        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", StrConv(TEDepartement.EditValue.ToString, VbStrConv.ProperCase))
         ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[ot_date]", ot_date)
         ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[total_consumption]", Format(total_consumption, "##,##0"))
 

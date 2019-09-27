@@ -91,6 +91,7 @@ Partial Class FormEmpOvertimePick
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVList.OptionsFind.AlwaysVisible = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
+        Me.GVList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Ascending)})
         '

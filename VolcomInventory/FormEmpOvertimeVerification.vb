@@ -107,8 +107,8 @@
                         SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
                         FROM tb_m_employee
                     ) AS salary ON emp.id_employee = salary.id_employee
-                    LEFT JOIN tb_emp_attn AS at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 1 DAY) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
-                    LEFT JOIN tb_emp_attn AS at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
+                    LEFT JOIN tb_emp_attn AS at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 18 HOUR) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
+                    LEFT JOIN tb_emp_attn AS at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 18 HOUR)) AND at_out.type_log = 2 
                     LEFT JOIN tb_emp_attn AS at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
                     LEFT JOIN tb_emp_attn AS at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
                     WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + id_departement + "
@@ -163,11 +163,16 @@
                             Catch ex As Exception
                             End Try
 
+                            Dim ot_start_time As DateTime = If(schedule_out > overtime_in, schedule_out, overtime_in)
+                            Dim ot_end_time As DateTime = If(schedule_in < overtime_out, overtime_out, schedule_in)
+
+                            'over of schedule
                             after_work = (end_work_att - schedule_out).TotalHours
                             before_work = (schedule_in - start_work_att).TotalHours
 
-                            after_work_ot = (end_work_att - overtime_in).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
-                            before_work_ot = (overtime_out - start_work_att).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
+                            'over of overtime
+                            after_work_ot = (end_work_att - ot_start_time).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
+                            before_work_ot = (ot_end_time - start_work_att).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
 
                             work_hours = (end_work_att - start_work_att).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
 
@@ -177,7 +182,7 @@
 
                                     Dim total_hours As Decimal = Math.Floor(after_work_ot / 0.5) * 0.5
 
-                                    GVAttendance.SetRowCellValue(i, "start_work_ot", GVEmployee.GetRowCellValue(j, "ot_start_time"))
+                                    GVAttendance.SetRowCellValue(i, "start_work_ot", Date.Parse(ot_start_time.ToString).ToString("dd MMMM yyyy HH:mm:ss"))
                                     GVAttendance.SetRowCellValue(i, "end_work_ot", GVAttendance.GetRowCellValue(i, "end_work_att"))
                                     GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
                                     GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
@@ -191,7 +196,7 @@
                                     Dim total_hours As Decimal = Math.Floor(before_work_ot / 0.5) * 0.5
 
                                     GVAttendance.SetRowCellValue(i, "start_work_ot", GVAttendance.GetRowCellValue(i, "start_work_att"))
-                                    GVAttendance.SetRowCellValue(i, "end_work_ot", GVEmployee.GetRowCellValue(j, "ot_end_time"))
+                                    GVAttendance.SetRowCellValue(i, "end_work_ot", Date.Parse(ot_end_time.ToString).ToString("dd MMMM yyyy HH:mm:ss"))
                                     GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
                                     GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
 
@@ -228,7 +233,7 @@
             SBMark.Enabled = False
         Else
             Dim query_ver As String = "
-                SELECT vr.id_report_status, rs.report_status
+                SELECT vr.id_payroll, vr.id_report_status, rs.report_status
                 FROM tb_ot_verification AS vr
                 LEFT JOIN tb_lookup_report_status AS rs ON vr.id_report_status = rs.id_report_status
                 WHERE id_ot_verification = " + id + "
@@ -237,6 +242,7 @@
             Dim data_ver As DataTable = execute_query(query_ver, -1, True, "", "", "", "")
 
             TEReportStatus.EditValue = data_ver.Rows(0)("report_status").ToString
+            SLUEPayroll.EditValue = data_ver.Rows(0)("id_payroll").ToString
 
             'detail
             Dim query_det As String = "
@@ -442,7 +448,7 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_ot_verification WHERE id_ot_verification = 1", 0, True, "", "", "", "")
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
 
         Dim Report As New ReportEmpOvertimeVerification()
 

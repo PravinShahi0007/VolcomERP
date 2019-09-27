@@ -89,8 +89,6 @@
             FormEmpOvertimePick.overtime_break = TEOvertimeBreak.EditValue
 
             FormEmpOvertimePick.ShowDialog()
-
-            Close()
         End If
     End Sub
 

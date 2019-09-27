@@ -30,17 +30,38 @@
             whereDept = ""
         End If
 
+        'not include employee
         Dim whereNotInclude As String = ""
 
         For i = 0 To FormEmpOvertimeDet.GVEmployee.RowCount - 1
             If FormEmpOvertimeDet.GVEmployee.IsValidRowHandle(i) Then
-                Dim date_1 As String = Date.Parse(FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "ot_date").ToString).ToString("yyyy-MM-dd")
-                Dim date_2 As String = Date.Parse(DEOvertimeDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim ot_start_time As DateTime = FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "ot_start_time")
+                Dim ot_end_time As DateTime = FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "ot_end_time")
 
-                If date_2 = date_1 Then
+                If ((ot_start_time > TEOvertimeStart.EditValue And ot_start_time < TEOvertimeEnd.EditValue) Or (ot_end_time > TEOvertimeStart.EditValue And ot_end_time < TEOvertimeEnd.EditValue)) Or ((TEOvertimeStart.EditValue > ot_start_time And TEOvertimeStart.EditValue < ot_end_time) Or (TEOvertimeEnd.EditValue > ot_start_time And TEOvertimeEnd.EditValue < ot_end_time)) Or ((ot_start_time = TEOvertimeStart.EditValue And ot_end_time = TEOvertimeEnd.EditValue)) Then
                     whereNotInclude += FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", "
                 End If
             End If
+        Next
+
+        Dim time_start As String = DateTime.Parse(TEOvertimeStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
+        Dim time_end As String = DateTime.Parse(TEOvertimeEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
+
+        'not include employee from other propose
+        Dim query_not_include As String = "
+            SELECT ot_det.id_employee
+            FROM tb_ot_det AS ot_det
+            LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
+            WHERE ot.id_report_status <> 5
+	            AND ((('" + time_start + "' > ot_det.ot_start_time AND '" + time_start + "' < ot_det.ot_end_time) OR ('" + time_end + "' > ot_det.ot_start_time AND  '" + time_end + "' < ot_det.ot_end_time))
+	            OR ((ot_det.ot_start_time > '" + time_start + "' AND ot_det.ot_start_time < '" + time_end + "') OR (ot_det.ot_end_time > '" + time_start + "' AND ot_det.ot_end_time < '" + time_end + "'))
+                OR (ot_det.ot_start_time = '" + time_start + "' AND ot_det.ot_end_time = '" + time_end + "'))
+        "
+
+        Dim data_not_include As DataTable = execute_query(query_not_include, -1, True, "", "", "", "")
+
+        For i = 0 To data_not_include.Rows.Count - 1
+            whereNotInclude += data_not_include.Rows(i)("id_employee").ToString + ", "
         Next
 
         If Not whereNotInclude = "" Then
@@ -95,6 +116,8 @@
     End Sub
 
     Private Sub SBSelect_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
+        FormEmpOvertimeDate.Close()
+
         pick()
     End Sub
 
