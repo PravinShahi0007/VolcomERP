@@ -9224,6 +9224,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
                 FormItemCatMain.view_propose()
             End If
+        ElseIf formName = "FormVoucherPOS" Then
+            'Voucher POS
+            FormVoucherPOS.viewVoucher()
         End If
     End Sub
     'Switch

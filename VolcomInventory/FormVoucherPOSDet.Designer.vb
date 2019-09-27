@@ -27,7 +27,7 @@ Partial Class FormVoucherPOSDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOnBehalf = New DevExpress.XtraEditors.TextEdit()
         Me.MEAddress = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEAddressVoucher = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -39,7 +39,7 @@ Partial Class FormVoucherPOSDet
         CType(Me.TxtVoucherNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOnBehalf.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEAddressVoucher.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,12 +106,12 @@ Partial Class FormVoucherPOSDet
         Me.MEAddress.TabIndex = 6
         Me.MEAddress.Text = "Address"
         '
-        'MemoEdit1
+        'MEAddressVoucher
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(109, 126)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(316, 44)
-        Me.MemoEdit1.TabIndex = 5
+        Me.MEAddressVoucher.Location = New System.Drawing.Point(109, 126)
+        Me.MEAddressVoucher.Name = "MEAddressVoucher"
+        Me.MEAddressVoucher.Size = New System.Drawing.Size(316, 44)
+        Me.MEAddressVoucher.TabIndex = 5
         '
         'LabelControl4
         '
@@ -189,6 +189,7 @@ Partial Class FormVoucherPOSDet
         '
         'CEActive
         '
+        Me.CEActive.EditValue = True
         Me.CEActive.Location = New System.Drawing.Point(109, 176)
         Me.CEActive.Name = "CEActive"
         Me.CEActive.Properties.Caption = "Active"
@@ -206,7 +207,7 @@ Partial Class FormVoucherPOSDet
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.DEStart)
         Me.Controls.Add(Me.LabelControl4)
-        Me.Controls.Add(Me.MemoEdit1)
+        Me.Controls.Add(Me.MEAddressVoucher)
         Me.Controls.Add(Me.MEAddress)
         Me.Controls.Add(Me.TxtOnBehalf)
         Me.Controls.Add(Me.LabelControl3)
@@ -223,7 +224,7 @@ Partial Class FormVoucherPOSDet
         CType(Me.TxtVoucherNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOnBehalf.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEAddressVoucher.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -243,7 +244,7 @@ Partial Class FormVoucherPOSDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtOnBehalf As DevExpress.XtraEditors.TextEdit
     Friend WithEvents MEAddress As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEAddressVoucher As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl

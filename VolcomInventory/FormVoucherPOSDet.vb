@@ -55,11 +55,14 @@
         'cek exixtig voucher
         Cursor = Cursors.WaitCursor
         Dim qe As String = "SELECT * FROM tb_pos_voucher v WHERE v.voucher_number='" + addSlashes(TxtVoucherNumber.Text) + "' "
+        If action = "upd" Then
+            qe += "AND v.id_pos_voucher!=" + id + " "
+        End If
         Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
         If de.Rows.Count > 0 Then
             stopCustom("Voucher number : " + TxtVoucherNumber.Text + " already exist.")
-            Exit Sub
             Cursor = Cursors.Default
+            Exit Sub
         End If
 
         If TxtVoucherNumber.Text = "" Then
@@ -73,7 +76,7 @@
                 Dim voucher_number As String = addSlashes(TxtVoucherNumber.Text)
                 Dim voucher_value As String = decimalSQL(TxtValue.EditValue.ToString)
                 Dim voucher_name As String = addSlashes(TxtOnBehalf.Text.ToString)
-                Dim voucher_address As String = addSlashes(MEAddress.Text.ToString)
+                Dim voucher_address As String = addSlashes(MEAddressVoucher.Text.ToString)
                 Dim period_start As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim period_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim is_active As String = ""
@@ -88,12 +91,19 @@
                     Dim query As String = "INSERT INTO tb_pos_voucher(voucher_number, voucher_value, voucher_name, voucher_address, period_start, period_end, is_active) 
                     VALUES('" + voucher_number + "', '" + voucher_value + "', '" + voucher_name + "', '" + voucher_address + "', '" + period_start + "', '" + period_end + "', '" + is_active + "'); SELECT LAST_INSERT_ID(); "
                     id = execute_query(query, 0, True, "", "", "", "")
+                    FormVoucherPOS.viewVoucher()
+                    FormVoucherPOS.GVData.FocusedRowHandle = find_row(FormVoucherPOS.GVData, "id_pos_voucher", id)
 
                     Dim confirm_create_again As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Create other voucher ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm_create_again = Windows.Forms.DialogResult.Yes Then
                         id = "-1"
                         action = "ins"
                         action_label = ""
+                        TxtVoucherNumber.Text = ""
+                        TxtValue.EditValue = 0
+                        TxtOnBehalf.Text = ""
+                        MEAddressVoucher.Text = ""
+                        CEActive.EditValue = True
                         actionLoad()
                     Else
                         FormVoucherPOS.viewVoucher()
@@ -102,7 +112,7 @@
                     End If
                 Else
                     'edit
-                    Dim query As String = "UPDATE tb_pos_voucher voucher_number='" + voucher_number + "', voucher_value='" + voucher_value + "', 
+                    Dim query As String = "UPDATE tb_pos_voucher SET voucher_number='" + voucher_number + "', voucher_value='" + voucher_value + "', 
                     voucher_name='" + voucher_name + "', voucher_address='" + voucher_address + "', period_start='" + period_start + "', period_end='" + period_end + "', 
                     is_active='" + is_active + "' WHERE id_pos_voucher='" + id + "' "
                     execute_non_query(query, True, "", "", "", "")
@@ -123,5 +133,13 @@
 
     Private Sub FormVoucherPOSDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            DEEnd.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
