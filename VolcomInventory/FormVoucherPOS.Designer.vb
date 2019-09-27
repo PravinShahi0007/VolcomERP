@@ -30,6 +30,8 @@ Partial Class FormVoucherPOS
         Me.GridColumnperiod_end = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_outlet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnoutlet_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTransNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -46,7 +48,7 @@ Partial Class FormVoucherPOS
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pos_voucher, Me.GridColumnvoucher_number, Me.GridColumnvoucher_value, Me.GridColumnvoucher_name, Me.GridColumnvoucher_address, Me.GridColumnperiod_start, Me.GridColumnperiod_end, Me.GridColumnid_outlet, Me.GridColumnoutlet_name})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pos_voucher, Me.GridColumnvoucher_number, Me.GridColumnvoucher_value, Me.GridColumnvoucher_name, Me.GridColumnvoucher_address, Me.GridColumnperiod_start, Me.GridColumnperiod_end, Me.GridColumnid_outlet, Me.GridColumnoutlet_name, Me.GridColumnTransNumber, Me.GridColumnstatus})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -80,7 +82,7 @@ Partial Class FormVoucherPOS
         '
         'GridColumnvoucher_name
         '
-        Me.GridColumnvoucher_name.Caption = "on behalf"
+        Me.GridColumnvoucher_name.Caption = "On behalf"
         Me.GridColumnvoucher_name.FieldName = "voucher_name"
         Me.GridColumnvoucher_name.Name = "GridColumnvoucher_name"
         Me.GridColumnvoucher_name.Visible = True
@@ -128,6 +130,23 @@ Partial Class FormVoucherPOS
         Me.GridColumnoutlet_name.Visible = True
         Me.GridColumnoutlet_name.VisibleIndex = 6
         '
+        'GridColumnTransNumber
+        '
+        Me.GridColumnTransNumber.Caption = "Transaction No."
+        Me.GridColumnTransNumber.FieldName = "trans_number"
+        Me.GridColumnTransNumber.Name = "GridColumnTransNumber"
+        Me.GridColumnTransNumber.Visible = True
+        Me.GridColumnTransNumber.VisibleIndex = 7
+        Me.GridColumnTransNumber.Width = 146
+        '
+        'GridColumnstatus
+        '
+        Me.GridColumnstatus.Caption = "Status"
+        Me.GridColumnstatus.FieldName = "status"
+        Me.GridColumnstatus.Name = "GridColumnstatus"
+        Me.GridColumnstatus.Visible = True
+        Me.GridColumnstatus.VisibleIndex = 8
+        '
         'FormVoucherPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -154,4 +173,6 @@ Partial Class FormVoucherPOS
     Friend WithEvents GridColumnperiod_end As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_outlet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnoutlet_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTransNumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class

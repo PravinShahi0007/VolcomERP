@@ -33,8 +33,9 @@ Partial Class FormVoucherPOSDet
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEActive = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.TxtVoucherNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOnBehalf.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,6 +46,7 @@ Partial Class FormVoucherPOSDet
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -127,6 +129,9 @@ Partial Class FormVoucherPOSDet
         Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEStart.Size = New System.Drawing.Size(150, 20)
         Me.DEStart.TabIndex = 2
         '
@@ -146,6 +151,9 @@ Partial Class FormVoucherPOSDet
         Me.DEEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEEnd.Size = New System.Drawing.Size(150, 20)
         Me.DEEnd.TabIndex = 3
         '
@@ -154,20 +162,10 @@ Partial Class FormVoucherPOSDet
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 188)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 210)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(449, 41)
         Me.PanelControl1.TabIndex = 12
-        '
-        'BtnSave
-        '
-        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(363, 2)
-        Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(84, 37)
-        Me.BtnSave.TabIndex = 6
-        Me.BtnSave.Text = "Save"
         '
         'BtnCancel
         '
@@ -179,11 +177,30 @@ Partial Class FormVoucherPOSDet
         Me.BtnCancel.TabIndex = 7
         Me.BtnCancel.Text = "Cancel"
         '
+        'BtnSave
+        '
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
+        Me.BtnSave.Location = New System.Drawing.Point(363, 2)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(84, 37)
+        Me.BtnSave.TabIndex = 6
+        Me.BtnSave.Text = "Save"
+        '
+        'CEActive
+        '
+        Me.CEActive.Location = New System.Drawing.Point(109, 176)
+        Me.CEActive.Name = "CEActive"
+        Me.CEActive.Properties.Caption = "Active"
+        Me.CEActive.Size = New System.Drawing.Size(75, 19)
+        Me.CEActive.TabIndex = 13
+        '
         'FormVoucherPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(449, 229)
+        Me.ClientSize = New System.Drawing.Size(449, 251)
+        Me.Controls.Add(Me.CEActive)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.DEEnd)
         Me.Controls.Add(Me.LabelControl5)
@@ -213,6 +230,7 @@ Partial Class FormVoucherPOSDet
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.CEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -233,4 +251,5 @@ Partial Class FormVoucherPOSDet
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEActive As DevExpress.XtraEditors.CheckEdit
 End Class
