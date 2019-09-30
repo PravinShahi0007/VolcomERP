@@ -23,6 +23,8 @@
         GCBreakHours.Caption = GCBreakHours.Caption.Replace(" ", Environment.NewLine)
         GCTotalHours.Caption = GCTotalHours.Caption.Replace(" ", Environment.NewLine)
 
+        GVEmployee.ActiveFilterString = "[ot_date] = '" + Date.Parse(FormEmpOvertimeVerification.DESearch.EditValue.ToString).ToString("dd MMMM yyyy") + "'"
+
         'relization
         'date format
         For i = 0 To data2.Rows.Count - 1

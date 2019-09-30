@@ -41,6 +41,7 @@ Partial Public Class ReportEmpOvertime
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,7 +70,6 @@ Partial Public Class ReportEmpOvertime
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -309,6 +309,12 @@ Partial Public Class ReportEmpOvertime
         Me.GridColumn1.Caption = "GridColumn1"
         Me.GridColumn1.FieldName = "to_salary"
         Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "to_dp"
+        Me.GridColumn2.Name = "GridColumn2"
         '
         'GCIsDayOff
         '
@@ -553,7 +559,7 @@ Partial Public Class ReportEmpOvertime
         '
         'XrTable1
         '
-        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 71.54173!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
@@ -586,12 +592,6 @@ Partial Public Class ReportEmpOvertime
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel16, Me.XrLabel17, Me.XLOTNote, Me.XrTable1})
         Me.ReportFooter.HeightF = 96.54173!
         Me.ReportFooter.Name = "ReportFooter"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.FieldName = "to_dp"
-        Me.GridColumn2.Name = "GridColumn2"
         '
         'ReportEmpOvertime
         '

@@ -38,6 +38,10 @@ Partial Public Class ReportEmpOvertimeVerification
         Me.BGCConversionType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLUEType2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGCIsStore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,6 +79,7 @@ Partial Public Class ReportEmpOvertimeVerification
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -109,11 +114,6 @@ Partial Public Class ReportEmpOvertimeVerification
         Me.XLOTNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,6 +334,32 @@ Partial Public Class ReportEmpOvertimeVerification
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn8"
+        Me.GridColumn3.FieldName = "id_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Conversion Type"
+        Me.GridColumn4.FieldName = "type"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn1"
+        Me.GridColumn5.FieldName = "to_salary"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "GridColumn2"
+        Me.GridColumn6.FieldName = "to_dp"
+        Me.GridColumn6.Name = "GridColumn6"
         '
         'BGCIsStore
         '
@@ -733,6 +759,12 @@ Partial Public Class ReportEmpOvertimeVerification
         Me.GridColumn1.FieldName = "to_salary"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "to_dp"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'GCIsDayOff
         '
         Me.GCIsDayOff.FieldName = "is_day_off"
@@ -1017,7 +1049,7 @@ Partial Public Class ReportEmpOvertimeVerification
         '
         'XrTable1
         '
-        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 71.54173!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
@@ -1069,38 +1101,6 @@ Partial Public Class ReportEmpOvertimeVerification
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
         Me.XrLabel16.StylePriority.UseFont = False
         Me.XrLabel16.Text = "Overtime Purpose"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.FieldName = "to_dp"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "GridColumn8"
-        Me.GridColumn3.FieldName = "id_type"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Conversion Type"
-        Me.GridColumn4.FieldName = "type"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "GridColumn1"
-        Me.GridColumn5.FieldName = "to_salary"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "GridColumn2"
-        Me.GridColumn6.FieldName = "to_dp"
-        Me.GridColumn6.Name = "GridColumn6"
         '
         'ReportEmpOvertimeVerification
         '

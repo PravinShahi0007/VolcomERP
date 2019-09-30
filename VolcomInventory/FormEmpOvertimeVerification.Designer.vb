@@ -45,6 +45,7 @@ Partial Class FormEmpOvertimeVerification
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
@@ -360,6 +361,7 @@ Partial Class FormEmpOvertimeVerification
         Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBClose)
         Me.PanelControl2.Controls.Add(Me.SBPrint)
+        Me.PanelControl2.Controls.Add(Me.SBReset)
         Me.PanelControl2.Controls.Add(Me.SBSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 679)
@@ -382,7 +384,7 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(781, 2)
+        Me.SBClose.Location = New System.Drawing.Point(695, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 46)
         Me.SBClose.TabIndex = 3
@@ -393,11 +395,22 @@ Partial Class FormEmpOvertimeVerification
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Enabled = False
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(856, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(770, 2)
         Me.SBPrint.Name = "SBPrint"
         Me.SBPrint.Size = New System.Drawing.Size(75, 46)
         Me.SBPrint.TabIndex = 5
         Me.SBPrint.Text = "Print"
+        '
+        'SBReset
+        '
+        Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
+        Me.SBReset.Location = New System.Drawing.Point(845, 2)
+        Me.SBReset.Name = "SBReset"
+        Me.SBReset.Size = New System.Drawing.Size(86, 46)
+        Me.SBReset.TabIndex = 7
+        Me.SBReset.Text = "Reset"
+        Me.SBReset.Visible = False
         '
         'SBSave
         '
@@ -1336,4 +1349,5 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBReset As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -1,6 +1,8 @@
 ﻿Public Class FormEmpOvertime
     Public is_hrd As String = "-1"
 
+    Public last_click As String = ""
+
     Private Sub FormEmpOvertime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
 
@@ -148,7 +150,7 @@
                     LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
                     LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
                     LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_det.id_employee_status = employee_status.id_employee_status
-                    WHERE 1 " + If(type = "created_at", "", where_date.Replace("ot_verification", "ot_det")) + " " + where_departement + " AND (ot_det.id_ot NOT IN (SELECT id_ot FROM tb_ot_verification) OR ot_det.ot_date NOT IN (SELECT ot_date FROM tb_ot_verification)) AND ot.id_report_status = 6)
+                    WHERE 1 " + If(type = "created_at", "", where_date.Replace("ot_verification", "ot_det")) + " " + where_departement.Replace("ot_verification", "ot_det") + " AND (ot_det.id_ot NOT IN (SELECT id_ot FROM tb_ot_verification) OR ot_det.ot_date NOT IN (SELECT ot_date FROM tb_ot_verification)) AND ot.id_report_status = 6 AND ot_det.ot_date <= DATE(NOW()))
                 ) AS tb
                 ORDER BY departement ASC, id_employee_level ASC, employee_code ASC, number DESC, ot_date ASC
             "
@@ -187,7 +189,7 @@
                     LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                     LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                     LEFT JOIN tb_m_departement AS departement ON ot.id_departement = departement.id_departement
-                    WHERE 1 " + If(type = "created_at", "", where_date.Replace("ot_verification", "ot_det")) + " " + where_departement + " AND (ot_det.id_ot NOT IN (SELECT id_ot FROM tb_ot_verification) OR ot_det.ot_date NOT IN (SELECT ot_date FROM tb_ot_verification)) AND ot.id_report_status = 6
+                    WHERE 1 " + If(type = "created_at", "", where_date.Replace("ot_verification", "ot_det")) + " " + where_departement.Replace("ot_verification", "ot_det") + " AND (ot_det.id_ot NOT IN (SELECT id_ot FROM tb_ot_verification) OR ot_det.ot_date NOT IN (SELECT ot_date FROM tb_ot_verification)) AND ot.id_report_status = 6 AND ot_det.ot_date <= DATE(NOW())
                     GROUP BY ot.number, ot_det.ot_date)
                 ) AS tb
                 ORDER BY number DESC, ot_date DESC
@@ -212,6 +214,8 @@
     End Sub
 
     Private Sub SBViewCA_Click(sender As Object, e As EventArgs) Handles SBViewCA.Click
+        last_click = "created_at"
+
         If XTCType.SelectedTabPage.Name = "XTPPropose" Then
             load_overtime("created_at")
         Else
@@ -220,6 +224,8 @@
     End Sub
 
     Private Sub SBViewOD_Click(sender As Object, e As EventArgs) Handles SBViewOD.Click
+        last_click = "ot_date"
+
         If XTCType.SelectedTabPage.Name = "XTPPropose" Then
             load_overtime("ot_date")
         Else

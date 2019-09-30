@@ -70,6 +70,10 @@ Partial Class FormEmpOvertime
         Me.GCConversionType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLUEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdOvertime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdOvertimeType = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -119,6 +123,10 @@ Partial Class FormEmpOvertime
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLUETypeVerification = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -144,14 +152,6 @@ Partial Class FormEmpOvertime
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -679,6 +679,32 @@ Partial Class FormEmpOvertime
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "GridColumn8"
+        Me.GridColumn18.FieldName = "id_type"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Conversion Type"
+        Me.GridColumn19.FieldName = "type"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 0
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "GridColumn1"
+        Me.GridColumn20.FieldName = "to_salary"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "GridColumn2"
+        Me.GridColumn27.FieldName = "to_dp"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
         'GCIdOvertime
         '
         Me.GCIdOvertime.FieldName = "id_ot"
@@ -1130,6 +1156,32 @@ Partial Class FormEmpOvertime
         Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView4.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "GridColumn8"
+        Me.GridColumn23.FieldName = "id_type"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Conversion Type"
+        Me.GridColumn24.FieldName = "type"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "GridColumn1"
+        Me.GridColumn25.FieldName = "to_salary"
+        Me.GridColumn25.Name = "GridColumn25"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "GridColumn2"
+        Me.GridColumn28.FieldName = "to_dp"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
         'GridColumn26
         '
         Me.GridColumn26.Caption = "GridColumn26"
@@ -1352,58 +1404,6 @@ Partial Class FormEmpOvertime
         Me.Label3.Size = New System.Drawing.Size(60, 13)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "GridColumn8"
-        Me.GridColumn18.FieldName = "id_type"
-        Me.GridColumn18.Name = "GridColumn18"
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Conversion Type"
-        Me.GridColumn19.FieldName = "type"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 0
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "GridColumn1"
-        Me.GridColumn20.FieldName = "to_salary"
-        Me.GridColumn20.Name = "GridColumn20"
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "GridColumn2"
-        Me.GridColumn27.FieldName = "to_dp"
-        Me.GridColumn27.Name = "GridColumn27"
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "GridColumn8"
-        Me.GridColumn23.FieldName = "id_type"
-        Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Conversion Type"
-        Me.GridColumn24.FieldName = "type"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 0
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "GridColumn1"
-        Me.GridColumn25.FieldName = "to_salary"
-        Me.GridColumn25.Name = "GridColumn25"
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "GridColumn2"
-        Me.GridColumn28.FieldName = "to_dp"
-        Me.GridColumn28.Name = "GridColumn28"
         '
         'FormEmpOvertime
         '

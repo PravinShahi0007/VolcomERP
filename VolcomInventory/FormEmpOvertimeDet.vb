@@ -3,6 +3,7 @@
     Public id As String = "0"
 
     Private is_point_ho As String = "0"
+    Public close_memo As Boolean = False
 
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -108,44 +109,18 @@
     End Sub
 
     Private Sub FormEmpOvertimeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Try
-            Dim include As String = ""
+        FormEmpOvertime.XTCType.SelectedTabPage = FormEmpOvertime.XTPPropose
 
-            If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
-                For i = 0 To FormEmpOvertime.GVProposeEmployee.RowCount - 1
-                    If FormEmpOvertime.GVProposeEmployee.IsValidRowHandle(i) Then
-                        include += FormEmpOvertime.GVProposeEmployee.GetRowCellValue(i, "id_ot_det").ToString + ", "
-                    End If
-                Next
+        If FormEmpOvertime.last_click = "ot_date" Then
+            FormEmpOvertime.load_overtime("ot_date")
+        ElseIf FormEmpOvertime.last_click = "created_at" Then
+            FormEmpOvertime.load_overtime("created_at")
+        ElseIf FormEmpOvertime.last_click = "new" Then
+            FormEmpOvertime.DEStart.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-1")
+            FormEmpOvertime.DEUntil.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-" + Date.DaysInMonth(Now.Year, Now.Month).ToString)
 
-                If Not include = "" Then
-                    Dim id_ot_det As String = FormEmpOvertime.GVProposeEmployee.GetFocusedRowCellValue("id_ot_det").ToString
-
-                    include = include.Substring(0, include.Length - 2)
-
-                    FormEmpOvertime.load_overtime("id_det" + include)
-
-                    FormEmpOvertime.GVProposeEmployee.FocusedRowHandle = find_row(FormEmpOvertime.GVProposeEmployee, "id_ot_det", id_ot_det)
-                End If
-            Else
-                For i = 0 To FormEmpOvertime.GVOvertime.RowCount - 1
-                    If FormEmpOvertime.GVOvertime.IsValidRowHandle(i) Then
-                        include += FormEmpOvertime.GVOvertime.GetRowCellValue(i, "id_ot").ToString + ", "
-                    End If
-                Next
-
-                If Not include = "" Then
-                    Dim id_ot As String = FormEmpOvertime.GVOvertime.GetFocusedRowCellValue("id_ot").ToString
-
-                    include = include.Substring(0, include.Length - 2)
-
-                    FormEmpOvertime.load_overtime("id_ot" + include)
-
-                    FormEmpOvertime.GVOvertime.FocusedRowHandle = find_row(FormEmpOvertime.GVOvertime, "id_ot", id_ot)
-                End If
-            End If
-        Catch ex As Exception
-        End Try
+            FormEmpOvertime.load_overtime("created_at")
+        End If
 
         Dispose()
     End Sub
@@ -210,11 +185,7 @@
 
                 submit_who_prepared("184", id, id_user)
 
-                ' load overtime
-                FormEmpOvertime.DEStart.EditValue = Now
-                FormEmpOvertime.DEUntil.EditValue = Now
-
-                FormEmpOvertime.load_overtime("created_at")
+                FormEmpOvertime.last_click = "new"
 
                 Close()
             End If
@@ -230,14 +201,43 @@
     End Sub
 
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
-        Cursor = Cursors.WaitCursor
+        'memo number manual input
+        If is_hrd = "1" Then
+            Dim already_has_number As Boolean = If(execute_query("SELECT IFNULL((SELECT id_memo_number FROM tb_ot_memo_number WHERE id_ot = " + id + "), 0) AS id_memo_number", 0, True, "", "", "", "") = "0", False, True)
 
-        FormReportMark.report_mark_type = "184"
-        FormReportMark.id_report = id
+            If Not already_has_number Then
+                Dim include_memo As Boolean = False
 
-        FormReportMark.ShowDialog()
+                Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
 
-        Cursor = Cursors.Default
+                For i = 0 To GVEmployee.RowCount - 1
+                    If GVEmployee.IsValidRowHandle(i) Then
+                        If GVEmployee.GetRowCellValue(i, "ot_total_hours") >= hours Then
+                            include_memo = True
+                        End If
+                    End If
+                Next
+
+                If include_memo Then
+                    FormEmpOvertimeMemoNumber.id_ot = id
+
+                    FormEmpOvertimeMemoNumber.ShowDialog()
+                End If
+            End If
+        End If
+
+        If Not close_memo Then
+            Cursor = Cursors.WaitCursor
+
+            FormReportMark.report_mark_type = "184"
+            FormReportMark.id_report = id
+
+            FormReportMark.ShowDialog()
+
+            Cursor = Cursors.Default
+
+            close_memo = False
+        End If
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
@@ -275,13 +275,22 @@
         Next
 
         'date
-        Dim date_include As List(Of String) = New List(Of String)
-
-        For i = 0 To employee.Rows.Count - 1
-            If Not date_include.Contains(employee.Rows(i)("ot_date").ToString) Then
-                date_include.Add(employee.Rows(i)("ot_date").ToString)
-            End If
-        Next
+        Dim query_date As String = "
+            SELECT IFNULL(GROUP_CONCAT(DISTINCT tb.ot_date SEPARATOR ', '), '') AS ot_date
+            FROM (
+                SELECT CONCAT_WS(' - ', DATE_FORMAT(MIN(ot_det.ot_date), '%d %M %Y'), CASE WHEN MAX(ot_det.ot_date) > MIN(ot_det.ot_date) THEN DATE_FORMAT(MAX(ot_det.ot_date), '%d %M %Y') END) AS ot_date
+                FROM (
+                    SELECT
+                        CASE WHEN ot_date = @last_ci + INTERVAL 1 DAY THEN @n ELSE @n := @n + 1 END AS group_date,
+                        @last_ci := ot_date AS ot_date
+                    FROM
+                        tb_ot_det, (SELECT @n := 0) i
+                    WHERE tb_ot_det.id_ot = " + id + " AND ROUND((TIMESTAMPDIFF(MINUTE, tb_ot_det.ot_start_time, tb_ot_det.ot_end_time) / 60) - tb_ot_det.ot_break, 1) >= (SELECT ot_memo_employee FROM tb_opt_emp LIMIT 1)
+                    ORDER BY ot_date
+                ) ot_det
+                GROUP BY group_date
+            ) tb
+        "
 
         'departement
         Dim departement_include As List(Of String) = New List(Of String)
@@ -293,7 +302,7 @@
         Next
 
         Dim departement As String = String.Join(", ", departement_include)
-        Dim ot_date As String = If(date_include.Count = 0, "", date_include(0) + " - " + date_include.Last)
+        Dim ot_date As String = execute_query(query_date, 0, True, "", "", "", "")
         Dim total_consumption As Decimal = ot_consumption * employee.Rows.Count()
 
         'employee
@@ -312,6 +321,7 @@
         ReportMemo.id = id
         ReportMemo.id_pre = If(id_report_status = "6", "-1", "1")
 
+        ReportMemo.XrLabel2.Text = execute_query("SELECT IFNULL((SELECT number FROM tb_ot_memo_number WHERE id_ot = " + id + "), '[number]') AS id_memo_number", 0, True, "", "", "", "")
         ReportMemo.XLTo.Text = data_employee.Rows(0)("employee_name").ToString
         ReportMemo.XLToPosition.Text = "- " + data_employee.Rows(0)("employee_position").ToString
         ReportMemo.XLCC1.Text = data_employee.Rows(1)("employee_name").ToString
@@ -320,9 +330,9 @@
         ReportMemo.XLCC2Position.Text = "- " + data_employee.Rows(2)("employee_position").ToString
         ReportMemo.XLFrom.Text = data_employee.Rows(3)("employee_name").ToString
         ReportMemo.XLFromPosition.Text = "- " + data_employee.Rows(3)("employee_position").ToString
-        ReportMemo.XLHal.Text = "Budget Konsumsi Lembur " + StrConv(TEDepartement.EditValue.ToString, VbStrConv.ProperCase) + " " + ot_date
+        ReportMemo.XLHal.Text = "Budget Konsumsi Lembur " + TEDepartement.EditValue.ToString + " " + ot_date
 
-        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", StrConv(TEDepartement.EditValue.ToString, VbStrConv.ProperCase))
+        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", TEDepartement.EditValue.ToString)
         ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[ot_date]", ot_date)
         ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[total_consumption]", Format(total_consumption, "##,##0"))
 

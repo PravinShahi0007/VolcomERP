@@ -122,7 +122,7 @@
             GCAttendance.DataSource = data_att
 
             'verification
-            For i = 1 To GVAttendance.RowCount - 1
+            For i = 0 To GVAttendance.RowCount - 1
                 If GVAttendance.IsValidRowHandle(i) Then
                     For j = 0 To GVEmployee.RowCount - 1
                         If GVEmployee.IsValidRowHandle(j) Then
@@ -231,6 +231,7 @@
             SBSave.Enabled = True
             SBPrint.Enabled = False
             SBMark.Enabled = False
+            SBReset.Visible = False
         Else
             Dim query_ver As String = "
                 SELECT vr.id_payroll, vr.id_report_status, rs.report_status
@@ -264,6 +265,12 @@
             SBSave.Enabled = False
             SBPrint.Enabled = True
             SBMark.Enabled = True
+
+            If data_ver.Rows(0)("id_report_status").ToString <> "6" Then
+                SBReset.Visible = True
+            Else
+                SBReset.Visible = False
+            End If
         End If
 
         'calculate point
@@ -288,6 +295,14 @@
     End Sub
 
     Private Sub FormEmpOvertimeVerification_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FormEmpOvertime.XTCType.SelectedTabPage = FormEmpOvertime.XTPVerification
+
+        If FormEmpOvertime.last_click = "ot_date" Then
+            FormEmpOvertime.load_verification("ot_date")
+        ElseIf FormEmpOvertime.last_click = "created_at" Then
+            FormEmpOvertime.load_verification("created_at")
+        End If
+
         Dispose()
     End Sub
 
@@ -467,5 +482,31 @@
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub SBReset_Click(sender As Object, e As EventArgs) Handles SBReset.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All approval will be reset. Are you sure want to reset overtime verification ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim query As String = ""
+
+            query = "DELETE FROM tb_ot_verification_det WHERE id_ot_verification = " + id
+
+            execute_non_query(query, True, "", "", "", "")
+
+            query = "DELETE FROM tb_ot_verification WHERE id_ot_verification = " + id
+
+            execute_non_query(query, True, "", "", "", "")
+
+            query = "DELETE FROM tb_report_mark WHERE report_mark_type = 187 AND id_report = " + id
+
+            execute_non_query(query, True, "", "", "", "")
+
+            id = "0"
+
+            FormEmpOvertimeVerification_Load(Me, New EventArgs)
+        End If
     End Sub
 End Class
