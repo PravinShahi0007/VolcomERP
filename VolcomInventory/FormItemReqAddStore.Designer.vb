@@ -24,14 +24,22 @@ Partial Class FormItemReqAddStore
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEItem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtQty = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -39,14 +47,6 @@ Partial Class FormItemReqAddStore
         Me.LAvailable = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAvailable = New DevExpress.XtraEditors.TextEdit()
         Me.CEStoreRequest = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnComp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,6 +95,20 @@ Partial Class FormItemReqAddStore
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "GridColumn1"
+        Me.GridColumnId.FieldName = "id_item_cat"
+        Me.GridColumnId.Name = "GridColumnId"
+        '
+        'GridColumnItemCat
+        '
+        Me.GridColumnItemCat.Caption = "Category"
+        Me.GridColumnItemCat.FieldName = "item_cat"
+        Me.GridColumnItemCat.Name = "GridColumnItemCat"
+        Me.GridColumnItemCat.Visible = True
+        Me.GridColumnItemCat.VisibleIndex = 0
+        '
         'SLEItem
         '
         Me.SLEItem.Location = New System.Drawing.Point(17, 71)
@@ -112,6 +126,20 @@ Partial Class FormItemReqAddStore
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.FieldName = "id_item"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumnItemDesc
+        '
+        Me.GridColumnItemDesc.Caption = "Item"
+        Me.GridColumnItemDesc.FieldName = "item_desc"
+        Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
+        Me.GridColumnItemDesc.Visible = True
+        Me.GridColumnItemDesc.VisibleIndex = 0
         '
         'PanelControl1
         '
@@ -169,6 +197,32 @@ Partial Class FormItemReqAddStore
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "GridColumn2"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
+        '
+        'GridColumnCompName
+        '
+        Me.GridColumnCompName.Caption = "Store Name"
+        Me.GridColumnCompName.FieldName = "comp_name"
+        Me.GridColumnCompName.Name = "GridColumnCompName"
+        '
+        'GridColumnCompNumber
+        '
+        Me.GridColumnCompNumber.Caption = "Store Code"
+        Me.GridColumnCompNumber.FieldName = "comp_number"
+        Me.GridColumnCompNumber.Name = "GridColumnCompNumber"
+        '
+        'GridColumnComp
+        '
+        Me.GridColumnComp.Caption = "Store"
+        Me.GridColumnComp.FieldName = "comp"
+        Me.GridColumnComp.Name = "GridColumnComp"
+        Me.GridColumnComp.Visible = True
+        Me.GridColumnComp.VisibleIndex = 0
         '
         'LabelControl4
         '
@@ -234,60 +288,6 @@ Partial Class FormItemReqAddStore
         Me.CEStoreRequest.Properties.Caption = "From Purchasing Storage"
         Me.CEStoreRequest.Size = New System.Drawing.Size(143, 19)
         Me.CEStoreRequest.TabIndex = 8912
-        '
-        'GridColumnIdComp
-        '
-        Me.GridColumnIdComp.Caption = "GridColumn2"
-        Me.GridColumnIdComp.FieldName = "id_comp"
-        Me.GridColumnIdComp.Name = "GridColumnIdComp"
-        '
-        'GridColumnCompName
-        '
-        Me.GridColumnCompName.Caption = "Store Name"
-        Me.GridColumnCompName.FieldName = "comp_name"
-        Me.GridColumnCompName.Name = "GridColumnCompName"
-        '
-        'GridColumnCompNumber
-        '
-        Me.GridColumnCompNumber.Caption = "Store Code"
-        Me.GridColumnCompNumber.FieldName = "comp_number"
-        Me.GridColumnCompNumber.Name = "GridColumnCompNumber"
-        '
-        'GridColumnComp
-        '
-        Me.GridColumnComp.Caption = "Store"
-        Me.GridColumnComp.FieldName = "comp"
-        Me.GridColumnComp.Name = "GridColumnComp"
-        Me.GridColumnComp.Visible = True
-        Me.GridColumnComp.VisibleIndex = 0
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_item"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumnItemDesc
-        '
-        Me.GridColumnItemDesc.Caption = "Item"
-        Me.GridColumnItemDesc.FieldName = "item_desc"
-        Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
-        Me.GridColumnItemDesc.Visible = True
-        Me.GridColumnItemDesc.VisibleIndex = 0
-        '
-        'GridColumnId
-        '
-        Me.GridColumnId.Caption = "GridColumn1"
-        Me.GridColumnId.FieldName = "id_item_cat"
-        Me.GridColumnId.Name = "GridColumnId"
-        '
-        'GridColumnItemCat
-        '
-        Me.GridColumnItemCat.Caption = "Category"
-        Me.GridColumnItemCat.FieldName = "item_cat"
-        Me.GridColumnItemCat.Name = "GridColumnItemCat"
-        Me.GridColumnItemCat.Visible = True
-        Me.GridColumnItemCat.VisibleIndex = 0
         '
         'FormItemReqAddStore
         '
