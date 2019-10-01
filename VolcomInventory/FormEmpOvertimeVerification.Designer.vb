@@ -85,8 +85,8 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCOut = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCIdDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BGCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BGCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCOtPotention = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
@@ -102,6 +102,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCToSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCConversionType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLUEType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -110,7 +111,6 @@ Partial Class FormEmpOvertimeVerification
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsStore = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -497,7 +497,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GVAttendance.AppearancePrint.Row.Options.UseFont = True
         Me.GVAttendance.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.gridBand3, Me.gridBand4})
         Me.GVAttendance.ColumnPanelRowHeight = 32
-        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BGCIdEmployee, Me.BGCIdDepartement, Me.BGCIdDepartementSub, Me.BGCDepartement, Me.BGCDate, Me.BGCNIP, Me.BGCEmployeeName, Me.BGCEmployeePosition, Me.BGCIdEmployeeStatus, Me.BGCEmployeeStatus, Me.BGCToSalary, Me.BGCConversionType, Me.BGCIsStore, Me.BGCIsDayOff, Me.BGCStartWork, Me.BGCEndWork, Me.BGCStartWorkOt, Me.BGCEndWorkOt, Me.BGCBreakHours, Me.BGCTotalHours, Me.BGCPointOt, Me.BGCValid, Me.BGCIdScheduleType, Me.BGCIn, Me.BGCOut, Me.BGCOtPotention})
+        Me.GVAttendance.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BGCIdEmployee, Me.BGCIdDepartement, Me.BGCIdDepartementSub, Me.BGCDepartement, Me.BGCDate, Me.BGCNIP, Me.BGCEmployeeName, Me.BGCEmployeePosition, Me.BGCIdEmployeeStatus, Me.BGCEmployeeStatus, Me.BGCToSalary, Me.BGCIsDayOff, Me.BGCConversionType, Me.BGCIsStore, Me.BGCStartWork, Me.BGCEndWork, Me.BGCStartWorkOt, Me.BGCEndWorkOt, Me.BGCBreakHours, Me.BGCTotalHours, Me.BGCPointOt, Me.BGCValid, Me.BGCIdScheduleType, Me.BGCIn, Me.BGCOut, Me.BGCOtPotention})
         Me.GVAttendance.GridControl = Me.GCAttendance
         Me.GVAttendance.GroupCount = 1
         Me.GVAttendance.Name = "GVAttendance"
@@ -617,7 +617,6 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCConversionType.ColumnEdit = Me.RISLUEType2
         Me.BGCConversionType.FieldName = "conversion_type"
         Me.BGCConversionType.Name = "BGCConversionType"
-        Me.BGCConversionType.OptionsColumn.AllowEdit = False
         Me.BGCConversionType.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BGCConversionType.Visible = True
         Me.BGCConversionType.Width = 91
@@ -841,19 +840,19 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIdDepartementSub.Visible = True
         Me.BGCIdDepartementSub.Width = 109
         '
-        'BGCIsStore
-        '
-        Me.BGCIsStore.FieldName = "is_store"
-        Me.BGCIsStore.Name = "BGCIsStore"
-        Me.BGCIsStore.OptionsColumn.AllowEdit = False
-        Me.BGCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
         'BGCIsDayOff
         '
         Me.BGCIsDayOff.FieldName = "is_day_off"
         Me.BGCIsDayOff.Name = "BGCIsDayOff"
         Me.BGCIsDayOff.OptionsColumn.AllowEdit = False
         Me.BGCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BGCIsStore
+        '
+        Me.BGCIsStore.FieldName = "is_store"
+        Me.BGCIsStore.Name = "BGCIsStore"
+        Me.BGCIsStore.OptionsColumn.AllowEdit = False
+        Me.BGCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'BGCOtPotention
         '
@@ -918,7 +917,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsStore, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCIsDayOff, Me.GCConversionType, Me.GCIsStore, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -1035,6 +1034,13 @@ Partial Class FormEmpOvertimeVerification
         Me.GCToSalary.OptionsColumn.AllowEdit = False
         Me.GCToSalary.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
+        'GCIsDayOff
+        '
+        Me.GCIsDayOff.FieldName = "is_day_off"
+        Me.GCIsDayOff.Name = "GCIsDayOff"
+        Me.GCIsDayOff.OptionsColumn.AllowEdit = False
+        Me.GCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
         'GCConversionType
         '
         Me.GCConversionType.AppearanceHeader.Options.UseTextOptions = True
@@ -1095,13 +1101,6 @@ Partial Class FormEmpOvertimeVerification
         Me.GCIsStore.Name = "GCIsStore"
         Me.GCIsStore.OptionsColumn.AllowEdit = False
         Me.GCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GCIsDayOff
-        '
-        Me.GCIsDayOff.FieldName = "is_day_off"
-        Me.GCIsDayOff.Name = "GCIsDayOff"
-        Me.GCIsDayOff.OptionsColumn.AllowEdit = False
-        Me.GCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCStartWork
         '

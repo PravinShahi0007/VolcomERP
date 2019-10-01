@@ -109,8 +109,6 @@
     End Sub
 
     Private Sub FormEmpOvertimeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        FormEmpOvertime.XTCType.SelectedTabPage = FormEmpOvertime.XTPPropose
-
         If FormEmpOvertime.last_click = "ot_date" Then
             FormEmpOvertime.load_overtime("ot_date")
         ElseIf FormEmpOvertime.last_click = "created_at" Then
@@ -281,10 +279,10 @@
                 SELECT CONCAT_WS(' - ', DATE_FORMAT(MIN(ot_det.ot_date), '%d %M %Y'), CASE WHEN MAX(ot_det.ot_date) > MIN(ot_det.ot_date) THEN DATE_FORMAT(MAX(ot_det.ot_date), '%d %M %Y') END) AS ot_date
                 FROM (
                     SELECT
-                        CASE WHEN ot_date = @last_ci + INTERVAL 1 DAY THEN @n ELSE @n := @n + 1 END AS group_date,
+                        CASE WHEN ((ot_date = @last_ci + INTERVAL 1 DAY) OR (ot_date = @last_ci)) THEN @n ELSE @n := @n + 1 END AS group_date,
                         @last_ci := ot_date AS ot_date
                     FROM
-                        tb_ot_det, (SELECT @n := 0) i
+                        tb_ot_det, (SELECT @n := 0) i, (SELECT @last_ci := 0) j
                     WHERE tb_ot_det.id_ot = " + id + " AND ROUND((TIMESTAMPDIFF(MINUTE, tb_ot_det.ot_start_time, tb_ot_det.ot_end_time) / 60) - tb_ot_det.ot_break, 1) >= (SELECT ot_memo_employee FROM tb_opt_emp LIMIT 1)
                     ORDER BY ot_date
                 ) ot_det
