@@ -5853,6 +5853,18 @@
     <Compile Include="FormViewSampleStockOpname.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVoucherPOS.Designer.vb">
+      <DependentUpon>FormVoucherPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVoucherPOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVoucherPOSDet.Designer.vb">
+      <DependentUpon>FormVoucherPOSDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVoucherPOSDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHAWBill.designer.vb">
       <DependentUpon>FormWHAWBill.vb</DependentUpon>
     </Compile>
@@ -10450,6 +10462,12 @@
     <EmbeddedResource Include="FormViewSampleStockOpname.resx">
       <DependentUpon>FormViewSampleStockOpname.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVoucherPOS.resx">
+      <DependentUpon>FormVoucherPOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVoucherPOSDet.resx">
+      <DependentUpon>FormVoucherPOSDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHAWBill.resx">
       <DependentUpon>FormWHAWBill.vb</DependentUpon>
