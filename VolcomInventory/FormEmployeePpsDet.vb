@@ -6,6 +6,8 @@
     Public show_payroll As Boolean = False
     Public id_report_status As String = "-1"
 
+    Private load_all As Boolean = False
+
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
         viewLookupQuery(LESex, query, 0, "sex", "id_sex")
@@ -187,6 +189,8 @@
             LEEmployeeStatus.Size = New Size(512, 20)
             LEEmployeeStatusB.Size = New Size(512, 20)
         End If
+
+        load_all = True
     End Sub
 
     Sub initLoad()
@@ -1596,6 +1600,7 @@
         Dim status_changed As Boolean = False
         Dim position_changed As Boolean = False
         Dim salary_changed As Boolean = False
+        Dim join_date_changed As Boolean = False
 
         ' edited else new
         If is_new = "-1" Then
@@ -1623,6 +1628,10 @@
                     'If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
                     '    salary_changed = True
                     'End If
+
+                    If changes.Rows(i)("name") = "employee_join_date" Then
+                        join_date_changed = True
+                    End If
                 Next
 
                 progress.ProgressBarControl.EditValue = 30
@@ -1677,6 +1686,19 @@
 
                 '    execute_non_query(query, True, "", "", "", "")
                 'End If
+
+                If join_date_changed Then
+                    query = "
+                        INSERT INTO tb_emp_stock_leave(id_emp, qty, plus_minus, date_leave, date_expired, is_process_exp, `type`, note)
+                        SELECT id_emp, SUM(IF(plus_minus = 1, qty, -qty)) AS qty, 2 AS plus_minus, NOW() AS date_leave, date_expired, 1 AS is_process_exp, `type`, 'Auto adjustment leave' AS note
+                        FROM tb_emp_stock_leave
+                        WHERE id_emp = " + id_employee + "
+                        GROUP BY id_emp, `type`, date_expired
+                        HAVING SUM(IF(plus_minus = 1, qty, -qty)) > 0
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
 
                 progress.ProgressBarControl.EditValue = 40
             End If
@@ -2101,5 +2123,24 @@
         If is_new = "1" Then
             DEActualJoinDate.EditValue = DEJoinDate.EditValue
         End If
+    End Sub
+
+    Private Sub DEJoinDate_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles DEJoinDate.EditValueChanging
+        If load_all Then
+            If Not is_new = "1" Then
+                Dim confirm As DialogResult
+
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Changing join date will reset employee remaining leave to 0, are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                Else
+                    e.Cancel = True
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub TxtCode_EditValueChanged(sender As Object, e As EventArgs) Handles TxtCode.EditValueChanged
+        TxtCode.EditValue = TxtCode.EditValue.ToString.Trim()
     End Sub
 End Class
