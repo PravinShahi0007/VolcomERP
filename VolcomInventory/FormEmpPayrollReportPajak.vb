@@ -76,4 +76,59 @@
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
     End Sub
+
+    Private Sub BBrowse_Click(sender As Object, e As EventArgs) Handles BBrowse.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim dialog As FolderBrowserDialog = New FolderBrowserDialog()
+
+        Cursor = Cursors.Default
+
+        If dialog.ShowDialog() = DialogResult.OK Then
+            Dim type As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "DW ", "")
+
+            TBFileAddress.Text = dialog.SelectedPath & "\Report Pajak " + type + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".xls"
+        End If
+
+        dialog.Dispose()
+    End Sub
+
+    Private Sub BExcel_Click(sender As Object, e As EventArgs) Handles BExcel.Click
+        If TBFileAddress.EditValue.ToString = "" Then
+            stopCustom("Please close your excel file first then try again later")
+        Else
+            Dim query As String = ""
+            Dim data As DataTable = New DataTable
+
+            Dim op As DevExpress.XtraPrinting.XlsExportOptionsEx = New DevExpress.XtraPrinting.XlsExportOptionsEx
+            op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+            Dim id_payroll_type As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+
+            Dim id_payroll_other As String = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE periode_start = (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND id_payroll_type = " + If(id_payroll_type = "1", "4", "1") + "), 0) AS id_payroll", 0, True, "", "", "", "")
+
+            GVPajak.ExportToXls(TBFileAddress.EditValue.ToString, op)
+
+            If Not id_payroll_other = "0" Then
+                query = "CALL view_payroll_pajak('" + id_payroll_other + "')"
+
+                data = execute_query(query, -1, True, "", "", "", "")
+
+                GCPajak.DataSource = data
+
+                GVPajak.ExportToXls(If(id_payroll_type = "1", TBFileAddress.EditValue.ToString.Replace("Report Pajak", "Report Pajak DW"), TBFileAddress.EditValue.ToString.Replace("Report Pajak DW", "Report Pajak")), op)
+            End If
+
+            'reload
+            query = "CALL view_payroll_pajak('" + id_payroll + "')"
+
+            data = execute_query(query, -1, True, "", "", "", "")
+
+            GCPajak.DataSource = data
+
+            GVPajak.BestFitColumns()
+
+            infoCustom("File saved.")
+        End If
+    End Sub
 End Class
