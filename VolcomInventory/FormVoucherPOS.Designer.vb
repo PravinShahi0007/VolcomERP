@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormVoucherPOS
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormVoucherPOS
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -30,7 +30,6 @@ Partial Class FormVoucherPOS
         Me.GridColumnperiod_end = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_outlet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnoutlet_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTransNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,7 +47,7 @@ Partial Class FormVoucherPOS
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pos_voucher, Me.GridColumnvoucher_number, Me.GridColumnvoucher_value, Me.GridColumnvoucher_name, Me.GridColumnvoucher_address, Me.GridColumnperiod_start, Me.GridColumnperiod_end, Me.GridColumnid_outlet, Me.GridColumnoutlet_name, Me.GridColumnTransNumber, Me.GridColumnstatus})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pos_voucher, Me.GridColumnvoucher_number, Me.GridColumnvoucher_value, Me.GridColumnvoucher_name, Me.GridColumnvoucher_address, Me.GridColumnperiod_start, Me.GridColumnperiod_end, Me.GridColumnid_outlet, Me.GridColumnoutlet_name, Me.GridColumnstatus})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -130,22 +129,13 @@ Partial Class FormVoucherPOS
         Me.GridColumnoutlet_name.Visible = True
         Me.GridColumnoutlet_name.VisibleIndex = 6
         '
-        'GridColumnTransNumber
-        '
-        Me.GridColumnTransNumber.Caption = "Transaction No."
-        Me.GridColumnTransNumber.FieldName = "trans_number"
-        Me.GridColumnTransNumber.Name = "GridColumnTransNumber"
-        Me.GridColumnTransNumber.Visible = True
-        Me.GridColumnTransNumber.VisibleIndex = 7
-        Me.GridColumnTransNumber.Width = 146
-        '
         'GridColumnstatus
         '
         Me.GridColumnstatus.Caption = "Status"
         Me.GridColumnstatus.FieldName = "status"
         Me.GridColumnstatus.Name = "GridColumnstatus"
         Me.GridColumnstatus.Visible = True
-        Me.GridColumnstatus.VisibleIndex = 8
+        Me.GridColumnstatus.VisibleIndex = 7
         '
         'FormVoucherPOS
         '
@@ -174,5 +164,4 @@ Partial Class FormVoucherPOS
     Friend WithEvents GridColumnid_outlet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnoutlet_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnTransNumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class

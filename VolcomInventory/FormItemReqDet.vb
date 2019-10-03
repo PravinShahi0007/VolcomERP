@@ -80,7 +80,7 @@
     End Sub
 
     Sub viewDetailAlloc()
-        Dim query As String = "SELECT a.id_item_req_det_alloc, a.id_item_req, a.id_item, i.item_desc, a.id_comp,c.comp_number, c.comp_name, a.qty, a.remark 
+        Dim query As String = "SELECT a.id_item_req_det_alloc, a.id_item_req, a.id_item, i.item_desc, a.id_comp,c.comp_number, c.comp_name, a.qty, a.remark , IF(a.is_store_request=1,'yes','no') AS  is_store_request
         FROM tb_item_req_det_alloc a
         INNER JOIN tb_item i ON i.id_item = a.id_item
         INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
@@ -115,6 +115,7 @@
                 Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
                 newRow("id_item") = head(0)
                 newRow("item_desc") = head(1)
+                newRow("is_store_request") = head(2)
                 newRow("qty") = val1
                 newRow("remark") = ""
                 TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
@@ -287,13 +288,16 @@
         XTCRequest.SelectedTabPageIndex = 0
         GridColumnStt.Visible = False
         makeSafeGV(GVData)
+        '
+        Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
+
         Dim cond_data As Boolean = True
         Dim st As New ClassPurcItemStock()
-        Dim qst As String = st.queryGetStock("AND i.id_departement='" + id_departement_user + "' ", "9999-12-31")
+        Dim qst As String = st.queryGetStock("AND (i.id_departement='" + id_departement_user + "' OR i.id_departement='" + id_purc_store + "') ", "9999-12-31")
         Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
             Dim id_item_cek As String = GVData.GetRowCellValue(i, "id_item").ToString
-            Dim dt As DataRow() = dst.Select("[id_item]='" + id_item_cek + "' ")
+            Dim dt As DataRow() = dst.Select("[id_item]='" + id_item_cek + "'")
             If dt.Length <= 0 Then
                 GVData.SetRowCellValue(i, "stt", "Product not found;")
                 cond_data = False
@@ -354,23 +358,28 @@
 
                 'query allocation
                 If is_for_store = "1" Then
-                    Dim qa As String = "INSERT INTO tb_item_req_det_alloc(id_item_req, id_item, id_comp, qty, remark) VALUES "
+                    Dim qa As String = "INSERT INTO tb_item_req_det_alloc(id_item_req, id_item, is_store_request, id_comp, qty, remark) VALUES "
                     For a As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
                         Dim id_item As String = GVDetail.GetRowCellValue(a, "id_item").ToString
                         Dim id_comp As String = GVDetail.GetRowCellValue(a, "id_comp").ToString
                         Dim qty As String = decimalSQL(GVDetail.GetRowCellValue(a, "qty").ToString)
+                        Dim is_store_request As String = ""
+                        If GVDetail.GetRowCellValue(a, "is_store_request").ToString = "yes" Then
+                            is_store_request = "1"
+                        Else
+                            is_store_request = "2"
+                        End If
                         Dim remark As String = addSlashes(GVDetail.GetRowCellValue(a, "remark").ToString)
 
                         If a > 0 Then
                             qa += ", "
                         End If
-                        qa += "(" + id + ", " + id_item + ",'" + id_comp + "', '" + qty + "', '" + remark + "') "
+                        qa += "(" + id + ", " + id_item + ",'" & is_store_request & "','" + id_comp + "', '" + qty + "', '" + remark + "') "
                     Next
                     If GVDetail.RowCount > 0 Then
                         execute_non_query(qa, True, "", "", "", "")
                     End If
                 End If
-
 
                 'out stock
                 Dim rs As New ClassItemRequest()
