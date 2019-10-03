@@ -2553,6 +2553,12 @@
     <Compile Include="FormProductionWOList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoRules.Designer.vb">
+      <DependentUpon>FormPromoRules.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoRules.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposeEmpSalary.Designer.vb">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
     </Compile>
