@@ -3449,13 +3449,15 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             row_head.Cells.Add(cell)
         Next j
 
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
         query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
         query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
         query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
         Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
-        'Approved by CEO
+        'Approved by CEO & CFO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -3463,6 +3465,20 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Dim q_cek As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' AND id_report_status='3'"
             Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
             If dt_cek.Rows.Count > 0 Then
+                cell.Text = ""
+            Else
+                cell.Text = get_report_mark_status("3", "1")
+            End If
+            row_head.Cells.Add(cell)
+        End If
+
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            Dim q_cek As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' AND id_report_status='3'"
+            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
+            If dt_cek.Rows.Count > 0 Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
                 cell.Text = ""
             Else
                 cell.Text = get_report_mark_status("3", "1")
@@ -3518,6 +3534,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = data_ceo.Rows(0)("employee_name").ToString
             row_name.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            row_name.Cells.Add(cell)
+        End If
 
         'opt
         If Not opt = "2" Then
@@ -3541,6 +3563,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
             row_role.Cells.Add(cell)
         Next j
+
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
@@ -3549,11 +3572,20 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = "Director"
+            row_role.Cells.Add(cell)
+        End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
             row_role.Cells.Add(cell)
         End If
+
         xrtable.Rows.Add(row_role)
 
         If include_time = "1" Then 'time included
@@ -3570,6 +3602,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Next j
             'Approved by CEO
             If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                Dim cell As New XRTableCell()
+                cell.Text = ""
+                row_time.Cells.Add(cell)
+            End If
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
@@ -3864,14 +3901,23 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             row_head.Cells.Add(cell)
         Next j
 
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
         query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
         query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
         query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
         Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            cell.Text = ""
+            row_head.Cells.Add(cell)
+        End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
@@ -3928,6 +3974,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             row_name.Cells.Add(cell)
         End If
 
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            row_name.Cells.Add(cell)
+        End If
+
         'opt
         If Not opt = "2" Then
             Dim cell As New XRTableCell()
@@ -3957,6 +4010,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = "Director"
+            row_role.Cells.Add(cell)
+        End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
@@ -3978,6 +4038,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Next j
             'Approved by CEO
             If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                Dim cell As New XRTableCell()
+                cell.Text = ""
+                row_time.Cells.Add(cell)
+            End If
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
@@ -4352,9 +4417,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
             row_head.Cells.Add(cell)
         Next j
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
         query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
         query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
         query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
         Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
@@ -4373,6 +4441,21 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
             row_head.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            Dim q_cek As String = "SELECT * FROM tb_mark_asg WHERE report_mark_type='" & report_mark_type & "' AND id_report_status='3'"
+            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
+            If dt_cek.Rows.Count > 0 Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+                cell.Text = ""
+            Else
+                cell.Text = get_report_mark_status("3", "1")
+            End If
+
+            row_head.Cells.Add(cell)
+        End If
+
         'opt
         If Not opt = "2" Then
             Dim cell As New XRTableCell()
@@ -4421,6 +4504,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = data_ceo.Rows(0)("employee_name").ToString
             row_name.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            row_name.Cells.Add(cell)
+        End If
 
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
@@ -4451,6 +4540,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = "Director"
+            row_role.Cells.Add(cell)
+        End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
@@ -4473,6 +4569,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Next j
             'Approved by CEO
             If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                Dim cell As New XRTableCell()
+                cell.Text = ""
+                row_time.Cells.Add(cell)
+            End If
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
@@ -4661,9 +4762,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
             row_head.Cells.Add(cell)
         Next j
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
         query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
         query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
         query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
         Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
@@ -4675,6 +4779,20 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = "Approved By,"
             row_head.Cells.Add(cell)
         End If
+        'Approved by CFO
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+                cell.Text = ""
+            Else
+                cell.Text = "Approved By,"
+            End If
+
+            row_head.Cells.Add(cell)
+        End If
+
         'opt
         If Not opt = "2" Then
             Dim cell As New XRTableCell()
@@ -4723,6 +4841,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = data_ceo.Rows(0)("employee_name").ToString
             row_name.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            row_name.Cells.Add(cell)
+        End If
 
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
@@ -4753,6 +4877,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = ""
             row_role.Cells.Add(cell)
         End If
+        If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = ""
+            row_role.Cells.Add(cell)
+        End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
@@ -4775,6 +4906,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Next j
             'Approved by CEO
             If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                Dim cell As New XRTableCell()
+                cell.Text = ""
+                row_time.Cells.Add(cell)
+            End If
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
