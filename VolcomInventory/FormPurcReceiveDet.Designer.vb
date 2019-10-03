@@ -79,6 +79,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdDept = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdUOM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -97,7 +98,6 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -425,6 +425,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnNo.FieldName = "no"
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnNo.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
         Me.GridColumnNo.Width = 95
@@ -435,6 +436,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnIdRecDetail.FieldName = "id_purc_rec_det"
         Me.GridColumnIdRecDetail.Name = "GridColumnIdRecDetail"
         Me.GridColumnIdRecDetail.OptionsColumn.AllowEdit = False
+        Me.GridColumnIdRecDetail.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnIDPODetail
         '
@@ -442,12 +444,15 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnIDPODetail.FieldName = "id_purc_order_det"
         Me.GridColumnIDPODetail.Name = "GridColumnIDPODetail"
         Me.GridColumnIDPODetail.OptionsColumn.AllowEdit = False
+        Me.GridColumnIDPODetail.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Item"
         Me.GridColumn1.FieldName = "item_desc"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 227
@@ -458,6 +463,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDesc.FieldName = "item_detail"
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.OptionsColumn.AllowEdit = False
+        Me.GridColumnDesc.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 2
         Me.GridColumnDesc.Width = 260
@@ -468,6 +474,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
         Me.GridColumnUOM.OptionsColumn.AllowEdit = False
+        Me.GridColumnUOM.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 3
         Me.GridColumnUOM.Width = 93
@@ -480,6 +487,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnPrice.FieldName = "value"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
+        Me.GridColumnPrice.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 4
         Me.GridColumnPrice.Width = 315
@@ -492,6 +500,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnAmount.FieldName = "amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.OptionsColumn.AllowEdit = False
+        Me.GridColumnAmount.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumnAmount.UnboundExpression = "[qty] * [value]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
@@ -526,6 +535,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnNote.Caption = "Note"
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnStatus
@@ -533,6 +543,8 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnStatus.Caption = "Status"
         Me.GridColumnStatus.FieldName = "stt"
         Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnStatus.OptionsColumn.ShowInCustomizationForm = False
         '
         'XTPDetail
         '
@@ -743,6 +755,15 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdDept.VisibleIndex = 1
         Me.GridColumnOrdDept.Width = 157
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Item"
+        Me.GridColumn4.FieldName = "item_desc"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 190
+        '
         'GridColumnOrdDesc
         '
         Me.GridColumnOrdDesc.Caption = "Description"
@@ -937,15 +958,6 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 144
         Me.LabelControl5.Text = "Status"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Item"
-        Me.GridColumn4.FieldName = "item_desc"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 190
         '
         'FormPurcReceiveDet
         '
