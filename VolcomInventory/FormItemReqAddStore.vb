@@ -28,6 +28,8 @@
 
     Sub viewItem()
         Cursor = Cursors.WaitCursor
+        Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
+
         Dim id_item_cat As String = "-1"
 
         Try
@@ -36,17 +38,27 @@
         End Try
 
         Dim cond As String = ""
+        '
         If id_item_cat = "0" Then
-            cond = ""
+            cond += ""
         Else
-            cond = "AND i.id_item_cat = '" + id_item_cat + "' "
+            cond += " AND i.id_item_cat = '" + id_item_cat + "' "
         End If
         '
-        Dim query As String = "SELECT i.id_item, i.item_desc , u.uom
-        FROM tb_item i 
-        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-        INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-        WHERE i.id_item>0 AND cat.id_expense_type=1 " + cond
+        If CEStoreRequest.Checked = True Then
+            cond += " AND si.id_departement='" & id_purc_store & "' "
+        Else
+            cond += " AND si.id_departement='" & id_departement_user & "' "
+        End If
+        '
+        Dim query As String = "SELECT si.id_item,i.`item_desc`,si.id_departement,SUM(IF(si.id_storage_category=1,si.storage_item_qty,-si.storage_item_qty)) AS qty, u.`uom`
+FROM tb_storage_item si
+INNER JOIN tb_item i ON i.`id_item`=si.`id_item`
+INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+WHERE i.id_item>0 " & cond & "
+GROUP BY si.id_item,si.id_departement
+HAVING SUM(IF(si.id_storage_category=1,si.storage_item_qty,-si.storage_item_qty)) > 0"
+
         viewSearchLookupQuery(SLEItem, query, "id_item", "item_desc", "id_item")
         Cursor = Cursors.Default
     End Sub
@@ -86,7 +98,6 @@
         Dim stc As New ClassPurcItemStock()
         Dim query As String = stc.queryGetStock(cond, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
 
         If data.Rows.Count > 0 Then
             Dim avail As Decimal = data.Rows(0)("qty") - current
@@ -135,17 +146,22 @@
         Dim id_store_cek As String = "-1"
         Try
             id_store_cek = SLEStore.EditValue.ToString
+            Dim id_item_cek As String = SLEItem.EditValue.ToString
+            Dim is_store_req_cek As String = "no"
+            If CEStoreRequest.Checked = True Then
+                is_store_req_cek = "yes"
+            End If
+            FormItemReqDet.GVDetail.ActiveFilterString = "[id_item]='" + id_item_cek + "' AND [id_comp]='" + id_store_cek + "' AND [is_store_request]='" + is_store_req_cek + "' "
+            If FormItemReqDet.GVDetail.RowCount > 0 Then
+                cond_exist = True
+            End If
         Catch ex As Exception
         End Try
-        Dim id_item_cek As String = SLEItem.EditValue.ToString
-        FormItemReqDet.GVDetail.ActiveFilterString = "[id_item]='" + id_item_cek + "' AND [id_comp]='" + id_store_cek + "' "
-        If FormItemReqDet.GVDetail.RowCount > 0 Then
-            cond_exist = True
-        End If
+
         makeSafeGV(FormItemReqDet.GVDetail)
 
-        If SLEStore.EditValue = Nothing Then
-            warningCustom("Please input store")
+        If SLEStore.EditValue = Nothing Or SLEItem.EditValue = Nothing Then
+            warningCustom("Please complete all input")
         ElseIf cond_exist Then
             warningCustom("Already exist !")
         ElseIf TxtQty.EditValue <= 0 Then
@@ -162,11 +178,13 @@
                 newRow("comp_number") = col_foc_str(0)
                 newRow("comp_name") = col_foc_str(1)
                 newRow("qty") = TxtQty.EditValue
-                If CEStoreRequest.Checked = True = True Then
+                '
+                If CEStoreRequest.Checked = True Then
                     newRow("is_store_request") = "yes"
                 Else
                     newRow("is_store_request") = "no"
                 End If
+                '
                 newRow("remark") = addSlashes(MENote.Text)
                 TryCast(FormItemReqDet.GCDetail.DataSource, DataTable).Rows.Add(newRow)
                 FormItemReqDet.GCDetail.RefreshDataSource()
@@ -187,6 +205,7 @@
             TxtAvailable.Visible = True
         End If
         '
+        viewItem()
         viewStock()
     End Sub
 End Class

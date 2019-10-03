@@ -49,6 +49,8 @@ Partial Class FormItemReqDet
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnITemName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPurcStorage = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdItemn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,6 +63,8 @@ Partial Class FormItemReqDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEditStoreFromPurcStorage = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnQtyDetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -71,10 +75,6 @@ Partial Class FormItemReqDet
         Me.PanelControlNavDetail = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICEPurcStorage = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEditStoreFromPurcStorage = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,16 +96,16 @@ Partial Class FormItemReqDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRequest.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEditStoreFromPurcStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavDetail.SuspendLayout()
-        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEditStoreFromPurcStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -418,6 +418,25 @@ Partial Class FormItemReqDet
         Me.GridColumnITemName.VisibleIndex = 1
         Me.GridColumnITemName.Width = 437
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "From Purchasing Storage"
+        Me.GridColumn4.ColumnEdit = Me.RICEPurcStorage
+        Me.GridColumn4.FieldName = "is_store_request"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 153
+        '
+        'RICEPurcStorage
+        '
+        Me.RICEPurcStorage.AutoHeight = False
+        Me.RICEPurcStorage.Name = "RICEPurcStorage"
+        Me.RICEPurcStorage.ValueChecked = "yes"
+        Me.RICEPurcStorage.ValueUnchecked = "no"
+        '
         'GridColumnIdItemn
         '
         Me.GridColumnIdItemn.Caption = "Id Item"
@@ -527,6 +546,22 @@ Partial Class FormItemReqDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "From Purchasing Storage"
+        Me.GridColumn10.ColumnEdit = Me.RepositoryItemCheckEditStoreFromPurcStorage
+        Me.GridColumn10.FieldName = "is_store_request"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        '
+        'RepositoryItemCheckEditStoreFromPurcStorage
+        '
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.AutoHeight = False
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.Name = "RepositoryItemCheckEditStoreFromPurcStorage"
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.ValueChecked = "yes"
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.ValueUnchecked = "no"
+        '
         'GridColumnQtyDetail
         '
         Me.GridColumnQtyDetail.Caption = "Qty"
@@ -584,7 +619,7 @@ Partial Class FormItemReqDet
         Me.GridColumnCombine.Caption = "Group"
         Me.GridColumnCombine.FieldName = "grp"
         Me.GridColumnCombine.Name = "GridColumnCombine"
-        Me.GridColumnCombine.UnboundExpression = "Concat([id_item], '#*mt*#', [item_desc])"
+        Me.GridColumnCombine.UnboundExpression = "Concat([id_item], '#*mt*#', [item_desc], '#*mt*#', [is_store_request])"
         Me.GridColumnCombine.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
         'PanelControlNavDetail
@@ -617,41 +652,6 @@ Partial Class FormItemReqDet
         Me.BtnAddDetail.Size = New System.Drawing.Size(75, 40)
         Me.BtnAddDetail.TabIndex = 15
         Me.BtnAddDetail.Text = "Add"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn4.Caption = "From Purchasing Storage"
-        Me.GridColumn4.ColumnEdit = Me.RICEPurcStorage
-        Me.GridColumn4.FieldName = "is_store_request"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 153
-        '
-        'RICEPurcStorage
-        '
-        Me.RICEPurcStorage.AutoHeight = False
-        Me.RICEPurcStorage.Name = "RICEPurcStorage"
-        Me.RICEPurcStorage.ValueChecked = "yes"
-        Me.RICEPurcStorage.ValueUnchecked = "no"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "From Purchasing Storage"
-        Me.GridColumn10.ColumnEdit = Me.RepositoryItemCheckEditStoreFromPurcStorage
-        Me.GridColumn10.FieldName = "is_store_request"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        '
-        'RepositoryItemCheckEditStoreFromPurcStorage
-        '
-        Me.RepositoryItemCheckEditStoreFromPurcStorage.AutoHeight = False
-        Me.RepositoryItemCheckEditStoreFromPurcStorage.Name = "RepositoryItemCheckEditStoreFromPurcStorage"
-        Me.RepositoryItemCheckEditStoreFromPurcStorage.ValueChecked = "no"
-        Me.RepositoryItemCheckEditStoreFromPurcStorage.ValueUnchecked = "yes"
         '
         'FormItemReqDet
         '
@@ -692,16 +692,16 @@ Partial Class FormItemReqDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCRequest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRequest.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEditStoreFromPurcStorage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavDetail.ResumeLayout(False)
-        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEditStoreFromPurcStorage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

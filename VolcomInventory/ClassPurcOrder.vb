@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT po.id_purc_order, c.id_comp,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name as emp_created,po.last_update,emp_upd.employee_name AS emp_updated 
+        Dim query As String = "SELECT po.est_date_receive,po.id_purc_order, c.id_comp,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name as emp_created,po.last_update,emp_upd.employee_name AS emp_updated 
         FROM tb_purc_order po
         INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
         INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
@@ -56,7 +56,7 @@
     End Function
 
     Public Function queryOrderDetails(ByVal id_purc_order As String, ByVal condition As String)
-        Dim query = "SELECT pod.is_drop,pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
+        Dim query = "SELECT pod.is_drop,pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, reqd.item_detail, i.item_desc, i.id_uom, u.uom, pod.`value`, 
         reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`, 0 AS `qty`
         FROM tb_purc_order_det pod
         LEFT JOIN (
