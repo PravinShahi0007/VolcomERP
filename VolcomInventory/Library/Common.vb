@@ -3416,6 +3416,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Dim cellsInRow As Integer = data.Rows.Count
         Dim rowHeight As Single = 25.0F
 
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
+        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
+        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
+        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
+
         'header
         Dim row_head As New XRTableRow()
         row_head.HeightF = rowHeight
@@ -3440,35 +3448,34 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 If data.Rows(j)("report_status").ToString = data.Rows(j - 1)("report_status").ToString Then
                     cell.Text = ""
                 Else
-                    cell.Text = data.Rows(j)("report_status_display").ToString
+                    If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1") Then
+                        cell.Text = ""
+                    Else
+                        cell.Text = data.Rows(j)("report_status_display").ToString
+                    End If
                 End If
             Else
-                cell.Text = data.Rows(j)("report_status_display").ToString
+                If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1") Then
+                    cell.Text = ""
+                Else
+                    cell.Text = data.Rows(j)("report_status_display").ToString
+                End If
             End If
 
             row_head.Cells.Add(cell)
         Next j
 
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
-        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
-        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
-        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
-        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
-        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
-        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
-
         'Approved by CEO & CFO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
-            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            Dim q_cek As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' AND id_report_status='3'"
-            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
-            If dt_cek.Rows.Count > 0 Then
-                cell.Text = ""
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             Else
-                cell.Text = get_report_mark_status("3", "1")
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             End If
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            cell.Text = get_report_mark_status("3", "1")
             row_head.Cells.Add(cell)
         End If
 
@@ -3476,9 +3483,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            Dim q_cek As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' AND id_report_status='3'"
-            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
-            If dt_cek.Rows.Count > 0 Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
                 cell.Text = ""
             Else
                 cell.Text = get_report_mark_status("3", "1")
@@ -4368,7 +4373,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         '2 = false
 
         xrtable.Borders = DevExpress.XtraPrinting.BorderSide.None
-        xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         'XrTableCell1.Visible = False
 
         Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,d.employee_position AS role "
@@ -4384,6 +4389,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         Dim cellsInRow As Integer = data.Rows.Count
         Dim rowHeight As Single = 25.0F
+
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
+        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
+        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
+        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
         'header
         Dim row_head As New XRTableRow()
@@ -4409,45 +4422,41 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 If data.Rows(j)("report_status").ToString = data.Rows(j - 1)("report_status").ToString Then
                     cell.Text = ""
                 Else
-                    cell.Text = data.Rows(j)("report_status_display").ToString
+                    If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1") Then
+                        cell.Text = ""
+                    Else
+                        cell.Text = data.Rows(j)("report_status_display").ToString
+                    End If
                 End If
             Else
-                cell.Text = data.Rows(j)("report_status_display").ToString
+                If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1") Then
+                    cell.Text = ""
+                Else
+                    cell.Text = data.Rows(j)("report_status_display").ToString
+                End If
             End If
 
             row_head.Cells.Add(cell)
         Next j
 
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
-        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
-        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
-        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
-        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
-        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
-        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
-
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
-            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            Dim q_cek As String = "SELECT * FROM tb_mark_asg WHERE report_mark_type='" & report_mark_type & "' AND id_report_status='3'"
-            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
-            If dt_cek.Rows.Count > 0 Then
-                cell.Text = ""
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             Else
-                cell.Text = get_report_mark_status("3", "1")
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             End If
 
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            cell.Text = get_report_mark_status("3", "1")
             row_head.Cells.Add(cell)
         End If
         If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            Dim q_cek As String = "SELECT * FROM tb_mark_asg WHERE report_mark_type='" & report_mark_type & "' AND id_report_status='3'"
-            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
-            If dt_cek.Rows.Count > 0 Or data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
                 cell.Text = ""
             Else
                 cell.Text = get_report_mark_status("3", "1")
