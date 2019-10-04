@@ -47,9 +47,11 @@
 
             Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-            Dim image As Image = Image.FromStream(msImage)
+            If msImage.Length > 0 Then
+                Dim image As Image = Image.FromStream(msImage)
 
-            FormEmployeePpsDet.PEKTP.EditValue = image
+                FormEmployeePpsDet.PEKTP.EditValue = image
+            End If
         ElseIf type = "kk" Then
             Dim ic As DevExpress.XtraEditors.PictureEdit = CType(XSCImageList.Controls(0), DevExpress.XtraEditors.PictureEdit)
 
@@ -61,9 +63,11 @@
 
             Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-            Dim image As Image = Image.FromStream(msImage)
+            If msImage.Length > 0 Then
+                Dim image As Image = Image.FromStream(msImage)
 
-            FormEmployeePpsDet.PEKK.EditValue = image
+                FormEmployeePpsDet.PEKK.EditValue = image
+            End If
         ElseIf type = "rek" Then
             Dim ic As DevExpress.XtraEditors.PictureEdit = CType(XSCImageList.Controls(0), DevExpress.XtraEditors.PictureEdit)
 
@@ -75,9 +79,11 @@
 
             Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-            Dim image As Image = Image.FromStream(msImage)
+            If msImage.Length > 0 Then
+                Dim image As Image = Image.FromStream(msImage)
 
-            FormEmployeePpsDet.PEREK.EditValue = image
+                FormEmployeePpsDet.PEREK.EditValue = image
+            End If
         ElseIf type = "position" Then
             images.Rows.Clear()
 
@@ -96,20 +102,31 @@
 
                 Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-                Dim image As Image = Image.FromStream(msImage)
+                If msImage.Length > 0 Then
+                    Dim image As Image = Image.FromStream(msImage)
 
-                PEEdit.EditValue = image
+                    PEEdit.EditValue = image
+
+                    FormEmployeePpsDet.PCPosAtt.Controls.Add(PEEdit)
+                    FormEmployeePpsDet.PCPosAtt.Controls.SetChildIndex(PEEdit, 0)
+                End If
+            Next
+
+            If FormEmployeePpsDet.PCPosAtt.Controls.Count <= 0 Then
+                Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
                 FormEmployeePpsDet.PCPosAtt.Controls.Add(PEEdit)
                 FormEmployeePpsDet.PCPosAtt.Controls.SetChildIndex(PEEdit, 0)
-            Next
+            End If
         End If
 
         Close()
     End Sub
 
     Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
-        addImage(Nothing)
+        Dim buffer As Byte() = New Byte() {}
+
+        addImage(New IO.MemoryStream(buffer, False))
     End Sub
 
     Private Sub FormEmployeePpsAtt_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -127,21 +144,19 @@
         PEEdit.Dock = DockStyle.Left
         PEEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
 
+        AddHandler PEEdit.Click, AddressOf clickImage
+        AddHandler PEEdit.ImageChanged, AddressOf changeImage
+
         ' load image
-        If Not msImage Is Nothing Then
+        If msImage.Length > 0 Then
             Dim image As Image = Image.FromStream(msImage)
 
             PEEdit.EditValue = image
-        Else
-            PEEdit.LoadAsync(FormEmployeePpsDet.pps_path + "default.jpg")
         End If
 
         If read_only Then
             PEEdit.ReadOnly = True
         End If
-
-        AddHandler PEEdit.Click, AddressOf clickImage
-        AddHandler PEEdit.ImageChanged, AddressOf changeImage
 
         XSCImageList.Controls.Add(PEEdit)
         XSCImageList.Controls.SetChildIndex(PEEdit, 0)
@@ -168,11 +183,15 @@
     Sub changeImage(sender As Object, e As EventArgs)
         Dim PEEdit As DevExpress.XtraEditors.PictureEdit = CType(sender, DevExpress.XtraEditors.PictureEdit)
 
-        PictureEdit.EditValue = PEEdit.EditValue
+        If Not PEEdit.EditValue Is Nothing Then
+            Dim image As Image = imageResize(CType(PEEdit.EditValue, Bitmap))
 
-        If PEEdit.EditValue Is Nothing Then
-            PEEdit.LoadAsync(FormEmployeePpsDet.pps_path + "default.jpg")
+            If Not image Is Nothing Then
+                PEEdit.EditValue = image
+            End If
         End If
+
+        PictureEdit.EditValue = PEEdit.EditValue
     End Sub
 
     Private Sub SBScanUpload_Click(sender As Object, e As EventArgs) Handles SBScanUpload.Click
@@ -242,4 +261,38 @@
             End If
         Next
     End Sub
+
+    Function imageResize(image As Bitmap) As Image
+        Dim width As Integer = 0
+        Dim height As Integer = 0
+        Dim maxSize As Integer = 1024
+
+        If image.Width > maxSize Or image.Height > maxSize Then
+            If image.Width > image.Height Then
+                width = maxSize
+                height = (maxSize / image.Width) * image.Height
+            Else
+                width = (maxSize / image.Height) * image.Width
+                height = maxSize
+            End If
+        End If
+
+        If width > 0 And height > 0 Then
+            Dim result As Bitmap = New Bitmap(width, height)
+
+            Using gfx As Graphics = Graphics.FromImage(result)
+                gfx.CompositingQuality = Drawing2D.CompositingQuality.HighQuality
+                gfx.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+                gfx.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighQuality
+                gfx.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
+                gfx.CompositingMode = Drawing2D.CompositingMode.SourceOver
+
+                gfx.DrawImage(image, 0, 0, result.Width, result.Height)
+            End Using
+
+            Return CType(result, Image)
+        Else
+            Return Nothing
+        End If
+    End Function
 End Class
