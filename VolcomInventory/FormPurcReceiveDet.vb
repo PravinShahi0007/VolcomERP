@@ -180,12 +180,12 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
             LEFT JOIN (
-	            SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	            SELECT rd.id_item, SUM(rd.qty) AS `qty` ,rd.`id_purc_order_det`
 	            FROM tb_purc_rec_det rd
 	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-	            GROUP BY rd.id_item
-            ) rd ON rd.id_item = pod.id_item
+	            GROUP BY rd.id_item,rd.`id_purc_order_det`
+            ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
             LEFT JOIN (
 	            SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	            FROM tb_purc_return_det retd
@@ -370,6 +370,7 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
         Dim id_purc_order_det As String = GVSummary.GetRowCellValue(rh, "id_purc_order_det").ToString
         Dim id_purc_rec_det As String = GVSummary.GetRowCellValue(rh, "id_purc_rec_det").ToString
         Dim id_item As String = GVSummary.GetRowCellValue(rh, "id_item").ToString
+        Dim item_detail As String = addSlashes(GVSummary.GetRowCellValue(rh, "item_detail").ToString)
         If e.Column.FieldName = "qty" Then
             If e.Value >= 0 Then
                 Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
@@ -378,12 +379,12 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
                 pod.`value` 
                 FROM tb_purc_order_det pod
                 LEFT JOIN (
-	                SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	                SELECT rd.id_item, SUM(rd.qty) AS `qty`,rd.id_purc_order_det
 	                FROM tb_purc_rec_det rd
 	                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 	                WHERE r.id_purc_order=" + id_purc_order + " AND rd.id_item=" + id_item + " AND r.id_report_status!=5 
-	                GROUP BY rd.id_item
-                ) rd ON rd.id_item = pod.id_item
+	                GROUP BY rd.id_item,rd.id_purc_order_det
+                ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
                 LEFT JOIN (
 	                SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	                FROM tb_purc_return_det retd
@@ -392,7 +393,7 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
 	                GROUP BY retd.id_item
                 ) retd ON retd.id_item = pod.id_item
                 INNER JOIN tb_purc_req_det prd ON prd.id_purc_req_det=pod.id_purc_req_det
-                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + "
+                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND prd.item_detail='" & item_detail & "'
                 GROUP BY pod.id_item, prd.item_detail "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
                 If e.Value > dcek.Rows(0)("qty_remaining") Then
