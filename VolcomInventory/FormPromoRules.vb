@@ -1,6 +1,6 @@
 ﻿Public Class FormPromoRules
     Private Sub FormPromoRules_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        viewRules()
     End Sub
 
     Sub viewRules()

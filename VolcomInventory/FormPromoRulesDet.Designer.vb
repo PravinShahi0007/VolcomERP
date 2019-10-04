@@ -194,7 +194,6 @@ Partial Class FormPromoRulesDet
         Me.GVStore.GridControl = Me.GCStore
         Me.GVStore.Name = "GVStore"
         Me.GVStore.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVStore.OptionsBehavior.ReadOnly = True
         Me.GVStore.OptionsFind.AlwaysVisible = True
         Me.GVStore.OptionsView.ShowGroupPanel = False
         '

@@ -1734,6 +1734,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             FormVoucherPOSDet.action = "ins"
             FormVoucherPOSDet.ShowDialog()
+        ElseIf formName = "FormPromoRules" Then
+            'Promo Rulese
+            FormPromoRulesDet.action = "ins"
+            FormPromoRulesDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2814,6 +2818,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormVoucherPOSDet.action = "upd"
                 FormVoucherPOSDet.id = FormVoucherPOS.GVData.GetFocusedRowCellValue("id_pos_voucher").ToString
                 FormVoucherPOSDet.ShowDialog()
+            ElseIf formName = "FormPromoRules" Then
+                'Promo Rulese
+                FormPromoRulesDet.action = "upd"
+                FormPromoRulesDet.id = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
+                FormPromoRulesDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6059,6 +6068,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
+        ElseIf formName = "FormPromoRules" Then
 
         Else
             RPSubMenu.Visible = False
@@ -7604,6 +7614,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
             print_raw(FormVoucherPOS.GCData, "")
+        ElseIf formName = "FormPromoRules" Then
+            print(FormPromoRules.GCStore, FormPromoRules.GVRules.GetFocusedRowCellValue("name").ToString + " (" + FormPromoRules.GVRules.GetFocusedRowCellValue("code").ToString + ")" + " - " + "Limit Value : " + FormPromoRules.GVRules.GetFocusedRowCellValue("limit_value").ToString)
         Else
             RPSubMenu.Visible = False
         End If
@@ -8385,6 +8397,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             FormVoucherPOS.Close()
             FormVoucherPOS.Dispose()
+        ElseIf formName = "FormPromoRules" Then
+            FormPromoRules.Close()
+            FormPromoRules.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9227,6 +9242,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
             FormVoucherPOS.viewVoucher()
+        ElseIf formName = "FormPromoRules" Then
+            FormPromoRules.viewRules()
         End If
     End Sub
     'Switch
