@@ -59,6 +59,25 @@ Partial Class FormReportPaymentFGPO
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +87,7 @@ Partial Class FormReportPaymentFGPO
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +106,15 @@ Partial Class FormReportPaymentFGPO
         CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -178,6 +207,7 @@ Partial Class FormReportPaymentFGPO
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelControl7)
         Me.PanelControl3.Controls.Add(Me.PanelControl5)
         Me.PanelControl3.Controls.Add(Me.PanelControl6)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
@@ -188,6 +218,7 @@ Partial Class FormReportPaymentFGPO
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.GCSummary)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl4.Location = New System.Drawing.Point(2, 125)
         Me.PanelControl4.Name = "PanelControl4"
@@ -456,7 +487,7 @@ Partial Class FormReportPaymentFGPO
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(10, 67)
+        Me.LabelControl11.Location = New System.Drawing.Point(8, 62)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl11.TabIndex = 174
@@ -484,6 +515,196 @@ Partial Class FormReportPaymentFGPO
         Me.LabelControl5.TabIndex = 176
         Me.LabelControl5.Text = "Due Date"
         '
+        'GCSummary
+        '
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(2, 2)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.Size = New System.Drawing.Size(991, 363)
+        Me.GCSummary.TabIndex = 0
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        '
+        'GVSummary
+        '
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn7, Me.GridColumn12})
+        Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Description"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 272
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Qty"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "qty"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.Width = 68
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Amount"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "amount"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 178
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.TextEdit5)
+        Me.PanelControl7.Controls.Add(Me.TextEdit4)
+        Me.PanelControl7.Controls.Add(Me.TextEdit3)
+        Me.PanelControl7.Controls.Add(Me.TextEdit2)
+        Me.PanelControl7.Controls.Add(Me.TextEdit1)
+        Me.PanelControl7.Controls.Add(Me.LabelControl16)
+        Me.PanelControl7.Controls.Add(Me.LabelControl7)
+        Me.PanelControl7.Controls.Add(Me.LabelControl8)
+        Me.PanelControl7.Controls.Add(Me.LabelControl10)
+        Me.PanelControl7.Controls.Add(Me.LabelControl12)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl7.Location = New System.Drawing.Point(693, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(301, 119)
+        Me.PanelControl7.TabIndex = 191
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(10, 88)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(104, 13)
+        Me.LabelControl7.TabIndex = 176
+        Me.LabelControl7.Text = "Over (More than 2%)"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(10, 36)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(33, 13)
+        Me.LabelControl8.TabIndex = 174
+        Me.LabelControl8.Text = "Normal"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(143, 10)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl10.TabIndex = 161
+        Me.LabelControl10.Text = "Receiving Qty"
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 10)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl12.TabIndex = 155
+        Me.LabelControl12.Text = "Order Qty"
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(10, 62)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(78, 13)
+        Me.LabelControl16.TabIndex = 177
+        Me.LabelControl16.Text = "Extra upt to 2%"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(120, 85)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Size = New System.Drawing.Size(172, 20)
+        Me.TextEdit1.TabIndex = 183
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.EditValue = ""
+        Me.TextEdit2.Location = New System.Drawing.Point(120, 59)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.EditValueChangedDelay = 1
+        Me.TextEdit2.Size = New System.Drawing.Size(172, 20)
+        Me.TextEdit2.TabIndex = 184
+        '
+        'TextEdit3
+        '
+        Me.TextEdit3.EditValue = ""
+        Me.TextEdit3.Location = New System.Drawing.Point(120, 33)
+        Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Properties.EditValueChangedDelay = 1
+        Me.TextEdit3.Size = New System.Drawing.Size(172, 20)
+        Me.TextEdit3.TabIndex = 185
+        '
+        'TextEdit4
+        '
+        Me.TextEdit4.EditValue = ""
+        Me.TextEdit4.Location = New System.Drawing.Point(65, 7)
+        Me.TextEdit4.Name = "TextEdit4"
+        Me.TextEdit4.Properties.EditValueChangedDelay = 1
+        Me.TextEdit4.Size = New System.Drawing.Size(72, 20)
+        Me.TextEdit4.TabIndex = 186
+        '
+        'TextEdit5
+        '
+        Me.TextEdit5.EditValue = ""
+        Me.TextEdit5.Location = New System.Drawing.Point(220, 7)
+        Me.TextEdit5.Name = "TextEdit5"
+        Me.TextEdit5.Properties.EditValueChangedDelay = 1
+        Me.TextEdit5.Size = New System.Drawing.Size(72, 20)
+        Me.TextEdit5.TabIndex = 187
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Amount Paid"
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "amount_paid"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_paid", "{0:N2}")})
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.Width = 184
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Qty Paid"
+        Me.GridColumn11.DisplayFormat.FormatString = "N0"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "qty_paid"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_paid", "{0:N0}")})
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 3
+        Me.GridColumn11.Width = 78
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Remaining"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "remaining"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining", "{0:N2}")})
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.Width = 193
+        '
         'FormReportPaymentFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -506,6 +727,7 @@ Partial Class FormReportPaymentFGPO
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -526,6 +748,16 @@ Partial Class FormReportPaymentFGPO
         CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        Me.PanelControl7.PerformLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -570,4 +802,23 @@ Partial Class FormReportPaymentFGPO
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DERecDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
