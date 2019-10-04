@@ -171,11 +171,11 @@
                     WHERE rd.id_rules=" + id + " "
                     Dim dold As DataTable = execute_query(qold, -1, True, "", "", "", "")
                     For i As Integer = 0 To dold.Rows.Count - 1
-                        Dim id_outlet As String = GVStore.GetRowCellValue(i, "id_outlet").ToString
-                        Dim host As String = GVStore.GetRowCellValue(i, "host").ToString
-                        Dim username As String = GVStore.GetRowCellValue(i, "username").ToString
-                        Dim pass As String = GVStore.GetRowCellValue(i, "pass").ToString
-                        Dim db As String = GVStore.GetRowCellValue(i, "db").ToString
+                        Dim id_outlet As String = dold.Rows(i)("id_outlet").ToString
+                        Dim host As String = dold.Rows(i)("host").ToString
+                        Dim username As String = dold.Rows(i)("username").ToString
+                        Dim pass As String = dold.Rows(i)("pass").ToString
+                        Dim db As String = dold.Rows(i)("db").ToString
 
                         Dim qds As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
                         execute_non_query_long(qds, False, host, username, pass, db)
