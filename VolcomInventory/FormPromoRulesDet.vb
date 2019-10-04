@@ -38,6 +38,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             LEProductStatus.ItemIndex = LEProductStatus.Properties.GetDataSourceRowIndex("id_design_cat", data.Rows(0)("id_design_cat").ToString)
             TxtLimitValue.EditValue = data.Rows(0)("limit_value")
+            id_product = data.Rows(0)("id_product").ToString
             TxtCode.Text = data.Rows(0)("code").ToString
             TxtName.Text = data.Rows(0)("name").ToString
             TxtSize.Text = data.Rows(0)("size").ToString
@@ -153,6 +154,7 @@
 
                     'refresh
                     FormPromoRules.viewRules()
+                    FormPromoRules.viewStore()
                     FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
                     Close()
                     Cursor = Cursors.Default
@@ -180,7 +182,7 @@
                     Next
 
                     'main 
-                    Dim query As String = "UPDATE tb_promo_rules Set id_design_cat='" + id_design_cat + "', limit_value='" + limit_value + "' id_product='" + id_product + "' WHERE id_rules='" + id + "' "
+                    Dim query As String = "UPDATE tb_promo_rules Set id_design_cat='" + id_design_cat + "', limit_value='" + limit_value + "', id_product='" + id_product + "' WHERE id_rules='" + id + "' "
                     execute_non_query(query, True, "", "", "", "")
 
                     'detail
@@ -193,6 +195,7 @@
 
                     'refresh
                     FormPromoRules.viewRules()
+                    FormPromoRules.viewStore()
                     FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
                     Close()
 
