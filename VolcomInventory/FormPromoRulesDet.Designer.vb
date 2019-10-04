@@ -23,6 +23,8 @@ Partial Class FormPromoRulesDet
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtSize = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtLimitValue = New DevExpress.XtraEditors.TextEdit()
@@ -42,6 +44,7 @@ Partial Class FormPromoRulesDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtLimitValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +86,8 @@ Partial Class FormPromoRulesDet
         '
         'GroupControl1
         '
+        Me.GroupControl1.Controls.Add(Me.TxtSize)
+        Me.GroupControl1.Controls.Add(Me.LabelControl5)
         Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
         Me.GroupControl1.Controls.Add(Me.TxtLimitValue)
@@ -97,6 +102,23 @@ Partial Class FormPromoRulesDet
         Me.GroupControl1.Size = New System.Drawing.Size(476, 123)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Rules"
+        '
+        'TxtSize
+        '
+        Me.TxtSize.EditValue = ""
+        Me.TxtSize.Location = New System.Drawing.Point(360, 58)
+        Me.TxtSize.Name = "TxtSize"
+        Me.TxtSize.Properties.ReadOnly = True
+        Me.TxtSize.Size = New System.Drawing.Size(104, 20)
+        Me.TxtSize.TabIndex = 9
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(335, 61)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl5.TabIndex = 8
+        Me.LabelControl5.Text = "Size"
         '
         'LabelControl4
         '
@@ -148,7 +170,7 @@ Partial Class FormPromoRulesDet
         Me.TxtCode.EditValue = ""
         Me.TxtCode.Location = New System.Drawing.Point(98, 58)
         Me.TxtCode.Name = "TxtCode"
-        Me.TxtCode.Size = New System.Drawing.Size(366, 20)
+        Me.TxtCode.Size = New System.Drawing.Size(231, 20)
         Me.TxtCode.TabIndex = 3
         '
         'LabelControl2
@@ -202,12 +224,14 @@ Partial Class FormPromoRulesDet
         Me.GridColumnid_outlet.Caption = "id_outlet"
         Me.GridColumnid_outlet.FieldName = "id_outlet"
         Me.GridColumnid_outlet.Name = "GridColumnid_outlet"
+        Me.GridColumnid_outlet.OptionsColumn.AllowEdit = False
         '
         'GridColumnoutlet_name
         '
         Me.GridColumnoutlet_name.Caption = "Store"
         Me.GridColumnoutlet_name.FieldName = "outlet_name"
         Me.GridColumnoutlet_name.Name = "GridColumnoutlet_name"
+        Me.GridColumnoutlet_name.OptionsColumn.AllowEdit = False
         Me.GridColumnoutlet_name.Visible = True
         Me.GridColumnoutlet_name.VisibleIndex = 0
         '
@@ -239,12 +263,14 @@ Partial Class FormPromoRulesDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPromoRulesDet"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Set Rule"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtLimitValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -277,4 +303,6 @@ Partial Class FormPromoRulesDet
     Friend WithEvents GridColumnoutlet_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnActive As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents TxtSize As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -24,9 +24,6 @@ Partial Class FormPromoRules
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCRules = New DevExpress.XtraGrid.GridControl()
         Me.GVRules = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.GCStore = New DevExpress.XtraGrid.GridControl()
-        Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_rules = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_design_cat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_cat = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,10 +31,14 @@ Partial Class FormPromoRules
         Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCStore = New DevExpress.XtraGrid.GridControl()
+        Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_outlet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnoutlet_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnActive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,13 +89,65 @@ Partial Class FormPromoRules
         '
         'GVRules
         '
-        Me.GVRules.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_rules, Me.GridColumnid_design_cat, Me.GridColumndesign_cat, Me.GridColumnlimit_value, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname})
+        Me.GVRules.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_rules, Me.GridColumnid_design_cat, Me.GridColumndesign_cat, Me.GridColumnlimit_value, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnSize})
         Me.GVRules.GridControl = Me.GCRules
         Me.GVRules.Name = "GVRules"
         Me.GVRules.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVRules.OptionsBehavior.Editable = False
         Me.GVRules.OptionsFind.AlwaysVisible = True
         Me.GVRules.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_rules
+        '
+        Me.GridColumnid_rules.Caption = "id_rules"
+        Me.GridColumnid_rules.FieldName = "id_rules"
+        Me.GridColumnid_rules.Name = "GridColumnid_rules"
+        '
+        'GridColumnid_design_cat
+        '
+        Me.GridColumnid_design_cat.Caption = "id_design_cat"
+        Me.GridColumnid_design_cat.FieldName = "id_design_cat"
+        Me.GridColumnid_design_cat.Name = "GridColumnid_design_cat"
+        '
+        'GridColumndesign_cat
+        '
+        Me.GridColumndesign_cat.Caption = "Product Status"
+        Me.GridColumndesign_cat.FieldName = "design_cat"
+        Me.GridColumndesign_cat.Name = "GridColumndesign_cat"
+        Me.GridColumndesign_cat.Visible = True
+        Me.GridColumndesign_cat.VisibleIndex = 2
+        '
+        'GridColumnlimit_value
+        '
+        Me.GridColumnlimit_value.Caption = "Limit Value"
+        Me.GridColumnlimit_value.DisplayFormat.FormatString = "N0"
+        Me.GridColumnlimit_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnlimit_value.FieldName = "limit_value"
+        Me.GridColumnlimit_value.Name = "GridColumnlimit_value"
+        Me.GridColumnlimit_value.Visible = True
+        Me.GridColumnlimit_value.VisibleIndex = 4
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 0
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Style"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 1
         '
         'GroupControl2
         '
@@ -125,58 +178,6 @@ Partial Class FormPromoRules
         Me.GVStore.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVStore.OptionsFind.AlwaysVisible = True
         Me.GVStore.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_rules
-        '
-        Me.GridColumnid_rules.Caption = "id_rules"
-        Me.GridColumnid_rules.FieldName = "id_rules"
-        Me.GridColumnid_rules.Name = "GridColumnid_rules"
-        '
-        'GridColumnid_design_cat
-        '
-        Me.GridColumnid_design_cat.Caption = "id_design_cat"
-        Me.GridColumnid_design_cat.FieldName = "id_design_cat"
-        Me.GridColumnid_design_cat.Name = "GridColumnid_design_cat"
-        '
-        'GridColumndesign_cat
-        '
-        Me.GridColumndesign_cat.Caption = "Product Status"
-        Me.GridColumndesign_cat.FieldName = "design_cat"
-        Me.GridColumndesign_cat.Name = "GridColumndesign_cat"
-        Me.GridColumndesign_cat.Visible = True
-        Me.GridColumndesign_cat.VisibleIndex = 2
-        '
-        'GridColumnlimit_value
-        '
-        Me.GridColumnlimit_value.Caption = "Limit Value"
-        Me.GridColumnlimit_value.DisplayFormat.FormatString = "N0"
-        Me.GridColumnlimit_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnlimit_value.FieldName = "limit_value"
-        Me.GridColumnlimit_value.Name = "GridColumnlimit_value"
-        Me.GridColumnlimit_value.Visible = True
-        Me.GridColumnlimit_value.VisibleIndex = 3
-        '
-        'GridColumnid_product
-        '
-        Me.GridColumnid_product.Caption = "id_product"
-        Me.GridColumnid_product.FieldName = "id_product"
-        Me.GridColumnid_product.Name = "GridColumnid_product"
-        '
-        'GridColumncode
-        '
-        Me.GridColumncode.Caption = "Code"
-        Me.GridColumncode.FieldName = "code"
-        Me.GridColumncode.Name = "GridColumncode"
-        Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 0
-        '
-        'GridColumnname
-        '
-        Me.GridColumnname.Caption = "Style"
-        Me.GridColumnname.FieldName = "name"
-        Me.GridColumnname.Name = "GridColumnname"
-        Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 1
         '
         'GridColumnid_outlet
         '
@@ -209,6 +210,14 @@ Partial Class FormPromoRules
         Me.RepositoryItemCheckEdit1.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureChecked"), System.Drawing.Image)
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 3
         '
         'FormPromoRules
         '
@@ -252,4 +261,5 @@ Partial Class FormPromoRules
     Friend WithEvents GridColumnoutlet_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnActive As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
 End Class
