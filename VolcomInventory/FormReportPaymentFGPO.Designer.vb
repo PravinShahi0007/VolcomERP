@@ -20,33 +20,41 @@ Partial Class FormReportPaymentFGPO
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEFGPO = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEReff = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEPOType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ColIdPOType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColPOType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEDesignCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEUSCOde = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DERecDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TELeadTime = New DevExpress.XtraEditors.SpinEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -55,66 +63,58 @@ Partial Class FormReportPaymentFGPO
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.DERecDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEPOType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPOType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPOType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDesignCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TEReff = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUSCOde = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEUSCOde.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TELeadTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl7.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUSCOde.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -128,24 +128,13 @@ Partial Class FormReportPaymentFGPO
         Me.PanelControl1.Size = New System.Drawing.Size(999, 50)
         Me.PanelControl1.TabIndex = 0
         '
-        'PanelControl2
+        'BView
         '
-        Me.PanelControl2.Controls.Add(Me.PanelControl4)
-        Me.PanelControl2.Controls.Add(Me.PanelControl3)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 50)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(999, 494)
-        Me.PanelControl2.TabIndex = 1
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.LabelControl1.Location = New System.Drawing.Point(20, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(88, 16)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "F.G.PO Number"
+        Me.BView.Location = New System.Drawing.Point(400, 12)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(62, 23)
+        Me.BView.TabIndex = 8898
+        Me.BView.Text = "view"
         '
         'SLEFGPO
         '
@@ -197,13 +186,119 @@ Partial Class FormReportPaymentFGPO
         Me.GridColumn4.VisibleIndex = 1
         Me.GridColumn4.Width = 411
         '
-        'BView
+        'LabelControl1
         '
-        Me.BView.Location = New System.Drawing.Point(400, 12)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(62, 23)
-        Me.BView.TabIndex = 8898
-        Me.BView.Text = "view"
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.LabelControl1.Location = New System.Drawing.Point(20, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(88, 16)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "F.G.PO Number"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.PanelControl4)
+        Me.PanelControl2.Controls.Add(Me.PanelControl3)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 50)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(999, 494)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.GCSummary)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 125)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(995, 367)
+        Me.PanelControl4.TabIndex = 1
+        '
+        'GCSummary
+        '
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(2, 2)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.Size = New System.Drawing.Size(991, 363)
+        Me.GCSummary.TabIndex = 0
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        '
+        'GVSummary
+        '
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn7, Me.GridColumn12})
+        Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Description"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 272
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Qty"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "qty"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.Width = 68
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Amount"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "amount"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 178
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Qty Paid"
+        Me.GridColumn11.DisplayFormat.FormatString = "N0"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "qty_paid"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_paid", "{0:N0}")})
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 3
+        Me.GridColumn11.Width = 78
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Amount Paid"
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "amount_paid"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_paid", "{0:N2}")})
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.Width = 184
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Remaining"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "remaining"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining", "{0:N2}")})
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.Width = 193
         '
         'PanelControl3
         '
@@ -216,155 +311,109 @@ Partial Class FormReportPaymentFGPO
         Me.PanelControl3.Size = New System.Drawing.Size(995, 123)
         Me.PanelControl3.TabIndex = 0
         '
-        'PanelControl4
+        'PanelControl7
         '
-        Me.PanelControl4.Controls.Add(Me.GCSummary)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 125)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(995, 367)
-        Me.PanelControl4.TabIndex = 1
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.TextEdit5)
+        Me.PanelControl7.Controls.Add(Me.TextEdit4)
+        Me.PanelControl7.Controls.Add(Me.TextEdit3)
+        Me.PanelControl7.Controls.Add(Me.TextEdit2)
+        Me.PanelControl7.Controls.Add(Me.TextEdit1)
+        Me.PanelControl7.Controls.Add(Me.LabelControl16)
+        Me.PanelControl7.Controls.Add(Me.LabelControl7)
+        Me.PanelControl7.Controls.Add(Me.LabelControl8)
+        Me.PanelControl7.Controls.Add(Me.LabelControl10)
+        Me.PanelControl7.Controls.Add(Me.LabelControl12)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl7.Location = New System.Drawing.Point(693, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(301, 119)
+        Me.PanelControl7.TabIndex = 191
         '
-        'TEReff
+        'TextEdit5
         '
-        Me.TEReff.EditValue = ""
-        Me.TEReff.Location = New System.Drawing.Point(239, 7)
-        Me.TEReff.Name = "TEReff"
-        Me.TEReff.Properties.EditValueChangedDelay = 1
-        Me.TEReff.Size = New System.Drawing.Size(140, 20)
-        Me.TEReff.TabIndex = 182
+        Me.TextEdit5.EditValue = ""
+        Me.TextEdit5.Location = New System.Drawing.Point(220, 7)
+        Me.TextEdit5.Name = "TextEdit5"
+        Me.TextEdit5.Properties.EditValueChangedDelay = 1
+        Me.TextEdit5.Size = New System.Drawing.Size(72, 20)
+        Me.TextEdit5.TabIndex = 187
         '
-        'LabelControl15
+        'TextEdit4
         '
-        Me.LabelControl15.Location = New System.Drawing.Point(211, 10)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
-        Me.LabelControl15.TabIndex = 181
-        Me.LabelControl15.Text = "Reff"
+        Me.TextEdit4.EditValue = ""
+        Me.TextEdit4.Location = New System.Drawing.Point(65, 7)
+        Me.TextEdit4.Name = "TextEdit4"
+        Me.TextEdit4.Properties.EditValueChangedDelay = 1
+        Me.TextEdit4.Size = New System.Drawing.Size(72, 20)
+        Me.TextEdit4.TabIndex = 186
         '
-        'LabelControl3
+        'TextEdit3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(16, 10)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl3.TabIndex = 179
-        Me.LabelControl3.Text = "PO Number"
+        Me.TextEdit3.EditValue = ""
+        Me.TextEdit3.Location = New System.Drawing.Point(120, 33)
+        Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Properties.EditValueChangedDelay = 1
+        Me.TextEdit3.Size = New System.Drawing.Size(172, 20)
+        Me.TextEdit3.TabIndex = 185
         '
-        'TEPONumber
+        'TextEdit2
         '
-        Me.TEPONumber.EditValue = ""
-        Me.TEPONumber.Location = New System.Drawing.Point(76, 7)
-        Me.TEPONumber.Name = "TEPONumber"
-        Me.TEPONumber.Properties.EditValueChangedDelay = 1
-        Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(129, 20)
-        Me.TEPONumber.TabIndex = 178
+        Me.TextEdit2.EditValue = ""
+        Me.TextEdit2.Location = New System.Drawing.Point(120, 59)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.EditValueChangedDelay = 1
+        Me.TextEdit2.Size = New System.Drawing.Size(172, 20)
+        Me.TextEdit2.TabIndex = 184
         '
-        'LabelControl2
+        'TextEdit1
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(16, 36)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(41, 13)
-        Me.LabelControl2.TabIndex = 180
-        Me.LabelControl2.Text = "PO Type"
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(120, 85)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Size = New System.Drawing.Size(172, 20)
+        Me.TextEdit1.TabIndex = 183
         '
-        'LEPOType
+        'LabelControl16
         '
-        Me.LEPOType.Location = New System.Drawing.Point(76, 33)
-        Me.LEPOType.Name = "LEPOType"
-        Me.LEPOType.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.LEPOType.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
-        Me.LEPOType.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.LEPOType.Properties.AppearanceReadOnly.Options.UseForeColor = True
-        Me.LEPOType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPOType.Properties.NullText = ""
-        Me.LEPOType.Properties.ShowFooter = False
-        Me.LEPOType.Properties.View = Me.GridView3
-        Me.LEPOType.Size = New System.Drawing.Size(303, 20)
-        Me.LEPOType.TabIndex = 177
+        Me.LabelControl16.Location = New System.Drawing.Point(10, 62)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(78, 13)
+        Me.LabelControl16.TabIndex = 177
+        Me.LabelControl16.Text = "Extra upt to 2%"
         '
-        'GridView3
+        'LabelControl7
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPOType, Me.ColPOType})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.LabelControl7.Location = New System.Drawing.Point(10, 88)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(104, 13)
+        Me.LabelControl7.TabIndex = 176
+        Me.LabelControl7.Text = "Over (More than 2%)"
         '
-        'ColIdPOType
+        'LabelControl8
         '
-        Me.ColIdPOType.Caption = "Id PO Type"
-        Me.ColIdPOType.FieldName = "id_po_type"
-        Me.ColIdPOType.Name = "ColIdPOType"
+        Me.LabelControl8.Location = New System.Drawing.Point(10, 36)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(33, 13)
+        Me.LabelControl8.TabIndex = 174
+        Me.LabelControl8.Text = "Normal"
         '
-        'ColPOType
+        'LabelControl10
         '
-        Me.ColPOType.Caption = "PO Type"
-        Me.ColPOType.FieldName = "po_type"
-        Me.ColPOType.Name = "ColPOType"
-        Me.ColPOType.Visible = True
-        Me.ColPOType.VisibleIndex = 0
+        Me.LabelControl10.Location = New System.Drawing.Point(143, 10)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl10.TabIndex = 161
+        Me.LabelControl10.Text = "Receiving Qty"
         '
-        'LabelControl14
+        'LabelControl12
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(211, 62)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(41, 13)
-        Me.LabelControl14.TabIndex = 186
-        Me.LabelControl14.Text = "US Code"
-        '
-        'TEDesignCode
-        '
-        Me.TEDesignCode.EditValue = ""
-        Me.TEDesignCode.Location = New System.Drawing.Point(76, 59)
-        Me.TEDesignCode.Name = "TEDesignCode"
-        Me.TEDesignCode.Properties.EditValueChangedDelay = 1
-        Me.TEDesignCode.Properties.ReadOnly = True
-        Me.TEDesignCode.Size = New System.Drawing.Size(129, 20)
-        Me.TEDesignCode.TabIndex = 185
-        Me.TEDesignCode.TabStop = False
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(16, 65)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(25, 13)
-        Me.LabelControl9.TabIndex = 184
-        Me.LabelControl9.Text = "Code"
-        '
-        'TEUSCOde
-        '
-        Me.TEUSCOde.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEUSCOde.EditValue = ""
-        Me.TEUSCOde.Location = New System.Drawing.Point(258, 59)
-        Me.TEUSCOde.Name = "TEUSCOde"
-        Me.TEUSCOde.Properties.EditValueChangedDelay = 1
-        Me.TEUSCOde.Properties.ReadOnly = True
-        Me.TEUSCOde.Size = New System.Drawing.Size(121, 20)
-        Me.TEUSCOde.TabIndex = 183
-        Me.TEUSCOde.TabStop = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(16, 88)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(32, 13)
-        Me.LabelControl4.TabIndex = 188
-        Me.LabelControl4.Text = "Design"
-        '
-        'TEDesign
-        '
-        Me.TEDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEDesign.EditValue = ""
-        Me.TEDesign.Location = New System.Drawing.Point(76, 85)
-        Me.TEDesign.Name = "TEDesign"
-        Me.TEDesign.Properties.EditValueChangedDelay = 1
-        Me.TEDesign.Properties.ReadOnly = True
-        Me.TEDesign.Size = New System.Drawing.Size(303, 20)
-        Me.TEDesign.TabIndex = 187
-        Me.TEDesign.TabStop = False
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 10)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl12.TabIndex = 155
+        Me.LabelControl12.Text = "Order Qty"
         '
         'PanelControl5
         '
@@ -382,6 +431,50 @@ Partial Class FormReportPaymentFGPO
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(301, 119)
         Me.PanelControl5.TabIndex = 189
+        '
+        'DateEdit1
+        '
+        Me.DateEdit1.EditValue = Nothing
+        Me.DateEdit1.Location = New System.Drawing.Point(80, 85)
+        Me.DateEdit1.Name = "DateEdit1"
+        Me.DateEdit1.Properties.Appearance.Options.UseTextOptions = True
+        Me.DateEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateEdit1.Size = New System.Drawing.Size(215, 20)
+        Me.DateEdit1.TabIndex = 177
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(10, 88)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl5.TabIndex = 176
+        Me.LabelControl5.Text = "Due Date"
+        '
+        'DERecDate
+        '
+        Me.DERecDate.EditValue = Nothing
+        Me.DERecDate.Location = New System.Drawing.Point(80, 59)
+        Me.DERecDate.Name = "DERecDate"
+        Me.DERecDate.Properties.Appearance.Options.UseTextOptions = True
+        Me.DERecDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.DERecDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERecDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DERecDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERecDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERecDate.Size = New System.Drawing.Size(215, 20)
+        Me.DERecDate.TabIndex = 175
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(8, 62)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl11.TabIndex = 174
+        Me.LabelControl11.Text = "Est. Rec Date"
         '
         'TELeadTime
         '
@@ -471,239 +564,146 @@ Partial Class FormReportPaymentFGPO
         Me.PanelControl6.Size = New System.Drawing.Size(390, 119)
         Me.PanelControl6.TabIndex = 190
         '
-        'DERecDate
+        'LabelControl3
         '
-        Me.DERecDate.EditValue = Nothing
-        Me.DERecDate.Location = New System.Drawing.Point(80, 59)
-        Me.DERecDate.Name = "DERecDate"
-        Me.DERecDate.Properties.Appearance.Options.UseTextOptions = True
-        Me.DERecDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.DERecDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DERecDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DERecDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DERecDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DERecDate.Size = New System.Drawing.Size(215, 20)
-        Me.DERecDate.TabIndex = 175
+        Me.LabelControl3.Location = New System.Drawing.Point(16, 10)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl3.TabIndex = 179
+        Me.LabelControl3.Text = "PO Number"
         '
-        'LabelControl11
+        'LEPOType
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(8, 62)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(66, 13)
-        Me.LabelControl11.TabIndex = 174
-        Me.LabelControl11.Text = "Est. Rec Date"
+        Me.LEPOType.Location = New System.Drawing.Point(76, 33)
+        Me.LEPOType.Name = "LEPOType"
+        Me.LEPOType.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEPOType.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.LEPOType.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.LEPOType.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.LEPOType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPOType.Properties.NullText = ""
+        Me.LEPOType.Properties.ShowFooter = False
+        Me.LEPOType.Properties.View = Me.GridView3
+        Me.LEPOType.Size = New System.Drawing.Size(303, 20)
+        Me.LEPOType.TabIndex = 177
         '
-        'DateEdit1
+        'GridView3
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(80, 85)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Appearance.Options.UseTextOptions = True
-        Me.DateEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Size = New System.Drawing.Size(215, 20)
-        Me.DateEdit1.TabIndex = 177
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPOType, Me.ColPOType})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl5
+        'ColIdPOType
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(10, 88)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl5.TabIndex = 176
-        Me.LabelControl5.Text = "Due Date"
+        Me.ColIdPOType.Caption = "Id PO Type"
+        Me.ColIdPOType.FieldName = "id_po_type"
+        Me.ColIdPOType.Name = "ColIdPOType"
         '
-        'GCSummary
+        'ColPOType
         '
-        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(2, 2)
-        Me.GCSummary.MainView = Me.GVSummary
-        Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(991, 363)
-        Me.GCSummary.TabIndex = 0
-        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        Me.ColPOType.Caption = "PO Type"
+        Me.ColPOType.FieldName = "po_type"
+        Me.ColPOType.Name = "ColPOType"
+        Me.ColPOType.Visible = True
+        Me.ColPOType.VisibleIndex = 0
         '
-        'GVSummary
+        'LabelControl4
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn7, Me.GridColumn12})
-        Me.GVSummary.GridControl = Me.GCSummary
-        Me.GVSummary.Name = "GVSummary"
-        Me.GVSummary.OptionsView.ShowFooter = True
-        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        Me.LabelControl4.Location = New System.Drawing.Point(16, 88)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl4.TabIndex = 188
+        Me.LabelControl4.Text = "Design"
         '
-        'GridColumn8
+        'LabelControl2
         '
-        Me.GridColumn8.Caption = "Description"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        Me.GridColumn8.Width = 272
+        Me.LabelControl2.Location = New System.Drawing.Point(16, 36)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(41, 13)
+        Me.LabelControl2.TabIndex = 180
+        Me.LabelControl2.Text = "PO Type"
         '
-        'GridColumn9
+        'TEDesign
         '
-        Me.GridColumn9.Caption = "Qty"
-        Me.GridColumn9.DisplayFormat.FormatString = "N0"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "qty"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
-        Me.GridColumn9.Width = 68
+        Me.TEDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEDesign.EditValue = ""
+        Me.TEDesign.Location = New System.Drawing.Point(76, 85)
+        Me.TEDesign.Name = "TEDesign"
+        Me.TEDesign.Properties.EditValueChangedDelay = 1
+        Me.TEDesign.Properties.ReadOnly = True
+        Me.TEDesign.Size = New System.Drawing.Size(303, 20)
+        Me.TEDesign.TabIndex = 187
+        Me.TEDesign.TabStop = False
         '
-        'GridColumn10
+        'TEPONumber
         '
-        Me.GridColumn10.Caption = "Amount"
-        Me.GridColumn10.DisplayFormat.FormatString = "N2"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "amount"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
-        Me.GridColumn10.Width = 178
+        Me.TEPONumber.EditValue = ""
+        Me.TEPONumber.Location = New System.Drawing.Point(76, 7)
+        Me.TEPONumber.Name = "TEPONumber"
+        Me.TEPONumber.Properties.EditValueChangedDelay = 1
+        Me.TEPONumber.Properties.ReadOnly = True
+        Me.TEPONumber.Size = New System.Drawing.Size(129, 20)
+        Me.TEPONumber.TabIndex = 178
         '
-        'PanelControl7
+        'LabelControl14
         '
-        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl7.Controls.Add(Me.TextEdit5)
-        Me.PanelControl7.Controls.Add(Me.TextEdit4)
-        Me.PanelControl7.Controls.Add(Me.TextEdit3)
-        Me.PanelControl7.Controls.Add(Me.TextEdit2)
-        Me.PanelControl7.Controls.Add(Me.TextEdit1)
-        Me.PanelControl7.Controls.Add(Me.LabelControl16)
-        Me.PanelControl7.Controls.Add(Me.LabelControl7)
-        Me.PanelControl7.Controls.Add(Me.LabelControl8)
-        Me.PanelControl7.Controls.Add(Me.LabelControl10)
-        Me.PanelControl7.Controls.Add(Me.LabelControl12)
-        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl7.Location = New System.Drawing.Point(693, 2)
-        Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(301, 119)
-        Me.PanelControl7.TabIndex = 191
+        Me.LabelControl14.Location = New System.Drawing.Point(211, 62)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(41, 13)
+        Me.LabelControl14.TabIndex = 186
+        Me.LabelControl14.Text = "US Code"
         '
-        'LabelControl7
+        'LabelControl15
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(10, 88)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(104, 13)
-        Me.LabelControl7.TabIndex = 176
-        Me.LabelControl7.Text = "Over (More than 2%)"
+        Me.LabelControl15.Location = New System.Drawing.Point(211, 10)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl15.TabIndex = 181
+        Me.LabelControl15.Text = "Reff"
         '
-        'LabelControl8
+        'TEDesignCode
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(10, 36)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(33, 13)
-        Me.LabelControl8.TabIndex = 174
-        Me.LabelControl8.Text = "Normal"
+        Me.TEDesignCode.EditValue = ""
+        Me.TEDesignCode.Location = New System.Drawing.Point(76, 59)
+        Me.TEDesignCode.Name = "TEDesignCode"
+        Me.TEDesignCode.Properties.EditValueChangedDelay = 1
+        Me.TEDesignCode.Properties.ReadOnly = True
+        Me.TEDesignCode.Size = New System.Drawing.Size(129, 20)
+        Me.TEDesignCode.TabIndex = 185
+        Me.TEDesignCode.TabStop = False
         '
-        'LabelControl10
+        'TEReff
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(143, 10)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(67, 13)
-        Me.LabelControl10.TabIndex = 161
-        Me.LabelControl10.Text = "Receiving Qty"
+        Me.TEReff.EditValue = ""
+        Me.TEReff.Location = New System.Drawing.Point(239, 7)
+        Me.TEReff.Name = "TEReff"
+        Me.TEReff.Properties.EditValueChangedDelay = 1
+        Me.TEReff.Size = New System.Drawing.Size(140, 20)
+        Me.TEReff.TabIndex = 182
         '
-        'LabelControl12
+        'LabelControl9
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(10, 10)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(49, 13)
-        Me.LabelControl12.TabIndex = 155
-        Me.LabelControl12.Text = "Order Qty"
+        Me.LabelControl9.Location = New System.Drawing.Point(16, 65)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl9.TabIndex = 184
+        Me.LabelControl9.Text = "Code"
         '
-        'LabelControl16
+        'TEUSCOde
         '
-        Me.LabelControl16.Location = New System.Drawing.Point(10, 62)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(78, 13)
-        Me.LabelControl16.TabIndex = 177
-        Me.LabelControl16.Text = "Extra upt to 2%"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(120, 85)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Size = New System.Drawing.Size(172, 20)
-        Me.TextEdit1.TabIndex = 183
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(120, 59)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Size = New System.Drawing.Size(172, 20)
-        Me.TextEdit2.TabIndex = 184
-        '
-        'TextEdit3
-        '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(120, 33)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.EditValueChangedDelay = 1
-        Me.TextEdit3.Size = New System.Drawing.Size(172, 20)
-        Me.TextEdit3.TabIndex = 185
-        '
-        'TextEdit4
-        '
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(65, 7)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.EditValueChangedDelay = 1
-        Me.TextEdit4.Size = New System.Drawing.Size(72, 20)
-        Me.TextEdit4.TabIndex = 186
-        '
-        'TextEdit5
-        '
-        Me.TextEdit5.EditValue = ""
-        Me.TextEdit5.Location = New System.Drawing.Point(220, 7)
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Properties.EditValueChangedDelay = 1
-        Me.TextEdit5.Size = New System.Drawing.Size(72, 20)
-        Me.TextEdit5.TabIndex = 187
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Amount Paid"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "amount_paid"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_paid", "{0:N2}")})
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
-        Me.GridColumn7.Width = 184
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Qty Paid"
-        Me.GridColumn11.DisplayFormat.FormatString = "N0"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "qty_paid"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_paid", "{0:N0}")})
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
-        Me.GridColumn11.Width = 78
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Remaining"
-        Me.GridColumn12.DisplayFormat.FormatString = "N2"
-        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "remaining"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining", "{0:N2}")})
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
-        Me.GridColumn12.Width = 193
+        Me.TEUSCOde.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEUSCOde.EditValue = ""
+        Me.TEUSCOde.Location = New System.Drawing.Point(258, 59)
+        Me.TEUSCOde.Name = "TEUSCOde"
+        Me.TEUSCOde.Properties.EditValueChangedDelay = 1
+        Me.TEUSCOde.Properties.ReadOnly = True
+        Me.TEUSCOde.Size = New System.Drawing.Size(121, 20)
+        Me.TEUSCOde.TabIndex = 183
+        Me.TEUSCOde.TabStop = False
         '
         'FormReportPaymentFGPO
         '
@@ -720,44 +720,44 @@ Partial Class FormReportPaymentFGPO
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
-        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEUSCOde.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        Me.PanelControl7.PerformLayout()
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TELeadTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl7.ResumeLayout(False)
-        Me.PanelControl7.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUSCOde.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
