@@ -1730,6 +1730,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id)
             FormItemCatMainDet.id_propose = id
             FormItemCatMainDet.ShowDialog()
+        ElseIf formName = "FormVoucherPOS" Then
+            'Voucher POS
+            FormVoucherPOSDet.action = "ins"
+            FormVoucherPOSDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2805,6 +2809,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'main category
                 FormItemCatMainDet.id_propose = FormItemCatMain.GVData.GetFocusedRowCellValue("id_item_cat_main_pps").ToString
                 FormItemCatMainDet.ShowDialog()
+            ElseIf formName = "FormVoucherPOS" Then
+                'Voucher POS
+                FormVoucherPOSDet.action = "upd"
+                FormVoucherPOSDet.id = FormVoucherPOS.GVData.GetFocusedRowCellValue("id_pos_voucher").ToString
+                FormVoucherPOSDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -2827,7 +2836,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Cursor = Cursors.WaitCursor
                     Try
                         query = String.Format("DELETE FROM tb_m_country WHERE id_country = '{0}'", id_country)
-            execute_non_query(query, True, "", "", "", "")
+                        execute_non_query(query, True, "", "", "", "")
                         FormMasterArea.view_country()
                     Catch ex As Exception
                         XtraMessageBox.Show("This country already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -6048,6 +6057,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Else
                 stopCustom("This report already approved.")
             End If
+        ElseIf formName = "FormVoucherPOS" Then
+            'Voucher POS
+
         Else
             RPSubMenu.Visible = False
         End If
@@ -7589,6 +7601,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormReportBudget" Then
             'report budget
             print(FormReportBudget.GCItemCat, "Summary Budget")
+        ElseIf formName = "FormVoucherPOS" Then
+            'Voucher POS
+            print_raw(FormVoucherPOS.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8366,6 +8381,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpLeaveStock" Then
             FormEmpLeaveStock.Close()
             FormEmpLeaveStock.Dispose()
+        ElseIf formName = "FormVoucherPOS" Then
+            'Voucher POS
+            FormVoucherPOS.Close()
+            FormVoucherPOS.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9205,6 +9224,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormItemCatMain.XTCCat.SelectedTabPageIndex = 1 Then
                 FormItemCatMain.view_propose()
             End If
+        ElseIf formName = "FormVoucherPOS" Then
+            'Voucher POS
+            FormVoucherPOS.viewVoucher()
         End If
     End Sub
     'Switch
@@ -13349,6 +13371,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVoucherPOS.Show()
             FormVoucherPOS.WindowState = FormWindowState.Maximized
             FormVoucherPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPromoRules_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPromoRules.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPromoRules.MdiParent = Me
+            FormPromoRules.Show()
+            FormPromoRules.WindowState = FormWindowState.Maximized
+            FormPromoRules.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

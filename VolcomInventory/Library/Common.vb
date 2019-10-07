@@ -4966,15 +4966,30 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Dim dir As String = ""
         If opt = "1" Then
             dir = get_setup_field("pic_path_sample") & "\"
+            viewImages(PE, dir, id_goods, is_open)
         ElseIf opt = "2" Then
             dir = get_setup_field("pic_path_design") & "\"
+            viewImages(PE, dir, id_goods, is_open)
         ElseIf opt = "3" Then
             dir = get_setup_field("pic_path_mat") & "\"
+            viewImages(PE, dir, id_goods, is_open)
         ElseIf opt = "4" Then
             dir = get_setup_field("pic_path_emp") & "\"
+            viewImages_empty(PE, dir, id_goods, is_open)
         End If
-        viewImages(PE, dir, id_goods, is_open)
     End Sub
+
+    Sub viewImages_empty(ByVal PE As DevExpress.XtraEditors.PictureEdit, ByVal dir As String, ByVal id_goods As String, ByVal is_open As Boolean)
+        If System.IO.File.Exists(dir & id_goods & ".jpg") Then
+            If Not is_open Then
+                PE.LoadAsync(dir & id_goods & ".jpg")
+            Else
+                My.Computer.Network.DownloadFile(dir & id_goods & ".jpg", Application.StartupPath & "\imagestemp\" & id_goods & ".jpg", "", "", True, 100, True)
+                Process.Start(Application.StartupPath & "\imagestemp\" & id_goods & ".jpg")
+            End If
+        End If
+    End Sub
+
     Sub viewImages(ByVal PE As DevExpress.XtraEditors.PictureEdit, ByVal dir As String, ByVal id_goods As String, ByVal is_open As Boolean)
         If System.IO.File.Exists(dir & id_goods & ".jpg") Then
             If Not is_open Then
