@@ -306,6 +306,8 @@
         ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
             'propose budget CAPEX
             FormSetupBudgetCAPEXDet.Close()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.Close()
         End If
     End Sub
     Sub show()
@@ -1089,6 +1091,9 @@
             FormSetupBudgetCAPEXDet.id_pps = id_report
             FormSetupBudgetCAPEXDet.is_view = "1"
             FormSetupBudgetCAPEXDet.ShowDialog()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.id = id_report
+            FormEmpInputAttendanceDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1989,6 +1994,11 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "211" Then
+            table_name = "tb_emp_attn_input"
+            field_id = "id_emp_attn_input"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

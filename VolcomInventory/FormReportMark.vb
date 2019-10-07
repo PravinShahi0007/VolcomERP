@@ -551,6 +551,9 @@
         ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
             'OPEX Budget Propose
             query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "211" Then
+            'input attendance
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_emp_attn_input WHERE id_emp_attn_input = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6350,6 +6353,14 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             'refresh view
             'FormSampleBudget.load_propose()
             'FormSampleBudget.load_budget()
+        ElseIf report_mark_type = "211" Then
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_emp_attn_input SET id_report_status='{0}' WHERE id_emp_attn_input ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time
