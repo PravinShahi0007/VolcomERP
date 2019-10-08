@@ -4366,7 +4366,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                     cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
                 End If
             Else
-                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             End If
 
             'merge or not
@@ -4521,6 +4521,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             xrtable.Rows.Add(row_time)
         End If
     End Sub
+
     'for list
     Sub pre_load_list_horz(ByVal report_mark_type As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
         'opt

@@ -88,6 +88,19 @@ Partial Class FormProdClosing
         Me.GridColumnTotalPay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBAP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMemoDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +120,12 @@ Partial Class FormProdClosing
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPList.SuspendLayout()
+        Me.XTPPropose.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -121,12 +140,12 @@ Partial Class FormProdClosing
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(788, 37)
+        Me.PanelControl1.Size = New System.Drawing.Size(897, 37)
         Me.PanelControl1.TabIndex = 0
         '
         'SLEVendor
         '
-        Me.SLEVendor.Location = New System.Drawing.Point(513, 9)
+        Me.SLEVendor.Location = New System.Drawing.Point(501, 9)
         Me.SLEVendor.Name = "SLEVendor"
         Me.SLEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEVendor.Properties.Appearance.Options.UseFont = True
@@ -169,7 +188,7 @@ Partial Class FormProdClosing
         '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(304, 9)
+        Me.SLESeason.Location = New System.Drawing.Point(292, 9)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
@@ -202,7 +221,7 @@ Partial Class FormProdClosing
         '
         'BSearch
         '
-        Me.BSearch.Location = New System.Drawing.Point(716, 7)
+        Me.BSearch.Location = New System.Drawing.Point(704, 7)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(59, 23)
         Me.BSearch.TabIndex = 8910
@@ -211,7 +230,7 @@ Partial Class FormProdClosing
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(473, 12)
+        Me.LabelControl3.Location = New System.Drawing.Point(461, 12)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl3.TabIndex = 8909
@@ -220,7 +239,7 @@ Partial Class FormProdClosing
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(263, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(251, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl1.TabIndex = 8908
@@ -290,25 +309,25 @@ Partial Class FormProdClosing
         Me.PanelControl2.Controls.Add(Me.PCSelAll)
         Me.PanelControl2.Controls.Add(Me.PBCLineList)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 279)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 423)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(788, 37)
+        Me.PanelControl2.Size = New System.Drawing.Size(897, 37)
         Me.PanelControl2.TabIndex = 1
         '
         'BtnClosingRec
         '
         Me.BtnClosingRec.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClosingRec.Location = New System.Drawing.Point(588, 2)
+        Me.BtnClosingRec.Location = New System.Drawing.Point(697, 2)
         Me.BtnClosingRec.Name = "BtnClosingRec"
         Me.BtnClosingRec.Size = New System.Drawing.Size(100, 33)
         Me.BtnClosingRec.TabIndex = 106
-        Me.BtnClosingRec.Text = "Closing Receiving"
+        Me.BtnClosingRec.Text = "Closing QC"
         Me.BtnClosingRec.Visible = False
         '
         'BClosingFGPO
         '
         Me.BClosingFGPO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BClosingFGPO.Location = New System.Drawing.Point(688, 2)
+        Me.BClosingFGPO.Location = New System.Drawing.Point(797, 2)
         Me.BClosingFGPO.Name = "BClosingFGPO"
         Me.BClosingFGPO.Size = New System.Drawing.Size(98, 33)
         Me.BClosingFGPO.TabIndex = 0
@@ -350,7 +369,7 @@ Partial Class FormProdClosing
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RICESelect})
-        Me.GCProd.Size = New System.Drawing.Size(788, 242)
+        Me.GCProd.Size = New System.Drawing.Size(897, 423)
         Me.GCProd.TabIndex = 3
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -801,14 +820,108 @@ Partial Class FormProdClosing
         Me.GridColumnMemoDate.VisibleIndex = 13
         Me.GridColumnMemoDate.Width = 113
         '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPList
+        Me.XtraTabControl1.Size = New System.Drawing.Size(903, 488)
+        Me.XtraTabControl1.TabIndex = 4
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPPropose})
+        '
+        'XTPList
+        '
+        Me.XTPList.Controls.Add(Me.PanelControl2)
+        Me.XTPList.Controls.Add(Me.GCProd)
+        Me.XTPList.Controls.Add(Me.PanelControl1)
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(897, 460)
+        Me.XTPList.Text = "Product List"
+        '
+        'XTPPropose
+        '
+        Me.XTPPropose.Controls.Add(Me.GridControl1)
+        Me.XTPPropose.Name = "XTPPropose"
+        Me.XTPPropose.Size = New System.Drawing.Size(897, 460)
+        Me.XTPPropose.Text = "Propose Closing"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(897, 460)
+        Me.GridControl1.TabIndex = 0
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "GridColumn4"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn5"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "GridColumn13"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 4
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 5
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "GridColumn15"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 6
+        '
         'FormProdClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(788, 316)
-        Me.Controls.Add(Me.GCProd)
-        Me.Controls.Add(Me.PanelControl2)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.ClientSize = New System.Drawing.Size(903, 488)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -835,6 +948,12 @@ Partial Class FormProdClosing
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPList.ResumeLayout(False)
+        Me.XTPPropose.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -907,4 +1026,17 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumnBAP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMemoDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SMTolerance As ToolStripMenuItem
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPropose As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
