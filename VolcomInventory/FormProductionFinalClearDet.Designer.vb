@@ -58,6 +58,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrePrinting = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
@@ -81,7 +82,8 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnPrePrinting = New DevExpress.XtraEditors.SimpleButton()
+        Me.LECLaim = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +118,7 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -406,6 +409,8 @@ Partial Class FormProductionFinalClearDet
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.LabelControl11)
+        Me.PanelHeaderLeft.Controls.Add(Me.LECLaim)
         Me.PanelHeaderLeft.Controls.Add(Me.LEPLCategory)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl2)
         Me.PanelHeaderLeft.Controls.Add(Me.TxtNumber)
@@ -572,6 +577,17 @@ Partial Class FormProductionFinalClearDet
         Me.BMark.Size = New System.Drawing.Size(75, 36)
         Me.BMark.TabIndex = 14
         Me.BMark.Text = "Mark"
+        '
+        'BtnPrePrinting
+        '
+        Me.BtnPrePrinting.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrePrinting.ImageIndex = 6
+        Me.BtnPrePrinting.ImageList = Me.LargeImageCollection
+        Me.BtnPrePrinting.Location = New System.Drawing.Point(589, 2)
+        Me.BtnPrePrinting.Name = "BtnPrePrinting"
+        Me.BtnPrePrinting.Size = New System.Drawing.Size(93, 36)
+        Me.BtnPrePrinting.TabIndex = 20
+        Me.BtnPrePrinting.Text = "Pre Printing"
         '
         'BtnCancel
         '
@@ -795,16 +811,29 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
-        'BtnPrePrinting
+        'LECLaim
         '
-        Me.BtnPrePrinting.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrePrinting.ImageIndex = 6
-        Me.BtnPrePrinting.ImageList = Me.LargeImageCollection
-        Me.BtnPrePrinting.Location = New System.Drawing.Point(589, 2)
-        Me.BtnPrePrinting.Name = "BtnPrePrinting"
-        Me.BtnPrePrinting.Size = New System.Drawing.Size(93, 36)
-        Me.BtnPrePrinting.TabIndex = 20
-        Me.BtnPrePrinting.Text = "Pre Printing"
+        Me.LECLaim.Location = New System.Drawing.Point(59, 82)
+        Me.LECLaim.Name = "LECLaim"
+        Me.LECLaim.Properties.Appearance.Options.UseTextOptions = True
+        Me.LECLaim.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LECLaim.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LECLaim.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LECLaim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECLaim.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category_sub", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category_sub", "Claim")})
+        Me.LECLaim.Properties.NullText = ""
+        Me.LECLaim.Properties.ShowFooter = False
+        Me.LECLaim.Size = New System.Drawing.Size(142, 20)
+        Me.LECLaim.TabIndex = 10008
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(7, 85)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl11.TabIndex = 10009
+        Me.LabelControl11.Text = "Claim"
         '
         'FormProductionFinalClearDet
         '
@@ -818,7 +847,7 @@ Partial Class FormProductionFinalClearDet
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClearDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Final Clearance"
+        Me.Text = "QC Report"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
@@ -858,6 +887,7 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -923,4 +953,6 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnPrePrinting As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LECLaim As DevExpress.XtraEditors.LookUpEdit
 End Class

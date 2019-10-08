@@ -15,6 +15,7 @@ Public Class FormProductionFinalClearDet
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewPLCat()
+        viewPLCatSub()
         actionLoad()
     End Sub
 
@@ -27,9 +28,21 @@ Public Class FormProductionFinalClearDet
 
     'View PL Category
     Sub viewPLCat()
-        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.id_pl_category>1 ORDER BY a.id_pl_category  "
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a ORDER BY a.id_pl_category ASC  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
+    End Sub
+
+    'View PL Category
+    Sub viewPLCatSub()
+        Dim id_cat As String = "-1"
+        Try
+            id_cat = LEPLCategory.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category_sub a WHERE a.id_pl_category='" + id_cat + "' ORDER BY a.id_pl_category_sub ASC  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LECLaim, query, 0, "pl_category_sub", "id_pl_category_sub")
     End Sub
 
     Sub actionLoad()
@@ -52,6 +65,11 @@ Public Class FormProductionFinalClearDet
             id_report_status = data.Rows(0)("id_report_status").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+            If Not IsDBNull(data.Rows(0)("id_pl_category_sub")) Then
+                LECLaim.ItemIndex = LECLaim.Properties.GetDataSourceRowIndex("id_pl_category_sub", data.Rows(0)("id_pl_category_sub").ToString)
+            Else
+                LECLaim.EditValue = Nothing
+            End If
             TxtNumber.Text = data.Rows(0)("prod_fc_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("prod_fc_datex").ToString, 0)
             MENote.Text = data.Rows(0)("prod_fc_note").ToString
@@ -111,6 +129,7 @@ Public Class FormProductionFinalClearDet
         TxtStyleCode.Enabled = False
         TxtStyle.Enabled = False
         LEPLCategory.Enabled = False
+        LECLaim.Enabled = False
         BtnBrowseFrom.Enabled = False
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
@@ -462,13 +481,14 @@ Public Class FormProductionFinalClearDet
         Else
             If action = "ins" Then
                 Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+                Dim id_pl_category_sub As String = LECLaim.EditValue.ToString
                 Dim prod_fc_note As String = addSlashes(MENote.Text.ToString)
 
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
-                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status) "
-                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status) "
+                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1'); SELECT LAST_INSERT_ID(); "
                     id_prod_fc = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_prod("12")
 
@@ -570,5 +590,9 @@ Public Class FormProductionFinalClearDet
         ' End If
         ReportProductionFinalClear.is_pre_print = "1"
         print()
+    End Sub
+
+    Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
+        viewPLCatSub()
     End Sub
 End Class
