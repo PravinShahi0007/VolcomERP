@@ -232,4 +232,13 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='28'"
     Private Sub BFilterDesign_Click(sender As Object, e As EventArgs) Handles BFilterDesign.Click
         load_list("1")
     End Sub
+
+    Private Sub GVDPFGPO_DoubleClick(sender As Object, e As EventArgs) Handles GVDPFGPO.DoubleClick
+        If GVDPFGPO.RowCount > 0 Then
+            FormReportPaymentFGPO.id_fgpo = GVDPFGPO.GetFocusedRowCellValue("id_prod_order").ToString
+            FormReportPaymentFGPO.ShowDialog()
+        Else
+            warningCustom("Please choose FGPO first")
+        End If
+    End Sub
 End Class
