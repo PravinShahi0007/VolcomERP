@@ -33,6 +33,8 @@ Partial Class FormEmpOvertimeDate
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.TEOvertimeEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOvertimeStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -43,12 +45,13 @@ Partial Class FormEmpOvertimeDate
         CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TEOvertimeEnd
         '
         Me.TEOvertimeEnd.EditValue = Nothing
-        Me.TEOvertimeEnd.Location = New System.Drawing.Point(302, 38)
+        Me.TEOvertimeEnd.Location = New System.Drawing.Point(307, 38)
         Me.TEOvertimeEnd.Name = "TEOvertimeEnd"
         Me.TEOvertimeEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.TEOvertimeEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -58,13 +61,13 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeEnd.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TEOvertimeEnd.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeEnd.Size = New System.Drawing.Size(170, 20)
+        Me.TEOvertimeEnd.Size = New System.Drawing.Size(165, 20)
         Me.TEOvertimeEnd.TabIndex = 35
         '
         'TEOvertimeStart
         '
         Me.TEOvertimeStart.EditValue = Nothing
-        Me.TEOvertimeStart.Location = New System.Drawing.Point(97, 38)
+        Me.TEOvertimeStart.Location = New System.Drawing.Point(104, 38)
         Me.TEOvertimeStart.Name = "TEOvertimeStart"
         Me.TEOvertimeStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.TEOvertimeStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -74,13 +77,13 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeStart.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.TEOvertimeStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TEOvertimeStart.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeStart.Size = New System.Drawing.Size(170, 20)
+        Me.TEOvertimeStart.Size = New System.Drawing.Size(165, 20)
         Me.TEOvertimeStart.TabIndex = 34
         '
         'TEOvertimeBreak
         '
         Me.TEOvertimeBreak.EditValue = New Decimal(New Integer() {0, 0, 0, 65536})
-        Me.TEOvertimeBreak.Location = New System.Drawing.Point(97, 64)
+        Me.TEOvertimeBreak.Location = New System.Drawing.Point(104, 64)
         Me.TEOvertimeBreak.Name = "TEOvertimeBreak"
         Me.TEOvertimeBreak.Properties.DisplayFormat.FormatString = "N1"
         Me.TEOvertimeBreak.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -88,12 +91,12 @@ Partial Class FormEmpOvertimeDate
         Me.TEOvertimeBreak.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEOvertimeBreak.Properties.Mask.EditMask = "N1"
         Me.TEOvertimeBreak.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEOvertimeBreak.Size = New System.Drawing.Size(120, 20)
+        Me.TEOvertimeBreak.Size = New System.Drawing.Size(115, 20)
         Me.TEOvertimeBreak.TabIndex = 33
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(237, 67)
+        Me.LabelControl12.Location = New System.Drawing.Point(242, 67)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(109, 13)
         Me.LabelControl12.TabIndex = 32
@@ -110,19 +113,19 @@ Partial Class FormEmpOvertimeDate
         'TETotalHours
         '
         Me.TETotalHours.EditValue = ""
-        Me.TETotalHours.Location = New System.Drawing.Point(352, 64)
+        Me.TETotalHours.Location = New System.Drawing.Point(357, 64)
         Me.TETotalHours.Name = "TETotalHours"
         Me.TETotalHours.Properties.DisplayFormat.FormatString = "N1"
         Me.TETotalHours.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotalHours.Properties.EditFormat.FormatString = "N1"
         Me.TETotalHours.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotalHours.Properties.ReadOnly = True
-        Me.TETotalHours.Size = New System.Drawing.Size(120, 20)
+        Me.TETotalHours.Size = New System.Drawing.Size(115, 20)
         Me.TETotalHours.TabIndex = 30
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(282, 41)
+        Me.LabelControl9.Location = New System.Drawing.Point(286, 41)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl9.TabIndex = 29
@@ -139,7 +142,7 @@ Partial Class FormEmpOvertimeDate
         'DEOvertimeDate
         '
         Me.DEOvertimeDate.EditValue = Nothing
-        Me.DEOvertimeDate.Location = New System.Drawing.Point(97, 12)
+        Me.DEOvertimeDate.Location = New System.Drawing.Point(104, 12)
         Me.DEOvertimeDate.Name = "DEOvertimeDate"
         Me.DEOvertimeDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEOvertimeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -149,7 +152,7 @@ Partial Class FormEmpOvertimeDate
         Me.DEOvertimeDate.Properties.EditFormat.FormatString = "dd MMMM yyyy"
         Me.DEOvertimeDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEOvertimeDate.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEOvertimeDate.Size = New System.Drawing.Size(375, 20)
+        Me.DEOvertimeDate.Size = New System.Drawing.Size(368, 20)
         Me.DEOvertimeDate.TabIndex = 27
         '
         'LabelControl2
@@ -165,7 +168,7 @@ Partial Class FormEmpOvertimeDate
         Me.PanelControl1.Controls.Add(Me.SBClose)
         Me.PanelControl1.Controls.Add(Me.SBAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 95)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 150)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(484, 42)
         Me.PanelControl1.TabIndex = 36
@@ -190,11 +193,31 @@ Partial Class FormEmpOvertimeDate
         Me.SBAdd.TabIndex = 0
         Me.SBAdd.Text = "Add"
         '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 92)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(86, 13)
+        Me.LabelControl6.TabIndex = 37
+        Me.LabelControl6.Text = "Overtime Purpose"
+        '
+        'MEOvertimeNote
+        '
+        Me.MEOvertimeNote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MEOvertimeNote.EditValue = ""
+        Me.MEOvertimeNote.Location = New System.Drawing.Point(104, 90)
+        Me.MEOvertimeNote.Name = "MEOvertimeNote"
+        Me.MEOvertimeNote.Size = New System.Drawing.Size(368, 50)
+        Me.MEOvertimeNote.TabIndex = 38
+        '
         'FormEmpOvertimeDate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 137)
+        Me.ClientSize = New System.Drawing.Size(484, 192)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.MEOvertimeNote)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TEOvertimeEnd)
         Me.Controls.Add(Me.TEOvertimeStart)
@@ -221,6 +244,7 @@ Partial Class FormEmpOvertimeDate
         CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -239,4 +263,6 @@ Partial Class FormEmpOvertimeDate
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEOvertimeNote As DevExpress.XtraEditors.MemoEdit
 End Class

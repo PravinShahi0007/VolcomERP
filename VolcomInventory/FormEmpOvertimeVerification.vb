@@ -12,7 +12,7 @@
 
         'overtime
         Dim query_ot As String = "
-            SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.id_departement, departement.departement, ot.number, ot.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+            SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.id_departement, departement.departement, ot.number, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
             FROM tb_ot AS ot
             LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
             LEFT JOIN tb_m_departement AS departement ON ot.id_departement = departement.id_departement
@@ -28,7 +28,6 @@
         TEDepartement.EditValue = data_ot.Rows(0)("departement").ToString
         TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
         TECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
-        MEOvertimeNote.EditValue = data_ot.Rows(0)("ot_note").ToString
 
         LUEOvertimeType.ReadOnly = True
 
@@ -188,6 +187,7 @@
 
                                     If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
                                         GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+                                        GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
                                     End If
                                 ElseIf before_work >= ot_min And before_work_ot >= ot_min Then
                                     GVAttendance.SetRowCellValue(i, "ot_potention", "1")
@@ -201,6 +201,7 @@
 
                                     If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
                                         GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+                                        GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
                                     End If
                                 End If
                             Else
@@ -215,6 +216,7 @@
 
                                 If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
                                     GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+                                    GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
                                 End If
                             End If
                         End If
@@ -346,8 +348,9 @@
                             Dim end_work_ot As String = Date.Parse(GVAttendance.GetRowCellValue(i, "end_work_ot").ToString).ToString("yyyy-MM-dd HH:mm:ss")
                             Dim break_hours As String = GVAttendance.GetRowCellValue(i, "break_hours").ToString
                             Dim total_hours As String = GVAttendance.GetRowCellValue(i, "total_hours").ToString
+                            Dim ot_note As String = GVAttendance.GetRowCellValue(i, "ot_note").ToString
 
-                            query = "INSERT INTO tb_ot_verification_det (id_ot_verification, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, is_day_off, start_work_att, end_work_att, start_work_ot, end_work_ot, break_hours, total_hours) VALUES (" + id_ot_verification + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", " + is_day_off + ", '" + start_work_att + "', '" + end_work_att + "', '" + start_work_ot + "', '" + end_work_ot + "', " + decimalSQL(break_hours) + ", " + decimalSQL(total_hours) + ")"
+                            query = "INSERT INTO tb_ot_verification_det (id_ot_verification, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, is_day_off, start_work_att, end_work_att, start_work_ot, end_work_ot, break_hours, total_hours, ot_note) VALUES (" + id_ot_verification + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", " + is_day_off + ", '" + start_work_att + "', '" + end_work_att + "', '" + start_work_ot + "', '" + end_work_ot + "', " + decimalSQL(break_hours) + ", " + decimalSQL(total_hours) + ", '" + addSlashes(ot_note) + "')"
 
                             execute_non_query(query, True, "", "", "", "")
                         End If
@@ -411,7 +414,7 @@
         Dim query As String = ""
 
         query = "
-            SELECT vr.id_payroll, vrd.id_employee, ot.id_ot_type, vrd.start_work_ot AS ot_start, vrd.end_work_ot AS ot_end, vrd.break_hours AS total_break, vrd.total_hours AS total_hour, 0.0 AS total_point, vrd.is_day_off, ott.ot_point_wages AS wages_per_point, ot.ot_note AS note, vrd.id_ot_verification_det, py.periode_end, vrd.to_salary, vrd.conversion_type, IF(ott.is_point_ho = 1, 2, d.is_store) AS is_store
+            SELECT vr.id_payroll, vrd.id_employee, ot.id_ot_type, vrd.start_work_ot AS ot_start, vrd.end_work_ot AS ot_end, vrd.break_hours AS total_break, vrd.total_hours AS total_hour, 0.0 AS total_point, vrd.is_day_off, ott.ot_point_wages AS wages_per_point, vrd.ot_note AS note, vrd.id_ot_verification_det, py.periode_end, vrd.to_salary, vrd.conversion_type, IF(ott.is_point_ho = 1, 2, d.is_store) AS is_store
             FROM tb_ot_verification_det AS vrd
             LEFT JOIN tb_ot_verification AS vr ON vrd.id_ot_verification = vr.id_ot_verification
             LEFT JOIN tb_ot AS ot ON vr.id_ot = ot.id_ot
@@ -476,7 +479,6 @@
         Report.XLPayrollPeriod.Text = SLUEPayroll.Text
         Report.XLCreatedAt.Text = TECreatedBy.Text.ToString
         Report.XLCreatedBy.Text = TECreatedAt.Text.ToString
-        Report.XLOTNote.Text = MEOvertimeNote.Text.ToString
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()

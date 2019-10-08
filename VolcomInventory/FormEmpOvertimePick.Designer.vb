@@ -52,6 +52,9 @@ Partial Class FormEmpOvertimePick
         Me.DEOvertimeDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPick, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +72,9 @@ Partial Class FormEmpOvertimePick
         CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCList
@@ -78,7 +84,7 @@ Partial Class FormEmpOvertimePick
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPick})
-        Me.GCList.Size = New System.Drawing.Size(762, 446)
+        Me.GCList.Size = New System.Drawing.Size(762, 371)
         Me.GCList.TabIndex = 2
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -399,9 +405,39 @@ Partial Class FormEmpOvertimePick
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 69)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(784, 450)
+        Me.GroupControl1.Size = New System.Drawing.Size(784, 375)
         Me.GroupControl1.TabIndex = 5
         Me.GroupControl1.Text = "Employee"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(35, 14)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(86, 13)
+        Me.LabelControl6.TabIndex = 39
+        Me.LabelControl6.Text = "Overtime Purpose"
+        '
+        'MEOvertimeNote
+        '
+        Me.MEOvertimeNote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MEOvertimeNote.Location = New System.Drawing.Point(127, 12)
+        Me.MEOvertimeNote.Name = "MEOvertimeNote"
+        Me.MEOvertimeNote.Properties.ReadOnly = True
+        Me.MEOvertimeNote.Size = New System.Drawing.Size(645, 50)
+        Me.MEOvertimeNote.TabIndex = 40
+        '
+        'GroupControl3
+        '
+        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.LabelControl6)
+        Me.GroupControl3.Controls.Add(Me.MEOvertimeNote)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 444)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(784, 75)
+        Me.GroupControl3.TabIndex = 41
+        Me.GroupControl3.Text = "Detail"
         '
         'FormEmpOvertimePick
         '
@@ -410,6 +446,7 @@ Partial Class FormEmpOvertimePick
         Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupControl2)
+        Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormEmpOvertimePick"
@@ -433,6 +470,10 @@ Partial Class FormEmpOvertimePick
         CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
+        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        Me.GroupControl3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -469,4 +510,7 @@ Partial Class FormEmpOvertimePick
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEOvertimeNote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
 End Class

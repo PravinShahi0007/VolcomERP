@@ -78,15 +78,19 @@
 
     Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
         Dim ot_min_staff As Decimal = get_opt_emp_field("ot_min_staff")
+        Dim ot_note As String = MEOvertimeNote.EditValue.ToString
 
         If TETotalHours.EditValue < ot_min_staff Then
             errorCustom("Overtime at least " + ot_min_staff.ToString + " Hours")
+        ElseIf ot_note = "" Then
+            errorCustom("Overtime propose can't be blank")
         Else
             FormEmpOvertimePick.is_hrd = is_hrd
             FormEmpOvertimePick.overtime_date = DEOvertimeDate.EditValue
             FormEmpOvertimePick.overtime_start_time = TEOvertimeStart.EditValue
             FormEmpOvertimePick.overtime_end_time = TEOvertimeEnd.EditValue
             FormEmpOvertimePick.overtime_break = TEOvertimeBreak.EditValue
+            FormEmpOvertimePick.overtime_propose = MEOvertimeNote.EditValue
 
             FormEmpOvertimePick.ShowDialog()
         End If

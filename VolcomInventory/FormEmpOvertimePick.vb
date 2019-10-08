@@ -4,6 +4,7 @@
     Public overtime_start_time As DateTime = New DateTime(Now.Year, Now.Month, Now.Day, 8, 30, 0)
     Public overtime_end_time As DateTime = New DateTime(Now.Year, Now.Month, Now.Day, 17, 30, 0)
     Public overtime_break As Decimal = 0.0
+    Public overtime_propose As String = ""
 
     Private Sub FormEmpOvertimePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -17,6 +18,7 @@
         TEOvertimeStart.EditValue = overtime_start_time
         TEOvertimeEnd.EditValue = overtime_end_time
         TEOvertimeBreak.EditValue = overtime_break
+        MEOvertimeNote.EditValue = overtime_propose
 
         Dim include_all_dept As String = execute_query("SELECT include_all_dept FROM tb_lookup_ot_type WHERE id_ot_type = " + FormEmpOvertimeDet.LUEOvertimeType.EditValue.ToString, 0, True, "", "", "", "")
 
@@ -148,7 +150,8 @@
                             TEOvertimeStart.EditValue,
                             TEOvertimeEnd.EditValue,
                             TEOvertimeBreak.EditValue,
-                            TETotalHours.EditValue)
+                            TETotalHours.EditValue,
+                            MEOvertimeNote.EditValue.ToString)
             End If
         Next
 

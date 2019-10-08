@@ -42,11 +42,13 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCTotalHours = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -61,21 +63,17 @@ Partial Class FormEmpOvertimeDet
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TECreatedAt = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,9 +95,6 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,7 +127,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType})
-        Me.GCEmployee.Size = New System.Drawing.Size(982, 402)
+        Me.GCEmployee.Size = New System.Drawing.Size(982, 476)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
@@ -171,7 +166,7 @@ Partial Class FormEmpOvertimeDet
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -335,6 +330,12 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn1.FieldName = "to_salary"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "to_dp"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'GCIsDayOff
         '
         Me.GCIsDayOff.FieldName = "is_day_off"
@@ -401,6 +402,16 @@ Partial Class FormEmpOvertimeDet
         Me.GCTotalHours.VisibleIndex = 9
         Me.GCTotalHours.Width = 72
         '
+        'GCNote
+        '
+        Me.GCNote.Caption = "Overtime Propose"
+        Me.GCNote.FieldName = "ot_note"
+        Me.GCNote.Name = "GCNote"
+        Me.GCNote.OptionsColumn.AllowEdit = False
+        Me.GCNote.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GCNote.Visible = True
+        Me.GCNote.VisibleIndex = 10
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -409,7 +420,7 @@ Partial Class FormEmpOvertimeDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 94)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1008, 460)
+        Me.GroupControl1.Size = New System.Drawing.Size(1008, 534)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Employee List"
         '
@@ -419,7 +430,7 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(20, 52)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(986, 406)
+        Me.PanelControl1.Size = New System.Drawing.Size(986, 480)
         Me.PanelControl1.TabIndex = 1
         '
         'PanelControl2
@@ -542,14 +553,6 @@ Partial Class FormEmpOvertimeDet
         Me.TECreatedAt.Size = New System.Drawing.Size(344, 20)
         Me.TECreatedAt.TabIndex = 5
         '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(13, 13)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(86, 13)
-        Me.LabelControl6.TabIndex = 11
-        Me.LabelControl6.Text = "Overtime Purpose"
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.SBMark)
@@ -607,43 +610,22 @@ Partial Class FormEmpOvertimeDet
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl3.Controls.Add(Me.PanelControl4)
         Me.GroupControl3.Controls.Add(Me.PanelControl6)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 554)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 628)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1008, 125)
+        Me.GroupControl3.Size = New System.Drawing.Size(1008, 51)
         Me.GroupControl3.TabIndex = 15
         Me.GroupControl3.Text = "Detail"
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.LabelControl6)
-        Me.PanelControl4.Controls.Add(Me.MEOvertimeNote)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(986, 87)
-        Me.PanelControl4.TabIndex = 27
-        '
-        'MEOvertimeNote
-        '
-        Me.MEOvertimeNote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MEOvertimeNote.Location = New System.Drawing.Point(105, 11)
-        Me.MEOvertimeNote.Name = "MEOvertimeNote"
-        Me.MEOvertimeNote.Size = New System.Drawing.Size(865, 70)
-        Me.MEOvertimeNote.TabIndex = 12
         '
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl6.Controls.Add(Me.PCReportStatus)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(20, 89)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl6.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(986, 34)
+        Me.PanelControl6.Size = New System.Drawing.Size(986, 47)
         Me.PanelControl6.TabIndex = 13
         '
         'PCReportStatus
@@ -654,12 +636,12 @@ Partial Class FormEmpOvertimeDet
         Me.PCReportStatus.Dock = System.Windows.Forms.DockStyle.Left
         Me.PCReportStatus.Location = New System.Drawing.Point(0, 0)
         Me.PCReportStatus.Name = "PCReportStatus"
-        Me.PCReportStatus.Size = New System.Drawing.Size(240, 34)
+        Me.PCReportStatus.Size = New System.Drawing.Size(240, 47)
         Me.PCReportStatus.TabIndex = 25
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(7, 8)
+        Me.LabelControl10.Location = New System.Drawing.Point(7, 17)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl10.TabIndex = 17
@@ -667,7 +649,7 @@ Partial Class FormEmpOvertimeDet
         '
         'TEReportStatus
         '
-        Me.TEReportStatus.Location = New System.Drawing.Point(105, 5)
+        Me.TEReportStatus.Location = New System.Drawing.Point(105, 14)
         Me.TEReportStatus.Name = "TEReportStatus"
         Me.TEReportStatus.Properties.ReadOnly = True
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
@@ -676,12 +658,6 @@ Partial Class FormEmpOvertimeDet
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.FieldName = "to_dp"
-        Me.GridColumn2.Name = "GridColumn2"
         '
         'FormEmpOvertimeDet
         '
@@ -719,10 +695,6 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
-        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).EndInit()
@@ -745,11 +717,9 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LUEOvertimeType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents MEOvertimeNote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBMark As DevExpress.XtraEditors.SimpleButton
@@ -764,7 +734,6 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TECreatedAt As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PCReportStatus As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
@@ -789,4 +758,5 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDepartement As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCNote As DevExpress.XtraGrid.Columns.GridColumn
 End Class
