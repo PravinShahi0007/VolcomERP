@@ -60,10 +60,18 @@ Partial Class FormEmpPayrollReportPajak
         Me.BandedGridColumnTotalC = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalBPJSC = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnGroup = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TBFileAddress = New DevExpress.XtraEditors.TextEdit()
+        Me.BBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.BExcel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPajak, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPajak, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -91,7 +99,7 @@ Partial Class FormEmpPayrollReportPajak
         Me.GCPajak.Location = New System.Drawing.Point(0, 46)
         Me.GCPajak.MainView = Me.GVPajak
         Me.GCPajak.Name = "GCPajak"
-        Me.GCPajak.Size = New System.Drawing.Size(1008, 683)
+        Me.GCPajak.Size = New System.Drawing.Size(1008, 644)
         Me.GCPajak.TabIndex = 6
         Me.GCPajak.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPajak})
         '
@@ -623,12 +631,68 @@ Partial Class FormEmpPayrollReportPajak
         Me.BandedGridColumnGroup.Name = "BandedGridColumnGroup"
         Me.BandedGridColumnGroup.OptionsColumn.AllowEdit = False
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.TBFileAddress)
+        Me.PanelControl2.Controls.Add(Me.BBrowse)
+        Me.PanelControl2.Controls.Add(Me.BExcel)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 690)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1008, 39)
+        Me.PanelControl2.TabIndex = 7
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Save To :"
+        '
+        'TBFileAddress
+        '
+        Me.TBFileAddress.EditValue = ""
+        Me.TBFileAddress.Location = New System.Drawing.Point(64, 10)
+        Me.TBFileAddress.Name = "TBFileAddress"
+        Me.TBFileAddress.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TBFileAddress.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TBFileAddress.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TBFileAddress.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.TBFileAddress.Properties.ReadOnly = True
+        Me.TBFileAddress.Size = New System.Drawing.Size(383, 20)
+        Me.TBFileAddress.TabIndex = 89
+        '
+        'BBrowse
+        '
+        Me.BBrowse.Location = New System.Drawing.Point(453, 7)
+        Me.BBrowse.Name = "BBrowse"
+        Me.BBrowse.Size = New System.Drawing.Size(51, 23)
+        Me.BBrowse.TabIndex = 90
+        Me.BBrowse.Text = "Browse"
+        '
+        'BExcel
+        '
+        Me.BExcel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BExcel.ImageIndex = 25
+        Me.BExcel.Location = New System.Drawing.Point(879, 2)
+        Me.BExcel.Name = "BExcel"
+        Me.BExcel.Size = New System.Drawing.Size(127, 35)
+        Me.BExcel.TabIndex = 1
+        Me.BExcel.Text = "Excel Download"
+        '
         'FormEmpPayrollReportPajak
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.GCPajak)
+        Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormEmpPayrollReportPajak"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -638,6 +702,10 @@ Partial Class FormEmpPayrollReportPajak
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCPajak, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPajak, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -682,4 +750,9 @@ Partial Class FormEmpPayrollReportPajak
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TBFileAddress As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BExcel As DevExpress.XtraEditors.SimpleButton
 End Class

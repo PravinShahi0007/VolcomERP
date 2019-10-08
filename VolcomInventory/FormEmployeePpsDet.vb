@@ -6,6 +6,8 @@
     Public show_payroll As Boolean = False
     Public id_report_status As String = "-1"
 
+    Private load_all As Boolean = False
+
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
         viewLookupQuery(LESex, query, 0, "sex", "id_sex")
@@ -187,6 +189,8 @@
             LEEmployeeStatus.Size = New Size(512, 20)
             LEEmployeeStatusB.Size = New Size(512, 20)
         End If
+
+        load_all = True
     End Sub
 
     Sub initLoad()
@@ -237,6 +241,8 @@
             If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
                 Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                AddHandler PEPosition.ImageChanged, AddressOf changeImage
+
                 PCPosAtt.Controls.Add(PEPosition)
 
                 pre_viewImages("4", PEPosition, id_employee + "_position_" + i.ToString, False)
@@ -248,16 +254,16 @@
         If Not PCPosAtt.HasChildren Then
             Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-            PCPosAtt.Controls.Add(PEPosition)
+            AddHandler PEPosition.ImageChanged, AddressOf changeImage
 
-            pre_viewImages("4", PEPosition, "default", False)
+            PCPosAtt.Controls.Add(PEPosition)
         End If
 
         If Not id_pps = "-1" Then
-            viewImages(PE, pps_path, id_pps + "_ava", False)
-            viewImages(PEKTP, pps_path, id_pps + "_ktp", False)
-            viewImages(PEKK, pps_path, id_pps + "_kk", False)
-            viewImages(PEREK, pps_path, id_pps + "_rek", False)
+            viewImages_empty(PE, pps_path, id_pps + "_ava", False)
+            viewImages_empty(PEKTP, pps_path, id_pps + "_ktp", False)
+            viewImages_empty(PEKK, pps_path, id_pps + "_kk", False)
+            viewImages_empty(PEREK, pps_path, id_pps + "_rek", False)
 
             ' position
             PCPosAtt.Controls.Clear()
@@ -266,9 +272,11 @@
                 If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
                     Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                    AddHandler PEPosition.ImageChanged, AddressOf changeImage
+
                     PCPosAtt.Controls.Add(PEPosition)
 
-                    viewImages(PEPosition, pps_path, id_pps + "_position_" + i.ToString, False)
+                    viewImages_empty(PEPosition, pps_path, id_pps + "_position_" + i.ToString, False)
                 Else
                     Exit For
                 End If
@@ -277,9 +285,11 @@
             If Not PCPosAtt.HasChildren Then
                 Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                AddHandler PEPosition.ImageChanged, AddressOf changeImage
+
                 PCPosAtt.Controls.Add(PEPosition)
 
-                viewImages(PEPosition, pps_path, "default", False)
+                viewImages_empty(PEPosition, pps_path, "default", False)
             End If
         End If
 
@@ -294,6 +304,8 @@
                 If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
                     Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                    AddHandler PEPositionB.ImageChanged, AddressOf changeImage
+
                     PCPosAttB.Controls.Add(PEPositionB)
 
                     pre_viewImages("4", PEPositionB, id_employee + "_position_" + i.ToString, False)
@@ -305,16 +317,16 @@
             If Not PCPosAttB.HasChildren Then
                 Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-                PCPosAttB.Controls.Add(PEPositionB)
+                AddHandler PEPositionB.ImageChanged, AddressOf changeImage
 
-                pre_viewImages("4", PEPositionB, "default", False)
+                PCPosAttB.Controls.Add(PEPositionB)
             End If
 
             If Not id_pps = "-1" Then
-                viewImages(PEB, pps_path, id_pps + "_ava_old", False)
-                viewImages(PEKTPB, pps_path, id_pps + "_ktp_old", False)
-                viewImages(PEKKB, pps_path, id_pps + "_kk_old", False)
-                viewImages(PEREKB, pps_path, id_pps + "_rek_old", False)
+                viewImages_empty(PEB, pps_path, id_pps + "_ava_old", False)
+                viewImages_empty(PEKTPB, pps_path, id_pps + "_ktp_old", False)
+                viewImages_empty(PEKKB, pps_path, id_pps + "_kk_old", False)
+                viewImages_empty(PEREKB, pps_path, id_pps + "_rek_old", False)
 
                 ' position
                 PCPosAttB.Controls.Clear()
@@ -323,9 +335,11 @@
                     If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + "_old.jpg") Then
                         Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                        AddHandler PEPositionB.ImageChanged, AddressOf changeImage
+
                         PCPosAttB.Controls.Add(PEPositionB)
 
-                        viewImages(PEPositionB, pps_path, id_pps + "_position_" + i.ToString + "_old", False)
+                        viewImages_empty(PEPositionB, pps_path, id_pps + "_position_" + i.ToString + "_old", False)
                     Else
                         Exit For
                     End If
@@ -334,9 +348,9 @@
                 If Not PCPosAttB.HasChildren Then
                     Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-                    PCPosAttB.Controls.Add(PEPositionB)
+                    AddHandler PEPositionB.ImageChanged, AddressOf changeImage
 
-                    viewImages(PEPositionB, pps_path, "default", False)
+                    PCPosAttB.Controls.Add(PEPositionB)
                 End If
             End If
         End If
@@ -833,6 +847,27 @@
                     data_cek = ""
                 End If
             End If
+
+            'check image
+            If PCPosAtt.HasChildren Then
+                For Each i As Control In PCPosAtt.Controls
+                    Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+                    If ic.EditValue Is Nothing Then
+                        data_cek = "Please add employee contract."
+                    End If
+                Next
+            Else
+                data_cek = "Please add employee contract."
+            End If
+
+            If PEKTP.EditValue Is Nothing Then
+                data_cek = "Please add employee KTP."
+            End If
+
+            If PE.EditValue Is Nothing Then
+                data_cek = "Please add employee photo."
+            End If
         End If
 
         If Not formIsValidInGroup(ErrorProvider1, GCGeneralPropose) Or Not formIsValidInGroup(ErrorProvider1, GCDetailPropose) Or Not formIsValidInGroup(ErrorProvider1, GCContractPropose) Or Not formIsValidInGroup(ErrorProvider1, GCPayrollPropose) Then
@@ -1053,16 +1088,20 @@
         'image
         If Not PE.EditValue Is Nothing Then
             save_image_ori(PE, pps_path, id_pps & "_ava.jpg")
-        Else
-            System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava.jpg", True)
-
-            System.IO.File.SetAttributes(pps_path + id_pps + "_ava.jpg", System.IO.FileAttributes.Normal)
         End If
 
         ' att
-        save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
-        save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
-        save_image_ori(PEREK, pps_path, id_pps & "_rek.jpg")
+        If Not PEKTP.EditValue Is Nothing Then
+            save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
+        End If
+
+        If Not PEKK.EditValue Is Nothing Then
+            save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
+        End If
+
+        If Not PEREK.EditValue Is Nothing Then
+            save_image_ori(PEREK, pps_path, id_pps & "_rek.jpg")
+        End If
 
         ' delete position
         For i = 1 To 100
@@ -1079,9 +1118,11 @@
             For Each i As Control In PCPosAtt.Controls
                 Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
+                If Not ic.EditValue Is Nothing Then
+                    save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
 
-                no += 1
+                    no += 1
+                End If
             Next
         End If
 
@@ -1109,16 +1150,20 @@
             'image
             If Not PEB.EditValue Is Nothing Then
                 save_image_ori(PEB, pps_path, id_pps & "_ava_old.jpg")
-            Else
-                System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava_old.jpg", True)
-
-                System.IO.File.SetAttributes(pps_path + id_pps + "_ava_old.jpg", System.IO.FileAttributes.Normal)
             End If
 
             ' att
-            save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
-            save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
-            save_image_ori(PEREKB, pps_path, id_pps & "_rek_old.jpg")
+            If Not PEKTPB.EditValue Is Nothing Then
+                save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
+            End If
+
+            If Not PEKKB.EditValue Is Nothing Then
+                save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
+            End If
+
+            If Not PEREKB.EditValue Is Nothing Then
+                save_image_ori(PEREKB, pps_path, id_pps & "_rek_old.jpg")
+            End If
 
             If PCPosAttB.HasChildren Then
                 Dim no As Integer = 1
@@ -1126,9 +1171,11 @@
                 For Each i As Control In PCPosAttB.Controls
                     Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                    save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
+                    If Not ic.EditValue Is Nothing Then
+                        save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
 
-                    no += 1
+                        no += 1
+                    End If
                 Next
             End If
         End If
@@ -1596,6 +1643,7 @@
         Dim status_changed As Boolean = False
         Dim position_changed As Boolean = False
         Dim salary_changed As Boolean = False
+        Dim join_date_changed As Boolean = False
 
         ' edited else new
         If is_new = "-1" Then
@@ -1623,6 +1671,10 @@
                     'If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
                     '    salary_changed = True
                     'End If
+
+                    If changes.Rows(i)("name") = "employee_join_date" Then
+                        join_date_changed = True
+                    End If
                 Next
 
                 progress.ProgressBarControl.EditValue = 30
@@ -1677,6 +1729,19 @@
 
                 '    execute_non_query(query, True, "", "", "", "")
                 'End If
+
+                If join_date_changed Then
+                    query = "
+                        INSERT INTO tb_emp_stock_leave(id_emp, qty, plus_minus, date_leave, date_expired, is_process_exp, `type`, note)
+                        SELECT id_emp, SUM(IF(plus_minus = 1, qty, -qty)) AS qty, 2 AS plus_minus, NOW() AS date_leave, date_expired, 1 AS is_process_exp, `type`, 'Auto adjustment leave' AS note
+                        FROM tb_emp_stock_leave
+                        WHERE id_emp = " + id_employee + "
+                        GROUP BY id_emp, `type`, date_expired
+                        HAVING SUM(IF(plus_minus = 1, qty, -qty)) > 0
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
 
                 progress.ProgressBarControl.EditValue = 40
             End If
@@ -2100,6 +2165,69 @@
     Private Sub DEJoinDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEJoinDate.EditValueChanged
         If is_new = "1" Then
             DEActualJoinDate.EditValue = DEJoinDate.EditValue
+        End If
+    End Sub
+
+    Private Sub DEJoinDate_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles DEJoinDate.EditValueChanging
+        If load_all Then
+            If Not is_new = "1" Then
+                Dim confirm As DialogResult
+
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Changing join date will reset employee remaining leave to 0, are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                Else
+                    e.Cancel = True
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub TxtCode_EditValueChanged(sender As Object, e As EventArgs) Handles TxtCode.EditValueChanged
+        TxtCode.EditValue = TxtCode.EditValue.ToString.Trim()
+    End Sub
+
+    Private Sub PE_ImageChanged(sender As Object, e As EventArgs) Handles PE.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKTP_ImageChanged(sender As Object, e As EventArgs) Handles PEKTP.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKK_ImageChanged(sender As Object, e As EventArgs) Handles PEKK.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEREK_ImageChanged(sender As Object, e As EventArgs) Handles PEREK.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEB_ImageChanged(sender As Object, e As EventArgs) Handles PEB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKTPB_ImageChanged(sender As Object, e As EventArgs) Handles PEKTPB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKKB_ImageChanged(sender As Object, e As EventArgs) Handles PEKKB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEREKB_ImageChanged(sender As Object, e As EventArgs) Handles PEREKB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Sub changeImage(sender As Object, e As EventArgs)
+        Dim PEEdit As DevExpress.XtraEditors.PictureEdit = CType(sender, DevExpress.XtraEditors.PictureEdit)
+
+        If Not PEEdit.EditValue Is Nothing Then
+            Dim image As Image = FormEmployeePpsAtt.imageResize(CType(PEEdit.EditValue, Bitmap))
+
+            If Not image Is Nothing Then
+                PEEdit.EditValue = image
+            End If
         End If
     End Sub
 End Class

@@ -1949,6 +1949,12 @@
             field_id = "id_employee_sal_pps"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "180" Then
+            'propose employee
+            table_name = "tb_employee_pps"
+            field_id = "id_employee_pps"
+            field_number = "number"
+            field_date = "created_date"
         ElseIf report_mark_type = "184" Then
             'Overtime employee
             table_name = "tb_ot"

@@ -2571,6 +2571,12 @@
     <Compile Include="FormProductionWOList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoRules.Designer.vb">
+      <DependentUpon>FormPromoRules.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoRules.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposeEmpSalary.Designer.vb">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
     </Compile>
@@ -2773,6 +2779,12 @@
       <DependentUpon>FormReportMarkCancelPick.vb</DependentUpon>
     </Compile>
     <Compile Include="FormReportMarkCancelPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportPaymentFGPO.Designer.vb">
+      <DependentUpon>FormReportPaymentFGPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportPaymentFGPO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRevenue.Designer.vb">
@@ -8538,6 +8550,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportMarkCancelPick.resx">
       <DependentUpon>FormReportMarkCancelPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportPaymentFGPO.resx">
+      <DependentUpon>FormReportPaymentFGPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>

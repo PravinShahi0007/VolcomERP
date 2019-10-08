@@ -1179,7 +1179,7 @@
                     mail.report_mark_type = report_mark_type
                     mail.send_email_notif(report_mark_type, id_report)
                 Catch ex As Exception
-                    execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                    execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                 End Try
             End If
 
@@ -4482,7 +4482,13 @@
                 execute_non_query(query_void, True, "", "", "", "")
 
 
-                Dim qpr As String = "SELECT * FROM tb_prod_demand_design_rev pdd
+                Dim qpr As String = "SELECT pdd.`id_prod_demand_design_rev`,pdd.`id_prod_demand_rev`,pdd.`id_prod_demand_design`, pdd_org.`id_delivery`, pdd.`id_design`, pdd.`id_currency`, pdd.`prod_demand_design_propose_price`,
+                pdd.`additional_price`, pdd.`prod_demand_design_estimate_price`, pdd.`prod_demand_design_total_cost`, pdd.`additional_cost`, pdd.`royalty_design`, pdd.`royalty_special`, pdd.`inflation`,
+                pdd.`rate_current`, pdd.`rate_management`, pdd.`msrp`, pdd.`msrp_rp`, pdd.`date_available_start`, pdd.`id_pd_status_rev`, pdd.`is_cancel_po`, pdd.`cancel_po_note`,
+                pd.`id_prod_demand_rev`, pd.`id_prod_demand`, pd.`rev_count`, pd.`id_report_status`,
+                pd.`created_date`, pd.`note`, pd.`is_confirm`, pd.`report_mark_type`
+                FROM tb_prod_demand_design_rev pdd
+                INNER JOIN tb_prod_demand_design pdd_org ON pdd_org.id_prod_demand_design = pdd.id_prod_demand_design
                 INNER JOIN tb_prod_demand_rev pd ON pd.id_prod_demand_rev = pdd.id_prod_demand_rev
                 WHERE pdd.id_prod_demand_rev=" + id_report + " AND pdd.id_pd_status_rev=1 "
                 Dim dpr As DataTable = execute_query(qpr, -1, True, "", "", "", "")
