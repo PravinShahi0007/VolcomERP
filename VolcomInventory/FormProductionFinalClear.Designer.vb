@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormProductionFinalClear
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormProductionFinalClear
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -42,6 +42,12 @@ Partial Class FormProductionFinalClear
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCQCReport = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPEntryList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDetailReport = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +56,13 @@ Partial Class FormProductionFinalClear
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFinalClear, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFinalClear, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCQCReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCQCReport.SuspendLayout()
+        Me.XTPEntryList.SuspendLayout()
+        Me.XTPDetailReport.SuspendLayout()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -65,7 +78,7 @@ Partial Class FormProductionFinalClear
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(1066, 39)
+        Me.GCFilter.Size = New System.Drawing.Size(1060, 39)
         Me.GCFilter.TabIndex = 3
         '
         'BtnView
@@ -143,7 +156,7 @@ Partial Class FormProductionFinalClear
         Me.GCFinalClear.Location = New System.Drawing.Point(0, 39)
         Me.GCFinalClear.MainView = Me.GVFinalClear
         Me.GCFinalClear.Name = "GCFinalClear"
-        Me.GCFinalClear.Size = New System.Drawing.Size(1066, 429)
+        Me.GCFinalClear.Size = New System.Drawing.Size(1060, 401)
         Me.GCFinalClear.TabIndex = 4
         Me.GCFinalClear.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFinalClear})
         '
@@ -162,7 +175,7 @@ Partial Class FormProductionFinalClear
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Clearance#"
+        Me.GridColumn1.Caption = "Entry#"
         Me.GridColumn1.FieldName = "prod_fc_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
@@ -278,18 +291,69 @@ Partial Class FormProductionFinalClear
         Me.GridColumn12.FieldName = "id_prod_fc"
         Me.GridColumn12.Name = "GridColumn12"
         '
+        'XTCQCReport
+        '
+        Me.XTCQCReport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCQCReport.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCQCReport.Location = New System.Drawing.Point(0, 0)
+        Me.XTCQCReport.Name = "XTCQCReport"
+        Me.XTCQCReport.SelectedTabPage = Me.XTPEntryList
+        Me.XTCQCReport.Size = New System.Drawing.Size(1066, 468)
+        Me.XTCQCReport.TabIndex = 5
+        Me.XTCQCReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPEntryList, Me.XTPDetailReport})
+        '
+        'XTPEntryList
+        '
+        Me.XTPEntryList.Controls.Add(Me.GCFinalClear)
+        Me.XTPEntryList.Controls.Add(Me.GCFilter)
+        Me.XTPEntryList.Name = "XTPEntryList"
+        Me.XTPEntryList.Size = New System.Drawing.Size(1060, 440)
+        Me.XTPEntryList.Text = "Entry List"
+        '
+        'XTPDetailReport
+        '
+        Me.XTPDetailReport.Controls.Add(Me.GCDetail)
+        Me.XTPDetailReport.Controls.Add(Me.GroupControl1)
+        Me.XTPDetailReport.Name = "XTPDetailReport"
+        Me.XTPDetailReport.Size = New System.Drawing.Size(1060, 440)
+        Me.XTPDetailReport.Text = "Detail Report"
+        '
+        'GCDetail
+        '
+        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDetail.Location = New System.Drawing.Point(0, 39)
+        Me.GCDetail.MainView = Me.GVDetail
+        Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.Size = New System.Drawing.Size(1060, 401)
+        Me.GCDetail.TabIndex = 5
+        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
+        '
+        'GVDetail
+        '
+        Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsView.ShowGroupPanel = False
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(1060, 39)
+        Me.GroupControl1.TabIndex = 4
+        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1066, 468)
-        Me.Controls.Add(Me.GCFinalClear)
-        Me.Controls.Add(Me.GCFilter)
+        Me.Controls.Add(Me.XTCQCReport)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClear"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Final Clearance"
+        Me.Text = "QC Report"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
@@ -299,6 +363,13 @@ Partial Class FormProductionFinalClear
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFinalClear, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFinalClear, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCQCReport, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCQCReport.ResumeLayout(False)
+        Me.XTPEntryList.ResumeLayout(False)
+        Me.XTPDetailReport.ResumeLayout(False)
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -326,4 +397,10 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCQCReport As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPEntryList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDetailReport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
 End Class
