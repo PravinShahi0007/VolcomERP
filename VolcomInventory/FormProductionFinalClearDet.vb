@@ -595,4 +595,16 @@ Public Class FormProductionFinalClearDet
     Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
         viewPLCatSub()
     End Sub
+
+    Private Sub GVItemList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVItemList.CellValueChanged
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim row_foc As Integer = e.RowHandle
+            If e.Column.FieldName = "prod_fc_det_qty" Then
+                If e.Value > GVItemList.GetRowCellValue(row_foc, "qty_limit") Then
+                    stopCustom("Can't exceed " + GVItemList.GetRowCellValue(row_foc, "qty_limit").ToString)
+                    GVItemList.SetRowCellValue(row_foc, "prod_fc_det_qty", GVItemList.ActiveEditor.OldEditValue)
+                End If
+            End If
+        End If
+    End Sub
 End Class

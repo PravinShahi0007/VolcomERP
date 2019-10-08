@@ -84,6 +84,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LECLaim = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnQtyLimit = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -699,7 +700,7 @@ Partial Class FormProductionFinalClearDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnSizeSum, Me.GridColumnIdProductSum, Me.GridColumn1, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnSizeSum, Me.GridColumnIdProductSum, Me.GridColumn1, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnQtyLimit})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", Me.GridColumnQtySum, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
@@ -835,6 +836,16 @@ Partial Class FormProductionFinalClearDet
         Me.LabelControl11.TabIndex = 10009
         Me.LabelControl11.Text = "Claim"
         '
+        'GridColumnQtyLimit
+        '
+        Me.GridColumnQtyLimit.Caption = "Qty Limit"
+        Me.GridColumnQtyLimit.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyLimit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyLimit.FieldName = "qty_limit"
+        Me.GridColumnQtyLimit.Name = "GridColumnQtyLimit"
+        Me.GridColumnQtyLimit.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_limit", "{0:N0}")})
+        '
         'FormProductionFinalClearDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -955,4 +966,5 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents BtnPrePrinting As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LECLaim As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GridColumnQtyLimit As DevExpress.XtraGrid.Columns.GridColumn
 End Class
