@@ -2818,10 +2818,11 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "46" Then 'import att nip volcom
             Try
                 Dim queryx As String = "
-                    SELECT emp.id_employee , emp.employee_code, emp.employee_name, dep.departement, dep_sub.departement_sub
+                    SELECT emp.id_employee , emp.employee_code, emp.employee_name, emp.employee_position, emp.id_departement, dep.departement, dep_sub.departement_sub, emp.id_employee_status, sts.employee_status
                     FROM tb_m_employee emp
                     LEFT JOIN tb_m_departement dep ON dep.id_departement = emp.id_departement
                     LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub = emp.id_departement_sub
+                    LEFT JOIN tb_lookup_employee_status sts ON emp.id_employee_status = sts.id_employee_status
                     WHERE emp.id_employee_active = '1'
                 "
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
@@ -2838,8 +2839,12 @@ Public Class FormImportExcel
                                     .IdEmployee = If(result_emp Is Nothing, "", result_emp("id_employee")),
                                     .NIK = If(result_emp Is Nothing, "", result_emp("employee_code")),
                                     .Name = If(result_emp Is Nothing, "", result_emp("employee_name")),
+                                    .Position = If(result_emp Is Nothing, "", result_emp("employee_position")),
+                                    .IdDepartement = If(result_emp Is Nothing, "", result_emp("id_departement")),
                                     .Departement = If(result_emp Is Nothing, "", result_emp("departement")),
                                     .DepartementSub = If(result_emp Is Nothing, "", result_emp("departement_sub")),
+                                    .IdEmployeeStatus = If(result_emp Is Nothing, "", result_emp("id_employee_status")),
+                                    .EmployeeStatus = If(result_emp Is Nothing, "", result_emp("employee_status")),
                                     .Date = table1("DATE"),
                                     .TimeIn = table1("TIME IN"),
                                     .TimeOut = table1("TIME OUT")
@@ -2852,9 +2857,12 @@ Public Class FormImportExcel
 
                 'Customize column
                 GVData.Columns("IdEmployee").Visible = False
+                GVData.Columns("IdDepartement").Visible = False
+                GVData.Columns("IdEmployeeStatus").Visible = False
                 GVData.Columns("NIK").Caption = "NIK"
                 GVData.Columns("Departement").Caption = "Departement"
                 GVData.Columns("DepartementSub").Caption = "Sub Departement"
+                GVData.Columns("EmployeeStatus").Caption = "Employee Status"
 
                 GVData.Columns("Date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                 GVData.Columns("Date").DisplayFormat.FormatString = "dd MMMM yyyy"
@@ -4862,6 +4870,55 @@ Public Class FormImportExcel
                         PBC.PerformStep()
                         PBC.Update()
                     Next
+                    infoCustom("Import Success")
+                    Close()
+                End If
+            ElseIf id_pop_up = "46" Then 'import att nip volcom
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim data_employee As DataTable = FormEmpInputAttendanceDet.GCEmployee.DataSource
+
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "" Then
+                            Dim include_database As String = execute_query("SELECT IFNULL((SELECT id_employee FROM tb_emp_attn_input_det WHERE id_employee = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND date = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + "'), 0)", 0, True, "", "", "", "")
+
+                            FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = "[id_employee] = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND [date] = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("dd MMMM yyyy") + "'"
+
+                            If include_database = "0" And FormEmpInputAttendanceDet.GVEmployee.RowCount = 0 Then
+                                Dim time_in As Nullable(Of DateTime) = Nothing
+                                Dim time_out As Nullable(Of DateTime) = Nothing
+
+                                Try
+                                    time_in = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeIn").ToString).ToString("HH:mm:ss"))
+                                Catch ex As Exception
+                                End Try
+
+                                Try
+                                    time_out = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeOut").ToString).ToString("HH:mm:ss"))
+                                Catch ex As Exception
+                                End Try
+
+                                data_employee.Rows.Add("0",
+                                                       GVData.GetRowCellValue(i, "IdDepartement").ToString,
+                                                       GVData.GetRowCellValue(i, "Departement").ToString,
+                                                       GVData.GetRowCellValue(i, "IdEmployee").ToString,
+                                                       GVData.GetRowCellValue(i, "NIK").ToString,
+                                                       GVData.GetRowCellValue(i, "Name").ToString,
+                                                       GVData.GetRowCellValue(i, "Position").ToString,
+                                                       GVData.GetRowCellValue(i, "IdEmployeeStatus").ToString,
+                                                       GVData.GetRowCellValue(i, "EmployeeStatus").ToString,
+                                                       GVData.GetRowCellValue(i, "Date"),
+                                                       time_in,
+                                                       time_out)
+                            End If
+
+                            FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = ""
+                        End If
+                    Next
+
+                    FormEmpInputAttendanceDet.GCEmployee.DataSource = data_employee
+                    FormEmpInputAttendanceDet.GVEmployee.BestFitColumns()
+
                     infoCustom("Import Success")
                     Close()
                 End If
