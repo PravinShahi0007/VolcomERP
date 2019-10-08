@@ -83,6 +83,7 @@
             '
         End If
     End Sub
+
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status WHERE id_report_status!='7' "
         If not_allow_complete = "1" Then
@@ -2425,7 +2426,7 @@
                     Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
                     Dim id_mat_det_price As String = data.Rows(i)("id_mat_det_price_cost").ToString
                     Dim mat_det_price As Decimal = data.Rows(i)("mat_det_price_cost")
-                    Dim mat_wo_rec_det_qty As String = data.Rows(i)("mat_prod_ret_in_det_qty").ToString
+                    Dim mat_wo_rec_det_qty As String = decimalSQL(Decimal.Parse(data.Rows(i)("mat_prod_ret_in_det_qty").ToString).ToString)
                     Dim mat_wo_rec_number As String = data.Rows(i)("mat_prod_ret_in_number").ToString
                     Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_report,report_mark_type,id_stock_status,id_mat_det_price,price) "
                     'update storage
