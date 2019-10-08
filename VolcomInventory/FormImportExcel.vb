@@ -2815,6 +2815,62 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "46" Then 'import att nip volcom
+            Try
+                Dim queryx As String = "
+                    SELECT emp.id_employee , emp.employee_code, emp.employee_name, dep.departement, dep_sub.departement_sub
+                    FROM tb_m_employee emp
+                    LEFT JOIN tb_m_departement dep ON dep.id_departement = emp.id_departement
+                    LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub = emp.id_departement_sub
+                    WHERE emp.id_employee_active = '1'
+                "
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                                On table1("EMPLOYEE NIK").ToString.ToLower Equals table_tmp("employee_code").ToString.ToLower Into emp = Group
+                            From result_emp In emp.DefaultIfEmpty()
+                            Select New With
+                                {
+                                    .IdEmployee = If(result_emp Is Nothing, "", result_emp("id_employee")),
+                                    .NIK = If(result_emp Is Nothing, "", result_emp("employee_code")),
+                                    .Name = If(result_emp Is Nothing, "", result_emp("employee_name")),
+                                    .Departement = If(result_emp Is Nothing, "", result_emp("departement")),
+                                    .DepartementSub = If(result_emp Is Nothing, "", result_emp("departement_sub")),
+                                    .Date = table1("DATE"),
+                                    .TimeIn = table1("TIME IN"),
+                                    .TimeOut = table1("TIME OUT")
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdEmployee").Visible = False
+                GVData.Columns("NIK").Caption = "NIK"
+                GVData.Columns("Departement").Caption = "Departement"
+                GVData.Columns("DepartementSub").Caption = "Sub Departement"
+
+                GVData.Columns("Date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("Date").DisplayFormat.FormatString = "dd MMMM yyyy"
+
+                GVData.Columns("TimeIn").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("TimeIn").DisplayFormat.FormatString = "HH:mm:ss"
+
+                GVData.Columns("TimeOut").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("TimeOut").DisplayFormat.FormatString = "HH:mm:ss"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
