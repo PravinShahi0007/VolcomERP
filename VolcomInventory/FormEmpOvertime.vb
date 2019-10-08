@@ -80,7 +80,7 @@
             End Try
 
             Dim query As String = "
-                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, CONCAT('- ', GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') ORDER BY ot_det.ot_date ASC SEPARATOR '\n- ')) AS ot_date, ot.number, ot_det.ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, CONCAT('- ', GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') ORDER BY ot_det.ot_date ASC SEPARATOR '\n- ')) AS ot_date, ot.number, GROUP_CONCAT(DISTINCT ot_det.ot_note SEPARATOR ', ') AS ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -175,14 +175,16 @@
             Dim query As String = "
                 SELECT *
                 FROM (
-                    (SELECT ot_verification.id_ot_verification, ot_verification.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot_verification.id_departement, departement.departement, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot.number, ot_det.ot_note, ot_verification.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
-                    FROM tb_ot_verification AS ot_verification
+                    (SELECT ot_verification.id_ot_verification, ot_verification.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot_verification.id_departement, departement.departement, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot.number, GROUP_CONCAT(DISTINCT ot_verification_det.ot_note SEPARATOR ', ') AS ot_note, ot_verification.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                    FROM tb_ot_verification_det AS ot_verification_det
+                    LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
                     LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
                     LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                     LEFT JOIN tb_m_departement AS departement ON ot_verification.id_departement = departement.id_departement
                     LEFT JOIN tb_lookup_report_status AS report_status ON ot_verification.id_report_status = report_status.id_report_status
                     LEFT JOIN tb_m_employee AS employee ON ot_verification.created_by = employee.id_employee
-                    WHERE 1 " + where_date + " " + where_departement + ")
+                    WHERE 1 " + where_date + " " + where_departement + "
+                    GROUP BY ot_verification_det.id_ot_verification)
                     UNION ALL
                     (SELECT 0 AS id_ot_verification, ot_det.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, ot.number, ot_det.ot_note, 0 AS id_report_status, 'Need Verify' AS report_status, '' AS created_by, '' AS created_at
                     FROM tb_ot_det AS ot_det
