@@ -48,6 +48,7 @@ Partial Class FormProductionFinalClear
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GridColumnClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,7 +163,7 @@ Partial Class FormProductionFinalClear
         '
         'GVFinalClear
         '
-        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12})
+        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumnClaim})
         Me.GVFinalClear.GridControl = Me.GCFinalClear
         Me.GVFinalClear.GroupCount = 1
         Me.GVFinalClear.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
@@ -252,7 +253,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.VisibleIndex = 9
         Me.GridColumn6.Width = 112
         '
         'GridColumn7
@@ -263,7 +264,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn7.FieldName = "prod_fc_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 9
+        Me.GridColumn7.VisibleIndex = 10
         Me.GridColumn7.Width = 112
         '
         'GridColumn8
@@ -272,7 +273,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 10
+        Me.GridColumn8.VisibleIndex = 11
         Me.GridColumn8.Width = 119
         '
         'GridColumn9
@@ -343,6 +344,14 @@ Partial Class FormProductionFinalClear
         Me.GroupControl1.Size = New System.Drawing.Size(1060, 39)
         Me.GroupControl1.TabIndex = 4
         '
+        'GridColumnClaim
+        '
+        Me.GridColumnClaim.Caption = "Claim"
+        Me.GridColumnClaim.FieldName = "pl_category_sub"
+        Me.GridColumnClaim.Name = "GridColumnClaim"
+        Me.GridColumnClaim.Visible = True
+        Me.GridColumnClaim.VisibleIndex = 8
+        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -403,4 +412,5 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GridColumnClaim As DevExpress.XtraGrid.Columns.GridColumn
 End Class
