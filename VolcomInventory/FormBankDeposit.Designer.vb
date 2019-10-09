@@ -96,6 +96,7 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumndate_received = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -625,7 +626,7 @@ Partial Class FormBankDeposit
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21, Me.GridColumndate_received})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -668,7 +669,7 @@ Partial Class FormBankDeposit
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 2
+        Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 109
         '
         'GridColumn20
@@ -684,7 +685,7 @@ Partial Class FormBankDeposit
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 3
+        Me.GridColumn20.VisibleIndex = 4
         Me.GridColumn20.Width = 120
         '
         'GridColumn5
@@ -699,7 +700,7 @@ Partial Class FormBankDeposit
         Me.GridColumn5.FieldName = "val_need_pay"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         Me.GridColumn5.Width = 136
         '
         'GridColumn22
@@ -709,7 +710,7 @@ Partial Class FormBankDeposit
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
+        Me.GridColumn22.VisibleIndex = 7
         Me.GridColumn22.Width = 109
         '
         'GridColumn18
@@ -719,7 +720,7 @@ Partial Class FormBankDeposit
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 5
+        Me.GridColumn18.VisibleIndex = 6
         '
         'GridColumn21
         '
@@ -842,6 +843,17 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
+        'GridColumndate_received
+        '
+        Me.GridColumndate_received.Caption = "Bank Received Date"
+        Me.GridColumndate_received.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumndate_received.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumndate_received.FieldName = "date_received"
+        Me.GridColumndate_received.Name = "GridColumndate_received"
+        Me.GridColumndate_received.Visible = True
+        Me.GridColumndate_received.VisibleIndex = 2
+        Me.GridColumndate_received.Width = 137
+        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -963,4 +975,5 @@ Partial Class FormBankDeposit
     Friend WithEvents DEFromList As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumndate_received As DevExpress.XtraGrid.Columns.GridColumn
 End Class
