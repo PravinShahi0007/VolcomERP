@@ -96,6 +96,7 @@ Partial Public Class ReportPurcOrder
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
@@ -111,7 +112,6 @@ Partial Public Class ReportPurcOrder
         Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LGrandTotal = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -838,7 +838,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.LabelAttn.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LabelAttn.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelAttn.LocationFloat = New DevExpress.Utils.PointFloat(62.89167!, 8.000004!)
+        Me.LabelAttn.LocationFloat = New DevExpress.Utils.PointFloat(62.89167!, 23.00002!)
         Me.LabelAttn.Name = "LabelAttn"
         Me.LabelAttn.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelAttn.SizeF = New System.Drawing.SizeF(178.9913!, 15.0!)
@@ -849,7 +849,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.LTo.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LTo.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTo.LocationFloat = New DevExpress.Utils.PointFloat(62.89167!, 23.00001!)
+        Me.LTo.LocationFloat = New DevExpress.Utils.PointFloat(62.89167!, 8.000023!)
         Me.LTo.Name = "LTo"
         Me.LTo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LTo.SizeF = New System.Drawing.SizeF(178.9913!, 15.0!)
@@ -949,6 +949,22 @@ Partial Public Class ReportPurcOrder
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.LNote, Me.XrLabel2, Me.XrTable3, Me.XrTable1})
         Me.ReportFooter.HeightF = 118.0!
         Me.ReportFooter.Name = "ReportFooter"
+        '
+        'XrLabel11
+        '
+        Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
+        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(25.62257!, 15.00002!)
+        Me.XrLabel11.Multiline = True
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(433.2108!, 75.00001!)
+        Me.XrLabel11.StylePriority.UseBorders = False
+        Me.XrLabel11.StylePriority.UseFont = False
+        Me.XrLabel11.StylePriority.UsePadding = False
+        Me.XrLabel11.StylePriority.UseTextAlignment = False
+        Me.XrLabel11.Text = resources.GetString("XrLabel11.Text")
+        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'LNote
         '
@@ -1104,22 +1120,6 @@ Partial Public Class ReportPurcOrder
         Me.LGrandTotal.Text = "LGrandTotal"
         Me.LGrandTotal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LGrandTotal.Weight = 1.4783270263671873R
-        '
-        'XrLabel11
-        '
-        Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(25.62257!, 15.00002!)
-        Me.XrLabel11.Multiline = True
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(433.2108!, 75.00001!)
-        Me.XrLabel11.StylePriority.UseBorders = False
-        Me.XrLabel11.StylePriority.UseFont = False
-        Me.XrLabel11.StylePriority.UsePadding = False
-        Me.XrLabel11.StylePriority.UseTextAlignment = False
-        Me.XrLabel11.Text = resources.GetString("XrLabel11.Text")
-        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'ReportPurcOrder
         '
