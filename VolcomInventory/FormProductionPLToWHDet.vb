@@ -29,6 +29,7 @@ Public Class FormProductionPLToWHDet
     Public data_code As DataTable
     Dim myListOfDogs As New List(Of String)
     Public dt As New DataTable
+    Dim is_use_qc_report As String = "-1"
 
     Public Class FileRecord
         Public Id As String
@@ -251,7 +252,7 @@ Public Class FormProductionPLToWHDet
 
     Sub view_po()
         Dim query As String = "SELECT d.id_sample, (d.design_display_name) AS `design_name`, a.id_report_status, a.prod_order_number, a.id_po_type, DATE_FORMAT(a.prod_order_date,'%Y-%m-%d') as prod_order_datex, "
-        query += "d.id_design,a.prod_order_lead_time, a.prod_order_note, f.id_season "
+        query += "d.id_design,a.prod_order_lead_time, a.prod_order_note, f.id_season, a.is_use_qc_report "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
         query += "INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status "
@@ -268,6 +269,7 @@ Public Class FormProductionPLToWHDet
         TEDesign.Text = data.Rows(0)("design_name").ToString
         id_season = data.Rows(0)("id_season").ToString
         id_design = data.Rows(0)("id_design").ToString
+        is_use_qc_report = data.Rows(0)("is_use_qc_report").ToString
         pre_viewImages("2", PEView, data.Rows(0)("id_design").ToString, False)
         PEView.Enabled = True
         mainVendor()
