@@ -19,6 +19,7 @@
             GVProd.OptionsBehavior.ReadOnly = True
         End If
     End Sub
+
     Sub viewVendor()
         Dim query As String = ""
         query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label UNION ALL "
@@ -35,6 +36,7 @@
             SLEVendor.EditValue = Nothing
         End If
     End Sub
+
     Sub viewSeason()
         Dim query As String = "SELECT '-1' AS id_season, 'All Season' as season UNION "
         query += "(SELECT id_season,season FROM tb_season a "
@@ -42,6 +44,7 @@
         query += "ORDER BY b.range ASC)"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
+
     Sub viewDesign()
         Dim query As String = ""
         query += "CALL view_design_order(TRUE)"
@@ -60,6 +63,7 @@
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         view_production_order()
     End Sub
+
     Sub view_production_order()
         Dim query_where As String = ""
 
@@ -81,39 +85,83 @@
         Dim opt_claim_int As Integer = 0 'claim international PO
 
         Dim query = "SELECT 'no' AS `check`,
-                        IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, 
-                        IFNULL(SUM(pod.prod_order_qty),0) AS qty_order, 
-                        CONCAT(comp.comp_number,' - ',comp.comp_name) AS `comp_name`,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, 
-                        a.prod_order_date,a.id_report_status,c.report_status, 
-                        b.id_design,b.id_delivery, e.delivery, f.season, e.id_season , wod.prod_order_wo_det_price
-                        ,wo.id_prod_order_wo, a.claim_discount,(a.tolerance_minus * -1) AS `tolerance_minus`, a.tolerance_over,
-                        IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim, 
-                        IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`,
-                        a.is_special_rec, a.special_rec_memo, a.special_rec_datetime
-                        FROM tb_prod_order a 
-                        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
-                        INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
-                        INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status 
-                        INNER JOIN tb_m_design d ON b.id_design = d.id_design 
-                        INNER JOIN tb_season_delivery e ON b.id_delivery=e.id_delivery 
-                        INNER JOIN tb_season f ON f.id_season=e.id_season 
-                        INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type 
-                        INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production 
-                        LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order=a.id_prod_order AND wo.is_main_vendor='1' 
-                        LEFT JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
-                        LEFT JOIN (SELECT id_prod_order_wo,prod_order_wo_det_price FROM tb_prod_order_wo_det GROUP BY id_prod_order_wo) wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
-                        LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
-                        LEFT JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
-                        LEFT JOIN  
-                        ( 
+                    IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, 
+                    IFNULL(SUM(pod.prod_order_qty),0) AS qty_order, 
+                    CONCAT(comp.comp_number,' - ',comp.comp_name) AS `comp_name`,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, 
+                    a.prod_order_date,a.id_report_status,c.report_status, 
+                    b.id_design,b.id_delivery, e.delivery, f.season, e.id_season , wod.prod_order_wo_det_price
+                    ,wo.id_prod_order_wo, a.claim_discount,(a.tolerance_minus * -1) AS `tolerance_minus`, a.tolerance_over,
+                    IF(wo.is_proc_disc_claim=1,'Yes','No') AS is_proc_disc_claim, 
+                    IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`,
+                    a.is_special_rec, a.special_rec_memo, a.special_rec_datetime
+                    ,rec_date.first_rec_date,ko.lead_time,wo.prod_order_wo_del_date
+                    ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL ko.lead_time DAYS) AS est_rec_date
+                    ,SELECT DATEDIFF(rec_date.first_rec_date,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL ko.lead_time DAYS)) AS late
+                    ,IFNULL(qcr.qty_normal,0) AS qty_normal
+                    ,IFNULL(qcr.qty_normal_minor,0) AS qty_normal_minor
+                    ,IFNULL(qcr.qty_minor,0) AS qty_minor
+                    ,IFNULL(qcr.qty_minor_major,0) AS qty_minor_major
+                    ,IFNULL(qcr.qty_major,0) AS qty_major
+                    ,IFNULL(qcr.qty_afkir,0) AS qty_afkir
+                    FROM tb_prod_order a 
+                    INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
+                    INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
+                    INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status 
+                    INNER JOIN tb_m_design d ON b.id_design = d.id_design 
+                    INNER JOIN tb_season_delivery e ON b.id_delivery=e.id_delivery 
+                    INNER JOIN tb_season f ON f.id_season=e.id_season 
+                    INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type 
+                    INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production 
+                    LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order=a.id_prod_order AND wo.is_main_vendor='1' 
+                    LEFT JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+                    LEFT JOIN (SELECT id_prod_order_wo,prod_order_wo_det_price FROM tb_prod_order_wo_det GROUP BY id_prod_order_wo) wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+                    LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+                    LEFT JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+                    LEFT JOIN  
+                    ( 
                         SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty 
                         FROM 
                         tb_prod_order_rec rec 
-                        LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
+                        LEFT JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
                         GROUP BY recd.id_prod_order_det 
-                        ) rec On rec.id_prod_order_det=pod.id_prod_order_det 
-                        WHERE 1=1 " & query_where & "
-                        GROUP BY a.id_prod_order"
+                    ) rec ON rec.id_prod_order_det=pod.id_prod_order_det 
+                    LEFT JOIN
+                    (
+	                    SELECT fc.`id_prod_order`,SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qty_normal,
+	                    SUM(IF(fc.id_pl_category_sub=2,0,fcd.prod_fc_det_qty)) AS qty_normal_minor,
+	                    SUM(IF(fc.id_pl_category_sub=3,0,fcd.prod_fc_det_qty)) AS qty_minor,
+	                    SUM(IF(fc.id_pl_category_sub=4,0,fcd.prod_fc_det_qty)) AS qty_minor_major,
+	                    SUM(IF(fc.id_pl_category_sub=5,0,fcd.prod_fc_det_qty)) AS qty_major,
+	                    SUM(IF(fc.id_pl_category_sub=6,0,fcd.prod_fc_det_qty)) AS qty_afkir 
+	                    FROM tb_prod_fc_det fcd
+	                    INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcd.`id_prod_fc`
+	                    WHERE NOT ISNULL(fc.`id_pl_category_sub`)
+	                    GROUP BY fc.`id_prod_order`
+                    )qcr ON qcr.id_prod_order=a.`id_prod_order`
+                    LEFT JOIN (
+	                    SELECT wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, wo.`prod_order_wo_kurs`
+                        FROM tb_prod_order_wo wo
+                        INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
+                        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
+                        INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
+                        WHERE wo.is_main_vendor=1 
+                        GROUP BY wo.id_prod_order_wo
+                    ) wo_price ON wo_price.id_prod_order=a.id_prod_order
+                    LEFT JOIN (
+                        SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
+	                        SELECT * FROM tb_prod_order_ko_det
+	                        ORDER BY id_prod_order_ko_det DESC
+                        )ko GROUP BY ko.id_prod_order
+                    ) ko ON ko.id_prod_order=a.id_prod_order
+                    LEFT JOIN
+                    (
+                        SELECT rec.id_prod_order,MIN(rec.arrive_date) AS first_rec_date
+                        FROM `tb_prod_order_rec` rec
+                        WHERE rec.id_report_status='6'
+                        GROUP BY rec.id_prod_order
+                    ) rec_date ON rec_date.id_prod_order=a.id_prod_order 
+                    WHERE 1=1 " & query_where & "
+                    GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCProd.DataSource = data
@@ -169,19 +217,20 @@
             stopCustom("Please select FG PO first.")
             GVProd.ActiveFilterString = ""
         Else
-            Dim confirm As DialogResult
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving for this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim prod_order As String = ""
-                For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
-                    If i > 0 Then
-                        prod_order += "OR "
-                    End If
-                    prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
-                Next
-                Dim query As String = "UPDATE tb_prod_order SET is_closing_rec=1 WHERE (" + prod_order + ") "
-                execute_non_query(query, True, "", "", "", "")
-            End If
+            'Dim confirm As DialogResult
+            'confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving for this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            'If confirm = Windows.Forms.DialogResult.Yes Then
+            '    Dim prod_order As String = ""
+            '    For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
+            '        If i > 0 Then
+            '            prod_order += "OR "
+            '        End If
+            '        prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
+            '    Next
+            '    Dim query As String = "UPDATE tb_prod_order SET is_closing_rec=1 WHERE (" + prod_order + ") "
+            '    execute_non_query(query, True, "", "", "", "")
+            'End If
+
         End If
 
         GVProd.ActiveFilterString = ""
