@@ -78,7 +78,7 @@ Public Class FormAccounting
         CONCAT(dp.acc_name,' - ', dp.acc_description) AS `acc_dp`,
         CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
         CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`,
-        CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`
+        CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group
         FROM tb_m_comp
         INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat
         LEFT JOIN tb_a_acc ap ON ap.id_acc = tb_m_comp.id_acc_ap
@@ -89,6 +89,7 @@ Public Class FormAccounting
         INNER JOIN tb_m_city cty ON cty.id_city = tb_m_comp.id_city
         INNER JOIN tb_m_state stt ON stt.id_state = cty.id_state
         LEFT JOIN tb_m_area_acc are ON are.id_area_acc = stt.id_area_acc
+        LEFT JOIN tb_m_comp_group cg ON cg.id_comp_group = tb_m_comp.id_comp_group
         WHERE tb_m_comp.id_comp>0 "
         If id_comp_cat <> "0" Then
             query += "AND tb_m_comp.id_comp_cat='" + id_comp_cat + "' "
