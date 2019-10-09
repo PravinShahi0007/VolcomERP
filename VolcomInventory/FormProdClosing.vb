@@ -263,7 +263,7 @@ WHERE cl.`is_active`='1'"
             End If
 
             If can_close Then
-                infoCustom("next")
+
             Else
                 warningCustom(err_text)
             End If
