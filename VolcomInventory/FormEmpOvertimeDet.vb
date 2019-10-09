@@ -3,7 +3,6 @@
     Public id As String = "0"
 
     Private is_point_ho As String = "0"
-    Public close_memo As Boolean = False
 
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -179,19 +178,7 @@
 
                 submit_who_prepared("184", id, id_user)
 
-                FormEmpOvertime.last_click = "new"
-
-                Close()
-            End If
-        End If
-    End Sub
-
-    Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
-        'memo number manual input
-        If is_hrd = "1" Then
-            Dim already_has_number As Boolean = If(execute_query("SELECT IFNULL((SELECT id_memo_number FROM tb_ot_memo_number WHERE id_ot = " + id + "), 0) AS id_memo_number", 0, True, "", "", "", "") = "0", False, True)
-
-            If Not already_has_number Then
+                'memo number
                 Dim include_memo As Boolean = False
 
                 Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
@@ -209,21 +196,23 @@
 
                     FormEmpOvertimeMemoNumber.ShowDialog()
                 End If
+
+                FormEmpOvertime.last_click = "new"
+
+                Close()
             End If
         End If
+    End Sub
 
-        If Not close_memo Then
-            Cursor = Cursors.WaitCursor
+    Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
+        Cursor = Cursors.WaitCursor
 
-            FormReportMark.report_mark_type = "184"
-            FormReportMark.id_report = id
+        FormReportMark.report_mark_type = "184"
+        FormReportMark.id_report = id
 
-            FormReportMark.ShowDialog()
+        FormReportMark.ShowDialog()
 
-            Cursor = Cursors.Default
-
-            close_memo = False
-        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click

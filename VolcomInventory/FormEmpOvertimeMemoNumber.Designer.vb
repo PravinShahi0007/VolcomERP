@@ -24,16 +24,18 @@ Partial Class FormEmpOvertimeMemoNumber
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEFormat = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEFormat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -48,7 +50,10 @@ Partial Class FormEmpOvertimeMemoNumber
         '
         Me.TENumber.Location = New System.Drawing.Point(156, 11)
         Me.TENumber.Name = "TENumber"
-        Me.TENumber.Size = New System.Drawing.Size(305, 20)
+        Me.TENumber.Properties.Mask.EditMask = "000"
+        Me.TENumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.TENumber.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TENumber.Size = New System.Drawing.Size(100, 20)
         Me.TENumber.TabIndex = 1
         '
         'PanelControl1
@@ -61,16 +66,6 @@ Partial Class FormEmpOvertimeMemoNumber
         Me.PanelControl1.Size = New System.Drawing.Size(484, 42)
         Me.PanelControl1.TabIndex = 4
         '
-        'SBSave
-        '
-        Me.SBSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(383, 5)
-        Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(78, 29)
-        Me.SBSave.TabIndex = 0
-        Me.SBSave.Text = "Save"
-        '
         'SBClose
         '
         Me.SBClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -81,6 +76,16 @@ Partial Class FormEmpOvertimeMemoNumber
         Me.SBClose.TabIndex = 2
         Me.SBClose.Text = "Close"
         '
+        'SBSave
+        '
+        Me.SBSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
+        Me.SBSave.Location = New System.Drawing.Point(383, 5)
+        Me.SBSave.Name = "SBSave"
+        Me.SBSave.Size = New System.Drawing.Size(78, 29)
+        Me.SBSave.TabIndex = 0
+        Me.SBSave.Text = "Save"
+        '
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
@@ -88,6 +93,7 @@ Partial Class FormEmpOvertimeMemoNumber
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.TEFormat)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Controls.Add(Me.TENumber)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -95,6 +101,14 @@ Partial Class FormEmpOvertimeMemoNumber
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(484, 43)
         Me.PanelControl2.TabIndex = 5
+        '
+        'TEFormat
+        '
+        Me.TEFormat.Location = New System.Drawing.Point(279, 11)
+        Me.TEFormat.Name = "TEFormat"
+        Me.TEFormat.Properties.ReadOnly = True
+        Me.TEFormat.Size = New System.Drawing.Size(182, 20)
+        Me.TEFormat.TabIndex = 2
         '
         'FormEmpOvertimeMemoNumber
         '
@@ -115,6 +129,7 @@ Partial Class FormEmpOvertimeMemoNumber
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TEFormat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -126,4 +141,5 @@ Partial Class FormEmpOvertimeMemoNumber
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ErrorProvider As ErrorProvider
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEFormat As DevExpress.XtraEditors.TextEdit
 End Class
