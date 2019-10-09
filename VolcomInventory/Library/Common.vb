@@ -4542,11 +4542,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                                 INNER JOIN tb_m_role role ON role.id_role=c.id_role 
                                 WHERE c.id_user='" & id_user & "'        
                                 UNION
-                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,d.employee_name,d.employee_position AS role
+                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,CONCAT(d.employee_name,IF(ISNULL(d_extra.employee_name),'',CONCAT(' / ',d_extra.employee_name))),d.employee_position AS role
                                 FROM tb_print_list_emp a 
                                 INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
                                 LEFT JOIN tb_m_user c ON a.id_user=c.id_user 
                                 LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee 
+                                LEFT JOIN tb_m_user c_extra ON a.id_user_extra=c_extra.id_user 
+                                LEFT JOIN tb_m_employee d_extra ON d_extra.id_employee=c_extra.id_employee 
                                 INNER JOIN tb_m_role role ON role.id_role=c.id_role 
                                 WHERE a.report_mark_type='" & report_mark_type & "' 
                                 ORDER BY a.id_print_list_emp)"
