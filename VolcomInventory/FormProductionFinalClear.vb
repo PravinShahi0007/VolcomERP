@@ -57,37 +57,49 @@
     End Sub
 
     Sub noManipulating()
-        Try
-            Dim indeks As Integer = GVFinalClear.FocusedRowHandle
-            If indeks < 0 Then
-                bnew_active = "1"
-                bedit_active = "0"
-                bdel_active = "0"
-            Else
-                bnew_active = "1"
-                bedit_active = "1"
-                bdel_active = "0"
-            End If
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-        Catch ex As Exception
-        End Try
+        If XTCQCReport.SelectedTabPageIndex = 0 Then
+            Try
+                Dim indeks As Integer = GVFinalClear.FocusedRowHandle
+                If indeks < 0 Then
+                    bnew_active = "1"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                Else
+                    bnew_active = "1"
+                    bedit_active = "1"
+                    bdel_active = "0"
+                End If
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+            Catch ex As Exception
+            End Try
+        ElseIf XTCQCReport.SelectedTabPageIndex = 1 Then
+            'noaction
+        End If
     End Sub
 
     Sub check_menu()
-        If GVFinalClear.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
+        If XTCQCReport.SelectedTabPageIndex = 0 Then
+            If GVFinalClear.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "0"
+                noManipulating()
+            End If
+        ElseIf XTCQCReport.SelectedTabPageIndex = 1 Then
+            bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "0"
-            noManipulating()
         End If
     End Sub
 
@@ -103,5 +115,9 @@
 
     Private Sub FormProductionFinalClear_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub XTCQCReport_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCQCReport.SelectedPageChanged
+        check_menu()
     End Sub
 End Class
