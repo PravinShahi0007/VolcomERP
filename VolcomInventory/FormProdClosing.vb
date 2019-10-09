@@ -117,6 +117,8 @@ WHERE cl.`is_active`='1'"
                         ,IFNULL(qcr.qty_minor_major,0) AS qc_minor_major
                         ,IFNULL(qcr.qty_major,0) AS qc_major
                         ,IFNULL(qcr.qty_afkir,0) AS qc_afkir
+                        ,(IFNULL(qcr.qty_normal,0) + IFNULL(qcr.qty_normal_minor,0) + IFNULL(qcr.qty_minor,0) + IFNULL(qcr.qty_minor_major,0) + IFNULL(qcr.qty_major,0) + IFNULL(qcr.qty_afkir,0)) AS qc_total
+                        ,IFNULL(SUM(rec.prod_order_rec_det_qty),0) - (IFNULL(qcr.qty_normal,0) + IFNULL(qcr.qty_normal_minor,0) + IFNULL(qcr.qty_minor,0) + IFNULL(qcr.qty_minor_major,0) + IFNULL(qcr.qty_major,0) + IFNULL(qcr.qty_afkir,0)) AS qc_outstanding
                         FROM tb_prod_order a 
                         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
                         INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -133,11 +135,11 @@ WHERE cl.`is_active`='1'"
                         LEFT JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
                         LEFT JOIN  
                         ( 
-                        SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty 
-                        FROM 
-                        tb_prod_order_rec rec 
-                        LEFT JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
-                        GROUP BY recd.id_prod_order_det 
+                            SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty 
+                            FROM 
+                            tb_prod_order_rec rec 
+                            LEFT JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
+                            GROUP BY recd.id_prod_order_det 
                         ) rec ON rec.id_prod_order_det=pod.id_prod_order_det 
                         LEFT JOIN
                         (
@@ -169,12 +171,12 @@ WHERE cl.`is_active`='1'"
                         ) ko ON ko.id_prod_order=a.id_prod_order
                         LEFT JOIN
                         (
-                        SELECT rec.id_prod_order,MIN(rec.arrive_date) AS first_rec_date
-                        FROM `tb_prod_order_rec` rec
-                        WHERE rec.id_report_status='6'
-                        GROUP BY rec.id_prod_order
+                            SELECT rec.id_prod_order,MIN(rec.arrive_date) AS first_rec_date
+                            FROM `tb_prod_order_rec` rec
+                            WHERE rec.id_report_status='6'
+                            GROUP BY rec.id_prod_order
                         ) rec_date ON rec_date.id_prod_order=a.id_prod_order 
-                        WHERE 1=1 " & query_where & "
+                        WHERE a.is_closing_rec='2' " & query_where & "
                         GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -231,6 +233,40 @@ WHERE cl.`is_active`='1'"
             stopCustom("Please select FG PO first.")
             GVProd.ActiveFilterString = ""
         Else
+            'check first
+            Dim err_text As String = ""
+            Dim err_text_outstanding As String = ""
+            Dim err_text_rec As String = ""
+            Dim can_close As Boolean = True
+            'outstanding qc
+            For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+                If GVProd.GetRowCellValue(i, "qc_outstanding") >= 1 Then
+                    can_close = False
+                    err_text_outstanding += vbNewLine & "- " & GVProd.GetRowCellValue(i, "prod_order_number").ToString & " (" & GVProd.GetRowCellValue(i, "design_display_name").ToString & ")"
+                End If
+            Next
+            If Not err_text_outstanding = "" Then
+                err_text = "There is outstanding work in QC for this FGPO : " & err_text_outstanding
+            End If
+            'not yet receiving
+            For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+                If GVProd.GetRowCellValue(i, "qty_rec") = 0 Then
+                    can_close = False
+                    err_text_rec += vbNewLine & "- " & GVProd.GetRowCellValue(i, "prod_order_number").ToString & " (" & GVProd.GetRowCellValue(i, "design_display_name").ToString & ")"
+                End If
+            Next
+            If Not err_text_rec = "" Then
+                If Not err_text = "" Then
+                    err_text += vbNewLine
+                End If
+                err_text += "This FGPO not yet received : " & err_text_rec
+            End If
+
+            If can_close Then
+                infoCustom("next")
+            Else
+                warningCustom(err_text)
+            End If
             'Dim confirm As DialogResult
             'confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving for this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             'If confirm = Windows.Forms.DialogResult.Yes Then
@@ -244,11 +280,10 @@ WHERE cl.`is_active`='1'"
             '    Dim query As String = "UPDATE tb_prod_order SET is_closing_rec=1 WHERE (" + prod_order + ") "
             '    execute_non_query(query, True, "", "", "", "")
             'End If
-
+            GVProd.ActiveFilterString = ""
+            view_production_order()
         End If
 
-        GVProd.ActiveFilterString = ""
-        view_production_order()
         Cursor = Cursors.Default
     End Sub
 

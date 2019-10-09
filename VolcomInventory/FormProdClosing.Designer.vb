@@ -121,6 +121,8 @@ Partial Class FormProdClosing
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -420,7 +422,7 @@ Partial Class FormProdClosing
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumn26, Me.GridColumn25, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed, Me.GridColumnRecStatus, Me.GridColumnClaim, Me.GridColumnToleranceOver, Me.GridColumnToleranceMinus, Me.GridColumnTotalClaim, Me.GridColumnRecAmount, Me.GridColumnTolerance, Me.GridColumnTotalPay, Me.GridColumnBAP, Me.GridColumnMemoDate, Me.GridColumn23, Me.GridColumn22, Me.GridColumn24, Me.GridColumn16, Me.GridColumn20, Me.GridColumn17, Me.GridColumn21, Me.GridColumn18, Me.GridColumn19})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumn26, Me.GridColumn25, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed, Me.GridColumnRecStatus, Me.GridColumnClaim, Me.GridColumnToleranceOver, Me.GridColumnToleranceMinus, Me.GridColumnTotalClaim, Me.GridColumnRecAmount, Me.GridColumnTolerance, Me.GridColumnTotalPay, Me.GridColumnBAP, Me.GridColumnMemoDate, Me.GridColumn23, Me.GridColumn22, Me.GridColumn24, Me.GridColumn16, Me.GridColumn20, Me.GridColumn17, Me.GridColumn21, Me.GridColumn18, Me.GridColumn19, Me.GridColumn31, Me.GridColumn32})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 1
         Me.GVProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrderQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_amount", Me.GridColumnRecAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_claim", Me.GridColumnTotalClaim, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pay", Me.GridColumnTotalPay, "{0:N2}")})
@@ -466,6 +468,7 @@ Partial Class FormProdClosing
         Me.GridColumn26.Caption = "Reject Claim"
         Me.GridColumn26.ColumnEdit = Me.RISLERejectClaim
         Me.GridColumn26.FieldName = "id_claim_reject"
+        Me.GridColumn26.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 5
@@ -504,6 +507,7 @@ Partial Class FormProdClosing
         Me.GridColumn25.Caption = "Late Delivery Claim"
         Me.GridColumn25.ColumnEdit = Me.RISLEClaimLate
         Me.GridColumn25.FieldName = "id_claim_late"
+        Me.GridColumn25.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 6
@@ -896,6 +900,8 @@ Partial Class FormProdClosing
         'GridColumn23
         '
         Me.GridColumn23.Caption = "Est Receive Date"
+        Me.GridColumn23.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn23.FieldName = "est_rec_date"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
@@ -904,6 +910,8 @@ Partial Class FormProdClosing
         'GridColumn22
         '
         Me.GridColumn22.Caption = "First Arrive in QC Date"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn22.FieldName = "first_rec_date"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
@@ -1106,6 +1114,34 @@ Partial Class FormProdClosing
         Me.SimpleButton1.TabIndex = 8913
         Me.SimpleButton1.Text = "Claim Setup"
         '
+        'GridColumn31
+        '
+        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.Caption = "Total Qty QC"
+        Me.GridColumn31.DisplayFormat.FormatString = "N0"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn31.FieldName = "qc_total"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 21
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.Caption = "Outstanding QC"
+        Me.GridColumn32.DisplayFormat.FormatString = "N0"
+        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn32.FieldName = "qc_outstanding"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 22
+        '
         'FormProdClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1253,4 +1289,6 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
