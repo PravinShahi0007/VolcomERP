@@ -2815,10 +2815,10 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
-        ElseIf id_pop_up = "46" Then 'import att nip volcom
+        ElseIf id_pop_up = "45" Or id_pop_up = "46" Then 'import att nip volcom & nik sogo
             Try
                 Dim queryx As String = "
-                    SELECT emp.id_employee , emp.employee_code, emp.employee_name, emp.employee_position, emp.id_departement, dep.departement, dep_sub.departement_sub, emp.id_employee_status, sts.employee_status
+                    SELECT emp.id_employee, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_departement, dep.departement, dep_sub.departement_sub, emp.id_employee_status, sts.employee_status" + If(id_pop_up = "45", ",emp.employee_nik_sogo", "") + "
                     FROM tb_m_employee emp
                     LEFT JOIN tb_m_departement dep ON dep.id_departement = emp.id_departement
                     LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub = emp.id_departement_sub
@@ -2827,31 +2827,63 @@ Public Class FormImportExcel
                 "
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
+                'trim nik
+                For i = 0 To data_temp.Rows.Count - 1
+                    data_temp.Rows(i)("EMPLOYEE NIK") = data_temp.Rows(i)("EMPLOYEE NIK").ToString.Replace("'", "").Replace(" ", "")
+                Next
+
                 Dim tb1 = data_temp.AsEnumerable()
                 Dim tb2 = dt.AsEnumerable()
 
-                Dim query = From table1 In tb1
-                            Group Join table_tmp In tb2
-                                On table1("EMPLOYEE NIK").ToString.ToLower Equals table_tmp("employee_code").ToString.ToLower Into emp = Group
-                            From result_emp In emp.DefaultIfEmpty()
-                            Select New With
-                                {
-                                    .IdEmployee = If(result_emp Is Nothing, "", result_emp("id_employee")),
-                                    .NIK = If(result_emp Is Nothing, "", result_emp("employee_code")),
-                                    .Name = If(result_emp Is Nothing, "", result_emp("employee_name")),
-                                    .Position = If(result_emp Is Nothing, "", result_emp("employee_position")),
-                                    .IdDepartement = If(result_emp Is Nothing, "", result_emp("id_departement")),
-                                    .Departement = If(result_emp Is Nothing, "", result_emp("departement")),
-                                    .DepartementSub = If(result_emp Is Nothing, "", result_emp("departement_sub")),
-                                    .IdEmployeeStatus = If(result_emp Is Nothing, "", result_emp("id_employee_status")),
-                                    .EmployeeStatus = If(result_emp Is Nothing, "", result_emp("employee_status")),
-                                    .Date = table1("DATE"),
-                                    .TimeIn = table1("TIME IN"),
-                                    .TimeOut = table1("TIME OUT")
-                                }
+                If id_pop_up = "45" Then
+                    Dim query = From table1 In tb1
+                                Group Join table_tmp In tb2
+                                On table1("EMPLOYEE NIK").ToString.ToLower Equals table_tmp("employee_nik_sogo").ToString.ToLower Into emp = Group
+                                From result_emp In emp.DefaultIfEmpty()
+                                Select New With
+                            {
+                                .IdEmployee = If(result_emp Is Nothing, "", result_emp("id_employee")),
+                                .NIK = If(result_emp Is Nothing, "", result_emp("employee_code")),
+                                .NIKSogo = If(result_emp Is Nothing, "", result_emp("employee_nik_sogo")),
+                                .Name = If(result_emp Is Nothing, "", result_emp("employee_name")),
+                                .Position = If(result_emp Is Nothing, "", result_emp("employee_position")),
+                                .IdDepartement = If(result_emp Is Nothing, "", result_emp("id_departement")),
+                                .Departement = If(result_emp Is Nothing, "", result_emp("departement")),
+                                .DepartementSub = If(result_emp Is Nothing, "", result_emp("departement_sub")),
+                                .IdEmployeeStatus = If(result_emp Is Nothing, "", result_emp("id_employee_status")),
+                                .EmployeeStatus = If(result_emp Is Nothing, "", result_emp("employee_status")),
+                                .Date = table1("DATE"),
+                                .TimeIn = table1("TIME IN"),
+                                .TimeOut = table1("TIME OUT")
+                            }
 
-                GCData.DataSource = Nothing
-                GCData.DataSource = query.ToList()
+                    GCData.DataSource = Nothing
+                    GCData.DataSource = query.ToList()
+                Else
+                    Dim query = From table1 In tb1
+                                Group Join table_tmp In tb2
+                                On table1("EMPLOYEE NIK").ToString.ToLower Equals table_tmp("employee_code").ToString.ToLower Into emp = Group
+                                From result_emp In emp.DefaultIfEmpty()
+                                Select New With
+                            {
+                                .IdEmployee = If(result_emp Is Nothing, "", result_emp("id_employee")),
+                                .NIK = If(result_emp Is Nothing, "", result_emp("employee_code")),
+                                .Name = If(result_emp Is Nothing, "", result_emp("employee_name")),
+                                .Position = If(result_emp Is Nothing, "", result_emp("employee_position")),
+                                .IdDepartement = If(result_emp Is Nothing, "", result_emp("id_departement")),
+                                .Departement = If(result_emp Is Nothing, "", result_emp("departement")),
+                                .DepartementSub = If(result_emp Is Nothing, "", result_emp("departement_sub")),
+                                .IdEmployeeStatus = If(result_emp Is Nothing, "", result_emp("id_employee_status")),
+                                .EmployeeStatus = If(result_emp Is Nothing, "", result_emp("employee_status")),
+                                .Date = table1("DATE"),
+                                .TimeIn = table1("TIME IN"),
+                                .TimeOut = table1("TIME OUT")
+                            }
+
+                    GCData.DataSource = Nothing
+                    GCData.DataSource = query.ToList()
+                End If
+
                 GCData.RefreshDataSource()
                 GVData.PopulateColumns()
 
@@ -2860,6 +2892,11 @@ Public Class FormImportExcel
                 GVData.Columns("IdDepartement").Visible = False
                 GVData.Columns("IdEmployeeStatus").Visible = False
                 GVData.Columns("NIK").Caption = "NIK"
+
+                If id_pop_up = "45" Then
+                    GVData.Columns("NIKSogo").Caption = "NIK Sogo"
+                End If
+
                 GVData.Columns("Departement").Caption = "Departement"
                 GVData.Columns("DepartementSub").Caption = "Sub Departement"
                 GVData.Columns("EmployeeStatus").Caption = "Employee Status"
@@ -4873,7 +4910,7 @@ Public Class FormImportExcel
                     infoCustom("Import Success")
                     Close()
                 End If
-            ElseIf id_pop_up = "46" Then 'import att nip volcom
+            ElseIf id_pop_up = "45" Or id_pop_up = "46" Then 'import att nip volcom & nik sogo
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Dim data_employee As DataTable = FormEmpInputAttendanceDet.GCEmployee.DataSource
@@ -4882,7 +4919,7 @@ Public Class FormImportExcel
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "" Then
                             Dim include_database As String = execute_query("SELECT IFNULL((SELECT id_employee FROM tb_emp_attn_input_det WHERE id_employee = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND date = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + "'), 0)", 0, True, "", "", "", "")
 
-                            FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = "[id_employee] = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND [date] = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("dd MMMM yyyy") + "'"
+                            FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = "[id_employee] = '" + GVData.GetRowCellValue(i, "IdEmployee").ToString + "' AND [date] = #" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("dd MMMM yyyy") + "#"
 
                             If include_database = "0" And FormEmpInputAttendanceDet.GVEmployee.RowCount = 0 Then
                                 Dim time_in As Nullable(Of DateTime) = Nothing
