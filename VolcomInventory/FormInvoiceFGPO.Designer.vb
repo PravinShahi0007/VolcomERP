@@ -182,6 +182,7 @@ Partial Class FormInvoiceFGPO
         '
         Me.XTPPrePayment.Controls.Add(Me.GridControl1)
         Me.XTPPrePayment.Name = "XTPPrePayment"
+        Me.XTPPrePayment.PageVisible = False
         Me.XTPPrePayment.Size = New System.Drawing.Size(1155, 558)
         Me.XTPPrePayment.Text = "Pre Payment"
         '
