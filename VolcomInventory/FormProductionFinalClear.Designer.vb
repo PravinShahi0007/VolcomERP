@@ -42,13 +42,13 @@ Partial Class FormProductionFinalClear
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCQCReport = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPEntryList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDetailReport = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridColumnClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -292,6 +292,14 @@ Partial Class FormProductionFinalClear
         Me.GridColumn12.FieldName = "id_prod_fc"
         Me.GridColumn12.Name = "GridColumn12"
         '
+        'GridColumnClaim
+        '
+        Me.GridColumnClaim.Caption = "Claim"
+        Me.GridColumnClaim.FieldName = "pl_category_sub"
+        Me.GridColumnClaim.Name = "GridColumnClaim"
+        Me.GridColumnClaim.Visible = True
+        Me.GridColumnClaim.VisibleIndex = 8
+        '
         'XTCQCReport
         '
         Me.XTCQCReport.Dock = System.Windows.Forms.DockStyle.Fill
@@ -316,6 +324,7 @@ Partial Class FormProductionFinalClear
         Me.XTPDetailReport.Controls.Add(Me.GCDetail)
         Me.XTPDetailReport.Controls.Add(Me.GroupControl1)
         Me.XTPDetailReport.Name = "XTPDetailReport"
+        Me.XTPDetailReport.PageVisible = False
         Me.XTPDetailReport.Size = New System.Drawing.Size(1060, 440)
         Me.XTPDetailReport.Text = "Detail Report"
         '
@@ -344,14 +353,6 @@ Partial Class FormProductionFinalClear
         Me.GroupControl1.Size = New System.Drawing.Size(1060, 39)
         Me.GroupControl1.TabIndex = 4
         '
-        'GridColumnClaim
-        '
-        Me.GridColumnClaim.Caption = "Claim"
-        Me.GridColumnClaim.FieldName = "pl_category_sub"
-        Me.GridColumnClaim.Name = "GridColumnClaim"
-        Me.GridColumnClaim.Visible = True
-        Me.GridColumnClaim.VisibleIndex = 8
-        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -362,7 +363,7 @@ Partial Class FormProductionFinalClear
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClear"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "QC Report"
+        Me.Text = "QC Report - Entry"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
