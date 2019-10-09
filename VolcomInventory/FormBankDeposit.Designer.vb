@@ -162,6 +162,7 @@ Partial Class FormBankDeposit
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.Name = "GVInvoiceList"
         Me.GVInvoiceList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVInvoiceList.OptionsFind.AlwaysVisible = True
         Me.GVInvoiceList.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVInvoiceList.OptionsView.ColumnAutoWidth = False
         Me.GVInvoiceList.OptionsView.ShowGroupPanel = False
