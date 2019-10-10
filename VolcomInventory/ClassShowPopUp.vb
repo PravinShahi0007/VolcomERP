@@ -2528,6 +2528,19 @@
                                     INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                     " & generate_left_join_cancel("query") & "
                                     GROUP BY tb.id_prod_order"
+            ElseIf report_mark_type = "105" Then
+                'QC Report/Final CLearance
+                'saat pick
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
+                                FROM " & table_name & " tb
+                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
+                                WHERE tb.id_report_status='6'"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND fc." & field_id & " NOT IN " & qb_id_not_include
+                End If
             Else
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
