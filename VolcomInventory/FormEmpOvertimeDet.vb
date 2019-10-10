@@ -18,9 +18,9 @@
         ' default
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
+        viewLookupQuery(LEDepartement, "SELECT * FROM tb_m_departement", 0, "departement", "id_departement")
 
-        TEDepartement.EditValue = get_departement_x(id_departement_user, "1")
-
+        LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", id_departement_user)
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         TECreatedAt.EditValue = DateTime.Parse(Now).ToString("dd MMM yyyy HH:mm:ss")
 
@@ -42,7 +42,7 @@
 
             TENumber.EditValue = data_ot.Rows(0)("number").ToString
             LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
-            TEDepartement.EditValue = data_ot.Rows(0)("departement").ToString
+            LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", data_ot.Rows(0)("id_departement").ToString)
             TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
             TECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
             TEReportStatus.EditValue = data_ot.Rows(0)("report_status").ToString
@@ -78,6 +78,12 @@
             SBMark.Enabled = True
             SBPrint.Enabled = True
             SBSave.Enabled = False
+
+            LEDepartement.Properties.ReadOnly = True
+        Else
+            If is_hrd = "-1" Then
+                LEDepartement.Properties.ReadOnly = True
+            End If
         End If
     End Sub
 
@@ -146,7 +152,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim query As String = ""
 
-                query = "INSERT INTO tb_ot (id_ot_type, id_departement, id_report_status, created_by, created_at) VALUES (" + LUEOvertimeType.EditValue.ToString + ", " + id_departement_user + ", 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
+                query = "INSERT INTO tb_ot (id_ot_type, id_departement, id_report_status, created_by, created_at) VALUES (" + LUEOvertimeType.EditValue.ToString + ", " + LEDepartement.EditValue.ToString + ", 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
 
                 id = execute_query(query, 0, True, "", "", "", "")
 
@@ -176,7 +182,32 @@
 
                 execute_non_query("CALL gen_number(" + id + ", '184')", True, "", "", "", "")
 
-                submit_who_prepared("184", id, id_user)
+                Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
+
+                'approval
+                If LEDepartement.EditValue.ToString = "8" Then
+                    'departement hrd
+                    If is_user_head Then
+                        'manager hrd submit
+                        submit_who_prepared("214", id, id_user)
+                        execute_non_query("UPDATE tb_ot SET report_mark_type = 214 WHERE id_ot = " + id, True, "", "", "", "")
+                    Else
+                        'admin hrd submit
+                        submit_who_prepared("213", id, id_user)
+                        execute_non_query("UPDATE tb_ot SET report_mark_type = 213 WHERE id_ot = " + id, True, "", "", "", "")
+                    End If
+                Else
+                    'other departement
+                    If is_user_head Then
+                        'manager submit
+                        submit_who_prepared("213", id, id_user)
+                        execute_non_query("UPDATE tb_ot SET report_mark_type = 213 WHERE id_ot = " + id, True, "", "", "", "")
+                    Else
+                        'admin submit
+                        submit_who_prepared("184", id, id_user)
+                        execute_non_query("UPDATE tb_ot SET report_mark_type = 184 WHERE id_ot = " + id, True, "", "", "", "")
+                    End If
+                End If
 
                 'memo number
                 Dim include_memo As Boolean = False
@@ -207,7 +238,7 @@
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
         Cursor = Cursors.WaitCursor
 
-        FormReportMark.report_mark_type = "184"
+        FormReportMark.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "")
         FormReportMark.id_report = id
 
         FormReportMark.ShowDialog()
@@ -281,13 +312,15 @@
 
         'employee
         Dim data_employee As DataTable = execute_query("
-            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_to FROM tb_opt_emp LIMIT 1)
+            SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_to FROM tb_opt_emp LIMIT 1)
             UNION ALL
-            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_cc1 FROM tb_opt_emp LIMIT 1)
+            SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_cc1 FROM tb_opt_emp LIMIT 1)
             UNION ALL
-            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_cc2 FROM tb_opt_emp LIMIT 1)
+            SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_cc2 FROM tb_opt_emp LIMIT 1)
             UNION ALL
-            SELECT employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT ot_memo_from FROM tb_opt_emp LIMIT 1)
+            SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT usr.id_employee FROM tb_m_departement AS dep LEFT JOIN tb_m_user AS usr ON dep.id_user_head = usr.id_user WHERE dep.id_departement = 8)
+            UNION ALL
+            SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT usr.id_employee FROM tb_m_departement AS dep LEFT JOIN tb_m_user AS usr ON dep.id_user_head = usr.id_user WHERE dep.id_departement = " + LEDepartement.EditValue.ToString + ")
         ", -1, True, "", "", "", "")
 
         Dim ReportMemo As New ReportEmpOvertimeMemo()
@@ -298,15 +331,31 @@
         ReportMemo.XrLabel2.Text = execute_query("SELECT IFNULL((SELECT number FROM tb_ot_memo_number WHERE id_ot = " + id + "), '[number]') AS id_memo_number", 0, True, "", "", "", "")
         ReportMemo.XLTo.Text = data_employee.Rows(0)("employee_name").ToString
         ReportMemo.XLToPosition.Text = "- " + data_employee.Rows(0)("employee_position").ToString
+
         ReportMemo.XLCC1.Text = data_employee.Rows(1)("employee_name").ToString
         ReportMemo.XLCC1Position.Text = "- " + data_employee.Rows(1)("employee_position").ToString
+
         ReportMemo.XLCC2.Text = data_employee.Rows(2)("employee_name").ToString
         ReportMemo.XLCC2Position.Text = "- " + data_employee.Rows(2)("employee_position").ToString
-        ReportMemo.XLFrom.Text = data_employee.Rows(3)("employee_name").ToString
-        ReportMemo.XLFromPosition.Text = "- " + data_employee.Rows(3)("employee_position").ToString
-        ReportMemo.XLHal.Text = "Budget Konsumsi Lembur " + TEDepartement.EditValue.ToString + " " + ot_date
 
-        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", TEDepartement.EditValue.ToString)
+        ReportMemo.XLCC3.Text = data_employee.Rows(3)("employee_name").ToString
+        ReportMemo.XLCC3Position.Text = "- " + data_employee.Rows(3)("employee_position").ToString
+
+        ReportMemo.XLFrom.Text = data_employee.Rows(4)("employee_name").ToString
+        ReportMemo.XLFromPosition.Text = "- " + data_employee.Rows(4)("employee_position").ToString
+
+        ReportMemo.XLHal.Text = "Budget Konsumsi Lembur " + LEDepartement.Text.ToString + " " + ot_date
+
+        If data_employee.Rows(3)("id_employee").ToString = data_employee.Rows(4)("id_employee").ToString Then
+            ReportMemo.XLCC3.Visible = False
+            ReportMemo.XLCC3Dot.Visible = False
+            ReportMemo.XLCC3Position.Visible = False
+
+            ReportMemo.XPFrom.LocationF = New PointF(0, 99)
+            ReportMemo.SubBand1.HeightF = 153
+        End If
+
+        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", LEDepartement.Text.ToString)
         ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[ot_date]", ot_date)
         ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[total_consumption]", Format(total_consumption, "##,##0"))
 

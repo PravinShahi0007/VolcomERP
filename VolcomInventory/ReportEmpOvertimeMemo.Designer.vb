@@ -21,30 +21,36 @@ Partial Public Class ReportEmpOvertimeMemo
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportEmpOvertimeMemo))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.SubBand1 = New DevExpress.XtraReports.UI.SubBand()
+        Me.XPFrom = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XLCC3Position = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLCC3Dot = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLCC3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLTo = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLToPosition = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLCC1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLCC2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLCC1Position = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLCC2Position = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLFrom = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLFromPosition = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLHal = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.SubBand2 = New DevExpress.XtraReports.UI.SubBand()
+        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLText = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XLText = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLHal = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLFromPosition = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLFrom = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLCC2Position = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLCC1Position = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLCC2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLCC1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLToPosition = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLTo = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -58,16 +64,255 @@ Partial Public Class ReportEmpOvertimeMemo
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XLText, Me.XrLabel21, Me.XrLine1, Me.XrLabel18, Me.XrLabel19, Me.XLHal, Me.XLFromPosition, Me.XLFrom, Me.XLCC2Position, Me.XLCC1Position, Me.XrLabel12, Me.XLCC2, Me.XLCC1, Me.XrLabel10, Me.XrLabel9, Me.XLToPosition, Me.XLTo, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3})
-        Me.Detail.HeightF = 352.0!
+        Me.Detail.HeightF = 0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.Detail.SubBands.AddRange(New DevExpress.XtraReports.UI.SubBand() {Me.SubBand1, Me.SubBand2})
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'SubBand1
+        '
+        Me.SubBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XPFrom, Me.XLCC3Position, Me.XLCC3Dot, Me.XLCC3, Me.XrLabel3, Me.XrLabel4, Me.XrLabel6, Me.XLTo, Me.XLToPosition, Me.XrLabel9, Me.XLCC1, Me.XLCC2, Me.XrLabel12, Me.XLCC1Position, Me.XLCC2Position})
+        Me.SubBand1.HeightF = 176.0!
+        Me.SubBand1.Name = "SubBand1"
+        '
+        'XPFrom
+        '
+        Me.XPFrom.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XrLabel19, Me.XLHal, Me.XLFromPosition, Me.XLFrom, Me.XrLabel10, Me.XrLabel18})
+        Me.XPFrom.LocationFloat = New DevExpress.Utils.PointFloat(0!, 112.0!)
+        Me.XPFrom.Name = "XPFrom"
+        Me.XPFrom.SizeF = New System.Drawing.SizeF(686.9999!, 57.0!)
+        '
+        'XLCC3Position
+        '
+        Me.XLCC3Position.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLCC3Position.LocationFloat = New DevExpress.Utils.PointFloat(436.9998!, 79.0!)
+        Me.XLCC3Position.Name = "XLCC3Position"
+        Me.XLCC3Position.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLCC3Position.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLCC3Position.StylePriority.UseFont = False
+        '
+        'XLCC3Dot
+        '
+        Me.XLCC3Dot.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLCC3Dot.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 79.0!)
+        Me.XLCC3Dot.Name = "XLCC3Dot"
+        Me.XLCC3Dot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLCC3Dot.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
+        Me.XLCC3Dot.StylePriority.UseFont = False
+        Me.XLCC3Dot.Text = ":"
+        '
+        'XLCC3
+        '
+        Me.XLCC3.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLCC3.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 79.0!)
+        Me.XLCC3.Name = "XLCC3"
+        Me.XLCC3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLCC3.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLCC3.StylePriority.UseFont = False
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.Text = "Kepada"
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.99996!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.Text = "CC"
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.Text = "Dari"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 0!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.Text = ":"
+        '
+        'XLTo
+        '
+        Me.XLTo.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XLTo.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 0!)
+        Me.XLTo.Name = "XLTo"
+        Me.XLTo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLTo.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLTo.StylePriority.UseFont = False
+        '
+        'XLToPosition
+        '
+        Me.XLToPosition.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XLToPosition.LocationFloat = New DevExpress.Utils.PointFloat(437.0!, 0!)
+        Me.XLToPosition.Name = "XLToPosition"
+        Me.XLToPosition.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLToPosition.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLToPosition.StylePriority.UseFont = False
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 32.99996!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.Text = ":"
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 0!)
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
+        Me.XrLabel10.StylePriority.UseFont = False
+        Me.XrLabel10.Text = ":"
+        '
+        'XLCC1
+        '
+        Me.XLCC1.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLCC1.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 32.99996!)
+        Me.XLCC1.Name = "XLCC1"
+        Me.XLCC1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLCC1.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLCC1.StylePriority.UseFont = False
+        '
+        'XLCC2
+        '
+        Me.XLCC2.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLCC2.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 56.00001!)
+        Me.XLCC2.Name = "XLCC2"
+        Me.XLCC2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLCC2.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLCC2.StylePriority.UseFont = False
+        '
+        'XrLabel12
+        '
+        Me.XrLabel12.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 56.00001!)
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.Text = ":"
+        '
+        'XLCC1Position
+        '
+        Me.XLCC1Position.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLCC1Position.LocationFloat = New DevExpress.Utils.PointFloat(437.0!, 32.99996!)
+        Me.XLCC1Position.Name = "XLCC1Position"
+        Me.XLCC1Position.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLCC1Position.SizeF = New System.Drawing.SizeF(249.9999!, 23.0!)
+        Me.XLCC1Position.StylePriority.UseFont = False
+        '
+        'XLCC2Position
+        '
+        Me.XLCC2Position.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLCC2Position.LocationFloat = New DevExpress.Utils.PointFloat(436.9998!, 56.00001!)
+        Me.XLCC2Position.Name = "XLCC2Position"
+        Me.XLCC2Position.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLCC2Position.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLCC2Position.StylePriority.UseFont = False
+        '
+        'XLFrom
+        '
+        Me.XLFrom.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLFrom.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 0!)
+        Me.XLFrom.Name = "XLFrom"
+        Me.XLFrom.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLFrom.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLFrom.StylePriority.UseFont = False
+        '
+        'XLFromPosition
+        '
+        Me.XLFromPosition.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLFromPosition.LocationFloat = New DevExpress.Utils.PointFloat(436.9997!, 0!)
+        Me.XLFromPosition.Name = "XLFromPosition"
+        Me.XLFromPosition.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLFromPosition.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
+        Me.XLFromPosition.StylePriority.UseFont = False
+        '
+        'XLHal
+        '
+        Me.XLHal.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLHal.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 32.99999!)
+        Me.XLHal.Name = "XLHal"
+        Me.XLHal.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLHal.SizeF = New System.Drawing.SizeF(514.0!, 23.00001!)
+        Me.XLHal.StylePriority.UseFont = False
+        '
+        'XrLabel19
+        '
+        Me.XrLabel19.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 32.99999!)
+        Me.XrLabel19.Name = "XrLabel19"
+        Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
+        Me.XrLabel19.StylePriority.UseFont = False
+        Me.XrLabel19.Text = ":"
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.99999!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.Text = "Hal"
+        '
+        'SubBand2
+        '
+        Me.SubBand2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel21, Me.XLText, Me.XrTable1, Me.XrLine1})
+        Me.SubBand2.HeightF = 195.0!
+        Me.SubBand2.Name = "SubBand2"
+        '
+        'XrLabel21
+        '
+        Me.XrLabel21.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.99999!)
+        Me.XrLabel21.Name = "XrLabel21"
+        Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel21.SizeF = New System.Drawing.SizeF(686.9998!, 23.0!)
+        Me.XrLabel21.StylePriority.UseFont = False
+        Me.XrLabel21.Text = "Dengan hormat,"
+        '
+        'XLText
+        '
+        Me.XLText.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLText.LocationFloat = New DevExpress.Utils.PointFloat(0!, 70.99997!)
+        Me.XLText.Multiline = True
+        Me.XLText.Name = "XLText"
+        Me.XLText.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLText.SizeF = New System.Drawing.SizeF(686.9999!, 69.0!)
+        Me.XLText.StylePriority.UseFont = False
+        Me.XLText.Text = resources.GetString("XLText.Text")
         '
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 8.75!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0002086162!, 327.0!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 170.0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(687.0!, 25.0!)
@@ -88,208 +333,16 @@ Partial Public Class ReportEmpOvertimeMemo
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'XLText
-        '
-        Me.XLText.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLText.LocationFloat = New DevExpress.Utils.PointFloat(0.0002086162!, 228.0!)
-        Me.XLText.Multiline = True
-        Me.XLText.Name = "XLText"
-        Me.XLText.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLText.SizeF = New System.Drawing.SizeF(686.9999!, 69.0!)
-        Me.XLText.StylePriority.UseFont = False
-        Me.XLText.Text = resources.GetString("XLText.Text")
-        '
-        'XrLabel21
-        '
-        Me.XrLabel21.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(0.0002086162!, 190.0!)
-        Me.XrLabel21.Name = "XrLabel21"
-        Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel21.SizeF = New System.Drawing.SizeF(686.9998!, 23.0!)
-        Me.XrLabel21.StylePriority.UseFont = False
-        Me.XrLabel21.Text = "Dengan hormat,"
-        '
         'XrLine1
         '
         Me.XrLine1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine1.BorderWidth = 1.0!
         Me.XrLine1.LineWidth = 2
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.00007417468!, 165.0!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(686.9999!, 10.0!)
         Me.XrLine1.StylePriority.UseBorders = False
         Me.XrLine1.StylePriority.UseBorderWidth = False
-        '
-        'XrLabel18
-        '
-        Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0.00007417468!, 142.0!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
-        Me.XrLabel18.StylePriority.UseFont = False
-        Me.XrLabel18.Text = "Hal"
-        '
-        'XrLabel19
-        '
-        Me.XrLabel19.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 142.0!)
-        Me.XrLabel19.Name = "XrLabel19"
-        Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel19.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
-        Me.XrLabel19.StylePriority.UseFont = False
-        Me.XrLabel19.Text = ":"
-        '
-        'XLHal
-        '
-        Me.XLHal.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLHal.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 142.0!)
-        Me.XLHal.Name = "XLHal"
-        Me.XLHal.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLHal.SizeF = New System.Drawing.SizeF(514.0!, 23.00001!)
-        Me.XLHal.StylePriority.UseFont = False
-        '
-        'XLFromPosition
-        '
-        Me.XLFromPosition.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLFromPosition.LocationFloat = New DevExpress.Utils.PointFloat(436.9999!, 109.0!)
-        Me.XLFromPosition.Name = "XLFromPosition"
-        Me.XLFromPosition.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLFromPosition.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
-        Me.XLFromPosition.StylePriority.UseFont = False
-        '
-        'XLFrom
-        '
-        Me.XLFrom.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLFrom.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 109.0!)
-        Me.XLFrom.Name = "XLFrom"
-        Me.XLFrom.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLFrom.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
-        Me.XLFrom.StylePriority.UseFont = False
-        '
-        'XLCC2Position
-        '
-        Me.XLCC2Position.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLCC2Position.LocationFloat = New DevExpress.Utils.PointFloat(436.9999!, 76.00002!)
-        Me.XLCC2Position.Name = "XLCC2Position"
-        Me.XLCC2Position.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLCC2Position.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
-        Me.XLCC2Position.StylePriority.UseFont = False
-        '
-        'XLCC1Position
-        '
-        Me.XLCC1Position.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLCC1Position.LocationFloat = New DevExpress.Utils.PointFloat(437.0!, 52.99997!)
-        Me.XLCC1Position.Name = "XLCC1Position"
-        Me.XLCC1Position.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLCC1Position.SizeF = New System.Drawing.SizeF(249.9999!, 23.0!)
-        Me.XLCC1Position.StylePriority.UseFont = False
-        '
-        'XrLabel12
-        '
-        Me.XrLabel12.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 76.00002!)
-        Me.XrLabel12.Name = "XrLabel12"
-        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
-        Me.XrLabel12.StylePriority.UseFont = False
-        Me.XrLabel12.Text = ":"
-        '
-        'XLCC2
-        '
-        Me.XLCC2.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLCC2.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 76.00002!)
-        Me.XLCC2.Name = "XLCC2"
-        Me.XLCC2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLCC2.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
-        Me.XLCC2.StylePriority.UseFont = False
-        '
-        'XLCC1
-        '
-        Me.XLCC1.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLCC1.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 52.99997!)
-        Me.XLCC1.Name = "XLCC1"
-        Me.XLCC1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLCC1.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
-        Me.XLCC1.StylePriority.UseFont = False
-        '
-        'XrLabel10
-        '
-        Me.XrLabel10.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 109.0!)
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
-        Me.XrLabel10.StylePriority.UseFont = False
-        Me.XrLabel10.Text = ":"
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 52.99997!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.Text = ":"
-        '
-        'XLToPosition
-        '
-        Me.XLToPosition.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLToPosition.LocationFloat = New DevExpress.Utils.PointFloat(437.0!, 20.0!)
-        Me.XLToPosition.Name = "XLToPosition"
-        Me.XLToPosition.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLToPosition.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
-        Me.XLToPosition.StylePriority.UseFont = False
-        '
-        'XLTo
-        '
-        Me.XLTo.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLTo.LocationFloat = New DevExpress.Utils.PointFloat(173.0!, 20.0!)
-        Me.XLTo.Name = "XLTo"
-        Me.XLTo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTo.SizeF = New System.Drawing.SizeF(250.0!, 23.0!)
-        Me.XLTo.StylePriority.UseFont = False
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(150.0001!, 20.0!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(23.0!, 23.0!)
-        Me.XrLabel6.StylePriority.UseFont = False
-        Me.XrLabel6.Text = ":"
-        '
-        'XrLabel5
-        '
-        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0.00007417468!, 109.0!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
-        Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.Text = "Dari"
-        '
-        'XrLabel4
-        '
-        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0.00007417468!, 52.99997!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.Text = "CC"
-        '
-        'XrLabel3
-        '
-        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.00007417468!, 20.0!)
-        Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
-        Me.XrLabel3.StylePriority.UseFont = False
-        Me.XrLabel3.Text = "Kepada"
         '
         'TopMargin
         '
@@ -342,7 +395,7 @@ Partial Public Class ReportEmpOvertimeMemo
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel2})
-        Me.ReportHeader.HeightF = 212.0!
+        Me.ReportHeader.HeightF = 237.0!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'ReportFooter
@@ -405,4 +458,10 @@ Partial Public Class ReportEmpOvertimeMemo
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrPictureBox2 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents SubBand1 As DevExpress.XtraReports.UI.SubBand
+    Friend WithEvents SubBand2 As DevExpress.XtraReports.UI.SubBand
+    Friend WithEvents XLCC3Position As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLCC3Dot As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLCC3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XPFrom As DevExpress.XtraReports.UI.XRPanel
 End Class

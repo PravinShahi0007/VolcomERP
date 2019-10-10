@@ -24,8 +24,11 @@
 
         Dim whereDept As String = ""
 
-        If is_hrd = "-1" Then
-            whereDept = "AND e.id_departement = " + id_departement_user
+        'sales dept include sogo
+        If FormEmpOvertimeDet.LEDepartement.EditValue.ToString = "11" Then
+            whereDept = "AND e.id_departement IN (" + FormEmpOvertimeDet.LEDepartement.EditValue.ToString + ", 17)"
+        Else
+            whereDept = "AND e.id_departement = " + FormEmpOvertimeDet.LEDepartement.EditValue.ToString
         End If
 
         If include_all_dept = "1" Then
