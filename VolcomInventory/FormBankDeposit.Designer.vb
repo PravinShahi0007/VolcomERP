@@ -84,6 +84,7 @@ Partial Class FormBankDeposit
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndate_received = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
@@ -96,7 +97,6 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumndate_received = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -418,6 +418,7 @@ Partial Class FormBankDeposit
         Me.GridColumnCOA.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumnCOA.FieldName = "is_found_coa"
         Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.OptionsColumn.AllowEdit = False
         Me.GridColumnCOA.UnboundExpression = "Iif([id_acc] <> 0, 'Yes', 'No')"
         Me.GridColumnCOA.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnCOA.Visible = True
@@ -730,6 +731,17 @@ Partial Class FormBankDeposit
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Width = 103
         '
+        'GridColumndate_received
+        '
+        Me.GridColumndate_received.Caption = "Bank Received Date"
+        Me.GridColumndate_received.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumndate_received.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumndate_received.FieldName = "date_received"
+        Me.GridColumndate_received.Name = "GridColumndate_received"
+        Me.GridColumndate_received.Visible = True
+        Me.GridColumndate_received.VisibleIndex = 2
+        Me.GridColumndate_received.Width = 137
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -842,17 +854,6 @@ Partial Class FormBankDeposit
         Me.BViewPayment.Size = New System.Drawing.Size(60, 19)
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
-        '
-        'GridColumndate_received
-        '
-        Me.GridColumndate_received.Caption = "Bank Received Date"
-        Me.GridColumndate_received.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumndate_received.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumndate_received.FieldName = "date_received"
-        Me.GridColumndate_received.Name = "GridColumndate_received"
-        Me.GridColumndate_received.Visible = True
-        Me.GridColumndate_received.VisibleIndex = 2
-        Me.GridColumndate_received.Width = 137
         '
         'FormBankDeposit
         '
