@@ -178,6 +178,7 @@ Partial Class FormProdClosing
         Me.SimpleButton1.Size = New System.Drawing.Size(98, 33)
         Me.SimpleButton1.TabIndex = 8913
         Me.SimpleButton1.Text = "Claim Setup"
+        Me.SimpleButton1.Visible = False
         '
         'SLEVendor
         '

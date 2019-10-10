@@ -22,6 +22,8 @@ Partial Class FormMasterEmployee
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterEmployee))
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumnPic = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnActiveStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -51,8 +53,6 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnOtherAddress = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnKTP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPassport = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnPic = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.BandedGridColumnBPJSTK = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnBPJSTKJP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnBPJSTKJHT = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -109,6 +109,7 @@ Partial Class FormMasterEmployee
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.BClone = New DevExpress.XtraEditors.SimpleButton()
+        Me.BandedGridColumnSogoNIK = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandGENERALNew = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -153,7 +154,7 @@ Partial Class FormMasterEmployee
         Me.GVEmployee.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVEmployee.Appearance.HeaderPanel.Options.UseFont = True
         Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGENERALNew, Me.GridBandGeneral, Me.gridBand10, Me.gridBand2, Me.gridBand7, Me.gridBand9, Me.gridBand8, Me.gridBand6, Me.gridBand3, Me.gridBand5, Me.gridBand4, Me.gridBandDependent, Me.gridBand1, Me.gridBandContact, Me.gridBandSalary})
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.BandedGridColumnBloodType, Me.GridColumn4, Me.BandedGridColumn1, Me.BandedGridColumnLevel, Me.BandedGridColumnPIC, Me.BandedGridColumnReligion, Me.BandedGridColumnNationality, Me.BandedGridColumnEthnic, Me.BandedGridColumnEmployeeStatus, Me.BandedGridColumnKoperasiMember, Me.BandedGridColumnJoinDate, Me.BandedGridColumnActualJoinDate, Me.BandedGridColumnLastWorkingDate, Me.BandedGridColumnDegree, Me.BandedGridColumnEmployeePOB, Me.BandedGridColumnEmployeeDOB, Me.BandedGridColumnAge, Me.BandedGridColumnMainAddress, Me.BandedGridColumnOtherAddress, Me.BandedGridColumnKTP, Me.BandedGridColumnPassport, Me.BandedGridColumnBPJSTK, Me.BandedGridColumnBPJSTKJP, Me.BandedGridColumnBPJSTKJHT, Me.BandedGridColumnBPJSTKRegisterDate, Me.BandedGridColumnBPJSSehat, Me.BandedGridColumnBPJSSehatStatus, Me.BandedGridColumnBPJSSehatVolcom, Me.BandedGridColumnBPJSSehatH, Me.BandedGridColumnBPJSSehatStatusH, Me.BandedGridColumnBPJSSehatVolcomH, Me.BandedGridColumnBPJSSehatW, Me.BandedGridColumnBPJSSehatStatusW, Me.BandedGridColumnBPJSSehatVolcomW, Me.BandedGridColumnBPJSSehatC1, Me.BandedGridColumnBPJSSehatStatusC1, Me.BandedGridColumnBPJSSehatVolcomC1, Me.BandedGridColumnBPJSSehatC2, Me.BandedGridColumnBPJSSehatStatusC2, Me.BandedGridColumnBPJSSehatVolcomC2, Me.BandedGridColumnBPJSSehatC3, Me.BandedGridColumnBPJSSehatStatusC3, Me.BandedGridColumnBPJSSehatVolcomC3, Me.BandedGridColumnNPWP, Me.BandedGridColumnNPWPStatus, Me.BandedGridColumnMrgStatus, Me.BandedGridColumnHusband, Me.BandedGridColumnWife, Me.BandedGridColumnChild1, Me.BandedGridColumnChild2, Me.BandedGridColumnChild3, Me.BandedGridColumnPhon, Me.BandedGridColumnMobilePhone, Me.BandedGridColumnPhoneExt, Me.BandedGridColumnLocaleM, Me.BandedGridColumnExternalEm, Me.BandedGridColumnOthEm, Me.BandedGridColumnPersonalEm, Me.BandedGridColumnPosition, Me.BandedGridColumnActiveStatus, Me.BandedGridColumnLength, Me.GridColumnPic, Me.BandedGridColumnBasicSalary, Me.BandedGridColumnAllowJob, Me.BandedGridColumnAllowMeal, Me.BandedGridColumnAllowTrans, Me.BandedGridColumnAllowHouse, Me.BandedGridColumnAllowCar, Me.BandedGridColumnTotalTHP, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumnStartPeriod, Me.BandedGridColumnEndPeriod})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.BandedGridColumnBloodType, Me.GridColumn4, Me.BandedGridColumn1, Me.BandedGridColumnSogoNIK, Me.BandedGridColumnLevel, Me.BandedGridColumnPIC, Me.BandedGridColumnReligion, Me.BandedGridColumnNationality, Me.BandedGridColumnEthnic, Me.BandedGridColumnEmployeeStatus, Me.BandedGridColumnKoperasiMember, Me.BandedGridColumnJoinDate, Me.BandedGridColumnActualJoinDate, Me.BandedGridColumnLastWorkingDate, Me.BandedGridColumnDegree, Me.BandedGridColumnEmployeePOB, Me.BandedGridColumnEmployeeDOB, Me.BandedGridColumnAge, Me.BandedGridColumnMainAddress, Me.BandedGridColumnOtherAddress, Me.BandedGridColumnKTP, Me.BandedGridColumnPassport, Me.BandedGridColumnBPJSTK, Me.BandedGridColumnBPJSTKJP, Me.BandedGridColumnBPJSTKJHT, Me.BandedGridColumnBPJSTKRegisterDate, Me.BandedGridColumnBPJSSehat, Me.BandedGridColumnBPJSSehatStatus, Me.BandedGridColumnBPJSSehatVolcom, Me.BandedGridColumnBPJSSehatH, Me.BandedGridColumnBPJSSehatStatusH, Me.BandedGridColumnBPJSSehatVolcomH, Me.BandedGridColumnBPJSSehatW, Me.BandedGridColumnBPJSSehatStatusW, Me.BandedGridColumnBPJSSehatVolcomW, Me.BandedGridColumnBPJSSehatC1, Me.BandedGridColumnBPJSSehatStatusC1, Me.BandedGridColumnBPJSSehatVolcomC1, Me.BandedGridColumnBPJSSehatC2, Me.BandedGridColumnBPJSSehatStatusC2, Me.BandedGridColumnBPJSSehatVolcomC2, Me.BandedGridColumnBPJSSehatC3, Me.BandedGridColumnBPJSSehatStatusC3, Me.BandedGridColumnBPJSSehatVolcomC3, Me.BandedGridColumnNPWP, Me.BandedGridColumnNPWPStatus, Me.BandedGridColumnMrgStatus, Me.BandedGridColumnHusband, Me.BandedGridColumnWife, Me.BandedGridColumnChild1, Me.BandedGridColumnChild2, Me.BandedGridColumnChild3, Me.BandedGridColumnPhon, Me.BandedGridColumnMobilePhone, Me.BandedGridColumnPhoneExt, Me.BandedGridColumnLocaleM, Me.BandedGridColumnExternalEm, Me.BandedGridColumnOthEm, Me.BandedGridColumnPersonalEm, Me.BandedGridColumnPosition, Me.BandedGridColumnActiveStatus, Me.BandedGridColumnLength, Me.GridColumnPic, Me.BandedGridColumnBasicSalary, Me.BandedGridColumnAllowJob, Me.BandedGridColumnAllowMeal, Me.BandedGridColumnAllowTrans, Me.BandedGridColumnAllowHouse, Me.BandedGridColumnAllowCar, Me.BandedGridColumnTotalTHP, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumnStartPeriod, Me.BandedGridColumnEndPeriod})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "employee_code", Me.GridColumn2, "Sub Total : {0}")})
@@ -166,6 +167,23 @@ Partial Class FormMasterEmployee
         Me.GVEmployee.OptionsView.ShowFooter = True
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnActiveStatus, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn1, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnLevel, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnPic
+        '
+        Me.GridColumnPic.Caption = "Image"
+        Me.GridColumnPic.ColumnEdit = Me.RepositoryItemPictureEdit1
+        Me.GridColumnPic.FieldName = "img"
+        Me.GridColumnPic.Name = "GridColumnPic"
+        Me.GridColumnPic.OptionsColumn.AllowEdit = False
+        Me.GridColumnPic.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnPic.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnPic.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnPic.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
+        Me.GridColumnPic.Width = 46
+        '
+        'RepositoryItemPictureEdit1
+        '
+        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
         '
         'GridColumn2
         '
@@ -413,23 +431,6 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnPassport.Name = "BandedGridColumnPassport"
         Me.BandedGridColumnPassport.Visible = True
         Me.BandedGridColumnPassport.Width = 79
-        '
-        'GridColumnPic
-        '
-        Me.GridColumnPic.Caption = "Image"
-        Me.GridColumnPic.ColumnEdit = Me.RepositoryItemPictureEdit1
-        Me.GridColumnPic.FieldName = "img"
-        Me.GridColumnPic.Name = "GridColumnPic"
-        Me.GridColumnPic.OptionsColumn.AllowEdit = False
-        Me.GridColumnPic.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnPic.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnPic.OptionsColumn.ShowInCustomizationForm = False
-        Me.GridColumnPic.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
-        Me.GridColumnPic.Width = 46
-        '
-        'RepositoryItemPictureEdit1
-        '
-        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
         '
         'BandedGridColumnBPJSTK
         '
@@ -926,6 +927,13 @@ Partial Class FormMasterEmployee
         Me.BClone.Text = "Clone"
         Me.BClone.Visible = False
         '
+        'BandedGridColumnSogoNIK
+        '
+        Me.BandedGridColumnSogoNIK.Caption = "Sogo NIK"
+        Me.BandedGridColumnSogoNIK.FieldName = "employee_nik_sogo"
+        Me.BandedGridColumnSogoNIK.Name = "BandedGridColumnSogoNIK"
+        Me.BandedGridColumnSogoNIK.Visible = True
+        '
         'gridBandGENERALNew
         '
         Me.gridBandGENERALNew.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -951,6 +959,7 @@ Partial Class FormMasterEmployee
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnActiveStatus)
         Me.GridBandGeneral.Columns.Add(Me.GridColumn4)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnSogoNIK)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnPosition)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnLevel)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnPIC)
@@ -960,7 +969,7 @@ Partial Class FormMasterEmployee
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnBloodType)
         Me.GridBandGeneral.Name = "GridBandGeneral"
         Me.GridBandGeneral.VisibleIndex = 1
-        Me.GridBandGeneral.Width = 847
+        Me.GridBandGeneral.Width = 922
         '
         'gridBand10
         '
@@ -1289,6 +1298,7 @@ Partial Class FormMasterEmployee
     Friend WithEvents BandedGridColumnKoperasiMember As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandGENERALNew As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnSogoNIK As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
