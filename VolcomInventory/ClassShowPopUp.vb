@@ -2567,13 +2567,39 @@
                 End If
 
                 'saat blank - edit value pilih rmt
-                query_view_blank = "SELECT 'no' AS is_check,f." & field_id & ", f." & field_number & ", f." & field_date & ", 0 as id_prod_order, '' AS prod_order_number, '' AS `vendor`, '' AS `code`, '' AS `name`, 
+                query_view_blank = "SELECT f." & field_id & ", f." & field_number & ", f." & field_date & ", 0 as id_prod_order, '' AS prod_order_number, '' AS `vendor`, '' AS `code`, '' AS `name`, 
                 '' AS `category`, 0 AS `total_qty`
                 FROM tb_prod_fc f
                 WHERE f.id_report_status='-1' "
 
                 'saat edit
-
+                query_view_edit = "SELECT rmcr.id_report,f." & field_number & " AS number,f." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
+                                po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
+                                cat.pl_category AS `category`, fd.total_qty
+                                FROM tb_report_mark_cancel_report rmcr 
+                                INNER JOIN " & table_name & " f ON f." & field_id & "=rmcr.id_report
+                                INNER JOIN (
+	                                SELECT fd.id_prod_fc, SUM(fd.prod_fc_det_qty) AS `total_qty` 
+	                                FROM tb_prod_fc_det fd
+	                                INNER JOIN tb_prod_fc f ON f.id_prod_fc = fd.id_prod_fc
+	                                WHERE f.id_report_status=6
+	                                GROUP BY fd.id_prod_fc
+                                ) fd ON fd.id_prod_fc = f.id_prod_fc
+                                INNER JOIN tb_lookup_pl_category cat ON cat.id_pl_category = f.id_pl_category
+                                INNER JOIN tb_prod_order po ON po.id_prod_order = f.id_prod_order
+                                INNER JOIN (
+	                                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
+                                    FROM tb_prod_order_wo wo
+                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+                                    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
+                                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+                                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                    GROUP BY wo.id_prod_order_wo
+                                )ovh ON ovh.id_prod_order=po.id_prod_order
+                                INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                                INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
+                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' "
             Else
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
@@ -2719,6 +2745,48 @@
             gv.Columns("design_display_name").Caption = "Style Name"
             gv.Columns("design_code_import").Caption = "Code Import"
             gv.Columns("design_code").Caption = "Code Local"
+            gv.Columns("id_report").OptionsColumn.AllowEdit = False
+            gv.OptionsView.ShowFooter = True
+            '
+            gv.AppearancePrint.HeaderPanel.BackColor = Color.LightGray
+            gv.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            gv.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+            gv.AppearancePrint.FooterPanel.BackColor = Color.LightGray
+            gv.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            gv.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+            gv.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+
+            gv.OptionsPrint.ExpandAllDetails = True
+            gv.OptionsPrint.UsePrintStyles = True
+            gv.OptionsPrint.PrintDetails = True
+            gv.OptionsPrint.PrintFooter = True
+            gv.OptionsView.ColumnAutoWidth = False
+            '
+            gv.BestFitColumns()
+        ElseIf report_mark_type = "105" Then
+            'final clearance
+            If opt = "pick" Then
+                gv.Columns("is_check").Caption = "*"
+                gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                '
+                Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+                rpce.ValueUnchecked = "no"
+                rpce.ValueChecked = "yes"
+                '
+                gv.Columns("is_check").ColumnEdit = rpce
+            End If
+            gv.Columns("id_report").Visible = False
+            gv.Columns("id_prod_order").Visible = False
+            Try
+                gv.Columns("id_rmcr").Visible = False
+                gv.Columns("id_report_mark_cancel_report").Visible = False
+            Catch ex As Exception
+            End Try
+
+            gv.Columns("prod_order_number").Caption = "FGPO"
             gv.Columns("id_report").OptionsColumn.AllowEdit = False
             gv.OptionsView.ShowFooter = True
             '
