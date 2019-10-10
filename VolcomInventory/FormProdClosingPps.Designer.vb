@@ -19,12 +19,24 @@ Partial Class FormProdClosingPps
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdClosingPps))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIDWO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLERejectClaim = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GVClaimReject = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -41,7 +53,6 @@ Partial Class FormProdClosingPps
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRecQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,33 +68,179 @@ Partial Class FormProdClosingPps
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLERejectClaim, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVClaimReject, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEClaimLate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLateClaim, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1174, 79)
         Me.PanelControl1.TabIndex = 0
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.DEDate)
+        Me.PanelControl3.Controls.Add(Me.LabelControl6)
+        Me.PanelControl3.Controls.Add(Me.TEPONumber)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(803, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(369, 75)
+        Me.PanelControl3.TabIndex = 179
+        '
+        'DEDate
+        '
+        Me.DEDate.EditValue = Nothing
+        Me.DEDate.Enabled = False
+        Me.DEDate.Location = New System.Drawing.Point(96, 11)
+        Me.DEDate.Name = "DEDate"
+        Me.DEDate.Properties.Appearance.Options.UseTextOptions = True
+        Me.DEDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDate.Size = New System.Drawing.Size(262, 20)
+        Me.DEDate.TabIndex = 178
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl6.TabIndex = 177
+        Me.LabelControl6.Text = "Date proposed"
+        '
+        'TEPONumber
+        '
+        Me.TEPONumber.EditValue = ""
+        Me.TEPONumber.Location = New System.Drawing.Point(96, 41)
+        Me.TEPONumber.Name = "TEPONumber"
+        Me.TEPONumber.Properties.EditValueChangedDelay = 1
+        Me.TEPONumber.Properties.ReadOnly = True
+        Me.TEPONumber.Size = New System.Drawing.Size(262, 20)
+        Me.TEPONumber.TabIndex = 175
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 44)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(79, 13)
+        Me.LabelControl3.TabIndex = 176
+        Me.LabelControl3.Text = "Propose Number"
+        '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.BtnAttachment)
+        Me.PanelControl2.Controls.Add(Me.BCancel)
+        Me.PanelControl2.Controls.Add(Me.BSave)
+        Me.PanelControl2.Controls.Add(Me.BMark)
+        Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 515)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1174, 41)
         Me.PanelControl2.TabIndex = 1
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.ImgBut
+        Me.BtnAttachment.Location = New System.Drawing.Point(798, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(115, 37)
+        Me.BtnAttachment.TabIndex = 20
+        Me.BtnAttachment.Text = "Attachment"
+        '
+        'ImgBut
+        '
+        Me.ImgBut.ImageSize = New System.Drawing.Size(24, 24)
+        Me.ImgBut.ImageStream = CType(resources.GetObject("ImgBut.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.ImgBut.Images.SetKeyName(0, "20_24x24.png")
+        Me.ImgBut.Images.SetKeyName(1, "8_24x24.png")
+        Me.ImgBut.Images.SetKeyName(2, "23_24x24.png")
+        Me.ImgBut.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.ImgBut.Images.SetKeyName(4, "check_mark.png")
+        Me.ImgBut.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.ImgBut.Images.SetKeyName(6, "printer_3.png")
+        Me.ImgBut.Images.SetKeyName(7, "save.png")
+        Me.ImgBut.Images.SetKeyName(8, "31_24x24.png")
+        Me.ImgBut.Images.SetKeyName(9, "18_24x24.png")
+        Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
+        Me.ImgBut.Images.SetKeyName(11, "document_32.png")
+        '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.ImgBut
+        Me.BCancel.Location = New System.Drawing.Point(913, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(88, 37)
+        Me.BCancel.TabIndex = 17
+        Me.BCancel.Text = "Close"
+        '
+        'BSave
+        '
+        Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSave.Enabled = False
+        Me.BSave.ImageIndex = 7
+        Me.BSave.ImageList = Me.ImgBut
+        Me.BSave.Location = New System.Drawing.Point(1001, 2)
+        Me.BSave.Name = "BSave"
+        Me.BSave.Size = New System.Drawing.Size(88, 37)
+        Me.BSave.TabIndex = 16
+        Me.BSave.Text = "Save"
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.ImgBut
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(85, 37)
+        Me.BMark.TabIndex = 19
+        Me.BMark.Text = "Mark"
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.ImgBut
+        Me.BPrint.Location = New System.Drawing.Point(1089, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(83, 37)
+        Me.BPrint.TabIndex = 18
+        Me.BPrint.Text = "Print"
+        Me.BPrint.Visible = False
         '
         'GCProd
         '
@@ -103,6 +260,7 @@ Partial Class FormProdClosingPps
         Me.GVProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrderQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N0}")})
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVProd.OptionsBehavior.ReadOnly = True
         Me.GVProd.OptionsFind.AlwaysVisible = True
         Me.GVProd.OptionsView.ColumnAutoWidth = False
         Me.GVProd.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
@@ -116,13 +274,6 @@ Partial Class FormProdClosingPps
         Me.GridColumnIDWO.Caption = "ID PO"
         Me.GridColumnIDWO.FieldName = "id_prod_order"
         Me.GridColumnIDWO.Name = "GridColumnIDWO"
-        '
-        'RICESelect
-        '
-        Me.RICESelect.AutoHeight = False
-        Me.RICESelect.Name = "RICESelect"
-        Me.RICESelect.ValueChecked = "yes"
-        Me.RICESelect.ValueUnchecked = "no"
         '
         'GridColumn26
         '
@@ -210,7 +361,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnCompName.Name = "GridColumnCompName"
         Me.GridColumnCompName.OptionsColumn.AllowEdit = False
         Me.GridColumnCompName.Visible = True
-        Me.GridColumnCompName.VisibleIndex = 1
+        Me.GridColumnCompName.VisibleIndex = 0
         Me.GridColumnCompName.Width = 79
         '
         'GridColumnProdNo
@@ -221,7 +372,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnProdNo.Name = "GridColumnProdNo"
         Me.GridColumnProdNo.OptionsColumn.AllowEdit = False
         Me.GridColumnProdNo.Visible = True
-        Me.GridColumnProdNo.VisibleIndex = 2
+        Me.GridColumnProdNo.VisibleIndex = 1
         Me.GridColumnProdNo.Width = 74
         '
         'GridColumnDesign
@@ -232,7 +383,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.OptionsColumn.AllowEdit = False
         Me.GridColumnDesign.Visible = True
-        Me.GridColumnDesign.VisibleIndex = 4
+        Me.GridColumnDesign.VisibleIndex = 3
         Me.GridColumnDesign.Width = 121
         '
         'GridColumnCode
@@ -243,7 +394,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 3
+        Me.GridColumnCode.VisibleIndex = 2
         Me.GridColumnCode.Width = 78
         '
         'GridColumnOrderQty
@@ -260,7 +411,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 7
+        Me.GridColumnOrderQty.VisibleIndex = 6
         Me.GridColumnOrderQty.Width = 89
         '
         'GridColumnRecQty
@@ -277,13 +428,8 @@ Partial Class FormProdClosingPps
         Me.GridColumnRecQty.OptionsColumn.AllowEdit = False
         Me.GridColumnRecQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.GridColumnRecQty.Visible = True
-        Me.GridColumnRecQty.VisibleIndex = 8
+        Me.GridColumnRecQty.VisibleIndex = 7
         Me.GridColumnRecQty.Width = 96
-        '
-        'RIPictureEdit
-        '
-        Me.RIPictureEdit.Name = "RIPictureEdit"
-        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
         'GridColumn23
         '
@@ -293,7 +439,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn23.FieldName = "est_rec_date"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 16
+        Me.GridColumn23.VisibleIndex = 15
         '
         'GridColumn22
         '
@@ -303,7 +449,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn22.FieldName = "first_rec_date"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 15
+        Me.GridColumn22.VisibleIndex = 14
         '
         'GridColumn24
         '
@@ -311,7 +457,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn24.FieldName = "late"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 17
+        Me.GridColumn24.VisibleIndex = 16
         '
         'GridColumn16
         '
@@ -325,7 +471,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn16.FieldName = "qc_normal"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 9
+        Me.GridColumn16.VisibleIndex = 8
         '
         'GridColumn20
         '
@@ -339,7 +485,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn20.FieldName = "qc_normal_minor"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 10
+        Me.GridColumn20.VisibleIndex = 9
         '
         'GridColumn17
         '
@@ -353,7 +499,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn17.FieldName = "qc_minor"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 11
+        Me.GridColumn17.VisibleIndex = 10
         '
         'GridColumn21
         '
@@ -367,7 +513,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn21.FieldName = "qc_minor_major"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 12
+        Me.GridColumn21.VisibleIndex = 11
         '
         'GridColumn18
         '
@@ -381,7 +527,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn18.FieldName = "qc_major"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 13
+        Me.GridColumn18.VisibleIndex = 12
         '
         'GridColumn19
         '
@@ -395,7 +541,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn19.FieldName = "qc_afkir"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 14
+        Me.GridColumn19.VisibleIndex = 13
         '
         'GridColumn1
         '
@@ -439,6 +585,29 @@ Partial Class FormProdClosingPps
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 22
         '
+        'RIPictureEdit
+        '
+        Me.RIPictureEdit.Name = "RIPictureEdit"
+        Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        '
+        'RICESelect
+        '
+        Me.RICESelect.AutoHeight = False
+        Me.RICESelect.Name = "RICESelect"
+        Me.RICESelect.ValueChecked = "yes"
+        Me.RICESelect.ValueUnchecked = "no"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.ImageList = Me.ImgBut
+        Me.SimpleButton1.Location = New System.Drawing.Point(87, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(130, 37)
+        Me.SimpleButton1.TabIndex = 21
+        Me.SimpleButton1.Text = "Cancel Propose"
+        '
         'FormProdClosingPps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -454,15 +623,24 @@ Partial Class FormProdClosingPps
         Me.Text = "Propose Closing"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLERejectClaim, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVClaimReject, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEClaimLate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVLateClaim, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -505,4 +683,16 @@ Partial Class FormProdClosingPps
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DEDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Public WithEvents ImgBut As DevExpress.Utils.ImageCollection
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
