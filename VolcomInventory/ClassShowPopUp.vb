@@ -2531,16 +2531,49 @@
             ElseIf report_mark_type = "105" Then
                 'QC Report/Final CLearance
                 'saat pick
-                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
-                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
-                                FROM " & table_name & " tb
-                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
-                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
-                                INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
-                                WHERE tb.id_report_status='6'"
+                query_view = "SELECT 'no' AS is_check,f." & field_id & ", f." & field_number & ", f." & field_date & ", po.id_prod_order, po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
+                cat.pl_category AS `category`, fd.total_qty
+                FROM tb_prod_fc f
+                INNER JOIN (
+	                SELECT fd.id_prod_fc, SUM(fd.prod_fc_det_qty) AS `total_qty` 
+	                FROM tb_prod_fc_det fd
+	                INNER JOIN tb_prod_fc f ON f.id_prod_fc = fd.id_prod_fc
+	                WHERE f.id_report_status=6
+	                GROUP BY fd.id_prod_fc
+                ) fd ON fd.id_prod_fc = f.id_prod_fc
+                INNER JOIN tb_lookup_pl_category cat ON cat.id_pl_category = f.id_pl_category
+                INNER JOIN tb_prod_order po ON po.id_prod_order = f.id_prod_order
+                INNER JOIN (
+	                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
+                    FROM tb_prod_order_wo wo
+                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+                    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
+                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                    GROUP BY wo.id_prod_order_wo
+                )ovh ON ovh.id_prod_order=po.id_prod_order
+                INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                LEFT JOIN (
+	                SELECT pl.id_prod_order, pl.id_pl_category
+	                FROM tb_pl_prod_order pl
+	                WHERE pl.id_report_status!=5
+	                GROUP BY pl.id_prod_order, pl.id_pl_category
+                ) pl ON pl.id_prod_order = f.id_prod_order AND pl.id_pl_category = f.id_pl_category
+                WHERE f.id_report_status=6 AND po.is_closing_rec=2 AND ISNULL(pl.id_prod_order) "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND fc." & field_id & " NOT IN " & qb_id_not_include
                 End If
+
+                'saat blank - edit value pilih rmt
+                query_view_blank = "SELECT 'no' AS is_check,f." & field_id & ", f." & field_number & ", f." & field_date & ", 0 as id_prod_order, '' AS prod_order_number, '' AS `vendor`, '' AS `code`, '' AS `name`, 
+                '' AS `category`, 0 AS `total_qty`
+                FROM tb_prod_fc f
+                WHERE f.id_report_status='-1' "
+
+                'saat edit
+
             Else
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
