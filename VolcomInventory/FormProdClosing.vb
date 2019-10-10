@@ -268,12 +268,12 @@ WHERE cl.`is_active`='1'"
                 query = "CALL gen_number('" & id_pps & "','212')"
                 execute_non_query(query, True, "", "", "", "")
                 'detail
-                query = "INSERT INTO tb_prod_order_det(id_prod_order_close,id_prod_order,id_claim_reject,id_claim_late) VALUES"
+                query = "INSERT INTO tb_prod_order_close_det(id_prod_order_close,id_prod_order,id_claim_reject,id_claim_late) VALUES"
                 For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
                     If Not i = 0 Then
                         query += ","
                     End If
-                    query += "('" & id_pps & "','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "')"
+                    query += "('" & id_pps & "','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVProd.GetRowCellValue(i, "id_claim_reject").ToString & "','" & GVProd.GetRowCellValue(i, "id_claim_late").ToString & "')"
                 Next
                 execute_non_query(query, True, "", "", "", "")
                 FormProdClosingPps.id_pps = id_pps

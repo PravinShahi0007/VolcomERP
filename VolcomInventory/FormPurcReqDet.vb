@@ -273,14 +273,7 @@
             ElseIf qty_is_0 = True Then
                 stopCustom("Please make sure Qty is not 0.")
             Else
-                Dim is_cash_purchase As String = ""
                 Dim is_store_purchase As String = ""
-
-                If CECashPurchase.Checked = True Then
-                    is_cash_purchase = "1"
-                Else
-                    is_cash_purchase = "2"
-                End If
 
                 If CEStoreRequest.Checked = True Then
                     is_store_purchase = "1"
@@ -289,7 +282,7 @@
                 End If
 
                 If id_req = "-1" Then 'new
-                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,is_cash_purchase,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & is_cash_purchase & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_req As String = execute_query(query, 0, True, "", "", "", "")
                     '
                     Dim query_det As String = ""
@@ -321,7 +314,7 @@
                     FormPurcReq.load_req()
                     Close()
                 Else 'edit
-                    Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',is_cash_purchase='" & is_cash_purchase & "',is_store_purchase='" & is_store_purchase & "',year_budget='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "',date_last_upd=NOW(),requirement_date='" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',note='" & addSlashes(MENote.Text) & "' WHERE id_purc_req='" & id_req & "'"
+                    Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',is_store_purchase='" & is_store_purchase & "',year_budget='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "',date_last_upd=NOW(),requirement_date='" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',note='" & addSlashes(MENote.Text) & "' WHERE id_purc_req='" & id_req & "'"
                     execute_non_query(query, True, "", "", "", "")
                     infoCustom("Purchase request updated.")
                     FormPurcReq.load_req()
