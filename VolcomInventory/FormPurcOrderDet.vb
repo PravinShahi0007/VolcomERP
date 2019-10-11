@@ -365,6 +365,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         If id_po = "-1" Then 'new
             If GVSummary.RowCount = 0 Then
                 warningCustom("Please make sure item listed")
+            ElseIf LEPaymentTerm.Text = "" Then
+                warningCustom("Please put your payment term")
             ElseIf id_vendor_contact = "-1" Then
                 warningCustom("Please make sure vendor already selected")
             ElseIf TETotal.EditValue = 0 Then
