@@ -42,10 +42,12 @@
         BGCBreakHours.Caption = BGCBreakHours.Caption.Replace(" ", Environment.NewLine)
         BGCTotalHours.Caption = BGCTotalHours.Caption.Replace(" ", Environment.NewLine)
 
+        Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
+
         If id_pre = "-1" Then
-            load_mark_horz("187", id, "2", "1", XrTable1)
+            load_mark_horz(report_mark_type, id, "2", "1", XrTable1)
         Else
-            pre_load_mark_horz("187", id, "2", "2", XrTable1)
+            pre_load_mark_horz(report_mark_type, id, "2", "2", XrTable1)
         End If
     End Sub
 End Class

@@ -62,6 +62,7 @@ Partial Public Class ReportEmpOvertime
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCConsumption = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -308,7 +309,7 @@ Partial Public Class ReportEmpOvertime
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCConsumption, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -358,16 +359,19 @@ Partial Public Class ReportEmpOvertime
         Me.GCDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GCDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCDate.FieldName = "ot_date"
+        Me.GCDate.MinWidth = 100
         Me.GCDate.Name = "GCDate"
         Me.GCDate.OptionsColumn.AllowEdit = False
         Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCDate.Visible = True
         Me.GCDate.VisibleIndex = 0
+        Me.GCDate.Width = 121
         '
         'GCEmployeeCode
         '
         Me.GCEmployeeCode.Caption = "NIP"
         Me.GCEmployeeCode.FieldName = "employee_code"
+        Me.GCEmployeeCode.MinWidth = 65
         Me.GCEmployeeCode.Name = "GCEmployeeCode"
         Me.GCEmployeeCode.OptionsColumn.AllowEdit = False
         Me.GCEmployeeCode.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
@@ -378,11 +382,13 @@ Partial Public Class ReportEmpOvertime
         '
         Me.GCEmployeeName.Caption = "Employee"
         Me.GCEmployeeName.FieldName = "employee_name"
+        Me.GCEmployeeName.MinWidth = 195
         Me.GCEmployeeName.Name = "GCEmployeeName"
         Me.GCEmployeeName.OptionsColumn.AllowEdit = False
         Me.GCEmployeeName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeeName.Visible = True
         Me.GCEmployeeName.VisibleIndex = 2
+        Me.GCEmployeeName.Width = 195
         '
         'GCEmployeePosition
         '
@@ -390,12 +396,13 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployeePosition.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployeePosition.Caption = "Employee Position"
         Me.GCEmployeePosition.FieldName = "employee_position"
+        Me.GCEmployeePosition.MinWidth = 150
         Me.GCEmployeePosition.Name = "GCEmployeePosition"
         Me.GCEmployeePosition.OptionsColumn.AllowEdit = False
         Me.GCEmployeePosition.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEmployeePosition.Visible = True
         Me.GCEmployeePosition.VisibleIndex = 3
-        Me.GCEmployeePosition.Width = 100
+        Me.GCEmployeePosition.Width = 150
         '
         'GCIdEmployeeStatus
         '
@@ -410,6 +417,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployeeStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployeeStatus.Caption = "Employee Status"
         Me.GCEmployeeStatus.FieldName = "employee_status"
+        Me.GCEmployeeStatus.MinWidth = 60
         Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
         Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
         Me.GCEmployeeStatus.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
@@ -484,6 +492,16 @@ Partial Public Class ReportEmpOvertime
         Me.GCIsDayOff.Name = "GCIsDayOff"
         Me.GCIsDayOff.OptionsColumn.AllowEdit = False
         Me.GCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GCConsumption
+        '
+        Me.GCConsumption.DisplayFormat.FormatString = "N0"
+        Me.GCConsumption.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCConsumption.FieldName = "ot_consumption"
+        Me.GCConsumption.Name = "GCConsumption"
+        Me.GCConsumption.OptionsColumn.AllowEdit = False
+        Me.GCConsumption.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCConsumption.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ot_consumption", "{0:N0}")})
         '
         'GCStartWork
         '
@@ -622,6 +640,7 @@ Partial Public Class ReportEmpOvertime
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIsDayOff As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCConsumption As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCStartWork As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCEndWork As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Columns.GridColumn

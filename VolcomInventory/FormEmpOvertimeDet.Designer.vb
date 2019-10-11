@@ -19,6 +19,7 @@ Partial Class FormEmpOvertimeDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpOvertimeDet))
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -43,6 +44,7 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCConsumption = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,13 +56,14 @@ Partial Class FormEmpOvertimeDet
         Me.SBEmpDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.SBEmpAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.DECreatedAt = New DevExpress.XtraEditors.DateEdit()
+        Me.LEDepartement = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LUEOvertimeType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECreatedAt = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
@@ -68,11 +71,14 @@ Partial Class FormEmpOvertimeDet
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCMemoNumber = New DevExpress.XtraEditors.PanelControl()
+        Me.TEMemoFormat = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMemoNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider()
-        Me.LEDepartement = New DevExpress.XtraEditors.LookUpEdit()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,20 +92,25 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.DECreatedAt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreatedAt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LUEOvertimeType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECreatedAt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.PCMemoNumber, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCMemoNumber.SuspendLayout()
+        CType(Me.TEMemoFormat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMemoNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TENumber
@@ -165,7 +176,7 @@ Partial Class FormEmpOvertimeDet
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCConsumption, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -342,6 +353,16 @@ Partial Class FormEmpOvertimeDet
         Me.GCIsDayOff.OptionsColumn.AllowEdit = False
         Me.GCIsDayOff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
+        'GCConsumption
+        '
+        Me.GCConsumption.DisplayFormat.FormatString = "N0"
+        Me.GCConsumption.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCConsumption.FieldName = "ot_consumption"
+        Me.GCConsumption.Name = "GCConsumption"
+        Me.GCConsumption.OptionsColumn.AllowEdit = False
+        Me.GCConsumption.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCConsumption.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ot_consumption", "{0:N0}")})
+        '
         'GCStartWork
         '
         Me.GCStartWork.AppearanceHeader.Options.UseTextOptions = True
@@ -465,6 +486,7 @@ Partial Class FormEmpOvertimeDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.DECreatedAt)
         Me.GroupControl2.Controls.Add(Me.LEDepartement)
         Me.GroupControl2.Controls.Add(Me.LabelControl2)
         Me.GroupControl2.Controls.Add(Me.LUEOvertimeType)
@@ -472,7 +494,6 @@ Partial Class FormEmpOvertimeDet
         Me.GroupControl2.Controls.Add(Me.LabelControl4)
         Me.GroupControl2.Controls.Add(Me.TECreatedBy)
         Me.GroupControl2.Controls.Add(Me.LabelControl3)
-        Me.GroupControl2.Controls.Add(Me.TECreatedAt)
         Me.GroupControl2.Controls.Add(Me.TENumber)
         Me.GroupControl2.Controls.Add(Me.LabelControl1)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -481,6 +502,33 @@ Partial Class FormEmpOvertimeDet
         Me.GroupControl2.Size = New System.Drawing.Size(1008, 94)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Overtime"
+        '
+        'DECreatedAt
+        '
+        Me.DECreatedAt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DECreatedAt.EditValue = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.DECreatedAt.Location = New System.Drawing.Point(646, 38)
+        Me.DECreatedAt.Name = "DECreatedAt"
+        Me.DECreatedAt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedAt.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedAt.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.DECreatedAt.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreatedAt.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.DECreatedAt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreatedAt.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
+        Me.DECreatedAt.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DECreatedAt.Properties.ReadOnly = True
+        Me.DECreatedAt.Size = New System.Drawing.Size(344, 20)
+        Me.DECreatedAt.TabIndex = 18
+        '
+        'LEDepartement
+        '
+        Me.LEDepartement.Location = New System.Drawing.Point(125, 64)
+        Me.LEDepartement.Name = "LEDepartement"
+        Me.LEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDepartement.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departement")})
+        Me.LEDepartement.Size = New System.Drawing.Size(320, 20)
+        Me.LEDepartement.TabIndex = 17
         '
         'LabelControl2
         '
@@ -533,15 +581,6 @@ Partial Class FormEmpOvertimeDet
         Me.LabelControl3.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl3.TabIndex = 6
         Me.LabelControl3.Text = "Created At"
-        '
-        'TECreatedAt
-        '
-        Me.TECreatedAt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TECreatedAt.Location = New System.Drawing.Point(646, 38)
-        Me.TECreatedAt.Name = "TECreatedAt"
-        Me.TECreatedAt.Properties.ReadOnly = True
-        Me.TECreatedAt.Size = New System.Drawing.Size(344, 20)
-        Me.TECreatedAt.TabIndex = 5
         '
         'PanelControl3
         '
@@ -611,12 +650,55 @@ Partial Class FormEmpOvertimeDet
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.PCMemoNumber)
         Me.PanelControl6.Controls.Add(Me.PCReportStatus)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl6.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(986, 47)
         Me.PanelControl6.TabIndex = 13
+        '
+        'PCMemoNumber
+        '
+        Me.PCMemoNumber.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCMemoNumber.Controls.Add(Me.TEMemoFormat)
+        Me.PCMemoNumber.Controls.Add(Me.LabelControl6)
+        Me.PCMemoNumber.Controls.Add(Me.TEMemoNumber)
+        Me.PCMemoNumber.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PCMemoNumber.Location = New System.Drawing.Point(240, 0)
+        Me.PCMemoNumber.Name = "PCMemoNumber"
+        Me.PCMemoNumber.Size = New System.Drawing.Size(746, 47)
+        Me.PCMemoNumber.TabIndex = 26
+        '
+        'TEMemoFormat
+        '
+        Me.TEMemoFormat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEMemoFormat.Location = New System.Drawing.Point(548, 14)
+        Me.TEMemoFormat.Name = "TEMemoFormat"
+        Me.TEMemoFormat.Properties.ReadOnly = True
+        Me.TEMemoFormat.Size = New System.Drawing.Size(182, 20)
+        Me.TEMemoFormat.TabIndex = 2
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LabelControl6.Location = New System.Drawing.Point(281, 17)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(133, 13)
+        Me.LabelControl6.TabIndex = 0
+        Me.LabelControl6.Text = "Memo Consumption Number"
+        '
+        'TEMemoNumber
+        '
+        Me.TEMemoNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEMemoNumber.EditValue = ""
+        Me.TEMemoNumber.Location = New System.Drawing.Point(425, 14)
+        Me.TEMemoNumber.Name = "TEMemoNumber"
+        Me.TEMemoNumber.Properties.Mask.EditMask = "000"
+        Me.TEMemoNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.TEMemoNumber.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEMemoNumber.Size = New System.Drawing.Size(100, 20)
+        Me.TEMemoNumber.TabIndex = 1
         '
         'PCReportStatus
         '
@@ -649,15 +731,6 @@ Partial Class FormEmpOvertimeDet
         '
         Me.ErrorProvider.ContainerControl = Me
         '
-        'LEDepartement
-        '
-        Me.LEDepartement.Location = New System.Drawing.Point(125, 64)
-        Me.LEDepartement.Name = "LEDepartement"
-        Me.LEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEDepartement.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departement")})
-        Me.LEDepartement.Size = New System.Drawing.Size(320, 20)
-        Me.LEDepartement.TabIndex = 17
-        '
         'FormEmpOvertimeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -686,21 +759,27 @@ Partial Class FormEmpOvertimeDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.DECreatedAt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreatedAt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LUEOvertimeType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECreatedAt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PCMemoNumber, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCMemoNumber.ResumeLayout(False)
+        Me.PCMemoNumber.PerformLayout()
+        CType(Me.TEMemoFormat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMemoNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCReportStatus.ResumeLayout(False)
         Me.PCReportStatus.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -731,7 +810,6 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents TEReportStatus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TECreatedAt As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PCReportStatus As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
@@ -758,4 +836,10 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LEDepartement As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents PCMemoNumber As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEMemoFormat As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEMemoNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DECreatedAt As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GCConsumption As DevExpress.XtraGrid.Columns.GridColumn
 End Class

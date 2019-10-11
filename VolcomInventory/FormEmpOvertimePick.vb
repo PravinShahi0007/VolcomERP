@@ -127,6 +127,13 @@
     End Sub
 
     Sub pick()
+        Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
+        Dim ot_consumption As Decimal = 0.0
+
+        If FormEmpOvertimeDet.LUEOvertimeType.EditValue.ToString = "1" And TETotalHours.EditValue >= hours Then
+            ot_consumption = get_opt_emp_field("ot_consumption")
+        End If
+
         GVList.ApplyFindFilter("")
 
         GVList.ExpandAllGroups()
@@ -150,6 +157,7 @@
                             GVList.GetRowCellValue(i, "to_salary"),
                             conversion_type,
                             GVList.GetRowCellValue(i, "is_day_off"),
+                            ot_consumption,
                             TEOvertimeStart.EditValue,
                             TEOvertimeEnd.EditValue,
                             TEOvertimeBreak.EditValue,

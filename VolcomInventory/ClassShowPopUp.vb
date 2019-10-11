@@ -261,13 +261,13 @@
         ElseIf report_mark_type = "180" Then
             'Employee Propose
             FormEmployeePpsDet.Close()
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
         ElseIf report_mark_type = "185" Then
             'Sample Purchase Closing
             FormSamplePurcClose.Close()
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'Overtime employee report
             FormEmpOvertimeVerification.Close()
         ElseIf report_mark_type = "188" Then
@@ -1018,7 +1018,7 @@
             FormEmployeePpsDet.show_payroll = True
 
             FormEmployeePpsDet.ShowDialog()
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
 
@@ -1029,7 +1029,7 @@
             FormSamplePurcCloseDet.is_view = "1"
 
             FormSamplePurcCloseDet.ShowDialog()
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             Dim data_ver As DataTable = execute_query("SELECT id_ot, ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'", -1, True, "", "", "", "")
 
             FormEmpOvertimeVerification.id = id_report
@@ -1955,13 +1955,13 @@
             field_id = "id_employee_pps"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             'Overtime employee
             table_name = "tb_ot"
             field_id = "id_ot"
             field_number = "number"
             field_date = "created_at"
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'Overtime employee report
             table_name = "tb_ot_verification"
             field_id = "id_ot_verification"
@@ -2428,7 +2428,7 @@
                     If datax.Rows.Count > 0 Then
                         info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
-                ElseIf report_mark_type = "187" Then
+                ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
                     'Overtime employee report
                     query = "SELECT DATE_FORMAT(ot_date,'%d %M %Y') AS ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'"
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")

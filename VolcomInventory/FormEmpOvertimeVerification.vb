@@ -9,6 +9,7 @@
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
         viewSearchLookupRepositoryQuery(RISLUEType2, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
         viewSearchLookupQuery(SLUEPayroll, "SELECT id_payroll, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY periode_end DESC", "id_payroll", "periode", "id_payroll")
+        viewLookupQuery(LEDepartement, "SELECT * FROM tb_m_departement", 0, "departement", "id_departement")
 
         'overtime
         Dim query_ot As String = "
@@ -25,7 +26,10 @@
 
         TENumber.EditValue = data_ot.Rows(0)("number").ToString
         LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
-        TEDepartement.EditValue = data_ot.Rows(0)("departement").ToString
+
+        LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", data_ot.Rows(0)("id_departement").ToString)
+        LEDepartement.Properties.ReadOnly = True
+
         TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
         TECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
 
@@ -35,7 +39,7 @@
 
         'propose
         Dim query_pro As String = "
-            SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.is_day_off, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
+            SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.is_day_off, ot_det.ot_consumption, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
             FROM tb_ot_det AS ot_det
             LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
             LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -82,15 +86,13 @@
 
         GVAttendance.ActiveFilterString = ""
 
-        If id = 0 Then
+        If id = "0" Then
             change_payroll()
 
             Dim ot_min_staff As Integer = get_opt_emp_field("ot_min_staff")
             Dim ot_min_spv As Integer = get_opt_emp_field("ot_min_spv")
 
             Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
-
-            Dim id_departement As String = execute_query("SELECT id_departement FROM tb_ot WHERE id_ot = " + id_ot, 0, True, "", "", "", "")
 
             'attendance
             Dim query_att As String = "
@@ -115,7 +117,7 @@
                         LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input
                         WHERE input.id_report_status = 6 AND input_det.date = '" + date_search.ToString + "'
                     ) AS at_input ON sch.id_employee = at_input.id_employee
-                    WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + id_departement + "
+                    WHERE sch.date = '" + date_search.ToString + "' AND emp.id_departement = " + LEDepartement.EditValue.ToString + "
                     GROUP BY sch.id_schedule
                 ) AS tb
                 WHERE tb.start_work_att IS NOT NULL AND tb.end_work_att IS NOT NULL
@@ -332,10 +334,10 @@
                 Dim id_payroll As String = SLUEPayroll.EditValue.ToString
 
                 query = "
-                    INSERT INTO tb_ot_verification (id_ot, id_departement, ot_date, id_payroll, id_report_status, created_by, created_at) VALUES (" + id_ot + ", " + id_departement_user + ", '" + ot_date + "', " + id_payroll + ", 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();
+                    INSERT INTO tb_ot_verification (id_ot, id_departement, ot_date, id_payroll, id_report_status, created_by, created_at) VALUES (" + id_ot + ", " + LEDepartement.EditValue.ToString + ", '" + ot_date + "', " + id_payroll + ", 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();
                 "
 
-                Dim id_ot_verification As String = execute_query(query, 0, True, "", "", "", "")
+                id = execute_query(query, 0, True, "", "", "", "")
 
                 For i = 0 To GVAttendance.RowCount - 1
                     If GVAttendance.IsValidRowHandle(i) Then
@@ -356,14 +358,39 @@
                             Dim total_hours As String = GVAttendance.GetRowCellValue(i, "total_hours").ToString
                             Dim ot_note As String = GVAttendance.GetRowCellValue(i, "ot_note").ToString
 
-                            query = "INSERT INTO tb_ot_verification_det (id_ot_verification, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, is_day_off, start_work_att, end_work_att, start_work_ot, end_work_ot, break_hours, total_hours, ot_note) VALUES (" + id_ot_verification + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", " + is_day_off + ", '" + start_work_att + "', '" + end_work_att + "', '" + start_work_ot + "', '" + end_work_ot + "', " + decimalSQL(break_hours) + ", " + decimalSQL(total_hours) + ", '" + addSlashes(ot_note) + "')"
+                            query = "INSERT INTO tb_ot_verification_det (id_ot_verification, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, is_day_off, start_work_att, end_work_att, start_work_ot, end_work_ot, break_hours, total_hours, ot_note) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", " + is_day_off + ", '" + start_work_att + "', '" + end_work_att + "', '" + start_work_ot + "', '" + end_work_ot + "', " + decimalSQL(break_hours) + ", " + decimalSQL(total_hours) + ", '" + addSlashes(ot_note) + "')"
 
                             execute_non_query(query, True, "", "", "", "")
                         End If
                     End If
                 Next
 
-                submit_who_prepared("187", id_ot_verification, id_user)
+                Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
+
+                'approval
+                If LEDepartement.EditValue.ToString = "8" Then
+                    'departement hrd
+                    If is_user_head Then
+                        'manager hrd submit
+                        submit_who_prepared("216", id, id_user)
+                        execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 216 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                    Else
+                        'admin hrd submit
+                        submit_who_prepared("215", id, id_user)
+                        execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 215 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                    End If
+                Else
+                    'other departement
+                    If is_user_head Then
+                        'manager submit
+                        submit_who_prepared("215", id, id_user)
+                        execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 215 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                    Else
+                        'admin submit
+                        submit_who_prepared("187", id, id_user)
+                        execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 187 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                    End If
+                End If
 
                 Close()
             Else
@@ -387,7 +414,7 @@
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
         Cursor = Cursors.WaitCursor
 
-        FormReportMark.report_mark_type = "187"
+        FormReportMark.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
         FormReportMark.id_report = id
 
         FormReportMark.ShowDialog()
@@ -506,7 +533,9 @@
 
             execute_non_query(query, True, "", "", "", "")
 
-            query = "DELETE FROM tb_report_mark WHERE report_mark_type = 187 AND id_report = " + id
+            Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
+
+            query = "DELETE FROM tb_report_mark WHERE report_mark_type = " + report_mark_type + " AND id_report = " + id
 
             execute_non_query(query, True, "", "", "", "")
 
