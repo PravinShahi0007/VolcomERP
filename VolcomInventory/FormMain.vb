@@ -7614,7 +7614,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormVoucherPOS.GCData, "")
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
-            print_raw(FormEmpInputAttendance.GCList, "Input Attendance")
+            print(FormEmpInputAttendance.GCList, "Input Attendance")
         Else
             RPSubMenu.Visible = False
         End If

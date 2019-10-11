@@ -16,7 +16,9 @@ Public Class FormBankDepositDet
         load_store()
         '
         TEPayNumber.Text = "[auto_generate]"
-        DEDateCreated.EditValue = Now()
+        Dim dt_now As DateTime = getTimeDB()
+        DEDateCreated.EditValue = dt_now
+        DERecDate.EditValue = dt_now
         TETotal.EditValue = 0.00
         TENeedToPay.EditValue = 0.00
         '
@@ -70,6 +72,7 @@ Public Class FormBankDepositDet
                 End If
                 '
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
+                DERecDate.EditValue = data.Rows(0)("date_received")
                 SLEPayRecTo.EditValue = data.Rows(0)("id_acc_pay_rec").ToString
                 '
                 SLEPayFrom.EditValue = data.Rows(0)("id_acc_pay_to").ToString
@@ -81,6 +84,7 @@ Public Class FormBankDepositDet
             End If
             '
             load_det()
+            DERecDate.Properties.ReadOnly = True
             GridColumnAlreadyReceived.Visible = False
             GridColumnBBaldue.Visible = False
             GridColumnReceive.OptionsColumn.AllowEdit = False
@@ -196,6 +200,7 @@ Public Class FormBankDepositDet
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim date_received As String = DateTime.Parse(DERecDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 If id_deposit = "-1" Then 'new
                     Dim id_comp_contact As String = "NULL"
                     'if there is need to pay
@@ -205,8 +210,8 @@ Public Class FormBankDepositDet
                         need_to_pay_amount = decimalSQL(TENeedToPay.EditValue.ToString)
                         need_to_pay_account = SLEPayFrom.EditValue.ToString
                     End If
-                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`)
-                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1'); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`)
+                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1'); SELECT LAST_INSERT_ID();"
                     id_deposit = execute_query(query, 0, True, "", "", "", "")
 
                     'detail

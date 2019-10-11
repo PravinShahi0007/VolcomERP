@@ -83,6 +83,8 @@ Partial Class FormBankDepositDet
         Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_acc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.DERecDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +124,8 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -202,25 +206,27 @@ Partial Class FormBankDepositDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 59)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(959, 77)
+        Me.PanelControl2.Size = New System.Drawing.Size(959, 101)
         Me.PanelControl2.TabIndex = 2
         '
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl6.Controls.Add(Me.LabelControl21)
+        Me.PanelControl6.Controls.Add(Me.LabelControl3)
+        Me.PanelControl6.Controls.Add(Me.DERecDate)
         Me.PanelControl6.Controls.Add(Me.DEDateCreated)
         Me.PanelControl6.Controls.Add(Me.LabelControl7)
         Me.PanelControl6.Controls.Add(Me.LEReportStatus)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl6.Location = New System.Drawing.Point(660, 2)
+        Me.PanelControl6.Location = New System.Drawing.Point(627, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(297, 73)
+        Me.PanelControl6.Size = New System.Drawing.Size(330, 97)
         Me.PanelControl6.TabIndex = 166
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(12, 41)
+        Me.LabelControl21.Location = New System.Drawing.Point(12, 67)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 168
@@ -229,7 +235,7 @@ Partial Class FormBankDepositDet
         'DEDateCreated
         '
         Me.DEDateCreated.EditValue = Nothing
-        Me.DEDateCreated.Location = New System.Drawing.Point(90, 12)
+        Me.DEDateCreated.Location = New System.Drawing.Point(123, 12)
         Me.DEDateCreated.Name = "DEDateCreated"
         Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -250,10 +256,8 @@ Partial Class FormBankDepositDet
         '
         'LEReportStatus
         '
-        Me.LEReportStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(90, 38)
+        Me.LEReportStatus.Location = New System.Drawing.Point(123, 64)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -274,12 +278,12 @@ Partial Class FormBankDepositDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(375, 73)
+        Me.PanelControl3.Size = New System.Drawing.Size(375, 97)
         Me.PanelControl3.TabIndex = 165
         '
         'SLEStore
         '
-        Me.SLEStore.Location = New System.Drawing.Point(74, 100)
+        Me.SLEStore.Location = New System.Drawing.Point(74, 124)
         Me.SLEStore.Name = "SLEStore"
         Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStore.Properties.ReadOnly = True
@@ -322,7 +326,7 @@ Partial Class FormBankDepositDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 103)
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 127)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(26, 13)
         Me.LabelControl2.TabIndex = 8913
@@ -599,11 +603,11 @@ Partial Class FormBankDepositDet
         'GCList
         '
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 136)
+        Me.GCList.Location = New System.Drawing.Point(0, 160)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
-        Me.GCList.Size = New System.Drawing.Size(959, 246)
+        Me.GCList.Size = New System.Drawing.Size(959, 222)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -752,6 +756,28 @@ Partial Class FormBankDepositDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
+        'DERecDate
+        '
+        Me.DERecDate.EditValue = Nothing
+        Me.DERecDate.Location = New System.Drawing.Point(123, 38)
+        Me.DERecDate.Name = "DERecDate"
+        Me.DERecDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DERecDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERecDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERecDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DERecDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERecDate.Size = New System.Drawing.Size(189, 20)
+        Me.DERecDate.TabIndex = 165
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 41)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(96, 13)
+        Me.LabelControl3.TabIndex = 166
+        Me.LabelControl3.Text = "Bank Received Date"
+        '
         'FormBankDepositDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -811,6 +837,8 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -877,4 +905,6 @@ Partial Class FormBankDepositDet
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents PanelControlPreview As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CEPrintPreview As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DERecDate As DevExpress.XtraEditors.DateEdit
 End Class
