@@ -307,7 +307,14 @@ Public Class FormProductionPLToWHDet
     Sub viewDetail()
         If action = "ins" Then
             'UPDATED 22 DECEMBER 2014
-            Dim query As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "','0', '" + LEPDAlloc.EditValue.ToString + "')"
+            Dim query As String = ""
+            If is_use_qc_report = "1" Then
+                'berdasarkan QC Report
+                query = ""
+            Else
+                'berdasarkan PL
+                query = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "','0', '" + LEPDAlloc.EditValue.ToString + "')"
+            End If
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
                 id_prod_order_det_list.Add(data.Rows(i)("id_prod_order_det").ToString)
