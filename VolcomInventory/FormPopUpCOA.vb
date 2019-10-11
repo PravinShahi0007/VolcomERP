@@ -289,7 +289,8 @@ Public Class FormPopUpCOA
                 Dim newRow As DataRow = (TryCast(FormAccountingJournalBill.GCJournalDet.DataSource, DataTable)).NewRow()
                 newRow("id_acc") = TreeList1.FocusedNode("id_acc").ToString()
                 newRow("acc_name") = TreeList1.FocusedNode("acc_name").ToString()
-                newRow("note") = TreeList1.FocusedNode("acc_description").ToString()
+                newRow("acc_description") = TreeList1.FocusedNode("acc_description").ToString()
+                newRow("note") = ""
                 newRow("debit") = 0
                 newRow("credit") = 0
                 newRow("id_comp") = 0
@@ -303,6 +304,7 @@ Public Class FormPopUpCOA
                 ' FormAccountingJournalDet.check_but()
                 FormAccountingJournalBill.but_check()
                 FormAccountingJournalBill.GVJournalDet.FocusedRowHandle = 0
+                FormAccountingJournalBill.GVJournalDet.BestFitColumns()
                 Close()
             End If
         ElseIf id_pop_up = "7" Then 'Mapping in company single

@@ -177,8 +177,18 @@
             Dim query As String = "CALL view_employee('AND emp.id_employee=" + id_employee + " ', 1)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             Dim datarow As DataRow = data.Rows(0)
+
+            If datarow("id_departement").ToString = "17" Then
+                PCSogo.Visible = True
+                PanelControlTop.Size = New Size(838, 201)
+            Else
+                PCSogo.Visible = False
+                PanelControlTop.Size = New Size(838, 173)
+            End If
+
             'general tab
             TxtCode.Text = datarow("employee_code").ToString
+            TxtSogoNIK.Text = datarow("employee_nik_sogo").ToString
             TxtFullName.Text = datarow("employee_name").ToString
             TxtNickName.Text = datarow("employee_nick_name").ToString
             TxtInitialName.Text = datarow("employee_initial_name").ToString
