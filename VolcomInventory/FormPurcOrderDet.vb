@@ -483,33 +483,6 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
     Dim is_process As String = "2"
 
-    Private Sub GVSummary_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSummary.CellValueChanged
-        If is_process = "2" Then
-            If e.Column.FieldName.ToString = "val_po" Then
-                'set value
-                GVSummary.GetFocusedRowCellValue("id_item")
-                calc_total(e.RowHandle, "2")
-            ElseIf e.Column.FieldName.ToString = "discount_percent" Then
-                'discount with percentage
-                calc_total(e.RowHandle, "1")
-            ElseIf e.Column.FieldName.ToString = "discount" Then
-                'discount without percentage
-                calc_total(e.RowHandle, "2")
-            End If
-            refresh_detail(e.RowHandle, GVSummary.GetFocusedRowCellValue("id_item").ToString, GVSummary.GetFocusedRowCellValue("item_detail").ToString)
-        End If
-    End Sub
-
-    Sub refresh_detail(ByVal summary_rowhandle As Integer, ByVal id_item As String, ByVal item_detail As String)
-        For i As Integer = 0 To GVPurcReq.RowCount - 1
-            If GVPurcReq.GetRowCellValue(i, "id_item").ToString = id_item And GVPurcReq.GetRowCellValue(i, "item_detail").ToString = item_detail Then
-                GVPurcReq.SetRowCellValue(i, "val_po", GVSummary.GetRowCellValue(summary_rowhandle, "val_po"))
-                GVPurcReq.SetRowCellValue(i, "discount_percent", GVSummary.GetRowCellValue(summary_rowhandle, "discount_percent"))
-                GVPurcReq.SetRowCellValue(i, "discount", GVSummary.GetRowCellValue(summary_rowhandle, "discount"))
-            End If
-        Next
-    End Sub
-
     Sub calc_total(ByVal rowhandle As Integer, ByVal opt As String)
         is_process = "1"
         'opt
