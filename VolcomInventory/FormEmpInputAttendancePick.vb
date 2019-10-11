@@ -84,7 +84,7 @@
 
     Private Sub DEDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEDate.EditValueChanged
         If Not DEDate.EditValue Is Nothing Then
-            not_include = execute_query("SELECT IFNULL((SELECT GROUP_CONCAT(id_employee) FROM tb_emp_attn_input_det WHERE date = '" + Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd") + "' GROUP BY date), 0)", 0, True, "", "", "", "")
+            not_include = execute_query("SELECT IFNULL((SELECT GROUP_CONCAT(input_det.id_employee) FROM tb_emp_attn_input_det AS input_det LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input WHERE input_det.date = '" + Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND input.id_report_status <> 5 GROUP BY input_det.date), 0)", 0, True, "", "", "", "")
 
             Dim not_include_list As List(Of String) = New List(Of String)
 

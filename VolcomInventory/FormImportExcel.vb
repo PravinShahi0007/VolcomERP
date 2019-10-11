@@ -4917,7 +4917,7 @@ Public Class FormImportExcel
 
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "" Then
-                            Dim include_database As String = execute_query("SELECT IFNULL((SELECT id_employee FROM tb_emp_attn_input_det WHERE id_employee = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND date = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + "'), 0)", 0, True, "", "", "", "")
+                            Dim include_database As String = execute_query("SELECT IFNULL((SELECT input_det.id_employee FROM tb_emp_attn_input_det AS input_det LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input WHERE input_det.id_employee = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND input_det.date = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + "' AND input.id_report_status <> 5), 0)", 0, True, "", "", "", "")
 
                             FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = "[id_employee] = '" + GVData.GetRowCellValue(i, "IdEmployee").ToString + "' AND [date] = #" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("dd MMMM yyyy") + "#"
 

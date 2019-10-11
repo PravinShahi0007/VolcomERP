@@ -96,8 +96,8 @@
 
             For i = 0 To GVEmployee.RowCount - 1
                 If GVEmployee.IsValidRowHandle(i) Then
-                    Dim time_in As String = ""
-                    Dim time_out As String = ""
+                    Dim time_in As String = "NULL"
+                    Dim time_out As String = "NULL"
 
                     Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
                     Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
@@ -106,16 +106,16 @@
                     Dim date_att As String = Date.Parse(GVEmployee.GetRowCellValue(i, "date").ToString).ToString("yyyy-MM-dd")
 
                     Try
-                        time_in = Date.Parse(GVEmployee.GetRowCellValue(i, "time_in").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                        time_in = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "time_in").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
                     Catch ex As Exception
                     End Try
 
                     Try
-                        time_out = Date.Parse(GVEmployee.GetRowCellValue(i, "time_out").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                        time_out = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "time_out").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
                     Catch ex As Exception
                     End Try
 
-                    Dim query_detail As String = "INSERT INTO tb_emp_attn_input_det (id_emp_attn_input, id_employee, id_departement, employee_position, id_employee_status, date, time_in, time_out) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", '" + date_att + "', '" + time_in + "', '" + time_out + "')"
+                    Dim query_detail As String = "INSERT INTO tb_emp_attn_input_det (id_emp_attn_input, id_employee, id_departement, employee_position, id_employee_status, date, time_in, time_out) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", '" + date_att + "', " + time_in + ", " + time_out + ")"
 
                     execute_non_query(query_detail, True, "", "", "", "")
                 End If

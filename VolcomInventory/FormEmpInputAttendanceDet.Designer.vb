@@ -52,16 +52,16 @@ Partial Class FormEmpInputAttendanceDet
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.DDBImportExcel = New DevExpress.XtraEditors.DropDownButton()
-        Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.PMImportExcel = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BBINIKSogo = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBINIPVolcom = New DevExpress.XtraBars.BarButtonItem()
         Me.BMImportExcel = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.BBINIPVolcom = New DevExpress.XtraBars.BarButtonItem()
+        Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -380,26 +380,6 @@ Partial Class FormEmpInputAttendanceDet
         Me.DDBImportExcel.TabIndex = 3
         Me.DDBImportExcel.Text = "Import Excel"
         '
-        'SBRemove
-        '
-        Me.SBRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBRemove.Image = CType(resources.GetObject("SBRemove.Image"), System.Drawing.Image)
-        Me.SBRemove.Location = New System.Drawing.Point(594, 6)
-        Me.SBRemove.Name = "SBRemove"
-        Me.SBRemove.Size = New System.Drawing.Size(89, 40)
-        Me.SBRemove.TabIndex = 2
-        Me.SBRemove.Text = "Remove"
-        '
-        'SBAdd
-        '
-        Me.SBAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
-        Me.SBAdd.Location = New System.Drawing.Point(689, 6)
-        Me.SBAdd.Name = "SBAdd"
-        Me.SBAdd.Size = New System.Drawing.Size(89, 40)
-        Me.SBAdd.TabIndex = 0
-        Me.SBAdd.Text = "Add"
-        '
         'PMImportExcel
         '
         Me.PMImportExcel.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBINIKSogo), New DevExpress.XtraBars.LinkPersistInfo(Me.BBINIPVolcom)})
@@ -411,6 +391,12 @@ Partial Class FormEmpInputAttendanceDet
         Me.BBINIKSogo.Caption = "NIK Sogo"
         Me.BBINIKSogo.Id = 0
         Me.BBINIKSogo.Name = "BBINIKSogo"
+        '
+        'BBINIPVolcom
+        '
+        Me.BBINIPVolcom.Caption = "NIP Volcom"
+        Me.BBINIPVolcom.Id = 1
+        Me.BBINIPVolcom.Name = "BBINIPVolcom"
         '
         'BMImportExcel
         '
@@ -450,11 +436,25 @@ Partial Class FormEmpInputAttendanceDet
         Me.barDockControlRight.Location = New System.Drawing.Point(784, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 561)
         '
-        'BBINIPVolcom
+        'SBRemove
         '
-        Me.BBINIPVolcom.Caption = "NIP Volcom"
-        Me.BBINIPVolcom.Id = 1
-        Me.BBINIPVolcom.Name = "BBINIPVolcom"
+        Me.SBRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBRemove.Image = CType(resources.GetObject("SBRemove.Image"), System.Drawing.Image)
+        Me.SBRemove.Location = New System.Drawing.Point(594, 6)
+        Me.SBRemove.Name = "SBRemove"
+        Me.SBRemove.Size = New System.Drawing.Size(89, 40)
+        Me.SBRemove.TabIndex = 2
+        Me.SBRemove.Text = "Remove"
+        '
+        'SBAdd
+        '
+        Me.SBAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
+        Me.SBAdd.Location = New System.Drawing.Point(689, 6)
+        Me.SBAdd.Name = "SBAdd"
+        Me.SBAdd.Size = New System.Drawing.Size(89, 40)
+        Me.SBAdd.TabIndex = 0
+        Me.SBAdd.Text = "Add"
         '
         'FormEmpInputAttendanceDet
         '
