@@ -37,8 +37,6 @@ Partial Class FormProdClosingPps
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSum = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPClaimReject = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPClaimLate = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIDWO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,18 +59,15 @@ Partial Class FormProdClosingPps
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XTPClaimReject = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSumClaimReject = New DevExpress.XtraGrid.GridControl()
+        Me.GVSumClaimReject = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSearchLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -80,23 +75,30 @@ Partial Class FormProdClosingPps
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSearchLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPClaimLate = New DevExpress.XtraTab.XtraTabPage()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,7 +112,6 @@ Partial Class FormProdClosingPps
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPSum.SuspendLayout()
-        Me.XTPClaimReject.SuspendLayout()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLERejectClaim, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,14 +120,16 @@ Partial Class FormProdClosingPps
         CType(Me.GVLateClaim, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPClaimReject.SuspendLayout()
+        CType(Me.GCSumClaimReject, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSumClaimReject, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -135,12 +138,14 @@ Partial Class FormProdClosingPps
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1174, 79)
+        Me.PanelControl1.Size = New System.Drawing.Size(1174, 99)
         Me.PanelControl1.TabIndex = 0
         '
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.TextEdit1)
+        Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Controls.Add(Me.DEDate)
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
         Me.PanelControl3.Controls.Add(Me.TEPONumber)
@@ -148,7 +153,7 @@ Partial Class FormProdClosingPps
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl3.Location = New System.Drawing.Point(803, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(369, 75)
+        Me.PanelControl3.Size = New System.Drawing.Size(369, 95)
         Me.PanelControl3.TabIndex = 179
         '
         'DEDate
@@ -295,10 +300,10 @@ Partial Class FormProdClosingPps
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 79)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 99)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPSum
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1174, 436)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1174, 416)
         Me.XtraTabControl1.TabIndex = 5
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSum, Me.XTPClaimReject, Me.XTPClaimLate})
         '
@@ -308,19 +313,6 @@ Partial Class FormProdClosingPps
         Me.XTPSum.Name = "XTPSum"
         Me.XTPSum.Size = New System.Drawing.Size(1168, 408)
         Me.XTPSum.Text = "List"
-        '
-        'XTPClaimReject
-        '
-        Me.XTPClaimReject.Controls.Add(Me.GridControl1)
-        Me.XTPClaimReject.Name = "XTPClaimReject"
-        Me.XTPClaimReject.Size = New System.Drawing.Size(1168, 408)
-        Me.XTPClaimReject.Text = "Claim Reject"
-        '
-        'XTPClaimLate
-        '
-        Me.XTPClaimLate.Name = "XTPClaimLate"
-        Me.XTPClaimLate.Size = New System.Drawing.Size(0, 0)
-        Me.XTPClaimLate.Text = "Claim Late"
         '
         'GCProd
         '
@@ -533,32 +525,39 @@ Partial Class FormProdClosingPps
         Me.RICESelect.ValueChecked = "yes"
         Me.RICESelect.ValueUnchecked = "no"
         '
-        'GridControl1
+        'XTPClaimReject
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1, Me.RepositoryItemCheckEdit1, Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemSearchLookUpEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(1168, 408)
-        Me.GridControl1.TabIndex = 6
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.XTPClaimReject.Controls.Add(Me.GCSumClaimReject)
+        Me.XTPClaimReject.Name = "XTPClaimReject"
+        Me.XTPClaimReject.Size = New System.Drawing.Size(1168, 388)
+        Me.XTPClaimReject.Text = "Claim Reject"
         '
-        'GridView1
+        'GCSumClaimReject
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn5, Me.GridColumn15, Me.GridColumn31, Me.GridColumn16, Me.GridColumn34, Me.GridColumn17, Me.GridColumn35, Me.GridColumn18, Me.GridColumn36, Me.GridColumn19, Me.GridColumn37, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn24})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumn12, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn13, "{0:N0}")})
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GridView1.OptionsBehavior.ReadOnly = True
-        Me.GridView1.OptionsFind.AlwaysVisible = True
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GridView1.OptionsView.ShowFooter = True
-        Me.GridView1.OptionsView.ShowGroupedColumns = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        Me.GridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn8, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GCSumClaimReject.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSumClaimReject.Location = New System.Drawing.Point(0, 0)
+        Me.GCSumClaimReject.MainView = Me.GVSumClaimReject
+        Me.GCSumClaimReject.Name = "GCSumClaimReject"
+        Me.GCSumClaimReject.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1, Me.RepositoryItemCheckEdit1, Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemSearchLookUpEdit2})
+        Me.GCSumClaimReject.Size = New System.Drawing.Size(1168, 388)
+        Me.GCSumClaimReject.TabIndex = 6
+        Me.GCSumClaimReject.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSumClaimReject})
+        '
+        'GVSumClaimReject
+        '
+        Me.GVSumClaimReject.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn5, Me.GridColumn15, Me.GridColumn31, Me.GridColumn16, Me.GridColumn34, Me.GridColumn17, Me.GridColumn35, Me.GridColumn18, Me.GridColumn36, Me.GridColumn19, Me.GridColumn37, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn24})
+        Me.GVSumClaimReject.GridControl = Me.GCSumClaimReject
+        Me.GVSumClaimReject.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumn12, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn13, "{0:N0}")})
+        Me.GVSumClaimReject.Name = "GVSumClaimReject"
+        Me.GVSumClaimReject.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSumClaimReject.OptionsBehavior.ReadOnly = True
+        Me.GVSumClaimReject.OptionsFind.AlwaysVisible = True
+        Me.GVSumClaimReject.OptionsView.ColumnAutoWidth = False
+        Me.GVSumClaimReject.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVSumClaimReject.OptionsView.ShowFooter = True
+        Me.GVSumClaimReject.OptionsView.ShowGroupedColumns = True
+        Me.GVSumClaimReject.OptionsView.ShowGroupPanel = False
+        Me.GVSumClaimReject.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn8, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
@@ -604,35 +603,6 @@ Partial Class FormProdClosingPps
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 0
-        '
-        'RepositoryItemSearchLookUpEdit2
-        '
-        Me.RepositoryItemSearchLookUpEdit2.AutoHeight = False
-        Me.RepositoryItemSearchLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSearchLookUpEdit2.Name = "RepositoryItemSearchLookUpEdit2"
-        Me.RepositoryItemSearchLookUpEdit2.View = Me.GridView3
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ID"
-        Me.GridColumn6.FieldName = "id_claim_late"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Claim Late"
-        Me.GridColumn7.FieldName = "description"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
         '
         'GridColumn8
         '
@@ -722,18 +692,6 @@ Partial Class FormProdClosingPps
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 7
         '
-        'RepositoryItemPictureEdit1
-        '
-        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
-        Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
         'GridColumn5
         '
         Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
@@ -762,6 +720,20 @@ Partial Class FormProdClosingPps
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 9
         '
+        'GridColumn31
+        '
+        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.Caption = "% Claim"
+        Me.GridColumn31.DisplayFormat.FormatString = "N0"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn31.FieldName = "p_claim"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 10
+        '
         'GridColumn16
         '
         Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
@@ -775,6 +747,20 @@ Partial Class FormProdClosingPps
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 11
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.Caption = "% Claim"
+        Me.GridColumn34.DisplayFormat.FormatString = "N0"
+        Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn34.FieldName = "p_minor"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 12
         '
         'GridColumn17
         '
@@ -790,6 +776,20 @@ Partial Class FormProdClosingPps
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 13
         '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.Caption = "% Claim"
+        Me.GridColumn35.DisplayFormat.FormatString = "N0"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn35.FieldName = "p_minor_major"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 14
+        '
         'GridColumn18
         '
         Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
@@ -804,6 +804,20 @@ Partial Class FormProdClosingPps
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 15
         '
+        'GridColumn36
+        '
+        Me.GridColumn36.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn36.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn36.Caption = "% Claim"
+        Me.GridColumn36.DisplayFormat.FormatString = "N0"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn36.FieldName = "p_major"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 16
+        '
         'GridColumn19
         '
         Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
@@ -817,6 +831,20 @@ Partial Class FormProdClosingPps
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 17
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn37.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn37.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn37.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn37.Caption = "% Claim"
+        Me.GridColumn37.DisplayFormat.FormatString = "N0"
+        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn37.FieldName = "p_afkir"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 18
         '
         'GridColumn20
         '
@@ -874,75 +902,70 @@ Partial Class FormProdClosingPps
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 22
         '
-        'GridColumn31
+        'RepositoryItemPictureEdit1
         '
-        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn31.Caption = "% Claim"
-        Me.GridColumn31.DisplayFormat.FormatString = "N0"
-        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn31.FieldName = "p_claim"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 10
+        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
+        Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
-        'GridColumn34
+        'RepositoryItemCheckEdit1
         '
-        Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn34.Caption = "% Claim"
-        Me.GridColumn34.DisplayFormat.FormatString = "N0"
-        Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn34.FieldName = "p_minor"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 12
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
-        'GridColumn35
+        'RepositoryItemSearchLookUpEdit2
         '
-        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn35.Caption = "% Claim"
-        Me.GridColumn35.DisplayFormat.FormatString = "N0"
-        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn35.FieldName = "p_minor_major"
-        Me.GridColumn35.Name = "GridColumn35"
-        Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 14
+        Me.RepositoryItemSearchLookUpEdit2.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit2.Name = "RepositoryItemSearchLookUpEdit2"
+        Me.RepositoryItemSearchLookUpEdit2.View = Me.GridView3
         '
-        'GridColumn36
+        'GridView3
         '
-        Me.GridColumn36.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn36.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn36.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn36.Caption = "% Claim"
-        Me.GridColumn36.DisplayFormat.FormatString = "N0"
-        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn36.FieldName = "p_major"
-        Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 16
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn37
+        'GridColumn6
         '
-        Me.GridColumn37.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn37.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn37.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn37.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn37.Caption = "% Claim"
-        Me.GridColumn37.DisplayFormat.FormatString = "N0"
-        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn37.FieldName = "p_afkir"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 18
+        Me.GridColumn6.Caption = "ID"
+        Me.GridColumn6.FieldName = "id_claim_late"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Claim Late"
+        Me.GridColumn7.FieldName = "description"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'XTPClaimLate
+        '
+        Me.XTPClaimLate.Name = "XTPClaimLate"
+        Me.XTPClaimLate.Size = New System.Drawing.Size(1168, 408)
+        Me.XTPClaimLate.Text = "Claim Late"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(97, 67)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Properties.ReadOnly = True
+        Me.TextEdit1.Size = New System.Drawing.Size(262, 20)
+        Me.TextEdit1.TabIndex = 179
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 70)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(79, 13)
+        Me.LabelControl1.TabIndex = 180
+        Me.LabelControl1.Text = "Propose Number"
         '
         'FormProdClosingPps
         '
@@ -972,7 +995,6 @@ Partial Class FormProdClosingPps
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPSum.ResumeLayout(False)
-        Me.XTPClaimReject.ResumeLayout(False)
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLERejectClaim, System.ComponentModel.ISupportInitialize).EndInit()
@@ -981,14 +1003,16 @@ Partial Class FormProdClosingPps
         CType(Me.GVLateClaim, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPClaimReject.ResumeLayout(False)
+        CType(Me.GCSumClaimReject, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSumClaimReject, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1033,8 +1057,8 @@ Partial Class FormProdClosingPps
     Friend WithEvents RICESelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents XTPClaimReject As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPClaimLate As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCSumClaimReject As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSumClaimReject As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
@@ -1069,4 +1093,6 @@ Partial Class FormProdClosingPps
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class

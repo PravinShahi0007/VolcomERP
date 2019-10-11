@@ -38,6 +38,7 @@ Partial Class FormPurcOrderDet
         Me.BPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.CECashPurchase = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEPurcType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -147,7 +148,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CECashPurchase = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,6 +162,7 @@ Partial Class FormPurcOrderDet
         CType(Me.TEVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.CECashPurchase.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPurcType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,7 +216,6 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CECashPurchase.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -448,6 +449,14 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(464, 143)
         Me.PanelControlTopRight.TabIndex = 8936
+        '
+        'CECashPurchase
+        '
+        Me.CECashPurchase.Location = New System.Drawing.Point(355, 10)
+        Me.CECashPurchase.Name = "CECashPurchase"
+        Me.CECashPurchase.Properties.Caption = "Cash Purchase"
+        Me.CECashPurchase.Size = New System.Drawing.Size(95, 19)
+        Me.CECashPurchase.TabIndex = 8909
         '
         'SLEPurcType
         '
@@ -1390,7 +1399,7 @@ Partial Class FormPurcOrderDet
         Me.GVSummary.AppearancePrint.Row.Options.UseFont = True
         Me.GVSummary.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVSummary.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumnPOIdItem, Me.GridColumnPOItemDesc, Me.GridColumn23, Me.GridColumn15, Me.GridColumnQtyPO, Me.GridColumnPOUOM, Me.GridColumnValQty, Me.GridColumnPOVal, Me.GridColumnPOSubTot, Me.GridColumnDiscPercent, Me.GridColumnDisc, Me.GridColumn7})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumnPOIdItem, Me.GridColumnPOItemDesc, Me.GridColumn23, Me.GridColumn15, Me.GridColumnQtyPO, Me.GridColumnPOUOM, Me.GridColumnValQty, Me.GridColumnPOVal, Me.GridColumnPOSubTot, Me.GridColumnDiscPercent, Me.GridColumnDisc, Me.GridColumn7, Me.GridColumn30})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Nothing, "{0:N2}")})
         Me.GVSummary.Name = "GVSummary"
@@ -1413,6 +1422,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn26.Caption = "No"
         Me.GridColumn26.FieldName = "no"
         Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 0
         '
@@ -1446,6 +1456,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn23.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumn23.FieldName = "item_desc_full"
         Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 1
         Me.GridColumn23.Width = 801
@@ -1507,6 +1518,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumnPOVal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPOVal.FieldName = "val_po"
         Me.GridColumnPOVal.Name = "GridColumnPOVal"
+        Me.GridColumnPOVal.OptionsColumn.AllowEdit = False
         Me.GridColumnPOVal.Visible = True
         Me.GridColumnPOVal.VisibleIndex = 4
         Me.GridColumnPOVal.Width = 309
@@ -1627,13 +1639,11 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'CECashPurchase
+        'GridColumn30
         '
-        Me.CECashPurchase.Location = New System.Drawing.Point(355, 10)
-        Me.CECashPurchase.Name = "CECashPurchase"
-        Me.CECashPurchase.Properties.Caption = "Cash Purchase"
-        Me.CECashPurchase.Size = New System.Drawing.Size(95, 19)
-        Me.CECashPurchase.TabIndex = 8909
+        Me.GridColumn30.Caption = "Item Detail"
+        Me.GridColumn30.FieldName = "item_detail"
+        Me.GridColumn30.Name = "GridColumn30"
         '
         'FormPurcOrderDet
         '
@@ -1665,6 +1675,7 @@ Partial Class FormPurcOrderDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.CECashPurchase.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPurcType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1721,7 +1732,6 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CECashPurchase.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1853,4 +1863,5 @@ Partial Class FormPurcOrderDet
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CECashPurchase As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
