@@ -83,6 +83,7 @@
             '
         End If
     End Sub
+
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status WHERE id_report_status!='7' "
         If not_allow_complete = "1" Then
@@ -551,6 +552,9 @@
         ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
             'OPEX Budget Propose
             query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "211" Then
+            'input attendance
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_emp_attn_input WHERE id_emp_attn_input = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -2425,7 +2429,7 @@
                     Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
                     Dim id_mat_det_price As String = data.Rows(i)("id_mat_det_price_cost").ToString
                     Dim mat_det_price As Decimal = data.Rows(i)("mat_det_price_cost")
-                    Dim mat_wo_rec_det_qty As String = data.Rows(i)("mat_prod_ret_in_det_qty").ToString
+                    Dim mat_wo_rec_det_qty As String = decimalSQL(Decimal.Parse(data.Rows(i)("mat_prod_ret_in_det_qty").ToString).ToString)
                     Dim mat_wo_rec_number As String = data.Rows(i)("mat_prod_ret_in_number").ToString
                     Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_report,report_mark_type,id_stock_status,id_mat_det_price,price) "
                     'update storage
@@ -5401,8 +5405,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 
                 If FormBankDepositDet.TETotal.EditValue > 0 Then 'BBM
                     'main journal
-                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                    Dim date_reference As String = DateTime.Parse(FormBankDepositDet.DERecDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', NOW(),'" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                     Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                     increase_inc_acc("1")
 
@@ -6353,6 +6358,14 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             'refresh view
             'FormSampleBudget.load_propose()
             'FormSampleBudget.load_budget()
+        ElseIf report_mark_type = "211" Then
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_emp_attn_input SET id_report_status='{0}' WHERE id_emp_attn_input ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time

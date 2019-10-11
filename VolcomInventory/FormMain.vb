@@ -1733,6 +1733,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             FormVoucherPOSDet.action = "ins"
             FormVoucherPOSDet.ShowDialog()
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            FormEmpInputAttendanceDet.id = "0"
+            FormEmpInputAttendanceDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2811,6 +2815,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormVoucherPOSDet.action = "upd"
                 FormVoucherPOSDet.id = FormVoucherPOS.GVData.GetFocusedRowCellValue("id_pos_voucher").ToString
                 FormVoucherPOSDet.ShowDialog()
+            ElseIf formName = "FormEmpInputAttendance" Then
+                'input attendance
+                FormEmpInputAttendanceDet.id = FormEmpInputAttendance.GVList.GetFocusedRowCellValue("id_emp_attn_input").ToString
+                FormEmpInputAttendanceDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7601,6 +7609,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
             print_raw(FormVoucherPOS.GCData, "")
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            print(FormEmpInputAttendance.GCList, "Input Attendance")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8382,6 +8393,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             FormVoucherPOS.Close()
             FormVoucherPOS.Dispose()
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            FormEmpInputAttendance.Close()
+            FormEmpInputAttendance.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9224,6 +9239,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
             FormVoucherPOS.viewVoucher()
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            FormEmpInputAttendance.view_attendance()
         End If
     End Sub
     'Switch
@@ -13381,6 +13399,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPromoRules.Show()
             FormPromoRules.WindowState = FormWindowState.Maximized
             FormPromoRules.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInputAttendance_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInputAttendance.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpInputAttendance.MdiParent = Me
+            FormEmpInputAttendance.Show()
+            FormEmpInputAttendance.WindowState = FormWindowState.Maximized
+            FormEmpInputAttendance.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

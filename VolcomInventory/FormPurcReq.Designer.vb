@@ -32,7 +32,6 @@ Partial Class FormPurcReq
         Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -185,7 +184,7 @@ Partial Class FormPurcReq
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn23, Me.GridColumn18, Me.GridColumn29, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn28})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn23, Me.GridColumn29, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn28})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsBehavior.Editable = False
@@ -211,19 +210,6 @@ Partial Class FormPurcReq
         Me.GridColumn23.VisibleIndex = 0
         Me.GridColumn23.Width = 142
         '
-        'GridColumn18
-        '
-        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn18.Caption = "Cash Purchase"
-        Me.GridColumn18.FieldName = "cash_purchase"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
-        Me.GridColumn18.Width = 131
-        '
         'GridColumn29
         '
         Me.GridColumn29.Caption = "Requirement Date"
@@ -232,7 +218,7 @@ Partial Class FormPurcReq
         Me.GridColumn29.FieldName = "requirement_date"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 4
+        Me.GridColumn29.VisibleIndex = 3
         Me.GridColumn29.Width = 127
         '
         'GridColumn1
@@ -241,7 +227,7 @@ Partial Class FormPurcReq
         Me.GridColumn1.FieldName = "purc_req_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 302
         '
         'GridColumn3
@@ -252,7 +238,7 @@ Partial Class FormPurcReq
         Me.GridColumn3.FieldName = "date_created"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
+        Me.GridColumn3.VisibleIndex = 4
         Me.GridColumn3.Width = 284
         '
         'GridColumn4
@@ -261,7 +247,7 @@ Partial Class FormPurcReq
         Me.GridColumn4.FieldName = "departement"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 284
         '
         'GridColumn5
@@ -270,7 +256,7 @@ Partial Class FormPurcReq
         Me.GridColumn5.FieldName = "created_by"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 5
         Me.GridColumn5.Width = 263
         '
         'GridColumn6
@@ -295,7 +281,7 @@ Partial Class FormPurcReq
         Me.GridColumn28.FieldName = "report_status"
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 7
+        Me.GridColumn28.VisibleIndex = 6
         Me.GridColumn28.Width = 99
         '
         'RICECheck
@@ -802,7 +788,6 @@ Partial Class FormPurcReq
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

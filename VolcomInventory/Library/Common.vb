@@ -3518,9 +3518,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
-                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & data_ceo.Rows(0)("cfo_name").ToString
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
             ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
                 cell.Text = data_ceo.Rows(0)("employee_name").ToString
             Else
@@ -3938,9 +3940,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
-                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & data_ceo.Rows(0)("cfo_name").ToString
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
             ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
                 cell.Text = data_ceo.Rows(0)("employee_name").ToString
             Else
@@ -4366,7 +4370,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                     cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
                 End If
             Else
-                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             End If
 
             'merge or not
@@ -4445,9 +4449,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
-                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & data_ceo.Rows(0)("cfo_name").ToString
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
             ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
                 cell.Text = data_ceo.Rows(0)("employee_name").ToString
             Else
@@ -4521,6 +4527,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             xrtable.Rows.Add(row_time)
         End If
     End Sub
+
     'for list
     Sub pre_load_list_horz(ByVal report_mark_type As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
         'opt
@@ -4541,11 +4548,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                                 INNER JOIN tb_m_role role ON role.id_role=c.id_role 
                                 WHERE c.id_user='" & id_user & "'        
                                 UNION
-                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,d.employee_name,d.employee_position AS role
+                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,CONCAT(d.employee_name,IF(ISNULL(d_extra.employee_name),'',CONCAT(' / ','\r\n',d_extra.employee_name))),d.employee_position AS role
                                 FROM tb_print_list_emp a 
                                 INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
                                 LEFT JOIN tb_m_user c ON a.id_user=c.id_user 
                                 LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee 
+                                LEFT JOIN tb_m_user c_extra ON a.id_user_extra=c_extra.id_user 
+                                LEFT JOIN tb_m_employee d_extra ON d_extra.id_employee=c_extra.id_employee 
                                 INNER JOIN tb_m_role role ON role.id_role=c.id_role 
                                 WHERE a.report_mark_type='" & report_mark_type & "' 
                                 ORDER BY a.id_print_list_emp)"
@@ -4613,7 +4622,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         For j As Integer = 0 To cellsInRow - 1
             Dim cell As New XRTableCell()
-
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = data.Rows(j)("employee_name").ToString
 
@@ -4758,9 +4768,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
-                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & data_ceo.Rows(0)("cfo_name").ToString
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
             ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
                 cell.Text = data_ceo.Rows(0)("employee_name").ToString
             Else

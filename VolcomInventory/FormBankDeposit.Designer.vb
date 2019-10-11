@@ -84,6 +84,7 @@ Partial Class FormBankDeposit
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndate_received = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
@@ -162,6 +163,7 @@ Partial Class FormBankDeposit
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.Name = "GVInvoiceList"
         Me.GVInvoiceList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVInvoiceList.OptionsFind.AlwaysVisible = True
         Me.GVInvoiceList.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVInvoiceList.OptionsView.ColumnAutoWidth = False
         Me.GVInvoiceList.OptionsView.ShowGroupPanel = False
@@ -416,6 +418,7 @@ Partial Class FormBankDeposit
         Me.GridColumnCOA.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumnCOA.FieldName = "is_found_coa"
         Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.OptionsColumn.AllowEdit = False
         Me.GridColumnCOA.UnboundExpression = "Iif([id_acc] <> 0, 'Yes', 'No')"
         Me.GridColumnCOA.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnCOA.Visible = True
@@ -624,7 +627,7 @@ Partial Class FormBankDeposit
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21, Me.GridColumndate_received})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -667,7 +670,7 @@ Partial Class FormBankDeposit
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 2
+        Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 109
         '
         'GridColumn20
@@ -683,7 +686,7 @@ Partial Class FormBankDeposit
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 3
+        Me.GridColumn20.VisibleIndex = 4
         Me.GridColumn20.Width = 120
         '
         'GridColumn5
@@ -698,7 +701,7 @@ Partial Class FormBankDeposit
         Me.GridColumn5.FieldName = "val_need_pay"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         Me.GridColumn5.Width = 136
         '
         'GridColumn22
@@ -708,7 +711,7 @@ Partial Class FormBankDeposit
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
+        Me.GridColumn22.VisibleIndex = 7
         Me.GridColumn22.Width = 109
         '
         'GridColumn18
@@ -718,7 +721,7 @@ Partial Class FormBankDeposit
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 5
+        Me.GridColumn18.VisibleIndex = 6
         '
         'GridColumn21
         '
@@ -727,6 +730,17 @@ Partial Class FormBankDeposit
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Width = 103
+        '
+        'GridColumndate_received
+        '
+        Me.GridColumndate_received.Caption = "Bank Received Date"
+        Me.GridColumndate_received.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumndate_received.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumndate_received.FieldName = "date_received"
+        Me.GridColumndate_received.Name = "GridColumndate_received"
+        Me.GridColumndate_received.Visible = True
+        Me.GridColumndate_received.VisibleIndex = 2
+        Me.GridColumndate_received.Width = 137
         '
         'RepositoryItemCheckEdit1
         '
@@ -962,4 +976,5 @@ Partial Class FormBankDeposit
     Friend WithEvents DEFromList As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumndate_received As DevExpress.XtraGrid.Columns.GridColumn
 End Class
