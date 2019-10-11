@@ -2531,7 +2531,7 @@
             ElseIf report_mark_type = "105" Then
                 'QC Report/Final CLearance
                 'saat pick
-                query_view = "SELECT 'no' AS is_check,f." & field_id & ", f." & field_number & ", f." & field_date & ", po.id_prod_order, po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
+                query_view = "SELECT 'no' AS is_check,f." & field_id & " AS `id_report`, f." & field_number & " AS `number`, f." & field_date & " AS `date_created`, po.id_prod_order, po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
                 cat.pl_category AS `category`, fd.total_qty
                 FROM tb_prod_fc f
                 INNER JOIN (
@@ -2563,11 +2563,11 @@
                 ) pl ON pl.id_prod_order = f.id_prod_order AND pl.id_pl_category = f.id_pl_category
                 WHERE f.id_report_status=6 AND po.is_closing_rec=2 AND ISNULL(pl.id_prod_order) "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
-                    query_view += " AND fc." & field_id & " NOT IN " & qb_id_not_include
+                    query_view += " AND f." & field_id & " NOT IN " & qb_id_not_include
                 End If
 
                 'saat blank - edit value pilih rmt
-                query_view_blank = "SELECT f." & field_id & ", f." & field_number & ", f." & field_date & ", 0 as id_prod_order, '' AS prod_order_number, '' AS `vendor`, '' AS `code`, '' AS `name`, 
+                query_view_blank = "SELECT f." & field_id & " AS `id_report`, f." & field_number & " AS `number`, f." & field_date & " AS `date_created`, 0 as id_prod_order, '' AS prod_order_number, '' AS `vendor`, '' AS `code`, '' AS `name`, 
                 '' AS `category`, 0 AS `total_qty`
                 FROM tb_prod_fc f
                 WHERE f.id_report_status='-1' "
@@ -2786,7 +2786,20 @@
             Catch ex As Exception
             End Try
 
+            gv.Columns("number").Caption = "Number"
+            gv.Columns("date_created").Caption = "Created Date"
+            gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+            gv.Columns("total_qty").Caption = "Qty"
+            gv.Columns("total_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("total_qty").DisplayFormat.FormatString = "{0:n0}"
+            gv.Columns("total_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            gv.Columns("total_qty").SummaryItem.DisplayFormat = "{0:n0}"
             gv.Columns("prod_order_number").Caption = "FGPO"
+            gv.Columns("vendor").Caption = "Vendor"
+            gv.Columns("name").Caption = "Style Name"
+            gv.Columns("code").Caption = "Code"
+            gv.Columns("category").Caption = "Category"
             gv.Columns("id_report").OptionsColumn.AllowEdit = False
             gv.OptionsView.ShowFooter = True
             '
