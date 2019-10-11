@@ -112,6 +112,9 @@ Partial Public Class ReportPurcOrder
         Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LGrandTotal = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LCashPurchase = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -451,7 +454,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel36, Me.XrLabel37, Me.LShipVia, Me.XrLabel33, Me.XrLabel34, Me.LEtaDate, Me.XrLabel30, Me.XrLabel31, Me.LTermOrder, Me.XrLabel27, Me.XrLabel28, Me.LDueDate, Me.XrLabel24, Me.XrLabel25, Me.LTOP, Me.XrLabel22, Me.XrLabel23, Me.LPrNo, Me.XrLabel20, Me.XrLabel19, Me.XrLabel15, Me.XrLabel17, Me.XrLabel13, Me.XrLabel14, Me.LEmail, Me.LPhone, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel6, Me.XrLabel5, Me.XrLabel16, Me.LabelAttn, Me.LTo, Me.LToAdress, Me.LShipTo, Me.LShipToAddress, Me.XrLabel1, Me.XrLabel18})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel21, Me.LCashPurchase, Me.XrLabel36, Me.XrLabel37, Me.LShipVia, Me.XrLabel33, Me.XrLabel34, Me.LEtaDate, Me.XrLabel30, Me.XrLabel31, Me.LTermOrder, Me.XrLabel27, Me.XrLabel28, Me.LDueDate, Me.XrLabel24, Me.XrLabel25, Me.LTOP, Me.XrLabel22, Me.XrLabel23, Me.LPrNo, Me.XrLabel20, Me.XrLabel19, Me.XrLabel15, Me.XrLabel17, Me.XrLabel13, Me.XrLabel14, Me.LEmail, Me.LPhone, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel6, Me.XrLabel5, Me.XrLabel16, Me.LabelAttn, Me.LTo, Me.LToAdress, Me.LShipTo, Me.LShipToAddress, Me.XrLabel1, Me.XrLabel18})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.41668!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(738.0!, 103.6668!)
@@ -461,7 +464,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel36.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel36.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(331.5551!, 22.99999!)
+        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(338.5551!, 22.99999!)
         Me.XrLabel36.Name = "XrLabel36"
         Me.XrLabel36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel36.SizeF = New System.Drawing.SizeF(10.0961!, 15.0!)
@@ -476,7 +479,7 @@ Partial Public Class ReportPurcOrder
         Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 22.99999!)
         Me.XrLabel37.Name = "XrLabel37"
         Me.XrLabel37.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel37.SizeF = New System.Drawing.SizeF(73.14362!, 15.00001!)
+        Me.XrLabel37.SizeF = New System.Drawing.SizeF(80.14362!, 15.0!)
         Me.XrLabel37.StylePriority.UseBorders = False
         Me.XrLabel37.StylePriority.UseFont = False
         Me.XrLabel37.Text = "Ship Via"
@@ -485,7 +488,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.LShipVia.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LShipVia.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LShipVia.LocationFloat = New DevExpress.Utils.PointFloat(341.6512!, 22.99999!)
+        Me.LShipVia.LocationFloat = New DevExpress.Utils.PointFloat(348.6512!, 22.99999!)
         Me.LShipVia.Name = "LShipVia"
         Me.LShipVia.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LShipVia.SizeF = New System.Drawing.SizeF(132.4227!, 15.00001!)
@@ -496,7 +499,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel33.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel33.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(331.5551!, 38.00001!)
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(338.5551!, 38.00001!)
         Me.XrLabel33.Name = "XrLabel33"
         Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel33.SizeF = New System.Drawing.SizeF(10.0961!, 15.0!)
@@ -508,10 +511,10 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel34.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel34.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 38.00001!)
+        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 38.00002!)
         Me.XrLabel34.Name = "XrLabel34"
         Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel34.SizeF = New System.Drawing.SizeF(73.14362!, 15.00001!)
+        Me.XrLabel34.SizeF = New System.Drawing.SizeF(80.14362!, 15.00001!)
         Me.XrLabel34.StylePriority.UseBorders = False
         Me.XrLabel34.StylePriority.UseFont = False
         Me.XrLabel34.Text = "ETA Date"
@@ -520,7 +523,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.LEtaDate.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LEtaDate.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEtaDate.LocationFloat = New DevExpress.Utils.PointFloat(341.6512!, 38.00001!)
+        Me.LEtaDate.LocationFloat = New DevExpress.Utils.PointFloat(348.6512!, 38.00001!)
         Me.LEtaDate.Name = "LEtaDate"
         Me.LEtaDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LEtaDate.SizeF = New System.Drawing.SizeF(132.4227!, 15.00001!)
@@ -531,7 +534,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel30.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel30.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(331.5551!, 7.99998!)
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(338.5551!, 7.99998!)
         Me.XrLabel30.Name = "XrLabel30"
         Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel30.SizeF = New System.Drawing.SizeF(10.0961!, 15.0!)
@@ -543,10 +546,10 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel31.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel31.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 7.99998!)
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 7.999981!)
         Me.XrLabel31.Name = "XrLabel31"
         Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel31.SizeF = New System.Drawing.SizeF(73.14362!, 15.00001!)
+        Me.XrLabel31.SizeF = New System.Drawing.SizeF(80.14362!, 15.00001!)
         Me.XrLabel31.StylePriority.UseBorders = False
         Me.XrLabel31.StylePriority.UseFont = False
         Me.XrLabel31.Text = "Term Order"
@@ -555,7 +558,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.LTermOrder.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LTermOrder.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTermOrder.LocationFloat = New DevExpress.Utils.PointFloat(341.6512!, 7.99998!)
+        Me.LTermOrder.LocationFloat = New DevExpress.Utils.PointFloat(348.6512!, 7.99998!)
         Me.LTermOrder.Name = "LTermOrder"
         Me.LTermOrder.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LTermOrder.SizeF = New System.Drawing.SizeF(132.4227!, 15.00001!)
@@ -566,7 +569,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel27.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel27.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(331.5551!, 67.99998!)
+        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(338.5551!, 67.99998!)
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel27.SizeF = New System.Drawing.SizeF(10.0961!, 15.0!)
@@ -578,10 +581,10 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel28.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel28.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 67.99998!)
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 67.99997!)
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel28.SizeF = New System.Drawing.SizeF(73.14362!, 15.0!)
+        Me.XrLabel28.SizeF = New System.Drawing.SizeF(80.14362!, 15.0!)
         Me.XrLabel28.StylePriority.UseBorders = False
         Me.XrLabel28.StylePriority.UseFont = False
         Me.XrLabel28.Text = "Due Date"
@@ -590,7 +593,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.LDueDate.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LDueDate.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LDueDate.LocationFloat = New DevExpress.Utils.PointFloat(341.6512!, 67.99998!)
+        Me.LDueDate.LocationFloat = New DevExpress.Utils.PointFloat(348.6512!, 67.99998!)
         Me.LDueDate.Name = "LDueDate"
         Me.LDueDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LDueDate.SizeF = New System.Drawing.SizeF(132.4227!, 15.0!)
@@ -601,7 +604,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.XrLabel24.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel24.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(331.5551!, 52.99998!)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(338.5551!, 52.99998!)
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel24.SizeF = New System.Drawing.SizeF(10.0961!, 15.0!)
@@ -616,7 +619,7 @@ Partial Public Class ReportPurcOrder
         Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 52.99998!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel25.SizeF = New System.Drawing.SizeF(73.14362!, 15.0!)
+        Me.XrLabel25.SizeF = New System.Drawing.SizeF(80.14362!, 15.0!)
         Me.XrLabel25.StylePriority.UseBorders = False
         Me.XrLabel25.StylePriority.UseFont = False
         Me.XrLabel25.Text = "TOP"
@@ -625,7 +628,7 @@ Partial Public Class ReportPurcOrder
         '
         Me.LTOP.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LTOP.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTOP.LocationFloat = New DevExpress.Utils.PointFloat(341.6512!, 52.99998!)
+        Me.LTOP.LocationFloat = New DevExpress.Utils.PointFloat(348.6512!, 52.99998!)
         Me.LTOP.Name = "LTOP"
         Me.LTOP.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LTOP.SizeF = New System.Drawing.SizeF(132.4227!, 15.0!)
@@ -1121,6 +1124,41 @@ Partial Public Class ReportPurcOrder
         Me.LGrandTotal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LGrandTotal.Weight = 1.4783270263671873R
         '
+        'XrLabel12
+        '
+        Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel12.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(338.5551!, 82.99998!)
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(10.0961!, 15.0!)
+        Me.XrLabel12.StylePriority.UseBorders = False
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.Text = ":"
+        '
+        'XrLabel21
+        '
+        Me.XrLabel21.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel21.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(258.4115!, 82.99996!)
+        Me.XrLabel21.Name = "XrLabel21"
+        Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel21.SizeF = New System.Drawing.SizeF(80.14362!, 15.0!)
+        Me.XrLabel21.StylePriority.UseBorders = False
+        Me.XrLabel21.StylePriority.UseFont = False
+        Me.XrLabel21.Text = "Cash Purchase"
+        '
+        'LCashPurchase
+        '
+        Me.LCashPurchase.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LCashPurchase.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCashPurchase.LocationFloat = New DevExpress.Utils.PointFloat(348.6512!, 82.99998!)
+        Me.LCashPurchase.Name = "LCashPurchase"
+        Me.LCashPurchase.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LCashPurchase.SizeF = New System.Drawing.SizeF(132.4227!, 15.0!)
+        Me.LCashPurchase.StylePriority.UseBorders = False
+        Me.LCashPurchase.StylePriority.UseFont = False
+        '
         'ReportPurcOrder
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -1234,4 +1272,7 @@ Partial Public Class ReportPurcOrder
     Friend WithEvents XrLabel25 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LTOP As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel21 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LCashPurchase As DevExpress.XtraReports.UI.XRLabel
 End Class
