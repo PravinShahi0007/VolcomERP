@@ -1034,6 +1034,7 @@
         ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             Dim data_ver As DataTable = execute_query("SELECT id_ot, ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'", -1, True, "", "", "", "")
 
+            FormEmpOvertimeVerification.is_hrd = "1"
             FormEmpOvertimeVerification.id = id_report
             FormEmpOvertimeVerification.id_ot = data_ver.Rows(0)("id_ot").ToString
             FormEmpOvertimeVerification.is_view = "1"

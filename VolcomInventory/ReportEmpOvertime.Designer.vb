@@ -68,12 +68,14 @@ Partial Public Class ReportEmpOvertime
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCTotalHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMENote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -269,7 +271,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployee.Location = New System.Drawing.Point(2, 2)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType})
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RIMENote})
         Me.GCEmployee.Size = New System.Drawing.Size(1032, 212)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
@@ -312,6 +314,7 @@ Partial Public Class ReportEmpOvertime
         Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCConsumption, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
+        Me.GVEmployee.LevelIndent = 0
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsPrint.AllowMultilineHeaders = True
@@ -349,8 +352,6 @@ Partial Public Class ReportEmpOvertime
         Me.GCDepartement.Name = "GCDepartement"
         Me.GCDepartement.OptionsColumn.AllowEdit = False
         Me.GCDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCDepartement.Visible = True
-        Me.GCDepartement.VisibleIndex = 4
         Me.GCDepartement.Width = 86
         '
         'GCDate
@@ -365,7 +366,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCDate.Visible = True
         Me.GCDate.VisibleIndex = 0
-        Me.GCDate.Width = 121
+        Me.GCDate.Width = 100
         '
         'GCEmployeeCode
         '
@@ -564,13 +565,20 @@ Partial Public Class ReportEmpOvertime
         '
         'GCNote
         '
+        Me.GCNote.AppearanceCell.Options.UseTextOptions = True
+        Me.GCNote.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCNote.Caption = "Overtime Propose"
+        Me.GCNote.ColumnEdit = Me.RIMENote
         Me.GCNote.FieldName = "ot_note"
         Me.GCNote.Name = "GCNote"
         Me.GCNote.OptionsColumn.AllowEdit = False
         Me.GCNote.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCNote.Visible = True
         Me.GCNote.VisibleIndex = 10
+        '
+        'RIMENote
+        '
+        Me.RIMENote.Name = "RIMENote"
         '
         'WinControlContainer1
         '
@@ -594,6 +602,7 @@ Partial Public Class ReportEmpOvertime
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -646,4 +655,5 @@ Partial Public Class ReportEmpOvertime
     Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCTotalHours As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMENote As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

@@ -89,10 +89,6 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCOtPotention = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -120,6 +116,10 @@ Partial Class FormEmpOvertimeVerification
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCTotalHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,15 +145,15 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -367,7 +367,7 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(695, 2)
+        Me.SBClose.Location = New System.Drawing.Point(682, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 46)
         Me.SBClose.TabIndex = 3
@@ -378,7 +378,7 @@ Partial Class FormEmpOvertimeVerification
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Enabled = False
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(770, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(757, 2)
         Me.SBPrint.Name = "SBPrint"
         Me.SBPrint.Size = New System.Drawing.Size(75, 46)
         Me.SBPrint.TabIndex = 5
@@ -388,7 +388,7 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
-        Me.SBReset.Location = New System.Drawing.Point(845, 2)
+        Me.SBReset.Location = New System.Drawing.Point(832, 2)
         Me.SBReset.Name = "SBReset"
         Me.SBReset.Size = New System.Drawing.Size(86, 46)
         Me.SBReset.TabIndex = 7
@@ -399,11 +399,11 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(931, 2)
+        Me.SBSave.Location = New System.Drawing.Point(918, 2)
         Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(75, 46)
+        Me.SBSave.Size = New System.Drawing.Size(88, 46)
         Me.SBSave.TabIndex = 2
-        Me.SBSave.Text = "Save"
+        Me.SBSave.Text = "Submit"
         '
         'PanelControl3
         '
@@ -485,6 +485,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GVAttendance.GroupCount = 1
         Me.GVAttendance.Name = "GVAttendance"
         Me.GVAttendance.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVAttendance.OptionsPrint.AllowMultilineHeaders = True
         Me.GVAttendance.OptionsView.AllowCellMerge = True
         Me.GVAttendance.OptionsView.ColumnAutoWidth = False
         Me.GVAttendance.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
@@ -761,6 +762,8 @@ Partial Class FormEmpOvertimeVerification
         '
         'BGCNote
         '
+        Me.BGCNote.AppearanceCell.Options.UseTextOptions = True
+        Me.BGCNote.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BGCNote.Caption = "Overtime Propose"
         Me.BGCNote.ColumnEdit = Me.RITENote
         Me.BGCNote.FieldName = "ot_note"
@@ -869,42 +872,6 @@ Partial Class FormEmpOvertimeVerification
         Me.GroupControl1.Size = New System.Drawing.Size(501, 518)
         Me.GroupControl1.TabIndex = 2
         Me.GroupControl1.Text = "Proposed"
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.PCReportStatus)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 645)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1008, 34)
-        Me.PanelControl4.TabIndex = 7
-        '
-        'PCReportStatus
-        '
-        Me.PCReportStatus.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCReportStatus.Controls.Add(Me.LabelControl10)
-        Me.PCReportStatus.Controls.Add(Me.TEReportStatus)
-        Me.PCReportStatus.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCReportStatus.Location = New System.Drawing.Point(2, 2)
-        Me.PCReportStatus.Name = "PCReportStatus"
-        Me.PCReportStatus.Size = New System.Drawing.Size(240, 30)
-        Me.PCReportStatus.TabIndex = 26
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Location = New System.Drawing.Point(7, 8)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(67, 13)
-        Me.LabelControl10.TabIndex = 17
-        Me.LabelControl10.Text = "Report Status"
-        '
-        'TEReportStatus
-        '
-        Me.TEReportStatus.Location = New System.Drawing.Point(105, 5)
-        Me.TEReportStatus.Name = "TEReportStatus"
-        Me.TEReportStatus.Properties.ReadOnly = True
-        Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
-        Me.TEReportStatus.TabIndex = 21
         '
         'GCEmployee
         '
@@ -1209,6 +1176,42 @@ Partial Class FormEmpOvertimeVerification
         Me.GCNote.Visible = True
         Me.GCNote.VisibleIndex = 10
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.PCReportStatus)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 645)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(1008, 34)
+        Me.PanelControl4.TabIndex = 7
+        '
+        'PCReportStatus
+        '
+        Me.PCReportStatus.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCReportStatus.Controls.Add(Me.LabelControl10)
+        Me.PCReportStatus.Controls.Add(Me.TEReportStatus)
+        Me.PCReportStatus.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCReportStatus.Location = New System.Drawing.Point(2, 2)
+        Me.PCReportStatus.Name = "PCReportStatus"
+        Me.PCReportStatus.Size = New System.Drawing.Size(240, 30)
+        Me.PCReportStatus.TabIndex = 26
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(7, 8)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl10.TabIndex = 17
+        Me.LabelControl10.Text = "Report Status"
+        '
+        'TEReportStatus
+        '
+        Me.TEReportStatus.Location = New System.Drawing.Point(105, 5)
+        Me.TEReportStatus.Name = "TEReportStatus"
+        Me.TEReportStatus.Properties.ReadOnly = True
+        Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
+        Me.TEReportStatus.TabIndex = 21
+        '
         'FormEmpOvertimeVerification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1248,16 +1251,16 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
+        CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCReportStatus.ResumeLayout(False)
         Me.PCReportStatus.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

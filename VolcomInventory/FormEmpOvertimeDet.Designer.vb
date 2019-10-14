@@ -79,6 +79,7 @@ Partial Class FormEmpOvertimeDet
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.RIMENote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +112,7 @@ Partial Class FormEmpOvertimeDet
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMENote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TENumber
@@ -136,7 +138,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployee.Location = New System.Drawing.Point(2, 2)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType})
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RIMENote})
         Me.GCEmployee.Size = New System.Drawing.Size(982, 476)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
@@ -424,7 +426,10 @@ Partial Class FormEmpOvertimeDet
         '
         'GCNote
         '
+        Me.GCNote.AppearanceCell.Options.UseTextOptions = True
+        Me.GCNote.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCNote.Caption = "Overtime Propose"
+        Me.GCNote.ColumnEdit = Me.RIMENote
         Me.GCNote.FieldName = "ot_note"
         Me.GCNote.Name = "GCNote"
         Me.GCNote.OptionsColumn.AllowEdit = False
@@ -731,6 +736,10 @@ Partial Class FormEmpOvertimeDet
         '
         Me.ErrorProvider.ContainerControl = Me
         '
+        'RIMENote
+        '
+        Me.RIMENote.Name = "RIMENote"
+        '
         'FormEmpOvertimeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -780,6 +789,7 @@ Partial Class FormEmpOvertimeDet
         Me.PCReportStatus.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMENote, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -842,4 +852,5 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents TEMemoNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DECreatedAt As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GCConsumption As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMENote As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

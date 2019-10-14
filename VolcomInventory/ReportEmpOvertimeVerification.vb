@@ -22,6 +22,9 @@
         GCConversionType.Caption = GCConversionType.Caption.Replace(" ", Environment.NewLine)
         GCBreakHours.Caption = GCBreakHours.Caption.Replace(" ", Environment.NewLine)
         GCTotalHours.Caption = GCTotalHours.Caption.Replace(" ", Environment.NewLine)
+        GCStartWork.Caption = GCStartWork.Caption.Replace(" ", Environment.NewLine)
+        GCEndWork.Caption = GCEndWork.Caption.Replace(" ", Environment.NewLine)
+        GCNote.Caption = GCNote.Caption.Replace(" ", Environment.NewLine)
 
         GVEmployee.ActiveFilterString = "[ot_date] = '" + Date.Parse(FormEmpOvertimeVerification.DESearch.EditValue.ToString).ToString("dd MMMM yyyy") + "'"
 
@@ -41,6 +44,11 @@
         BGCConversionType.Caption = BGCConversionType.Caption.Replace(" ", Environment.NewLine)
         BGCBreakHours.Caption = BGCBreakHours.Caption.Replace(" ", Environment.NewLine)
         BGCTotalHours.Caption = BGCTotalHours.Caption.Replace(" ", Environment.NewLine)
+        BGCStartWork.Caption = BGCStartWork.Caption.Replace(" ", Environment.NewLine)
+        BGCEndWork.Caption = BGCEndWork.Caption.Replace(" ", Environment.NewLine)
+        BGCStartWorkOt.Caption = BGCStartWorkOt.Caption.Replace(" ", Environment.NewLine)
+        BGCEndWorkOt.Caption = BGCEndWorkOt.Caption.Replace(" ", Environment.NewLine)
+        BGCNote.Caption = BGCNote.Caption.Replace(" ", Environment.NewLine)
 
         Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
 

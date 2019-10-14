@@ -4,7 +4,15 @@
     Public last_click As String = ""
 
     Private Sub FormEmpOvertime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewSearchLookupQuery(SLUEPayroll, "SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end, DATE_FORMAT(periode_end, '%M %Y') as periode FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY ot_periode_end DESC", "id_payroll", "periode", "id_payroll")
+
         form_load()
+
+        Dim data_date As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE DATE(NOW()) >= ot_periode_start AND DATE(NOW()) <= periode_end AND id_payroll_type = 1", -1, True, "", "", "", "")
+
+        SLUEPayroll.EditValue = data_date.Rows(0)("id_payroll")
+        DEStart.EditValue = data_date.Rows(0)("periode_start")
+        DEUntil.EditValue = data_date.Rows(0)("periode_end")
 
         If is_hrd = "-1" Then
             Text = "Propose Overtime"
@@ -14,9 +22,6 @@
     End Sub
 
     Sub form_load()
-        DEStart.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-1")
-        DEUntil.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-" + Date.DaysInMonth(Now.Year, Now.Month).ToString)
-
         view_departement()
         view_employee()
         view_conversion_type()
@@ -51,7 +56,7 @@
             End Try
 
             Dim query As String = "
-                SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, ot.id_ot, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, ot_det.is_day_off, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note, ot.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot_det.id_ot_det, ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, ot.id_ot, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note, ot.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -131,7 +136,7 @@
             Dim query As String = "
                 SELECT * 
                 FROM (
-                    (SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot_verification_det.is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot_verification_det.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                    (SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_verification_det.id_employee AND date = ot_verification.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_verification.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot_verification_det.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
                     FROM tb_ot_verification_det AS ot_verification_det
                     LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
                     LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
@@ -143,7 +148,7 @@
                     LEFT JOIN tb_m_employee AS created_by ON ot_verification.created_by = created_by.id_employee
                     WHERE 1 " + where_date + " " + where_departement + " " + where_employee + ")
                     UNION ALL
-                    (SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_det.to_salary, ot_det.conversion_type, ot_det.id_ot, 0 AS id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, ot_det.is_day_off, '' AS start_work_ot, '' AS end_work_ot, ot_det.ot_break AS break_hours, 0.0 AS total_hours, 0.0 AS point_ot, ot_det.ot_note, 0 AS id_report_status, 'Need Verify' AS report_status, '' AS created_by, '' AS created_at
+                    (SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_det.to_salary, ot_det.conversion_type, ot_det.id_ot, 0 AS id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, '' AS start_work_ot, '' AS end_work_ot, ot_det.ot_break AS break_hours, 0.0 AS total_hours, 0.0 AS point_ot, ot_det.ot_note, 0 AS id_report_status, 'Need Verify' AS report_status, '' AS created_by, '' AS created_at
                     FROM tb_ot_det AS ot_det
                     LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                     LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -291,8 +296,10 @@
 
     Private Sub GVEmployee_DoubleClick(sender As Object, e As EventArgs) Handles GVProposeEmployee.DoubleClick
         Try
-            FormEmpOvertimeDet.id = GVProposeEmployee.GetFocusedRowCellValue("id_ot")
+            FormEmpOvertimeDet.id = GVProposeEmployee.GetFocusedRowCellValue("id_ot").ToString
             FormEmpOvertimeDet.is_hrd = is_hrd
+
+            FormEmpOvertimeDet.id_ot_det = GVProposeEmployee.GetFocusedRowCellValue("id_ot_det").ToString
 
             FormEmpOvertimeDet.ShowDialog()
         Catch ex As Exception
@@ -323,6 +330,7 @@
     Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
         Try
             If GVOvertime.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                FormEmpOvertimeVerification.is_hrd = is_hrd
                 FormEmpOvertimeVerification.id = "0"
                 FormEmpOvertimeVerification.id_ot = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
                 FormEmpOvertimeVerification.is_view = "0"
@@ -338,6 +346,7 @@
 
     Private Sub GVVerification_DoubleClick(sender As Object, e As EventArgs) Handles GVVerification.DoubleClick
         Try
+            FormEmpOvertimeVerification.is_hrd = is_hrd
             FormEmpOvertimeVerification.id = GVVerification.GetFocusedRowCellValue("id_ot_verification").ToString
             FormEmpOvertimeVerification.id_ot = GVVerification.GetFocusedRowCellValue("id_ot").ToString
             FormEmpOvertimeVerification.is_view = "1"
@@ -378,9 +387,22 @@
             FormEmpOvertimeVerification.id_ot = GVVerificationEmployee.GetFocusedRowCellValue("id_ot").ToString
             FormEmpOvertimeVerification.is_view = "1"
             FormEmpOvertimeVerification.ot_date = Date.Parse(GVVerificationEmployee.GetFocusedRowCellValue("ot_date").ToString)
+            FormEmpOvertimeVerification.id_employee = GVVerificationEmployee.GetFocusedRowCellValue("id_employee").ToString
 
             FormEmpOvertimeVerification.ShowDialog()
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub SLUEPayroll_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEPayroll.EditValueChanged
+        If SLUEPayroll.EditValue = Nothing Then
+            DEStart.EditValue = Date.Now
+            DEUntil.EditValue = Date.Now
+        Else
+            Dim i As Integer = SLUEPayroll.Properties.GetIndexByKeyValue(SLUEPayroll.EditValue)
+
+            DEStart.EditValue = SLUEPayrollView.GetRowCellValue(i, "periode_start")
+            DEUntil.EditValue = SLUEPayrollView.GetRowCellValue(i, "periode_end")
+        End If
     End Sub
 End Class

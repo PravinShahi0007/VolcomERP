@@ -21,6 +21,9 @@
         GCConversionType.Caption = GCConversionType.Caption.Replace(" ", Environment.NewLine)
         GCBreakHours.Caption = GCBreakHours.Caption.Replace(" ", Environment.NewLine)
         GCTotalHours.Caption = GCTotalHours.Caption.Replace(" ", Environment.NewLine)
+        GCStartWork.Caption = GCStartWork.Caption.Replace(" ", Environment.NewLine)
+        GCEndWork.Caption = GCEndWork.Caption.Replace(" ", Environment.NewLine)
+        GCNote.Caption = GCNote.Caption.Replace(" ", Environment.NewLine)
 
         GVEmployee.BestFitColumns()
 

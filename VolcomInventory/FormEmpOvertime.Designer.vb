@@ -152,6 +152,13 @@ Partial Class FormEmpOvertime
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.SLUEPayroll = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLUEPayrollView = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,6 +203,8 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.SuspendLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEPayroll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEPayrollView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCOvertime
@@ -325,7 +334,7 @@ Partial Class FormEmpOvertime
         Me.PanelControl4.Controls.Add(Me.SBViewOD)
         Me.PanelControl4.Controls.Add(Me.SBViewCA)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(962, 0)
+        Me.PanelControl4.Location = New System.Drawing.Point(1257, 0)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(265, 40)
         Me.PanelControl4.TabIndex = 19
@@ -351,6 +360,8 @@ Partial Class FormEmpOvertime
         Me.PanelControl3.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanelControl3.Appearance.Options.UseBackColor = True
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LabelControl7)
+        Me.PanelControl3.Controls.Add(Me.SLUEPayroll)
         Me.PanelControl3.Controls.Add(Me.Label4)
         Me.PanelControl3.Controls.Add(Me.Label1)
         Me.PanelControl3.Controls.Add(Me.SLUEDepartement)
@@ -360,13 +371,13 @@ Partial Class FormEmpOvertime
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(692, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(987, 40)
         Me.PanelControl3.TabIndex = 18
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(420, 14)
+        Me.Label4.Location = New System.Drawing.Point(715, 14)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(77, 13)
         Me.Label4.TabIndex = 15
@@ -375,7 +386,7 @@ Partial Class FormEmpOvertime
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 14)
+        Me.Label1.Location = New System.Drawing.Point(303, 14)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(41, 13)
         Me.Label1.TabIndex = 12
@@ -383,7 +394,7 @@ Partial Class FormEmpOvertime
         '
         'SLUEDepartement
         '
-        Me.SLUEDepartement.Location = New System.Drawing.Point(503, 11)
+        Me.SLUEDepartement.Location = New System.Drawing.Point(798, 11)
         Me.SLUEDepartement.Name = "SLUEDepartement"
         Me.SLUEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEDepartement.Properties.View = Me.SearchLookUpEdit1View
@@ -415,7 +426,7 @@ Partial Class FormEmpOvertime
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(52, 11)
+        Me.DEStart.Location = New System.Drawing.Point(347, 11)
         Me.DEStart.Margin = New System.Windows.Forms.Padding(0)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -429,7 +440,7 @@ Partial Class FormEmpOvertime
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(210, 14)
+        Me.Label2.Location = New System.Drawing.Point(505, 14)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(38, 13)
         Me.Label2.TabIndex = 14
@@ -438,7 +449,7 @@ Partial Class FormEmpOvertime
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(254, 11)
+        Me.DEUntil.Location = New System.Drawing.Point(549, 11)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1351,7 +1362,7 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.Controls.Add(Me.SLUEEmployee)
         Me.PCEmployee.Controls.Add(Me.Label3)
         Me.PCEmployee.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCEmployee.Location = New System.Drawing.Point(692, 0)
+        Me.PCEmployee.Location = New System.Drawing.Point(987, 0)
         Me.PCEmployee.Name = "PCEmployee"
         Me.PCEmployee.Size = New System.Drawing.Size(270, 40)
         Me.PCEmployee.TabIndex = 20
@@ -1404,6 +1415,56 @@ Partial Class FormEmpOvertime
         Me.Label3.Size = New System.Drawing.Size(60, 13)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
+        '
+        'SLUEPayroll
+        '
+        Me.SLUEPayroll.Location = New System.Drawing.Point(93, 11)
+        Me.SLUEPayroll.Name = "SLUEPayroll"
+        Me.SLUEPayroll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEPayroll.Properties.View = Me.SLUEPayrollView
+        Me.SLUEPayroll.Size = New System.Drawing.Size(200, 20)
+        Me.SLUEPayroll.TabIndex = 27
+        '
+        'SLUEPayrollView
+        '
+        Me.SLUEPayrollView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn51, Me.GridColumn31, Me.GridColumn30})
+        Me.SLUEPayrollView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SLUEPayrollView.Name = "SLUEPayrollView"
+        Me.SLUEPayrollView.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SLUEPayrollView.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.FieldName = "id_payroll"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Payroll Period"
+        Me.GridColumn30.FieldName = "periode"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 14)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl7.TabIndex = 28
+        Me.LabelControl7.Text = "Payroll Period :"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "GridColumn31"
+        Me.GridColumn31.FieldName = "periode_end"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "GridColumn51"
+        Me.GridColumn51.FieldName = "periode_start"
+        Me.GridColumn51.Name = "GridColumn51"
         '
         'FormEmpOvertime
         '
@@ -1460,6 +1521,8 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.PerformLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEPayroll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEPayrollView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1596,4 +1659,11 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLUEPayroll As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLUEPayrollView As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
