@@ -933,6 +933,24 @@
     <Compile Include="FormEmpInitialize.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpInputAttendance.Designer.vb">
+      <DependentUpon>FormEmpInputAttendance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpInputAttendance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpInputAttendanceDet.Designer.vb">
+      <DependentUpon>FormEmpInputAttendanceDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpInputAttendanceDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpInputAttendancePick.Designer.vb">
+      <DependentUpon>FormEmpInputAttendancePick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpInputAttendancePick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpLeave.Designer.vb">
       <DependentUpon>FormEmpLeave.vb</DependentUpon>
     </Compile>
@@ -7584,6 +7602,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpInitialize.resx">
       <DependentUpon>FormEmpInitialize.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpInputAttendance.resx">
+      <DependentUpon>FormEmpInputAttendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpInputAttendanceDet.resx">
+      <DependentUpon>FormEmpInputAttendanceDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpInputAttendancePick.resx">
+      <DependentUpon>FormEmpInputAttendancePick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeave.resx">
       <DependentUpon>FormEmpLeave.vb</DependentUpon>
