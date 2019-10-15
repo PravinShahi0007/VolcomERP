@@ -215,6 +215,21 @@
                                         GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
                                     End If
                                 End If
+
+                                'overtime on public holiday
+                                If GVAttendance.GetRowCellValue(i, "is_day_off").ToString = "1" And GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
+                                    GVAttendance.SetRowCellValue(i, "ot_potention", "1")
+
+                                    Dim total_hours As Decimal = Math.Floor(work_hours / 0.5) * 0.5
+
+                                    GVAttendance.SetRowCellValue(i, "start_work_ot", GVAttendance.GetRowCellValue(i, "start_work_att"))
+                                    GVAttendance.SetRowCellValue(i, "end_work_ot", GVAttendance.GetRowCellValue(i, "end_work_att"))
+                                    GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                    GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
+
+                                    GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+                                    GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
+                                End If
                             Else
                                 GVAttendance.SetRowCellValue(i, "ot_potention", "1")
 
