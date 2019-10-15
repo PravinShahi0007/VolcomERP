@@ -9,7 +9,7 @@
         DATE_FORMAT(py.date_received,'%d-%m-%Y') AS `rec_date`,
         CONCAT(a.acc_name, ' - ', a.acc_description) AS `rec_payment_to`,py.value AS `amount`,
         py.note AS `note`, d.report_status, co.npwp_name AS `own_comp_name`, co.npwp AS `own_comp_npwp`,
-        DATE_FORMAT(NOW(),'%d-%m-%Y %H:%i:%s') AS `printed_date`, eusr.employee_nick_name AS `printed_by`
+        DATE_FORMAT(NOW(),'%d-%m-%Y %H:%i:%s') AS `printed_date`, eusr.employee_name AS `printed_by`
         FROM tb_rec_payment py
         INNER JOIN tb_a_acc a ON a.id_acc = py.id_acc_pay_rec
         JOIN tb_opt o
