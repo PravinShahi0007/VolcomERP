@@ -6,6 +6,8 @@
         viewSeason()
         '
         viewVendor()
+        '
+        view_close()
         If id_pop_up = "-1" Then 'only closing po
             BClosingFGPO.Visible = True
         ElseIf id_pop_up = "1" Then ' only closing rec
@@ -20,6 +22,17 @@
         End If
         view_claim_reject()
         view_claim_late()
+    End Sub
+
+    Sub view_close()
+        Dim query As String = "SELECT poc.id_prod_order_close,poc.number,poc.created_date,emp.`employee_name`,sts.`report_status`
+FROM tb_prod_order_close poc
+INNER JOIN tb_m_user usr ON usr.`id_user`=poc.`created_by`
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCClosing.DataSource = data
+        GVClosing.BestFitColumns()
     End Sub
 
     Sub view_claim_reject()
@@ -355,5 +368,14 @@ WHERE cl.`is_active`='1'"
             FormProdClosingTolerance.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVClosing_DoubleClick(sender As Object, e As EventArgs) Handles GVClosing.DoubleClick
+        If GVClosing.RowCount > 0 Then
+            FormProdClosingPps.id_pps = GVClosing.GetFocusedRowCellValue("id_prod_order_close").ToString
+            FormProdClosingPps.ShowDialog()
+        Else
+            infoCustom("No closing proposed")
+        End If
     End Sub
 End Class
