@@ -174,4 +174,21 @@
         FormImportExcel.id_pop_up = "46"
         FormImportExcel.ShowDialog()
     End Sub
+
+    Private Sub GVEmployee_ShownEditor(sender As Object, e As EventArgs) Handles GVEmployee.ShownEditor
+        Dim att_min As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("date").ToString)
+        Dim att_max As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("date").ToString).AddDays(1)
+
+        If GVEmployee.FocusedColumn.FieldName = "time_in" Then
+            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
+
+            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
+            ADateEdit.Properties.MaxValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 23, 59, 59)
+        ElseIf GVEmployee.FocusedColumn.FieldName = "time_out" Then
+            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
+
+            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
+            ADateEdit.Properties.MaxValue = New DateTime(att_max.Year, att_max.Month, att_max.Day, 23, 59, 59)
+        End If
+    End Sub
 End Class
