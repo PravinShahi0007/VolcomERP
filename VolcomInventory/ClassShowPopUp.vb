@@ -306,6 +306,8 @@
         ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
             'propose budget CAPEX
             FormSetupBudgetCAPEXDet.Close()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.Close()
         End If
     End Sub
     Sub show()
@@ -1089,6 +1091,9 @@
             FormSetupBudgetCAPEXDet.id_pps = id_report
             FormSetupBudgetCAPEXDet.is_view = "1"
             FormSetupBudgetCAPEXDet.ShowDialog()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.id = id_report
+            FormEmpInputAttendanceDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1989,6 +1994,11 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "211" Then
+            table_name = "tb_emp_attn_input"
+            field_id = "id_emp_attn_input"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2573,9 +2583,9 @@
                 WHERE f.id_report_status='-1' "
 
                 'saat edit
-                query_view_edit = "SELECT rmcr.id_report,f." & field_number & " AS number,f." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
-                                po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
-                                cat.pl_category AS `category`, fd.total_qty
+                query_view_edit = "SELECT rmcr.id_report,f." & field_number & " AS number,f." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,
+                                po.id_prod_order,po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
+                                cat.pl_category AS `category`, fd.total_qty " & generate_left_join_cancel("column") & "
                                 FROM tb_report_mark_cancel_report rmcr 
                                 INNER JOIN " & table_name & " f ON f." & field_id & "=rmcr.id_report
                                 INNER JOIN (
@@ -2599,6 +2609,7 @@
                                 )ovh ON ovh.id_prod_order=po.id_prod_order
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                                 INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
+                                 " & generate_left_join_cancel("query") & "
                                 WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' "
             Else
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"
