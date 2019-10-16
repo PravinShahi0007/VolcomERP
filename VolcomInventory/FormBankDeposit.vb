@@ -112,11 +112,23 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         'Left Join tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
         'Left Join tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         ',CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name
-        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.date_received, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note
+        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.date_received, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note, la.employee_name AS `last_approved_by`
 FROM tb_rec_payment rec_py
 INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
+LEFT JOIN (
+	SELECT a.id_report, a.id_user, a.username, a.employee_name 
+	FROM (
+		SELECT rm.id_report, rm.id_user, u.username, e.employee_name
+		FROM tb_report_mark rm 
+		INNER JOIN tb_m_user u ON u.id_user = rm.id_user
+		INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+		WHERE (rm.report_mark_type=162) AND rm.id_report_status>1 AND rm.id_mark=2
+		ORDER BY rm.report_mark_datetime DESC
+	) a
+	GROUP BY a.id_report
+) la ON la.id_report = rec_py.`id_rec_payment`
 WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
