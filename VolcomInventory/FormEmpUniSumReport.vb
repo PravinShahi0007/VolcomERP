@@ -122,11 +122,39 @@
         End Try
 
         Dim query As String = "
-            SELECT so.id_sales_order, so.sales_order_number, DATE_FORMAT(so.sales_order_date, '%d %M %Y') sales_order_date, so.id_so_status, (SELECT so_status FROM tb_lookup_so_status WHERE id_so_status = so.id_so_status) AS so_status, so.id_report_status AS id_report_status_so, (SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = so.id_report_status) AS report_status_so, sod.id_sales_order_det, sode.id_pl_sales_order_del, sode.pl_sales_order_del_number, DATE_FORMAT(sode.pl_sales_order_del_date, '%d %M %Y') pl_sales_order_del_date, sode.id_report_status AS id_report_status_del, (SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = sode.id_report_status) AS report_status_del, ex.id_emp_uni_ex, ex.emp_uni_ex_number, DATE_FORMAT(ex.emp_uni_ex_date, '%d %M %Y') emp_uni_ex_date, (SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = ex.id_report_status) AS report_status_ex, sod.id_product, sod.sales_order_det_qty, p.product_display_name, p.product_full_code, cd.code_detail_name, p.id_design, d.design_code, d.design_display_name, sod.sales_order_det_qty * d.design_cop AS design_cop, b.id_emp_uni_period, pr.period_name, b.id_employee, e.employee_code, e.employee_name, b.id_departement, (SELECT departement FROM tb_m_departement WHERE id_departement = b.id_departement) AS departement
+            SELECT so.id_sales_order, so.sales_order_number, DATE_FORMAT(so.sales_order_date, '%d %M %Y') sales_order_date, so.id_so_status, 
+            (SELECT so_status FROM tb_lookup_so_status WHERE id_so_status = so.id_so_status) AS so_status, so.id_report_status AS id_report_status_so, 
+            sod.id_sales_order_det, 
+            sode.pl_sales_order_del_number, DATE_FORMAT(sode.pl_sales_order_del_date, '%d %M %Y') pl_sales_order_del_date, IFNULL(sode.del_qty,0) AS `del_qty`, sode.id_report_status AS id_report_status_del, 
+            ex.emp_uni_ex_number, DATE_FORMAT(ex.emp_uni_ex_date, '%d %M %Y') emp_uni_ex_date, IFNULL(ex.ex_qty,0) AS `ex_qty`, 
+            sod.id_product, sod.sales_order_det_qty, p.product_display_name, p.product_full_code, cd.code_detail_name, p.id_design, d.design_code, 
+            d.design_display_name, d.design_cop AS design_cop, 
+            b.id_emp_uni_period, pr.period_name, b.id_employee, e.employee_code, e.employee_name, b.id_departement, 
+            (SELECT departement FROM tb_m_departement WHERE id_departement = b.id_departement) AS departement
             FROM tb_sales_order AS so
             LEFT JOIN tb_sales_order_det AS sod ON sod.id_sales_order = so.id_sales_order
-            LEFT JOIN tb_pl_sales_order_del AS sode ON sode.id_sales_order = so.id_sales_order AND sode.id_report_status=6
-            LEFT JOIN tb_emp_uni_ex AS ex ON ex.id_pl_sales_order_del = sode.id_pl_sales_order_del AND ex.id_report_status=6
+            LEFT JOIN (
+	            SELECT dd.id_sales_order_det, GROUP_CONCAT(d.pl_sales_order_del_number) AS `pl_sales_order_del_number`, 
+	            SUM(dd.pl_sales_order_del_det_qty) AS `del_qty`,
+	            DATE_FORMAT(d.pl_sales_order_del_date, '%d %M %Y') pl_sales_order_del_date, d.id_report_status 
+	            FROM tb_pl_sales_order_del_det dd
+	            INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+	            INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order AND (so.id_so_status=7 OR so.id_so_status=9)
+	            WHERE d.id_report_status=6 
+	            GROUP BY dd.id_sales_order_det
+            ) sode ON sode.id_sales_order_det = sod.id_sales_order_det
+            LEFT JOIN (
+	            SELECT dd.id_sales_order_det,GROUP_CONCAT(e.emp_uni_ex_number) AS `emp_uni_ex_number`, 
+	            SUM(ed.qty) AS `ex_qty`,
+	            DATE_FORMAT(e.emp_uni_ex_date, '%d %M %Y') emp_uni_ex_date, e.id_report_status 
+	            FROM tb_emp_uni_ex e
+	            INNER JOIN tb_emp_uni_ex_det ed ON ed.id_emp_uni_ex = e.id_emp_uni_ex 
+	            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = ed.id_pl_sales_order_del_det
+	            INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+	            INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order AND (so.id_so_status=7 OR so.id_so_status=9)
+	            WHERE e.id_report_status=6 
+	            GROUP BY dd.id_sales_order_det
+            ) ex ON ex.id_sales_order_det = sod.id_sales_order_det
             LEFT JOIN tb_m_product AS p ON p.id_product = sod.id_product
             LEFT JOIN tb_m_product_code AS pc ON pc.id_product = p.id_product
             LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = pc.id_code_detail
