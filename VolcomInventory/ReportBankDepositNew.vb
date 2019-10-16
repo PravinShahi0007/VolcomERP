@@ -71,7 +71,7 @@
         ORDER BY is_header ASC, id_reff ASC  "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
-        Dim font_row_style As New Font("Tahoma", 7, FontStyle.Regular)
+        Dim font_row_style As New Font("Tahoma", 8, FontStyle.Regular)
         For i = 0 To data.Rows.Count - 1
             'row
             If i = 0 Then
