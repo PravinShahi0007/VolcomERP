@@ -26,6 +26,8 @@
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         DECreatedAt.EditValue = Now
 
+        generate_memo_format()
+
         load_default()
 
         'load database
@@ -412,7 +414,7 @@
 
     Sub generate_memo_format()
         Dim format As String = execute_query("
-            SELECT CONCAT('/INT/', (SELECT `code` FROM tb_ot_memo_number_dep WHERE id_departement = " + LEDepartement.EditValue.ToString + "), '/MM/', (SELECT `code` FROM tb_ot_memo_number_mon WHERE `month` = " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%M") + "), '/', " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%y") + ") AS `format`
+            SELECT CONCAT('/INT/', (SELECT `code` FROM tb_ot_memo_number_dep WHERE id_departement = " + LEDepartement.EditValue.ToString + "), '-MM/', (SELECT `code` FROM tb_ot_memo_number_mon WHERE `month` = " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%M") + "), '/', " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%y") + ") AS `format`
         ", 0, True, "", "", "", "")
 
         TEMemoFormat.EditValue = format
@@ -444,10 +446,6 @@
         Else
             PCMemoNumber.Visible = False
         End If
-    End Sub
-
-    Private Sub LEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartement.EditValueChanged
-        generate_memo_format()
     End Sub
 
     Private Sub LUEOvertimeType_EditValueChanged(sender As Object, e As EventArgs) Handles LUEOvertimeType.EditValueChanged
