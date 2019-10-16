@@ -259,6 +259,7 @@ Public Class FormBankDepositDet
             Dim s As New ClassShowPopUp()
             FormViewJournal.is_enable_view_doc = False
             FormViewJournal.BMark.Visible = False
+            FormViewJournal.show_trans_number = True
             s.id_report = id_acc_trans
             s.report_mark_type = "36"
             s.show()
