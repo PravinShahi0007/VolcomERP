@@ -318,9 +318,9 @@ Partial Class FormViewJournal
         '
         Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Number"
+        Me.LabelControl1.Text = "Type"
         '
         'TEDate
         '
