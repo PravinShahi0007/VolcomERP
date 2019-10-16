@@ -988,7 +988,7 @@ Partial Public Class ReportMatPurchase
         '
         'XrTable1
         '
-        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 7.15!)
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 100.0002!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})

@@ -83,6 +83,7 @@
             '
         End If
     End Sub
+
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status WHERE id_report_status!='7' "
         If not_allow_complete = "1" Then
@@ -509,15 +510,15 @@
         ElseIf report_mark_type = "180" Then
             'propose employee changes
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_pps WHERE id_employee_pps = '{0}'", id_report)
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             'overtime
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
         ElseIf report_mark_type = "185" Then
             'sample purchase close
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_purc_close WHERE id_ot = '{0}'", id_report)
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'overtime report
-            query = String.Format("SELECT id_check_status AS id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
+            query = String.Format("SELECT vr.id_report_status, ot.number FROM tb_ot_verification AS vr LEFT JOIN tb_ot AS ot ON vr.id_ot = ot.id_ot WHERE id_ot_verification = '{0}'", id_report)
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             query = String.Format("SELECT tb_fg_propose_price_rev.id_report_status AS id_report_status, CONCAT(tb_fg_propose_price.fg_propose_price_number,'/REV ', tb_fg_propose_price_rev.rev_count) as report_number 
@@ -551,6 +552,9 @@
         ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
             'OPEX Budget Propose
             query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "211" Then
+            'input attendance
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_emp_attn_input WHERE id_emp_attn_input = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -1179,7 +1183,7 @@
                     mail.report_mark_type = report_mark_type
                     mail.send_email_notif(report_mark_type, id_report)
                 Catch ex As Exception
-                    execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                    execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                 End Try
             End If
 
@@ -2425,7 +2429,7 @@
                     Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
                     Dim id_mat_det_price As String = data.Rows(i)("id_mat_det_price_cost").ToString
                     Dim mat_det_price As Decimal = data.Rows(i)("mat_det_price_cost")
-                    Dim mat_wo_rec_det_qty As String = data.Rows(i)("mat_prod_ret_in_det_qty").ToString
+                    Dim mat_wo_rec_det_qty As String = decimalSQL(Decimal.Parse(data.Rows(i)("mat_prod_ret_in_det_qty").ToString).ToString)
                     Dim mat_wo_rec_number As String = data.Rows(i)("mat_prod_ret_in_number").ToString
                     Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_report,report_mark_type,id_stock_status,id_mat_det_price,price) "
                     'update storage
@@ -4482,7 +4486,13 @@
                 execute_non_query(query_void, True, "", "", "", "")
 
 
-                Dim qpr As String = "SELECT * FROM tb_prod_demand_design_rev pdd
+                Dim qpr As String = "SELECT pdd.`id_prod_demand_design_rev`,pdd.`id_prod_demand_rev`,pdd.`id_prod_demand_design`, pdd_org.`id_delivery`, pdd.`id_design`, pdd.`id_currency`, pdd.`prod_demand_design_propose_price`,
+                pdd.`additional_price`, pdd.`prod_demand_design_estimate_price`, pdd.`prod_demand_design_total_cost`, pdd.`additional_cost`, pdd.`royalty_design`, pdd.`royalty_special`, pdd.`inflation`,
+                pdd.`rate_current`, pdd.`rate_management`, pdd.`msrp`, pdd.`msrp_rp`, pdd.`date_available_start`, pdd.`id_pd_status_rev`, pdd.`is_cancel_po`, pdd.`cancel_po_note`,
+                pd.`id_prod_demand_rev`, pd.`id_prod_demand`, pd.`rev_count`, pd.`id_report_status`,
+                pd.`created_date`, pd.`note`, pd.`is_confirm`, pd.`report_mark_type`
+                FROM tb_prod_demand_design_rev pdd
+                INNER JOIN tb_prod_demand_design pdd_org ON pdd_org.id_prod_demand_design = pdd.id_prod_demand_design
                 INNER JOIN tb_prod_demand_rev pd ON pd.id_prod_demand_rev = pdd.id_prod_demand_rev
                 WHERE pdd.id_prod_demand_rev=" + id_report + " AND pdd.id_pd_status_rev=1 "
                 Dim dpr As DataTable = execute_query(qpr, -1, True, "", "", "", "")
@@ -4703,7 +4713,7 @@
 	                `storage_item_notes`,
 	                `id_stock_status`
                 )
-                SELECT rq.id_departement, 1, rd.id_item, pod.`value`, 148, " + id_report + ", rd.qty, NOW(),'', 1
+                SELECT IF(rq.is_store_purchase=1,0,rq.id_departement) AS id_departement, 1, rd.id_item, pod.`value`, 148, " + id_report + ", rd.qty, NOW(),'', 1
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
@@ -5395,8 +5405,10 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 
                 If FormBankDepositDet.TETotal.EditValue > 0 Then 'BBM
                     'main journal
-                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                    Dim date_reference As String = DateTime.Parse(FormBankDepositDet.DERecDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                    Dim date_created As String = DateTime.Parse(FormBankDepositDet.DEDateCreated.EditValue.ToString).ToString("yyyy-MM-dd")
+                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                     Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                     increase_inc_acc("1")
 
@@ -5895,7 +5907,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
@@ -5918,22 +5930,25 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             'refresh view
             FormSamplePurcCloseDet.load_form()
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
 
             If id_status_reportx = "6" Then
-                FormEmpOvertimeDet.id = id_report
-                FormEmpOvertimeDet.updateChanges()
+                Dim data_ver As DataTable = execute_query("SELECT id_ot, ot_date FROM tb_ot_verification WHERE id_ot_verification = " + id_report + " LIMIT 1", -1, True, "", "", "", "")
+
+                FormEmpOvertimeVerification.id = id_report
+                FormEmpOvertimeVerification.id_ot = data_ver.Rows(0)("id_ot").ToString
+                FormEmpOvertimeVerification.is_view = "0"
+                FormEmpOvertimeVerification.ot_date = Date.Parse(data_ver.Rows(0)("ot_date").ToString)
+
+                FormEmpOvertimeVerification.update_changes()
             End If
 
             'update
-            query = String.Format("UPDATE tb_ot SET id_check_status='{0}' WHERE id_ot ='{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_ot_verification SET id_report_status='{0}' WHERE id_ot_verification ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-            'refresh view
-            FormEmpOvertimeDet.form_load()
         ElseIf report_mark_type = "188" Then
             'FG PROPOSE PRICE
             If id_status_reportx = "2" Then
@@ -6344,6 +6359,14 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             'refresh view
             'FormSampleBudget.load_propose()
             'FormSampleBudget.load_budget()
+        ElseIf report_mark_type = "211" Then
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_emp_attn_input SET id_report_status='{0}' WHERE id_emp_attn_input ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time

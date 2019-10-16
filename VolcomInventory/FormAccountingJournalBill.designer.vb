@@ -44,8 +44,12 @@ Partial Class FormAccountingJournalBill
         Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdCompany = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdAccSrc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PCButton = New DevExpress.XtraEditors.PanelControl()
@@ -58,6 +62,8 @@ Partial Class FormAccountingJournalBill
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PCGeneralheader = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DERefDate = New DevExpress.XtraEditors.DateEdit()
         Me.TEDate = New DevExpress.XtraEditors.DateEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.Blink = New DevExpress.XtraEditors.SimpleButton()
@@ -68,10 +74,7 @@ Partial Class FormAccountingJournalBill
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnIdAccSrc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BalanceMenu.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +88,9 @@ Partial Class FormAccountingJournalBill
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelBottomRight.SuspendLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCButton.SuspendLayout()
@@ -92,15 +98,14 @@ Partial Class FormAccountingJournalBill
         Me.PanelControl2.SuspendLayout()
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCGeneralheader.SuspendLayout()
+        CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelBottomRight.SuspendLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BalanceMenu
@@ -148,18 +153,18 @@ Partial Class FormAccountingJournalBill
         'GCJournalDet
         '
         Me.GCJournalDet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCJournalDet.Location = New System.Drawing.Point(0, 111)
+        Me.GCJournalDet.Location = New System.Drawing.Point(0, 134)
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemComboBox1, Me.RSLEStatusOpen})
-        Me.GCJournalDet.Size = New System.Drawing.Size(826, 289)
+        Me.GCJournalDet.Size = New System.Drawing.Size(826, 266)
         Me.GCJournalDet.TabIndex = 16
         Me.GCJournalDet.TabStop = False
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnStatus, Me.GridColumnIdReport, Me.GridColumnReportMarkType, Me.GridColumnReff, Me.GridColumnIdCompany, Me.GridColumnIdAccSrc})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnStatus, Me.GridColumnIdReport, Me.GridColumnReportMarkType, Me.GridColumnReff, Me.GridColumnIdCompany, Me.GridColumnIdAccSrc, Me.GridColumn8})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.Name = "GVJournalDet"
         Me.GVJournalDet.OptionsLayout.Columns.StoreAllOptions = True
@@ -211,9 +216,8 @@ Partial Class FormAccountingJournalBill
         Me.GridColumn3.Caption = "Note"
         Me.GridColumn3.FieldName = "note"
         Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 300
         '
         'GridColumn4
@@ -230,7 +234,7 @@ Partial Class FormAccountingJournalBill
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
         Me.GridColumn4.Width = 138
         '
         'RepositoryItemTextEdit1
@@ -259,7 +263,7 @@ Partial Class FormAccountingJournalBill
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         Me.GridColumn5.Width = 134
         '
         'RepositoryItemTextEdit2
@@ -313,13 +317,19 @@ Partial Class FormAccountingJournalBill
         Me.GridColumnReff.FieldName = "report_number"
         Me.GridColumnReff.Name = "GridColumnReff"
         Me.GridColumnReff.Visible = True
-        Me.GridColumnReff.VisibleIndex = 5
+        Me.GridColumnReff.VisibleIndex = 6
         '
         'GridColumnIdCompany
         '
         Me.GridColumnIdCompany.Caption = "Id Company"
         Me.GridColumnIdCompany.FieldName = "id_comp"
         Me.GridColumnIdCompany.Name = "GridColumnIdCompany"
+        '
+        'GridColumnIdAccSrc
+        '
+        Me.GridColumnIdAccSrc.Caption = "GridColumn8"
+        Me.GridColumnIdAccSrc.FieldName = "id_acc_src"
+        Me.GridColumnIdAccSrc.Name = "GridColumnIdAccSrc"
         '
         'RepositoryItemComboBox1
         '
@@ -337,6 +347,39 @@ Partial Class FormAccountingJournalBill
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(826, 58)
         Me.PanelControl4.TabIndex = 14
+        '
+        'PanelBottomRight
+        '
+        Me.PanelBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
+        Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
+        Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelBottomRight.Location = New System.Drawing.Point(501, 2)
+        Me.PanelBottomRight.Name = "PanelBottomRight"
+        Me.PanelBottomRight.Size = New System.Drawing.Size(323, 54)
+        Me.PanelBottomRight.TabIndex = 140
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(117, 5)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(196, 20)
+        Me.LEReportStatus.TabIndex = 7
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(73, 8)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 144
+        Me.LabelControl21.Text = "Status"
         '
         'MENote
         '
@@ -359,7 +402,7 @@ Partial Class FormAccountingJournalBill
         Me.PCButton.Controls.Add(Me.BAddMat)
         Me.PCButton.Controls.Add(Me.BtnRef)
         Me.PCButton.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCButton.Location = New System.Drawing.Point(0, 75)
+        Me.PCButton.Location = New System.Drawing.Point(0, 98)
         Me.PCButton.Name = "PCButton"
         Me.PCButton.Size = New System.Drawing.Size(826, 36)
         Me.PCButton.TabIndex = 17
@@ -461,6 +504,8 @@ Partial Class FormAccountingJournalBill
         '
         'PCGeneralheader
         '
+        Me.PCGeneralheader.Controls.Add(Me.LabelControl5)
+        Me.PCGeneralheader.Controls.Add(Me.DERefDate)
         Me.PCGeneralheader.Controls.Add(Me.TEDate)
         Me.PCGeneralheader.Controls.Add(Me.TENumber)
         Me.PCGeneralheader.Controls.Add(Me.Blink)
@@ -474,8 +519,29 @@ Partial Class FormAccountingJournalBill
         Me.PCGeneralheader.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCGeneralheader.Location = New System.Drawing.Point(0, 0)
         Me.PCGeneralheader.Name = "PCGeneralheader"
-        Me.PCGeneralheader.Size = New System.Drawing.Size(826, 75)
+        Me.PCGeneralheader.Size = New System.Drawing.Size(826, 98)
         Me.PCGeneralheader.TabIndex = 13
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(560, 41)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(76, 13)
+        Me.LabelControl5.TabIndex = 158
+        Me.LabelControl5.Text = "Reference Date"
+        '
+        'DERefDate
+        '
+        Me.DERefDate.EditValue = Nothing
+        Me.DERefDate.Location = New System.Drawing.Point(642, 38)
+        Me.DERefDate.Name = "DERefDate"
+        Me.DERefDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DERefDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERefDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERefDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DERefDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERefDate.Size = New System.Drawing.Size(172, 20)
+        Me.DERefDate.TabIndex = 157
         '
         'TEDate
         '
@@ -547,7 +613,7 @@ Partial Class FormAccountingJournalBill
         '
         'TEUserEntry
         '
-        Me.TEUserEntry.Location = New System.Drawing.Point(642, 38)
+        Me.TEUserEntry.Location = New System.Drawing.Point(642, 64)
         Me.TEUserEntry.Name = "TEUserEntry"
         Me.TEUserEntry.Properties.ReadOnly = True
         Me.TEUserEntry.Size = New System.Drawing.Size(172, 20)
@@ -556,7 +622,7 @@ Partial Class FormAccountingJournalBill
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(572, 41)
+        Me.LabelControl2.Location = New System.Drawing.Point(560, 67)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl2.TabIndex = 4
@@ -572,50 +638,20 @@ Partial Class FormAccountingJournalBill
         '
         'LTransNo
         '
-        Me.LTransNo.Location = New System.Drawing.Point(572, 15)
+        Me.LTransNo.Location = New System.Drawing.Point(560, 15)
         Me.LTransNo.Name = "LTransNo"
         Me.LTransNo.Size = New System.Drawing.Size(23, 13)
         Me.LTransNo.TabIndex = 0
         Me.LTransNo.Text = "Date"
         '
-        'GridColumnIdAccSrc
+        'GridColumn8
         '
-        Me.GridColumnIdAccSrc.Caption = "GridColumn8"
-        Me.GridColumnIdAccSrc.FieldName = "id_acc_src"
-        Me.GridColumnIdAccSrc.Name = "GridColumnIdAccSrc"
-        '
-        'PanelBottomRight
-        '
-        Me.PanelBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
-        Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
-        Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelBottomRight.Location = New System.Drawing.Point(501, 2)
-        Me.PanelBottomRight.Name = "PanelBottomRight"
-        Me.PanelBottomRight.Size = New System.Drawing.Size(323, 54)
-        Me.PanelBottomRight.TabIndex = 140
-        '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(117, 5)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(196, 20)
-        Me.LEReportStatus.TabIndex = 7
-        '
-        'LabelControl21
-        '
-        Me.LabelControl21.Location = New System.Drawing.Point(73, 8)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 144
-        Me.LabelControl21.Text = "Status"
+        Me.GridColumn8.Caption = "Account Description"
+        Me.GridColumn8.FieldName = "acc_description"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
         '
         'FormAccountingJournalBill
         '
@@ -650,6 +686,10 @@ Partial Class FormAccountingJournalBill
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelBottomRight.ResumeLayout(False)
+        Me.PanelBottomRight.PerformLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCButton.ResumeLayout(False)
@@ -658,16 +698,14 @@ Partial Class FormAccountingJournalBill
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCGeneralheader.ResumeLayout(False)
         Me.PCGeneralheader.PerformLayout()
+        CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelBottomRight.ResumeLayout(False)
-        Me.PanelBottomRight.PerformLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -722,4 +760,7 @@ Partial Class FormAccountingJournalBill
     Friend WithEvents PanelBottomRight As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DERefDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

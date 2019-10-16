@@ -15,6 +15,7 @@ Public Class FormProductionFinalClearDet
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewPLCat()
+        viewPLCatSub()
         actionLoad()
     End Sub
 
@@ -27,9 +28,21 @@ Public Class FormProductionFinalClearDet
 
     'View PL Category
     Sub viewPLCat()
-        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.id_pl_category>1 ORDER BY a.id_pl_category  "
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a ORDER BY a.id_pl_category ASC  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
+    End Sub
+
+    'View PL Category
+    Sub viewPLCatSub()
+        Dim id_cat As String = "-1"
+        Try
+            id_cat = LEPLCategory.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category_sub a WHERE a.id_pl_category='" + id_cat + "' ORDER BY a.id_pl_category_sub ASC  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LECLaim, query, 0, "pl_category_sub", "id_pl_category_sub")
     End Sub
 
     Sub actionLoad()
@@ -52,6 +65,11 @@ Public Class FormProductionFinalClearDet
             id_report_status = data.Rows(0)("id_report_status").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+            If Not IsDBNull(data.Rows(0)("id_pl_category_sub")) Then
+                LECLaim.ItemIndex = LECLaim.Properties.GetDataSourceRowIndex("id_pl_category_sub", data.Rows(0)("id_pl_category_sub").ToString)
+            Else
+                LECLaim.EditValue = Nothing
+            End If
             TxtNumber.Text = data.Rows(0)("prod_fc_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("prod_fc_datex").ToString, 0)
             MENote.Text = data.Rows(0)("prod_fc_note").ToString
@@ -79,13 +97,75 @@ Public Class FormProductionFinalClearDet
 
     Sub viewDetail()
         If action = "ins" Then
-            Dim query As String = "CALL view_prod_order_det(" + id_prod_order + ", 1)"
+            'Dim query As String = "CALL view_prod_order_det(" + id_prod_order + ", 1)"
+            Dim query As String = "SELECT 0 AS `id_prod_fc_det`, 0 AS `id_prod_fc`, pod.id_prod_order_det, pod.id_prod_order,
+            prod.id_product, prod.product_full_code AS `code`, prod.product_full_code as `name`, cd.code_detail_name as `size`,
+            0 AS `prod_fc_det_qty`, 
+            IFNULL(rec.prod_order_rec_det_qty,0) AS `total_rec`,
+            IFNULL(ro.tot_ret_out,0) AS `total_ret_out`, 
+            IFNULL(ri.tot_ret_in,0) AS `total_ret_in`, 
+            IFNULL(adj_in.tot_adj_in,0) AS `total_adj_in`,
+            IFNULL(adj_out.tot_adj_out,0) AS `total_adj_out`,
+            IFNULL(qcr.tot_qc_report,0) AS `total_qc_report`,
+            ((SELECT total_rec) - (SELECT total_ret_out) + (SELECT total_ret_in)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report)) AS `qty_limit`,
+            '' AS `prod_fc_det_note`
+            FROM tb_prod_order_det pod
+            INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pod.id_prod_demand_product
+            INNER JOIN tb_m_product prod ON prod.id_product = pd_prod.id_product
+            INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+            LEFT JOIN (
+	            SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
+	            FROM tb_prod_order_rec_det b1
+	            INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
+	            WHERE b2.id_report_status =6 AND b2.id_prod_order=" + id_prod_order + "
+	            GROUP BY b1.id_prod_order_det
+            ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
+            LEFT JOIN (
+	            SELECT d1.id_prod_order_det, d2.id_prod_order_ret_out, 
+	            SUM(d1.prod_order_ret_out_det_qty) AS tot_ret_out 
+	            FROM tb_prod_order_ret_out_det d1 
+	            INNER JOIN tb_prod_order_ret_out d2 ON d1.id_prod_order_ret_out = d2.id_prod_order_ret_out 
+	            WHERE d2.id_report_status !=5 AND d2.id_prod_order=" + id_prod_order + "
+	            GROUP BY d1.id_prod_order_det
+            ) ro ON ro.id_prod_order_det = pod.id_prod_order_det 
+            LEFT JOIN(
+	            SELECT e1.id_prod_order_det, e2.id_prod_order_ret_in,SUM(e1.prod_order_ret_in_det_qty) AS tot_ret_in 
+	            FROM tb_prod_order_ret_in_det e1 
+	            INNER JOIN tb_prod_order_ret_in e2 ON e1.id_prod_order_ret_in = e2.id_prod_order_ret_in 
+	            WHERE e2.id_report_status =6 AND e2.id_prod_order=" + id_prod_order + "
+	            GROUP BY e1.id_prod_order_det
+            ) ri ON ri.id_prod_order_det = pod.id_prod_order_det
+            LEFT JOIN(
+	            SELECT adj_in_d.id_prod_order_det, adj_in_d.id_prod_order_qc_adj_in_det,SUM(adj_in_d.prod_order_qc_adj_in_det_qty) AS tot_adj_in
+	            FROM tb_prod_order_qc_adj_in_det adj_in_d
+	            INNER JOIN tb_prod_order_qc_adj_in adj_in ON adj_in_d.id_prod_order_qc_adj_in = adj_in.id_prod_order_qc_adj_in 
+	            WHERE adj_in.id_report_status =6 AND adj_in.id_prod_order=" + id_prod_order + "
+	            GROUP BY adj_in_d.id_prod_order_det
+            ) adj_in ON pod.id_prod_order_det = adj_in.id_prod_order_det
+            LEFT JOIN (
+	            SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
+	            FROM tb_prod_order_qc_adj_out_det adj_out_d
+	            INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
+	            WHERE adj_out.id_report_status !=5 AND adj_out.id_prod_order=" + id_prod_order + "
+	            GROUP BY adj_out_d.id_prod_order_det
+            ) adj_out ON pod.id_prod_order_det = adj_out.id_prod_order_det
+            LEFT JOIN (
+	            SELECT fd.id_prod_order_det, SUM(fd.prod_fc_det_qty) AS `tot_qc_report` 
+	            FROM tb_prod_fc f
+	            INNER JOIN tb_prod_fc_det fd ON fd.id_prod_fc = f.id_prod_fc
+	            WHERE f.id_report_status!=5 AND f.id_prod_order=" + id_prod_order + "
+	            GROUP BY fd.id_prod_order_det
+            ) qcr ON qcr.id_prod_order_det = pod.id_prod_order_det
+            WHERE pod.id_prod_order=" + id_prod_order + " "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCItemList.DataSource = data
+            GVItemList.BestFitColumns()
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_prod_fc(" + id_prod_fc + ")"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCItemList.DataSource = data
+            GVItemList.BestFitColumns()
         End If
 
     End Sub
@@ -111,6 +191,7 @@ Public Class FormProductionFinalClearDet
         TxtStyleCode.Enabled = False
         TxtStyle.Enabled = False
         LEPLCategory.Enabled = False
+        LECLaim.Enabled = False
         BtnBrowseFrom.Enabled = False
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
@@ -462,13 +543,14 @@ Public Class FormProductionFinalClearDet
         Else
             If action = "ins" Then
                 Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+                Dim id_pl_category_sub As String = LECLaim.EditValue.ToString
                 Dim prod_fc_note As String = addSlashes(MENote.Text.ToString)
 
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
-                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status) "
-                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status) "
+                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1'); SELECT LAST_INSERT_ID(); "
                     id_prod_fc = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_prod("12")
 
@@ -570,5 +652,24 @@ Public Class FormProductionFinalClearDet
         ' End If
         ReportProductionFinalClear.is_pre_print = "1"
         print()
+    End Sub
+
+    Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
+        viewPLCatSub()
+    End Sub
+
+    Private Sub GVItemList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVItemList.CellValueChanged
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim row_foc As Integer = e.RowHandle
+            If e.Column.FieldName = "prod_fc_det_qty" Then
+                If e.Value > GVItemList.GetRowCellValue(row_foc, "qty_limit") Then
+                    stopCustom("Can't exceed " + GVItemList.GetRowCellValue(row_foc, "qty_limit").ToString)
+                    GVItemList.SetRowCellValue(row_foc, "prod_fc_det_qty", GVItemList.ActiveEditor.OldEditValue)
+                    GVItemList.BestFitColumns()
+                Else
+                    GVItemList.BestFitColumns()
+                End If
+            End If
+        End If
     End Sub
 End Class

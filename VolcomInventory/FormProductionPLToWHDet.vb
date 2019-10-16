@@ -29,6 +29,7 @@ Public Class FormProductionPLToWHDet
     Public data_code As DataTable
     Dim myListOfDogs As New List(Of String)
     Public dt As New DataTable
+    Dim is_use_qc_report As String = "-1"
 
     Public Class FileRecord
         Public Id As String
@@ -176,17 +177,17 @@ Public Class FormProductionPLToWHDet
 
     Sub allow_status()
         If check_edit_report_status(id_report_status, "33", id_pl_prod_order) Then
-            BtnBrowseContactFrom.Enabled = True
-            BtnBrowseContactTo.Enabled = True
+            BtnBrowseContactFrom.Enabled = False
+            BtnBrowseContactTo.Enabled = False
             BtnAdd.Enabled = True
             BtnEdit.Enabled = True
             BtnDel.Enabled = True
             MENote.Properties.ReadOnly = False
-            BtnSave.Enabled = True
+            BtnSave.Enabled = False
             BScan.Enabled = True
             BDelete.Enabled = True
             BtnInfoSrs.Enabled = True
-            LEPLCategory.Enabled = True
+            LEPLCategory.Enabled = False
             GVRetDetail.OptionsBehavior.ReadOnly = False
         Else
             BtnBrowseContactFrom.Enabled = False
@@ -251,7 +252,7 @@ Public Class FormProductionPLToWHDet
 
     Sub view_po()
         Dim query As String = "SELECT d.id_sample, (d.design_display_name) AS `design_name`, a.id_report_status, a.prod_order_number, a.id_po_type, DATE_FORMAT(a.prod_order_date,'%Y-%m-%d') as prod_order_datex, "
-        query += "d.id_design,a.prod_order_lead_time, a.prod_order_note, f.id_season "
+        query += "d.id_design,a.prod_order_lead_time, a.prod_order_note, f.id_season, a.is_use_qc_report "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
         query += "INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status "
@@ -268,6 +269,7 @@ Public Class FormProductionPLToWHDet
         TEDesign.Text = data.Rows(0)("design_name").ToString
         id_season = data.Rows(0)("id_season").ToString
         id_design = data.Rows(0)("id_design").ToString
+        is_use_qc_report = data.Rows(0)("is_use_qc_report").ToString
         pre_viewImages("2", PEView, data.Rows(0)("id_design").ToString, False)
         PEView.Enabled = True
         mainVendor()
@@ -305,7 +307,44 @@ Public Class FormProductionPLToWHDet
     Sub viewDetail()
         If action = "ins" Then
             'UPDATED 22 DECEMBER 2014
-            Dim query As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "','0', '" + LEPDAlloc.EditValue.ToString + "')"
+            Dim query As String = ""
+            If is_use_qc_report = "1" Then
+                'berdasarkan QC Report
+                query = "SELECT 0.00 AS ovh_price,u.uom, pod.id_prod_order,pod.id_prod_order_det,pod.id_prod_demand_product,
+                p.id_product,p.product_full_code AS `code`, p.product_ean_code as ean_code,p.product_name as name, cd.id_code_detail AS `id_size`, cd.code_detail_name AS `size`,'' AS `color`,
+                del.delivery, (ss.season) AS season, (ss.season_printed_name) AS season_display,
+                '' AS `Product Division`, '' AS category,
+                pdd.prod_demand_design_propose_price,
+                p.id_design, d.design_name, d.design_display_name,
+                (pdd.prod_demand_design_estimate_price) AS estimate_cost, 0 as qty,
+                0 AS `jum_alloc`,0 AS `jum_alloc_real`,0 AS `jum_alloc_allow`,
+                0 as qty_pl, 0 as total_cost,
+                CONCAT_WS('-', k.range_awal, k.range_akhir) AS range_qty, 0 AS id_pl_prod_order_det, 0 AS pl_prod_order_det_qty, 
+                '' AS `pl_prod_order_det_note`,
+                ('0') AS id_prod_order_ret_out_det, (0.00) AS prod_order_ret_out_det_qty, ('') AS prod_order_ret_out_det_note,
+                0 AS `qty_sel`, '' AS `info`, 0 AS `limit_qty`
+                FROM tb_prod_order po
+                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order = po.id_prod_order
+                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+                INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = pdp.id_prod_demand_design
+                INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                INNER JOIN tb_m_uom u ON u.id_uom = d.id_uom
+                INNER JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
+                INNER JOIN tb_season ss ON ss.id_season = del.id_season
+                LEFT JOIN(
+	                SELECT  k1.id_product, k1.id_prod_order_det, MIN(k1.range_awal) AS range_awal, MAX(k1.range_akhir) AS range_akhir 
+	                FROM tb_m_product_range k1
+	                INNER JOIN tb_prod_order_det k2 ON k1.id_prod_order_det = k2.id_prod_order_det AND k2.id_prod_order=" + id_prod_order + "
+	                GROUP BY k1.id_product
+                ) k ON k.id_product = p.id_product
+                WHERE po.id_prod_order=" + id_prod_order + " AND po.id_report_status=6 "
+            Else
+                'berdasarkan PL
+                query = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "','0', '" + LEPDAlloc.EditValue.ToString + "')"
+            End If
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
                 id_prod_order_det_list.Add(data.Rows(i)("id_prod_order_det").ToString)
@@ -842,7 +881,29 @@ Public Class FormProductionPLToWHDet
 
     Sub getLimitQty()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "','0', '" + LEPDAlloc.EditValue.ToString + "')"
+        Dim query As String = ""
+        If is_use_qc_report = "1" Then
+            query = "SELECT pod.id_prod_order_det, IFNULL(f.qty_fc,0) AS `qty_fc`, IFNULL(pl.qty_pl,0) AS `qty_pl`,
+            (IFNULL(f.qty_fc,0) - IFNULL(pl.qty_pl,0)) AS `qty`
+            FROM tb_prod_order_det pod
+            LEFT JOIN (
+	            SELECT fd.id_prod_order_det, SUM(fd.prod_fc_det_qty) AS `qty_fc`
+	            FROM tb_prod_fc f
+	            INNER JOIN tb_prod_fc_det fd ON fd.id_prod_fc = f.id_prod_fc
+	            WHERE f.id_report_status=6 AND f.id_prod_order=" + id_prod_order + " AND f.id_pl_category=" + LEPLCategory.EditValue.ToString + "
+	            GROUP BY fd.id_prod_order_det
+            ) f ON f.id_prod_order_det = pod.id_prod_order_det
+            LEFT JOIN (
+	            SELECT  pld.id_prod_order_det, SUM(pld.pl_prod_order_det_qty) AS `qty_pl`
+	            FROM tb_pl_prod_order pl
+	            INNER JOIN tb_pl_prod_order_det pld ON pld.id_pl_prod_order = pl.id_pl_prod_order
+	            WHERE pl.id_report_status!=5 AND pl.id_prod_order=" + id_prod_order + " AND pl.id_pl_category=" + LEPLCategory.EditValue.ToString + "
+	            GROUP BY pld.id_prod_order_det
+            ) pl ON pl.id_prod_order_det = pod.id_prod_order_det
+            WHERE pod.id_prod_order=" + id_prod_order + " "
+        Else
+            query = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "','0', '" + LEPDAlloc.EditValue.ToString + "')"
+        End If
         Dim dt_cek As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
             Dim id_prod_order_det_cekya As String = GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString
@@ -1269,6 +1330,20 @@ Public Class FormProductionPLToWHDet
                 End If
             End If
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
+        If (Not LEPLCategory.EditValue = LEPLCategory.OldEditValue) And is_use_qc_report = "1" Then
+            If GVBarcode.RowCount > 0 Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset your scanned list, are you sure want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    viewDetail()
+                    view_barcode_list()
+                Else
+                    LEPLCategory.EditValue = LEPLCategory.OldEditValue
+                End If
+            End If
         End If
     End Sub
 

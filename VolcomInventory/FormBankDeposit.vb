@@ -112,7 +112,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         'Left Join tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
         'Left Join tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         ',CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name
-        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note
+        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.date_received, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,rec_py.note
 FROM tb_rec_payment rec_py
 INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -144,7 +144,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             where_string += " AND sp.is_close_rec_payment='2' AND DATE_SUB(sp.sales_pos_due_date, INTERVAL 7 DAY)<DATE(NOW())"
         End If
 
-        Dim var_acc As String = "IFNULL(IF(sp.id_memo_type=2 OR sp.id_memo_type=4 OR sp.id_memo_type=6, sp.id_acc_sales_return, sp.id_acc_sales),0)"
+        Dim var_acc As String = "IFNULL(sp.id_acc_ar,0)"
         Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
         ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
         ,sp.report_mark_type,rmt.report_mark_type_name,IFNULL(pyd.`value`,0.00) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS total_due

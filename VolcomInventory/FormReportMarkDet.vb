@@ -210,7 +210,7 @@
                 'delete all mark
                 Dim qm As String = "DELETE FROM tb_report_mark WHERE id_report=" + id_report + " AND report_mark_type=" + report_mark_type + " "
                 execute_non_query(qm, True, "", "", "", "")
-            ElseIf report_mark_type = "134" Or report_mark_type = "135" Then
+            ElseIf report_mark_type = "134" Or report_mark_type = "135" Or report_mark_type = "180" Then
                 'set cancel item cat & mapping
                 FormReportMark.report_mark_type = report_mark_type
                 FormReportMark.id_report = id_report

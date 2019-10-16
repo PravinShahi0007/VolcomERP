@@ -21,6 +21,7 @@ Partial Class FormItemReqAdd
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormItemReqAdd))
         Me.PCNav = New DevExpress.XtraEditors.PanelControl()
+        Me.CEStoreRequest = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LECat = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -42,6 +43,7 @@ Partial Class FormItemReqAdd
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNav.SuspendLayout()
+        CType(Me.CEStoreRequest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +54,7 @@ Partial Class FormItemReqAdd
         '
         'PCNav
         '
+        Me.PCNav.Controls.Add(Me.CEStoreRequest)
         Me.PCNav.Controls.Add(Me.BtnView)
         Me.PCNav.Controls.Add(Me.LECat)
         Me.PCNav.Controls.Add(Me.LabelControl1)
@@ -61,10 +64,18 @@ Partial Class FormItemReqAdd
         Me.PCNav.Size = New System.Drawing.Size(834, 48)
         Me.PCNav.TabIndex = 1
         '
+        'CEStoreRequest
+        '
+        Me.CEStoreRequest.Location = New System.Drawing.Point(252, 14)
+        Me.CEStoreRequest.Name = "CEStoreRequest"
+        Me.CEStoreRequest.Properties.Caption = "From Purchasing Storage"
+        Me.CEStoreRequest.Size = New System.Drawing.Size(143, 19)
+        Me.CEStoreRequest.TabIndex = 8911
+        '
         'BtnView
         '
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(251, 12)
+        Me.BtnView.Location = New System.Drawing.Point(401, 12)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 23)
         Me.BtnView.TabIndex = 23
@@ -255,6 +266,7 @@ Partial Class FormItemReqAdd
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCNav.ResumeLayout(False)
         Me.PCNav.PerformLayout()
+        CType(Me.CEStoreRequest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).EndInit()
@@ -285,4 +297,5 @@ Partial Class FormItemReqAdd
     Friend WithEvents GridColumnQtyReq As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEStoreRequest As DevExpress.XtraEditors.CheckEdit
 End Class
