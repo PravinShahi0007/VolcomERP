@@ -66,7 +66,8 @@
         Dim query As String = "SELECT d.id_comp_comm_extra, d.comp_commission, 
         d.id_acc_sales, sal.acc_name AS `acc_name_sales`, sal.acc_description AS `acc_description_sales`, 
         d.id_acc_sales_return, sal_ret.acc_name AS `acc_name_sales_ret`, sal_ret.acc_description AS `acc_description_sales_ret`,
-        d.id_acc_ar, ar.acc_name AS `acc_name_ar`, ar.acc_description AS `acc_description_ar`
+        d.id_acc_ar, ar.acc_name AS `acc_name_ar`, ar.acc_description AS `acc_description_ar`, d.is_for_gwp,
+        IF(d.is_for_gwp=1,'Yes', 'No') AS `is_for_gwp_view`
         FROM tb_m_comp_comm_extra d
         INNER JOIN tb_a_acc ar ON ar.id_acc = d.id_acc_ar
         INNER JOIN tb_a_acc sal ON sal.id_acc = d.id_acc_sales
@@ -253,5 +254,13 @@
             FormAccountingARAPOtherDiscount.id_comp_comm_extra = GVOtherDiscount.GetFocusedRowCellValue("id_comp_comm_extra").ToString
             FormAccountingARAPOtherDiscount.ShowDialog()
         End If
+    End Sub
+
+    Private Sub SimpleButton2_Click_1(sender As Object, e As EventArgs) Handles BtnAddforGWP.Click
+        Cursor = Cursors.WaitCursor
+        FormAccountingARAPOtherDiscount.id_comp = id_comp
+        FormAccountingARAPOtherDiscount.is_for_gwp = "1"
+        FormAccountingARAPOtherDiscount.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -1,6 +1,7 @@
 ﻿Public Class FormAccountingARAPOtherDiscount
     Public id_comp As String = "-1"
     Public id_comp_comm_extra As String = "-1"
+    Public is_for_gwp As String = "2"
 
     Private Sub FormAccountingARAPOtherDiscount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
