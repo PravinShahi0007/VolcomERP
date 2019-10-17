@@ -4,6 +4,8 @@ Public Class FormBankDepositDet
     Public id_deposit As String = "-1"
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
+    Public id_pop_up As String = "1" '1 = invoice
+
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
@@ -42,15 +44,20 @@ Public Class FormBankDepositDet
                 newRow("id_comp") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_comp").ToString
                 newRow("id_acc") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_acc").ToString
                 newRow("acc_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_name").ToString
+                newRow("acc_description") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_description").ToString
                 newRow("comp_number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
-                newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec").ToString
-                newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due").ToString
-                newRow("balance_due") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due").ToString
-                newRow("note") = ""
+                newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec")
+                newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
+                newRow("balance_due") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
+                newRow("note") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "note").ToString
+                newRow("id_dc") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_dc").ToString
+                newRow("dc_code") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "dc_code").ToString
+                newRow("value_view") = Math.Abs(FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due"))
                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
             Next
             calculate_amount()
         Else
+            PanelControlNav.Visible = False
             BtnPrint.Visible = True
             BMark.Visible = True
             BtnSave.Visible = False
@@ -97,6 +104,16 @@ Public Class FormBankDepositDet
         If e.Column.FieldName.ToString = "value" Then
             'set value
             calculate_amount()
+        ElseIf e.Column.FieldName.ToString = "value_view" Then
+            Dim rh As Integer = e.RowHandle
+            Dim val As Decimal = 0
+            Dim id_dc As String = GVList.GetRowCellValue(rh, "id_dc").ToString
+            If id_dc = "1" Then 'debit
+                val = e.Value * -1
+            Else
+                val = e.Value
+            End If
+            GVList.SetRowCellValue(rh, "value", val)
         End If
     End Sub
 
@@ -109,15 +126,75 @@ Public Class FormBankDepositDet
     Sub load_det()
         Dim query As String = "SELECT recd.id_rec_payment_det,recd.id_report,recd.report_mark_type,
         rmt.report_mark_type_name,recd.number,recd.total_rec,recd.`value`,recd.balance_due,recd.note,
-        recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description
+        if(recd.id_dc=1, recd.`value`*-1, recd.`value`) AS `value_view`,
+        recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description, coa.acc_description, 
+        recd.id_dc,dc.dc_code
         FROM tb_rec_payment_det recd 
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
         INNER JOIN tb_m_comp c ON c.id_comp = recd.id_comp
         INNER JOIN tb_a_acc coa ON coa.id_acc = recd.id_acc
-        WHERE recd.id_rec_payment='" & id_deposit & "'"
+        INNER JOIN tb_lookup_dc dc ON dc.id_dc = recd.id_dc
+        WHERE recd.id_rec_payment='" & id_deposit & "' ORDER BY recd.id_rec_payment_det ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
+    End Sub
+
+    Sub viewBlankJournal()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS report_number, '' AS note, 0 AS `debit`, 0 AS `credit` "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDraft.DataSource = data
+        GVDraft.DeleteSelectedRows()
+        GVDraft.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewDraftJournal()
+        Cursor = Cursors.WaitCursor
+        If GVList.RowCount > 0 Then
+            makeSafeGV(GVList)
+            Dim jum_row As Integer = 0
+
+            'header
+            jum_row += 1
+            Dim qh As String = "SELECT * FROM tb_a_acc WHERE id_acc='" + SLEPayRecTo.EditValue.ToString + "' "
+            Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
+            Dim newRowh As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+            newRowh("no") = jum_row
+            newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
+            newRowh("acc_description") = dh.Rows(0)("acc_description").ToString
+            newRowh("report_number") = ""
+            newRowh("note") = MENote.Text
+            newRowh("debit") = TETotal.EditValue
+            newRowh("credit") = 0
+            TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
+            GCDraft.RefreshDataSource()
+            GVDraft.RefreshData()
+
+            'detil
+            For i As Integer = 0 To GVList.RowCount - 1
+                jum_row += 1
+                Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                newRow("no") = jum_row
+                newRow("acc_name") = GVList.GetRowCellValue(i, "acc_name").ToString
+                newRow("acc_description") = GVList.GetRowCellValue(i, "acc_description").ToString
+                newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString
+                newRow("note") = GVList.GetRowCellValue(i, "note").ToString
+                If GVList.GetRowCellValue(i, "id_dc").ToString = "1" Then
+                    newRow("debit") = Math.Abs(GVList.GetRowCellValue(i, "value"))
+                    newRow("credit") = 0
+                Else
+                    newRow("debit") = 0
+                    newRow("credit") = GVList.GetRowCellValue(i, "value")
+                End If
+                TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
+                GCDraft.RefreshDataSource()
+                GVDraft.RefreshData()
+            Next
+            GVDraft.BestFitColumns()
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub load_receive_from()
@@ -351,6 +428,13 @@ Public Class FormBankDepositDet
     Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub XTCBBM_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCBBM.SelectedPageChanged
+        If XTCBBM.SelectedTabPageIndex = 1 Then
+            viewBlankJournal()
+            viewDraftJournal()
         End If
     End Sub
 End Class

@@ -162,7 +162,9 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         ,sp.report_mark_type,rmt.report_mark_type_name,IFNULL(pyd.`value`,0.00) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS total_due
         ,IFNULL(pyd.total_pending,0) AS `total_pending`
         ,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days,
-        " + var_acc + " AS `id_acc`, coa.acc_name
+        " + var_acc + " AS `id_acc`, coa.acc_name, coa.acc_description,
+        IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
+        CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`
         FROM tb_sales_pos sp 
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
