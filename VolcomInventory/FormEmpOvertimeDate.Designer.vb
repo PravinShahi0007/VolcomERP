@@ -20,65 +20,35 @@ Partial Class FormEmpOvertimeDate
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpOvertimeDate))
-        Me.TEOvertimeEnd = New DevExpress.XtraEditors.DateEdit()
-        Me.TEOvertimeStart = New DevExpress.XtraEditors.DateEdit()
         Me.TEOvertimeBreak = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TETotalHours = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEOvertimeDate = New DevExpress.XtraEditors.DateEdit()
+        Me.DEOvertimeDateFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
-        CType(Me.TEOvertimeEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEOvertimeStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEOvertimeStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEOvertimeDateTo = New DevExpress.XtraEditors.DateEdit()
+        Me.TEOvertimeStart = New DevExpress.XtraEditors.TimeEdit()
+        Me.TEOvertimeEnd = New DevExpress.XtraEditors.TimeEdit()
         CType(Me.TEOvertimeBreak.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalHours.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEOvertimeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEOvertimeDateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEOvertimeDateFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEOvertimeDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEOvertimeDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEOvertimeStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'TEOvertimeEnd
-        '
-        Me.TEOvertimeEnd.EditValue = Nothing
-        Me.TEOvertimeEnd.Location = New System.Drawing.Point(307, 38)
-        Me.TEOvertimeEnd.Name = "TEOvertimeEnd"
-        Me.TEOvertimeEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.TEOvertimeEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeEnd.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeEnd.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeEnd.Size = New System.Drawing.Size(165, 20)
-        Me.TEOvertimeEnd.TabIndex = 35
-        '
-        'TEOvertimeStart
-        '
-        Me.TEOvertimeStart.EditValue = Nothing
-        Me.TEOvertimeStart.Location = New System.Drawing.Point(104, 38)
-        Me.TEOvertimeStart.Name = "TEOvertimeStart"
-        Me.TEOvertimeStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.TEOvertimeStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEOvertimeStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeStart.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TEOvertimeStart.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
-        Me.TEOvertimeStart.Size = New System.Drawing.Size(165, 20)
-        Me.TEOvertimeStart.TabIndex = 34
         '
         'TEOvertimeBreak
         '
@@ -139,21 +109,21 @@ Partial Class FormEmpOvertimeDate
         Me.LabelControl8.TabIndex = 28
         Me.LabelControl8.Text = "Time"
         '
-        'DEOvertimeDate
+        'DEOvertimeDateFrom
         '
-        Me.DEOvertimeDate.EditValue = Nothing
-        Me.DEOvertimeDate.Location = New System.Drawing.Point(104, 12)
-        Me.DEOvertimeDate.Name = "DEOvertimeDate"
-        Me.DEOvertimeDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEOvertimeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEOvertimeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEOvertimeDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEOvertimeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEOvertimeDate.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DEOvertimeDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEOvertimeDate.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEOvertimeDate.Size = New System.Drawing.Size(368, 20)
-        Me.DEOvertimeDate.TabIndex = 27
+        Me.DEOvertimeDateFrom.EditValue = Nothing
+        Me.DEOvertimeDateFrom.Location = New System.Drawing.Point(104, 12)
+        Me.DEOvertimeDateFrom.Name = "DEOvertimeDateFrom"
+        Me.DEOvertimeDateFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEOvertimeDateFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEOvertimeDateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEOvertimeDateFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEOvertimeDateFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEOvertimeDateFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEOvertimeDateFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEOvertimeDateFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEOvertimeDateFrom.Size = New System.Drawing.Size(165, 20)
+        Me.DEOvertimeDateFrom.TabIndex = 27
         '
         'LabelControl2
         '
@@ -211,58 +181,113 @@ Partial Class FormEmpOvertimeDate
         Me.MEOvertimeNote.Size = New System.Drawing.Size(368, 50)
         Me.MEOvertimeNote.TabIndex = 38
         '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(286, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl1.TabIndex = 39
+        Me.LabelControl1.Text = "-"
+        '
+        'DEOvertimeDateTo
+        '
+        Me.DEOvertimeDateTo.EditValue = Nothing
+        Me.DEOvertimeDateTo.Location = New System.Drawing.Point(307, 12)
+        Me.DEOvertimeDateTo.Name = "DEOvertimeDateTo"
+        Me.DEOvertimeDateTo.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEOvertimeDateTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEOvertimeDateTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEOvertimeDateTo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEOvertimeDateTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEOvertimeDateTo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEOvertimeDateTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEOvertimeDateTo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEOvertimeDateTo.Size = New System.Drawing.Size(165, 20)
+        Me.DEOvertimeDateTo.TabIndex = 40
+        '
+        'TEOvertimeStart
+        '
+        Me.TEOvertimeStart.EditValue = New Date(2019, 10, 17, 0, 0, 0, 0)
+        Me.TEOvertimeStart.Location = New System.Drawing.Point(104, 38)
+        Me.TEOvertimeStart.Name = "TEOvertimeStart"
+        Me.TEOvertimeStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEOvertimeStart.Properties.DisplayFormat.FormatString = "HH:mm:ss"
+        Me.TEOvertimeStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeStart.Properties.EditFormat.FormatString = "HH:mm:ss"
+        Me.TEOvertimeStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeStart.Properties.Mask.EditMask = "HH:mm:ss"
+        Me.TEOvertimeStart.Size = New System.Drawing.Size(165, 20)
+        Me.TEOvertimeStart.TabIndex = 2
+        '
+        'TEOvertimeEnd
+        '
+        Me.TEOvertimeEnd.EditValue = New Date(2019, 10, 17, 0, 0, 0, 0)
+        Me.TEOvertimeEnd.Location = New System.Drawing.Point(307, 38)
+        Me.TEOvertimeEnd.Name = "TEOvertimeEnd"
+        Me.TEOvertimeEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatString = "HH:mm:ss"
+        Me.TEOvertimeEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeEnd.Properties.EditFormat.FormatString = "HH:mm:ss"
+        Me.TEOvertimeEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEOvertimeEnd.Properties.Mask.EditMask = "HH:mm:ss"
+        Me.TEOvertimeEnd.Size = New System.Drawing.Size(165, 20)
+        Me.TEOvertimeEnd.TabIndex = 3
+        '
         'FormEmpOvertimeDate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(484, 192)
+        Me.Controls.Add(Me.TEOvertimeEnd)
+        Me.Controls.Add(Me.DEOvertimeDateTo)
+        Me.Controls.Add(Me.TEOvertimeStart)
+        Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.LabelControl6)
         Me.Controls.Add(Me.MEOvertimeNote)
         Me.Controls.Add(Me.PanelControl1)
-        Me.Controls.Add(Me.TEOvertimeEnd)
-        Me.Controls.Add(Me.TEOvertimeStart)
         Me.Controls.Add(Me.TEOvertimeBreak)
         Me.Controls.Add(Me.LabelControl12)
         Me.Controls.Add(Me.LabelControl11)
         Me.Controls.Add(Me.TETotalHours)
         Me.Controls.Add(Me.LabelControl9)
         Me.Controls.Add(Me.LabelControl8)
-        Me.Controls.Add(Me.DEOvertimeDate)
+        Me.Controls.Add(Me.DEOvertimeDateFrom)
         Me.Controls.Add(Me.LabelControl2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormEmpOvertimeDate"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Overtime Pick"
-        CType(Me.TEOvertimeEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEOvertimeStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEOvertimeStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOvertimeBreak.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotalHours.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEOvertimeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEOvertimeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEOvertimeDateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEOvertimeDateFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEOvertimeDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEOvertimeDateTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEOvertimeStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEOvertimeEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents TEOvertimeEnd As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TEOvertimeStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TEOvertimeBreak As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TETotalHours As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEOvertimeDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEOvertimeDateFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEOvertimeNote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEOvertimeDateTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TEOvertimeStart As DevExpress.XtraEditors.TimeEdit
+    Friend WithEvents TEOvertimeEnd As DevExpress.XtraEditors.TimeEdit
 End Class

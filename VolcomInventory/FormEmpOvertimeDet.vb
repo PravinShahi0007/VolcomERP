@@ -6,6 +6,8 @@
 
     Private is_point_ho As String = "0"
 
+    Private ot_min_spv As Integer = get_opt_emp_field("ot_min_spv")
+
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
             Text = "Propose Overtime Detail"
@@ -45,13 +47,13 @@
             Dim data_ot As DataTable = execute_query(query_ot, -1, True, "", "", "", "")
 
             TENumber.EditValue = data_ot.Rows(0)("number").ToString
-            TEMemoNumber.EditValue = data_ot.Rows(0)("memo_number").ToString
-            TEMemoFormat.EditValue = data_ot.Rows(0)("memo_number_format").ToString
             LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
             LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", data_ot.Rows(0)("id_departement").ToString)
             TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
             DECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
             TEReportStatus.EditValue = data_ot.Rows(0)("report_status").ToString
+            TEMemoNumber.EditValue = data_ot.Rows(0)("memo_number").ToString
+            TEMemoFormat.EditValue = data_ot.Rows(0)("memo_number_format").ToString
 
             ' load employee
             ' column
@@ -210,7 +212,7 @@
                 Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
 
                 'approval
-                If LEDepartement.EditValue.ToString = "8" Then
+                If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
                     'departement hrd
                     If is_user_head Then
                         'manager hrd submit
@@ -388,13 +390,32 @@
                 clone.RowFilter = ""
             Else
                 If view.GetFocusedRowCellValue("is_day_off").ToString = "1" Then
-                    clone.RowFilter = "[to_salary] = 2"
+                    If view.GetFocusedRowCellValue("ot_total_hours") < ot_min_spv Then
+                        clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
+                    Else
+                        clone.RowFilter = "[to_salary] = 2"
+                    End If
                 Else
                     clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
                 End If
             End If
 
             edit.Properties.DataSource = clone
+        End If
+
+        Dim att_min As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("ot_date").ToString)
+        Dim att_max As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("ot_date").ToString).AddDays(1)
+
+        If GVEmployee.FocusedColumn.FieldName = "ot_start_time" Then
+            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
+
+            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
+            ADateEdit.Properties.MaxValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 23, 59, 59)
+        ElseIf GVEmployee.FocusedColumn.FieldName = "ot_end_time" Then
+            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
+
+            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
+            ADateEdit.Properties.MaxValue = New DateTime(att_max.Year, att_max.Month, att_max.Day, 23, 59, 59)
         End If
     End Sub
 
@@ -466,5 +487,9 @@
         Else
             ErrorProvider.SetError(TEMemoNumber, "")
         End If
+    End Sub
+
+    Private Sub LEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartement.EditValueChanged
+        generate_memo_format()
     End Sub
 End Class
