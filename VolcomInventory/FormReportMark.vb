@@ -6380,8 +6380,12 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             query = String.Format("UPDATE tb_prod_order_close SET id_report_status='{0}' WHERE id_prod_order_close ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             If id_status_reportx = "6" Then
-                'submit debit note
-
+                'update is close
+                Dim query_closing As String = "UPDATE tb_prod_order po 
+INNER JOIN `tb_prod_order_close_det` pocd ON pocd.id_prod_order=po.id_prod_order
+SET po.is_closing_rec='1'
+WHERE pocd.id_prod_order_close = '" & id_report & "'"
+                execute_non_query(query_closing, True, "", "", "", "")
             End If
         End If
 
