@@ -261,15 +261,15 @@
         ElseIf report_mark_type = "180" Then
             'Employee Propose
             FormEmployeePpsDet.Close()
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
         ElseIf report_mark_type = "185" Then
             'Sample Purchase Closing
             FormSamplePurcClose.Close()
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'Overtime employee report
-            FormEmpOvertimeDet.Close()
+            FormEmpOvertimeVerification.Close()
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             FormFGProposePriceRev.Close()
@@ -306,6 +306,8 @@
         ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
             'propose budget CAPEX
             FormSetupBudgetCAPEXDet.Close()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.Close()
         End If
     End Sub
     Sub show()
@@ -1018,10 +1020,9 @@
             FormEmployeePpsDet.show_payroll = True
 
             FormEmployeePpsDet.ShowDialog()
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
-            FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "185" Then
@@ -1030,12 +1031,16 @@
             FormSamplePurcCloseDet.is_view = "1"
 
             FormSamplePurcCloseDet.ShowDialog()
-        ElseIf report_mark_type = "187" Then
-            FormEmpOvertimeDet.id = id_report
-            FormEmpOvertimeDet.is_hrd = "1"
-            FormEmpOvertimeDet.is_check = "1"
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
+            Dim data_ver As DataTable = execute_query("SELECT id_ot, ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'", -1, True, "", "", "", "")
 
-            FormEmpOvertimeDet.ShowDialog()
+            FormEmpOvertimeVerification.is_hrd = "1"
+            FormEmpOvertimeVerification.id = id_report
+            FormEmpOvertimeVerification.id_ot = data_ver.Rows(0)("id_ot").ToString
+            FormEmpOvertimeVerification.is_view = "1"
+            FormEmpOvertimeVerification.ot_date = data_ver.Rows(0)("ot_date")
+
+            FormEmpOvertimeVerification.ShowDialog()
         ElseIf report_mark_type = "183" Then
             'sales invuuce diff margin
             FormViewSalesPOS.id_menu = "4"
@@ -1089,6 +1094,9 @@
             FormSetupBudgetCAPEXDet.id_pps = id_report
             FormSetupBudgetCAPEXDet.is_view = "1"
             FormSetupBudgetCAPEXDet.ShowDialog()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.id = id_report
+            FormEmpInputAttendanceDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1953,17 +1961,17 @@
             field_id = "id_employee_pps"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             'Overtime employee
             table_name = "tb_ot"
             field_id = "id_ot"
             field_number = "number"
             field_date = "created_at"
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'Overtime employee report
-            table_name = "tb_ot"
-            field_id = "id_ot"
-            field_number = "number"
+            table_name = "tb_ot_verification"
+            field_id = "id_ot_verification"
+            field_number = "(SELECT number FROM tb_ot WHERE id_ot = tb_ot_verification.id_ot)"
             field_date = "NOW()"
         ElseIf report_mark_type = "200" Then
             'propose design changes
@@ -1989,6 +1997,11 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "211" Then
+            table_name = "tb_emp_attn_input"
+            field_id = "id_emp_attn_input"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2426,6 +2439,13 @@
                     If datax.Rows.Count > 0 Then
                         info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
+                ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
+                    'Overtime employee report
+                    query = "SELECT DATE_FORMAT(ot_date,'%d %M %Y') AS ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'"
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_design = "Date: " + datax.Rows(0)("ot_date").ToString
+                    End If
                 End If
             End If
         Else
@@ -2573,9 +2593,9 @@
                 WHERE f.id_report_status='-1' "
 
                 'saat edit
-                query_view_edit = "SELECT rmcr.id_report,f." & field_number & " AS number,f." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
-                                po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
-                                cat.pl_category AS `category`, fd.total_qty
+                query_view_edit = "SELECT rmcr.id_report,f." & field_number & " AS number,f." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,
+                                po.id_prod_order,po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
+                                cat.pl_category AS `category`, fd.total_qty " & generate_left_join_cancel("column") & "
                                 FROM tb_report_mark_cancel_report rmcr 
                                 INNER JOIN " & table_name & " f ON f." & field_id & "=rmcr.id_report
                                 INNER JOIN (
@@ -2599,6 +2619,7 @@
                                 )ovh ON ovh.id_prod_order=po.id_prod_order
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                                 INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
+                                 " & generate_left_join_cancel("query") & "
                                 WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' "
             Else
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"

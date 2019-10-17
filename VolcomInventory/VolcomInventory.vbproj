@@ -933,6 +933,24 @@
     <Compile Include="FormEmpInitialize.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpInputAttendance.Designer.vb">
+      <DependentUpon>FormEmpInputAttendance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpInputAttendance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpInputAttendanceDet.Designer.vb">
+      <DependentUpon>FormEmpInputAttendanceDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpInputAttendanceDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpInputAttendancePick.Designer.vb">
+      <DependentUpon>FormEmpInputAttendancePick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpInputAttendancePick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpLeave.Designer.vb">
       <DependentUpon>FormEmpLeave.vb</DependentUpon>
     </Compile>
@@ -1017,6 +1035,12 @@
     <Compile Include="FormEmpOvertime.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpOvertimeDate.Designer.vb">
+      <DependentUpon>FormEmpOvertimeDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpOvertimeDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpOvertimeDet.Designer.vb">
       <DependentUpon>FormEmpOvertimeDet.vb</DependentUpon>
     </Compile>
@@ -1027,6 +1051,12 @@
       <DependentUpon>FormEmpOvertimePick.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpOvertimePick.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpOvertimeVerification.Designer.vb">
+      <DependentUpon>FormEmpOvertimeVerification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpOvertimeVerification.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpPayroll.Designer.vb">
@@ -6204,6 +6234,18 @@
     <Compile Include="ReportEmpOvertime.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpOvertimeMemo.Designer.vb">
+      <DependentUpon>ReportEmpOvertimeMemo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpOvertimeMemo.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpOvertimeVerification.Designer.vb">
+      <DependentUpon>ReportEmpOvertimeVerification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpOvertimeVerification.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPayrollDeduction.Designer.vb">
       <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>
     </Compile>
@@ -7585,6 +7627,15 @@
     <EmbeddedResource Include="FormEmpInitialize.resx">
       <DependentUpon>FormEmpInitialize.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpInputAttendance.resx">
+      <DependentUpon>FormEmpInputAttendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpInputAttendanceDet.resx">
+      <DependentUpon>FormEmpInputAttendanceDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpInputAttendancePick.resx">
+      <DependentUpon>FormEmpInputAttendancePick.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeave.resx">
       <DependentUpon>FormEmpLeave.vb</DependentUpon>
     </EmbeddedResource>
@@ -7627,11 +7678,17 @@
     <EmbeddedResource Include="FormEmpOvertime.resx">
       <DependentUpon>FormEmpOvertime.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpOvertimeDate.resx">
+      <DependentUpon>FormEmpOvertimeDate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpOvertimeDet.resx">
       <DependentUpon>FormEmpOvertimeDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpOvertimePick.resx">
       <DependentUpon>FormEmpOvertimePick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpOvertimeVerification.resx">
+      <DependentUpon>FormEmpOvertimeVerification.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayroll.resx">
       <DependentUpon>FormEmpPayroll.vb</DependentUpon>
@@ -10657,6 +10714,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpOvertime.resx">
       <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpOvertimeMemo.resx">
+      <DependentUpon>ReportEmpOvertimeMemo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpOvertimeVerification.resx">
+      <DependentUpon>ReportEmpOvertimeVerification.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPayrollDeduction.resx">
       <DependentUpon>ReportEmpPayrollDeduction.vb</DependentUpon>

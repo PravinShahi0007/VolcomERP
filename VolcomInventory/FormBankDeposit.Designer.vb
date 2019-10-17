@@ -97,6 +97,7 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnlast_approved_by = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -627,7 +628,7 @@ Partial Class FormBankDeposit
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21, Me.GridColumndate_received})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21, Me.GridColumndate_received, Me.GridColumnlast_approved_by})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -855,6 +856,15 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
+        'GridColumnlast_approved_by
+        '
+        Me.GridColumnlast_approved_by.Caption = "Last Approved By"
+        Me.GridColumnlast_approved_by.FieldName = "last_approved_by"
+        Me.GridColumnlast_approved_by.Name = "GridColumnlast_approved_by"
+        Me.GridColumnlast_approved_by.Visible = True
+        Me.GridColumnlast_approved_by.VisibleIndex = 8
+        Me.GridColumnlast_approved_by.Width = 127
+        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -977,4 +987,5 @@ Partial Class FormBankDeposit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumndate_received As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnlast_approved_by As DevExpress.XtraGrid.Columns.GridColumn
 End Class
