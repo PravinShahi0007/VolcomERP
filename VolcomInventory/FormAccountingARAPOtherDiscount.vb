@@ -13,6 +13,11 @@
             SLESales.EditValue = FormAccountingARAP.GVOtherDiscount.GetFocusedRowCellValue("id_acc_sales").ToString
             SLESalesReturn.EditValue = FormAccountingARAP.GVOtherDiscount.GetFocusedRowCellValue("id_acc_sales_return").ToString
         End If
+
+        If is_for_gwp = "1" Then
+            SLESales.Enabled = False
+            SLESalesReturn.Enabled = False
+        End If
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -41,14 +46,26 @@
 
         If id_comp_comm_extra = "-1" Then
             'new
-            Dim query As String = "INSERT INTO tb_m_comp_comm_extra(id_comp, comp_commission, id_acc_sales, id_acc_sales_return, id_acc_ar) VALUES 
-            ('" + id_comp + "', '" + comp_commission + "', '" + id_acc_sales + "', '" + id_acc_sales_return + "', '" + id_acc_ar + "'); "
-            execute_non_query(query, True, "", "", "", "")
+            If is_for_gwp = "2" Then
+                Dim query As String = "INSERT INTO tb_m_comp_comm_extra(id_comp, comp_commission, id_acc_sales, id_acc_sales_return, id_acc_ar) VALUES 
+                ('" + id_comp + "', '" + comp_commission + "', '" + id_acc_sales + "', '" + id_acc_sales_return + "', '" + id_acc_ar + "'); "
+                execute_non_query(query, True, "", "", "", "")
+            Else
+                Dim query As String = "INSERT INTO tb_m_comp_comm_extra(id_comp, comp_commission,id_acc_ar, is_for_gwp) VALUES 
+                ('" + id_comp + "', '" + comp_commission + "', '" + id_acc_ar + "',1); "
+                execute_non_query(query, True, "", "", "", "")
+            End If
         Else
             'update
-            Dim query As String = "UPDATE tb_m_comp_comm_extra SET comp_commission='" + comp_commission + "', id_acc_sales='" + id_acc_sales + "', 
-            id_acc_sales_return='" + id_acc_sales_return + "', id_acc_ar='" + id_acc_ar + "' WHERE id_comp_comm_extra='" + id_comp_comm_extra + "' "
-            execute_non_query(query, True, "", "", "", "")
+            If is_for_gwp = "2" Then
+                Dim query As String = "UPDATE tb_m_comp_comm_extra SET comp_commission='" + comp_commission + "', id_acc_sales='" + id_acc_sales + "', 
+                id_acc_sales_return='" + id_acc_sales_return + "', id_acc_ar='" + id_acc_ar + "' WHERE id_comp_comm_extra='" + id_comp_comm_extra + "' "
+                execute_non_query(query, True, "", "", "", "")
+            Else
+                Dim query As String = "UPDATE tb_m_comp_comm_extra SET comp_commission='" + comp_commission + "',id_acc_ar='" + id_acc_ar + "' 
+                WHERE id_comp_comm_extra='" + id_comp_comm_extra + "' "
+                execute_non_query(query, True, "", "", "", "")
+            End If
         End If
         FormAccountingARAP.viewOtherDiscount()
         Close()

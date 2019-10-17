@@ -70,8 +70,8 @@
         IF(d.is_for_gwp=1,'Yes', 'No') AS `is_for_gwp_view`
         FROM tb_m_comp_comm_extra d
         INNER JOIN tb_a_acc ar ON ar.id_acc = d.id_acc_ar
-        INNER JOIN tb_a_acc sal ON sal.id_acc = d.id_acc_sales
-        INNER JOIN tb_a_acc sal_ret ON sal_ret.id_acc = d.id_acc_sales_return
+        LEFT JOIN tb_a_acc sal ON sal.id_acc = d.id_acc_sales
+        LEFT JOIN tb_a_acc sal_ret ON sal_ret.id_acc = d.id_acc_sales_return
         WHERE d.id_comp=" + id_comp + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOtherDiscount.DataSource = data
@@ -251,6 +251,7 @@
     Private Sub GVOtherDiscount_DoubleClick(sender As Object, e As EventArgs) Handles GVOtherDiscount.DoubleClick
         If GVOtherDiscount.RowCount > 0 And GVOtherDiscount.FocusedRowHandle >= 0 Then
             FormAccountingARAPOtherDiscount.id_comp = id_comp
+            FormAccountingARAPOtherDiscount.is_for_gwp = GVOtherDiscount.GetFocusedRowCellValue("is_for_gwp").ToString
             FormAccountingARAPOtherDiscount.id_comp_comm_extra = GVOtherDiscount.GetFocusedRowCellValue("id_comp_comm_extra").ToString
             FormAccountingARAPOtherDiscount.ShowDialog()
         End If
