@@ -2,6 +2,7 @@
     Public data_par As DataTable
     '
     Dim is_from_storage As Boolean = False
+    Public id_departement As String = "-1"
     '
     Private Sub FormItemReqAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCat()
@@ -53,7 +54,7 @@
         If is_from_storage = True Then
             cond = "AND (i.id_departement=" + id_purc_store + ") " + id_item_cat
         Else
-            cond = "AND (i.id_departement=" + id_departement_user + ") " + id_item_cat
+            cond = "AND (i.id_departement=" + id_departement + ") " + id_item_cat
         End If
 
         Dim stc As New ClassPurcItemStock()

@@ -12,10 +12,16 @@
     End Sub
 
     Sub load_header()
-        Dim query As String = "SELECT * FROM tb_prod_order_close WHERE id_prod_order_close='" & id_pps & "'"
+        Dim query As String = "SELECT poc.`number`,emp.`employee_name`,poc.`created_date` FROM tb_prod_order_close poc
+INNER JOIN tb_m_user usr ON usr.`id_user`=poc.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`
+WHERE poc.id_prod_order_close='" & id_pps & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
-
+            DEDate.EditValue = data.Rows(0)("created_date")
+            TEPONumber.Text = data.Rows(0)("number").ToString
+            TECreatedBy.Text = data.Rows(0)("employee_name").ToString
         End If
     End Sub
 
@@ -208,5 +214,21 @@ GROUP BY rd.`id_prod_order_rec`"
 
     Private Sub FormProdClosingPps_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BSave_Click(sender As Object, e As EventArgs) 
+
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
+    End Sub
+
+    Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
+        Close()
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+
     End Sub
 End Class

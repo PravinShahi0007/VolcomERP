@@ -23,18 +23,17 @@ Partial Class FormProdClosingPps
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdClosingPps))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancelPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
@@ -139,7 +138,7 @@ Partial Class FormProdClosingPps
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,7 +188,7 @@ Partial Class FormProdClosingPps
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.TextEdit1)
+        Me.PanelControl3.Controls.Add(Me.TECreatedBy)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Controls.Add(Me.DEDate)
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
@@ -201,23 +200,23 @@ Partial Class FormProdClosingPps
         Me.PanelControl3.Size = New System.Drawing.Size(369, 95)
         Me.PanelControl3.TabIndex = 179
         '
-        'TextEdit1
+        'TECreatedBy
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(97, 67)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(262, 20)
-        Me.TextEdit1.TabIndex = 179
+        Me.TECreatedBy.EditValue = ""
+        Me.TECreatedBy.Location = New System.Drawing.Point(97, 67)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.EditValueChangedDelay = 1
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(262, 20)
+        Me.TECreatedBy.TabIndex = 179
         '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(12, 70)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(79, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl1.TabIndex = 180
-        Me.LabelControl1.Text = "Propose Number"
+        Me.LabelControl1.Text = "Created By"
         '
         'DEDate
         '
@@ -262,10 +261,9 @@ Partial Class FormProdClosingPps
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.BCancelPropose)
         Me.PanelControl2.Controls.Add(Me.BtnAttachment)
         Me.PanelControl2.Controls.Add(Me.BCancel)
-        Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Controls.Add(Me.BMark)
         Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -274,16 +272,16 @@ Partial Class FormProdClosingPps
         Me.PanelControl2.Size = New System.Drawing.Size(1174, 41)
         Me.PanelControl2.TabIndex = 1
         '
-        'SimpleButton1
+        'BCancelPropose
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageList = Me.ImgBut
-        Me.SimpleButton1.Location = New System.Drawing.Point(87, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(130, 37)
-        Me.SimpleButton1.TabIndex = 21
-        Me.SimpleButton1.Text = "Cancel Propose"
+        Me.BCancelPropose.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelPropose.Image = CType(resources.GetObject("BCancelPropose.Image"), System.Drawing.Image)
+        Me.BCancelPropose.ImageList = Me.ImgBut
+        Me.BCancelPropose.Location = New System.Drawing.Point(87, 2)
+        Me.BCancelPropose.Name = "BCancelPropose"
+        Me.BCancelPropose.Size = New System.Drawing.Size(130, 37)
+        Me.BCancelPropose.TabIndex = 21
+        Me.BCancelPropose.Text = "Cancel Propose"
         '
         'ImgBut
         '
@@ -307,7 +305,7 @@ Partial Class FormProdClosingPps
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.ImgBut
-        Me.BtnAttachment.Location = New System.Drawing.Point(798, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(886, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(115, 37)
         Me.BtnAttachment.TabIndex = 20
@@ -318,22 +316,11 @@ Partial Class FormProdClosingPps
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.ImgBut
-        Me.BCancel.Location = New System.Drawing.Point(913, 2)
+        Me.BCancel.Location = New System.Drawing.Point(1001, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(88, 37)
         Me.BCancel.TabIndex = 17
         Me.BCancel.Text = "Close"
-        '
-        'BSave
-        '
-        Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSave.ImageIndex = 7
-        Me.BSave.ImageList = Me.ImgBut
-        Me.BSave.Location = New System.Drawing.Point(1001, 2)
-        Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(88, 37)
-        Me.BSave.TabIndex = 16
-        Me.BSave.Text = "Save"
         '
         'BMark
         '
@@ -1369,7 +1356,7 @@ Partial Class FormProdClosingPps
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1419,10 +1406,9 @@ Partial Class FormProdClosingPps
     Public WithEvents ImgBut As DevExpress.Utils.ImageCollection
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCancelPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPSum As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCProd As DevExpress.XtraGrid.GridControl
@@ -1460,7 +1446,7 @@ Partial Class FormProdClosingPps
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GVSumClaimReject As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
