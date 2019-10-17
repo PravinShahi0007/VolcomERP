@@ -3904,6 +3904,12 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'completed
+                Dim inv As ClassSalesInv = New ClassSalesInv()
+                inv.postingJournal(id_report, report_mark_type)
+            End If
+
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
