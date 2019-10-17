@@ -1,7 +1,12 @@
 ﻿Public Class FormProdClosingPps
     Public id_pps As String = "-1"
+    Public is_view As String = "1"
 
     Private Sub FormProdClosingPps_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
         view_claim_reject()
         view_claim_late()
 
@@ -12,7 +17,7 @@
     End Sub
 
     Sub load_header()
-        Dim query As String = "SELECT poc.`number`,emp.`employee_name`,poc.`created_date` FROM tb_prod_order_close poc
+        Dim query As String = "SELECT poc.`number`,emp.`employee_name`,poc.`created_date`,poc.is_submit FROM tb_prod_order_close poc
 INNER JOIN tb_m_user usr ON usr.`id_user`=poc.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`
@@ -22,6 +27,11 @@ WHERE poc.id_prod_order_close='" & id_pps & "'"
             DEDate.EditValue = data.Rows(0)("created_date")
             TEPONumber.Text = data.Rows(0)("number").ToString
             TECreatedBy.Text = data.Rows(0)("employee_name").ToString
+            If data.Rows(0)("is_submit").ToString = "1" Then
+                BMark.Text = "Mark"
+            Else
+                BMark.Text = "Submit"
+            End If
         End If
     End Sub
 
@@ -216,7 +226,7 @@ GROUP BY rd.`id_prod_order_rec`"
         Dispose()
     End Sub
 
-    Private Sub BSave_Click(sender As Object, e As EventArgs) 
+    Private Sub BSave_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -230,5 +240,24 @@ GROUP BY rd.`id_prod_order_rec`"
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
 
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        If BMark.Text = "Submit" Then
+            'update header
+            Dim query As String = "UPDATE tb_prod_order_close SET is_submit='1' WHERE id_prod_order_close='" & id_pps & "'"
+            execute_non_query(query, True, "", "", "", "")
+            'submit
+            submit_who_prepared("212", id_pps, id_user)
+            'load det
+            load_form()
+        Else
+            FormReportMark.id_report = id_pps
+            FormReportMark.report_mark_type = "212"
+            If is_view = "1" Then
+                FormReportMark.is_view = "1"
+            End If
+            FormReportMark.ShowDialog()
+        End If
     End Sub
 End Class
