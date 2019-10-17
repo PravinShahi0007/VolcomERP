@@ -72,15 +72,11 @@ Partial Class FormAccountingARAP
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCOtherDiscount = New DevExpress.XtraGrid.GridControl()
         Me.GVOtherDiscount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncomp_commission = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandAR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnacc_name_ar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnacc_description_ar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBandSALES = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnacc_name_sales = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnacc_description_sales = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandSALESRETURN = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnacc_name_sales_ret = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnacc_description_sales_ret = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -91,6 +87,13 @@ Partial Class FormAccountingARAP
         Me.TxtStoreDiscount = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPurchase = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnAddforGWP = New DevExpress.XtraEditors.SimpleButton()
+        Me.BandedGridColumnis_for_gwp_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandAR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBandSALES = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandSALESRETURN = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +128,7 @@ Partial Class FormAccountingARAP
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtStoreDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPurchase.SuspendLayout()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -562,6 +566,7 @@ Partial Class FormAccountingARAP
         Me.GCOtherDiscount.Location = New System.Drawing.Point(20, 36)
         Me.GCOtherDiscount.MainView = Me.GVOtherDiscount
         Me.GCOtherDiscount.Name = "GCOtherDiscount"
+        Me.GCOtherDiscount.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
         Me.GCOtherDiscount.Size = New System.Drawing.Size(578, 210)
         Me.GCOtherDiscount.TabIndex = 1
         Me.GCOtherDiscount.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOtherDiscount})
@@ -569,20 +574,13 @@ Partial Class FormAccountingARAP
         'GVOtherDiscount
         '
         Me.GVOtherDiscount.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.gridBandAR, Me.GridBandSALES, Me.gridBandSALESRETURN})
-        Me.GVOtherDiscount.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumncomp_commission, Me.BandedGridColumnacc_name_sales, Me.BandedGridColumnacc_description_sales, Me.BandedGridColumnacc_name_sales_ret, Me.BandedGridColumnacc_description_sales_ret, Me.BandedGridColumnacc_name_ar, Me.BandedGridColumnacc_description_ar})
+        Me.GVOtherDiscount.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumncomp_commission, Me.BandedGridColumnacc_name_sales, Me.BandedGridColumnacc_description_sales, Me.BandedGridColumnacc_name_sales_ret, Me.BandedGridColumnacc_description_sales_ret, Me.BandedGridColumnacc_name_ar, Me.BandedGridColumnacc_description_ar, Me.BandedGridColumnis_for_gwp_view})
         Me.GVOtherDiscount.GridControl = Me.GCOtherDiscount
         Me.GVOtherDiscount.Name = "GVOtherDiscount"
         Me.GVOtherDiscount.OptionsBehavior.Editable = False
         Me.GVOtherDiscount.OptionsFind.AlwaysVisible = True
         Me.GVOtherDiscount.OptionsView.ColumnAutoWidth = False
         Me.GVOtherDiscount.OptionsView.ShowGroupPanel = False
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Columns.Add(Me.BandedGridColumncomp_commission)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 75
         '
         'BandedGridColumncomp_commission
         '
@@ -592,15 +590,6 @@ Partial Class FormAccountingARAP
         Me.BandedGridColumncomp_commission.FieldName = "comp_commission"
         Me.BandedGridColumncomp_commission.Name = "BandedGridColumncomp_commission"
         Me.BandedGridColumncomp_commission.Visible = True
-        '
-        'gridBandAR
-        '
-        Me.gridBandAR.Caption = "AR"
-        Me.gridBandAR.Columns.Add(Me.BandedGridColumnacc_name_ar)
-        Me.gridBandAR.Columns.Add(Me.BandedGridColumnacc_description_ar)
-        Me.gridBandAR.Name = "gridBandAR"
-        Me.gridBandAR.VisibleIndex = 1
-        Me.gridBandAR.Width = 150
         '
         'BandedGridColumnacc_name_ar
         '
@@ -616,15 +605,6 @@ Partial Class FormAccountingARAP
         Me.BandedGridColumnacc_description_ar.Name = "BandedGridColumnacc_description_ar"
         Me.BandedGridColumnacc_description_ar.Visible = True
         '
-        'GridBandSALES
-        '
-        Me.GridBandSALES.Caption = "SALES"
-        Me.GridBandSALES.Columns.Add(Me.BandedGridColumnacc_name_sales)
-        Me.GridBandSALES.Columns.Add(Me.BandedGridColumnacc_description_sales)
-        Me.GridBandSALES.Name = "GridBandSALES"
-        Me.GridBandSALES.VisibleIndex = 2
-        Me.GridBandSALES.Width = 150
-        '
         'BandedGridColumnacc_name_sales
         '
         Me.BandedGridColumnacc_name_sales.Caption = "Account"
@@ -638,15 +618,6 @@ Partial Class FormAccountingARAP
         Me.BandedGridColumnacc_description_sales.FieldName = "acc_description_sales"
         Me.BandedGridColumnacc_description_sales.Name = "BandedGridColumnacc_description_sales"
         Me.BandedGridColumnacc_description_sales.Visible = True
-        '
-        'gridBandSALESRETURN
-        '
-        Me.gridBandSALESRETURN.Caption = "SALES RETURN"
-        Me.gridBandSALESRETURN.Columns.Add(Me.BandedGridColumnacc_name_sales_ret)
-        Me.gridBandSALESRETURN.Columns.Add(Me.BandedGridColumnacc_description_sales_ret)
-        Me.gridBandSALESRETURN.Name = "gridBandSALESRETURN"
-        Me.gridBandSALESRETURN.VisibleIndex = 3
-        Me.gridBandSALESRETURN.Width = 150
         '
         'BandedGridColumnacc_name_sales_ret
         '
@@ -667,6 +638,7 @@ Partial Class FormAccountingARAP
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.BtnDelete)
         Me.PanelControl3.Controls.Add(Me.BtnAdd)
+        Me.PanelControl3.Controls.Add(Me.BtnAddforGWP)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl3.Name = "PanelControl3"
@@ -759,6 +731,69 @@ Partial Class FormAccountingARAP
         Me.XTPPurchase.Size = New System.Drawing.Size(600, 412)
         Me.XTPPurchase.Text = "Purchase"
         '
+        'BtnAddforGWP
+        '
+        Me.BtnAddforGWP.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAddforGWP.Image = CType(resources.GetObject("BtnAddforGWP.Image"), System.Drawing.Image)
+        Me.BtnAddforGWP.Location = New System.Drawing.Point(0, 0)
+        Me.BtnAddforGWP.Name = "BtnAddforGWP"
+        Me.BtnAddforGWP.Size = New System.Drawing.Size(96, 34)
+        Me.BtnAddforGWP.TabIndex = 2
+        Me.BtnAddforGWP.Text = "Add AR GWP"
+        '
+        'BandedGridColumnis_for_gwp_view
+        '
+        Me.BandedGridColumnis_for_gwp_view.Caption = "for GWP"
+        Me.BandedGridColumnis_for_gwp_view.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumnis_for_gwp_view.FieldName = "is_for_gwp_view"
+        Me.BandedGridColumnis_for_gwp_view.Name = "BandedGridColumnis_for_gwp_view"
+        Me.BandedGridColumnis_for_gwp_view.Visible = True
+        Me.BandedGridColumnis_for_gwp_view.Width = 56
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnis_for_gwp_view)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumncomp_commission)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 131
+        '
+        'gridBandAR
+        '
+        Me.gridBandAR.Caption = "AR"
+        Me.gridBandAR.Columns.Add(Me.BandedGridColumnacc_name_ar)
+        Me.gridBandAR.Columns.Add(Me.BandedGridColumnacc_description_ar)
+        Me.gridBandAR.Name = "gridBandAR"
+        Me.gridBandAR.VisibleIndex = 1
+        Me.gridBandAR.Width = 150
+        '
+        'GridBandSALES
+        '
+        Me.GridBandSALES.Caption = "SALES"
+        Me.GridBandSALES.Columns.Add(Me.BandedGridColumnacc_name_sales)
+        Me.GridBandSALES.Columns.Add(Me.BandedGridColumnacc_description_sales)
+        Me.GridBandSALES.Name = "GridBandSALES"
+        Me.GridBandSALES.VisibleIndex = 2
+        Me.GridBandSALES.Width = 150
+        '
+        'gridBandSALESRETURN
+        '
+        Me.gridBandSALESRETURN.Caption = "SALES RETURN"
+        Me.gridBandSALESRETURN.Columns.Add(Me.BandedGridColumnacc_name_sales_ret)
+        Me.gridBandSALESRETURN.Columns.Add(Me.BandedGridColumnacc_description_sales_ret)
+        Me.gridBandSALESRETURN.Name = "gridBandSALESRETURN"
+        Me.gridBandSALESRETURN.VisibleIndex = 3
+        Me.gridBandSALESRETURN.Width = 150
+        '
         'FormAccountingARAP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -808,6 +843,7 @@ Partial Class FormAccountingARAP
         CType(Me.TxtStoreDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPurchase.ResumeLayout(False)
         Me.XTPPurchase.PerformLayout()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -872,15 +908,18 @@ Partial Class FormAccountingARAP
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTPPurchase As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GVOtherDiscount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncomp_commission As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandAR As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnacc_name_ar As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnacc_description_ar As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBandSALES As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnacc_name_sales As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnacc_description_sales As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandSALESRETURN As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnacc_name_sales_ret As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnacc_description_sales_ret As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnAddforGWP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnis_for_gwp_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents gridBandAR As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBandSALES As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandSALESRETURN As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

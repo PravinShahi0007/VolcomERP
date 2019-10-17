@@ -46,6 +46,7 @@ Public Class FormSalesPOSDet
     Public id_acc_sales_return As String = "-1"
     Public id_acc_ar As String = "-1"
     Dim is_use_inv_mapping As String = get_setup_field("is_use_inv_mapping")
+    Dim is_for_gwp As String = "2"
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -665,7 +666,7 @@ Public Class FormSalesPOSDet
 
                     'draft journal
                     Dim acc As New ClassAccounting()
-                    If id_menu = "1" Or id_menu = "2" Or id_menu = "4" Or id_menu = "5" Then
+                    If id_menu = "1" Or id_menu = "2" Or id_menu = "3" Or id_menu = "4" Or id_menu = "5" Then
                         Try
                             If is_use_inv_mapping = "1" Then
                                 acc.generateJournalSalesDraftWithMapping(id_sales_pos, report_mark_type)
@@ -694,6 +695,7 @@ Public Class FormSalesPOSDet
                         viewDraft()
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
                     ElseIf id_menu = "4" Then
                         infoCustom("Invoice Different Margin " + TxtVirtualPosNumber.Text + " created succesfully")
                         viewDraft()
@@ -1573,6 +1575,22 @@ Public Class FormSalesPOSDet
                 id_acc_sales = data.Rows(0)("id_acc_sales").ToString
                 id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
                 id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+                viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+                If cond_coa = False Then
+                    Cursor = Cursors.Default
+                    is_valid_from = False
+                    Exit Sub
+                End If
+            ElseIf id_menu = "3" Then
+                Dim qgwp As String = "SELECT IFNULL(e.id_acc_ar,0) AS `id_acc_ar` FROM tb_m_comp_comm_extra e WHERE e.is_for_gwp=1 AND e.id_comp=" + id_comp + ""
+                Dim dgwp As DataTable = execute_query(qgwp, -1, True, "", "", "", "")
+                If dgwp.Rows.Count > 0 Then
+                    id_acc_ar = dgwp.Rows(0)("id_acc_ar").ToString
+                Else
+                    id_acc_ar = "0"
+                End If
+                id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
                 viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
                 If cond_coa = False Then
                     Cursor = Cursors.Default
