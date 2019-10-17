@@ -23,7 +23,12 @@
             'REQ detail
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
-            TxtDept.Text = get_departement_x(id_departement_user, "1")
+            If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
+                TxtDept.Text = get_departement_x(FormItemReq.SLEDepartement.EditValue.ToString, "1")
+            Else
+                TxtDept.Text = get_departement_x(id_departement_user, "1")
+            End If
+
             TxtRequestedBy.Text = get_user_identify(id_user, "1")
 
             'menu
@@ -290,10 +295,15 @@
         makeSafeGV(GVData)
         '
         Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
-
+        Dim id_dep As String = "-1"
+        If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
+            id_dep = FormItemReq.SLEDepartement.EditValue.ToString
+        Else
+            id_dep = id_departement_user
+        End If
         Dim cond_data As Boolean = True
         Dim st As New ClassPurcItemStock()
-        Dim qst As String = st.queryGetStock("AND (i.id_departement='" + id_departement_user + "' OR i.id_departement='" + id_purc_store + "') ", "9999-12-31")
+        Dim qst As String = st.queryGetStock("AND (i.id_departement='" + id_dep + "' OR i.id_departement='" + id_purc_store + "') ", "9999-12-31")
         Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
             Dim id_item_cek As String = GVData.GetRowCellValue(i, "id_item").ToString
@@ -329,7 +339,7 @@
                 Dim note As String = addSlashes(MENote.Text)
 
                 'query main
-                Dim qm As String = "INSERT INTO tb_item_req(id_departement, created_date, created_by, note, id_report_status, is_for_store) VALUES (" + id_departement_user + ", NOW(), " + id_user + ", '" + note + "', 6, '" + is_for_store + "'); SELECT LAST_INSERT_ID(); "
+                Dim qm As String = "INSERT INTO tb_item_req(id_departement, created_date, created_by, note, id_report_status, is_for_store) VALUES (" + id_dep + ", NOW(), " + id_user + ", '" + note + "', 6, '" + is_for_store + "'); SELECT LAST_INSERT_ID(); "
                 id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + "," + rmt + "); ", True, "", "", "", "")
 
@@ -401,6 +411,11 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
+        If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
+            FormItemReqAdd.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
+        Else
+            FormItemReqAdd.id_departement = id_departement_user
+        End If
         FormItemReqAdd.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -435,6 +450,11 @@
 
     Private Sub BtnAddDetail_Click(sender As Object, e As EventArgs) Handles BtnAddDetail.Click
         Cursor = Cursors.WaitCursor
+        If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
+            FormItemReqAddStore.id_departement = FormItemReq.SLEDepartement.EditValue.ToString
+        Else
+            FormItemReqAddStore.id_departement = id_departement_user
+        End If
         FormItemReqAddStore.ShowDialog()
         Cursor = Cursors.Default
     End Sub

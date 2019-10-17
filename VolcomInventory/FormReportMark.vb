@@ -555,6 +555,9 @@
         ElseIf report_mark_type = "211" Then
             'input attendance
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_emp_attn_input WHERE id_emp_attn_input = '{0}'", id_report)
+        ElseIf report_mark_type = "212" Then
+            'fgpo closing
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_order_close WHERE id_prod_order_close = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6373,6 +6376,19 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             'update
             query = String.Format("UPDATE tb_emp_attn_input SET id_report_status='{0}' WHERE id_emp_attn_input ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "212" Then
+            'prod order closing
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_prod_order_close SET id_report_status='{0}' WHERE id_prod_order_close ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            If id_status_reportx = "6" Then
+                'submit debit note
+
+            End If
         End If
 
         'adding lead time
