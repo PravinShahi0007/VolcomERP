@@ -1023,6 +1023,7 @@
         ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
+            FormEmpOvertimeDet.is_view = "1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "185" Then

@@ -83,6 +83,7 @@ Partial Class FormEmpOvertimeDet
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -636,6 +637,7 @@ Partial Class FormEmpOvertimeDet
         '
         Me.PanelControl3.Controls.Add(Me.SBMark)
         Me.PanelControl3.Controls.Add(Me.SBClose)
+        Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.SBPrint)
         Me.PanelControl3.Controls.Add(Me.SBSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -659,7 +661,7 @@ Partial Class FormEmpOvertimeDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(762, 2)
+        Me.SBClose.Location = New System.Drawing.Point(650, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 46)
         Me.SBClose.TabIndex = 2
@@ -781,6 +783,18 @@ Partial Class FormEmpOvertimeDet
         '
         Me.ErrorProvider.ContainerControl = Me
         '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.Location = New System.Drawing.Point(725, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(112, 46)
+        Me.BtnAttachment.TabIndex = 114
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
+        '
         'FormEmpOvertimeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -900,4 +914,5 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents RIDEDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RITEBreak As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GCIsStore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

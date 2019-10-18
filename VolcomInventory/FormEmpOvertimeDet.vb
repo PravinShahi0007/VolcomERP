@@ -7,6 +7,8 @@
 
     Private is_point_ho As String = "0"
 
+    Public is_view As String = "2"
+
     Private ot_min_spv As Integer = get_opt_emp_field("ot_min_spv")
 
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -123,6 +125,10 @@
             TECreatedBy.EditValue = get_emp(id_employee_user, "2")
             DECreatedAt.EditValue = Now
             TEMemoNumber.EditValue = ""
+        End If
+
+        If is_view = "1" Then
+            SBPrint.Visible = False
         End If
     End Sub
 
@@ -275,6 +281,7 @@
 
         FormReportMark.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "")
         FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
 
         FormReportMark.ShowDialog()
 
@@ -286,6 +293,8 @@
 
         'overtime
         Dim ReportOvertime As New ReportEmpOvertime()
+
+        ReportOvertime.PrintingSystem.ContinuousPageNumbering = False
 
         ReportOvertime.id = id
         ReportOvertime.data = GCEmployee.DataSource
@@ -545,5 +554,14 @@
         End If
 
         GVEmployee.SetRowCellValue(i, "ot_total_hours", total)
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "")
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
