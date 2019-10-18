@@ -29,6 +29,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartementSub = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIsStore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -183,7 +184,7 @@ Partial Class FormEmpOvertimeDet
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCConsumption, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCIsStore, Me.GCDate, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCToSalary, Me.GCConversionType, Me.GCIsDayOff, Me.GCConsumption, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCNote})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -226,6 +227,13 @@ Partial Class FormEmpOvertimeDet
         Me.GCDepartement.Visible = True
         Me.GCDepartement.VisibleIndex = 4
         Me.GCDepartement.Width = 86
+        '
+        'GCIsStore
+        '
+        Me.GCIsStore.FieldName = "is_store"
+        Me.GCIsStore.Name = "GCIsStore"
+        Me.GCIsStore.OptionsColumn.AllowEdit = False
+        Me.GCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCDate
         '
@@ -891,4 +899,5 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents RIMENote As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RIDEDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RITEBreak As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GCIsStore As DevExpress.XtraGrid.Columns.GridColumn
 End Class

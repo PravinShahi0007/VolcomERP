@@ -57,9 +57,9 @@
         End If
 
         Dim query As String = "
-            SELECT is_checked, id_employee, id_departement, id_departement_sub, departement, employee_code, employee_name, employee_position, id_employee_status, employee_status, id_employee_active, employee_active, to_salary, CONCAT(GROUP_CONCAT(CONCAT(date, ':', is_day_off))) AS is_day_off
+            SELECT is_checked, id_employee, id_departement, id_departement_sub, departement, is_store, employee_code, employee_name, employee_position, id_employee_status, employee_status, id_employee_active, employee_active, to_salary, CONCAT(GROUP_CONCAT(CONCAT(date, ':', is_day_off))) AS is_day_off
             FROM (
-                SELECT 'no' AS is_checked, e.id_employee, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = sch.date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, sch.date
+                SELECT 'no' AS is_checked, e.id_employee, e.id_departement, ds.id_departement_sub, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = sch.date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, sch.date
                 FROM tb_m_employee AS e
                 LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
                 LEFT JOIN tb_m_departement_sub AS ds ON IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) = ds.id_departement_sub
@@ -159,12 +159,35 @@
                             datetime_to.AddDays(1)
                         End If
 
-                        Dim conversion_type As String = If(GVList.GetRowCellValue(i, "to_salary") = "1", "1", If(is_day_off_date = "1", If(TETotalHours.EditValue < ot_min_spv, "3", "2"), "3"))
+                        Dim conversion_type As String = "3"
+
+                        If GVList.GetRowCellValue(i, "to_salary") = "1" Then
+                            conversion_type = "1"
+                        Else
+                            If GVList.GetRowCellValue(i, "is_store").ToString = "1" Then
+                                If TETotalHours.EditValue < ot_min_spv Then
+                                    conversion_type = "3"
+                                Else
+                                    conversion_type = "2"
+                                End If
+                            Else
+                                If is_day_off_date = "1" Then
+                                    If TETotalHours.EditValue < ot_min_spv Then
+                                        conversion_type = "3"
+                                    Else
+                                        conversion_type = "2"
+                                    End If
+                                Else
+                                    conversion_type = "3"
+                                End If
+                            End If
+                        End If
 
                         data.Rows.Add(GVList.GetRowCellValue(i, "id_employee"),
                                 GVList.GetRowCellValue(i, "id_departement"),
                                 GVList.GetRowCellValue(i, "id_departement_sub"),
                                 GVList.GetRowCellValue(i, "departement"),
+                                GVList.GetRowCellValue(i, "is_store"),
                                 date_from_temp.ToString("dd MMMM yyyy"),
                                 GVList.GetRowCellValue(i, "employee_code"),
                                 GVList.GetRowCellValue(i, "employee_name"),
