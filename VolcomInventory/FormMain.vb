@@ -1737,6 +1737,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'input attendance
             FormEmpInputAttendanceDet.id = "0"
             FormEmpInputAttendanceDet.ShowDialog()
+        ElseIf formName = "FormBankDeposit" Then
+            FormBankDepositDet.type_rec = "2"
+            FormBankDepositDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2819,6 +2822,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'input attendance
                 FormEmpInputAttendanceDet.id = FormEmpInputAttendance.GVList.GetFocusedRowCellValue("id_emp_attn_input").ToString
                 FormEmpInputAttendanceDet.ShowDialog()
+            ElseIf Formname = "FormBankDeposit" Then
+                FormBankDepositDet.id_deposit = FormBankDeposit.GVList.GetFocusedRowCellValue("id_rec_payment").ToString
+                FormBankDepositDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
