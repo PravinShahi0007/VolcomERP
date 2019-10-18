@@ -478,4 +478,22 @@ Public Class FormBankDepositDet
     Private Sub SLEPayFrom_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPayFrom.EditValueChanged
 
     End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        If id_deposit = "-1" Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositAdd.action = "ins"
+            FormBankDepositAdd.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
+        If id_deposit = "-1" And GVList.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositAdd.action = "upd"
+            FormBankDepositAdd.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
