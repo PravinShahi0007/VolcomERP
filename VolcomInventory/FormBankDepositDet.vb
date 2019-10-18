@@ -4,7 +4,7 @@ Public Class FormBankDepositDet
     Public id_deposit As String = "-1"
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
-    Public id_pop_up As String = "1" '1 = invoice
+    Public type_rec As String = "1" '1 = invoice
 
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -88,14 +88,19 @@ Public Class FormBankDepositDet
                 MENote.EditValue = data.Rows(0)("note").ToString
                 id_report_status = data.Rows(0)("id_report_status").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+                type_rec = data.Rows(0)("type_rec").ToString
             End If
             '
             load_det()
+            PanelControlNav.Visible = False
             DERecDate.Properties.ReadOnly = True
             GridColumnAlreadyReceived.Visible = False
             GridColumnBBaldue.Visible = False
             GridColumnReceive.OptionsColumn.AllowEdit = False
             GridColumnNote.OptionsColumn.AllowEdit = False
+            If id_report_status = "6" Then
+                XTPDraft.PageVisible = False
+            End If
             calculate_amount()
         End If
     End Sub
@@ -270,10 +275,24 @@ Public Class FormBankDepositDet
             End If
         Next
         '
+
+        'cek balance journal
+        Dim cond_bal As Boolean = True
+        XTCBBM.SelectedTabPageIndex = 1
+        makeSafeGV(GVDraft)
+        If GVDraft.Columns("debit").SummaryItem.SummaryValue = GVDraft.Columns("credit").SummaryItem.SummaryValue Then
+            cond_bal = True
+            XTCBBM.SelectedTabPageIndex = 0
+        Else
+            cond_bal = False
+        End If
+
         If TETotal.EditValue = 0 And TENeedToPay.EditValue = 0 Then
             warningCustom("Please make sure amount is not 0")
         ElseIf value_exceed = True Then
             warningCustom("Please make sure amount credit note is not exceed 0, received amount not below 0, and not exceed balance due")
+        ElseIf Not cond_bal Then
+            warningCustom("Journal not balance please check your input")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -287,19 +306,22 @@ Public Class FormBankDepositDet
                         need_to_pay_amount = decimalSQL(TENeedToPay.EditValue.ToString)
                         need_to_pay_account = SLEPayFrom.EditValue.ToString
                     End If
-                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`)
-                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1'); SELECT LAST_INSERT_ID();"
+
+                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec)
+                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "'); SELECT LAST_INSERT_ID();"
                     id_deposit = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
-                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc) VALUES"
+                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc) VALUES"
                     For i As Integer = 0 To GVList.RowCount - 1
                         Dim id_comp As String = GVList.GetRowCellValue(i, "id_comp").ToString
                         Dim id_acc As String = GVList.GetRowCellValue(i, "id_acc").ToString
+                        Dim id_dc As String = GVList.GetRowCellValue(i, "id_dc").ToString
+
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" & id_deposit & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "', " + id_comp + ", " + id_acc + ")"
+                        query += "('" & id_deposit & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "', " + id_comp + ", " + id_acc + ", " + id_dc + ") "
                     Next
                     execute_non_query(query, True, "", "", "", "")
 
@@ -310,8 +332,9 @@ Public Class FormBankDepositDet
                     submit_who_prepared("162", id_deposit, id_user)
                     'done
                     infoCustom("Receive Payment created. Waiting for approval")
-                    FormBankDeposit.load_invoice()
-                    FormBankDeposit.SLEStoreDeposit.EditValue = SLEStore.EditValue
+                    'FormBankDeposit.load_invoice()
+                    'FormBankDeposit.SLEStoreDeposit.EditValue = SLEStore.EditValue
+                    FormBankDeposit.GCInvoiceList.DataSource = Nothing
                     FormBankDeposit.load_deposit()
                     FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankDeposit.GVList, "id_rec_payment", id_deposit)
                     FormBankDeposit.XTCPO.SelectedTabPageIndex = 0
@@ -436,5 +459,23 @@ Public Class FormBankDepositDet
             viewBlankJournal()
             viewDraftJournal()
         End If
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If GVList.RowCount > 0 And GVList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this detail ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVList.DeleteSelectedRows()
+                GCList.RefreshDataSource()
+                GVList.RefreshData()
+                calculate_amount()
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub SLEPayFrom_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPayFrom.EditValueChanged
+
     End Sub
 End Class

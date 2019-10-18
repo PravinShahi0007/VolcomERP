@@ -40,35 +40,21 @@
 
     Sub viewDetail()
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
-        Dim query As String = "-- rec
-        SELECT '1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, 
+        Dim query As String = "(SELECT 0 AS `id_det`,'1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, 
         '' AS `vendor`, 'D' AS `type`, py.value AS `amount`
         FROM tb_rec_payment py
         INNER JOIN tb_a_acc a ON a.id_acc = py.id_acc_pay_rec
-        WHERE py.id_rec_payment=" + id + " AND py.`value` > 0
+        WHERE py.id_rec_payment=" + id + " AND py.`value` > 0)
         UNION ALL
-        -- invoice
-        SELECT '2' AS `is_header`, pyd.id_report AS `id_reff`,a.acc_name AS `coa`, p.sales_pos_number AS `reff`, CONCAT(comp.comp_name,' Per ', DATE_FORMAT(p.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(p.sales_pos_end_period,'%d-%m-%y')) AS `note`,
-        comp.comp_number AS `vendor`, 'K' AS `type`, pyd.value AS `amount`
+        (SELECT pyd.id_rec_payment_det AS `id_det`,'2' AS `is_header`, pyd.id_report AS `id_reff`, a.acc_name AS `coa`, pyd.number AS `reff`, pyd.note,
+        comp.comp_number AS `vendor`, dc.dc_code AS `type`, ABS(pyd.`value`) AS `amount` 
         FROM tb_rec_payment_det pyd
-        INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
+        INNER JOIN tb_lookup_dc dc ON dc.id_dc = pyd.id_dc
         INNER JOIN tb_a_acc a ON a.id_acc = pyd.id_acc
-        INNER JOIN tb_sales_pos p ON p.id_sales_pos = pyd.id_report AND p.report_mark_type = pyd.report_mark_type
-        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = p.id_memo_type
-        INNER JOIN tb_m_comp comp ON comp.id_comp=pyd.id_comp
-        WHERE py.id_rec_payment=" + id + " AND mt.is_receive_payment=1 AND pyd.`value` > 0
-        UNION ALL
-        -- credit note
-        SELECT '2' AS `is_header`, pyd.id_report AS `id_reff`, a.acc_name AS `coa`, p.sales_pos_number AS `reff`, CONCAT(comp.comp_name,' Per ', DATE_FORMAT(p.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(p.sales_pos_end_period,'%d-%m-%y')) AS `note`,
-        comp.comp_number AS `vendor`, 'D' AS `type`, ABS(pyd.value) AS `amount`
-        FROM tb_rec_payment_det pyd
-        INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
-        INNER JOIN tb_a_acc a ON a.id_acc = pyd.id_acc
-        INNER JOIN tb_sales_pos p ON p.id_sales_pos = pyd.id_report AND p.report_mark_type = pyd.report_mark_type
-        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = p.id_memo_type
-        INNER JOIN tb_m_comp comp ON comp.id_comp=pyd.id_comp
-        WHERE py.id_rec_payment=" + id + " AND mt.is_receive_payment=2
-        ORDER BY is_header ASC, id_reff ASC  "
+        LEFT JOIN tb_m_comp comp ON comp.id_comp = pyd.id_comp
+        WHERE pyd.id_rec_payment=" + id + "
+        ORDER BY pyd.id_rec_payment_det ASC)
+        ORDER BY is_header ASC, id_det ASC "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
         Dim font_row_style As New Font("Tahoma", 8, FontStyle.Regular)

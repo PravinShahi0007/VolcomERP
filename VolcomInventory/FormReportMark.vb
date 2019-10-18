@@ -5422,29 +5422,24 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     increase_inc_acc("1")
 
                     'det journal
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                                    -- kas masuk
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, NULL,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,py.note AS `note`,162,py.id_rec_payment, py.number
-                                    FROM tb_rec_payment py
-                                    WHERE py.id_rec_payment=" & id_report & " AND py.`value` > 0
-                                    UNION ALL
-                                    -- kurangi piutang (AR) => invoice
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pyd.id_acc AS `id_acc`, pyd.id_comp,  0 AS `qty`,0 AS `debit`, pyd.value AS `credit`,CONCAT(comp.comp_name,' Per ', DATE_FORMAT(p.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(p.sales_pos_end_period,'%d-%m-%y')) AS `note`,162,pyd.id_rec_payment, py.number
-                                    FROM tb_rec_payment_det pyd
-                                    INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
-                                    INNER JOIN tb_sales_pos p ON p.id_sales_pos = pyd.id_report AND p.report_mark_type = pyd.report_mark_type
-                                    INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = p.id_memo_type
-                                    INNER JOIN tb_m_comp comp ON comp.id_comp=pyd.id_comp
-                                    WHERE py.id_rec_payment=" + id_report + " AND mt.is_receive_payment=1 AND pyd.`value` > 0
-                                    UNION ALL
-                                    -- credit note
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pyd.id_acc AS `id_acc`, pyd.id_comp,  0 AS `qty`,ABS(pyd.value) AS `debit`, 0 AS `credit`,CONCAT(comp.comp_name,' Per ', DATE_FORMAT(p.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(p.sales_pos_end_period,'%d-%m-%y')) AS `note`,162,pyd.id_rec_payment, py.number
-                                    FROM tb_rec_payment_det pyd
-                                    INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
-                                    INNER JOIN tb_sales_pos p ON p.id_sales_pos = pyd.id_report AND p.report_mark_type = pyd.report_mark_type
-                                    INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = p.id_memo_type
-                                    INNER JOIN tb_m_comp comp ON comp.id_comp=pyd.id_comp
-                                    WHERE py.id_rec_payment=" + id_report + " AND mt.is_receive_payment=2 "
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, NULL,  0 AS `qty`,
+                    py.value AS `debit`, 0 AS `credit`,
+                    py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL
+                    FROM tb_rec_payment py
+                    WHERE py.id_rec_payment=" + id_report + " AND py.`value` > 0
+                    UNION ALL
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pyd.id_acc AS `id_acc`, pyd.id_comp,0 AS `qty`, 
+                    IF(pyd.id_dc=1, ABS(pyd.value), 0) AS `debit`, IF(pyd.id_dc=2, pyd.value, 0) AS `credit`,
+                    pyd.note AS `note`, 
+                    162, py.id_rec_payment, py.number,
+                    pyd.report_mark_type, pyd.id_report, pyd.number
+                    FROM tb_rec_payment_det pyd
+                    INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
+                    INNER JOIN tb_lookup_dc dc ON dc.id_dc = pyd.id_dc
+                    INNER JOIN tb_a_acc a ON a.id_acc = pyd.id_acc
+                    LEFT JOIN tb_m_comp comp ON comp.id_comp = pyd.id_comp
+                    WHERE pyd.id_rec_payment=" + id_report + " "
                     execute_non_query(qjd, True, "", "", "", "")
                 Else 'BBK
                     'UNION ALL
@@ -5462,12 +5457,16 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 End If
 
                 'close if complete rec
-                Dim qjd_upd = "UPDATE tb_sales_pos pos
-                INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=pos.`id_sales_pos` AND pyd.`report_mark_type`=pos.`report_mark_type`
-                SET pos.`is_close_rec_payment`=1
-                WHERE pyd.`id_rec_payment`='" & id_report & "'
-                AND pyd.`value`=balance_due AND pyd.`value` != 0"
-                execute_non_query(qjd_upd, True, "", "", "", "")
+                If FormBankDepositDet.type_rec = "1" Then
+                    'INVOICE PENJUALAN
+                    Dim qjd_upd = "UPDATE tb_sales_pos pos
+                    INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=pos.`id_sales_pos` AND pyd.`report_mark_type`=pos.`report_mark_type`
+                    SET pos.`is_close_rec_payment`=1
+                    WHERE pyd.`id_rec_payment`='" & id_report & "'
+                    AND pyd.`value`=balance_due AND pyd.`value` != 0 "
+                    execute_non_query(qjd_upd, True, "", "", "", "")
+                End If
+
             End If
 
             'update
