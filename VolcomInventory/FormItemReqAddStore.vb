@@ -1,4 +1,6 @@
 ﻿Public Class FormItemReqAddStore
+    Public id_departement As String = "-1"
+
     Private Sub FormItemReqAddStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCat()
         viewStore()
@@ -48,7 +50,7 @@
         If CEStoreRequest.Checked = True Then
             cond += " AND si.id_departement='" & id_purc_store & "' "
         Else
-            cond += " AND si.id_departement='" & id_departement_user & "' "
+            cond += " AND si.id_departement='" & id_departement & "' "
         End If
         '
         Dim query As String = "SELECT si.id_item,i.`item_desc`,si.id_departement,SUM(IF(si.id_storage_category=1,si.storage_item_qty,-si.storage_item_qty)) AS qty, u.`uom`
@@ -90,7 +92,7 @@ HAVING SUM(IF(si.id_storage_category=1,si.storage_item_qty,-si.storage_item_qty)
 
         Dim cond As String = ""
         If CEStoreRequest.Checked = True Then
-            cond = "AND i.id_departement=" + id_departement_user + " AND i.id_item='" + id_item + "' "
+            cond = "AND i.id_departement=" + id_departement + " AND i.id_item='" + id_item + "' "
         Else
             cond = "AND i.id_departement=" + id_purc_store + " AND i.id_item='" + id_item + "' "
         End If

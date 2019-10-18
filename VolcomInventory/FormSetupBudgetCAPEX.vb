@@ -80,7 +80,7 @@ ORDER BY ic.id_item_cat_main"
         '
         Dim query As String = "SELECT COUNT(*) FROM `tb_b_expense_propose_year` ppd
 INNER JOIN tb_b_expense_propose pps ON pps.`id_b_expense_propose`=ppd.`id_b_expense_propose`
-WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND pps.`id_report_status` !=6"
+WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND pps.`id_report_status` !=6 AND pps.id_departement='" & LEDeptSum.EditValue.ToString & "'"
         Dim jml As String = execute_query(query, 0, True, "", "", "", "").ToString
 
         If Not jml = "0" Then
