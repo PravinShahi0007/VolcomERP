@@ -15,11 +15,25 @@
     End Sub
 
     Sub check_menu()
-        bnew_active = "0"
-        bedit_active = "0"
-        bdel_active = "0"
-        checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
+        If XTCPO.SelectedTabPageIndex = 0 Then
+            If GVList.RowCount > 0 Then
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "0"
+            Else
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            End If
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        Else
+            bnew_active = "0"
+            bedit_active = "0"
+            bdel_active = "0"
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        End If
     End Sub
 
     Private Sub FormBankDeposit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -257,10 +271,11 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
         load_deposit()
+        check_menu()
     End Sub
 
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
-        If GVList.RowCount > 0 Then
+        If GVList.RowCount > 0 And GVList.FocusedRowHandle >= 0 Then
             FormBankDepositDet.id_deposit = GVList.GetFocusedRowCellValue("id_rec_payment")
             FormBankDepositDet.ShowDialog()
         End If
@@ -268,5 +283,9 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
         load_vendor_po()
+    End Sub
+
+    Private Sub XTCPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPO.SelectedPageChanged
+        check_menu()
     End Sub
 End Class

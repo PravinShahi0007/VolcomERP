@@ -53,6 +53,9 @@ Partial Class FormBankDeposit
         Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_dc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndc_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -98,9 +101,6 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnid_dc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndc_code = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnnote_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -442,6 +442,24 @@ Partial Class FormBankDeposit
         Me.GridColumnid_comp.Caption = "id_comp"
         Me.GridColumnid_comp.FieldName = "id_comp"
         Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        '
+        'GridColumnid_dc
+        '
+        Me.GridColumnid_dc.Caption = "id_dc"
+        Me.GridColumnid_dc.FieldName = "id_dc"
+        Me.GridColumnid_dc.Name = "GridColumnid_dc"
+        '
+        'GridColumndc_code
+        '
+        Me.GridColumndc_code.Caption = "dc_code"
+        Me.GridColumndc_code.FieldName = "dc_code"
+        Me.GridColumndc_code.Name = "GridColumndc_code"
+        '
+        'GridColumnnote_inv
+        '
+        Me.GridColumnnote_inv.Caption = "note"
+        Me.GridColumnnote_inv.FieldName = "note"
+        Me.GridColumnnote_inv.Name = "GridColumnnote_inv"
         '
         'BCreatePO
         '
@@ -867,24 +885,6 @@ Partial Class FormBankDeposit
         Me.BViewPayment.Size = New System.Drawing.Size(60, 19)
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
-        '
-        'GridColumnid_dc
-        '
-        Me.GridColumnid_dc.Caption = "id_dc"
-        Me.GridColumnid_dc.FieldName = "id_dc"
-        Me.GridColumnid_dc.Name = "GridColumnid_dc"
-        '
-        'GridColumndc_code
-        '
-        Me.GridColumndc_code.Caption = "dc_code"
-        Me.GridColumndc_code.FieldName = "dc_code"
-        Me.GridColumndc_code.Name = "GridColumndc_code"
-        '
-        'GridColumnnote_inv
-        '
-        Me.GridColumnnote_inv.Caption = "note"
-        Me.GridColumnnote_inv.FieldName = "note"
-        Me.GridColumnnote_inv.Name = "GridColumnnote_inv"
         '
         'FormBankDeposit
         '
