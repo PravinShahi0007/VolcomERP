@@ -441,7 +441,7 @@
                 Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
 
                 'approval
-                If LEDepartement.EditValue.ToString = "8" Then
+                If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
                     'departement hrd
                     If is_user_head Then
                         'manager hrd submit
