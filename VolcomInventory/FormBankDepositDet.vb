@@ -135,8 +135,8 @@ Public Class FormBankDepositDet
         recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description, coa.acc_description, 
         recd.id_dc,dc.dc_code
         FROM tb_rec_payment_det recd 
-        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
-        INNER JOIN tb_m_comp c ON c.id_comp = recd.id_comp
+        LEFT JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
+        LEFT JOIN tb_m_comp c ON c.id_comp = recd.id_comp
         INNER JOIN tb_a_acc coa ON coa.id_acc = recd.id_acc
         INNER JOIN tb_lookup_dc dc ON dc.id_dc = recd.id_dc
         WHERE recd.id_rec_payment='" & id_deposit & "' ORDER BY recd.id_rec_payment_det ASC "
@@ -230,14 +230,15 @@ Public Class FormBankDepositDet
             TENeedToPay.EditValue = 0.00
             TETotal.EditValue = gross_total
         Else
-            LPayFrom.Visible = True
-            LNeedToPay.Visible = True
-            '
-            SLEPayFrom.Visible = True
-            TENeedToPay.Visible = True
-            '
-            TETotal.EditValue = 0.00
-            TENeedToPay.EditValue = -gross_total
+            'sementara blm dipake
+            'LPayFrom.Visible = True
+            'LNeedToPay.Visible = True
+            ''
+            'SLEPayFrom.Visible = True
+            'TENeedToPay.Visible = True
+            ''
+            'TETotal.EditValue = 0.00
+            'TENeedToPay.EditValue = -gross_total
         End If
         '
         GVList.BestFitColumns()
@@ -259,6 +260,11 @@ Public Class FormBankDepositDet
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVList)
+        GCList.RefreshDataSource()
+        GVList.RefreshData()
+        calculate_amount()
+
         Dim query As String = ""
         'check first
         'more than value
@@ -314,14 +320,25 @@ Public Class FormBankDepositDet
                     'detail
                     query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc) VALUES"
                     For i As Integer = 0 To GVList.RowCount - 1
+                        Dim id_report As String = GVList.GetRowCellValue(i, "id_report").ToString
+                        If id_report = "0" Then
+                            id_report = "NULL"
+                        End If
+                        Dim report_mark_type As String = GVList.GetRowCellValue(i, "report_mark_type").ToString
+                        If report_mark_type = "0" Then
+                            report_mark_type = "NULL"
+                        End If
                         Dim id_comp As String = GVList.GetRowCellValue(i, "id_comp").ToString
+                        If id_comp = "0" Then
+                            id_comp = "NULL"
+                        End If
                         Dim id_acc As String = GVList.GetRowCellValue(i, "id_acc").ToString
                         Dim id_dc As String = GVList.GetRowCellValue(i, "id_dc").ToString
 
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" & id_deposit & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "', " + id_comp + ", " + id_acc + ", " + id_dc + ") "
+                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "', " + id_comp + ", " + id_acc + ", " + id_dc + ") "
                     Next
                     execute_non_query(query, True, "", "", "", "")
 
@@ -490,10 +507,12 @@ Public Class FormBankDepositDet
 
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
         If id_deposit = "-1" And GVList.FocusedRowHandle >= 0 Then
-            Cursor = Cursors.WaitCursor
-            FormBankDepositAdd.action = "upd"
-            FormBankDepositAdd.ShowDialog()
-            Cursor = Cursors.Default
+            If GVList.GetFocusedRowCellValue("id_report") = "0" Then
+                Cursor = Cursors.WaitCursor
+                FormBankDepositAdd.action = "upd"
+                FormBankDepositAdd.ShowDialog()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class

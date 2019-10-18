@@ -23,11 +23,9 @@ Partial Class FormBankDepositAdd
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECOA = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtCOA = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtReff = New DevExpress.XtraEditors.TextEdit()
@@ -36,15 +34,17 @@ Partial Class FormBankDepositAdd
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LEDK = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAmount = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClearComp = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLECOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,29 +86,6 @@ Partial Class FormBankDepositAdd
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_acc"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Account"
-        Me.GridColumn5.FieldName = "acc_name"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Description"
-        Me.GridColumn6.FieldName = "acc_description"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        '
         'TxtCOA
         '
         Me.TxtCOA.Enabled = False
@@ -127,6 +104,16 @@ Partial Class FormBankDepositAdd
         Me.PanelControl1.Size = New System.Drawing.Size(403, 45)
         Me.PanelControl1.TabIndex = 100
         '
+        'BtnClose
+        '
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(244, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(82, 41)
+        Me.BtnClose.TabIndex = 7
+        Me.BtnClose.Text = "Close"
+        '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
@@ -134,7 +121,7 @@ Partial Class FormBankDepositAdd
         Me.BtnAdd.Location = New System.Drawing.Point(326, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 41)
-        Me.BtnAdd.TabIndex = 7
+        Me.BtnAdd.TabIndex = 6
         Me.BtnAdd.Text = "OK"
         '
         'LabelControl2
@@ -180,9 +167,10 @@ Partial Class FormBankDepositAdd
         Me.SLEComp.Location = New System.Drawing.Point(122, 167)
         Me.SLEComp.Name = "SLEComp"
         Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEComp.Properties.NullText = ""
         Me.SLEComp.Properties.View = Me.GridView2
         Me.SLEComp.Size = New System.Drawing.Size(216, 20)
-        Me.SLEComp.TabIndex = 4
+        Me.SLEComp.TabIndex = 3
         '
         'GridView2
         '
@@ -192,27 +180,13 @@ Partial Class FormBankDepositAdd
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID Comp Contact"
-        Me.GridColumn13.FieldName = "id_comp_contact"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Vendor"
-        Me.GridColumn14.FieldName = "comp_name"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        '
         'LEDK
         '
         Me.LEDK.Location = New System.Drawing.Point(19, 212)
         Me.LEDK.Name = "LEDK"
         Me.LEDK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDK.Size = New System.Drawing.Size(100, 20)
-        Me.LEDK.TabIndex = 5
+        Me.LEDK.TabIndex = 4
         '
         'LabelControl5
         '
@@ -229,6 +203,7 @@ Partial Class FormBankDepositAdd
         Me.TxtCustomer.Name = "TxtCustomer"
         Me.TxtCustomer.Size = New System.Drawing.Size(100, 20)
         Me.TxtCustomer.TabIndex = 3
+        Me.TxtCustomer.TabStop = False
         '
         'LabelControl6
         '
@@ -247,25 +222,53 @@ Partial Class FormBankDepositAdd
         Me.TxtAmount.Properties.Mask.EditMask = "N2"
         Me.TxtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtAmount.Size = New System.Drawing.Size(257, 20)
-        Me.TxtAmount.TabIndex = 6
-        '
-        'BtnClose
-        '
-        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(244, 2)
-        Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(82, 41)
-        Me.BtnClose.TabIndex = 8
-        Me.BtnClose.Text = "Close"
+        Me.TxtAmount.TabIndex = 5
         '
         'BtnClearComp
         '
         Me.BtnClearComp.Location = New System.Drawing.Point(344, 165)
         Me.BtnClearComp.Name = "BtnClearComp"
         Me.BtnClearComp.Size = New System.Drawing.Size(35, 23)
-        Me.BtnClearComp.TabIndex = 9
+        Me.BtnClearComp.TabIndex = 20
+        Me.BtnClearComp.TabStop = False
         Me.BtnClearComp.Text = "clear"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID Comp Contact"
+        Me.GridColumn13.FieldName = "id_comp_contact"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Vendor"
+        Me.GridColumn14.FieldName = "comp_name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.FieldName = "id_acc"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Account"
+        Me.GridColumn5.FieldName = "acc_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "acc_description"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
         '
         'FormBankDepositAdd
         '

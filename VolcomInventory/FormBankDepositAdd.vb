@@ -29,21 +29,22 @@
             TxtDescription.Text = ""
 
             'comp
-            TxtCustomer.Text = ""
             SLEComp.EditValue = Nothing
+            TxtCustomer.Text = ""
+
 
             'd/k
             LEDK.ItemIndex = LEDK.Properties.GetDataSourceRowIndex("id_dc", "1")
             TxtAmount.EditValue = 0.00
         Else
-            SLECOA.EditValue = FormBankDeposit.GVList.GetFocusedRowCellValue("id_acc").ToString
-            TxtCOA.Text = FormBankDeposit.GVList.GetFocusedRowCellValue("acc_name").ToString
-            TxtReff.Text = FormBankDeposit.GVList.GetFocusedRowCellValue("number").ToString
-            TxtDescription.Text = FormBankDeposit.GVList.GetFocusedRowCellValue("note").ToString
-            TxtCustomer.Text = FormBankDeposit.GVList.GetFocusedRowCellValue("comp_number").ToString
-            SLEComp.EditValue = FormBankDeposit.GVList.GetFocusedRowCellValue("id_comp").ToString
-            LEDK.ItemIndex = LEDK.Properties.GetDataSourceRowIndex("id_dc", FormBankDeposit.GVList.GetFocusedRowCellValue("id_dc").ToString)
-            TxtAmount.EditValue = FormBankDeposit.GVList.GetFocusedRowCellValue("value_view")
+            SLECOA.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("id_acc").ToString
+            TxtCOA.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("acc_name").ToString
+            TxtReff.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("number").ToString
+            TxtDescription.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("note").ToString
+            TxtCustomer.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("comp_number").ToString
+            SLEComp.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("id_comp").ToString
+            LEDK.ItemIndex = LEDK.Properties.GetDataSourceRowIndex("id_dc", FormBankDepositDet.GVList.GetFocusedRowCellValue("id_dc").ToString)
+            TxtAmount.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("value_view")
         End If
     End Sub
 
@@ -113,6 +114,32 @@
             actionLoad()
         Else
             'update
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("number", addSlashes(TxtReff.Text))
+            If TxtCustomer.Text = "" Then
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("id_comp", "0")
+            Else
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("id_comp", SLEComp.EditValue.ToString)
+            End If
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("id_acc", SLECOA.EditValue.ToString)
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("acc_name", TxtCOA.Text)
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("acc_description", SLECOA.Text)
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("comp_number", TxtCustomer.Text)
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("total_rec", 0)
+            If LEDK.EditValue.ToString = "1" Then
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("value", TxtAmount.EditValue * -1)
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("balance_due", TxtAmount.EditValue * -1)
+            Else
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("value", TxtAmount.EditValue)
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("balance_due", TxtAmount.EditValue)
+            End If
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("note", addSlashes(TxtDescription.Text))
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("id_dc", LEDK.EditValue.ToString)
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("dc_code", LEDK.Text)
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("value_view", TxtAmount.EditValue)
+            FormBankDepositDet.GCList.RefreshDataSource()
+            FormBankDepositDet.GVList.RefreshData()
+            FormBankDepositDet.calculate_amount()
+            Close()
         End If
     End Sub
 
