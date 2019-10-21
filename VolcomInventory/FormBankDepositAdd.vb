@@ -25,13 +25,15 @@
             Dim id_acc As String = SLECOA.EditValue.ToString
             TxtCOA.Text = execute_query("SELECT acc_name FROM tb_a_acc WHERE id_acc='" + id_acc + "' ", 0, True, "", "", "", "")
 
+            'comp
+            SLEComp.EditValue = "-1"
+            TxtComp.Text = ""
+            SLEComp.EditValue = "1"
+            TxtComp.Text = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + SLEComp.EditValue.ToString + "' ", 0, True, "", "", "", "")
+
             TxtReff.Text = ""
             TxtDescription.Text = ""
-
-            'comp
-            SLEComp.EditValue = Nothing
-            TxtCustomer.Text = ""
-
+            TxtSupplier.Text = ""
 
             'd/k
             LEDK.ItemIndex = LEDK.Properties.GetDataSourceRowIndex("id_dc", "1")
@@ -41,7 +43,8 @@
             TxtCOA.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("acc_name").ToString
             TxtReff.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("number").ToString
             TxtDescription.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("note").ToString
-            TxtCustomer.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("comp_number").ToString
+            TxtSupplier.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("vendor").ToString
+            TxtComp.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("comp_number").ToString
             SLEComp.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("id_comp").ToString
             LEDK.ItemIndex = LEDK.Properties.GetDataSourceRowIndex("id_dc", FormBankDepositDet.GVList.GetFocusedRowCellValue("id_dc").ToString)
             TxtAmount.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("value_view")
@@ -74,7 +77,7 @@
 
     Private Sub SLEComp_EditValueChanged(sender As Object, e As EventArgs) Handles SLEComp.EditValueChanged
         Try
-            TxtCustomer.Text = SLEComp.Properties.View.GetFocusedRowCellValue("comp_number").ToString
+            TxtComp.Text = SLEComp.Properties.View.GetFocusedRowCellValue("comp_number").ToString
         Catch ex As Exception
         End Try
     End Sub
@@ -86,15 +89,16 @@
             newRow("report_mark_type") = "0"
             newRow("report_mark_type_name") = "-"
             newRow("number") = addSlashes(TxtReff.Text)
-            If TxtCustomer.Text = "" Then
+            If TxtComp.Text = "" Then
                 newRow("id_comp") = "0"
             Else
                 newRow("id_comp") = SLEComp.EditValue.ToString
             End If
+            newRow("vendor") = TxtSupplier.Text
             newRow("id_acc") = SLECOA.EditValue.ToString
             newRow("acc_name") = TxtCOA.Text
             newRow("acc_description") = SLECOA.Text
-            newRow("comp_number") = TxtCustomer.Text
+            newRow("comp_number") = TxtComp.Text
             newRow("total_rec") = 0
             If LEDK.EditValue.ToString = "1" Then
                 newRow("value") = TxtAmount.EditValue * -1
@@ -115,15 +119,16 @@
         Else
             'update
             FormBankDepositDet.GVList.SetFocusedRowCellValue("number", addSlashes(TxtReff.Text))
-            If TxtCustomer.Text = "" Then
+            If TxtComp.Text = "" Then
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("id_comp", "0")
             Else
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("id_comp", SLEComp.EditValue.ToString)
             End If
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("vendor", TxtSupplier.Text)
             FormBankDepositDet.GVList.SetFocusedRowCellValue("id_acc", SLECOA.EditValue.ToString)
             FormBankDepositDet.GVList.SetFocusedRowCellValue("acc_name", TxtCOA.Text)
             FormBankDepositDet.GVList.SetFocusedRowCellValue("acc_description", SLECOA.Text)
-            FormBankDepositDet.GVList.SetFocusedRowCellValue("comp_number", TxtCustomer.Text)
+            FormBankDepositDet.GVList.SetFocusedRowCellValue("comp_number", TxtComp.Text)
             FormBankDepositDet.GVList.SetFocusedRowCellValue("total_rec", 0)
             If LEDK.EditValue.ToString = "1" Then
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("value", TxtAmount.EditValue * -1)
@@ -144,7 +149,7 @@
     End Sub
 
     Private Sub BtnClearComp_Click(sender As Object, e As EventArgs) Handles BtnClearComp.Click
-        TxtCustomer.Text = ""
+        TxtComp.Text = ""
         SLEComp.EditValue = Nothing
     End Sub
 End Class
