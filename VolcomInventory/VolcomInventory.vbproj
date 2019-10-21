@@ -6762,6 +6762,18 @@
     <Compile Include="ReportProdClose.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProdCloseLate.Designer.vb">
+      <DependentUpon>ReportProdCloseLate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdCloseLate.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProdCloseReject.Designer.vb">
+      <DependentUpon>ReportProdCloseReject.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdCloseReject.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdCOP.designer.vb">
       <DependentUpon>ReportProdCOP.vb</DependentUpon>
     </Compile>
@@ -11031,6 +11043,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdClose.resx">
       <DependentUpon>ReportProdClose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdCloseLate.resx">
+      <DependentUpon>ReportProdCloseLate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdCloseReject.resx">
+      <DependentUpon>ReportProdCloseReject.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdCOP.resx">
       <DependentUpon>ReportProdCOP.vb</DependentUpon>
