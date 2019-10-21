@@ -12,16 +12,17 @@
     Public is_ic_ia As String = "-1"
     '
     Sub load_approval_ic_ia()
-        Dim query As String = "SELECT 1 AS id_approval,'No Action' AS approval
+        Dim query As String = "SELECT '1' AS id_approval,'No Action' AS approval
 UNION
-SELECT 2 AS id_approval,'No Action' AS approval
+SELECT '2' AS id_approval,'No Action' AS approval
 UNION
-SELECT 3 AS id_approval,'No Action' AS approval"
-        viewSearchLookupQuery(SLEICApproval, query, 0, "id_approval", "approval")
-        viewSearchLookupQuery(SLEIAApproval, query, 0, "id_approval", "approval")
+SELECT '3' AS id_approval,'No Action' AS approval"
+        viewSearchLookupQuery(SLEICApproval, query, "id_approval", "approval", "id_approval")
+        viewSearchLookupQuery(SLEIAApproval, query, "id_approval", "approval", "id_approval")
     End Sub
 
     Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_approval_ic_ia()
         load_report_status()
         is_reload = "1"
         DEYearBudget.EditValue = Now
@@ -60,7 +61,7 @@ SELECT 3 AS id_approval,'No Action' AS approval"
             '
             GVItemList.OptionsBehavior.Editable = False
             '
-            Dim query As String = "SELECT req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,emp.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status 
+            Dim query As String = "SELECT req.id_user_created,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,emp.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status 
                                     FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -165,7 +166,8 @@ SELECT 3 AS id_approval,'No Action' AS approval"
 		                    SELECT trx.id_b_expense,SUM(`value`) AS val
 		                    FROM `tb_b_expense_trans` trx
 		                    GROUP BY trx.id_b_expense
-	                    ) used ON used.id_b_expense=ex.`id_b_expense` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
+	                    ) used ON used.id_b_expense=ex.`id_b_expense` 
+                        WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
                     )used ON used.id_item_cat_main=cat.`id_item_cat_main`
                     LEFT JOIN
                     (
@@ -176,11 +178,13 @@ SELECT 3 AS id_approval,'No Action' AS approval"
 		                    SELECT trx.id_b_expense_opex,SUM(`value`) AS val
 		                    FROM `tb_b_expense_opex_trans` trx
 		                    GROUP BY trx.id_b_expense_opex
-	                    ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+	                    ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` 
+                        WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
                     )used_opex ON used_opex.id_item_cat_main=cat.`id_item_cat_main`
                     WHERE it.is_active='1' AND cat.id_expense_type='" & SLEPurcType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
 
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
+        RISLEItem.View.BestFitColumns()
     End Sub
 
     Sub load_item_pil_edit()

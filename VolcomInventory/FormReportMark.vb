@@ -435,7 +435,7 @@
         ElseIf report_mark_type = "136" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase Request
             query = String.Format("SELECT id_report_status,purc_req_number as report_number FROM tb_purc_req WHERE id_purc_req = '{0}'", id_report)
         ElseIf report_mark_type = "138" Then
@@ -4322,7 +4322,7 @@
             FormBudgetExpenseProposeDet.actionLoad()
             FormBudgetExpensePropose.viewData()
             FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id_report)
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase request
             'auto completed
             If id_status_reportx = "3" Then

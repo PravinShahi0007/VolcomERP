@@ -85,27 +85,27 @@ Partial Class FormPurcReqDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEICApproval = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TENoteIA = New DevExpress.XtraEditors.TextEdit()
+        Me.TENoteIC = New DevExpress.XtraEditors.TextEdit()
         Me.SLEIAApproval = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TENoteIC = New DevExpress.XtraEditors.TextEdit()
-        Me.TENoteIA = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEICApproval = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,18 +140,18 @@ Partial Class FormPurcReqDet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottomLeft.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -605,6 +605,7 @@ Partial Class FormPurcReqDet
         Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ColumnAutoWidth = False
         Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
@@ -845,10 +846,18 @@ Partial Class FormPurcReqDet
         Me.PanelControl6.Size = New System.Drawing.Size(367, 76)
         Me.PanelControl6.TabIndex = 172
         '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(18, 11)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 144
+        Me.LabelControl21.Text = "Status"
+        '
         'TETotal
         '
         Me.TETotal.EditValue = ""
-        Me.TETotal.Location = New System.Drawing.Point(66, 8)
+        Me.TETotal.Location = New System.Drawing.Point(70, 34)
         Me.TETotal.Name = "TETotal"
         Me.TETotal.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TETotal.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -863,12 +872,28 @@ Partial Class FormPurcReqDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(14, 11)
+        Me.LabelControl3.Location = New System.Drawing.Point(18, 37)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 144
         Me.LabelControl3.Text = "Total"
         Me.LabelControl3.Visible = False
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(70, 8)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(287, 20)
+        Me.LEReportStatus.TabIndex = 7
         '
         'PanelControlBottomLeft
         '
@@ -880,14 +905,6 @@ Partial Class FormPurcReqDet
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
         Me.PanelControlBottomLeft.Size = New System.Drawing.Size(422, 76)
         Me.PanelControlBottomLeft.TabIndex = 171
-        '
-        'LabelControl21
-        '
-        Me.LabelControl21.Location = New System.Drawing.Point(14, 37)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 144
-        Me.LabelControl21.Text = "Status"
         '
         'MENote
         '
@@ -907,33 +924,6 @@ Partial Class FormPurcReqDet
         Me.LabelControl18.TabIndex = 138
         Me.LabelControl18.Text = "Special Instruction"
         '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(66, 34)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(287, 20)
-        Me.LEReportStatus.TabIndex = 7
-        '
-        'BSetShipping
-        '
-        Me.BSetShipping.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BSetShipping.ImageList = Me.LargeImageCollection
-        Me.BSetShipping.Location = New System.Drawing.Point(0, 336)
-        Me.BSetShipping.Name = "BSetShipping"
-        Me.BSetShipping.Size = New System.Drawing.Size(955, 35)
-        Me.BSetShipping.TabIndex = 13
-        Me.BSetShipping.TabStop = False
-        Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.TENoteIA)
@@ -948,55 +938,31 @@ Partial Class FormPurcReqDet
         Me.PanelControl3.Size = New System.Drawing.Size(951, 64)
         Me.PanelControl3.TabIndex = 173
         '
-        'LabelControl4
+        'TENoteIA
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(9, 13)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl4.TabIndex = 8909
-        Me.LabelControl4.Text = "IC Approval"
+        Me.TENoteIA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TENoteIA.EditValue = ""
+        Me.TENoteIA.Location = New System.Drawing.Point(255, 36)
+        Me.TENoteIA.Name = "TENoteIA"
+        Me.TENoteIA.Properties.EditValueChangedDelay = 1
+        Me.TENoteIA.Properties.ReadOnly = True
+        Me.TENoteIA.Size = New System.Drawing.Size(682, 20)
+        Me.TENoteIA.TabIndex = 8914
+        Me.TENoteIA.TabStop = False
         '
-        'LabelControl11
+        'TENoteIC
         '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(9, 39)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl11.TabIndex = 8910
-        Me.LabelControl11.Text = "IA Approval"
-        '
-        'SLEICApproval
-        '
-        Me.SLEICApproval.Enabled = False
-        Me.SLEICApproval.Location = New System.Drawing.Point(72, 10)
-        Me.SLEICApproval.Name = "SLEICApproval"
-        Me.SLEICApproval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEICApproval.Properties.View = Me.GridView2
-        Me.SLEICApproval.Size = New System.Drawing.Size(177, 20)
-        Me.SLEICApproval.TabIndex = 8911
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn11})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "ID Approval"
-        Me.GridColumn7.FieldName = "id_approval"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Approval"
-        Me.GridColumn11.FieldName = "approval"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
+        Me.TENoteIC.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TENoteIC.EditValue = ""
+        Me.TENoteIC.Location = New System.Drawing.Point(255, 10)
+        Me.TENoteIC.Name = "TENoteIC"
+        Me.TENoteIC.Properties.EditValueChangedDelay = 1
+        Me.TENoteIC.Properties.ReadOnly = True
+        Me.TENoteIC.Size = New System.Drawing.Size(682, 20)
+        Me.TENoteIC.TabIndex = 8913
+        Me.TENoteIC.TabStop = False
         '
         'SLEIAApproval
         '
@@ -1030,27 +996,66 @@ Partial Class FormPurcReqDet
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 0
         '
-        'TENoteIC
+        'SLEICApproval
         '
-        Me.TENoteIC.EditValue = ""
-        Me.TENoteIC.Location = New System.Drawing.Point(255, 10)
-        Me.TENoteIC.Name = "TENoteIC"
-        Me.TENoteIC.Properties.EditValueChangedDelay = 1
-        Me.TENoteIC.Properties.ReadOnly = True
-        Me.TENoteIC.Size = New System.Drawing.Size(682, 20)
-        Me.TENoteIC.TabIndex = 8913
-        Me.TENoteIC.TabStop = False
+        Me.SLEICApproval.Enabled = False
+        Me.SLEICApproval.Location = New System.Drawing.Point(72, 10)
+        Me.SLEICApproval.Name = "SLEICApproval"
+        Me.SLEICApproval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEICApproval.Properties.View = Me.GridView2
+        Me.SLEICApproval.Size = New System.Drawing.Size(177, 20)
+        Me.SLEICApproval.TabIndex = 8911
         '
-        'TENoteIA
+        'GridView2
         '
-        Me.TENoteIA.EditValue = ""
-        Me.TENoteIA.Location = New System.Drawing.Point(255, 36)
-        Me.TENoteIA.Name = "TENoteIA"
-        Me.TENoteIA.Properties.EditValueChangedDelay = 1
-        Me.TENoteIA.Properties.ReadOnly = True
-        Me.TENoteIA.Size = New System.Drawing.Size(682, 20)
-        Me.TENoteIA.TabIndex = 8914
-        Me.TENoteIA.TabStop = False
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn11})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID Approval"
+        Me.GridColumn7.FieldName = "id_approval"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Approval"
+        Me.GridColumn11.FieldName = "approval"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(9, 39)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl11.TabIndex = 8910
+        Me.LabelControl11.Text = "IA Approval"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(9, 13)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl4.TabIndex = 8909
+        Me.LabelControl4.Text = "IC Approval"
+        '
+        'BSetShipping
+        '
+        Me.BSetShipping.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BSetShipping.ImageList = Me.LargeImageCollection
+        Me.BSetShipping.Location = New System.Drawing.Point(0, 336)
+        Me.BSetShipping.Name = "BSetShipping"
+        Me.BSetShipping.Size = New System.Drawing.Size(955, 35)
+        Me.BSetShipping.TabIndex = 13
+        Me.BSetShipping.TabStop = False
+        Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
         '
         'FormPurcReqDet
         '
@@ -1106,20 +1111,20 @@ Partial Class FormPurcReqDet
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottomLeft.ResumeLayout(False)
         Me.PanelControlBottomLeft.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
