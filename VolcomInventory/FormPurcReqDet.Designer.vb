@@ -92,7 +92,7 @@ Partial Class FormPurcReqDet
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCIAIC = New DevExpress.XtraEditors.PanelControl()
         Me.TENoteIA = New DevExpress.XtraEditors.TextEdit()
         Me.TENoteIC = New DevExpress.XtraEditors.TextEdit()
         Me.SLEIAApproval = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -144,8 +144,8 @@ Partial Class FormPurcReqDet
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottomLeft.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCIAIC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCIAIC.SuspendLayout()
         CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -826,7 +826,7 @@ Partial Class FormPurcReqDet
         '
         Me.PanelControl5.Controls.Add(Me.PanelControl6)
         Me.PanelControl5.Controls.Add(Me.PanelControlBottomLeft)
-        Me.PanelControl5.Controls.Add(Me.PanelControl3)
+        Me.PanelControl5.Controls.Add(Me.PCIAIC)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl5.Location = New System.Drawing.Point(0, 371)
         Me.PanelControl5.Name = "PanelControl5"
@@ -924,19 +924,20 @@ Partial Class FormPurcReqDet
         Me.LabelControl18.TabIndex = 138
         Me.LabelControl18.Text = "Special Instruction"
         '
-        'PanelControl3
+        'PCIAIC
         '
-        Me.PanelControl3.Controls.Add(Me.TENoteIA)
-        Me.PanelControl3.Controls.Add(Me.TENoteIC)
-        Me.PanelControl3.Controls.Add(Me.SLEIAApproval)
-        Me.PanelControl3.Controls.Add(Me.SLEICApproval)
-        Me.PanelControl3.Controls.Add(Me.LabelControl11)
-        Me.PanelControl3.Controls.Add(Me.LabelControl4)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(2, 78)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(951, 64)
-        Me.PanelControl3.TabIndex = 173
+        Me.PCIAIC.Controls.Add(Me.TENoteIA)
+        Me.PCIAIC.Controls.Add(Me.TENoteIC)
+        Me.PCIAIC.Controls.Add(Me.SLEIAApproval)
+        Me.PCIAIC.Controls.Add(Me.SLEICApproval)
+        Me.PCIAIC.Controls.Add(Me.LabelControl11)
+        Me.PCIAIC.Controls.Add(Me.LabelControl4)
+        Me.PCIAIC.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCIAIC.Location = New System.Drawing.Point(2, 78)
+        Me.PCIAIC.Name = "PCIAIC"
+        Me.PCIAIC.Size = New System.Drawing.Size(951, 64)
+        Me.PCIAIC.TabIndex = 173
+        Me.PCIAIC.Visible = False
         '
         'TENoteIA
         '
@@ -1116,9 +1117,9 @@ Partial Class FormPurcReqDet
         Me.PanelControlBottomLeft.ResumeLayout(False)
         Me.PanelControlBottomLeft.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
+        CType(Me.PCIAIC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCIAIC.ResumeLayout(False)
+        Me.PCIAIC.PerformLayout()
         CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1201,7 +1202,7 @@ Partial Class FormPurcReqDet
     Friend WithEvents CECashPurchase As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CEStoreRequest As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCIAIC As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEICApproval As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn

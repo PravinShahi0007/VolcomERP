@@ -99,6 +99,9 @@ SELECT '3' AS id_approval,'No Action' AS approval"
         If SLEPurcType.EditValue.ToString = "1" Then 'opex
             CEStoreRequest.Visible = True
             LStoreRequest.Visible = True
+            PCIAIC.Visible = False
+        Else
+            PCIAIC.Visible = True
         End If
     End Sub
     '
@@ -383,6 +386,8 @@ SELECT '3' AS id_approval,'No Action' AS approval"
         Else
             'submit
             If SLEPurcType.EditValue.ToString = "1" Then 'opex
+                Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
                 submit_who_prepared(rmt, id_req, id_user_created)
             Else 'capex
                 If is_ic_ia = "1" Then
