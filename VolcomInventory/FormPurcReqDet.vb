@@ -8,6 +8,8 @@
     Dim is_reload As String = "2"
     Dim id_departement As String = "-1"
     '
+    Dim is_submit As String = "-1"
+    '
     Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_report_status()
         is_reload = "1"
@@ -349,13 +351,17 @@
             rmt = "201"
         End If
 
-        FormReportMark.id_report = id_req
-        FormReportMark.report_mark_type = rmt
-        If is_view = "1" Then
-            FormReportMark.is_view = "1"
+        If is_submit = "1" Then
+            FormReportMark.id_report = id_req
+            FormReportMark.report_mark_type = rmt
+            If is_view = "1" Then
+                FormReportMark.is_view = "1"
+            End If
+            FormReportMark.form_origin = Name
+            FormReportMark.ShowDialog()
+        Else
+            'submit by IC
         End If
-        FormReportMark.form_origin = Name
-        FormReportMark.ShowDialog()
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click

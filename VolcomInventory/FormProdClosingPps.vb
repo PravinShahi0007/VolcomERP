@@ -29,6 +29,9 @@ WHERE poc.id_prod_order_close='" & id_pps & "'"
             TECreatedBy.Text = data.Rows(0)("employee_name").ToString
             If data.Rows(0)("is_submit").ToString = "1" Then
                 BMark.Text = "Mark"
+                If data.Rows(0)("id_report_status") = "6" Then
+                    BCancelPropose.Visible = False
+                End If
             Else
                 BMark.Text = "Submit"
             End If
@@ -226,10 +229,6 @@ GROUP BY rd.`id_prod_order_rec`"
         Dispose()
     End Sub
 
-    Private Sub BSave_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
 
     End Sub
@@ -239,7 +238,10 @@ GROUP BY rd.`id_prod_order_rec`"
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
-
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id_pps
+        FormDocumentUpload.report_mark_type = "212"
+        FormDocumentUpload.ShowDialog()
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
@@ -249,7 +251,8 @@ GROUP BY rd.`id_prod_order_rec`"
             execute_non_query(query, True, "", "", "", "")
             'submit
             submit_who_prepared("212", id_pps, id_user)
-            'load det
+            infoCustom("Form submitted")
+            'load form
             load_form()
         Else
             FormReportMark.id_report = id_pps
@@ -258,6 +261,17 @@ GROUP BY rd.`id_prod_order_rec`"
                 FormReportMark.is_view = "1"
             End If
             FormReportMark.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BCancelPropose_Click(sender As Object, e As EventArgs) Handles BCancelPropose.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to cancel this propose?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            'update header
+            Dim query As String = "UPDATE tb_prod_order_close SET id_report_status='5' WHERE id_prod_order_close='" & id_pps & "'"
+            execute_non_query(query, True, "", "", "", "")
+            delete_all_mark_related("212", id_pps)
+            load_form()
         End If
     End Sub
 End Class

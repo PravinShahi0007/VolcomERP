@@ -308,6 +308,9 @@
             FormSetupBudgetCAPEXDet.Close()
         ElseIf report_mark_type = "211" Then
             FormEmpInputAttendanceDet.Close()
+        ElseIf report_mark_type = "212" Then
+            'Prod order closing
+            FormProdClosingPps.Close()
         End If
     End Sub
     Sub show()
@@ -1098,6 +1101,10 @@
         ElseIf report_mark_type = "211" Then
             FormEmpInputAttendanceDet.id = id_report
             FormEmpInputAttendanceDet.ShowDialog()
+        ElseIf report_mark_type = "212" Then
+            'prod order closing
+            FormProdClosingPps.id_pps = id_report
+            FormProdClosingPps.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2003,6 +2010,12 @@
             field_id = "id_emp_attn_input"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "212" Then
+            'prod order closing propose
+            table_name = "tb_prod_order_close"
+            field_id = "id_prod_order_close"
+            field_number = "number"
+            field_date = "created_by"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
