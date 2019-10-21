@@ -40,7 +40,11 @@
     End Sub
 
     Sub view_det()
-        Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_det_note as note,a.report_mark_type,a.id_report FROM tb_a_acc_trans_det a INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc WHERE a.id_acc_trans='" & id_trans & "'"
+        Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description, c.comp_number,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_det_note as note,a.report_mark_type,a.id_report 
+        FROM tb_a_acc_trans_det a 
+        INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
+        LEFT JOIN tb_m_comp c ON c.id_comp = a.id_comp
+        WHERE a.id_acc_trans='" & id_trans & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCJournalDet.DataSource = data
         GVJournalDet.BestFitColumns()

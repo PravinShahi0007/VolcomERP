@@ -41,11 +41,12 @@ Public Class FormBankDepositDet
                 newRow("report_mark_type") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type").ToString
                 newRow("report_mark_type_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "report_mark_type_name").ToString
                 newRow("number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "sales_pos_number").ToString
-                newRow("id_comp") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_comp").ToString
+                newRow("id_comp") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_comp_default").ToString
                 newRow("id_acc") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_acc").ToString
                 newRow("acc_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_name").ToString
                 newRow("acc_description") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_description").ToString
-                newRow("comp_number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
+                newRow("comp_number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number_default").ToString
+                newRow("vendor") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
                 newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec")
                 newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
                 newRow("balance_due") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
@@ -133,7 +134,7 @@ Public Class FormBankDepositDet
         rmt.report_mark_type_name,recd.number,recd.total_rec,recd.`value`,recd.balance_due,recd.note,
         if(recd.id_dc=1, recd.`value`*-1, recd.`value`) AS `value_view`,
         recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description, coa.acc_description, 
-        recd.id_dc,dc.dc_code
+        recd.id_dc,dc.dc_code, recd.vendor
         FROM tb_rec_payment_det recd 
         LEFT JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
         LEFT JOIN tb_m_comp c ON c.id_comp = recd.id_comp
@@ -147,7 +148,7 @@ Public Class FormBankDepositDet
 
     Sub viewBlankJournal()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS report_number, '' AS note, 0 AS `debit`, 0 AS `credit` "
+        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0 AS `debit`, 0 AS `credit` "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDraft.DataSource = data
         GVDraft.DeleteSelectedRows()
@@ -169,6 +170,7 @@ Public Class FormBankDepositDet
             newRowh("no") = jum_row
             newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
             newRowh("acc_description") = dh.Rows(0)("acc_description").ToString
+            newRowh("cc") = "000"
             newRowh("report_number") = ""
             newRowh("note") = MENote.Text
             newRowh("debit") = TETotal.EditValue
@@ -184,6 +186,7 @@ Public Class FormBankDepositDet
                 newRow("no") = jum_row
                 newRow("acc_name") = GVList.GetRowCellValue(i, "acc_name").ToString
                 newRow("acc_description") = GVList.GetRowCellValue(i, "acc_description").ToString
+                newRow("cc") = GVList.GetRowCellValue(i, "comp_number").ToString
                 newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString
                 newRow("note") = GVList.GetRowCellValue(i, "note").ToString
                 If GVList.GetRowCellValue(i, "id_dc").ToString = "1" Then
@@ -318,7 +321,7 @@ Public Class FormBankDepositDet
                     id_deposit = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
-                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc) VALUES"
+                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc, vendor) VALUES"
                     For i As Integer = 0 To GVList.RowCount - 1
                         Dim id_report As String = GVList.GetRowCellValue(i, "id_report").ToString
                         If id_report = "0" Then
@@ -334,11 +337,12 @@ Public Class FormBankDepositDet
                         End If
                         Dim id_acc As String = GVList.GetRowCellValue(i, "id_acc").ToString
                         Dim id_dc As String = GVList.GetRowCellValue(i, "id_dc").ToString
+                        Dim vendor As String = GVList.GetRowCellValue(i, "vendor").ToString
 
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "', " + id_comp + ", " + id_acc + ", " + id_dc + ") "
+                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "', " + id_comp + ", " + id_acc + ", " + id_dc + ", '" + vendor + "') "
                     Next
                     execute_non_query(query, True, "", "", "", "")
 

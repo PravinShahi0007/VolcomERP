@@ -5422,10 +5422,10 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     increase_inc_acc("1")
 
                     'det journal
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
-                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, NULL,  0 AS `qty`,
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, 1,  0 AS `qty`,
                     py.value AS `debit`, 0 AS `credit`,
-                    py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL
+                    py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL, '' AS `vendor`
                     FROM tb_rec_payment py
                     WHERE py.id_rec_payment=" + id_report + " AND py.`value` > 0
                     UNION ALL
@@ -5433,7 +5433,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     IF(pyd.id_dc=1, ABS(pyd.value), 0) AS `debit`, IF(pyd.id_dc=2, pyd.value, 0) AS `credit`,
                     pyd.note AS `note`, 
                     162, py.id_rec_payment, py.number,
-                    pyd.report_mark_type, pyd.id_report, pyd.number
+                    pyd.report_mark_type, pyd.id_report, pyd.number, pyd.vendor
                     FROM tb_rec_payment_det pyd
                     INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
                     INNER JOIN tb_lookup_dc dc ON dc.id_dc = pyd.id_dc
@@ -6385,8 +6385,12 @@ VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Row
             query = String.Format("UPDATE tb_prod_order_close SET id_report_status='{0}' WHERE id_prod_order_close ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             If id_status_reportx = "6" Then
-                'submit debit note
-
+                'update is close
+                Dim query_closing As String = "UPDATE tb_prod_order po 
+INNER JOIN `tb_prod_order_close_det` pocd ON pocd.id_prod_order=po.id_prod_order
+SET po.is_closing_rec='1'
+WHERE pocd.id_prod_order_close = '" & id_report & "'"
+                execute_non_query(query_closing, True, "", "", "", "")
             End If
         End If
 

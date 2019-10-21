@@ -178,7 +178,8 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         ,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days,
         " + var_acc + " AS `id_acc`, coa.acc_name, coa.acc_description,
         IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
-        CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`
+        CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`,
+        cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
         FROM tb_sales_pos sp 
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -195,6 +196,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 	        GROUP BY pyd.id_report, pyd.report_mark_type
         ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
         LEFT JOIN tb_a_acc coa ON coa.id_acc = " + var_acc + "
+        INNER JOIN tb_m_comp cf ON cf.id_comp=1
         WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoiceList.DataSource = data

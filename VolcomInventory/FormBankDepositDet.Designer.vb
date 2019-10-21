@@ -88,6 +88,7 @@ Partial Class FormBankDepositDet
         Me.GridColumndc_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_dc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacc_description = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTCBBM = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -104,6 +105,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnnote_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -663,7 +665,7 @@ Partial Class FormBankDepositDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumnAlreadyReceived, Me.GridColumnReceive, Me.GridColumnReceiveView, Me.GridColumnBBaldue, Me.GridColumnno, Me.GridColumnCOA, Me.GridColumncomp_number, Me.GridColumnid_comp, Me.GridColumnid_acc, Me.GridColumndc_code, Me.GridColumnid_dc, Me.GridColumnacc_description})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumnAlreadyReceived, Me.GridColumnReceive, Me.GridColumnReceiveView, Me.GridColumnBBaldue, Me.GridColumnno, Me.GridColumnCOA, Me.GridColumncomp_number, Me.GridColumnid_comp, Me.GridColumnid_acc, Me.GridColumndc_code, Me.GridColumnid_dc, Me.GridColumnacc_description, Me.GridColumnvendor})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -684,7 +686,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 2
+        Me.GridColumnNumber.VisibleIndex = 3
         Me.GridColumnNumber.Width = 293
         '
         'GridColumn1
@@ -701,7 +703,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 3
+        Me.GridColumnNote.VisibleIndex = 4
         Me.GridColumnNote.Width = 297
         '
         'GridColumnAlreadyReceived
@@ -720,7 +722,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnAlreadyReceived.OptionsColumn.AllowEdit = False
         Me.GridColumnAlreadyReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
         Me.GridColumnAlreadyReceived.Visible = True
-        Me.GridColumnAlreadyReceived.VisibleIndex = 6
+        Me.GridColumnAlreadyReceived.VisibleIndex = 7
         Me.GridColumnAlreadyReceived.Width = 151
         '
         'GridColumnReceive
@@ -761,7 +763,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnReceiveView.FieldName = "value_view"
         Me.GridColumnReceiveView.Name = "GridColumnReceiveView"
         Me.GridColumnReceiveView.Visible = True
-        Me.GridColumnReceiveView.VisibleIndex = 8
+        Me.GridColumnReceiveView.VisibleIndex = 9
         Me.GridColumnReceiveView.Width = 288
         '
         'GridColumnBBaldue
@@ -778,7 +780,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         Me.GridColumnBBaldue.Visible = True
-        Me.GridColumnBBaldue.VisibleIndex = 7
+        Me.GridColumnBBaldue.VisibleIndex = 8
         Me.GridColumnBBaldue.Width = 160
         '
         'GridColumnno
@@ -786,6 +788,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnno.Caption = "No"
         Me.GridColumnno.FieldName = "no"
         Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.OptionsColumn.AllowEdit = False
         Me.GridColumnno.Visible = True
         Me.GridColumnno.VisibleIndex = 0
         Me.GridColumnno.Width = 90
@@ -795,17 +798,19 @@ Partial Class FormBankDepositDet
         Me.GridColumnCOA.Caption = "COA"
         Me.GridColumnCOA.FieldName = "acc_name"
         Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.OptionsColumn.AllowEdit = False
         Me.GridColumnCOA.Visible = True
         Me.GridColumnCOA.VisibleIndex = 1
         Me.GridColumnCOA.Width = 85
         '
         'GridColumncomp_number
         '
-        Me.GridColumncomp_number.Caption = "Customer/Supp"
+        Me.GridColumncomp_number.Caption = "CC"
         Me.GridColumncomp_number.FieldName = "comp_number"
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.OptionsColumn.AllowEdit = False
         Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 4
+        Me.GridColumncomp_number.VisibleIndex = 2
         Me.GridColumncomp_number.Width = 189
         '
         'GridColumnid_comp
@@ -813,20 +818,23 @@ Partial Class FormBankDepositDet
         Me.GridColumnid_comp.Caption = "Id COmp"
         Me.GridColumnid_comp.FieldName = "id_comp"
         Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        Me.GridColumnid_comp.OptionsColumn.AllowEdit = False
         '
         'GridColumnid_acc
         '
         Me.GridColumnid_acc.Caption = "Id Acc"
         Me.GridColumnid_acc.FieldName = "id_acc"
         Me.GridColumnid_acc.Name = "GridColumnid_acc"
+        Me.GridColumnid_acc.OptionsColumn.AllowEdit = False
         '
         'GridColumndc_code
         '
         Me.GridColumndc_code.Caption = "D/K"
         Me.GridColumndc_code.FieldName = "dc_code"
         Me.GridColumndc_code.Name = "GridColumndc_code"
+        Me.GridColumndc_code.OptionsColumn.AllowEdit = False
         Me.GridColumndc_code.Visible = True
-        Me.GridColumndc_code.VisibleIndex = 5
+        Me.GridColumndc_code.VisibleIndex = 6
         Me.GridColumndc_code.Width = 79
         '
         'GridColumnid_dc
@@ -834,12 +842,23 @@ Partial Class FormBankDepositDet
         Me.GridColumnid_dc.Caption = "id_dc"
         Me.GridColumnid_dc.FieldName = "id_dc"
         Me.GridColumnid_dc.Name = "GridColumnid_dc"
+        Me.GridColumnid_dc.OptionsColumn.AllowEdit = False
         '
         'GridColumnacc_description
         '
         Me.GridColumnacc_description.Caption = "COA Description"
         Me.GridColumnacc_description.FieldName = "acc_description"
         Me.GridColumnacc_description.Name = "GridColumnacc_description"
+        Me.GridColumnacc_description.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnvendor
+        '
+        Me.GridColumnvendor.Caption = "Supp/Cust"
+        Me.GridColumnvendor.FieldName = "vendor"
+        Me.GridColumnvendor.Name = "GridColumnvendor"
+        Me.GridColumnvendor.OptionsColumn.AllowEdit = False
+        Me.GridColumnvendor.Visible = True
+        Me.GridColumnvendor.VisibleIndex = 5
         '
         'RICECheckReceive
         '
@@ -915,7 +934,7 @@ Partial Class FormBankDepositDet
         '
         'GVDraft
         '
-        Me.GVDraft.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoDraft, Me.GridColumnacc_name_Draft, Me.GridColumnacc_description_draft, Me.GridColumnreport_number_draft, Me.GridColumnnote_draft, Me.GridColumndebit_draft, Me.GridColumncredit_draft})
+        Me.GVDraft.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoDraft, Me.GridColumnacc_name_Draft, Me.GridColumnacc_description_draft, Me.GridColumnreport_number_draft, Me.GridColumnnote_draft, Me.GridColumndebit_draft, Me.GridColumncredit_draft, Me.GridColumncc})
         Me.GVDraft.GridControl = Me.GCDraft
         Me.GVDraft.Name = "GVDraft"
         Me.GVDraft.OptionsBehavior.Editable = False
@@ -955,7 +974,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnreport_number_draft.FieldName = "report_number"
         Me.GridColumnreport_number_draft.Name = "GridColumnreport_number_draft"
         Me.GridColumnreport_number_draft.Visible = True
-        Me.GridColumnreport_number_draft.VisibleIndex = 3
+        Me.GridColumnreport_number_draft.VisibleIndex = 4
         Me.GridColumnreport_number_draft.Width = 125
         '
         'GridColumnnote_draft
@@ -964,7 +983,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnnote_draft.FieldName = "note"
         Me.GridColumnnote_draft.Name = "GridColumnnote_draft"
         Me.GridColumnnote_draft.Visible = True
-        Me.GridColumnnote_draft.VisibleIndex = 4
+        Me.GridColumnnote_draft.VisibleIndex = 5
         Me.GridColumnnote_draft.Width = 547
         '
         'GridColumndebit_draft
@@ -976,7 +995,7 @@ Partial Class FormBankDepositDet
         Me.GridColumndebit_draft.Name = "GridColumndebit_draft"
         Me.GridColumndebit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumndebit_draft.Visible = True
-        Me.GridColumndebit_draft.VisibleIndex = 5
+        Me.GridColumndebit_draft.VisibleIndex = 6
         Me.GridColumndebit_draft.Width = 267
         '
         'GridColumncredit_draft
@@ -988,8 +1007,16 @@ Partial Class FormBankDepositDet
         Me.GridColumncredit_draft.Name = "GridColumncredit_draft"
         Me.GridColumncredit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumncredit_draft.Visible = True
-        Me.GridColumncredit_draft.VisibleIndex = 6
+        Me.GridColumncredit_draft.VisibleIndex = 7
         Me.GridColumncredit_draft.Width = 314
+        '
+        'GridColumncc
+        '
+        Me.GridColumncc.Caption = "CC"
+        Me.GridColumncc.FieldName = "cc"
+        Me.GridColumncc.Name = "GridColumncc"
+        Me.GridColumncc.Visible = True
+        Me.GridColumncc.VisibleIndex = 3
         '
         'FormBankDepositDet
         '
@@ -1147,4 +1174,6 @@ Partial Class FormBankDepositDet
     Friend WithEvents GridColumnnote_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndebit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnvendor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
 End Class
