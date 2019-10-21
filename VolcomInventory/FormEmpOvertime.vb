@@ -8,7 +8,7 @@
 
         form_load()
 
-        Dim data_date As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE DATE(NOW()) >= ot_periode_start AND DATE(NOW()) <= periode_end AND id_payroll_type = 1", -1, True, "", "", "", "")
+        Dim data_date As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE DATE(NOW()) >= ot_periode_start AND DATE(NOW()) <= ot_periode_end AND id_payroll_type = 1", -1, True, "", "", "", "")
 
         SLUEPayroll.EditValue = data_date.Rows(0)("id_payroll")
         DEStart.EditValue = data_date.Rows(0)("periode_start")
@@ -403,6 +403,25 @@
 
             DEStart.EditValue = SLUEPayrollView.GetRowCellValue(i, "periode_start")
             DEUntil.EditValue = SLUEPayrollView.GetRowCellValue(i, "periode_end")
+        End If
+    End Sub
+
+    Private Sub BBIDuplicate_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIDuplicate.ItemClick
+        Try
+            FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot").ToString
+            FormEmpOvertimeDet.is_hrd = is_hrd
+            FormEmpOvertimeDet.id_duplicate = "1"
+
+            FormEmpOvertimeDet.ShowDialog()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub GVOvertime_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVOvertime.RowClick
+        If e.Button = MouseButtons.Right Then
+            If GVOvertime.GetFocusedRowCellValue("id_report_status").ToString = "5" Then
+                PopupMenu.ShowPopup(Control.MousePosition)
+            End If
         End If
     End Sub
 End Class

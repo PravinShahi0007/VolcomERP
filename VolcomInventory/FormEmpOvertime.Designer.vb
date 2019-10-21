@@ -19,6 +19,7 @@ Partial Class FormEmpOvertime
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpOvertime))
         Me.GCOvertime = New DevExpress.XtraGrid.GridControl()
         Me.GVOvertime = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -38,6 +39,13 @@ Partial Class FormEmpOvertime
         Me.SBViewOD = New DevExpress.XtraEditors.SimpleButton()
         Me.SBViewCA = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEPayroll = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLUEPayrollView = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SLUEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -152,13 +160,13 @@ Partial Class FormEmpOvertime
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.SLUEPayroll = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SLUEPayrollView = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PopupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBIDuplicate = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,6 +174,8 @@ Partial Class FormEmpOvertime
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.SLUEPayroll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEPayrollView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,8 +213,8 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.SuspendLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEPayroll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEPayrollView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCOvertime
@@ -287,7 +297,10 @@ Partial Class FormEmpOvertime
         '
         'GridColumn9
         '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn9.Caption = "Overtime Propose"
+        Me.GridColumn9.ColumnEdit = Me.RIMEMultiline
         Me.GridColumn9.FieldName = "ot_note"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
@@ -373,6 +386,56 @@ Partial Class FormEmpOvertime
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(987, 40)
         Me.PanelControl3.TabIndex = 18
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 14)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl7.TabIndex = 28
+        Me.LabelControl7.Text = "Payroll Period :"
+        '
+        'SLUEPayroll
+        '
+        Me.SLUEPayroll.Location = New System.Drawing.Point(93, 11)
+        Me.SLUEPayroll.Name = "SLUEPayroll"
+        Me.SLUEPayroll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEPayroll.Properties.View = Me.SLUEPayrollView
+        Me.SLUEPayroll.Size = New System.Drawing.Size(200, 20)
+        Me.SLUEPayroll.TabIndex = 27
+        '
+        'SLUEPayrollView
+        '
+        Me.SLUEPayrollView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn51, Me.GridColumn31, Me.GridColumn30})
+        Me.SLUEPayrollView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SLUEPayrollView.Name = "SLUEPayrollView"
+        Me.SLUEPayrollView.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SLUEPayrollView.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.FieldName = "id_payroll"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "GridColumn51"
+        Me.GridColumn51.FieldName = "periode_start"
+        Me.GridColumn51.Name = "GridColumn51"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "GridColumn31"
+        Me.GridColumn31.FieldName = "periode_end"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Payroll Period"
+        Me.GridColumn30.FieldName = "periode"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
         '
         'Label4
         '
@@ -1416,55 +1479,55 @@ Partial Class FormEmpOvertime
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
         '
-        'SLUEPayroll
+        'PopupMenu
         '
-        Me.SLUEPayroll.Location = New System.Drawing.Point(93, 11)
-        Me.SLUEPayroll.Name = "SLUEPayroll"
-        Me.SLUEPayroll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEPayroll.Properties.View = Me.SLUEPayrollView
-        Me.SLUEPayroll.Size = New System.Drawing.Size(200, 20)
-        Me.SLUEPayroll.TabIndex = 27
+        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBIDuplicate)})
+        Me.PopupMenu.Manager = Me.BarManager
+        Me.PopupMenu.Name = "PopupMenu"
         '
-        'SLUEPayrollView
+        'BBIDuplicate
         '
-        Me.SLUEPayrollView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn51, Me.GridColumn31, Me.GridColumn30})
-        Me.SLUEPayrollView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SLUEPayrollView.Name = "SLUEPayrollView"
-        Me.SLUEPayrollView.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SLUEPayrollView.OptionsView.ShowGroupPanel = False
+        Me.BBIDuplicate.Caption = "Duplicate"
+        Me.BBIDuplicate.Id = 0
+        Me.BBIDuplicate.Name = "BBIDuplicate"
         '
-        'GridColumn29
+        'BarManager
         '
-        Me.GridColumn29.FieldName = "id_payroll"
-        Me.GridColumn29.Name = "GridColumn29"
+        Me.BarManager.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager.Form = Me
+        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBIDuplicate})
+        Me.BarManager.MaxItemId = 1
         '
-        'GridColumn30
+        'barDockControlTop
         '
-        Me.GridColumn30.Caption = "Payroll Period"
-        Me.GridColumn30.FieldName = "periode"
-        Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 0
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1008, 0)
         '
-        'LabelControl7
+        'barDockControlBottom
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(12, 14)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(72, 13)
-        Me.LabelControl7.TabIndex = 28
-        Me.LabelControl7.Text = "Payroll Period :"
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
         '
-        'GridColumn31
+        'barDockControlLeft
         '
-        Me.GridColumn31.Caption = "GridColumn31"
-        Me.GridColumn31.FieldName = "periode_end"
-        Me.GridColumn31.Name = "GridColumn31"
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 729)
         '
-        'GridColumn51
+        'barDockControlRight
         '
-        Me.GridColumn51.Caption = "GridColumn51"
-        Me.GridColumn51.FieldName = "periode_start"
-        Me.GridColumn51.Name = "GridColumn51"
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
         '
         'FormEmpOvertime
         '
@@ -1473,6 +1536,10 @@ Partial Class FormEmpOvertime
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.XtraScrollableControl1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "FormEmpOvertime"
         Me.Text = "Overtime"
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1483,6 +1550,8 @@ Partial Class FormEmpOvertime
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.SLUEPayroll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEPayrollView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1521,9 +1590,10 @@ Partial Class FormEmpOvertime
         Me.PCEmployee.PerformLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEPayroll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEPayrollView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -1666,4 +1736,11 @@ Partial Class FormEmpOvertime
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PopupMenu As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBIDuplicate As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class

@@ -1026,6 +1026,7 @@
         ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
+            FormEmpOvertimeDet.is_view = "1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "185" Then
@@ -2588,13 +2589,14 @@
                 )ovh ON ovh.id_prod_order=po.id_prod_order
                 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                 INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-                LEFT JOIN (
-	                SELECT pl.id_prod_order, pl.id_pl_category
-	                FROM tb_pl_prod_order pl
-	                WHERE pl.id_report_status!=5
-	                GROUP BY pl.id_prod_order, pl.id_pl_category
-                ) pl ON pl.id_prod_order = f.id_prod_order AND pl.id_pl_category = f.id_pl_category
-                WHERE f.id_report_status=6 AND po.is_closing_rec=2 AND ISNULL(pl.id_prod_order) "
+                WHERE f.id_report_status=6 AND po.is_closing_rec=2 "
+                'Left Join(
+                ' SELECT pl.id_prod_order, pl.id_pl_category
+                '    From tb_pl_prod_order pl
+                ' Where pl.id_report_status! = 5
+                '    Group By pl.id_prod_order, pl.id_pl_category
+                ') pl ON pl.id_prod_order = f.id_prod_order And pl.id_pl_category = f.id_pl_category
+                'AND ISNULL(pl.id_prod_order) 
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND f." & field_id & " NOT IN " & qb_id_not_include
                 End If

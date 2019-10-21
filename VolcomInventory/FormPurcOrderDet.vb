@@ -674,6 +674,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
         Report.LShipVia.Text = LEShipVia.Text.ToUpper
         Report.LDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        Report.LTerbilang.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TEGrandTotal.EditValue.ToString))
         '
         Report.LTotal.Text = TETotal.Text
         Report.LDiscount.Text = TEDiscTotal.Text
