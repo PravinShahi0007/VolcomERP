@@ -46,6 +46,7 @@ Public Class FormBankDepositDet
                 newRow("acc_name") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_name").ToString
                 newRow("acc_description") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "acc_description").ToString
                 newRow("comp_number") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
+                newRow("vendor") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
                 newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec")
                 newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
                 newRow("balance_due") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
@@ -133,7 +134,7 @@ Public Class FormBankDepositDet
         rmt.report_mark_type_name,recd.number,recd.total_rec,recd.`value`,recd.balance_due,recd.note,
         if(recd.id_dc=1, recd.`value`*-1, recd.`value`) AS `value_view`,
         recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description, coa.acc_description, 
-        recd.id_dc,dc.dc_code
+        recd.id_dc,dc.dc_code, recd.vendor
         FROM tb_rec_payment_det recd 
         LEFT JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
         LEFT JOIN tb_m_comp c ON c.id_comp = recd.id_comp
