@@ -8,8 +8,19 @@
     Dim is_reload As String = "2"
     Dim id_departement As String = "-1"
     '
-    Dim is_submit As String = "-1"
+    Public is_submit As String = "-1"
+    Public is_ic_ia As String = "-1"
     '
+    Sub load_approval_ic_ia()
+        Dim query As String = "SELECT 1 AS id_approval,'No Action' AS approval
+UNION
+SELECT 2 AS id_approval,'No Action' AS approval
+UNION
+SELECT 3 AS id_approval,'No Action' AS approval"
+        viewSearchLookupQuery(SLEICApproval, query, 0, "id_approval", "approval")
+        viewSearchLookupQuery(SLEIAApproval, query, 0, "id_approval", "approval")
+    End Sub
+
     Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_report_status()
         is_reload = "1"
@@ -40,7 +51,6 @@
             BtnAttachment.Visible = False
             '
         Else 'edit
-
             load_item_pil()
             BtnAttachment.Visible = True
             BSetShipping.Visible = False
@@ -59,6 +69,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             If data.Rows.Count > 0 Then
+                id_user_created = data.Rows(0)("id_user_created").ToString
                 TEReqBy.Text = data.Rows(0)("employee_name").ToString
                 id_departement = data.Rows(0)("id_departement").ToString
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
@@ -70,6 +81,12 @@
                 '
                 SLEPurcType.EditValue = data.Rows(0)("id_expense_type").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+                '
+                is_submit = data.Rows(0)("is_submit").ToString
+                SLEICApproval.EditValue = data.Rows(0)("ic_approval").ToString
+                TENoteIC.Text = data.Rows(0)("ic_note").ToString
+                SLEIAApproval.EditValue = data.Rows(0)("ia_approval").ToString
+                TENoteIA.Text = data.Rows(0)("ia_note").ToString
                 '
                 load_item_pil()
                 load_det()
@@ -360,7 +377,18 @@
             FormReportMark.form_origin = Name
             FormReportMark.ShowDialog()
         Else
-            'submit by IC
+            'submit
+            If SLEPurcType.EditValue.ToString = "1" Then 'opex
+                submit_who_prepared(rmt, id_req, id_user_created)
+            Else 'capex
+                If is_ic_ia = "1" Then
+                    FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
+                    FormPurcReqICApproval.id_report = id_req
+                    FormPurcReqICApproval.ShowDialog()
+                Else
+                    warningCustom("Only IA and IC can submit CAPEX request")
+                End If
+            End If
         End If
     End Sub
 

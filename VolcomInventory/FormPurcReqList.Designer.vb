@@ -19,7 +19,7 @@ Partial Class FormPurcReqList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCPurcReq = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPurcReq = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPurcReqNeedSubmit = New DevExpress.XtraGrid.GridControl()
         Me.GVPurcReqNeedSubmit = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -40,8 +40,8 @@ Partial Class FormPurcReqList
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPurcReq.SuspendLayout()
         Me.XTPPurcReq.SuspendLayout()
         CType(Me.GCPurcReqNeedSubmit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPurcReqNeedSubmit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,16 +54,16 @@ Partial Class FormPurcReqList
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'XtraTabControl1
+        'XTCPurcReq
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 48)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPPurcReq
-        Me.XtraTabControl1.Size = New System.Drawing.Size(946, 491)
-        Me.XtraTabControl1.TabIndex = 0
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPurcReq, Me.XtraTabPage2})
+        Me.XTCPurcReq.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPurcReq.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCPurcReq.Location = New System.Drawing.Point(0, 48)
+        Me.XTCPurcReq.Name = "XTCPurcReq"
+        Me.XTCPurcReq.SelectedTabPage = Me.XTPPurcReq
+        Me.XTCPurcReq.Size = New System.Drawing.Size(946, 491)
+        Me.XTCPurcReq.TabIndex = 0
+        Me.XTCPurcReq.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPurcReq, Me.XtraTabPage2})
         '
         'XTPPurcReq
         '
@@ -245,15 +245,15 @@ Partial Class FormPurcReqList
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(946, 539)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCPurcReq)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPurcReqList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "List Purchase Request"
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPurcReq.ResumeLayout(False)
         Me.XTPPurcReq.ResumeLayout(False)
         CType(Me.GCPurcReqNeedSubmit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPurcReqNeedSubmit, System.ComponentModel.ISupportInitialize).EndInit()
@@ -269,7 +269,7 @@ Partial Class FormPurcReqList
 
     End Sub
 
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCPurcReq As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPurcReq As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
