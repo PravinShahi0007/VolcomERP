@@ -40,8 +40,8 @@
 
     Sub viewDetail()
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
-        Dim query As String = "(SELECT 0 AS `id_det`,'1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, pyd.vendor,
-        '' AS `cc`, 'D' AS `type`, py.value AS `amount`
+        Dim query As String = "(SELECT 0 AS `id_det`,'1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, '' AS `vendor`,
+        '000' AS `cc`, 'D' AS `type`, py.value AS `amount`
         FROM tb_rec_payment py
         INNER JOIN tb_a_acc a ON a.id_acc = py.id_acc_pay_rec
         WHERE py.id_rec_payment=" + id + " AND py.`value` > 0)
