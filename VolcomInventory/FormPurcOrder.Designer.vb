@@ -184,6 +184,7 @@ Partial Class FormPurcOrder
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -893,7 +894,7 @@ Partial Class FormPurcOrder
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn61, Me.GridColumn60, Me.GridColumn59, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn89, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn61, Me.GridColumn60, Me.GridColumn59, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsView.ColumnAutoWidth = False
@@ -980,7 +981,7 @@ Partial Class FormPurcOrder
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 7
+        Me.GridColumn5.VisibleIndex = 8
         Me.GridColumn5.Width = 83
         '
         'GridColumn6
@@ -992,7 +993,7 @@ Partial Class FormPurcOrder
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.VisibleIndex = 9
         '
         'GridColumn61
         '
@@ -1007,7 +1008,7 @@ Partial Class FormPurcOrder
         Me.GridColumn61.Name = "GridColumn61"
         Me.GridColumn61.OptionsColumn.AllowEdit = False
         Me.GridColumn61.Visible = True
-        Me.GridColumn61.VisibleIndex = 9
+        Me.GridColumn61.VisibleIndex = 10
         '
         'GridColumn60
         '
@@ -1022,7 +1023,7 @@ Partial Class FormPurcOrder
         Me.GridColumn60.Name = "GridColumn60"
         Me.GridColumn60.OptionsColumn.AllowEdit = False
         Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 10
+        Me.GridColumn60.VisibleIndex = 11
         '
         'GridColumn59
         '
@@ -1037,7 +1038,7 @@ Partial Class FormPurcOrder
         Me.GridColumn59.Name = "GridColumn59"
         Me.GridColumn59.OptionsColumn.AllowEdit = False
         Me.GridColumn59.Visible = True
-        Me.GridColumn59.VisibleIndex = 14
+        Me.GridColumn59.VisibleIndex = 15
         '
         'GridColumn53
         '
@@ -1047,7 +1048,7 @@ Partial Class FormPurcOrder
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.OptionsColumn.AllowEdit = False
         Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 11
+        Me.GridColumn53.VisibleIndex = 12
         Me.GridColumn53.Width = 93
         '
         'RPBRec
@@ -1067,7 +1068,7 @@ Partial Class FormPurcOrder
         Me.GridColumn54.Name = "GridColumn54"
         Me.GridColumn54.OptionsColumn.AllowEdit = False
         Me.GridColumn54.Visible = True
-        Me.GridColumn54.VisibleIndex = 13
+        Me.GridColumn54.VisibleIndex = 14
         Me.GridColumn54.Width = 82
         '
         'GridColumn58
@@ -1079,7 +1080,7 @@ Partial Class FormPurcOrder
         Me.GridColumn58.Name = "GridColumn58"
         Me.GridColumn58.OptionsColumn.AllowEdit = False
         Me.GridColumn58.Visible = True
-        Me.GridColumn58.VisibleIndex = 12
+        Me.GridColumn58.VisibleIndex = 13
         Me.GridColumn58.Width = 96
         '
         'GridColumn57
@@ -1091,7 +1092,7 @@ Partial Class FormPurcOrder
         Me.GridColumn57.Name = "GridColumn57"
         Me.GridColumn57.OptionsColumn.AllowEdit = False
         Me.GridColumn57.Visible = True
-        Me.GridColumn57.VisibleIndex = 16
+        Me.GridColumn57.VisibleIndex = 17
         Me.GridColumn57.Width = 100
         '
         'GridColumn55
@@ -1100,7 +1101,7 @@ Partial Class FormPurcOrder
         Me.GridColumn55.Name = "GridColumn55"
         Me.GridColumn55.OptionsColumn.AllowEdit = False
         Me.GridColumn55.Visible = True
-        Me.GridColumn55.VisibleIndex = 15
+        Me.GridColumn55.VisibleIndex = 16
         Me.GridColumn55.Width = 97
         '
         'GridColumn56
@@ -1110,7 +1111,7 @@ Partial Class FormPurcOrder
         Me.GridColumn56.Name = "GridColumn56"
         Me.GridColumn56.OptionsColumn.AllowEdit = False
         Me.GridColumn56.Visible = True
-        Me.GridColumn56.VisibleIndex = 17
+        Me.GridColumn56.VisibleIndex = 18
         Me.GridColumn56.Width = 86
         '
         'RICEIsCheckPO
@@ -1770,6 +1771,14 @@ Partial Class FormPurcOrder
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
+        'GridColumn89
+        '
+        Me.GridColumn89.Caption = "Approval Status"
+        Me.GridColumn89.FieldName = "report_status"
+        Me.GridColumn89.Name = "GridColumn89"
+        Me.GridColumn89.Visible = True
+        Me.GridColumn89.VisibleIndex = 7
+        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2008,4 +2017,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn81 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BBDropPOItem As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn89 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
