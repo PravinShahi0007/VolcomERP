@@ -1,10 +1,15 @@
 ﻿Public Class FormEmpOvertimeDet
     Public is_hrd As String = "-1"
     Public id As String = "0"
+    Public id_duplicate As String = "-1"
 
     Public id_ot_det As String = "0"
 
     Private is_point_ho As String = "0"
+
+    Public is_view As String = "2"
+
+    Private ot_min_spv As Integer = get_opt_emp_field("ot_min_spv")
 
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -45,18 +50,18 @@
             Dim data_ot As DataTable = execute_query(query_ot, -1, True, "", "", "", "")
 
             TENumber.EditValue = data_ot.Rows(0)("number").ToString
-            TEMemoNumber.EditValue = data_ot.Rows(0)("memo_number").ToString
-            TEMemoFormat.EditValue = data_ot.Rows(0)("memo_number_format").ToString
             LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
             LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", data_ot.Rows(0)("id_departement").ToString)
             TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
             DECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
             TEReportStatus.EditValue = data_ot.Rows(0)("report_status").ToString
+            TEMemoNumber.EditValue = data_ot.Rows(0)("memo_number").ToString
+            TEMemoFormat.EditValue = data_ot.Rows(0)("memo_number_format").ToString
 
             ' load employee
             ' column
             Dim query_ot_det As String = "
-                SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, ot_det.ot_consumption, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
+                SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, departement.is_store, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, ot_det.ot_consumption, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -93,6 +98,38 @@
                 LEDepartement.Properties.ReadOnly = True
             End If
         End If
+
+        'duplicate
+        If id_duplicate = "1" Then
+            If is_hrd = "-1" Then
+                LEDepartement.Properties.ReadOnly = True
+            Else
+                LEDepartement.Properties.ReadOnly = False
+            End If
+
+            LUEOvertimeType.ReadOnly = False
+
+            RISLUEType.ReadOnly = False
+
+            SBEmpDelete.Enabled = True
+            SBEmpAdd.Enabled = True
+            SBMark.Enabled = False
+            SBPrint.Enabled = False
+            SBSave.Enabled = True
+
+            TEMemoNumber.ReadOnly = False
+
+            id = "0"
+            TEReportStatus.EditValue = ""
+            TENumber.EditValue = "[autogenerate]"
+            TECreatedBy.EditValue = get_emp(id_employee_user, "2")
+            DECreatedAt.EditValue = Now
+            TEMemoNumber.EditValue = ""
+        End If
+
+        If is_view = "1" Then
+            SBPrint.Visible = False
+        End If
     End Sub
 
     Sub load_default()
@@ -102,6 +139,7 @@
         data.Columns.Add("id_departement", GetType(String))
         data.Columns.Add("id_departement_sub", GetType(String))
         data.Columns.Add("departement", GetType(String))
+        data.Columns.Add("is_store", GetType(String))
         data.Columns.Add("ot_date", GetType(String))
         data.Columns.Add("employee_code", GetType(String))
         data.Columns.Add("employee_name", GetType(String))
@@ -127,9 +165,6 @@
         ElseIf FormEmpOvertime.last_click = "created_at" Then
             FormEmpOvertime.load_overtime("created_at")
         ElseIf FormEmpOvertime.last_click = "new" Then
-            FormEmpOvertime.DEStart.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-1")
-            FormEmpOvertime.DEUntil.EditValue = Date.Parse(Now.Year.ToString + "-" + Now.Month.ToString + "-" + Date.DaysInMonth(Now.Year, Now.Month).ToString)
-
             FormEmpOvertime.load_overtime("created_at")
         End If
 
@@ -210,7 +245,7 @@
                 Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
 
                 'approval
-                If LEDepartement.EditValue.ToString = "8" Then
+                If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
                     'departement hrd
                     If is_user_head Then
                         'manager hrd submit
@@ -246,6 +281,7 @@
 
         FormReportMark.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "")
         FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
 
         FormReportMark.ShowDialog()
 
@@ -257,6 +293,8 @@
 
         'overtime
         Dim ReportOvertime As New ReportEmpOvertime()
+
+        ReportOvertime.PrintingSystem.ContinuousPageNumbering = False
 
         ReportOvertime.id = id
         ReportOvertime.data = GCEmployee.DataSource
@@ -387,14 +425,41 @@
             If view.GetFocusedRowCellValue("to_salary").ToString = "1" Then
                 clone.RowFilter = ""
             Else
-                If view.GetFocusedRowCellValue("is_day_off").ToString = "1" Then
-                    clone.RowFilter = "[to_salary] = 2"
+                If view.GetFocusedRowCellValue("is_store").ToString = "1" Then
+                    If view.GetFocusedRowCellValue("ot_total_hours") < ot_min_spv Then
+                        clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
+                    Else
+                        clone.RowFilter = "[to_salary] = 2"
+                    End If
                 Else
-                    clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
+                    If view.GetFocusedRowCellValue("is_day_off").ToString = "1" Then
+                        If view.GetFocusedRowCellValue("ot_total_hours") < ot_min_spv Then
+                            clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
+                        Else
+                            clone.RowFilter = "[to_salary] = 2"
+                        End If
+                    Else
+                        clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
+                    End If
                 End If
             End If
 
             edit.Properties.DataSource = clone
+        End If
+
+        Dim att_min As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("ot_date").ToString)
+        Dim att_max As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("ot_date").ToString).AddDays(1)
+
+        If GVEmployee.FocusedColumn.FieldName = "ot_start_time" Then
+            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
+
+            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
+            ADateEdit.Properties.MaxValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 23, 59, 59)
+        ElseIf GVEmployee.FocusedColumn.FieldName = "ot_end_time" Then
+            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
+
+            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
+            ADateEdit.Properties.MaxValue = New DateTime(att_max.Year, att_max.Month, att_max.Day, 23, 59, 59)
         End If
     End Sub
 
@@ -466,5 +531,37 @@
         Else
             ErrorProvider.SetError(TEMemoNumber, "")
         End If
+    End Sub
+
+    Private Sub LEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartement.EditValueChanged
+        generate_memo_format()
+    End Sub
+
+    Sub calculateTotalHours(i As Integer)
+        Dim ot_start As DateTime = GVEmployee.GetRowCellValue(i, "ot_start_time")
+        Dim ot_end As DateTime = GVEmployee.GetRowCellValue(i, "ot_end_time")
+        Dim ot_break As Decimal = GVEmployee.GetRowCellValue(i, "ot_break")
+
+        Dim diff As TimeSpan = ot_end.Subtract(ot_start)
+
+        Dim total As Decimal = 0.0
+
+        total = Math.Round(Math.Round(diff.TotalHours, 1) - ot_break, 1)
+
+        'next day
+        If total < 0 Then
+            total = total + 25
+        End If
+
+        GVEmployee.SetRowCellValue(i, "ot_total_hours", total)
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "")
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

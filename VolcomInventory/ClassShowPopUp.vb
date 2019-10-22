@@ -192,7 +192,7 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase Request
             FormPurcReqDet.Close()
         ElseIf report_mark_type = "138" Then
@@ -308,6 +308,9 @@
             FormSetupBudgetCAPEXDet.Close()
         ElseIf report_mark_type = "211" Then
             FormEmpInputAttendanceDet.Close()
+        ElseIf report_mark_type = "212" Then
+            'Prod order closing
+            FormProdClosingPps.Close()
         End If
     End Sub
     Sub show()
@@ -856,7 +859,7 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase Request
             FormPurcReqDet.is_view = "1"
             FormPurcReqDet.id_req = id_report
@@ -1023,6 +1026,7 @@
         ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
+            FormEmpOvertimeDet.is_view = "1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "185" Then
@@ -1097,6 +1101,10 @@
         ElseIf report_mark_type = "211" Then
             FormEmpInputAttendanceDet.id = id_report
             FormEmpInputAttendanceDet.ShowDialog()
+        ElseIf report_mark_type = "212" Then
+            'prod order closing
+            FormProdClosingPps.id_pps = id_report
+            FormProdClosingPps.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1793,7 +1801,7 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'purchase request
             table_name = "tb_purc_req"
             field_id = "id_purc_req"
@@ -2002,6 +2010,12 @@
             field_id = "id_emp_attn_input"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "212" Then
+            'prod order closing propose
+            table_name = "tb_prod_order_close"
+            field_id = "id_prod_order_close"
+            field_number = "number"
+            field_date = "created_by"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

@@ -575,6 +575,22 @@ Module Common
         End If
     End Sub
 
+    '=>=========== opt code header purchasing =====================
+    Function get_opt_purchasing_field(ByVal field As String)
+        'opt as var choose field
+        Dim ret_var, query As String
+        ret_var = ""
+
+        Try
+            query = "SELECT " & field & " FROM tb_opt_purchasing LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        Catch ex As Exception
+            ret_var = ""
+        End Try
+
+        Return ret_var
+    End Function
+
     '=>=========== opt code header sales =====================
     Function get_opt_sales_field(ByVal field As String)
         'opt as var choose field
@@ -2264,7 +2280,8 @@ Module Common
 
         words.Append(".")
         words.Replace(words(0), Char.ToUpper(words(0)), 0, 1)
-        Return words.ToString()
+
+        Return words.ToString.First().ToString().ToUpper() + words.ToString.Substring(1)
     End Function
 
     Private Sub AddWords(ByVal number As Short, ByVal suffix As String)
