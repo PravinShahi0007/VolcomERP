@@ -40,14 +40,14 @@
 
     Sub viewDetail()
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
-        Dim query As String = "(SELECT 0 AS `id_det`,'1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, 
-        '' AS `vendor`, 'D' AS `type`, py.value AS `amount`
+        Dim query As String = "(SELECT 0 AS `id_det`,'1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, '' AS `vendor`,
+        '000' AS `cc`, 'D' AS `type`, py.value AS `amount`
         FROM tb_rec_payment py
         INNER JOIN tb_a_acc a ON a.id_acc = py.id_acc_pay_rec
         WHERE py.id_rec_payment=" + id + " AND py.`value` > 0)
         UNION ALL
-        (SELECT pyd.id_rec_payment_det AS `id_det`,'2' AS `is_header`, pyd.id_report AS `id_reff`, a.acc_name AS `coa`, pyd.number AS `reff`, pyd.note,
-        comp.comp_number AS `vendor`, dc.dc_code AS `type`, ABS(pyd.`value`) AS `amount` 
+        (SELECT pyd.id_rec_payment_det AS `id_det`,'2' AS `is_header`, pyd.id_report AS `id_reff`, a.acc_name AS `coa`, pyd.number AS `reff`, pyd.note, pyd.vendor,
+        comp.comp_number AS `cc`, dc.dc_code AS `type`, ABS(pyd.`value`) AS `amount` 
         FROM tb_rec_payment_det pyd
         INNER JOIN tb_lookup_dc dc ON dc.id_dc = pyd.id_dc
         INNER JOIN tb_a_acc a ON a.id_acc = pyd.id_acc
@@ -83,8 +83,16 @@
             coa.BackColor = Color.Transparent
             coa.Font = font_row_style
 
+            'cc
+            Dim cc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            cc.Text = data.Rows(i)("cc").ToString
+            cc.Borders = DevExpress.XtraPrinting.BorderSide.None
+            cc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            cc.BackColor = Color.Transparent
+            cc.Font = font_row_style
+
             'reff
-            Dim reff As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            Dim reff As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
             reff.Text = data.Rows(i)("reff").ToString
             reff.Borders = DevExpress.XtraPrinting.BorderSide.None
             reff.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -92,7 +100,7 @@
             reff.Font = font_row_style
 
             'note
-            Dim note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            Dim note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
             note.Text = data.Rows(i)("note").ToString
             note.Borders = DevExpress.XtraPrinting.BorderSide.None
             note.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -100,7 +108,7 @@
             note.Font = font_row_style
 
             'vendor
-            Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
             vendor.Text = data.Rows(i)("vendor").ToString
             vendor.Borders = DevExpress.XtraPrinting.BorderSide.None
             vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -108,7 +116,7 @@
             vendor.Font = font_row_style
 
             'type_rec
-            Dim type_rec As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+            Dim type_rec As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
             type_rec.Text = data.Rows(i)("type").ToString
             type_rec.Borders = DevExpress.XtraPrinting.BorderSide.None
             type_rec.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -116,7 +124,7 @@
             type_rec.Font = font_row_style
 
             'amount
-            Dim amo As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+            Dim amo As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
             amo.Text = Decimal.Parse(data.Rows(i)("amount").ToString).ToString("N2")
             amo.Borders = DevExpress.XtraPrinting.BorderSide.None
             amo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight

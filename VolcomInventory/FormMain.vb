@@ -7618,6 +7618,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             print(FormEmpInputAttendance.GCList, "Input Attendance")
+        ElseIf formName = "FormPurcReqList" Then
+            'purchase request IC
+            FormPurcReqList.print_report()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8403,6 +8406,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'input attendance
             FormEmpInputAttendance.Close()
             FormEmpInputAttendance.Dispose()
+        ElseIf formName = "FormPurcReqList" Then
+            'Purchase Request IC
+            FormPurcReqList.Close()
+            FormPurcReqList.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9248,6 +9255,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendance.view_attendance()
+        ElseIf formName = "FormPurcReqList" Then
+            'Purchase request IC
+            FormPurcReqList.load_req()
         End If
     End Sub
     'Switch
@@ -13418,6 +13428,34 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpInputAttendance.Show()
             FormEmpInputAttendance.WindowState = FormWindowState.Maximized
             FormEmpInputAttendance.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPurcReqIC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReqIC.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReqList.MdiParent = Me
+            FormPurcReqList.step_approve = "1"
+            FormPurcReqList.Show()
+            FormPurcReqList.WindowState = FormWindowState.Maximized
+            FormPurcReqList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPurcReqIA_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReqIA.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReqList.MdiParent = Me
+            FormPurcReqList.step_approve = "2"
+            FormPurcReqList.Show()
+            FormPurcReqList.WindowState = FormWindowState.Maximized
+            FormPurcReqList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
