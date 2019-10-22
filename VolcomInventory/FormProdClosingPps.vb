@@ -111,28 +111,28 @@ GROUP BY rd.`id_prod_order_rec`"
 
     Sub load_claim_reject()
         Dim query As String = "SELECT dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
-                                SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qc_normal,
+                                SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0)) AS qc_normal,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,1) AS p_normal,
-                                SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0)) AS qc_normal_minor,
+                                SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0)) AS qc_normal_minor,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,2) AS p_normal_minor,
-                                SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0)) AS qc_minor,
+                                SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0)) AS qc_minor,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,3) AS p_minor,
-                                SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0)) AS qc_minor_major,
+                                SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0)) AS qc_minor_major,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,4) AS p_minor_major,
-                                SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0)) AS qc_major,
+                                SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0)) AS qc_major,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,5) AS p_major,
-                                SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qc_afkir, 
+                                SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0)) AS qc_afkir, 
                                 get_claim_reject_percent(pocd.`id_claim_reject`,6) AS p_afkir,
-                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100))) AS amo_claim_minor,
-                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100))) AS amo_claim_major,
-                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100))) AS amo_claim_afkir
+                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100))) AS amo_claim_minor,
+                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100))) AS amo_claim_major,
+                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100))) AS amo_claim_afkir
                                 ,rec.qty_rec AS qty_rec,wo_price.qty_order AS qty_order
                                 ,wo_price.comp_name
                                 ,dsg.design_display_name
                                 ,wo_price.prod_order_wo_det_price
                                 FROM tb_prod_order_close_det pocd
-                                INNER JOIN tb_prod_fc fc ON fc.`id_prod_order`=pocd.`id_prod_order`
-                                INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc`
+                                INNER JOIN tb_pl_prod_order fc ON fc.`id_prod_order`=pocd.`id_prod_order`
+                                INNER JOIN tb_pl_prod_order_det fcd ON fcd.`id_pl_prod_order`=fc.`id_pl_prod_order` AND fc.id_report_status='6'
                                 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order`
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
                                 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -164,62 +164,7 @@ GROUP BY rd.`id_prod_order_rec`"
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT pocd.`id_prod_order_close_det`,pocd.`id_prod_order`,IFNULL(rec.qty_rec,0)-IFNULL(retcd.qty,0) AS qty_rec,IFNULL(rec.first_rec_qc,0) AS first_rec_qc,SUM(pod.`prod_order_qty`) AS qty_po
-                                ,qcr.qty_normal,qcr.qty_normal_minor,qcr.qty_minor,qcr.qty_minor_major,qcr.qty_major,qcr.qty_afkir
-                                ,wo_price.currency,wo_price.prod_order_wo_vat,wo_price.prod_order_wo_det_price,wo_price.`prod_order_wo_kurs`
-                                ,DATE_ADD(wo_price.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo_price.prod_order_wo_lead_time) DAY) AS est_rec_date
-                                ,DATE_ADD(wo_price.prod_order_wo_del_date, INTERVAL ko.lead_time_prod DAY) AS est_rec_date_ko
-                                ,IF(DATEDIFF(rec.first_rec_qc,DATE_ADD(wo_price.prod_order_wo_del_date, INTERVAL ko.lead_time_prod DAY))<0,0,DATEDIFF(rec.first_rec_qc,DATE_ADD(wo_price.prod_order_wo_del_date, INTERVAL ko.lead_time_prod DAY))) AS late
-                                ,dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,pocd.`id_claim_late`,pocd.`id_claim_reject`
-                                ,wo_price.comp_name
-                                FROM tb_prod_order_close_det pocd
-                                INNER JOIN tb_prod_order_close poc ON poc.`id_prod_order_close`=pocd.`id_prod_order_close`
-                                INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order`=pocd.`id_prod_order`
-                                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order` 
-                                INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-                                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-                                LEFT JOIN (
-	                                SELECT rec.`id_prod_order`,rec.`id_prod_order_rec`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,MIN(rec.`arrive_date`) AS first_rec_qc
-	                                FROM tb_prod_order_rec rec
-	                                INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec`=rec.`id_prod_order_rec` AND rec.`id_report_status`='6'
-	                                GROUP BY rec.id_prod_order
-                                ) rec ON rec.`id_prod_order`=pocd.`id_prod_order`
-                                LEFT JOIN
-                                (
-	                                SELECT fc.`id_prod_order`,SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qty_normal,
-	                                SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0)) AS qty_normal_minor,
-	                                SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0)) AS qty_minor,
-	                                SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0)) AS qty_minor_major,
-	                                SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0)) AS qty_major,
-	                                SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qty_afkir 
-	                                FROM tb_prod_fc_det fcd
-	                                INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcd.`id_prod_fc` AND fc.`id_report_status`=6
-	                                WHERE NOT ISNULL(fc.`id_pl_category_sub`)
-	                                GROUP BY fc.`id_prod_order`
-                                )qcr ON qcr.id_prod_order=po.`id_prod_order`
-                                LEFT JOIN (
-	                                SELECT comp.comp_name,wo.id_prod_order, wo.prod_order_wo_del_date, wo.prod_order_wo_lead_time,wo.id_ovh_price, cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, wo.`prod_order_wo_kurs`
-	                                FROM tb_prod_order_wo wo
-	                                INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
-	                                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
-	                                INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
-                                    LEFT JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
-                                    LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
-                                    LEFT JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
-	                                WHERE wo.is_main_vendor=1 
-	                                GROUP BY wo.id_prod_order_wo
-                                ) wo_price ON wo_price.id_prod_order=po.id_prod_order
-                                LEFT JOIN (
-	                                SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
-		                                SELECT * FROM tb_prod_order_ko_det
-		                                ORDER BY id_prod_order_ko_det DESC
-	                                )ko GROUP BY ko.id_prod_order
-                                ) ko ON ko.id_prod_order=po.id_prod_order
-                                
-                                LEFT JOIN tb_prod_claim_return_det retcd ON retcd.`id_prod_order_det`=pod.`id_prod_order_det`
-                                LEFT JOIN tb_prod_claim_return retc ON retc.`id_prod_claim_return`=retcd.`id_prod_claim_return` AND retc.`id_report_status`='6'
-                                WHERE pocd.`id_prod_order_close`='" & id_pps & "'
-                                GROUP BY pocd.`id_prod_order`"
+        Dim query As String = ""
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
         GVProd.BestFitColumns()
@@ -230,7 +175,9 @@ GROUP BY rd.`id_prod_order_rec`"
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
 
+        End If
     End Sub
 
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
