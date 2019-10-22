@@ -52,7 +52,6 @@ SELECT '3' AS id_approval,'No Action' AS approval"
             BtnAttachment.Visible = False
             '
         Else 'edit
-            load_item_pil()
             BtnAttachment.Visible = True
             BSetShipping.Visible = False
             DERequirementDate.Properties.ReadOnly = True
@@ -61,7 +60,7 @@ SELECT '3' AS id_approval,'No Action' AS approval"
             '
             GVItemList.OptionsBehavior.Editable = False
             '
-            Dim query As String = "SELECT req.id_user_created,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,emp.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status 
+            Dim query As String = "SELECT req.id_user_created,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,req.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status 
                                     FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
