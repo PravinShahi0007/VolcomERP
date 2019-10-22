@@ -77,6 +77,7 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCBreakHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BGCTotalHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BGCActualHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCPointOt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITENote = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -89,7 +90,6 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIdDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCIsDayOff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCIsStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BGCActualHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCOtPotention = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
@@ -124,6 +124,7 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.SBFill = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,6 +166,7 @@ Partial Class FormEmpOvertimeVerification
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBFill)
         Me.PanelControl1.Controls.Add(Me.LEDepartement)
         Me.PanelControl1.Controls.Add(Me.LabelControl8)
         Me.PanelControl1.Controls.Add(Me.LabelControl7)
@@ -783,6 +785,18 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCTotalHours.Visible = True
         Me.BGCTotalHours.Width = 72
         '
+        'BGCActualHours
+        '
+        Me.BGCActualHours.Caption = "Actual (hours)"
+        Me.BGCActualHours.ColumnEdit = Me.RITEHours
+        Me.BGCActualHours.DisplayFormat.FormatString = "N1"
+        Me.BGCActualHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BGCActualHours.FieldName = "total_hours"
+        Me.BGCActualHours.Name = "BGCActualHours"
+        Me.BGCActualHours.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BGCActualHours.Visible = True
+        Me.BGCActualHours.Width = 78
+        '
         'BGCPointOt
         '
         Me.BGCPointOt.Caption = "Point"
@@ -890,18 +904,6 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIsStore.Name = "BGCIsStore"
         Me.BGCIsStore.OptionsColumn.AllowEdit = False
         Me.BGCIsStore.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'BGCActualHours
-        '
-        Me.BGCActualHours.Caption = "Actual (hours)"
-        Me.BGCActualHours.ColumnEdit = Me.RITEHours
-        Me.BGCActualHours.DisplayFormat.FormatString = "N1"
-        Me.BGCActualHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BGCActualHours.FieldName = "total_hours"
-        Me.BGCActualHours.Name = "BGCActualHours"
-        Me.BGCActualHours.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.BGCActualHours.Visible = True
-        Me.BGCActualHours.Width = 78
         '
         'BGCOtPotention
         '
@@ -1268,6 +1270,15 @@ Partial Class FormEmpOvertimeVerification
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.TEReportStatus.TabIndex = 21
         '
+        'SBFill
+        '
+        Me.SBFill.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBFill.Location = New System.Drawing.Point(921, 90)
+        Me.SBFill.Name = "SBFill"
+        Me.SBFill.Size = New System.Drawing.Size(75, 23)
+        Me.SBFill.TabIndex = 31
+        Me.SBFill.Text = "Fill"
+        '
         'FormEmpOvertimeVerification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1428,4 +1439,5 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents RIDEDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RITEHours As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents BGCActualHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBFill As DevExpress.XtraEditors.SimpleButton
 End Class

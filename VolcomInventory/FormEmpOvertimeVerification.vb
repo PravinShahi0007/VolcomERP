@@ -46,7 +46,7 @@
 
         'propose
         Dim query_pro As String = "
-            SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, departement.is_store, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, ot_det.ot_consumption, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
+            SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, departement.is_store, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, ot_det.ot_consumption, ot_det.conversion_type, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
             FROM tb_ot_det AS ot_det
             LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
             LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -108,7 +108,7 @@
             'attendance
             Dim query_att As String = "
                 SELECT * FROM (
-                    SELECT sch.id_employee, emp.id_departement, dep_sub.id_departement_sub, dep.departement, sch.date, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_level, emp.id_employee_status, sts.employee_status, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search.ToString + "' AND id_religion IN (0, IF(dep.is_store = 1, 0, emp.id_religion))) IS NULL), 2, 1) AS is_day_off, IF((SELECT to_salary) = 1, 1, IF((SELECT is_day_off) = 1, 2, IF((SELECT is_store) = 1, 2, 3))) AS conversion_type, IF(" + LUEOvertimeType.GetColumnValue("is_point_ho").ToString() + " = 1, 2, dep.is_store) AS is_store, DATE_FORMAT(IF(sch.id_schedule_type = '1', IFNULL(at_input.time_in, MIN(at_in.datetime)), IFNULL(at_input.time_in, MIN(at_in_hol.datetime))), '%d %M %Y %H:%i:%s') AS start_work_att, DATE_FORMAT(IF(sch.id_schedule_type = '1', IFNULL(at_input.time_out, MAX(at_out.datetime)), IFNULL(at_input.time_out, MAX(at_out_hol.datetime))), '%d %M %Y %H:%i:%s') AS end_work_att, '' AS start_work_ot, '' AS end_work_ot, 0.0 AS break_hours, 0.0 AS ot_hours, 0.0 AS total_hours, 0.0 AS point_ot, '' AS ot_note, 'no' AS is_valid, sch.id_schedule_type, DATE_FORMAT(sch.in, '%d %M %Y %H:%i:%s') AS `in`, DATE_FORMAT(sch.out, '%d %M %Y %H:%i:%s') AS `out`, 2 AS ot_potention
+                    SELECT sch.id_employee, emp.id_departement, dep_sub.id_departement_sub, dep.departement, sch.date, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_level, emp.id_employee_status, sts.employee_status, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1 OR sch.id_schedule_type IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search.ToString + "' AND id_religion IN (0, IF(dep.is_store = 1, 0, emp.id_religion))) IS NULL), 2, 1) AS is_day_off, IF((SELECT to_salary) = 1, 1, IF((SELECT is_day_off) = 1, 2, IF((SELECT is_store) = 1, 2, 3))) AS conversion_type, IF(" + LUEOvertimeType.GetColumnValue("is_point_ho").ToString() + " = 1, 2, dep.is_store) AS is_store, DATE_FORMAT(IF(sch.id_schedule_type = '1', IFNULL(at_input.time_in, MIN(at_in.datetime)), IFNULL(at_input.time_in, MIN(at_in_hol.datetime))), '%d %M %Y %H:%i:%s') AS start_work_att, DATE_FORMAT(IF(sch.id_schedule_type = '1', IFNULL(at_input.time_out, MAX(at_out.datetime)), IFNULL(at_input.time_out, MAX(at_out_hol.datetime))), '%d %M %Y %H:%i:%s') AS end_work_att, '' AS start_work_ot, '' AS end_work_ot, 0.0 AS break_hours, 0.0 AS ot_hours, 0.0 AS total_hours, 0.0 AS point_ot, '' AS ot_note, 'no' AS is_valid, sch.id_schedule_type, DATE_FORMAT(sch.in, '%d %M %Y %H:%i:%s') AS `in`, DATE_FORMAT(sch.out, '%d %M %Y %H:%i:%s') AS `out`, 2 AS ot_potention
                     FROM tb_emp_schedule AS sch
                     LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
                     LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement 
@@ -295,14 +295,22 @@
                                         GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
                                     End If
                                 End If
-
-                                'show employee not attendance
-                                If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
-                                    GVAttendance.SetRowCellValue(i, "ot_potention", "1")
-                                End If
                             End If
                         Next
                     End If
+                End If
+            Next
+
+            'show not attendance
+            For i = 0 To GVAttendance.RowCount - 1
+                If GVAttendance.IsValidRowHandle(i) Then
+                    For j = 0 To GVEmployee.RowCount - 1
+                        If GVEmployee.IsValidRowHandle(j) Then
+                            If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
+                                GVAttendance.SetRowCellValue(i, "ot_potention", "1")
+                            End If
+                        End If
+                    Next
                 End If
             Next
 
@@ -352,7 +360,7 @@
 
             'detail
             Dim query_det As String = "
-                SELECT vrd.id_employee, vrd.id_departement, vrd.id_departement_sub, d.departement, vr.ot_date AS date, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, sts.employee_status, vrd.to_salary, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = vr.ot_date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, vrd.conversion_type, IF(" + LUEOvertimeType.GetColumnValue("is_point_ho").ToString() + " = 1, 2, d.is_store) AS is_store, vrd.start_work_att, vrd.end_work_att, DATE_FORMAT(vrd.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(vrd.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, vrd.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, vrd.start_work_ot, vrd.end_work_ot) / 60) - vrd.break_hours, 1) AS ot_hours, vrd.total_hours, 0.0 AS point_ot, vrd.ot_note, 'yes' AS is_valid, sch.id_schedule_type, DATE_FORMAT(sch.in, '%d %M %Y %H:%i:%s') AS `in`, DATE_FORMAT(sch.out, '%d %M %Y %H:%i:%s') AS `out`, 1 AS ot_potention
+                SELECT vrd.id_employee, vrd.id_departement, vrd.id_departement_sub, d.departement, vr.ot_date AS date, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, sts.employee_status, vrd.to_salary, IF((sch.id_schedule_type = 1 OR sch.id_schedule_type IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = vr.ot_date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, vrd.conversion_type, IF(" + LUEOvertimeType.GetColumnValue("is_point_ho").ToString() + " = 1, 2, d.is_store) AS is_store, vrd.start_work_att, vrd.end_work_att, DATE_FORMAT(vrd.start_work_ot, '%d %M %Y %H:%i:%s') AS start_work_ot, DATE_FORMAT(vrd.end_work_ot, '%d %M %Y %H:%i:%s') AS end_work_ot, vrd.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, vrd.start_work_ot, vrd.end_work_ot) / 60) - vrd.break_hours, 1) AS ot_hours, vrd.total_hours, 0.0 AS point_ot, vrd.ot_note, 'yes' AS is_valid, sch.id_schedule_type, DATE_FORMAT(sch.in, '%d %M %Y %H:%i:%s') AS `in`, DATE_FORMAT(sch.out, '%d %M %Y %H:%i:%s') AS `out`, 1 AS ot_potention
                 FROM tb_ot_verification_det AS vrd
                 LEFT JOIN tb_ot_verification AS vr ON vrd.id_ot_verification = vr.id_ot_verification
                 LEFT JOIN tb_m_employee AS e ON vrd.id_employee = e.id_employee
@@ -373,11 +381,7 @@
             RISLUEType2.ReadOnly = True
 
             If data_ver.Rows(0)("id_report_status").ToString <> "6" Then
-                If is_hrd = "-1" Then
-                    SBReset.Visible = True
-                Else
-                    SBReset.Visible = False
-                End If
+                SBReset.Visible = True
             Else
                 SBReset.Visible = False
             End If
@@ -578,7 +582,7 @@
         Dim query As String = ""
 
         query = "
-            SELECT vr.id_payroll, vrd.id_employee, ot.id_ot_type, vrd.start_work_ot AS ot_start, vrd.end_work_ot AS ot_end, vrd.break_hours AS total_break, vrd.total_hours AS total_hour, 0.0 AS total_point, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = vr.ot_date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, ott.ot_point_wages AS wages_per_point, vrd.ot_note AS note, vrd.id_ot_verification_det, py.periode_end, vrd.to_salary, vrd.conversion_type, IF(ott.is_point_ho = 1, 2, d.is_store) AS is_store
+            SELECT vr.id_payroll, vrd.id_employee, ot.id_ot_type, vrd.start_work_ot AS ot_start, vrd.end_work_ot AS ot_end, vrd.break_hours AS total_break, vrd.total_hours AS total_hour, 0.0 AS total_point, IF((sch.id_schedule_type = 1 OR sch.id_schedule_type IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = vr.ot_date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, ott.ot_point_wages AS wages_per_point, vrd.ot_note AS note, vrd.id_ot_verification_det, py.periode_end, vrd.to_salary, vrd.conversion_type, IF(ott.is_point_ho = 1, 2, d.is_store) AS is_store
             FROM tb_ot_verification_det AS vrd
             LEFT JOIN tb_ot_verification AS vr ON vrd.id_ot_verification = vr.id_ot_verification
             LEFT JOIN tb_m_employee AS e ON vrd.id_employee = e.id_employee
@@ -752,5 +756,44 @@
                 End Try
             End If
         End If
+    End Sub
+
+    Private Sub SBFill_Click(sender As Object, e As EventArgs) Handles SBFill.Click
+        GVAttendance.ActiveFilterString = ""
+
+        For i = 0 To GVAttendance.RowCount - 1
+            If GVAttendance.IsValidRowHandle(i) Then
+                For j = 0 To GVEmployee.RowCount - 1
+                    If GVEmployee.IsValidRowHandle(j) Then
+                        If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
+                            Dim fill As Boolean = False
+
+                            GVAttendance.SetRowCellValue(i, "ot_potention", "1")
+
+                            If GVAttendance.GetRowCellValue(i, "start_work_ot").ToString = "" Then
+                                GVAttendance.SetRowCellValue(i, "start_work_ot", GVEmployee.GetRowCellValue(j, "ot_start_time"))
+
+                                fill = True
+                            End If
+
+                            If GVAttendance.GetRowCellValue(i, "end_work_ot").ToString = "" Then
+                                GVAttendance.SetRowCellValue(i, "end_work_ot", GVEmployee.GetRowCellValue(j, "ot_end_time"))
+
+                                fill = True
+                            End If
+
+                            If fill Then
+                                GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
+                            End If
+                        End If
+                    End If
+                Next
+            End If
+        Next
+
+        GVAttendance.ActiveFilterString = "[ot_potention] = '1'"
+
+        GVAttendance.BestFitColumns()
     End Sub
 End Class
