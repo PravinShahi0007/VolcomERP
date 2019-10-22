@@ -35,6 +35,7 @@ Partial Public Class ReportProdClose
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell24 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -50,7 +51,7 @@ Partial Public Class ReportProdClose
         Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell24 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell26 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -65,6 +66,7 @@ Partial Public Class ReportProdClose
         Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell25 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +95,7 @@ Partial Public Class ReportProdClose
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 28.0!
+        Me.BottomMargin.HeightF = 22.79167!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -119,7 +121,7 @@ Partial Public Class ReportProdClose
         '
         'XrTableRow1
         '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell2, Me.XrTableCell4, Me.XrTableCell3, Me.XrTableCell5, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell24, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11})
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell2, Me.XrTableCell4, Me.XrTableCell3, Me.XrTableCell5, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell24, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XrTableCell26})
         Me.XrTableRow1.Name = "XrTableRow1"
         Me.XrTableRow1.Weight = 1.0R
         '
@@ -134,13 +136,13 @@ Partial Public Class ReportProdClose
         Me.XrTableCell2.Multiline = True
         Me.XrTableCell2.Name = "XrTableCell2"
         Me.XrTableCell2.Text = "FGPO" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Number"
-        Me.XrTableCell2.Weight = 0.25714285947838605R
+        Me.XrTableCell2.Weight = 0.14285714696985549R
         '
         'XrTableCell4
         '
         Me.XrTableCell4.Name = "XrTableCell4"
         Me.XrTableCell4.Text = "Vendor"
-        Me.XrTableCell4.Weight = 0.57142857454260976R
+        Me.XrTableCell4.Weight = 0.42857143390694658R
         '
         'XrTableCell3
         '
@@ -154,7 +156,7 @@ Partial Public Class ReportProdClose
         Me.XrTableCell5.Name = "XrTableCell5"
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "Order Qty"
-        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell5.Weight = 0.14285713745418682R
         '
         'XrTableCell6
@@ -163,16 +165,16 @@ Partial Public Class ReportProdClose
         Me.XrTableCell6.Name = "XrTableCell6"
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "Receiving Qty"
-        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 0.17142856570826132R
+        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell6.Weight = 0.14285713758112867R
         '
         'XrTableCell7
         '
         Me.XrTableCell7.Name = "XrTableCell7"
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "Unit Price"
-        Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell7.Weight = 0.3142857048166573R
+        Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell7.Weight = 0.19999999230812671R
         '
         'XrTableCell8
         '
@@ -180,32 +182,40 @@ Partial Public Class ReportProdClose
         Me.XrTableCell8.Name = "XrTableCell8"
         Me.XrTableCell8.StylePriority.UseTextAlignment = False
         Me.XrTableCell8.Text = "QC " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Normal"
-        Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell8.Weight = 0.17142856570826132R
+        Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell8.Weight = 0.14285713758112872R
+        '
+        'XrTableCell24
+        '
+        Me.XrTableCell24.Name = "XrTableCell24"
+        Me.XrTableCell24.StylePriority.UseTextAlignment = False
+        Me.XrTableCell24.Text = "QC Reject Minor"
+        Me.XrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell24.Weight = 0.14285713758112861R
         '
         'XrTableCell9
         '
         Me.XrTableCell9.Name = "XrTableCell9"
         Me.XrTableCell9.StylePriority.UseTextAlignment = False
         Me.XrTableCell9.Text = "QC Reject Major"
-        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell9.Weight = 0.17142856570826129R
+        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell9.Weight = 0.14285713758112861R
         '
         'XrTableCell10
         '
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
-        Me.XrTableCell10.Text = "Total Claim Reject"
-        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell10.Weight = 0.25714284856239195R
+        Me.XrTableCell10.Text = "Amount Claim Reject"
+        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell10.Weight = 0.3428571327754959R
         '
         'XrTableCell11
         '
         Me.XrTableCell11.Name = "XrTableCell11"
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
-        Me.XrTableCell11.Text = "Total Claim Late"
-        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 0.28571427294077756R
+        Me.XrTableCell11.Text = "Amount Claim Late"
+        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell11.Weight = 0.34285712902674892R
         '
         'LPONumber
         '
@@ -218,6 +228,7 @@ Partial Public Class ReportProdClose
         Me.LPONumber.StylePriority.UseBorders = False
         Me.LPONumber.StylePriority.UseFont = False
         Me.LPONumber.StylePriority.UseTextAlignment = False
+        Me.LPONumber.Text = "[prod_close_number]"
         Me.LPONumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LDateCreated
@@ -231,6 +242,7 @@ Partial Public Class ReportProdClose
         Me.LDateCreated.StylePriority.UseBorders = False
         Me.LDateCreated.StylePriority.UseFont = False
         Me.LDateCreated.StylePriority.UseTextAlignment = False
+        Me.LDateCreated.Text = "[date_created]"
         Me.LDateCreated.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel7
@@ -340,13 +352,13 @@ Partial Public Class ReportProdClose
         Me.XrTableCell23.Visible = False
         Me.XrTableCell23.Weight = 2.99999986405489R
         '
-        'XrTableCell24
+        'XrTableCell26
         '
-        Me.XrTableCell24.Name = "XrTableCell24"
-        Me.XrTableCell24.StylePriority.UseTextAlignment = False
-        Me.XrTableCell24.Text = "QC Reject Minor"
-        Me.XrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell24.Weight = 0.17142856570826132R
+        Me.XrTableCell26.Name = "XrTableCell26"
+        Me.XrTableCell26.StylePriority.UseTextAlignment = False
+        Me.XrTableCell26.Text = "Total Claim"
+        Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell26.Weight = 0.34285712902674892R
         '
         'XrTable2
         '
@@ -363,7 +375,7 @@ Partial Public Class ReportProdClose
         '
         'XrTableRow2
         '
-        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell12, Me.XrTableCell13, Me.XrTableCell14, Me.XrTableCell15, Me.XrTableCell16, Me.XrTableCell17, Me.XrTableCell18, Me.XrTableCell19, Me.XrTableCell20, Me.XrTableCell21, Me.XrTableCell22, Me.XrTableCell25})
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell12, Me.XrTableCell13, Me.XrTableCell14, Me.XrTableCell15, Me.XrTableCell16, Me.XrTableCell17, Me.XrTableCell18, Me.XrTableCell19, Me.XrTableCell20, Me.XrTableCell21, Me.XrTableCell22, Me.XrTableCell25, Me.XrTableCell27})
         Me.XrTableRow2.Name = "XrTableRow2"
         Me.XrTableRow2.Weight = 1.0R
         '
@@ -376,12 +388,12 @@ Partial Public Class ReportProdClose
         '
         Me.XrTableCell13.Multiline = True
         Me.XrTableCell13.Name = "XrTableCell13"
-        Me.XrTableCell13.Weight = 0.25714285947838605R
+        Me.XrTableCell13.Weight = 0.14285714696985549R
         '
         'XrTableCell14
         '
         Me.XrTableCell14.Name = "XrTableCell14"
-        Me.XrTableCell14.Weight = 0.57142857454260976R
+        Me.XrTableCell14.Weight = 0.42857143390694658R
         '
         'XrTableCell15
         '
@@ -393,7 +405,7 @@ Partial Public Class ReportProdClose
         Me.XrTableCell16.Multiline = True
         Me.XrTableCell16.Name = "XrTableCell16"
         Me.XrTableCell16.StylePriority.UseTextAlignment = False
-        Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell16.Weight = 0.14285713745418682R
         '
         'XrTableCell17
@@ -401,56 +413,64 @@ Partial Public Class ReportProdClose
         Me.XrTableCell17.Multiline = True
         Me.XrTableCell17.Name = "XrTableCell17"
         Me.XrTableCell17.StylePriority.UseTextAlignment = False
-        Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell17.Weight = 0.17142856570826132R
+        Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell17.Weight = 0.14285713758112867R
         '
         'XrTableCell18
         '
         Me.XrTableCell18.Name = "XrTableCell18"
         Me.XrTableCell18.StylePriority.UseTextAlignment = False
-        Me.XrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell18.Weight = 0.3142857048166573R
+        Me.XrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell18.Weight = 0.19999999230812671R
         '
         'XrTableCell19
         '
+        Me.XrTableCell19.Multiline = True
         Me.XrTableCell19.Name = "XrTableCell19"
         Me.XrTableCell19.StylePriority.UseTextAlignment = False
-        Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell19.Weight = 0.17142856570826132R
+        Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell19.Weight = 0.14285713758112872R
         '
         'XrTableCell20
         '
         Me.XrTableCell20.Name = "XrTableCell20"
         Me.XrTableCell20.StylePriority.UseTextAlignment = False
-        Me.XrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell20.Weight = 0.17142856570826132R
+        Me.XrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell20.Weight = 0.14285713758112861R
         '
         'XrTableCell21
         '
         Me.XrTableCell21.Name = "XrTableCell21"
         Me.XrTableCell21.StylePriority.UseTextAlignment = False
-        Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell21.Weight = 0.17142856570826129R
+        Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell21.Weight = 0.14285713758112861R
         '
         'XrTableCell22
         '
         Me.XrTableCell22.Name = "XrTableCell22"
         Me.XrTableCell22.StylePriority.UseTextAlignment = False
-        Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell22.Weight = 0.25714284856239195R
+        Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell22.Weight = 0.3428571327754959R
         '
         'XrTableCell25
         '
         Me.XrTableCell25.Name = "XrTableCell25"
         Me.XrTableCell25.StylePriority.UseTextAlignment = False
-        Me.XrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell25.Weight = 0.28571427294077756R
+        Me.XrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell25.Weight = 0.34285712902674892R
+        '
+        'XrTableCell27
+        '
+        Me.XrTableCell27.Name = "XrTableCell27"
+        Me.XrTableCell27.StylePriority.UseTextAlignment = False
+        Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell27.Weight = 0.34285712902674892R
         '
         'ReportProdClose
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(50, 69, 24, 28)
+        Me.Margins = New System.Drawing.Printing.Margins(50, 69, 24, 23)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -493,6 +513,7 @@ Partial Public Class ReportProdClose
     Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell23 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell24 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell26 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
@@ -507,4 +528,5 @@ Partial Public Class ReportProdClose
     Friend WithEvents XrTableCell21 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell22 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell25 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
 End Class
