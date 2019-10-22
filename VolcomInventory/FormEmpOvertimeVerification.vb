@@ -476,6 +476,9 @@
                 For i = 0 To GVAttendance.RowCount - 1
                     If GVAttendance.IsValidRowHandle(i) Then
                         If GVAttendance.GetRowCellValue(i, "is_valid").ToString = "yes" Then
+                            Dim start_work_att As String = ""
+                            Dim end_work_att As String = ""
+
                             Dim id_employee As String = GVAttendance.GetRowCellValue(i, "id_employee").ToString
                             Dim id_departement As String = GVAttendance.GetRowCellValue(i, "id_departement").ToString
                             Dim id_departement_sub As String = GVAttendance.GetRowCellValue(i, "id_departement_sub").ToString
@@ -483,8 +486,11 @@
                             Dim id_employee_status As String = GVAttendance.GetRowCellValue(i, "id_employee_status").ToString
                             Dim to_salary As String = GVAttendance.GetRowCellValue(i, "to_salary").ToString
                             Dim conversion_type As String = GVAttendance.GetRowCellValue(i, "conversion_type").ToString
-                            Dim start_work_att As String = Date.Parse(GVAttendance.GetRowCellValue(i, "start_work_att").ToString).ToString("yyyy-MM-dd HH:mm:ss")
-                            Dim end_work_att As String = Date.Parse(GVAttendance.GetRowCellValue(i, "end_work_att").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                            Try
+                                start_work_att = Date.Parse(GVAttendance.GetRowCellValue(i, "start_work_att").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                                end_work_att = Date.Parse(GVAttendance.GetRowCellValue(i, "end_work_att").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                            Catch ex As Exception
+                            End Try
                             Dim start_work_ot As String = Date.Parse(GVAttendance.GetRowCellValue(i, "start_work_ot").ToString).ToString("yyyy-MM-dd HH:mm:ss")
                             Dim end_work_ot As String = Date.Parse(GVAttendance.GetRowCellValue(i, "end_work_ot").ToString).ToString("yyyy-MM-dd HH:mm:ss")
                             Dim break_hours As String = GVAttendance.GetRowCellValue(i, "break_hours").ToString

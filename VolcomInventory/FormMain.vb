@@ -1740,6 +1740,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBankDeposit" Then
             FormBankDepositDet.type_rec = "2"
             FormBankDepositDet.ShowDialog()
+        ElseIf formName = "FormBuktiPickup" Then
+            FormBuktiPickupDet.id_pickup = "0"
+            FormBuktiPickupDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2825,6 +2828,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf Formname = "FormBankDeposit" Then
                 FormBankDepositDet.id_deposit = FormBankDeposit.GVList.GetFocusedRowCellValue("id_rec_payment").ToString
                 FormBankDepositDet.ShowDialog()
+            ElseIf formName = "FormBuktiPickup" Then
+                Try
+                    FormBuktiPickupDet.id_pickup = FormBuktiPickup.GVList.GetFocusedRowCellValue("id_pickup").ToString
+                    FormBuktiPickupDet.ShowDialog()
+                Catch ex As Exception
+                End Try
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7621,6 +7630,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPurcReqList" Then
             'purchase request IC
             FormPurcReqList.print_report()
+        ElseIf formName = "FormBuktiPickup" Then
+            print(FormBuktiPickup.GCList, "Bukti Pickup")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8410,6 +8421,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Purchase Request IC
             FormPurcReqList.Close()
             FormPurcReqList.Dispose()
+        ElseIf formName = "FormBuktiPickup" Then
+            FormBuktiPickup.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -13456,6 +13469,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPurcReqList.Show()
             FormPurcReqList.WindowState = FormWindowState.Maximized
             FormPurcReqList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBuktiPickup_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBuktiPickup.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBuktiPickup.MdiParent = Me
+            FormBuktiPickup.Show()
+            FormBuktiPickup.WindowState = FormWindowState.Maximized
+            FormBuktiPickup.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -78,7 +78,7 @@
             BMark.Visible = False
         Else 'edit
             'load header
-            Dim query As String = "SELECT c.*,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
+            Dim query As String = "SELECT c.comp_name,c.comp_number,c.address_primary,c.fax,c.email,c.comp_number,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
 ,po.id_order_term,po.id_shipping_method,po.ship_destination,po.ship_address,po.id_expense_type,po.is_submit
 FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
@@ -117,7 +117,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 DEDueDate.EditValue = data.Rows(0)("pay_due_date")
                 '
                 MENote.Text = data.Rows(0)("note").ToString
-                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+
                 LEOrderTerm.ItemIndex = LEOrderTerm.Properties.GetDataSourceRowIndex("id_order_term", data.Rows(0)("id_order_term").ToString)
                 LEShipVia.ItemIndex = LEShipVia.Properties.GetDataSourceRowIndex("id_shipping_method", data.Rows(0)("id_shipping_method").ToString)
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
