@@ -8,12 +8,6 @@
 
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
 
-        'date format
-        For i = 0 To data.Rows.Count - 1
-            data.Rows(i)("ot_start_time") = Date.Parse(data.Rows(i)("ot_start_time").ToString).ToString("HH:mm")
-            data.Rows(i)("ot_end_time") = Date.Parse(data.Rows(i)("ot_end_time").ToString).ToString("HH:mm")
-        Next
-
         GCEmployee.DataSource = data
 
         GCEmployeePosition.Caption = GCEmployeePosition.Caption.Replace(" ", Environment.NewLine)

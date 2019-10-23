@@ -15,8 +15,12 @@
         DEUntil.EditValue = data_date.Rows(0)("periode_end")
 
         If is_hrd = "-1" Then
+            SLUEDepartement.EditValue = id_departement_user
+
             Text = "Propose Overtime"
         Else
+            SLUEDepartement.EditValue = 0
+
             Text = "Overtime Management"
         End If
     End Sub
@@ -56,7 +60,7 @@
             End Try
 
             Dim query As String = "
-                SELECT ot_det.id_ot_det, ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, ot.id_ot, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note, ot.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot_det.id_ot_det, ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, ot.id_ot, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, DATE_FORMAT(ot_det.ot_start_time, '%H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note, ot.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -241,13 +245,7 @@
     End Sub
 
     Sub view_departement()
-        Dim query As String = ""
-
-        If is_hrd = "-1" Then
-            query = "SELECT id_departement, departement FROM tb_m_departement a WHERE a.id_departement = " + id_departement_user + ""
-        Else
-            query = "SELECT 0 AS id_departement, 'All departement' AS departement UNION (SELECT id_departement, departement FROM tb_m_departement a ORDER BY a.departement ASC)"
-        End If
+        Dim query As String = "SELECT 0 AS id_departement, 'All departement' AS departement UNION (SELECT id_departement, departement FROM tb_m_departement a ORDER BY a.departement ASC)"
 
         viewSearchLookupQuery(SLUEDepartement, query, "id_departement", "departement", "id_departement")
     End Sub
@@ -421,6 +419,19 @@
         If e.Button = MouseButtons.Right Then
             If GVOvertime.GetFocusedRowCellValue("id_report_status").ToString = "5" Then
                 PopupMenu.ShowPopup(Control.MousePosition)
+            End If
+        End If
+    End Sub
+
+    Private Sub SLUEDepartement_Click(sender As Object, e As EventArgs) Handles SLUEDepartement.Click
+        If id_departement_user = "11" Then
+            'sales include sogo
+            SLUEDepartement.Properties.View.ActiveFilterString = "[id_departement] = 11 OR [id_departement] = 17"
+        Else
+            If is_hrd = "-1" Then
+                SLUEDepartement.Properties.View.ActiveFilterString = "[id_departement] = " + id_departement_user
+            Else
+                SLUEDepartement.Properties.View.ActiveFilterString = ""
             End If
         End If
     End Sub

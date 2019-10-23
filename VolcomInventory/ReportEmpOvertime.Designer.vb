@@ -45,8 +45,10 @@ Partial Public Class ReportEmpOvertime
         Me.GCIsDayOff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCConsumption = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITETime = New DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEBreak = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GCTotalHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMENote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
@@ -65,16 +67,18 @@ Partial Public Class ReportEmpOvertime
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITETime, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEBreak, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,7 +95,7 @@ Partial Public Class ReportEmpOvertime
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 221.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1074.0!, 217.0!)
         Me.WinControlContainer1.WinControl = Me.GCEmployee
         '
         'GCEmployee
@@ -99,8 +103,8 @@ Partial Public Class ReportEmpOvertime
         Me.GCEmployee.Location = New System.Drawing.Point(2, 2)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RIMENote})
-        Me.GCEmployee.Size = New System.Drawing.Size(1032, 212)
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RIMENote, Me.RITEBreak, Me.RITETime})
+        Me.GCEmployee.Size = New System.Drawing.Size(1031, 208)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
@@ -149,7 +153,7 @@ Partial Public Class ReportEmpOvertime
         Me.GVEmployee.OptionsView.AllowCellMerge = True
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
-        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDate, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GCIdEmployee
         '
@@ -180,6 +184,8 @@ Partial Public Class ReportEmpOvertime
         Me.GCDepartement.Name = "GCDepartement"
         Me.GCDepartement.OptionsColumn.AllowEdit = False
         Me.GCDepartement.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCDepartement.Visible = True
+        Me.GCDepartement.VisibleIndex = 4
         Me.GCDepartement.Width = 86
         '
         'GCDate
@@ -194,7 +200,7 @@ Partial Public Class ReportEmpOvertime
         Me.GCDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCDate.Visible = True
         Me.GCDate.VisibleIndex = 0
-        Me.GCDate.Width = 100
+        Me.GCDate.Width = 121
         '
         'GCEmployeeCode
         '
@@ -268,11 +274,12 @@ Partial Public Class ReportEmpOvertime
         Me.GCConversionType.Caption = "Conversion Type"
         Me.GCConversionType.ColumnEdit = Me.RISLUEType
         Me.GCConversionType.FieldName = "conversion_type"
+        Me.GCConversionType.MaxWidth = 60
         Me.GCConversionType.Name = "GCConversionType"
         Me.GCConversionType.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCConversionType.Visible = True
         Me.GCConversionType.VisibleIndex = 5
-        Me.GCConversionType.Width = 91
+        Me.GCConversionType.Width = 60
         '
         'RISLUEType
         '
@@ -337,44 +344,72 @@ Partial Public Class ReportEmpOvertime
         Me.GCStartWork.AppearanceHeader.Options.UseTextOptions = True
         Me.GCStartWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCStartWork.Caption = "Start Work"
-        Me.GCStartWork.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GCStartWork.ColumnEdit = Me.RITETime
+        Me.GCStartWork.DisplayFormat.FormatString = "HH:mm:ss"
         Me.GCStartWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCStartWork.FieldName = "ot_start_time"
+        Me.GCStartWork.MaxWidth = 50
         Me.GCStartWork.Name = "GCStartWork"
-        Me.GCStartWork.OptionsColumn.AllowEdit = False
         Me.GCStartWork.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCStartWork.Visible = True
         Me.GCStartWork.VisibleIndex = 6
-        Me.GCStartWork.Width = 62
+        Me.GCStartWork.Width = 50
+        '
+        'RITETime
+        '
+        Me.RITETime.AutoHeight = False
+        Me.RITETime.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RITETime.DisplayFormat.FormatString = "HH:mm:ss"
+        Me.RITETime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RITETime.EditFormat.FormatString = "HH:mm:ss"
+        Me.RITETime.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RITETime.Mask.EditMask = "HH:mm:ss"
+        Me.RITETime.Mask.UseMaskAsDisplayFormat = True
+        Me.RITETime.Name = "RITETime"
         '
         'GCEndWork
         '
         Me.GCEndWork.AppearanceHeader.Options.UseTextOptions = True
         Me.GCEndWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEndWork.Caption = "End Work"
-        Me.GCEndWork.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GCEndWork.ColumnEdit = Me.RITETime
+        Me.GCEndWork.DisplayFormat.FormatString = "HH:mm:ss"
         Me.GCEndWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCEndWork.FieldName = "ot_end_time"
+        Me.GCEndWork.MaxWidth = 50
         Me.GCEndWork.Name = "GCEndWork"
-        Me.GCEndWork.OptionsColumn.AllowEdit = False
         Me.GCEndWork.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCEndWork.Visible = True
         Me.GCEndWork.VisibleIndex = 7
-        Me.GCEndWork.Width = 56
+        Me.GCEndWork.Width = 50
         '
         'GCBreakHours
         '
         Me.GCBreakHours.AppearanceHeader.Options.UseTextOptions = True
         Me.GCBreakHours.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCBreakHours.Caption = "Break (hours)"
+        Me.GCBreakHours.ColumnEdit = Me.RITEBreak
         Me.GCBreakHours.DisplayFormat.FormatString = "N1"
         Me.GCBreakHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCBreakHours.FieldName = "ot_break"
+        Me.GCBreakHours.MaxWidth = 50
         Me.GCBreakHours.Name = "GCBreakHours"
-        Me.GCBreakHours.OptionsColumn.AllowEdit = False
         Me.GCBreakHours.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCBreakHours.Visible = True
         Me.GCBreakHours.VisibleIndex = 8
+        Me.GCBreakHours.Width = 50
+        '
+        'RITEBreak
+        '
+        Me.RITEBreak.AutoHeight = False
+        Me.RITEBreak.DisplayFormat.FormatString = "N1"
+        Me.RITEBreak.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreak.EditFormat.FormatString = "N1"
+        Me.RITEBreak.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreak.Mask.EditMask = "N1"
+        Me.RITEBreak.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEBreak.Mask.UseMaskAsDisplayFormat = True
+        Me.RITEBreak.Name = "RITEBreak"
         '
         'GCTotalHours
         '
@@ -384,12 +419,13 @@ Partial Public Class ReportEmpOvertime
         Me.GCTotalHours.DisplayFormat.FormatString = "N1"
         Me.GCTotalHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCTotalHours.FieldName = "ot_total_hours"
+        Me.GCTotalHours.MaxWidth = 50
         Me.GCTotalHours.Name = "GCTotalHours"
         Me.GCTotalHours.OptionsColumn.AllowEdit = False
         Me.GCTotalHours.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCTotalHours.Visible = True
         Me.GCTotalHours.VisibleIndex = 9
-        Me.GCTotalHours.Width = 72
+        Me.GCTotalHours.Width = 50
         '
         'GCNote
         '
@@ -553,6 +589,20 @@ Partial Public Class ReportEmpOvertime
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(924.9999!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 7.25!)
@@ -590,20 +640,6 @@ Partial Public Class ReportEmpOvertime
         Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'XrPageInfo1
-        '
-        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(924.9999!, 0!)
-        Me.XrPageInfo1.Name = "XrPageInfo1"
-        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
-        Me.XrPageInfo1.StylePriority.UseBorders = False
-        Me.XrPageInfo1.StylePriority.UseFont = False
-        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
-        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
         'ReportEmpOvertime
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -618,6 +654,8 @@ Partial Public Class ReportEmpOvertime
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITETime, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEBreak, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIMENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
@@ -644,6 +682,7 @@ Partial Public Class ReportEmpOvertime
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
@@ -668,10 +707,11 @@ Partial Public Class ReportEmpOvertime
     Friend WithEvents GCIsDayOff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCConsumption As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCStartWork As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITETime As DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit
     Friend WithEvents GCEndWork As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITEBreak As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GCTotalHours As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMENote As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
 End Class
