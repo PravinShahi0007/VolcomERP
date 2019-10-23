@@ -647,6 +647,12 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         ReportPurcOrder.id_po = id_po
         ReportPurcOrder.dt = GCSummary.DataSource
         Dim Report As New ReportPurcOrder()
+        If SLEPurcType.EditValue.ToString = "1" Then
+            Report.rmt = "139" 'opex
+        Else
+            Report.rmt = "202" 'capex
+        End If
+
         ' ...
         ' creating and saving the view's layout to a new memory stream 
         '
