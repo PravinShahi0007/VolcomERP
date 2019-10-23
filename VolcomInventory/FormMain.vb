@@ -5985,7 +5985,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             If confirm = DialogResult.Yes Then
                 Dim query_del As String = "DELETE FROM tb_a_asset WHERE id_asset='" + id + "'"
                 execute_non_query(query_del, True, "", "", "", "")
-                FormMasterAsset.load_asset()
+                FormMasterAsset.load_asset("2")
             End If
         ElseIf formName = "FormAssetPO" Then
             Dim id As String = FormAssetPO.GVPOList.GetFocusedRowCellValue("id_asset_po").ToString
@@ -9123,7 +9123,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpUniList.viewData()
         ElseIf formName = "FormMasterAsset" Then
             If FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 0 Then
-                FormMasterAsset.load_asset()
+                FormMasterAsset.load_asset("2")
             ElseIf FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 1 Then
                 FormMasterAsset.load_moving_log()
             End If
