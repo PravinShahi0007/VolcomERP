@@ -392,11 +392,13 @@ SELECT '3' AS id_approval,'No Action' AS approval"
                 Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
                 submit_who_prepared(rmt, id_req, id_user_created)
+                load_form()
             Else 'capex
                 If is_ic_ia = "1" Then
                     FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
                     FormPurcReqICApproval.id_report = id_req
                     FormPurcReqICApproval.ShowDialog()
+                    load_form()
                 Else
                     warningCustom("Only IA and IC can submit CAPEX request")
                 End If
