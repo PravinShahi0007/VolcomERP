@@ -59,6 +59,13 @@ Partial Class FormProdClosingPps
         Me.GridColumnRecQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPClaimReject = New DevExpress.XtraTab.XtraTabPage()
@@ -376,7 +383,7 @@ Partial Class FormProdClosingPps
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDWO, Me.GridColumn26, Me.GridColumn25, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumn23, Me.GridColumn39})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDWO, Me.GridColumn26, Me.GridColumn25, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumn23, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrderQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N0}")})
         Me.GVProd.Name = "GVProd"
@@ -526,8 +533,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnOrderQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnOrderQty.Caption = "Order Qty"
         Me.GridColumnOrderQty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnOrderQty.FieldName = "qty_po"
+        Me.GridColumnOrderQty.FieldName = "po_qty"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
@@ -543,8 +549,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnRecQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnRecQty.Caption = "Received Qty"
         Me.GridColumnRecQty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnRecQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnRecQty.FieldName = "qty_rec"
+        Me.GridColumnRecQty.FieldName = "rec_qty"
         Me.GridColumnRecQty.Name = "GridColumnRecQty"
         Me.GridColumnRecQty.OptionsColumn.AllowEdit = False
         Me.GridColumnRecQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
@@ -572,6 +577,102 @@ Partial Class FormProdClosingPps
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 9
         Me.GridColumn39.Width = 136
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.Caption = "QC Normal"
+        Me.GridColumn40.DisplayFormat.FormatString = "N0"
+        Me.GridColumn40.FieldName = "qty_normal"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 10
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.Caption = "QC Reject Minor"
+        Me.GridColumn41.DisplayFormat.FormatString = "N0"
+        Me.GridColumn41.FieldName = "qty_minor"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 11
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn42.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn42.Caption = "QC Reject Major"
+        Me.GridColumn42.DisplayFormat.FormatString = "N0"
+        Me.GridColumn42.FieldName = "qty_major"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 12
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn43.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn43.Caption = "QC Afkir"
+        Me.GridColumn43.DisplayFormat.FormatString = "N0"
+        Me.GridColumn43.FieldName = "qty_afkir"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 13
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn44.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn44.Caption = "Claim Reject"
+        Me.GridColumn44.DisplayFormat.FormatString = "N2"
+        Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn44.FieldName = "claim_reject"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 14
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn45.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn45.Caption = "Claim Late"
+        Me.GridColumn45.DisplayFormat.FormatString = "N2"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn45.FieldName = "claim_late"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 15
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn46.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn46.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn46.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn46.Caption = "Total Claim"
+        Me.GridColumn46.DisplayFormat.FormatString = "N2"
+        Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn46.FieldName = "tot_claim"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.UnboundExpression = "[claim_late] + [claim_reject]"
+        Me.GridColumn46.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 16
         '
         'RIPictureEdit
         '
@@ -1509,4 +1610,11 @@ Partial Class FormProdClosingPps
     Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

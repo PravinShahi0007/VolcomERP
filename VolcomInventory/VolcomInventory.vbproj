@@ -699,6 +699,24 @@
     <Compile Include="FormBudgetRevProposeNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBuktiPickup.Designer.vb">
+      <DependentUpon>FormBuktiPickup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuktiPickup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuktiPickupDet.Designer.vb">
+      <DependentUpon>FormBuktiPickupDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuktiPickupDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuktiPickupPick.Designer.vb">
+      <DependentUpon>FormBuktiPickupPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuktiPickupPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCalculator.Designer.vb">
       <DependentUpon>FormCalculator.vb</DependentUpon>
     </Compile>
@@ -7546,6 +7564,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetRevProposeNew.resx">
       <DependentUpon>FormBudgetRevProposeNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuktiPickup.resx">
+      <DependentUpon>FormBuktiPickup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuktiPickupDet.resx">
+      <DependentUpon>FormBuktiPickupDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuktiPickupPick.resx">
+      <DependentUpon>FormBuktiPickupPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalculator.resx">
       <DependentUpon>FormCalculator.vb</DependentUpon>

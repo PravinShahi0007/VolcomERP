@@ -253,22 +253,25 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSl
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        ReportDesignCOPPropose.id_propose = id_propose
+        If Not check_allow_print(LEReportStatus.EditValue.ToString, get_report_mark_type(), id_propose) Then
+            warningCustom("Can't print, please complete all approval on system first")
+        Else
+            ReportDesignCOPPropose.id_propose = id_propose
+            ReportDesignCOPPropose.rmt = get_report_mark_type()
+            '
+            If get_setup_field("id_role_super_admin") = id_role_login Then
+                FormProdDemandPrintOpt.rmt = get_report_mark_type()
+                FormProdDemandPrintOpt.id = id_propose
+                FormProdDemandPrintOpt.ShowDialog()
+            End If
+            '
+            ReportDesignCOPPropose.dt = GCItemList.DataSource
 
-        ReportDesignCOPPropose.rmt = get_report_mark_type()
-        FormProdDemandPrintOpt.rmt = get_report_mark_type()
-        '
-        If LEReportStatus.EditValue.ToString = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
-            FormProdDemandPrintOpt.id = id_propose
-            FormProdDemandPrintOpt.ShowDialog()
+            Dim Report As New ReportDesignCOPPropose()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         End If
-        '
-        ReportDesignCOPPropose.dt = GCItemList.DataSource
-
-        Dim Report As New ReportDesignCOPPropose()
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
     End Sub
 
     Private Sub BAttach_Click(sender As Object, e As EventArgs) Handles BAttach.Click
