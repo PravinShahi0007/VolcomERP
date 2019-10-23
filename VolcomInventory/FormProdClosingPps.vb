@@ -165,7 +165,7 @@ GROUP BY rd.`id_prod_order_rec`"
 
     Sub load_det()
         Dim query As String = "SELECT pocd.`id_prod_order_close_det`,pocd.`id_prod_order`
-,dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,pocd.`id_claim_late`,pocd.`id_claim_reject`
+,dsg.`design_code`,dsg.`design_display_name`,po.`prod_order_number`,pocd.`id_claim_late`,pocd.`id_claim_reject`
 ,wo_price.`comp_name`,rec.rec_qty,pod.po_qty,wo_price.prod_order_wo_det_price AS unit_price
 ,claim_late.est_rec_date,claim_late.est_rec_date_ko
 ,ROUND(IFNULL(claim_late.claim_qty,0) * wo_price.prod_order_wo_det_price,2) AS claim_late
@@ -173,6 +173,7 @@ GROUP BY rd.`id_prod_order_rec`"
 ,IFNULL(claim_reject.qty_minor,0) AS qty_minor
 ,IFNULL(claim_reject.qty_major,0) AS qty_major
 ,IFNULL(claim_reject.qty_afkir,0) AS qty_afkir
+,ROUND(IFNULL(claim_reject.claim_qty,0) * wo_price.prod_order_wo_det_price,2) AS claim_reject
 FROM tb_prod_order_close_det pocd
 INNER JOIN tb_prod_order_close poc ON poc.`id_prod_order_close`=pocd.`id_prod_order_close`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order` 
