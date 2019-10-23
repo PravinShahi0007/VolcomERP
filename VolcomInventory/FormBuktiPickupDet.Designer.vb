@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormBuktiPickupDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormBuktiPickupDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBuktiPickupDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -31,12 +31,12 @@ Partial Class FormBuktiPickupDet
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.TEUpdatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.DEUpdatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -44,6 +44,8 @@ Partial Class FormBuktiPickupDet
         Me.SBAttachement = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCompany = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,12 +54,12 @@ Partial Class FormBuktiPickupDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,12 +118,12 @@ Partial Class FormBuktiPickupDet
         Me.PanelControl2.Controls.Add(Me.SLUECompany)
         Me.PanelControl2.Controls.Add(Me.Label4)
         Me.PanelControl2.Controls.Add(Me.Label5)
-        Me.PanelControl2.Controls.Add(Me.TextEdit2)
-        Me.PanelControl2.Controls.Add(Me.DateEdit2)
+        Me.PanelControl2.Controls.Add(Me.TEUpdatedBy)
+        Me.PanelControl2.Controls.Add(Me.DEUpdatedDate)
         Me.PanelControl2.Controls.Add(Me.Label3)
         Me.PanelControl2.Controls.Add(Me.Label2)
-        Me.PanelControl2.Controls.Add(Me.TextEdit1)
-        Me.PanelControl2.Controls.Add(Me.DateEdit1)
+        Me.PanelControl2.Controls.Add(Me.TECreatedBy)
+        Me.PanelControl2.Controls.Add(Me.DECreatedDate)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
@@ -148,6 +150,7 @@ Partial Class FormBuktiPickupDet
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdComp, Me.GCCompany})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -173,26 +176,32 @@ Partial Class FormBuktiPickupDet
         Me.Label5.TabIndex = 6
         Me.Label5.Text = "Updated By"
         '
-        'TextEdit2
+        'TEUpdatedBy
         '
-        Me.TextEdit2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit2.Location = New System.Drawing.Point(497, 38)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(200, 20)
-        Me.TextEdit2.TabIndex = 5
+        Me.TEUpdatedBy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEUpdatedBy.Location = New System.Drawing.Point(497, 38)
+        Me.TEUpdatedBy.Name = "TEUpdatedBy"
+        Me.TEUpdatedBy.Properties.ReadOnly = True
+        Me.TEUpdatedBy.Size = New System.Drawing.Size(200, 20)
+        Me.TEUpdatedBy.TabIndex = 5
         '
-        'DateEdit2
+        'DEUpdatedDate
         '
-        Me.DateEdit2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(796, 38)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.ReadOnly = True
-        Me.DateEdit2.Size = New System.Drawing.Size(200, 20)
-        Me.DateEdit2.TabIndex = 4
+        Me.DEUpdatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DEUpdatedDate.EditValue = Nothing
+        Me.DEUpdatedDate.Location = New System.Drawing.Point(796, 38)
+        Me.DEUpdatedDate.Name = "DEUpdatedDate"
+        Me.DEUpdatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUpdatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUpdatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.DEUpdatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUpdatedDate.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.DEUpdatedDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUpdatedDate.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
+        Me.DEUpdatedDate.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEUpdatedDate.Properties.ReadOnly = True
+        Me.DEUpdatedDate.Size = New System.Drawing.Size(200, 20)
+        Me.DEUpdatedDate.TabIndex = 4
         '
         'Label3
         '
@@ -214,26 +223,32 @@ Partial Class FormBuktiPickupDet
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Created By"
         '
-        'TextEdit1
+        'TECreatedBy
         '
-        Me.TextEdit1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit1.Location = New System.Drawing.Point(497, 12)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(200, 20)
-        Me.TextEdit1.TabIndex = 1
+        Me.TECreatedBy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TECreatedBy.Location = New System.Drawing.Point(497, 12)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(200, 20)
+        Me.TECreatedBy.TabIndex = 1
         '
-        'DateEdit1
+        'DECreatedDate
         '
-        Me.DateEdit1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(796, 12)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.ReadOnly = True
-        Me.DateEdit1.Size = New System.Drawing.Size(200, 20)
-        Me.DateEdit1.TabIndex = 0
+        Me.DECreatedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DECreatedDate.EditValue = Nothing
+        Me.DECreatedDate.Location = New System.Drawing.Point(796, 12)
+        Me.DECreatedDate.Name = "DECreatedDate"
+        Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreatedDate.Properties.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.DECreatedDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreatedDate.Properties.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
+        Me.DECreatedDate.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DECreatedDate.Properties.ReadOnly = True
+        Me.DECreatedDate.Size = New System.Drawing.Size(200, 20)
+        Me.DECreatedDate.TabIndex = 0
         '
         'PanelControl3
         '
@@ -304,7 +319,20 @@ Partial Class FormBuktiPickupDet
         Me.SBComplete.TabIndex = 2
         Me.SBComplete.Text = "Complete"
         '
-        'FormBuktiTransferDet
+        'GCIdComp
+        '
+        Me.GCIdComp.FieldName = "id_comp"
+        Me.GCIdComp.Name = "GCIdComp"
+        '
+        'GCCompany
+        '
+        Me.GCCompany.Caption = "Company"
+        Me.GCCompany.FieldName = "comp_name"
+        Me.GCCompany.Name = "GCCompany"
+        Me.GCCompany.Visible = True
+        Me.GCCompany.VisibleIndex = 0
+        '
+        'FormBuktiPickupDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -314,7 +342,7 @@ Partial Class FormBuktiPickupDet
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl4)
-        Me.Name = "FormBuktiTransferDet"
+        Me.Name = "FormBuktiPickupDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Bukti Pickup Detail"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -327,12 +355,12 @@ Partial Class FormBuktiPickupDet
         Me.PanelControl2.PerformLayout()
         CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -349,8 +377,8 @@ Partial Class FormBuktiPickupDet
     Friend WithEvents SBAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBRemove As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
@@ -360,11 +388,13 @@ Partial Class FormBuktiPickupDet
     Friend WithEvents Label1 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TEUpdatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DEUpdatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents SLUECompany As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCIdComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCompany As DevExpress.XtraGrid.Columns.GridColumn
 End Class
