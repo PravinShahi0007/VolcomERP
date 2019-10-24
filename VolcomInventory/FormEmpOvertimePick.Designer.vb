@@ -56,7 +56,6 @@ Partial Class FormEmpOvertimePick
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPick, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,7 +91,7 @@ Partial Class FormEmpOvertimePick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn9, Me.GridColumn17, Me.GridColumn4, Me.GridColumn14, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn10, Me.GridColumn6, Me.GridColumn12, Me.GridColumn11, Me.GridColumn8, Me.GridColumn13})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn9, Me.GridColumn17, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn10, Me.GridColumn6, Me.GridColumn12, Me.GridColumn11, Me.GridColumn8, Me.GridColumn13})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.Name = "GVList"
@@ -453,12 +452,6 @@ Partial Class FormEmpOvertimePick
         Me.GroupControl3.TabIndex = 41
         Me.GroupControl3.Text = "Detail"
         '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "GridColumn14"
-        Me.GridColumn14.FieldName = "is_store"
-        Me.GridColumn14.Name = "GridColumn14"
-        '
         'FormEmpOvertimePick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -534,5 +527,4 @@ Partial Class FormEmpOvertimePick
     Friend WithEvents DEOvertimeDateTo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TEOvertimeStart As DevExpress.XtraEditors.TimeEdit
     Friend WithEvents TEOvertimeEnd As DevExpress.XtraEditors.TimeEdit
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
