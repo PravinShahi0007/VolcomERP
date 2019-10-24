@@ -19,6 +19,17 @@
         DEFromDetail.EditValue = data_dt.Rows(0)("dt")
         DEUntilDetail.EditValue = data_dt.Rows(0)("dt")
         viewComp()
+        viewCompGroup()
+    End Sub
+
+    Sub viewCompGroup()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg
+        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
+        GROUP BY cg.id_comp_group "
+        viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewComp()
@@ -51,6 +62,9 @@
             date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+
+        'group store
+        Dim id_comp_group As String = SLECompGroup.EditValue.ToString
 
         Dim id_comp As String = SLEComp.EditValue.ToString
         Dim query As String = "SELECT so.sales_order_number, so.sales_order_ol_shop_number, so.sales_order_date AS `order_date`, del.pl_sales_order_del_number, del.pl_sales_order_del_date AS `del_date`,ro.sales_return_order_number, ro.sales_return_order_date as `ro_date`, r.sales_return_number, r.sales_return_date AS `ret_date`, inv.sales_pos_number, inv.sales_pos_number AS `inv_date`, cn.sales_pos_cn_number, cn.sales_pos_cn_date AS `cn_date`,
@@ -124,7 +138,7 @@
             WHERE a.id_report_status=6 AND (ad.report_mark_type=48 OR ad.report_mark_type=54) AND coa.acc_name LIKE '1113%'
             GROUP BY sod.id_sales_order
         ) j ON j.id_sales_order = so.id_sales_order
-        WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        WHERE c.id_comp_group='" + id_comp_group + "' AND c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         Cursor = Cursors.Default
@@ -252,7 +266,7 @@
         End If
 
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
-        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
+        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
         IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del_stt.report_status AS `del_status`,
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
@@ -330,6 +344,7 @@
         ) ret_pay ON ret_pay.id_report = cn.id_sales_pos
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
         INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
         WHERE so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') AND ISNULL(oc.id_sales_order) AND c.id_commerce_type=2 " + qcomp2 + " "

@@ -82,6 +82,8 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
             DEArrivalDate.EditValue = getTimeDB()
             DEArrivalDate.Properties.MaxValue = DECreated.EditValue
             viewSummary()
+            XTCReceive.SelectedTabPageIndex = 2
+            CEShowHighlight.Checked = True
         Else
             XTCReceive.SelectedTabPageIndex = 0
 
@@ -175,7 +177,7 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
         If action = "ins" Then
             query = "SELECT 0 AS `id_purc_rec_det`,0 AS `id_purc_rec`,
             pod.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
-            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty`, '' AS  `note`, '' AS `stt`
+            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, 0.00 AS qty,(SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_rem`, '' AS  `note`, '' AS `stt`
             FROM tb_purc_order_det pod
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom

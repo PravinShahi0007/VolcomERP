@@ -8,24 +8,30 @@
         DEEnd.EditValue = Now
 
         load_pil()
-        load_asset()
+        load_asset("2")
         load_moving_log()
     End Sub
-    Sub load_asset()
+    Sub load_asset(ByVal opt As String)
         Dim where_string As String = ""
-        If LEPil.EditValue.ToString = "1" Then
-            'by PO date
-            where_string = " WHERE po.asset_po_date >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND po.asset_po_date<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
-        ElseIf LEPil.EditValue.ToString = "2" Then
-            'by rec date
-            where_string = " WHERE rec.asset_rec_date >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND rec.asset_rec_date<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
-        ElseIf LEPil.EditValue.ToString = "3" Then
-            'by created date
-            where_string = " WHERE ass.date_created >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.date_created<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
-        ElseIf LEPil.EditValue.ToString = "4" Then
-            'by last update date
-            where_string = " WHERE ass.date_last_upd >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.date_last_upd<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        If opt = "1" Then
+            If LEPil.EditValue.ToString = "1" Then
+                'by PO date
+                where_string = " WHERE ass.is_active='1' AND po.asset_po_date >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND po.asset_po_date<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+            ElseIf LEPil.EditValue.ToString = "2" Then
+                'by rec date
+                where_string = " WHERE ass.is_active='1' AND rec.asset_rec_date >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND rec.asset_rec_date<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+            ElseIf LEPil.EditValue.ToString = "3" Then
+                'by created date
+                where_string = " WHERE ass.is_active='1' AND ass.date_created >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.date_created<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+            ElseIf LEPil.EditValue.ToString = "4" Then
+                'by last update date
+                where_string = " WHERE ass.is_active='1' AND ass.date_last_upd >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.date_last_upd<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+            End If
+        ElseIf opt = "2" Then 'show active
+            where_string = " WHERE ass.is_active='1' "
+        ElseIf opt = "3" Then 'show all
         End If
+
         '
         Dim query As String = "SELECT ass.id_asset,ass.id_asset_cat,cat.asset_cat,po.comp_name AS vendor_code,ass.asset_code_old,ass.asset_code,ass.asset_desc,po.asset_po_no AS po_no,pod.qty AS po_qty,pod.value AS po_value,po.asset_po_date AS po_date,rec.asset_rec_date as rec_date,recd.qty_rec AS rec_qty,recd.value_rec AS rec_value,ass.age
                                 ,DATE_ADD(rec.asset_rec_date,INTERVAL age MONTH) AS date_aging
@@ -41,6 +47,7 @@
                                 ,dep.departement AS departement
                                 ,IF(ISNULL(cur_user.id_asset),dep.departement,cur_user.departement) AS departement_current
                                 ,IF(ISNULL(cur_user.id_asset),ass.id_departement,cur_user.id_departement) AS id_departement
+                                ,IF(ass.is_active='1','Active','Not Active') as is_active
                                 FROM tb_a_asset ass
                                 INNER JOIN tb_a_asset_rec_det recd ON recd.id_asset_rec_det=ass.id_asset_rec_det
                                 INNER JOIN tb_a_asset_rec rec ON rec.id_asset_rec=recd.id_asset_rec
@@ -129,7 +136,7 @@
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        load_asset()
+        load_asset("1")
     End Sub
 
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCListAsset.SelectedPageChanged
@@ -146,5 +153,13 @@
             FormMasterAssetLog.id_asset_log = GVAssetMovingLog.GetFocusedRowCellValue("id_asset_log").ToString
             FormMasterAssetLog.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BShowActive_Click(sender As Object, e As EventArgs) Handles BShowActive.Click
+        load_asset("2")
+    End Sub
+
+    Private Sub BShowAll_Click(sender As Object, e As EventArgs) Handles BShowAll.Click
+        load_asset("3")
     End Sub
 End Class

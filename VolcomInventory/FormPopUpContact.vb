@@ -1037,6 +1037,7 @@
             FormSalesPOSDet.id_comp_contact_bill = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormSalesPOSDet.TxtNameBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
             FormSalesPOSDet.TxtCodeBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+            FormSalesPOSDet.id_comp_bill_to = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
 
             'isi coa
             If FormSalesPOSDet.id_menu = "4" Then

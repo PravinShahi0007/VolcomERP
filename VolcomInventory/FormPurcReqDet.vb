@@ -8,7 +8,21 @@
     Dim is_reload As String = "2"
     Dim id_departement As String = "-1"
     '
-    Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public is_submit As String = "-1"
+    Public is_ic_ia As String = "-1"
+    '
+    Sub load_approval_ic_ia()
+        Dim query As String = "SELECT '1' AS id_approval,'No Action' AS approval
+UNION
+SELECT '2' AS id_approval,'No Action' AS approval
+UNION
+SELECT '3' AS id_approval,'No Action' AS approval"
+        viewSearchLookupQuery(SLEICApproval, query, "id_approval", "approval", "id_approval")
+        viewSearchLookupQuery(SLEIAApproval, query, "id_approval", "approval", "id_approval")
+    End Sub
+
+    Sub load_form()
+        load_approval_ic_ia()
         load_report_status()
         is_reload = "1"
         DEYearBudget.EditValue = Now
@@ -38,8 +52,6 @@
             BtnAttachment.Visible = False
             '
         Else 'edit
-
-            load_item_pil()
             BtnAttachment.Visible = True
             BSetShipping.Visible = False
             DERequirementDate.Properties.ReadOnly = True
@@ -48,15 +60,16 @@
             '
             GVItemList.OptionsBehavior.Editable = False
             '
-            Dim query As String = "SELECT req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,emp.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status 
+            Dim query As String = "SELECT req.id_user_created,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,req.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status 
                                     FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                                    INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                    INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
                                     WHERE id_purc_req='" & id_req & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             If data.Rows.Count > 0 Then
+                id_user_created = data.Rows(0)("id_user_created").ToString
                 TEReqBy.Text = data.Rows(0)("employee_name").ToString
                 id_departement = data.Rows(0)("id_departement").ToString
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
@@ -69,6 +82,12 @@
                 SLEPurcType.EditValue = data.Rows(0)("id_expense_type").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 '
+                is_submit = data.Rows(0)("is_submit").ToString
+                SLEICApproval.EditValue = data.Rows(0)("ic_approval").ToString
+                TENoteIC.Text = data.Rows(0)("ic_note").ToString
+                SLEIAApproval.EditValue = data.Rows(0)("ia_approval").ToString
+                TENoteIA.Text = data.Rows(0)("ia_note").ToString
+                '
                 load_item_pil()
                 load_det()
             End If
@@ -79,7 +98,14 @@
         If SLEPurcType.EditValue.ToString = "1" Then 'opex
             CEStoreRequest.Visible = True
             LStoreRequest.Visible = True
+            PCIAIC.Visible = False
+        Else
+            PCIAIC.Visible = True
         End If
+    End Sub
+
+    Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
     '
     Sub load_purc_type()
@@ -146,7 +172,8 @@
 		                    SELECT trx.id_b_expense,SUM(`value`) AS val
 		                    FROM `tb_b_expense_trans` trx
 		                    GROUP BY trx.id_b_expense
-	                    ) used ON used.id_b_expense=ex.`id_b_expense` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
+	                    ) used ON used.id_b_expense=ex.`id_b_expense` 
+                        WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
                     )used ON used.id_item_cat_main=cat.`id_item_cat_main`
                     LEFT JOIN
                     (
@@ -157,11 +184,13 @@
 		                    SELECT trx.id_b_expense_opex,SUM(`value`) AS val
 		                    FROM `tb_b_expense_opex_trans` trx
 		                    GROUP BY trx.id_b_expense_opex
-	                    ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+	                    ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` 
+                        WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
                     )used_opex ON used_opex.id_item_cat_main=cat.`id_item_cat_main`
                     WHERE it.is_active='1' AND cat.id_expense_type='" & SLEPurcType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
 
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
+        RISLEItem.View.BestFitColumns()
     End Sub
 
     Sub load_item_pil_edit()
@@ -273,14 +302,7 @@
             ElseIf qty_is_0 = True Then
                 stopCustom("Please make sure Qty is not 0.")
             Else
-                Dim is_cash_purchase As String = ""
                 Dim is_store_purchase As String = ""
-
-                If CECashPurchase.Checked = True Then
-                    is_cash_purchase = "1"
-                Else
-                    is_cash_purchase = "2"
-                End If
 
                 If CEStoreRequest.Checked = True Then
                     is_store_purchase = "1"
@@ -289,7 +311,7 @@
                 End If
 
                 If id_req = "-1" Then 'new
-                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,is_cash_purchase,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & is_cash_purchase & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,is_store_purchase,id_expense_type,year_budget,note,id_user_created,date_created,requirement_date) VALUES('" & id_departement & "','" & is_store_purchase & "','" & SLEPurcType.EditValue.ToString & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_req As String = execute_query(query, 0, True, "", "", "", "")
                     '
                     Dim query_det As String = ""
@@ -309,23 +331,23 @@
                         query = "CALL gen_number('" & id_req & "','137')"
                         execute_non_query(query, True, "", "", "", "")
                         '
-                        submit_who_prepared("137", id_req, id_user)
+                        'submit_who_prepared("137", id_req, id_user)
                     Else
                         query = "CALL gen_number('" & id_req & "','201')"
                         execute_non_query(query, True, "", "", "", "")
                         '
-                        submit_who_prepared("201", id_req, id_user)
+                        'submit_who_prepared("201", id_req, id_user)
                     End If
 
                     infoCustom("Purchase requested.")
+                    load_form()
                     FormPurcReq.load_req()
-                    Close()
                 Else 'edit
-                    Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',is_cash_purchase='" & is_cash_purchase & "',is_store_purchase='" & is_store_purchase & "',year_budget='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "',date_last_upd=NOW(),requirement_date='" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',note='" & addSlashes(MENote.Text) & "' WHERE id_purc_req='" & id_req & "'"
+                    Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',is_store_purchase='" & is_store_purchase & "',year_budget='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "',date_last_upd=NOW(),requirement_date='" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',note='" & addSlashes(MENote.Text) & "' WHERE id_purc_req='" & id_req & "'"
                     execute_non_query(query, True, "", "", "", "")
                     infoCustom("Purchase request updated.")
+                    load_form()
                     FormPurcReq.load_req()
-                    Close()
                 End If
             End If
         Else
@@ -356,13 +378,32 @@
             rmt = "201"
         End If
 
-        FormReportMark.id_report = id_req
-        FormReportMark.report_mark_type = rmt
-        If is_view = "1" Then
-            FormReportMark.is_view = "1"
+        If is_submit = "1" Then
+            FormReportMark.id_report = id_req
+            FormReportMark.report_mark_type = rmt
+            If is_view = "1" Then
+                FormReportMark.is_view = "1"
+            End If
+            FormReportMark.form_origin = Name
+            FormReportMark.ShowDialog()
+        Else
+            'submit
+            If SLEPurcType.EditValue.ToString = "1" Then 'opex
+                Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+                submit_who_prepared(rmt, id_req, id_user_created)
+                load_form()
+            Else 'capex
+                If is_ic_ia = "1" Then
+                    FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
+                    FormPurcReqICApproval.id_report = id_req
+                    FormPurcReqICApproval.ShowDialog()
+                    load_form()
+                Else
+                    warningCustom("Only IA and IC can submit CAPEX request")
+                End If
+            End If
         End If
-        FormReportMark.form_origin = Name
-        FormReportMark.ShowDialog()
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
@@ -388,7 +429,7 @@
         Dim query As String = "SELECT req.`purc_req_number`,et.`expense_type`,DATE_FORMAT(req.requirement_date,'%d %M %Y') AS requirement_date,req.`note`,emp.`employee_name` AS req_by,DATE_FORMAT(req.`date_created`,'%d %M %Y') AS date_created,dep.departement,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
 INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+INNER JOIN tb_m_departement dep ON dep.id_departement=req.id_departement
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req`=req.`id_purc_req`
 INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=req.`id_expense_type`
 WHERE req.id_purc_req='" & id_req & "'

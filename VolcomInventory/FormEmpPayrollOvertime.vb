@@ -325,7 +325,7 @@
                         is_store = "2"
                     End If
 
-                    GVDP.SetRowCellValue(i, "total_hour", FormEmpOvertimeDet.calc_point(Decimal.Parse(overtime_hours), is_day_off, is_store))
+                    GVDP.SetRowCellValue(i, "total_hour", FormEmpOvertimeVerification.calc_point(Decimal.Parse(overtime_hours), is_day_off, is_store))
                 Else
                     GVDP.SetRowCellValue(i, "total_hour", "")
                 End If

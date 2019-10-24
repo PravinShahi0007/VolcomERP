@@ -27,15 +27,21 @@
     Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim id_ss As String = SLESeason.EditValue.ToString
+        ', IFNULL(po.id_report_status,0) AS `id_status_po`
         Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name AS `name`, dr.id_design,
-        pdd.id_prod_demand_design, IFNULL(po.id_prod_order,0) AS `id_prod_order`, IFNULL(po.id_report_status,0) AS `id_status_po`
+        pdd.id_prod_demand_design, IFNULL(po.id_prod_order,0) AS `id_prod_order`
         FROM tb_m_design d
         INNER JOIN tb_prod_demand_design pdd ON pdd.id_design = d.id_design AND pdd.is_void=2
-        INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1
+        INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1 AND pd.id_report_status!=5
         LEFT JOIN tb_prod_order po ON po.id_prod_demand_design = pdd.id_prod_demand_design AND po.id_report_status!=5
+        LEFT JOIN (
+	        SELECT po.id_prod_demand_design FROM tb_prod_order po
+	        INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order = po.id_prod_order
+	        WHERE rec.id_report_status!=5
+	        GROUP BY po.id_prod_demand_design
+        ) rec ON rec.id_prod_demand_design = pdd.id_prod_demand_design
         LEFT JOIN tb_m_design dr ON dr.id_design_rev_from = d.id_design AND dr.id_lookup_status_order=1
-        WHERE d.id_season=" + id_ss + " AND ISNULL(dr.id_design) 
-        HAVING id_status_po<>6 "
+        WHERE d.id_season=" + id_ss + " AND ISNULL(dr.id_design) AND ISNULL(rec.id_prod_demand_design) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

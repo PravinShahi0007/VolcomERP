@@ -1,11 +1,14 @@
 ﻿Public Class FormProdClosing
     Public id_pop_up As String = "-1"
+
     Private Sub FormProdClosing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDesign()
         '
         viewSeason()
         '
         viewVendor()
+        '
+        view_close()
         If id_pop_up = "-1" Then 'only closing po
             BClosingFGPO.Visible = True
         ElseIf id_pop_up = "1" Then ' only closing rec
@@ -18,7 +21,33 @@
         Else 'only view
             GVProd.OptionsBehavior.ReadOnly = True
         End If
+        view_claim_reject()
+        view_claim_late()
     End Sub
+
+    Sub view_close()
+        Dim query As String = "SELECT poc.id_prod_order_close,poc.number,poc.created_date,emp.`employee_name`,sts.`report_status`
+FROM tb_prod_order_close poc
+INNER JOIN tb_m_user usr ON usr.`id_user`=poc.`created_by`
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCClosing.DataSource = data
+        GVClosing.BestFitColumns()
+    End Sub
+
+    Sub view_claim_reject()
+        Dim query As String = "SELECT id_claim_reject,description FROM `tb_m_claim_reject` cr
+WHERE cr.`is_active`='1'"
+        viewSearchLookupRepositoryQuery(RISLERejectClaim, query, 0, "description", "id_claim_reject")
+    End Sub
+
+    Sub view_claim_late()
+        Dim query As String = "SELECT id_claim_late,description FROM `tb_m_claim_late` cl
+WHERE cl.`is_active`='1'"
+        viewSearchLookupRepositoryQuery(RISLEClaimLate, query, 0, "description", "id_claim_late")
+    End Sub
+
     Sub viewVendor()
         Dim query As String = ""
         query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label UNION ALL "
@@ -35,6 +64,7 @@
             SLEVendor.EditValue = Nothing
         End If
     End Sub
+
     Sub viewSeason()
         Dim query As String = "SELECT '-1' AS id_season, 'All Season' as season UNION "
         query += "(SELECT id_season,season FROM tb_season a "
@@ -42,6 +72,7 @@
         query += "ORDER BY b.range ASC)"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
+
     Sub viewDesign()
         Dim query As String = ""
         query += "CALL view_design_order(TRUE)"
@@ -60,6 +91,7 @@
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         view_production_order()
     End Sub
+
     Sub view_production_order()
         Dim query_where As String = ""
 
@@ -80,16 +112,27 @@
         Dim opt_max_int As Integer = 0 ' max tolerance international PO
         Dim opt_claim_int As Integer = 0 'claim international PO
 
-        Dim query = "SELECT 'no' AS `check`,
+        Dim query = "SELECT 'no' AS `check`,'1' AS id_claim_reject,'1' AS id_claim_late,
                         IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, 
                         IFNULL(SUM(pod.prod_order_qty),0) AS qty_order, 
                         CONCAT(comp.comp_number,' - ',comp.comp_name) AS `comp_name`,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, 
                         a.prod_order_date,a.id_report_status,c.report_status, 
                         b.id_design,b.id_delivery, e.delivery, f.season, e.id_season , wod.prod_order_wo_det_price
                         ,wo.id_prod_order_wo, a.claim_discount,(a.tolerance_minus * -1) AS `tolerance_minus`, a.tolerance_over,
-                        IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim, 
+                        IF(wo.is_proc_disc_claim=1,'Yes','No') AS is_proc_disc_claim, 
                         IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`,
                         a.is_special_rec, a.special_rec_memo, a.special_rec_datetime
+                        ,rec_date.first_rec_date,ko.lead_time_prod,wo.prod_order_wo_del_date
+                        ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL ko.lead_time_prod DAY) AS est_rec_date
+                        ,IF(DATEDIFF(rec_date.first_rec_date,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL ko.lead_time_prod DAY))<0,0,DATEDIFF(rec_date.first_rec_date,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL ko.lead_time_prod DAY))) AS late
+                        ,IFNULL(qcr.qty_normal,0) AS qc_normal
+                        ,IFNULL(qcr.qty_normal_minor,0) AS qc_normal_minor
+                        ,IFNULL(qcr.qty_minor,0) AS qc_minor
+                        ,IFNULL(qcr.qty_minor_major,0) AS qc_minor_major
+                        ,IFNULL(qcr.qty_major,0) AS qc_major
+                        ,IFNULL(qcr.qty_afkir,0) AS qc_afkir
+                        ,(IFNULL(qcr.qty_normal,0) + IFNULL(qcr.qty_normal_minor,0) + IFNULL(qcr.qty_minor,0) + IFNULL(qcr.qty_minor_major,0) + IFNULL(qcr.qty_major,0) + IFNULL(qcr.qty_afkir,0)) AS qc_total
+                        ,IFNULL(SUM(rec.prod_order_rec_det_qty),0) - (IFNULL(qcr.qty_normal,0) + IFNULL(qcr.qty_normal_minor,0) + IFNULL(qcr.qty_minor,0) + IFNULL(qcr.qty_minor_major,0) + IFNULL(qcr.qty_major,0) + IFNULL(qcr.qty_afkir,0)) AS qc_outstanding
                         FROM tb_prod_order a 
                         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
                         INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -106,13 +149,48 @@
                         LEFT JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
                         LEFT JOIN  
                         ( 
-                        SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty 
-                        FROM 
-                        tb_prod_order_rec rec 
-                        LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
-                        GROUP BY recd.id_prod_order_det 
-                        ) rec On rec.id_prod_order_det=pod.id_prod_order_det 
-                        WHERE 1=1 " & query_where & "
+                            SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty 
+                            FROM 
+                            tb_prod_order_rec rec 
+                            LEFT JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
+                            GROUP BY recd.id_prod_order_det 
+                        ) rec ON rec.id_prod_order_det=pod.id_prod_order_det 
+                        LEFT JOIN
+                        (
+                            SELECT fc.`id_prod_order`,SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0)) AS qty_normal,
+                            SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0)) AS qty_normal_minor,
+                            SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0)) AS qty_minor,
+                            SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0)) AS qty_minor_major,
+                            SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0)) AS qty_major,
+                            SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0)) AS qty_afkir 
+                            FROM tb_pl_prod_order_det fcd
+                            INNER JOIN tb_pl_prod_order fc ON fc.`id_pl_prod_order`=fcd.`id_pl_prod_order` AND fc.`id_report_status`=6
+                            WHERE NOT ISNULL(fc.`id_pl_category_sub`)
+                            GROUP BY fc.`id_prod_order`
+                        )qcr ON qcr.id_prod_order=a.`id_prod_order`
+                        LEFT JOIN (
+                            SELECT wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price,  cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, wo.`prod_order_wo_kurs`
+                        FROM tb_prod_order_wo wo
+                        INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
+                        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
+                        INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
+                        WHERE wo.is_main_vendor=1 
+                        GROUP BY wo.id_prod_order_wo
+                        ) wo_price ON wo_price.id_prod_order=a.id_prod_order
+                        LEFT JOIN (
+	                        SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
+	                        SELECT * FROM tb_prod_order_ko_det
+	                        ORDER BY id_prod_order_ko_det DESC
+                        )ko GROUP BY ko.id_prod_order
+                        ) ko ON ko.id_prod_order=a.id_prod_order
+                        LEFT JOIN
+                        (
+                            SELECT rec.id_prod_order,MIN(rec.arrive_date) AS first_rec_date
+                            FROM `tb_prod_order_rec` rec
+                            WHERE rec.id_report_status='6'
+                            GROUP BY rec.id_prod_order
+                        ) rec_date ON rec_date.id_prod_order=a.id_prod_order 
+                        WHERE a.is_closing_rec='2' " & query_where & "
                         GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -169,23 +247,71 @@
             stopCustom("Please select FG PO first.")
             GVProd.ActiveFilterString = ""
         Else
-            Dim confirm As DialogResult
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving for this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim prod_order As String = ""
-                For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
-                    If i > 0 Then
-                        prod_order += "OR "
-                    End If
-                    prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
-                Next
-                Dim query As String = "UPDATE tb_prod_order SET is_closing_rec=1 WHERE (" + prod_order + ") "
-                execute_non_query(query, True, "", "", "", "")
+            'check first
+            Dim err_text As String = ""
+            Dim err_text_outstanding As String = ""
+            Dim err_text_rec As String = ""
+            Dim can_close As Boolean = True
+            'outstanding qc
+            For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+                If GVProd.GetRowCellValue(i, "qc_outstanding") >= 1 Then
+                    can_close = False
+                    err_text_outstanding += vbNewLine & "- " & GVProd.GetRowCellValue(i, "prod_order_number").ToString & " (" & GVProd.GetRowCellValue(i, "design_display_name").ToString & ")"
+                End If
+            Next
+            If Not err_text_outstanding = "" Then
+                err_text = "There is outstanding work in QC for this FGPO : " & err_text_outstanding
             End If
+            'not yet receiving
+            For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+                If GVProd.GetRowCellValue(i, "qty_rec") = 0 Then
+                    can_close = False
+                    err_text_rec += vbNewLine & "- " & GVProd.GetRowCellValue(i, "prod_order_number").ToString & " (" & GVProd.GetRowCellValue(i, "design_display_name").ToString & ")"
+                End If
+            Next
+            If Not err_text_rec = "" Then
+                If Not err_text = "" Then
+                    err_text += vbNewLine
+                End If
+                err_text += "This FGPO not yet received : " & err_text_rec
+            End If
+
+            If can_close Then
+                Dim query As String = "INSERT INTO tb_prod_order_close(created_date,created_by,id_report_status) VALUES(NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim id_pps As String = execute_query(query, 0, True, "", "", "", "")
+                query = "CALL gen_number('" & id_pps & "','212')"
+                execute_non_query(query, True, "", "", "", "")
+                'detail
+                query = "INSERT INTO tb_prod_order_close_det(id_prod_order_close,id_prod_order,id_claim_reject,id_claim_late) VALUES"
+                For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+                    If Not i = 0 Then
+                        query += ","
+                    End If
+                    query += "('" & id_pps & "','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVProd.GetRowCellValue(i, "id_claim_reject").ToString & "','" & GVProd.GetRowCellValue(i, "id_claim_late").ToString & "')"
+                Next
+                execute_non_query(query, True, "", "", "", "")
+                FormProdClosingPps.id_pps = id_pps
+                FormProdClosingPps.ShowDialog()
+                view_production_order()
+            Else
+                warningCustom(err_text)
+            End If
+            'Dim confirm As DialogResult
+            'confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving for this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            'If confirm = Windows.Forms.DialogResult.Yes Then
+            '    Dim prod_order As String = ""
+            '    For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
+            '        If i > 0 Then
+            '            prod_order += "OR "
+            '        End If
+            '        prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
+            '    Next
+            '    Dim query As String = "UPDATE tb_prod_order SET is_closing_rec=1 WHERE (" + prod_order + ") "
+            '    execute_non_query(query, True, "", "", "", "")
+            'End If
+            GVProd.ActiveFilterString = ""
         End If
 
-        GVProd.ActiveFilterString = ""
-        view_production_order()
         Cursor = Cursors.Default
     End Sub
 
@@ -243,5 +369,14 @@
             FormProdClosingTolerance.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVClosing_DoubleClick(sender As Object, e As EventArgs) Handles GVClosing.DoubleClick
+        If GVClosing.RowCount > 0 Then
+            FormProdClosingPps.id_pps = GVClosing.GetFocusedRowCellValue("id_prod_order_close").ToString
+            FormProdClosingPps.ShowDialog()
+        Else
+            infoCustom("No closing proposed")
+        End If
     End Sub
 End Class

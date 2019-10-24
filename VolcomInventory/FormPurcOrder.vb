@@ -92,7 +92,7 @@
 ,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
 ,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
-,po.close_rec_reason
+,po.close_rec_reason,rts.report_status
 ,IFNULL(payment.value,0) AS val_pay
 ,IF(po.is_close_pay=1,'Closed',IF(DATE(NOW())>po.pay_due_date,'Overdue','Open')) as pay_status
 FROM tb_purc_order po
@@ -103,6 +103,7 @@ INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
 INNER JOIN tb_m_employee emp_upd ON emp_upd.id_employee=usr_upd.id_employee
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_lookup_report_status rts ON rts.id_report_status=po.id_report_status
 LEFT JOIN 
 ( 
 	SELECT recd.`id_purc_order_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd 

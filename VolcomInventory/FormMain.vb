@@ -1693,7 +1693,6 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertimeDet.id = "0"
             FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
-            FormEmpOvertimeDet.is_check = "-1"
             FormEmpOvertimeDet.ShowDialog()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcCloseDet.ShowDialog()
@@ -1738,6 +1737,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Promo Rulese
             FormPromoRulesDet.action = "ins"
             FormPromoRulesDet.ShowDialog()
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            FormEmpInputAttendanceDet.id = "0"
+            FormEmpInputAttendanceDet.ShowDialog()
+        ElseIf formName = "FormBankDeposit" Then
+            FormBankDepositDet.type_rec = "2"
+            FormBankDepositDet.ShowDialog()
+        ElseIf formName = "FormBuktiPickup" Then
+            FormBuktiPickupDet.id_pickup = "0"
+            FormBuktiPickupDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2768,16 +2777,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
-                If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
-                    FormEmpOvertimeDet.id = FormEmpOvertime.GVEmployee.GetFocusedRowCellValue("id_ot")
+                If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
+                    FormEmpOvertimeDet.id = FormEmpOvertime.GVProposeEmployee.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
-                    FormEmpOvertimeDet.is_check = "-1"
 
                     FormEmpOvertimeDet.Show()
                 Else
                     FormEmpOvertimeDet.id = FormEmpOvertime.GVOvertime.GetFocusedRowCellValue("id_ot")
                     FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
-                    FormEmpOvertimeDet.is_check = "-1"
 
                     FormEmpOvertimeDet.Show()
                 End If
@@ -2823,6 +2830,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormPromoRulesDet.action = "upd"
                 FormPromoRulesDet.id = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
                 FormPromoRulesDet.ShowDialog()
+            ElseIf formName = "FormEmpInputAttendance" Then
+                'input attendance
+                FormEmpInputAttendanceDet.id = FormEmpInputAttendance.GVList.GetFocusedRowCellValue("id_emp_attn_input").ToString
+                FormEmpInputAttendanceDet.ShowDialog()
+            ElseIf Formname = "FormBankDeposit" Then
+                FormBankDepositDet.id_deposit = FormBankDeposit.GVList.GetFocusedRowCellValue("id_rec_payment").ToString
+                FormBankDepositDet.ShowDialog()
+            ElseIf formName = "FormBuktiPickup" Then
+                Try
+                    FormBuktiPickupDet.id_pickup = FormBuktiPickup.GVList.GetFocusedRowCellValue("id_pickup").ToString
+                    FormBuktiPickupDet.ShowDialog()
+                Catch ex As Exception
+                End Try
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5974,7 +5994,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             If confirm = DialogResult.Yes Then
                 Dim query_del As String = "DELETE FROM tb_a_asset WHERE id_asset='" + id + "'"
                 execute_non_query(query_del, True, "", "", "", "")
-                FormMasterAsset.load_asset()
+                FormMasterAsset.load_asset("2")
             End If
         ElseIf formName = "FormAssetPO" Then
             Dim id As String = FormAssetPO.GVPOList.GetFocusedRowCellValue("id_asset_po").ToString
@@ -7580,12 +7600,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSamplePurcClose" Then
             print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
         ElseIf formName = "FormEmpOvertime" Then
-            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByRequest" Then
+            If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByRequest" Then
                 print(FormEmpOvertime.GCOvertime, "List Overtime")
             End If
 
-            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
-                print(FormEmpOvertime.GCEmployee, "List Overtime")
+            If FormEmpOvertime.XTCPropose.SelectedTabPage.Name = "XTPByEmployee" Then
+                print(FormEmpOvertime.GCProposeEmployee, "List Overtime")
             End If
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.print_list()
@@ -7645,6 +7665,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormVoucherPOS.GCData, "")
         ElseIf formName = "FormPromoRules" Then
             print(FormPromoRules.GCStore, FormPromoRules.GVRules.GetFocusedRowCellValue("name").ToString + " (" + FormPromoRules.GVRules.GetFocusedRowCellValue("code").ToString + ")" + " - " + "Limit Value : " + FormPromoRules.GVRules.GetFocusedRowCellValue("limit_value").ToString)
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            print(FormEmpInputAttendance.GCList, "Input Attendance")
+        ElseIf formName = "FormPurcReqList" Then
+            'purchase request IC
+            FormPurcReqList.print_report()
+        ElseIf formName = "FormBuktiPickup" Then
+            print(FormBuktiPickup.GCList, "Bukti Pickup")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8429,6 +8457,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPromoRules" Then
             FormPromoRules.Close()
             FormPromoRules.Dispose()
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            FormEmpInputAttendance.Close()
+            FormEmpInputAttendance.Dispose()
+        ElseIf formName = "FormPurcReqList" Then
+            'Purchase Request IC
+            FormPurcReqList.Close()
+            FormPurcReqList.Dispose()
+        ElseIf formName = "FormBuktiPickup" Then
+            FormBuktiPickup.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9129,7 +9167,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpUniList.viewData()
         ElseIf formName = "FormMasterAsset" Then
             If FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 0 Then
-                FormMasterAsset.load_asset()
+                FormMasterAsset.load_asset("2")
             ElseIf FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 1 Then
                 FormMasterAsset.load_moving_log()
             End If
@@ -9273,6 +9311,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVoucherPOS.viewVoucher()
         ElseIf formName = "FormPromoRules" Then
             FormPromoRules.viewRules()
+        ElseIf formName = "FormEmpInputAttendance" Then
+            'input attendance
+            FormEmpInputAttendance.view_attendance()
+        ElseIf formName = "FormPurcReqList" Then
+            'Purchase request IC
+            FormPurcReqList.load_req()
         End If
     End Sub
     'Switch
@@ -13430,6 +13474,60 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPromoRules.Show()
             FormPromoRules.WindowState = FormWindowState.Maximized
             FormPromoRules.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInputAttendance_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInputAttendance.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpInputAttendance.MdiParent = Me
+            FormEmpInputAttendance.Show()
+            FormEmpInputAttendance.WindowState = FormWindowState.Maximized
+            FormEmpInputAttendance.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPurcReqIC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReqIC.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReqList.MdiParent = Me
+            FormPurcReqList.step_approve = "1"
+            FormPurcReqList.Show()
+            FormPurcReqList.WindowState = FormWindowState.Maximized
+            FormPurcReqList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPurcReqIA_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReqIA.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReqList.MdiParent = Me
+            FormPurcReqList.step_approve = "2"
+            FormPurcReqList.Show()
+            FormPurcReqList.WindowState = FormWindowState.Maximized
+            FormPurcReqList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBuktiPickup_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBuktiPickup.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBuktiPickup.MdiParent = Me
+            FormBuktiPickup.Show()
+            FormBuktiPickup.WindowState = FormWindowState.Maximized
+            FormBuktiPickup.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
