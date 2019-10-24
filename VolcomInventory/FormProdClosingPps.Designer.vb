@@ -30,12 +30,12 @@ Partial Class FormProdClosingPps
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCancelPropose = New DevExpress.XtraEditors.SimpleButton()
-        Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancelPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSum = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
@@ -268,27 +268,27 @@ Partial Class FormProdClosingPps
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BCancelPropose)
         Me.PanelControl2.Controls.Add(Me.BtnAttachment)
+        Me.PanelControl2.Controls.Add(Me.BPrint)
+        Me.PanelControl2.Controls.Add(Me.BCancelPropose)
         Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BMark)
-        Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 515)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1174, 41)
         Me.PanelControl2.TabIndex = 1
         '
-        'BCancelPropose
+        'BtnAttachment
         '
-        Me.BCancelPropose.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BCancelPropose.Image = CType(resources.GetObject("BCancelPropose.Image"), System.Drawing.Image)
-        Me.BCancelPropose.ImageList = Me.ImgBut
-        Me.BCancelPropose.Location = New System.Drawing.Point(87, 2)
-        Me.BCancelPropose.Name = "BCancelPropose"
-        Me.BCancelPropose.Size = New System.Drawing.Size(130, 37)
-        Me.BCancelPropose.TabIndex = 21
-        Me.BCancelPropose.Text = "Cancel Propose"
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.ImgBut
+        Me.BtnAttachment.Location = New System.Drawing.Point(886, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(115, 37)
+        Me.BtnAttachment.TabIndex = 20
+        Me.BtnAttachment.Text = "Attachment"
         '
         'ImgBut
         '
@@ -307,23 +307,34 @@ Partial Class FormProdClosingPps
         Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
         Me.ImgBut.Images.SetKeyName(11, "document_32.png")
         '
-        'BtnAttachment
+        'BPrint
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.ImageList = Me.ImgBut
-        Me.BtnAttachment.Location = New System.Drawing.Point(886, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(115, 37)
-        Me.BtnAttachment.TabIndex = 20
-        Me.BtnAttachment.Text = "Attachment"
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.ImgBut
+        Me.BPrint.Location = New System.Drawing.Point(1001, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(83, 37)
+        Me.BPrint.TabIndex = 18
+        Me.BPrint.Text = "Print"
+        '
+        'BCancelPropose
+        '
+        Me.BCancelPropose.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelPropose.Image = CType(resources.GetObject("BCancelPropose.Image"), System.Drawing.Image)
+        Me.BCancelPropose.ImageList = Me.ImgBut
+        Me.BCancelPropose.Location = New System.Drawing.Point(87, 2)
+        Me.BCancelPropose.Name = "BCancelPropose"
+        Me.BCancelPropose.Size = New System.Drawing.Size(130, 37)
+        Me.BCancelPropose.TabIndex = 21
+        Me.BCancelPropose.Text = "Cancel Propose"
         '
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.ImgBut
-        Me.BCancel.Location = New System.Drawing.Point(1001, 2)
+        Me.BCancel.Location = New System.Drawing.Point(1084, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(88, 37)
         Me.BCancel.TabIndex = 17
@@ -339,18 +350,6 @@ Partial Class FormProdClosingPps
         Me.BMark.Size = New System.Drawing.Size(85, 37)
         Me.BMark.TabIndex = 19
         Me.BMark.Text = "Mark"
-        '
-        'BPrint
-        '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.ImageIndex = 6
-        Me.BPrint.ImageList = Me.ImgBut
-        Me.BPrint.Location = New System.Drawing.Point(1089, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(83, 37)
-        Me.BPrint.TabIndex = 18
-        Me.BPrint.Text = "Print"
-        Me.BPrint.Visible = False
         '
         'XtraTabControl1
         '
@@ -536,7 +535,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnOrderQty.FieldName = "po_qty"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
-        Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
+        Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_qty", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 7
         Me.GridColumnOrderQty.Width = 89
@@ -552,7 +551,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnRecQty.FieldName = "rec_qty"
         Me.GridColumnRecQty.Name = "GridColumnRecQty"
         Me.GridColumnRecQty.OptionsColumn.AllowEdit = False
-        Me.GridColumnRecQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
+        Me.GridColumnRecQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_qty", "{0:N0}")})
         Me.GridColumnRecQty.Visible = True
         Me.GridColumnRecQty.VisibleIndex = 8
         Me.GridColumnRecQty.Width = 96
@@ -586,8 +585,10 @@ Partial Class FormProdClosingPps
         Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn40.Caption = "QC Normal"
         Me.GridColumn40.DisplayFormat.FormatString = "N0"
+        Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn40.FieldName = "qty_normal"
         Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_normal", "{0:N0}")})
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 10
         '
@@ -599,8 +600,10 @@ Partial Class FormProdClosingPps
         Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn41.Caption = "QC Reject Minor"
         Me.GridColumn41.DisplayFormat.FormatString = "N0"
+        Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn41.FieldName = "qty_minor"
         Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_minor", "{0:N0}")})
         Me.GridColumn41.Visible = True
         Me.GridColumn41.VisibleIndex = 11
         '
@@ -612,8 +615,10 @@ Partial Class FormProdClosingPps
         Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn42.Caption = "QC Reject Major"
         Me.GridColumn42.DisplayFormat.FormatString = "N0"
+        Me.GridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn42.FieldName = "qty_major"
         Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_major", "{0:N0}")})
         Me.GridColumn42.Visible = True
         Me.GridColumn42.VisibleIndex = 12
         '
@@ -625,8 +630,10 @@ Partial Class FormProdClosingPps
         Me.GridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn43.Caption = "QC Afkir"
         Me.GridColumn43.DisplayFormat.FormatString = "N0"
+        Me.GridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn43.FieldName = "qty_afkir"
         Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_afkir", "{0:N0}")})
         Me.GridColumn43.Visible = True
         Me.GridColumn43.VisibleIndex = 13
         '
@@ -641,6 +648,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn44.FieldName = "claim_reject"
         Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_reject", "{0:N2}")})
         Me.GridColumn44.Visible = True
         Me.GridColumn44.VisibleIndex = 14
         '
@@ -655,6 +663,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn45.FieldName = "claim_late"
         Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_late", "{0:N2}")})
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 15
         '
@@ -669,6 +678,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn46.FieldName = "tot_claim"
         Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_claim", "{0:N2}")})
         Me.GridColumn46.UnboundExpression = "[claim_late] + [claim_reject]"
         Me.GridColumn46.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn46.Visible = True
@@ -868,6 +878,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "qc_normal"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_normal", "{0:N0}")})
         Me.GridColumn5.Visible = True
         '
         'GridColumn15
@@ -881,6 +892,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn15.FieldName = "qc_normal_minor"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_normal_minor", "{0:N0}")})
         Me.GridColumn15.Visible = True
         '
         'GridColumn16
@@ -894,6 +906,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn16.FieldName = "qc_minor"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_minor", "{0:N0}")})
         Me.GridColumn16.Visible = True
         '
         'GridColumn17
@@ -907,6 +920,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "qc_minor_major"
         Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_minor_major", "{0:N0}")})
         Me.GridColumn17.Visible = True
         '
         'GridColumn18
@@ -920,6 +934,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "qc_major"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_major", "{0:N0}")})
         Me.GridColumn18.Visible = True
         '
         'GridColumn19
@@ -933,6 +948,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "qc_afkir"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_afkir", "{0:N0}")})
         Me.GridColumn19.Visible = True
         '
         'gridBand3
@@ -999,6 +1015,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "amo_claim_minor"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo_claim_minor", "{0:N2}")})
         Me.GridColumn20.Visible = True
         '
         'GridColumn21
@@ -1012,6 +1029,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "amo_claim_major"
         Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo_claim_major", "{0:N2}")})
         Me.GridColumn21.Visible = True
         '
         'GridColumn22
@@ -1025,6 +1043,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn22.FieldName = "amo_claim_afkir"
         Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo_claim_afkir", "{0:N2}")})
         Me.GridColumn22.Visible = True
         '
         'GridColumn24
@@ -1236,7 +1255,6 @@ Partial Class FormProdClosingPps
         Me.BandedGridColumn7.FieldName = "po_qty"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
         Me.BandedGridColumn7.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.BandedGridColumn7.Visible = True
         Me.BandedGridColumn7.Width = 89
         '
@@ -1366,6 +1384,7 @@ Partial Class FormProdClosingPps
         Me.BandedGridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn15.FieldName = "claim_amo"
         Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo", "{0:N2}")})
         Me.BandedGridColumn15.Visible = True
         '
         'RepositoryItemPictureEdit2
