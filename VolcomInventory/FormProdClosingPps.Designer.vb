@@ -30,12 +30,12 @@ Partial Class FormProdClosingPps
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCancelPropose = New DevExpress.XtraEditors.SimpleButton()
-        Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancelPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSum = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
@@ -279,16 +279,16 @@ Partial Class FormProdClosingPps
         Me.PanelControl2.Size = New System.Drawing.Size(1174, 41)
         Me.PanelControl2.TabIndex = 1
         '
-        'BCancelPropose
+        'BtnAttachment
         '
-        Me.BCancelPropose.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BCancelPropose.Image = CType(resources.GetObject("BCancelPropose.Image"), System.Drawing.Image)
-        Me.BCancelPropose.ImageList = Me.ImgBut
-        Me.BCancelPropose.Location = New System.Drawing.Point(87, 2)
-        Me.BCancelPropose.Name = "BCancelPropose"
-        Me.BCancelPropose.Size = New System.Drawing.Size(130, 37)
-        Me.BCancelPropose.TabIndex = 21
-        Me.BCancelPropose.Text = "Cancel Propose"
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.ImgBut
+        Me.BtnAttachment.Location = New System.Drawing.Point(886, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(115, 37)
+        Me.BtnAttachment.TabIndex = 20
+        Me.BtnAttachment.Text = "Attachment"
         '
         'ImgBut
         '
@@ -307,16 +307,27 @@ Partial Class FormProdClosingPps
         Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
         Me.ImgBut.Images.SetKeyName(11, "document_32.png")
         '
-        'BtnAttachment
+        'BPrint
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.ImageList = Me.ImgBut
-        Me.BtnAttachment.Location = New System.Drawing.Point(886, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(115, 37)
-        Me.BtnAttachment.TabIndex = 20
-        Me.BtnAttachment.Text = "Attachment"
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.ImgBut
+        Me.BPrint.Location = New System.Drawing.Point(1001, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(83, 37)
+        Me.BPrint.TabIndex = 18
+        Me.BPrint.Text = "Print"
+        '
+        'BCancelPropose
+        '
+        Me.BCancelPropose.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelPropose.Image = CType(resources.GetObject("BCancelPropose.Image"), System.Drawing.Image)
+        Me.BCancelPropose.ImageList = Me.ImgBut
+        Me.BCancelPropose.Location = New System.Drawing.Point(87, 2)
+        Me.BCancelPropose.Name = "BCancelPropose"
+        Me.BCancelPropose.Size = New System.Drawing.Size(130, 37)
+        Me.BCancelPropose.TabIndex = 21
+        Me.BCancelPropose.Text = "Cancel Propose"
         '
         'BCancel
         '
@@ -339,17 +350,6 @@ Partial Class FormProdClosingPps
         Me.BMark.Size = New System.Drawing.Size(85, 37)
         Me.BMark.TabIndex = 19
         Me.BMark.Text = "Mark"
-        '
-        'BPrint
-        '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.ImageIndex = 6
-        Me.BPrint.ImageList = Me.ImgBut
-        Me.BPrint.Location = New System.Drawing.Point(1001, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(83, 37)
-        Me.BPrint.TabIndex = 18
-        Me.BPrint.Text = "Print"
         '
         'XtraTabControl1
         '
@@ -588,6 +588,7 @@ Partial Class FormProdClosingPps
         Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn40.FieldName = "qty_normal"
         Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_normal", "{0:N0}")})
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 10
         '

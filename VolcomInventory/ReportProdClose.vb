@@ -3,7 +3,6 @@
     Public Shared dt_det As DataTable
 
     Private Sub Detail_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles Detail.BeforePrint
-        DataSource = dt_head
         '
         Dim po_height As Integer = 0
 

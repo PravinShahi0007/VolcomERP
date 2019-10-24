@@ -266,9 +266,12 @@ WHERE pocd.`id_prod_order_close`='" & id_pps & "'"
         Cursor = Cursors.WaitCursor
 
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
-            Dim query As String = "SELECT '" & TEPONumber.Text & "' AS prod_close_number,'" & Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy") & "' AS date_created,'" & GVProd.Columns("po_qty").SummaryItem.SummaryValue.ToString("N0") & "' AS order_qty,'" & GVProd.Columns("rec_qty").SummaryItem.SummaryValue.ToString("N0") & "' AS rec_qty,'" & GVProd.Columns("qty_normal").SummaryItem.SummaryValue.ToString("N0") & "' AS qc_normal, AS qc_minor, AS qc_major, AS amo_claim_reject, AS amo_claim_late, AS total_claim"
+            Dim query As String = "SELECT '" & TEPONumber.Text & "' AS prod_close_number,'" & Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy") & "' AS date_created,'" & Decimal.Parse(GVProd.Columns("po_qty").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS order_qty,'" & Decimal.Parse(GVProd.Columns("rec_qty").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS rec_qty,'" & Decimal.Parse(GVProd.Columns("qty_normal").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS qc_normal,'" & Decimal.Parse(GVProd.Columns("qty_minor").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS qc_minor,'" & Decimal.Parse(GVProd.Columns("qty_major").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS qc_major,'" & Decimal.Parse(GVProd.Columns("claim_reject").SummaryItem.SummaryValue.ToString).ToString("N2") & "' AS amo_claim_reject,'" & Decimal.Parse(GVProd.Columns("claim_late").SummaryItem.SummaryValue.ToString).ToString("N2") & "' AS amo_claim_late,'" & Decimal.Parse(GVProd.Columns("claim_late").SummaryItem.SummaryValue + GVProd.Columns("claim_reject").SummaryItem.SummaryValue).ToString("N2") & "' AS total_claim"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
             ReportProdClose.dt_det = GCProd.DataSource
             Dim Report As New ReportProdClose()
+            Report.DataSource = data
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
