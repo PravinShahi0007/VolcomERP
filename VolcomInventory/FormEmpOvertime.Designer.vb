@@ -470,6 +470,7 @@ Partial Class FormEmpOvertime
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'GridColumn13
@@ -828,7 +829,7 @@ Partial Class FormEmpOvertime
         Me.GCStartWork.AppearanceHeader.Options.UseTextOptions = True
         Me.GCStartWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCStartWork.Caption = "Start Work"
-        Me.GCStartWork.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GCStartWork.DisplayFormat.FormatString = "HH:mm:ss"
         Me.GCStartWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCStartWork.FieldName = "ot_start_time"
         Me.GCStartWork.Name = "GCStartWork"
@@ -841,7 +842,7 @@ Partial Class FormEmpOvertime
         Me.GCEndWork.AppearanceHeader.Options.UseTextOptions = True
         Me.GCEndWork.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEndWork.Caption = "End Work"
-        Me.GCEndWork.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GCEndWork.DisplayFormat.FormatString = "HH:mm:ss"
         Me.GCEndWork.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCEndWork.FieldName = "ot_end_time"
         Me.GCEndWork.Name = "GCEndWork"

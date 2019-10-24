@@ -11,6 +11,7 @@ Public Class FormSalesPOSDet
     Public id_report_status As String
     Public id_sales_pos_det_list As New List(Of String)
     Public id_comp As String = "-1"
+    Public id_comp_bill_to As String = "-1"
     Dim total_amount As Decimal = 0.0
     Dim currency As String = "-1"
     Dim id_comp_cat_store As String = "-1"
@@ -1860,6 +1861,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub defaultResetBillTo()
+        id_comp_bill_to = "-1"
         id_comp_contact_bill = "-1"
         TxtNameBillTo.Text = ""
     End Sub
@@ -1899,6 +1901,7 @@ Public Class FormSalesPOSDet
                 FormPopUpContact.ShowDialog()
             Else
                 'If check_acc(data.Rows(0)("id_comp").ToString) Then
+                id_comp_bill_to = data.Rows(0)("id_comp").ToString
                 SPDiscount.EditValue = data.Rows(0)("comp_commission")
                 id_comp_contact_bill = data.Rows(0)("id_comp_contact").ToString
                 TxtNameBillTo.Text = data.Rows(0)("comp_name").ToString
@@ -2285,7 +2288,11 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnSelectDiscount_Click(sender As Object, e As EventArgs) Handles BtnSelectDiscount.Click
         Cursor = Cursors.WaitCursor
-        FormSalesPOSDiscount.id_comp = id_comp
+        If id_menu = "4" Then
+            FormSalesPOSDiscount.id_comp = id_comp_bill_to
+        Else
+            FormSalesPOSDiscount.id_comp = id_comp
+        End If
         FormSalesPOSDiscount.ShowDialog()
         Cursor = Cursors.Default
     End Sub
