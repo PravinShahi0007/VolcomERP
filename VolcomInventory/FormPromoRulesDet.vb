@@ -27,8 +27,13 @@
             TxtLimitValue.EditValue = 0
             LEProductStatus.Focus()
             ActiveControl = LEProductStatus
+
+            Dim curr_date As DateTime = getTimeDB()
+            DEStart.EditValue = curr_date
+            DEEnd.EditValue = curr_date
         ElseIf action = "upd" Then
-            Dim query As String = "SELECT r.id_rules, r.id_design_cat, dc.design_cat, r.limit_value, r.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`
+            Dim query As String = "SELECT r.id_rules, r.id_design_cat, dc.design_cat, r.limit_value, r.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+            r.period_start, r.period_end
             FROM tb_promo_rules r 
             INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = r.id_design_cat
             INNER JOIN tb_m_product p ON p.id_product = r.id_product 
@@ -42,6 +47,8 @@
             TxtCode.Text = data.Rows(0)("code").ToString
             TxtName.Text = data.Rows(0)("name").ToString
             TxtSize.Text = data.Rows(0)("size").ToString
+            DEStart.EditValue = data.Rows(0)("period_start")
+            DEEnd.EditValue = data.Rows(0)("period_end")
 
             'detail
             Dim qd As String = "SELECT c.id_outlet, c.outlet_name, IF(!ISNULL(rd.id_outlet), 'yes', 'no') AS `is_select`,
@@ -122,9 +129,11 @@
             Dim username As String = GVStore.GetRowCellValue(i, "username").ToString
             Dim pass As String = GVStore.GetRowCellValue(i, "pass").ToString
             Dim db As String = GVStore.GetRowCellValue(i, "db").ToString
+            Dim period_start As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim period_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
 
-            Dim query As String = "INSERT INTO tb_promo_rules(id_rules, id_design_cat, limit_value, id_product) VALUES
-            ('" + id + "', '" + LEProductStatus.EditValue.ToString + "', '" + decimalSQL(TxtLimitValue.EditValue.ToString) + "', '" + id_product + "'); "
+            Dim query As String = "INSERT INTO tb_promo_rules(id_rules, id_design_cat, limit_value, id_product, product_code, product_name, period_start, period_end) VALUES
+            ('" + id + "', '" + LEProductStatus.EditValue.ToString + "', '" + decimalSQL(TxtLimitValue.EditValue.ToString) + "', '" + id_product + "', '" + addSlashes(TxtCode.Text) + "', '" + addSlashes(TxtName.Text) + "', '" + period_start + "', '" + period_end + "'); "
             execute_non_query_long(query, False, host, username, pass, db)
         Next
         GVStore.ActiveFilterString = ""
@@ -137,13 +146,17 @@
         Else
             Dim id_design_cat As String = LEProductStatus.EditValue.ToString
             Dim limit_value As String = decimalSQL(TxtLimitValue.EditValue.ToString)
+            Dim product_code As String = addSlashes(TxtCode.Text)
+            Dim product_name As String = addSlashes(TxtName.Text)
+            Dim period_start As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim period_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this rule ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main
-                    Dim query As String = "INSERT INTO tb_promo_rules(id_design_cat, limit_value, id_product) VALUES (" + id_design_cat + ", " + limit_value + ", " + id_product + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_promo_rules(id_design_cat, limit_value, id_product, product_code, product_name,period_start, period_end) VALUES (" + id_design_cat + ", " + limit_value + ", " + id_product + ", '" + product_code + "', '" + product_name + "', '" + period_start + "', '" + period_end + "'); SELECT LAST_INSERT_ID(); "
                     id = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
@@ -182,7 +195,7 @@
                     Next
 
                     'main 
-                    Dim query As String = "UPDATE tb_promo_rules Set id_design_cat='" + id_design_cat + "', limit_value='" + limit_value + "', id_product='" + id_product + "' WHERE id_rules='" + id + "' "
+                    Dim query As String = "UPDATE tb_promo_rules Set id_design_cat='" + id_design_cat + "', limit_value='" + limit_value + "', id_product='" + id_product + "', product_code='" + product_code + "', product_name='" + product_name + "',period_start='" + period_start + "', period_end='" + period_end + "' WHERE id_rules='" + id + "' "
                     execute_non_query(query, True, "", "", "", "")
 
                     'detail

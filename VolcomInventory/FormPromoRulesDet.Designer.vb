@@ -23,6 +23,10 @@ Partial Class FormPromoRulesDet
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSize = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -44,6 +48,10 @@ Partial Class FormPromoRulesDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtLimitValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +94,10 @@ Partial Class FormPromoRulesDet
         '
         'GroupControl1
         '
+        Me.GroupControl1.Controls.Add(Me.LabelControl7)
+        Me.GroupControl1.Controls.Add(Me.DEEnd)
+        Me.GroupControl1.Controls.Add(Me.DEStart)
+        Me.GroupControl1.Controls.Add(Me.LabelControl6)
         Me.GroupControl1.Controls.Add(Me.TxtSize)
         Me.GroupControl1.Controls.Add(Me.LabelControl5)
         Me.GroupControl1.Controls.Add(Me.LabelControl4)
@@ -99,9 +111,51 @@ Partial Class FormPromoRulesDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(476, 123)
+        Me.GroupControl1.Size = New System.Drawing.Size(476, 152)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Rules"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(267, 113)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl7.TabIndex = 14
+        Me.LabelControl7.Text = "-"
+        '
+        'DEEnd
+        '
+        Me.DEEnd.EditValue = Nothing
+        Me.DEEnd.Location = New System.Drawing.Point(279, 110)
+        Me.DEEnd.Name = "DEEnd"
+        Me.DEEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Size = New System.Drawing.Size(185, 20)
+        Me.DEEnd.TabIndex = 13
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(98, 110)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(161, 20)
+        Me.DEStart.TabIndex = 12
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 113)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl6.TabIndex = 11
+        Me.LabelControl6.Text = "Active Date"
         '
         'TxtSize
         '
@@ -193,9 +247,9 @@ Partial Class FormPromoRulesDet
         '
         Me.GroupControl2.Controls.Add(Me.GCStore)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 123)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 152)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(476, 209)
+        Me.GroupControl2.Size = New System.Drawing.Size(476, 180)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Store"
         '
@@ -206,7 +260,7 @@ Partial Class FormPromoRulesDet
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
         Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCStore.Size = New System.Drawing.Size(472, 187)
+        Me.GCStore.Size = New System.Drawing.Size(472, 158)
         Me.GCStore.TabIndex = 2
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -270,6 +324,10 @@ Partial Class FormPromoRulesDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtLimitValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -305,4 +363,8 @@ Partial Class FormPromoRulesDet
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents TxtSize As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
