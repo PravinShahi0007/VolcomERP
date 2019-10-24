@@ -21,7 +21,7 @@ SELECT '3' AS id_approval,'No Action' AS approval"
         viewSearchLookupQuery(SLEIAApproval, query, "id_approval", "approval", "id_approval")
     End Sub
 
-    Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub load_form()
         load_approval_ic_ia()
         load_report_status()
         is_reload = "1"
@@ -102,6 +102,10 @@ SELECT '3' AS id_approval,'No Action' AS approval"
         Else
             PCIAIC.Visible = True
         End If
+    End Sub
+
+    Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
     '
     Sub load_purc_type()
@@ -327,23 +331,23 @@ SELECT '3' AS id_approval,'No Action' AS approval"
                         query = "CALL gen_number('" & id_req & "','137')"
                         execute_non_query(query, True, "", "", "", "")
                         '
-                        submit_who_prepared("137", id_req, id_user)
+                        'submit_who_prepared("137", id_req, id_user)
                     Else
                         query = "CALL gen_number('" & id_req & "','201')"
                         execute_non_query(query, True, "", "", "", "")
                         '
-                        submit_who_prepared("201", id_req, id_user)
+                        'submit_who_prepared("201", id_req, id_user)
                     End If
 
                     infoCustom("Purchase requested.")
+                    load_form()
                     FormPurcReq.load_req()
-                    Close()
                 Else 'edit
                     Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',is_store_purchase='" & is_store_purchase & "',year_budget='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "',date_last_upd=NOW(),requirement_date='" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',note='" & addSlashes(MENote.Text) & "' WHERE id_purc_req='" & id_req & "'"
                     execute_non_query(query, True, "", "", "", "")
                     infoCustom("Purchase request updated.")
+                    load_form()
                     FormPurcReq.load_req()
-                    Close()
                 End If
             End If
         Else
@@ -388,11 +392,13 @@ SELECT '3' AS id_approval,'No Action' AS approval"
                 Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_req & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
                 submit_who_prepared(rmt, id_req, id_user_created)
+                load_form()
             Else 'capex
                 If is_ic_ia = "1" Then
                     FormPurcReqICApproval.step_approve = FormPurcReqList.step_approve
                     FormPurcReqICApproval.id_report = id_req
                     FormPurcReqICApproval.ShowDialog()
+                    load_form()
                 Else
                     warningCustom("Only IA and IC can submit CAPEX request")
                 End If
