@@ -6,6 +6,7 @@
     Public overtime_end_time As DateTime = New DateTime(Now.Year, Now.Month, Now.Day, 17, 30, 0)
     Public overtime_break As Decimal = 0.0
     Public overtime_propose As String = ""
+    Public total_hours As Decimal = 0.0
 
     Private Sub FormEmpOvertimePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -21,20 +22,11 @@
         TEOvertimeEnd.EditValue = overtime_end_time
         TEOvertimeBreak.EditValue = overtime_break
         MEOvertimeNote.EditValue = overtime_propose
-
-        Dim total As Decimal = calculateTotalHours(CType(TEOvertimeStart.EditValue, DateTime), CType(TEOvertimeEnd.EditValue, DateTime), TEOvertimeBreak.EditValue)
-        TETotalHours.EditValue = If(total < 0, (total + 25), total)
+        TETotalHours.EditValue = total_hours
 
         Dim include_all_dept As String = execute_query("SELECT include_all_dept FROM tb_lookup_ot_type WHERE id_ot_type = " + FormEmpOvertimeDet.LUEOvertimeType.EditValue.ToString, 0, True, "", "", "", "")
 
-        Dim whereDept As String = ""
-
-        'sales dept include sogo
-        If FormEmpOvertimeDet.LEDepartement.EditValue.ToString = "11" Then
-            whereDept = "AND e.id_departement IN (" + FormEmpOvertimeDet.LEDepartement.EditValue.ToString + ", 17)"
-        Else
-            whereDept = "AND e.id_departement = " + FormEmpOvertimeDet.LEDepartement.EditValue.ToString
-        End If
+        Dim whereDept As String = "AND e.id_departement = " + FormEmpOvertimeDet.LEDepartement.EditValue.ToString
 
         If include_all_dept = "1" Then
             whereDept = ""
@@ -57,9 +49,9 @@
         End If
 
         Dim query As String = "
-            SELECT is_checked, id_employee, id_departement, id_departement_sub, departement, is_store, employee_code, employee_name, employee_position, id_employee_status, employee_status, id_employee_active, employee_active, to_salary, CONCAT(GROUP_CONCAT(CONCAT(date, ':', is_day_off))) AS is_day_off
+            SELECT is_checked, id_employee, id_departement, id_departement_sub, departement, employee_code, employee_name, employee_position, id_employee_status, employee_status, id_employee_active, employee_active, to_salary, CONCAT(GROUP_CONCAT(CONCAT(date, ':', is_day_off))) AS is_day_off
             FROM (
-                SELECT 'no' AS is_checked, e.id_employee, e.id_departement, ds.id_departement_sub, d.departement, d.is_store, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = sch.date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, sch.date
+                SELECT 'no' AS is_checked, e.id_employee, e.id_departement, ds.id_departement_sub, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, st.employee_status, e.id_employee_active, la.employee_active, IF(salary.salary > (ds.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = sch.date AND id_religion IN (0, IF(d.is_store = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, sch.date
                 FROM tb_m_employee AS e
                 LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
                 LEFT JOIN tb_m_departement_sub AS ds ON IFNULL(e.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = e.id_departement LIMIT 1)) = ds.id_departement_sub
@@ -95,9 +87,18 @@
 
         'filter employee get overtime
         Dim ot_memo_employee As Decimal = get_opt_emp_field("ot_memo_employee")
+        Dim ot_min_spv As Decimal = get_opt_emp_field("ot_min_spv")
 
-        If TETotalHours.EditValue < ot_memo_employee Then
-            GVList.ActiveFilter.Add(GVList.Columns("to_salary"), New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[to_salary] = '1'"))
+        Dim is_store As String = execute_query("SELECT is_store FROM tb_m_departement WHERE id_departement = " + FormEmpOvertimeDet.LEDepartement.EditValue.ToString, 0, True, "", "", "", "")
+
+        If is_store = "1" Then
+            If TETotalHours.EditValue < ot_min_spv Then
+                GVList.ActiveFilter.Add(GVList.Columns("to_salary"), New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[to_salary] = '1'"))
+            End If
+        Else
+            If TETotalHours.EditValue < ot_memo_employee Then
+                GVList.ActiveFilter.Add(GVList.Columns("to_salary"), New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[to_salary] = '1'"))
+            End If
         End If
 
         GVList.BestFitColumns()
@@ -134,42 +135,33 @@
         Dim time_from As DateTime = DateTime.Parse(TEOvertimeStart.EditValue.ToString)
         Dim time_to As DateTime = DateTime.Parse(TEOvertimeEnd.EditValue.ToString)
 
+        Dim is_store As String = execute_query("SELECT is_store FROM tb_m_departement WHERE id_departement = " + FormEmpOvertimeDet.LEDepartement.EditValue.ToString, 0, True, "", "", "", "")
+
         For i = 0 To GVList.RowCount - 1
             If GVList.IsValidRowHandle(i) Then
                 If GVList.GetRowCellValue(i, "is_checked") = "yes" Then
-                    Dim date_from_temp As DateTime = date_from
+                    date_from = Date.Parse(DEOvertimeDateFrom.EditValue.ToString)
 
-                    While date_from_temp <= date_to
+                    While date_from <= date_to
                         'day off
                         Dim is_day_off_date As String = "1"
 
                         Dim is_day_off As String = GVList.GetRowCellValue(i, "is_day_off").ToString
 
                         If Not is_day_off = "" Then
-                            Dim cut As Integer = InStr(is_day_off, date_from_temp.ToString("yyyy-MM-dd") + ":")
+                            Dim cut As Integer = InStr(is_day_off, date_from.ToString("yyyy-MM-dd") + ":")
 
                             is_day_off_date = is_day_off.Substring(cut + 10).Substring(0, 1)
                         End If
 
-                        'fix date
-                        Dim datetime_from As DateTime = Date.Parse(date_from_temp.ToString("dd MMMM yyyy") + " " + time_from.ToString("HH:mm:ss"))
-                        Dim datetime_to As DateTime = Date.Parse(date_from_temp.ToString("dd MMMM yyyy") + " " + time_to.ToString("HH:mm:ss"))
-
-                        If calculateTotalHours(datetime_from, datetime_to, TEOvertimeBreak.EditValue) < 0 Then
-                            datetime_to.AddDays(1)
-                        End If
-
+                        'conversion type
                         Dim conversion_type As String = "3"
 
                         If GVList.GetRowCellValue(i, "to_salary") = "1" Then
                             conversion_type = "1"
                         Else
-                            If GVList.GetRowCellValue(i, "is_store").ToString = "1" Then
-                                If TETotalHours.EditValue < ot_min_spv Then
-                                    conversion_type = "3"
-                                Else
-                                    conversion_type = "2"
-                                End If
+                            If is_store = "1" Then
+                                conversion_type = "2"
                             Else
                                 If is_day_off_date = "1" Then
                                     If TETotalHours.EditValue < ot_min_spv Then
@@ -187,8 +179,7 @@
                                 GVList.GetRowCellValue(i, "id_departement"),
                                 GVList.GetRowCellValue(i, "id_departement_sub"),
                                 GVList.GetRowCellValue(i, "departement"),
-                                GVList.GetRowCellValue(i, "is_store"),
-                                date_from_temp.ToString("dd MMMM yyyy"),
+                                date_from.ToString("dd MMMM yyyy"),
                                 GVList.GetRowCellValue(i, "employee_code"),
                                 GVList.GetRowCellValue(i, "employee_name"),
                                 GVList.GetRowCellValue(i, "employee_position"),
@@ -198,13 +189,13 @@
                                 conversion_type,
                                 is_day_off_date,
                                 ot_consumption,
-                                datetime_from,
-                                datetime_to,
+                                time_from.ToString("HH:mm:ss"),
+                                time_to.ToString("HH:mm:ss"),
                                 TEOvertimeBreak.EditValue,
                                 TETotalHours.EditValue,
                                 MEOvertimeNote.EditValue.ToString)
 
-                        date_from_temp = date_from_temp.AddDays(1)
+                        date_from = date_from.AddDays(1)
                     End While
                 End If
             End If
@@ -223,16 +214,6 @@
         Close()
     End Sub
 
-    Function calculateTotalHours(ot_start As DateTime, ot_end As DateTime, ot_break As Decimal) As Decimal
-        Dim diff As TimeSpan = ot_end.Subtract(ot_start)
-
-        Dim total As Decimal = 0.0
-
-        total = Math.Round(Math.Round(diff.TotalHours, 1) - ot_break, 1)
-
-        Return total
-    End Function
-
     Function dateIncludeGrid(date_from As Date, date_to As Date, time_from As DateTime, time_to As DateTime) As String
         Dim whereNotInclude As String = ""
 
@@ -246,6 +227,10 @@
                 While date_from_temp <= date_to
                     Dim datetime_from As DateTime = Date.Parse(date_from_temp.ToString("dd MMMM yyyy") + " " + time_from.ToString("HH:mm:ss"))
                     Dim datetime_to As DateTime = Date.Parse(date_from_temp.ToString("dd MMMM yyyy") + " " + time_to.ToString("HH:mm:ss"))
+
+                    If datetime_to < datetime_from Then
+                        datetime_to.AddDays(1)
+                    End If
 
                     If ((ot_start_time > datetime_from And ot_start_time < datetime_to) Or (ot_end_time > datetime_from And ot_end_time < datetime_to)) Or ((datetime_from > ot_start_time And datetime_from < ot_end_time) Or (datetime_to > ot_start_time And datetime_to < ot_end_time)) Or ((ot_start_time = datetime_from And ot_end_time = datetime_to)) Then
                         whereNotInclude += FormEmpOvertimeDet.GVEmployee.GetRowCellValue(i, "id_employee").ToString + ", "
@@ -267,6 +252,10 @@
         While date_from <= date_to
             Dim datetime_from As DateTime = Date.Parse(date_from.ToString("yyyy-MM-dd") + " " + time_from.ToString("HH:mm:ss"))
             Dim datetime_to As DateTime = Date.Parse(date_from.ToString("yyyy-MM-dd") + " " + time_to.ToString("HH:mm:ss"))
+
+            If datetime_to < datetime_from Then
+                datetime_to.AddDays(1)
+            End If
 
             whereDate += "((('" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' > ot_det.ot_start_time AND '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' < ot_det.ot_end_time) OR ('" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "' > ot_det.ot_start_time AND  '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "' < ot_det.ot_end_time)) OR ((ot_det.ot_start_time > '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' AND ot_det.ot_start_time < '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "') OR (ot_det.ot_end_time > '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' AND ot_det.ot_end_time < '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "')) OR (ot_det.ot_start_time = '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' AND ot_det.ot_end_time = '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "')) OR "
 

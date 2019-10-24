@@ -9,7 +9,11 @@
 
     Public is_view As String = "2"
 
+    Private ot_memo_employee As Integer = get_opt_emp_field("ot_memo_employee")
+    Private ot_min_staff As Integer = get_opt_emp_field("ot_min_staff")
     Private ot_min_spv As Integer = get_opt_emp_field("ot_min_spv")
+
+    Private is_store As String = "2"
 
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_hrd = "-1" Then
@@ -25,9 +29,9 @@
         ' default
         viewLookupQuery(LUEOvertimeType, "SELECT id_ot_type, CONCAT(IF(is_event = 1, 'Event ', ''), ot_type) AS ot_type FROM tb_lookup_ot_type", 0, "ot_type", "id_ot_type")
         viewSearchLookupRepositoryQuery(RISLUEType, "SELECT id_ot_conversion AS id_type, conversion_type AS type, to_salary, to_dp FROM tb_lookup_ot_conversion", 0, "type", "id_type")
-        viewLookupQuery(LEDepartement, "SELECT * FROM tb_m_departement", 0, "departement", "id_departement")
+        viewSearchLookupQuery(LEDepartement, "SELECT * FROM tb_m_departement", "id_departement", "departement", "id_departement")
 
-        LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", id_departement_user)
+        LEDepartement.EditValue = id_departement_user
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         DECreatedAt.EditValue = Now
 
@@ -51,7 +55,7 @@
 
             TENumber.EditValue = data_ot.Rows(0)("number").ToString
             LUEOvertimeType.ItemIndex = LUEOvertimeType.Properties.GetDataSourceRowIndex("id_ot_type", data_ot.Rows(0)("id_ot_type").ToString)
-            LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", data_ot.Rows(0)("id_departement").ToString)
+            LEDepartement.EditValue = data_ot.Rows(0)("id_departement")
             TECreatedBy.EditValue = data_ot.Rows(0)("created_by").ToString
             DECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
             TEReportStatus.EditValue = data_ot.Rows(0)("report_status").ToString
@@ -61,7 +65,7 @@
             ' load employee
             ' column
             Dim query_ot_det As String = "
-                SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, departement.is_store, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, ot_det.ot_consumption, DATE_FORMAT(ot_det.ot_start_time, '%d %M %Y %H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%d %M %Y %H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
+                SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, ot_det.conversion_type, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, ot_det.ot_consumption, DATE_FORMAT(ot_det.ot_start_time, '%H:%i:%s') AS ot_start_time, DATE_FORMAT(ot_det.ot_end_time, '%H:%i:%s') AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -78,11 +82,13 @@
             GVEmployee.BestFitColumns()
         End If
 
-        ' permission
+        'permission
         If Not id = "0" Then
             LUEOvertimeType.ReadOnly = True
 
             RISLUEType.ReadOnly = True
+            RITETime.ReadOnly = True
+            RITEBreak.ReadOnly = True
 
             SBEmpDelete.Enabled = False
             SBEmpAdd.Enabled = False
@@ -93,10 +99,19 @@
             LEDepartement.Properties.ReadOnly = True
 
             TEMemoNumber.ReadOnly = True
+
+            If PCMemoNumber.Visible Then
+                BtnAttachment.Enabled = True
+            Else
+                BtnAttachment.Enabled = False
+            End If
         Else
-            If is_hrd = "-1" Then
+            'sales available add sogo
+            If is_hrd = "-1" And Not id_departement_user = "11" Then
                 LEDepartement.Properties.ReadOnly = True
             End If
+
+            BtnAttachment.Enabled = False
         End If
 
         'duplicate
@@ -110,6 +125,8 @@
             LUEOvertimeType.ReadOnly = False
 
             RISLUEType.ReadOnly = False
+            RITETime.ReadOnly = False
+            RITEBreak.ReadOnly = False
 
             SBEmpDelete.Enabled = True
             SBEmpAdd.Enabled = True
@@ -118,6 +135,8 @@
             SBSave.Enabled = True
 
             TEMemoNumber.ReadOnly = False
+
+            BtnAttachment.Enabled = False
 
             id = "0"
             TEReportStatus.EditValue = ""
@@ -139,7 +158,6 @@
         data.Columns.Add("id_departement", GetType(String))
         data.Columns.Add("id_departement_sub", GetType(String))
         data.Columns.Add("departement", GetType(String))
-        data.Columns.Add("is_store", GetType(String))
         data.Columns.Add("ot_date", GetType(String))
         data.Columns.Add("employee_code", GetType(String))
         data.Columns.Add("employee_name", GetType(String))
@@ -229,10 +247,14 @@
                         Dim conversion_type As String = GVEmployee.GetRowCellValue(i, "conversion_type").ToString
                         Dim ot_consumption As String = GVEmployee.GetRowCellValue(i, "ot_consumption").ToString
                         Dim ot_date As String = Date.Parse(GVEmployee.GetRowCellValue(i, "ot_date").ToString).ToString("yyyy-MM-dd")
-                        Dim ot_start_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "ot_start_time").ToString).ToString("yyyy-MM-dd HH:mm:ss")
-                        Dim ot_end_time As String = Date.Parse(GVEmployee.GetRowCellValue(i, "ot_end_time").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                        Dim ot_start_time As String = ot_date + " " + Date.Parse(GVEmployee.GetRowCellValue(i, "ot_start_time").ToString).ToString("HH:mm:ss")
+                        Dim ot_end_time As String = ot_date + " " + Date.Parse(GVEmployee.GetRowCellValue(i, "ot_end_time").ToString).ToString("HH:mm:ss")
                         Dim ot_break As String = GVEmployee.GetRowCellValue(i, "ot_break").ToString
                         Dim ot_note As String = GVEmployee.GetRowCellValue(i, "ot_note").ToString
+
+                        If DateTime.Parse(ot_end_time) < DateTime.Parse(ot_start_time) Then
+                            ot_end_time = DateTime.Parse(ot_end_time).AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")
+                        End If
 
                         query = "INSERT INTO tb_ot_det (id_ot, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, ot_consumption, ot_date, ot_start_time, ot_end_time, ot_break, ot_note) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", " + decimalSQL(ot_consumption) + ", '" + ot_date + "', '" + ot_start_time + "', '" + ot_end_time + "', " + decimalSQL(ot_break) + ", '" + addSlashes(ot_note) + "')"
 
@@ -245,27 +267,47 @@
                 Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
 
                 'approval
-                If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
-                    'departement hrd
-                    If is_user_head Then
-                        'manager hrd submit
-                        submit_who_prepared("214", id, id_user)
-                        execute_non_query("UPDATE tb_ot SET report_mark_type = 214 WHERE id_ot = " + id, True, "", "", "", "")
+                If PCMemoNumber.Visible Then
+                    'include memo
+                    If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
+                        'departement hrd
+                        If is_user_head Then
+                            'manager hrd submit
+                            submit_who_prepared("214", id, id_user)
+                            execute_non_query("UPDATE tb_ot SET report_mark_type = 214 WHERE id_ot = " + id, True, "", "", "", "")
+                        Else
+                            'admin hrd submit
+                            submit_who_prepared("213", id, id_user)
+                            execute_non_query("UPDATE tb_ot SET report_mark_type = 213 WHERE id_ot = " + id, True, "", "", "", "")
+                        End If
                     Else
-                        'admin hrd submit
-                        submit_who_prepared("213", id, id_user)
-                        execute_non_query("UPDATE tb_ot SET report_mark_type = 213 WHERE id_ot = " + id, True, "", "", "", "")
+                        'other departement
+                        If is_user_head Then
+                            'manager submit
+                            submit_who_prepared("213", id, id_user)
+                            execute_non_query("UPDATE tb_ot SET report_mark_type = 213 WHERE id_ot = " + id, True, "", "", "", "")
+                        Else
+                            'admin submit
+                            submit_who_prepared("184", id, id_user)
+                            execute_non_query("UPDATE tb_ot SET report_mark_type = 184 WHERE id_ot = " + id, True, "", "", "", "")
+                        End If
                     End If
                 Else
-                    'other departement
-                    If is_user_head Then
-                        'manager submit
-                        submit_who_prepared("213", id, id_user)
-                        execute_non_query("UPDATE tb_ot SET report_mark_type = 213 WHERE id_ot = " + id, True, "", "", "", "")
+                    'without memo
+                    If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
+                        'to manager hrd
+                        submit_who_prepared("220", id, id_user)
+                        execute_non_query("UPDATE tb_ot SET report_mark_type = 220 WHERE id_ot = " + id, True, "", "", "", "")
                     Else
-                        'admin submit
-                        submit_who_prepared("184", id, id_user)
-                        execute_non_query("UPDATE tb_ot SET report_mark_type = 184 WHERE id_ot = " + id, True, "", "", "", "")
+                        If is_user_head Then
+                            'to manager hrd
+                            submit_who_prepared("220", id, id_user)
+                            execute_non_query("UPDATE tb_ot SET report_mark_type = 220 WHERE id_ot = " + id, True, "", "", "", "")
+                        Else
+                            'to manager & manager hrd
+                            submit_who_prepared("219", id, id_user)
+                            execute_non_query("UPDATE tb_ot SET report_mark_type = 219 WHERE id_ot = " + id, True, "", "", "", "")
+                        End If
                     End If
                 End If
 
@@ -425,12 +467,8 @@
             If view.GetFocusedRowCellValue("to_salary").ToString = "1" Then
                 clone.RowFilter = ""
             Else
-                If view.GetFocusedRowCellValue("is_store").ToString = "1" Then
-                    If view.GetFocusedRowCellValue("ot_total_hours") < ot_min_spv Then
-                        clone.RowFilter = "[to_salary] = 2 AND [to_dp] = 2"
-                    Else
-                        clone.RowFilter = "[to_salary] = 2"
-                    End If
+                If is_store = "1" Then
+                    clone.RowFilter = "[to_salary] = 2"
                 Else
                     If view.GetFocusedRowCellValue("is_day_off").ToString = "1" Then
                         If view.GetFocusedRowCellValue("ot_total_hours") < ot_min_spv Then
@@ -445,35 +483,6 @@
             End If
 
             edit.Properties.DataSource = clone
-        End If
-
-        Dim att_min As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("ot_date").ToString)
-        Dim att_max As Date = Date.Parse(GVEmployee.GetFocusedRowCellValue("ot_date").ToString).AddDays(1)
-
-        If GVEmployee.FocusedColumn.FieldName = "ot_start_time" Then
-            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
-
-            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
-            ADateEdit.Properties.MaxValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 23, 59, 59)
-        ElseIf GVEmployee.FocusedColumn.FieldName = "ot_end_time" Then
-            Dim ADateEdit As DevExpress.XtraEditors.DateEdit = CType(GVEmployee.ActiveEditor, DevExpress.XtraEditors.DateEdit)
-
-            ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
-            ADateEdit.Properties.MaxValue = New DateTime(att_max.Year, att_max.Month, att_max.Day, 23, 59, 59)
-        End If
-    End Sub
-
-    Private Sub LUEOvertimeType_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles LUEOvertimeType.EditValueChanging
-        If Not GVEmployee.RowCount = 0 Then
-            Dim confirm As DialogResult
-
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Change overtime type will reset employee list, are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                load_default()
-            Else
-                e.Cancel = True
-            End If
         End If
     End Sub
 
@@ -502,6 +511,13 @@
                     End If
                 Next
             End If
+
+            Try
+                If is_store = "1" Then
+                    include_memo = False
+                End If
+            Catch ex As Exception
+            End Try
         Else
             include_memo = If(execute_query("SELECT memo_number FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "") = "0", False, True)
         End If
@@ -515,6 +531,43 @@
 
     Private Sub LUEOvertimeType_EditValueChanged(sender As Object, e As EventArgs) Handles LUEOvertimeType.EditValueChanged
         check_include_memo()
+
+        'remove other departement on overtime regular
+        If LUEOvertimeType.EditValue.ToString = "1" Then
+            Dim remove_other As Boolean = False
+
+            For i = 0 To GVEmployee.RowCount - 1
+                If GVEmployee.IsValidRowHandle(i) Then
+                    If Not LEDepartement.EditValue.ToString = GVEmployee.GetRowCellValue(i, "id_departement").ToString Then
+                        remove_other = True
+                    End If
+                End If
+            Next
+
+            If remove_other Then
+                Dim confirm As DialogResult
+
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Change overtime type will reset employee list, are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim j As Integer = 0
+
+                    For i = 0 To GVEmployee.RowCount - 1
+                        If GVEmployee.IsValidRowHandle(j) Then
+                            If Not GVEmployee.GetRowCellValue(j, "id_departement").ToString = LEDepartement.EditValue.ToString Then
+                                GVEmployee.DeleteRow(j)
+
+                                j = j - 1
+                            End If
+                        End If
+
+                        j = j + 1
+                    Next
+                Else
+                    LUEOvertimeType.EditValue = LUEOvertimeType.OldEditValue
+                End If
+            End If
+        End If
     End Sub
 
     Private Sub GVEmployee_RowCountChanged(sender As Object, e As EventArgs) Handles GVEmployee.RowCountChanged
@@ -534,13 +587,26 @@
     End Sub
 
     Private Sub LEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartement.EditValueChanged
+        is_store = execute_query("SELECT is_store FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "")
+
+        check_include_memo()
+
         generate_memo_format()
     End Sub
 
-    Sub calculateTotalHours(i As Integer)
-        Dim ot_start As DateTime = GVEmployee.GetRowCellValue(i, "ot_start_time")
-        Dim ot_end As DateTime = GVEmployee.GetRowCellValue(i, "ot_end_time")
-        Dim ot_break As Decimal = GVEmployee.GetRowCellValue(i, "ot_break")
+    Private Sub LEDepartement_Click(sender As Object, e As EventArgs) Handles LEDepartement.Click
+        'sales include sogo
+        If id_departement_user = "11" Then
+            LEDepartement.Properties.View.ActiveFilterString = "[id_departement] = 11 OR [id_departement] = 17"
+        Else
+            LEDepartement.Properties.View.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Function calculateTotalHours(ot_start As DateTime, ot_end As DateTime, ot_break As Decimal) As Decimal
+        If ot_end < ot_start Then
+            ot_end = ot_end.AddDays(1)
+        End If
 
         Dim diff As TimeSpan = ot_end.Subtract(ot_start)
 
@@ -548,13 +614,8 @@
 
         total = Math.Round(Math.Round(diff.TotalHours, 1) - ot_break, 1)
 
-        'next day
-        If total < 0 Then
-            total = total + 25
-        End If
-
-        GVEmployee.SetRowCellValue(i, "ot_total_hours", total)
-    End Sub
+        Return total
+    End Function
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
@@ -563,5 +624,99 @@
         FormDocumentUpload.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "")
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVEmployee_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVEmployee.CellValueChanged
+        If e.Column.FieldName.ToString = "ot_start_time" Or e.Column.FieldName.ToString = "ot_end_time" Or e.Column.FieldName.ToString = "ot_break" Then
+            Dim ot_date As DateTime = GVEmployee.GetRowCellValue(e.RowHandle, "ot_date")
+            Dim ot_start_time As DateTime = DateTime.Parse(DateTime.Parse(ot_date.ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVEmployee.GetRowCellValue(e.RowHandle, "ot_start_time").ToString).ToString("HH:mm:ss"))
+            Dim ot_end_time As DateTime = DateTime.Parse(DateTime.Parse(ot_date.ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVEmployee.GetRowCellValue(e.RowHandle, "ot_end_time").ToString).ToString("HH:mm:ss"))
+            Dim ot_break As Decimal = GVEmployee.GetRowCellValue(e.RowHandle, "ot_break")
+
+            Dim total As Decimal = calculateTotalHours(ot_start_time, ot_end_time, ot_break)
+
+            'check overtime valid
+            If Not GVEmployee.ActiveEditor.OldEditValue Is Nothing Then
+                Dim reload_values As Boolean = False
+
+                If GVEmployee.GetRowCellValue(e.RowHandle, "to_salary").ToString = "1" Then
+                    'staff
+                    If total < ot_min_staff Then
+                        reload_values = True
+
+                        errorCustom("Overtime at least " + ot_min_staff.ToString + " hours")
+                    End If
+                Else
+                    'spv
+                    If is_store = "1" Then
+                        If total < ot_min_spv Then
+                            reload_values = True
+
+                            errorCustom("Overtime at least " + ot_min_spv.ToString + " hours")
+                        End If
+                    Else
+                        If PCMemoNumber.Visible Then
+                            If total < ot_memo_employee Then
+                                reload_values = True
+
+                                errorCustom("Overtime at least " + ot_memo_employee.ToString + " hours to get consumption")
+                            End If
+                        Else
+                            If total < ot_min_spv Then
+                                reload_values = True
+
+                                errorCustom("Overtime at least " + ot_min_spv.ToString + " hours")
+                            End If
+                        End If
+                    End If
+                End If
+
+                If reload_values Then
+                    If e.Column.FieldName.ToString = "ot_start_time" Then
+                        Dim old_values As DateTime = CType(GVEmployee.ActiveEditor.OldEditValue, DateTime)
+
+                        GVEmployee.SetRowCellValue(e.RowHandle, "ot_start_time", DateTime.Parse(old_values.ToString).ToString("HH:mm:ss"))
+                    ElseIf e.Column.FieldName.ToString = "ot_end_time" Then
+                        Dim old_values As DateTime = CType(GVEmployee.ActiveEditor.OldEditValue, DateTime)
+
+                        GVEmployee.SetRowCellValue(e.RowHandle, "ot_end_time", DateTime.Parse(old_values.ToString).ToString("HH:mm:ss"))
+                    ElseIf e.Column.FieldName.ToString = "ot_break" Then
+                        Dim old_values As Decimal = CType(GVEmployee.ActiveEditor.OldEditValue, Decimal)
+
+                        GVEmployee.SetRowCellValue(e.RowHandle, "ot_break", old_values)
+                    End If
+                End If
+
+                If Not reload_values Then
+                    GVEmployee.SetRowCellValue(e.RowHandle, "ot_total_hours", total)
+
+                    If Not GVEmployee.GetRowCellValue(e.RowHandle, "to_salary").ToString = "1" And Not is_store = "1" Then
+                        If total < ot_min_spv Then
+                            GVEmployee.SetRowCellValue(e.RowHandle, "conversion_type", 3)
+                        Else
+                            If GVEmployee.GetRowCellValue(e.RowHandle, "is_day_off").ToString = "1" Then
+                                GVEmployee.SetRowCellValue(e.RowHandle, "conversion_type", 2)
+                            End If
+                        End If
+                    End If
+                End If
+            Else
+                GVEmployee.SetRowCellValue(e.RowHandle, "ot_total_hours", total)
+            End If
+        End If
+    End Sub
+
+    Private Sub LEDepartement_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles LEDepartement.EditValueChanging
+        If Not GVEmployee.RowCount = 0 And LUEOvertimeType.EditValue.ToString = "1" Then
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Change departement will reset employee list, are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                load_default()
+            Else
+                e.Cancel = True
+            End If
+        End If
     End Sub
 End Class

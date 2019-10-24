@@ -25,19 +25,20 @@
     End Sub
 
     Sub calculateTotalHours()
-        Dim ot_start As DateTime = TEOvertimeStart.EditValue
-        Dim ot_end As DateTime = TEOvertimeEnd.EditValue
+        Dim ot_date As DateTime = DEOvertimeDateFrom.EditValue
+        Dim ot_start As DateTime = DateTime.Parse(ot_date.ToString("dd MMMM yyyy") + " " + DateTime.Parse(TEOvertimeStart.EditValue.ToString).ToString("HH:mm:ss"))
+        Dim ot_end As DateTime = DateTime.Parse(ot_date.ToString("dd MMMM yyyy") + " " + DateTime.Parse(TEOvertimeEnd.EditValue.ToString).ToString("HH:mm:ss"))
+        Dim ot_break As Decimal = TEOvertimeBreak.EditValue
+
+        If ot_end < ot_start Then
+            ot_end = ot_end.AddDays(1)
+        End If
 
         Dim diff As TimeSpan = ot_end.Subtract(ot_start)
 
         Dim total As Decimal = 0.0
 
-        total = Math.Round(Math.Round(diff.TotalHours, 1) - TEOvertimeBreak.EditValue, 1)
-
-        'next day
-        If total < 0 Then
-            total = total + 25
-        End If
+        total = Math.Round(Math.Round(diff.TotalHours, 1) - ot_break, 1)
 
         TETotalHours.EditValue = total
     End Sub
@@ -72,7 +73,7 @@
         Dim ot_note As String = MEOvertimeNote.EditValue.ToString
 
         If TETotalHours.EditValue < ot_min_staff Then
-            errorCustom("Overtime at least " + ot_min_staff.ToString + " Hours")
+            errorCustom("Overtime at least " + ot_min_staff.ToString + " hours")
         ElseIf ot_note = "" Then
             errorCustom("Overtime propose can't be blank")
         Else
@@ -83,6 +84,7 @@
             FormEmpOvertimePick.overtime_end_time = TEOvertimeEnd.EditValue
             FormEmpOvertimePick.overtime_break = TEOvertimeBreak.EditValue
             FormEmpOvertimePick.overtime_propose = MEOvertimeNote.EditValue
+            FormEmpOvertimePick.total_hours = TETotalHours.EditValue
 
             FormEmpOvertimePick.ShowDialog()
         End If
