@@ -1,6 +1,8 @@
 ﻿Public Class FormProdClosingPps
     Public id_pps As String = "-1"
     Public is_view As String = "1"
+    '
+    Public id_report_status As String = "-1"
 
     Private Sub FormProdClosingPps_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -35,6 +37,8 @@ WHERE poc.id_prod_order_close='" & id_pps & "'"
             Else
                 BMark.Text = "Submit"
             End If
+
+            id_report_status = data.Rows(0)("id_report_status").ToString
         End If
     End Sub
 
@@ -272,6 +276,10 @@ WHERE pocd.`id_prod_order_close`='" & id_pps & "'"
             ReportProdClose.dt_det = GCProd.DataSource
             Dim Report As New ReportProdClose()
             Report.DataSource = data
+            If Not id_report_status = "6" Then
+                Report.id_report = id_pps
+                Report.id_pre = "1"
+            End If
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
