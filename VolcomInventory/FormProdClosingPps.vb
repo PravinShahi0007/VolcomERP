@@ -123,8 +123,8 @@ GROUP BY rd.`id_prod_order_rec`"
                                 get_claim_reject_percent(pocd.`id_claim_reject`,5) AS p_major,
                                 SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0)) AS qc_afkir, 
                                 get_claim_reject_percent(pocd.`id_claim_reject`,6) AS p_afkir,
-                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100))) AS amo_claim_minor,
-                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,5)/100))) AS amo_claim_major,
+                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
+                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,5)/100)))) AS amo_claim_major,
                                 ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100))) AS amo_claim_afkir
                                 ,rec.qty_rec AS qty_rec,wo_price.qty_order AS qty_order
                                 ,wo_price.comp_name
@@ -160,7 +160,7 @@ GROUP BY rd.`id_prod_order_rec`"
                                 GROUP BY pocd.`id_prod_order`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSumClaimReject.DataSource = data
-        GVClaimReject.BestFitColumns()
+        GVSumClaimReject.BestFitColumns()
     End Sub
 
     Sub load_det()
@@ -263,9 +263,18 @@ WHERE pocd.`id_prod_order_close`='" & id_pps & "'"
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+        Cursor = Cursors.WaitCursor
 
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            Dim query As String = "SELECT '" & TEPONumber.Text & "' AS prod_close_number,'" & Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy") & "' AS date_created,'" & GVProd.Columns("po_qty").SummaryItem.SummaryValue.ToString("N0") & "' AS order_qty,'" & GVProd.Columns("rec_qty").SummaryItem.SummaryValue.ToString("N0") & "' AS rec_qty,'" & GVProd.Columns("qty_normal").SummaryItem.SummaryValue.ToString("N0") & "' AS qc_normal, AS qc_minor, AS qc_major, AS amo_claim_reject, AS amo_claim_late, AS total_claim"
+            ReportProdClose.dt_det = GCProd.DataSource
+            Dim Report As New ReportProdClose()
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
