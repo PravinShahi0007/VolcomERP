@@ -694,7 +694,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Report.LPhone.Text = TEVendorPhone.Text
         Report.LEmail.Text = TEVendorEmail.Text
         '
-        Dim query As String = "SELECT pr.purc_req_number
+        Dim query As String = "SELECT pr.purc_req_number,dep.departement
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
@@ -708,9 +708,9 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i = 0 To data.Rows.Count - 1
             If i > 0 Then
-                Report.LPrNo.Text += ","
+                Report.LPrNo.Text += ", "
             End If
-            Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString
+            Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
         Next
         '
         Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
