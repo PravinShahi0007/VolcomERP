@@ -90,6 +90,9 @@ Partial Class FormPurcItemDet
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BUploadDoc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNonActive = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.LStatus = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -125,6 +128,7 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDetail
@@ -134,12 +138,14 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCDetail.Size = New System.Drawing.Size(519, 280)
+        Me.XTCDetail.Size = New System.Drawing.Size(519, 296)
         Me.XTCDetail.TabIndex = 0
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPPriceList, Me.XTPAttachment})
         '
         'XtraTabPage1
         '
+        Me.XtraTabPage1.Controls.Add(Me.LStatus)
+        Me.XtraTabPage1.Controls.Add(Me.TEStatus)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl7)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl6)
         Me.XtraTabPage1.Controls.Add(Me.SLEVendorType)
@@ -156,7 +162,7 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.Controls.Add(Me.LabelControl11)
         Me.XtraTabPage1.Controls.Add(Me.TECode)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 252)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 268)
         Me.XtraTabPage1.Text = "Detail"
         '
         'LabelControl7
@@ -310,10 +316,11 @@ Partial Class FormPurcItemDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BNonActive)
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 212)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 228)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl1.TabIndex = 8902
@@ -764,11 +771,51 @@ Partial Class FormPurcItemDet
         Me.BUploadDoc.TabIndex = 0
         Me.BUploadDoc.Text = "Upload"
         '
+        'BNonActive
+        '
+        Me.BNonActive.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BNonActive.Image = CType(resources.GetObject("BNonActive.Image"), System.Drawing.Image)
+        Me.BNonActive.Location = New System.Drawing.Point(2, 2)
+        Me.BNonActive.Name = "BNonActive"
+        Me.BNonActive.Size = New System.Drawing.Size(121, 36)
+        Me.BNonActive.TabIndex = 2
+        Me.BNonActive.Text = "Set Non Active"
+        Me.BNonActive.Visible = False
+        '
+        'TEStatus
+        '
+        Me.TEStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEStatus.EditValue = ""
+        Me.TEStatus.Enabled = False
+        Me.TEStatus.Location = New System.Drawing.Point(109, 200)
+        Me.TEStatus.Name = "TEStatus"
+        Me.TEStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEStatus.Properties.Appearance.Options.UseFont = True
+        Me.TEStatus.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TEStatus.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TEStatus.Properties.EditValueChangedDelay = 1
+        Me.TEStatus.Properties.ReadOnly = True
+        Me.TEStatus.Size = New System.Drawing.Size(201, 20)
+        Me.TEStatus.TabIndex = 8909
+        Me.TEStatus.TabStop = False
+        Me.TEStatus.Visible = False
+        '
+        'LStatus
+        '
+        Me.LStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LStatus.Location = New System.Drawing.Point(11, 203)
+        Me.LStatus.Name = "LStatus"
+        Me.LStatus.Size = New System.Drawing.Size(31, 13)
+        Me.LStatus.TabIndex = 8910
+        Me.LStatus.Text = "Status"
+        Me.LStatus.Visible = False
+        '
         'FormPurcItemDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(519, 280)
+        Me.ClientSize = New System.Drawing.Size(519, 296)
         Me.Controls.Add(Me.XTCDetail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -813,6 +860,7 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -886,4 +934,7 @@ Partial Class FormPurcItemDet
     Friend WithEvents PCSetPrice As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BSetSameSpecPrice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSetSameItemPrice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNonActive As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LStatus As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEStatus As DevExpress.XtraEditors.TextEdit
 End Class
