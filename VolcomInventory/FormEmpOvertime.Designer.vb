@@ -1312,7 +1312,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn60.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn60.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn60.Caption = "Start Work"
-        Me.GridColumn60.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn60.DisplayFormat.FormatString = "HH:mm:ss"
         Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn60.FieldName = "start_work_ot"
         Me.GridColumn60.Name = "GridColumn60"
@@ -1325,7 +1325,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn61.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn61.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn61.Caption = "End Work"
-        Me.GridColumn61.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn61.DisplayFormat.FormatString = "HH:mm:ss"
         Me.GridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn61.FieldName = "end_work_ot"
         Me.GridColumn61.Name = "GridColumn61"
