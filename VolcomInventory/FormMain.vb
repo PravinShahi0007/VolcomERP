@@ -1733,6 +1733,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             FormVoucherPOSDet.action = "ins"
             FormVoucherPOSDet.ShowDialog()
+        ElseIf formName = "FormPromoRules" Then
+            'Promo Rulese
+            FormPromoRulesDet.action = "ins"
+            FormPromoRulesDet.ShowDialog()
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendanceDet.id = "0"
@@ -2821,6 +2825,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormVoucherPOSDet.action = "upd"
                 FormVoucherPOSDet.id = FormVoucherPOS.GVData.GetFocusedRowCellValue("id_pos_voucher").ToString
                 FormVoucherPOSDet.ShowDialog()
+            ElseIf formName = "FormPromoRules" Then
+                'Promo Rulese
+                FormPromoRulesDet.action = "upd"
+                FormPromoRulesDet.id = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
+                FormPromoRulesDet.ShowDialog()
             ElseIf formName = "FormEmpInputAttendance" Then
                 'input attendance
                 FormEmpInputAttendanceDet.id = FormEmpInputAttendance.GVList.GetFocusedRowCellValue("id_emp_attn_input").ToString
@@ -6079,7 +6088,37 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
+        ElseIf formName = "FormPromoRules" Then
+            If FormPromoRules.GVRules.RowCount > 0 And FormPromoRules.GVRules.FocusedRowHandle >= 0 Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = DialogResult.Yes Then
+                    'hapus di toko
+                    Dim id As String = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
+                    Dim qold As String = "SELECT * 
+                    FROM tb_promo_rules_det rd
+                    INNER JOIN tb_store_conn c ON c.id_outlet = rd.id_outlet
+                    WHERE rd.id_rules=" + id + " "
+                    Dim dold As DataTable = execute_query(qold, -1, True, "", "", "", "")
+                    For i As Integer = 0 To dold.Rows.Count - 1
+                        Dim id_outlet As String = dold.Rows(i)("id_outlet").ToString
+                        Dim host As String = dold.Rows(i)("host").ToString
+                        Dim username As String = dold.Rows(i)("username").ToString
+                        Dim pass As String = dold.Rows(i)("pass").ToString
+                        Dim db As String = dold.Rows(i)("db").ToString
 
+                        Dim qds As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
+                        execute_non_query_long(qds, False, host, username, pass, db)
+                    Next
+                    Dim query_del As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
+                    Try
+                        execute_non_query(query_del, True, "", "", "", "")
+                        FormPromoRules.viewRules()
+                        FormPromoRules.viewStore()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7624,6 +7663,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
             print_raw(FormVoucherPOS.GCData, "")
+        ElseIf formName = "FormPromoRules" Then
+            print(FormPromoRules.GCStore, FormPromoRules.GVRules.GetFocusedRowCellValue("name").ToString + " (" + FormPromoRules.GVRules.GetFocusedRowCellValue("code").ToString + ")" + " - " + "Limit Value : " + FormPromoRules.GVRules.GetFocusedRowCellValue("limit_value").ToString)
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             print(FormEmpInputAttendance.GCList, "Input Attendance")
@@ -8413,6 +8454,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             FormVoucherPOS.Close()
             FormVoucherPOS.Dispose()
+        ElseIf formName = "FormPromoRules" Then
+            FormPromoRules.Close()
+            FormPromoRules.Dispose()
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendance.Close()
@@ -9265,6 +9309,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
             FormVoucherPOS.viewVoucher()
+        ElseIf formName = "FormPromoRules" Then
+            FormPromoRules.viewRules()
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendance.view_attendance()

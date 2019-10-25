@@ -16,6 +16,9 @@
         If Not id_item = "-1" Then 'edit
             Dim query As String = "SELECT * FROM tb_item WHERE id_item='" & id_item & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+
+
             TECode.Text = data.Rows(0)("id_item").ToString
             TEDesc.Text = data.Rows(0)("item_desc").ToString
 
