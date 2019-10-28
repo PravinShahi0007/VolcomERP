@@ -27,7 +27,7 @@ Public Class FormSalesOrderDet
         viewReportStatus()
         viewSoType()
         viewOrderType()
-        viewSoStatus()
+        'viewSoStatus()
         viewPeriodUniform()
         viewUniType()
         actionLoad()
@@ -163,9 +163,14 @@ Public Class FormSalesOrderDet
     End Sub
 
     Sub viewSoStatus()
+        Dim id_order_type As String = "-1"
+        Try
+            id_order_type = LEOrderType.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT a.id_so_status, a.so_status FROM tb_lookup_so_status a "
         query += "INNER JOIN tb_lookup_so_status_acc b ON a.id_so_status = b.id_so_status "
-        query += "WHERE b.id_departement='" + id_departement_user + "' "
+        query += "WHERE b.id_departement='" + id_departement_user + "' AND a.id_order_type='" + id_order_type + "' "
         query += "ORDER BY a.id_so_status "
         viewLookupQuery(LEStatusSO, query, 0, "so_status", "id_so_status")
     End Sub
@@ -1358,5 +1363,6 @@ Public Class FormSalesOrderDet
         Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
         Dim value As String = row("description").ToString
         TxtOrderType.Text = value
+        viewSoStatus()
     End Sub
 End Class
