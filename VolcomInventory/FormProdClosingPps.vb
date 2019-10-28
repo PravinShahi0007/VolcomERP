@@ -106,7 +106,7 @@ LEFT JOIN (
     )ko GROUP BY ko.id_prod_order
 ) ko ON ko.id_prod_order=po.id_prod_order
 INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
-WHERE cd.`id_prod_order_close`='" & id_pps & "'
+WHERE cd.`id_prod_order_close`='" & id_pps & "' AND  ld.`claim_percent` > 0
 GROUP BY rd.`id_prod_order_rec`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClaimLate.DataSource = data
@@ -127,6 +127,7 @@ GROUP BY rd.`id_prod_order_rec`"
                                 get_claim_reject_percent(pocd.`id_claim_reject`,5) AS p_major,
                                 SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0)) AS qc_afkir, 
                                 get_claim_reject_percent(pocd.`id_claim_reject`,6) AS p_afkir,
+                                wo_price.prod_order_wo_det_price AS unit_price,
                                 ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
                                 ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,5)/100)))) AS amo_claim_major,
                                 ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100))) AS amo_claim_afkir
@@ -275,6 +276,36 @@ WHERE pocd.`id_prod_order_close`='" & id_pps & "'"
 
             ReportProdClose.dt_det = GCProd.DataSource
             Dim Report As New ReportProdClose()
+            Report.DataSource = data
+            If Not id_report_status = "6" Then
+                Report.id_report = id_pps
+                Report.id_pre = "1"
+            End If
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
+            Dim query As String = "SELECT '" & TEPONumber.Text & "' AS prod_close_number,'" & Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy") & "' AS date_created,'" & Decimal.Parse(GVSumClaimReject.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS order_qty,'" & Decimal.Parse(GVSumClaimReject.Columns("qty_rec").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS rec_qty,'" & Decimal.Parse(GVSumClaimReject.Columns("qc_normal").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS qc_normal,'" & Decimal.Parse(GVSumClaimReject.Columns("qc_minor").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS qc_minor,'" & Decimal.Parse(GVSumClaimReject.Columns("qc_major").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS qc_major,'" & Decimal.Parse(GVSumClaimReject.Columns("qc_afkir").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS qc_afkir,'" & Decimal.Parse(GVSumClaimReject.Columns("total_claim").SummaryItem.SummaryValue.ToString).ToString("N2") & "' AS amo_claim_reject"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            ReportProdCloseReject.dt_det = GCSumClaimReject.DataSource
+            Dim Report As New ReportProdCloseReject()
+            Report.DataSource = data
+            If Not id_report_status = "6" Then
+                Report.id_report = id_pps
+                Report.id_pre = "1"
+            End If
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
+            Dim query As String = "SELECT '" & TEPONumber.Text & "' AS prod_close_number,'" & Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy") & "' AS date_created,'" & Decimal.Parse(GVClaimLate.Columns("rec_qty_trx").SummaryItem.SummaryValue.ToString).ToString("N0") & "' AS rec_qty_trx,'" & Decimal.Parse(GVClaimLate.Columns("claim_amo").SummaryItem.SummaryValue.ToString).ToString("N2") & "' AS amo_claim_late"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            ReportProdCloseLate.dt_det = GCClaimLate.DataSource
+            Dim Report As New ReportProdCloseLate()
             Report.DataSource = data
             If Not id_report_status = "6" Then
                 Report.id_report = id_pps
