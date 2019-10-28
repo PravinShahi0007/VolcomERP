@@ -659,12 +659,7 @@ Public Class FormSalesOrderDet
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim id_so_type As String = LETypeSO.EditValue.ToString
-            Dim query_cond As String = ""
-            If id_so_type <> "0" Then
-                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
-            Else
-                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
-            End If
+            Dim query_cond As String = "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
             Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
