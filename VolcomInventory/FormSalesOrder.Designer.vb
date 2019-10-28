@@ -47,6 +47,7 @@ Partial Class FormSalesOrder
         Me.GridColumnPeriodUni = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrepareType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControlProgressDO = New DevExpress.XtraEditors.GroupControl()
         Me.GCDetailSO = New DevExpress.XtraGrid.GridControl()
@@ -87,7 +88,6 @@ Partial Class FormSalesOrder
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesOrder.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -158,7 +158,7 @@ Partial Class FormSalesOrder
         Me.XTPPrepareList.Controls.Add(Me.SCCSalesOrder)
         Me.XTPPrepareList.Name = "XTPPrepareList"
         Me.XTPPrepareList.Size = New System.Drawing.Size(712, 410)
-        Me.XTPPrepareList.Text = "Prepare Order List"
+        Me.XTPPrepareList.Text = "Order List"
         '
         'SCCSalesOrder
         '
@@ -355,6 +355,14 @@ Partial Class FormSalesOrder
         Me.GridColumnOLStoreOrder.Visible = True
         Me.GridColumnOLStoreOrder.VisibleIndex = 2
         Me.GridColumnOLStoreOrder.Width = 122
+        '
+        'GridColumnorder_type
+        '
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
         '
         'GridView2
         '
@@ -738,14 +746,6 @@ Partial Class FormSalesOrder
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
-        '
-        'GridColumnorder_type
-        '
-        Me.GridColumnorder_type.Caption = "Type"
-        Me.GridColumnorder_type.FieldName = "order_type"
-        Me.GridColumnorder_type.Name = "GridColumnorder_type"
-        Me.GridColumnorder_type.Visible = True
-        Me.GridColumnorder_type.VisibleIndex = 1
         '
         'FormSalesOrder
         '
