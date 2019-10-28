@@ -26,6 +26,7 @@ Public Class FormSalesOrderDet
         id_comp_cat_wh = get_setup_field("id_comp_cat_wh")
         viewReportStatus()
         viewSoType()
+        viewOrderType()
         viewSoStatus()
         viewPeriodUniform()
         viewUniType()
@@ -66,7 +67,7 @@ Public Class FormSalesOrderDet
             BMark.Enabled = True
 
             'query view based on edit id's
-            Dim query As String = "SELECT a.id_so_status, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, IFNULL(d.id_commerce_type,1) AS `id_commerce_type`, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
+            Dim query As String = "SELECT a.id_so_status, h.id_order_type, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, IFNULL(d.id_commerce_type,1) AS `id_commerce_type`, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
             query += "a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, "
             query += "DATE_FORMAT(a.sales_order_date,'%Y-%m-%d') AS sales_order_datex, a.id_so_type, IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`, ps.id_prepare_status, ps.prepare_status, a.id_emp_uni_period, a.id_uni_type "
             query += "FROM tb_sales_order a "
@@ -101,6 +102,7 @@ Public Class FormSalesOrderDet
             MENote.Text = data.Rows(0)("sales_order_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
+            LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", data.Rows(0)("id_order_type").ToString)
             LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
             LEPeriodx.ItemIndex = LEPeriodx.Properties.GetDataSourceRowIndex("id_emp_uni_period", data.Rows(0)("id_emp_uni_period").ToString)
             LEUniType.ItemIndex = LEUniType.Properties.GetDataSourceRowIndex("id_uni_type", data.Rows(0)("id_uni_type").ToString)
@@ -147,6 +149,17 @@ Public Class FormSalesOrderDet
     Sub viewSoType()
         Dim query As String = "SELECT * FROM tb_lookup_so_type a ORDER BY a.id_so_type "
         viewLookupQuery(LETypeSO, query, 0, "so_type", "id_so_type")
+    End Sub
+
+    Sub viewOrderType()
+        Dim query As String = "SELECT ot.id_order_type, ot.order_type, ot.description
+        FROM tb_lookup_so_status a 
+        INNER JOIN tb_lookup_order_type ot ON ot.id_order_type = a.id_order_type
+        INNER JOIN tb_lookup_so_status_acc b ON a.id_so_status = b.id_so_status 
+        WHERE b.id_departement='" + id_departement_user + "' 
+        GROUP BY ot.id_order_type
+        ORDER BY ot.id_order_type ASC "
+        viewLookupQuery(LEOrderType, query, 0, "order_type", "id_order_type")
     End Sub
 
     Sub viewSoStatus()
@@ -485,6 +498,7 @@ Public Class FormSalesOrderDet
             TxtOLShopNumber.Enabled = False
             DEOLShop.Enabled = False
         End If
+        LEOrderType.Enabled = False
 
         'attachment
         BtnAttachment.Enabled = True
@@ -1337,5 +1351,12 @@ Public Class FormSalesOrderDet
         Cursor = Cursors.WaitCursor
         print_raw(GCItemList, "")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEOrderType_EditValueChanged(sender As Object, e As EventArgs) Handles LEOrderType.EditValueChanged
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+        Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+        Dim value As String = row("description").ToString
+        TxtOrderType.Text = value
     End Sub
 End Class
