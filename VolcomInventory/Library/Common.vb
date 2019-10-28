@@ -2854,6 +2854,7 @@ Module Common
             End If
         Next
     End Sub
+
     Sub submit_who_prepared(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_userx As String)
         'report mark type = tb_lookup_report_mark_type ->
         Dim report_detail As ClassShowPopUp = New ClassShowPopUp()

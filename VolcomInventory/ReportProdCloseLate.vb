@@ -14,161 +14,138 @@
             Dim tb_no As New DevExpress.XtraReports.UI.XRLabel
 
             tb_no.Text = (i + 1).ToString
-            tb_no.SizeF = New Size(20, 20)
+            tb_no.SizeF = New Size(20, 80)
             tb_no.LocationF = New Point(0, po_height)
             tb_no.Font = New Font("Times New Roman", 8, FontStyle.Regular)
             tb_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_no.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_no.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_no)
-
-            'column fgpo number
-            Dim tb_fgpo_number As New DevExpress.XtraReports.UI.XRLabel
-
-            tb_fgpo_number.Text = dt_det.Rows(i)("prod_order_number").ToString
-            tb_fgpo_number.SizeF = New Size(60, 20)
-            tb_fgpo_number.LocationF = New Point(20, po_height)
-            tb_fgpo_number.Font = New Font("Times New Roman", 8, FontStyle.Regular)
-            tb_fgpo_number.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-            tb_fgpo_number.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_fgpo_number.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_fgpo_number)
+            tb_no.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_no)
 
             'column vendor
             Dim tb_vendor As New DevExpress.XtraReports.UI.XRLabel
 
             tb_vendor.Text = dt_det.Rows(i)("comp_name").ToString
-            tb_vendor.SizeF = New Size(140, 20)
-            tb_vendor.LocationF = New Point(80, po_height)
+            tb_vendor.SizeF = New Size(130, 80)
+            tb_vendor.LocationF = New Point(20, po_height)
             tb_vendor.Font = New Font("Times New Roman", 8, FontStyle.Regular)
             tb_vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_vendor.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_vendor.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_vendor)
+            tb_vendor.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_vendor)
 
             'column design
             Dim tb_design As New DevExpress.XtraReports.UI.XRLabel
 
-            tb_design.Text = dt_det.Rows(i)("design_display_name").ToString
-            tb_design.SizeF = New Size(150, 20)
-            tb_design.LocationF = New Point(220, po_height)
+            tb_design.Text = dt_det.Rows(i)("prod_order_number").ToString & vbNewLine & dt_det.Rows(i)("design_display_name").ToString
+            tb_design.SizeF = New Size(130, 80)
+            tb_design.LocationF = New Point(150, po_height)
             tb_design.Font = New Font("Times New Roman", 8, FontStyle.Regular)
+            tb_design.Multiline = True
             tb_design.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_design.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_design.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_design)
+            tb_design.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_design)
 
             'column order qty
             Dim tb_order_qty As New DevExpress.XtraReports.UI.XRLabel
 
             tb_order_qty.Text = Decimal.Parse(dt_det.Rows(i)("po_qty").ToString).ToString("N0")
-            tb_order_qty.SizeF = New Size(50, 20)
-            tb_order_qty.LocationF = New Point(370, po_height)
+            tb_order_qty.SizeF = New Size(70, 80)
+            tb_order_qty.LocationF = New Point(280, po_height)
             tb_order_qty.Font = New Font("Times New Roman", 8, FontStyle.Regular)
             tb_order_qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_order_qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_order_qty.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_order_qty)
+            tb_order_qty.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_order_qty)
 
             'column rec qty
             Dim tb_rec_qty As New DevExpress.XtraReports.UI.XRLabel
 
             tb_rec_qty.Text = Decimal.Parse(dt_det.Rows(i)("rec_qty").ToString).ToString("N0")
-            tb_rec_qty.SizeF = New Size(50, 20)
-            tb_rec_qty.LocationF = New Point(420, po_height)
+            tb_rec_qty.SizeF = New Size(70, 80)
+            tb_rec_qty.LocationF = New Point(350, po_height)
             tb_rec_qty.Font = New Font("Times New Roman", 8, FontStyle.Regular)
             tb_rec_qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_rec_qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_rec_qty.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_rec_qty.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_rec_qty)
 
-            Me.XRLeadTime.Controls.Add(tb_rec_qty)
+            'column price per pcs
+            Dim tb_prc_pcs As New DevExpress.XtraReports.UI.XRLabel
 
-            'column unit price
-            Dim tb_unit_price As New DevExpress.XtraReports.UI.XRLabel
+            tb_prc_pcs.Text = Decimal.Parse(dt_det.Rows(i)("prod_order_wo_det_price").ToString).ToString("N2")
+            tb_prc_pcs.SizeF = New Size(100, 80)
+            tb_prc_pcs.LocationF = New Point(420, po_height)
+            tb_prc_pcs.Font = New Font("Times New Roman", 8, FontStyle.Regular)
+            tb_prc_pcs.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            tb_prc_pcs.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_prc_pcs.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_prc_pcs)
 
-            tb_unit_price.Text = Decimal.Parse(dt_det.Rows(i)("unit_price").ToString).ToString("N2")
-            tb_unit_price.SizeF = New Size(70, 20)
-            tb_unit_price.LocationF = New Point(470, po_height)
-            tb_unit_price.Font = New Font("Times New Roman", 8, FontStyle.Regular)
-            tb_unit_price.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-            tb_unit_price.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_unit_price.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            'column deskripsi
+            Dim tb_deskripsi As New DevExpress.XtraReports.UI.XRLabel
 
-            Me.XRLeadTime.Controls.Add(tb_unit_price)
+            tb_deskripsi.Text = "Hasil produksi datang terlambat" & vbNewLine & "Delivery date PO : " & vbNewLine & "Delivery date KO : " & vbNewLine & "Received Date : " & vbNewLine & "Charge Back : "
+            tb_deskripsi.SizeF = New Size(140, 80)
+            tb_deskripsi.LocationF = New Point(520, po_height)
+            tb_deskripsi.Font = New Font("Times New Roman", 7, FontStyle.Regular)
+            tb_deskripsi.Multiline = True
+            tb_deskripsi.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            tb_deskripsi.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_deskripsi.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_deskripsi)
 
-            'column qc normal
-            Dim tb_qc_normal As New DevExpress.XtraReports.UI.XRLabel
+            'column deskripsi detail
+            Dim tb_deskripsi_det As New DevExpress.XtraReports.UI.XRLabel
 
-            tb_qc_normal.Text = Decimal.Parse(dt_det.Rows(i)("qty_normal").ToString).ToString("N0")
-            tb_qc_normal.SizeF = New Size(50, 20)
-            tb_qc_normal.LocationF = New Point(540, po_height)
-            tb_qc_normal.Font = New Font("Times New Roman", 8, FontStyle.Regular)
-            tb_qc_normal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-            tb_qc_normal.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_qc_normal.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_deskripsi_det.Text = " " & vbNewLine & Date.Parse(dt_det.Rows(i)("est_rec_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & Date.Parse(dt_det.Rows(i)("est_rec_date_ko").ToString).ToString("dd MMMM yyyy") & vbNewLine & Date.Parse(dt_det.Rows(i)("arrive_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & dt_det.Rows(i)("late_day").ToString & " hari kalender (" & Decimal.Parse(dt_det.Rows(i)("claim_percent").ToString).ToString("N0") & "%)"
+            tb_deskripsi_det.SizeF = New Size(120, 80)
+            tb_deskripsi_det.LocationF = New Point(660, po_height)
+            tb_deskripsi_det.Font = New Font("Times New Roman", 7, FontStyle.Regular)
+            tb_deskripsi_det.Multiline = True
+            tb_deskripsi_det.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            tb_deskripsi_det.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            Me.XRDetail.Controls.Add(tb_deskripsi_det)
 
-            Me.XRLeadTime.Controls.Add(tb_qc_normal)
+            'column qty rec trx
+            Dim tb_qty_rec_trx As New DevExpress.XtraReports.UI.XRLabel
 
-            'column qc reject minor
-            Dim tb_qc_reject_minor As New DevExpress.XtraReports.UI.XRLabel
+            tb_qty_rec_trx.Text = Decimal.Parse(dt_det.Rows(i)("rec_qty_trx").ToString).ToString("N0")
+            tb_qty_rec_trx.SizeF = New Size(60, 80)
+            tb_qty_rec_trx.LocationF = New Point(780, po_height)
+            tb_qty_rec_trx.Font = New Font("Times New Roman", 8, FontStyle.Regular)
+            tb_qty_rec_trx.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            tb_qty_rec_trx.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_qty_rec_trx.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_qty_rec_trx)
 
-            tb_qc_reject_minor.Text = Decimal.Parse(dt_det.Rows(i)("qty_minor").ToString).ToString("N0")
-            tb_qc_reject_minor.SizeF = New Size(50, 20)
-            tb_qc_reject_minor.LocationF = New Point(590, po_height)
-            tb_qc_reject_minor.Font = New Font("Times New Roman", 8, FontStyle.Regular)
-            tb_qc_reject_minor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-            tb_qc_reject_minor.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_qc_reject_minor.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_qc_reject_minor)
-
-            'column qc reject major
-            Dim tb_qc_reject_major As New DevExpress.XtraReports.UI.XRLabel
-
-            tb_qc_reject_major.Text = Decimal.Parse(dt_det.Rows(i)("qty_major").ToString).ToString("N0")
-            tb_qc_reject_major.SizeF = New Size(50, 20)
-            tb_qc_reject_major.LocationF = New Point(640, po_height)
-            tb_qc_reject_major.Font = New Font("Times New Roman", 8, FontStyle.Regular)
-            tb_qc_reject_major.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-            tb_qc_reject_major.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_qc_reject_major.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_qc_reject_major)
-
-            'column qc reject afkir
+            'column claim per pcs
             Dim tb_qc_reject_afkir As New DevExpress.XtraReports.UI.XRLabel
 
-            tb_qc_reject_afkir.Text = Decimal.Parse(dt_det.Rows(i)("qty_major").ToString).ToString("N0")
-            tb_qc_reject_afkir.SizeF = New Size(50, 20)
-            tb_qc_reject_afkir.LocationF = New Point(690, po_height)
+            tb_qc_reject_afkir.Text = Decimal.Parse(dt_det.Rows(i)("claim_pc").ToString).ToString("N2")
+            tb_qc_reject_afkir.SizeF = New Size(60, 80)
+            tb_qc_reject_afkir.LocationF = New Point(840, po_height)
             tb_qc_reject_afkir.Font = New Font("Times New Roman", 8, FontStyle.Regular)
             tb_qc_reject_afkir.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_qc_reject_afkir.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_qc_reject_afkir.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_qc_reject_afkir)
+            tb_qc_reject_afkir.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Me.XRDetail.Controls.Add(tb_qc_reject_afkir)
 
             'column amount claim reject
             Dim tb_amo_claim_reject As New DevExpress.XtraReports.UI.XRLabel
 
-            tb_amo_claim_reject.Text = Decimal.Parse(dt_det.Rows(i)("claim_reject").ToString).ToString("N2")
-            tb_amo_claim_reject.SizeF = New Size(120, 20)
-            tb_amo_claim_reject.LocationF = New Point(690, po_height)
+            tb_amo_claim_reject.Text = Decimal.Parse(dt_det.Rows(i)("claim_amo").ToString).ToString("N2")
+            tb_amo_claim_reject.SizeF = New Size(150, 80)
+            tb_amo_claim_reject.LocationF = New Point(900, po_height)
             tb_amo_claim_reject.Font = New Font("Times New Roman", 8, FontStyle.Regular)
             tb_amo_claim_reject.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_amo_claim_reject.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_amo_claim_reject.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_amo_claim_reject.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right
+            Me.XRDetail.Controls.Add(tb_amo_claim_reject)
 
-            Me.XRLeadTime.Controls.Add(tb_amo_claim_reject)
-
-            po_height = po_height + 20
+            po_height = po_height + 80
         Next
-
         '
         If id_pre = "-1" Then
             load_mark_horz("212", id_report, "2", "1", XrTable3)
