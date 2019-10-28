@@ -121,6 +121,8 @@ Partial Class FormWHSvcLevel
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprepare_statusror = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.CEHighlightNonList = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnViewReturn = New DevExpress.XtraEditors.SimpleButton()
@@ -130,8 +132,7 @@ Partial Class FormWHSvcLevel
         Me.DEFromReturn = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnprepare_statusror = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLelel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLelel.SuspendLayout()
         Me.XTPBySO.SuspendLayout()
@@ -209,7 +210,7 @@ Partial Class FormWHSvcLevel
         '
         'GVBySO
         '
-        Me.GVBySO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPrepNumber, Me.GridColumnPrepDate, Me.GridColumnBarcode, Me.GridColumnDesignCode, Me.GridColumnClass, Me.GridColumnDsgName, Me.GridColumnSize, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnOrderQty, Me.GridColumnScannedQty, Me.GridColumnDelQty, Me.GridColumnDiffSc, Me.GridColumnDiff, Me.GridColumnCat, Me.GridColumnReff, Me.GridColumnStatus, Me.GridColumnNote})
+        Me.GVBySO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPrepNumber, Me.GridColumnPrepDate, Me.GridColumnBarcode, Me.GridColumnDesignCode, Me.GridColumnClass, Me.GridColumnDsgName, Me.GridColumnSize, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnOrderQty, Me.GridColumnScannedQty, Me.GridColumnDelQty, Me.GridColumnDiffSc, Me.GridColumnDiff, Me.GridColumnCat, Me.GridColumnReff, Me.GridColumnStatus, Me.GridColumnNote, Me.GridColumnorder_type})
         Me.GVBySO.GridControl = Me.GCBySO
         Me.GVBySO.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", Me.GridColumnOrderQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty_sc", Me.GridColumnScannedQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.GridColumnDiff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_qty", Me.GridColumnDiffSc, "{0:N0}")})
         Me.GVBySO.Name = "GVBySO"
@@ -236,7 +237,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnPrepDate.FieldName = "sales_order_date"
         Me.GridColumnPrepDate.Name = "GridColumnPrepDate"
         Me.GridColumnPrepDate.Visible = True
-        Me.GridColumnPrepDate.VisibleIndex = 2
+        Me.GridColumnPrepDate.VisibleIndex = 3
         '
         'GridColumnBarcode
         '
@@ -244,7 +245,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnBarcode.FieldName = "product_full_code"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
-        Me.GridColumnBarcode.VisibleIndex = 4
+        Me.GridColumnBarcode.VisibleIndex = 5
         '
         'GridColumnDesignCode
         '
@@ -252,7 +253,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDesignCode.FieldName = "design_code"
         Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
         Me.GridColumnDesignCode.Visible = True
-        Me.GridColumnDesignCode.VisibleIndex = 5
+        Me.GridColumnDesignCode.VisibleIndex = 6
         '
         'GridColumnClass
         '
@@ -260,7 +261,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnClass.FieldName = "class_display"
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.Visible = True
-        Me.GridColumnClass.VisibleIndex = 6
+        Me.GridColumnClass.VisibleIndex = 7
         '
         'GridColumnDsgName
         '
@@ -268,7 +269,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDsgName.FieldName = "design_display_name"
         Me.GridColumnDsgName.Name = "GridColumnDsgName"
         Me.GridColumnDsgName.Visible = True
-        Me.GridColumnDsgName.VisibleIndex = 7
+        Me.GridColumnDsgName.VisibleIndex = 8
         '
         'GridColumnSize
         '
@@ -276,7 +277,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnSize.FieldName = "size"
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 8
+        Me.GridColumnSize.VisibleIndex = 9
         '
         'GridColumnFrom
         '
@@ -284,7 +285,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnFrom.FieldName = "comp_name_from"
         Me.GridColumnFrom.Name = "GridColumnFrom"
         Me.GridColumnFrom.Visible = True
-        Me.GridColumnFrom.VisibleIndex = 9
+        Me.GridColumnFrom.VisibleIndex = 10
         '
         'GridColumnTo
         '
@@ -292,7 +293,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnTo.FieldName = "comp_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 10
+        Me.GridColumnTo.VisibleIndex = 11
         '
         'GridColumnOrderQty
         '
@@ -308,7 +309,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 11
+        Me.GridColumnOrderQty.VisibleIndex = 12
         Me.GridColumnOrderQty.Width = 49
         '
         'GridColumnScannedQty
@@ -325,7 +326,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnScannedQty.Name = "GridColumnScannedQty"
         Me.GridColumnScannedQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty_sc", "{0:n0}")})
         Me.GridColumnScannedQty.Visible = True
-        Me.GridColumnScannedQty.VisibleIndex = 12
+        Me.GridColumnScannedQty.VisibleIndex = 13
         Me.GridColumnScannedQty.Width = 65
         '
         'GridColumnDelQty
@@ -342,7 +343,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDelQty.Name = "GridColumnDelQty"
         Me.GridColumnDelQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:n0}")})
         Me.GridColumnDelQty.Visible = True
-        Me.GridColumnDelQty.VisibleIndex = 13
+        Me.GridColumnDelQty.VisibleIndex = 14
         Me.GridColumnDelQty.Width = 64
         '
         'GridColumnDiffSc
@@ -361,7 +362,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiffSc.UnboundExpression = "[sales_order_det_qty] - [pl_sales_order_del_det_qty_sc]"
         Me.GridColumnDiffSc.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffSc.Visible = True
-        Me.GridColumnDiffSc.VisibleIndex = 14
+        Me.GridColumnDiffSc.VisibleIndex = 15
         Me.GridColumnDiffSc.Width = 50
         '
         'GridColumnDiff
@@ -379,7 +380,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiff.UnboundExpression = "[sales_order_det_qty] - [pl_sales_order_del_det_qty]"
         Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiff.Visible = True
-        Me.GridColumnDiff.VisibleIndex = 15
+        Me.GridColumnDiff.VisibleIndex = 16
         Me.GridColumnDiff.Width = 43
         '
         'GridColumnCat
@@ -388,7 +389,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnCat.FieldName = "so_status"
         Me.GridColumnCat.Name = "GridColumnCat"
         Me.GridColumnCat.Visible = True
-        Me.GridColumnCat.VisibleIndex = 3
+        Me.GridColumnCat.VisibleIndex = 4
         '
         'GridColumnReff
         '
@@ -396,7 +397,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnReff.FieldName = "sales_order_gen_reff"
         Me.GridColumnReff.Name = "GridColumnReff"
         Me.GridColumnReff.Visible = True
-        Me.GridColumnReff.VisibleIndex = 1
+        Me.GridColumnReff.VisibleIndex = 2
         '
         'GridColumnStatus
         '
@@ -404,7 +405,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnStatus.FieldName = "prepare_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 16
+        Me.GridColumnStatus.VisibleIndex = 17
         '
         'GridColumnNote
         '
@@ -412,7 +413,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnNote.FieldName = "final_comment"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 17
+        Me.GridColumnNote.VisibleIndex = 18
         '
         'GCFilter
         '
@@ -1274,6 +1275,22 @@ Partial Class FormWHSvcLevel
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 10
         '
+        'GridColumnprepare_statusror
+        '
+        Me.GridColumnprepare_statusror.Caption = "Status"
+        Me.GridColumnprepare_statusror.FieldName = "prepare_status"
+        Me.GridColumnprepare_statusror.Name = "GridColumnprepare_statusror"
+        Me.GridColumnprepare_statusror.Visible = True
+        Me.GridColumnprepare_statusror.VisibleIndex = 11
+        '
+        'GridColumnfinal_comment
+        '
+        Me.GridColumnfinal_comment.Caption = "Note"
+        Me.GridColumnfinal_comment.FieldName = "final_comment"
+        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
+        Me.GridColumnfinal_comment.Visible = True
+        Me.GridColumnfinal_comment.VisibleIndex = 12
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1370,21 +1387,13 @@ Partial Class FormWHSvcLevel
         Me.LabelControl8.TabIndex = 8892
         Me.LabelControl8.Text = "From"
         '
-        'GridColumnprepare_statusror
+        'GridColumnorder_type
         '
-        Me.GridColumnprepare_statusror.Caption = "Status"
-        Me.GridColumnprepare_statusror.FieldName = "prepare_status"
-        Me.GridColumnprepare_statusror.Name = "GridColumnprepare_statusror"
-        Me.GridColumnprepare_statusror.Visible = True
-        Me.GridColumnprepare_statusror.VisibleIndex = 11
-        '
-        'GridColumnfinal_comment
-        '
-        Me.GridColumnfinal_comment.Caption = "Note"
-        Me.GridColumnfinal_comment.FieldName = "final_comment"
-        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
-        Me.GridColumnfinal_comment.Visible = True
-        Me.GridColumnfinal_comment.VisibleIndex = 12
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
         '
         'FormWHSvcLevel
         '
@@ -1561,4 +1570,5 @@ Partial Class FormWHSvcLevel
     Friend WithEvents CEHighlightNonList As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnprepare_statusror As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnfinal_comment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class
