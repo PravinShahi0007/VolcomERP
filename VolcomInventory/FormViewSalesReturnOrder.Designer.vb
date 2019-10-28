@@ -20,6 +20,9 @@ Partial Class FormViewSalesReturnOrder
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtOrderType = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtOrderTypeDescription = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DERetDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
@@ -67,11 +70,10 @@ Partial Class FormViewSalesReturnOrder
         Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSOH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnOrderStatus = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtOrderTypeDescription = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtOrderType = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOrderTypeDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,8 +93,6 @@ Partial Class FormViewSalesReturnOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtOrderTypeDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -118,6 +118,43 @@ Partial Class FormViewSalesReturnOrder
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(785, 120)
         Me.GroupGeneralHeader.TabIndex = 185
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(31, 13)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl4.TabIndex = 8914
+        Me.LabelControl4.Text = "Type"
+        '
+        'TxtOrderType
+        '
+        Me.TxtOrderType.EditValue = ""
+        Me.TxtOrderType.Enabled = False
+        Me.TxtOrderType.Location = New System.Drawing.Point(76, 10)
+        Me.TxtOrderType.Name = "TxtOrderType"
+        Me.TxtOrderType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtOrderType.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderType.Properties.EditValueChangedDelay = 1
+        Me.TxtOrderType.Properties.ReadOnly = True
+        Me.TxtOrderType.Size = New System.Drawing.Size(82, 20)
+        Me.TxtOrderType.TabIndex = 8913
+        Me.TxtOrderType.TabStop = False
+        '
+        'TxtOrderTypeDescription
+        '
+        Me.TxtOrderTypeDescription.EditValue = ""
+        Me.TxtOrderTypeDescription.Enabled = False
+        Me.TxtOrderTypeDescription.Location = New System.Drawing.Point(164, 10)
+        Me.TxtOrderTypeDescription.Name = "TxtOrderTypeDescription"
+        Me.TxtOrderTypeDescription.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtOrderTypeDescription.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderTypeDescription.Properties.EditValueChangedDelay = 1
+        Me.TxtOrderTypeDescription.Properties.ReadOnly = True
+        Me.TxtOrderTypeDescription.Size = New System.Drawing.Size(255, 20)
+        Me.TxtOrderTypeDescription.TabIndex = 8912
+        Me.TxtOrderTypeDescription.TabStop = False
         '
         'LabelControl2
         '
@@ -591,43 +628,6 @@ Partial Class FormViewSalesReturnOrder
         Me.BtnOrderStatus.Text = "Update Order Status"
         Me.BtnOrderStatus.Visible = False
         '
-        'TxtOrderTypeDescription
-        '
-        Me.TxtOrderTypeDescription.EditValue = ""
-        Me.TxtOrderTypeDescription.Enabled = False
-        Me.TxtOrderTypeDescription.Location = New System.Drawing.Point(164, 10)
-        Me.TxtOrderTypeDescription.Name = "TxtOrderTypeDescription"
-        Me.TxtOrderTypeDescription.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtOrderTypeDescription.Properties.Appearance.Options.UseFont = True
-        Me.TxtOrderTypeDescription.Properties.EditValueChangedDelay = 1
-        Me.TxtOrderTypeDescription.Properties.ReadOnly = True
-        Me.TxtOrderTypeDescription.Size = New System.Drawing.Size(255, 20)
-        Me.TxtOrderTypeDescription.TabIndex = 8912
-        Me.TxtOrderTypeDescription.TabStop = False
-        '
-        'TxtOrderType
-        '
-        Me.TxtOrderType.EditValue = ""
-        Me.TxtOrderType.Enabled = False
-        Me.TxtOrderType.Location = New System.Drawing.Point(76, 10)
-        Me.TxtOrderType.Name = "TxtOrderType"
-        Me.TxtOrderType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtOrderType.Properties.Appearance.Options.UseFont = True
-        Me.TxtOrderType.Properties.EditValueChangedDelay = 1
-        Me.TxtOrderType.Properties.ReadOnly = True
-        Me.TxtOrderType.Size = New System.Drawing.Size(82, 20)
-        Me.TxtOrderType.TabIndex = 8913
-        Me.TxtOrderType.TabStop = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(31, 13)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl4.TabIndex = 8914
-        Me.LabelControl4.Text = "Type"
-        '
         'FormViewSalesReturnOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -644,10 +644,12 @@ Partial Class FormViewSalesReturnOrder
         Me.Name = "FormViewSalesReturnOrder"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Sales Return Order"
+        Me.Text = "Propose Return"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOrderTypeDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -668,8 +670,6 @@ Partial Class FormViewSalesReturnOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtOrderTypeDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

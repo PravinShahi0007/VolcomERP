@@ -63,6 +63,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPrintedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
@@ -338,7 +339,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_typeret = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -891,6 +892,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn62.VisibleIndex = 3
         Me.GridColumn62.Width = 125
         '
+        'GridColumnorder_type
+        '
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
@@ -958,7 +967,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPReturnOrder.Controls.Add(Me.GCFilterRet)
         Me.XTPReturnOrder.Name = "XTPReturnOrder"
         Me.XTPReturnOrder.Size = New System.Drawing.Size(1024, 388)
-        Me.XTPReturnOrder.Text = "Return Order"
+        Me.XTPReturnOrder.Text = "Propose Return"
         '
         'GCSalesReturnOrder
         '
@@ -973,7 +982,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVSalesReturnOrder
         '
-        Me.GVSalesReturnOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnEstDate, Me.GridColumn7, Me.GridColumn8, Me.GridColumnTimeRemaining, Me.GridColumnReturnQty, Me.GridColumnOrderQty, Me.GridColumn11, Me.GridColumnCurrDate, Me.GridColumn12, Me.GridColumnSvcLevel, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumnOLStoreOrderRO, Me.GridColumnWH})
+        Me.GVSalesReturnOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnEstDate, Me.GridColumn7, Me.GridColumn8, Me.GridColumnTimeRemaining, Me.GridColumnReturnQty, Me.GridColumnOrderQty, Me.GridColumn11, Me.GridColumnCurrDate, Me.GridColumn12, Me.GridColumnSvcLevel, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumnOLStoreOrderRO, Me.GridColumnWH, Me.GridColumnorder_typeret})
         Me.GVSalesReturnOrder.CustomizationFormBounds = New System.Drawing.Rectangle(805, 323, 210, 172)
         Me.GVSalesReturnOrder.GridControl = Me.GCSalesReturnOrder
         Me.GVSalesReturnOrder.Name = "GVSalesReturnOrder"
@@ -996,7 +1005,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.VisibleIndex = 3
         Me.GridColumn5.Width = 85
         '
         'GridColumn6
@@ -1008,7 +1017,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         Me.GridColumn6.Width = 85
         '
         'GridColumnEstDate
@@ -1020,7 +1029,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnEstDate.Name = "GridColumnEstDate"
         Me.GridColumnEstDate.OptionsColumn.ReadOnly = True
         Me.GridColumnEstDate.Visible = True
-        Me.GridColumnEstDate.VisibleIndex = 5
+        Me.GridColumnEstDate.VisibleIndex = 6
         Me.GridColumnEstDate.Width = 85
         '
         'GridColumn7
@@ -1037,7 +1046,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 7
         Me.GridColumn8.Width = 85
         '
         'GridColumnTimeRemaining
@@ -1086,7 +1095,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 8
+        Me.GridColumn12.VisibleIndex = 9
         Me.GridColumn12.Width = 85
         '
         'GridColumnSvcLevel
@@ -1097,7 +1106,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSvcLevel.Name = "GridColumnSvcLevel"
         Me.GridColumnSvcLevel.OptionsColumn.ReadOnly = True
         Me.GridColumnSvcLevel.Visible = True
-        Me.GridColumnSvcLevel.VisibleIndex = 12
+        Me.GridColumnSvcLevel.VisibleIndex = 13
         Me.GridColumnSvcLevel.Width = 105
         '
         'RepositoryItemProgressBar2
@@ -1116,7 +1125,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn57.FieldName = "is_select"
         Me.GridColumn57.Name = "GridColumn57"
         Me.GridColumn57.Visible = True
-        Me.GridColumn57.VisibleIndex = 13
+        Me.GridColumn57.VisibleIndex = 14
         Me.GridColumn57.Width = 71
         '
         'RepositoryItemCheckEdit8
@@ -1134,7 +1143,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn58.FieldName = "outstanding"
         Me.GridColumn58.Name = "GridColumn58"
         Me.GridColumn58.Visible = True
-        Me.GridColumn58.VisibleIndex = 7
+        Me.GridColumn58.VisibleIndex = 8
         '
         'GridColumn59
         '
@@ -1142,7 +1151,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn59.FieldName = "final_comment"
         Me.GridColumn59.Name = "GridColumn59"
         Me.GridColumn59.Visible = True
-        Me.GridColumn59.VisibleIndex = 9
+        Me.GridColumn59.VisibleIndex = 10
         '
         'GridColumn60
         '
@@ -1153,7 +1162,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn60.FieldName = "final_date"
         Me.GridColumn60.Name = "GridColumn60"
         Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 10
+        Me.GridColumn60.VisibleIndex = 11
         '
         'RepositoryItemTextEdit2
         '
@@ -1168,7 +1177,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn61.FieldName = "final_by_name"
         Me.GridColumn61.Name = "GridColumn61"
         Me.GridColumn61.Visible = True
-        Me.GridColumn61.VisibleIndex = 11
+        Me.GridColumn61.VisibleIndex = 12
         '
         'RepositoryItemTextEdit3
         '
@@ -1182,7 +1191,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnOLStoreOrderRO.FieldName = "sales_order_ol_shop_number"
         Me.GridColumnOLStoreOrderRO.Name = "GridColumnOLStoreOrderRO"
         Me.GridColumnOLStoreOrderRO.Visible = True
-        Me.GridColumnOLStoreOrderRO.VisibleIndex = 1
+        Me.GridColumnOLStoreOrderRO.VisibleIndex = 2
         '
         'GridColumnWH
         '
@@ -1190,7 +1199,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnWH.FieldName = "wh_name_to"
         Me.GridColumnWH.Name = "GridColumnWH"
         Me.GridColumnWH.Visible = True
-        Me.GridColumnWH.VisibleIndex = 3
+        Me.GridColumnWH.VisibleIndex = 4
         '
         'GridView3
         '
@@ -3475,13 +3484,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
-        'GridColumnorder_type
+        'GridColumnorder_typeret
         '
-        Me.GridColumnorder_type.Caption = "Type"
-        Me.GridColumnorder_type.FieldName = "order_type"
-        Me.GridColumnorder_type.Name = "GridColumnorder_type"
-        Me.GridColumnorder_type.Visible = True
-        Me.GridColumnorder_type.VisibleIndex = 1
+        Me.GridColumnorder_typeret.Caption = "Type"
+        Me.GridColumnorder_typeret.FieldName = "order_type"
+        Me.GridColumnorder_typeret.Name = "GridColumnorder_typeret"
+        Me.GridColumnorder_typeret.OptionsColumn.AllowEdit = False
+        Me.GridColumnorder_typeret.Visible = True
+        Me.GridColumnorder_typeret.VisibleIndex = 1
         '
         'FormSalesOrderSvcLevel
         '
@@ -3944,4 +3954,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents CancelCombineToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SendEmailConfirmationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_typeret As DevExpress.XtraGrid.Columns.GridColumn
 End Class
