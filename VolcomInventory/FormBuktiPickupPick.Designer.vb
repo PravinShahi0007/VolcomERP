@@ -21,6 +21,11 @@ Partial Class FormBuktiPickupPick
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBuktiPickupPick))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUECompany = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCompany = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
@@ -30,28 +35,24 @@ Partial Class FormBuktiPickupPick
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCombinedDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWarehouse = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreGroup = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrepareOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOrderRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStoreGroup = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.SLUECompany = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCCompany = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,8 +62,6 @@ Partial Class FormBuktiPickupPick
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -79,6 +78,45 @@ Partial Class FormBuktiPickupPick
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 43)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SLUECompany
+        '
+        Me.SLUECompany.Location = New System.Drawing.Point(56, 12)
+        Me.SLUECompany.Name = "SLUECompany"
+        Me.SLUECompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUECompany.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUECompany.Size = New System.Drawing.Size(200, 20)
+        Me.SLUECompany.TabIndex = 17
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdComp, Me.GCCompany})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GCIdComp
+        '
+        Me.GCIdComp.FieldName = "id_comp"
+        Me.GCIdComp.Name = "GCIdComp"
+        '
+        'GCCompany
+        '
+        Me.GCCompany.Caption = "Company"
+        Me.GCCompany.FieldName = "comp_name"
+        Me.GCCompany.Name = "GCCompany"
+        Me.GCCompany.Visible = True
+        Me.GCCompany.VisibleIndex = 0
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 15)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(33, 13)
+        Me.Label2.TabIndex = 16
+        Me.Label2.Text = "Store"
         '
         'SBView
         '
@@ -151,7 +189,7 @@ Partial Class FormBuktiPickupPick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnIdDel, Me.GridColumnNumber, Me.GridColumnCombinedDelivery, Me.GridColumnWarehouse, Me.GridColumnStore, Me.GridColumnStoreGroup, Me.GridColumnPrepareOrder, Me.GridColumnOLStoreOrder, Me.GridColumnCategory, Me.GridColumnOrderRemaining, Me.GridColumnTotalDelivery, Me.GridColumnCreatedDate})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnIdDel, Me.GridColumnNumber, Me.GridColumnCombinedDelivery, Me.GridColumnWarehouse, Me.GridColumnStore, Me.GridColumnStoreGroup, Me.GridColumnPrepareOrder, Me.GridColumnOLStoreOrder, Me.GridColumnCategory, Me.GridColumnTotalDelivery, Me.GridColumnCreatedDate})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsFind.AlwaysVisible = True
@@ -175,6 +213,12 @@ Partial Class FormBuktiPickupPick
         Me.RICESelect.Name = "RICESelect"
         Me.RICESelect.ValueChecked = "yes"
         Me.RICESelect.ValueUnchecked = "no"
+        '
+        'GridColumnIdDel
+        '
+        Me.GridColumnIdDel.FieldName = "id_pl_sales_order_del"
+        Me.GridColumnIdDel.Name = "GridColumnIdDel"
+        Me.GridColumnIdDel.OptionsColumn.AllowEdit = False
         '
         'GridColumnNumber
         '
@@ -212,6 +256,15 @@ Partial Class FormBuktiPickupPick
         Me.GridColumnStore.Visible = True
         Me.GridColumnStore.VisibleIndex = 4
         '
+        'GridColumnStoreGroup
+        '
+        Me.GridColumnStoreGroup.Caption = "Store Group"
+        Me.GridColumnStoreGroup.FieldName = "comp_group"
+        Me.GridColumnStoreGroup.Name = "GridColumnStoreGroup"
+        Me.GridColumnStoreGroup.OptionsColumn.AllowEdit = False
+        Me.GridColumnStoreGroup.Visible = True
+        Me.GridColumnStoreGroup.VisibleIndex = 5
+        '
         'GridColumnPrepareOrder
         '
         Me.GridColumnPrepareOrder.Caption = "Prepare Order #"
@@ -239,15 +292,6 @@ Partial Class FormBuktiPickupPick
         Me.GridColumnCategory.Visible = True
         Me.GridColumnCategory.VisibleIndex = 8
         '
-        'GridColumnOrderRemaining
-        '
-        Me.GridColumnOrderRemaining.Caption = "Order Remaining"
-        Me.GridColumnOrderRemaining.FieldName = "total_remaining"
-        Me.GridColumnOrderRemaining.Name = "GridColumnOrderRemaining"
-        Me.GridColumnOrderRemaining.OptionsColumn.AllowEdit = False
-        Me.GridColumnOrderRemaining.Visible = True
-        Me.GridColumnOrderRemaining.VisibleIndex = 9
-        '
         'GridColumnTotalDelivery
         '
         Me.GridColumnTotalDelivery.Caption = "Total Delivery"
@@ -255,7 +299,7 @@ Partial Class FormBuktiPickupPick
         Me.GridColumnTotalDelivery.Name = "GridColumnTotalDelivery"
         Me.GridColumnTotalDelivery.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalDelivery.Visible = True
-        Me.GridColumnTotalDelivery.VisibleIndex = 10
+        Me.GridColumnTotalDelivery.VisibleIndex = 9
         '
         'GridColumnCreatedDate
         '
@@ -266,7 +310,7 @@ Partial Class FormBuktiPickupPick
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 11
+        Me.GridColumnCreatedDate.VisibleIndex = 10
         '
         'PanelControl2
         '
@@ -298,60 +342,6 @@ Partial Class FormBuktiPickupPick
         Me.SBAdd.TabIndex = 3
         Me.SBAdd.Text = "Add"
         '
-        'GridColumnIdDel
-        '
-        Me.GridColumnIdDel.FieldName = "id_pl_sales_order_del"
-        Me.GridColumnIdDel.Name = "GridColumnIdDel"
-        Me.GridColumnIdDel.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnStoreGroup
-        '
-        Me.GridColumnStoreGroup.Caption = "Store Group"
-        Me.GridColumnStoreGroup.FieldName = "comp_group"
-        Me.GridColumnStoreGroup.Name = "GridColumnStoreGroup"
-        Me.GridColumnStoreGroup.OptionsColumn.AllowEdit = False
-        Me.GridColumnStoreGroup.Visible = True
-        Me.GridColumnStoreGroup.VisibleIndex = 5
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 15)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(33, 13)
-        Me.Label2.TabIndex = 16
-        Me.Label2.Text = "Store"
-        '
-        'SLUECompany
-        '
-        Me.SLUECompany.Location = New System.Drawing.Point(56, 12)
-        Me.SLUECompany.Name = "SLUECompany"
-        Me.SLUECompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUECompany.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUECompany.Size = New System.Drawing.Size(200, 20)
-        Me.SLUECompany.TabIndex = 17
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdComp, Me.GCCompany})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GCIdComp
-        '
-        Me.GCIdComp.FieldName = "id_comp"
-        Me.GCIdComp.Name = "GCIdComp"
-        '
-        'GCCompany
-        '
-        Me.GCCompany.Caption = "Company"
-        Me.GCCompany.FieldName = "comp_name"
-        Me.GCCompany.Name = "GCCompany"
-        Me.GCCompany.Visible = True
-        Me.GCCompany.VisibleIndex = 0
-        '
         'FormBuktiPickupPick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -367,6 +357,8 @@ Partial Class FormBuktiPickupPick
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -376,8 +368,6 @@ Partial Class FormBuktiPickupPick
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -400,7 +390,6 @@ Partial Class FormBuktiPickupPick
     Friend WithEvents GridColumnPrepareOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnOrderRemaining As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalDelivery As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSelect As DevExpress.XtraGrid.Columns.GridColumn

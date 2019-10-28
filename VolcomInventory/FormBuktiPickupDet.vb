@@ -1,15 +1,8 @@
 ﻿Public Class FormBuktiPickupDet
     Public id_pickup As String = "0"
 
-    Private id_temp As String = "0"
-
     Private Sub FormBuktiPickupDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
-
-        'store for first load
-        If id_pickup = "0" Then
-            save_first()
-        End If
 
         view_comp()
         load_form()
@@ -17,14 +10,10 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub save_first()
-        id_temp = execute_query("INSERT INTO tb_del_pickup (pickup_date, id_comp, note, id_report_status, created_date, created_by, updated_date, updated_by) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL); SELECT LAST_INSERT_ID();", 0, True, "", "", "", "")
-    End Sub
-
     Sub load_form()
         If id_pickup = "0" Then
             SLUECompany.EditValue = 0
-            DEDate.EditValue = ""
+            DEDate.EditValue = Now
             TECreatedBy.EditValue = get_emp(id_employee_user, "2")
             DECreatedDate.EditValue = Now
             TEUpdatedBy.EditValue = ""
@@ -73,7 +62,7 @@
 
             'detail
             Dim query_det As String = "
-                SELECT a.id_pl_sales_order_del, a.pl_sales_order_del_number, IFNULL(comb.combine_number, '-') AS combine_number, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS wh, CONCAT(d.comp_number, ' - ', d.comp_name) AS store, dg.comp_group, b.sales_order_number, b.sales_order_ol_shop_number, cat.so_status, rmg.total_remaining, IFNULL(det.total, 0) AS total, a.pl_sales_order_del_date
+                SELECT a.id_pl_sales_order_del, a.pl_sales_order_del_number, IFNULL(comb.combine_number, '-') AS combine_number, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS wh, CONCAT(d.comp_number, ' - ', d.comp_name) AS store, dg.comp_group, b.sales_order_number, b.sales_order_ol_shop_number, cat.so_status, IFNULL(det.total, 0) AS total, a.pl_sales_order_del_date
                 FROM tb_del_pickup_det AS pickup_det
                 LEFT JOIN tb_pl_sales_order_del AS a ON pickup_det.id_pl_sales_order_del = a.id_pl_sales_order_del
                 INNER JOIN tb_sales_order b ON a.id_sales_order = b.id_sales_order
@@ -87,18 +76,6 @@
                     INNER JOIN tb_pl_sales_order_del_det det ON del.id_pl_sales_order_del = det.id_pl_sales_order_del 
                     GROUP BY del.id_pl_sales_order_del 
                 ) det ON det.id_pl_sales_order_del = a.id_pl_sales_order_del
-                LEFT JOIN ( 
-                    SELECT so.id_sales_order, SUM(so_det.sales_order_det_qty) AS total_so, del.total_del, (SUM(so_det.sales_order_det_qty) - IFNULL(del.total_del,0)) AS total_remaining 
-                    FROM tb_sales_order so 
-                    INNER JOIN tb_sales_order_det so_det ON so_det.id_sales_order = so.id_sales_order 
-                    LEFT JOIN ( 
-                        SELECT del.id_sales_order, SUM(del_det.pl_sales_order_del_det_qty) AS total_del 
-                        FROM tb_pl_sales_order_del del 
-                        INNER JOIN tb_pl_sales_order_del_det del_det ON del_det.id_pl_sales_order_del = del.id_pl_sales_order_del 
-                        WHERE del.id_report_status != 5 GROUP BY del.id_sales_order 
-                    ) del ON del.id_sales_order = so.id_sales_order 
-                    GROUP BY so.id_sales_order 
-                ) rmg ON rmg.id_sales_order = a.id_sales_order
                 LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = a.id_combine
                 INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = b.id_so_status
                 LEFT JOIN tb_m_comp_group dg ON d.id_comp_group = dg.id_comp_group
@@ -131,6 +108,10 @@
         If id_report_status = "5" Then
             SBCancel.Enabled = False
         End If
+
+        If id_pickup = "0" Then
+            SBAttachement.Enabled = False
+        End If
     End Sub
 
     Sub view_comp()
@@ -148,10 +129,6 @@
     End Sub
 
     Private Sub FormBuktiPickupDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If id_pickup = "0" Then
-            execute_non_query("DELETE FROM tb_del_pickup WHERE id_pickup = " + id_temp, True, "", "", "", "")
-        End If
-
         FormBuktiPickup.load_form()
 
         Try
@@ -165,13 +142,7 @@
     End Sub
 
     Private Sub SBComplete_Click(sender As Object, e As EventArgs) Handles SBComplete.Click
-        Dim confirm As DialogResult
-
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to complete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            save("complete")
-        End If
+        save("complete")
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
@@ -191,37 +162,69 @@
         ElseIf Not formIsValidInPanel(ErrorProvider, PanelControl2) Then
             errorCustom("Please check your input")
         Else
-            Dim pickup_date As String = Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd")
-            Dim id_comp As String = SLUECompany.EditValue.ToString
-            Dim note As String = MENote.EditValue.ToString
-            Dim id_report_status As String = If(type = "complete", "6", "0")
+            Dim continue_save As Boolean = True
 
-            Dim created As String = If(id_pickup = "0", ", created_date = NOW(), created_by = " + id_employee_user, ", updated_date = NOW(), updated_by = " + id_employee_user)
+            If type = "complete" Then
+                Dim confirm As DialogResult
 
-            If id_pickup = "0" Then
-                id_pickup = id_temp
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to complete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    continue_save = True
+                Else
+                    continue_save = False
+                End If
             End If
 
-            'tb_del_pickup
-            Dim query As String = "UPDATE tb_del_pickup SET pickup_date = '" + pickup_date + "', id_comp = " + id_comp + ", note = '" + addSlashes(note) + "', id_report_status = " + id_report_status + " " + created + " WHERE id_pickup = " + id_pickup
+            If continue_save Then
+                Dim pickup_date As String = Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim id_comp As String = SLUECompany.EditValue.ToString
+                Dim note As String = MENote.EditValue.ToString
+                Dim id_report_status As String = If(type = "complete", "6", "0")
 
-            execute_non_query(query, True, "", "", "", "")
-            execute_non_query("DELETE FROM tb_del_pickup_det WHERE id_pickup = " + id_pickup, True, "", "", "", "")
+                Dim attachment As Boolean = False
 
-            'tb_del_pickup_det
-            Dim query_det As String = "INSERT INTO tb_del_pickup_det (id_pickup, id_pl_sales_order_del) VALUES "
+                'tb_del_pickup
+                If id_pickup = "0" Then
+                    Dim query As String = "INSERT INTO tb_del_pickup (pickup_date, id_comp, note, id_report_status, created_date, created_by) VALUES ('" + pickup_date + "', " + id_comp + ", '" + addSlashes(note) + "', " + id_report_status + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
 
-            For i = 0 To GVList.RowCount - 1
-                If GVList.IsValidRowHandle(i) Then
-                    query_det += "(" + id_pickup + ", " + GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString + "), "
+                    id_pickup = execute_query(query, 0, True, "", "", "", "")
+
+                    attachment = True
+                Else
+                    Dim query As String = "UPDATE tb_del_pickup SET pickup_date = '" + pickup_date + "', id_comp = " + id_comp + ", note = '" + addSlashes(note) + "', id_report_status = " + id_report_status + ", updated_date = NOW(), updated_by = " + id_employee_user + "  WHERE id_pickup = " + id_pickup
+
+                    execute_non_query(query, True, "", "", "", "")
                 End If
-            Next
 
-            query_det = query_det.Substring(0, query_det.Length - 2)
+                execute_non_query("DELETE FROM tb_del_pickup_det WHERE id_pickup = " + id_pickup, True, "", "", "", "")
 
-            execute_non_query(query_det, True, "", "", "", "")
+                'tb_del_pickup_det
+                Dim query_det As String = "INSERT INTO tb_del_pickup_det (id_pickup, id_pl_sales_order_del) VALUES "
 
-            Close()
+                For i = 0 To GVList.RowCount - 1
+                    If GVList.IsValidRowHandle(i) Then
+                        query_det += "(" + id_pickup + ", " + GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString + "), "
+                    End If
+                Next
+
+                query_det = query_det.Substring(0, query_det.Length - 2)
+
+                execute_non_query(query_det, True, "", "", "", "")
+
+                If attachment Then
+                    warningCustom("Please add attachment")
+
+                    FormDocumentUpload.is_no_delete = "-1"
+                    FormDocumentUpload.is_view = "-1"
+                    FormDocumentUpload.id_report = id_pickup
+                    FormDocumentUpload.report_mark_type = "217"
+
+                    FormDocumentUpload.ShowDialog()
+                End If
+
+                Close()
+            End If
         End If
     End Sub
 
@@ -232,7 +235,7 @@
 
         FormDocumentUpload.is_no_delete = If(Not id_report_status = "0", "1", "-1")
         FormDocumentUpload.is_view = If(Not id_report_status = "0", "1", "-1")
-        FormDocumentUpload.id_report = If(id_pickup = "0", id_temp, id_pickup)
+        FormDocumentUpload.id_report = id_pickup
         FormDocumentUpload.report_mark_type = "217"
 
         FormDocumentUpload.ShowDialog()

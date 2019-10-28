@@ -35,7 +35,6 @@ Partial Class FormBuktiPickupDet
         Me.GridColumnPrepareOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOrderRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -58,13 +57,13 @@ Partial Class FormBuktiPickupDet
         Me.Label1 = New System.Windows.Forms.Label()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachement = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,8 +85,8 @@ Partial Class FormBuktiPickupDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -132,7 +131,7 @@ Partial Class FormBuktiPickupDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDel, Me.GridColumnNumber, Me.GridColumnCombinedDelivery, Me.GridColumnWarehouse, Me.GridColumnStore, Me.GridColumnStoreGroup, Me.GridColumnPrepareOrder, Me.GridColumnOLStoreOrder, Me.GridColumnCategory, Me.GridColumnOrderRemaining, Me.GridColumnTotalDelivery, Me.GridColumnCreatedDate})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDel, Me.GridColumnNumber, Me.GridColumnCombinedDelivery, Me.GridColumnWarehouse, Me.GridColumnStore, Me.GridColumnStoreGroup, Me.GridColumnPrepareOrder, Me.GridColumnOLStoreOrder, Me.GridColumnCategory, Me.GridColumnTotalDelivery, Me.GridColumnCreatedDate})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ColumnAutoWidth = False
@@ -216,15 +215,6 @@ Partial Class FormBuktiPickupDet
         Me.GridColumnCategory.Visible = True
         Me.GridColumnCategory.VisibleIndex = 7
         '
-        'GridColumnOrderRemaining
-        '
-        Me.GridColumnOrderRemaining.Caption = "Order Remaining"
-        Me.GridColumnOrderRemaining.FieldName = "total_remaining"
-        Me.GridColumnOrderRemaining.Name = "GridColumnOrderRemaining"
-        Me.GridColumnOrderRemaining.OptionsColumn.AllowEdit = False
-        Me.GridColumnOrderRemaining.Visible = True
-        Me.GridColumnOrderRemaining.VisibleIndex = 8
-        '
         'GridColumnTotalDelivery
         '
         Me.GridColumnTotalDelivery.Caption = "Total Delivery"
@@ -232,7 +222,7 @@ Partial Class FormBuktiPickupDet
         Me.GridColumnTotalDelivery.Name = "GridColumnTotalDelivery"
         Me.GridColumnTotalDelivery.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalDelivery.Visible = True
-        Me.GridColumnTotalDelivery.VisibleIndex = 9
+        Me.GridColumnTotalDelivery.VisibleIndex = 8
         '
         'GridColumnCreatedDate
         '
@@ -243,7 +233,7 @@ Partial Class FormBuktiPickupDet
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 10
+        Me.GridColumnCreatedDate.VisibleIndex = 9
         '
         'PanelControl2
         '
@@ -279,6 +269,7 @@ Partial Class FormBuktiPickupDet
         Me.DEDate.EditValue = Nothing
         Me.DEDate.Location = New System.Drawing.Point(86, 38)
         Me.DEDate.Name = "DEDate"
+        Me.DEDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
@@ -464,25 +455,42 @@ Partial Class FormBuktiPickupDet
         Me.PanelControl4.Size = New System.Drawing.Size(1008, 49)
         Me.PanelControl4.TabIndex = 4
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 18)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(74, 13)
+        Me.Label8.TabIndex = 13
+        Me.Label8.Text = "Report Status"
+        '
         'SBCancel
         '
         Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(695, 2)
+        Me.SBCancel.Location = New System.Drawing.Point(653, 2)
         Me.SBCancel.Name = "SBCancel"
         Me.SBCancel.Size = New System.Drawing.Size(129, 45)
         Me.SBCancel.TabIndex = 4
         Me.SBCancel.Text = "Cancel Propose"
         '
+        'TEReportStatus
+        '
+        Me.TEReportStatus.Location = New System.Drawing.Point(97, 15)
+        Me.TEReportStatus.Name = "TEReportStatus"
+        Me.TEReportStatus.Properties.ReadOnly = True
+        Me.TEReportStatus.Size = New System.Drawing.Size(200, 20)
+        Me.TEReportStatus.TabIndex = 12
+        '
         'SBSave
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(824, 2)
+        Me.SBSave.Location = New System.Drawing.Point(782, 2)
         Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(81, 45)
+        Me.SBSave.Size = New System.Drawing.Size(123, 45)
         Me.SBSave.TabIndex = 3
-        Me.SBSave.Text = "Save"
+        Me.SBSave.Text = "Save Changes"
         '
         'SBComplete
         '
@@ -506,23 +514,6 @@ Partial Class FormBuktiPickupDet
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 18)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(74, 13)
-        Me.Label8.TabIndex = 13
-        Me.Label8.Text = "Report Status"
-        '
-        'TEReportStatus
-        '
-        Me.TEReportStatus.Location = New System.Drawing.Point(97, 15)
-        Me.TEReportStatus.Name = "TEReportStatus"
-        Me.TEReportStatus.Properties.ReadOnly = True
-        Me.TEReportStatus.Size = New System.Drawing.Size(200, 20)
-        Me.TEReportStatus.TabIndex = 12
         '
         'FormBuktiPickupDet
         '
@@ -563,8 +554,8 @@ Partial Class FormBuktiPickupDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -602,7 +593,6 @@ Partial Class FormBuktiPickupDet
     Friend WithEvents GridColumnPrepareOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnOrderRemaining As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalDelivery As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDel As DevExpress.XtraGrid.Columns.GridColumn

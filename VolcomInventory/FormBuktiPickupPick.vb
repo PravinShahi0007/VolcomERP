@@ -50,11 +50,25 @@
         Dim where_store As String = If(SLUECompany.EditValue.ToString = "0", "", "AND d.id_comp = " + SLUECompany.EditValue.ToString)
 
         'query
-        Dim salesdelorder As ClassSalesDelOrder = New ClassSalesDelOrder()
-
-        Dim query As String = salesdelorder.queryMain(" AND a.id_pl_sales_order_del NOT IN (" + where_not_in + ") AND (a.pl_sales_order_del_date >= '" + date_from + "' AND a.pl_sales_order_del_date <= '" + date_to + "') AND a.id_report_status = 6 " + where_store, "1")
-
-        query = "SELECT 'no' AS is_select," + query.Substring(6, query.Length - 6)
+        Dim query As String = "
+            SELECT 'no' AS is_select, a.id_pl_sales_order_del, a.pl_sales_order_del_number, IFNULL(comb.combine_number, '-') AS combine_number, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS wh, CONCAT(d.comp_number, ' - ', d.comp_name) AS store, dg.comp_group, b.sales_order_number, b.sales_order_ol_shop_number, cat.so_status, IFNULL(det.total, 0) AS total, a.pl_sales_order_del_date
+            FROM tb_pl_sales_order_del AS a
+            INNER JOIN tb_sales_order b ON a.id_sales_order = b.id_sales_order
+            INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
+            INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp
+            INNER JOIN tb_m_comp_contact wh_cont ON wh_cont.id_comp_contact = a.id_comp_contact_from 
+            INNER JOIN tb_m_comp wh ON wh.id_comp = wh_cont.id_comp
+            LEFT JOIN (
+                SELECT del.id_pl_sales_order_del, SUM(det.pl_sales_order_del_det_qty) AS total 
+                FROM tb_pl_sales_order_del del 
+                INNER JOIN tb_pl_sales_order_del_det det ON del.id_pl_sales_order_del = det.id_pl_sales_order_del 
+                GROUP BY del.id_pl_sales_order_del 
+            ) det ON det.id_pl_sales_order_del = a.id_pl_sales_order_del
+            LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = a.id_combine
+            INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = b.id_so_status
+            LEFT JOIN tb_m_comp_group dg ON d.id_comp_group = dg.id_comp_group
+            WHERE a.id_pl_sales_order_del NOT IN (" + where_not_in + ") AND (a.pl_sales_order_del_date >= '" + date_from + "' AND a.pl_sales_order_del_date <= '" + date_to + "') AND a.id_report_status = 6 " + where_store + "
+        "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
