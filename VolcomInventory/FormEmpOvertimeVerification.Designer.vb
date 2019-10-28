@@ -52,6 +52,7 @@ Partial Class FormEmpOvertimeVerification
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCAttendance = New DevExpress.XtraGrid.GridControl()
@@ -87,6 +88,7 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCActualHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCPointOt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RITENote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BGCValid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEValid = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -133,7 +135,7 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.RITENote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RITEBreak2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DESearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,6 +160,7 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITETimeVer, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEHours, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
@@ -173,7 +176,7 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITENote, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEBreak2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -414,6 +417,7 @@ Partial Class FormEmpOvertimeVerification
         Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBReset)
         Me.PanelControl2.Controls.Add(Me.SBSave)
+        Me.PanelControl2.Controls.Add(Me.SBComplete)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 679)
         Me.PanelControl2.Name = "PanelControl2"
@@ -435,7 +439,7 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(682, 2)
+        Me.SBClose.Location = New System.Drawing.Point(576, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 46)
         Me.SBClose.TabIndex = 3
@@ -446,7 +450,7 @@ Partial Class FormEmpOvertimeVerification
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Enabled = False
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(757, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(651, 2)
         Me.SBPrint.Name = "SBPrint"
         Me.SBPrint.Size = New System.Drawing.Size(75, 46)
         Me.SBPrint.TabIndex = 5
@@ -456,7 +460,7 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
-        Me.SBReset.Location = New System.Drawing.Point(832, 2)
+        Me.SBReset.Location = New System.Drawing.Point(726, 2)
         Me.SBReset.Name = "SBReset"
         Me.SBReset.Size = New System.Drawing.Size(86, 46)
         Me.SBReset.TabIndex = 7
@@ -467,11 +471,21 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(918, 2)
+        Me.SBSave.Location = New System.Drawing.Point(812, 2)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(88, 46)
         Me.SBSave.TabIndex = 2
         Me.SBSave.Text = "Submit"
+        '
+        'SBComplete
+        '
+        Me.SBComplete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBComplete.Image = CType(resources.GetObject("SBComplete.Image"), System.Drawing.Image)
+        Me.SBComplete.Location = New System.Drawing.Point(900, 2)
+        Me.SBComplete.Name = "SBComplete"
+        Me.SBComplete.Size = New System.Drawing.Size(106, 46)
+        Me.SBComplete.TabIndex = 8
+        Me.SBComplete.Text = "Complete"
         '
         'PanelControl3
         '
@@ -499,7 +513,7 @@ Partial Class FormEmpOvertimeVerification
         Me.GCAttendance.Location = New System.Drawing.Point(2, 20)
         Me.GCAttendance.MainView = Me.GVAttendance
         Me.GCAttendance.Name = "GCAttendance"
-        Me.GCAttendance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType2, Me.RICEValid, Me.RITEHours, Me.RITETimeVer, Me.RITENote})
+        Me.GCAttendance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType2, Me.RICEValid, Me.RITEHours, Me.RITETimeVer, Me.RITENote, Me.RITEBreak2})
         Me.GCAttendance.Size = New System.Drawing.Size(497, 496)
         Me.GCAttendance.TabIndex = 1
         Me.GCAttendance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAttendance})
@@ -848,7 +862,7 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCBreakHours.AppearanceHeader.Options.UseTextOptions = True
         Me.BGCBreakHours.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BGCBreakHours.Caption = "Break (hours)"
-        Me.BGCBreakHours.ColumnEdit = Me.RITEHours
+        Me.BGCBreakHours.ColumnEdit = Me.RITEBreak2
         Me.BGCBreakHours.DisplayFormat.FormatString = "N1"
         Me.BGCBreakHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BGCBreakHours.FieldName = "break_hours"
@@ -929,6 +943,10 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCNote.Visible = True
         Me.BGCNote.Width = 100
         '
+        'RITENote
+        '
+        Me.RITENote.Name = "RITENote"
+        '
         'BGCValid
         '
         Me.BGCValid.AppearanceCell.Options.UseTextOptions = True
@@ -965,6 +983,7 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCIdScheduleType.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BGCIdScheduleType.FieldName = "id_schedule_type"
         Me.BGCIdScheduleType.Name = "BGCIdScheduleType"
+        Me.BGCIdScheduleType.OptionsColumn.AllowEdit = False
         Me.BGCIdScheduleType.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'BGCIn
@@ -1470,9 +1489,17 @@ Partial Class FormEmpOvertimeVerification
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.TEReportStatus.TabIndex = 21
         '
-        'RITENote
+        'RITEBreak2
         '
-        Me.RITENote.Name = "RITENote"
+        Me.RITEBreak2.AutoHeight = False
+        Me.RITEBreak2.DisplayFormat.FormatString = "N1"
+        Me.RITEBreak2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreak2.EditFormat.FormatString = "N1"
+        Me.RITEBreak2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreak2.Mask.EditMask = "N1"
+        Me.RITEBreak2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEBreak2.Mask.UseMaskAsDisplayFormat = True
+        Me.RITEBreak2.Name = "RITEBreak2"
         '
         'FormEmpOvertimeVerification
         '
@@ -1512,6 +1539,7 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITETimeVer, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEHours, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
@@ -1528,7 +1556,7 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus.ResumeLayout(False)
         Me.PCReportStatus.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITENote, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEBreak2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1647,4 +1675,6 @@ Partial Class FormEmpOvertimeVerification
     Friend WithEvents GVDateSearch As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITENote As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents SBComplete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RITEBreak2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

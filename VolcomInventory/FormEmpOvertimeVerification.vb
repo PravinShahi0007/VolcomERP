@@ -81,6 +81,13 @@
             SBView.Enabled = False
         End If
 
+        If is_hrd = "-1" Then
+            SBComplete.Visible = False
+            RITETimeVer.ReadOnly = True
+            RITEHours.ReadOnly = True
+            SBFill.Visible = False
+        End If
+
         loaded = True
     End Sub
 
@@ -347,6 +354,7 @@
 
             'controls
             SBSave.Enabled = True
+            SBComplete.Enabled = True
             SBPrint.Enabled = False
             SBMark.Enabled = False
             SBReset.Visible = False
@@ -381,6 +389,7 @@
 
             'controls
             SBSave.Enabled = False
+            SBComplete.Enabled = False
             SBPrint.Enabled = True
             SBMark.Enabled = True
             RISLUEType2.ReadOnly = True
@@ -458,6 +467,10 @@
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
+        submit("save")
+    End Sub
+
+    Sub submit(type As String)
         GVAttendance.ActiveFilterString = "[ot_potention] = '1' AND [is_valid] = 'yes'"
 
         If GVAttendance.RowCount > 0 Then
@@ -487,11 +500,29 @@
                     Dim ot_date As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
                     Dim id_payroll As String = SLUEPayroll.EditValue.ToString
 
-                    query = "
-                        INSERT INTO tb_ot_verification (id_ot, id_departement, ot_date, id_payroll, id_report_status, created_by, created_at) VALUES (" + id_ot + ", " + LEDepartement.EditValue.ToString + ", '" + ot_date + "', " + id_payroll + ", 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();
-                    "
+                    Dim need_approval As Boolean = False
 
-                    id = execute_query(query, 0, True, "", "", "", "")
+                    If id = "0" Then
+                        need_approval = True
+
+                        query = "
+                            INSERT INTO tb_ot_verification (id_ot, id_departement, ot_date, id_payroll, id_report_status, created_by, created_at) VALUES (" + id_ot + ", " + LEDepartement.EditValue.ToString + ", '" + ot_date + "', " + id_payroll + ", 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();
+                        "
+
+                        id = execute_query(query, 0, True, "", "", "", "")
+                    Else
+                        'update
+                        query = "
+                            UPDATE tb_ot_verification SET id_ot = " + id_ot + ", id_departement = " + LEDepartement.EditValue.ToString + ", ot_date = '" + ot_date + "', id_payroll = " + id_payroll + ", updated_by = " + id_employee_user + ", updated_at = NOW() WHERE id_ot_verification = " + id + "
+                        "
+
+                        execute_non_query(query, True, "", "", "", "")
+
+                        'delete detail
+                        query = "DELETE FROM tb_ot_verification_det WHERE id_ot_verification = " + id
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
 
                     For i = 0 To GVAttendance.RowCount - 1
                         If GVAttendance.IsValidRowHandle(i) Then
@@ -524,31 +555,39 @@
                         End If
                     Next
 
-                    Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
-
                     'approval
-                    If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
-                        'departement hrd
-                        If is_user_head Then
-                            'manager hrd submit
-                            submit_who_prepared("216", id, id_user)
-                            execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 216 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                    If need_approval Then
+                        Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
+
+                        If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
+                            'departement hrd
+                            If is_user_head Then
+                                'manager hrd submit
+                                submit_who_prepared("216", id, id_user)
+                                execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 216 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                            Else
+                                'admin hrd submit
+                                submit_who_prepared("215", id, id_user)
+                                execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 215 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                            End If
                         Else
-                            'admin hrd submit
-                            submit_who_prepared("215", id, id_user)
-                            execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 215 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                            'other departement
+                            If is_user_head Then
+                                'manager submit
+                                submit_who_prepared("215", id, id_user)
+                                execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 215 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                            Else
+                                'admin submit
+                                submit_who_prepared("187", id, id_user)
+                                execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 187 WHERE id_ot_verification = " + id, True, "", "", "", "")
+                            End If
                         End If
-                    Else
-                        'other departement
-                        If is_user_head Then
-                            'manager submit
-                            submit_who_prepared("215", id, id_user)
-                            execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 215 WHERE id_ot_verification = " + id, True, "", "", "", "")
-                        Else
-                            'admin submit
-                            submit_who_prepared("187", id, id_user)
-                            execute_non_query("UPDATE tb_ot_verification SET report_mark_type = 187 WHERE id_ot_verification = " + id, True, "", "", "", "")
-                        End If
+                    End If
+
+                    If type = "complete" Then
+                        FormReportMark.report_mark_type = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
+                        FormReportMark.id_report = id
+                        FormReportMark.change_status("6")
                     End If
 
                     Close()
@@ -621,7 +660,7 @@
             LEFT JOIN tb_lookup_ot_type AS ott ON ot.id_ot_type = ott.id_ot_type
             LEFT JOIN tb_emp_payroll AS py ON vr.id_payroll = py.id_payroll
             LEFT JOIN tb_m_departement AS d ON vrd.id_departement = d.id_departement
-            LEFT JOIN tb_m_departement AS s ON vr.id_departement = d.id_departement
+            LEFT JOIN tb_m_departement AS s ON vr.id_departement = s.id_departement
             LEFT JOIN tb_emp_schedule AS sch ON vrd.id_employee = sch.id_employee AND sch.date = vr.ot_date
             WHERE vrd.id_ot_verification = " + id + "
         "
@@ -673,7 +712,7 @@
         Report.id = id
         Report.data1 = GCEmployee.DataSource
         Report.data2 = GCAttendance.DataSource
-        Report.id_pre = If(Not id_report_status = "6", "1", "-1")
+        Report.id_pre = "1"
 
         Report.XLNumber.Text = TENumber.Text.ToString
         Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
@@ -847,5 +886,9 @@
         Next
 
         GVAttendance.ActiveFilterString = "[ot_potention] = '1'"
+    End Sub
+
+    Private Sub SBComplete_Click(sender As Object, e As EventArgs) Handles SBComplete.Click
+        submit("complete")
     End Sub
 End Class
