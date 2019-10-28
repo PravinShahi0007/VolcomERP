@@ -67,6 +67,9 @@ Partial Class FormViewSalesReturnOrder
         Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSOH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnOrderStatus = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtOrderTypeDescription = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtOrderType = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,11 +91,16 @@ Partial Class FormViewSalesReturnOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOrderTypeDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtOrderType)
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtOrderTypeDescription)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
         Me.GroupGeneralHeader.Controls.Add(Me.DERetDueDate)
         Me.GroupGeneralHeader.Controls.Add(Me.DEForm)
@@ -108,7 +116,7 @@ Partial Class FormViewSalesReturnOrder
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(785, 102)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(785, 120)
         Me.GroupGeneralHeader.TabIndex = 185
         '
         'LabelControl2
@@ -172,7 +180,7 @@ Partial Class FormViewSalesReturnOrder
         '
         'MEAdrressCompTo
         '
-        Me.MEAdrressCompTo.Location = New System.Drawing.Point(76, 39)
+        Me.MEAdrressCompTo.Location = New System.Drawing.Point(76, 60)
         Me.MEAdrressCompTo.Name = "MEAdrressCompTo"
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompTo.Properties.Appearance.Options.UseFont = True
@@ -183,7 +191,7 @@ Partial Class FormViewSalesReturnOrder
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(31, 41)
+        Me.LabelControl3.Location = New System.Drawing.Point(31, 62)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl3.TabIndex = 153
@@ -203,7 +211,7 @@ Partial Class FormViewSalesReturnOrder
         'TxtNameCompTo
         '
         Me.TxtNameCompTo.EditValue = ""
-        Me.TxtNameCompTo.Location = New System.Drawing.Point(164, 13)
+        Me.TxtNameCompTo.Location = New System.Drawing.Point(164, 34)
         Me.TxtNameCompTo.Name = "TxtNameCompTo"
         Me.TxtNameCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
@@ -216,7 +224,7 @@ Partial Class FormViewSalesReturnOrder
         'TxtCodeCompTo
         '
         Me.TxtCodeCompTo.EditValue = ""
-        Me.TxtCodeCompTo.Location = New System.Drawing.Point(76, 13)
+        Me.TxtCodeCompTo.Location = New System.Drawing.Point(76, 34)
         Me.TxtCodeCompTo.Name = "TxtCodeCompTo"
         Me.TxtCodeCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeCompTo.Properties.Appearance.Options.UseFont = True
@@ -229,7 +237,7 @@ Partial Class FormViewSalesReturnOrder
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(31, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(31, 37)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
         Me.LabelControl1.TabIndex = 145
@@ -342,9 +350,9 @@ Partial Class FormViewSalesReturnOrder
         Me.GroupControlList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 102)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 120)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(785, 263)
+        Me.GroupControlList.Size = New System.Drawing.Size(785, 245)
         Me.GroupControlList.TabIndex = 189
         Me.GroupControlList.Text = "Item List"
         '
@@ -356,7 +364,7 @@ Partial Class FormViewSalesReturnOrder
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(763, 259)
+        Me.GCItemList.Size = New System.Drawing.Size(763, 241)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -583,6 +591,43 @@ Partial Class FormViewSalesReturnOrder
         Me.BtnOrderStatus.Text = "Update Order Status"
         Me.BtnOrderStatus.Visible = False
         '
+        'TxtOrderTypeDescription
+        '
+        Me.TxtOrderTypeDescription.EditValue = ""
+        Me.TxtOrderTypeDescription.Enabled = False
+        Me.TxtOrderTypeDescription.Location = New System.Drawing.Point(164, 10)
+        Me.TxtOrderTypeDescription.Name = "TxtOrderTypeDescription"
+        Me.TxtOrderTypeDescription.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtOrderTypeDescription.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderTypeDescription.Properties.EditValueChangedDelay = 1
+        Me.TxtOrderTypeDescription.Properties.ReadOnly = True
+        Me.TxtOrderTypeDescription.Size = New System.Drawing.Size(255, 20)
+        Me.TxtOrderTypeDescription.TabIndex = 8912
+        Me.TxtOrderTypeDescription.TabStop = False
+        '
+        'TxtOrderType
+        '
+        Me.TxtOrderType.EditValue = ""
+        Me.TxtOrderType.Enabled = False
+        Me.TxtOrderType.Location = New System.Drawing.Point(76, 10)
+        Me.TxtOrderType.Name = "TxtOrderType"
+        Me.TxtOrderType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtOrderType.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderType.Properties.EditValueChangedDelay = 1
+        Me.TxtOrderType.Properties.ReadOnly = True
+        Me.TxtOrderType.Size = New System.Drawing.Size(82, 20)
+        Me.TxtOrderType.TabIndex = 8913
+        Me.TxtOrderType.TabStop = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(31, 13)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl4.TabIndex = 8914
+        Me.LabelControl4.Text = "Type"
+        '
         'FormViewSalesReturnOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -623,6 +668,8 @@ Partial Class FormViewSalesReturnOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOrderTypeDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -674,4 +721,7 @@ Partial Class FormViewSalesReturnOrder
     Friend WithEvents BtnOrderStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnQtyReturn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSOH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtOrderType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtOrderTypeDescription As DevExpress.XtraEditors.TextEdit
 End Class
