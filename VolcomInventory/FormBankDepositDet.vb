@@ -148,7 +148,7 @@ Public Class FormBankDepositDet
 
     Sub viewBlankJournal()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0 AS `debit`, 0 AS `credit` "
+        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0.00 AS `debit`, 0.00 AS `credit` "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDraft.DataSource = data
         GVDraft.DeleteSelectedRows()
@@ -342,7 +342,7 @@ Public Class FormBankDepositDet
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "', " + id_comp + ", " + id_acc + ", " + id_dc + ", '" + vendor + "') "
+                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "', " + id_comp + ", " + id_acc + ", " + id_dc + ", '" + vendor + "') "
                     Next
                     execute_non_query(query, True, "", "", "", "")
 
