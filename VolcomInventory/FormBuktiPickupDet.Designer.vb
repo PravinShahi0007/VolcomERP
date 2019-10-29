@@ -286,9 +286,9 @@ Partial Class FormBuktiPickupDet
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(12, 15)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(52, 13)
+        Me.Label6.Size = New System.Drawing.Size(36, 13)
         Me.Label6.TabIndex = 9
-        Me.Label6.Text = "Company"
+        Me.Label6.Text = "Cargo"
         '
         'SLUECompany
         '
