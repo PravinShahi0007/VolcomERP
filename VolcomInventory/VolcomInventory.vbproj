@@ -765,6 +765,18 @@
     <Compile Include="FormDataReff.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDebitNote.Designer.vb">
+      <DependentUpon>FormDebitNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDebitNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDebitNoteDet.Designer.vb">
+      <DependentUpon>FormDebitNoteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDebitNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDeliveryCargo.Designer.vb">
       <DependentUpon>FormDeliveryCargo.vb</DependentUpon>
     </Compile>
@@ -7605,6 +7617,12 @@
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitNote.resx">
+      <DependentUpon>FormDebitNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitNoteDet.resx">
+      <DependentUpon>FormDebitNoteDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeliveryCargo.resx">
       <DependentUpon>FormDeliveryCargo.vb</DependentUpon>
