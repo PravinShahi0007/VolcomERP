@@ -6,7 +6,7 @@
         Close()
     End Sub
 
-    Private Sub FormPurcItemDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub load_form()
         load_uom()
         load_item_type()
         load_purc_cat()
@@ -14,10 +14,19 @@
         load_vendor_type()
         '
         If Not id_item = "-1" Then 'edit
+            TEStatus.Visible = True
+            LStatus.Visible = True
+
             Dim query As String = "SELECT * FROM tb_item WHERE id_item='" & id_item & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-
+            If data.Rows(0)("is_active").ToString = "1" Then
+                TEStatus.Text = "Active"
+                BNonActive.Visible = True
+            Else
+                TEStatus.Text = "Not Active"
+                BNonActive.Visible = False
+            End If
 
             TECode.Text = data.Rows(0)("id_item").ToString
             TEDesc.Text = data.Rows(0)("item_desc").ToString
@@ -50,6 +59,9 @@ WHERE pr.id_report_status!=5"
                 PCSetPrice.Visible = True
             End If
         Else
+            TEStatus.Visible = False
+            LStatus.Visible = False
+
             TECode.Text = "[Auto Generate]"
             '
             XTPAttachment.PageVisible = False
@@ -57,6 +69,10 @@ WHERE pr.id_report_status!=5"
             '
             SLEPurchaseCategory.EditValue = Nothing
         End If
+    End Sub
+
+    Private Sub FormPurcItemDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
 
     Sub load_vendor_type()
@@ -181,5 +197,13 @@ WHERE id_status='2'"
             FormPurcOrderDet.set_same_detail_price(Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
             Close()
         End If
+    End Sub
+
+    Private Sub BNonActive_Click(sender As Object, e As EventArgs) Handles BNonActive.Click
+        Dim query As String = "UPDATE tb_item SET is_active='2' WHERE id_item='" & id_item & "'"
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom("Item non active")
+        load_form()
+        FormPurcItem.load_item()
     End Sub
 End Class
