@@ -12,6 +12,7 @@
             LEFT JOIN tb_m_employee AS created_by ON pickup.created_by = created_by.id_employee
             LEFT JOIN tb_m_employee AS updated_by ON pickup.updated_by = updated_by.id_employee
             WHERE pickup.created_date IS NOT NULL AND pickup.created_by IS NOT NULL
+            ORDER BY pickup.id_pickup DESC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
