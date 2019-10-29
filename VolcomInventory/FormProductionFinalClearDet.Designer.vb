@@ -85,6 +85,24 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyLimit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SCCQC = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
+        Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
+        Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProdOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BStop = New DevExpress.XtraEditors.SimpleButton()
+        Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,6 +138,17 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SCCQC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SCCQC.SuspendLayout()
+        CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlListBarcode.SuspendLayout()
+        CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -151,7 +180,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(834, 169)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(926, 169)
         Me.GroupGeneralHeader.TabIndex = 201
         '
         'BtnBrowsePO
@@ -430,7 +459,7 @@ Partial Class FormProductionFinalClearDet
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
         Me.PanelHeaderLeft.Controls.Add(Me.DEForm)
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelHeaderLeft.Location = New System.Drawing.Point(624, 2)
+        Me.PanelHeaderLeft.Location = New System.Drawing.Point(716, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(208, 165)
         Me.PanelHeaderLeft.TabIndex = 8899
@@ -561,11 +590,11 @@ Partial Class FormProductionFinalClearDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 482)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 596)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(834, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(926, 40)
         Me.PanelControl3.TabIndex = 202
         '
         'BtnXlsBOF
@@ -574,7 +603,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
         Me.BtnXlsBOF.ImageIndex = 11
         Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(298, 2)
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(390, 2)
         Me.BtnXlsBOF.Name = "BtnXlsBOF"
         Me.BtnXlsBOF.Size = New System.Drawing.Size(115, 36)
         Me.BtnXlsBOF.TabIndex = 19
@@ -586,7 +615,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(413, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(505, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(101, 36)
         Me.BtnAttachment.TabIndex = 13
@@ -597,7 +626,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(514, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(606, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 12
@@ -619,7 +648,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnPrePrinting.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrePrinting.ImageIndex = 6
         Me.BtnPrePrinting.ImageList = Me.LargeImageCollection
-        Me.BtnPrePrinting.Location = New System.Drawing.Point(589, 2)
+        Me.BtnPrePrinting.Location = New System.Drawing.Point(681, 2)
         Me.BtnPrePrinting.Name = "BtnPrePrinting"
         Me.BtnPrePrinting.Size = New System.Drawing.Size(93, 36)
         Me.BtnPrePrinting.TabIndex = 20
@@ -630,7 +659,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(682, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(774, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 11
@@ -641,7 +670,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(757, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(849, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 36)
         Me.BtnSave.TabIndex = 10
@@ -654,9 +683,9 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 401)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 515)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(834, 81)
+        Me.GroupControl3.Size = New System.Drawing.Size(926, 81)
         Me.GroupControl3.TabIndex = 203
         '
         'PanelBottomRight
@@ -665,7 +694,7 @@ Partial Class FormProductionFinalClearDet
         Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelBottomRight.Location = New System.Drawing.Point(525, 2)
+        Me.PanelBottomRight.Location = New System.Drawing.Point(617, 2)
         Me.PanelBottomRight.Name = "PanelBottomRight"
         Me.PanelBottomRight.Size = New System.Drawing.Size(307, 77)
         Me.PanelBottomRight.TabIndex = 139
@@ -717,9 +746,9 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlItemList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlItemList.Controls.Add(Me.GCItemList)
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 169)
+        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(834, 232)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(926, 161)
         Me.GroupControlItemList.TabIndex = 204
         '
         'GCItemList
@@ -729,7 +758,7 @@ Partial Class FormProductionFinalClearDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(812, 228)
+        Me.GCItemList.Size = New System.Drawing.Size(904, 157)
         Me.GCItemList.TabIndex = 8906
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -857,19 +886,205 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnQtyLimit.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_limit", "{0:N0}")})
         '
+        'SCCQC
+        '
+        Me.SCCQC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SCCQC.Horizontal = False
+        Me.SCCQC.Location = New System.Drawing.Point(0, 169)
+        Me.SCCQC.Name = "SCCQC"
+        Me.SCCQC.Panel1.Controls.Add(Me.GroupControlItemList)
+        Me.SCCQC.Panel1.Text = "Panel1"
+        Me.SCCQC.Panel2.Controls.Add(Me.GroupControlListBarcode)
+        Me.SCCQC.Panel2.Text = "Panel2"
+        Me.SCCQC.Size = New System.Drawing.Size(926, 346)
+        Me.SCCQC.SplitterPosition = 161
+        Me.SCCQC.TabIndex = 205
+        Me.SCCQC.Text = "SplitContainerControl1"
+        '
+        'GroupControlListBarcode
+        '
+        Me.GroupControlListBarcode.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlListBarcode.Controls.Add(Me.GCBarcode)
+        Me.GroupControlListBarcode.Controls.Add(Me.PanelNavBarcode)
+        Me.GroupControlListBarcode.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControlListBarcode.Enabled = False
+        Me.GroupControlListBarcode.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControlListBarcode.Name = "GroupControlListBarcode"
+        Me.GroupControlListBarcode.Size = New System.Drawing.Size(926, 180)
+        Me.GroupControlListBarcode.TabIndex = 2
+        '
+        'GCBarcode
+        '
+        Me.GCBarcode.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBarcode.Location = New System.Drawing.Point(20, 35)
+        Me.GCBarcode.MainView = Me.GVBarcode
+        Me.GCBarcode.Name = "GCBarcode"
+        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
+        Me.GCBarcode.Size = New System.Drawing.Size(904, 143)
+        Me.GCBarcode.TabIndex = 4
+        Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
+        '
+        'GVBarcode
+        '
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnBarcode, Me.GridColumnIdProdOrderDet, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix})
+        Me.GVBarcode.GridControl = Me.GCBarcode
+        Me.GVBarcode.Name = "GVBarcode"
+        Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVBarcode.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVBarcode.OptionsCustomization.AllowColumnMoving = False
+        Me.GVBarcode.OptionsCustomization.AllowFilter = False
+        Me.GVBarcode.OptionsCustomization.AllowGroup = False
+        Me.GVBarcode.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVBarcode.OptionsCustomization.AllowSort = False
+        Me.GVBarcode.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "No"
+        Me.GridColumn2.FieldName = "no"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 53
+        '
+        'GridColumnBarcode
+        '
+        Me.GridColumnBarcode.Caption = "Scanned Code"
+        Me.GridColumnBarcode.FieldName = "code"
+        Me.GridColumnBarcode.Name = "GridColumnBarcode"
+        Me.GridColumnBarcode.Visible = True
+        Me.GridColumnBarcode.VisibleIndex = 1
+        Me.GridColumnBarcode.Width = 816
+        '
+        'GridColumnIdProdOrderDet
+        '
+        Me.GridColumnIdProdOrderDet.Caption = "Id Prod Order Det"
+        Me.GridColumnIdProdOrderDet.FieldName = "id_prod_order_det"
+        Me.GridColumnIdProdOrderDet.Name = "GridColumnIdProdOrderDet"
+        Me.GridColumnIdProdOrderDet.OptionsColumn.AllowEdit = False
+        Me.GridColumnIdProdOrderDet.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnIdProdOrderDet.OptionsColumn.AllowMove = False
+        Me.GridColumnIdProdOrderDet.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnCountingCode
+        '
+        Me.GridColumnCountingCode.Caption = "Counting Code"
+        Me.GridColumnCountingCode.FieldName = "counting_code"
+        Me.GridColumnCountingCode.Name = "GridColumnCountingCode"
+        Me.GridColumnCountingCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnCountingCode.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumnIdPLCounting
+        '
+        Me.GridColumnIdPLCounting.Caption = "Id PL Counting"
+        Me.GridColumnIdPLCounting.FieldName = "id_pl_prod_order_det_unique"
+        Me.GridColumnIdPLCounting.Name = "GridColumnIdPLCounting"
+        '
+        'GridColumnIsFix
+        '
+        Me.GridColumnIsFix.Caption = "Is Fix"
+        Me.GridColumnIsFix.FieldName = "is_fix"
+        Me.GridColumnIsFix.Name = "GridColumnIsFix"
+        Me.GridColumnIsFix.OptionsColumn.AllowEdit = False
+        Me.GridColumnIsFix.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnIsFix.OptionsColumn.AllowMove = False
+        Me.GridColumnIsFix.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        '
+        'RepositoryItemSpinEdit2
+        '
+        Me.RepositoryItemSpinEdit2.AutoHeight = False
+        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit2.EditValueChangedDelay = 50
+        Me.RepositoryItemSpinEdit2.Mask.EditMask = "n2"
+        Me.RepositoryItemSpinEdit2.Mask.SaveLiteral = False
+        Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
+        Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
+        '
+        'PanelNavBarcode
+        '
+        Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelNavBarcode.Controls.Add(Me.TxtDeleteScan)
+        Me.PanelNavBarcode.Controls.Add(Me.LabelDelScan)
+        Me.PanelNavBarcode.Controls.Add(Me.BDelete)
+        Me.PanelNavBarcode.Controls.Add(Me.BStop)
+        Me.PanelNavBarcode.Controls.Add(Me.BScan)
+        Me.PanelNavBarcode.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelNavBarcode.Location = New System.Drawing.Point(20, 2)
+        Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.PanelNavBarcode.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelNavBarcode.Name = "PanelNavBarcode"
+        Me.PanelNavBarcode.Size = New System.Drawing.Size(904, 33)
+        Me.PanelNavBarcode.TabIndex = 0
+        '
+        'TxtDeleteScan
+        '
+        Me.TxtDeleteScan.Location = New System.Drawing.Point(69, 7)
+        Me.TxtDeleteScan.Name = "TxtDeleteScan"
+        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
+        Me.TxtDeleteScan.TabIndex = 21
+        Me.TxtDeleteScan.Visible = False
+        '
+        'LabelDelScan
+        '
+        Me.LabelDelScan.Location = New System.Drawing.Point(7, 9)
+        Me.LabelDelScan.Name = "LabelDelScan"
+        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
+        Me.LabelDelScan.TabIndex = 20
+        Me.LabelDelScan.Text = "Delete scan"
+        Me.LabelDelScan.Visible = False
+        '
+        'BDelete
+        '
+        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelete.ImageIndex = 1
+        Me.BDelete.ImageList = Me.LargeImageCollection
+        Me.BDelete.Location = New System.Drawing.Point(628, 0)
+        Me.BDelete.Name = "BDelete"
+        Me.BDelete.Size = New System.Drawing.Size(94, 33)
+        Me.BDelete.TabIndex = 8
+        Me.BDelete.Text = "Delete Scan"
+        '
+        'BStop
+        '
+        Me.BStop.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BStop.Enabled = False
+        Me.BStop.ImageIndex = 9
+        Me.BStop.ImageList = Me.LargeImageCollection
+        Me.BStop.Location = New System.Drawing.Point(722, 0)
+        Me.BStop.Name = "BStop"
+        Me.BStop.Size = New System.Drawing.Size(91, 33)
+        Me.BStop.TabIndex = 7
+        Me.BStop.Text = "Stop Scan"
+        '
+        'BScan
+        '
+        Me.BScan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BScan.ImageIndex = 8
+        Me.BScan.ImageList = Me.LargeImageCollection
+        Me.BScan.Location = New System.Drawing.Point(813, 0)
+        Me.BScan.Name = "BScan"
+        Me.BScan.Size = New System.Drawing.Size(91, 33)
+        Me.BScan.TabIndex = 6
+        Me.BScan.Text = "Start Scan"
+        '
         'FormProductionFinalClearDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(834, 522)
-        Me.Controls.Add(Me.GroupControlItemList)
+        Me.ClientSize = New System.Drawing.Size(926, 636)
+        Me.Controls.Add(Me.SCCQC)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClearDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "QC Report"
+        Me.Text = "Quality Control"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
@@ -910,6 +1125,18 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SCCQC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SCCQC.ResumeLayout(False)
+        CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlListBarcode.ResumeLayout(False)
+        CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelNavBarcode.ResumeLayout(False)
+        Me.PanelNavBarcode.PerformLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -978,4 +1205,22 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LECLaim As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GridColumnQtyLimit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SCCQC As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents GroupControlListBarcode As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCBarcode As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBarcode As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBarcode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdProdOrderDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCountingCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdPLCounting As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIsFix As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents PanelNavBarcode As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BStop As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BScan As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -82,6 +82,7 @@ Public Class FormProductionFinalClearDet
                 TxtStyleCode.Text = data.Rows(0)("design_code").ToString
                 TxtStyle.Text = data.Rows(0)("design_display_name").ToString
                 viewDetail()
+                view_barcode_list()
                 pre_viewImages("2", PEView, id_design, False)
                 BtnBrowseFrom.Enabled = False
                 BtnBrowseTo.Enabled = False
@@ -204,6 +205,28 @@ Public Class FormProductionFinalClearDet
             GVItemList.BestFitColumns()
         End If
 
+    End Sub
+
+    Sub view_barcode_list()
+        'If action = "ins" Then
+        '    Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_prod_order_det, ('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_prod_order_det_unique "
+        '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '    GCBarcode.DataSource = data
+        '    deleteRowsBc()
+        'ElseIf action = "upd" Then
+        '    Dim query As String = "SELECT ('') AS no, CONCAT(c.product_full_code, a.pl_prod_order_det_counting) AS code, "
+        '    query += "b.id_pl_prod_order_det, (a.pl_prod_order_det_counting) AS counting_code, a.id_pl_prod_order_det_unique, ('2') AS is_fix, b.id_prod_order_det "
+        '    query += "FROM tb_pl_prod_order_det_counting a "
+        '    query += "INNER JOIN tb_pl_prod_order_det b ON a.id_pl_prod_order_det = b.id_pl_prod_order_det "
+        '    query += "INNER JOIN tb_m_product c ON a.id_product = c.id_product "
+        '    query += "WHERE b.id_pl_prod_order = '" + id_pl_prod_order + "' "
+        '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '    For i As Integer = 0 To (data.Rows.Count - 1)
+        '        id_pl_prod_order_det_unique_list.Add(data.Rows(i)("id_pl_prod_order_det_unique").ToString)
+        '        'code dipindah ke detail    
+        '    Next
+        '    GCBarcode.DataSource = data
+        'End If
     End Sub
 
     Sub allow_status()
