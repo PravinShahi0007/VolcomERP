@@ -7,6 +7,8 @@
         view_comp()
         load_form()
 
+        DEDate.Properties.MaxValue = Date.Parse(Now)
+
         Cursor = Cursors.Default
     End Sub
 
@@ -90,27 +92,41 @@
         End If
 
         'controls
-        Dim id_report_status As String = execute_query("SELECT IFNULL((SELECT id_report_status FROM tb_del_pickup WHERE id_pickup = " + id_pickup + "), 0) AS id_report_status", 0, True, "", "", "", "")
+        Dim id_report_status As String = execute_query("SELECT IFNULL((SELECT id_report_status FROM tb_del_pickup WHERE id_pickup = " + id_pickup + "), -1) AS id_report_status", 0, True, "", "", "", "")
 
-        If Not id_report_status = "0" Then
+        If id_report_status = "-1" Then
+            'new
+            SLUECompany.Properties.ReadOnly = False
+            DEDate.ReadOnly = False
+            SBRemove.Enabled = True
+            SBAdd.Enabled = True
+            SBSave.Enabled = True
+            SBComplete.Enabled = True
+            SBCancel.Enabled = False
+            MENote.ReadOnly = False
+            SBAttachement.Enabled = False
+        ElseIf id_report_status = "0" Then
+            'draft
+            SLUECompany.Properties.ReadOnly = False
+            DEDate.ReadOnly = False
+            SBRemove.Enabled = True
+            SBAdd.Enabled = True
+            SBSave.Enabled = True
+            SBComplete.Enabled = True
+            SBCancel.Enabled = True
+            MENote.ReadOnly = False
+            SBAttachement.Enabled = True
+        Else
+            'cancel or complete
             SLUECompany.Properties.ReadOnly = True
             DEDate.ReadOnly = True
             SBRemove.Enabled = False
             SBAdd.Enabled = False
             SBSave.Enabled = False
             SBComplete.Enabled = False
-            SBCancel.Enabled = True
+            SBCancel.Enabled = False
             MENote.ReadOnly = True
-        Else
-            SBCancel.Enabled = False
-        End If
-
-        If id_report_status = "5" Then
-            SBCancel.Enabled = False
-        End If
-
-        If id_pickup = "0" Then
-            SBAttachement.Enabled = False
+            SBAttachement.Enabled = True
         End If
     End Sub
 
@@ -142,11 +158,19 @@
     End Sub
 
     Private Sub SBComplete_Click(sender As Object, e As EventArgs) Handles SBComplete.Click
+        Cursor = Cursors.WaitCursor
+
         save("complete")
+
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
+        Cursor = Cursors.WaitCursor
+
         save("draft")
+
+        Cursor = Cursors.Default
     End Sub
 
     Sub save(type As String)
@@ -242,9 +266,15 @@
 
                     errorCustom("Couldn't complete because no attachment was uploaded")
 
-                    SBAttachement.Enabled = True
+                    load_form()
                 Else
-                    Close()
+                    If type = "draft" Then
+                        infoCustom("Data successfully saved")
+
+                        load_form()
+                    Else
+                        Close()
+                    End If
                 End If
             End If
         End If
