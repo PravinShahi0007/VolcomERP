@@ -4,10 +4,29 @@
     Dim bdel_active As String = "1"
 
     Private Sub FormProductionFinalClear_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewVendor()
+
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
         DEFrom.Focus()
+    End Sub
+
+    Sub viewVendor()
+        Dim query As String = ""
+        query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label UNION ALL "
+        query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
+        query += "WHERE comp.id_comp_cat='1'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        SLEVendor.Properties.DataSource = Nothing
+        SLEVendor.Properties.DataSource = data
+        SLEVendor.Properties.DisplayMember = "comp_name_label"
+        SLEVendor.Properties.ValueMember = "id_comp"
+        If data.Rows.Count.ToString >= 1 Then
+            SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
+        Else
+            SLEVendor.EditValue = Nothing
+        End If
     End Sub
 
     Private Sub DEFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFrom.KeyDown
@@ -74,7 +93,22 @@
             Catch ex As Exception
             End Try
         ElseIf XTCQCReport.SelectedTabPageIndex = 1 Then
-            'noaction
+            Dim indeks As Integer = -1
+            Try
+                indeks = GVFinalClear.FocusedRowHandle
+            Catch ex As Exception
+            End Try
+            If indeks < 0 Then
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            Else
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "0"
+            End If
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
         End If
     End Sub
 
@@ -82,7 +116,7 @@
         If XTCQCReport.SelectedTabPageIndex = 0 Then
             If GVFinalClear.RowCount < 1 Then
                 'hide all except new
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "0"
                 bdel_active = "0"
                 checkFormAccess(Name)
@@ -95,11 +129,15 @@
                 noManipulating()
             End If
         ElseIf XTCQCReport.SelectedTabPageIndex = 1 Then
-            bnew_active = "0"
-            bedit_active = "0"
-            bdel_active = "0"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
+            If GVProd.RowCount < 1 Then
+                bnew_active = "0"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+            Else
+                noManipulating()
+            End If
         End If
     End Sub
 
@@ -119,5 +157,40 @@
 
     Private Sub XTCQCReport_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCQCReport.SelectedPageChanged
         check_menu()
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        viewOrderList()
+    End Sub
+
+    Sub viewOrderList()
+        Cursor = Cursors.WaitCursor
+        Dim cond As String = ""
+        If SLEVendor.EditValue.ToString <> "0" Then
+            cond = "AND comp.id_comp='" + SLEVendor.EditValue.ToString + "' "
+        End If
+
+        Dim query As String = "SELECT po.id_prod_order, po.prod_order_number, po.prod_order_date, CONCAT(comp.comp_number,' - ', comp.comp_name) AS `vendor`, 
+        d.design_code, d.design_display_name, ss.season, po.id_report_status
+        FROM tb_prod_order po
+        INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
+        INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+        INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+        INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+        INNER JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
+        INNER JOIN tb_season ss ON ss.id_season = del.id_season
+        WHERE po.id_report_status=6 AND po.is_closing_rec=2
+        " + cond + "
+        ORDER BY po.id_prod_order ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProd.DataSource = data
+        GVProd.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEVendor_EditValueChanged(sender As Object, e As EventArgs) Handles SLEVendor.EditValueChanged
+        GCProd.DataSource = Nothing
     End Sub
 End Class
