@@ -157,10 +157,17 @@
         SLUECompany_Validating(SLUECompany, New ComponentModel.CancelEventArgs)
         DEDate_Validating(DEDate, New ComponentModel.CancelEventArgs)
 
+        'check attachment
+        Dim query_attachment As String = "SELECT COUNT(*) FROM tb_doc WHERE report_mark_type = 217 AND id_report = " + id_pickup
+
+        Dim cek_attachment As String = If(type = "complete" And execute_query(query_attachment, 0, True, "", "", "", "") = "0" And Not id_pickup = "0", "Please add attachement", "")
+
         If GVList.RowCount <= 0 Then
             errorCustom("No delivery selected")
         ElseIf Not formIsValidInPanel(ErrorProvider, PanelControl2) Then
             errorCustom("Please check your input")
+        ElseIf Not cek_attachment = "" Then
+            errorCustom(cek_attachment)
         Else
             Dim continue_save As Boolean = True
 
@@ -223,7 +230,22 @@
                     FormDocumentUpload.ShowDialog()
                 End If
 
-                Close()
+                'check complete attachment
+                query_attachment = "SELECT COUNT(*) FROM tb_doc WHERE report_mark_type = 217 AND id_report = " + id_pickup
+
+                cek_attachment = execute_query(query_attachment, 0, True, "", "", "", "")
+
+                If attachment And type = "complete" And cek_attachment = "0" Then
+                    Dim query As String = "UPDATE tb_del_pickup SET id_report_status = 0 WHERE id_pickup = " + id_pickup
+
+                    execute_non_query(query, True, "", "", "", "")
+
+                    errorCustom("Couldn't complete because no attachment was uploaded")
+
+                    SBAttachement.Enabled = True
+                Else
+                    Close()
+                End If
             End If
         End If
     End Sub
@@ -262,7 +284,7 @@
     Private Sub SBCancel_Click(sender As Object, e As EventArgs) Handles SBCancel.Click
         Dim confirm As DialogResult
 
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
         If confirm = Windows.Forms.DialogResult.Yes Then
             Dim query As String = "UPDATE tb_del_pickup SET id_report_status = 5 WHERE id_pickup = " + id_pickup
