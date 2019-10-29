@@ -193,6 +193,7 @@
                 newRow("code") = GVProd.GetRowCellValue(i, "design_code").ToString
                 newRow("name") = GVProd.GetRowCellValue(i, "design_display_name").ToString
                 newRow("qty") = GVProd.GetRowCellValue(i, "qty")
+                newRow("discount") = 0
                 newRow("remark") = GVProd.GetRowCellValue(i, "remark").ToString
                 TryCast(FormProdOverMemoDet.GCData.DataSource, DataTable).Rows.Add(newRow)
                 FormProdOverMemoDet.GCData.RefreshDataSource()

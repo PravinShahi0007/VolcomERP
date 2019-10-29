@@ -2,6 +2,9 @@
     Public Shared dt_head As DataTable
     Public Shared dt_det As DataTable
 
+    Public id_pre As String = "-1"
+    Public id_report As String = "-1"
+
     Private Sub Detail_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles Detail.BeforePrint
         '
         Dim po_height As Integer = 0
@@ -178,5 +181,12 @@
 
             po_height = po_height + 20
         Next
+
+        '
+        If id_pre = "-1" Then
+            load_mark_horz("212", id_report, "2", "1", XrTable3)
+        Else
+            pre_load_mark_horz("212", id_report, "2", "2", XrTable3)
+        End If
     End Sub
 End Class

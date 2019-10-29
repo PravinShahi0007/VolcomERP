@@ -1327,7 +1327,7 @@ Partial Class FormProdClosingPps
         Me.BandedGridColumn10.FieldName = "rec_qty_trx"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
         Me.BandedGridColumn10.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
+        Me.BandedGridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_qty_trx", "{0:N0}")})
         Me.BandedGridColumn10.Visible = True
         Me.BandedGridColumn10.Width = 96
         '

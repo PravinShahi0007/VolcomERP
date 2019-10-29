@@ -163,11 +163,11 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
         Dim having_string As String = ""
 
         If Not SLEVendor.EditValue.ToString = "0" Then
-            where_string = " AND po.id_comp_contact='" & SLEVendor.EditValue.ToString & "'"
+            where_string += " AND po.id_comp_contact='" & SLEVendor.EditValue.ToString & "'"
         End If
 
         If SLEPayType.EditValue.ToString = "2" Then
-            where_string = " AND po.is_close_rec='1'"
+            where_string += " AND po.is_close_rec='1'"
         End If
 
         id_pay_type_po = SLEPayType.EditValue.ToString
@@ -185,7 +185,7 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
             where_string += " AND po.pay_due_date < DATE(NOW()) AND po.is_close_pay=2 "
             BCreatePO.Visible = True
         ElseIf SLEStatusPayment.EditValue.ToString = "3" Then 'overdue H-7
-            where_string += " AND DATE_SUB(po.pay_due_date, INTERVAL 7 DAYS) < DATE(NOW()) AND po.is_close_pay=2 "
+            where_string += " AND DATE_SUB(po.pay_due_date, INTERVAL 7 DAY) < DATE(NOW()) AND po.is_close_pay=2 "
             BCreatePO.Visible = True
         End If
 
