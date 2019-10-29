@@ -187,6 +187,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
         GVProd.BestFitColumns()
+        check_menu()
         Cursor = Cursors.Default
     End Sub
 
