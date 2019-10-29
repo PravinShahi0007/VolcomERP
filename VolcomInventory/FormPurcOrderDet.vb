@@ -78,7 +78,7 @@
             BMark.Visible = False
         Else 'edit
             'load header
-            Dim query As String = "SELECT c.*,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
+            Dim query As String = "SELECT c.comp_name,c.comp_number,c.address_primary,c.fax,c.email,c.comp_number,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
 ,po.id_order_term,po.id_shipping_method,po.ship_destination,po.ship_address,po.id_expense_type,po.is_submit
 FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
@@ -117,7 +117,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 DEDueDate.EditValue = data.Rows(0)("pay_due_date")
                 '
                 MENote.Text = data.Rows(0)("note").ToString
-                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+
                 LEOrderTerm.ItemIndex = LEOrderTerm.Properties.GetDataSourceRowIndex("id_order_term", data.Rows(0)("id_order_term").ToString)
                 LEShipVia.ItemIndex = LEShipVia.Properties.GetDataSourceRowIndex("id_shipping_method", data.Rows(0)("id_shipping_method").ToString)
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
@@ -647,6 +647,12 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         ReportPurcOrder.id_po = id_po
         ReportPurcOrder.dt = GCSummary.DataSource
         Dim Report As New ReportPurcOrder()
+        If SLEPurcType.EditValue.ToString = "1" Then
+            Report.rmt = "139" 'opex
+        Else
+            Report.rmt = "202" 'capex
+        End If
+
         ' ...
         ' creating and saving the view's layout to a new memory stream 
         '
@@ -674,6 +680,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
         Report.LShipVia.Text = LEShipVia.Text.ToUpper
         Report.LDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        Report.LTerbilang.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TEGrandTotal.EditValue.ToString))
         '
         Report.LTotal.Text = TETotal.Text
         Report.LDiscount.Text = TEDiscTotal.Text
@@ -687,7 +694,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Report.LPhone.Text = TEVendorPhone.Text
         Report.LEmail.Text = TEVendorEmail.Text
         '
-        Dim query As String = "SELECT pr.purc_req_number
+        Dim query As String = "SELECT pr.purc_req_number,dep.departement
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
@@ -701,9 +708,9 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i = 0 To data.Rows.Count - 1
             If i > 0 Then
-                Report.LPrNo.Text += ","
+                Report.LPrNo.Text += ", "
             End If
-            Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString
+            Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
         Next
         '
         Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")

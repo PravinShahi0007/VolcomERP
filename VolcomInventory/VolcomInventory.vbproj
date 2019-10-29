@@ -525,6 +525,12 @@
     <Compile Include="FormBankDeposit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankDepositAdd.Designer.vb">
+      <DependentUpon>FormBankDepositAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankDepositAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankDepositDet.Designer.vb">
       <DependentUpon>FormBankDepositDet.vb</DependentUpon>
     </Compile>
@@ -691,6 +697,24 @@
       <DependentUpon>FormBudgetRevProposeNew.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBudgetRevProposeNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuktiPickup.Designer.vb">
+      <DependentUpon>FormBuktiPickup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuktiPickup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuktiPickupDet.Designer.vb">
+      <DependentUpon>FormBuktiPickupDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuktiPickupDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuktiPickupPick.Designer.vb">
+      <DependentUpon>FormBuktiPickupPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuktiPickupPick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCalculator.Designer.vb">
@@ -2595,6 +2619,12 @@
     <Compile Include="FormPromoRules.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoRulesDet.Designer.vb">
+      <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoRulesDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposeEmpSalary.Designer.vb">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
     </Compile>
@@ -2739,10 +2769,22 @@
     <Compile Include="FormPurcReqDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcReqICApproval.Designer.vb">
+      <DependentUpon>FormPurcReqICApproval.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReqICApproval.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcReqItemUnableFulfill.Designer.vb">
       <DependentUpon>FormPurcReqItemUnableFulfill.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcReqItemUnableFulfill.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReqList.Designer.vb">
+      <DependentUpon>FormPurcReqList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReqList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcReturn.Designer.vb">
@@ -6750,6 +6792,24 @@
     <Compile Include="ReportProdBOM.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProdClose.Designer.vb">
+      <DependentUpon>ReportProdClose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdClose.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProdCloseLate.Designer.vb">
+      <DependentUpon>ReportProdCloseLate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdCloseLate.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProdCloseReject.Designer.vb">
+      <DependentUpon>ReportProdCloseReject.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdCloseReject.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdCOP.designer.vb">
       <DependentUpon>ReportProdCOP.vb</DependentUpon>
     </Compile>
@@ -7413,6 +7473,9 @@
     <EmbeddedResource Include="FormBankDeposit.resx">
       <DependentUpon>FormBankDeposit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBankDepositAdd.resx">
+      <DependentUpon>FormBankDepositAdd.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBankDepositDet.resx">
       <DependentUpon>FormBankDepositDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -7507,6 +7570,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetRevProposeNew.resx">
       <DependentUpon>FormBudgetRevProposeNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuktiPickup.resx">
+      <DependentUpon>FormBuktiPickup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuktiPickupDet.resx">
+      <DependentUpon>FormBuktiPickupDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuktiPickupPick.resx">
+      <DependentUpon>FormBuktiPickupPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalculator.resx">
       <DependentUpon>FormCalculator.vb</DependentUpon>
@@ -8476,6 +8548,12 @@
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoRules.resx">
+      <DependentUpon>FormPromoRules.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoRulesDet.resx">
+      <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalary.resx">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
     </EmbeddedResource>
@@ -8548,8 +8626,14 @@
     <EmbeddedResource Include="FormPurcReqDet.resx">
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReqICApproval.resx">
+      <DependentUpon>FormPurcReqICApproval.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReqItemUnableFulfill.resx">
       <DependentUpon>FormPurcReqItemUnableFulfill.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReqList.resx">
+      <DependentUpon>FormPurcReqList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReturn.resx">
       <DependentUpon>FormPurcReturn.vb</DependentUpon>
@@ -11013,6 +11097,15 @@
     <EmbeddedResource Include="ReportProdBOM.resx">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdClose.resx">
+      <DependentUpon>ReportProdClose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdCloseLate.resx">
+      <DependentUpon>ReportProdCloseLate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdCloseReject.resx">
+      <DependentUpon>ReportProdCloseReject.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdCOP.resx">
       <DependentUpon>ReportProdCOP.vb</DependentUpon>

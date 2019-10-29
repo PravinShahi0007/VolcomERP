@@ -1,11 +1,14 @@
 ﻿Public Class FormProdClosing
     Public id_pop_up As String = "-1"
+
     Private Sub FormProdClosing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDesign()
         '
         viewSeason()
         '
         viewVendor()
+        '
+        view_close()
         If id_pop_up = "-1" Then 'only closing po
             BClosingFGPO.Visible = True
         ElseIf id_pop_up = "1" Then ' only closing rec
@@ -20,6 +23,17 @@
         End If
         view_claim_reject()
         view_claim_late()
+    End Sub
+
+    Sub view_close()
+        Dim query As String = "SELECT poc.id_prod_order_close,poc.number,poc.created_date,emp.`employee_name`,sts.`report_status`
+FROM tb_prod_order_close poc
+INNER JOIN tb_m_user usr ON usr.`id_user`=poc.`created_by`
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCClosing.DataSource = data
+        GVClosing.BestFitColumns()
     End Sub
 
     Sub view_claim_reject()
@@ -143,14 +157,14 @@ WHERE cl.`is_active`='1'"
                         ) rec ON rec.id_prod_order_det=pod.id_prod_order_det 
                         LEFT JOIN
                         (
-                            SELECT fc.`id_prod_order`,SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qty_normal,
-                            SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0)) AS qty_normal_minor,
-                            SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0)) AS qty_minor,
-                            SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0)) AS qty_minor_major,
-                            SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0)) AS qty_major,
-                            SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qty_afkir 
-                            FROM tb_prod_fc_det fcd
-                            INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcd.`id_prod_fc` AND fc.`id_report_status`=6
+                            SELECT fc.`id_prod_order`,SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0)) AS qty_normal,
+                            SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0)) AS qty_normal_minor,
+                            SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0)) AS qty_minor,
+                            SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0)) AS qty_minor_major,
+                            SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0)) AS qty_major,
+                            SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0)) AS qty_afkir 
+                            FROM tb_pl_prod_order_det fcd
+                            INNER JOIN tb_pl_prod_order fc ON fc.`id_pl_prod_order`=fcd.`id_pl_prod_order` AND fc.`id_report_status`=6
                             WHERE NOT ISNULL(fc.`id_pl_category_sub`)
                             GROUP BY fc.`id_prod_order`
                         )qcr ON qcr.id_prod_order=a.`id_prod_order`
@@ -355,5 +369,14 @@ WHERE cl.`is_active`='1'"
             FormProdClosingTolerance.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVClosing_DoubleClick(sender As Object, e As EventArgs) Handles GVClosing.DoubleClick
+        If GVClosing.RowCount > 0 Then
+            FormProdClosingPps.id_pps = GVClosing.GetFocusedRowCellValue("id_prod_order_close").ToString
+            FormProdClosingPps.ShowDialog()
+        Else
+            infoCustom("No closing proposed")
+        End If
     End Sub
 End Class

@@ -11,6 +11,7 @@ Public Class FormSalesPOSDet
     Public id_report_status As String
     Public id_sales_pos_det_list As New List(Of String)
     Public id_comp As String = "-1"
+    Public id_comp_bill_to As String = "-1"
     Dim total_amount As Decimal = 0.0
     Dim currency As String = "-1"
     Dim id_comp_cat_store As String = "-1"
@@ -46,6 +47,7 @@ Public Class FormSalesPOSDet
     Public id_acc_sales_return As String = "-1"
     Public id_acc_ar As String = "-1"
     Dim is_use_inv_mapping As String = get_setup_field("is_use_inv_mapping")
+    Dim is_for_gwp As String = "2"
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -665,7 +667,7 @@ Public Class FormSalesPOSDet
 
                     'draft journal
                     Dim acc As New ClassAccounting()
-                    If id_menu = "1" Or id_menu = "2" Or id_menu = "4" Or id_menu = "5" Then
+                    If id_menu = "1" Or id_menu = "2" Or id_menu = "3" Or id_menu = "4" Or id_menu = "5" Then
                         Try
                             If is_use_inv_mapping = "1" Then
                                 acc.generateJournalSalesDraftWithMapping(id_sales_pos, report_mark_type)
@@ -694,6 +696,7 @@ Public Class FormSalesPOSDet
                         viewDraft()
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
                     ElseIf id_menu = "4" Then
                         infoCustom("Invoice Different Margin " + TxtVirtualPosNumber.Text + " created succesfully")
                         viewDraft()
@@ -1579,6 +1582,22 @@ Public Class FormSalesPOSDet
                     is_valid_from = False
                     Exit Sub
                 End If
+            ElseIf id_menu = "3" Then
+                Dim qgwp As String = "SELECT IFNULL(e.id_acc_ar,0) AS `id_acc_ar` FROM tb_m_comp_comm_extra e WHERE e.is_for_gwp=1 AND e.id_comp=" + id_comp + ""
+                Dim dgwp As DataTable = execute_query(qgwp, -1, True, "", "", "", "")
+                If dgwp.Rows.Count > 0 Then
+                    id_acc_ar = dgwp.Rows(0)("id_acc_ar").ToString
+                Else
+                    id_acc_ar = "0"
+                End If
+                id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
+                viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+                If cond_coa = False Then
+                    Cursor = Cursors.Default
+                    is_valid_from = False
+                    Exit Sub
+                End If
             End If
 
 
@@ -1640,7 +1659,8 @@ Public Class FormSalesPOSDet
                 so_cat = "AND so.id_so_status!=7 AND so.id_so_status!=9 "
             End If
 
-            Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos
+            Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos,
+            IFNULL(comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(comp.id_acc_ar,0) AS `id_acc_ar`
             FROM tb_pl_sales_order_del pldel 
             INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
             query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
@@ -1677,6 +1697,19 @@ Public Class FormSalesPOSDet
                 TENPWP.Text = data.Rows(0)("npwp").ToString
                 SPDiscount.EditValue = data.Rows(0)("comp_commission")
                 PanelControlNav.Visible = False
+
+                'isi coa
+                If id_menu <> "3" And id_menu <> "4" Then
+                    id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                    id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
+                    id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+                    viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+                    If cond_coa = False Then
+                        Cursor = Cursors.Default
+                        is_valid_from = False
+                        Exit Sub
+                    End If
+                End If
 
                 ' fill GV
                 view_do()
@@ -1828,6 +1861,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub defaultResetBillTo()
+        id_comp_bill_to = "-1"
         id_comp_contact_bill = "-1"
         TxtNameBillTo.Text = ""
     End Sub
@@ -1867,6 +1901,7 @@ Public Class FormSalesPOSDet
                 FormPopUpContact.ShowDialog()
             Else
                 'If check_acc(data.Rows(0)("id_comp").ToString) Then
+                id_comp_bill_to = data.Rows(0)("id_comp").ToString
                 SPDiscount.EditValue = data.Rows(0)("comp_commission")
                 id_comp_contact_bill = data.Rows(0)("id_comp_contact").ToString
                 TxtNameBillTo.Text = data.Rows(0)("comp_name").ToString
@@ -2253,7 +2288,11 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnSelectDiscount_Click(sender As Object, e As EventArgs) Handles BtnSelectDiscount.Click
         Cursor = Cursors.WaitCursor
-        FormSalesPOSDiscount.id_comp = id_comp
+        If id_menu = "4" Then
+            FormSalesPOSDiscount.id_comp = id_comp_bill_to
+        Else
+            FormSalesPOSDiscount.id_comp = id_comp
+        End If
         FormSalesPOSDiscount.ShowDialog()
         Cursor = Cursors.Default
     End Sub

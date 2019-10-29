@@ -14,25 +14,31 @@
 
         'permission
         If is_hrd = "-1" Then
-            DEOvertimeDate.Properties.MinValue = New DateTime(min_date.Year, min_date.Month, min_date.Day)
+            DEOvertimeDateFrom.Properties.MinValue = New DateTime(min_date.Year, min_date.Month, min_date.Day)
         End If
 
         'default
-        DEOvertimeDate.EditValue = min_date
-        TEOvertimeStart.EditValue = New DateTime(min_date.Year, min_date.Month, min_date.Day, 8, 30, 0)
-        TEOvertimeEnd.EditValue = New DateTime(min_date.Year, min_date.Month, min_date.Day, 17, 30, 0)
+        DEOvertimeDateFrom.EditValue = min_date
+        TEOvertimeStart.EditValue = New DateTime(Now.Year, Now.Month, Now.Day, 8, 30, 0)
+        TEOvertimeEnd.EditValue = New DateTime(Now.Year, Now.Month, Now.Day, 17, 30, 0)
         TEOvertimeBreak.EditValue = 1.0
     End Sub
 
     Sub calculateTotalHours()
-        Dim ot_start As DateTime = TEOvertimeStart.EditValue
-        Dim ot_end As DateTime = TEOvertimeEnd.EditValue
+        Dim ot_date As DateTime = DEOvertimeDateFrom.EditValue
+        Dim ot_start As DateTime = DateTime.Parse(ot_date.ToString("dd MMMM yyyy") + " " + DateTime.Parse(TEOvertimeStart.EditValue.ToString).ToString("HH:mm:ss"))
+        Dim ot_end As DateTime = DateTime.Parse(ot_date.ToString("dd MMMM yyyy") + " " + DateTime.Parse(TEOvertimeEnd.EditValue.ToString).ToString("HH:mm:ss"))
+        Dim ot_break As Decimal = TEOvertimeBreak.EditValue
+
+        If ot_end < ot_start Then
+            ot_end = ot_end.AddDays(1)
+        End If
 
         Dim diff As TimeSpan = ot_end.Subtract(ot_start)
 
         Dim total As Decimal = 0.0
 
-        total = Math.Round(Math.Round(diff.TotalHours, 1) - TEOvertimeBreak.EditValue, 1)
+        total = Math.Round(Math.Round(diff.TotalHours, 1) - ot_break, 1)
 
         TETotalHours.EditValue = total
     End Sub
@@ -41,26 +47,12 @@
         Dispose()
     End Sub
 
-    Private Sub DEOvertimeDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEOvertimeDate.EditValueChanged
-        If Not DEOvertimeDate.EditValue Is Nothing Then
+    Private Sub DEOvertimeDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEOvertimeDateFrom.EditValueChanged
+        If Not DEOvertimeDateFrom.EditValue Is Nothing Then
             'time
-            Dim ot_date As DateTime = DEOvertimeDate.EditValue
+            Dim ot_date As DateTime = DEOvertimeDateFrom.EditValue
 
-            Dim ot_start As DateTime = TEOvertimeStart.EditValue
-            Dim ot_end As DateTime = TEOvertimeEnd.EditValue
-
-            Dim plus_days As Integer = ot_end.Subtract(ot_start).TotalDays
-
-            'disable time
-            TEOvertimeStart.Properties.MinValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 0, 0, 0)
-            TEOvertimeStart.Properties.MaxValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 23, 59, 59)
-
-            TEOvertimeEnd.Properties.MinValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 0, 0, 0)
-            TEOvertimeEnd.Properties.MaxValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, 23, 59, 59).AddDays(1)
-
-            'change time date
-            TEOvertimeStart.EditValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, ot_start.Hour, ot_start.Minute, ot_start.Second)
-            TEOvertimeEnd.EditValue = New DateTime(ot_date.Year, ot_date.Month, ot_date.Day, ot_end.Hour, ot_end.Minute, ot_end.Second).AddDays(plus_days)
+            DEOvertimeDateTo.Properties.MinValue = ot_date
         End If
     End Sub
 
@@ -81,16 +73,18 @@
         Dim ot_note As String = MEOvertimeNote.EditValue.ToString
 
         If TETotalHours.EditValue < ot_min_staff Then
-            errorCustom("Overtime at least " + ot_min_staff.ToString + " Hours")
+            errorCustom("Overtime at least " + ot_min_staff.ToString + " hours")
         ElseIf ot_note = "" Then
             errorCustom("Overtime propose can't be blank")
         Else
             FormEmpOvertimePick.is_hrd = is_hrd
-            FormEmpOvertimePick.overtime_date = DEOvertimeDate.EditValue
+            FormEmpOvertimePick.overtime_date_from = DEOvertimeDateFrom.EditValue
+            FormEmpOvertimePick.overtime_date_to = DEOvertimeDateTo.EditValue
             FormEmpOvertimePick.overtime_start_time = TEOvertimeStart.EditValue
             FormEmpOvertimePick.overtime_end_time = TEOvertimeEnd.EditValue
             FormEmpOvertimePick.overtime_break = TEOvertimeBreak.EditValue
             FormEmpOvertimePick.overtime_propose = MEOvertimeNote.EditValue
+            FormEmpOvertimePick.total_hours = TETotalHours.EditValue
 
             FormEmpOvertimePick.ShowDialog()
         End If

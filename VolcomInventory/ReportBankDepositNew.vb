@@ -9,7 +9,7 @@
         DATE_FORMAT(py.date_received,'%d-%m-%Y') AS `rec_date`,
         CONCAT(a.acc_name, ' - ', a.acc_description) AS `rec_payment_to`,py.value AS `amount`,
         py.note AS `note`, d.report_status, co.npwp_name AS `own_comp_name`, co.npwp AS `own_comp_npwp`,
-        DATE_FORMAT(NOW(),'%d-%m-%Y %H:%i:%s') AS `printed_date`, eusr.employee_nick_name AS `printed_by`
+        DATE_FORMAT(NOW(),'%d-%m-%Y %H:%i:%s') AS `printed_date`, eusr.employee_name AS `printed_by`
         FROM tb_rec_payment py
         INNER JOIN tb_a_acc a ON a.id_acc = py.id_acc_pay_rec
         JOIN tb_opt o
@@ -40,38 +40,24 @@
 
     Sub viewDetail()
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
-        Dim query As String = "-- rec
-        SELECT '1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, 
-        '' AS `vendor`, 'D' AS `type`, py.value AS `amount`
+        Dim query As String = "(SELECT 0 AS `id_det`,'1' AS `is_header`, 0 AS `id_reff`,a.acc_name AS `coa`, '' AS `reff`, py.note, '' AS `vendor`,
+        '000' AS `cc`, 'D' AS `type`, py.value AS `amount`
         FROM tb_rec_payment py
         INNER JOIN tb_a_acc a ON a.id_acc = py.id_acc_pay_rec
-        WHERE py.id_rec_payment=" + id + " AND py.`value` > 0
+        WHERE py.id_rec_payment=" + id + " AND py.`value` > 0)
         UNION ALL
-        -- invoice
-        SELECT '2' AS `is_header`, pyd.id_report AS `id_reff`,a.acc_name AS `coa`, p.sales_pos_number AS `reff`, CONCAT(comp.comp_name,' Per ', DATE_FORMAT(p.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(p.sales_pos_end_period,'%d-%m-%y')) AS `note`,
-        comp.comp_number AS `vendor`, 'K' AS `type`, pyd.value AS `amount`
+        (SELECT pyd.id_rec_payment_det AS `id_det`,'2' AS `is_header`, pyd.id_report AS `id_reff`, a.acc_name AS `coa`, pyd.number AS `reff`, pyd.note, pyd.vendor,
+        comp.comp_number AS `cc`, dc.dc_code AS `type`, ABS(pyd.`value`) AS `amount` 
         FROM tb_rec_payment_det pyd
-        INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
+        INNER JOIN tb_lookup_dc dc ON dc.id_dc = pyd.id_dc
         INNER JOIN tb_a_acc a ON a.id_acc = pyd.id_acc
-        INNER JOIN tb_sales_pos p ON p.id_sales_pos = pyd.id_report AND p.report_mark_type = pyd.report_mark_type
-        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = p.id_memo_type
-        INNER JOIN tb_m_comp comp ON comp.id_comp=pyd.id_comp
-        WHERE py.id_rec_payment=" + id + " AND mt.is_receive_payment=1 AND pyd.`value` > 0
-        UNION ALL
-        -- credit note
-        SELECT '2' AS `is_header`, pyd.id_report AS `id_reff`, a.acc_name AS `coa`, p.sales_pos_number AS `reff`, CONCAT(comp.comp_name,' Per ', DATE_FORMAT(p.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(p.sales_pos_end_period,'%d-%m-%y')) AS `note`,
-        comp.comp_number AS `vendor`, 'D' AS `type`, ABS(pyd.value) AS `amount`
-        FROM tb_rec_payment_det pyd
-        INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
-        INNER JOIN tb_a_acc a ON a.id_acc = pyd.id_acc
-        INNER JOIN tb_sales_pos p ON p.id_sales_pos = pyd.id_report AND p.report_mark_type = pyd.report_mark_type
-        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = p.id_memo_type
-        INNER JOIN tb_m_comp comp ON comp.id_comp=pyd.id_comp
-        WHERE py.id_rec_payment=" + id + " AND mt.is_receive_payment=2
-        ORDER BY is_header ASC, id_reff ASC  "
+        LEFT JOIN tb_m_comp comp ON comp.id_comp = pyd.id_comp
+        WHERE pyd.id_rec_payment=" + id + "
+        ORDER BY pyd.id_rec_payment_det ASC)
+        ORDER BY is_header ASC, id_det ASC "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
-        Dim font_row_style As New Font("Tahoma", 7, FontStyle.Regular)
+        Dim font_row_style As New Font("Tahoma", 8, FontStyle.Regular)
         For i = 0 To data.Rows.Count - 1
             'row
             If i = 0 Then
@@ -97,8 +83,16 @@
             coa.BackColor = Color.Transparent
             coa.Font = font_row_style
 
+            'cc
+            Dim cc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            cc.Text = data.Rows(i)("cc").ToString
+            cc.Borders = DevExpress.XtraPrinting.BorderSide.None
+            cc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            cc.BackColor = Color.Transparent
+            cc.Font = font_row_style
+
             'reff
-            Dim reff As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            Dim reff As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
             reff.Text = data.Rows(i)("reff").ToString
             reff.Borders = DevExpress.XtraPrinting.BorderSide.None
             reff.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -106,7 +100,7 @@
             reff.Font = font_row_style
 
             'note
-            Dim note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            Dim note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
             note.Text = data.Rows(i)("note").ToString
             note.Borders = DevExpress.XtraPrinting.BorderSide.None
             note.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -114,7 +108,7 @@
             note.Font = font_row_style
 
             'vendor
-            Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
             vendor.Text = data.Rows(i)("vendor").ToString
             vendor.Borders = DevExpress.XtraPrinting.BorderSide.None
             vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -122,7 +116,7 @@
             vendor.Font = font_row_style
 
             'type_rec
-            Dim type_rec As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+            Dim type_rec As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
             type_rec.Text = data.Rows(i)("type").ToString
             type_rec.Borders = DevExpress.XtraPrinting.BorderSide.None
             type_rec.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -130,7 +124,7 @@
             type_rec.Font = font_row_style
 
             'amount
-            Dim amo As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+            Dim amo As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
             amo.Text = Decimal.Parse(data.Rows(i)("amount").ToString).ToString("N2")
             amo.Borders = DevExpress.XtraPrinting.BorderSide.None
             amo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
