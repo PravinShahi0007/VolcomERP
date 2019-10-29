@@ -141,6 +141,7 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCommission = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BResetMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BApproval = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCCompany = New DevExpress.XtraTab.XtraTabControl()
@@ -190,7 +191,6 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
-        Me.BResetMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -1304,9 +1304,9 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl29.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl29.Location = New System.Drawing.Point(330, 89)
         Me.LabelControl29.Name = "LabelControl29"
-        Me.LabelControl29.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl29.Size = New System.Drawing.Size(74, 13)
         Me.LabelControl29.TabIndex = 43
-        Me.LabelControl29.Text = "Order Type"
+        Me.LabelControl29.Text = "Store Category"
         '
         'BtnWHType
         '
@@ -1529,6 +1529,18 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(645, 44)
         Me.PanelControl1.TabIndex = 16
+        '
+        'BResetMark
+        '
+        Me.BResetMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BResetMark.ImageIndex = 1
+        Me.BResetMark.ImageList = Me.LargeImageCollection
+        Me.BResetMark.Location = New System.Drawing.Point(193, 2)
+        Me.BResetMark.Name = "BResetMark"
+        Me.BResetMark.Size = New System.Drawing.Size(94, 40)
+        Me.BResetMark.TabIndex = 27
+        Me.BResetMark.Text = "Reset"
+        Me.BResetMark.Visible = False
         '
         'BPrint
         '
@@ -2020,18 +2032,6 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
-        '
-        'BResetMark
-        '
-        Me.BResetMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BResetMark.ImageIndex = 1
-        Me.BResetMark.ImageList = Me.LargeImageCollection
-        Me.BResetMark.Location = New System.Drawing.Point(193, 2)
-        Me.BResetMark.Name = "BResetMark"
-        Me.BResetMark.Size = New System.Drawing.Size(94, 40)
-        Me.BResetMark.TabIndex = 27
-        Me.BResetMark.Text = "Reset"
-        Me.BResetMark.Visible = False
         '
         'FormMasterCompanySingle
         '

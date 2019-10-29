@@ -579,7 +579,7 @@ Partial Public Class ReportSalesOrder
         Me.LRecNumber.LocationFloat = New DevExpress.Utils.PointFloat(53.04174!, 24.99995!)
         Me.LRecNumber.Name = "LRecNumber"
         Me.LRecNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LRecNumber.SizeF = New System.Drawing.SizeF(247.6663!, 25.08334!)
+        Me.LRecNumber.SizeF = New System.Drawing.SizeF(209.1246!, 25.08334!)
         Me.LRecNumber.StylePriority.UseBorders = False
         Me.LRecNumber.StylePriority.UseFont = False
         Me.LRecNumber.StylePriority.UseTextAlignment = False
@@ -614,10 +614,10 @@ Partial Public Class ReportSalesOrder
         'LRecDate
         '
         Me.LRecDate.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LRecDate.LocationFloat = New DevExpress.Utils.PointFloat(481.9581!, 24.99995!)
+        Me.LRecDate.LocationFloat = New DevExpress.Utils.PointFloat(520.5417!, 24.99995!)
         Me.LRecDate.Name = "LRecDate"
         Me.LRecDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LRecDate.SizeF = New System.Drawing.SizeF(293.0417!, 25.08334!)
+        Me.LRecDate.SizeF = New System.Drawing.SizeF(254.4581!, 25.08334!)
         Me.LRecDate.StylePriority.UseFont = False
         Me.LRecDate.StylePriority.UseTextAlignment = False
         Me.LRecDate.Text = "DATE"
@@ -626,13 +626,13 @@ Partial Public Class ReportSalesOrder
         'LTitle
         '
         Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(300.7081!, 24.99995!)
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(262.1664!, 24.99995!)
         Me.LTitle.Name = "LTitle"
         Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LTitle.SizeF = New System.Drawing.SizeF(181.25!, 25.08334!)
+        Me.LTitle.SizeF = New System.Drawing.SizeF(258.3753!, 25.08334!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "PREPARE ORDER"
+        Me.LTitle.Text = "ORDER"
         Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter
         '
         'BottomMargin

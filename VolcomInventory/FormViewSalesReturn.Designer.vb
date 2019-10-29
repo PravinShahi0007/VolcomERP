@@ -31,6 +31,8 @@ Partial Class FormViewSalesReturn
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtCombineNumber = New DevExpress.XtraEditors.HyperLinkEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtRetType = New DevExpress.XtraEditors.TextEdit()
@@ -139,8 +141,6 @@ Partial Class FormViewSalesReturn
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GroupControlStatus = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtCombineNumber = New DevExpress.XtraEditors.HyperLinkEdit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,6 +155,7 @@ Partial Class FormViewSalesReturn
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrderStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,7 +203,6 @@ Partial Class FormViewSalesReturn
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlStatus.SuspendLayout()
-        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -338,6 +338,23 @@ Partial Class FormViewSalesReturn
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(332, 203)
         Me.PanelControlTopRight.TabIndex = 10009
+        '
+        'TxtCombineNumber
+        '
+        Me.TxtCombineNumber.Location = New System.Drawing.Point(104, 62)
+        Me.TxtCombineNumber.Name = "TxtCombineNumber"
+        Me.TxtCombineNumber.Properties.ReadOnly = True
+        Me.TxtCombineNumber.Size = New System.Drawing.Size(215, 20)
+        Me.TxtCombineNumber.TabIndex = 10008
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(7, 65)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl11.TabIndex = 10010
+        Me.LabelControl11.Text = "Combine No."
         '
         'LabelControl10
         '
@@ -598,9 +615,9 @@ Partial Class FormViewSalesReturn
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl9.Location = New System.Drawing.Point(11, 13)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl9.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl9.TabIndex = 8900
-        Me.LabelControl9.Text = "Return Order"
+        Me.LabelControl9.Text = "Order"
         '
         'SplitContainerControl1
         '
@@ -890,7 +907,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPProblemItem.Controls.Add(Me.GCProbSum)
         Me.XTPProblemItem.Name = "XTPProblemItem"
-        Me.XTPProblemItem.Size = New System.Drawing.Size(882, 161)
+        Me.XTPProblemItem.Size = New System.Drawing.Size(883, 161)
         Me.XTPProblemItem.Text = "Non Stock Item"
         '
         'GCProbSum
@@ -900,7 +917,7 @@ Partial Class FormViewSalesReturn
         Me.GCProbSum.MainView = Me.GVProbSum
         Me.GCProbSum.Name = "GCProbSum"
         Me.GCProbSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemSpinEdit4})
-        Me.GCProbSum.Size = New System.Drawing.Size(882, 161)
+        Me.GCProbSum.Size = New System.Drawing.Size(883, 161)
         Me.GCProbSum.TabIndex = 8
         Me.GCProbSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbSum})
         '
@@ -1201,7 +1218,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPProblem.Controls.Add(Me.GCBarcodeProb)
         Me.XTPProblem.Name = "XTPProblem"
-        Me.XTPProblem.Size = New System.Drawing.Size(905, 224)
+        Me.XTPProblem.Size = New System.Drawing.Size(905, 194)
         Me.XTPProblem.Text = "Non Stock Detail"
         '
         'GCBarcodeProb
@@ -1211,7 +1228,7 @@ Partial Class FormViewSalesReturn
         Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
         Me.GCBarcodeProb.Name = "GCBarcodeProb"
         Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3, Me.RepositoryItemCheckEdit4})
-        Me.GCBarcodeProb.Size = New System.Drawing.Size(905, 224)
+        Me.GCBarcodeProb.Size = New System.Drawing.Size(905, 194)
         Me.GCBarcodeProb.TabIndex = 7
         Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
         '
@@ -1401,23 +1418,6 @@ Partial Class FormViewSalesReturn
         Me.BtnUpdateStatus.TabIndex = 5
         Me.BtnUpdateStatus.Text = "Update Order Status"
         '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(7, 65)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(61, 13)
-        Me.LabelControl11.TabIndex = 10010
-        Me.LabelControl11.Text = "Combine No."
-        '
-        'TxtCombineNumber
-        '
-        Me.TxtCombineNumber.Location = New System.Drawing.Point(104, 62)
-        Me.TxtCombineNumber.Name = "TxtCombineNumber"
-        Me.TxtCombineNumber.Properties.ReadOnly = True
-        Me.TxtCombineNumber.Size = New System.Drawing.Size(215, 20)
-        Me.TxtCombineNumber.TabIndex = 10008
-        '
         'FormViewSalesReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1452,6 +1452,7 @@ Partial Class FormViewSalesReturn
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrderStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1500,7 +1501,6 @@ Partial Class FormViewSalesReturn
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlStatus.ResumeLayout(False)
-        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

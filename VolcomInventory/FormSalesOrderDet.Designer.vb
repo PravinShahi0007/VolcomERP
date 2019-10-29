@@ -23,6 +23,8 @@ Partial Class FormSalesOrderDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtOrderType = New DevExpress.XtraEditors.TextEdit()
+        Me.LEOrderType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtWHCodeTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
@@ -99,6 +101,7 @@ Partial Class FormSalesOrderDet
         Me.GridColumnOLStoreNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportAsFile = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -110,11 +113,12 @@ Partial Class FormSalesOrderDet
         Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
         Me.LEUniType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
-        Me.BtnExportAsFile = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtWHCodeTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,12 +169,14 @@ Partial Class FormSalesOrderDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 36)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(896, 136)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(896, 138)
         Me.GroupGeneralHeader.TabIndex = 183
         '
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtOrderType)
+        Me.PanelControlTopLeft.Controls.Add(Me.LEOrderType)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl9)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtWHCodeTo)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNameCompTo)
@@ -186,8 +192,37 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(439, 132)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(439, 134)
         Me.PanelControlTopLeft.TabIndex = 8896
+        '
+        'TxtOrderType
+        '
+        Me.TxtOrderType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtOrderType.EditValue = ""
+        Me.TxtOrderType.Enabled = False
+        Me.TxtOrderType.Location = New System.Drawing.Point(170, 10)
+        Me.TxtOrderType.Name = "TxtOrderType"
+        Me.TxtOrderType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtOrderType.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderType.Properties.EditValueChangedDelay = 1
+        Me.TxtOrderType.Properties.ReadOnly = True
+        Me.TxtOrderType.Size = New System.Drawing.Size(250, 20)
+        Me.TxtOrderType.TabIndex = 8909
+        Me.TxtOrderType.TabStop = False
+        '
+        'LEOrderType
+        '
+        Me.LEOrderType.Location = New System.Drawing.Point(101, 10)
+        Me.LEOrderType.Name = "LEOrderType"
+        Me.LEOrderType.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEOrderType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEOrderType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEOrderType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_order_type", "id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("order_type", "Type"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "Description")})
+        Me.LEOrderType.Properties.NullText = ""
+        Me.LEOrderType.Properties.ShowFooter = False
+        Me.LEOrderType.Size = New System.Drawing.Size(66, 20)
+        Me.LEOrderType.TabIndex = 0
         '
         'LabelControl9
         '
@@ -229,7 +264,7 @@ Partial Class FormSalesOrderDet
         '
         Me.LETypeSO.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LETypeSO.Location = New System.Drawing.Point(101, 10)
+        Me.LETypeSO.Location = New System.Drawing.Point(101, 163)
         Me.LETypeSO.Name = "LETypeSO"
         Me.LETypeSO.Properties.Appearance.Options.UseTextOptions = True
         Me.LETypeSO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -238,7 +273,7 @@ Partial Class FormSalesOrderDet
         Me.LETypeSO.Properties.NullText = ""
         Me.LETypeSO.Properties.ShowFooter = False
         Me.LETypeSO.Size = New System.Drawing.Size(319, 20)
-        Me.LETypeSO.TabIndex = 0
+        Me.LETypeSO.TabIndex = 150
         '
         'TxtWHNameTo
         '
@@ -344,7 +379,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopMain.Location = New System.Drawing.Point(459, 2)
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
-        Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 132)
+        Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 134)
         Me.PanelControlTopMain.TabIndex = 8897
         '
         'LabelControl11
@@ -422,7 +457,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(713, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(181, 132)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(181, 134)
         Me.PanelControlTopRight.TabIndex = 8898
         '
         'TxtReff
@@ -696,9 +731,9 @@ Partial Class FormSalesOrderDet
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 172)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 174)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(896, 263)
+        Me.GroupControlList.Size = New System.Drawing.Size(896, 261)
         Me.GroupControlList.TabIndex = 184
         Me.GroupControlList.Text = "Item List"
         '
@@ -710,7 +745,7 @@ Partial Class FormSalesOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(874, 224)
+        Me.GCItemList.Size = New System.Drawing.Size(874, 222)
         Me.GCItemList.TabIndex = 4
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1005,6 +1040,17 @@ Partial Class FormSalesOrderDet
         Me.PanelControlNav.Size = New System.Drawing.Size(874, 35)
         Me.PanelControlNav.TabIndex = 0
         '
+        'BtnExportAsFile
+        '
+        Me.BtnExportAsFile.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportAsFile.Image = CType(resources.GetObject("BtnExportAsFile.Image"), System.Drawing.Image)
+        Me.BtnExportAsFile.ImageList = Me.LargeImageCollection
+        Me.BtnExportAsFile.Location = New System.Drawing.Point(464, 0)
+        Me.BtnExportAsFile.Name = "BtnExportAsFile"
+        Me.BtnExportAsFile.Size = New System.Drawing.Size(112, 35)
+        Me.BtnExportAsFile.TabIndex = 10
+        Me.BtnExportAsFile.Text = "Export as File"
+        '
         'BtnImportExcelNew
         '
         Me.BtnImportExcelNew.Dock = System.Windows.Forms.DockStyle.Left
@@ -1126,17 +1172,6 @@ Partial Class FormSalesOrderDet
         Me.LEPeriodx.Size = New System.Drawing.Size(172, 20)
         Me.LEPeriodx.TabIndex = 8901
         '
-        'BtnExportAsFile
-        '
-        Me.BtnExportAsFile.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportAsFile.Image = CType(resources.GetObject("BtnExportAsFile.Image"), System.Drawing.Image)
-        Me.BtnExportAsFile.ImageList = Me.LargeImageCollection
-        Me.BtnExportAsFile.Location = New System.Drawing.Point(464, 0)
-        Me.BtnExportAsFile.Name = "BtnExportAsFile"
-        Me.BtnExportAsFile.Size = New System.Drawing.Size(112, 35)
-        Me.BtnExportAsFile.TabIndex = 10
-        Me.BtnExportAsFile.Text = "Export as File"
-        '
         'FormSalesOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1157,6 +1192,8 @@ Partial Class FormSalesOrderDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEOrderType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtWHCodeTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1294,4 +1331,6 @@ Partial Class FormSalesOrderDet
     Friend WithEvents GridColumnOLStoreNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreOrderDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnExportAsFile As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtOrderType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LEOrderType As DevExpress.XtraEditors.LookUpEdit
 End Class
