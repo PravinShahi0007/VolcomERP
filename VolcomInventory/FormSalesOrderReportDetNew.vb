@@ -25,12 +25,13 @@
             INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design AND dsg.id_design=" + id_design + " "
         End If
 
-        Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, so.sales_order_date, so.id_so_status, so_stt.so_status, 
+        Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, ot.order_type, so.sales_order_date, so.id_so_status, so_stt.so_status, 
         so.id_prepare_status, ps.prepare_status, so.final_comment, so.final_date, ef.employee_name AS `final_by_name`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, CONCAT(s.comp_number, ' - ', s.comp_name) AS `destination`,
         SUM(sod.sales_order_det_qty) AS `total_order`, IFNULL(scan.total_trs,0) AS `total_scan`, IFNULL(comp.total_trs,0) AS `total_completed`
         FROM tb_sales_order so
         INNER JOIN tb_lookup_so_status so_stt ON so_stt.id_so_status = so.id_so_status
+        INNER JOIN tb_lookup_order_type ot ON ot.id_order_type = so_stt.id_order_type
         INNER JOIN tb_m_comp_contact whc ON whc.id_comp_contact = so.id_warehouse_contact_to
         INNER JOIN tb_m_comp wh ON wh.id_comp = whc.id_comp
         INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
