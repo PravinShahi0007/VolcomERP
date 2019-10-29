@@ -46,12 +46,47 @@ Public Class FormProductionFinalClearDet
     End Sub
 
     Sub actionLoad()
+        Cursor = Cursors.WaitCursor
         If action = "ins" Then
             BMark.Enabled = False
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
             TxtCodeCompFrom.Focus()
+
+            If id_prod_order <> "-1" Then
+                Dim query As String = "SELECT po.id_prod_order, po.prod_order_number, po.prod_order_date, 
+                comp.comp_number AS `vendor_number`, comp.comp_name AS `vendor_name`, 
+                d.id_design, d.design_code, d.design_display_name, ss.season, del.delivery, po.id_report_status,
+                cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`
+                FROM tb_prod_order po
+                INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
+                INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+                INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+                INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                INNER JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
+                INNER JOIN tb_season ss ON ss.id_season = del.id_season
+                INNER JOIN tb_m_comp cfr ON cfr.id_comp = 74
+                WHERE po.id_prod_order='" + id_prod_order + "' "
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                id_design = data.Rows(0)("id_design").ToString
+                TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
+                TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
+                TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
+                TxtSeason.Text = data.Rows(0)("season").ToString
+                TxtDel.Text = data.Rows(0)("delivery").ToString
+                TxtVendorCode.Text = data.Rows(0)("vendor_number").ToString
+                TxtVendorName.Text = data.Rows(0)("vendor_name").ToString
+                TxtStyleCode.Text = data.Rows(0)("design_code").ToString
+                TxtStyle.Text = data.Rows(0)("design_display_name").ToString
+                viewDetail()
+                pre_viewImages("2", PEView, id_design, False)
+                BtnBrowseFrom.Enabled = False
+                BtnBrowseTo.Enabled = False
+                BtnBrowsePO.Enabled = False
+            End If
         ElseIf action = "upd" Then
             GroupControlItemList.Enabled = True
             BtnAttachment.Enabled = True
@@ -93,6 +128,7 @@ Public Class FormProductionFinalClearDet
             viewDetail()
             allow_status()
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDetail()
@@ -655,7 +691,26 @@ Public Class FormProductionFinalClearDet
     End Sub
 
     Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
+        Cursor = Cursors.WaitCursor
         viewPLCatSub()
+        Dim id_comp_cat As String = "-1"
+        Try
+            Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+            Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+            id_comp_cat = row("id_comp").ToString
+        Catch ex As Exception
+        End Try
+        getCompTo(id_comp_cat)
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub getCompTo(ByVal id_comp_cat As String)
+        'get comp to
+        Dim query As String = "SELECT c.comp_number, c.comp_name FROM tb_m_comp c WHERE c.id_comp = '" + id_comp_cat + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        id_comp_to = id_comp_cat
+        TxtCodeCompTo.Text = data.Rows(0)("comp_number").ToString
+        TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
     End Sub
 
     Private Sub GVItemList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVItemList.CellValueChanged

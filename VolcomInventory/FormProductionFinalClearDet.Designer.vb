@@ -45,6 +45,8 @@ Partial Class FormProductionFinalClearDet
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECLaim = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -82,8 +84,6 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LECLaim = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumnQtyLimit = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
@@ -101,6 +101,7 @@ Partial Class FormProductionFinalClearDet
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
+        CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,7 +120,6 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -196,6 +196,7 @@ Partial Class FormProductionFinalClearDet
         'TxtStyle
         '
         Me.TxtStyle.EditValue = ""
+        Me.TxtStyle.Enabled = False
         Me.TxtStyle.Location = New System.Drawing.Point(304, 134)
         Me.TxtStyle.Name = "TxtStyle"
         Me.TxtStyle.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -210,6 +211,7 @@ Partial Class FormProductionFinalClearDet
         'TxtStyleCode
         '
         Me.TxtStyleCode.EditValue = ""
+        Me.TxtStyleCode.Enabled = False
         Me.TxtStyleCode.Location = New System.Drawing.Point(196, 134)
         Me.TxtStyleCode.Name = "TxtStyleCode"
         Me.TxtStyleCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -224,6 +226,7 @@ Partial Class FormProductionFinalClearDet
         'TxtDel
         '
         Me.TxtDel.EditValue = ""
+        Me.TxtDel.Enabled = False
         Me.TxtDel.Location = New System.Drawing.Point(571, 84)
         Me.TxtDel.Name = "TxtDel"
         Me.TxtDel.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -256,6 +259,7 @@ Partial Class FormProductionFinalClearDet
         'TxtVendorName
         '
         Me.TxtVendorName.EditValue = ""
+        Me.TxtVendorName.Enabled = False
         Me.TxtVendorName.Location = New System.Drawing.Point(304, 110)
         Me.TxtVendorName.Name = "TxtVendorName"
         Me.TxtVendorName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -270,6 +274,7 @@ Partial Class FormProductionFinalClearDet
         'TxtSeason
         '
         Me.TxtSeason.EditValue = ""
+        Me.TxtSeason.Enabled = False
         Me.TxtSeason.Location = New System.Drawing.Point(196, 84)
         Me.TxtSeason.Name = "TxtSeason"
         Me.TxtSeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -284,6 +289,7 @@ Partial Class FormProductionFinalClearDet
         'TxtVendorCode
         '
         Me.TxtVendorCode.EditValue = ""
+        Me.TxtVendorCode.Enabled = False
         Me.TxtVendorCode.Location = New System.Drawing.Point(196, 110)
         Me.TxtVendorCode.Name = "TxtVendorCode"
         Me.TxtVendorCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -316,6 +322,7 @@ Partial Class FormProductionFinalClearDet
         'TxtOrder
         '
         Me.TxtOrder.EditValue = ""
+        Me.TxtOrder.Enabled = False
         Me.TxtOrder.Location = New System.Drawing.Point(196, 58)
         Me.TxtOrder.Name = "TxtOrder"
         Me.TxtOrder.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -338,6 +345,7 @@ Partial Class FormProductionFinalClearDet
         'TxtNameCompTo
         '
         Me.TxtNameCompTo.EditValue = ""
+        Me.TxtNameCompTo.Enabled = False
         Me.TxtNameCompTo.Location = New System.Drawing.Point(304, 32)
         Me.TxtNameCompTo.Name = "TxtNameCompTo"
         Me.TxtNameCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -352,6 +360,7 @@ Partial Class FormProductionFinalClearDet
         'TxtCodeCompTo
         '
         Me.TxtCodeCompTo.EditValue = ""
+        Me.TxtCodeCompTo.Enabled = False
         Me.TxtCodeCompTo.Location = New System.Drawing.Point(196, 32)
         Me.TxtCodeCompTo.Name = "TxtCodeCompTo"
         Me.TxtCodeCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -374,6 +383,7 @@ Partial Class FormProductionFinalClearDet
         'TxtNameCompFrom
         '
         Me.TxtNameCompFrom.EditValue = ""
+        Me.TxtNameCompFrom.Enabled = False
         Me.TxtNameCompFrom.Location = New System.Drawing.Point(304, 9)
         Me.TxtNameCompFrom.Name = "TxtNameCompFrom"
         Me.TxtNameCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -388,6 +398,7 @@ Partial Class FormProductionFinalClearDet
         'TxtCodeCompFrom
         '
         Me.TxtCodeCompFrom.EditValue = ""
+        Me.TxtCodeCompFrom.Enabled = False
         Me.TxtCodeCompFrom.Location = New System.Drawing.Point(196, 9)
         Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
         Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -423,6 +434,30 @@ Partial Class FormProductionFinalClearDet
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(208, 165)
         Me.PanelHeaderLeft.TabIndex = 8899
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(7, 85)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl11.TabIndex = 10009
+        Me.LabelControl11.Text = "Claim"
+        '
+        'LECLaim
+        '
+        Me.LECLaim.Location = New System.Drawing.Point(59, 82)
+        Me.LECLaim.Name = "LECLaim"
+        Me.LECLaim.Properties.Appearance.Options.UseTextOptions = True
+        Me.LECLaim.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LECLaim.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LECLaim.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LECLaim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECLaim.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category_sub", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category_sub", "Claim"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp", "id_comp", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LECLaim.Properties.NullText = ""
+        Me.LECLaim.Properties.ShowFooter = False
+        Me.LECLaim.Size = New System.Drawing.Size(142, 20)
+        Me.LECLaim.TabIndex = 10008
         '
         'LEPLCategory
         '
@@ -812,30 +847,6 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
-        'LECLaim
-        '
-        Me.LECLaim.Location = New System.Drawing.Point(59, 82)
-        Me.LECLaim.Name = "LECLaim"
-        Me.LECLaim.Properties.Appearance.Options.UseTextOptions = True
-        Me.LECLaim.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LECLaim.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.LECLaim.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LECLaim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LECLaim.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category_sub", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category_sub", "Claim")})
-        Me.LECLaim.Properties.NullText = ""
-        Me.LECLaim.Properties.ShowFooter = False
-        Me.LECLaim.Size = New System.Drawing.Size(142, 20)
-        Me.LECLaim.TabIndex = 10008
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(7, 85)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
-        Me.LabelControl11.TabIndex = 10009
-        Me.LabelControl11.Text = "Claim"
-        '
         'GridColumnQtyLimit
         '
         Me.GridColumnQtyLimit.Caption = "Qty Limit"
@@ -878,6 +889,7 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
+        CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -898,7 +910,6 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
