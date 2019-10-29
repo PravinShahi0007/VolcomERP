@@ -45,10 +45,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumnClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCQCReport = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPEntryList = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPDetailReport = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
-        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,10 +57,6 @@ Partial Class FormProductionFinalClear
         CType(Me.XTCQCReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCQCReport.SuspendLayout()
         Me.XTPEntryList.SuspendLayout()
-        Me.XTPDetailReport.SuspendLayout()
-        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -309,7 +302,7 @@ Partial Class FormProductionFinalClear
         Me.XTCQCReport.SelectedTabPage = Me.XTPEntryList
         Me.XTCQCReport.Size = New System.Drawing.Size(1066, 468)
         Me.XTCQCReport.TabIndex = 5
-        Me.XTCQCReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPEntryList, Me.XTPDetailReport})
+        Me.XTCQCReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPEntryList, Me.XTPOrderList})
         '
         'XTPEntryList
         '
@@ -319,39 +312,12 @@ Partial Class FormProductionFinalClear
         Me.XTPEntryList.Size = New System.Drawing.Size(1060, 440)
         Me.XTPEntryList.Text = "Entry List"
         '
-        'XTPDetailReport
+        'XTPOrderList
         '
-        Me.XTPDetailReport.Controls.Add(Me.GCDetail)
-        Me.XTPDetailReport.Controls.Add(Me.GroupControl1)
-        Me.XTPDetailReport.Name = "XTPDetailReport"
-        Me.XTPDetailReport.PageVisible = False
-        Me.XTPDetailReport.Size = New System.Drawing.Size(1060, 440)
-        Me.XTPDetailReport.Text = "Detail Report"
-        '
-        'GCDetail
-        '
-        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDetail.Location = New System.Drawing.Point(0, 39)
-        Me.GCDetail.MainView = Me.GVDetail
-        Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(1060, 401)
-        Me.GCDetail.TabIndex = 5
-        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
-        '
-        'GVDetail
-        '
-        Me.GVDetail.GridControl = Me.GCDetail
-        Me.GVDetail.Name = "GVDetail"
-        Me.GVDetail.OptionsView.ShowGroupPanel = False
-        '
-        'GroupControl1
-        '
-        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1060, 39)
-        Me.GroupControl1.TabIndex = 4
+        Me.XTPOrderList.Name = "XTPOrderList"
+        Me.XTPOrderList.PageVisible = False
+        Me.XTPOrderList.Size = New System.Drawing.Size(1060, 440)
+        Me.XTPOrderList.Text = "Order List"
         '
         'FormProductionFinalClear
         '
@@ -376,10 +342,6 @@ Partial Class FormProductionFinalClear
         CType(Me.XTCQCReport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCQCReport.ResumeLayout(False)
         Me.XTPEntryList.ResumeLayout(False)
-        Me.XTPDetailReport.ResumeLayout(False)
-        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -409,9 +371,6 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCQCReport As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPEntryList As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPDetailReport As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents XTPOrderList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridColumnClaim As DevExpress.XtraGrid.Columns.GridColumn
 End Class
