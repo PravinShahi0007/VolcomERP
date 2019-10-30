@@ -7,17 +7,19 @@
     End Sub
 
     Sub load_form()
+        load_vendor_type()
         load_uom()
         load_item_type()
         load_purc_cat()
         load_cat()
-        load_vendor_type()
         '
         If Not id_item = "-1" Then 'edit
             TEStatus.Visible = True
             LStatus.Visible = True
 
-            Dim query As String = "SELECT * FROM tb_item WHERE id_item='" & id_item & "'"
+            Dim query As String = "SELECT it.*,icd.`id_vendor_type` FROM tb_item it
+INNER JOIN tb_item_cat_detail icd ON icd.id_item_cat_detail=it.id_item_cat_detail 
+WHERE it.id_item='" & id_item & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             If data.Rows(0)("is_active").ToString = "1" Then
@@ -36,6 +38,7 @@
             '
             SLEPurchaseCategory.EditValue = data.Rows(0)("id_item_cat_detail").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
+            SLEVendorType.EditValue = data.Rows(0)("id_vendor_type").ToString
             '
             load_price()
             load_doc()
@@ -76,7 +79,7 @@ WHERE pr.id_report_status!=5"
     End Sub
 
     Sub load_vendor_type()
-        Dim query As String = "SELECT * FROM tb_vendor_type"
+        Dim query As String = "SELECT id_vendor_type,vendor_type FROM tb_vendor_type"
         viewSearchLookupQuery(SLEVendorType, query, "id_vendor_type", "vendor_type", "id_vendor_type")
     End Sub
 
@@ -181,7 +184,6 @@ WHERE id_status='2'"
             SLECat.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_item_cat").ToString
             SLEVendorType.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_vendor_type").ToString
         Catch ex As Exception
-
         End Try
     End Sub
 
