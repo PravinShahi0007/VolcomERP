@@ -94,6 +94,8 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnIdProdOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_prod_fc_counting = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnscan_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -929,7 +931,7 @@ Partial Class FormProductionFinalClearDet
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnBarcode, Me.GridColumnIdProdOrderDet, Me.GridColumnid_prod_fc_counting, Me.GridColumnIsFix})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnBarcode, Me.GridColumnIdProdOrderDet, Me.GridColumnid_prod_fc_counting, Me.GridColumnIsFix, Me.GridColumnscan_status, Me.GridColumnid_product})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -946,6 +948,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumn2.Caption = "No"
         Me.GridColumn2.FieldName = "no"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 53
@@ -974,6 +977,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnid_prod_fc_counting.Caption = "id_prod_fc_counting"
         Me.GridColumnid_prod_fc_counting.FieldName = "id_prod_fc_counting"
         Me.GridColumnid_prod_fc_counting.Name = "GridColumnid_prod_fc_counting"
+        Me.GridColumnid_prod_fc_counting.OptionsColumn.AllowEdit = False
         '
         'GridColumnIsFix
         '
@@ -984,6 +988,20 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnIsFix.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnIsFix.OptionsColumn.AllowMove = False
         Me.GridColumnIsFix.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnscan_status
+        '
+        Me.GridColumnscan_status.Caption = "Scan Status"
+        Me.GridColumnscan_status.FieldName = "scan_status"
+        Me.GridColumnscan_status.Name = "GridColumnscan_status"
+        Me.GridColumnscan_status.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        Me.GridColumnid_product.OptionsColumn.AllowEdit = False
         '
         'RepositoryItemCheckEdit2
         '
@@ -1217,4 +1235,6 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BStop As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BScan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnscan_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -12,6 +12,7 @@ Public Class FormProductionFinalClearDet
     Public is_view As String = "-1"
     Public id_design As String = "-1"
     Public dt As New DataTable
+    Dim dt_exist As New DataTable
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -62,6 +63,7 @@ Public Class FormProductionFinalClearDet
 
             BMark.Enabled = False
             BtnPrint.Enabled = False
+            BtnPrePrinting.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
             TxtCodeCompFrom.Focus()
@@ -70,7 +72,7 @@ Public Class FormProductionFinalClearDet
                 Dim query As String = "SELECT po.id_prod_order, po.prod_order_number, po.prod_order_date, 
                 comp.comp_number AS `vendor_number`, comp.comp_name AS `vendor_name`, 
                 d.id_design, d.design_code, d.design_display_name, ss.season, del.delivery, po.id_report_status,
-                cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`
+                cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`
                 FROM tb_prod_order po
                 INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
                 INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price
@@ -84,6 +86,7 @@ Public Class FormProductionFinalClearDet
                 WHERE po.id_prod_order='" + id_prod_order + "' "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 id_design = data.Rows(0)("id_design").ToString
+                id_comp_from = data.Rows(0)("id_comp_from").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
                 TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
@@ -103,6 +106,7 @@ Public Class FormProductionFinalClearDet
             End If
         ElseIf action = "upd" Then
             GroupControlItemList.Enabled = True
+            GroupControlListBarcode.Enabled = True
             BtnAttachment.Enabled = True
             BMark.Enabled = True
 
@@ -140,6 +144,7 @@ Public Class FormProductionFinalClearDet
 
             'detail2
             viewDetail()
+            view_barcode_list()
             allow_status()
         End If
         Cursor = Cursors.Default
@@ -176,14 +181,14 @@ Public Class FormProductionFinalClearDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_prod_order_det, ('1') AS is_fix, ('0') AS id_prod_fc_counting "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_prod_order_det,'0' AS `id_product`, ('1') AS is_fix, ('0') AS id_prod_fc_counting, '' AS `scan_status` "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             GVBarcode.BestFitColumns()
             deleteRowsBc()
         ElseIf action = "upd" Then
             Dim query As String = "SELECT ('') AS `no`, a.full_code AS code, 
-            a.id_prod_fc,  a.id_prod_fc_counting, ('2') AS is_fix, a.id_prod_order_det 
+            a.id_prod_fc,  a.id_prod_fc_counting, ('2') AS is_fix, a.id_prod_order_det , a.id_product
             FROM tb_prod_fc_counting a 
             INNER JOIN tb_m_product c ON c.id_product = a.id_product 
             WHERE a.id_prod_fc=" + id_prod_fc + " "
@@ -206,6 +211,7 @@ Public Class FormProductionFinalClearDet
         End If
         BtnSave.Enabled = False
         GVItemList.OptionsBehavior.Editable = False
+        GVBarcode.OptionsBehavior.Editable = False
         MENote.Enabled = False
         TxtCodeCompFrom.Enabled = False
         TxtNameCompFrom.Enabled = False
@@ -566,8 +572,35 @@ Public Class FormProductionFinalClearDet
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         Cursor = Cursors.WaitCursor
+        makeSafeGV(GVItemList)
+
+        'check existing code in other trans
+        makeSafeGV(GVBarcode)
+        getCodeExisting()
+        For c As Integer = 0 To GVBarcode.RowCount - 1
+            Dim dt_exist_filter As DataRow() = dt_exist.Select("[full_code]='" + GVBarcode.GetRowCellValue(c, "code").ToString + "' ")
+            If dt_exist_filter.Length > 0 Then
+                GVBarcode.SetRowCellValue(c, "scan_status", "Already scan in transaction number : " + dt_exist_filter(0)("number").ToString)
+            Else
+                GVBarcode.SetRowCellValue(c, "scan_status", "OK")
+            End If
+        Next
+        Dim cond_exist As Boolean = False
+        GVBarcode.ActiveFilterString = "[scan_status]<>'OK'"
+        If GVBarcode.RowCount > 0 Then
+            cond_exist = True
+            GridColumnscan_status.VisibleIndex = 20
+        Else
+            cond_exist = False
+            GridColumnscan_status.Visible = False
+        End If
+        GVBarcode.ActiveFilterString = ""
+        makeSafeGV(GVBarcode)
+
         If id_comp_from = "-1" Or id_comp_to = "-1" Or id_prod_order = "-1" Or GVItemList.RowCount <= 0 Then
             stopCustom("Data can't blank")
+        ElseIf cond_exist Then
+            stopCustom("Barcode already scan in other transaction, please see detail in field 'scan status'")
         Else
             If action = "ins" Then
                 Dim id_pl_category As String = LEPLCategory.EditValue.ToString
@@ -606,10 +639,27 @@ Public Class FormProductionFinalClearDet
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
+                    'detail unique
+                    If GVBarcode.RowCount > 0 Then
+                        Dim qu As String = "INSERT INTO tb_prod_fc_counting(id_prod_fc, id_prod_order_det, id_product, full_code, note) VALUES "
+                        For u As Integer = 0 To GVBarcode.RowCount - 1
+                            Dim id_prod_order_det As String = GVBarcode.GetRowCellValue(u, "id_prod_order_det").ToString
+                            Dim id_product As String = GVBarcode.GetRowCellValue(u, "id_product").ToString
+                            Dim full_code As String = addSlashes(GVBarcode.GetRowCellValue(u, "code").ToString)
+                            If u > 0 Then
+                                qu += ", "
+                            End If
+                    qu += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + full_code + "', '') "
+                    Next
+                        execute_non_query(qu, True, "", "", "", "")
+                    End If
+
                     'submit who prepared
                     submit_who_prepared("105", id_prod_fc, id_user)
 
 
+                    FormProductionFinalClear.GCProd.DataSource = Nothing
+                    FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0
                     FormProductionFinalClear.viewFinalClear()
                     FormProductionFinalClear.GVFinalClear.FocusedRowHandle = find_row(FormProductionFinalClear.GVFinalClear, "id_prod_fc", id_prod_fc)
                     action = "upd"
@@ -819,6 +869,7 @@ Public Class FormProductionFinalClearDet
 
     Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
         getLimitQty()
+        getCodeExisting()
         MENote.Enabled = False
         BtnSave.Enabled = False
         BScan.Enabled = False
@@ -946,6 +997,7 @@ Public Class FormProductionFinalClearDet
         Dim code_found As Boolean = False
         Dim code_duplicate As Boolean = False
         Dim id_prod_order_det As String = ""
+        Dim id_product As String = ""
         Dim counting_code As String = ""
         Dim index_atas As Integer = 0
         Dim is_old As String = "0"
@@ -957,6 +1009,7 @@ Public Class FormProductionFinalClearDet
         If dt_filter.Length > 0 Then
             counting_code = dt_filter(0)("product_counting_code").ToString
             id_prod_order_det = dt_filter(0)("id_prod_order_det").ToString
+            id_product = dt_filter(0)("id_product").ToString
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
         End If
@@ -971,6 +1024,7 @@ Public Class FormProductionFinalClearDet
                 GVBarcode.SetFocusedRowCellValue("id_prod_fc_counting", "0")
                 GVBarcode.SetFocusedRowCellValue("is_fix", "2")
                 GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                GVBarcode.SetFocusedRowCellValue("id_product", id_product)
                 countQty(id_prod_order_det)
                 newRowsBc()
             End If
@@ -997,6 +1051,17 @@ Public Class FormProductionFinalClearDet
                 Next
             End If
 
+            'check other trans
+            Dim cond_exist As Boolean = False
+            Dim err_exist As String = ""
+            Dim dt_exist_filter As DataRow() = dt_exist.Select("[full_code]='" + code_check + "' ")
+            If dt_exist_filter.Length > 0 Then
+                cond_exist = True
+                err_exist = code_check + " is already scan in transaction number : " + dt_exist_filter(0)("number").ToString
+            Else
+                cond_exist = False
+                err_exist = ""
+            End If
 
             If Not code_found Then
                 GVBarcode.SetFocusedRowCellValue("code", "")
@@ -1004,6 +1069,9 @@ Public Class FormProductionFinalClearDet
             ElseIf code_duplicate Then
                 GVBarcode.SetFocusedRowCellValue("code", "")
                 stopCustom("Data duplicate !")
+            ElseIf cond_exist Then
+                GVBarcode.SetFocusedRowCellValue("code", "")
+                stopCustom(err_exist)
             Else
                 GVItemList.FocusedRowHandle = find_row(GVItemList, "id_prod_order_det", id_prod_order_det)
                 If GVItemList.GetFocusedRowCellValue("prod_fc_det_qty") >= GVItemList.GetFocusedRowCellValue("qty_limit") Then
@@ -1014,6 +1082,7 @@ Public Class FormProductionFinalClearDet
                     GVBarcode.SetFocusedRowCellValue("id_prod_fc_counting", "0")
                     GVBarcode.SetFocusedRowCellValue("is_fix", "2")
                     GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                    GVBarcode.SetFocusedRowCellValue("id_product", id_product)
                     countQty(id_prod_order_det)
                     newRowsBc()
                 End If
@@ -1022,5 +1091,18 @@ Public Class FormProductionFinalClearDet
             GVBarcode.SetFocusedRowCellValue("code", "")
             stopCustom("Data not found !")
         End If
+    End Sub
+
+    Sub getCodeExisting()
+        Cursor = Cursors.WaitCursor
+        dt_exist.Clear()
+        Dim query As String = "SELECT qu.full_code, q.prod_fc_number AS `number`
+        FROM tb_prod_fc_counting qu
+        INNER JOIN tb_prod_fc q ON q.id_prod_fc = qu.id_prod_fc
+        INNER JOIN tb_m_product p ON p.id_product = qu.id_product
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        WHERE q.id_prod_order=" + id_prod_order + " AND q.id_report_status!=5 AND d.is_old_design=2 "
+        dt_exist = execute_query(query, -1, True, "", "", "", "")
+        Cursor = Cursors.Default
     End Sub
 End Class
