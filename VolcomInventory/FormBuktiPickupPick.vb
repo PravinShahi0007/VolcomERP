@@ -67,7 +67,6 @@
             LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = a.id_combine
             INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = b.id_so_status
             LEFT JOIN tb_m_comp_group dg ON d.id_comp_group = dg.id_comp_group
-            WHERE a.id_pl_sales_order_del NOT IN (" + where_not_in + ") AND (a.pl_sales_order_del_date >= '" + date_from + "' AND a.pl_sales_order_del_date <= '" + date_to + "') AND a.id_report_status = 6 " + where_store + "
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
