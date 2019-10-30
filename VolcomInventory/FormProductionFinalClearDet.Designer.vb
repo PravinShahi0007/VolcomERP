@@ -1097,7 +1097,7 @@ Partial Class FormProductionFinalClearDet
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClearDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Quality Control"
+        Me.Text = "Quality Control Result"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)

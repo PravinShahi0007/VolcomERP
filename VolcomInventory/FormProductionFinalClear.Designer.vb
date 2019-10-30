@@ -46,7 +46,6 @@ Partial Class FormProductionFinalClear
         Me.XTCQCReport = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPEntryList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControlOrder = New DevExpress.XtraEditors.PanelControl()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnProdNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,7 +59,9 @@ Partial Class FormProductionFinalClear
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.PanelControlOrder = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -68,7 +69,6 @@ Partial Class FormProductionFinalClear
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnvendor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,11 +81,11 @@ Partial Class FormProductionFinalClear
         Me.XTCQCReport.SuspendLayout()
         Me.XTPEntryList.SuspendLayout()
         Me.XTPOrderList.SuspendLayout()
-        CType(Me.PanelControlOrder, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlOrder.SuspendLayout()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlOrder.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -351,17 +351,6 @@ Partial Class FormProductionFinalClear
         Me.XTPOrderList.Size = New System.Drawing.Size(1060, 440)
         Me.XTPOrderList.Text = "Order List"
         '
-        'PanelControlOrder
-        '
-        Me.PanelControlOrder.Controls.Add(Me.SLEVendor)
-        Me.PanelControlOrder.Controls.Add(Me.BSearch)
-        Me.PanelControlOrder.Controls.Add(Me.LabelControl1)
-        Me.PanelControlOrder.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlOrder.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlOrder.Name = "PanelControlOrder"
-        Me.PanelControlOrder.Size = New System.Drawing.Size(1060, 43)
-        Me.PanelControlOrder.TabIndex = 0
-        '
         'GCProd
         '
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
@@ -470,10 +459,29 @@ Partial Class FormProductionFinalClear
         Me.GridColumnSeason.Visible = True
         Me.GridColumnSeason.VisibleIndex = 2
         '
+        'GridColumnvendor
+        '
+        Me.GridColumnvendor.Caption = "Vendor"
+        Me.GridColumnvendor.FieldName = "vendor"
+        Me.GridColumnvendor.Name = "GridColumnvendor"
+        Me.GridColumnvendor.Visible = True
+        Me.GridColumnvendor.VisibleIndex = 1
+        '
         'RIPictureEdit
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
         Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        '
+        'PanelControlOrder
+        '
+        Me.PanelControlOrder.Controls.Add(Me.SLEVendor)
+        Me.PanelControlOrder.Controls.Add(Me.BSearch)
+        Me.PanelControlOrder.Controls.Add(Me.LabelControl1)
+        Me.PanelControlOrder.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlOrder.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlOrder.Name = "PanelControlOrder"
+        Me.PanelControlOrder.Size = New System.Drawing.Size(1060, 43)
+        Me.PanelControlOrder.TabIndex = 0
         '
         'SLEVendor
         '
@@ -535,14 +543,6 @@ Partial Class FormProductionFinalClear
         Me.LabelControl1.TabIndex = 8906
         Me.LabelControl1.Text = "Vendor"
         '
-        'GridColumnvendor
-        '
-        Me.GridColumnvendor.Caption = "Vendor"
-        Me.GridColumnvendor.FieldName = "vendor"
-        Me.GridColumnvendor.Name = "GridColumnvendor"
-        Me.GridColumnvendor.Visible = True
-        Me.GridColumnvendor.VisibleIndex = 1
-        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -553,7 +553,7 @@ Partial Class FormProductionFinalClear
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClear"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "QC Report - Entry"
+        Me.Text = "Quality Control Result"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
@@ -567,12 +567,12 @@ Partial Class FormProductionFinalClear
         Me.XTCQCReport.ResumeLayout(False)
         Me.XTPEntryList.ResumeLayout(False)
         Me.XTPOrderList.ResumeLayout(False)
-        CType(Me.PanelControlOrder, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlOrder.ResumeLayout(False)
-        Me.PanelControlOrder.PerformLayout()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlOrder.ResumeLayout(False)
+        Me.PanelControlOrder.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
