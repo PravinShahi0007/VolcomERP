@@ -1334,17 +1334,36 @@ Public Class FormProductionPLToWHDet
     End Sub
 
     Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
-        If (Not LEPLCategory.EditValue = LEPLCategory.OldEditValue) And is_use_qc_report = "1" Then
-            If GVBarcode.RowCount > 0 Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset your scanned list, are you sure want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    viewDetail()
-                    view_barcode_list()
-                Else
-                    LEPLCategory.EditValue = LEPLCategory.OldEditValue
-                End If
-            End If
-        End If
+        Cursor = Cursors.WaitCursor
+        Dim id_comp_cat As String = "-1"
+        Try
+            Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+            Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+            id_comp_cat = row("id_comp").ToString
+        Catch ex As Exception
+        End Try
+        getCompFrom(id_comp_cat)
+        Cursor = Cursors.Default
+        'If (Not LEPLCategory.EditValue = LEPLCategory.OldEditValue) And is_use_qc_report = "1" Then
+        '    If GVBarcode.RowCount > 0 Then
+        '        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset your scanned list, are you sure want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '        If confirm = Windows.Forms.DialogResult.Yes Then
+        '            viewDetail()
+        '            view_barcode_list()
+        '        Else
+        '            LEPLCategory.EditValue = LEPLCategory.OldEditValue
+        '        End If
+        '    End If
+        'End If
+    End Sub
+
+    Sub getCompFrom(ByVal id_comp_cat As String)
+        'get comp to
+        Dim query As String = "SELECT c.comp_number, c.comp_name FROM tb_m_comp c WHERE c.id_comp = '" + id_comp_cat + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        id_comp_to = id_comp_cat
+        TxtCodeCompTo.Text = data.Rows(0)("comp_number").ToString
+        TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
     End Sub
 
     Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
