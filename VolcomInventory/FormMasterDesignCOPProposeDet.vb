@@ -210,8 +210,8 @@
 
         If Not BGVItemList.RowCount > 0 Then
             warningCustom("Please choose the design first")
-        ElseIf id_comp_contact = "-1" Then
-            warningCustom("Please fill the vendor")
+            'ElseIf id_comp_contact = "-1" Then
+            '    warningCustom("Please fill the vendor")
         ElseIf TEEcop.EditValue = 0 Then
             warningCustom("Please put the cost")
         ElseIf TETodayKurs.EditValue = 0 Then
@@ -289,12 +289,17 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocus
                         id_cur_after = id_currency
                         kurs_after = decimalSQL(TETodayKurs.EditValue.ToString)
                         cop_after = decimalSQL(TEEcop.EditValue.ToString)
-                        id_contact_after = id_comp_contact
+
+                        If id_comp_contact = "-1" Then
+                            id_contact_after = "'" & id_comp_contact & "'"
+                        Else
+                            id_contact_after = "NULL"
+                        End If
                         add_cost_after = decimalSQL(TEAdditionalCost.EditValue.ToString)
 
                         Dim query As String = ""
                         query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES"
-                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_cur_before & "," & kurs_before & "," & cop_before & "," & id_contact_before & "," & add_cost_before & ",'" & id_cur_after & "','" & kurs_after & "','" & cop_after & "','" & id_contact_after & "','" & add_cost_after & "'); SELECT LAST_INSERT_ID(); "
+                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_cur_before & "," & kurs_before & "," & cop_before & "," & id_contact_before & "," & add_cost_before & ",'" & id_cur_after & "','" & kurs_after & "','" & cop_after & "', & id_contact_after & ,'" & add_cost_after & "'); SELECT LAST_INSERT_ID(); "
                         id_det = execute_query(query, 0, True, "", "", "", "")
 
                         'insert component
