@@ -92,8 +92,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProdOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_prod_fc_counting = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -787,7 +786,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnCodeSum.Caption = "Code"
         Me.GridColumnCodeSum.FieldName = "code"
         Me.GridColumnCodeSum.Name = "GridColumnCodeSum"
-        Me.GridColumnCodeSum.OptionsColumn.AllowEdit = False
+        Me.GridColumnCodeSum.OptionsColumn.ReadOnly = True
         Me.GridColumnCodeSum.Visible = True
         Me.GridColumnCodeSum.VisibleIndex = 1
         Me.GridColumnCodeSum.Width = 207
@@ -810,6 +809,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnQtySum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtySum.FieldName = "prod_fc_det_qty"
         Me.GridColumnQtySum.Name = "GridColumnQtySum"
+        Me.GridColumnQtySum.OptionsColumn.AllowEdit = False
         Me.GridColumnQtySum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", "{0:n0}")})
         Me.GridColumnQtySum.Visible = True
         Me.GridColumnQtySum.VisibleIndex = 4
@@ -860,6 +860,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnNumber.Caption = "Number"
         Me.GridColumnNumber.FieldName = "number"
         Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
         'GridColumnFrom
@@ -867,6 +868,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnFrom.Caption = "From"
         Me.GridColumnFrom.FieldName = "from"
         Me.GridColumnFrom.Name = "GridColumnFrom"
+        Me.GridColumnFrom.OptionsColumn.AllowEdit = False
         Me.GridColumnFrom.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
         'GridColumnTo
@@ -874,6 +876,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnTo.Caption = "To"
         Me.GridColumnTo.FieldName = "to"
         Me.GridColumnTo.Name = "GridColumnTo"
+        Me.GridColumnTo.OptionsColumn.AllowEdit = False
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
         'GridColumnQtyLimit
@@ -926,7 +929,7 @@ Partial Class FormProductionFinalClearDet
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnBarcode, Me.GridColumnIdProdOrderDet, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnBarcode, Me.GridColumnIdProdOrderDet, Me.GridColumnid_prod_fc_counting, Me.GridColumnIsFix})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -966,19 +969,11 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnIdProdOrderDet.OptionsColumn.AllowMove = False
         Me.GridColumnIdProdOrderDet.OptionsColumn.ShowInCustomizationForm = False
         '
-        'GridColumnCountingCode
+        'GridColumnid_prod_fc_counting
         '
-        Me.GridColumnCountingCode.Caption = "Counting Code"
-        Me.GridColumnCountingCode.FieldName = "counting_code"
-        Me.GridColumnCountingCode.Name = "GridColumnCountingCode"
-        Me.GridColumnCountingCode.OptionsColumn.AllowEdit = False
-        Me.GridColumnCountingCode.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GridColumnIdPLCounting
-        '
-        Me.GridColumnIdPLCounting.Caption = "Id PL Counting"
-        Me.GridColumnIdPLCounting.FieldName = "id_pl_prod_order_det_unique"
-        Me.GridColumnIdPLCounting.Name = "GridColumnIdPLCounting"
+        Me.GridColumnid_prod_fc_counting.Caption = "id_prod_fc_counting"
+        Me.GridColumnid_prod_fc_counting.FieldName = "id_prod_fc_counting"
+        Me.GridColumnid_prod_fc_counting.Name = "GridColumnid_prod_fc_counting"
         '
         'GridColumnIsFix
         '
@@ -1212,8 +1207,7 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBarcode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProdOrderDet As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCountingCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdPLCounting As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_prod_fc_counting As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsFix As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit

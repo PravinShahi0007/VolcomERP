@@ -11,6 +11,7 @@ Public Class FormProductionFinalClearDet
     Public bof_xls_so As String = get_setup_field("bof_xls_fcl")
     Public is_view As String = "-1"
     Public id_design As String = "-1"
+    Public dt As New DataTable
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -48,6 +49,17 @@ Public Class FormProductionFinalClearDet
     Sub actionLoad()
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
+            Try
+                'initiation datatable jika blm ada
+                dt.Columns.Add("id_product")
+                dt.Columns.Add("id_prod_order_det")
+                dt.Columns.Add("product_code")
+                dt.Columns.Add("product_counting_code")
+                dt.Columns.Add("product_full_code")
+                dt.Columns.Add("is_old_design")
+            Catch ex As Exception
+            End Try
+
             BMark.Enabled = False
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
@@ -87,6 +99,7 @@ Public Class FormProductionFinalClearDet
                 BtnBrowseFrom.Enabled = False
                 BtnBrowseTo.Enabled = False
                 BtnBrowsePO.Enabled = False
+                GroupControlListBarcode.Enabled = True
             End If
         ElseIf action = "upd" Then
             GroupControlItemList.Enabled = True
@@ -136,68 +149,22 @@ Public Class FormProductionFinalClearDet
         If action = "ins" Then
             'Dim query As String = "CALL view_prod_order_det(" + id_prod_order + ", 1)"
             Dim query As String = "SELECT 0 AS `id_prod_fc_det`, 0 AS `id_prod_fc`, pod.id_prod_order_det, pod.id_prod_order,
-            prod.id_product, prod.product_full_code AS `code`, prod.product_full_code as `name`, cd.code_detail_name as `size`,
-            0 AS `prod_fc_det_qty`, 
-            IFNULL(rec.prod_order_rec_det_qty,0) AS `total_rec`,
-            IFNULL(ro.tot_ret_out,0) AS `total_ret_out`, 
-            IFNULL(ri.tot_ret_in,0) AS `total_ret_in`, 
-            IFNULL(adj_in.tot_adj_in,0) AS `total_adj_in`,
-            IFNULL(adj_out.tot_adj_out,0) AS `total_adj_out`,
-            IFNULL(qcr.tot_qc_report,0) AS `total_qc_report`,
-            ((SELECT total_rec) - (SELECT total_ret_out) + (SELECT total_ret_in)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report)) AS `qty_limit`,
-            '' AS `prod_fc_det_note`
+            prod.id_product, prod.product_full_code AS `code`, prod.product_name as `name`, cd.code_detail_name as `size`,
+            0 AS `prod_fc_det_qty`, 0 AS `qty_limit`,'' AS `prod_fc_det_note`
             FROM tb_prod_order_det pod
             INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pod.id_prod_demand_product
             INNER JOIN tb_m_product prod ON prod.id_product = pd_prod.id_product
             INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
-            LEFT JOIN (
-	            SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
-	            FROM tb_prod_order_rec_det b1
-	            INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
-	            WHERE b2.id_report_status =6 AND b2.id_prod_order=" + id_prod_order + "
-	            GROUP BY b1.id_prod_order_det
-            ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
-            LEFT JOIN (
-	            SELECT d1.id_prod_order_det, d2.id_prod_order_ret_out, 
-	            SUM(d1.prod_order_ret_out_det_qty) AS tot_ret_out 
-	            FROM tb_prod_order_ret_out_det d1 
-	            INNER JOIN tb_prod_order_ret_out d2 ON d1.id_prod_order_ret_out = d2.id_prod_order_ret_out 
-	            WHERE d2.id_report_status !=5 AND d2.id_prod_order=" + id_prod_order + "
-	            GROUP BY d1.id_prod_order_det
-            ) ro ON ro.id_prod_order_det = pod.id_prod_order_det 
-            LEFT JOIN(
-	            SELECT e1.id_prod_order_det, e2.id_prod_order_ret_in,SUM(e1.prod_order_ret_in_det_qty) AS tot_ret_in 
-	            FROM tb_prod_order_ret_in_det e1 
-	            INNER JOIN tb_prod_order_ret_in e2 ON e1.id_prod_order_ret_in = e2.id_prod_order_ret_in 
-	            WHERE e2.id_report_status =6 AND e2.id_prod_order=" + id_prod_order + "
-	            GROUP BY e1.id_prod_order_det
-            ) ri ON ri.id_prod_order_det = pod.id_prod_order_det
-            LEFT JOIN(
-	            SELECT adj_in_d.id_prod_order_det, adj_in_d.id_prod_order_qc_adj_in_det,SUM(adj_in_d.prod_order_qc_adj_in_det_qty) AS tot_adj_in
-	            FROM tb_prod_order_qc_adj_in_det adj_in_d
-	            INNER JOIN tb_prod_order_qc_adj_in adj_in ON adj_in_d.id_prod_order_qc_adj_in = adj_in.id_prod_order_qc_adj_in 
-	            WHERE adj_in.id_report_status =6 AND adj_in.id_prod_order=" + id_prod_order + "
-	            GROUP BY adj_in_d.id_prod_order_det
-            ) adj_in ON pod.id_prod_order_det = adj_in.id_prod_order_det
-            LEFT JOIN (
-	            SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
-	            FROM tb_prod_order_qc_adj_out_det adj_out_d
-	            INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
-	            WHERE adj_out.id_report_status !=5 AND adj_out.id_prod_order=" + id_prod_order + "
-	            GROUP BY adj_out_d.id_prod_order_det
-            ) adj_out ON pod.id_prod_order_det = adj_out.id_prod_order_det
-            LEFT JOIN (
-	            SELECT fd.id_prod_order_det, SUM(fd.prod_fc_det_qty) AS `tot_qc_report` 
-	            FROM tb_prod_fc f
-	            INNER JOIN tb_prod_fc_det fd ON fd.id_prod_fc = f.id_prod_fc
-	            WHERE f.id_report_status!=5 AND f.id_prod_order=" + id_prod_order + "
-	            GROUP BY fd.id_prod_order_det
-            ) qcr ON qcr.id_prod_order_det = pod.id_prod_order_det
             WHERE pod.id_prod_order=" + id_prod_order + " "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCItemList.DataSource = data
             GVItemList.BestFitColumns()
+
+            'load unique code
+            FormProcessing.id_process = "5"
+            FormProcessing.idx_main = id_prod_order
+            FormProcessing.ShowDialog()
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_prod_fc(" + id_prod_fc + ")"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -208,25 +175,27 @@ Public Class FormProductionFinalClearDet
     End Sub
 
     Sub view_barcode_list()
-        'If action = "ins" Then
-        '    Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_prod_order_det, ('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_prod_order_det_unique "
-        '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        '    GCBarcode.DataSource = data
-        '    deleteRowsBc()
-        'ElseIf action = "upd" Then
-        '    Dim query As String = "SELECT ('') AS no, CONCAT(c.product_full_code, a.pl_prod_order_det_counting) AS code, "
-        '    query += "b.id_pl_prod_order_det, (a.pl_prod_order_det_counting) AS counting_code, a.id_pl_prod_order_det_unique, ('2') AS is_fix, b.id_prod_order_det "
-        '    query += "FROM tb_pl_prod_order_det_counting a "
-        '    query += "INNER JOIN tb_pl_prod_order_det b ON a.id_pl_prod_order_det = b.id_pl_prod_order_det "
-        '    query += "INNER JOIN tb_m_product c ON a.id_product = c.id_product "
-        '    query += "WHERE b.id_pl_prod_order = '" + id_pl_prod_order + "' "
-        '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        '    For i As Integer = 0 To (data.Rows.Count - 1)
-        '        id_pl_prod_order_det_unique_list.Add(data.Rows(i)("id_pl_prod_order_det_unique").ToString)
-        '        'code dipindah ke detail    
-        '    Next
-        '    GCBarcode.DataSource = data
-        'End If
+        If action = "ins" Then
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_prod_order_det, ('1') AS is_fix, ('0') AS id_prod_fc_counting "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCBarcode.DataSource = data
+            GVBarcode.BestFitColumns()
+            deleteRowsBc()
+        ElseIf action = "upd" Then
+            Dim query As String = "SELECT ('') AS `no`, a.full_code AS code, 
+            a.id_prod_fc,  a.id_prod_fc_counting, ('2') AS is_fix, a.id_prod_order_det 
+            FROM tb_prod_fc_counting a 
+            INNER JOIN tb_m_product c ON c.id_product = a.id_product 
+            WHERE a.id_prod_fc=" + id_prod_fc + " "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCBarcode.DataSource = data
+            GVBarcode.BestFitColumns()
+        End If
+    End Sub
+
+    'DeleteRows
+    Sub deleteRowsBc()
+        GVBarcode.DeleteRow(GVBarcode.FocusedRowHandle)
     End Sub
 
     Sub allow_status()
@@ -748,6 +717,310 @@ Public Class FormProductionFinalClearDet
                     GVItemList.BestFitColumns()
                 End If
             End If
+        End If
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        If action = "ins" Then
+            BDelete.Enabled = False
+            BScan.Enabled = False
+            BStop.Enabled = True
+            LabelDelScan.Visible = True
+            TxtDeleteScan.Visible = True
+            TxtDeleteScan.Text = ""
+            TxtDeleteScan.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtDeleteScan_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDeleteScan.KeyDown
+        If e.KeyCode = Keys.Enter And TxtDeleteScan.Text.Length > 0 And action = "ins" Then
+            Cursor = Cursors.WaitCursor
+            GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
+            If GVBarcode.RowCount <= 0 Then
+                stopCustom("Code not found.")
+                GVBarcode.ActiveFilterString = ""
+                TxtDeleteScan.Text = ""
+                TxtDeleteScan.Focus()
+            Else
+                Dim id_prod_fc_counting As String = "-1"
+                Try
+                    id_prod_fc_counting = GVBarcode.GetFocusedRowCellValue("id_prod_fc_counting").ToString
+                Catch ex As Exception
+                End Try
+
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim id_prod_order_det As String = GVBarcode.GetFocusedRowCellValue("id_prod_order_det").ToString
+                    deleteRowsBc()
+                    If id_prod_order_det <> "" Or id_prod_order_det <> Nothing Then
+                        GVBarcode.ActiveFilterString = ""
+                        countQty(id_prod_order_det)
+                    End If
+                    GCItemList.RefreshDataSource()
+                    GVItemList.RefreshData()
+                    allowDelete()
+                Else
+                    GVBarcode.ActiveFilterString = ""
+                End If
+                TxtDeleteScan.Text = ""
+                TxtDeleteScan.Focus()
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub allowDelete()
+        If GVBarcode.RowCount <= 0 Then
+            BDelete.Enabled = False
+        Else
+            BDelete.Enabled = True
+        End If
+    End Sub
+
+    Sub countQty(ByVal id_prod_order_detx As String)
+        Dim tot As Decimal = 0.0
+        For i As Integer = 0 To GVBarcode.RowCount - 1
+            Dim id_prod_order_det As String = GVBarcode.GetRowCellValue(i, "id_prod_order_det").ToString
+            If id_prod_order_det = id_prod_order_detx Then
+                tot = tot + 1.0
+            End If
+        Next
+        GVItemList.FocusedRowHandle = find_row(GVItemList, "id_prod_order_det", id_prod_order_detx)
+        GVItemList.SetFocusedRowCellValue("prod_fc_det_qty", tot)
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+    End Sub
+
+    Private Sub BStop_Click(sender As Object, e As EventArgs) Handles BStop.Click
+        LabelDelScan.Visible = False
+        TxtDeleteScan.Visible = False
+        TxtDeleteScan.Text = ""
+        MENote.Enabled = True
+        BtnSave.Enabled = True
+        BScan.Enabled = True
+        BStop.Enabled = False
+        BtnCancel.Enabled = True
+        allowDelete()
+        GVItemList.OptionsBehavior.Editable = True
+        ControlBox = True
+        LEPLCategory.Enabled = True
+        For i As Integer = 0 To (GVBarcode.RowCount - 1)
+            Dim check_code As String = ""
+            Try
+                check_code = GVBarcode.GetRowCellValue(i, "code").ToString()
+            Catch ex As Exception
+
+            End Try
+            If check_code = "" Or check_code = Nothing Or IsDBNull(check_code) Then
+                GVBarcode.DeleteRow(i)
+            End If
+        Next
+    End Sub
+
+    Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
+        getLimitQty()
+        MENote.Enabled = False
+        BtnSave.Enabled = False
+        BScan.Enabled = False
+        BStop.Enabled = True
+        BDelete.Enabled = False
+        BtnCancel.Enabled = False
+        GVItemList.OptionsBehavior.Editable = False
+        ControlBox = False
+        LEPLCategory.Enabled = False
+        newRowsBc()
+    End Sub
+
+    'New Row
+    Sub newRowsBc()
+        GVBarcode.AddNewRow()
+        GCBarcode.RefreshDataSource()
+        GVBarcode.RefreshData()
+        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+    End Sub
+
+    Sub getLimitQty()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT pod.id_prod_order_det, pod.id_prod_order,pd_prod.id_product,
+            IFNULL(rec.prod_order_rec_det_qty,0) AS `total_rec`,
+            IFNULL(ro.tot_ret_out,0) AS `total_ret_out`, 
+            IFNULL(ri.tot_ret_in,0) AS `total_ret_in`, 
+            IFNULL(adj_in.tot_adj_in,0) AS `total_adj_in`,
+            IFNULL(adj_out.tot_adj_out,0) AS `total_adj_out`,
+            IFNULL(qcr.tot_qc_report,0) AS `total_qc_report`,
+            ((SELECT total_rec) - (SELECT total_ret_out) + (SELECT total_ret_in)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report)) AS `qty_limit`
+            FROM tb_prod_order_det pod
+            INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pod.id_prod_demand_product
+            LEFT JOIN (
+	            SELECT b1.id_prod_order_det, b2.id_prod_order_rec, SUM(b1.prod_order_rec_det_qty) AS  prod_order_rec_det_qty
+	            FROM tb_prod_order_rec_det b1
+	            INNER JOIN tb_prod_order_rec b2 ON b1.id_prod_order_rec = b2.id_prod_order_rec
+	            WHERE b2.id_report_status =6 AND b2.id_prod_order=" + id_prod_order + "
+	            GROUP BY b1.id_prod_order_det
+            ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
+            LEFT JOIN (
+	            SELECT d1.id_prod_order_det, d2.id_prod_order_ret_out, 
+	            SUM(d1.prod_order_ret_out_det_qty) AS tot_ret_out 
+	            FROM tb_prod_order_ret_out_det d1 
+	            INNER JOIN tb_prod_order_ret_out d2 ON d1.id_prod_order_ret_out = d2.id_prod_order_ret_out 
+	            WHERE d2.id_report_status !=5 AND d2.id_prod_order=" + id_prod_order + "
+	            GROUP BY d1.id_prod_order_det
+            ) ro ON ro.id_prod_order_det = pod.id_prod_order_det 
+            LEFT JOIN(
+	            SELECT e1.id_prod_order_det, e2.id_prod_order_ret_in,SUM(e1.prod_order_ret_in_det_qty) AS tot_ret_in 
+	            FROM tb_prod_order_ret_in_det e1 
+	            INNER JOIN tb_prod_order_ret_in e2 ON e1.id_prod_order_ret_in = e2.id_prod_order_ret_in 
+	            WHERE e2.id_report_status =6 AND e2.id_prod_order=" + id_prod_order + "
+	            GROUP BY e1.id_prod_order_det
+            ) ri ON ri.id_prod_order_det = pod.id_prod_order_det
+            LEFT JOIN(
+	            SELECT adj_in_d.id_prod_order_det, adj_in_d.id_prod_order_qc_adj_in_det,SUM(adj_in_d.prod_order_qc_adj_in_det_qty) AS tot_adj_in
+	            FROM tb_prod_order_qc_adj_in_det adj_in_d
+	            INNER JOIN tb_prod_order_qc_adj_in adj_in ON adj_in_d.id_prod_order_qc_adj_in = adj_in.id_prod_order_qc_adj_in 
+	            WHERE adj_in.id_report_status =6 AND adj_in.id_prod_order=" + id_prod_order + "
+	            GROUP BY adj_in_d.id_prod_order_det
+            ) adj_in ON pod.id_prod_order_det = adj_in.id_prod_order_det
+            LEFT JOIN (
+	            SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
+	            FROM tb_prod_order_qc_adj_out_det adj_out_d
+	            INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
+	            WHERE adj_out.id_report_status !=5 AND adj_out.id_prod_order=" + id_prod_order + "
+	            GROUP BY adj_out_d.id_prod_order_det
+            ) adj_out ON pod.id_prod_order_det = adj_out.id_prod_order_det
+            LEFT JOIN (
+	            SELECT fd.id_prod_order_det, SUM(fd.prod_fc_det_qty) AS `tot_qc_report` 
+	            FROM tb_prod_fc f
+	            INNER JOIN tb_prod_fc_det fd ON fd.id_prod_fc = f.id_prod_fc
+	            WHERE f.id_report_status!=5 AND f.id_prod_order=" + id_prod_order + "
+	            GROUP BY fd.id_prod_order_det
+            ) qcr ON qcr.id_prod_order_det = pod.id_prod_order_det
+            WHERE pod.id_prod_order=" + id_prod_order + " "
+        Dim dt_cek As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            Dim id_prod_order_det_cekya As String = GVItemList.GetRowCellValue(i, "id_prod_order_det").ToString
+
+            Dim data_filter_cek As DataRow() = dt_cek.Select("[id_prod_order_det]='" + id_prod_order_det_cekya + "' ")
+            If data_filter_cek.Length <= 0 Then
+                GVItemList.SetRowCellValue(i, "qty_limit", 0)
+            Else
+                Dim qty_limit As Integer = data_filter_cek(0)("qty_limit")
+                GVItemList.SetRowCellValue(i, "qty_limit", qty_limit)
+            End If
+        Next
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVBarcode_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcode.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVBarcode_FocusedColumnChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs) Handles GVBarcode.FocusedColumnChanged
+        If Not GVBarcode.FocusedColumn.FieldName = "code" Then
+            GVBarcode.FocusedColumn = GVBarcode.Columns("code")
+        End If
+    End Sub
+
+    Private Sub GVBarcode_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVBarcode.FocusedRowChanged
+        noEdit()
+    End Sub
+
+    Sub noEdit()
+        Try
+            Dim is_fix As String = GVBarcode.GetFocusedRowCellDisplayText("is_fix")
+            'MsgBox(id_prod_order_rec_det)
+            If is_fix <> "2" Then
+                GridColumnBarcode.OptionsColumn.AllowEdit = True
+            Else
+                GridColumnBarcode.OptionsColumn.AllowEdit = False
+            End If
+            'MsgBox(id_prod_order_rec_det)
+        Catch ex As Exception
+            'errorCustom(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub GVBarcode_HiddenEditor(sender As Object, e As EventArgs) Handles GVBarcode.HiddenEditor
+        Dim code_check As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+        Dim code_found As Boolean = False
+        Dim code_duplicate As Boolean = False
+        Dim id_prod_order_det As String = ""
+        Dim counting_code As String = ""
+        Dim index_atas As Integer = 0
+        Dim is_old As String = "0"
+        Dim jum_scan As Integer = 0
+        Dim jum_limit As Integer = 0
+
+        'check available code
+        Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_check + "' ")
+        If dt_filter.Length > 0 Then
+            counting_code = dt_filter(0)("product_counting_code").ToString
+            id_prod_order_det = dt_filter(0)("id_prod_order_det").ToString
+            is_old = dt_filter(0)("is_old_design").ToString
+            code_found = True
+        End If
+
+        If is_old = "1" Then
+            GVItemList.FocusedRowHandle = find_row(GVItemList, "id_prod_order_det", id_prod_order_det)
+            If GVItemList.GetFocusedRowCellValue("prod_fc_det_qty") >= GVItemList.GetFocusedRowCellValue("qty_limit") Then
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                stopCustom("Can't scan. Maximum qty for size " + GVItemList.GetFocusedRowCellValue("size").ToString + " :  " + GVItemList.GetFocusedRowCellValue("qty_limit").ToString)
+            Else
+                GVBarcode.SetFocusedRowCellValue("id_prod_fc_counting", "0")
+                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                countQty(id_prod_order_det)
+                newRowsBc()
+            End If
+        ElseIf is_old = "2" Then
+            'check duplicate code
+            If GVBarcode.RowCount <= 0 Then
+                code_duplicate = False
+            Else
+                For i As Integer = 0 To (GVBarcode.RowCount - 1)
+                    Dim code As String = ""
+                    If Not IsDBNull(GVBarcode.GetRowCellValue(i, "code")) Then
+                        code = GVBarcode.GetRowCellValue(i, "code".ToString)
+                    End If
+
+                    Dim is_fix As String = "1"
+                    If Not IsDBNull(GVBarcode.GetRowCellValue(i, "is_fix")) Then
+                        is_fix = GVBarcode.GetRowCellValue(i, "is_fix").ToString
+                    End If
+
+                    If code = code_check And is_fix = "2" Then
+                        code_duplicate = True
+                        Exit For
+                    End If
+                Next
+            End If
+
+
+            If Not code_found Then
+                GVBarcode.SetFocusedRowCellValue("code", "")
+                stopCustom("Data not found !")
+            ElseIf code_duplicate Then
+                GVBarcode.SetFocusedRowCellValue("code", "")
+                stopCustom("Data duplicate !")
+            Else
+                GVItemList.FocusedRowHandle = find_row(GVItemList, "id_prod_order_det", id_prod_order_det)
+                If GVItemList.GetFocusedRowCellValue("prod_fc_det_qty") >= GVItemList.GetFocusedRowCellValue("qty_limit") Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustom("Can't scan. Maximum qty for size " + GVItemList.GetFocusedRowCellValue("size").ToString + " :  " + GVItemList.GetFocusedRowCellValue("qty_limit").ToString)
+                Else
+                    GVBarcode.SetFocusedRowCellValue("id_prod_fc_counting", "0")
+                    GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                    GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                    countQty(id_prod_order_det)
+                    newRowsBc()
+                End If
+            End If
+        Else
+            GVBarcode.SetFocusedRowCellValue("code", "")
+            stopCustom("Data not found !")
         End If
     End Sub
 End Class
