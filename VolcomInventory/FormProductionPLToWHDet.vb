@@ -72,23 +72,6 @@ Public Class FormProductionPLToWHDet
             BtnAttachment.Enabled = False
             DERet.Text = view_date(0)
 
-
-            'own source
-            Dim id_qc As String = execute_query("SELECT id_qc_dept FROM tb_opt", 0, True, "", "", "", "")
-            Dim query_get_comp_name As String = "SELECT b.comp_name, b.comp_number FROM tb_m_comp_contact a "
-            query_get_comp_name += "INNER JOIN tb_m_comp b ON a.id_comp = b.id_comp "
-            query_get_comp_name += "WHERE a.id_comp_contact = '" + id_qc + "' AND b.id_departement = '" + id_departement_user + "'"
-            Try
-                Dim data_comp_from As DataTable = execute_query(query_get_comp_name, -1, True, "", "", "", "")
-                TxtNameCompFrom.Text = data_comp_from(0)("comp_name").ToString
-                TxtCodeCompFrom.Text = data_comp_from(0)("comp_number").ToString
-                id_comp_contact_from = id_qc
-            Catch ex As Exception
-                TxtNameCompFrom.Text = ""
-                TxtCodeCompFrom.Text = ""
-                id_comp_contact_from = "-1"
-            End Try
-
             'from info PL
             If id_prod_order <> "-1" Then
                 view_po()
@@ -100,6 +83,7 @@ Public Class FormProductionPLToWHDet
                 check_but()
                 BtnInfoSrs.Enabled = True
                 BtnViewLineList.Enabled = True
+                BtnBrowseContactFrom.Enabled = False
             End If
         ElseIf action = "upd" Then
             'View data
@@ -273,6 +257,12 @@ Public Class FormProductionPLToWHDet
         pre_viewImages("2", PEView, data.Rows(0)("id_design").ToString, False)
         PEView.Enabled = True
         mainVendor()
+
+        'scan permission
+        If is_use_qc_report = "1" Then
+            'jika pake qc report gak bole scan
+            PanelNavBarcode.Visible = False
+        End If
     End Sub
 
     'View Data
@@ -928,7 +918,7 @@ Public Class FormProductionPLToWHDet
         If action = "ins" Then
             BtnBrowsePO.Enabled = True
         End If
-        BtnBrowseContactFrom.Enabled = True
+        'BtnBrowseContactFrom.Enabled = True
         BtnBrowseContactTo.Enabled = True
         BtnSave.Enabled = True
         BScan.Enabled = True
@@ -1337,6 +1327,7 @@ Public Class FormProductionPLToWHDet
         Cursor = Cursors.WaitCursor
         Dim id_comp_cat As String = "-1"
         Try
+
             Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
             Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
             id_comp_cat = row("id_comp").ToString
@@ -1344,26 +1335,18 @@ Public Class FormProductionPLToWHDet
         End Try
         getCompFrom(id_comp_cat)
         Cursor = Cursors.Default
-        'If (Not LEPLCategory.EditValue = LEPLCategory.OldEditValue) And is_use_qc_report = "1" Then
-        '    If GVBarcode.RowCount > 0 Then
-        '        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset your scanned list, are you sure want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        '        If confirm = Windows.Forms.DialogResult.Yes Then
-        '            viewDetail()
-        '            view_barcode_list()
-        '        Else
-        '            LEPLCategory.EditValue = LEPLCategory.OldEditValue
-        '        End If
-        '    End If
-        'End If
     End Sub
 
     Sub getCompFrom(ByVal id_comp_cat As String)
         'get comp to
-        Dim query As String = "SELECT c.comp_number, c.comp_name FROM tb_m_comp c WHERE c.id_comp = '" + id_comp_cat + "' "
+        Dim query As String = "SELECT cc.id_comp_contact,c.comp_number, c.comp_name 
+        FROM tb_m_comp c 
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
+        WHERE c.id_comp = '" + id_comp_cat + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        id_comp_to = id_comp_cat
-        TxtCodeCompTo.Text = data.Rows(0)("comp_number").ToString
-        TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
+        id_comp_contact_from = data.Rows(0)("id_comp_contact").ToString
+        TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+        TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
     End Sub
 
     Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
