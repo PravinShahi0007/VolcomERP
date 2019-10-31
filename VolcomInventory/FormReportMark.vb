@@ -510,7 +510,7 @@
         ElseIf report_mark_type = "180" Then
             'propose employee changes
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_pps WHERE id_employee_pps = '{0}'", id_report)
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'overtime
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
         ElseIf report_mark_type = "185" Then
@@ -5915,7 +5915,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If

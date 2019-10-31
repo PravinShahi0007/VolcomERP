@@ -28,6 +28,7 @@ Partial Class FormEmpScheduleTableSet
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -56,17 +57,18 @@ Partial Class FormEmpScheduleTableSet
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEEmp})
-        Me.GCEmployee.Size = New System.Drawing.Size(728, 277)
+        Me.GCEmployee.Size = New System.Drawing.Size(784, 529)
         Me.GCEmployee.TabIndex = 3
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn8, Me.GridColumn9, Me.GridColumn15, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn8, Me.GridColumn9, Me.GridColumn15, Me.GridColumn10, Me.GridColumn11, Me.GridColumn1, Me.GridColumn12, Me.GridColumn13})
         Me.GVEmployee.CustomizationFormBounds = New System.Drawing.Rectangle(719, 479, 210, 172)
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
+        Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         '
         'GridColumn14
@@ -107,15 +109,11 @@ Partial Class FormEmpScheduleTableSet
         '
         'GridColumn15
         '
-        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn15.Caption = "Level"
         Me.GridColumn15.FieldName = "employee_level"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 4
+        Me.GridColumn15.VisibleIndex = 5
         '
         'GridColumn10
         '
@@ -137,6 +135,15 @@ Partial Class FormEmpScheduleTableSet
         Me.GridColumn11.VisibleIndex = 3
         Me.GridColumn11.Width = 139
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Sub Departement"
+        Me.GridColumn1.FieldName = "departement_sub"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
+        '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Position"
@@ -144,7 +151,7 @@ Partial Class FormEmpScheduleTableSet
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.VisibleIndex = 6
         Me.GridColumn12.Width = 139
         '
         'GridColumn13
@@ -154,7 +161,7 @@ Partial Class FormEmpScheduleTableSet
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 6
+        Me.GridColumn13.VisibleIndex = 7
         Me.GridColumn13.Width = 149
         '
         'PanelControl1
@@ -166,15 +173,15 @@ Partial Class FormEmpScheduleTableSet
         Me.PanelControl1.Controls.Add(Me.DEStart)
         Me.PanelControl1.Controls.Add(Me.Label1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 277)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 529)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(728, 32)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 32)
         Me.PanelControl1.TabIndex = 2
         '
         'BChoose
         '
         Me.BChoose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BChoose.Location = New System.Drawing.Point(651, 2)
+        Me.BChoose.Location = New System.Drawing.Point(707, 2)
         Me.BChoose.Name = "BChoose"
         Me.BChoose.Size = New System.Drawing.Size(75, 28)
         Me.BChoose.TabIndex = 8
@@ -234,7 +241,7 @@ Partial Class FormEmpScheduleTableSet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(728, 309)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GCEmployee)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -276,4 +283,5 @@ Partial Class FormEmpScheduleTableSet
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label1 As Label
     Friend WithEvents BChoose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
