@@ -4967,7 +4967,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         Dim cell_fc_role As New XRTableCell()
         cell_fc_role.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
-        cell_fc_role.Text = "Financial Control"
+        cell_fc_role.Text = get_emp(get_setup_field("id_user_cancel_management"), "6")
         row_role.Cells.Add(cell_fc_role)
         '
         Dim cell_ceo_role As New XRTableCell()
@@ -6766,6 +6766,9 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             ret_var = execute_query(query, 0, True, "", "", "", "")
         ElseIf opt = "5" Then 'get employee departement from id_user
             Dim query As String = "SELECT dep.departement FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE usr.id_user='" + param + "' LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "6" Then 'get employee position
+            Dim query As String = "SELECT employee_position FROM tb_m_employee WHERE id_employee='" + param + "' LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
         End If
         Return ret_var
