@@ -8471,6 +8471,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBuktiPickup.Close()
         ElseIf formName = "FormDebitNote" Then
             FormDebitNote.Close()
+        ElseIf formName = "FormEmpAttnAssign" Then
+            FormEmpAttnAssign.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -13547,6 +13549,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDebitNote.Show()
             FormDebitNote.WindowState = FormWindowState.Maximized
             FormDebitNote.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBScheduleProposeSales_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBScheduleProposeSales.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnAssign.MdiParent = Me
+            FormEmpAttnAssign.is_sales_dept = "1"
+            FormEmpAttnAssign.Show()
+            FormEmpAttnAssign.WindowState = FormWindowState.Maximized
+            FormEmpAttnAssign.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
