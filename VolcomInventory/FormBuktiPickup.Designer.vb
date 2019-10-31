@@ -70,7 +70,7 @@ Partial Class FormBuktiPickup
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Company"
+        Me.GridColumn2.Caption = "Cargo"
         Me.GridColumn2.FieldName = "comp_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True

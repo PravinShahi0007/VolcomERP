@@ -13,10 +13,7 @@
             FROM tb_m_employee AS e
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement
             LEFT JOIN tb_lookup_employee_status AS sts ON e.id_employee_status = sts.id_employee_status
-            WHERE e.id_employee_active = 1 AND (
-                (e.id_departement IN (SELECT id_departement FROM tb_emp_attn_input_dep))
-                " + If(DEDate.EditValue = Nothing, "", "OR (e.id_employee IN (SELECT ot_det.id_employee FROM tb_ot_det AS ot_det LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot WHERE ot_det.ot_date = '" + Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND ot.id_report_status = 6))") + "
-            ) AND e.id_employee NOT IN (" + not_include + ")
+            WHERE e.id_employee_active = 1 AND e.id_departement IN (SELECT id_departement FROM tb_emp_attn_input_dep) AND e.id_employee NOT IN (" + not_include + ")
             ORDER BY d.departement ASC, e.id_employee_level ASC, e.employee_code ASC
         "
 

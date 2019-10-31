@@ -165,6 +165,8 @@ Partial Class FormProductionDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEReff = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -225,8 +227,6 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEReff = New DevExpress.XtraEditors.TextEdit()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -293,6 +293,7 @@ Partial Class FormProductionDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -313,7 +314,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdOrder
@@ -1817,6 +1817,23 @@ Partial Class FormProductionDet
         Me.PanelControl4.Size = New System.Drawing.Size(361, 131)
         Me.PanelControl4.TabIndex = 175
         '
+        'TEReff
+        '
+        Me.TEReff.EditValue = ""
+        Me.TEReff.Location = New System.Drawing.Point(243, 37)
+        Me.TEReff.Name = "TEReff"
+        Me.TEReff.Properties.EditValueChangedDelay = 1
+        Me.TEReff.Size = New System.Drawing.Size(113, 20)
+        Me.TEReff.TabIndex = 176
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(215, 40)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl15.TabIndex = 175
+        Me.LabelControl15.Text = "Reff"
+        '
         'LabelControl6
         '
         Me.LabelControl6.Location = New System.Drawing.Point(20, 8)
@@ -2358,23 +2375,6 @@ Partial Class FormProductionDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(215, 40)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
-        Me.LabelControl15.TabIndex = 175
-        Me.LabelControl15.Text = "Reff"
-        '
-        'TEReff
-        '
-        Me.TEReff.EditValue = ""
-        Me.TEReff.Location = New System.Drawing.Point(243, 37)
-        Me.TEReff.Name = "TEReff"
-        Me.TEReff.Properties.EditValueChangedDelay = 1
-        Me.TEReff.Size = New System.Drawing.Size(113, 20)
-        Me.TEReff.TabIndex = 176
-        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2464,6 +2464,7 @@ Partial Class FormProductionDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2484,7 +2485,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
