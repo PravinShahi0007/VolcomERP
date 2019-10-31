@@ -261,7 +261,7 @@
         ElseIf report_mark_type = "180" Then
             'Employee Propose
             FormEmployeePpsDet.Close()
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
         ElseIf report_mark_type = "185" Then
@@ -1023,7 +1023,7 @@
             FormEmployeePpsDet.show_payroll = True
 
             FormEmployeePpsDet.ShowDialog()
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
             FormEmpOvertimeDet.is_view = "1"
@@ -1969,7 +1969,7 @@
             field_id = "id_employee_pps"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             table_name = "tb_ot"
             field_id = "id_ot"
