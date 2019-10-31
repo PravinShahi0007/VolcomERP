@@ -116,70 +116,28 @@
             End If
         Next
 
-        'print office
-        Dim report1 As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
+        'report
+        Dim report As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
 
-        report1.PrintingSystem.ContinuousPageNumbering = False
+        report.type = "adjustment"
+        report.id_payroll = id_payroll
+        report.id_pre = If(id_report_status = "6", "-1", "1")
 
-        report1.type = "adjustment"
-        report1.id_payroll = id_payroll
-        report1.is_office_payroll = "1"
-        report1.id_pre = If(id_report_status = "6", "-1", "1")
+        report.XLTitle.Text = "Bonus / Adjustment"
+        report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
-        report1.XLTitle.Text = "Bonus / Adjustment"
-        report1.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report1.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report1.XLLocation.Text = "Office"
-
-        report1.CreateDocument()
-
-        'print store
-        Dim report2 As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
-
-        report2.type = "adjustment"
-        report2.id_payroll = id_payroll
-        report2.is_office_payroll = "2"
-        report2.id_pre = If(id_report_status = "6", "-1", "1")
-
-        report2.XLTitle.Text = "Bonus / Adjustment"
-        report2.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report2.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report2.XLLocation.Text = "Store"
-
-        report2.CreateDocument()
-
-        'combine
-        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
-
-        'report1
-        If already_office Then
-            For i = 0 To report1.Pages.Count - 1
-                list.Add(report1.Pages(i))
-            Next
+        If Not already_office Then
+            report.DetailReportOffice.Visible = False
         End If
 
-        'report2
-        If already_store Then
-            For i = 0 To report2.Pages.Count - 1
-                list.Add(report2.Pages(i))
-            Next
+        If Not already_store Then
+            report.DetailReportStore.Visible = False
         End If
 
-        If already_office Then
-            report1.Pages.AddRange(list)
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report1)
-
-            tool.ShowPreview()
-        End If
-
-        If already_store And Not already_office Then
-            report2.Pages.AddRange(list)
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report2)
-
-            tool.ShowPreview()
-        End If
+        tool.ShowPreview()
     End Sub
 
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click

@@ -155,81 +155,15 @@
 
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, 0, True, "", "", "", "")
 
-        Dim already_office As Boolean = False
-        Dim already_store As Boolean = False
+        Dim report As ReportEmpPayrollOvertime = New ReportEmpPayrollOvertime
 
-        Dim data As DataTable = GCOvertime.DataSource
+        report.id_payroll = id_payroll
+        report.id_pre = If(id_report_status = "6", "-1", "1")
+        report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
-        Dim data_office As DataTable = data.Clone
-
-        For j = 0 To data.Rows.Count - 1
-            If data.Rows(j)("is_office_payroll").ToString = "1" Then
-                already_office = True
-
-                data_office.ImportRow(data.Rows(j))
-            ElseIf data.Rows(j)("is_office_payroll").ToString = "2"
-                already_store = True
-            End If
-        Next
-
-        'office
-        Dim report1 As ReportEmpPayrollOvertime = New ReportEmpPayrollOvertime
-
-        report1.id_payroll = id_payroll
-        report1.id_pre = If(id_report_status = "6", "-1", "1")
-        report1.is_office_payroll = "1"
-        report1.last_alphabet = 0
-        report1.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report1.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report1.XLLocation.Text = "Office"
-
-        report1.CreateDocument()
-
-        'store
-        Dim report2 As ReportEmpPayrollOvertime = New ReportEmpPayrollOvertime
-
-        report2.id_payroll = id_payroll
-        report2.id_pre = If(id_report_status = "6", "-1", "1")
-        report2.is_office_payroll = "2"
-        report2.last_alphabet = data_office.AsDataView.ToTable(True, "departement").Rows.Count
-        report2.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report2.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report2.XLLocation.Text = "Store"
-
-        report2.CreateDocument()
-
-        'combine
-        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
-
-        'report1
-        If already_office Then
-            For i = 0 To report1.Pages.Count - 1
-                list.Add(report1.Pages(i))
-            Next
-        End If
-
-        'report2
-        If already_store Then
-            For i = 0 To report2.Pages.Count - 1
-                list.Add(report2.Pages(i))
-            Next
-        End If
-
-        If already_office Then
-            report1.Pages.AddRange(list)
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report1)
-
-            tool.ShowPreview()
-        End If
-
-        If already_store And Not already_office Then
-            report2.Pages.AddRange(list)
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report2)
-
-            tool.ShowPreview()
-        End If
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        tool.ShowPreview()
     End Sub
 
     Private Sub GVOvertime_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVOvertime.CustomDrawRowFooter

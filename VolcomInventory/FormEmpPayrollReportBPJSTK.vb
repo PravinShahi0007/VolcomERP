@@ -91,6 +91,8 @@
 
             Dim report_detail As ReportEmpPayrollReportBPJSTKDetail = New ReportEmpPayrollReportBPJSTKDetail
 
+            report_detail.PrintingSystem.ContinuousPageNumbering = False
+
             report_detail.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
 
             report_detail.id_pre = If(id_report_status = "6", "-1", "1")
