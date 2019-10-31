@@ -68,8 +68,8 @@ FROM `tb_design_cop_propose_det` pd
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pd.`id_design`
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pd.`id_currency`
 LEFT JOIN tb_lookup_currency cur_before ON cur_before.`id_currency`=pd.`id_currency_before`
-INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pd.`id_comp_contact`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pd.`id_comp_contact`
+LEFT JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN tb_m_comp_contact cc_before ON cc_before.`id_comp_contact`=pd.`id_comp_contact_before`
 LEFT JOIN tb_m_comp c_before ON c_before.`id_comp`=cc_before.`id_comp`
 WHERE pd.id_design_cop_propose='" & id_propose & "'"

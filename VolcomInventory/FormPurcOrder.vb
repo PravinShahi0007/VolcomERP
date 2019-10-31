@@ -228,6 +228,14 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
+        '
+        If Not LEPOStatus.EditValue.ToString = "1" Then
+            BCreatePO.Visible = False
+            BCantFulfill.Visible = False
+        Else
+            BCreatePO.Visible = True
+            BCantFulfill.Visible = True
+        End If
     End Sub
 
     Sub load_vendor()
