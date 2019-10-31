@@ -4947,6 +4947,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Dim cell_ceo_name As New XRTableCell()
         cell_ceo_name.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
         cell_ceo_name.Text = get_emp(get_setup_field("id_emp_director"), "2") & " / " & vbNewLine & get_emp(get_setup_field("id_emp_vice_director"), "2")
+        cell_ceo_name.Multiline = True
         row_name.Cells.Add(cell_ceo_name)
 
         xrtable.Rows.Add(row_name)
