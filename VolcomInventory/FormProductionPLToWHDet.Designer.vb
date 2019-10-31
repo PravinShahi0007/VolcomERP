@@ -71,6 +71,8 @@ Partial Class FormProductionPLToWHDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.SCCReturn = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.XTCPL = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPProductList = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControlRet = New DevExpress.XtraEditors.GroupControl()
         Me.GCRetDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVRetDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -97,6 +99,12 @@ Partial Class FormProductionPLToWHDet
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPQC = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCQC = New DevExpress.XtraGrid.GridControl()
+        Me.GVQC = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnprod_fc_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_pl_prod_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -115,6 +123,7 @@ Partial Class FormProductionPLToWHDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,6 +155,9 @@ Partial Class FormProductionPLToWHDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SCCReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCReturn.SuspendLayout()
+        CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPL.SuspendLayout()
+        Me.XTPProductList.SuspendLayout()
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlRet.SuspendLayout()
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,6 +165,9 @@ Partial Class FormProductionPLToWHDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.XTPQC.SuspendLayout()
+        CType(Me.GCQC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVQC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlListBarcode.SuspendLayout()
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -754,14 +769,31 @@ Partial Class FormProductionPLToWHDet
         Me.SCCReturn.Horizontal = False
         Me.SCCReturn.Location = New System.Drawing.Point(0, 147)
         Me.SCCReturn.Name = "SCCReturn"
-        Me.SCCReturn.Panel1.Controls.Add(Me.GroupControlRet)
+        Me.SCCReturn.Panel1.Controls.Add(Me.XTCPL)
         Me.SCCReturn.Panel1.Text = "Panel1"
         Me.SCCReturn.Panel2.Controls.Add(Me.GroupControlListBarcode)
         Me.SCCReturn.Panel2.Text = "Panel2"
         Me.SCCReturn.Size = New System.Drawing.Size(926, 369)
-        Me.SCCReturn.SplitterPosition = 171
+        Me.SCCReturn.SplitterPosition = 196
         Me.SCCReturn.TabIndex = 185
         Me.SCCReturn.Text = "SplitContainerControl1"
+        '
+        'XTCPL
+        '
+        Me.XTCPL.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPL.Location = New System.Drawing.Point(0, 0)
+        Me.XTCPL.Name = "XTCPL"
+        Me.XTCPL.SelectedTabPage = Me.XTPProductList
+        Me.XTCPL.Size = New System.Drawing.Size(926, 196)
+        Me.XTCPL.TabIndex = 181
+        Me.XTCPL.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPProductList, Me.XTPQC})
+        '
+        'XTPProductList
+        '
+        Me.XTPProductList.Controls.Add(Me.GroupControlRet)
+        Me.XTPProductList.Name = "XTPProductList"
+        Me.XTPProductList.Size = New System.Drawing.Size(920, 168)
+        Me.XTPProductList.Text = "Product List"
         '
         'GroupControlRet
         '
@@ -774,7 +806,7 @@ Partial Class FormProductionPLToWHDet
         Me.GroupControlRet.Enabled = False
         Me.GroupControlRet.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlRet.Name = "GroupControlRet"
-        Me.GroupControlRet.Size = New System.Drawing.Size(926, 171)
+        Me.GroupControlRet.Size = New System.Drawing.Size(920, 168)
         Me.GroupControlRet.TabIndex = 180
         Me.GroupControlRet.Text = "Product List"
         '
@@ -786,7 +818,7 @@ Partial Class FormProductionPLToWHDet
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(903, 137)
+        Me.GCRetDetail.Size = New System.Drawing.Size(897, 134)
         Me.GCRetDetail.TabIndex = 1
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -992,7 +1024,7 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(903, 30)
+        Me.PanelControl1.Size = New System.Drawing.Size(897, 30)
         Me.PanelControl1.TabIndex = 0
         Me.PanelControl1.Visible = False
         '
@@ -1001,7 +1033,7 @@ Partial Class FormProductionPLToWHDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(630, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(624, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(91, 30)
         Me.BtnDel.TabIndex = 7
@@ -1023,7 +1055,7 @@ Partial Class FormProductionPLToWHDet
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(721, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(715, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(91, 30)
         Me.BtnEdit.TabIndex = 6
@@ -1035,11 +1067,62 @@ Partial Class FormProductionPLToWHDet
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(812, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(806, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(91, 30)
         Me.BtnAdd.TabIndex = 5
         Me.BtnAdd.Text = "Add"
+        '
+        'XTPQC
+        '
+        Me.XTPQC.Controls.Add(Me.GCQC)
+        Me.XTPQC.Name = "XTPQC"
+        Me.XTPQC.Size = New System.Drawing.Size(920, 168)
+        Me.XTPQC.Text = "QC Reference"
+        '
+        'GCQC
+        '
+        Me.GCQC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCQC.Location = New System.Drawing.Point(0, 0)
+        Me.GCQC.MainView = Me.GVQC
+        Me.GCQC.Name = "GCQC"
+        Me.GCQC.Size = New System.Drawing.Size(920, 168)
+        Me.GCQC.TabIndex = 0
+        Me.GCQC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVQC})
+        '
+        'GVQC
+        '
+        Me.GVQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnprod_fc_number, Me.GridColumntotal_qty, Me.GridColumnid_pl_prod_order, Me.GridColumnstt})
+        Me.GVQC.GridControl = Me.GCQC
+        Me.GVQC.Name = "GVQC"
+        Me.GVQC.OptionsBehavior.Editable = False
+        Me.GVQC.OptionsView.ShowFooter = True
+        Me.GVQC.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnprod_fc_number
+        '
+        Me.GridColumnprod_fc_number.Caption = "Number"
+        Me.GridColumnprod_fc_number.FieldName = "prod_fc_number"
+        Me.GridColumnprod_fc_number.Name = "GridColumnprod_fc_number"
+        Me.GridColumnprod_fc_number.Visible = True
+        Me.GridColumnprod_fc_number.VisibleIndex = 0
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 1
+        '
+        'GridColumnid_pl_prod_order
+        '
+        Me.GridColumnid_pl_prod_order.Caption = "id_pl_prod_order"
+        Me.GridColumnid_pl_prod_order.FieldName = "id_pl_prod_order"
+        Me.GridColumnid_pl_prod_order.Name = "GridColumnid_pl_prod_order"
         '
         'GroupControlListBarcode
         '
@@ -1050,7 +1133,7 @@ Partial Class FormProductionPLToWHDet
         Me.GroupControlListBarcode.Enabled = False
         Me.GroupControlListBarcode.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListBarcode.Name = "GroupControlListBarcode"
-        Me.GroupControlListBarcode.Size = New System.Drawing.Size(926, 192)
+        Me.GroupControlListBarcode.Size = New System.Drawing.Size(926, 167)
         Me.GroupControlListBarcode.TabIndex = 1
         Me.GroupControlListBarcode.Text = "Counting Product"
         '
@@ -1061,7 +1144,7 @@ Partial Class FormProductionPLToWHDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(903, 155)
+        Me.GCBarcode.Size = New System.Drawing.Size(903, 130)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1217,6 +1300,12 @@ Partial Class FormProductionPLToWHDet
         '
         Me.EPRet.ContainerControl = Me
         '
+        'GridColumnstt
+        '
+        Me.GridColumnstt.Caption = "Status"
+        Me.GridColumnstt.FieldName = "stt"
+        Me.GridColumnstt.Name = "GridColumnstt"
+        '
         'FormProductionPLToWHDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1267,6 +1356,9 @@ Partial Class FormProductionPLToWHDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SCCReturn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCReturn.ResumeLayout(False)
+        CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPL.ResumeLayout(False)
+        Me.XTPProductList.ResumeLayout(False)
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlRet.ResumeLayout(False)
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1274,6 +1366,9 @@ Partial Class FormProductionPLToWHDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.XTPQC.ResumeLayout(False)
+        CType(Me.GCQC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVQC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlListBarcode.ResumeLayout(False)
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1382,4 +1477,13 @@ Partial Class FormProductionPLToWHDet
     Friend WithEvents GridColumnLimitQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCPL As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPProductList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPQC As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCQC As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVQC As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnprod_fc_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pl_prod_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstt As DevExpress.XtraGrid.Columns.GridColumn
 End Class

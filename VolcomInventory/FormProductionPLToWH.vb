@@ -236,7 +236,7 @@
         query += "(SELECT COUNT(tb_pl_prod_order.id_pl_prod_order) FROM tb_pl_prod_order "
         query += "  WHERE tb_pl_prod_order.id_prod_order = a.id_prod_order "
         query += "  AND tb_pl_prod_order.id_report_status != '5' "
-        query += ") AS pl_created "
+        query += ") AS pl_created, a.is_use_qc_report "
         query += "FROM tb_prod_order a 
         INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = a.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
         INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price
@@ -249,13 +249,14 @@
         query += "INNER JOIN tb_season f ON f.id_season=e.id_season "
         query += "INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type "
         query += "INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production "
-        query += "WHERE a.id_report_status = '6' " + cond
+        query += "WHERE a.id_report_status = '6' AND a.is_closing_rec=2 " + cond
         query += "ORDER BY a.id_prod_order ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         data.Columns.Add("images", GetType(Image))
 
         GCProd.DataSource = data
         GVProd.BestFitColumns()
+        check_menu()
         'GVProd.ActiveFilterString = "[pl_created]=0 "
         'If GVProd.RowCount > 0 Then
         'show all

@@ -29,7 +29,7 @@ Public Class FormProductionPLToWHDet
     Public data_code As DataTable
     Dim myListOfDogs As New List(Of String)
     Public dt As New DataTable
-    Dim is_use_qc_report As String = "-1"
+    Public is_use_qc_report As String = "-1"
 
     Public Class FileRecord
         Public Id As String
@@ -1334,6 +1334,7 @@ Public Class FormProductionPLToWHDet
         Catch ex As Exception
         End Try
         getCompFrom(id_comp_cat)
+        loadQCRef()
         Cursor = Cursors.Default
     End Sub
 
@@ -1347,6 +1348,76 @@ Public Class FormProductionPLToWHDet
         id_comp_contact_from = data.Rows(0)("id_comp_contact").ToString
         TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
         TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+    End Sub
+
+    Sub loadQCRef()
+        'jika use qc report =1
+        If is_use_qc_report = "1" Then
+            Cursor = Cursors.WaitCursor
+            'load ref
+            Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+            Dim query As String = "SELECT f.id_prod_fc, f.prod_fc_number, IFNULL(fd.total_qty,0) AS `total_qty`, pl.id_pl_prod_order, 'OK' AS `stt`
+            FROM tb_prod_fc f 
+            INNER JOIN (
+	            SELECT f.id_prod_fc, SUM(fd.prod_fc_det_qty) AS `total_qty` 
+	            FROM tb_prod_fc_det fd
+	            INNER JOIN tb_prod_fc f ON f.id_prod_fc = fd.id_prod_fc
+	            WHERE f.id_report_status=6 AND f.id_pl_category=" + id_pl_category + " AND f.id_prod_order=" + id_prod_order + "
+	            GROUP BY f.id_prod_fc
+            ) fd ON fd.id_prod_fc = f.id_prod_fc
+            LEFT JOIN (
+	            SELECT r.id_prod_fc, pl.id_pl_prod_order 
+	            FROM tb_pl_prod_order_qc r
+	            INNER JOIN tb_pl_prod_order pl ON pl.id_pl_prod_order = r.id_pl_prod_order
+	            WHERE pl.id_report_status!=5 AND pl.id_prod_order=" + id_prod_order + "
+            ) pl ON pl.id_prod_fc = f.id_prod_fc
+            WHERE f.id_prod_order=" + id_prod_order + " AND f.id_report_status=6 AND f.id_pl_category=" + id_pl_category + " AND ISNULL(pl.id_pl_prod_order) "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCQC.DataSource = data
+            GVQC.BestFitColumns()
+
+            'get id prod_fc
+            makeSafeGV(GVQC)
+            Dim id_coll As String = ""
+            For i As Integer = 0 To GVQC.RowCount - 1
+                If i > 0 Then
+                    id_coll += ","
+                End If
+                id_coll += GVQC.GetRowCellValue(i, "id_prod_fc").ToString
+            Next
+
+            'load ref detil
+            GCRetDetail.DataSource = Nothing
+            GVRetDetail.BestFitColumns()
+            If GVQC.RowCount > 0 Then
+                Dim query_sum As String = "SELECT '' AS `no`, 0 AS `id_pl_prod_order_det`, fd.id_prod_order_det,
+                p.product_full_code AS `code`, p.product_ean_code AS `ean_code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+                SUM(fd.prod_fc_det_qty) AS `pl_prod_order_det_qty`, SUM(fd.prod_fc_det_qty) AS `limit_qty`, 0 AS `jum_alloc_allow`, '' AS `pl_prod_order_det_note`, 0 AS `range_qty`
+                FROM tb_prod_fc_det fd
+                INNER JOIN tb_m_product p ON p.id_product = fd.id_product
+                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                WHERE fd.id_prod_fc IN (" + id_coll + ")
+                GROUP BY fd.id_prod_order_det "
+                Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
+                GCRetDetail.DataSource = data_sum
+                GVRetDetail.BestFitColumns()
+            End If
+
+            'load scan
+            GCBarcode.DataSource = Nothing
+            GVBarcode.BestFitColumns()
+            If GVQC.RowCount > 0 Then
+                Dim query_code As String = "SELECT '' AS `no`, fd.full_code AS `code`, '0' AS `id_pl_prod_order_det`, IF(LENGTH(fd.full_code)=16, RIGHT(fd.full_code,4),'') AS `counting_code`,
+                0 AS `id_pl_prod_order_det_unique`, ('2') AS is_fix, fd.id_prod_order_det
+                FROM tb_prod_fc_counting fd
+                WHERE fd.id_prod_fc IN (" + id_coll + ") "
+                Dim data_code As DataTable = execute_query(query_code, -1, True, "", "", "", "")
+                GCBarcode.DataSource = data_code
+                GVBarcode.BestFitColumns()
+            End If
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
