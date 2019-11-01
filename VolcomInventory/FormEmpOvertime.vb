@@ -89,7 +89,7 @@
             End Try
 
             Dim query As String = "
-                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, CONCAT('- ', GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') ORDER BY ot_det.ot_date ASC SEPARATOR '\n- ')) AS ot_date, ot.number, GROUP_CONCAT(DISTINCT ot_det.ot_note SEPARATOR ', ') AS ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, CONCAT(GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') ORDER BY ot_det.ot_date ASC SEPARATOR ',')) AS ot_date, ot.number, GROUP_CONCAT(DISTINCT ot_det.ot_note SEPARATOR ', ') AS ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -102,6 +102,50 @@
             "
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'date
+            Dim last_date As Date = New Date()
+
+            For i = 0 To data.Rows.Count - 1
+                Dim final_date As String = ""
+
+                Dim temp_date As String() = data.Rows(i)("ot_date").ToString.Split(",")
+
+                Dim group_date As Integer = 1
+
+                For j = 0 To temp_date.Count - 1
+                    Dim now_date As Date = Date.Parse(temp_date(j))
+
+                    If j = 0 Then
+                        last_date = now_date
+
+                        final_date = now_date.ToString("dd MMMM yyyy")
+                    Else
+                        If Not last_date.AddDays(1) = now_date Then
+                            If group_date = 1 Then
+                                final_date += ", " + now_date.ToString("dd MMMM yyyy")
+                            Else
+                                final_date += " - " + last_date.ToString("dd MMMM yyyy") + ", " + now_date.ToString("dd MMMM yyyy")
+                            End If
+
+                            group_date = 1
+                        Else
+                            group_date = group_date + 1
+                        End If
+
+                        'last date
+                        If j = temp_date.Count - 1 Then
+                            If last_date.AddDays(1) = now_date Then
+                                final_date += " - " + now_date.ToString("dd MMMM yyyy")
+                            End If
+                        End If
+
+                        last_date = now_date
+                    End If
+                Next
+
+                data.Rows(i)("ot_date") = final_date
+            Next
 
             GCOvertime.DataSource = data
 

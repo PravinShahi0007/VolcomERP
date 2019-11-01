@@ -255,6 +255,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 47
         '
         'GridColumn3
         '
@@ -278,6 +279,7 @@ Partial Class FormEmpOvertime
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
         Me.BandedGridColumn11.Visible = True
         Me.BandedGridColumn11.VisibleIndex = 2
+        Me.BandedGridColumn11.Width = 73
         '
         'BandedGridColumn10
         '
@@ -286,10 +288,11 @@ Partial Class FormEmpOvertime
         Me.BandedGridColumn10.Caption = "Date"
         Me.BandedGridColumn10.ColumnEdit = Me.RIMEMultiline
         Me.BandedGridColumn10.FieldName = "ot_date"
+        Me.BandedGridColumn10.MaxWidth = 250
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
         Me.BandedGridColumn10.Visible = True
         Me.BandedGridColumn10.VisibleIndex = 3
-        Me.BandedGridColumn10.Width = 33
+        Me.BandedGridColumn10.Width = 250
         '
         'RIMEMultiline
         '
@@ -302,6 +305,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn9.Caption = "Overtime Propose"
         Me.GridColumn9.ColumnEdit = Me.RIMEMultiline
         Me.GridColumn9.FieldName = "ot_note"
+        Me.GridColumn9.MaxWidth = 250
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 4
@@ -330,6 +334,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 6
+        Me.GridColumn11.Width = 64
         '
         'GridColumn12
         '
@@ -338,6 +343,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 7
+        Me.GridColumn12.Width = 63
         '
         'PanelControl4
         '
