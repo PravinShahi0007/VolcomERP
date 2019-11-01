@@ -414,13 +414,11 @@ Public Class FormProductionPLToWHDet
 
         'Cek isi qty
         Dim cond_qty As Boolean = True
-        Dim qty As Decimal
-        For i As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
-            qty = GVRetDetail.GetRowCellValue(i, "pl_prod_order_det_qty")
-            If qty = 0.0 Then
-                cond_qty = False
-            End If
-        Next
+        GVRetDetail.ActiveFilterString = "[pl_prod_order_det_qty]<=0"
+        If GVRetDetail.RowCount > 0 Then
+            cond_qty = False
+        End If
+        makeSafeGV(GVRetDetail)
 
         'cek qty limit di DB
         Dim dt_cek As DataTable = execute_query("CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "', '0', '" + LEPDAlloc.EditValue.ToString + "') ", -1, True, "", "", "", "")
@@ -442,6 +440,13 @@ Public Class FormProductionPLToWHDet
                 Exit For
             End If
         Next
+
+        'qc reference
+        makeSafeGV(GVQC)
+        Dim cond_ref As Boolean = True
+        If is_use_qc_report = "1" And GVQC.RowCount = 0 Then
+            cond_ref = False
+        End If
 
         'cek uniqueCode
         Dim found_check_unique As Boolean = False
@@ -474,6 +479,10 @@ Public Class FormProductionPLToWHDet
             infoQty()
         ElseIf found_check_unique Then
             errorCustom(sample_check_unique)
+        ElseIf GVRetDetail.RowCount = 0 Or GVBarcode.RowCount = 0 Or cond_qty = False Then
+            stopCustom("Please complete all detail data Packing List")
+        ElseIf Not cond_ref Then
+            stopCustom("Reference QC Result not found. Please make sure it has gone through a QC process ")
         Else
             Dim query As String
             Dim pl_prod_order_number As String = ""
@@ -499,6 +508,11 @@ Public Class FormProductionPLToWHDet
 
                         'insert who prepared
                         insert_who_prepared("33", id_pl_prod_order, id_user)
+
+                        'reference
+                        If is_use_qc_report = "1" And GVQC.RowCount > 0 Then
+
+                        End If
 
                         'Detail return
                         Dim jum_ins_j As Integer = 0
