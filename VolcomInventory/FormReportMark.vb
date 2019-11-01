@@ -1751,6 +1751,12 @@
             '
             query = String.Format("UPDATE tb_prod_order_wo SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            '
+            If id_status_reportx = "5" Then
+                query = String.Format("UPDATE tb_m_design SET pp_is_approve='2',final_is_approve='2' WHERE id_design=(SELECT pdd.id_design FROM tb_prod_order po INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design` WHERE po.`id_prod_order`='{0}' LIMIT 1)", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+            '
             'infoCustom("Status changed.")
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
