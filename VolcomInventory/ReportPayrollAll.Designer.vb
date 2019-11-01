@@ -22,33 +22,72 @@ Partial Public Class ReportPayrollAll
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportPayrollAll))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer2 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.GCPayrollStore = New DevExpress.XtraGrid.GridControl()
+        Me.GVPayrollStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GBEmployeeStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCNIPStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCNameStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCDepartementStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCPositionStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCStatusStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBWorkingDaysStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCWorkingDaysStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCActualWorkingDaysStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCOvertimeHoursStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBDWStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCActualWorkingDaysDWStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCBasicSalaryDWStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTotalSalaryDWStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBSalaryStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCTotalTHPStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTotalAdjustmentStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTotalPaymentOvertimeStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTotalDeductionStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBGrandTotalStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCGrandTotalStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCSubDepartementStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RITEActWorkdaysDW = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RITEActWorkdays = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RICESent = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLLocationStore = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLLocationOffice = New DevExpress.XtraReports.UI.XRLabel()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
-        Me.GVPayroll = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GCPayrollOffice = New DevExpress.XtraGrid.GridControl()
+        Me.GVPayrollOffice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCActualWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCOvertimeHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCActualWorkingDaysDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTotalSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCTotalTHP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalAdjustment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalPaymentOvertime = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalDeduction = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCSubDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEPending = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLType = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLLocation = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
@@ -63,101 +102,583 @@ Partial Public Class ReportPayrollAll
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.GCTotalSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.DetailReportOffice = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.DetailOffice = New DevExpress.XtraReports.UI.DetailBand()
+        Me.DetailReportStore = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.DetailStore = New DevExpress.XtraReports.UI.DetailBand()
+        CType(Me.GCPayrollStore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayrollStore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICESent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPayrollOffice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayrollOffice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
-        Me.Detail.HeightF = 260.0!
+        Me.Detail.HeightF = 0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'WinControlContainer2
+        '
+        Me.WinControlContainer2.LocationFloat = New DevExpress.Utils.PointFloat(0.0007311503!, 28.0!)
+        Me.WinControlContainer2.Name = "WinControlContainer2"
+        Me.WinControlContainer2.SizeF = New System.Drawing.SizeF(1075.0!, 104.0!)
+        Me.WinControlContainer2.WinControl = Me.GCPayrollStore
+        '
+        'GCPayrollStore
+        '
+        Me.GCPayrollStore.Location = New System.Drawing.Point(0, 39)
+        Me.GCPayrollStore.MainView = Me.GVPayrollStore
+        Me.GCPayrollStore.Name = "GCPayrollStore"
+        Me.GCPayrollStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RITEActWorkdaysDW, Me.RICECheck, Me.RITEActWorkdays, Me.RICESent})
+        Me.GCPayrollStore.Size = New System.Drawing.Size(1032, 100)
+        Me.GCPayrollStore.TabIndex = 1
+        Me.GCPayrollStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayrollStore})
+        '
+        'GVPayrollStore
+        '
+        Me.GVPayrollStore.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.GVPayrollStore.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollStore.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVPayrollStore.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.GVPayrollStore.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.GVPayrollStore.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.GVPayrollStore.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVPayrollStore.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollStore.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVPayrollStore.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVPayrollStore.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVPayrollStore.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVPayrollStore.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVPayrollStore.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollStore.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVPayrollStore.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVPayrollStore.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVPayrollStore.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVPayrollStore.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVPayrollStore.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollStore.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVPayrollStore.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVPayrollStore.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVPayrollStore.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVPayrollStore.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVPayrollStore.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollStore.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVPayrollStore.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVPayrollStore.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVPayrollStore.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVPayrollStore.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVPayrollStore.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVPayrollStore.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVPayrollStore.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollStore.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVPayrollStore.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVPayrollStore.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVPayrollStore.AppearancePrint.Row.Options.UseFont = True
+        Me.GVPayrollStore.BandPanelRowHeight = 16
+        Me.GVPayrollStore.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployeeStore, Me.GBWorkingDaysStore, Me.GBDWStore, Me.GBSalaryStore, Me.GBGrandTotalStore})
+        Me.GVPayrollStore.ColumnPanelRowHeight = 32
+        Me.GVPayrollStore.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartementStore, Me.GCSubDepartementStore, Me.GCNIPStore, Me.GCNameStore, Me.GCPositionStore, Me.GCStatusStore, Me.GCWorkingDaysStore, Me.GCActualWorkingDaysStore, Me.GCOvertimeHoursStore, Me.GCTotalTHPStore, Me.GCTotalAdjustmentStore, Me.GCTotalPaymentOvertimeStore, Me.GCTotalDeductionStore, Me.GCActualWorkingDaysDWStore, Me.GCBasicSalaryDWStore, Me.GCTotalSalaryDWStore, Me.GCGrandTotalStore})
+        Me.GVPayrollStore.GridControl = Me.GCPayrollStore
+        Me.GVPayrollStore.GroupCount = 2
+        Me.GVPayrollStore.GroupFormat = "{1} {2}"
+        Me.GVPayrollStore.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHPStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustmentStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeductionStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertimeStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotalStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.GCTotalSalaryDWStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.GCNameStore, "", "")})
+        Me.GVPayrollStore.LevelIndent = 0
+        Me.GVPayrollStore.Name = "GVPayrollStore"
+        Me.GVPayrollStore.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPayrollStore.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GVPayrollStore.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVPayrollStore.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVPayrollStore.OptionsView.ShowFooter = True
+        Me.GVPayrollStore.OptionsView.ShowGroupPanel = False
+        Me.GVPayrollStore.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartementStore, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCSubDepartementStore, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GBEmployeeStore
+        '
+        Me.GBEmployeeStore.Caption = "Employee"
+        Me.GBEmployeeStore.Columns.Add(Me.GCNIPStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCNameStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCDepartementStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCPositionStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCStatusStore)
+        Me.GBEmployeeStore.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GBEmployeeStore.Name = "GBEmployeeStore"
+        Me.GBEmployeeStore.VisibleIndex = 0
+        Me.GBEmployeeStore.Width = 512
+        '
+        'GCNIPStore
+        '
+        Me.GCNIPStore.Caption = "NIP"
+        Me.GCNIPStore.FieldName = "employee_code"
+        Me.GCNIPStore.MinWidth = 65
+        Me.GCNIPStore.Name = "GCNIPStore"
+        Me.GCNIPStore.OptionsColumn.AllowEdit = False
+        Me.GCNIPStore.Visible = True
+        Me.GCNIPStore.Width = 107
+        '
+        'GCNameStore
+        '
+        Me.GCNameStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCNameStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.GCNameStore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCNameStore.Caption = "Employee"
+        Me.GCNameStore.FieldName = "employee_name"
+        Me.GCNameStore.MinWidth = 195
+        Me.GCNameStore.Name = "GCNameStore"
+        Me.GCNameStore.OptionsColumn.AllowEdit = False
+        Me.GCNameStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
+        Me.GCNameStore.Visible = True
+        Me.GCNameStore.Width = 195
+        '
+        'GCDepartementStore
+        '
+        Me.GCDepartementStore.Caption = "Departement"
+        Me.GCDepartementStore.FieldName = "departement"
+        Me.GCDepartementStore.Name = "GCDepartementStore"
+        Me.GCDepartementStore.OptionsColumn.AllowEdit = False
+        '
+        'GCPositionStore
+        '
+        Me.GCPositionStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPositionStore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCPositionStore.Caption = "Employee Position"
+        Me.GCPositionStore.FieldName = "employee_position"
+        Me.GCPositionStore.MinWidth = 150
+        Me.GCPositionStore.Name = "GCPositionStore"
+        Me.GCPositionStore.OptionsColumn.AllowEdit = False
+        Me.GCPositionStore.Visible = True
+        Me.GCPositionStore.Width = 150
+        '
+        'GCStatusStore
+        '
+        Me.GCStatusStore.Caption = "Employee Status"
+        Me.GCStatusStore.FieldName = "employee_status"
+        Me.GCStatusStore.MinWidth = 60
+        Me.GCStatusStore.Name = "GCStatusStore"
+        Me.GCStatusStore.OptionsColumn.AllowEdit = False
+        Me.GCStatusStore.Visible = True
+        Me.GCStatusStore.Width = 60
+        '
+        'GBWorkingDaysStore
+        '
+        Me.GBWorkingDaysStore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBWorkingDaysStore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBWorkingDaysStore.Caption = "Working Days (WD)"
+        Me.GBWorkingDaysStore.Columns.Add(Me.GCWorkingDaysStore)
+        Me.GBWorkingDaysStore.Columns.Add(Me.GCActualWorkingDaysStore)
+        Me.GBWorkingDaysStore.Columns.Add(Me.GCOvertimeHoursStore)
+        Me.GBWorkingDaysStore.Name = "GBWorkingDaysStore"
+        Me.GBWorkingDaysStore.VisibleIndex = 1
+        Me.GBWorkingDaysStore.Width = 81
+        '
+        'GCWorkingDaysStore
+        '
+        Me.GCWorkingDaysStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCWorkingDaysStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCWorkingDaysStore.Caption = "WD"
+        Me.GCWorkingDaysStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCWorkingDaysStore.FieldName = "workdays"
+        Me.GCWorkingDaysStore.Name = "GCWorkingDaysStore"
+        Me.GCWorkingDaysStore.OptionsColumn.AllowEdit = False
+        Me.GCWorkingDaysStore.Width = 35
+        '
+        'GCActualWorkingDaysStore
+        '
+        Me.GCActualWorkingDaysStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCActualWorkingDaysStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCActualWorkingDaysStore.Caption = "Actual WD"
+        Me.GCActualWorkingDaysStore.DisplayFormat.FormatString = "N1"
+        Me.GCActualWorkingDaysStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCActualWorkingDaysStore.FieldName = "actual_workdays"
+        Me.GCActualWorkingDaysStore.Name = "GCActualWorkingDaysStore"
+        Me.GCActualWorkingDaysStore.OptionsColumn.AllowEdit = False
+        Me.GCActualWorkingDaysStore.Visible = True
+        Me.GCActualWorkingDaysStore.Width = 35
+        '
+        'GCOvertimeHoursStore
+        '
+        Me.GCOvertimeHoursStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCOvertimeHoursStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCOvertimeHoursStore.Caption = "Overtime (Hours)"
+        Me.GCOvertimeHoursStore.DisplayFormat.FormatString = "N1"
+        Me.GCOvertimeHoursStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCOvertimeHoursStore.FieldName = "total_ot_hour"
+        Me.GCOvertimeHoursStore.Name = "GCOvertimeHoursStore"
+        Me.GCOvertimeHoursStore.OptionsColumn.AllowEdit = False
+        Me.GCOvertimeHoursStore.Visible = True
+        Me.GCOvertimeHoursStore.Width = 46
+        '
+        'GBDWStore
+        '
+        Me.GBDWStore.Columns.Add(Me.GCActualWorkingDaysDWStore)
+        Me.GBDWStore.Columns.Add(Me.GCBasicSalaryDWStore)
+        Me.GBDWStore.Columns.Add(Me.GCTotalSalaryDWStore)
+        Me.GBDWStore.Name = "GBDWStore"
+        Me.GBDWStore.VisibleIndex = 2
+        Me.GBDWStore.Width = 209
+        '
+        'GCActualWorkingDaysDWStore
+        '
+        Me.GCActualWorkingDaysDWStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCActualWorkingDaysDWStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCActualWorkingDaysDWStore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCActualWorkingDaysDWStore.Caption = "Actual Working Days"
+        Me.GCActualWorkingDaysDWStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCActualWorkingDaysDWStore.FieldName = "actual_workdays"
+        Me.GCActualWorkingDaysDWStore.Name = "GCActualWorkingDaysDWStore"
+        Me.GCActualWorkingDaysDWStore.OptionsColumn.AllowEdit = False
+        Me.GCActualWorkingDaysDWStore.Visible = True
+        Me.GCActualWorkingDaysDWStore.Width = 66
+        '
+        'GCBasicSalaryDWStore
+        '
+        Me.GCBasicSalaryDWStore.Caption = "Daily Salary"
+        Me.GCBasicSalaryDWStore.DisplayFormat.FormatString = "N0"
+        Me.GCBasicSalaryDWStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCBasicSalaryDWStore.FieldName = "basic_salary"
+        Me.GCBasicSalaryDWStore.Name = "GCBasicSalaryDWStore"
+        Me.GCBasicSalaryDWStore.OptionsColumn.AllowEdit = False
+        Me.GCBasicSalaryDWStore.Visible = True
+        Me.GCBasicSalaryDWStore.Width = 68
+        '
+        'GCTotalSalaryDWStore
+        '
+        Me.GCTotalSalaryDWStore.Caption = "Total Salary"
+        Me.GCTotalSalaryDWStore.DisplayFormat.FormatString = "N0"
+        Me.GCTotalSalaryDWStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalSalaryDWStore.FieldName = "total_salary_dw"
+        Me.GCTotalSalaryDWStore.Name = "GCTotalSalaryDWStore"
+        Me.GCTotalSalaryDWStore.OptionsColumn.AllowEdit = False
+        Me.GCTotalSalaryDWStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
+        Me.GCTotalSalaryDWStore.Visible = True
+        '
+        'GBSalaryStore
+        '
+        Me.GBSalaryStore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBSalaryStore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalTHPStore)
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalAdjustmentStore)
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalPaymentOvertimeStore)
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalDeductionStore)
+        Me.GBSalaryStore.Name = "GBSalaryStore"
+        Me.GBSalaryStore.VisibleIndex = 3
+        Me.GBSalaryStore.Width = 232
+        '
+        'GCTotalTHPStore
+        '
+        Me.GCTotalTHPStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCTotalTHPStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCTotalTHPStore.Caption = "Total THP"
+        Me.GCTotalTHPStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalTHPStore.FieldName = "tot_thp"
+        Me.GCTotalTHPStore.Name = "GCTotalTHPStore"
+        Me.GCTotalTHPStore.OptionsColumn.AllowEdit = False
+        Me.GCTotalTHPStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", "{0:N0}")})
+        Me.GCTotalTHPStore.Visible = True
+        Me.GCTotalTHPStore.Width = 57
+        '
+        'GCTotalAdjustmentStore
+        '
+        Me.GCTotalAdjustmentStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCTotalAdjustmentStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCTotalAdjustmentStore.Caption = "Total Bonus / Adj"
+        Me.GCTotalAdjustmentStore.DisplayFormat.FormatString = "N0"
+        Me.GCTotalAdjustmentStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalAdjustmentStore.FieldName = "total_adjustment"
+        Me.GCTotalAdjustmentStore.Name = "GCTotalAdjustmentStore"
+        Me.GCTotalAdjustmentStore.OptionsColumn.AllowEdit = False
+        Me.GCTotalAdjustmentStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", "{0:N0}")})
+        Me.GCTotalAdjustmentStore.Visible = True
+        Me.GCTotalAdjustmentStore.Width = 57
+        '
+        'GCTotalPaymentOvertimeStore
+        '
+        Me.GCTotalPaymentOvertimeStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCTotalPaymentOvertimeStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCTotalPaymentOvertimeStore.Caption = "Total Overtime"
+        Me.GCTotalPaymentOvertimeStore.DisplayFormat.FormatString = "N0"
+        Me.GCTotalPaymentOvertimeStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalPaymentOvertimeStore.FieldName = "total_ot_wages"
+        Me.GCTotalPaymentOvertimeStore.Name = "GCTotalPaymentOvertimeStore"
+        Me.GCTotalPaymentOvertimeStore.OptionsColumn.AllowEdit = False
+        Me.GCTotalPaymentOvertimeStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", "{0:N0}")})
+        Me.GCTotalPaymentOvertimeStore.Visible = True
+        Me.GCTotalPaymentOvertimeStore.Width = 57
+        '
+        'GCTotalDeductionStore
+        '
+        Me.GCTotalDeductionStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCTotalDeductionStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCTotalDeductionStore.Caption = "Total Deduction"
+        Me.GCTotalDeductionStore.DisplayFormat.FormatString = "N0"
+        Me.GCTotalDeductionStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalDeductionStore.FieldName = "total_deduction"
+        Me.GCTotalDeductionStore.Name = "GCTotalDeductionStore"
+        Me.GCTotalDeductionStore.OptionsColumn.AllowEdit = False
+        Me.GCTotalDeductionStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", "{0:N0}")})
+        Me.GCTotalDeductionStore.Visible = True
+        Me.GCTotalDeductionStore.Width = 61
+        '
+        'GBGrandTotalStore
+        '
+        Me.GBGrandTotalStore.Columns.Add(Me.GCGrandTotalStore)
+        Me.GBGrandTotalStore.Name = "GBGrandTotalStore"
+        Me.GBGrandTotalStore.VisibleIndex = 4
+        Me.GBGrandTotalStore.Width = 60
+        '
+        'GCGrandTotalStore
+        '
+        Me.GCGrandTotalStore.AppearanceCell.Options.UseTextOptions = True
+        Me.GCGrandTotalStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCGrandTotalStore.Caption = "Grand Total"
+        Me.GCGrandTotalStore.DisplayFormat.FormatString = "N0"
+        Me.GCGrandTotalStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCGrandTotalStore.FieldName = "grand_total"
+        Me.GCGrandTotalStore.Name = "GCGrandTotalStore"
+        Me.GCGrandTotalStore.OptionsColumn.AllowEdit = False
+        Me.GCGrandTotalStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", "{0:N0}")})
+        Me.GCGrandTotalStore.Visible = True
+        Me.GCGrandTotalStore.Width = 60
+        '
+        'GCSubDepartementStore
+        '
+        Me.GCSubDepartementStore.Caption = "Sub Departement"
+        Me.GCSubDepartementStore.FieldName = "departement_sub"
+        Me.GCSubDepartementStore.Name = "GCSubDepartementStore"
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit3.ValueUnchecked = "no"
+        '
+        'RITEActWorkdaysDW
+        '
+        Me.RITEActWorkdaysDW.AutoHeight = False
+        Me.RITEActWorkdaysDW.DisplayFormat.FormatString = "N1"
+        Me.RITEActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEActWorkdaysDW.Name = "RITEActWorkdaysDW"
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
+        '
+        'RITEActWorkdays
+        '
+        Me.RITEActWorkdays.AutoHeight = False
+        Me.RITEActWorkdays.DisplayFormat.FormatString = "N1"
+        Me.RITEActWorkdays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEActWorkdays.Name = "RITEActWorkdays"
+        '
+        'RICESent
+        '
+        Me.RICESent.AutoHeight = False
+        Me.RICESent.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RICESent.ImageIndexChecked = 19
+        Me.RICESent.Name = "RICESent"
+        Me.RICESent.ValueChecked = "yes"
+        Me.RICESent.ValueUnchecked = "no"
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0.0007311503!, 0!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "Location"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(60.00071!, 0!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.Text = ":"
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLLocationStore
+        '
+        Me.XLLocationStore.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLLocationStore.LocationFloat = New DevExpress.Utils.PointFloat(75.00137!, 0!)
+        Me.XLLocationStore.Name = "XLLocationStore"
+        Me.XLLocationStore.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLLocationStore.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)
+        Me.XLLocationStore.StylePriority.UseFont = False
+        Me.XLLocationStore.StylePriority.UseTextAlignment = False
+        Me.XLLocationStore.Text = "Store"
+        Me.XLLocationStore.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.StylePriority.UseTextAlignment = False
+        Me.XrLabel2.Text = "Location"
+        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(59.99997!, 0!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = ":"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLLocationOffice
+        '
+        Me.XLLocationOffice.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XLLocationOffice.LocationFloat = New DevExpress.Utils.PointFloat(75.00063!, 0!)
+        Me.XLLocationOffice.Name = "XLLocationOffice"
+        Me.XLLocationOffice.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLLocationOffice.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)
+        Me.XLLocationOffice.StylePriority.UseFont = False
+        Me.XLLocationOffice.StylePriority.UseTextAlignment = False
+        Me.XLLocationOffice.Text = "Office"
+        Me.XLLocationOffice.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0004132589!, 0!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0007311503!, 28.0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 260.0!)
-        Me.WinControlContainer1.WinControl = Me.GCPayroll
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 104.0!)
+        Me.WinControlContainer1.WinControl = Me.GCPayrollOffice
         '
-        'GCPayroll
+        'GCPayrollOffice
         '
-        Me.GCPayroll.Location = New System.Drawing.Point(0, 39)
-        Me.GCPayroll.MainView = Me.GVPayroll
-        Me.GCPayroll.Name = "GCPayroll"
-        Me.GCPayroll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending, Me.RICESelect})
-        Me.GCPayroll.Size = New System.Drawing.Size(1032, 250)
-        Me.GCPayroll.TabIndex = 1
-        Me.GCPayroll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayroll})
+        Me.GCPayrollOffice.Location = New System.Drawing.Point(0, 39)
+        Me.GCPayrollOffice.MainView = Me.GVPayrollOffice
+        Me.GCPayrollOffice.Name = "GCPayrollOffice"
+        Me.GCPayrollOffice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending, Me.RICESelect})
+        Me.GCPayrollOffice.Size = New System.Drawing.Size(1032, 100)
+        Me.GCPayrollOffice.TabIndex = 1
+        Me.GCPayrollOffice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayrollOffice})
         '
-        'GVPayroll
+        'GVPayrollOffice
         '
-        Me.GVPayroll.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
-        Me.GVPayroll.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVPayroll.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVPayroll.AppearancePrint.BandPanel.Options.UseBackColor = True
-        Me.GVPayroll.AppearancePrint.BandPanel.Options.UseBorderColor = True
-        Me.GVPayroll.AppearancePrint.BandPanel.Options.UseFont = True
-        Me.GVPayroll.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
-        Me.GVPayroll.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVPayroll.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVPayroll.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVPayroll.AppearancePrint.FooterPanel.Options.UseBorderColor = True
-        Me.GVPayroll.AppearancePrint.FooterPanel.Options.UseFont = True
-        Me.GVPayroll.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
-        Me.GVPayroll.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
-        Me.GVPayroll.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVPayroll.AppearancePrint.GroupFooter.Options.UseBackColor = True
-        Me.GVPayroll.AppearancePrint.GroupFooter.Options.UseBorderColor = True
-        Me.GVPayroll.AppearancePrint.GroupFooter.Options.UseFont = True
-        Me.GVPayroll.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
-        Me.GVPayroll.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
-        Me.GVPayroll.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVPayroll.AppearancePrint.GroupRow.Options.UseBackColor = True
-        Me.GVPayroll.AppearancePrint.GroupRow.Options.UseBorderColor = True
-        Me.GVPayroll.AppearancePrint.GroupRow.Options.UseFont = True
-        Me.GVPayroll.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.GVPayroll.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVPayroll.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVPayroll.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVPayroll.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.GVPayroll.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVPayroll.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
-        Me.GVPayroll.AppearancePrint.Lines.Options.UseBackColor = True
-        Me.GVPayroll.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.GVPayroll.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.GVPayroll.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVPayroll.AppearancePrint.Row.Options.UseBackColor = True
-        Me.GVPayroll.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVPayroll.AppearancePrint.Row.Options.UseFont = True
-        Me.GVPayroll.BandPanelRowHeight = 16
-        Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBWorkingDays, Me.GBDW, Me.GBSalary, Me.GBGrandTotal})
-        Me.GVPayroll.ColumnPanelRowHeight = 32
-        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCName, Me.GCPosition, Me.GCStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCOvertimeHours, Me.GCTotalTHP, Me.GCTotalAdjustment, Me.GCTotalPaymentOvertime, Me.GCTotalDeduction, Me.GCActualWorkingDaysDW, Me.GCBasicSalaryDW, Me.GCTotalSalaryDW, Me.GCGrandTotal})
-        Me.GVPayroll.GridControl = Me.GCPayroll
-        Me.GVPayroll.GroupCount = 2
-        Me.GVPayroll.GroupFormat = "{1} {2}"
-        Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertime, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.GCTotalSalaryDW, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.GCName, "", "")})
-        Me.GVPayroll.LevelIndent = 0
-        Me.GVPayroll.Name = "GVPayroll"
-        Me.GVPayroll.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVPayroll.OptionsMenu.ShowConditionalFormattingItem = True
-        Me.GVPayroll.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVPayroll.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GVPayroll.OptionsView.ShowFooter = True
-        Me.GVPayroll.OptionsView.ShowGroupPanel = False
-        Me.GVPayroll.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCSubDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVPayrollOffice.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.GVPayrollOffice.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollOffice.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVPayrollOffice.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.GVPayrollOffice.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.GVPayrollOffice.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.GVPayrollOffice.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVPayrollOffice.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollOffice.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVPayrollOffice.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVPayrollOffice.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVPayrollOffice.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVPayrollOffice.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVPayrollOffice.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollOffice.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVPayrollOffice.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVPayrollOffice.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVPayrollOffice.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVPayrollOffice.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVPayrollOffice.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollOffice.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVPayrollOffice.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVPayrollOffice.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVPayrollOffice.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVPayrollOffice.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVPayrollOffice.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollOffice.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVPayrollOffice.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVPayrollOffice.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVPayrollOffice.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVPayrollOffice.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVPayrollOffice.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVPayrollOffice.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVPayrollOffice.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVPayrollOffice.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVPayrollOffice.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVPayrollOffice.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVPayrollOffice.AppearancePrint.Row.Options.UseFont = True
+        Me.GVPayrollOffice.BandPanelRowHeight = 16
+        Me.GVPayrollOffice.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBWorkingDays, Me.GBDW, Me.GBSalary, Me.GBGrandTotal})
+        Me.GVPayrollOffice.ColumnPanelRowHeight = 32
+        Me.GVPayrollOffice.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCName, Me.GCPosition, Me.GCStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCOvertimeHours, Me.GCTotalTHP, Me.GCTotalAdjustment, Me.GCTotalPaymentOvertime, Me.GCTotalDeduction, Me.GCActualWorkingDaysDW, Me.GCBasicSalaryDW, Me.GCTotalSalaryDW, Me.GCGrandTotal})
+        Me.GVPayrollOffice.GridControl = Me.GCPayrollOffice
+        Me.GVPayrollOffice.GroupCount = 2
+        Me.GVPayrollOffice.GroupFormat = "{1} {2}"
+        Me.GVPayrollOffice.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertime, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.GCTotalSalaryDW, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.GCName, "", "")})
+        Me.GVPayrollOffice.LevelIndent = 0
+        Me.GVPayrollOffice.Name = "GVPayrollOffice"
+        Me.GVPayrollOffice.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPayrollOffice.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GVPayrollOffice.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVPayrollOffice.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVPayrollOffice.OptionsView.ShowFooter = True
+        Me.GVPayrollOffice.OptionsView.ShowGroupPanel = False
+        Me.GVPayrollOffice.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCSubDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GBEmployee
+        '
+        Me.GBEmployee.Caption = "Employee"
+        Me.GBEmployee.Columns.Add(Me.GCNIP)
+        Me.GBEmployee.Columns.Add(Me.GCName)
+        Me.GBEmployee.Columns.Add(Me.GCDepartement)
+        Me.GBEmployee.Columns.Add(Me.GCPosition)
+        Me.GBEmployee.Columns.Add(Me.GCStatus)
+        Me.GBEmployee.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GBEmployee.Name = "GBEmployee"
+        Me.GBEmployee.VisibleIndex = 0
+        Me.GBEmployee.Width = 512
         '
         'GCNIP
         '
@@ -212,6 +733,18 @@ Partial Public Class ReportPayrollAll
         Me.GCStatus.Visible = True
         Me.GCStatus.Width = 60
         '
+        'GBWorkingDays
+        '
+        Me.GBWorkingDays.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBWorkingDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBWorkingDays.Caption = "Working Days (WD)"
+        Me.GBWorkingDays.Columns.Add(Me.GCWorkingDays)
+        Me.GBWorkingDays.Columns.Add(Me.GCActualWorkingDays)
+        Me.GBWorkingDays.Columns.Add(Me.GCOvertimeHours)
+        Me.GBWorkingDays.Name = "GBWorkingDays"
+        Me.GBWorkingDays.VisibleIndex = 1
+        Me.GBWorkingDays.Width = 81
+        '
         'GCWorkingDays
         '
         Me.GCWorkingDays.AppearanceCell.Options.UseTextOptions = True
@@ -250,6 +783,15 @@ Partial Public Class ReportPayrollAll
         Me.GCOvertimeHours.Visible = True
         Me.GCOvertimeHours.Width = 46
         '
+        'GBDW
+        '
+        Me.GBDW.Columns.Add(Me.GCActualWorkingDaysDW)
+        Me.GBDW.Columns.Add(Me.GCBasicSalaryDW)
+        Me.GBDW.Columns.Add(Me.GCTotalSalaryDW)
+        Me.GBDW.Name = "GBDW"
+        Me.GBDW.VisibleIndex = 2
+        Me.GBDW.Width = 209
+        '
         'GCActualWorkingDaysDW
         '
         Me.GCActualWorkingDaysDW.AppearanceCell.Options.UseTextOptions = True
@@ -274,6 +816,29 @@ Partial Public Class ReportPayrollAll
         Me.GCBasicSalaryDW.OptionsColumn.AllowEdit = False
         Me.GCBasicSalaryDW.Visible = True
         Me.GCBasicSalaryDW.Width = 68
+        '
+        'GCTotalSalaryDW
+        '
+        Me.GCTotalSalaryDW.Caption = "Total Salary"
+        Me.GCTotalSalaryDW.DisplayFormat.FormatString = "N0"
+        Me.GCTotalSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalSalaryDW.FieldName = "total_salary_dw"
+        Me.GCTotalSalaryDW.Name = "GCTotalSalaryDW"
+        Me.GCTotalSalaryDW.OptionsColumn.AllowEdit = False
+        Me.GCTotalSalaryDW.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
+        Me.GCTotalSalaryDW.Visible = True
+        '
+        'GBSalary
+        '
+        Me.GBSalary.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBSalary.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBSalary.Columns.Add(Me.GCTotalTHP)
+        Me.GBSalary.Columns.Add(Me.GCTotalAdjustment)
+        Me.GBSalary.Columns.Add(Me.GCTotalPaymentOvertime)
+        Me.GBSalary.Columns.Add(Me.GCTotalDeduction)
+        Me.GBSalary.Name = "GBSalary"
+        Me.GBSalary.VisibleIndex = 3
+        Me.GBSalary.Width = 232
         '
         'GCTotalTHP
         '
@@ -331,6 +896,13 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalDeduction.Visible = True
         Me.GCTotalDeduction.Width = 61
         '
+        'GBGrandTotal
+        '
+        Me.GBGrandTotal.Columns.Add(Me.GCGrandTotal)
+        Me.GBGrandTotal.Name = "GBGrandTotal"
+        Me.GBGrandTotal.VisibleIndex = 4
+        Me.GBGrandTotal.Width = 60
+        '
         'GCGrandTotal
         '
         Me.GCGrandTotal.AppearanceCell.Options.UseTextOptions = True
@@ -377,18 +949,6 @@ Partial Public Class ReportPayrollAll
         Me.XrLabel1.Text = "Type"
         Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel2
-        '
-        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(855.0!, 57.0!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "Location"
-        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
@@ -401,18 +961,6 @@ Partial Public Class ReportPayrollAll
         Me.XrLabel3.Text = ":"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel4
-        '
-        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(915.0!, 57.0!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = ":"
-        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
         'XLType
         '
         Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
@@ -424,18 +972,6 @@ Partial Public Class ReportPayrollAll
         Me.XLType.StylePriority.UseTextAlignment = False
         Me.XLType.Text = "[type]"
         Me.XLType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XLLocation
-        '
-        Me.XLLocation.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLLocation.LocationFloat = New DevExpress.Utils.PointFloat(930.0007!, 57.0!)
-        Me.XLLocation.Name = "XLLocation"
-        Me.XLLocation.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLLocation.SizeF = New System.Drawing.SizeF(144.9993!, 23.0!)
-        Me.XLLocation.StylePriority.UseFont = False
-        Me.XLLocation.StylePriority.UseTextAlignment = False
-        Me.XLLocation.Text = "[location]"
-        Me.XLLocation.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'TopMargin
         '
@@ -512,7 +1048,7 @@ Partial Public Class ReportPayrollAll
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XLLocation, Me.XrLabel2, Me.XLType, Me.XLTitle, Me.XLPeriod, Me.XrLabel4, Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel1})
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XLType, Me.XLTitle, Me.XLPeriod, Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel1})
         Me.ReportHeader.HeightF = 100.0!
         Me.ReportHeader.Name = "ReportHeader"
         '
@@ -520,6 +1056,7 @@ Partial Public Class ReportPayrollAll
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1})
         Me.ReportFooter.HeightF = 100.0!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrPanel1
@@ -532,7 +1069,7 @@ Partial Public Class ReportPayrollAll
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.00009536743!, 19.99995!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(1075.0!, 25.0!)
@@ -553,73 +1090,361 @@ Partial Public Class ReportPayrollAll
         Me.XrTableCell13.Visible = False
         Me.XrTableCell13.Weight = 2.99999986405489R
         '
-        'GCTotalSalaryDW
+        'RepositoryItemCheckEdit1
         '
-        Me.GCTotalSalaryDW.Caption = "Total Salary"
-        Me.GCTotalSalaryDW.DisplayFormat.FormatString = "N0"
-        Me.GCTotalSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCTotalSalaryDW.FieldName = "total_salary_dw"
-        Me.GCTotalSalaryDW.Name = "GCTotalSalaryDW"
-        Me.GCTotalSalaryDW.OptionsColumn.AllowEdit = False
-        Me.GCTotalSalaryDW.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
-        Me.GCTotalSalaryDW.Visible = True
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
-        'GBEmployee
+        'RepositoryItemCheckEdit2
         '
-        Me.GBEmployee.Caption = "Employee"
-        Me.GBEmployee.Columns.Add(Me.GCNIP)
-        Me.GBEmployee.Columns.Add(Me.GCName)
-        Me.GBEmployee.Columns.Add(Me.GCDepartement)
-        Me.GBEmployee.Columns.Add(Me.GCPosition)
-        Me.GBEmployee.Columns.Add(Me.GCStatus)
-        Me.GBEmployee.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GBEmployee.Name = "GBEmployee"
-        Me.GBEmployee.VisibleIndex = 0
-        Me.GBEmployee.Width = 512
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
         '
-        'GBWorkingDays
+        'BandedGridView1
         '
-        Me.GBWorkingDays.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBWorkingDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBWorkingDays.Caption = "Working Days (WD)"
-        Me.GBWorkingDays.Columns.Add(Me.GCWorkingDays)
-        Me.GBWorkingDays.Columns.Add(Me.GCActualWorkingDays)
-        Me.GBWorkingDays.Columns.Add(Me.GCOvertimeHours)
-        Me.GBWorkingDays.Name = "GBWorkingDays"
-        Me.GBWorkingDays.VisibleIndex = 1
-        Me.GBWorkingDays.Width = 81
+        Me.BandedGridView1.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.BandedGridView1.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridView1.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView1.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.BandedGridView1.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.BandedGridView1.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.BandedGridView1.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.BandedGridView1.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridView1.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.BandedGridView1.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.BandedGridView1.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.BandedGridView1.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.BandedGridView1.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.BandedGridView1.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridView1.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.BandedGridView1.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.BandedGridView1.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.BandedGridView1.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.BandedGridView1.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.BandedGridView1.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridView1.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView1.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.BandedGridView1.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.BandedGridView1.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.BandedGridView1.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.BandedGridView1.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridView1.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView1.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.BandedGridView1.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.BandedGridView1.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.BandedGridView1.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.BandedGridView1.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.BandedGridView1.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.BandedGridView1.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.BandedGridView1.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.BandedGridView1.AppearancePrint.Row.Options.UseBackColor = True
+        Me.BandedGridView1.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.BandedGridView1.AppearancePrint.Row.Options.UseFont = True
+        Me.BandedGridView1.BandPanelRowHeight = 16
+        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand4, Me.GridBand5})
+        Me.BandedGridView1.ColumnPanelRowHeight = 32
+        Me.BandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn3, Me.BandedGridColumn17, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn16})
+        Me.BandedGridView1.GroupCount = 2
+        Me.BandedGridView1.GroupFormat = "{1} {2}"
+        Me.BandedGridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.BandedGridColumn12, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.BandedGridColumn13, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.BandedGridColumn15, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.BandedGridColumn14, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.BandedGridColumn16, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.BandedGridColumn11, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.BandedGridColumn2, "", "")})
+        Me.BandedGridView1.LevelIndent = 0
+        Me.BandedGridView1.Name = "BandedGridView1"
+        Me.BandedGridView1.OptionsBehavior.AutoExpandAllGroups = True
+        Me.BandedGridView1.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.BandedGridView1.OptionsPrint.AllowMultilineHeaders = True
+        Me.BandedGridView1.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.BandedGridView1.OptionsView.ShowFooter = True
+        Me.BandedGridView1.OptionsView.ShowGroupPanel = False
+        Me.BandedGridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn3, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn17, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'GBDW
+        'GridBand1
         '
-        Me.GBDW.Columns.Add(Me.GCActualWorkingDaysDW)
-        Me.GBDW.Columns.Add(Me.GCBasicSalaryDW)
-        Me.GBDW.Columns.Add(Me.GCTotalSalaryDW)
-        Me.GBDW.Name = "GBDW"
-        Me.GBDW.VisibleIndex = 2
-        Me.GBDW.Width = 209
+        Me.GridBand1.Caption = "Employee"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn5)
+        Me.GridBand1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 512
         '
-        'GBSalary
+        'BandedGridColumn1
         '
-        Me.GBSalary.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBSalary.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBSalary.Columns.Add(Me.GCTotalTHP)
-        Me.GBSalary.Columns.Add(Me.GCTotalAdjustment)
-        Me.GBSalary.Columns.Add(Me.GCTotalPaymentOvertime)
-        Me.GBSalary.Columns.Add(Me.GCTotalDeduction)
-        Me.GBSalary.Name = "GBSalary"
-        Me.GBSalary.VisibleIndex = 3
-        Me.GBSalary.Width = 232
+        Me.BandedGridColumn1.Caption = "NIP"
+        Me.BandedGridColumn1.FieldName = "employee_code"
+        Me.BandedGridColumn1.MinWidth = 65
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn1.Visible = True
+        Me.BandedGridColumn1.Width = 107
         '
-        'GBGrandTotal
+        'BandedGridColumn2
         '
-        Me.GBGrandTotal.Columns.Add(Me.GCGrandTotal)
-        Me.GBGrandTotal.Name = "GBGrandTotal"
-        Me.GBGrandTotal.VisibleIndex = 4
-        Me.GBGrandTotal.Width = 60
+        Me.BandedGridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.BandedGridColumn2.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumn2.Caption = "Employee"
+        Me.BandedGridColumn2.FieldName = "employee_name"
+        Me.BandedGridColumn2.MinWidth = 195
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
+        Me.BandedGridColumn2.Visible = True
+        Me.BandedGridColumn2.Width = 195
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "Departement"
+        Me.BandedGridColumn3.FieldName = "departement"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.OptionsColumn.AllowEdit = False
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumn4.Caption = "Employee Position"
+        Me.BandedGridColumn4.FieldName = "employee_position"
+        Me.BandedGridColumn4.MinWidth = 150
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn4.Visible = True
+        Me.BandedGridColumn4.Width = 150
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "Employee Status"
+        Me.BandedGridColumn5.FieldName = "employee_status"
+        Me.BandedGridColumn5.MinWidth = 60
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn5.Visible = True
+        Me.BandedGridColumn5.Width = 60
+        '
+        'GridBand2
+        '
+        Me.GridBand2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand2.Caption = "Working Days (WD)"
+        Me.GridBand2.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand2.Columns.Add(Me.BandedGridColumn7)
+        Me.GridBand2.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand2.Name = "GridBand2"
+        Me.GridBand2.VisibleIndex = 1
+        Me.GridBand2.Width = 81
+        '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn6.Caption = "WD"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "N1"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn6.FieldName = "workdays"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn6.Width = 35
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn7.Caption = "Actual WD"
+        Me.BandedGridColumn7.DisplayFormat.FormatString = "N1"
+        Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn7.FieldName = "actual_workdays"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn7.Visible = True
+        Me.BandedGridColumn7.Width = 35
+        '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn8.Caption = "Overtime (Hours)"
+        Me.BandedGridColumn8.DisplayFormat.FormatString = "N1"
+        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn8.FieldName = "total_ot_hour"
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn8.Visible = True
+        Me.BandedGridColumn8.Width = 46
+        '
+        'GridBand3
+        '
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBand3.Name = "GridBand3"
+        Me.GridBand3.VisibleIndex = 2
+        Me.GridBand3.Width = 209
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn9.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumn9.Caption = "Actual Working Days"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "N1"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn9.FieldName = "actual_workdays"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn9.Visible = True
+        Me.BandedGridColumn9.Width = 66
+        '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.Caption = "Daily Salary"
+        Me.BandedGridColumn10.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn10.FieldName = "basic_salary"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn10.Visible = True
+        Me.BandedGridColumn10.Width = 68
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "Total Salary"
+        Me.BandedGridColumn11.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn11.FieldName = "total_salary_dw"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
+        Me.BandedGridColumn11.Visible = True
+        '
+        'GridBand4
+        '
+        Me.GridBand4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand4.Columns.Add(Me.BandedGridColumn12)
+        Me.GridBand4.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBand4.Columns.Add(Me.BandedGridColumn14)
+        Me.GridBand4.Columns.Add(Me.BandedGridColumn15)
+        Me.GridBand4.Name = "GridBand4"
+        Me.GridBand4.VisibleIndex = 3
+        Me.GridBand4.Width = 232
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn12.Caption = "Total THP"
+        Me.BandedGridColumn12.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn12.FieldName = "tot_thp"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", "{0:N0}")})
+        Me.BandedGridColumn12.Visible = True
+        Me.BandedGridColumn12.Width = 57
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn13.Caption = "Total Bonus / Adj"
+        Me.BandedGridColumn13.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn13.FieldName = "total_adjustment"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", "{0:N0}")})
+        Me.BandedGridColumn13.Visible = True
+        Me.BandedGridColumn13.Width = 57
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn14.Caption = "Total Overtime"
+        Me.BandedGridColumn14.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn14.FieldName = "total_ot_wages"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", "{0:N0}")})
+        Me.BandedGridColumn14.Visible = True
+        Me.BandedGridColumn14.Width = 57
+        '
+        'BandedGridColumn15
+        '
+        Me.BandedGridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn15.Caption = "Total Deduction"
+        Me.BandedGridColumn15.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn15.FieldName = "total_deduction"
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", "{0:N0}")})
+        Me.BandedGridColumn15.Visible = True
+        Me.BandedGridColumn15.Width = 61
+        '
+        'GridBand5
+        '
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn16)
+        Me.GridBand5.Name = "GridBand5"
+        Me.GridBand5.VisibleIndex = 4
+        Me.GridBand5.Width = 60
+        '
+        'BandedGridColumn16
+        '
+        Me.BandedGridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn16.Caption = "Grand Total"
+        Me.BandedGridColumn16.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn16.FieldName = "grand_total"
+        Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", "{0:N0}")})
+        Me.BandedGridColumn16.Visible = True
+        Me.BandedGridColumn16.Width = 60
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.Caption = "Sub Departement"
+        Me.BandedGridColumn17.FieldName = "departement_sub"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        '
+        'DetailReportOffice
+        '
+        Me.DetailReportOffice.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.DetailOffice})
+        Me.DetailReportOffice.Level = 0
+        Me.DetailReportOffice.Name = "DetailReportOffice"
+        '
+        'DetailOffice
+        '
+        Me.DetailOffice.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1, Me.XrLabel2, Me.XrLabel4, Me.XLLocationOffice})
+        Me.DetailOffice.HeightF = 152.0!
+        Me.DetailOffice.Name = "DetailOffice"
+        '
+        'DetailReportStore
+        '
+        Me.DetailReportStore.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.DetailStore})
+        Me.DetailReportStore.Level = 1
+        Me.DetailReportStore.Name = "DetailReportStore"
+        Me.DetailReportStore.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBand
+        '
+        'DetailStore
+        '
+        Me.DetailStore.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XLLocationStore, Me.XrLabel6, Me.WinControlContainer2})
+        Me.DetailStore.HeightF = 152.0!
+        Me.DetailStore.Name = "DetailStore"
         '
         'ReportPayrollAll
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.DetailReportOffice, Me.DetailReportStore})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.Landscape = True
         Me.Margins = New System.Drawing.Printing.Margins(25, 69, 50, 50)
@@ -629,11 +1454,21 @@ Partial Public Class ReportPayrollAll
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
         Me.VerticalContentSplitting = DevExpress.XtraPrinting.VerticalContentSplitting.Smart
-        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPayrollStore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayrollStore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICESent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPayrollOffice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayrollOffice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -642,8 +1477,8 @@ Partial Public Class ReportPayrollAll
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents SqlDataSource1 As DevExpress.DataAccess.Sql.SqlDataSource
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCPayroll As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVPayroll As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GCPayrollOffice As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPayrollOffice As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GCNIP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCName As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -667,11 +1502,8 @@ Partial Public Class ReportPayrollAll
     Friend WithEvents GCOvertimeHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XLType As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XLLocation As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
@@ -685,4 +1517,69 @@ Partial Public Class ReportPayrollAll
     Friend WithEvents GBDW As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBGrandTotal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents XLLocationOffice As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLLocationStore As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents WinControlContainer2 As DevExpress.XtraReports.UI.WinControlContainer
+    Friend WithEvents GCPayrollStore As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPayrollStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RICESent As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RITEActWorkdays As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RITEActWorkdaysDW As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GCNIPStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCNameStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCDepartementStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCPositionStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCStatusStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCWorkingDaysStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCActualWorkingDaysStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCOvertimeHoursStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCActualWorkingDaysDWStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCBasicSalaryDWStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCTotalSalaryDWStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCTotalTHPStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCTotalAdjustmentStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCTotalPaymentOvertimeStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCTotalDeductionStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCGrandTotalStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCSubDepartementStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents DetailReportOffice As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents DetailOffice As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents DetailReportStore As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents DetailStore As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents GBEmployeeStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBWorkingDaysStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBDWStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBSalaryStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBGrandTotalStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

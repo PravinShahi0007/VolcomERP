@@ -719,4 +719,133 @@
             End If
         End If
     End Sub
+
+    Sub send_mail()
+        Dim user_head As DataTable = execute_query("
+            SELECT employee.employee_name, employee.email_external
+            FROM tb_m_departement AS departement
+            LEFT JOIN tb_m_user AS usr ON usr.id_user = departement.id_user_head
+            LEFT JOIN tb_m_employee AS employee ON usr.id_employee = employee.id_employee
+            WHERE departement.id_departement = " + LEDepartement.EditValue.ToString, -1, True, "", "", "", "")
+
+        Dim body_inner As String = ""
+
+        For i = 0 To GVEmployee.RowCount - 1
+            If GVEmployee.IsValidRowHandle(i) Then
+                body_inner += "
+                    <tr style='font-size: 9pt; font-family: Arial, sans-serif;'>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_date").ToString + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "employee_code").ToString + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "employee_name").ToString + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellDisplayText(i, "conversion_type").ToString + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_start_time").ToString.Substring(0, 5) + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_end_time").ToString.Substring(0, 5) + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_break").ToString + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_total_hours").ToString + "</td>
+                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_note").ToString + "</td>
+                    </tr>
+                "
+            End If
+        Next
+
+        Dim body As String = "
+            <table cellpadding='0' cellspacing='0' width='100%' style='background-color: #EEEEEE; border-collapse: collapse; padding: 30pt;'>
+                <tr>
+                    <td align='center'>
+                        <table cellpadding='0' cellspacing='0' width='900pt' style='background-color: #FFFFFF; border-collapse: collapse;'>
+                            <tr>
+                                <td style='text-align: center; padding: 30pt 0pt;'>
+                                    <a href='http://www.volcom.co.id' title='Volcom' target='_blank'>
+                                        <img src='http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' height='142' width='200'>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style='background-color: #EEEEEE; padding: 5pt 0pt;'></td>
+                            </tr>
+                            <tr>
+                                <td style='padding: 30pt;'>
+                                    <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt 0pt 10pt 0pt;'>Dear " + user_head.Rows(0)("employee_name").ToString + ",</p>
+                                    <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 25pt 0pt;'>Propose Overtime Number " + TENumber.EditValue.ToString + " has been approved with detail bellow</p>
+                                    <table border='0' cellpadding='0' cellspacing='0' width='100%' style='border-collapse: collapse;'>
+                                        <tr style='font-size: 9pt; font-family: Arial, sans-serif;'>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Date</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>NIP</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Employee</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Conversion Type</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Start Work</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>End Work</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Break</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Total</th>
+                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Overtime Propose</th>
+                                        </tr>
+                                        " + body_inner + "
+                                    </table>
+                                    <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 25pt 0pt 10pt 0pt;'>Thank you</p>
+                                    <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt;'>Volcom ERP</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style='background-color: #EEEEEE; padding: 5pt 0pt;'></td>
+                            </tr>
+                            <tr>
+                                <td style='text-align: center; padding: 30pt 0pt;'>
+                                    <p style='font-size: 9pt; font-family: Arial, sans-serif; color: #A0A0A0; margin-bottom: 15pt;'>This email send directly from system. Do not reply.</p>
+                                    <img src='http://www.volcom.co.id/enews/img/footer.jpg' alt='Volcom' height='56' width='250'>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        "
+
+        Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+
+        Dim client As Net.Mail.SmtpClient = New Net.Mail.SmtpClient()
+
+        If is_ssl = "1" Then
+            client.Port = get_setup_field("system_email_ssl_port").ToString
+            client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_ssl_server").ToString
+            client.EnableSsl = True
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+        Else
+            client.Port = get_setup_field("system_email_port").ToString
+            client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_server").ToString
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+        End If
+
+        'mail
+        Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
+
+        'from
+        Dim from_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress("system@volcom.co.id", "Propose Overtime Approved - Volcom ERP")
+
+        mail.From = from_mail
+
+        'to
+        Dim to_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress("friastana@volcom.co.id", "I Putu Agus Friastana")
+
+        mail.To.Add(to_mail)
+
+        'cc
+
+        mail.Subject = "Propose Overtime Approved"
+        mail.IsBodyHtml = True
+        mail.Body = body
+
+        Dim status As String = "1"
+        Dim message As String = ""
+
+        Try
+            client.Send(mail)
+        Catch ex As Exception
+            status = "2"
+            message = ex.ToString()
+        End Try
+    End Sub
 End Class

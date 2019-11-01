@@ -879,7 +879,7 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCLegal.DataSource = data
         GVLegal.BestFitColumns()
-        If GVLegal.RowCount > 0 And Not is_view = "1" Then
+        If GVLegal.RowCount > 0 And Not is_view = "1" And LEStatus.EditValue.ToString = "3" Then
             BDeleteLegal.Visible = True
         Else
             BDeleteLegal.Visible = False

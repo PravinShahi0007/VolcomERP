@@ -231,7 +231,7 @@
 
                                         Dim total_hours As Decimal = Math.Floor(after_work_ot / 0.5) * 0.5
 
-                                        GVAttendance.SetRowCellValue(i, "start_work_ot", Date.Parse(ot_start_time.ToString).ToString("HH:mm:ss"))
+                                        GVAttendance.SetRowCellValue(i, "start_work_ot", DateTime.Parse(ot_start_time.ToString).ToString("HH:mm:ss"))
                                         GVAttendance.SetRowCellValue(i, "end_work_ot", GVAttendance.GetRowCellValue(i, "end_work_att"))
                                         GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
                                         GVAttendance.SetRowCellValue(i, "ot_hours", after_work_ot)
@@ -247,7 +247,7 @@
                                         Dim total_hours As Decimal = Math.Floor(before_work_ot / 0.5) * 0.5
 
                                         GVAttendance.SetRowCellValue(i, "start_work_ot", GVAttendance.GetRowCellValue(i, "start_work_att"))
-                                        GVAttendance.SetRowCellValue(i, "end_work_ot", Date.Parse(ot_end_time.ToString).ToString("HH:mm:ss"))
+                                        GVAttendance.SetRowCellValue(i, "end_work_ot", DateTime.Parse(ot_end_time.ToString).ToString("HH:mm:ss"))
                                         GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
                                         GVAttendance.SetRowCellValue(i, "ot_hours", before_work_ot)
                                         GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
@@ -292,19 +292,25 @@
 
                                 'overtime in shedule
                                 If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString And GVAttendance.GetRowCellValue(i, "ot_potention").ToString = "2" Then
-                                    If (overtime_in >= start_work_att And overtime_in <= end_work_att) And (overtime_out >= start_work_att And overtime_out <= end_work_att) Then
-                                        GVAttendance.SetRowCellValue(i, "ot_potention", "1")
+                                    If (overtime_in >= start_work_att And overtime_in <= end_work_att) Or (overtime_out >= start_work_att And overtime_out <= end_work_att) Then
+                                        Dim start_work_sch As DateTime = If(overtime_in > start_work_att, overtime_in, start_work_att)
+                                        Dim end_work_sch As DateTime = If(overtime_out < end_work_att, overtime_out, end_work_att)
 
-                                        Dim total_hours As Decimal = Math.Floor(ot_hours / 0.5) * 0.5
+                                        Dim ot_hours_sch As Decimal = (end_work_sch - start_work_sch).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
+                                        Dim total_hours As Decimal = Math.Floor(ot_hours_sch / 0.5) * 0.5
 
-                                        GVAttendance.SetRowCellValue(i, "start_work_ot", Date.Parse(overtime_in.ToString).ToString("HH:mm:ss"))
-                                        GVAttendance.SetRowCellValue(i, "end_work_ot", Date.Parse(overtime_out.ToString).ToString("HH:mm:ss"))
-                                        GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
-                                        GVAttendance.SetRowCellValue(i, "ot_hours", ot_hours)
-                                        GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
+                                        If total_hours >= ot_min Then
+                                            GVAttendance.SetRowCellValue(i, "ot_potention", "1")
 
-                                        GVAttendance.SetRowCellValue(i, "is_valid", "yes")
-                                        GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
+                                            GVAttendance.SetRowCellValue(i, "start_work_ot", DateTime.Parse(start_work_sch.ToString).ToString("HH:mm:ss"))
+                                            GVAttendance.SetRowCellValue(i, "end_work_ot", DateTime.Parse(end_work_sch.ToString).ToString("HH:mm:ss"))
+                                            GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                            GVAttendance.SetRowCellValue(i, "ot_hours", ot_hours_sch)
+                                            GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
+
+                                            GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+                                            GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
+                                        End If
                                     End If
                                 End If
                             End If
@@ -890,5 +896,239 @@
 
     Private Sub SBComplete_Click(sender As Object, e As EventArgs) Handles SBComplete.Click
         submit("complete")
+    End Sub
+
+    Sub check_overtime()
+        Dim is_store As String = execute_query("SELECT is_store FROM tb_m_departement WHERE id_departement = (SELECT id_departement FROM tb_ot WHERE id_ot = " + id_ot + ")", 0, True, "", "", "", "")
+        Dim date_search As String = Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim departement_include As String = execute_query("SELECT GROUP_CONCAT(DISTINCT id_departement) AS id_departement FROM tb_ot_det WHERE ot_date = '" + date_search + "' AND id_ot = " + id_ot, 0, True, "", "", "", "")
+
+        Dim ot_min_staff As Integer = get_opt_emp_field("ot_min_staff")
+        Dim ot_min_spv As Integer = get_opt_emp_field("ot_min_spv")
+
+        'propose
+        Dim query_propose As String = "
+            SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, ot_det.ot_date, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, ot_det.to_salary, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND DATE = ot_det.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND DATE = ot_det.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(" + is_store + " = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, ot_det.ot_consumption, ot_det.conversion_type, ot_det.ot_start_time AS ot_start_time, ot_det.ot_end_time AS ot_end_time, ot_det.ot_break, ROUND((TIMESTAMPDIFF(MINUTE, ot_det.ot_start_time, ot_det.ot_end_time) / 60) - ot_det.ot_break, 1) AS ot_total_hours, ot_det.ot_note
+            FROM tb_ot_det AS ot_det
+            LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
+            LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
+            LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
+            LEFT JOIN tb_lookup_employee_status AS employee_status ON ot_det.id_employee_status = employee_status.id_employee_status
+            WHERE ot_det.id_ot = " + id_ot + " AND ot_det.ot_date = '" + date_search + "'
+            ORDER BY ot_det.ot_date ASC, departement.departement ASC, employee.id_employee_level ASC, employee.employee_code ASC
+        "
+
+        Dim data_propose As DataTable = execute_query(query_propose, -1, True, "", "", "", "")
+
+        'attendance
+        Dim query_att As String = "
+            SELECT * FROM (
+                SELECT sch.id_employee, emp.id_departement, dep_sub.id_departement_sub, dep.departement, sch.date, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_employee_level, emp.id_employee_status, sts.employee_status, IF(salary.salary > (dep_sub.ump + (SELECT ot_ump_conversion FROM tb_opt_emp LIMIT 1)), '2', '1') AS to_salary, IF((sch.id_schedule_type = 1 OR sch.id_schedule_type IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = '" + date_search + "' AND id_religion IN (0, IF(" + is_store + " = 1, 0, emp.id_religion))) IS NULL), 2, 1) AS is_day_off, IF((SELECT to_salary) = 1, 1, IF((SELECT is_day_off) = 1, 2, IF(" + is_store + " = 1, 2, 3))) AS conversion_type, IF(sch.id_schedule_type = '1', IFNULL(at_input.time_in, MIN(at_in.datetime)), IFNULL(at_input.time_in, MIN(at_in_hol.datetime))) AS start_work_att, IF(sch.id_schedule_type = '1', IFNULL(at_input.time_out, MAX(at_out.datetime)), IFNULL(at_input.time_out, MAX(at_out_hol.datetime))) AS end_work_att, '' AS start_work_ot, '' AS end_work_ot, 0.0 AS break_hours, 0.0 AS ot_hours, 0.0 AS total_hours, 0.0 AS point_ot, '' AS ot_note, 'no' AS is_valid, sch.id_schedule_type, sch.in, sch.out, 2 AS ot_potention
+                FROM tb_emp_schedule AS sch
+                LEFT JOIN tb_m_employee AS emp ON emp.id_employee = sch.id_employee
+                LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement 
+                LEFT JOIN tb_m_departement_sub AS dep_sub ON IFNULL(emp.id_departement_sub, (SELECT id_departement_sub FROM tb_m_departement_sub WHERE id_departement = emp.id_departement LIMIT 1)) = dep_sub.id_departement_sub
+                LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+                LEFT JOIN (
+                    SELECT id_employee, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS salary
+                    FROM tb_m_employee
+                ) AS salary ON emp.id_employee = salary.id_employee
+                LEFT JOIN tb_emp_attn AS at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 18 HOUR) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
+                LEFT JOIN tb_emp_attn AS at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 18 HOUR)) AND at_out.type_log = 2 
+                LEFT JOIN tb_emp_attn AS at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
+                LEFT JOIN tb_emp_attn AS at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
+                LEFT JOIN (
+                    SELECT input_det.id_employee, input_det.date, input_det.time_in, input_det.time_out
+                    FROM tb_emp_attn_input_det AS input_det
+                    LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input
+                    WHERE input.id_report_status = 6 AND input_det.date = '" + date_search + "'
+                ) AS at_input ON sch.id_employee = at_input.id_employee
+                WHERE sch.date = '" + date_search + "' AND emp.id_departement IN (" + departement_include + ")
+                GROUP BY sch.id_schedule
+            ) AS tb
+            ORDER BY tb.departement ASC, tb.id_employee_level ASC, tb.employee_code ASC
+        "
+
+        Dim data_att As DataTable = execute_query(query_att, -1, True, "", "", "", "")
+
+        For i = 0 To data_att.Rows.Count - 1
+            If (Not data_att.Rows(i)("start_work_att").ToString = "") And (Not data_att.Rows(i)("end_work_att").ToString = "") Then
+                For j = 0 To data_propose.Rows.Count - 1
+                    Dim ot_min As Integer = If(data_att.Rows(i)("to_salary").ToString = "1", ot_min_staff, ot_min_spv)
+
+                    Dim after_work As Decimal = 0.0
+                    Dim before_work As Decimal = 0.0
+
+                    Dim after_work_ot As Decimal = 0.0
+                    Dim before_work_ot As Decimal = 0.0
+
+                    Dim work_hours As Decimal = 0.0
+                    Dim ot_hours As Decimal = 0.0
+
+                    Dim overtime_in As DateTime = New DateTime
+                    Dim overtime_out As DateTime = New DateTime
+
+                    Dim schedule_in As DateTime = New DateTime
+                    Dim schedule_out As DateTime = New DateTime
+
+                    Dim start_work_att As DateTime = New DateTime
+                    Dim end_work_att As DateTime = New DateTime
+
+                    Try
+                        overtime_in = DateTime.Parse(data_propose.Rows(j)("ot_start_time"))
+                        overtime_out = DateTime.Parse(data_propose.Rows(j)("ot_end_time"))
+                    Catch ex As Exception
+                    End Try
+
+                    Try
+                        schedule_in = DateTime.Parse(data_att.Rows(i)("in"))
+                        schedule_out = DateTime.Parse(data_att.Rows(i)("out"))
+                    Catch ex As Exception
+                    End Try
+
+                    Try
+                        start_work_att = DateTime.Parse(data_att.Rows(i)("start_work_att"))
+                        end_work_att = DateTime.Parse(data_att.Rows(i)("end_work_att"))
+                    Catch ex As Exception
+                    End Try
+
+                    Dim ot_start_time As DateTime = If(schedule_out > overtime_in, schedule_out, overtime_in)
+                    Dim ot_end_time As DateTime = If(schedule_in < overtime_out, overtime_out, schedule_in)
+
+                    'over of schedule
+                    after_work = (end_work_att - schedule_out).TotalHours
+                    before_work = (schedule_in - start_work_att).TotalHours
+
+                    'over of overtime
+                    after_work_ot = (end_work_att - ot_start_time).TotalHours - data_propose.Rows(j)("ot_break")
+                    before_work_ot = (ot_end_time - start_work_att).TotalHours - data_propose.Rows(j)("ot_break")
+
+                    work_hours = (end_work_att - start_work_att).TotalHours - data_propose.Rows(j)("ot_break")
+                    ot_hours = (overtime_out - overtime_in).TotalHours - data_propose.Rows(j)("ot_break")
+
+                    If data_att.Rows(i)("id_schedule_type").ToString = "1" Then
+                        If after_work >= ot_min And after_work_ot >= ot_min Then
+                            data_att.Rows(i)("ot_potention") = "1"
+
+                            Dim total_hours As Decimal = Math.Floor(after_work_ot / 0.5) * 0.5
+
+                            data_att.Rows(i)("start_work_ot") = ot_start_time
+                            data_att.Rows(i)("end_work_ot") = data_att.Rows(i)("end_work_att")
+                            data_att.Rows(i)("break_hours") = data_propose.Rows(j)("ot_break")
+                            data_att.Rows(i)("ot_hours") = after_work_ot
+                            data_att.Rows(i)("total_hours") = total_hours
+
+                            If data_att.Rows(i)("id_employee").ToString = data_propose.Rows(j)("id_employee").ToString Then
+                                data_att.Rows(i)("is_valid") = "yes"
+                                data_att.Rows(i)("ot_note") = data_propose.Rows(j)("ot_note").ToString
+                            End If
+                        ElseIf before_work >= ot_min And before_work_ot >= ot_min Then
+                            data_att.Rows(i)("ot_potention") = "1"
+
+                            Dim total_hours As Decimal = Math.Floor(before_work_ot / 0.5) * 0.5
+
+                            data_att.Rows(i)("start_work_ot") = data_att.Rows(i)("start_work_att")
+                            data_att.Rows(i)("end_work_ot") = ot_end_time
+                            data_att.Rows(i)("break_hours") = data_propose.Rows(j)("ot_break")
+                            data_att.Rows(i)("ot_hours") = before_work_ot
+                            data_att.Rows(i)("total_hours") = total_hours
+
+                            If data_att.Rows(i)("id_employee").ToString = data_propose.Rows(j)("id_employee").ToString Then
+                                data_att.Rows(i)("is_valid") = "yes"
+                                data_att.Rows(i)("ot_note") = data_propose.Rows(j)("ot_note").ToString
+                            End If
+                        End If
+
+                        'overtime on public holiday
+                        If data_att.Rows(i)("is_day_off").ToString = "1" And data_att.Rows(i)("id_employee").ToString = data_propose.Rows(j)("id_employee").ToString Then
+                            data_att.Rows(i)("ot_potention") = "1"
+
+                            Dim total_hours As Decimal = Math.Floor(work_hours / 0.5) * 0.5
+
+                            data_att.Rows(i)("start_work_ot") = data_att.Rows(i)("start_work_att")
+                            data_att.Rows(i)("end_work_ot") = data_att.Rows(i)("end_work_att")
+                            data_att.Rows(i)("break_hours") = data_propose.Rows(j)("ot_break")
+                            data_att.Rows(i)("ot_hours") = work_hours
+                            data_att.Rows(i)("total_hours") = total_hours
+
+                            data_att.Rows(i)("is_valid") = "yes"
+                            data_att.Rows(i)("ot_note") = data_propose.Rows(j)("ot_note").ToString
+                        End If
+                    Else
+                        data_att.Rows(i)("ot_potention") = "1"
+
+                        Dim total_hours As Decimal = Math.Floor(work_hours / 0.5) * 0.5
+
+                        data_att.Rows(i)("start_work_ot") = data_att.Rows(i)("start_work_att")
+                        data_att.Rows(i)("end_work_ot") = data_att.Rows(i)("end_work_att")
+                        data_att.Rows(i)("break_hours") = data_propose.Rows(j)("ot_break")
+                        data_att.Rows(i)("ot_hours") = work_hours
+                        data_att.Rows(i)("total_hours") = total_hours
+
+                        If data_att.Rows(i)("id_employee").ToString = data_propose.Rows(j)("id_employee").ToString Then
+                            data_att.Rows(i)("is_valid") = "yes"
+                            data_att.Rows(i)("ot_note") = data_propose.Rows(j)("ot_note").ToString
+                        End If
+                    End If
+
+                    'overtime in shedule
+                    If data_att.Rows(i)("id_employee").ToString = data_propose.Rows(j)("id_employee").ToString And data_att.Rows(i)("ot_potention").ToString = "2" Then
+                        If (overtime_in >= start_work_att And overtime_in <= end_work_att) Or (overtime_out >= start_work_att And overtime_out <= end_work_att) Then
+                            Dim start_work_sch As DateTime = If(overtime_in > start_work_att, overtime_in, start_work_att)
+                            Dim end_work_sch As DateTime = If(overtime_out < end_work_att, overtime_out, end_work_att)
+
+                            Dim ot_hours_sch As Decimal = (end_work_sch - start_work_sch).TotalHours - data_propose.Rows(j)("ot_break")
+                            Dim total_hours As Decimal = Math.Floor(ot_hours_sch / 0.5) * 0.5
+
+                            If total_hours >= ot_min Then
+                                data_att.Rows(i)("ot_potention") = "1"
+
+                                data_att.Rows(i)("start_work_ot") = start_work_sch
+                                data_att.Rows(i)("end_work_ot") = end_work_sch
+                                data_att.Rows(i)("break_hours") = data_propose.Rows(j)("ot_break")
+                                data_att.Rows(i)("ot_hours") = ot_hours_sch
+                                data_att.Rows(i)("total_hours") = total_hours
+
+                                data_att.Rows(i)("is_valid") = "yes"
+                                data_att.Rows(i)("ot_note") = data_propose.Rows(j)("ot_note").ToString
+                            End If
+                        End If
+                    End If
+                Next
+            End If
+        Next
+
+        'check other propose
+        Dim query_other As String = "
+            SELECT ot_det.id_employee, ot_det.ot_start_time, ot_det.ot_end_time
+            FROM tb_ot_det AS ot_det
+            LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
+            WHERE ot.id_report_status <> 5 AND ot_det.ot_date = '" + date_search + "' AND ot.id_ot <> '" + id_ot + "'
+        "
+
+        Dim data_other As DataTable = execute_query(query_other, -1, True, "", "", "", "")
+
+        For i = 0 To data_att.Rows.Count - 1
+            For j = 0 To data_other.Rows.Count - 1
+                If data_att.Rows(i)("ot_potention").ToString = "1" And data_att.Rows(i)("id_employee").ToString = data_other.Rows(j)("id_employee").ToString Then
+                    data_att.Rows(i)("ot_potention") = "2"
+                End If
+            Next
+        Next
+
+        'check match
+        Dim match As Boolean = True
+
+        For i = 0 To data_propose.Rows.Count - 1
+            For j = 0 To data_att.Rows.Count - 1
+                If data_propose.Rows(i)("id_employee").ToString = data_att.Rows(j)("id_employee").ToString And data_att.Rows(j)("ot_potention").ToString = "2" Then
+                    match = False
+                End If
+            Next
+        Next
+
+        If Not match Then
+            MsgBox("Overtime not match")
+        End If
     End Sub
 End Class
