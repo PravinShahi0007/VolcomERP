@@ -99,6 +99,8 @@
 
         Dim report_detail As ReportEmpPayrollReportBPJSKesehatanDetail = New ReportEmpPayrollReportBPJSKesehatanDetail
 
+        report_detail.PrintingSystem.ContinuousPageNumbering = False
+
         report_detail.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
         report_detail.XLKodeBU.Text = data_opt.Rows(0)("bpjs_virtual_acc_1").ToString.Substring(data_opt.Rows(0)("bpjs_virtual_acc_1").ToString.Length - 8)
         report_detail.XLVirtualAcc.Text = data_opt.Rows(0)("bpjs_virtual_acc_1").ToString
