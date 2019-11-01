@@ -2557,30 +2557,41 @@
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
             ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
-                                INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
-                                INNER JOIN (
-	                                SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
-	                                INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
-	                                GROUP BY wo.`id_prod_order`
-                                )wo ON wo.id_prod_order=tb.id_prod_order
-                                INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
-                                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-                                INNER JOIN (
-	                                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
-                                    FROM tb_prod_order_wo wo
-                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
-                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
-                                    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
-                                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
-                                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
-                                    GROUP BY wo.id_prod_order_wo
-                                )ovh ON ovh.id_prod_order=tb.id_prod_order
-                                WHERE tb.id_report_status='6'"
+                query_view = "SELECT 'no' AS is_check, IF(ISNULL(pp.id_design),1,2) AS already_pp,IF(ISNULL(rec.id_prod_order),1,2) AS already_rec,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
+INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
+INNER JOIN (
+	SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
+	INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+	GROUP BY wo.`id_prod_order`
+)wo ON wo.id_prod_order=tb.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN (
+	SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
+    FROM tb_prod_order_wo wo
+    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
+    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+    GROUP BY wo.id_prod_order_wo
+)ovh ON ovh.id_prod_order=tb.id_prod_order
+LEFT JOIN (
+	SELECT id_design 
+	FROM `tb_fg_propose_price_detail` ppd
+	INNER JOIN tb_fg_propose_price pp ON pp.`id_fg_propose_price`=ppd.`id_fg_propose_price`
+	WHERE pp.id_report_status!=5
+	GROUP BY ppd.id_design
+)pp ON pp.id_design=dsg.`id_design`
+LEFT JOIN (
+	SELECT id_prod_order FROM tb_prod_order_rec WHERE id_report_status!=5
+)rec ON rec.id_prod_order=det.`id_prod_order`
+WHERE tb.id_report_status='6' "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
-                query_view += " GROUP BY tb.id_prod_order"
+                query_view += " GROUP BY tb.id_prod_order
+HAVING (already_pp = 2 AND already_rec = 2)"
                 '
                 query_view_blank = "SELECT tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,0.00 AS qty,ovh.currency,ovh.unit_price,0.00 AS amount FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order

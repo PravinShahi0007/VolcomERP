@@ -67,7 +67,6 @@ Partial Class FormDebitNoteDet
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -79,6 +78,7 @@ Partial Class FormDebitNoteDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -659,14 +659,6 @@ Partial Class FormDebitNoteDet
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
@@ -740,6 +732,14 @@ Partial Class FormDebitNoteDet
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 8
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'FormDebitNoteDet
         '
