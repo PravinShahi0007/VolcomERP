@@ -1541,8 +1541,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'qc report
             If FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0 Then
                 'list entry
-                FormProductionFinalClearDet.action = "ins"
-                FormProductionFinalClearDet.ShowDialog()
+                'FormProductionFinalClearDet.action = "ins"
+                'FormProductionFinalClearDet.ShowDialog()
             Else
                 'list order
                 If FormProductionFinalClear.GVProd.RowCount > 0 And FormProductionFinalClear.GVProd.FocusedRowHandle >= 0 Then

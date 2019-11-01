@@ -13,6 +13,7 @@ Public Class FormProductionFinalClearDet
     Public id_design As String = "-1"
     Public dt As New DataTable
     Dim dt_exist As New DataTable
+    Dim is_use_qc_report As String = "-1"
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -72,7 +73,7 @@ Public Class FormProductionFinalClearDet
                 Dim query As String = "SELECT po.id_prod_order, po.prod_order_number, po.prod_order_date, 
                 comp.comp_number AS `vendor_number`, comp.comp_name AS `vendor_name`, 
                 d.id_design, d.design_code, d.design_display_name, ss.season, del.delivery, po.id_report_status,
-                cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`
+                cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`, po.is_use_qc_report
                 FROM tb_prod_order po
                 INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
                 INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price
@@ -85,6 +86,7 @@ Public Class FormProductionFinalClearDet
                 INNER JOIN tb_m_comp cfr ON cfr.id_comp = 74
                 WHERE po.id_prod_order='" + id_prod_order + "' "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                is_use_qc_report = data.Rows(0)("is_use_qc_report").ToString
                 id_design = data.Rows(0)("id_design").ToString
                 id_comp_from = data.Rows(0)("id_comp_from").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
@@ -103,6 +105,13 @@ Public Class FormProductionFinalClearDet
                 BtnBrowseTo.Enabled = False
                 BtnBrowsePO.Enabled = False
                 GroupControlListBarcode.Enabled = True
+
+                'kalo gk pake qc report ketik qty
+                If is_use_qc_report = "2" Then
+                    PanelNavBarcode.Visible = False
+                    getLimitQty()
+                    GridColumnQtySum.OptionsColumn.AllowEdit = True
+                End If
             End If
         ElseIf action = "upd" Then
             GroupControlItemList.Enabled = True
@@ -576,26 +585,28 @@ Public Class FormProductionFinalClearDet
 
         'check existing code in other trans
         makeSafeGV(GVBarcode)
-        getCodeExisting()
-        For c As Integer = 0 To GVBarcode.RowCount - 1
-            Dim dt_exist_filter As DataRow() = dt_exist.Select("[full_code]='" + GVBarcode.GetRowCellValue(c, "code").ToString + "' ")
-            If dt_exist_filter.Length > 0 Then
-                GVBarcode.SetRowCellValue(c, "scan_status", "Already scan in transaction number : " + dt_exist_filter(0)("number").ToString)
-            Else
-                GVBarcode.SetRowCellValue(c, "scan_status", "OK")
-            End If
-        Next
         Dim cond_exist As Boolean = False
-        GVBarcode.ActiveFilterString = "[scan_status]<>'OK'"
-        If GVBarcode.RowCount > 0 Then
-            cond_exist = True
-            GridColumnscan_status.VisibleIndex = 20
-        Else
-            cond_exist = False
-            GridColumnscan_status.Visible = False
+        If is_use_qc_report = "1" Then
+            getCodeExisting()
+            For c As Integer = 0 To GVBarcode.RowCount - 1
+                Dim dt_exist_filter As DataRow() = dt_exist.Select("[full_code]='" + GVBarcode.GetRowCellValue(c, "code").ToString + "' ")
+                If dt_exist_filter.Length > 0 Then
+                    GVBarcode.SetRowCellValue(c, "scan_status", "Already scan in transaction number : " + dt_exist_filter(0)("number").ToString)
+                Else
+                    GVBarcode.SetRowCellValue(c, "scan_status", "OK")
+                End If
+            Next
+            GVBarcode.ActiveFilterString = "[scan_status]<>'OK'"
+            If GVBarcode.RowCount > 0 Then
+                cond_exist = True
+                GridColumnscan_status.VisibleIndex = 20
+            Else
+                cond_exist = False
+                GridColumnscan_status.Visible = False
+            End If
+            GVBarcode.ActiveFilterString = ""
+            makeSafeGV(GVBarcode)
         End If
-        GVBarcode.ActiveFilterString = ""
-        makeSafeGV(GVBarcode)
 
         If id_comp_from = "-1" Or id_comp_to = "-1" Or id_prod_order = "-1" Or GVItemList.RowCount <= 0 Then
             stopCustom("Data can't blank")
@@ -640,18 +651,20 @@ Public Class FormProductionFinalClearDet
                     End If
 
                     'detail unique
-                    If GVBarcode.RowCount > 0 Then
-                        Dim qu As String = "INSERT INTO tb_prod_fc_counting(id_prod_fc, id_prod_order_det, id_product, full_code, note) VALUES "
-                        For u As Integer = 0 To GVBarcode.RowCount - 1
-                            Dim id_prod_order_det As String = GVBarcode.GetRowCellValue(u, "id_prod_order_det").ToString
-                            Dim id_product As String = GVBarcode.GetRowCellValue(u, "id_product").ToString
-                            Dim full_code As String = addSlashes(GVBarcode.GetRowCellValue(u, "code").ToString)
-                            If u > 0 Then
-                                qu += ", "
-                            End If
-                    qu += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + full_code + "', '') "
-                    Next
-                        execute_non_query(qu, True, "", "", "", "")
+                    If is_use_qc_report = "1" Then
+                        If GVBarcode.RowCount > 0 Then
+                            Dim qu As String = "INSERT INTO tb_prod_fc_counting(id_prod_fc, id_prod_order_det, id_product, full_code, note) VALUES "
+                            For u As Integer = 0 To GVBarcode.RowCount - 1
+                                Dim id_prod_order_det As String = GVBarcode.GetRowCellValue(u, "id_prod_order_det").ToString
+                                Dim id_product As String = GVBarcode.GetRowCellValue(u, "id_product").ToString
+                                Dim full_code As String = addSlashes(GVBarcode.GetRowCellValue(u, "code").ToString)
+                                If u > 0 Then
+                                    qu += ", "
+                                End If
+                                qu += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + full_code + "', '') "
+                            Next
+                            execute_non_query(qu, True, "", "", "", "")
+                        End If
                     End If
 
                     'submit who prepared
