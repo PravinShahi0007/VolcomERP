@@ -111,9 +111,16 @@
     End Sub
 
     Private Sub SMEditEcopFinal_Click(sender As Object, e As EventArgs) Handles SMEditEcopFinal.Click
-        'MASTER RET CODE
-        FormProductionCOP.id_design = BGVDesign.GetFocusedRowCellValue("id_design").ToString
-        FormProductionCOP.ShowDialog()
+        Dim query As String = "SELECT pdd.id_design 
+FROM tb_prod_order po INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design` 
+WHERE pdd.`id_design`='" & BGVDesign.GetFocusedRowCellValue("id_design").ToString & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            FormProductionCOP.id_design = BGVDesign.GetFocusedRowCellValue("id_design").ToString
+            FormProductionCOP.ShowDialog()
+        Else
+            warningCustom("PO not created yet")
+        End If
     End Sub
 
     Private Sub SMEditEcopPD_Click(sender As Object, e As EventArgs) Handles SMEditEcopPD.Click
