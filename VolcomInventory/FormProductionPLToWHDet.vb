@@ -78,8 +78,11 @@ Public Class FormProductionPLToWHDet
                 GroupControlRet.Enabled = True
                 GroupControlListBarcode.Enabled = True
                 id_prod_order_det_list.Clear()
-                viewDetail()
-                view_barcode_list()
+                If is_use_qc_report <> "1" Then
+                    'kosongan
+                    viewDetail()
+                    view_barcode_list()
+                End If
                 check_but()
                 BtnInfoSrs.Enabled = True
                 BtnViewLineList.Enabled = True
@@ -1174,8 +1177,8 @@ Public Class FormProductionPLToWHDet
         TxtOrderNumber.Text = ""
         id_design = "-1"
         TEDesign.Text = ""
-        GCRetDetail.DataSource = Nothing
-        GCBarcode.DataSource = Nothing
+        'GCRetDetail.DataSource = Nothing
+        'GCBarcode.DataSource = Nothing
         BtnInfoSrs.Enabled = False
         BtnViewLineList.Enabled = False
         GroupControlRet.Enabled = False

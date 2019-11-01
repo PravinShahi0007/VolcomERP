@@ -105,6 +105,7 @@ Partial Class FormProductionPLToWHDet
         Me.GridColumnprod_fc_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_pl_prod_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -123,7 +124,6 @@ Partial Class FormProductionPLToWHDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1124,6 +1124,12 @@ Partial Class FormProductionPLToWHDet
         Me.GridColumnid_pl_prod_order.FieldName = "id_pl_prod_order"
         Me.GridColumnid_pl_prod_order.Name = "GridColumnid_pl_prod_order"
         '
+        'GridColumnstt
+        '
+        Me.GridColumnstt.Caption = "Status"
+        Me.GridColumnstt.FieldName = "stt"
+        Me.GridColumnstt.Name = "GridColumnstt"
+        '
         'GroupControlListBarcode
         '
         Me.GroupControlListBarcode.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1299,12 +1305,6 @@ Partial Class FormProductionPLToWHDet
         'EPRet
         '
         Me.EPRet.ContainerControl = Me
-        '
-        'GridColumnstt
-        '
-        Me.GridColumnstt.Caption = "Status"
-        Me.GridColumnstt.FieldName = "stt"
-        Me.GridColumnstt.Name = "GridColumnstt"
         '
         'FormProductionPLToWHDet
         '
