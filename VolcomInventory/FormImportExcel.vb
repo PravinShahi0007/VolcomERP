@@ -4915,6 +4915,8 @@ Public Class FormImportExcel
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Dim data_employee As DataTable = FormEmpInputAttendanceDet.GCEmployee.DataSource
 
+                    Dim allow_dept As DataTable = execute_query("SELECT id_departement FROM tb_emp_attn_input_dep", -1, True, "", "", "", "")
+
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "" Then
                             Dim include_database As String = execute_query("SELECT IFNULL((SELECT input_det.id_employee FROM tb_emp_attn_input_det AS input_det LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input WHERE input_det.id_employee = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND input_det.date = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + "' AND input.id_report_status <> 5), 0)", 0, True, "", "", "", "")
@@ -4922,20 +4924,29 @@ Public Class FormImportExcel
                             FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = "[id_employee] = '" + GVData.GetRowCellValue(i, "IdEmployee").ToString + "' AND [date] = #" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("dd MMMM yyyy") + "#"
 
                             If include_database = "0" And FormEmpInputAttendanceDet.GVEmployee.RowCount = 0 Then
-                                Dim time_in As Nullable(Of DateTime) = Nothing
-                                Dim time_out As Nullable(Of DateTime) = Nothing
+                                Dim check_allow_dept As Boolean = True
 
-                                Try
-                                    time_in = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeIn").ToString).ToString("HH:mm:ss"))
-                                Catch ex As Exception
-                                End Try
+                                For j = 0 To allow_dept.Rows.Count - 1
+                                    If Not allow_dept.Rows(j)("id_departement").ToString = GVData.GetRowCellValue(i, "IdDepartement").ToString Then
+                                        check_allow_dept = False
+                                    End If
+                                Next
 
-                                Try
-                                    time_out = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeOut").ToString).ToString("HH:mm:ss"))
-                                Catch ex As Exception
-                                End Try
+                                If check_allow_dept Then
+                                    Dim time_in As Nullable(Of DateTime) = Nothing
+                                    Dim time_out As Nullable(Of DateTime) = Nothing
 
-                                data_employee.Rows.Add("0",
+                                    Try
+                                        time_in = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeIn").ToString).ToString("HH:mm:ss"))
+                                    Catch ex As Exception
+                                    End Try
+
+                                    Try
+                                        time_out = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeOut").ToString).ToString("HH:mm:ss"))
+                                    Catch ex As Exception
+                                    End Try
+
+                                    data_employee.Rows.Add("0",
                                                        GVData.GetRowCellValue(i, "IdDepartement").ToString,
                                                        GVData.GetRowCellValue(i, "Departement").ToString,
                                                        GVData.GetRowCellValue(i, "IdEmployee").ToString,
@@ -4947,9 +4958,10 @@ Public Class FormImportExcel
                                                        GVData.GetRowCellValue(i, "Date"),
                                                        time_in,
                                                        time_out)
-                            End If
+                                End If
 
-                            FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = ""
+                                FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = ""
+                            End If
                         End If
                     Next
 

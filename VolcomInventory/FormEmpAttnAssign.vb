@@ -4,6 +4,7 @@
     Dim bdel_active As String = "1"
 
     Public is_all As String = "-1"
+    Public is_sales_dept As String = "-1"
 
     Private Sub FormEmpAttnAssign_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -26,7 +27,11 @@
     Sub load_dept()
         Dim query As String = "SELECT id_departement,departement FROM tb_m_departement a "
         If Not is_all = "1" Then
-            query += "WHERE id_departement='" + id_departement_user + "' ORDER BY a.departement ASC "
+            If is_sales_dept = "1" Then
+                query += "WHERE id_departement='17' ORDER BY a.departement ASC "
+            Else
+                query += "WHERE id_departement='" + id_departement_user + "' ORDER BY a.departement ASC "
+            End If
         End If
 
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
