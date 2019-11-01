@@ -313,6 +313,7 @@ Partial Public Class ReportPayrollAll
         Me.GCWorkingDaysStore.AppearanceCell.Options.UseTextOptions = True
         Me.GCWorkingDaysStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GCWorkingDaysStore.Caption = "WD"
+        Me.GCWorkingDaysStore.DisplayFormat.FormatString = "N1"
         Me.GCWorkingDaysStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCWorkingDaysStore.FieldName = "workdays"
         Me.GCWorkingDaysStore.Name = "GCWorkingDaysStore"
@@ -360,6 +361,7 @@ Partial Public Class ReportPayrollAll
         Me.GCActualWorkingDaysDWStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GCActualWorkingDaysDWStore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCActualWorkingDaysDWStore.Caption = "Actual Working Days"
+        Me.GCActualWorkingDaysDWStore.DisplayFormat.FormatString = "N1"
         Me.GCActualWorkingDaysDWStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCActualWorkingDaysDWStore.FieldName = "actual_workdays"
         Me.GCActualWorkingDaysDWStore.Name = "GCActualWorkingDaysDWStore"
@@ -406,6 +408,7 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalTHPStore.AppearanceCell.Options.UseTextOptions = True
         Me.GCTotalTHPStore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GCTotalTHPStore.Caption = "Total THP"
+        Me.GCTotalTHPStore.DisplayFormat.FormatString = "N0"
         Me.GCTotalTHPStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCTotalTHPStore.FieldName = "tot_thp"
         Me.GCTotalTHPStore.Name = "GCTotalTHPStore"
