@@ -144,10 +144,24 @@ Public Class FormProductionPLToWHDet
 
             view_barcode_list()
             viewDetail()
+            viewReference
             check_but()
             allowDelete()
             allow_status()
         End If
+    End Sub
+
+    Sub viewReference()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT plq.id_prod_fc, q.prod_fc_number, SUM(qd.prod_fc_det_qty) AS `total_qty`
+        FROM tb_pl_prod_order_qc plq
+        INNER JOIN tb_prod_fc q ON q.id_prod_fc = plq.id_prod_fc
+        INNER JOIN tb_prod_fc_det qd ON qd.id_prod_fc = q.id_prod_fc
+        WHERE plq.id_pl_prod_order=" + id_pl_prod_order + "
+        GROUP BY qd.id_prod_fc "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCQC.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub mainVendor()
@@ -414,11 +428,9 @@ Public Class FormProductionPLToWHDet
 
         'Cek isi qty
         Dim cond_qty As Boolean = True
-        GVRetDetail.ActiveFilterString = "[pl_prod_order_det_qty]<=0"
-        If GVRetDetail.RowCount > 0 Then
+        If GVRetDetail.Columns("pl_prod_order_det_qty").SummaryItem.SummaryValue <= 0 Then
             cond_qty = False
         End If
-        makeSafeGV(GVRetDetail)
 
         'cek qty limit di DB
         Dim dt_cek As DataTable = execute_query("CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "', '0', '" + LEPDAlloc.EditValue.ToString + "') ", -1, True, "", "", "", "")
@@ -511,7 +523,14 @@ Public Class FormProductionPLToWHDet
 
                         'reference
                         If is_use_qc_report = "1" And GVQC.RowCount > 0 Then
-
+                            Dim qref As String = "INSERT INTO tb_pl_prod_order_qc(id_pl_prod_order, id_prod_fc) VALUES "
+                            For r As Integer = 0 To GVQC.RowCount - 1
+                                If r > 0 Then
+                                    qref += ","
+                                End If
+                                qref += "('" + id_pl_prod_order + "', '" + GVQC.GetRowCellValue(r, "id_prod_fc").ToString + "') "
+                            Next
+                            execute_non_query(qref, True, "", "", "", "")
                         End If
 
                         'Detail return
@@ -573,8 +592,8 @@ Public Class FormProductionPLToWHDet
                         'submit who prepared
                         submit_who_prepared("33", id_pl_prod_order, id_user)
 
+                        FormProductionPLToWH.GCProd.DataSource = Nothing
                         FormProductionPLToWH.viewPL()
-                        FormProductionPLToWH.view_sample_purc()
                         FormProductionPLToWH.GVPL.FocusedRowHandle = find_row(FormProductionPLToWH.GVPL, "id_pl_prod_order", id_pl_prod_order)
                         FormProductionPLToWH.XTCPL.SelectedTabPageIndex = 0
                         action = "upd"
