@@ -31,13 +31,6 @@ Partial Class FormDebitNote
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPFGPOReject = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSumClaimReject = New DevExpress.XtraGrid.GridControl()
         Me.GVSumClaimReject = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -77,13 +70,6 @@ Partial Class FormDebitNote
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BViewClaimReject = New DevExpress.XtraEditors.SimpleButton()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPFGPOLate = New DevExpress.XtraTab.XtraTabPage()
         Me.GCClaimLate = New DevExpress.XtraGrid.GridControl()
         Me.GVClaimLate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -118,22 +104,18 @@ Partial Class FormDebitNote
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BViewClaimLate = New DevExpress.XtraEditors.SimpleButton()
-        Me.SearchLookUpEdit2 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPListDebitNote.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPFGPOReject.SuspendLayout()
         CType(Me.GCSumClaimReject, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSumClaimReject, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,10 +125,6 @@ Partial Class FormDebitNote
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPFGPOLate.SuspendLayout()
         CType(Me.GCClaimLate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVClaimLate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,35 +134,34 @@ Partial Class FormDebitNote
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 40)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPListDebitNote
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1166, 552)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1166, 512)
         Me.XtraTabControl1.TabIndex = 0
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListDebitNote, Me.XTPFGPOReject, Me.XTPFGPOLate})
         '
         'XTPListDebitNote
         '
         Me.XTPListDebitNote.Controls.Add(Me.GridControl1)
-        Me.XTPListDebitNote.Controls.Add(Me.PanelControl1)
         Me.XTPListDebitNote.Name = "XTPListDebitNote"
-        Me.XTPListDebitNote.Size = New System.Drawing.Size(1160, 524)
+        Me.XTPListDebitNote.Size = New System.Drawing.Size(1160, 484)
         Me.XTPListDebitNote.Text = "List Debit Note"
         '
         'GridControl1
         '
         Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 40)
+        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.Size = New System.Drawing.Size(1160, 484)
@@ -260,76 +237,17 @@ Partial Class FormDebitNote
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 6
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BView)
-        Me.PanelControl1.Controls.Add(Me.SLEVendor)
-        Me.PanelControl1.Controls.Add(Me.LabelControl2)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1160, 40)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'BView
-        '
-        Me.BView.Location = New System.Drawing.Point(235, 8)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(60, 23)
-        Me.BView.TabIndex = 8915
-        Me.BView.Text = "view"
-        '
-        'SLEVendor
-        '
-        Me.SLEVendor.Location = New System.Drawing.Point(52, 10)
-        Me.SLEVendor.Name = "SLEVendor"
-        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEVendor.Properties.View = Me.GridView6
-        Me.SLEVendor.Size = New System.Drawing.Size(177, 20)
-        Me.SLEVendor.TabIndex = 8914
-        '
-        'GridView6
-        '
-        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29})
-        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView6.Name = "GridView6"
-        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView6.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "ID Comp Contact"
-        Me.GridColumn28.FieldName = "id_comp_contact"
-        Me.GridColumn28.Name = "GridColumn28"
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Vendor"
-        Me.GridColumn29.FieldName = "comp_name"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 0
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 13)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl2.TabIndex = 8913
-        Me.LabelControl2.Text = "Vendor"
-        '
         'XTPFGPOReject
         '
         Me.XTPFGPOReject.Controls.Add(Me.GCSumClaimReject)
-        Me.XTPFGPOReject.Controls.Add(Me.PanelControl2)
         Me.XTPFGPOReject.Name = "XTPFGPOReject"
-        Me.XTPFGPOReject.Size = New System.Drawing.Size(1160, 524)
+        Me.XTPFGPOReject.Size = New System.Drawing.Size(1160, 484)
         Me.XTPFGPOReject.Text = "FGPO Reject"
         '
         'GCSumClaimReject
         '
         Me.GCSumClaimReject.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSumClaimReject.Location = New System.Drawing.Point(0, 40)
+        Me.GCSumClaimReject.Location = New System.Drawing.Point(0, 0)
         Me.GCSumClaimReject.MainView = Me.GVSumClaimReject
         Me.GCSumClaimReject.Name = "GCSumClaimReject"
         Me.GCSumClaimReject.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1, Me.RepositoryItemCheckEdit1, Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemSearchLookUpEdit2})
@@ -754,76 +672,17 @@ Partial Class FormDebitNote
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 0
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BViewClaimReject)
-        Me.PanelControl2.Controls.Add(Me.SearchLookUpEdit1)
-        Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1160, 40)
-        Me.PanelControl2.TabIndex = 1
-        '
-        'BViewClaimReject
-        '
-        Me.BViewClaimReject.Location = New System.Drawing.Point(235, 8)
-        Me.BViewClaimReject.Name = "BViewClaimReject"
-        Me.BViewClaimReject.Size = New System.Drawing.Size(60, 23)
-        Me.BViewClaimReject.TabIndex = 8917
-        Me.BViewClaimReject.Text = "view"
-        '
-        'SearchLookUpEdit1
-        '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(52, 10)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView7
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(177, 20)
-        Me.SearchLookUpEdit1.TabIndex = 8916
-        '
-        'GridView7
-        '
-        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn39})
-        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView7.Name = "GridView7"
-        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView7.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "ID Comp Contact"
-        Me.GridColumn30.FieldName = "id_comp_contact"
-        Me.GridColumn30.Name = "GridColumn30"
-        '
-        'GridColumn39
-        '
-        Me.GridColumn39.Caption = "Vendor"
-        Me.GridColumn39.FieldName = "comp_name"
-        Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 0
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 13)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl1.TabIndex = 8915
-        Me.LabelControl1.Text = "Vendor"
-        '
         'XTPFGPOLate
         '
         Me.XTPFGPOLate.Controls.Add(Me.GCClaimLate)
-        Me.XTPFGPOLate.Controls.Add(Me.PanelControl3)
         Me.XTPFGPOLate.Name = "XTPFGPOLate"
-        Me.XTPFGPOLate.Size = New System.Drawing.Size(1160, 524)
+        Me.XTPFGPOLate.Size = New System.Drawing.Size(1160, 484)
         Me.XTPFGPOLate.Text = "FGPO Late"
         '
         'GCClaimLate
         '
         Me.GCClaimLate.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCClaimLate.Location = New System.Drawing.Point(0, 40)
+        Me.GCClaimLate.Location = New System.Drawing.Point(0, 0)
         Me.GCClaimLate.MainView = Me.GVClaimLate
         Me.GCClaimLate.Name = "GCClaimLate"
         Me.GCClaimLate.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemSearchLookUpEdit3, Me.RepositoryItemSearchLookUpEdit4})
@@ -1137,63 +996,63 @@ Partial Class FormDebitNote
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 0
         '
-        'PanelControl3
+        'PanelControl1
         '
-        Me.PanelControl3.Controls.Add(Me.BViewClaimLate)
-        Me.PanelControl3.Controls.Add(Me.SearchLookUpEdit2)
-        Me.PanelControl3.Controls.Add(Me.LabelControl3)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1160, 40)
-        Me.PanelControl3.TabIndex = 1
+        Me.PanelControl1.Controls.Add(Me.BView)
+        Me.PanelControl1.Controls.Add(Me.SLEVendor)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1166, 40)
+        Me.PanelControl1.TabIndex = 1
         '
-        'BViewClaimLate
+        'BView
         '
-        Me.BViewClaimLate.Location = New System.Drawing.Point(235, 8)
-        Me.BViewClaimLate.Name = "BViewClaimLate"
-        Me.BViewClaimLate.Size = New System.Drawing.Size(60, 23)
-        Me.BViewClaimLate.TabIndex = 8917
-        Me.BViewClaimLate.Text = "view"
+        Me.BView.Location = New System.Drawing.Point(235, 8)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(60, 23)
+        Me.BView.TabIndex = 8915
+        Me.BView.Text = "view"
         '
-        'SearchLookUpEdit2
+        'SLEVendor
         '
-        Me.SearchLookUpEdit2.Location = New System.Drawing.Point(52, 10)
-        Me.SearchLookUpEdit2.Name = "SearchLookUpEdit2"
-        Me.SearchLookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit2.Properties.View = Me.GridView8
-        Me.SearchLookUpEdit2.Size = New System.Drawing.Size(177, 20)
-        Me.SearchLookUpEdit2.TabIndex = 8916
+        Me.SLEVendor.Location = New System.Drawing.Point(52, 10)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.GridView6
+        Me.SLEVendor.Size = New System.Drawing.Size(177, 20)
+        Me.SLEVendor.TabIndex = 8914
         '
-        'GridView8
+        'GridView6
         '
-        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn40, Me.GridColumn41})
-        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView8.Name = "GridView8"
-        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView8.OptionsView.ShowGroupPanel = False
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn40
+        'GridColumn28
         '
-        Me.GridColumn40.Caption = "ID Comp Contact"
-        Me.GridColumn40.FieldName = "id_comp_contact"
-        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn28.Caption = "ID Comp Contact"
+        Me.GridColumn28.FieldName = "id_comp_contact"
+        Me.GridColumn28.Name = "GridColumn28"
         '
-        'GridColumn41
+        'GridColumn29
         '
-        Me.GridColumn41.Caption = "Vendor"
-        Me.GridColumn41.FieldName = "comp_name"
-        Me.GridColumn41.Name = "GridColumn41"
-        Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 0
+        Me.GridColumn29.Caption = "Vendor"
+        Me.GridColumn29.FieldName = "comp_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
         '
-        'LabelControl3
+        'LabelControl2
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 13)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl3.TabIndex = 8915
-        Me.LabelControl3.Text = "Vendor"
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 13)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl2.TabIndex = 8913
+        Me.LabelControl2.Text = "Vendor"
         '
         'FormDebitNote
         '
@@ -1201,6 +1060,7 @@ Partial Class FormDebitNote
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1166, 552)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -1212,11 +1072,6 @@ Partial Class FormDebitNote
         Me.XTPListDebitNote.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPFGPOReject.ResumeLayout(False)
         CType(Me.GCSumClaimReject, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSumClaimReject, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1226,11 +1081,6 @@ Partial Class FormDebitNote
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPFGPOLate.ResumeLayout(False)
         CType(Me.GCClaimLate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVClaimLate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1240,11 +1090,11 @@ Partial Class FormDebitNote
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1252,10 +1102,7 @@ Partial Class FormDebitNote
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPListDebitNote As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPFGPOReject As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XTPFGPOLate As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1337,22 +1184,11 @@ Partial Class FormDebitNote
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit2 As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView8 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BViewClaimReject As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BViewClaimLate As DevExpress.XtraEditors.SimpleButton
 End Class
