@@ -408,7 +408,50 @@ GROUP BY pl.`id_mat_purc_list`"
     End Sub
 
     Sub view_report()
-        Dim query As String = ""
+        Dim query_where As String = ""
+        If Not LESeason.EditValue.ToString = "0" Then
+            query_where += " AND del.id_season='" & LESeason.EditValue.ToString & "'"
+        End If
 
+        Dim query As String = "SELECT pd.*,dsg.`design_code`,dsg.`design_display_name`,listt.`id_mat_purc_list`,COUNT(listt.`id_mat_purc_list`) AS jml_list,COUNT(mp.`id_mat_purc`) AS jml_po FROM
+(
+	SELECT IFNULL(pdpo.id_prod_demand,newest_pd.id_prod_demand) AS id_prod_demand,
+	IFNULL(pdpo.id_design,newest_pd.id_design) AS id_design,
+	IFNULL(pdpo.id_prod_demand_design,newest_pd.id_prod_demand_design) AS id_prod_demand_design,
+	IFNULL(pdpo.id_product,newest_pd.id_product) AS id_product,
+	IFNULL(pdpo.id_prod_demand_product,newest_pd.id_prod_demand_product) AS id_prod_demand_product,
+	IFNULL(pdpo.prod_demand_product_qty,newest_pd.prod_demand_product_qty) AS prod_demand_product_qty,
+	IFNULL(pdpo.prod_demand_number,newest_pd.prod_demand_number) AS prod_demand_number
+    IFNULL(pdpo.id_delivery,newest_pd.id_delivery) AS id_delivery
+	FROM (
+		SELECT * FROM (
+			SELECT pdd.id_delivery,pd.id_prod_demand,pdd.`id_design`,pdd.`id_prod_demand_design`,pdp.`id_product`,pdp.`id_prod_demand_product`,pdp.`prod_demand_product_qty`,pd.`prod_demand_number` FROM tb_prod_demand pd
+			INNER JOIN tb_prod_demand_design pdd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+			INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+			WHERE pd.id_report_status=6 AND pd.`is_pd`=1 AND pd.`is_void_pd`=2
+			ORDER BY pdp.id_prod_demand_product DESC
+		) pd GROUP BY id_product
+	) newest_pd 
+	LEFT JOIN
+	(
+		SELECT pdd.id_delivery,pd.`id_prod_demand`,pdd.`id_design`,pdd.`id_prod_demand_design`,pdp.id_product,pdp.id_prod_demand_product,pdp.prod_demand_product_qty,po.id_prod_order,pd.`prod_demand_number` 
+		FROM tb_prod_order po
+		INNER JOIN `tb_prod_demand_design` pdd ON po.id_prod_demand_design=pdd.`id_prod_demand_design`
+		INNER JOIN tb_prod_demand pd ON pdd.`id_prod_demand`=pd.`id_prod_demand`
+		INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+		WHERE pd.`is_pd`=1 AND pd.`is_void_pd` =2 AND pd.`id_report_status`=6 AND po.`id_report_status`!=5
+		GROUP BY pdp.id_product
+	)pdpo ON pdpo.id_product=newest_pd.id_product
+	GROUP BY IFNULL(pdpo.id_prod_demand_design,newest_pd.id_prod_demand_design)
+)pd 
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pd.id_design
+INNER JOIN `tb_season_delivery` del ON pd.`id_delivery`=del.`id_delivery`
+LEFT JOIN `tb_mat_purc_list_pd` listpd ON listpd.`id_prod_demand_design`=pd.id_prod_demand_design
+LEFT JOIN tb_mat_purc_list listt ON listt.`id_mat_purc_list`=listpd.`id_mat_purc_list` AND listt.`is_cancel`!=1
+LEFT JOIN `tb_mat_purc` mp ON mp.`id_mat_purc`=listt.`id_mat_purc` AND mp.`id_report_status`!=5
+GROUP BY pd.id_prod_demand_design"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPD.DataSource = data
+        GVPD.BestFitColumns()
     End Sub
 End Class
