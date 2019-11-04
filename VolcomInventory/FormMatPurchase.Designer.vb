@@ -1017,6 +1017,7 @@ Partial Class FormMatPurchase
         Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn35.Caption = "List Created"
+        Me.GridColumn35.FieldName = "jml_list"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 3
@@ -1031,7 +1032,7 @@ Partial Class FormMatPurchase
         Me.GridColumn34.Caption = "PO Material Created"
         Me.GridColumn34.DisplayFormat.FormatString = "N2"
         Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn34.FieldName = "qty_list_created"
+        Me.GridColumn34.FieldName = "jml_po"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.OptionsColumn.AllowEdit = False
         Me.GridColumn34.OptionsColumn.ReadOnly = True
