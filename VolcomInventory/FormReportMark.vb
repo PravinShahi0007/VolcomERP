@@ -510,7 +510,7 @@
         ElseIf report_mark_type = "180" Then
             'propose employee changes
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_pps WHERE id_employee_pps = '{0}'", id_report)
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'overtime
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
         ElseIf report_mark_type = "185" Then
@@ -1751,6 +1751,12 @@
             '
             query = String.Format("UPDATE tb_prod_order_wo SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            '
+            If id_status_reportx = "5" Then
+                query = String.Format("UPDATE tb_m_design SET pp_is_approve='2',final_is_approve='2' WHERE id_design=(SELECT pdd.id_design FROM tb_prod_order po INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design` WHERE po.`id_prod_order`='{0}' LIMIT 1)", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+            '
             'infoCustom("Status changed.")
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
@@ -5915,7 +5921,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If

@@ -25,16 +25,21 @@
         load_emp()
     End Sub
     Sub load_emp()
-        Dim query As String = "SELECT 'no' as is_select,lvl.employee_level,emp.id_employee,emp.employee_code,emp.employee_name,dep.departement,emp.employee_position,active.employee_active
+        Dim query As String = "SELECT 'no' as is_select,lvl.employee_level,emp.id_employee,emp.employee_code,emp.employee_name,dep.departement,dep_sub.departement_sub,emp.employee_position,active.employee_active
                                 FROM tb_m_employee emp
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                INNER JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub=emp.id_departement_sub
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
                                 INNER JOIN tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active"
 
         If FormEmpSchedule.is_security = "1" And opt = "1" Then
             query += " WHERE emp.employee_position LIKE '%security%' AND emp.id_employee_active='1'"
         ElseIf opt = "2" Then
-            query += " WHERE emp.id_departement='" & id_departement_user & "' AND emp.id_employee_active='1'"
+            If FormEmpAttnAssign.is_sales_dept = "1" Then
+                query += " WHERE emp.id_departement='17' AND emp.id_employee_active='1'"
+            Else
+                query += " WHERE emp.id_departement='" & id_departement_user & "' AND emp.id_employee_active='1'"
+            End If
         End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

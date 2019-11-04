@@ -29,7 +29,7 @@ Public Class FormProductionPLToWHDet
     Public data_code As DataTable
     Dim myListOfDogs As New List(Of String)
     Public dt As New DataTable
-    Dim is_use_qc_report As String = "-1"
+    Public is_use_qc_report As String = "-1"
 
     Public Class FileRecord
         Public Id As String
@@ -72,34 +72,21 @@ Public Class FormProductionPLToWHDet
             BtnAttachment.Enabled = False
             DERet.Text = view_date(0)
 
-
-            'own source
-            Dim id_qc As String = execute_query("SELECT id_qc_dept FROM tb_opt", 0, True, "", "", "", "")
-            Dim query_get_comp_name As String = "SELECT b.comp_name, b.comp_number FROM tb_m_comp_contact a "
-            query_get_comp_name += "INNER JOIN tb_m_comp b ON a.id_comp = b.id_comp "
-            query_get_comp_name += "WHERE a.id_comp_contact = '" + id_qc + "' AND b.id_departement = '" + id_departement_user + "'"
-            Try
-                Dim data_comp_from As DataTable = execute_query(query_get_comp_name, -1, True, "", "", "", "")
-                TxtNameCompFrom.Text = data_comp_from(0)("comp_name").ToString
-                TxtCodeCompFrom.Text = data_comp_from(0)("comp_number").ToString
-                id_comp_contact_from = id_qc
-            Catch ex As Exception
-                TxtNameCompFrom.Text = ""
-                TxtCodeCompFrom.Text = ""
-                id_comp_contact_from = "-1"
-            End Try
-
             'from info PL
             If id_prod_order <> "-1" Then
                 view_po()
                 GroupControlRet.Enabled = True
                 GroupControlListBarcode.Enabled = True
                 id_prod_order_det_list.Clear()
-                viewDetail()
-                view_barcode_list()
+                If is_use_qc_report <> "1" Then
+                    'kosongan
+                    viewDetail()
+                    view_barcode_list()
+                End If
                 check_but()
                 BtnInfoSrs.Enabled = True
                 BtnViewLineList.Enabled = True
+                BtnBrowseContactFrom.Enabled = False
             End If
         ElseIf action = "upd" Then
             'View data
@@ -157,10 +144,24 @@ Public Class FormProductionPLToWHDet
 
             view_barcode_list()
             viewDetail()
+            viewReference
             check_but()
             allowDelete()
             allow_status()
         End If
+    End Sub
+
+    Sub viewReference()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT plq.id_prod_fc, q.prod_fc_number, SUM(qd.prod_fc_det_qty) AS `total_qty`
+        FROM tb_pl_prod_order_qc plq
+        INNER JOIN tb_prod_fc q ON q.id_prod_fc = plq.id_prod_fc
+        INNER JOIN tb_prod_fc_det qd ON qd.id_prod_fc = q.id_prod_fc
+        WHERE plq.id_pl_prod_order=" + id_pl_prod_order + "
+        GROUP BY qd.id_prod_fc "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCQC.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub mainVendor()
@@ -273,6 +274,12 @@ Public Class FormProductionPLToWHDet
         pre_viewImages("2", PEView, data.Rows(0)("id_design").ToString, False)
         PEView.Enabled = True
         mainVendor()
+
+        'scan permission
+        If is_use_qc_report = "1" Then
+            'jika pake qc report gak bole scan
+            PanelNavBarcode.Visible = False
+        End If
     End Sub
 
     'View Data
@@ -421,13 +428,9 @@ Public Class FormProductionPLToWHDet
 
         'Cek isi qty
         Dim cond_qty As Boolean = True
-        Dim qty As Decimal
-        For i As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
-            qty = GVRetDetail.GetRowCellValue(i, "pl_prod_order_det_qty")
-            If qty = 0.0 Then
-                cond_qty = False
-            End If
-        Next
+        If GVRetDetail.Columns("pl_prod_order_det_qty").SummaryItem.SummaryValue <= 0 Then
+            cond_qty = False
+        End If
 
         'cek qty limit di DB
         Dim dt_cek As DataTable = execute_query("CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "', '0', '" + LEPDAlloc.EditValue.ToString + "') ", -1, True, "", "", "", "")
@@ -449,6 +452,13 @@ Public Class FormProductionPLToWHDet
                 Exit For
             End If
         Next
+
+        'qc reference
+        makeSafeGV(GVQC)
+        Dim cond_ref As Boolean = True
+        If is_use_qc_report = "1" And GVQC.RowCount = 0 Then
+            cond_ref = False
+        End If
 
         'cek uniqueCode
         Dim found_check_unique As Boolean = False
@@ -481,6 +491,10 @@ Public Class FormProductionPLToWHDet
             infoQty()
         ElseIf found_check_unique Then
             errorCustom(sample_check_unique)
+        ElseIf GVRetDetail.RowCount = 0 Or GVBarcode.RowCount = 0 Or cond_qty = False Then
+            stopCustom("Please complete all detail data Packing List")
+        ElseIf Not cond_ref Then
+            stopCustom("Reference QC Result not found. Please make sure it has gone through a QC process ")
         Else
             Dim query As String
             Dim pl_prod_order_number As String = ""
@@ -506,6 +520,18 @@ Public Class FormProductionPLToWHDet
 
                         'insert who prepared
                         insert_who_prepared("33", id_pl_prod_order, id_user)
+
+                        'reference
+                        If is_use_qc_report = "1" And GVQC.RowCount > 0 Then
+                            Dim qref As String = "INSERT INTO tb_pl_prod_order_qc(id_pl_prod_order, id_prod_fc) VALUES "
+                            For r As Integer = 0 To GVQC.RowCount - 1
+                                If r > 0 Then
+                                    qref += ","
+                                End If
+                                qref += "('" + id_pl_prod_order + "', '" + GVQC.GetRowCellValue(r, "id_prod_fc").ToString + "') "
+                            Next
+                            execute_non_query(qref, True, "", "", "", "")
+                        End If
 
                         'Detail return
                         Dim jum_ins_j As Integer = 0
@@ -566,8 +592,8 @@ Public Class FormProductionPLToWHDet
                         'submit who prepared
                         submit_who_prepared("33", id_pl_prod_order, id_user)
 
+                        FormProductionPLToWH.GCProd.DataSource = Nothing
                         FormProductionPLToWH.viewPL()
-                        FormProductionPLToWH.view_sample_purc()
                         FormProductionPLToWH.GVPL.FocusedRowHandle = find_row(FormProductionPLToWH.GVPL, "id_pl_prod_order", id_pl_prod_order)
                         FormProductionPLToWH.XTCPL.SelectedTabPageIndex = 0
                         action = "upd"
@@ -928,7 +954,7 @@ Public Class FormProductionPLToWHDet
         If action = "ins" Then
             BtnBrowsePO.Enabled = True
         End If
-        BtnBrowseContactFrom.Enabled = True
+        'BtnBrowseContactFrom.Enabled = True
         BtnBrowseContactTo.Enabled = True
         BtnSave.Enabled = True
         BScan.Enabled = True
@@ -1184,8 +1210,8 @@ Public Class FormProductionPLToWHDet
         TxtOrderNumber.Text = ""
         id_design = "-1"
         TEDesign.Text = ""
-        GCRetDetail.DataSource = Nothing
-        GCBarcode.DataSource = Nothing
+        'GCRetDetail.DataSource = Nothing
+        'GCBarcode.DataSource = Nothing
         BtnInfoSrs.Enabled = False
         BtnViewLineList.Enabled = False
         GroupControlRet.Enabled = False
@@ -1334,16 +1360,99 @@ Public Class FormProductionPLToWHDet
     End Sub
 
     Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
-        If (Not LEPLCategory.EditValue = LEPLCategory.OldEditValue) And is_use_qc_report = "1" Then
-            If GVBarcode.RowCount > 0 Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset your scanned list, are you sure want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    viewDetail()
-                    view_barcode_list()
-                Else
-                    LEPLCategory.EditValue = LEPLCategory.OldEditValue
+        Cursor = Cursors.WaitCursor
+        Dim id_comp_cat As String = "-1"
+        Try
+
+            Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+            Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+            id_comp_cat = row("id_comp").ToString
+        Catch ex As Exception
+        End Try
+        getCompFrom(id_comp_cat)
+        loadQCRef()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub getCompFrom(ByVal id_comp_cat As String)
+        'get comp to
+        Dim query As String = "SELECT cc.id_comp_contact,c.comp_number, c.comp_name 
+        FROM tb_m_comp c 
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
+        WHERE c.id_comp = '" + id_comp_cat + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        id_comp_contact_from = data.Rows(0)("id_comp_contact").ToString
+        TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+        TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+    End Sub
+
+    Sub loadQCRef()
+        'jika use qc report =1
+        If is_use_qc_report = "1" Then
+            Cursor = Cursors.WaitCursor
+            'load ref
+            Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+            Dim query As String = "SELECT f.id_prod_fc, f.prod_fc_number, IFNULL(fd.total_qty,0) AS `total_qty`, pl.id_pl_prod_order, 'OK' AS `stt`
+            FROM tb_prod_fc f 
+            INNER JOIN (
+	            SELECT f.id_prod_fc, SUM(fd.prod_fc_det_qty) AS `total_qty` 
+	            FROM tb_prod_fc_det fd
+	            INNER JOIN tb_prod_fc f ON f.id_prod_fc = fd.id_prod_fc
+	            WHERE f.id_report_status=6 AND f.id_pl_category=" + id_pl_category + " AND f.id_prod_order=" + id_prod_order + "
+	            GROUP BY f.id_prod_fc
+            ) fd ON fd.id_prod_fc = f.id_prod_fc
+            LEFT JOIN (
+	            SELECT r.id_prod_fc, pl.id_pl_prod_order 
+	            FROM tb_pl_prod_order_qc r
+	            INNER JOIN tb_pl_prod_order pl ON pl.id_pl_prod_order = r.id_pl_prod_order
+	            WHERE pl.id_report_status!=5 AND pl.id_prod_order=" + id_prod_order + "
+            ) pl ON pl.id_prod_fc = f.id_prod_fc
+            WHERE f.id_prod_order=" + id_prod_order + " AND f.id_report_status=6 AND f.id_pl_category=" + id_pl_category + " AND ISNULL(pl.id_pl_prod_order) "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCQC.DataSource = data
+            GVQC.BestFitColumns()
+
+            'get id prod_fc
+            makeSafeGV(GVQC)
+            Dim id_coll As String = ""
+            For i As Integer = 0 To GVQC.RowCount - 1
+                If i > 0 Then
+                    id_coll += ","
                 End If
+                id_coll += GVQC.GetRowCellValue(i, "id_prod_fc").ToString
+            Next
+
+            'load ref detil
+            GCRetDetail.DataSource = Nothing
+            GVRetDetail.BestFitColumns()
+            If GVQC.RowCount > 0 Then
+                Dim query_sum As String = "SELECT '' AS `no`, 0 AS `id_pl_prod_order_det`, fd.id_prod_order_det,
+                p.product_full_code AS `code`, p.product_ean_code AS `ean_code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+                SUM(fd.prod_fc_det_qty) AS `pl_prod_order_det_qty`, SUM(fd.prod_fc_det_qty) AS `limit_qty`, 0 AS `jum_alloc_allow`, '' AS `pl_prod_order_det_note`, 0 AS `range_qty`
+                FROM tb_prod_fc_det fd
+                INNER JOIN tb_m_product p ON p.id_product = fd.id_product
+                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                WHERE fd.id_prod_fc IN (" + id_coll + ")
+                GROUP BY fd.id_prod_order_det "
+                Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
+                GCRetDetail.DataSource = data_sum
+                GVRetDetail.BestFitColumns()
             End If
+
+            'load scan
+            GCBarcode.DataSource = Nothing
+            GVBarcode.BestFitColumns()
+            If GVQC.RowCount > 0 Then
+                Dim query_code As String = "SELECT '' AS `no`, fd.full_code AS `code`, '0' AS `id_pl_prod_order_det`, IF(LENGTH(fd.full_code)=16, RIGHT(fd.full_code,4),'') AS `counting_code`,
+                0 AS `id_pl_prod_order_det_unique`, ('2') AS is_fix, fd.id_prod_order_det
+                FROM tb_prod_fc_counting fd
+                WHERE fd.id_prod_fc IN (" + id_coll + ") "
+                Dim data_code As DataTable = execute_query(query_code, -1, True, "", "", "", "")
+                GCBarcode.DataSource = data_code
+                GVBarcode.BestFitColumns()
+            End If
+            Cursor = Cursors.Default
         End If
     End Sub
 

@@ -135,6 +135,7 @@ Partial Class FormBuktiPickupDet
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ColumnAutoWidth = False
+        Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdDel
@@ -218,9 +219,12 @@ Partial Class FormBuktiPickupDet
         'GridColumnTotalDelivery
         '
         Me.GridColumnTotalDelivery.Caption = "Total Delivery"
+        Me.GridColumnTotalDelivery.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalDelivery.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotalDelivery.FieldName = "total"
         Me.GridColumnTotalDelivery.Name = "GridColumnTotalDelivery"
         Me.GridColumnTotalDelivery.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalDelivery.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumnTotalDelivery.Visible = True
         Me.GridColumnTotalDelivery.VisibleIndex = 8
         '

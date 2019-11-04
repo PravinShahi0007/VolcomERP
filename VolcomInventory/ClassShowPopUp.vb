@@ -261,7 +261,7 @@
         ElseIf report_mark_type = "180" Then
             'Employee Propose
             FormEmployeePpsDet.Close()
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
         ElseIf report_mark_type = "185" Then
@@ -1023,7 +1023,7 @@
             FormEmployeePpsDet.show_payroll = True
 
             FormEmployeePpsDet.ShowDialog()
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
             FormEmpOvertimeDet.is_view = "1"
@@ -1969,7 +1969,7 @@
             field_id = "id_employee_pps"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             table_name = "tb_ot"
             field_id = "id_ot"
@@ -2498,31 +2498,100 @@
                                 INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
-            ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
-                                INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
-                                INNER JOIN (
-	                                SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
-	                                INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
-	                                GROUP BY wo.`id_prod_order`
-                                )wo ON wo.id_prod_order=tb.id_prod_order
-                                INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
-                                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-                                INNER JOIN (
-	                                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
-                                    FROM tb_prod_order_wo wo
-                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
-                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
-                                    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
-                                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
-                                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
-                                    GROUP BY wo.id_prod_order_wo
-                                )ovh ON ovh.id_prod_order=tb.id_prod_order
-                                WHERE tb.id_report_status='6'"
+            ElseIf report_mark_type = "139" Then 'PO Opex
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                ,c.`comp_name`,et.expense_type
+                                FROM " & table_name & " tb
+                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                WHERE tb.id_report_status='6' AND tb.`id_expense_type`='1'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
-                query_view += " GROUP BY tb.id_prod_order"
+                query_view += " GROUP BY tb." & field_id & ""
+                '
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                    ,c.`comp_name`,et.expense_type
+                                    FROM " & table_name & " tb
+                                    INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                    INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                    INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                   WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,c.`comp_name`,et.expense_type " & generate_left_join_cancel("column") & "
+                                FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
+                               INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
+                               GROUP BY tb." & field_id
+            ElseIf report_mark_type = "202" Then 'capex
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                ,c.`comp_name`,et.expense_type
+                                FROM " & table_name & " tb
+                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                WHERE tb.id_report_status='6' AND tb.`id_expense_type`='2'"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb." & field_id & ""
+                '
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                    ,c.`comp_name`,et.expense_type
+                                    FROM " & table_name & " tb
+                                    INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                    INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                    INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                   WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,c.`comp_name`,et.expense_type " & generate_left_join_cancel("column") & "
+                                FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
+                               INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
+                               GROUP BY tb." & field_id
+            ElseIf report_mark_type = "22" Then
+                query_view = "SELECT 'no' AS is_check, IF(ISNULL(pp.id_design),1,2) AS already_pp,IF(ISNULL(rec.id_prod_order),1,2) AS already_rec,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
+INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
+INNER JOIN (
+	SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
+	INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+	GROUP BY wo.`id_prod_order`
+)wo ON wo.id_prod_order=tb.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN (
+	SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
+    FROM tb_prod_order_wo wo
+    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
+    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+    GROUP BY wo.id_prod_order_wo
+)ovh ON ovh.id_prod_order=tb.id_prod_order
+LEFT JOIN (
+	SELECT id_design 
+	FROM `tb_fg_propose_price_detail` ppd
+	INNER JOIN tb_fg_propose_price pp ON pp.`id_fg_propose_price`=ppd.`id_fg_propose_price`
+	WHERE pp.id_report_status!=5
+	GROUP BY ppd.id_design
+)pp ON pp.id_design=dsg.`id_design`
+LEFT JOIN (
+	SELECT id_prod_order FROM tb_prod_order_rec WHERE id_report_status!=5
+)rec ON rec.id_prod_order=det.`id_prod_order`
+WHERE tb.id_report_status='6' "
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb.id_prod_order
+HAVING (already_pp = 2 AND already_rec = 2)"
                 '
                 query_view_blank = "SELECT tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,0.00 AS qty,ovh.currency,ovh.unit_price,0.00 AS amount FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
@@ -2732,6 +2801,35 @@
             gv.Columns("tot_amount").DisplayFormat.FormatString = "{0:n2}"
 
             gv.Columns("comp_name").Caption = "Vendor"
+            gv.Columns("date_created").Caption = "Created Date"
+            gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+            gv.Columns("number").Caption = "Number"
+
+            gv.Columns("id_report").OptionsColumn.AllowEdit = False
+            gv.BestFitColumns()
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then 'PO opex
+            If opt = "pick" Then
+                gv.Columns("is_check").Caption = "*"
+                gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                '
+                Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+                rpce.ValueUnchecked = "no"
+                rpce.ValueChecked = "yes"
+                '
+                gv.Columns("is_check").ColumnEdit = rpce
+            End If
+            gv.Columns("id_report").Visible = False
+            Try
+                gv.Columns("id_rmcr").Visible = False
+                gv.Columns("id_report_mark_cancel_report").Visible = False
+            Catch ex As Exception
+            End Try
+
+            gv.Columns("expense_type").Caption = "PO Type"
+            gv.Columns("comp_name").Caption = "Vendor"
+
             gv.Columns("date_created").Caption = "Created Date"
             gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"

@@ -68,7 +68,7 @@
         Dim query As String = "SELECT dep.departement,ic.id_item_cat_main,ic.item_cat_main,'" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense,'') AS id_b_expense,IFNULL(bo.value_expense,0) AS value_expense
 FROM tb_item_cat_main ic
 LEFT JOIN `tb_b_expense` bo ON bo.id_item_cat_main=ic.id_item_cat_main AND bo.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND bo.is_active='1' " & dep & "
-INNER JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
+LEFT JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
 WHERE ic.id_expense_type='2'
 ORDER BY ic.id_item_cat_main"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
