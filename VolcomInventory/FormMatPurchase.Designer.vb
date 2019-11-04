@@ -54,7 +54,6 @@ Partial Class FormMatPurchase
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BShowPrintPanel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -62,6 +61,8 @@ Partial Class FormMatPurchase
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPProdDemand = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListMatPD = New DevExpress.XtraGrid.GridControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMMasterMat = New System.Windows.Forms.ToolStripMenuItem()
@@ -72,6 +73,10 @@ Partial Class FormMatPurchase
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -81,7 +86,6 @@ Partial Class FormMatPurchase
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BGenerateFromPD = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -94,6 +98,24 @@ Partial Class FormMatPurchase
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPReport = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPD = New DevExpress.XtraGrid.GridControl()
+        Me.GVPD = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BSearchReport = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEReport = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPOrderConfirmation = New DevExpress.XtraTab.XtraTabPage()
         Me.GCKO = New DevExpress.XtraGrid.GridControl()
         Me.GVKO = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -112,10 +134,6 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -136,6 +154,9 @@ Partial Class FormMatPurchase
         CType(Me.LESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPProdDemand.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPList.SuspendLayout()
         CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,6 +166,14 @@ Partial Class FormMatPurchase
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEMatDet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPReport.SuspendLayout()
+        CType(Me.GCPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.SLEReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrderConfirmation.SuspendLayout()
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVKO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -472,7 +501,6 @@ Partial Class FormMatPurchase
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BShowPrintPanel)
         Me.PanelControl2.Controls.Add(Me.BSearch)
         Me.PanelControl2.Controls.Add(Me.LabelControl12)
         Me.PanelControl2.Controls.Add(Me.LESeason)
@@ -481,14 +509,6 @@ Partial Class FormMatPurchase
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(790, 44)
         Me.PanelControl2.TabIndex = 5
-        '
-        'BShowPrintPanel
-        '
-        Me.BShowPrintPanel.Location = New System.Drawing.Point(279, 9)
-        Me.BShowPrintPanel.Name = "BShowPrintPanel"
-        Me.BShowPrintPanel.Size = New System.Drawing.Size(105, 23)
-        Me.BShowPrintPanel.TabIndex = 8910
-        Me.BShowPrintPanel.Text = "Show filter panel"
         '
         'BSearch
         '
@@ -545,12 +565,30 @@ Partial Class FormMatPurchase
         '
         'XTPProdDemand
         '
-        Me.XTPProdDemand.Controls.Add(Me.GCListMatPD)
-        Me.XTPProdDemand.Controls.Add(Me.BCreatePO)
-        Me.XTPProdDemand.Controls.Add(Me.PanelControl1)
+        Me.XTPProdDemand.Controls.Add(Me.XtraTabControl1)
         Me.XTPProdDemand.Name = "XTPProdDemand"
         Me.XTPProdDemand.Size = New System.Drawing.Size(790, 347)
         Me.XTPProdDemand.Text = "Generate From PD"
+        '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPList
+        Me.XtraTabControl1.Size = New System.Drawing.Size(790, 347)
+        Me.XtraTabControl1.TabIndex = 8906
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPReport})
+        '
+        'XTPList
+        '
+        Me.XTPList.Controls.Add(Me.GCListMatPD)
+        Me.XTPList.Controls.Add(Me.PanelControl1)
+        Me.XTPList.Controls.Add(Me.BCreatePO)
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(784, 319)
+        Me.XTPList.Text = "List"
         '
         'GCListMatPD
         '
@@ -560,7 +598,7 @@ Partial Class FormMatPurchase
         Me.GCListMatPD.MainView = Me.GVListMatPD
         Me.GCListMatPD.Name = "GCListMatPD"
         Me.GCListMatPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPD})
-        Me.GCListMatPD.Size = New System.Drawing.Size(790, 269)
+        Me.GCListMatPD.Size = New System.Drawing.Size(784, 241)
         Me.GCListMatPD.TabIndex = 7
         Me.GCListMatPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListMatPD})
         '
@@ -645,6 +683,60 @@ Partial Class FormMatPurchase
         Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 155
         '
+        'GridColumn28
+        '
+        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn28.Caption = "Conversion"
+        Me.GridColumn28.FieldName = "conversion"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 5
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.Caption = "Total Qty List (Pcs)"
+        Me.GridColumn25.DisplayFormat.FormatString = "N2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "total_qty_list"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 4
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.Caption = "Total Qty List (Conversion)"
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "total_qty_list_conv"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 6
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn27.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn27.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn27.Caption = "Total Qty Order (Conversion)"
+        Me.GridColumn27.DisplayFormat.FormatString = "N2"
+        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn27.FieldName = "total_qty_order_conv"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 7
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Total Qty Order (Pcs)"
@@ -725,15 +817,6 @@ Partial Class FormMatPurchase
         Me.GridColumn14.VisibleIndex = 9
         Me.GridColumn14.Width = 96
         '
-        'BCreatePO
-        '
-        Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePO.Location = New System.Drawing.Point(0, 313)
-        Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(790, 34)
-        Me.BCreatePO.TabIndex = 8905
-        Me.BCreatePO.Text = "Create PO"
-        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BGenerateFromPD)
@@ -743,7 +826,7 @@ Partial Class FormMatPurchase
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(790, 44)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 44)
         Me.PanelControl1.TabIndex = 6
         '
         'BGenerateFromPD
@@ -751,7 +834,7 @@ Partial Class FormMatPurchase
         Me.BGenerateFromPD.Dock = System.Windows.Forms.DockStyle.Right
         Me.BGenerateFromPD.ImageIndex = 4
         Me.BGenerateFromPD.ImageList = Me.LargeImageCollection
-        Me.BGenerateFromPD.Location = New System.Drawing.Point(631, 2)
+        Me.BGenerateFromPD.Location = New System.Drawing.Point(625, 2)
         Me.BGenerateFromPD.Name = "BGenerateFromPD"
         Me.BGenerateFromPD.Size = New System.Drawing.Size(157, 40)
         Me.BGenerateFromPD.TabIndex = 8910
@@ -848,6 +931,184 @@ Partial Class FormMatPurchase
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 2
         Me.GridColumn16.Width = 285
+        '
+        'BCreatePO
+        '
+        Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePO.Location = New System.Drawing.Point(0, 285)
+        Me.BCreatePO.Name = "BCreatePO"
+        Me.BCreatePO.Size = New System.Drawing.Size(784, 34)
+        Me.BCreatePO.TabIndex = 8905
+        Me.BCreatePO.Text = "Create PO"
+        '
+        'XTPReport
+        '
+        Me.XTPReport.Controls.Add(Me.GCPD)
+        Me.XTPReport.Controls.Add(Me.PanelControl3)
+        Me.XTPReport.Name = "XTPReport"
+        Me.XTPReport.Size = New System.Drawing.Size(784, 319)
+        Me.XTPReport.Text = "Report"
+        '
+        'GCPD
+        '
+        Me.GCPD.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPD.Location = New System.Drawing.Point(0, 44)
+        Me.GCPD.MainView = Me.GVPD
+        Me.GCPD.Name = "GCPD"
+        Me.GCPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCPD.Size = New System.Drawing.Size(784, 275)
+        Me.GCPD.TabIndex = 3
+        Me.GCPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPD})
+        '
+        'GVPD
+        '
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridColumn34})
+        Me.GVPD.GridControl = Me.GCPD
+        Me.GVPD.Name = "GVPD"
+        Me.GVPD.OptionsFind.AlwaysVisible = True
+        Me.GVPD.OptionsView.ShowFooter = True
+        Me.GVPD.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "ID"
+        Me.GridColumn29.FieldName = "id_prod_demand_design"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.OptionsColumn.AllowEdit = False
+        Me.GridColumn29.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Prod Demand Number"
+        Me.GridColumn30.FieldName = "prod_demand_number"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.OptionsColumn.ReadOnly = True
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
+        Me.GridColumn30.Width = 241
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Design Code"
+        Me.GridColumn31.FieldName = "design_code"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.OptionsColumn.ReadOnly = True
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 1
+        Me.GridColumn31.Width = 254
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Design"
+        Me.GridColumn32.FieldName = "design_display_name"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.OptionsColumn.ReadOnly = True
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 2
+        Me.GridColumn32.Width = 731
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.Caption = "List Created"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 3
+        Me.GridColumn35.Width = 210
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.Caption = "PO Material Created"
+        Me.GridColumn34.DisplayFormat.FormatString = "N2"
+        Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn34.FieldName = "qty_list_created"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
+        Me.GridColumn34.OptionsColumn.ReadOnly = True
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 4
+        Me.GridColumn34.Width = 196
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BSearchReport)
+        Me.PanelControl3.Controls.Add(Me.LabelControl2)
+        Me.PanelControl3.Controls.Add(Me.SLEReport)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(784, 44)
+        Me.PanelControl3.TabIndex = 6
+        '
+        'BSearchReport
+        '
+        Me.BSearchReport.Location = New System.Drawing.Point(214, 9)
+        Me.BSearchReport.Name = "BSearchReport"
+        Me.BSearchReport.Size = New System.Drawing.Size(59, 23)
+        Me.BSearchReport.TabIndex = 8904
+        Me.BSearchReport.Text = "Search"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl2.TabIndex = 141
+        Me.LabelControl2.Text = "Season"
+        '
+        'SLEReport
+        '
+        Me.SLEReport.Location = New System.Drawing.Point(52, 11)
+        Me.SLEReport.Name = "SLEReport"
+        Me.SLEReport.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.SLEReport.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.SLEReport.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.SLEReport.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.SLEReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEReport.Properties.NullText = ""
+        Me.SLEReport.Properties.ShowFooter = False
+        Me.SLEReport.Properties.View = Me.GridView4
+        Me.SLEReport.Size = New System.Drawing.Size(156, 20)
+        Me.SLEReport.TabIndex = 140
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn36, Me.GridColumn37})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Id Season"
+        Me.GridColumn36.FieldName = "id_season"
+        Me.GridColumn36.Name = "GridColumn36"
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Season"
+        Me.GridColumn37.FieldName = "season"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 0
         '
         'XTPOrderConfirmation
         '
@@ -1014,60 +1275,6 @@ Partial Class FormMatPurchase
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
-        'GridColumn25
-        '
-        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn25.Caption = "Total Qty List (Pcs)"
-        Me.GridColumn25.DisplayFormat.FormatString = "N2"
-        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn25.FieldName = "total_qty_list"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 4
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn26.Caption = "Total Qty List (Conversion)"
-        Me.GridColumn26.DisplayFormat.FormatString = "N2"
-        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn26.FieldName = "total_qty_list_conv"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 6
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn27.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn27.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn27.Caption = "Total Qty Order (Conversion)"
-        Me.GridColumn27.DisplayFormat.FormatString = "N2"
-        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn27.FieldName = "total_qty_order_conv"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 7
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn28.Caption = "Conversion"
-        Me.GridColumn28.FieldName = "conversion"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 5
-        '
         'FormMatPurchase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1103,6 +1310,9 @@ Partial Class FormMatPurchase
         CType(Me.LESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPProdDemand.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPList.ResumeLayout(False)
         CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1113,6 +1323,15 @@ Partial Class FormMatPurchase
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEMatDet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPReport.ResumeLayout(False)
+        CType(Me.GCPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.SLEReport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrderConfirmation.ResumeLayout(False)
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVKO, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1152,7 +1371,6 @@ Partial Class FormMatPurchase
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BShowPrintPanel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PCFilterDate As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PCSelAll As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
@@ -1220,4 +1438,23 @@ Partial Class FormMatPurchase
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPReport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPD As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPD As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BSearchReport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEReport As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
