@@ -280,19 +280,21 @@
                                         GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
                                     End If
                                 Else
-                                    GVAttendance.SetRowCellValue(i, "ot_potention", "1")
+                                    If work_hours >= ot_min Then
+                                        GVAttendance.SetRowCellValue(i, "ot_potention", "1")
 
-                                    Dim total_hours As Decimal = Math.Floor(work_hours / 0.5) * 0.5
+                                        Dim total_hours As Decimal = Math.Floor(work_hours / 0.5) * 0.5
 
-                                    GVAttendance.SetRowCellValue(i, "start_work_ot", GVAttendance.GetRowCellValue(i, "start_work_att"))
-                                    GVAttendance.SetRowCellValue(i, "end_work_ot", GVAttendance.GetRowCellValue(i, "end_work_att"))
-                                    GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
-                                    GVAttendance.SetRowCellValue(i, "ot_hours", work_hours)
-                                    GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
+                                        GVAttendance.SetRowCellValue(i, "start_work_ot", GVAttendance.GetRowCellValue(i, "start_work_att"))
+                                        GVAttendance.SetRowCellValue(i, "end_work_ot", GVAttendance.GetRowCellValue(i, "end_work_att"))
+                                        GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                        GVAttendance.SetRowCellValue(i, "ot_hours", work_hours)
+                                        GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
 
-                                    If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
-                                        GVAttendance.SetRowCellValue(i, "is_valid", "yes")
-                                        GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
+                                        If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString Then
+                                            GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+                                            GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
+                                        End If
                                     End If
                                 End If
 
@@ -367,9 +369,16 @@
             'controls
             SBSave.Enabled = True
             SBComplete.Enabled = True
+            SBComplete.Visible = If(is_hrd = "1", True, False)
             SBPrint.Enabled = False
             SBMark.Enabled = False
-            SBReset.Visible = False
+            RISLUEType2.ReadOnly = False
+            RITETimeVer.ReadOnly = If(is_hrd = "1", False, True)
+            RITEBreak2.ReadOnly = False
+            RITEHours.ReadOnly = If(is_hrd = "1", False, True)
+            RITENote.ReadOnly = False
+            RICEValid.ReadOnly = False
+            SBReset.Enabled = False
         Else
             Dim query_ver As String = "
                 SELECT vr.id_payroll, vr.id_report_status, rs.report_status
@@ -385,7 +394,7 @@
 
             'detail
             Dim query_det As String = "
-                SELECT vrd.id_employee, vrd.id_departement, vrd.id_departement_sub, d.departement, DATE_FORMAT(vr.ot_date, '%d %M %Y') AS date, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, sts.employee_status, vrd.to_salary, IF((sch.id_schedule_type = 1 OR sch.id_schedule_type IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = vr.ot_date AND id_religion IN (0, IF(" + is_store + " = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, vrd.conversion_type, IF(vrd.start_work_att = '0000-00-00 00:00:00', '', DATE_FORMAT(vrd.start_work_att, '%H:%i:%s')) AS start_work_att, IF(vrd.end_work_att = '0000-00-00 00:00:00', '', DATE_FORMAT(vrd.end_work_att, '%H:%i:%s')) AS end_work_att, DATE_FORMAT(vrd.start_work_ot, '%H:%i:%s') AS start_work_ot, DATE_FORMAT(vrd.end_work_ot, '%H:%i:%s') AS end_work_ot, vrd.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, vrd.start_work_ot, vrd.end_work_ot) / 60) - vrd.break_hours, 1) AS ot_hours, vrd.total_hours, 0.0 AS point_ot, vrd.ot_note, 'yes' AS is_valid, sch.id_schedule_type, DATE_FORMAT(sch.in, '%H:%i:%s') AS `in`, DATE_FORMAT(sch.out, '%H:%i:%s') AS `out`, 1 AS ot_potention
+                SELECT vrd.id_employee, vrd.id_departement, vrd.id_departement_sub, d.departement, DATE_FORMAT(vr.ot_date, '%d %M %Y') AS date, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, sts.employee_status, vrd.to_salary, IF((sch.id_schedule_type = 1 OR sch.id_schedule_type IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = vr.ot_date AND id_religion IN (0, IF(" + is_store + " = 1, 0, e.id_religion))) IS NULL), 2, 1) AS is_day_off, vrd.conversion_type, IF(vrd.start_work_att = '0000-00-00 00:00:00', '', DATE_FORMAT(vrd.start_work_att, '%H:%i:%s')) AS start_work_att, IF(vrd.end_work_att = '0000-00-00 00:00:00', '', DATE_FORMAT(vrd.end_work_att, '%H:%i:%s')) AS end_work_att, DATE_FORMAT(vrd.start_work_ot, '%H:%i:%s') AS start_work_ot, DATE_FORMAT(vrd.end_work_ot, '%H:%i:%s') AS end_work_ot, vrd.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, vrd.start_work_ot, vrd.end_work_ot) / 60) - vrd.break_hours, 1) AS ot_hours, vrd.total_hours, 0.0 AS point_ot, vrd.ot_note, sch.id_schedule_type, DATE_FORMAT(sch.in, '%H:%i:%s') AS `in`, DATE_FORMAT(sch.out, '%H:%i:%s') AS `out`, 1 AS ot_potention, IF(vrd.is_valid = 1, 'yes', 'no') AS is_valid
                 FROM tb_ot_verification_det AS vrd
                 LEFT JOIN tb_ot_verification AS vr ON vrd.id_ot_verification = vr.id_ot_verification
                 LEFT JOIN tb_m_employee AS e ON vrd.id_employee = e.id_employee
@@ -393,6 +402,7 @@
                 LEFT JOIN tb_m_departement AS d ON vrd.id_departement = d.id_departement
                 LEFT JOIN tb_emp_schedule AS sch ON vrd.id_employee = sch.id_employee AND sch.date = vr.ot_date
                 WHERE vrd.id_ot_verification = " + id + "
+                ORDER BY d.departement ASC, e.id_employee_level ASC, e.employee_code ASC
             "
 
             Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
@@ -400,20 +410,30 @@
             GCAttendance.DataSource = data_det
 
             'controls
-            SBSave.Enabled = False
-            SBComplete.Enabled = False
-            SBPrint.Enabled = True
-            SBMark.Enabled = True
-            RISLUEType2.ReadOnly = True
-            RITETimeVer.ReadOnly = True
-            RITEHours.ReadOnly = True
-            RITENote.ReadOnly = True
-            RICEValid.ReadOnly = True
-
-            If data_ver.Rows(0)("id_report_status").ToString <> "6" Then
-                SBReset.Visible = True
+            If data_ver.Rows(0)("id_report_status").ToString = "1" Then
+                SBSave.Enabled = False
+                SBComplete.Enabled = If(is_hrd = "1", True, False)
+                SBPrint.Enabled = True
+                SBMark.Enabled = True
+                RISLUEType2.ReadOnly = If(is_hrd = "1", False, True)
+                RITETimeVer.ReadOnly = If(is_hrd = "1", False, True)
+                RITEBreak2.ReadOnly = If(is_hrd = "1", False, True)
+                RITEHours.ReadOnly = If(is_hrd = "1", False, True)
+                RITENote.ReadOnly = If(is_hrd = "1", False, True)
+                RICEValid.ReadOnly = If(is_hrd = "1", False, True)
+                SBReset.Enabled = True
             Else
-                SBReset.Visible = False
+                SBSave.Enabled = False
+                SBComplete.Enabled = False
+                SBPrint.Enabled = True
+                SBMark.Enabled = True
+                RISLUEType2.ReadOnly = True
+                RITETimeVer.ReadOnly = True
+                RITEBreak2.ReadOnly = True
+                RITEHours.ReadOnly = True
+                RITENote.ReadOnly = True
+                RICEValid.ReadOnly = True
+                SBReset.Enabled = False
             End If
         End If
 
@@ -484,7 +504,7 @@
     End Sub
 
     Sub submit(type As String)
-        GVAttendance.ActiveFilterString = "[ot_potention] = '1' AND [is_valid] = 'yes'"
+        GVAttendance.ActiveFilterString = "[ot_potention] = '1'"
 
         If GVAttendance.RowCount > 0 Then
             Dim check_warning As String = ""
@@ -492,12 +512,14 @@
             'check blank overtime
             For i = 0 To GVAttendance.RowCount - 1
                 If GVAttendance.IsValidRowHandle(i) Then
-                    If GVAttendance.GetRowCellValue(i, "ot_note").ToString = "" Then
-                        check_warning = "Overtime propose cannot be blank."
-                    End If
+                    If GVAttendance.GetRowCellValue(i, "is_valid").ToString = "yes" Then
+                        If GVAttendance.GetRowCellValue(i, "ot_note").ToString = "" Then
+                            check_warning = "Overtime propose cannot be blank."
+                        End If
 
-                    If GVAttendance.GetRowCellValue(i, "start_work_ot").ToString = "" Or GVAttendance.GetRowCellValue(i, "end_work_ot").ToString = "" Then
-                        check_warning = "Overtime start work or end work cannot be blank."
+                        If GVAttendance.GetRowCellValue(i, "start_work_ot").ToString = "" Or GVAttendance.GetRowCellValue(i, "end_work_ot").ToString = "" Then
+                            check_warning = "Overtime start work or end work cannot be blank."
+                        End If
                     End If
                 End If
             Next
@@ -539,48 +561,55 @@
 
                     For i = 0 To GVAttendance.RowCount - 1
                         If GVAttendance.IsValidRowHandle(i) Then
-                            If GVAttendance.GetRowCellValue(i, "is_valid").ToString = "yes" Then
-                                Dim start_work_att As String = "NULL"
-                                Dim end_work_att As String = "NULL"
-                                Dim start_work_ot As String = "NULL"
-                                Dim end_work_ot As String = "NULL"
+                            Dim start_work_att As String = "NULL"
+                            Dim end_work_att As String = "NULL"
+                            Dim start_work_ot As String = "NULL"
+                            Dim end_work_ot As String = "NULL"
 
-                                Dim id_employee As String = GVAttendance.GetRowCellValue(i, "id_employee").ToString
-                                Dim id_departement As String = GVAttendance.GetRowCellValue(i, "id_departement").ToString
-                                Dim id_departement_sub As String = GVAttendance.GetRowCellValue(i, "id_departement_sub").ToString
-                                Dim employee_position As String = GVAttendance.GetRowCellValue(i, "employee_position").ToString
-                                Dim id_employee_status As String = GVAttendance.GetRowCellValue(i, "id_employee_status").ToString
-                                Dim to_salary As String = GVAttendance.GetRowCellValue(i, "to_salary").ToString
-                                Dim conversion_type As String = GVAttendance.GetRowCellValue(i, "conversion_type").ToString
+                            Dim id_employee As String = GVAttendance.GetRowCellValue(i, "id_employee").ToString
+                            Dim id_departement As String = GVAttendance.GetRowCellValue(i, "id_departement").ToString
+                            Dim id_departement_sub As String = GVAttendance.GetRowCellValue(i, "id_departement_sub").ToString
+                            Dim employee_position As String = GVAttendance.GetRowCellValue(i, "employee_position").ToString
+                            Dim id_employee_status As String = GVAttendance.GetRowCellValue(i, "id_employee_status").ToString
+                            Dim to_salary As String = GVAttendance.GetRowCellValue(i, "to_salary").ToString
+                            Dim conversion_type As String = GVAttendance.GetRowCellValue(i, "conversion_type").ToString
+                            Dim is_valid As String = If(GVAttendance.GetRowCellValue(i, "is_valid").ToString = "yes", "1", "2")
 
-                                Try
-                                    start_work_att = "'" + DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "start_work_att").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss") + "'"
-                                Catch ex As Exception
-                                End Try
+                            Try
+                                start_work_att = DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "start_work_att").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss")
+                            Catch ex As Exception
+                            End Try
 
-                                Try
-                                    end_work_att = "'" + DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "end_work_att").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss") + "'"
-                                Catch ex As Exception
-                                End Try
+                            Try
+                                end_work_att = DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "end_work_att").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss")
 
-                                Try
-                                    start_work_ot = "'" + DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "start_work_ot").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss") + "'"
-                                Catch ex As Exception
-                                End Try
+                                If DateTime.Parse(end_work_att) < DateTime.Parse(start_work_att) Then
+                                    end_work_att = DateTime.Parse(end_work_att).AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")
+                                End If
+                            Catch ex As Exception
+                            End Try
 
-                                Try
-                                    end_work_ot = "'" + DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "end_work_ot").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss") + "'"
-                                Catch ex As Exception
-                                End Try
+                            Try
+                                start_work_ot = DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "start_work_ot").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss")
+                            Catch ex As Exception
+                            End Try
 
-                                Dim break_hours As String = GVAttendance.GetRowCellValue(i, "break_hours").ToString
-                                Dim total_hours As String = GVAttendance.GetRowCellValue(i, "total_hours").ToString
-                                Dim ot_note As String = GVAttendance.GetRowCellValue(i, "ot_note").ToString
+                            Try
+                                end_work_ot = DateTime.Parse(DateTime.Parse(GVAttendance.GetRowCellValue(i, "date").ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVAttendance.GetRowCellValue(i, "end_work_ot").ToString).ToString("HH:mm:ss")).ToString("yyyy-MM-dd HH:mm:ss")
 
-                                query = "INSERT INTO tb_ot_verification_det (id_ot_verification, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, start_work_att, end_work_att, start_work_ot, end_work_ot, break_hours, total_hours, ot_note) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", " + start_work_att + ", " + end_work_att + ", " + start_work_ot + ", " + end_work_ot + ", " + decimalSQL(break_hours) + ", " + decimalSQL(total_hours) + ", '" + addSlashes(ot_note) + "')"
+                                If DateTime.Parse(end_work_ot) < DateTime.Parse(start_work_ot) Then
+                                    end_work_ot = DateTime.Parse(end_work_ot).AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")
+                                End If
+                            Catch ex As Exception
+                            End Try
 
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
+                            Dim break_hours As String = GVAttendance.GetRowCellValue(i, "break_hours").ToString
+                            Dim total_hours As String = GVAttendance.GetRowCellValue(i, "total_hours").ToString
+                            Dim ot_note As String = GVAttendance.GetRowCellValue(i, "ot_note").ToString
+
+                            query = "INSERT INTO tb_ot_verification_det (id_ot_verification, id_employee, id_departement, id_departement_sub, employee_position, id_employee_status, to_salary, conversion_type, start_work_att, end_work_att, start_work_ot, end_work_ot, break_hours, total_hours, ot_note, is_valid) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", " + id_departement_sub + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", " + to_salary + ", " + conversion_type + ", " + If(start_work_att = "NULL", start_work_att, "'" + start_work_att + "'") + ", " + If(end_work_att = "NULL", end_work_att, "'" + end_work_att + "'") + ", " + If(start_work_ot = "NULL", start_work_ot, "'" + start_work_ot + "'") + ", " + If(end_work_ot = "NULL", end_work_ot, "'" + end_work_ot + "'") + ", " + decimalSQL(break_hours) + ", " + decimalSQL(total_hours) + ", '" + addSlashes(ot_note) + "', '" + is_valid + "')"
+
+                            execute_non_query(query, True, "", "", "", "")
                         End If
                     Next
 
@@ -691,7 +720,7 @@
             LEFT JOIN tb_m_departement AS d ON vrd.id_departement = d.id_departement
             LEFT JOIN tb_m_departement AS s ON vr.id_departement = s.id_departement
             LEFT JOIN tb_emp_schedule AS sch ON vrd.id_employee = sch.id_employee AND sch.date = vr.ot_date
-            WHERE vrd.id_ot_verification = " + id + "
+            WHERE vrd.id_ot_verification = " + id + " AND vrd.is_valid = 1
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1160,21 +1189,23 @@
     End Sub
 
     Private Sub GVAttendance_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVAttendance.RowCellStyle
-        If GVAttendance.GetRowCellValue(e.RowHandle, "total_hours") <= 0 Then
-            e.Appearance.BackColor = Color.FromArgb(243, 217, 217)
-        Else
-            Dim is_proposed As Boolean = False
+        If loaded Then
+            If GVAttendance.GetRowCellValue(e.RowHandle, "total_hours") <= 0 Then
+                e.Appearance.BackColor = Color.FromArgb(243, 217, 217)
+            Else
+                Dim is_proposed As Boolean = False
 
-            For i = 0 To GVEmployee.RowCount - 1
-                If GVEmployee.IsValidRowHandle(i) Then
-                    If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(e.RowHandle, "id_employee").ToString Then
-                        is_proposed = True
+                For i = 0 To GVEmployee.RowCount - 1
+                    If GVEmployee.IsValidRowHandle(i) Then
+                        If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(e.RowHandle, "id_employee").ToString Then
+                            is_proposed = True
+                        End If
                     End If
-                End If
-            Next
+                Next
 
-            If Not is_proposed Then
-                e.Appearance.BackColor = Color.FromArgb(217, 217, 243)
+                If Not is_proposed Then
+                    e.Appearance.BackColor = Color.FromArgb(217, 217, 243)
+                End If
             End If
         End If
     End Sub
