@@ -36,6 +36,7 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
     Private Sub viewSeason()
         Dim query As String = "SELECT '0' as id_season,'All season' AS season UNION (SELECT id_season,season FROM tb_season ORDER BY id_season DESC)"
         viewSearchLookupQuery(LESeason, query, "id_season", "season", "id_season")
+        viewSearchLookupQuery(SLEReport, query, "id_season", "season", "id_season")
     End Sub
     Private Sub FormMatPurchase_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -235,7 +236,7 @@ GROUP BY mpd.`id_mat_purc`"
         FormMatPurcSum.ShowDialog()
     End Sub
 
-    Private Sub BShowPrintPanel_Click(sender As Object, e As EventArgs) Handles BShowPrintPanel.Click
+    Private Sub BShowPrintPanel_Click(sender As Object, e As EventArgs)
         PCFilterDate.Visible = True
     End Sub
 
@@ -400,5 +401,14 @@ GROUP BY pl.`id_mat_purc_list`"
         If GVListMatPD.RowCount > 0 Then
             open_mat()
         End If
+    End Sub
+
+    Private Sub BSearchReport_Click(sender As Object, e As EventArgs) Handles BSearchReport.Click
+
+    End Sub
+
+    Sub view_report()
+        Dim query As String = ""
+
     End Sub
 End Class

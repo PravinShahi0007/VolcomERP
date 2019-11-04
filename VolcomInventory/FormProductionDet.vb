@@ -474,11 +474,12 @@ GROUP BY m_ovh_p.id_ovh_price"
                             cur.`currency`,cur.`id_currency`,
                             wo.prod_order_wo_del_date,
                             wod.qty,
-                            wod.price,wo.prod_order_wo_kurs
+                            wod.price,wo.prod_order_wo_kurs,
+                            wod.gross_amount
                             FROM tb_prod_order_wo wo 
                             LEFT JOIN 
                             (
-	                            SELECT id_prod_order_wo,prod_order_wo_det_price AS price,SUM(prod_order_wo_det_qty) AS qty FROM tb_prod_order_wo_det
+	                            SELECT id_prod_order_wo,prod_order_wo_det_price AS price,SUM(CAST(prod_order_wo_det_qty*prod_order_wo_det_price AS DECIMAL(13,2))) AS gross_amount,SUM(prod_order_wo_det_qty) AS qty FROM tb_prod_order_wo_det
 	                            GROUP BY id_prod_order_wo
                             ) AS wod ON wod.id_prod_order_wo=wo.`id_prod_order_wo`
                             INNER JOIN tb_m_ovh_price b ON wo.id_ovh_price=b.id_ovh_price 
