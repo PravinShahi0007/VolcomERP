@@ -23,6 +23,11 @@
 
             Text = "Overtime Management"
         End If
+
+        If Not is_hrd = "1" Then
+            GVVerificationEmployee.Columns("total_hours").Visible = False
+            GVVerificationEmployee.Columns("point_ot").Visible = False
+        End If
     End Sub
 
     Sub form_load()
@@ -89,7 +94,7 @@
             End Try
 
             Dim query As String = "
-                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, CONCAT('- ', GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') ORDER BY ot_det.ot_date ASC SEPARATOR '\n- ')) AS ot_date, ot.number, GROUP_CONCAT(DISTINCT ot_det.ot_note SEPARATOR ', ') AS ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, CONCAT(GROUP_CONCAT(DISTINCT DATE_FORMAT(ot_det.ot_date, '%d %M %Y') ORDER BY ot_det.ot_date ASC SEPARATOR ',')) AS ot_date, ot.number, GROUP_CONCAT(DISTINCT ot_det.ot_note SEPARATOR ', ') AS ot_note, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %H:%i:%s') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -102,6 +107,50 @@
             "
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'date
+            Dim last_date As Date = New Date()
+
+            For i = 0 To data.Rows.Count - 1
+                Dim final_date As String = ""
+
+                Dim temp_date As String() = data.Rows(i)("ot_date").ToString.Split(",")
+
+                Dim group_date As Integer = 1
+
+                For j = 0 To temp_date.Count - 1
+                    Dim now_date As Date = Date.Parse(temp_date(j))
+
+                    If j = 0 Then
+                        last_date = now_date
+
+                        final_date = now_date.ToString("dd MMMM yyyy")
+                    Else
+                        If Not last_date.AddDays(1) = now_date Then
+                            If group_date = 1 Then
+                                final_date += ", " + now_date.ToString("dd MMMM yyyy")
+                            Else
+                                final_date += " - " + last_date.ToString("dd MMMM yyyy") + ", " + now_date.ToString("dd MMMM yyyy")
+                            End If
+
+                            group_date = 1
+                        Else
+                            group_date = group_date + 1
+                        End If
+
+                        'last date
+                        If j = temp_date.Count - 1 Then
+                            If last_date.AddDays(1) = now_date Then
+                                final_date += " - " + now_date.ToString("dd MMMM yyyy")
+                            End If
+                        End If
+
+                        last_date = now_date
+                    End If
+                Next
+
+                data.Rows(i)("ot_date") = final_date
+            Next
 
             GCOvertime.DataSource = data
 
@@ -140,7 +189,7 @@
             Dim query As String = "
                 SELECT * 
                 FROM (
-                    (SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_verification_det.id_employee AND date = ot_verification.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_verification_det.id_employee AND date = ot_verification.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_verification.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot_verification_det.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                    (SELECT ot_verification_det.id_employee, ot_verification_det.id_departement, ot_verification_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_verification_det.employee_position, ot_verification_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_verification_det.to_salary, ot_verification_det.conversion_type, ot_verification.id_ot, ot_verification.id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_verification_det.id_employee AND date = ot_verification.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_verification_det.id_employee AND date = ot_verification.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_verification.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, DATE_FORMAT(ot_verification_det.start_work_ot, '%H:%i:%s') AS start_work_ot, DATE_FORMAT(ot_verification_det.end_work_ot, '%H:%i:%s') AS end_work_ot, ot_verification_det.break_hours, ROUND((TIMESTAMPDIFF(MINUTE, ot_verification_det.start_work_ot, ot_verification_det.end_work_ot) / 60) - ot_verification_det.break_hours, 1) AS ot_hours, ot_verification_det.total_hours, 0.0 AS point_ot, ot_verification_det.ot_note, ot_verification.id_report_status, report_status.report_status, created_by.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
                     FROM tb_ot_verification_det AS ot_verification_det
                     LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
                     LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
@@ -152,7 +201,7 @@
                     LEFT JOIN tb_m_employee AS created_by ON ot_verification.created_by = created_by.id_employee
                     WHERE 1 " + where_date + " " + where_departement + " " + where_employee + ")
                     UNION ALL
-                    (SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_det.to_salary, ot_det.conversion_type, ot_det.id_ot, 0 AS id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, '' AS start_work_ot, '' AS end_work_ot, ot_det.ot_break AS break_hours, 0.0 AS total_hours, 0.0 AS point_ot, ot_det.ot_note, 0 AS id_report_status, 'Need Verify' AS report_status, '' AS created_by, '' AS created_at
+                    (SELECT ot_det.id_employee, ot_det.id_departement, ot_det.id_departement_sub, departement.departement, IF(ot_type.is_point_ho = 1, 2, departement.is_store) AS is_store, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_status, employee_status.employee_status, employee.id_employee_level, ot_det.to_salary, ot_det.conversion_type, ot_det.id_ot, 0 AS id_ot_verification, ot.number, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, IF(((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) = 1 OR (SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND date = ot_det.ot_date) IS NULL) AND ((SELECT id_emp_holiday FROM tb_emp_holiday WHERE emp_holiday_date = ot_det.ot_date AND id_religion IN (0, IF(departement.is_store = 1, 0, employee.id_religion))) IS NULL), 2, 1) AS is_day_off, '' AS start_work_ot, '' AS end_work_ot, ot_det.ot_break AS break_hours, 0.0 AS ot_hours, 0.0 AS total_hours, 0.0 AS point_ot, ot_det.ot_note, 0 AS id_report_status, 'Waiting Verify' AS report_status, '' AS created_by, '' AS created_at
                     FROM tb_ot_det AS ot_det
                     LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                     LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
@@ -184,7 +233,7 @@
             Dim query As String = "
                 SELECT *
                 FROM (
-                    (SELECT ot_verification.id_ot_verification, ot_verification.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot_verification.id_departement, departement.departement, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot.number, GROUP_CONCAT(DISTINCT ot_verification_det.ot_note SEPARATOR ', ') AS ot_note, ot_verification.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
+                    (SELECT ot_verification.id_ot_verification, ot_verification.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot_verification.id_departement, departement.departement, DATE_FORMAT(ot_verification.ot_date, '%d %M %Y') AS ot_date, ot.number, GROUP_CONCAT(DISTINCT IF(ot_verification_det.ot_note = '', NULL, ot_verification_det.ot_note) SEPARATOR ', ') AS ot_note, ot_verification.id_report_status, report_status.report_status, employee.employee_name AS created_by, DATE_FORMAT(ot_verification.created_at, '%d %M %Y %H:%i:%s') AS created_at
                     FROM tb_ot_verification_det AS ot_verification_det
                     LEFT JOIN tb_ot_verification AS ot_verification ON ot_verification_det.id_ot_verification = ot_verification.id_ot_verification
                     LEFT JOIN tb_ot AS ot ON ot_verification.id_ot = ot.id_ot
@@ -195,7 +244,7 @@
                     WHERE 1 " + where_date + " " + where_departement + "
                     GROUP BY ot_verification_det.id_ot_verification)
                     UNION ALL
-                    (SELECT 0 AS id_ot_verification, ot_det.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, ot.number, ot_det.ot_note, 0 AS id_report_status, 'Need Verify' AS report_status, '' AS created_by, '' AS created_at
+                    (SELECT 0 AS id_ot_verification, ot_det.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, ot.id_departement, departement.departement, DATE_FORMAT(ot_det.ot_date, '%d %M %Y') AS ot_date, ot.number, ot_det.ot_note, 0 AS id_report_status, 'Waiting Verify' AS report_status, '' AS created_by, '' AS created_at
                     FROM tb_ot_det AS ot_det
                     LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                     LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
