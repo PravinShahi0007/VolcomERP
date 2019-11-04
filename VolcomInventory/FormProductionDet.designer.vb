@@ -1182,8 +1182,6 @@ Partial Class FormProductionDet
         Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn39.FieldName = "gross_amount"
         Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.UnboundExpression = "[price] * [qty]"
-        Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 12
         '
@@ -1198,7 +1196,7 @@ Partial Class FormProductionDet
         Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn38.FieldName = "amount"
         Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.UnboundExpression = "[price] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
+        Me.GridColumn38.UnboundExpression = "Round([price] * [qty], 2)* ((100 + [prod_order_wo_vat]) / 100)"
         Me.GridColumn38.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 13
@@ -1232,7 +1230,7 @@ Partial Class FormProductionDet
         Me.GridColumn21.FieldName = "act_amount"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
-        Me.GridColumn21.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty]"
+        Me.GridColumn21.UnboundExpression = "Round([price] * [qty], 2)* [prod_order_wo_kurs] "
         Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 16
@@ -1248,7 +1246,8 @@ Partial Class FormProductionDet
         Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn40.FieldName = "GridColumn40"
         Me.GridColumn40.Name = "GridColumn40"
-        Me.GridColumn40.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
+        Me.GridColumn40.UnboundExpression = "Round([price] * [qty], 2) * [prod_order_wo_kurs]  * ((100 + [prod_order_wo_vat]) " &
+    "/ 100)"
         Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 17
