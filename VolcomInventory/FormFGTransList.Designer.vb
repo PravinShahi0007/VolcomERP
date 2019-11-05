@@ -216,6 +216,7 @@ Partial Class FormFGTransList
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSRet = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -1272,6 +1273,7 @@ Partial Class FormFGTransList
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.BtnExportToXLSRet)
         Me.GroupControl2.Controls.Add(Me.BtnViewReturn)
         Me.GroupControl2.Controls.Add(Me.SimpleButton9)
         Me.GroupControl2.Controls.Add(Me.SimpleButton10)
@@ -2272,6 +2274,15 @@ Partial Class FormFGTransList
         Me.BtnExportToXLSRec.TabIndex = 8900
         Me.BtnExportToXLSRec.Text = "Export to XLS"
         '
+        'BtnExportToXLSRet
+        '
+        Me.BtnExportToXLSRet.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLSRet.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSRet.Name = "BtnExportToXLSRet"
+        Me.BtnExportToXLSRet.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSRet.TabIndex = 8901
+        Me.BtnExportToXLSRet.Text = "Export to XLS"
+        '
         'FormFGTransList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2552,4 +2563,5 @@ Partial Class FormFGTransList
     Friend WithEvents RepoCENonList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnExportToXLSRec As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSRet As DevExpress.XtraEditors.SimpleButton
 End Class

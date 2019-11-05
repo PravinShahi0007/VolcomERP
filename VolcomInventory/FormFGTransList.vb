@@ -341,4 +341,20 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnExportToXLSRet_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRet.Click
+        If GVSalesReturn.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim dt_from As String = DEFromReturn.Text.Replace(" ", "")
+            Dim dt_until As String = DEUntilReturn.Text.Replace(" ", "")
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_ret.xlsx"
+            exportToXLS(path, "ret", GCSalesReturn)
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
