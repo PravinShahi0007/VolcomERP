@@ -6315,7 +6315,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormSamplePlan.GCSamplePurchase, "List Planning Sample")
         ElseIf formName = "FormMatPurchase" Then
             'Purchase Material
-            print(FormMatPurchase.GCMatPurchase, "List Purchase Material")
+            If FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 0 Then
+                print(FormMatPurchase.GCMatPurchase, "List Purchase Material")
+            ElseIf FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 1 Then
+                If FormMatPurchase.XTCListPD.SelectedTabPageIndex = 0 Then
+                    print(FormMatPurchase.GCListMatPD, "List Material From PD")
+                ElseIf FormMatPurchase.XTCListPD.SelectedTabPageIndex = 1 Then
+                    print(FormMatPurchase.GCPD, "List PD Design (Season : " & FormMatPurchase.SLEReport.Text & ")")
+                End If
+            End If
         ElseIf formName = "FormMatWO" Then
             'Purchase Material
             print(FormMatWO.GCMatWO, "List Work Order Material")
@@ -8660,9 +8668,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSampleReq.viewSampleReq()
         ElseIf formName = "FormMatPurchase" Then
             'Material Purchase
-            If FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 0 Then 'purchase order
+            If FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 0 Then
                 FormMatPurchase.view_mat_purc()
-            ElseIf FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 1 Then 'prod demand
+            ElseIf FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 1 Then
+                If FormMatPurchase.XTCListPD.SelectedTabPageIndex = 0 Then
+                    FormMatPurchase.load_list_mat_from_pd()
+                ElseIf FormMatPurchase.XTCListPD.SelectedTabPageIndex = 1 Then
+                    FormMatPurchase.view_report()
+                End If
             End If
         ElseIf formName = "FormMatWO" Then
             'Material WO

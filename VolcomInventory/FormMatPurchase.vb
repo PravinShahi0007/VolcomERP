@@ -404,13 +404,13 @@ GROUP BY pl.`id_mat_purc_list`"
     End Sub
 
     Private Sub BSearchReport_Click(sender As Object, e As EventArgs) Handles BSearchReport.Click
-
+        view_report()
     End Sub
 
     Sub view_report()
         Dim query_where As String = ""
-        If Not LESeason.EditValue.ToString = "0" Then
-            query_where += " AND del.id_season='" & LESeason.EditValue.ToString & "'"
+        If Not SLEReport.EditValue.ToString = "0" Then
+            query_where += " WHERE del.id_season='" & SLEReport.EditValue.ToString & "'"
         End If
 
         Dim query As String = "SELECT pd.*,dsg.`design_code`,dsg.`design_display_name`,listt.`id_mat_purc_list`,COUNT(listt.`id_mat_purc_list`) AS jml_list,COUNT(mp.`id_mat_purc`) AS jml_po FROM
@@ -421,7 +421,7 @@ GROUP BY pl.`id_mat_purc_list`"
 	IFNULL(pdpo.id_product,newest_pd.id_product) AS id_product,
 	IFNULL(pdpo.id_prod_demand_product,newest_pd.id_prod_demand_product) AS id_prod_demand_product,
 	IFNULL(pdpo.prod_demand_product_qty,newest_pd.prod_demand_product_qty) AS prod_demand_product_qty,
-	IFNULL(pdpo.prod_demand_number,newest_pd.prod_demand_number) AS prod_demand_number
+	IFNULL(pdpo.prod_demand_number,newest_pd.prod_demand_number) AS prod_demand_number,
     IFNULL(pdpo.id_delivery,newest_pd.id_delivery) AS id_delivery
 	FROM (
 		SELECT * FROM (
@@ -449,6 +449,7 @@ INNER JOIN `tb_season_delivery` del ON pd.`id_delivery`=del.`id_delivery`
 LEFT JOIN `tb_mat_purc_list_pd` listpd ON listpd.`id_prod_demand_design`=pd.id_prod_demand_design
 LEFT JOIN tb_mat_purc_list listt ON listt.`id_mat_purc_list`=listpd.`id_mat_purc_list` AND listt.`is_cancel`!=1
 LEFT JOIN `tb_mat_purc` mp ON mp.`id_mat_purc`=listt.`id_mat_purc` AND mp.`id_report_status`!=5
+" & query_where & "
 GROUP BY pd.id_prod_demand_design"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPD.DataSource = data
