@@ -371,4 +371,18 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnExportToXLSRetTrf_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRetTrf.Click
+        If GVSalesReturnQC.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_ret_trf.xlsx"
+            exportToXLS(path, "ret_trf", GCSalesReturnQC)
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
