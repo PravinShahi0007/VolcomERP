@@ -295,7 +295,8 @@
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
             End If
-            path = path + "del_" + dt_from + "_" + dt_until + ".xlsx"
+            'path = path + "del_" + dt_from + "_" + dt_until + ".xlsx"
+            path = path + "tl_del.xlsx"
             exportToXLS(path, "del", GCSalesDelOrder)
             Cursor = Cursors.Default
         End If
@@ -323,5 +324,21 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSRec_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRec.Click
+        If GVPL.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim dt_from As String = DEFromRec.Text.Replace(" ", "")
+            Dim dt_until As String = DEUntilRec.Text.Replace(" ", "")
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_rec.xlsx"
+            exportToXLS(path, "rec", GCPL)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
