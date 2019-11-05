@@ -357,4 +357,18 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnExportToXLSNonStock_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSNonStock.Click
+        If GVNonStock.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_ns.xlsx"
+            exportToXLS(path, "ns", GCNonStock)
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
