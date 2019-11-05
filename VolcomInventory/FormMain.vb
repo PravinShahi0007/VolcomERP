@@ -7699,6 +7699,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormBuktiPickup.GCList, "Bukti Pickup")
         ElseIf formName = "FormDebitNote" Then
             print(FormDebitNote.GridControl1, "Debit Note")
+        ElseIf formName = "FormTrackingReturn" Then
+            print(FormTrackingReturn.GCList, "Tracking Return")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8497,6 +8499,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDebitNote.Close()
         ElseIf formName = "FormEmpAttnAssign" Then
             FormEmpAttnAssign.Close()
+        ElseIf formName = "FormTrackingReturn" Then
+            FormTrackingReturn.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9358,6 +9362,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPurcReqList.load_req()
         ElseIf formName = "FormBuktiPickup" Then
             FormBuktiPickup.load_form()
+        ElseIf formName = "FormTrackingReturn" Then
+            FormTrackingReturn.load_form()
         End If
     End Sub
     'Switch
@@ -11831,7 +11837,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProdClosing.Show()
             FormProdClosing.WindowState = FormWindowState.Maximized
             FormProdClosing.Focus()
-            Catch ex As Exception
+        Catch ex As Exception
             errorProcess()
         End Try
         Cursor = Cursors.Default
@@ -11936,7 +11942,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpUniPeriod.Show()
             FormEmpUniPeriod.WindowState = FormWindowState.Maximized
             FormEmpUniPeriod.Focus()
-            Catch ex As Exception
+        Catch ex As Exception
             errorProcess()
         End Try
         Cursor = Cursors.Default
@@ -13596,6 +13602,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpAttnAssign.Show()
             FormEmpAttnAssign.WindowState = FormWindowState.Maximized
             FormEmpAttnAssign.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBTrackingReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTrackingReturn.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormTrackingReturn.MdiParent = Me
+            FormTrackingReturn.Show()
+            FormTrackingReturn.WindowState = FormWindowState.Maximized
+            FormTrackingReturn.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
