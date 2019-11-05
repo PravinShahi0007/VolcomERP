@@ -62,6 +62,10 @@ Partial Class FormEmpInputAttendanceDet
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCNote = New DevExpress.XtraEditors.PanelControl()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +84,10 @@ Partial Class FormEmpInputAttendanceDet
         Me.PanelControl4.SuspendLayout()
         CType(Me.PMImportExcel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BMImportExcel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCNote.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -135,7 +143,7 @@ Partial Class FormEmpInputAttendanceDet
         'LabelControl3
         '
         Me.LabelControl3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl3.Location = New System.Drawing.Point(489, 41)
+        Me.LabelControl3.Location = New System.Drawing.Point(481, 41)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl3.TabIndex = 6
@@ -144,7 +152,7 @@ Partial Class FormEmpInputAttendanceDet
         'TECreatedBy
         '
         Me.TECreatedBy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TECreatedBy.Location = New System.Drawing.Point(572, 38)
+        Me.TECreatedBy.Location = New System.Drawing.Point(564, 38)
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.ReadOnly = True
         Me.TECreatedBy.Size = New System.Drawing.Size(200, 20)
@@ -153,7 +161,7 @@ Partial Class FormEmpInputAttendanceDet
         'LabelControl2
         '
         Me.LabelControl2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl2.Location = New System.Drawing.Point(489, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(481, 15)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl2.TabIndex = 4
@@ -162,7 +170,7 @@ Partial Class FormEmpInputAttendanceDet
         'TECreatedAt
         '
         Me.TECreatedAt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TECreatedAt.Location = New System.Drawing.Point(572, 12)
+        Me.TECreatedAt.Location = New System.Drawing.Point(564, 12)
         Me.TECreatedAt.Name = "TECreatedAt"
         Me.TECreatedAt.Properties.ReadOnly = True
         Me.TECreatedAt.Size = New System.Drawing.Size(200, 20)
@@ -174,7 +182,7 @@ Partial Class FormEmpInputAttendanceDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 122)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(784, 387)
+        Me.PanelControl2.Size = New System.Drawing.Size(784, 325)
         Me.PanelControl2.TabIndex = 1
         '
         'GCEmployee
@@ -184,7 +192,7 @@ Partial Class FormEmpInputAttendanceDet
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIDETime})
-        Me.GCEmployee.Size = New System.Drawing.Size(780, 383)
+        Me.GCEmployee.Size = New System.Drawing.Size(780, 321)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
@@ -456,12 +464,47 @@ Partial Class FormEmpInputAttendanceDet
         Me.SBAdd.TabIndex = 0
         Me.SBAdd.Text = "Add"
         '
+        'PCNote
+        '
+        Me.PCNote.Controls.Add(Me.MENote)
+        Me.PCNote.Controls.Add(Me.Label1)
+        Me.PCNote.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCNote.Location = New System.Drawing.Point(0, 447)
+        Me.PCNote.Name = "PCNote"
+        Me.PCNote.Size = New System.Drawing.Size(784, 62)
+        Me.PCNote.TabIndex = 7
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 12)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(30, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MENote.EditValue = ""
+        Me.MENote.Location = New System.Drawing.Point(95, 11)
+        Me.MENote.MenuManager = Me.BMImportExcel
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(669, 40)
+        Me.MENote.TabIndex = 1
+        '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
+        '
         'FormEmpInputAttendanceDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PCNote)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -493,6 +536,11 @@ Partial Class FormEmpInputAttendanceDet
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.PMImportExcel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BMImportExcel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCNote.ResumeLayout(False)
+        Me.PCNote.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -539,4 +587,8 @@ Partial Class FormEmpInputAttendanceDet
     Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
     Friend WithEvents BBINIPVolcom As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents PCNote As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents Label1 As Label
+    Friend WithEvents ErrorProvider As ErrorProvider
 End Class

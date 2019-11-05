@@ -58,6 +58,7 @@
             SBAdd.Enabled = True
             SBSubmit.Enabled = True
             SBMark.Enabled = False
+            MENote.ReadOnly = False
 
             GCTimeIn.OptionsColumn.AllowEdit = True
             GCTimeOut.OptionsColumn.AllowEdit = True
@@ -67,6 +68,7 @@
             SBAdd.Enabled = False
             SBSubmit.Enabled = False
             SBMark.Enabled = True
+            MENote.ReadOnly = True
 
             GCTimeIn.OptionsColumn.AllowEdit = False
             GCTimeOut.OptionsColumn.AllowEdit = False
@@ -85,47 +87,55 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
-        Dim confirm As DialogResult
+        MENote_Validating(MENote, New System.ComponentModel.CancelEventArgs)
 
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If GVEmployee.RowCount <= 0 Then
+            errorCustom("No employee selected")
+        ElseIf Not formIsValidInPanel(ErrorProvider, PCNote) Then
+            errorCustom("Please check your input")
+        Else
+            Dim confirm As DialogResult
 
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "INSERT INTO tb_emp_attn_input (id_report_status, created_by, created_at) VALUES (1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            id = execute_query(query, 0, True, "", "", "", "")
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "INSERT INTO tb_emp_attn_input (note, id_report_status, created_by, created_at) VALUES ('" + addSlashes(MENote.EditValue.ToString) + "', 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
 
-            For i = 0 To GVEmployee.RowCount - 1
-                If GVEmployee.IsValidRowHandle(i) Then
-                    Dim time_in As String = "NULL"
-                    Dim time_out As String = "NULL"
+                id = execute_query(query, 0, True, "", "", "", "")
 
-                    Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
-                    Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
-                    Dim employee_position As String = GVEmployee.GetRowCellValue(i, "employee_position").ToString
-                    Dim id_employee_status As String = GVEmployee.GetRowCellValue(i, "id_employee_status").ToString
-                    Dim date_att As String = Date.Parse(GVEmployee.GetRowCellValue(i, "date").ToString).ToString("yyyy-MM-dd")
+                For i = 0 To GVEmployee.RowCount - 1
+                    If GVEmployee.IsValidRowHandle(i) Then
+                        Dim time_in As String = "NULL"
+                        Dim time_out As String = "NULL"
 
-                    Try
-                        time_in = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "time_in").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
-                    Catch ex As Exception
-                    End Try
+                        Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
+                        Dim id_departement As String = GVEmployee.GetRowCellValue(i, "id_departement").ToString
+                        Dim employee_position As String = GVEmployee.GetRowCellValue(i, "employee_position").ToString
+                        Dim id_employee_status As String = GVEmployee.GetRowCellValue(i, "id_employee_status").ToString
+                        Dim date_att As String = Date.Parse(GVEmployee.GetRowCellValue(i, "date").ToString).ToString("yyyy-MM-dd")
 
-                    Try
-                        time_out = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "time_out").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            time_in = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "time_in").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
+                        Catch ex As Exception
+                        End Try
 
-                    Dim query_detail As String = "INSERT INTO tb_emp_attn_input_det (id_emp_attn_input, id_employee, id_departement, employee_position, id_employee_status, date, time_in, time_out) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", '" + date_att + "', " + time_in + ", " + time_out + ")"
+                        Try
+                            time_out = "'" + Date.Parse(GVEmployee.GetRowCellValue(i, "time_out").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'"
+                        Catch ex As Exception
+                        End Try
 
-                    execute_non_query(query_detail, True, "", "", "", "")
-                End If
-            Next
+                        Dim query_detail As String = "INSERT INTO tb_emp_attn_input_det (id_emp_attn_input, id_employee, id_departement, employee_position, id_employee_status, date, time_in, time_out) VALUES (" + id + ", " + id_employee + ", " + id_departement + ", '" + addSlashes(employee_position) + "', " + id_employee_status + ", '" + date_att + "', " + time_in + ", " + time_out + ")"
 
-            submit_who_prepared("211", id, id_user)
+                        execute_non_query(query_detail, True, "", "", "", "")
+                    End If
+                Next
 
-            execute_non_query("CALL gen_number(" + id + ", '211')", True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", '211')", True, "", "", "", "")
 
-            Close()
+                submit_who_prepared("211", id, id_user)
+
+                Close()
+            End If
         End If
     End Sub
 
@@ -189,6 +199,14 @@
 
             ADateEdit.Properties.MinValue = New DateTime(att_min.Year, att_min.Month, att_min.Day, 0, 0, 0)
             ADateEdit.Properties.MaxValue = New DateTime(att_max.Year, att_max.Month, att_max.Day, 23, 59, 59)
+        End If
+    End Sub
+
+    Private Sub MENote_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MENote.Validating
+        If MENote.EditValue.ToString = "" Then
+            ErrorProvider.SetError(MENote, "Can't be blank")
+        Else
+            ErrorProvider.SetError(MENote, "")
         End If
     End Sub
 End Class

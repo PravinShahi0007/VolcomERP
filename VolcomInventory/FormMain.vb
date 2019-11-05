@@ -13531,6 +13531,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.WaitCursor
         Try
             FormEmpInputAttendance.MdiParent = Me
+            FormEmpInputAttendance.is_hrd = "-1"
             FormEmpInputAttendance.Show()
             FormEmpInputAttendance.WindowState = FormWindowState.Maximized
             FormEmpInputAttendance.Focus()
@@ -13615,6 +13616,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormTrackingReturn.Show()
             FormTrackingReturn.WindowState = FormWindowState.Maximized
             FormTrackingReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInputAttendanceHRD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInputAttendanceHRD.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpInputAttendance.MdiParent = Me
+            FormEmpInputAttendance.is_hrd = "1"
+            FormEmpInputAttendance.Show()
+            FormEmpInputAttendance.WindowState = FormWindowState.Maximized
+            FormEmpInputAttendance.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
