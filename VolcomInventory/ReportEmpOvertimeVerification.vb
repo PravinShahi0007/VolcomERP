@@ -30,12 +30,39 @@
         BGCEndWorkOt.Caption = BGCEndWorkOt.Caption.Replace(" ", Environment.NewLine)
         BGCNote.Caption = BGCNote.Caption.Replace(" ", Environment.NewLine)
 
+        GVAttendance.ActiveFilterString = "[is_valid] = 'yes' Or [total_hours] <= 0.0"
+
+        If Not FormEmpOvertimeVerification.is_hrd = "1" Then
+            BGCActualHours.Visible = False
+            BGCPointOt.Visible = False
+        End If
+
         Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_ot_verification WHERE id_ot_verification = " + id, 0, True, "", "", "", "")
 
         If id_pre = "-1" Then
             load_mark_horz(report_mark_type, id, "2", "1", XrTable1)
         Else
             pre_load_mark_horz(report_mark_type, id, "2", "2", XrTable1)
+        End If
+    End Sub
+
+    Private Sub GVAttendance_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVAttendance.RowCellStyle
+        If GVAttendance.GetRowCellValue(e.RowHandle, "total_hours") <= 0 Then
+            e.Appearance.BackColor = Color.FromArgb(243, 217, 217)
+        Else
+            Dim is_proposed As Boolean = False
+
+            For i = 0 To GVEmployee.RowCount - 1
+                If GVEmployee.IsValidRowHandle(i) Then
+                    If GVEmployee.GetRowCellValue(i, "id_employee").ToString = GVAttendance.GetRowCellValue(e.RowHandle, "id_employee").ToString Then
+                        is_proposed = True
+                    End If
+                End If
+            Next
+
+            If Not is_proposed Then
+                e.Appearance.BackColor = Color.FromArgb(217, 217, 243)
+            End If
         End If
     End Sub
 End Class
