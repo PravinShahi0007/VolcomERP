@@ -214,6 +214,7 @@ Partial Class FormFGTransList
         Me.DEFromTrf = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -918,6 +919,7 @@ Partial Class FormFGTransList
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BtnExportToXLS)
         Me.GroupControl1.Controls.Add(Me.BtnViewDO)
         Me.GroupControl1.Controls.Add(Me.SimpleButton7)
         Me.GroupControl1.Controls.Add(Me.SimpleButton8)
@@ -2250,6 +2252,15 @@ Partial Class FormFGTransList
         Me.LabelControl21.TabIndex = 8892
         Me.LabelControl21.Text = "From"
         '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLS.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLS.TabIndex = 8899
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        '
         'FormFGTransList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2528,4 +2539,5 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnClassTrf As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsNonListReturn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoCENonList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
 End Class
