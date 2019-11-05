@@ -238,6 +238,7 @@ Public Class FormProductionFinalClearDet
         BtnBrowseFrom.Enabled = False
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
+        PanelNavBarcode.Visible = False
 
 
         'preprint

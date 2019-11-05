@@ -83,9 +83,10 @@ Partial Class FormEmpOvertimeVerification
         Me.RITETimeVer = New DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit()
         Me.BGCEndWorkOt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCBreakHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RITEHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RITEBreak2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BGCTotalHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCActualHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RITEHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BGCPointOt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BGCNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITENote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
@@ -135,7 +136,6 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.RITEBreak2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DESearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +159,7 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.RISLUEType2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITETimeVer, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEBreak2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEHours, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +177,6 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEBreak2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -465,7 +465,6 @@ Partial Class FormEmpOvertimeVerification
         Me.SBReset.Size = New System.Drawing.Size(86, 46)
         Me.SBReset.TabIndex = 7
         Me.SBReset.Text = "Reset"
-        Me.SBReset.Visible = False
         '
         'SBSave
         '
@@ -871,17 +870,17 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCBreakHours.Visible = True
         Me.BGCBreakHours.Width = 50
         '
-        'RITEHours
+        'RITEBreak2
         '
-        Me.RITEHours.AutoHeight = False
-        Me.RITEHours.DisplayFormat.FormatString = "N1"
-        Me.RITEHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEHours.EditFormat.FormatString = "N1"
-        Me.RITEHours.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEHours.Mask.EditMask = "N1"
-        Me.RITEHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEHours.Mask.UseMaskAsDisplayFormat = True
-        Me.RITEHours.Name = "RITEHours"
+        Me.RITEBreak2.AutoHeight = False
+        Me.RITEBreak2.DisplayFormat.FormatString = "N1"
+        Me.RITEBreak2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreak2.EditFormat.FormatString = "N1"
+        Me.RITEBreak2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreak2.Mask.EditMask = "N1"
+        Me.RITEBreak2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEBreak2.Mask.UseMaskAsDisplayFormat = True
+        Me.RITEBreak2.Name = "RITEBreak2"
         '
         'BGCTotalHours
         '
@@ -914,6 +913,18 @@ Partial Class FormEmpOvertimeVerification
         Me.BGCActualHours.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BGCActualHours.Visible = True
         Me.BGCActualHours.Width = 50
+        '
+        'RITEHours
+        '
+        Me.RITEHours.AutoHeight = False
+        Me.RITEHours.DisplayFormat.FormatString = "N1"
+        Me.RITEHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEHours.EditFormat.FormatString = "N1"
+        Me.RITEHours.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEHours.Mask.EditMask = "N1"
+        Me.RITEHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEHours.Mask.UseMaskAsDisplayFormat = True
+        Me.RITEHours.Name = "RITEHours"
         '
         'BGCPointOt
         '
@@ -1068,6 +1079,12 @@ Partial Class FormEmpOvertimeVerification
         '
         Me.GVEmployee.Appearance.Row.Options.UseTextOptions = True
         Me.GVEmployee.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVEmployee.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.GVEmployee.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVEmployee.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVEmployee.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.GVEmployee.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.GVEmployee.AppearancePrint.BandPanel.Options.UseFont = True
         Me.GVEmployee.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
@@ -1489,18 +1506,6 @@ Partial Class FormEmpOvertimeVerification
         Me.TEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.TEReportStatus.TabIndex = 21
         '
-        'RITEBreak2
-        '
-        Me.RITEBreak2.AutoHeight = False
-        Me.RITEBreak2.DisplayFormat.FormatString = "N1"
-        Me.RITEBreak2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEBreak2.EditFormat.FormatString = "N1"
-        Me.RITEBreak2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEBreak2.Mask.EditMask = "N1"
-        Me.RITEBreak2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEBreak2.Mask.UseMaskAsDisplayFormat = True
-        Me.RITEBreak2.Name = "RITEBreak2"
-        '
         'FormEmpOvertimeVerification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1512,7 +1517,7 @@ Partial Class FormEmpOvertimeVerification
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormEmpOvertimeVerification"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Overtime Verification"
+        Me.Text = "Overtime Realization"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -1538,6 +1543,7 @@ Partial Class FormEmpOvertimeVerification
         CType(Me.RISLUEType2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITETimeVer, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEBreak2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEHours, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1556,7 +1562,6 @@ Partial Class FormEmpOvertimeVerification
         Me.PCReportStatus.ResumeLayout(False)
         Me.PCReportStatus.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEBreak2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
