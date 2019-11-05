@@ -214,12 +214,8 @@
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
-        TEMemoNumber_Validating(TEMemoNumber, New System.ComponentModel.CancelEventArgs)
-
         If GVEmployee.RowCount <= 0 Then
             errorCustom("No employee selected.")
-        ElseIf Not formIsValidInPanel(ErrorProvider, PCMemoNumber) Then
-            errorCustom("Please check your input.")
         Else
             Dim confirm As DialogResult
 
@@ -572,18 +568,6 @@
 
     Private Sub GVEmployee_RowCountChanged(sender As Object, e As EventArgs) Handles GVEmployee.RowCountChanged
         check_include_memo()
-    End Sub
-
-    Private Sub TEMemoNumber_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEMemoNumber.Validating
-        If PCMemoNumber.Visible = True Then
-            If TEMemoNumber.EditValue.ToString = "" Then
-                ErrorProvider.SetError(TEMemoNumber, "Can't be blank.")
-            Else
-                ErrorProvider.SetError(TEMemoNumber, "")
-            End If
-        Else
-            ErrorProvider.SetError(TEMemoNumber, "")
-        End If
     End Sub
 
     Private Sub LEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartement.EditValueChanged
