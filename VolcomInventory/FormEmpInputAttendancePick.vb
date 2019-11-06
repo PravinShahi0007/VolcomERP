@@ -8,12 +8,14 @@
     End Sub
 
     Sub load_employee()
+        Dim departement_include As String = If(FormEmpInputAttendance.is_hrd = "1", "", "AND e.id_departement IN (SELECT allow_input_departement FROM tb_emp_attn_input_dep WHERE id_departement = " + id_departement_user + ")")
+
         Dim query As String = "
             SELECT 'no' AS is_check, e.id_departement, d.departement, e.id_employee, e.employee_code, e.employee_name, e.employee_position, e.id_employee_status, sts.employee_status
             FROM tb_m_employee AS e
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement
             LEFT JOIN tb_lookup_employee_status AS sts ON e.id_employee_status = sts.id_employee_status
-            WHERE e.id_employee_active = 1 AND e.id_departement IN (SELECT id_departement FROM tb_emp_attn_input_dep) AND e.id_employee NOT IN (" + not_include + ")
+            WHERE e.id_employee_active = 1 " + departement_include + " AND e.id_employee NOT IN (" + not_include + ")
             ORDER BY d.departement ASC, e.id_employee_level ASC, e.employee_code ASC
         "
 

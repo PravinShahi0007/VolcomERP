@@ -2015,7 +2015,7 @@
             table_name = "tb_prod_order_close"
             field_id = "id_prod_order_close"
             field_number = "number"
-            field_date = "created_by"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

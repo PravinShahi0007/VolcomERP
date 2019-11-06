@@ -61,7 +61,7 @@ Partial Class FormMatPurchase
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPProdDemand = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCListPD = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListMatPD = New DevExpress.XtraGrid.GridControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -154,8 +154,8 @@ Partial Class FormMatPurchase
         CType(Me.LESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPProdDemand.SuspendLayout()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCListPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCListPD.SuspendLayout()
         Me.XTPList.SuspendLayout()
         CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
@@ -565,21 +565,21 @@ Partial Class FormMatPurchase
         '
         'XTPProdDemand
         '
-        Me.XTPProdDemand.Controls.Add(Me.XtraTabControl1)
+        Me.XTPProdDemand.Controls.Add(Me.XTCListPD)
         Me.XTPProdDemand.Name = "XTPProdDemand"
         Me.XTPProdDemand.Size = New System.Drawing.Size(790, 347)
         Me.XTPProdDemand.Text = "Generate From PD"
         '
-        'XtraTabControl1
+        'XTCListPD
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPList
-        Me.XtraTabControl1.Size = New System.Drawing.Size(790, 347)
-        Me.XtraTabControl1.TabIndex = 8906
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPReport})
+        Me.XTCListPD.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCListPD.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCListPD.Location = New System.Drawing.Point(0, 0)
+        Me.XTCListPD.Name = "XTCListPD"
+        Me.XTCListPD.SelectedTabPage = Me.XTPList
+        Me.XTCListPD.Size = New System.Drawing.Size(790, 347)
+        Me.XTCListPD.TabIndex = 8906
+        Me.XTCListPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPReport})
         '
         'XTPList
         '
@@ -1017,6 +1017,7 @@ Partial Class FormMatPurchase
         Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn35.Caption = "List Created"
+        Me.GridColumn35.FieldName = "jml_list"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 3
@@ -1029,9 +1030,9 @@ Partial Class FormMatPurchase
         Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn34.Caption = "PO Material Created"
-        Me.GridColumn34.DisplayFormat.FormatString = "N2"
+        Me.GridColumn34.DisplayFormat.FormatString = "N0"
         Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn34.FieldName = "qty_list_created"
+        Me.GridColumn34.FieldName = "jml_po"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.OptionsColumn.AllowEdit = False
         Me.GridColumn34.OptionsColumn.ReadOnly = True
@@ -1310,8 +1311,8 @@ Partial Class FormMatPurchase
         CType(Me.LESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPProdDemand.ResumeLayout(False)
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCListPD, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCListPD.ResumeLayout(False)
         Me.XTPList.ResumeLayout(False)
         CType(Me.GCListMatPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
@@ -1438,7 +1439,7 @@ Partial Class FormMatPurchase
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCListPD As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPReport As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCPD As DevExpress.XtraGrid.GridControl
