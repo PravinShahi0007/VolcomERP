@@ -267,7 +267,7 @@
 
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
         IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
-        sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
+        sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sz.code_detail_name AS `size`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
         IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del_stt.report_status AS `del_status`,
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
         IFNULL(ret.id_sales_return,0) AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
@@ -299,6 +299,8 @@
             GROUP BY so.id_sales_order
         ) oc ON oc.id_sales_order = so.id_sales_order
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+        INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prodcode.id_code_detail
         LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
         LEFT JOIN tb_lookup_report_status del_stt ON del_stt.id_report_status = del.id_report_status
