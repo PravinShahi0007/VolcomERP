@@ -157,14 +157,14 @@ WHERE cl.`is_active`='1'"
                         ) rec ON rec.id_prod_order_det=pod.id_prod_order_det 
                         LEFT JOIN
                         (
-                            SELECT fc.`id_prod_order`,SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0)) AS qty_normal,
-                            SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0)) AS qty_normal_minor,
-                            SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0)) AS qty_minor,
-                            SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0)) AS qty_minor_major,
-                            SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0)) AS qty_major,
-                            SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0)) AS qty_afkir 
-                            FROM tb_pl_prod_order_det fcd
-                            INNER JOIN tb_pl_prod_order fc ON fc.`id_pl_prod_order`=fcd.`id_pl_prod_order` AND fc.`id_report_status`=6
+                            SELECT fc.`id_prod_order`,SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qty_normal,
+                            SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0)) AS qty_normal_minor,
+                            SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0)) AS qty_minor,
+                            SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0)) AS qty_minor_major,
+                            SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0)) AS qty_major,
+                            SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qty_afkir 
+                            FROM tb_prod_fc_det fcd
+                            INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcd.`id_prod_fc` AND fc.`id_report_status`=6
                             WHERE NOT ISNULL(fc.`id_pl_category_sub`)
                             GROUP BY fc.`id_prod_order`
                         )qcr ON qcr.id_prod_order=a.`id_prod_order`
