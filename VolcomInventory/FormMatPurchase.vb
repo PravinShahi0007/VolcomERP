@@ -236,10 +236,6 @@ GROUP BY mpd.`id_mat_purc`"
         FormMatPurcSum.ShowDialog()
     End Sub
 
-    Private Sub BShowPrintPanel_Click(sender As Object, e As EventArgs)
-        PCFilterDate.Visible = True
-    End Sub
-
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
         If GVMatPurchase.RowCount > 0 Then
             For i As Integer = 0 To ((GVMatPurchase.RowCount - 1) - GetGroupRowCount(GVMatPurchase))
@@ -454,5 +450,9 @@ GROUP BY pd.id_prod_demand_design"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPD.DataSource = data
         GVPD.BestFitColumns()
+    End Sub
+
+    Private Sub BShowFilterPanel_Click(sender As Object, e As EventArgs) Handles BShowFilterPanel.Click
+        PCFilterDate.Visible = True
     End Sub
 End Class
