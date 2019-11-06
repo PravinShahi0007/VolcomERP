@@ -115,29 +115,29 @@ GROUP BY rd.`id_prod_order_rec`"
 
     Sub load_claim_reject()
         Dim query As String = "SELECT dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
-                                SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0)) AS qc_normal,
+                                SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qc_normal,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,1) AS p_normal,
-                                SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0)) AS qc_normal_minor,
+                                SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0)) AS qc_normal_minor,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,2) AS p_normal_minor,
-                                SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0)) AS qc_minor,
+                                SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0)) AS qc_minor,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,3) AS p_minor,
-                                SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0)) AS qc_minor_major,
+                                SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0)) AS qc_minor_major,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,4) AS p_minor_major,
-                                SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0)) AS qc_major,
+                                SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0)) AS qc_major,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,5) AS p_major,
-                                SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0)) AS qc_afkir, 
+                                SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qc_afkir, 
                                 get_claim_reject_percent(pocd.`id_claim_reject`,6) AS p_afkir,
                                 wo_price.prod_order_wo_det_price AS unit_price,
-                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
-                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,5)/100)))) AS amo_claim_major,
-                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100))) AS amo_claim_afkir
+                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
+                                ROUND(wo_price.prod_order_wo_det_price * ((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,5)/100)))) AS amo_claim_major,
+                                ROUND(wo_price.prod_order_wo_det_price * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100))) AS amo_claim_afkir
                                 ,rec.qty_rec AS qty_rec,wo_price.qty_order AS qty_order
                                 ,wo_price.comp_name
                                 ,dsg.design_display_name
                                 ,wo_price.prod_order_wo_det_price
                                 FROM tb_prod_order_close_det pocd
-                                INNER JOIN tb_pl_prod_order fc ON fc.`id_prod_order`=pocd.`id_prod_order`
-                                INNER JOIN tb_pl_prod_order_det fcd ON fcd.`id_pl_prod_order`=fc.`id_pl_prod_order` AND fc.id_report_status='6'
+                                INNER JOIN tb_prod_fc fc ON fc.`id_prod_order`=pocd.`id_prod_order`
+                                INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc` AND fc.id_report_status='6'
                                 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order`
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
                                 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -237,18 +237,18 @@ LEFT JOIN
 LEFT JOIN
 (
 	SELECT pocd.`id_prod_order`,
-	(SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0))) AS qty_normal,
-	(SUM(IF(fc.id_pl_category_sub=2 OR fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))) AS qty_minor,
-	(SUM(IF(fc.id_pl_category_sub=4 OR fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0))) AS qty_major,
-	(SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0))) AS qty_afkir,
-	(SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))
-	+ (SUM(IF(fc.id_pl_category_sub=3,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100))
-	+ (SUM(IF(fc.id_pl_category_sub=4,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))
-	+ (SUM(IF(fc.id_pl_category_sub=5,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,5)/100))
-	+ (SUM(IF(fc.id_pl_category_sub=6,fcd.pl_prod_order_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100)) AS claim_qty
+	(SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0))) AS qty_normal,
+	(SUM(IF(fc.id_pl_category_sub=2 OR fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))) AS qty_minor,
+	(SUM(IF(fc.id_pl_category_sub=4 OR fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))) AS qty_major,
+	(SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))) AS qty_afkir,
+	(SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,2)/100))
+	+ (SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,3)/100))
+	+ (SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,4)/100))
+	+ (SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,5)/100))
+	+ (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(pocd.`id_claim_reject`,6)/100)) AS claim_qty
 	FROM tb_prod_order_close_det pocd
-	INNER JOIN tb_pl_prod_order fc ON fc.`id_prod_order`=pocd.`id_prod_order` AND NOT ISNULL(fc.id_pl_category_sub)
-	INNER JOIN tb_pl_prod_order_det fcd ON fcd.`id_pl_prod_order`=fc.`id_pl_prod_order` AND fc.id_report_status='6'
+	INNER JOIN tb_prod_fc fc ON fc.`id_prod_order`=pocd.`id_prod_order` AND NOT ISNULL(fc.id_pl_category_sub)
+	INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc` AND fc.id_report_status='6'
 	INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order`
 	INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 	INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`

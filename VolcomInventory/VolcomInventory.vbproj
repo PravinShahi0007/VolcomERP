@@ -867,6 +867,12 @@
     <Compile Include="FormEmpAttnSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttnSumDetailSick.Designer.vb">
+      <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnSumDetailSick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -5433,6 +5439,12 @@
     <Compile Include="FormTestImage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormTrackingReturn.Designer.vb">
+      <DependentUpon>FormTrackingReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTrackingReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormUniqueDel.Designer.vb">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
     </Compile>
@@ -7668,6 +7680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttnSum.resx">
       <DependentUpon>FormEmpAttnSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnSumDetailSick.resx">
+      <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
@@ -10315,6 +10330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTestCheckvb.resx">
       <DependentUpon>FormTestCheckvb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTrackingReturn.resx">
+      <DependentUpon>FormTrackingReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>

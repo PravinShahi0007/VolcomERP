@@ -5,6 +5,10 @@
 
     End Sub
 
+    Sub load_det()
+        Dim query As String = ""
+    End Sub
+
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
 
     End Sub

@@ -50,6 +50,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -341,6 +342,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         '
         'BottomMargin
         '
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
         Me.BottomMargin.HeightF = 50.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -381,6 +383,20 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XLPeriod, Me.XrLabel1})
         Me.ReportHeader.HeightF = 80.0!
         Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(583.0!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'ReportEmpPayrollReportBPJSTK
         '
@@ -427,4 +443,5 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
 End Class

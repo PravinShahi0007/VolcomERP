@@ -1104,4 +1104,34 @@
     Private Sub LEEmployeeStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEEmployeeStatus.EditValueChanged
         SLUEEmployee.EditValue = 0
     End Sub
+
+    Private Sub GVSum_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVSum.RowClick
+        If e.Button = MouseButtons.Right Then
+            PopupMenu.ShowPopup(Control.MousePosition)
+        End If
+    End Sub
+
+    Private Sub GVSumMonthly_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVSumMonthly.RowClick
+        If e.Button = MouseButtons.Right Then
+            PopupMenu.ShowPopup(Control.MousePosition)
+        End If
+    End Sub
+
+    Private Sub BBIDetailSick_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIDetailSick.ItemClick
+        If XTCReportAttendance.SelectedTabPage.Name = "XTPMonthly" Then
+            FormEmpAttnSumDetailSick.id_employee = GVSum.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailSick.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.month = Nothing
+
+            FormEmpAttnSumDetailSick.ShowDialog()
+        ElseIf XTCReportAttendance.SelectedTabPage.Name = "XTPSumMonthly" Then
+            FormEmpAttnSumDetailSick.id_employee = GVSumMonthly.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailSick.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.month = Date.Parse(GVSumMonthly.GetFocusedRowCellValue("month_year").ToString)
+
+            FormEmpAttnSumDetailSick.ShowDialog()
+        End If
+    End Sub
 End Class

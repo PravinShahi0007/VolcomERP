@@ -1116,9 +1116,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormProductionPLToWH" Then
             If FormProductionPLToWH.XTCPL.SelectedTabPageIndex = 0 Then
-                FormProductionPLToWHDet.action = "ins"
-                FormProductionPLToWHDet.id_pl_prod_order = "0"
-                FormProductionPLToWHDet.ShowDialog()
+                'FormProductionPLToWHDet.action = "ins"
+                'FormProductionPLToWHDet.id_pl_prod_order = "0"
+                'FormProductionPLToWHDet.ShowDialog()
             Else
                 If FormProductionPLToWH.GVProd.RowCount > 0 And FormProductionPLToWH.GVProd.FocusedRowHandle >= 0 Then
                     Dim id_cop_status As String = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_cop_status").ToString
@@ -1127,6 +1127,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                         FormProductionPLToWHDet.action = "ins"
                         FormProductionPLToWHDet.id_pl_prod_order = "0"
                         FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                        FormProductionPLToWHDet.is_use_qc_report = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("is_use_qc_report").ToString
                         FormProductionPLToWHDet.ShowDialog()
                     Else
                         stopCustom("Packing list can't continue process, because there is no final cost for this style.")
@@ -1537,9 +1538,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpAttnAssignDet.id_emp_assign_sch = "-1"
             FormEmpAttnAssignDet.ShowDialog()
         ElseIf formName = "FormProductionFinalClear" Then
-            'assign schedule with approval
-            FormProductionFinalClearDet.action = "ins"
-            FormProductionFinalClearDet.ShowDialog()
+            'qc report
+            If FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0 Then
+                'list entry
+                'FormProductionFinalClearDet.action = "ins"
+                'FormProductionFinalClearDet.ShowDialog()
+            Else
+                'list order
+                If FormProductionFinalClear.GVProd.RowCount > 0 And FormProductionFinalClear.GVProd.FocusedRowHandle >= 0 Then
+                    FormProductionFinalClearDet.id_prod_order = FormProductionFinalClear.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionFinalClearDet.action = "ins"
+                    FormProductionFinalClearDet.ShowDialog()
+                End If
+            End If
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssemblyNew.ShowDialog()
         ElseIf formName = "FormMasterCargoRate" Then
@@ -7383,9 +7394,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print(FormProductionSummary.GCDesign, "APPROVED ORDER")
             End If
         ElseIf formName = "FormProductionFinalClear" Then
-            FormProductionFinalClear.BtnView.Focus()
-            print(FormProductionFinalClear.GCFinalClear, "FINAL CLEARANCE LIST" + System.Environment.NewLine + FormProductionFinalClear.DEFrom.Text + " - " + FormProductionFinalClear.DEUntil.Text)
-            FormProductionFinalClear.DEFrom.Focus()
+            If FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0 Then
+                'entry list
+                FormProductionFinalClear.BtnView.Focus()
+                print(FormProductionFinalClear.GCFinalClear, "FINAL CLEARANCE LIST" + System.Environment.NewLine + FormProductionFinalClear.DEFrom.Text + " - " + FormProductionFinalClear.DEUntil.Text)
+                FormProductionFinalClear.DEFrom.Focus()
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
+                print_raw(FormProductionFinalClear.GCProd, "Order List")
+            End If
         ElseIf formName = "FormProductionAssembly" Then
             print(FormProductionAssembly.GCData, "Assembly")
         ElseIf formName = "FormEmpLeaveStock" Then
@@ -7683,6 +7699,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormBuktiPickup.GCList, "Bukti Pickup")
         ElseIf formName = "FormDebitNote" Then
             print(FormDebitNote.GridControl1, "Debit Note")
+        ElseIf formName = "FormTrackingReturn" Then
+            print(FormTrackingReturn.GCList, "Tracking Return")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8481,6 +8499,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDebitNote.Close()
         ElseIf formName = "FormEmpAttnAssign" Then
             FormEmpAttnAssign.Close()
+        ElseIf formName = "FormTrackingReturn" Then
+            FormTrackingReturn.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9163,7 +9183,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpDP" Then
             FormEmpDP.load_dp()
         ElseIf formName = "FormProductionFinalClear" Then
-            FormProductionFinalClear.viewFinalClear()
+            If FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0 Then
+                FormProductionFinalClear.viewFinalClear()
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
+                FormProductionFinalClear.viewOrderList()
+            End If
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssembly.viewData()
         ElseIf formName = "FormWHDelEmpty" Then
@@ -9338,6 +9362,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPurcReqList.load_req()
         ElseIf formName = "FormBuktiPickup" Then
             FormBuktiPickup.load_form()
+        ElseIf formName = "FormTrackingReturn" Then
+            FormTrackingReturn.load_form()
         End If
     End Sub
     'Switch
@@ -11811,7 +11837,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProdClosing.Show()
             FormProdClosing.WindowState = FormWindowState.Maximized
             FormProdClosing.Focus()
-            Catch ex As Exception
+        Catch ex As Exception
             errorProcess()
         End Try
         Cursor = Cursors.Default
@@ -11916,7 +11942,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpUniPeriod.Show()
             FormEmpUniPeriod.WindowState = FormWindowState.Maximized
             FormEmpUniPeriod.Focus()
-            Catch ex As Exception
+        Catch ex As Exception
             errorProcess()
         End Try
         Cursor = Cursors.Default
@@ -13505,6 +13531,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.WaitCursor
         Try
             FormEmpInputAttendance.MdiParent = Me
+            FormEmpInputAttendance.is_hrd = "-1"
             FormEmpInputAttendance.Show()
             FormEmpInputAttendance.WindowState = FormWindowState.Maximized
             FormEmpInputAttendance.Focus()
@@ -13576,6 +13603,33 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpAttnAssign.Show()
             FormEmpAttnAssign.WindowState = FormWindowState.Maximized
             FormEmpAttnAssign.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBTrackingReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTrackingReturn.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormTrackingReturn.MdiParent = Me
+            FormTrackingReturn.Show()
+            FormTrackingReturn.WindowState = FormWindowState.Maximized
+            FormTrackingReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInputAttendanceHRD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInputAttendanceHRD.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpInputAttendance.MdiParent = Me
+            FormEmpInputAttendance.is_hrd = "1"
+            FormEmpInputAttendance.Show()
+            FormEmpInputAttendance.WindowState = FormWindowState.Maximized
+            FormEmpInputAttendance.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
