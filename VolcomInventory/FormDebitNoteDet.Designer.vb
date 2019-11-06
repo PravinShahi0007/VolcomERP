@@ -68,7 +68,8 @@ Partial Class FormDebitNoteDet
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -292,7 +293,7 @@ Partial Class FormDebitNoteDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 535)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 485)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
@@ -371,7 +372,7 @@ Partial Class FormDebitNoteDet
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomLeft)
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomRight)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 411)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 361)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(1044, 124)
         Me.GroupControl3.TabIndex = 188
@@ -630,7 +631,7 @@ Partial Class FormDebitNoteDet
         Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 118)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(1044, 293)
+        Me.GroupControlList.Size = New System.Drawing.Size(1044, 243)
         Me.GroupControlList.TabIndex = 189
         Me.GroupControlList.Text = "Item List"
         '
@@ -642,13 +643,13 @@ Partial Class FormDebitNoteDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(1022, 289)
+        Me.GCItemList.Size = New System.Drawing.Size(1022, 239)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -662,19 +663,29 @@ Partial Class FormDebitNoteDet
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_debit_note_det"
         Me.GridColumn1.Name = "GridColumn1"
         '
-        'GridColumn2
+        'GridColumn13
         '
-        Me.GridColumn2.Caption = "ID PO"
-        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn13.Caption = "ID Report"
+        Me.GridColumn13.FieldName = "id_report"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Report Mark Type"
+        Me.GridColumn12.FieldName = "report_mark_type"
+        Me.GridColumn12.Name = "GridColumn12"
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "No"
+        Me.GridColumn3.FieldName = "no"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
+        Me.GridColumn3.Width = 44
         '
         'GridColumn4
         '
@@ -683,55 +694,70 @@ Partial Class FormDebitNoteDet
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 118
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Design"
+        Me.GridColumn5.FieldName = "design_display_name"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.Width = 118
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Deskripsi"
+        Me.GridColumn6.FieldName = "description"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.Width = 118
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Claim (%)"
+        Me.GridColumn7.FieldName = "claim_percent"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.Width = 118
         '
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Price / Unit (Rp)"
+        Me.GridColumn8.FieldName = "unit_price"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 5
+        Me.GridColumn8.Width = 118
         '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Qty"
+        Me.GridColumn9.FieldName = "qty"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.Width = 118
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Claim / Pcs (Rp)"
+        Me.GridColumn10.FieldName = "claim_pcs"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 7
+        Me.GridColumn10.Width = 118
         '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Total Amount (Rp)"
+        Me.GridColumn11.FieldName = "claim_amo"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 8
+        Me.GridColumn11.Width = 136
         '
         'RepositoryItemSpinEdit1
         '
@@ -745,7 +771,7 @@ Partial Class FormDebitNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1044, 573)
+        Me.ClientSize = New System.Drawing.Size(1044, 523)
         Me.Controls.Add(Me.GroupControlList)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -846,7 +872,6 @@ Partial Class FormDebitNoteDet
     Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -856,4 +881,6 @@ Partial Class FormDebitNoteDet
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

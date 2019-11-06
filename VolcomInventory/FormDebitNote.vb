@@ -43,7 +43,7 @@
     End Sub
 
     Sub load_claim_late()
-        Dim query As String = "SELECT s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
+        Dim query As String = "SELECT 'no' AS is_check,s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
 ,dsg.design_display_name,dsg.design_code,SUBSTRING(dsg.`design_display_name`,1,CHAR_LENGTH(dsg.`design_display_name`) - 4) AS dsg_name,RIGHT(dsg.`design_display_name`,3) AS color 
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY) AS est_rec_date_ko
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date
@@ -111,7 +111,7 @@ GROUP BY rd.`id_prod_order_rec`"
     End Sub
 
     Sub load_claim_reject()
-        Dim query As String = "SELECT dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
+        Dim query As String = "SELECT 'no' AS is_check,dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
                                 SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0)) AS qc_normal,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,1) AS p_normal,
                                 SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0)) AS qc_normal_minor,
@@ -175,11 +175,25 @@ GROUP BY rd.`id_prod_order_rec`"
         Cursor = Cursors.WaitCursor
         GVSumClaimReject.ActiveFilterString = "[is_check] = 'yes'"
         If GVSumClaimReject.RowCount > 0 Then
-            FormProdDebitNoteDet.ShowDialog()
+            FormDebitNoteDet.id_dn_type = "1"
+            FormDebitNoteDet.ShowDialog()
         Else
             warningCustom("Please select FGPO")
         End If
         GVSumClaimReject.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCreateDNLate_Click(sender As Object, e As EventArgs) Handles BCreateDNLate.Click
+        Cursor = Cursors.WaitCursor
+        GVClaimLate.ActiveFilterString = "[is_check] = 'yes'"
+        If GVClaimLate.RowCount > 0 Then
+            FormDebitNoteDet.id_dn_type = "2"
+            FormDebitNoteDet.ShowDialog()
+        Else
+            warningCustom("Please select FGPO")
+        End If
+        GVClaimLate.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 End Class
