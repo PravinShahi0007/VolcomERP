@@ -93,6 +93,8 @@
         Else
 
         End If
+
+        calculate()
     End Sub
 
     Sub load_header()
@@ -139,11 +141,45 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
         Dispose()
     End Sub
 
+    Sub calculate()
+        Dim total As Decimal = 0.00
+
+        total = Decimal.Parse(GVItemList.Columns("claim_amo").SummaryItem.SummaryValue)
+        METotSay.Text = ConvertCurrencyToIndonesian(total).ToUpper
+    End Sub
+
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim id_comp As String = id_comp
+        Dim note As String = addSlashes(MENote.Text)
+        Dim is_ok As Boolean = True
+        '
+        For i As Integer = 0 To GVItemList.RowCount - 1
+            If GVItemList.GetRowCellValue(i, "claim_amo") <= 0 Then
+                is_ok = False
+            End If
+        Next
+        '
+        If GVItemList.RowCount = 0 Then
+            warningCustom("Please input what to debit note")
+        ElseIf id_comp = "-1" Then
+            warningCustom("Please choose the vendor first.")
+        ElseIf is_ok = False Then
+            warningCustom("Please complete your detail input")
+        Else
+            If id_dn = "-1" Then 'new
+                Dim query As String = "INSERT INTO tb_debit_note(id_comp,id_dn_type,created_by,created_date,note,id_report_status) VALUES('" & id_comp & "','" & id_dn_type & "','',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
+                id_dn = execute_query(query, 0, True, "", "", "", "")
 
-        If id_dn = "-1" Then 'new
+                Dim q_det As String = "INSERT INTO tb_debit_note_det(id_debit_note,id_report,report_mark_type,report_number,info_design,description,claim_percent,unit_price,qty) VALUES"
+                For i As Integer = 0 To GVItemList.RowCount - 1
+                    If i > 0 Then
+                        q_det += ","
+                    End If
+                    q_det += "('" & id_dn & "','" & GVItemList.GetRowCellValue(i, "id_report").ToString & "','" & GVItemList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVItemList.GetRowCellValue(i, "report_number").ToString & "','" & GVItemList.GetRowCellValue(i, "info_design").ToString & "','" & addSlashes(GVItemList.GetRowCellValue(i, "description").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "claim_percent").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "unit_price").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "')"
+                Next
+                execute_non_query(q_det, True, "", "", "", "")
+            Else 'edit
 
+            End If
         End If
     End Sub
 End Class
