@@ -116,6 +116,21 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
+        Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
+        Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBQCHOTarget = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProdPLToWH = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProdReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAdjQC = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBBorrowQCRec = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBStockQC = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFinalClear = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGRepairRec = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGRepairReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRepairProductToVendor = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRecRepairFromVendor = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBHandoverReport = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBWork = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCompany_category = New DevExpress.XtraNavBar.NavBarItem()
@@ -167,6 +182,7 @@ Partial Class FormMain
         Me.NBAttnIndDep = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAttnSum = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBInputAttendance = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInputAttendanceHRD = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpReview = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpLeave = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBScheduleSecurity = New DevExpress.XtraNavBar.NavBarItem()
@@ -398,21 +414,6 @@ Partial Class FormMain
         Me.NBItemSubCatAcc = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAgingAR = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBReportBudget = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
-        Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBQCHOTarget = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProdPLToWH = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProdReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAdjQC = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBBorrowQCRec = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBStockQC = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFinalClear = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGRepairRec = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGRepairReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRepairProductToVendor = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRecRepairFromVendor = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBHandoverReport = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGSetup = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NavBarItemItemCategory = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBRawMatCode = New DevExpress.XtraNavBar.NavBarItem()
@@ -432,7 +433,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBInputAttendanceHRD = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1337,6 +1337,104 @@ Partial Class FormMain
         Me.NBProdRet.Text = "NavBarControl1"
         Me.NBProdRet.View = New DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator()
         '
+        'NBQC
+        '
+        Me.NBQC.Caption = "Quality Control"
+        Me.NBQC.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
+        Me.NBQC.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEstQtyToQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBQCHOTarget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdPLToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBorrowQCRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFinalClear), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRepairProductToVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRecRepairFromVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHandoverReport)})
+        Me.NBQC.LargeImage = CType(resources.GetObject("NBQC.LargeImage"), System.Drawing.Image)
+        Me.NBQC.LargeImageIndex = 19
+        Me.NBQC.Name = "NBQC"
+        Me.NBQC.SmallImage = CType(resources.GetObject("NBQC.SmallImage"), System.Drawing.Image)
+        '
+        'NBEstQtyToQC
+        '
+        Me.NBEstQtyToQC.Caption = "Time Schedule & Estimate Qty (QC)"
+        Me.NBEstQtyToQC.Name = "NBEstQtyToQC"
+        Me.NBEstQtyToQC.SmallImage = CType(resources.GetObject("NBEstQtyToQC.SmallImage"), System.Drawing.Image)
+        '
+        'NBProdRec
+        '
+        Me.NBProdRec.Caption = "Receiving Finished Goods In QC"
+        Me.NBProdRec.LargeImageIndex = 18
+        Me.NBProdRec.Name = "NBProdRec"
+        Me.NBProdRec.SmallImageIndex = 27
+        '
+        'NBQCHOTarget
+        '
+        Me.NBQCHOTarget.Caption = "Set Handover Target"
+        Me.NBQCHOTarget.Name = "NBQCHOTarget"
+        Me.NBQCHOTarget.SmallImage = CType(resources.GetObject("NBQCHOTarget.SmallImage"), System.Drawing.Image)
+        '
+        'NBProdPLToWH
+        '
+        Me.NBProdPLToWH.Caption = "Packing List Finished Goods"
+        Me.NBProdPLToWH.LargeImageIndex = 23
+        Me.NBProdPLToWH.Name = "NBProdPLToWH"
+        Me.NBProdPLToWH.SmallImageIndex = 30
+        '
+        'NBProdReturn
+        '
+        Me.NBProdReturn.Caption = "Return"
+        Me.NBProdReturn.LargeImageIndex = 25
+        Me.NBProdReturn.Name = "NBProdReturn"
+        Me.NBProdReturn.SmallImageIndex = 32
+        '
+        'NBAdjQC
+        '
+        Me.NBAdjQC.Caption = "Adjustment QC"
+        Me.NBAdjQC.LargeImageIndex = 34
+        Me.NBAdjQC.Name = "NBAdjQC"
+        Me.NBAdjQC.SmallImageIndex = 33
+        '
+        'NBBorrowQCRec
+        '
+        Me.NBBorrowQCRec.Caption = "Borrow Request"
+        Me.NBBorrowQCRec.Name = "NBBorrowQCRec"
+        Me.NBBorrowQCRec.SmallImageIndex = 29
+        '
+        'NBStockQC
+        '
+        Me.NBStockQC.Caption = "Stock"
+        Me.NBStockQC.Name = "NBStockQC"
+        Me.NBStockQC.SmallImageIndex = 45
+        '
+        'NBFinalClear
+        '
+        Me.NBFinalClear.Caption = "QC Report"
+        Me.NBFinalClear.Name = "NBFinalClear"
+        Me.NBFinalClear.SmallImage = CType(resources.GetObject("NBFinalClear.SmallImage"), System.Drawing.Image)
+        '
+        'NBFGRepairRec
+        '
+        Me.NBFGRepairRec.Caption = "Receive Repair Product"
+        Me.NBFGRepairRec.Name = "NBFGRepairRec"
+        Me.NBFGRepairRec.SmallImage = CType(resources.GetObject("NBFGRepairRec.SmallImage"), System.Drawing.Image)
+        '
+        'NBFGRepairReturn
+        '
+        Me.NBFGRepairReturn.Caption = "Return Repair Product"
+        Me.NBFGRepairReturn.Name = "NBFGRepairReturn"
+        Me.NBFGRepairReturn.SmallImage = CType(resources.GetObject("NBFGRepairReturn.SmallImage"), System.Drawing.Image)
+        '
+        'NBRepairProductToVendor
+        '
+        Me.NBRepairProductToVendor.Caption = "Repair to Vendor"
+        Me.NBRepairProductToVendor.Name = "NBRepairProductToVendor"
+        Me.NBRepairProductToVendor.SmallImage = CType(resources.GetObject("NBRepairProductToVendor.SmallImage"), System.Drawing.Image)
+        '
+        'NBRecRepairFromVendor
+        '
+        Me.NBRecRepairFromVendor.Caption = "Receive Repair from Vendor"
+        Me.NBRecRepairFromVendor.Name = "NBRecRepairFromVendor"
+        Me.NBRecRepairFromVendor.SmallImage = CType(resources.GetObject("NBRecRepairFromVendor.SmallImage"), System.Drawing.Image)
+        '
+        'NBHandoverReport
+        '
+        Me.NBHandoverReport.Caption = "Handover Report"
+        Me.NBHandoverReport.Name = "NBHandoverReport"
+        Me.NBHandoverReport.SmallImage = CType(resources.GetObject("NBHandoverReport.SmallImage"), System.Drawing.Image)
+        '
         'NBGGeneral
         '
         Me.NBGGeneral.Caption = "General"
@@ -1656,6 +1754,12 @@ Partial Class FormMain
         Me.NBInputAttendance.Caption = "Input Attendance"
         Me.NBInputAttendance.Name = "NBInputAttendance"
         Me.NBInputAttendance.SmallImage = CType(resources.GetObject("NBInputAttendance.SmallImage"), System.Drawing.Image)
+        '
+        'NBInputAttendanceHRD
+        '
+        Me.NBInputAttendanceHRD.Caption = "Input Attendance"
+        Me.NBInputAttendanceHRD.Name = "NBInputAttendanceHRD"
+        Me.NBInputAttendanceHRD.SmallImage = CType(resources.GetObject("NBInputAttendanceHRD.SmallImage"), System.Drawing.Image)
         '
         'NBEmpReview
         '
@@ -3123,104 +3227,6 @@ Partial Class FormMain
         Me.NBReportBudget.Name = "NBReportBudget"
         Me.NBReportBudget.SmallImage = CType(resources.GetObject("NBReportBudget.SmallImage"), System.Drawing.Image)
         '
-        'NBQC
-        '
-        Me.NBQC.Caption = "Quality Control"
-        Me.NBQC.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBQC.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEstQtyToQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBQCHOTarget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdPLToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBorrowQCRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFinalClear), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRepairProductToVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRecRepairFromVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHandoverReport)})
-        Me.NBQC.LargeImage = CType(resources.GetObject("NBQC.LargeImage"), System.Drawing.Image)
-        Me.NBQC.LargeImageIndex = 19
-        Me.NBQC.Name = "NBQC"
-        Me.NBQC.SmallImage = CType(resources.GetObject("NBQC.SmallImage"), System.Drawing.Image)
-        '
-        'NBEstQtyToQC
-        '
-        Me.NBEstQtyToQC.Caption = "Time Schedule & Estimate Qty (QC)"
-        Me.NBEstQtyToQC.Name = "NBEstQtyToQC"
-        Me.NBEstQtyToQC.SmallImage = CType(resources.GetObject("NBEstQtyToQC.SmallImage"), System.Drawing.Image)
-        '
-        'NBProdRec
-        '
-        Me.NBProdRec.Caption = "Receiving Finished Goods In QC"
-        Me.NBProdRec.LargeImageIndex = 18
-        Me.NBProdRec.Name = "NBProdRec"
-        Me.NBProdRec.SmallImageIndex = 27
-        '
-        'NBQCHOTarget
-        '
-        Me.NBQCHOTarget.Caption = "Set Handover Target"
-        Me.NBQCHOTarget.Name = "NBQCHOTarget"
-        Me.NBQCHOTarget.SmallImage = CType(resources.GetObject("NBQCHOTarget.SmallImage"), System.Drawing.Image)
-        '
-        'NBProdPLToWH
-        '
-        Me.NBProdPLToWH.Caption = "Packing List Finished Goods"
-        Me.NBProdPLToWH.LargeImageIndex = 23
-        Me.NBProdPLToWH.Name = "NBProdPLToWH"
-        Me.NBProdPLToWH.SmallImageIndex = 30
-        '
-        'NBProdReturn
-        '
-        Me.NBProdReturn.Caption = "Return"
-        Me.NBProdReturn.LargeImageIndex = 25
-        Me.NBProdReturn.Name = "NBProdReturn"
-        Me.NBProdReturn.SmallImageIndex = 32
-        '
-        'NBAdjQC
-        '
-        Me.NBAdjQC.Caption = "Adjustment QC"
-        Me.NBAdjQC.LargeImageIndex = 34
-        Me.NBAdjQC.Name = "NBAdjQC"
-        Me.NBAdjQC.SmallImageIndex = 33
-        '
-        'NBBorrowQCRec
-        '
-        Me.NBBorrowQCRec.Caption = "Borrow Request"
-        Me.NBBorrowQCRec.Name = "NBBorrowQCRec"
-        Me.NBBorrowQCRec.SmallImageIndex = 29
-        '
-        'NBStockQC
-        '
-        Me.NBStockQC.Caption = "Stock"
-        Me.NBStockQC.Name = "NBStockQC"
-        Me.NBStockQC.SmallImageIndex = 45
-        '
-        'NBFinalClear
-        '
-        Me.NBFinalClear.Caption = "QC Result"
-        Me.NBFinalClear.Name = "NBFinalClear"
-        Me.NBFinalClear.SmallImage = CType(resources.GetObject("NBFinalClear.SmallImage"), System.Drawing.Image)
-        '
-        'NBFGRepairRec
-        '
-        Me.NBFGRepairRec.Caption = "Receive Repair Product"
-        Me.NBFGRepairRec.Name = "NBFGRepairRec"
-        Me.NBFGRepairRec.SmallImage = CType(resources.GetObject("NBFGRepairRec.SmallImage"), System.Drawing.Image)
-        '
-        'NBFGRepairReturn
-        '
-        Me.NBFGRepairReturn.Caption = "Return Repair Product"
-        Me.NBFGRepairReturn.Name = "NBFGRepairReturn"
-        Me.NBFGRepairReturn.SmallImage = CType(resources.GetObject("NBFGRepairReturn.SmallImage"), System.Drawing.Image)
-        '
-        'NBRepairProductToVendor
-        '
-        Me.NBRepairProductToVendor.Caption = "Repair to Vendor"
-        Me.NBRepairProductToVendor.Name = "NBRepairProductToVendor"
-        Me.NBRepairProductToVendor.SmallImage = CType(resources.GetObject("NBRepairProductToVendor.SmallImage"), System.Drawing.Image)
-        '
-        'NBRecRepairFromVendor
-        '
-        Me.NBRecRepairFromVendor.Caption = "Receive Repair from Vendor"
-        Me.NBRecRepairFromVendor.Name = "NBRecRepairFromVendor"
-        Me.NBRecRepairFromVendor.SmallImage = CType(resources.GetObject("NBRecRepairFromVendor.SmallImage"), System.Drawing.Image)
-        '
-        'NBHandoverReport
-        '
-        Me.NBHandoverReport.Caption = "Handover Report"
-        Me.NBHandoverReport.Name = "NBHandoverReport"
-        Me.NBHandoverReport.SmallImage = CType(resources.GetObject("NBHandoverReport.SmallImage"), System.Drawing.Image)
-        '
         'NBGSetup
         '
         Me.NBGSetup.Caption = "Setup"
@@ -3398,12 +3404,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBInputAttendanceHRD
-        '
-        Me.NBInputAttendanceHRD.Caption = "Input Attendance"
-        Me.NBInputAttendanceHRD.Name = "NBInputAttendanceHRD"
-        Me.NBInputAttendanceHRD.SmallImage = CType(resources.GetObject("NBInputAttendanceHRD.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
