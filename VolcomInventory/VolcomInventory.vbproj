@@ -867,6 +867,12 @@
     <Compile Include="FormEmpAttnSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttnSumDetailLate.Designer.vb">
+      <DependentUpon>FormEmpAttnSumDetailLate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnSumDetailLate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttnSumDetailSick.Designer.vb">
       <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
     </Compile>
@@ -7680,6 +7686,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttnSum.resx">
       <DependentUpon>FormEmpAttnSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnSumDetailLate.resx">
+      <DependentUpon>FormEmpAttnSumDetailLate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttnSumDetailSick.resx">
       <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
