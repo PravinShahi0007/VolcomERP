@@ -553,7 +553,7 @@ Partial Class FormProductionFinalClear
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClear"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Quality Control Result"
+        Me.Text = "QC Report"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
