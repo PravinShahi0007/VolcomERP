@@ -4915,7 +4915,7 @@ Public Class FormImportExcel
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Dim data_employee As DataTable = FormEmpInputAttendanceDet.GCEmployee.DataSource
 
-                    Dim allow_dept As DataTable = execute_query("SELECT id_departement FROM tb_emp_attn_input_dep", -1, True, "", "", "", "")
+                    Dim allow_dept As DataTable = execute_query("SELECT allow_input_departement AS id_departement FROM tb_emp_attn_input_dep WHERE id_departement = " + id_departement_user, -1, True, "", "", "", "")
 
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "" Then
@@ -4926,11 +4926,17 @@ Public Class FormImportExcel
                             If include_database = "0" And FormEmpInputAttendanceDet.GVEmployee.RowCount = 0 Then
                                 Dim check_allow_dept As Boolean = True
 
-                                For j = 0 To allow_dept.Rows.Count - 1
-                                    If Not allow_dept.Rows(j)("id_departement").ToString = GVData.GetRowCellValue(i, "IdDepartement").ToString Then
+                                If Not FormEmpInputAttendance.is_hrd = "1" Then
+                                    If allow_dept.Rows.Count <= 0 Then
                                         check_allow_dept = False
+                                    Else
+                                        For j = 0 To allow_dept.Rows.Count - 1
+                                            If Not allow_dept.Rows(j)("id_departement").ToString = GVData.GetRowCellValue(i, "IdDepartement").ToString Then
+                                                check_allow_dept = False
+                                            End If
+                                        Next
                                     End If
-                                Next
+                                End If
 
                                 If check_allow_dept Then
                                     Dim time_in As Nullable(Of DateTime) = Nothing

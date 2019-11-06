@@ -238,6 +238,7 @@ Public Class FormProductionFinalClearDet
         BtnBrowseFrom.Enabled = False
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
+        PanelNavBarcode.Visible = False
 
 
         'preprint
@@ -678,7 +679,7 @@ Public Class FormProductionFinalClearDet
                     action = "upd"
                     actionLoad()
                     exportToBOF(False)
-                    infoCustom("Final Clearance : " + TxtNumber.Text + " was created successfully.")
+                    infoCustom("QC Result : " + TxtNumber.Text + " was created successfully.")
                     Cursor = Cursors.Default
                 End If
             End If

@@ -41,10 +41,10 @@
                                  scht.id_schedule_type,
                                  scht.schedule_type,note ,
                                  sch.minutes_work,
-                                 IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))) AS late ,
-                                 IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))) AS over,
-                                 IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
-                                 TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+                                 IF(lv.is_full_day=1,0,IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))))) AS late ,
+                                 IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))))) AS over,
+                                 IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+                                 TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0)) AS over_break ,
                                  TIMESTAMPDIFF(MINUTE,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) ,IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime))) AS actual_work_hour 
                                 FROM tb_emp_schedule sch 
                                 LEFT JOIN
@@ -121,10 +121,10 @@
                                  scht.id_schedule_type,
                                  scht.schedule_type,note ,
                                  sch.minutes_work,
-                                 IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))) AS late ,
-                                 IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60)),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))) AS over,
-                                 IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
-                                 TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+                                 IF(lv.is_full_day=1,0,IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60)))) AS late ,
+                                 IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60)),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60)))) AS over,
+                                 IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+                                 TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0)) AS over_break ,
                                  TIMESTAMPDIFF(MINUTE,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) ,IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime))) AS actual_work_hour 
                                 FROM tb_emp_schedule sch 
                                 LEFT JOIN
@@ -636,11 +636,11 @@
 	                sch.minutes_work,
                     IF(IFNULL(lv.id_leave_type,0)=2,lv.minutes_total,0) as tot_sick,
                     IF(IFNULL(lv.id_leave_type,0)=2,1,0) as sum_sick,
-	                IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))) AS late ,
-	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),-(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))),0) AS early_home ,
-	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))) AS over,
-	                IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
-	                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+	                IF(lv.is_full_day=1,0,IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60)))) AS late ,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),-(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))),0)) AS early_home ,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))))) AS over,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+	                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0)) AS over_break ,
 	                TIMESTAMPDIFF(MINUTE,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) ,IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime))) AS actual_work_hour 
 	                FROM tb_emp_schedule sch 
 	                LEFT JOIN
@@ -719,10 +719,10 @@
 	                sch.break_in,MAX(at_brin.datetime) AS end_break, 
 	                scht.schedule_type,note ,
 	                sch.minutes_work,
-	                IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))) AS late ,
-	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60)),0) AS over ,
-	                IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
-	                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+	                IF(lv.is_full_day=1,0,IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60)))) AS late ,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60)),0)) AS over ,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+	                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0)) AS over_break ,
 	                TIMESTAMPDIFF(MINUTE,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) ,IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime))) AS actual_work_hour 
 	                FROM tb_emp_schedule sch 
 	                LEFT JOIN
@@ -808,11 +808,11 @@
 	                sch.minutes_work,
                     IF(IFNULL(lv.id_leave_type,0)=2,lv.minutes_total,0) as tot_sick,
                     IF(IFNULL(lv.id_leave_type,0)=2,1,0) as sum_sick,
-	                IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))) AS late ,
-	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),-(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))),0) AS early_home ,
-	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))) AS over,
-	                IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
-	                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+	                IF(lv.is_full_day=1,0,IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60)))) AS late ,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),-(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))),0)) AS early_home ,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))))) AS over,
+	                IF(lv.is_full_day=1,0,IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+	                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0)) AS over_break ,
 	                TIMESTAMPDIFF(MINUTE,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) ,IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime))) AS actual_work_hour 
 	                FROM tb_emp_schedule sch 
 	                LEFT JOIN
@@ -1103,5 +1103,53 @@
 
     Private Sub LEEmployeeStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEEmployeeStatus.EditValueChanged
         SLUEEmployee.EditValue = 0
+    End Sub
+
+    Private Sub GVSum_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVSum.RowClick
+        If e.Button = MouseButtons.Right Then
+            PopupMenu.ShowPopup(Control.MousePosition)
+        End If
+    End Sub
+
+    Private Sub GVSumMonthly_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVSumMonthly.RowClick
+        If e.Button = MouseButtons.Right Then
+            PopupMenu.ShowPopup(Control.MousePosition)
+        End If
+    End Sub
+
+    Private Sub BBIDetailSick_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIDetailSick.ItemClick
+        If XTCReportAttendance.SelectedTabPage.Name = "XTPMonthly" Then
+            FormEmpAttnSumDetailSick.id_employee = GVSum.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailSick.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.month = Nothing
+
+            FormEmpAttnSumDetailSick.ShowDialog()
+        ElseIf XTCReportAttendance.SelectedTabPage.Name = "XTPSumMonthly" Then
+            FormEmpAttnSumDetailSick.id_employee = GVSumMonthly.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailSick.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailSick.month = Date.Parse(GVSumMonthly.GetFocusedRowCellValue("month_year").ToString)
+
+            FormEmpAttnSumDetailSick.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BBIDetailLate_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIDetailLate.ItemClick
+        If XTCReportAttendance.SelectedTabPage.Name = "XTPMonthly" Then
+            FormEmpAttnSumDetailLate.id_employee = GVSum.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailLate.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.month = Nothing
+
+            FormEmpAttnSumDetailLate.ShowDialog()
+        ElseIf XTCReportAttendance.SelectedTabPage.Name = "XTPSumMonthly" Then
+            FormEmpAttnSumDetailLate.id_employee = GVSumMonthly.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailLate.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.month = Date.Parse(GVSumMonthly.GetFocusedRowCellValue("month_year").ToString)
+
+            FormEmpAttnSumDetailLate.ShowDialog()
+        End If
     End Sub
 End Class

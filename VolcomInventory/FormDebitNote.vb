@@ -59,6 +59,7 @@
 FROM tb_prod_order_rec_det rd
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6'
 INNER JOIN `tb_prod_order_close_det` cd ON cd.`id_prod_order`=r.`id_prod_order`
+INNER JOIN `tb_prod_order_close` cl ON cl.`id_prod_order_close`=cd.`id_prod_order_close`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=cd.`id_prod_order`
 LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor='1' 
 LEFT JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
@@ -97,11 +98,16 @@ LEFT JOIN (
     )ko GROUP BY ko.id_prod_order
 ) ko ON ko.id_prod_order=po.id_prod_order
 INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
-WHERE cd.`id_report_status`='6' AND  ld.`claim_percent` > 0
+WHERE cl.`id_report_status`='6' AND  ld.`claim_percent` > 0
 GROUP BY rd.`id_prod_order_rec`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClaimLate.DataSource = data
         GVClaimLate.BestFitColumns()
+        If SLEVendor.EditValue.ToString = "0" Then
+            BCreateDNLate.Visible = False
+        Else
+            BCreateDNLate.Visible = True
+        End If
     End Sub
 
     Sub load_claim_reject()
@@ -158,5 +164,22 @@ GROUP BY rd.`id_prod_order_rec`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSumClaimReject.DataSource = data
         GVSumClaimReject.BestFitColumns()
+        If SLEVendor.EditValue.ToString = "0" Then
+            BCreateDNReject.Visible = False
+        Else
+            BCreateDNReject.Visible = True
+        End If
+    End Sub
+
+    Private Sub BCreateDNReject_Click(sender As Object, e As EventArgs) Handles BCreateDNReject.Click
+        Cursor = Cursors.WaitCursor
+        GVSumClaimReject.ActiveFilterString = "[is_check] = 'yes'"
+        If GVSumClaimReject.RowCount > 0 Then
+            FormProdDebitNoteDet.ShowDialog()
+        Else
+            warningCustom("Please select FGPO")
+        End If
+        GVSumClaimReject.ActiveFilterString = ""
+        Cursor = Cursors.Default
     End Sub
 End Class

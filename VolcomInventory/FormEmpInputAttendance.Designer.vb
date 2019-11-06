@@ -56,6 +56,8 @@ Partial Class FormEmpInputAttendance
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTC, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +88,7 @@ Partial Class FormEmpInputAttendance
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.Editable = False
@@ -116,7 +118,7 @@ Partial Class FormEmpInputAttendance
         Me.GridColumn4.FieldName = "report_status"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.VisibleIndex = 2
         '
         'GridColumn5
         '
@@ -124,7 +126,7 @@ Partial Class FormEmpInputAttendance
         Me.GridColumn5.FieldName = "created_by"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.VisibleIndex = 3
         '
         'GridColumn6
         '
@@ -132,7 +134,7 @@ Partial Class FormEmpInputAttendance
         Me.GridColumn6.FieldName = "created_at"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.VisibleIndex = 4
         '
         'XTC
         '
@@ -173,7 +175,7 @@ Partial Class FormEmpInputAttendance
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmpAttmInputDet, Me.GCIdDepartement, Me.GCDepartement, Me.GCIdEmployee, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCDate, Me.GCTimeIn, Me.GCTimeOut, Me.GCEmpAttnInput, Me.GCNumber, Me.GCIdReportStatus, Me.GCReportStatus, Me.GCCreatedBy, Me.GCCreatedAt})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmpAttmInputDet, Me.GCIdDepartement, Me.GCDepartement, Me.GCIdEmployee, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCDate, Me.GCTimeIn, Me.GCTimeOut, Me.GCEmpAttnInput, Me.GCNumber, Me.GCNote, Me.GCIdReportStatus, Me.GCReportStatus, Me.GCCreatedBy, Me.GCCreatedAt})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -319,7 +321,7 @@ Partial Class FormEmpInputAttendance
         Me.GCReportStatus.FieldName = "report_status"
         Me.GCReportStatus.Name = "GCReportStatus"
         Me.GCReportStatus.Visible = True
-        Me.GCReportStatus.VisibleIndex = 8
+        Me.GCReportStatus.VisibleIndex = 9
         Me.GCReportStatus.Width = 77
         '
         'GCCreatedBy
@@ -328,7 +330,7 @@ Partial Class FormEmpInputAttendance
         Me.GCCreatedBy.FieldName = "created_by"
         Me.GCCreatedBy.Name = "GCCreatedBy"
         Me.GCCreatedBy.Visible = True
-        Me.GCCreatedBy.VisibleIndex = 9
+        Me.GCCreatedBy.VisibleIndex = 10
         '
         'GCCreatedAt
         '
@@ -336,7 +338,7 @@ Partial Class FormEmpInputAttendance
         Me.GCCreatedAt.FieldName = "created_at"
         Me.GCCreatedAt.Name = "GCCreatedAt"
         Me.GCCreatedAt.Visible = True
-        Me.GCCreatedAt.VisibleIndex = 10
+        Me.GCCreatedAt.VisibleIndex = 11
         '
         'PanelControl1
         '
@@ -398,6 +400,22 @@ Partial Class FormEmpInputAttendance
         Me.DEFrom.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.DEFrom.Size = New System.Drawing.Size(200, 20)
         Me.DEFrom.TabIndex = 0
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Note"
+        Me.GridColumn7.FieldName = "note"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        '
+        'GCNote
+        '
+        Me.GCNote.Caption = "Note"
+        Me.GCNote.FieldName = "note"
+        Me.GCNote.Name = "GCNote"
+        Me.GCNote.Visible = True
+        Me.GCNote.VisibleIndex = 8
         '
         'FormEmpInputAttendance
         '
@@ -465,4 +483,6 @@ Partial Class FormEmpInputAttendance
     Friend WithEvents SBView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DETo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label1 As Label
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCNote As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -57,7 +57,7 @@
 
     Public Function queryOrderDetails(ByVal id_purc_order As String, ByVal condition As String)
         Dim query = "SELECT pod.is_drop,pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, reqd.item_detail, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`, 0 AS `qty`
+        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0.00) AS `qty_rec`, IFNULL(retd.qty,0.00) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0.00)+IFNULL(retd.qty,0.00)) AS `qty_remaining`, 0.00 AS `qty`
         FROM tb_purc_order_det pod
         LEFT JOIN (
           SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
