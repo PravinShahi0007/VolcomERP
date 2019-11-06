@@ -43,7 +43,13 @@
     End Sub
 
     Sub load_claim_late()
-        Dim query As String = "SELECT s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
+        Dim q_where As String = ""
+        '
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            q_where = " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT 'no' AS is_check,'22' AS report_mark_type,s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
 ,dsg.design_display_name,dsg.design_code,SUBSTRING(dsg.`design_display_name`,1,CHAR_LENGTH(dsg.`design_display_name`) - 4) AS dsg_name,RIGHT(dsg.`design_display_name`,3) AS color 
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY) AS est_rec_date_ko
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date
@@ -56,6 +62,7 @@
 ,r.prod_order_rec_number
 ,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY)) AS late_day
 ,c.comp_name
+,r.id_prod_order
 FROM tb_prod_order_rec_det rd
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6'
 INNER JOIN `tb_prod_order_close_det` cd ON cd.`id_prod_order`=r.`id_prod_order`
@@ -98,7 +105,7 @@ LEFT JOIN (
     )ko GROUP BY ko.id_prod_order
 ) ko ON ko.id_prod_order=po.id_prod_order
 INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
-WHERE cl.`id_report_status`='6' AND  ld.`claim_percent` > 0
+WHERE cl.`id_report_status`='6' AND  ld.`claim_percent` > 0 " & q_where & "
 GROUP BY rd.`id_prod_order_rec`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClaimLate.DataSource = data
@@ -111,7 +118,13 @@ GROUP BY rd.`id_prod_order_rec`"
     End Sub
 
     Sub load_claim_reject()
-        Dim query As String = "SELECT dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
+        Dim q_where As String = ""
+        '
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            q_where = " AND wo_price.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT 'no' AS is_check,'22' AS report_mark_type,po.`id_prod_order`,dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
                                 SUM(IF(fc.id_pl_category_sub=1,fcd.pl_prod_order_det_qty,0)) AS qc_normal,
                                 get_claim_reject_percent(pocd.`id_claim_reject`,1) AS p_normal,
                                 SUM(IF(fc.id_pl_category_sub=2,fcd.pl_prod_order_det_qty,0)) AS qc_normal_minor,
@@ -142,7 +155,7 @@ GROUP BY rd.`id_prod_order_rec`"
                                 INNER JOIN tb_lookup_pl_category_sub plc ON plc.`id_pl_category_sub`=fc.`id_pl_category_sub`
                                 INNER JOIN tb_m_claim_reject_det crd ON crd.`id_claim_reject`=pocd.`id_claim_reject` AND crd.`id_pl_category_sub`=fc.`id_pl_category_sub`
                                 LEFT JOIN (
-	                                SELECT comp.comp_name,wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price,  cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, wo.`prod_order_wo_kurs`, SUM(pod.prod_order_qty) AS qty_order
+	                                SELECT comp.id_comp, comp.comp_name,wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price,  cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, wo.`prod_order_wo_kurs`, SUM(pod.prod_order_qty) AS qty_order
 	                                FROM tb_prod_order_wo wo
 	                                INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo AND wo.id_report_status!='5'
 	                                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
@@ -159,7 +172,7 @@ GROUP BY rd.`id_prod_order_rec`"
 	                                INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec`=rec.`id_prod_order_rec` AND rec.`id_report_status`='6'
 	                                GROUP BY rec.id_prod_order
                                 ) rec ON rec.`id_prod_order`=pocd.`id_prod_order`
-                                WHERE poc.id_report_status = '6'
+                                WHERE poc.id_report_status = '6' " & q_where & "
                                 GROUP BY pocd.`id_prod_order`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSumClaimReject.DataSource = data
@@ -175,11 +188,25 @@ GROUP BY rd.`id_prod_order_rec`"
         Cursor = Cursors.WaitCursor
         GVSumClaimReject.ActiveFilterString = "[is_check] = 'yes'"
         If GVSumClaimReject.RowCount > 0 Then
-            FormProdDebitNoteDet.ShowDialog()
+            FormDebitNoteDet.id_dn_type = "1"
+            FormDebitNoteDet.ShowDialog()
         Else
             warningCustom("Please select FGPO")
         End If
         GVSumClaimReject.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCreateDNLate_Click(sender As Object, e As EventArgs) Handles BCreateDNLate.Click
+        Cursor = Cursors.WaitCursor
+        GVClaimLate.ActiveFilterString = "[is_check] = 'yes'"
+        If GVClaimLate.RowCount > 0 Then
+            FormDebitNoteDet.id_dn_type = "2"
+            FormDebitNoteDet.ShowDialog()
+        Else
+            warningCustom("Please select FGPO")
+        End If
+        GVClaimLate.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 End Class
