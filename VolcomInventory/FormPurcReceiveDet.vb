@@ -128,7 +128,7 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
                 For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                     If qty_total > 0 Then
                         Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")
-                        Dim qty_input As Decimal = 0
+                        Dim qty_input As Decimal = 0.00
                         If qty <= qty_total Then
                             qty_input = qty
                         Else

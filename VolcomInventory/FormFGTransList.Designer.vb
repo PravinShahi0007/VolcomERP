@@ -214,6 +214,12 @@ Partial Class FormFGTransList
         Me.DEFromTrf = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSRet = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSNonStock = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSRetTrf = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSTrf = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -573,6 +579,7 @@ Partial Class FormFGTransList
         'GCFilterRec
         '
         Me.GCFilterRec.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilterRec.Controls.Add(Me.BtnExportToXLSRec)
         Me.GCFilterRec.Controls.Add(Me.BtnViewRec)
         Me.GCFilterRec.Controls.Add(Me.SimpleButton4)
         Me.GCFilterRec.Controls.Add(Me.SimpleButton5)
@@ -918,6 +925,7 @@ Partial Class FormFGTransList
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BtnExportToXLS)
         Me.GroupControl1.Controls.Add(Me.BtnViewDO)
         Me.GroupControl1.Controls.Add(Me.SimpleButton7)
         Me.GroupControl1.Controls.Add(Me.SimpleButton8)
@@ -1268,6 +1276,7 @@ Partial Class FormFGTransList
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.BtnExportToXLSRet)
         Me.GroupControl2.Controls.Add(Me.BtnViewReturn)
         Me.GroupControl2.Controls.Add(Me.SimpleButton9)
         Me.GroupControl2.Controls.Add(Me.SimpleButton10)
@@ -1572,6 +1581,7 @@ Partial Class FormFGTransList
         'GroupControl5
         '
         Me.GroupControl5.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl5.Controls.Add(Me.BtnExportToXLSNonStock)
         Me.GroupControl5.Controls.Add(Me.BtnViewNonStock)
         Me.GroupControl5.Controls.Add(Me.SimpleButton16)
         Me.GroupControl5.Controls.Add(Me.SimpleButton17)
@@ -1881,6 +1891,7 @@ Partial Class FormFGTransList
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BtnExportToXLSRetTrf)
         Me.GroupControl3.Controls.Add(Me.BtnViewReturnQC)
         Me.GroupControl3.Controls.Add(Me.SimpleButton11)
         Me.GroupControl3.Controls.Add(Me.SimpleButton12)
@@ -2166,6 +2177,7 @@ Partial Class FormFGTransList
         'GroupControl4
         '
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.BtnExportToXLSTrf)
         Me.GroupControl4.Controls.Add(Me.BtnViewTrf)
         Me.GroupControl4.Controls.Add(Me.SimpleButton13)
         Me.GroupControl4.Controls.Add(Me.SimpleButton14)
@@ -2249,6 +2261,60 @@ Partial Class FormFGTransList
         Me.LabelControl21.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl21.TabIndex = 8892
         Me.LabelControl21.Text = "From"
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLS.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLS.TabIndex = 8899
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        '
+        'BtnExportToXLSRec
+        '
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
+        Me.BtnExportToXLSRec.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSRec.TabIndex = 8900
+        Me.BtnExportToXLSRec.Text = "Export to XLS"
+        '
+        'BtnExportToXLSRet
+        '
+        Me.BtnExportToXLSRet.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLSRet.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSRet.Name = "BtnExportToXLSRet"
+        Me.BtnExportToXLSRet.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSRet.TabIndex = 8901
+        Me.BtnExportToXLSRet.Text = "Export to XLS"
+        '
+        'BtnExportToXLSNonStock
+        '
+        Me.BtnExportToXLSNonStock.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLSNonStock.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSNonStock.Name = "BtnExportToXLSNonStock"
+        Me.BtnExportToXLSNonStock.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSNonStock.TabIndex = 8902
+        Me.BtnExportToXLSNonStock.Text = "Export to XLS"
+        '
+        'BtnExportToXLSRetTrf
+        '
+        Me.BtnExportToXLSRetTrf.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLSRetTrf.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSRetTrf.Name = "BtnExportToXLSRetTrf"
+        Me.BtnExportToXLSRetTrf.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSRetTrf.TabIndex = 8903
+        Me.BtnExportToXLSRetTrf.Text = "Export to XLS"
+        '
+        'BtnExportToXLSTrf
+        '
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(380, 9)
+        Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
+        Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExportToXLSTrf.TabIndex = 8904
+        Me.BtnExportToXLSTrf.Text = "Export to XLS"
         '
         'FormFGTransList
         '
@@ -2528,4 +2594,10 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnClassTrf As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsNonListReturn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoCENonList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSRec As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSRet As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSNonStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSRetTrf As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSTrf As DevExpress.XtraEditors.SimpleButton
 End Class
