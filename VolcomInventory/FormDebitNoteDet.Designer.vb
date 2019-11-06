@@ -23,22 +23,23 @@ Partial Class FormDebitNoteDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDebitNoteDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.TEMemoType = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDNType = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
-        Me.MEAdrressCompFrom = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEAddress = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVendor = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.DECreated = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtVirtualPosNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -51,19 +52,6 @@ Partial Class FormDebitNoteDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.PanelControlBottomRight = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtNetto = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtVatTot = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.SPDiscount = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtTaxBase = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDiscount = New DevExpress.XtraEditors.TextEdit()
-        Me.SPVat = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -74,6 +62,7 @@ Partial Class FormDebitNoteDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMDescription = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -84,13 +73,14 @@ Partial Class FormDebitNoteDet
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
-        CType(Me.TEMemoType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDNType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -103,18 +93,11 @@ Partial Class FormDebitNoteDet
         Me.PanelControlBottomLeft.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlBottomRight.SuspendLayout()
-        CType(Me.TxtNetto.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVatTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SPDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTaxBase.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SPVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -132,30 +115,30 @@ Partial Class FormDebitNoteDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopLeft.Controls.Add(Me.TEMemoType)
+        Me.PanelControlTopLeft.Controls.Add(Me.TEDNType)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl16)
-        Me.PanelControlTopLeft.Controls.Add(Me.MEAdrressCompFrom)
+        Me.PanelControlTopLeft.Controls.Add(Me.MEAddress)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl1)
-        Me.PanelControlTopLeft.Controls.Add(Me.TxtNameCompFrom)
+        Me.PanelControlTopLeft.Controls.Add(Me.TEVendor)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(797, 114)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(745, 114)
         Me.PanelControlTopLeft.TabIndex = 8939
         '
-        'TEMemoType
+        'TEDNType
         '
-        Me.TEMemoType.EditValue = ""
-        Me.TEMemoType.Location = New System.Drawing.Point(65, 7)
-        Me.TEMemoType.Name = "TEMemoType"
-        Me.TEMemoType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEMemoType.Properties.Appearance.Options.UseFont = True
-        Me.TEMemoType.Properties.EditValueChangedDelay = 1
-        Me.TEMemoType.Properties.ReadOnly = True
-        Me.TEMemoType.Size = New System.Drawing.Size(217, 20)
-        Me.TEMemoType.TabIndex = 8941
-        Me.TEMemoType.TabStop = False
+        Me.TEDNType.EditValue = ""
+        Me.TEDNType.Location = New System.Drawing.Point(65, 7)
+        Me.TEDNType.Name = "TEDNType"
+        Me.TEDNType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEDNType.Properties.Appearance.Options.UseFont = True
+        Me.TEDNType.Properties.EditValueChangedDelay = 1
+        Me.TEDNType.Properties.ReadOnly = True
+        Me.TEDNType.Size = New System.Drawing.Size(217, 20)
+        Me.TEDNType.TabIndex = 8941
+        Me.TEDNType.TabStop = False
         '
         'LabelControl16
         '
@@ -166,17 +149,17 @@ Partial Class FormDebitNoteDet
         Me.LabelControl16.TabIndex = 8940
         Me.LabelControl16.Text = "Type"
         '
-        'MEAdrressCompFrom
+        'MEAddress
         '
-        Me.MEAdrressCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.MEAddress.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MEAdrressCompFrom.Location = New System.Drawing.Point(65, 59)
-        Me.MEAdrressCompFrom.Name = "MEAdrressCompFrom"
-        Me.MEAdrressCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MEAdrressCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.MEAdrressCompFrom.Properties.ReadOnly = True
-        Me.MEAdrressCompFrom.Size = New System.Drawing.Size(347, 43)
-        Me.MEAdrressCompFrom.TabIndex = 4444
+        Me.MEAddress.Location = New System.Drawing.Point(65, 59)
+        Me.MEAddress.Name = "MEAddress"
+        Me.MEAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MEAddress.Properties.Appearance.Options.UseFont = True
+        Me.MEAddress.Properties.ReadOnly = True
+        Me.MEAddress.Size = New System.Drawing.Size(295, 43)
+        Me.MEAddress.TabIndex = 4444
         '
         'LabelControl1
         '
@@ -187,20 +170,20 @@ Partial Class FormDebitNoteDet
         Me.LabelControl1.TabIndex = 145
         Me.LabelControl1.Text = "Vendor"
         '
-        'TxtNameCompFrom
+        'TEVendor
         '
-        Me.TxtNameCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TEVendor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtNameCompFrom.EditValue = ""
-        Me.TxtNameCompFrom.Location = New System.Drawing.Point(65, 33)
-        Me.TxtNameCompFrom.Name = "TxtNameCompFrom"
-        Me.TxtNameCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
-        Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(347, 20)
-        Me.TxtNameCompFrom.TabIndex = 8888
-        Me.TxtNameCompFrom.TabStop = False
+        Me.TEVendor.EditValue = ""
+        Me.TEVendor.Location = New System.Drawing.Point(65, 33)
+        Me.TEVendor.Name = "TEVendor"
+        Me.TEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEVendor.Properties.Appearance.Options.UseFont = True
+        Me.TEVendor.Properties.EditValueChangedDelay = 1
+        Me.TEVendor.Properties.ReadOnly = True
+        Me.TEVendor.Size = New System.Drawing.Size(295, 20)
+        Me.TEVendor.TabIndex = 8888
+        Me.TEVendor.TabStop = False
         '
         'LabelControl3
         '
@@ -214,49 +197,70 @@ Partial Class FormDebitNoteDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopRight.Controls.Add(Me.DEForm)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
+        Me.PanelControlTopRight.Controls.Add(Me.TECreatedBy)
+        Me.PanelControlTopRight.Controls.Add(Me.DECreated)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
-        Me.PanelControlTopRight.Controls.Add(Me.TxtVirtualPosNumber)
+        Me.PanelControlTopRight.Controls.Add(Me.TENumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(817, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(765, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(225, 114)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(277, 114)
         Me.PanelControlTopRight.TabIndex = 8941
         '
-        'DEForm
+        'LabelControl2
         '
-        Me.DEForm.EditValue = ""
-        Me.DEForm.Location = New System.Drawing.Point(57, 3)
-        Me.DEForm.Name = "DEForm"
-        Me.DEForm.Properties.EditValueChangedDelay = 1
-        Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(158, 20)
-        Me.DEForm.TabIndex = 162
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(3, 62)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl2.TabIndex = 164
+        Me.LabelControl2.Text = "Craeted By"
+        '
+        'TECreatedBy
+        '
+        Me.TECreatedBy.EditValue = ""
+        Me.TECreatedBy.Location = New System.Drawing.Point(67, 59)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.EditValueChangedDelay = 1
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(200, 20)
+        Me.TECreatedBy.TabIndex = 163
+        '
+        'DECreated
+        '
+        Me.DECreated.EditValue = ""
+        Me.DECreated.Location = New System.Drawing.Point(67, 7)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.EditValueChangedDelay = 1
+        Me.DECreated.Properties.ReadOnly = True
+        Me.DECreated.Size = New System.Drawing.Size(200, 20)
+        Me.DECreated.TabIndex = 162
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(7, 32)
+        Me.LabelControl5.Location = New System.Drawing.Point(3, 36)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
         Me.LabelControl5.Text = "Number"
         '
-        'TxtVirtualPosNumber
+        'TENumber
         '
-        Me.TxtVirtualPosNumber.EditValue = ""
-        Me.TxtVirtualPosNumber.Location = New System.Drawing.Point(57, 29)
-        Me.TxtVirtualPosNumber.Name = "TxtVirtualPosNumber"
-        Me.TxtVirtualPosNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtVirtualPosNumber.Properties.ReadOnly = True
-        Me.TxtVirtualPosNumber.Size = New System.Drawing.Size(158, 20)
-        Me.TxtVirtualPosNumber.TabIndex = 8
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(67, 33)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(200, 20)
+        Me.TENumber.TabIndex = 8
         '
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(7, 6)
+        Me.LabelControl7.Location = New System.Drawing.Point(3, 10)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 159
@@ -288,7 +292,6 @@ Partial Class FormDebitNoteDet
         '
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
-        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
@@ -321,16 +324,6 @@ Partial Class FormDebitNoteDet
         Me.BtnPrint.Size = New System.Drawing.Size(75, 34)
         Me.BtnPrint.TabIndex = 11
         Me.BtnPrint.Text = "Print"
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.Location = New System.Drawing.Point(77, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 34)
-        Me.SimpleButton1.TabIndex = 12
-        Me.SimpleButton1.Text = "Test"
-        Me.SimpleButton1.Visible = False
         '
         'BMark
         '
@@ -370,7 +363,6 @@ Partial Class FormDebitNoteDet
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomMiddle)
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomLeft)
-        Me.GroupControl3.Controls.Add(Me.PanelControlBottomRight)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 361)
         Me.GroupControl3.Name = "GroupControl3"
@@ -383,7 +375,7 @@ Partial Class FormDebitNoteDet
         Me.PanelControlBottomMiddle.Controls.Add(Me.METotSay)
         Me.PanelControlBottomMiddle.Controls.Add(Me.LabelControl19)
         Me.PanelControlBottomMiddle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(466, 2)
+        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(705, 2)
         Me.PanelControlBottomMiddle.Name = "PanelControlBottomMiddle"
         Me.PanelControlBottomMiddle.Size = New System.Drawing.Size(337, 120)
         Me.PanelControlBottomMiddle.TabIndex = 171
@@ -415,7 +407,7 @@ Partial Class FormDebitNoteDet
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(783, 120)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(1022, 120)
         Me.PanelControlBottomLeft.TabIndex = 170
         '
         'MENote
@@ -425,7 +417,7 @@ Partial Class FormDebitNoteDet
         Me.MENote.Location = New System.Drawing.Point(58, 8)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(353, 64)
+        Me.MENote.Size = New System.Drawing.Size(592, 64)
         Me.MENote.TabIndex = 8
         '
         'LabelControl18
@@ -457,178 +449,14 @@ Partial Class FormDebitNoteDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(353, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(592, 20)
         Me.LEReportStatus.TabIndex = 7
-        '
-        'PanelControlBottomRight
-        '
-        Me.PanelControlBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlBottomRight.Controls.Add(Me.TxtNetto)
-        Me.PanelControlBottomRight.Controls.Add(Me.TxtVatTot)
-        Me.PanelControlBottomRight.Controls.Add(Me.LabelControl14)
-        Me.PanelControlBottomRight.Controls.Add(Me.SPDiscount)
-        Me.PanelControlBottomRight.Controls.Add(Me.LabelControl15)
-        Me.PanelControlBottomRight.Controls.Add(Me.LabelControl9)
-        Me.PanelControlBottomRight.Controls.Add(Me.TxtTaxBase)
-        Me.PanelControlBottomRight.Controls.Add(Me.LabelControl10)
-        Me.PanelControlBottomRight.Controls.Add(Me.LabelControl17)
-        Me.PanelControlBottomRight.Controls.Add(Me.TxtDiscount)
-        Me.PanelControlBottomRight.Controls.Add(Me.SPVat)
-        Me.PanelControlBottomRight.Controls.Add(Me.LabelControl22)
-        Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(803, 2)
-        Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
-        Me.PanelControlBottomRight.Size = New System.Drawing.Size(239, 120)
-        Me.PanelControlBottomRight.TabIndex = 172
-        '
-        'TxtNetto
-        '
-        Me.TxtNetto.Location = New System.Drawing.Point(70, 30)
-        Me.TxtNetto.Name = "TxtNetto"
-        Me.TxtNetto.Properties.Appearance.Options.UseTextOptions = True
-        Me.TxtNetto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TxtNetto.Properties.EditValueChangedDelay = 1
-        Me.TxtNetto.Properties.Mask.EditMask = "N2"
-        Me.TxtNetto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtNetto.Properties.Mask.SaveLiteral = False
-        Me.TxtNetto.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtNetto.Properties.ReadOnly = True
-        Me.TxtNetto.Size = New System.Drawing.Size(160, 20)
-        Me.TxtNetto.TabIndex = 159
-        '
-        'TxtVatTot
-        '
-        Me.TxtVatTot.Location = New System.Drawing.Point(146, 56)
-        Me.TxtVatTot.Name = "TxtVatTot"
-        Me.TxtVatTot.Properties.Appearance.Options.UseTextOptions = True
-        Me.TxtVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TxtVatTot.Properties.EditValueChangedDelay = 1
-        Me.TxtVatTot.Properties.Mask.EditMask = "N2"
-        Me.TxtVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtVatTot.Properties.Mask.SaveLiteral = False
-        Me.TxtVatTot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtVatTot.Properties.ReadOnly = True
-        Me.TxtVatTot.Size = New System.Drawing.Size(84, 20)
-        Me.TxtVatTot.TabIndex = 158
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(10, 59)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(16, 13)
-        Me.LabelControl14.TabIndex = 160
-        Me.LabelControl14.Text = "Vat"
-        '
-        'SPDiscount
-        '
-        Me.SPDiscount.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SPDiscount.Location = New System.Drawing.Point(70, 6)
-        Me.SPDiscount.Name = "SPDiscount"
-        Me.SPDiscount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SPDiscount.Properties.Appearance.Options.UseFont = True
-        Me.SPDiscount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.SPDiscount.Properties.EditValueChangedDelay = 50
-        Me.SPDiscount.Properties.Mask.EditMask = "n2"
-        Me.SPDiscount.Properties.Mask.SaveLiteral = False
-        Me.SPDiscount.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.SPDiscount.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.SPDiscount.Properties.ReadOnly = True
-        Me.SPDiscount.Size = New System.Drawing.Size(57, 20)
-        Me.SPDiscount.TabIndex = 169
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(10, 33)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(27, 13)
-        Me.LabelControl15.TabIndex = 161
-        Me.LabelControl15.Text = "Netto"
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(129, 9)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl9.TabIndex = 168
-        Me.LabelControl9.Text = "%"
-        '
-        'TxtTaxBase
-        '
-        Me.TxtTaxBase.Location = New System.Drawing.Point(70, 81)
-        Me.TxtTaxBase.Name = "TxtTaxBase"
-        Me.TxtTaxBase.Properties.Appearance.Options.UseTextOptions = True
-        Me.TxtTaxBase.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TxtTaxBase.Properties.EditValueChangedDelay = 1
-        Me.TxtTaxBase.Properties.Mask.EditMask = "N2"
-        Me.TxtTaxBase.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtTaxBase.Properties.Mask.SaveLiteral = False
-        Me.TxtTaxBase.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtTaxBase.Properties.ReadOnly = True
-        Me.TxtTaxBase.Size = New System.Drawing.Size(160, 20)
-        Me.TxtTaxBase.TabIndex = 162
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Location = New System.Drawing.Point(10, 9)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(41, 13)
-        Me.LabelControl10.TabIndex = 167
-        Me.LabelControl10.Text = "Discount"
-        '
-        'LabelControl17
-        '
-        Me.LabelControl17.Location = New System.Drawing.Point(10, 84)
-        Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(44, 13)
-        Me.LabelControl17.TabIndex = 163
-        Me.LabelControl17.Text = "Tax Base"
-        '
-        'TxtDiscount
-        '
-        Me.TxtDiscount.Location = New System.Drawing.Point(146, 6)
-        Me.TxtDiscount.Name = "TxtDiscount"
-        Me.TxtDiscount.Properties.Appearance.Options.UseTextOptions = True
-        Me.TxtDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TxtDiscount.Properties.EditValueChangedDelay = 1
-        Me.TxtDiscount.Properties.Mask.EditMask = "N2"
-        Me.TxtDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtDiscount.Properties.Mask.SaveLiteral = False
-        Me.TxtDiscount.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtDiscount.Properties.ReadOnly = True
-        Me.TxtDiscount.Size = New System.Drawing.Size(84, 20)
-        Me.TxtDiscount.TabIndex = 166
-        '
-        'SPVat
-        '
-        Me.SPVat.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SPVat.Location = New System.Drawing.Point(70, 56)
-        Me.SPVat.Name = "SPVat"
-        Me.SPVat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SPVat.Properties.Appearance.Options.UseFont = True
-        Me.SPVat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.SPVat.Properties.EditValueChangedDelay = 50
-        Me.SPVat.Properties.Mask.EditMask = "n2"
-        Me.SPVat.Properties.Mask.SaveLiteral = False
-        Me.SPVat.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.SPVat.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.SPVat.Properties.ReadOnly = True
-        Me.SPVat.Size = New System.Drawing.Size(57, 20)
-        Me.SPVat.TabIndex = 164
-        '
-        'LabelControl22
-        '
-        Me.LabelControl22.Location = New System.Drawing.Point(129, 59)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl22.TabIndex = 165
-        Me.LabelControl22.Text = "%"
         '
         'GroupControlList
         '
         Me.GroupControlList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 118)
         Me.GroupControlList.Name = "GroupControlList"
         Me.GroupControlList.Size = New System.Drawing.Size(1044, 243)
@@ -642,7 +470,7 @@ Partial Class FormDebitNoteDet
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RIMDescription})
         Me.GCItemList.Size = New System.Drawing.Size(1022, 239)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -657,6 +485,7 @@ Partial Class FormDebitNoteDet
         Me.GVItemList.OptionsBehavior.ReadOnly = True
         Me.GVItemList.OptionsCustomization.AllowGroup = False
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVItemList.OptionsView.RowAutoHeight = True
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -681,7 +510,7 @@ Partial Class FormDebitNoteDet
         'GridColumn3
         '
         Me.GridColumn3.Caption = "No"
-        Me.GridColumn3.FieldName = "no"
+        Me.GridColumn3.FieldName = "number"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
@@ -690,7 +519,7 @@ Partial Class FormDebitNoteDet
         'GridColumn4
         '
         Me.GridColumn4.Caption = "FGPO Number"
-        Me.GridColumn4.FieldName = "prod_order_number"
+        Me.GridColumn4.FieldName = "report_number"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
@@ -699,7 +528,7 @@ Partial Class FormDebitNoteDet
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Design"
-        Me.GridColumn5.FieldName = "design_display_name"
+        Me.GridColumn5.FieldName = "info_design"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
@@ -708,15 +537,26 @@ Partial Class FormDebitNoteDet
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Deskripsi"
+        Me.GridColumn6.ColumnEdit = Me.RIMDescription
         Me.GridColumn6.FieldName = "description"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 118
         '
+        'RIMDescription
+        '
+        Me.RIMDescription.Name = "RIMDescription"
+        '
         'GridColumn7
         '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn7.Caption = "Claim (%)"
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "claim_percent"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
@@ -725,7 +565,13 @@ Partial Class FormDebitNoteDet
         '
         'GridColumn8
         '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn8.Caption = "Price / Unit (Rp)"
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "unit_price"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
@@ -734,16 +580,29 @@ Partial Class FormDebitNoteDet
         '
         'GridColumn9
         '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn9.Caption = "Qty"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "qty"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 6
         Me.GridColumn9.Width = 118
         '
         'GridColumn10
         '
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn10.Caption = "Claim / Pcs (Rp)"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "claim_pcs"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
@@ -752,9 +611,16 @@ Partial Class FormDebitNoteDet
         '
         'GridColumn11
         '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn11.Caption = "Total Amount (Rp)"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "claim_amo"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo", "{0:N2}")})
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 8
         Me.GridColumn11.Width = 136
@@ -784,14 +650,15 @@ Partial Class FormDebitNoteDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
-        CType(Me.TEMemoType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDNType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -806,19 +673,11 @@ Partial Class FormDebitNoteDet
         Me.PanelControlBottomLeft.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlBottomRight.ResumeLayout(False)
-        Me.PanelControlBottomRight.PerformLayout()
-        CType(Me.TxtNetto.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVatTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SPDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTaxBase.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SPVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -826,22 +685,21 @@ Partial Class FormDebitNoteDet
 
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControlTopLeft As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TEMemoType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEDNType As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MEAdrressCompFrom As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEAddress As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtNameCompFrom As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEVendor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlTopRight As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents DEForm As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DECreated As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtVirtualPosNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
@@ -854,19 +712,6 @@ Partial Class FormDebitNoteDet
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents PanelControlBottomRight As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtNetto As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtVatTot As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SPDiscount As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtTaxBase As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtDiscount As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents SPVat As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControlList As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
@@ -883,4 +728,7 @@ Partial Class FormDebitNoteDet
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMDescription As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
 End Class

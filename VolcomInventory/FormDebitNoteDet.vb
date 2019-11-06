@@ -1,6 +1,7 @@
 ﻿Public Class FormDebitNoteDet
     Public id_dn As String = "-1"
     Public id_dn_type As String = "-1"
+    Public id_comp As String = "-1"
 
     Private Sub FormDebitNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_det()
@@ -11,8 +12,8 @@
                 For i As Integer = 0 To FormDebitNote.GVSumClaimReject.RowCount - 1
                     'add row
                     If (FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "qc_normal_minor") + FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "qc_minor")) > 0 Then 'reject minor
-                        Dim newRow As DataRow = (TryCast(FormDebitNote.GCSumClaimReject.DataSource, DataTable)).NewRow()
-                        newRow("no") = i + 1
+                        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                        newRow("number") = i + 1
                         newRow("id_report") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "id_prod_order").ToString
                         newRow("report_mark_type") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "report_mark_type").ToString
                         newRow("report_number") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "prod_order_number").ToString
@@ -29,8 +30,8 @@
                     End If
 
                     If (FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "qc_minor_major") + FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "qc_major")) > 0 Then 'reject major
-                        Dim newRow As DataRow = (TryCast(FormDebitNote.GCSumClaimReject.DataSource, DataTable)).NewRow()
-                        newRow("no") = i + 1
+                        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                        newRow("number") = i + 1
                         newRow("id_report") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "id_prod_order").ToString
                         newRow("report_mark_type") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "report_mark_type").ToString
                         newRow("report_number") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "prod_order_number").ToString
@@ -47,8 +48,8 @@
                     End If
 
                     If FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "qc_afkir") > 0 Then 'reject afkir
-                        Dim newRow As DataRow = (TryCast(FormDebitNote.GCSumClaimReject.DataSource, DataTable)).NewRow()
-                        newRow("no") = i + 1
+                        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                        newRow("number") = i + 1
                         newRow("id_report") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "id_prod_order").ToString
                         newRow("report_mark_type") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "report_mark_type").ToString
                         newRow("report_number") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "prod_order_number").ToString
@@ -63,34 +64,60 @@
                         GCItemList.RefreshDataSource()
                         GVItemList.RefreshData()
                     End If
+                    GVItemList.BestFitColumns()
                 Next
             ElseIf id_dn_type = "2" Then 'late claim
-                For i As Integer = 0 To FormDebitNote.GVClaimLate.RowCount - 1
-                    Dim newRow As DataRow = (TryCast(FormDebitNote.GCSumClaimReject.DataSource, DataTable)).NewRow()
-                    newRow("no") = i + 1
-                    newRow("id_report") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "id_prod_order").ToString
-                    newRow("report_mark_type") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "report_mark_type").ToString
-                    newRow("report_number") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "prod_order_number").ToString
-                    newRow("info_design") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "design_display_name").ToString
-                    newRow("description") = "HASIL PRODUKSI DATANG TERLAMBAT" & vbNewLine & "Delivery Date PO : " & Date.Parse(FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "est_rec_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Delivery Date KO : " & Date.Parse(FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "est_rec_date_ko").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Received Date : " & Date.Parse(FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "arrive_in_qc").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Charge Back : " & FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "late_day").ToString & " hari kalender"
-                    newRow("claim_percent") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "claim_percent")
-                    newRow("unit_price") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "prod_order_wo_det_price")
-                    newRow("qty") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "rec_qty_trx")
-                    newRow("claim_pcs") = FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "prod_order_wo_det_price") * (FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "claim_percent") / 100)
-                    newRow("claim_amo") = (FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "prod_order_wo_det_price") * (FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "claim_percent") / 100)) * FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "rec_qty_trx")
-                    TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
-                    GCItemList.RefreshDataSource()
-                    GVItemList.RefreshData()
-                Next
+                Try
+                    For i As Integer = 0 To FormDebitNote.GVClaimLate.RowCount - 1
+                        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                        newRow("number") = i + 1
+                        newRow("id_report") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "id_prod_order").ToString
+                        newRow("report_mark_type") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "report_mark_type").ToString
+                        newRow("report_number") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_number").ToString
+                        newRow("info_design") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "design_display_name").ToString
+                        newRow("description") = "HASIL PRODUKSI DATANG TERLAMBAT" & vbNewLine & "Delivery Date PO : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "est_rec_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Delivery Date KO : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "est_rec_date_ko").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Received Date : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "arrive_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Charge Back : " & FormDebitNote.GVClaimLate.GetRowCellValue(i, "late_day").ToString & " hari kalender"
+                        newRow("claim_percent") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "claim_percent")
+                        newRow("unit_price") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_wo_det_price")
+                        newRow("qty") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "rec_qty_trx")
+                        newRow("claim_pcs") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_wo_det_price") * (FormDebitNote.GVClaimLate.GetRowCellValue(i, "claim_percent") / 100)
+                        newRow("claim_amo") = (FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_wo_det_price") * (FormDebitNote.GVClaimLate.GetRowCellValue(i, "claim_percent") / 100)) * FormDebitNote.GVClaimLate.GetRowCellValue(i, "rec_qty_trx")
+                        TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                        GCItemList.RefreshDataSource()
+                        GVItemList.RefreshData()
+                    Next
+                    GVItemList.BestFitColumns()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
             End If
         Else
 
         End If
     End Sub
 
+    Sub load_header()
+        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name` FROM tb_debit_note dn
+INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
+INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status st ON st.`id_report_status`=dn.`id_report_status`
+INNER JOIN tb_lookup_dn_type dnt ON dnt.id_dn_type=dn.id_dn_type
+WHERE dn.id_debit_note='" & id_dn & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            id_comp = data.Rows(0)("id_comp").ToString
+            TEDNType.Text = data.Rows(0)("dn_type").ToString
+            TEVendor.Text = data.Rows(0)("comp_name").ToString
+            DECreated.Text = Date.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy")
+            TENumber.Text = data.Rows(0)("number").ToString
+            TECreatedBy.Text = data.Rows(0)("employee_name").ToString
+            MENote.Text = data.Rows(0)("note").ToString
+        End If
+    End Sub
+
     Sub load_det()
         Dim query As String = "SELECT dnd.`report_number`,dnd.`info_design`,dnd.`description`,dnd.`claim_percent`,dnd.`unit_price`,dnd.`qty`,dnd.`id_report`,dnd.`report_mark_type`,0.00 as claim_pcs, 0.00 as claim_amo
-,@curRow := @curRow + 1 AS `no`
+,@curRow := @curRow + 1 AS `number`
 FROM tb_debit_note_det dnd
 JOIN (SELECT @curRow := 0) r
 WHERE dnd.id_debit_note='" & id_dn & "'"
@@ -99,7 +126,9 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-
+        FormReportMark.id_report = id_dn
+        FormReportMark.report_mark_type = "221"
+        FormReportMark.ShowDialog()
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -111,6 +140,10 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Dim id_comp As String = id_comp
 
+        If id_dn = "-1" Then 'new
+
+        End If
     End Sub
 End Class
