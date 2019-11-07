@@ -19,6 +19,7 @@ Partial Class FormAccountingJournal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GCAccTrans = New DevExpress.XtraGrid.GridControl()
         Me.GVAccTrans = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -30,6 +31,7 @@ Partial Class FormAccountingJournal
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBillType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdBillType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCJurnal = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -60,7 +62,17 @@ Partial Class FormAccountingJournal
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LEBillingView = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCJurnal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +96,8 @@ Partial Class FormAccountingJournal
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBillingView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCAccTrans
@@ -177,6 +191,14 @@ Partial Class FormAccountingJournal
         Me.GridColumnIdBillType.Caption = "Id Bill Type"
         Me.GridColumnIdBillType.FieldName = "id_bill_type"
         Me.GridColumnIdBillType.Name = "GridColumnIdBillType"
+        '
+        'GridColumnstatus
+        '
+        Me.GridColumnstatus.Caption = "Status"
+        Me.GridColumnstatus.FieldName = "report_status"
+        Me.GridColumnstatus.Name = "GridColumnstatus"
+        Me.GridColumnstatus.Visible = True
+        Me.GridColumnstatus.VisibleIndex = 5
         '
         'XTCJurnal
         '
@@ -287,6 +309,7 @@ Partial Class FormAccountingJournal
         '
         'GCJournalDet
         '
+        Me.GCJournalDet.ContextMenuStrip = Me.ViewMenu
         Me.GCJournalDet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCJournalDet.Location = New System.Drawing.Point(0, 0)
         Me.GCJournalDet.MainView = Me.GVJournalDet
@@ -298,7 +321,7 @@ Partial Class FormAccountingJournal
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnIdJurnal, Me.GridColumnJurnalNumber, Me.GridColumnJournalDate, Me.GridColumnAccDesc})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnIdJurnal, Me.GridColumnJurnalNumber, Me.GridColumnJournalDate, Me.GridColumnAccDesc, Me.GridColumn8, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.GroupCount = 1
         Me.GVJournalDet.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn14, "{0:N2}")})
@@ -330,8 +353,8 @@ Partial Class FormAccountingJournal
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
-        Me.GridColumn11.Width = 61
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 145
         '
         'GridColumn12
         '
@@ -339,8 +362,8 @@ Partial Class FormAccountingJournal
         Me.GridColumn12.FieldName = "note"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 3
-        Me.GridColumn12.Width = 190
+        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.Width = 419
         '
         'GridColumn13
         '
@@ -356,8 +379,8 @@ Partial Class FormAccountingJournal
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
-        Me.GridColumn13.Width = 87
+        Me.GridColumn13.VisibleIndex = 7
+        Me.GridColumn13.Width = 175
         '
         'RepositoryItemTextEdit1
         '
@@ -385,8 +408,8 @@ Partial Class FormAccountingJournal
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
-        Me.GridColumn14.Width = 84
+        Me.GridColumn14.VisibleIndex = 8
+        Me.GridColumn14.Width = 189
         '
         'RepositoryItemTextEdit2
         '
@@ -418,11 +441,13 @@ Partial Class FormAccountingJournal
         'GridColumnJournalDate
         '
         Me.GridColumnJournalDate.Caption = "Journal Date"
+        Me.GridColumnJournalDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnJournalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnJournalDate.FieldName = "date_created"
         Me.GridColumnJournalDate.Name = "GridColumnJournalDate"
         Me.GridColumnJournalDate.Visible = True
         Me.GridColumnJournalDate.VisibleIndex = 0
-        Me.GridColumnJournalDate.Width = 59
+        Me.GridColumnJournalDate.Width = 123
         '
         'GridColumnAccDesc
         '
@@ -430,10 +455,12 @@ Partial Class FormAccountingJournal
         Me.GridColumnAccDesc.FieldName = "acc_description"
         Me.GridColumnAccDesc.Name = "GridColumnAccDesc"
         Me.GridColumnAccDesc.Visible = True
-        Me.GridColumnAccDesc.VisibleIndex = 2
+        Me.GridColumnAccDesc.VisibleIndex = 5
+        Me.GridColumnAccDesc.Width = 164
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LEBillingView)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.DETo)
@@ -447,7 +474,7 @@ Partial Class FormAccountingJournal
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(365, 14)
+        Me.LabelControl2.Location = New System.Drawing.Point(332, 14)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(17, 13)
         Me.LabelControl2.TabIndex = 4
@@ -455,7 +482,7 @@ Partial Class FormAccountingJournal
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(143, 14)
+        Me.LabelControl1.Location = New System.Drawing.Point(110, 14)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl1.TabIndex = 3
@@ -464,7 +491,7 @@ Partial Class FormAccountingJournal
         'DETo
         '
         Me.DETo.EditValue = Nothing
-        Me.DETo.Location = New System.Drawing.Point(393, 11)
+        Me.DETo.Location = New System.Drawing.Point(360, 11)
         Me.DETo.Name = "DETo"
         Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -476,7 +503,7 @@ Partial Class FormAccountingJournal
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(180, 11)
+        Me.DEFrom.Location = New System.Drawing.Point(147, 11)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -487,19 +514,101 @@ Partial Class FormAccountingJournal
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(11, 10)
+        Me.BView.Location = New System.Drawing.Point(538, 10)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(119, 22)
         Me.BView.TabIndex = 0
         Me.BView.Text = "View Transaction"
         '
-        'GridColumnstatus
+        'LEBillingView
         '
-        Me.GridColumnstatus.Caption = "Status"
-        Me.GridColumnstatus.FieldName = "report_status"
-        Me.GridColumnstatus.Name = "GridColumnstatus"
-        Me.GridColumnstatus.Visible = True
-        Me.GridColumnstatus.VisibleIndex = 5
+        Me.LEBillingView.Location = New System.Drawing.Point(11, 11)
+        Me.LEBillingView.Name = "LEBillingView"
+        Me.LEBillingView.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEBillingView.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEBillingView.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEBillingView.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LEBillingView.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEBillingView.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LEBillingView.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBillingView.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bill_type", "Id Billing Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bill_type", "Billing Type")})
+        Me.LEBillingView.Properties.NullText = ""
+        Me.LEBillingView.Properties.ShowFooter = False
+        Me.LEBillingView.Size = New System.Drawing.Size(93, 20)
+        Me.LEBillingView.TabIndex = 147
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Id Report"
+        Me.GridColumn8.FieldName = "id_report"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Report Mark Type"
+        Me.GridColumn15.FieldName = "report_mark_type"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Report Number"
+        Me.GridColumn16.FieldName = "report_number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn16.Width = 168
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "ID Report Reff"
+        Me.GridColumn17.FieldName = "id_report_reff"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Report Mark Type Reff"
+        Me.GridColumn18.FieldName = "report_mark_type_reff"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Reff"
+        Me.GridColumn19.FieldName = "report_number_ref"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        Me.GridColumn19.Width = 182
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn20.Caption = "CC"
+        Me.GridColumn20.FieldName = "comp_number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        Me.GridColumn20.Width = 67
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.SMEditEcopPD})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Report"
+        '
+        'SMEditEcopPD
+        '
+        Me.SMEditEcopPD.Name = "SMEditEcopPD"
+        Me.SMEditEcopPD.Size = New System.Drawing.Size(152, 22)
+        Me.SMEditEcopPD.Text = "View Reff"
         '
         'FormAccountingJournal
         '
@@ -539,6 +648,8 @@ Partial Class FormAccountingJournal
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBillingView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -584,4 +695,15 @@ Partial Class FormAccountingJournal
     Friend WithEvents DEFromViewJournal As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumnAccDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEBillingView As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SMEditEcopPD As ToolStripMenuItem
 End Class
