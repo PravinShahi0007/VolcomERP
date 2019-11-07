@@ -5357,13 +5357,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
     Sub load_billing_type(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
-        lookup.Properties.DataSource = data
-
-        lookup.Properties.DisplayMember = "bill_type"
-        lookup.Properties.ValueMember = "id_bill_type"
-        lookup.ItemIndex = 0
+        viewLookupQuery(lookup, query, 0, "bill_type", "id_bill_type")
     End Sub
     Sub load_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
