@@ -174,6 +174,7 @@ Partial Class FormEmpAttnSum
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BBIDetailLate = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.XTCReportAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReportAttendance.SuspendLayout()
         Me.XTPMonthly.SuspendLayout()
@@ -1573,7 +1574,7 @@ Partial Class FormEmpAttnSum
         '
         'PopupMenu
         '
-        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBIDetailSick)})
+        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBIDetailSick), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIDetailLate)})
         Me.PopupMenu.Manager = Me.BarManager
         Me.PopupMenu.Name = "PopupMenu"
         '
@@ -1590,8 +1591,8 @@ Partial Class FormEmpAttnSum
         Me.BarManager.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager.DockControls.Add(Me.barDockControlRight)
         Me.BarManager.Form = Me
-        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBIDetailSick})
-        Me.BarManager.MaxItemId = 1
+        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBIDetailSick, Me.BBIDetailLate})
+        Me.BarManager.MaxItemId = 2
         '
         'barDockControlTop
         '
@@ -1620,6 +1621,12 @@ Partial Class FormEmpAttnSum
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1166, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 328)
+        '
+        'BBIDetailLate
+        '
+        Me.BBIDetailLate.Caption = "Detail Late"
+        Me.BBIDetailLate.Id = 1
+        Me.BBIDetailLate.Name = "BBIDetailLate"
         '
         'FormEmpAttnSum
         '
@@ -1827,4 +1834,5 @@ Partial Class FormEmpAttnSum
     Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents BBIDetailLate As DevExpress.XtraBars.BarButtonItem
 End Class

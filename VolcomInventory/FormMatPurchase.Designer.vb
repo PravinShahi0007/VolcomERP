@@ -134,6 +134,7 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.BShowFilterPanel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -501,6 +502,7 @@ Partial Class FormMatPurchase
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BShowFilterPanel)
         Me.PanelControl2.Controls.Add(Me.BSearch)
         Me.PanelControl2.Controls.Add(Me.LabelControl12)
         Me.PanelControl2.Controls.Add(Me.LESeason)
@@ -1276,6 +1278,14 @@ Partial Class FormMatPurchase
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
+        'BShowFilterPanel
+        '
+        Me.BShowFilterPanel.Location = New System.Drawing.Point(279, 9)
+        Me.BShowFilterPanel.Name = "BShowFilterPanel"
+        Me.BShowFilterPanel.Size = New System.Drawing.Size(100, 23)
+        Me.BShowFilterPanel.TabIndex = 8905
+        Me.BShowFilterPanel.Text = "Show Filter Panel"
+        '
         'FormMatPurchase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1458,4 +1468,5 @@ Partial Class FormMatPurchase
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BShowFilterPanel As DevExpress.XtraEditors.SimpleButton
 End Class
