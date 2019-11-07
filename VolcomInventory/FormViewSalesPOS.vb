@@ -77,7 +77,7 @@
         'query view based on edit id's
         Dim query As String = ""
         query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
-        query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
+        query += "a.sales_pos_number, a.bof_number, a.bof_date, (c.comp_name) AS store_name_from,c.npwp, "
         query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
@@ -119,6 +119,14 @@
 
         DEForm.Text = view_date_from(data.Rows(0)("sales_pos_datex").ToString, 0)
         TxtVirtualPosNumber.Text = data.Rows(0)("sales_pos_number").ToString
+        TxtBOF.Text = data.Rows(0)("bof_number").ToString
+        If data.Rows(0)("bof_date").ToString = "" Then
+            DEBOF.EditValue = Nothing
+        Else
+            DEBOF.EditValue = data.Rows(0)("bof_date")
+        End If
+
+
         If id_menu = "5" Then
             TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
             TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
