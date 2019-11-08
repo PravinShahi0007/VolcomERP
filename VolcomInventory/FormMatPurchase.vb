@@ -52,43 +52,7 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
             query_where += " AND del.id_season='" & LESeason.EditValue.ToString & "'"
         End If
 
-        Dim query = "SELECT '' AS `no`,a.mat_purc_vat as vat,'no' AS is_check,IFNULL(rev.mat_purc_number,'-') AS mat_purc_rev_number,a.id_report_status,h.report_status,a.id_mat_purc, 
-DATE_ADD(a.`mat_purc_date`,INTERVAL a.`mat_purc_lead_time` DAY) AS est_del_date,a.id_comp_contact_to AS id_comp_contact,d.id_comp AS id_comp,
-DATE_ADD(a.`mat_purc_date`,INTERVAL (a.`mat_purc_lead_time`+a.`mat_purc_top`) DAY) AS payment_due_date,
-a.`mat_purc_lead_time` AS lead_time,a.`mat_purc_top` AS top,
-b.id_season,a.id_delivery,i.delivery, rang.`range`,
-b.season, g.payment,
-d.comp_name AS comp_name_to,  d.`comp_number` AS comp_number_to,
-f.comp_name AS comp_name_ship_to, 
-a.mat_purc_number,
-a.mat_purc_date, del.`id_season`, 
-DATE_ADD(a.mat_purc_date,INTERVAL a.mat_purc_lead_time DAY) AS mat_purc_lead_time, 
-DATE_ADD(a.mat_purc_date,INTERVAL (a.mat_purc_top+a.mat_purc_lead_time) DAY) AS mat_purc_top 
-,cur.`currency` AS po_curr,a.`mat_purc_kurs` AS po_kurs
-,SUM(mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`)* ((100 + a.mat_purc_vat)/100) AS po_amount
-,SUM(mpd.`mat_purc_det_qty`) AS qty_order
-,SUM(IF(a.`id_currency`=1,1,a.`mat_purc_kurs`) * mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`) * ((100 + a.mat_purc_vat)/100) AS po_amount_rp
-,uom.`uom`
-FROM tb_mat_purc a INNER JOIN tb_season_delivery i ON a.id_delivery = i.id_delivery 
-INNER JOIN tb_season b ON i.id_season = b.id_season 
-INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_to = c.id_comp_contact 
-INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
-INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact 
-INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp 
-INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment 
-LEFT JOIN tb_mat_purc rev ON rev.id_mat_purc = a.id_mat_purc_rev 
-INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status
-INNER JOIN `tb_season_delivery` del ON a.`id_delivery`=del.`id_delivery`
-INNER JOIN tb_season ssn ON ssn.`id_season`=del.`id_season`
-INNER JOIN `tb_range` rang ON rang.id_range=ssn.id_range
-INNER JOIN tb_mat_purc_det mpd ON mpd.`id_mat_purc`=a.`id_mat_purc`
-INNER JOIN tb_lookup_currency cur ON cur.id_currency=a.id_currency
-INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=mpd.`id_mat_det_price`
-INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
-INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat`
-INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
-WHERE 1=1 " & query_where & "
-GROUP BY mpd.`id_mat_purc`"
+        Dim query = q_mat(query_where)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMatPurchase.DataSource = data
         check_menu()
@@ -288,39 +252,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
             query_where = " WHERE md.id_mat_det='" & SLEMatDet.EditValue.ToString & "'"
         End If
 
-        query = "SELECT 'no' AS is_check,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
-,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
-,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
-,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
-,md.mat_det_name,color.display_name AS color,size.display_name AS size
-,m.mat_code,m.mat_display_name,m.id_mat,md.id_mat_det
-,mdp.min_qty_in_bulk,mdp.bulk_unit, CONCAT(mdp.min_qty_in_bulk,'/',IF(mdp.bulk_unit='','pcs',mdp.bulk_unit)) AS conversion
-,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
-,ROUND((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
-,IF(mdp.min_qty_in_bulk=1,'',CONCAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),' ',mdp.bulk_unit)) AS order_note
-,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk) AS total_qty_order_conv
-,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
-FROM `tb_mat_purc_list` pl
-INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
-INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
-INNER JOIN tb_m_mat m ON m.id_mat=md.id_mat
-LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
-INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_po='1' AND mdp.id_mat_det=pl.id_mat_det
-INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
-INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
-LEFT JOIN
-(
-	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
-	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=1
-) color ON color.id_mat_det=md.id_mat_det
-LEFT JOIN
-(
-	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
-	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=13
-) size ON size.id_mat_det=md.id_mat_det
-INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
-" & query_where & "
-GROUP BY pl.`id_mat_purc_list`"
+        query = q_list(query_where)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListMatPD.DataSource = data
         GVListMatPD.BestFitColumns()
@@ -409,7 +341,10 @@ GROUP BY pl.`id_mat_purc_list`"
             query_where += " WHERE del.id_season='" & SLEReport.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT pd.*,dsg.`design_code`,dsg.`design_display_name`,listt.`id_mat_purc_list`,COUNT(listt.`id_mat_purc_list`) AS jml_list,COUNT(mp.`id_mat_purc`) AS jml_po FROM
+        Dim query As String = "SELECT pd.*,dsg.`design_code`,dsg.`design_display_name`,listt.`id_mat_purc_list`
+,COUNT(listt.`id_mat_purc_list`) AS jml_list,GROUP_CONCAT(listt.`id_mat_purc_list`) AS id_list_group,GROUP_CONCAT(LPAD(listt.`id_mat_purc_list`,6,'0')) AS list_group
+,COUNT(mp.`id_mat_purc`) AS jml_po,GROUP_CONCAT(DISTINCT(mp.`id_mat_purc`)) AS id_po_group ,GROUP_CONCAT(DISTINCT(mp.mat_purc_number)) AS po_group
+FROM
 (
 	SELECT IFNULL(pdpo.id_prod_demand,newest_pd.id_prod_demand) AS id_prod_demand,
 	IFNULL(pdpo.id_design,newest_pd.id_design) AS id_design,
@@ -454,5 +389,110 @@ GROUP BY pd.id_prod_demand_design"
 
     Private Sub BShowFilterPanel_Click(sender As Object, e As EventArgs) Handles BShowFilterPanel.Click
         PCFilterDate.Visible = True
+    End Sub
+
+    Private Sub ViewPOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewPOToolStripMenuItem.Click
+        If GVPD.GetFocusedRowCellValue("id_po_group").ToString = "" Then
+            warningCustom("No PO listed")
+        Else
+            XTCPurcMat.SelectedTabPageIndex = 0
+            Dim query = q_mat(" AND a.id_mat_purc IN (" & GVPD.GetFocusedRowCellValue("id_po_group").ToString & ")")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCMatPurchase.DataSource = data
+            GVMatPurchase.ExpandAllGroups()
+            check_menu()
+        End If
+    End Sub
+
+    Function q_mat(ByVal q_where As String)
+        Dim query As String = "SELECT '' AS `no`,a.mat_purc_vat as vat,'no' AS is_check,IFNULL(rev.mat_purc_number,'-') AS mat_purc_rev_number,a.id_report_status,h.report_status,a.id_mat_purc, 
+DATE_ADD(a.`mat_purc_date`,INTERVAL a.`mat_purc_lead_time` DAY) AS est_del_date,a.id_comp_contact_to AS id_comp_contact,d.id_comp AS id_comp,
+DATE_ADD(a.`mat_purc_date`,INTERVAL (a.`mat_purc_lead_time`+a.`mat_purc_top`) DAY) AS payment_due_date,
+a.`mat_purc_lead_time` AS lead_time,a.`mat_purc_top` AS top,
+b.id_season,a.id_delivery,i.delivery, rang.`range`,
+b.season, g.payment,
+d.comp_name AS comp_name_to,  d.`comp_number` AS comp_number_to,
+f.comp_name AS comp_name_ship_to, 
+a.mat_purc_number,
+a.mat_purc_date, del.`id_season`, 
+DATE_ADD(a.mat_purc_date,INTERVAL a.mat_purc_lead_time DAY) AS mat_purc_lead_time, 
+DATE_ADD(a.mat_purc_date,INTERVAL (a.mat_purc_top+a.mat_purc_lead_time) DAY) AS mat_purc_top 
+,cur.`currency` AS po_curr,a.`mat_purc_kurs` AS po_kurs
+,SUM(mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`)* ((100 + a.mat_purc_vat)/100) AS po_amount
+,SUM(mpd.`mat_purc_det_qty`) AS qty_order
+,SUM(IF(a.`id_currency`=1,1,a.`mat_purc_kurs`) * mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`) * ((100 + a.mat_purc_vat)/100) AS po_amount_rp
+,uom.`uom`
+FROM tb_mat_purc a INNER JOIN tb_season_delivery i ON a.id_delivery = i.id_delivery 
+INNER JOIN tb_season b ON i.id_season = b.id_season 
+INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_to = c.id_comp_contact 
+INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact 
+INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp 
+INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment 
+LEFT JOIN tb_mat_purc rev ON rev.id_mat_purc = a.id_mat_purc_rev 
+INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status
+INNER JOIN `tb_season_delivery` del ON a.`id_delivery`=del.`id_delivery`
+INNER JOIN tb_season ssn ON ssn.`id_season`=del.`id_season`
+INNER JOIN `tb_range` rang ON rang.id_range=ssn.id_range
+INNER JOIN tb_mat_purc_det mpd ON mpd.`id_mat_purc`=a.`id_mat_purc`
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=a.id_currency
+INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=mpd.`id_mat_det_price`
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
+WHERE 1=1 " & q_where & "
+GROUP BY mpd.`id_mat_purc`"
+        Return query
+    End Function
+
+    Function q_list(ByVal q_where As String)
+        Dim query As String = "SELECT 'no' AS is_check,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
+,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
+,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
+,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
+,md.mat_det_name,color.display_name AS color,size.display_name AS size
+,m.mat_code,m.mat_display_name,m.id_mat,md.id_mat_det
+,mdp.min_qty_in_bulk,mdp.bulk_unit, CONCAT(mdp.min_qty_in_bulk,'/',IF(mdp.bulk_unit='','pcs',mdp.bulk_unit)) AS conversion
+,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
+,ROUND((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
+,IF(mdp.min_qty_in_bulk=1,'',CONCAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),' ',mdp.bulk_unit)) AS order_note
+,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk) AS total_qty_order_conv
+,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
+FROM `tb_mat_purc_list` pl
+INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
+INNER JOIN tb_m_mat m ON m.id_mat=md.id_mat
+LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
+INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_po='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=1
+) color ON color.id_mat_det=md.id_mat_det
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=13
+) size ON size.id_mat_det=md.id_mat_det
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+" & q_where & "
+GROUP BY pl.`id_mat_purc_list`"
+        Return query
+    End Function
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        If GVPD.GetFocusedRowCellValue("id_list_group").ToString = "" Then
+            warningCustom("No List created")
+        Else
+            XTCPurcMat.SelectedTabPageIndex = 1
+            XTCListPD.SelectedTabPageIndex = 0
+            Dim query = q_list(" WHERE pl.`id_mat_purc_list` IN (" & GVPD.GetFocusedRowCellValue("id_list_group").ToString & ")")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCListMatPD.DataSource = data
+            GVListMatPD.BestFitColumns()
+            check_menu()
+        End If
     End Sub
 End Class

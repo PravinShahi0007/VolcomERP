@@ -2247,6 +2247,12 @@
     <Compile Include="FormMatPurcSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurcView.Designer.vb">
+      <DependentUpon>FormMatPurcView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurcView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMenuAuth.Designer.vb">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </Compile>
@@ -8393,6 +8399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcSum.resx">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurcView.resx">
+      <DependentUpon>FormMatPurcView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
