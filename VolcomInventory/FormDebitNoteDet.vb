@@ -4,11 +4,23 @@
     Public id_comp As String = "-1"
 
     Private Sub FormDebitNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_header()
         load_det()
 
         If id_dn = "-1" Then
+            id_comp = FormDebitNote.SLEVendor.EditValue.ToString
+            TEVendor.Text = FormDebitNote.SLEVendor.Text.ToString
+
+
+
+            DECreated.Text = Date.Parse(Now().ToString).ToString("dd MMMM yyyy")
+            TENumber.Text = "[auto generate]"
+            TECreatedBy.Text = get_user_identify(id_user, "1")
+            MENote.Text = ""
+
             'pick from type
             If id_dn_type = "1" Then 'reject claim
+                TEDNType.Text = "Claim Reject"
                 For i As Integer = 0 To FormDebitNote.GVSumClaimReject.RowCount - 1
                     'add row
                     If (FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "qc_normal_minor") + FormDebitNote.GVSumClaimReject.GetRowCellValue(i, "qc_minor")) > 0 Then 'reject minor
@@ -67,6 +79,7 @@
                     GVItemList.BestFitColumns()
                 Next
             ElseIf id_dn_type = "2" Then 'late claim
+                TEDNType.Text = "Claim Late"
                 Try
                     For i As Integer = 0 To FormDebitNote.GVClaimLate.RowCount - 1
                         Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
@@ -98,7 +111,7 @@
     End Sub
 
     Sub load_header()
-        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name` FROM tb_debit_note dn
+        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
 INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
 INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -110,6 +123,7 @@ WHERE dn.id_debit_note='" & id_dn & "'"
             id_comp = data.Rows(0)("id_comp").ToString
             TEDNType.Text = data.Rows(0)("dn_type").ToString
             TEVendor.Text = data.Rows(0)("comp_name").ToString
+            TEVendor.Text = data.Rows(0)("address_primary").ToString
             DECreated.Text = Date.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy")
             TENumber.Text = data.Rows(0)("number").ToString
             TECreatedBy.Text = data.Rows(0)("employee_name").ToString
