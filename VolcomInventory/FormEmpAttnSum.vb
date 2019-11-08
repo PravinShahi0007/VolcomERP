@@ -1134,4 +1134,22 @@
             FormEmpAttnSumDetailSick.ShowDialog()
         End If
     End Sub
+
+    Private Sub BBIDetailLate_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIDetailLate.ItemClick
+        If XTCReportAttendance.SelectedTabPage.Name = "XTPMonthly" Then
+            FormEmpAttnSumDetailLate.id_employee = GVSum.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailLate.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.month = Nothing
+
+            FormEmpAttnSumDetailLate.ShowDialog()
+        ElseIf XTCReportAttendance.SelectedTabPage.Name = "XTPSumMonthly" Then
+            FormEmpAttnSumDetailLate.id_employee = GVSumMonthly.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpAttnSumDetailLate.date_from = Date.Parse(DEStartSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.date_to = Date.Parse(DEUntilSum.EditValue.ToString)
+            FormEmpAttnSumDetailLate.month = Date.Parse(GVSumMonthly.GetFocusedRowCellValue("month_year").ToString)
+
+            FormEmpAttnSumDetailLate.ShowDialog()
+        End If
+    End Sub
 End Class

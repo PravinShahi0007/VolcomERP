@@ -867,6 +867,12 @@
     <Compile Include="FormEmpAttnSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttnSumDetailLate.Designer.vb">
+      <DependentUpon>FormEmpAttnSumDetailLate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnSumDetailLate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttnSumDetailSick.Designer.vb">
       <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
     </Compile>
@@ -2239,6 +2245,12 @@
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMatPurcSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMatPurcView.Designer.vb">
+      <DependentUpon>FormMatPurcView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurcView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMenuAuth.Designer.vb">
@@ -7681,6 +7693,9 @@
     <EmbeddedResource Include="FormEmpAttnSum.resx">
       <DependentUpon>FormEmpAttnSum.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnSumDetailLate.resx">
+      <DependentUpon>FormEmpAttnSumDetailLate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttnSumDetailSick.resx">
       <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
     </EmbeddedResource>
@@ -8384,6 +8399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatPurcSum.resx">
       <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurcView.resx">
+      <DependentUpon>FormMatPurcView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>

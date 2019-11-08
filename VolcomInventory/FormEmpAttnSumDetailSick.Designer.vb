@@ -21,6 +21,7 @@ Partial Class FormEmpAttnSumDetailSick
     Private Sub InitializeComponent()
         Me.TEEmployeeCode = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintSum = New DevExpress.XtraEditors.SimpleButton()
         Me.TEEmployeeName = New DevExpress.XtraEditors.TextEdit()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -48,6 +49,7 @@ Partial Class FormEmpAttnSumDetailSick
         '
         'PanelControl
         '
+        Me.PanelControl.Controls.Add(Me.BPrintSum)
         Me.PanelControl.Controls.Add(Me.TEEmployeeName)
         Me.PanelControl.Controls.Add(Me.TEEmployeeCode)
         Me.PanelControl.Dock = System.Windows.Forms.DockStyle.Top
@@ -55,6 +57,14 @@ Partial Class FormEmpAttnSumDetailSick
         Me.PanelControl.Name = "PanelControl"
         Me.PanelControl.Size = New System.Drawing.Size(784, 48)
         Me.PanelControl.TabIndex = 1
+        '
+        'BPrintSum
+        '
+        Me.BPrintSum.Location = New System.Drawing.Point(424, 9)
+        Me.BPrintSum.Name = "BPrintSum"
+        Me.BPrintSum.Size = New System.Drawing.Size(59, 25)
+        Me.BPrintSum.TabIndex = 13
+        Me.BPrintSum.Text = "Print"
         '
         'TEEmployeeName
         '
@@ -79,9 +89,11 @@ Partial Class FormEmpAttnSumDetailSick
         Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnMonth, Me.GridColumnDate, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnTotal, Me.GridColumnPurpose})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
+        Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "leave_total", Me.GridColumnTotal, "{0:N0}")})
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVList.OptionsBehavior.Editable = False
+        Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnMonth, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -90,6 +102,7 @@ Partial Class FormEmpAttnSumDetailSick
         Me.GridColumnMonth.Caption = "Month"
         Me.GridColumnMonth.FieldName = "leave_month"
         Me.GridColumnMonth.Name = "GridColumnMonth"
+        Me.GridColumnMonth.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom
         Me.GridColumnMonth.Visible = True
         Me.GridColumnMonth.VisibleIndex = 0
         '
@@ -120,10 +133,11 @@ Partial Class FormEmpAttnSumDetailSick
         'GridColumnTotal
         '
         Me.GridColumnTotal.Caption = "Total"
-        Me.GridColumnTotal.DisplayFormat.FormatString = "N1"
+        Me.GridColumnTotal.DisplayFormat.FormatString = "N0"
         Me.GridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotal.FieldName = "leave_total"
         Me.GridColumnTotal.Name = "GridColumnTotal"
+        Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "leave_total", "{0:N1}")})
         Me.GridColumnTotal.Visible = True
         Me.GridColumnTotal.VisibleIndex = 3
         '
@@ -168,4 +182,5 @@ Partial Class FormEmpAttnSumDetailSick
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPurpose As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrintSum As DevExpress.XtraEditors.SimpleButton
 End Class
