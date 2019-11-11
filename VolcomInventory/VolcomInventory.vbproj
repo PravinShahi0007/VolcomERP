@@ -2589,6 +2589,18 @@
     <Compile Include="FormProductionFinalClearDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionFinalClearSummary.Designer.vb">
+      <DependentUpon>FormProductionFinalClearSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClearSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionFinalClearSummaryPick.Designer.vb">
+      <DependentUpon>FormProductionFinalClearSummaryPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClearSummaryPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionHO.Designer.vb">
       <DependentUpon>FormProductionHO.vb</DependentUpon>
     </Compile>
@@ -8571,6 +8583,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClearSummary.resx">
+      <DependentUpon>FormProductionFinalClearSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClearSummaryPick.resx">
+      <DependentUpon>FormProductionFinalClearSummaryPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionHO.resx">
       <DependentUpon>FormProductionHO.vb</DependentUpon>
