@@ -169,7 +169,7 @@ Public Class FormSalesPOSDet
             'query view based on edit id's
             Dim query As String = ""
             query += "SELECT a.is_use_unique_code,pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
-            query += "a.sales_pos_number, a.bof_number, (c.comp_name) AS store_name_from,c.npwp, "
+            query += "a.sales_pos_number, a.bof_number, a.bof_date, (c.comp_name) AS store_name_from,c.npwp, "
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
@@ -212,6 +212,12 @@ Public Class FormSalesPOSDet
             DEForm.Text = view_date_from(data.Rows(0)("sales_pos_datex").ToString, 0)
             TxtVirtualPosNumber.Text = data.Rows(0)("sales_pos_number").ToString
             TxtBOF.Text = data.Rows(0)("bof_number").ToString
+            If data.Rows(0)("bof_date").ToString = "" Then
+                DEBOF.EditValue = Nothing
+            Else
+                DEBOF.EditValue = data.Rows(0)("bof_date")
+            End If
+
             If id_menu = "5" Then
                 TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
                 TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
@@ -453,6 +459,12 @@ Public Class FormSalesPOSDet
             stopCustom("Please mapping COA AR/Sales for this store first.")
         Else
             Dim bof_number As String = addSlashes(TxtBOF.Text)
+            Dim bof_date As String = ""
+            If DEBOF.Text = "" Then
+                bof_date = "NULL"
+            Else
+                bof_date = "'" + DateTime.Parse(DEBOF.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+            End If
             Dim sales_pos_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim id_so_type As String = LETypeSO.EditValue
@@ -532,8 +544,8 @@ Public Class FormSalesPOSDet
 
                     'Main tbale
                     BtnSave.Enabled = False
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -2337,6 +2349,11 @@ Public Class FormSalesPOSDet
             CheckEditInvType.EditValue = True
         End If
         TxtBOF.Text = data_bof_main.Rows(0)(3).ToString
+        If data_bof_main.Rows(0)(10).ToString = "" Then
+            DEBOF.EditValue = Nothing
+        Else
+            DEBOF.EditValue = data_bof_main.Rows(0)(10)
+        End If
 
         'detail
         viewStockStore()
@@ -2348,5 +2365,4 @@ Public Class FormSalesPOSDet
         calculate()
         Cursor = Cursors.Default
     End Sub
-
 End Class
