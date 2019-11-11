@@ -287,7 +287,10 @@ GROUP BY m_ovh_p.id_ovh_price"
                 End If
                 '
                 Dim po_number As String = header_number_prod(1)
-                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount,reff_number) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}','{10}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def, addSlashes(TEReff.Text))
+                Dim is_use_qc_report As String = execute_query("SELECT getUseQCReport(" + get_id_season(id_delivery) + "); ", 0, True, "", "", "", "")
+
+
+                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount,reff_number, is_use_qc_report) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}','{10}', '{11}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def, addSlashes(TEReff.Text), is_use_qc_report)
                 Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
                 '
                 If GVListProduct.RowCount > 0 Then
