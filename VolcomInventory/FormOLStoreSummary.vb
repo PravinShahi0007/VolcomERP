@@ -499,4 +499,26 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub RepoBtnDetailPickup_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailPickup.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_del") > 0 Then
+            Cursor = Cursors.WaitCursor
+            'cek bukti pickup
+            Dim query As String = "SELECT pd.id_pickup 
+            FROM tb_del_pickup_det pd 
+            INNER JOIN tb_del_pickup p ON p.id_pickup = pd.id_pickup
+            WHERE pd.id_pl_sales_order_del=" + GVDetail.GetFocusedRowCellValue("id_del").ToString + " AND p.id_report_status=6 "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                Dim m As New ClassShowPopUp
+                m.report_mark_type = "217"
+                m.id_report = data.Rows(0)("id_pickup").ToString
+                FormBuktiPickupDet.is_view_attachment = "1"
+                m.show()
+            Else
+                stopCustom("Attachment not found")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
