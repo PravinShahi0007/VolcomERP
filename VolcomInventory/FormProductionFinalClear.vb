@@ -9,6 +9,8 @@
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromSum.EditValue = data_dt.Rows(0)("dt")
+        DEUntilSum.EditValue = data_dt.Rows(0)("dt")
         DEFrom.Focus()
     End Sub
 
@@ -138,6 +140,8 @@
             Else
                 noManipulating()
             End If
+        ElseIf XTCQCReport.SelectedTabPageIndex = 2 Then
+
         End If
     End Sub
 
