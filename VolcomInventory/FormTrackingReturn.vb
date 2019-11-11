@@ -1,10 +1,10 @@
 ﻿Public Class FormTrackingReturn
     Private Sub FormTrackingReturn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        viewSearchLookupQuery(SLUEStore, "SELECT 0 AS id_comp, '' AS comp_number, '' AS comp_name, 'All Store' AS comp_combine UNION SELECT id_comp, comp_number, comp_name, CONCAT(comp_number, ' - ', comp_name) AS comp_combine FROM tb_m_comp WHERE id_comp_cat = 6", "id_comp", "comp_combine", "id_comp")
     End Sub
 
     Private Sub FormTrackingReturn_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-
+        Dispose()
     End Sub
 
     Private Sub FormTrackingReturn_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -17,6 +17,16 @@
     End Sub
 
     Sub load_form()
+        Dim query As String = "CALL view_tracking_return(" + SLUEStore.EditValue.ToString + ")"
 
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCList.DataSource = data
+
+        GVList.BestFitColumns()
+    End Sub
+
+    Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        load_form()
     End Sub
 End Class
