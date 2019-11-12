@@ -642,6 +642,7 @@ Partial Class FormDebitNoteDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
+        Me.MinimizeBox = False
         Me.Name = "FormDebitNoteDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Debit Note"

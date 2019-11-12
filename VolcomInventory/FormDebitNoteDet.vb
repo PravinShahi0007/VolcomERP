@@ -4,14 +4,13 @@
     Public id_comp As String = "-1"
 
     Private Sub FormDebitNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_status()
         load_header()
         load_det()
 
         If id_dn = "-1" Then
             id_comp = FormDebitNote.SLEVendor.EditValue.ToString
             TEVendor.Text = FormDebitNote.SLEVendor.Text.ToString
-
-
 
             DECreated.Text = Date.Parse(Now().ToString).ToString("dd MMMM yyyy")
             TENumber.Text = "[auto generate]"
@@ -84,7 +83,7 @@
                     For i As Integer = 0 To FormDebitNote.GVClaimLate.RowCount - 1
                         Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
                         newRow("number") = i + 1
-                        newRow("id_report") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "id_prod_order").ToString
+                        newRow("id_report") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "id_prod_order_rec").ToString
                         newRow("report_mark_type") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "report_mark_type").ToString
                         newRow("report_number") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_number").ToString
                         newRow("info_design") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "design_display_name").ToString
@@ -103,11 +102,21 @@
                     MsgBox(ex.ToString)
                 End Try
             End If
-        Else
+            BMark.Visible = False
+            BtnPrint.Visible = False
+        Else 'edit
 
+            BMark.Visible = True
+            BtnPrint.Visible = True
         End If
 
         calculate()
+    End Sub
+
+    Sub view_status()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub load_header()
@@ -180,8 +189,11 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
             warningCustom("Please complete your detail input")
         Else
             If id_dn = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_debit_note(id_comp,id_dn_type,created_by,created_date,note,id_report_status) VALUES('" & id_comp & "','" & id_dn_type & "','',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_debit_note(id_comp,id_dn_type,created_by,created_date,note,id_report_status) VALUES('" & id_comp & "','" & id_dn_type & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                 id_dn = execute_query(query, 0, True, "", "", "", "")
+
+                query = "CALL gen_number('" & id_dn & "','221')"
+                execute_non_query(query, True, "", "", "", "")
 
                 Dim q_det As String = "INSERT INTO tb_debit_note_det(id_debit_note,id_report,report_mark_type,report_number,info_design,description,claim_percent,unit_price,qty) VALUES"
                 For i As Integer = 0 To GVItemList.RowCount - 1
@@ -191,6 +203,8 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
                     q_det += "('" & id_dn & "','" & GVItemList.GetRowCellValue(i, "id_report").ToString & "','" & GVItemList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVItemList.GetRowCellValue(i, "report_number").ToString & "','" & GVItemList.GetRowCellValue(i, "info_design").ToString & "','" & addSlashes(GVItemList.GetRowCellValue(i, "description").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "claim_percent").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "unit_price").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "')"
                 Next
                 execute_non_query(q_det, True, "", "", "", "")
+
+                Close()
             Else 'edit
 
             End If
