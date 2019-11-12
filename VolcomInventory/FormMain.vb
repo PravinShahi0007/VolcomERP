@@ -1543,13 +1543,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'list entry
                 'FormProductionFinalClearDet.action = "ins"
                 'FormProductionFinalClearDet.ShowDialog()
-            Else
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
                 'list order
                 If FormProductionFinalClear.GVProd.RowCount > 0 And FormProductionFinalClear.GVProd.FocusedRowHandle >= 0 Then
                     FormProductionFinalClearDet.id_prod_order = FormProductionFinalClear.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
                     FormProductionFinalClearDet.action = "ins"
                     FormProductionFinalClearDet.ShowDialog()
                 End If
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                'propose summary
+                FormProductionFinalClearSummary.id_prod_fc_sum = "0"
+                FormProductionFinalClearSummary.ShowDialog()
             End If
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssemblyNew.ShowDialog()
@@ -2660,9 +2664,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
                 FormEmpAttnAssignDet.ShowDialog()
             ElseIf formName = "FormProductionFinalClear" Then
-                FormProductionFinalClearDet.action = "upd"
-                FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
-                FormProductionFinalClearDet.ShowDialog()
+                If FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0 Then
+                    'list entry
+                ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
+                    'list order
+                    FormProductionFinalClearDet.action = "upd"
+                    FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
+                    FormProductionFinalClearDet.ShowDialog()
+                ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                    'propose summary
+                    FormProductionFinalClearSummary.id_prod_fc_sum = FormProductionFinalClear.GVSum.GetFocusedRowCellValue("id_prod_fc_sum").ToString
+                    FormProductionFinalClearSummary.ShowDialog()
+                End If
             ElseIf formName = "FormProductionAssembly" Then
                 FormProductionAssemblySingle.action = "upd"
                 FormProductionAssemblySingle.id_prod_ass = FormProductionAssembly.GVData.GetFocusedRowCellValue("id_prod_ass").ToString
@@ -7401,6 +7414,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProductionFinalClear.DEFrom.Focus()
             ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
                 print_raw(FormProductionFinalClear.GCProd, "Order List")
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                print_raw(FormProductionFinalClear.GCSum, "Propose Summary")
             End If
         ElseIf formName = "FormProductionAssembly" Then
             print(FormProductionAssembly.GCData, "Assembly")
@@ -9187,6 +9202,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProductionFinalClear.viewFinalClear()
             ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
                 FormProductionFinalClear.viewOrderList()
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                FormProductionFinalClear.viewSummaryPropose()
             End If
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssembly.viewData()

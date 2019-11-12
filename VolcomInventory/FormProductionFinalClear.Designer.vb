@@ -70,14 +70,21 @@ Partial Class FormProductionFinalClear
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPProposeSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSum = New DevExpress.XtraGrid.GridControl()
+        Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPSIdProdFcSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSCratedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSUpdatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewSum = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntilSum = New DevExpress.XtraEditors.DateEdit()
         Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCSum = New DevExpress.XtraGrid.GridControl()
-        Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPSReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,14 +105,14 @@ Partial Class FormProductionFinalClear
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPProposeSummary.SuspendLayout()
+        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -571,6 +578,75 @@ Partial Class FormProductionFinalClear
         Me.XTPProposeSummary.Size = New System.Drawing.Size(1060, 440)
         Me.XTPProposeSummary.Text = "Propose Summary"
         '
+        'GCSum
+        '
+        Me.GCSum.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSum.Location = New System.Drawing.Point(0, 39)
+        Me.GCSum.MainView = Me.GVSum
+        Me.GCSum.Name = "GCSum"
+        Me.GCSum.Size = New System.Drawing.Size(1060, 401)
+        Me.GCSum.TabIndex = 5
+        Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
+        '
+        'GVSum
+        '
+        Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCPSIdProdFcSum, Me.GCPSNumber, Me.GCPSCratedDate, Me.GCPSCreatedBy, Me.GCPSUpdatedDate, Me.GCPSUpdatedBy, Me.GCPSReportStatus})
+        Me.GVSum.GridControl = Me.GCSum
+        Me.GVSum.Name = "GVSum"
+        Me.GVSum.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSum.OptionsBehavior.Editable = False
+        Me.GVSum.OptionsFind.AlwaysVisible = True
+        Me.GVSum.OptionsView.ShowGroupPanel = False
+        '
+        'GCPSIdProdFcSum
+        '
+        Me.GCPSIdProdFcSum.FieldName = "id_prod_fc_sum"
+        Me.GCPSIdProdFcSum.Name = "GCPSIdProdFcSum"
+        '
+        'GCPSNumber
+        '
+        Me.GCPSNumber.Caption = "Number"
+        Me.GCPSNumber.FieldName = "number"
+        Me.GCPSNumber.Name = "GCPSNumber"
+        Me.GCPSNumber.Visible = True
+        Me.GCPSNumber.VisibleIndex = 0
+        '
+        'GCPSCratedDate
+        '
+        Me.GCPSCratedDate.Caption = "Created Date"
+        Me.GCPSCratedDate.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.GCPSCratedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCPSCratedDate.FieldName = "created_date"
+        Me.GCPSCratedDate.Name = "GCPSCratedDate"
+        Me.GCPSCratedDate.Visible = True
+        Me.GCPSCratedDate.VisibleIndex = 1
+        '
+        'GCPSCreatedBy
+        '
+        Me.GCPSCreatedBy.Caption = "Created By"
+        Me.GCPSCreatedBy.FieldName = "created_by"
+        Me.GCPSCreatedBy.Name = "GCPSCreatedBy"
+        Me.GCPSCreatedBy.Visible = True
+        Me.GCPSCreatedBy.VisibleIndex = 2
+        '
+        'GCPSUpdatedDate
+        '
+        Me.GCPSUpdatedDate.Caption = "Updated Date"
+        Me.GCPSUpdatedDate.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.GCPSUpdatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCPSUpdatedDate.FieldName = "updated_date"
+        Me.GCPSUpdatedDate.Name = "GCPSUpdatedDate"
+        Me.GCPSUpdatedDate.Visible = True
+        Me.GCPSUpdatedDate.VisibleIndex = 3
+        '
+        'GCPSUpdatedBy
+        '
+        Me.GCPSUpdatedBy.Caption = "Updated By"
+        Me.GCPSUpdatedBy.FieldName = "updated_by"
+        Me.GCPSUpdatedBy.Name = "GCPSUpdatedBy"
+        Me.GCPSUpdatedBy.Visible = True
+        Me.GCPSUpdatedBy.VisibleIndex = 4
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -636,24 +712,13 @@ Partial Class FormProductionFinalClear
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
         '
-        'GCSum
+        'GCPSReportStatus
         '
-        Me.GCSum.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSum.Location = New System.Drawing.Point(0, 39)
-        Me.GCSum.MainView = Me.GVSum
-        Me.GCSum.Name = "GCSum"
-        Me.GCSum.Size = New System.Drawing.Size(1060, 401)
-        Me.GCSum.TabIndex = 5
-        Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
-        '
-        'GVSum
-        '
-        Me.GVSum.GridControl = Me.GCSum
-        Me.GVSum.Name = "GVSum"
-        Me.GVSum.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVSum.OptionsBehavior.Editable = False
-        Me.GVSum.OptionsFind.AlwaysVisible = True
-        Me.GVSum.OptionsView.ShowGroupPanel = False
+        Me.GCPSReportStatus.Caption = "Report Status"
+        Me.GCPSReportStatus.FieldName = "report_status"
+        Me.GCPSReportStatus.Name = "GCPSReportStatus"
+        Me.GCPSReportStatus.Visible = True
+        Me.GCPSReportStatus.VisibleIndex = 5
         '
         'FormProductionFinalClear
         '
@@ -688,6 +753,8 @@ Partial Class FormProductionFinalClear
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPProposeSummary.ResumeLayout(False)
+        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
@@ -695,8 +762,6 @@ Partial Class FormProductionFinalClear
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -760,4 +825,11 @@ Partial Class FormProductionFinalClear
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCSum As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSum As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPSIdProdFcSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSCratedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSCreatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSUpdatedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSUpdatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSReportStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
