@@ -54,6 +54,7 @@ Partial Class FormMatPurchase
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BShowFilterPanel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -134,6 +135,13 @@ Partial Class FormMatPurchase
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenuReport = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewPOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPurcMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcMat.SuspendLayout()
         Me.XTPPurchaseMat.SuspendLayout()
@@ -182,6 +190,7 @@ Partial Class FormMatPurchase
         Me.PanelControl5.SuspendLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenuReport.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPurcMat
@@ -501,6 +510,7 @@ Partial Class FormMatPurchase
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BShowFilterPanel)
         Me.PanelControl2.Controls.Add(Me.BSearch)
         Me.PanelControl2.Controls.Add(Me.LabelControl12)
         Me.PanelControl2.Controls.Add(Me.LESeason)
@@ -509,6 +519,14 @@ Partial Class FormMatPurchase
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(790, 44)
         Me.PanelControl2.TabIndex = 5
+        '
+        'BShowFilterPanel
+        '
+        Me.BShowFilterPanel.Location = New System.Drawing.Point(279, 9)
+        Me.BShowFilterPanel.Name = "BShowFilterPanel"
+        Me.BShowFilterPanel.Size = New System.Drawing.Size(100, 23)
+        Me.BShowFilterPanel.TabIndex = 8905
+        Me.BShowFilterPanel.Text = "Show Filter Panel"
         '
         'BSearch
         '
@@ -951,6 +969,7 @@ Partial Class FormMatPurchase
         '
         'GCPD
         '
+        Me.GCPD.ContextMenuStrip = Me.ViewMenuReport
         Me.GCPD.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCPD.Location = New System.Drawing.Point(0, 44)
         Me.GCPD.MainView = Me.GVPD
@@ -962,7 +981,7 @@ Partial Class FormMatPurchase
         '
         'GVPD
         '
-        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridColumn34})
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridColumn39, Me.GridColumn38, Me.GridColumn34, Me.GridColumn40, Me.GridColumn33})
         Me.GVPD.GridControl = Me.GCPD
         Me.GVPD.Name = "GVPD"
         Me.GVPD.OptionsFind.AlwaysVisible = True
@@ -1037,7 +1056,7 @@ Partial Class FormMatPurchase
         Me.GridColumn34.OptionsColumn.AllowEdit = False
         Me.GridColumn34.OptionsColumn.ReadOnly = True
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 4
+        Me.GridColumn34.VisibleIndex = 5
         Me.GridColumn34.Width = 196
         '
         'RepositoryItemCheckEdit1
@@ -1276,6 +1295,52 @@ Partial Class FormMatPurchase
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "ID PO"
+        Me.GridColumn33.FieldName = "id_po_group"
+        Me.GridColumn33.Name = "GridColumn33"
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "ID List Group"
+        Me.GridColumn38.FieldName = "id_list_group"
+        Me.GridColumn38.Name = "GridColumn38"
+        '
+        'ViewMenuReport
+        '
+        Me.ViewMenuReport.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ViewPOToolStripMenuItem})
+        Me.ViewMenuReport.Name = "ContextMenuStripYM"
+        Me.ViewMenuReport.Size = New System.Drawing.Size(153, 70)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Text = "View List"
+        '
+        'ViewPOToolStripMenuItem
+        '
+        Me.ViewPOToolStripMenuItem.Name = "ViewPOToolStripMenuItem"
+        Me.ViewPOToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewPOToolStripMenuItem.Text = "View PO"
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "List Number"
+        Me.GridColumn39.FieldName = "list_group"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 4
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "PO Number"
+        Me.GridColumn40.FieldName = "po_group"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 6
+        '
         'FormMatPurchase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1342,6 +1407,7 @@ Partial Class FormMatPurchase
         Me.PanelControl5.PerformLayout()
         CType(Me.SLEVendorKO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenuReport.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1458,4 +1524,12 @@ Partial Class FormMatPurchase
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BShowFilterPanel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenuReport As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ViewPOToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

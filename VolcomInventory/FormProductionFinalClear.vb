@@ -9,6 +9,8 @@
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromSum.EditValue = data_dt.Rows(0)("dt")
+        DEUntilSum.EditValue = data_dt.Rows(0)("dt")
         DEFrom.Focus()
     End Sub
 
@@ -109,6 +111,23 @@
             End If
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
+        ElseIf XTCQCReport.SelectedTabPageIndex = 2 Then
+            Dim indeks As Integer = -1
+            Try
+                indeks = GVSum.FocusedRowHandle
+            Catch ex As Exception
+            End Try
+            If indeks < 0 Then
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            Else
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "0"
+            End If
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
         End If
     End Sub
 
@@ -131,6 +150,16 @@
         ElseIf XTCQCReport.SelectedTabPageIndex = 1 Then
             If GVProd.RowCount < 1 Then
                 bnew_active = "0"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+            Else
+                noManipulating()
+            End If
+        ElseIf XTCQCReport.SelectedTabPageIndex = 2 Then
+            If GVSum.RowCount < 1 Then
+                bnew_active = "1"
                 bedit_active = "0"
                 bdel_active = "0"
                 checkFormAccess(Name)
@@ -193,5 +222,70 @@
 
     Private Sub SLEVendor_EditValueChanged(sender As Object, e As EventArgs) Handles SLEVendor.EditValueChanged
         GCProd.DataSource = Nothing
+    End Sub
+
+    Sub viewSummaryPropose()
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+
+        Try
+            date_from_selected = DateTime.Parse(DEFromSum.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilSum.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim where_date_from As String = ""
+        Dim where_date_until As String = ""
+
+        If Not date_from_selected = "" Then
+            where_date_from = "AND created_date >= '" + date_from_selected + " 00:00:00'"
+        End If
+
+        If Not date_until_selected = "" Then
+            where_date_until = "AND created_date <= '" + date_until_selected + " 23:59:59'"
+        End If
+
+        Dim query As String = "
+            SELECT fc_sum.id_prod_fc_sum, fc_sum.number, created_by.employee_name AS created_by, DATE_FORMAT(fc_sum.created_date, '%d %b %Y %H:%i:%s') AS created_date, updated_by.employee_name AS updated_by, DATE_FORMAT(fc_sum.updated_date, '%d %b %Y %H:%i:%s') AS updated_date, IF(fc_sum.id_report_status = 0, 'Draft', sts.report_status) AS report_status
+            FROM tb_prod_fc_sum AS fc_sum
+            LEFT JOIN (
+                SELECT usr.id_user, emp.employee_name
+                FROM tb_m_user AS usr
+                LEFT JOIN tb_m_employee AS emp ON usr.id_employee = emp.id_employee
+            ) AS created_by ON fc_sum.created_by = created_by.id_user
+            LEFT JOIN (
+                SELECT usr.id_user, emp.employee_name
+                FROM tb_m_user AS usr
+                LEFT JOIN tb_m_employee AS emp ON usr.id_employee = emp.id_employee
+            ) AS updated_by ON fc_sum.updated_by = updated_by.id_user
+            LEFT JOIN tb_lookup_report_status AS sts ON fc_sum.id_report_status = sts.id_report_status
+            WHERE 1 " + where_date_from + " " + where_date_until + "
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCSum.DataSource = data
+
+        GVSum.BestFitColumns()
+    End Sub
+
+    Private Sub BtnViewSum_Click(sender As Object, e As EventArgs) Handles BtnViewSum.Click
+        viewSummaryPropose()
+    End Sub
+
+    Private Sub GVSum_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSum.FocusedRowChanged
+        noManipulating()
+    End Sub
+
+    Private Sub GVSum_DoubleClick(sender As Object, e As EventArgs) Handles GVSum.DoubleClick
+        Try
+            FormProductionFinalClearSummary.id_prod_fc_sum = GVSum.GetFocusedRowCellValue("id_prod_fc_sum").ToString
+            FormProductionFinalClearSummary.ShowDialog()
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

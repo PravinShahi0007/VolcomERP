@@ -69,6 +69,22 @@ Partial Class FormProductionFinalClear
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPProposeSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSum = New DevExpress.XtraGrid.GridControl()
+        Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPSIdProdFcSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSCratedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSUpdatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPSUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnViewSum = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntilSum = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCPSReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +104,15 @@ Partial Class FormProductionFinalClear
         Me.PanelControlOrder.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPProposeSummary.SuspendLayout()
+        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
+        CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -140,6 +165,7 @@ Partial Class FormProductionFinalClear
         Me.DEUntil.EditValue = Nothing
         Me.DEUntil.Location = New System.Drawing.Point(202, 9)
         Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -152,6 +178,7 @@ Partial Class FormProductionFinalClear
         Me.DEFrom.EditValue = Nothing
         Me.DEFrom.Location = New System.Drawing.Point(58, 9)
         Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -333,7 +360,7 @@ Partial Class FormProductionFinalClear
         Me.XTCQCReport.SelectedTabPage = Me.XTPEntryList
         Me.XTCQCReport.Size = New System.Drawing.Size(1066, 468)
         Me.XTCQCReport.TabIndex = 5
-        Me.XTCQCReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPEntryList, Me.XTPOrderList})
+        Me.XTCQCReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPEntryList, Me.XTPOrderList, Me.XTPProposeSummary})
         '
         'XTPEntryList
         '
@@ -543,6 +570,156 @@ Partial Class FormProductionFinalClear
         Me.LabelControl1.TabIndex = 8906
         Me.LabelControl1.Text = "Vendor"
         '
+        'XTPProposeSummary
+        '
+        Me.XTPProposeSummary.Controls.Add(Me.GCSum)
+        Me.XTPProposeSummary.Controls.Add(Me.GroupControl1)
+        Me.XTPProposeSummary.Name = "XTPProposeSummary"
+        Me.XTPProposeSummary.Size = New System.Drawing.Size(1060, 440)
+        Me.XTPProposeSummary.Text = "Propose Summary"
+        '
+        'GCSum
+        '
+        Me.GCSum.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSum.Location = New System.Drawing.Point(0, 39)
+        Me.GCSum.MainView = Me.GVSum
+        Me.GCSum.Name = "GCSum"
+        Me.GCSum.Size = New System.Drawing.Size(1060, 401)
+        Me.GCSum.TabIndex = 5
+        Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
+        '
+        'GVSum
+        '
+        Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCPSIdProdFcSum, Me.GCPSNumber, Me.GCPSCratedDate, Me.GCPSCreatedBy, Me.GCPSUpdatedDate, Me.GCPSUpdatedBy, Me.GCPSReportStatus})
+        Me.GVSum.GridControl = Me.GCSum
+        Me.GVSum.Name = "GVSum"
+        Me.GVSum.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSum.OptionsBehavior.Editable = False
+        Me.GVSum.OptionsFind.AlwaysVisible = True
+        Me.GVSum.OptionsView.ShowGroupPanel = False
+        '
+        'GCPSIdProdFcSum
+        '
+        Me.GCPSIdProdFcSum.FieldName = "id_prod_fc_sum"
+        Me.GCPSIdProdFcSum.Name = "GCPSIdProdFcSum"
+        '
+        'GCPSNumber
+        '
+        Me.GCPSNumber.Caption = "Number"
+        Me.GCPSNumber.FieldName = "number"
+        Me.GCPSNumber.Name = "GCPSNumber"
+        Me.GCPSNumber.Visible = True
+        Me.GCPSNumber.VisibleIndex = 0
+        '
+        'GCPSCratedDate
+        '
+        Me.GCPSCratedDate.Caption = "Created Date"
+        Me.GCPSCratedDate.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.GCPSCratedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCPSCratedDate.FieldName = "created_date"
+        Me.GCPSCratedDate.Name = "GCPSCratedDate"
+        Me.GCPSCratedDate.Visible = True
+        Me.GCPSCratedDate.VisibleIndex = 1
+        '
+        'GCPSCreatedBy
+        '
+        Me.GCPSCreatedBy.Caption = "Created By"
+        Me.GCPSCreatedBy.FieldName = "created_by"
+        Me.GCPSCreatedBy.Name = "GCPSCreatedBy"
+        Me.GCPSCreatedBy.Visible = True
+        Me.GCPSCreatedBy.VisibleIndex = 2
+        '
+        'GCPSUpdatedDate
+        '
+        Me.GCPSUpdatedDate.Caption = "Updated Date"
+        Me.GCPSUpdatedDate.DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
+        Me.GCPSUpdatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCPSUpdatedDate.FieldName = "updated_date"
+        Me.GCPSUpdatedDate.Name = "GCPSUpdatedDate"
+        Me.GCPSUpdatedDate.Visible = True
+        Me.GCPSUpdatedDate.VisibleIndex = 3
+        '
+        'GCPSUpdatedBy
+        '
+        Me.GCPSUpdatedBy.Caption = "Updated By"
+        Me.GCPSUpdatedBy.FieldName = "updated_by"
+        Me.GCPSUpdatedBy.Name = "GCPSUpdatedBy"
+        Me.GCPSUpdatedBy.Visible = True
+        Me.GCPSUpdatedBy.VisibleIndex = 4
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BtnViewSum)
+        Me.GroupControl1.Controls.Add(Me.DEUntilSum)
+        Me.GroupControl1.Controls.Add(Me.DEFromSum)
+        Me.GroupControl1.Controls.Add(Me.LabelControl4)
+        Me.GroupControl1.Controls.Add(Me.LabelControl5)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(1060, 39)
+        Me.GroupControl1.TabIndex = 4
+        '
+        'BtnViewSum
+        '
+        Me.BtnViewSum.Location = New System.Drawing.Point(319, 9)
+        Me.BtnViewSum.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewSum.Name = "BtnViewSum"
+        Me.BtnViewSum.Size = New System.Drawing.Size(63, 20)
+        Me.BtnViewSum.TabIndex = 8896
+        Me.BtnViewSum.Text = "View"
+        '
+        'DEUntilSum
+        '
+        Me.DEUntilSum.EditValue = Nothing
+        Me.DEUntilSum.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilSum.Name = "DEUntilSum"
+        Me.DEUntilSum.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntilSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilSum.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilSum.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilSum.TabIndex = 8895
+        '
+        'DEFromSum
+        '
+        Me.DEFromSum.EditValue = Nothing
+        Me.DEFromSum.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromSum.Name = "DEFromSum"
+        Me.DEFromSum.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFromSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromSum.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromSum.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromSum.TabIndex = 8894
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8893
+        Me.LabelControl4.Text = "Until"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl5.TabIndex = 8892
+        Me.LabelControl5.Text = "From"
+        '
+        'GCPSReportStatus
+        '
+        Me.GCPSReportStatus.Caption = "Report Status"
+        Me.GCPSReportStatus.FieldName = "report_status"
+        Me.GCPSReportStatus.Name = "GCPSReportStatus"
+        Me.GCPSReportStatus.Visible = True
+        Me.GCPSReportStatus.VisibleIndex = 5
+        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -553,7 +730,7 @@ Partial Class FormProductionFinalClear
         Me.MinimizeBox = False
         Me.Name = "FormProductionFinalClear"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Quality Control Result"
+        Me.Text = "QC Report"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
@@ -575,6 +752,16 @@ Partial Class FormProductionFinalClear
         Me.PanelControlOrder.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPProposeSummary.ResumeLayout(False)
+        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        Me.GroupControl1.PerformLayout()
+        CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -629,4 +816,20 @@ Partial Class FormProductionFinalClear
     Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnvendor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPProposeSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BtnViewSum As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEUntilSum As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFromSum As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCSum As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSum As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPSIdProdFcSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSCratedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSCreatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSUpdatedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSUpdatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPSReportStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
