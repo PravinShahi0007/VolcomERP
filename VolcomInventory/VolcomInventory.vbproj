@@ -6936,6 +6936,12 @@
     <Compile Include="ReportProductionFinalClear.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionFinalClearSummary.Designer.vb">
+      <DependentUpon>ReportProductionFinalClearSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionFinalClearSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionHOAttachment.Designer.vb">
       <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>
     </Compile>
@@ -11223,6 +11229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionFinalClearSummary.resx">
+      <DependentUpon>ReportProductionFinalClearSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionHOAttachment.resx">
       <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>

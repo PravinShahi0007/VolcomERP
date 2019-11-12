@@ -51,6 +51,7 @@
         SBSave.Enabled = True
         SBAttachment.Enabled = False
         SBCancel.Enabled = False
+        SBPrint.Enabled = False
     End Sub
 
     Sub load_form()
@@ -99,6 +100,7 @@
             SBSave.Enabled = True
             SBAttachment.Enabled = True
             SBCancel.Enabled = True
+            SBPrint.Enabled = False
         Else
             SBAdd.Enabled = False
             SBRemove.Enabled = False
@@ -106,6 +108,7 @@
             SBSave.Enabled = False
             SBAttachment.Enabled = True
             SBCancel.Enabled = False
+            SBPrint.Enabled = False
         End If
     End Sub
 
@@ -279,6 +282,14 @@
     Private Sub XtraTabControl_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl.SelectedPageChanged
         If XtraTabControl.SelectedTabPageIndex = 1 Then
             view_summary()
+
+            If id_report_status = "6" Then
+                SBPrint.Enabled = True
+            Else
+                SBPrint.Enabled = False
+            End If
+        Else
+            SBPrint.Enabled = False
         End If
     End Sub
 
@@ -291,6 +302,39 @@
     End Sub
 
     Private Sub GVSummary_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVSummary.CustomSummaryCalculate
+        Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
 
+        If item.FieldName.ToString = "persentase_reject" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    Dim percentage As Decimal = 0.00
+
+                    Try
+                        If e.IsGroupSummary Then
+                            percentage = e.GetGroupSummary(e.GroupRowHandle, GVSummary.GroupSummary.Item(6)) / e.GetGroupSummary(e.GroupRowHandle, GVSummary.GroupSummary.Item(5)) * 100
+
+                            e.TotalValue = Decimal.Round(percentage, 2)
+                        ElseIf e.IsTotalSummary Then
+                            percentage = GVSummary.Columns("total_reject").SummaryItem.SummaryValue / GVSummary.Columns("qty_rec").SummaryItem.SummaryValue * 100
+
+                            e.TotalValue = Decimal.Round(percentage, 2)
+                        End If
+                    Catch ex As Exception
+                    End Try
+            End Select
+        End If
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim Report As New ReportProductionFinalClearSummary()
+
+        Report.XLDepartement.Text = execute_query("SELECT departement FROM tb_m_departement WHERE id_departement = 4", 0, True, "", "", "", "")
+        Report.XLNumber.Text = TENumber.EditValue.ToString
+
+        Report.data = GCSummary.DataSource
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+
+        Tool.ShowPreviewDialog()
     End Sub
 End Class

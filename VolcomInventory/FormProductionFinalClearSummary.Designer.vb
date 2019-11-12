@@ -35,6 +35,7 @@ Partial Class FormProductionFinalClearSummary
         Me.Label8 = New System.Windows.Forms.Label()
         Me.SBCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBComplete = New DevExpress.XtraEditors.SimpleButton()
@@ -43,6 +44,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdProdFc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyPO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,26 +54,25 @@ Partial Class FormProductionFinalClearSummary
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,6 +231,7 @@ Partial Class FormProductionFinalClearSummary
         Me.PanelControl3.Controls.Add(Me.Label8)
         Me.PanelControl3.Controls.Add(Me.SBCancel)
         Me.PanelControl3.Controls.Add(Me.SBAttachment)
+        Me.PanelControl3.Controls.Add(Me.SBPrint)
         Me.PanelControl3.Controls.Add(Me.TEReportStatus)
         Me.PanelControl3.Controls.Add(Me.SBSave)
         Me.PanelControl3.Controls.Add(Me.SBComplete)
@@ -252,7 +254,7 @@ Partial Class FormProductionFinalClearSummary
         '
         Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(542, 2)
+        Me.SBCancel.Location = New System.Drawing.Point(459, 2)
         Me.SBCancel.Name = "SBCancel"
         Me.SBCancel.Size = New System.Drawing.Size(129, 45)
         Me.SBCancel.TabIndex = 16
@@ -262,11 +264,21 @@ Partial Class FormProductionFinalClearSummary
         '
         Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
-        Me.SBAttachment.Location = New System.Drawing.Point(671, 2)
+        Me.SBAttachment.Location = New System.Drawing.Point(588, 2)
         Me.SBAttachment.Name = "SBAttachment"
         Me.SBAttachment.Size = New System.Drawing.Size(111, 45)
         Me.SBAttachment.TabIndex = 19
         Me.SBAttachment.Text = "Attachment"
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(699, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(83, 45)
+        Me.SBPrint.TabIndex = 20
+        Me.SBPrint.Text = "Print"
         '
         'TEReportStatus
         '
@@ -339,6 +351,15 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnIdProdFc.FieldName = "id_prod_fc"
         Me.GridColumnIdProdFc.Name = "GridColumnIdProdFc"
         Me.GridColumnIdProdFc.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
         '
         'GridColumnVendor
         '
@@ -429,22 +450,51 @@ Partial Class FormProductionFinalClearSummary
         Me.GCSummary.TabIndex = 2
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.OptionsColumn.AllowEdit = False
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
-        '
         'GVSummary
         '
+        Me.GVSummary.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVSummary.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVSummary.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVSummary.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVSummary.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.Row.Options.UseFont = True
         Me.GVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
-        Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "normal", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "minor", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "major", Me.GridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir", Me.GridColumn10, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumn11, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn12, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_reject", Me.GridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "", Me.GridColumn14, "")})
+        Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "normal", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "minor", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "major", Me.GridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir", Me.GridColumn10, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumn11, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn12, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_reject", Me.GridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "persentase_reject", Me.GridColumn14, "")})
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSummary.OptionsBehavior.Editable = False
@@ -452,6 +502,18 @@ Partial Class FormProductionFinalClearSummary
         Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn3)
+        Me.GridBand1.Columns.Add(Me.GridColumn4)
+        Me.GridBand1.Columns.Add(Me.GridColumn5)
+        Me.GridBand1.Columns.Add(Me.GridColumn6)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 450
         '
         'GridColumn1
         '
@@ -495,6 +557,17 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "QC Report"
+        Me.gridBand2.Columns.Add(Me.GridColumn7)
+        Me.gridBand2.Columns.Add(Me.GridColumn8)
+        Me.gridBand2.Columns.Add(Me.GridColumn9)
+        Me.gridBand2.Columns.Add(Me.GridColumn10)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 300
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Normal"
@@ -535,6 +608,17 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir", "{0:N2}")})
         Me.GridColumn10.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Columns.Add(Me.GridColumn11)
+        Me.gridBand3.Columns.Add(Me.GridColumn12)
+        Me.gridBand3.Columns.Add(Me.GridColumn13)
+        Me.gridBand3.Columns.Add(Me.GridColumn14)
+        Me.gridBand3.Columns.Add(Me.GridColumn15)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 380
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Qty PO"
@@ -563,6 +647,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn13.FieldName = "total_reject"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_reject", "{0:N2}")})
+        Me.GridColumn13.ToolTip = "Minor + Major + Afkir"
         Me.GridColumn13.UnboundExpression = "[minor] + [major] + [afkir]"
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn13.Visible = True
@@ -575,6 +660,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn14.FieldName = "persentase_reject"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
+        Me.GridColumn14.ToolTip = "Total Reject / Qty Rec * 100"
         Me.GridColumn14.UnboundExpression = "[total_reject] / [qty_rec] * 100"
         Me.GridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn14.Visible = True
@@ -589,40 +675,6 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.Width = 77
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.GridColumn1)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn3)
-        Me.GridBand1.Columns.Add(Me.GridColumn4)
-        Me.GridBand1.Columns.Add(Me.GridColumn5)
-        Me.GridBand1.Columns.Add(Me.GridColumn6)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 450
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "QC Report"
-        Me.gridBand2.Columns.Add(Me.GridColumn7)
-        Me.gridBand2.Columns.Add(Me.GridColumn8)
-        Me.gridBand2.Columns.Add(Me.GridColumn9)
-        Me.gridBand2.Columns.Add(Me.GridColumn10)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 300
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Columns.Add(Me.GridColumn11)
-        Me.gridBand3.Columns.Add(Me.GridColumn12)
-        Me.gridBand3.Columns.Add(Me.GridColumn13)
-        Me.gridBand3.Columns.Add(Me.GridColumn14)
-        Me.gridBand3.Columns.Add(Me.GridColumn15)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 380
         '
         'FormProductionFinalClearSummary
         '
@@ -717,4 +769,5 @@ Partial Class FormProductionFinalClearSummary
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
 End Class
