@@ -161,11 +161,9 @@ Public Class ClassSalesPOS
     End Sub
 
     Public Sub syncAllOutlet()
-        Dim query As String = "SELECT d.id_departement AS `id_outlet`, d.departement AS `outlet`,
+        Dim query As String = "SELECT sc.`id_outlet`, sc.outlet_name AS `outlet`,
         sc.host, sc.username, sc.pass, sc.db
-        FROM tb_m_departement d 
-        INNER JOIN tb_store_conn sc ON sc.id_outlet = d.id_departement
-        WHERE d.is_store=1 "
+        FROM tb_store_conn "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             syncOutlet(data.Rows(i)("id_outlet").ToString, data.Rows(i)("outlet").ToString, data.Rows(i)("host").ToString, data.Rows(i)("username").ToString, data.Rows(i)("pass").ToString, data.Rows(i)("db").ToString)
