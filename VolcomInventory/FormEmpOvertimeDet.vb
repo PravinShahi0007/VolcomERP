@@ -214,8 +214,12 @@
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
+        TEMemoNumber_Validating(TEMemoNumber, New System.ComponentModel.CancelEventArgs)
+
         If GVEmployee.RowCount <= 0 Then
             errorCustom("No employee selected.")
+        ElseIf Not formIsValidInPanel(ErrorProvider, PCMemoNumber) Then
+            errorCustom("Please check your input.")
         Else
             Dim confirm As DialogResult
 
@@ -381,10 +385,63 @@
             SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee = (SELECT usr.id_employee FROM tb_m_departement AS dep LEFT JOIN tb_m_user AS usr ON dep.id_user_head = usr.id_user WHERE dep.id_departement = " + LEDepartement.EditValue.ToString + ")
         ", -1, True, "", "", "", "")
 
+        'detail
+        Dim ot_consumption As Integer = 0
+        Dim total_person As Integer = 0
+        Dim consumption_total As Integer = 0
+
+        Dim dt As DataTable = New DataTable
+
+        dt.Columns.Add("date", GetType(String))
+        dt.Columns.Add("person_total", GetType(Integer))
+        dt.Columns.Add("consumption_total", GetType(Integer))
+
+        Dim data_gv As DataTable = GCEmployee.DataSource
+
+        data_gv.DefaultView.Sort = "ot_date ASC"
+
+        data_gv = data_gv.DefaultView.ToTable
+
+        Dim j As Integer = 0
+
+        Dim last_date As String = ""
+
+        For i = 0 To data_gv.Rows.Count - 1
+            If i = 0 Then
+                last_date = data_gv.Rows(i)("ot_date").ToString
+            End If
+
+            If data_gv.Rows(i)("ot_consumption") > 0 Then
+                ot_consumption = data_gv.Rows(i)("ot_consumption")
+
+                If data_gv.Rows(i)("ot_date").ToString = last_date Then
+                    j = j + 1
+                Else
+                    If j > 0 Then
+                        dt.Rows.Add(data_gv.Rows(i - 1)("ot_date").ToString, j, data_gv.Rows(i - 1)("ot_consumption") * j)
+                    End If
+
+                    j = 1
+                End If
+
+                total_person = total_person + 1
+                consumption_total = consumption_total + data_gv.Rows(i)("ot_consumption")
+            End If
+
+            last_date = data_gv.Rows(i)("ot_date").ToString
+
+            'last loop
+            If i = data_gv.Rows.Count - 1 And data_gv.Rows(i)("ot_consumption") > 0 Then
+                dt.Rows.Add(data_gv.Rows(i)("ot_date").ToString, j, data_gv.Rows(i)("ot_consumption") * j)
+            End If
+        Next
+
+        'generate report
         Dim ReportMemo As New ReportEmpOvertimeMemo()
 
         ReportMemo.id = id
         ReportMemo.id_pre = If(id_report_status = "6", "-1", "1")
+        ReportMemo.dt = dt
 
         ReportMemo.XrLabel2.Text = TEMemoNumber.EditValue.ToString + TEMemoFormat.EditValue.ToString
         ReportMemo.XLTo.Text = data_employee.Rows(0)("employee_name").ToString
@@ -404,6 +461,7 @@
 
         ReportMemo.XLHal.Text = "Budget Konsumsi Lembur " + LEDepartement.Text.ToString + " " + ot_date
 
+        'hrd
         If data_employee.Rows(3)("id_employee").ToString = data_employee.Rows(4)("id_employee").ToString Then
             ReportMemo.XLCC3.Visible = False
             ReportMemo.XLCC3Dot.Visible = False
@@ -413,9 +471,25 @@
             ReportMemo.SubBand1.HeightF = 153
         End If
 
+        'accounting
+        If data_employee.Rows(0)("employee_name").ToString = data_employee.Rows(4)("employee_name").ToString Then
+            ReportMemo.XLTo.Text = data_employee.Rows(1)("employee_name").ToString
+            ReportMemo.XLToPosition.Text = "- " + data_employee.Rows(1)("employee_position").ToString
+
+            ReportMemo.XLCC1.Visible = False
+            ReportMemo.XLCC1Dot.Visible = False
+            ReportMemo.XLCC1Position.Visible = False
+
+            ReportMemo.XPCC.LocationF = New PointF(150, 33)
+            ReportMemo.XPFrom.LocationF = New PointF(0, 99)
+            ReportMemo.SubBand1.HeightF = 153
+        End If
+
         ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[departement]", LEDepartement.Text.ToString)
-        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[ot_date]", ot_date)
-        ReportMemo.XLText.Text = ReportMemo.XLText.Text.Replace("[total_consumption]", Format(GCConsumption.SummaryItem.SummaryValue, "##,##0"))
+        ReportMemo.XLNote.Text = ReportMemo.XLNote.Text.Replace("[ot_consumption]", Format(ot_consumption, "##,##0"))
+
+        ReportMemo.XrTableCellPersonTotal.Text = total_person
+        ReportMemo.XrTableCellConsumptionTotal.Text = "Rp. " + Format(consumption_total, "##,##0")
 
         ReportMemo.CreateDocument()
 
@@ -705,6 +779,7 @@
     End Sub
 
     Sub send_mail()
+        'user head detail
         Dim user_head As DataTable = execute_query("
             SELECT employee.employee_name, employee.email_external
             FROM tb_m_departement AS departement
@@ -712,31 +787,38 @@
             LEFT JOIN tb_m_employee AS employee ON usr.id_employee = employee.id_employee
             WHERE departement.id_departement = " + LEDepartement.EditValue.ToString, -1, True, "", "", "", "")
 
-        Dim body_inner As String = ""
+        'date
+        Dim query_date As String = "
+            SELECT IFNULL(GROUP_CONCAT(DISTINCT tb.ot_date SEPARATOR ', '), '') AS ot_date
+            FROM (
+                SELECT CONCAT_WS(' - ', DATE_FORMAT(MIN(ot_det.ot_date), '%d %M %Y'), CASE WHEN MAX(ot_det.ot_date) > MIN(ot_det.ot_date) THEN DATE_FORMAT(MAX(ot_det.ot_date), '%d %M %Y') END) AS ot_date
+                FROM (
+                    SELECT
+                        CASE WHEN ((ot_date = @last_ci + INTERVAL 1 DAY) OR (ot_date = @last_ci)) THEN @n ELSE @n := @n + 1 END AS group_date,
+                        @last_ci := ot_date AS ot_date
+                    FROM
+                        tb_ot_det, (SELECT @n := 0) i, (SELECT @last_ci := 0) j
+                    WHERE tb_ot_det.id_ot = " + id + " AND ROUND((TIMESTAMPDIFF(MINUTE, tb_ot_det.ot_start_time, tb_ot_det.ot_end_time) / 60) - tb_ot_det.ot_break, 1) >= (SELECT ot_memo_employee FROM tb_opt_emp LIMIT 1)
+                    ORDER BY ot_date
+                ) ot_det
+                GROUP BY group_date
+            ) tb
+        "
 
-        For i = 0 To GVEmployee.RowCount - 1
-            If GVEmployee.IsValidRowHandle(i) Then
-                body_inner += "
-                    <tr style='font-size: 9pt; font-family: Arial, sans-serif;'>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_date").ToString + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "employee_code").ToString + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "employee_name").ToString + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellDisplayText(i, "conversion_type").ToString + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_start_time").ToString.Substring(0, 5) + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_end_time").ToString.Substring(0, 5) + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_break").ToString + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_total_hours").ToString + "</td>
-                        <td style='padding: 5pt; border: solid windowtext 1.0pt;'>" + GVEmployee.GetRowCellValue(i, "ot_note").ToString + "</td>
-                    </tr>
-                "
-            End If
-        Next
+        Dim ot_date As String = execute_query(query_date, 0, True, "", "", "", "")
+
+        'hrd manager title
+        Dim hrd_manager_title As String = execute_query("
+            SELECT employee_position
+            FROM tb_m_employee
+            WHERE id_employee = (SELECT id_employee FROM tb_m_user WHERE id_user = (SELECT id_user_head FROM tb_m_departement WHERE id_departement = 8))
+        ", 0, True, "", "", "", "")
 
         Dim body As String = "
             <table cellpadding='0' cellspacing='0' width='100%' style='background-color: #EEEEEE; border-collapse: collapse; padding: 30pt;'>
                 <tr>
                     <td align='center'>
-                        <table cellpadding='0' cellspacing='0' width='900pt' style='background-color: #FFFFFF; border-collapse: collapse;'>
+                        <table cellpadding='0' cellspacing='0' width='700' style='background-color: #FFFFFF; border-collapse: collapse;'>
                             <tr>
                                 <td style='text-align: center; padding: 30pt 0pt;'>
                                     <a href='http://www.volcom.co.id' title='Volcom' target='_blank'>
@@ -750,21 +832,20 @@
                             <tr>
                                 <td style='padding: 30pt;'>
                                     <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt 0pt 10pt 0pt;'>Dear " + user_head.Rows(0)("employee_name").ToString + ",</p>
-                                    <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 25pt 0pt;'>Propose Overtime Number " + TENumber.EditValue.ToString + " has been approved with detail bellow</p>
-                                    <table border='0' cellpadding='0' cellspacing='0' width='100%' style='border-collapse: collapse;'>
-                                        <tr style='font-size: 9pt; font-family: Arial, sans-serif;'>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Date</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>NIP</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Employee</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Conversion Type</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Start Work</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>End Work</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Break</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Total</th>
-                                            <th style='padding: 5pt; border: solid windowtext 1.0pt;'>Overtime Propose</th>
+                                    <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 5pt 0pt;'>Propose Overtime " + LEDepartement.Text + ",</p>
+                                    <table cellpadding='0' cellspacing='0' width='100%' style='border-collapse: collapse;'>
+                                        <tr style='vertical-align: top;'>
+                                            <td style='padding: 5pt 15px 5pt 0pt;'><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 0pt 0pt;'>Number</p></td>
+                                            <td style='padding: 5pt 15px 5pt 0pt;'><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 0pt 0pt;'>:</p></td>
+                                            <td style='padding: 5pt 15px 5pt 0pt;'><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 0pt 0pt;'>" + TENumber.EditValue.ToString + "</p></td>
                                         </tr>
-                                        " + body_inner + "
+                                        <tr style='vertical-align: top;'>
+                                            <td style='padding: 5pt 15px 5pt 0pt;'><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 0pt 0pt;'>Date</p></td>
+                                            <td style='padding: 5pt 15px 5pt 0pt;'><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 0pt 0pt;'>:</p></td>
+                                            <td style='padding: 5pt 15px 5pt 0pt;'><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 0pt 0pt;'>" + ot_date + "</p></td>
+                                        </tr>
                                     </table>
+                                    <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 5pt 0pt 25pt 0pt;'>Has been approved by " + hrd_manager_title + " / PIC HRD</p>
                                     <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 25pt 0pt 10pt 0pt;'>Thank you</p>
                                     <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt;'>Volcom ERP</p>
                                 </td>
@@ -812,11 +893,15 @@
         mail.From = from_mail
 
         'to
+        'user_head.Rows(0)("email_external").ToString
         Dim to_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress("friastana@volcom.co.id", "I Putu Agus Friastana")
 
         mail.To.Add(to_mail)
 
         'cc
+        Dim to_cc As Net.Mail.MailAddress = New Net.Mail.MailAddress("friastana@volcom.co.id", "I Putu Agus Friastana")
+
+        mail.CC.Add(to_cc)
 
         mail.Subject = "Propose Overtime Approved"
         mail.IsBodyHtml = True
@@ -831,5 +916,17 @@
             status = "2"
             message = ex.ToString()
         End Try
+    End Sub
+
+    Private Sub TEMemoNumber_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEMemoNumber.Validating
+        If PCMemoNumber.Visible = True Then
+            If TEMemoNumber.EditValue.ToString = "" Then
+                ErrorProvider.SetError(TEMemoNumber, "Can't be blank.")
+            Else
+                ErrorProvider.SetError(TEMemoNumber, "")
+            End If
+        Else
+            ErrorProvider.SetError(TEMemoNumber, "")
+        End If
     End Sub
 End Class

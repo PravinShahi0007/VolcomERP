@@ -107,7 +107,7 @@ Public Class ClassSalesPOS
                 `discount`, `tax` , `total`, `id_voucher`, `voucher_number`, `voucher` , `point`,
                 `cash`, `card`, `id_card_type`, `card_number`, `card_name`,
                 `change`, `total_qty`, `id_sales`, `id_country`, `is_payment_ok`,
-                `is_closed` , `closed_date`,`closed_by`
+                `is_closed` , `closed_date`,`closed_by`, `is_get_promo`
             )
             SELECT 
             p.`id_pos`, p.`id_outlet`, p.`id_pos_ref` , p.`pos_number` , p.`pos_date`,p.`pos_closed_date`,
@@ -115,20 +115,34 @@ Public Class ClassSalesPOS
             p.`discount`, p.`tax` , p.`total`, p.`id_voucher`, p.`voucher_number`, p.`voucher` , p.`point`,
             p.`cash`, p.`card`, p.`id_card_type`, p.`card_number`, p.`card_name`,
             p.`change`, p.`total_qty`, p.`id_sales`, p.`id_country`, p.`is_payment_ok`,
-            p.`is_closed` , p.`closed_date`,p.`closed_by`
+            p.`is_closed` , p.`closed_date`,p.`closed_by`, p.`is_get_promo`
             FROM db_sync.tb_pos p
             LEFT JOIN tb_pos_combine pc ON pc.id_pos = p.id_pos AND pc.id_outlet = p.id_outlet
             WHERE ISNULL(pc.id_pos_combine); 
             /*detail*/
-            INSERT INTO tb_pos_combine_det(id_pos_combine,`id_pos_det`, `id_pos`, `id_item`, `item_code`, `id_product`, `id_comp_sup`, `comm`, `qty`, `price`)
-            SELECT pc.id_pos_combine,pd.`id_pos_det`, pd.`id_pos`, pd.`id_item`, pd.`item_code`, pd.`id_product`, pd.`id_comp_sup`, pd.`comm`, pd.`qty`, pd.`price`
+            INSERT INTO tb_pos_combine_det(id_pos_combine,`id_pos_det`, `id_pos`, `id_item`, `item_code`, `id_product`, `id_comp_sup`, `comm`, `qty`, `price`, `id_design_cat`, `is_free_promo`)
+            SELECT pc.id_pos_combine,pd.`id_pos_det`, pd.`id_pos`, pd.`id_item`, pd.`item_code`, pd.`id_product`, pd.`id_comp_sup`, pd.`comm`, pd.`qty`, pd.`price`, pd.`id_design_cat`, pd.`is_free_promo`
             FROM db_sync.tb_pos_det pd
-            INNER JOIN tb_pos_combine pc ON pc.id_pos = pd.id_pos AND pc.id_outlet=" + id_outlet_par + "; 
+            INNER JOIN tb_pos_combine pc ON pc.id_pos = pd.id_pos AND pc.id_outlet=" + id_outlet_par + "
+            LEFT JOIN (
+                SELECT pcd.id_pos_combine_det AS `id_detail`,pcd.id_pos_det 
+                FROM tb_pos_combine_det pcd
+                INNER JOIN tb_pos_combine pc ON pc.id_pos_combine = pcd.id_pos_combine
+                WHERE pc.id_outlet=" + id_outlet_par + "
+            ) e ON e.id_pos_det = pd.id_pos_det
+            WHERE ISNULL(e.id_detail); 
             /*summary*/
-            INSERT INTO tb_pos_combine_summary(id_pos_combine, `id_pos`, `id_item`, `item_code`, `id_product`, `id_comp_sup`, `comm`, `qty`, `price`)
-            SELECT pc.id_pos_combine,ps.`id_pos`, ps.`id_item`, ps.`item_code`, ps.`id_product`, ps.`id_comp_sup`, ps.`comm`, ps.`qty`, ps.`price`
+            INSERT INTO tb_pos_combine_summary(id_pos_combine, `id_pos`, `id_item`, `item_code`, `id_product`, `id_comp_sup`, `comm`, `qty`, `price`, `id_design_cat`, `is_free_promo`)
+            SELECT pc.id_pos_combine,ps.`id_pos`, ps.`id_item`, ps.`item_code`, ps.`id_product`, ps.`id_comp_sup`, ps.`comm`, ps.`qty`, ps.`price`, ps.`id_design_cat`, ps.`is_free_promo`
             FROM db_sync.tb_pos_summary ps
-            INNER JOIN tb_pos_combine pc ON pc.id_pos = ps.id_pos AND pc.id_outlet=" + id_outlet_par + "; "
+            INNER JOIN tb_pos_combine pc ON pc.id_pos = ps.id_pos AND pc.id_outlet=" + id_outlet_par + "
+            LEFT JOIN (
+                SELECT pcs.id_pos_combine_summary AS `id_summary`, pcs.id_pos 
+                FROM tb_pos_combine_summary pcs
+                INNER JOIN tb_pos_combine pc ON pc.id_pos_combine = pcs.id_pos_combine
+                WHERE pc.id_outlet=" + id_outlet_par + "
+            ) e ON e.id_pos = ps.id_pos    
+            WHERE ISNULL(e.id_summary); "
             execute_non_query(qry, True, "", "", "", "")
         Catch ex As Exception
             err += ex.ToString + "; "
@@ -147,11 +161,9 @@ Public Class ClassSalesPOS
     End Sub
 
     Public Sub syncAllOutlet()
-        Dim query As String = "SELECT d.id_departement AS `id_outlet`, d.departement AS `outlet`,
+        Dim query As String = "SELECT sc.`id_outlet`, sc.outlet_name AS `outlet`,
         sc.host, sc.username, sc.pass, sc.db
-        FROM tb_m_departement d 
-        INNER JOIN tb_store_conn sc ON sc.id_outlet = d.id_departement
-        WHERE d.is_store=1 "
+        FROM tb_store_conn "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             syncOutlet(data.Rows(i)("id_outlet").ToString, data.Rows(i)("outlet").ToString, data.Rows(i)("host").ToString, data.Rows(i)("username").ToString, data.Rows(i)("pass").ToString, data.Rows(i)("db").ToString)
