@@ -1762,6 +1762,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBuktiPickup" Then
             FormBuktiPickupDet.id_pickup = "0"
             FormBuktiPickupDet.ShowDialog()
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            FormEmpBPJSKesehatanDet.id = "0"
+            FormEmpBPJSKesehatanDet.is_approve = "0"
         Else
             RPSubMenu.Visible = False
         End If
@@ -2867,6 +2870,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormBuktiPickupDet.ShowDialog()
                 Catch ex As Exception
                 End Try
+            ElseIf formName = "FormEmpBPJSKesehatan" Then
+                FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_emp_bpjs_kesehatan").ToString
+                FormEmpBPJSKesehatanDet.is_approve = "0"
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7716,6 +7722,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormDebitNote.GridControl1, "Debit Note")
         ElseIf formName = "FormTrackingReturn" Then
             print(FormTrackingReturn.GCList, "Tracking Return")
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            print(FormEmpBPJSKesehatan.GCList, "BPJS Kesehatan")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8516,6 +8524,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpAttnAssign.Close()
         ElseIf formName = "FormTrackingReturn" Then
             FormTrackingReturn.Close()
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            FormEmpBPJSKesehatan.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9381,6 +9391,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBuktiPickup.load_form()
         ElseIf formName = "FormTrackingReturn" Then
             FormTrackingReturn.load_form()
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            FormEmpBPJSKesehatan.load_form()
         End If
     End Sub
     'Switch
@@ -13651,5 +13663,31 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBPJSKesehatan_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBPJSKesehatan.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpBPJSKesehatan.MdiParent = Me
+            FormEmpBPJSKesehatan.is_approve = "0"
+            FormEmpBPJSKesehatan.Show()
+            FormEmpBPJSKesehatan.WindowState = FormWindowState.Maximized
+            FormEmpBPJSKesehatan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBPJSKesehatanApprove_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBPJSKesehatanApprove.LinkClicked
+        Try
+            FormEmpBPJSKesehatan.MdiParent = Me
+            FormEmpBPJSKesehatan.is_approve = "1"
+            FormEmpBPJSKesehatan.Show()
+            FormEmpBPJSKesehatan.WindowState = FormWindowState.Maximized
+            FormEmpBPJSKesehatan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
     End Sub
 End Class
