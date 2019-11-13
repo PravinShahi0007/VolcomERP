@@ -38,6 +38,7 @@ Partial Class FormDebitNoteDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancelDebitNote = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -290,6 +291,7 @@ Partial Class FormDebitNoteDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BCancelDebitNote)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
@@ -302,6 +304,18 @@ Partial Class FormDebitNoteDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1044, 38)
         Me.PanelControl3.TabIndex = 187
+        '
+        'BCancelDebitNote
+        '
+        Me.BCancelDebitNote.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelDebitNote.ImageIndex = 1
+        Me.BCancelDebitNote.ImageList = Me.LargeImageCollection
+        Me.BCancelDebitNote.Location = New System.Drawing.Point(77, 2)
+        Me.BCancelDebitNote.Name = "BCancelDebitNote"
+        Me.BCancelDebitNote.Size = New System.Drawing.Size(141, 34)
+        Me.BCancelDebitNote.TabIndex = 14
+        Me.BCancelDebitNote.Text = "Cancel Debit Note"
+        Me.BCancelDebitNote.Visible = False
         '
         'BtnAttachment
         '
@@ -345,7 +359,7 @@ Partial Class FormDebitNoteDet
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 10
-        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.Text = "Close"
         '
         'BtnSave
         '
@@ -642,9 +656,11 @@ Partial Class FormDebitNoteDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
+        Me.MinimizeBox = False
         Me.Name = "FormDebitNoteDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Debit Note"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
@@ -731,4 +747,5 @@ Partial Class FormDebitNoteDet
     Friend WithEvents RIMDescription As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BCancelDebitNote As DevExpress.XtraEditors.SimpleButton
 End Class

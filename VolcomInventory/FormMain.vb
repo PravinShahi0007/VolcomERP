@@ -7719,7 +7719,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBuktiPickup" Then
             print(FormBuktiPickup.GCList, "Bukti Pickup")
         ElseIf formName = "FormDebitNote" Then
-            print(FormDebitNote.GridControl1, "Debit Note")
+            print(FormDebitNote.GCDebitNote, "Debit Note")
         ElseIf formName = "FormTrackingReturn" Then
             print(FormTrackingReturn.GCList, "Tracking Return")
         ElseIf formName = "FormEmpBPJSKesehatan" Then
