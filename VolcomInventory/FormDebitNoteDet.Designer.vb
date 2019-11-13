@@ -532,7 +532,7 @@ Partial Class FormDebitNoteDet
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "FGPO Number"
+        Me.GridColumn4.Caption = "Number"
         Me.GridColumn4.FieldName = "report_number"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
