@@ -3,7 +3,7 @@
     Public id_dn_type As String = "-1"
     Public id_comp As String = "-1"
 
-    Private Sub FormDebitNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub load_form()
         view_status()
         load_header()
         load_det()
@@ -105,12 +105,15 @@
             BMark.Visible = False
             BtnPrint.Visible = False
         Else 'edit
-
             BMark.Visible = True
             BtnPrint.Visible = True
         End If
 
         calculate()
+    End Sub
+
+    Private Sub FormDebitNoteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
 
     Sub view_status()
@@ -120,7 +123,7 @@
     End Sub
 
     Sub load_header()
-        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
+        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,dn.id_report_status,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
 INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
 INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -132,16 +135,26 @@ WHERE dn.id_debit_note='" & id_dn & "'"
             id_comp = data.Rows(0)("id_comp").ToString
             TEDNType.Text = data.Rows(0)("dn_type").ToString
             TEVendor.Text = data.Rows(0)("comp_name").ToString
-            TEVendor.Text = data.Rows(0)("address_primary").ToString
+            MEAddress.Text = data.Rows(0)("address_primary").ToString
             DECreated.Text = Date.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy")
             TENumber.Text = data.Rows(0)("number").ToString
             TECreatedBy.Text = data.Rows(0)("employee_name").ToString
             MENote.Text = data.Rows(0)("note").ToString
+            '
+            id_dn_type = data.Rows(0)("id_dn_type").ToString
+            id_comp = data.Rows(0)("id_comp").ToString
+            '
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            If data.Rows(0)("id_report_status").ToString = "6" Or data.Rows(0)("id_report_status").ToString = "5" Then
+                BCancelDebitNote.Visible = False
+            Else
+                BCancelDebitNote.Visible = True
+            End If
         End If
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT dnd.`report_number`,dnd.`info_design`,dnd.`description`,dnd.`claim_percent`,dnd.`unit_price`,dnd.`qty`,dnd.`id_report`,dnd.`report_mark_type`,0.00 as claim_pcs, 0.00 as claim_amo
+        Dim query As String = "SELECT dnd.`report_number`,dnd.`info_design`,dnd.`description`,dnd.`claim_percent`,dnd.`unit_price`,dnd.`qty`,dnd.`id_report`,dnd.`report_mark_type`,((dnd.`claim_percent`/100)*dnd.`unit_price`) as claim_pcs, ((dnd.`claim_percent`/100)*dnd.`unit_price`) * dnd.`qty` as claim_amo
 ,@curRow := @curRow + 1 AS `number`
 FROM tb_debit_note_det dnd
 JOIN (SELECT @curRow := 0) r
@@ -204,10 +217,40 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
                 Next
                 execute_non_query(q_det, True, "", "", "", "")
 
+                submit_who_prepared("221", id_dn, id_user)
+
+                FormDebitNote.load_form()
                 Close()
             Else 'edit
 
             End If
+        End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        FormDocumentUpload.id_report = id_dn
+        FormDocumentUpload.report_mark_type = "221"
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.ShowDialog()
+    End Sub
+
+    Private Sub BCancelDebitNote_Click(sender As Object, e As EventArgs) Handles BCancelDebitNote.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel debit note?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            delete_all_mark_related("221", id_dn)
+            Dim query As String = "UPDATE tb_debit_note SET id_report_status='5' WHERE id_debit_note='" & id_dn & "'"
+            execute_non_query(query, True, "", "", "", "")
+            warningCustom("Debit note canceled")
+            '
+            load_form()
+            FormDebitNote.load_debit_note()
+            '
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

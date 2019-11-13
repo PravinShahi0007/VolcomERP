@@ -200,6 +200,8 @@ Partial Class FormDebitNote
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Date Created"
+        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn7.FieldName = "created_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
@@ -232,6 +234,8 @@ Partial Class FormDebitNote
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Amount"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "amount"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True

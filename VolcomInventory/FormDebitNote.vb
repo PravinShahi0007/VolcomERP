@@ -33,6 +33,10 @@
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        load_form()
+    End Sub
+
+    Sub load_form()
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
             load_debit_note()
         ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
@@ -240,5 +244,12 @@ GROUP BY rd.`id_prod_order_rec`"
         End If
         GVClaimLate.ActiveFilterString = ""
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVDebitNote_DoubleClick(sender As Object, e As EventArgs) Handles GVDebitNote.DoubleClick
+        If GVDebitNote.RowCount > 0 Then
+            FormDebitNoteDet.id_dn = GVDebitNote.GetFocusedRowCellValue("id_debit_note").ToString
+            FormDebitNoteDet.ShowDialog()
+        End If
     End Sub
 End Class
