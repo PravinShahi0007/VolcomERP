@@ -99,6 +99,7 @@
         If GVPurcReqNeedSubmit.RowCount > 0 Then
             FormPurcReqICApproval.step_approve = step_approve
             FormPurcReqICApproval.id_user_created = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_user_created").ToString
+            FormPurcReqICApproval.id_report = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_purc_req").ToString
             FormPurcReqICApproval.ShowDialog()
         Else
             warningCustom("No purchase request on list.")

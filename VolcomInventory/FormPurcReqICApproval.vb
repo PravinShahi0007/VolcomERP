@@ -76,10 +76,8 @@
     Private Sub BViewDocument_Click(sender As Object, e As EventArgs) Handles BViewDocument.Click
         Cursor = Cursors.WaitCursor
         Dim report_mark_type As String = "-1"
-        Dim id_report As String = "-1"
 
         report_mark_type = "201"
-        id_report = id_report
 
         Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
         showpopup.report_mark_type = report_mark_type
