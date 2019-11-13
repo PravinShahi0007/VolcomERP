@@ -5927,6 +5927,19 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 id_status_reportx = "6"
             End If
 
+            'sendmail
+            If report_mark_type = "184" Or report_mark_type = "213" Then
+                If id_status_reportx = "2" Then
+                    'FormEmpOvertimeDet.send_mail()
+                End If
+            End If
+
+            If report_mark_type = "219" Or report_mark_type = "220" Then
+                If id_status_reportx = "6" Then
+                    'FormEmpOvertimeDet.send_mail()
+                End If
+            End If
+
             'update
             query = String.Format("UPDATE tb_ot SET id_report_status='{0}' WHERE id_ot ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
