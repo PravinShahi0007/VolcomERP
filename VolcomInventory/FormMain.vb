@@ -7721,7 +7721,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDebitNote" Then
             print(FormDebitNote.GCDebitNote, "Debit Note")
         ElseIf formName = "FormTrackingReturn" Then
-            print(FormTrackingReturn.GCList, "Tracking Return")
+            print_raw(FormTrackingReturn.GCList, "Tracking Return")
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             print(FormEmpBPJSKesehatan.GCList, "BPJS Kesehatan")
         Else

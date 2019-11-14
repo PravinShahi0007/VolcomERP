@@ -8,7 +8,7 @@
         GVSummary.Columns("qty_rec").Caption = GVSummary.Columns("qty_rec").Caption.Replace(" ", Environment.NewLine)
         GVSummary.Columns("total_reject").Caption = GVSummary.Columns("total_reject").Caption.Replace(" ", Environment.NewLine)
         GVSummary.Columns("persentase_reject").Caption = GVSummary.Columns("persentase_reject").Caption.Replace(" ", Environment.NewLine)
-        GVSummary.Columns("prod_order_date").Caption = GVSummary.Columns("prod_order_date").Caption.Replace(" ", Environment.NewLine)
+        GVSummary.Columns("prod_fc_date").Caption = GVSummary.Columns("prod_fc_date").Caption.Replace(" ", Environment.NewLine)
 
         GVSummary.BestFitColumns()
     End Sub
