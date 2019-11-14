@@ -39,6 +39,13 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.SLUEViewVendor = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTanggalInput = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DateEditFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.DateEditTo = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +55,10 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEViewVendor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEditFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEditFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEditTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEditTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -93,7 +104,7 @@ Partial Class FormProductionFinalClearSummaryPick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnIdProdFc, Me.GridColumnVendor, Me.GridColumnNumber, Me.GridColumnQtyPO, Me.GridColumnQtyRec})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnIdProdFc, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsFind.AlwaysVisible = True
@@ -141,7 +152,7 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 2
+        Me.GridColumnNumber.VisibleIndex = 3
         '
         'GridColumnQtyPO
         '
@@ -152,7 +163,7 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.GridColumnQtyPO.Name = "GridColumnQtyPO"
         Me.GridColumnQtyPO.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyPO.Visible = True
-        Me.GridColumnQtyPO.VisibleIndex = 3
+        Me.GridColumnQtyPO.VisibleIndex = 5
         '
         'GridColumnQtyRec
         '
@@ -163,10 +174,14 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
         Me.GridColumnQtyRec.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyRec.Visible = True
-        Me.GridColumnQtyRec.VisibleIndex = 4
+        Me.GridColumnQtyRec.VisibleIndex = 6
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Controls.Add(Me.DateEditTo)
+        Me.PanelControl1.Controls.Add(Me.DateEditFrom)
         Me.PanelControl1.Controls.Add(Me.SBView)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SLUEVendor)
@@ -178,7 +193,7 @@ Partial Class FormProductionFinalClearSummaryPick
         '
         'SBView
         '
-        Me.SBView.Location = New System.Drawing.Point(318, 10)
+        Me.SBView.Location = New System.Drawing.Point(630, 10)
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(69, 23)
         Me.SBView.TabIndex = 2
@@ -194,11 +209,11 @@ Partial Class FormProductionFinalClearSummaryPick
         '
         'SLUEVendor
         '
-        Me.SLUEVendor.Location = New System.Drawing.Point(62, 12)
+        Me.SLUEVendor.Location = New System.Drawing.Point(52, 12)
         Me.SLUEVendor.Name = "SLUEVendor"
         Me.SLUEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEVendor.Properties.View = Me.SLUEViewVendor
-        Me.SLUEVendor.Size = New System.Drawing.Size(250, 20)
+        Me.SLUEVendor.Size = New System.Drawing.Size(200, 20)
         Me.SLUEVendor.TabIndex = 0
         '
         'SLUEViewVendor
@@ -222,6 +237,83 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
+        'GridColumnDesign
+        '
+        Me.GridColumnDesign.Caption = "Design"
+        Me.GridColumnDesign.FieldName = "name"
+        Me.GridColumnDesign.Name = "GridColumnDesign"
+        Me.GridColumnDesign.OptionsColumn.AllowEdit = False
+        Me.GridColumnDesign.Visible = True
+        Me.GridColumnDesign.VisibleIndex = 2
+        '
+        'GridColumnTanggalInput
+        '
+        Me.GridColumnTanggalInput.Caption = "Tanggal Input"
+        Me.GridColumnTanggalInput.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnTanggalInput.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTanggalInput.FieldName = "prod_fc_date"
+        Me.GridColumnTanggalInput.Name = "GridColumnTanggalInput"
+        Me.GridColumnTanggalInput.OptionsColumn.AllowEdit = False
+        Me.GridColumnTanggalInput.Visible = True
+        Me.GridColumnTanggalInput.VisibleIndex = 7
+        '
+        'GridColumnCategory
+        '
+        Me.GridColumnCategory.Caption = "Category"
+        Me.GridColumnCategory.FieldName = "pl_category"
+        Me.GridColumnCategory.Name = "GridColumnCategory"
+        Me.GridColumnCategory.OptionsColumn.AllowEdit = False
+        Me.GridColumnCategory.Visible = True
+        Me.GridColumnCategory.VisibleIndex = 4
+        '
+        'DateEditFrom
+        '
+        Me.DateEditFrom.EditValue = ""
+        Me.DateEditFrom.Location = New System.Drawing.Point(298, 12)
+        Me.DateEditFrom.Name = "DateEditFrom"
+        Me.DateEditFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEditFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEditFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DateEditFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateEditFrom.Properties.EditFormat.FormatString = "dd MMM yyyy"
+        Me.DateEditFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateEditFrom.Properties.Mask.EditMask = "dd MMM yyyy"
+        Me.DateEditFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DateEditFrom.Size = New System.Drawing.Size(150, 20)
+        Me.DateEditFrom.TabIndex = 16
+        '
+        'DateEditTo
+        '
+        Me.DateEditTo.EditValue = ""
+        Me.DateEditTo.Location = New System.Drawing.Point(464, 12)
+        Me.DateEditTo.Name = "DateEditTo"
+        Me.DateEditTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEditTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEditTo.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DateEditTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateEditTo.Properties.EditFormat.FormatString = "dd MMM yyyy"
+        Me.DateEditTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateEditTo.Properties.Mask.EditMask = "dd MMM yyyy"
+        Me.DateEditTo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DateEditTo.Size = New System.Drawing.Size(150, 20)
+        Me.DateEditTo.TabIndex = 17
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(268, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl2.TabIndex = 18
+        Me.LabelControl2.Text = "Date"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(454, 15)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl3.TabIndex = 19
+        Me.LabelControl3.Text = "-"
+        '
         'FormProductionFinalClearSummaryPick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -244,6 +336,10 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.PanelControl1.PerformLayout()
         CType(Me.SLUEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEViewVendor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEditFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEditFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEditTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEditTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -267,4 +363,11 @@ Partial Class FormProductionFinalClearSummaryPick
     Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTanggalInput As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DateEditTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateEditFrom As DevExpress.XtraEditors.DateEdit
 End Class

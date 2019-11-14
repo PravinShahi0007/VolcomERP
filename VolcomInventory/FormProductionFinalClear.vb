@@ -264,6 +264,7 @@
             ) AS updated_by ON fc_sum.updated_by = updated_by.id_user
             LEFT JOIN tb_lookup_report_status AS sts ON fc_sum.id_report_status = sts.id_report_status
             WHERE 1 " + where_date_from + " " + where_date_until + "
+            ORDER BY fc_sum.id_prod_fc_sum DESC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
