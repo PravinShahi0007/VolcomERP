@@ -378,7 +378,7 @@
         ElseIf report_mark_type = "104" Then
             'Leave Propose For Admin Manager
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clear
             query = String.Format("SELECT id_report_status, prod_fc_number as report_number FROM tb_prod_fc WHERE id_prod_fc = '{0}'", id_report)
         ElseIf report_mark_type = "107" Then
@@ -3860,7 +3860,7 @@
 
             FormSalesDelOrderSlip.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
             FormSalesDelOrderSlip.actionLoad()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'Final Clear
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
