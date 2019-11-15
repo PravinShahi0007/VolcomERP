@@ -314,6 +314,9 @@
         ElseIf report_mark_type = "217" Then
             'bukti pickup
             FormBuktiPickupDet.Close()
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            FormDebitNoteDet.Close()
         End If
     End Sub
     Sub show()
@@ -1112,6 +1115,11 @@
             'bukti pickup
             FormBuktiPickupDet.id_pickup = id_report
             FormBuktiPickupDet.ShowDialog()
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            FormDebitNoteDet.id_dn = id_report
+            FormDebitNoteDet.is_view = "1"
+            FormDebitNoteDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2028,6 +2036,12 @@
             table_name = "tb_del_pickup"
             field_id = "id_pickup"
             field_number = "id_pickup"
+            field_date = "created_date"
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            table_name = "tb_debit_note"
+            field_id = "id_debit_note"
+            field_number = "number"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"

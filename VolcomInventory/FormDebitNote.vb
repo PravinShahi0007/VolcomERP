@@ -90,7 +90,7 @@ GROUP BY dnd.`id_debit_note`"
 ,c.comp_name
 ,r.id_prod_order
 FROM tb_prod_order_rec_det rd
-INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6'
+INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6' AND r.is_claimed_late=2
 INNER JOIN `tb_prod_order_close_det` cd ON cd.`id_prod_order`=r.`id_prod_order`
 INNER JOIN `tb_prod_order_close` cl ON cl.`id_prod_order_close`=cd.`id_prod_order_close`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=cd.`id_prod_order`
@@ -180,7 +180,7 @@ GROUP BY rd.`id_prod_order_rec`"
                                 INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close
                                 INNER JOIN tb_pl_prod_order fc ON fc.`id_prod_order`=pocd.`id_prod_order`
                                 INNER JOIN tb_pl_prod_order_det fcd ON fcd.`id_pl_prod_order`=fc.`id_pl_prod_order` AND fc.id_report_status='6'
-                                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order`
+                                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order` AND po.is_claimed_reject=2
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
                                 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
                                 INNER JOIN tb_lookup_pl_category_sub plc ON plc.`id_pl_category_sub`=fc.`id_pl_category_sub`

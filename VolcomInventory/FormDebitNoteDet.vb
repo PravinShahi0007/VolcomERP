@@ -3,6 +3,8 @@
     Public id_dn_type As String = "-1"
     Public id_comp As String = "-1"
 
+    Public is_view As String = "-1"
+
     Sub load_form()
         view_status()
         load_header()
@@ -93,7 +95,7 @@
                         newRow("number") = i + 1
                         newRow("id_report") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "id_prod_order_rec").ToString
                         newRow("report_mark_type") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "report_mark_type").ToString
-                        newRow("report_number") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_number").ToString
+                        newRow("report_number") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_rec_number").ToString
                         newRow("info_design") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "design_display_name").ToString
                         newRow("description") = "HASIL PRODUKSI DATANG TERLAMBAT" & vbNewLine & "Delivery Date PO : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "est_rec_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Delivery Date KO : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "est_rec_date_ko").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Received Date : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "arrive_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Charge Back : " & FormDebitNote.GVClaimLate.GetRowCellValue(i, "late_day").ToString & " hari kalender"
                         newRow("claim_percent") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "claim_percent")
@@ -116,6 +118,11 @@
             BtnSave.Visible = False
             BMark.Visible = True
             BtnPrint.Visible = True
+        End If
+
+        If is_view = "1" Then
+            BCancelDebitNote.Visible = False
+            BtnPrint.Visible = False
         End If
 
         calculate()
@@ -156,6 +163,9 @@ WHERE dn.id_debit_note='" & id_dn & "'"
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             If data.Rows(0)("id_report_status").ToString = "6" Or data.Rows(0)("id_report_status").ToString = "5" Then
                 BCancelDebitNote.Visible = False
+                If data.Rows(0)("id_report_status").ToString = "6" Then
+                    BtnViewJournal.Visible = True
+                End If
             Else
                 BCancelDebitNote.Visible = True
             End If
@@ -175,6 +185,7 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_dn
+        FormReportMark.is_view = is_view
         FormReportMark.report_mark_type = "221"
         FormReportMark.ShowDialog()
     End Sub
