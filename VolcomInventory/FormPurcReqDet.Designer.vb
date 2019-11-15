@@ -273,7 +273,7 @@ Partial Class FormPurcReqDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(347, 113)
+        Me.PanelControl4.Size = New System.Drawing.Size(392, 113)
         Me.PanelControl4.TabIndex = 8937
         '
         'LStoreRequest
@@ -281,9 +281,9 @@ Partial Class FormPurcReqDet
         Me.LStoreRequest.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LStoreRequest.Location = New System.Drawing.Point(262, 91)
         Me.LStoreRequest.Name = "LStoreRequest"
-        Me.LStoreRequest.Size = New System.Drawing.Size(73, 13)
+        Me.LStoreRequest.Size = New System.Drawing.Size(112, 13)
         Me.LStoreRequest.TabIndex = 8906
-        Me.LStoreRequest.Text = "Store Purchase"
+        Me.LStoreRequest.Text = "For Purchasing Storage"
         Me.LStoreRequest.Visible = False
         '
         'CEStoreRequest
@@ -350,7 +350,7 @@ Partial Class FormPurcReqDet
         Me.DEYearBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEYearBudget.Size = New System.Drawing.Size(246, 20)
+        Me.DEYearBudget.Size = New System.Drawing.Size(285, 20)
         Me.DEYearBudget.TabIndex = 164
         '
         'LabelControl6
@@ -369,7 +369,7 @@ Partial Class FormPurcReqDet
         Me.TEDep.Name = "TEDep"
         Me.TEDep.Properties.EditValueChangedDelay = 1
         Me.TEDep.Properties.ReadOnly = True
-        Me.TEDep.Size = New System.Drawing.Size(246, 20)
+        Me.TEDep.Size = New System.Drawing.Size(285, 20)
         Me.TEDep.TabIndex = 8
         Me.TEDep.TabStop = False
         '
@@ -398,7 +398,7 @@ Partial Class FormPurcReqDet
         Me.TEReqBy.Name = "TEReqBy"
         Me.TEReqBy.Properties.EditValueChangedDelay = 1
         Me.TEReqBy.Properties.ReadOnly = True
-        Me.TEReqBy.Size = New System.Drawing.Size(246, 20)
+        Me.TEReqBy.Size = New System.Drawing.Size(285, 20)
         Me.TEReqBy.TabIndex = 162
         Me.TEReqBy.TabStop = False
         '
@@ -427,14 +427,16 @@ Partial Class FormPurcReqDet
         Me.LabelControl10.Size = New System.Drawing.Size(71, 13)
         Me.LabelControl10.TabIndex = 164
         Me.LabelControl10.Text = "Cash Purchase"
+        Me.LabelControl10.Visible = False
         '
         'CECashPurchase
         '
         Me.CECashPurchase.Location = New System.Drawing.Point(113, 88)
         Me.CECashPurchase.Name = "CECashPurchase"
         Me.CECashPurchase.Properties.Caption = ""
-        Me.CECashPurchase.Size = New System.Drawing.Size(95, 19)
+        Me.CECashPurchase.Size = New System.Drawing.Size(35, 19)
         Me.CECashPurchase.TabIndex = 163
+        Me.CECashPurchase.Visible = False
         '
         'DERequirementDate
         '

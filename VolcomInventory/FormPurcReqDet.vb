@@ -60,7 +60,7 @@ SELECT '3' AS id_approval,'No Action' AS approval"
             '
             GVItemList.OptionsBehavior.Editable = False
             '
-            Dim query As String = "SELECT req.id_user_created,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,req.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status 
+            Dim query As String = "SELECT req.id_user_created,req.is_submit,req.ic_approval,req.ia_approval,req.ic_note,req.ia_note,req.id_expense_type,DATE(CONCAT(req.year_budget, '-01-01')) as year_budget,req.`purc_req_number`,req.requirement_date,req.`note`,req.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_report_status,req.is_store_purchase
                                     FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -87,6 +87,12 @@ SELECT '3' AS id_approval,'No Action' AS approval"
                 TENoteIC.Text = data.Rows(0)("ic_note").ToString
                 SLEIAApproval.EditValue = data.Rows(0)("ia_approval").ToString
                 TENoteIA.Text = data.Rows(0)("ia_note").ToString
+                '
+                If data.Rows(0)("is_store_purchase").ToString = "1" Then
+                    CEStoreRequest.Checked = True
+                Else
+                    CEStoreRequest.Checked = False
+                End If
                 '
                 load_item_pil()
                 load_det()
