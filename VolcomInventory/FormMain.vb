@@ -2669,11 +2669,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormProductionFinalClear" Then
                 If FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0 Then
                     'list entry
-                ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
-                    'list order
                     FormProductionFinalClearDet.action = "upd"
                     FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
                     FormProductionFinalClearDet.ShowDialog()
+                ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
+                    'list order
                 ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
                     'propose summary
                     FormProductionFinalClearSummary.id_prod_fc_sum = FormProductionFinalClear.GVSum.GetFocusedRowCellValue("id_prod_fc_sum").ToString

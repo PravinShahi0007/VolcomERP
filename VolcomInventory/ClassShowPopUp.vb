@@ -147,7 +147,7 @@
         ElseIf report_mark_type = "104" Then
             'propose leave HRD
             FormEmpLeaveDet.Close()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clearance
             FormProductionFinalClearDet.Close()
         ElseIf report_mark_type = "108" Then
@@ -737,7 +737,7 @@
             FormEmpLeaveDet.report_mark_type = "104"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clear
             FormProductionFinalClearDet.id_prod_fc = id_report
             FormProductionFinalClearDet.action = "upd"
@@ -1696,7 +1696,7 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'FINAL CLEARANCE
             table_name = "tb_prod_fc"
             field_id = "id_prod_fc"
@@ -2349,7 +2349,7 @@
                         info_col = datax.Rows(0)("total_qty").ToString
                         info_report = datax.Rows(0)("store").ToString
                     End If
-                ElseIf report_mark_type = "105" Then
+                ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
                     'final clearance
                     Dim fcl As New ClassProductionFinalClear()
                     query = fcl.queryMain("AND f.id_prod_fc=" + id_report + " ", "1")
@@ -2658,7 +2658,7 @@ HAVING (already_pp = 2 AND already_rec = 2)"
                                     INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                     " & generate_left_join_cancel("query") & "
                                     GROUP BY tb.id_prod_order"
-            ElseIf report_mark_type = "105" Then
+            ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
                 'QC Report/Final CLearance
                 'saat pick
                 query_view = "SELECT 'no' AS is_check,f." & field_id & " AS `id_report`, f." & field_number & " AS `number`, f." & field_date & " AS `date_created`, po.id_prod_order, po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
@@ -2926,7 +2926,7 @@ HAVING (already_pp = 2 AND already_rec = 2)"
             gv.OptionsView.ColumnAutoWidth = False
             '
             gv.BestFitColumns()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clearance
             If opt = "pick" Then
                 gv.Columns("is_check").Caption = "*"
