@@ -3794,6 +3794,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = ""
             row_role.Cells.Add(cell)
         End If
+
         'ack by 
         If "1" = "1" Then 'need approve
             Dim cell As New XRTableCell()

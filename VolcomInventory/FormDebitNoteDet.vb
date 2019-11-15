@@ -105,6 +105,7 @@
             BMark.Visible = False
             BtnPrint.Visible = False
         Else 'edit
+            BtnSave.Visible = False
             BMark.Visible = True
             BtnPrint.Visible = True
         End If
@@ -161,6 +162,7 @@ JOIN (SELECT @curRow := 0) r
 WHERE dnd.id_debit_note='" & id_dn & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
+        GVItemList.BestFitColumns()
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
@@ -228,7 +230,41 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
 
+        ReportDebitNote.id_report = id_dn
+        ReportDebitNote.dt = GCItemList.DataSource
+        Dim Report As New ReportDebitNote()
+
+        Report.LSay.Text = METotSay.Text
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVItemList)
+
+        '
+        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,dn.id_report_status,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
+INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
+INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status st ON st.`id_report_status`=dn.`id_report_status`
+INNER JOIN tb_lookup_dn_type dnt ON dnt.id_dn_type=dn.id_dn_type
+WHERE dn.id_debit_note='" & id_dn & "'"
+        Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = dt
+        '
+
+        '' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
