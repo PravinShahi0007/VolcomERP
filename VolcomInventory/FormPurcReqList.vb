@@ -49,7 +49,7 @@
 
         If step_approve = "1" Then 'IC
             If XTCPurcReq.SelectedTabPageIndex = 0 Then 'need submit
-                query = "SELECT pr.`id_purc_req`,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
+                query = "SELECT pr.`id_purc_req`,pr.id_user_created,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
                                 INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=pr.id_expense_type
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
                                 INNER JOIN tb_m_user usrc ON usrc.`id_user`=pr.`id_user_created`
@@ -58,7 +58,7 @@
                                 LEFT JOIN tb_m_user usru ON usru.`id_user`=pr.`id_user_last_upd`
                                 LEFT JOIN tb_m_employee empu ON empu.`id_employee`=usru.`id_employee` WHERE pr.ic_approval=1 AND pr.id_expense_type='2' " & where_dep & " ORDER BY pr.`id_purc_req` DESC"
             Else 'history
-                query = "SELECT pr.`id_purc_req`,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
+                query = "SELECT pr.`id_purc_req`,pr.id_user_created,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
                                 INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=pr.id_expense_type
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
                                 INNER JOIN tb_m_user usrc ON usrc.`id_user`=pr.`id_user_created`
@@ -69,7 +69,7 @@
             End If
         ElseIf step_approve = "2" Then 'IA
             If XTCPurcReq.SelectedTabPageIndex = 0 Then 'need submit
-                query = "SELECT pr.`id_purc_req`,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
+                query = "SELECT pr.`id_purc_req`,pr.id_user_created,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
                                 INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=pr.id_expense_type
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
                                 INNER JOIN tb_m_user usrc ON usrc.`id_user`=pr.`id_user_created`
@@ -78,7 +78,7 @@
                                 LEFT JOIN tb_m_user usru ON usru.`id_user`=pr.`id_user_last_upd`
                                 LEFT JOIN tb_m_employee empu ON empu.`id_employee`=usru.`id_employee` WHERE pr.ic_approval!=1 AND pr.ia_approval=1 AND pr.id_expense_type='2' " & where_dep & " ORDER BY pr.`id_purc_req` DESC"
             Else 'history
-                query = "SELECT pr.`id_purc_req`,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
+                query = "SELECT pr.`id_purc_req`,pr.id_user_created,pr.requirement_date,sts.report_status,et.expense_type,pr.id_report_status,dep.`departement`,et.pr_report_mark_type,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
                                 INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=pr.id_expense_type
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
                                 INNER JOIN tb_m_user usrc ON usrc.`id_user`=pr.`id_user_created`
@@ -89,8 +89,6 @@
             End If
         End If
 
-
-
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReqNeedSubmit.DataSource = data
         GVPurcReqNeedSubmit.BestFitColumns()
@@ -99,7 +97,10 @@
 
     Private Sub GVPurcReqNeedSubmit_DoubleClick(sender As Object, e As EventArgs) Handles GVPurcReqNeedSubmit.DoubleClick
         If GVPurcReqNeedSubmit.RowCount > 0 Then
-
+            FormPurcReqICApproval.step_approve = step_approve
+            FormPurcReqICApproval.id_user_created = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_user_created").ToString
+            FormPurcReqICApproval.id_report = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_purc_req").ToString
+            FormPurcReqICApproval.ShowDialog()
         Else
             warningCustom("No purchase request on list.")
         End If

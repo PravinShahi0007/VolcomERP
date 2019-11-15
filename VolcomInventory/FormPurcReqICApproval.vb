@@ -55,12 +55,12 @@
         If data.Rows.Count > 0 Then
             If data.Rows(0)("ic_approval").ToString = "1" Or data.Rows(0)("ia_approval").ToString = "1" Then
                 'do nothing
-            ElseIf data.Rows(0)("ic_approval").ToString = "1" And data.Rows(0)("ia_approval").ToString = "1" Then
+            ElseIf data.Rows(0)("ic_approval").ToString = "2" And data.Rows(0)("ia_approval").ToString = "2" Then
                 'sama - sama setuju
                 Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_report & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
                 submit_who_prepared("201", id_report, id_user_created)
-            ElseIf data.Rows(0)("ic_approval").ToString = "1" And data.Rows(0)("ia_approval").ToString = "1" Then
+            ElseIf data.Rows(0)("ic_approval").ToString = "3" And data.Rows(0)("ia_approval").ToString = "3" Then
                 'sama - sama gk setuju
                 Dim query_upd As String = "UPDATE tb_purc_req SET id_report_status='5' WHERE id_purc_req='" & id_report & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
@@ -71,5 +71,18 @@
                 submit_who_prepared("218", id_report, id_user_created)
             End If
         End If
+    End Sub
+
+    Private Sub BViewDocument_Click(sender As Object, e As EventArgs) Handles BViewDocument.Click
+        Cursor = Cursors.WaitCursor
+        Dim report_mark_type As String = "-1"
+
+        report_mark_type = "201"
+
+        Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+        showpopup.report_mark_type = report_mark_type
+        showpopup.id_report = id_report
+        showpopup.show()
+        Cursor = Cursors.Default
     End Sub
 End Class

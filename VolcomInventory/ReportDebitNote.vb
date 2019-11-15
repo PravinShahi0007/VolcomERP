@@ -8,7 +8,7 @@
         DataSource = data
     End Sub
 
-    Private Sub XrTableCell1_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles XrTableCell1.BeforePrint
+    Private Sub XrTableCell1_BeforePrint(sender As Object, e As Printing.PrintEventArgs)
         row_number += 1
         Dim cell As DevExpress.XtraReports.UI.XRTableCell = CType(sender, DevExpress.XtraReports.UI.XRTableCell)
         cell.Text = row_number.ToString
