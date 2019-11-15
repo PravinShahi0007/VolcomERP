@@ -311,6 +311,9 @@
         ElseIf report_mark_type = "212" Then
             'Prod order closing
             FormProdClosingPps.Close()
+        ElseIf report_mark_type = "217" Then
+            'bukti pickup
+            FormBuktiPickupDet.Close()
         End If
     End Sub
     Sub show()
@@ -1105,6 +1108,10 @@
             'prod order closing
             FormProdClosingPps.id_pps = id_report
             FormProdClosingPps.ShowDialog()
+        ElseIf report_mark_type = "217" Then
+            'bukti pickup
+            FormBuktiPickupDet.id_pickup = id_report
+            FormBuktiPickupDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2015,6 +2022,12 @@
             table_name = "tb_prod_order_close"
             field_id = "id_prod_order_close"
             field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "217" Then
+            'bukti pickup
+            table_name = "tb_del_pickup"
+            field_id = "id_pickup"
+            field_number = "id_pickup"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"

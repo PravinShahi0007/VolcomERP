@@ -1543,13 +1543,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 'list entry
                 'FormProductionFinalClearDet.action = "ins"
                 'FormProductionFinalClearDet.ShowDialog()
-            Else
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
                 'list order
                 If FormProductionFinalClear.GVProd.RowCount > 0 And FormProductionFinalClear.GVProd.FocusedRowHandle >= 0 Then
                     FormProductionFinalClearDet.id_prod_order = FormProductionFinalClear.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
                     FormProductionFinalClearDet.action = "ins"
                     FormProductionFinalClearDet.ShowDialog()
                 End If
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                'propose summary
+                FormProductionFinalClearSummary.id_prod_fc_sum = "0"
+                FormProductionFinalClearSummary.ShowDialog()
             End If
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssemblyNew.ShowDialog()
@@ -1758,6 +1762,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBuktiPickup" Then
             FormBuktiPickupDet.id_pickup = "0"
             FormBuktiPickupDet.ShowDialog()
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            FormEmpBPJSKesehatanDet.id = "0"
+            FormEmpBPJSKesehatanDet.is_approve = "0"
         Else
             RPSubMenu.Visible = False
         End If
@@ -2660,9 +2667,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
                 FormEmpAttnAssignDet.ShowDialog()
             ElseIf formName = "FormProductionFinalClear" Then
-                FormProductionFinalClearDet.action = "upd"
-                FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
-                FormProductionFinalClearDet.ShowDialog()
+                If FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0 Then
+                    'list entry
+                ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
+                    'list order
+                    FormProductionFinalClearDet.action = "upd"
+                    FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
+                    FormProductionFinalClearDet.ShowDialog()
+                ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                    'propose summary
+                    FormProductionFinalClearSummary.id_prod_fc_sum = FormProductionFinalClear.GVSum.GetFocusedRowCellValue("id_prod_fc_sum").ToString
+                    FormProductionFinalClearSummary.ShowDialog()
+                End If
             ElseIf formName = "FormProductionAssembly" Then
                 FormProductionAssemblySingle.action = "upd"
                 FormProductionAssemblySingle.id_prod_ass = FormProductionAssembly.GVData.GetFocusedRowCellValue("id_prod_ass").ToString
@@ -2854,6 +2870,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormBuktiPickupDet.ShowDialog()
                 Catch ex As Exception
                 End Try
+            ElseIf formName = "FormEmpBPJSKesehatan" Then
+                FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_emp_bpjs_kesehatan").ToString
+                FormEmpBPJSKesehatanDet.is_approve = "0"
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7401,6 +7420,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProductionFinalClear.DEFrom.Focus()
             ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
                 print_raw(FormProductionFinalClear.GCProd, "Order List")
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                print_raw(FormProductionFinalClear.GCSum, "Propose Summary")
             End If
         ElseIf formName = "FormProductionAssembly" Then
             print(FormProductionAssembly.GCData, "Assembly")
@@ -7700,7 +7721,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDebitNote" Then
             print(FormDebitNote.GCDebitNote, "Debit Note")
         ElseIf formName = "FormTrackingReturn" Then
-            print(FormTrackingReturn.GCList, "Tracking Return")
+            print_raw(FormTrackingReturn.GCList, "Tracking Return")
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            print(FormEmpBPJSKesehatan.GCList, "BPJS Kesehatan")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8501,6 +8524,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpAttnAssign.Close()
         ElseIf formName = "FormTrackingReturn" Then
             FormTrackingReturn.Close()
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            FormEmpBPJSKesehatan.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9187,6 +9212,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProductionFinalClear.viewFinalClear()
             ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 1 Then
                 FormProductionFinalClear.viewOrderList()
+            ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
+                FormProductionFinalClear.viewSummaryPropose()
             End If
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssembly.viewData()
@@ -9364,6 +9391,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBuktiPickup.load_form()
         ElseIf formName = "FormTrackingReturn" Then
             FormTrackingReturn.load_form()
+        ElseIf formName = "FormEmpBPJSKesehatan" Then
+            FormEmpBPJSKesehatan.load_form()
         End If
     End Sub
     'Switch
@@ -13634,5 +13663,31 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBPJSKesehatan_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBPJSKesehatan.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpBPJSKesehatan.MdiParent = Me
+            FormEmpBPJSKesehatan.is_approve = "0"
+            FormEmpBPJSKesehatan.Show()
+            FormEmpBPJSKesehatan.WindowState = FormWindowState.Maximized
+            FormEmpBPJSKesehatan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBPJSKesehatanApprove_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBPJSKesehatanApprove.LinkClicked
+        Try
+            FormEmpBPJSKesehatan.MdiParent = Me
+            FormEmpBPJSKesehatan.is_approve = "1"
+            FormEmpBPJSKesehatan.Show()
+            FormEmpBPJSKesehatan.WindowState = FormWindowState.Maximized
+            FormEmpBPJSKesehatan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
     End Sub
 End Class

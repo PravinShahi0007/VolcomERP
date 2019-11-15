@@ -879,6 +879,18 @@
     <Compile Include="FormEmpAttnSumDetailSick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpBPJSKesehatan.Designer.vb">
+      <DependentUpon>FormEmpBPJSKesehatan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatanDet.Designer.vb">
+      <DependentUpon>FormEmpBPJSKesehatanDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatanDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -2587,6 +2599,18 @@
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionFinalClearDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionFinalClearSummary.Designer.vb">
+      <DependentUpon>FormProductionFinalClearSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClearSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionFinalClearSummaryPick.Designer.vb">
+      <DependentUpon>FormProductionFinalClearSummaryPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClearSummaryPick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionHO.Designer.vb">
@@ -6924,6 +6948,12 @@
     <Compile Include="ReportProductionFinalClear.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionFinalClearSummary.Designer.vb">
+      <DependentUpon>ReportProductionFinalClearSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionFinalClearSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionHOAttachment.Designer.vb">
       <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>
     </Compile>
@@ -7698,6 +7728,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttnSumDetailSick.resx">
       <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpBPJSKesehatan.resx">
+      <DependentUpon>FormEmpBPJSKesehatan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpBPJSKesehatanDet.resx">
+      <DependentUpon>FormEmpBPJSKesehatanDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
@@ -8571,6 +8607,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClearSummary.resx">
+      <DependentUpon>FormProductionFinalClearSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClearSummaryPick.resx">
+      <DependentUpon>FormProductionFinalClearSummaryPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionHO.resx">
       <DependentUpon>FormProductionHO.vb</DependentUpon>
@@ -11205,6 +11247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionFinalClearSummary.resx">
+      <DependentUpon>ReportProductionFinalClearSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionHOAttachment.resx">
       <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>

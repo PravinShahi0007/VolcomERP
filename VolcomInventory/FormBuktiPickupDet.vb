@@ -1,5 +1,6 @@
 ﻿Public Class FormBuktiPickupDet
     Public id_pickup As String = "0"
+    Public is_view_attachment As String = "-1"
 
     Private Sub FormBuktiPickupDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
@@ -127,6 +128,10 @@
             SBCancel.Enabled = False
             MENote.ReadOnly = True
             SBAttachement.Enabled = True
+        End If
+
+        If is_view_attachment = "1" Then
+            viewAttach()
         End If
     End Sub
 
@@ -280,7 +285,7 @@
         End If
     End Sub
 
-    Private Sub SBAttachement_Click(sender As Object, e As EventArgs) Handles SBAttachement.Click
+    Sub viewAttach()
         Cursor = Cursors.WaitCursor
 
         Dim id_report_status As String = execute_query("SELECT IFNULL((SELECT id_report_status FROM tb_del_pickup WHERE id_pickup = " + id_pickup + "), 0) AS id_report_status", 0, True, "", "", "", "")
@@ -293,6 +298,10 @@
         FormDocumentUpload.ShowDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBAttachement_Click(sender As Object, e As EventArgs) Handles SBAttachement.Click
+        viewAttach()
     End Sub
 
     Private Sub SLUECompany_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SLUECompany.Validating
