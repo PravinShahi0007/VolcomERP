@@ -24,16 +24,20 @@ Partial Public Class ReportDesignCOPPropose
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.BGVItemList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnIdDet = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BGCTargetCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBBefore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnVendorCodeBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnVendorNameBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCurrencyBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnKursBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnECOPBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAddCostBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBAfter = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnVendorCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnVendorName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -79,10 +83,6 @@ Partial Public Class ReportDesignCOPPropose
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.BGCTargetCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBBefore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBAfter = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +119,8 @@ Partial Public Class ReportDesignCOPPropose
         '
         'BGVItemList
         '
+        Me.BGVItemList.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.BGVItemList.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BGVItemList.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.WhiteSmoke
         Me.BGVItemList.AppearancePrint.FooterPanel.BackColor2 = System.Drawing.Color.WhiteSmoke
         Me.BGVItemList.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Segoe UI", 7.0!)
@@ -131,9 +133,12 @@ Partial Public Class ReportDesignCOPPropose
         Me.BGVItemList.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.BGVItemList.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.BGVItemList.AppearancePrint.HeaderPanel.Options.UseForeColor = True
+        Me.BGVItemList.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.BGVItemList.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BGVItemList.AppearancePrint.Row.Font = New System.Drawing.Font("Segoe UI", 5.5!)
         Me.BGVItemList.AppearancePrint.Row.Options.UseFont = True
         Me.BGVItemList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GBBefore, Me.GBAfter})
+        Me.BGVItemList.ColumnPanelRowHeight = 50
         Me.BGVItemList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIdDet, Me.GridColumnIdDesign, Me.GridColumnDesignCode, Me.GridColumnDesign, Me.BGCTargetCost, Me.GridColumnIdCurrency, Me.BandedGridColumnIdCompContact, Me.GridColumnVendorCode, Me.GridColumnVendorName, Me.GridColumnCurrency, Me.GridColumnKurs, Me.GridColumnECOP, Me.GridColumnAddCost, Me.BandedGridColumnIdCurrencyBefore, Me.BandedGridColumnIdCompContactBefore, Me.GridColumnVendorCodeBefore, Me.GridColumnVendorNameBefore, Me.GridColumnCurrencyBefore, Me.GridColumnKursBefore, Me.GridColumnECOPBefore, Me.GridColumnAddCostBefore})
         Me.BGVItemList.GridControl = Me.GCItemList
         Me.BGVItemList.Name = "BGVItemList"
@@ -144,9 +149,24 @@ Partial Public Class ReportDesignCOPPropose
         Me.BGVItemList.OptionsCustomization.AllowQuickHideColumns = False
         Me.BGVItemList.OptionsCustomization.AllowSort = False
         Me.BGVItemList.OptionsFilter.AllowFilterEditor = False
+        Me.BGVItemList.OptionsPrint.AllowMultilineHeaders = True
+        Me.BGVItemList.OptionsView.AllowHtmlDrawHeaders = True
         Me.BGVItemList.OptionsView.ColumnAutoWidth = False
+        Me.BGVItemList.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.BGVItemList.OptionsView.ShowFooter = True
         Me.BGVItemList.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.GridColumnIdDet)
+        Me.GridBand1.Columns.Add(Me.GridColumnIdDesign)
+        Me.GridBand1.Columns.Add(Me.GridColumnDesignCode)
+        Me.GridBand1.Columns.Add(Me.GridColumnDesign)
+        Me.GridBand1.Columns.Add(Me.BGCTargetCost)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 280
         '
         'GridColumnIdDet
         '
@@ -176,6 +196,32 @@ Partial Public Class ReportDesignCOPPropose
         Me.GridColumnDesign.Visible = True
         Me.GridColumnDesign.Width = 138
         '
+        'BGCTargetCost
+        '
+        Me.BGCTargetCost.AppearanceCell.Options.UseTextOptions = True
+        Me.BGCTargetCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BGCTargetCost.AppearanceHeader.Options.UseTextOptions = True
+        Me.BGCTargetCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BGCTargetCost.Caption = "Target Cost"
+        Me.BGCTargetCost.DisplayFormat.FormatString = "N2"
+        Me.BGCTargetCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BGCTargetCost.FieldName = "target_cost"
+        Me.BGCTargetCost.Name = "BGCTargetCost"
+        Me.BGCTargetCost.Visible = True
+        '
+        'GBBefore
+        '
+        Me.GBBefore.Caption = "Before"
+        Me.GBBefore.Columns.Add(Me.GridColumnVendorCodeBefore)
+        Me.GBBefore.Columns.Add(Me.GridColumnVendorNameBefore)
+        Me.GBBefore.Columns.Add(Me.GridColumnCurrencyBefore)
+        Me.GBBefore.Columns.Add(Me.GridColumnKursBefore)
+        Me.GBBefore.Columns.Add(Me.GridColumnECOPBefore)
+        Me.GBBefore.Columns.Add(Me.GridColumnAddCostBefore)
+        Me.GBBefore.Name = "GBBefore"
+        Me.GBBefore.VisibleIndex = 1
+        Me.GBBefore.Width = 490
+        '
         'GridColumnVendorCodeBefore
         '
         Me.GridColumnVendorCodeBefore.Caption = "Vendor Code"
@@ -189,7 +235,7 @@ Partial Public Class ReportDesignCOPPropose
         Me.GridColumnVendorNameBefore.FieldName = "comp_name_before"
         Me.GridColumnVendorNameBefore.Name = "GridColumnVendorNameBefore"
         Me.GridColumnVendorNameBefore.Visible = True
-        Me.GridColumnVendorNameBefore.Width = 169
+        Me.GridColumnVendorNameBefore.Width = 171
         '
         'GridColumnCurrencyBefore
         '
@@ -197,7 +243,7 @@ Partial Public Class ReportDesignCOPPropose
         Me.GridColumnCurrencyBefore.FieldName = "currency_before"
         Me.GridColumnCurrencyBefore.Name = "GridColumnCurrencyBefore"
         Me.GridColumnCurrencyBefore.Visible = True
-        Me.GridColumnCurrencyBefore.Width = 53
+        Me.GridColumnCurrencyBefore.Width = 71
         '
         'GridColumnKursBefore
         '
@@ -217,15 +263,17 @@ Partial Public Class ReportDesignCOPPropose
         '
         Me.GridColumnECOPBefore.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnECOPBefore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOPBefore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnECOPBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnECOPBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnECOPBefore.Caption = "Estimasi COP"
+        Me.GridColumnECOPBefore.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnECOPBefore.Caption = "Estimasi COP <br> (Exclude Additional)"
         Me.GridColumnECOPBefore.DisplayFormat.FormatString = "N2"
         Me.GridColumnECOPBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnECOPBefore.FieldName = "design_cop_before"
+        Me.GridColumnECOPBefore.FieldName = "design_cop_ex_before"
         Me.GridColumnECOPBefore.Name = "GridColumnECOPBefore"
         Me.GridColumnECOPBefore.Visible = True
-        Me.GridColumnECOPBefore.Width = 78
+        Me.GridColumnECOPBefore.Width = 115
         '
         'GridColumnAddCostBefore
         '
@@ -239,7 +287,21 @@ Partial Public Class ReportDesignCOPPropose
         Me.GridColumnAddCostBefore.FieldName = "add_cost_before"
         Me.GridColumnAddCostBefore.Name = "GridColumnAddCostBefore"
         Me.GridColumnAddCostBefore.Visible = True
-        Me.GridColumnAddCostBefore.Width = 79
+        Me.GridColumnAddCostBefore.Width = 82
+        '
+        'GBAfter
+        '
+        Me.GBAfter.Caption = "After"
+        Me.GBAfter.Columns.Add(Me.GridColumnVendorCode)
+        Me.GBAfter.Columns.Add(Me.GridColumnVendorName)
+        Me.GBAfter.Columns.Add(Me.GridColumnIdCurrency)
+        Me.GBAfter.Columns.Add(Me.GridColumnCurrency)
+        Me.GBAfter.Columns.Add(Me.GridColumnKurs)
+        Me.GBAfter.Columns.Add(Me.GridColumnECOP)
+        Me.GBAfter.Columns.Add(Me.GridColumnAddCost)
+        Me.GBAfter.Name = "GBAfter"
+        Me.GBAfter.VisibleIndex = 2
+        Me.GBAfter.Width = 453
         '
         'GridColumnVendorCode
         '
@@ -253,7 +315,7 @@ Partial Public Class ReportDesignCOPPropose
         Me.GridColumnVendorName.FieldName = "comp_name"
         Me.GridColumnVendorName.Name = "GridColumnVendorName"
         Me.GridColumnVendorName.Visible = True
-        Me.GridColumnVendorName.Width = 144
+        Me.GridColumnVendorName.Width = 145
         '
         'GridColumnIdCurrency
         '
@@ -267,7 +329,7 @@ Partial Public Class ReportDesignCOPPropose
         Me.GridColumnCurrency.FieldName = "currency"
         Me.GridColumnCurrency.Name = "GridColumnCurrency"
         Me.GridColumnCurrency.Visible = True
-        Me.GridColumnCurrency.Width = 53
+        Me.GridColumnCurrency.Width = 63
         '
         'GridColumnKurs
         '
@@ -287,14 +349,17 @@ Partial Public Class ReportDesignCOPPropose
         '
         Me.GridColumnECOP.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnECOP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOP.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnECOP.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnECOP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnECOP.Caption = "Estimasi COP"
+        Me.GridColumnECOP.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnECOP.Caption = "Estimasi COP <br> (Exclude Additional)"
         Me.GridColumnECOP.DisplayFormat.FormatString = "N2"
         Me.GridColumnECOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnECOP.FieldName = "design_cop"
+        Me.GridColumnECOP.FieldName = "design_cop_ex"
         Me.GridColumnECOP.Name = "GridColumnECOP"
         Me.GridColumnECOP.Visible = True
+        Me.GridColumnECOP.Width = 112
         '
         'GridColumnAddCost
         '
@@ -308,6 +373,7 @@ Partial Public Class ReportDesignCOPPropose
         Me.GridColumnAddCost.FieldName = "add_cost"
         Me.GridColumnAddCost.Name = "GridColumnAddCost"
         Me.GridColumnAddCost.Visible = True
+        Me.GridColumnAddCost.Width = 82
         '
         'BandedGridColumnIdCompContact
         '
@@ -669,58 +735,6 @@ Partial Public Class ReportDesignCOPPropose
         Me.XrLabel4.StylePriority.UseTextAlignment = False
         Me.XrLabel4.Text = "Note "
         Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'BGCTargetCost
-        '
-        Me.BGCTargetCost.AppearanceCell.Options.UseTextOptions = True
-        Me.BGCTargetCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BGCTargetCost.AppearanceHeader.Options.UseTextOptions = True
-        Me.BGCTargetCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BGCTargetCost.Caption = "Target Cost"
-        Me.BGCTargetCost.DisplayFormat.FormatString = "N2"
-        Me.BGCTargetCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BGCTargetCost.FieldName = "target_cost"
-        Me.BGCTargetCost.Name = "BGCTargetCost"
-        Me.BGCTargetCost.Visible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.GridColumnIdDet)
-        Me.GridBand1.Columns.Add(Me.GridColumnIdDesign)
-        Me.GridBand1.Columns.Add(Me.GridColumnDesignCode)
-        Me.GridBand1.Columns.Add(Me.GridColumnDesign)
-        Me.GridBand1.Columns.Add(Me.BGCTargetCost)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 280
-        '
-        'GBBefore
-        '
-        Me.GBBefore.Caption = "Before"
-        Me.GBBefore.Columns.Add(Me.GridColumnVendorCodeBefore)
-        Me.GBBefore.Columns.Add(Me.GridColumnVendorNameBefore)
-        Me.GBBefore.Columns.Add(Me.GridColumnCurrencyBefore)
-        Me.GBBefore.Columns.Add(Me.GridColumnKursBefore)
-        Me.GBBefore.Columns.Add(Me.GridColumnECOPBefore)
-        Me.GBBefore.Columns.Add(Me.GridColumnAddCostBefore)
-        Me.GBBefore.Name = "GBBefore"
-        Me.GBBefore.VisibleIndex = 1
-        Me.GBBefore.Width = 430
-        '
-        'GBAfter
-        '
-        Me.GBAfter.Caption = "After"
-        Me.GBAfter.Columns.Add(Me.GridColumnVendorCode)
-        Me.GBAfter.Columns.Add(Me.GridColumnVendorName)
-        Me.GBAfter.Columns.Add(Me.GridColumnIdCurrency)
-        Me.GBAfter.Columns.Add(Me.GridColumnCurrency)
-        Me.GBAfter.Columns.Add(Me.GridColumnKurs)
-        Me.GBAfter.Columns.Add(Me.GridColumnECOP)
-        Me.GBAfter.Columns.Add(Me.GridColumnAddCost)
-        Me.GBAfter.Name = "GBAfter"
-        Me.GBAfter.VisibleIndex = 2
-        Me.GBAfter.Width = 398
         '
         'ReportDesignCOPPropose
         '
