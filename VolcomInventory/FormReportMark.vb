@@ -558,6 +558,9 @@
         ElseIf report_mark_type = "212" Then
             'fgpo closing
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_order_close WHERE id_prod_order_close = '{0}'", id_report)
+        ElseIf report_mark_type = "221" Then
+            'Debit Note
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_debit_note WHERE id_debit_note = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6409,6 +6412,90 @@ SET po.is_closing_rec='1'
 WHERE pocd.id_prod_order_close = '" & id_report & "'"
                 execute_non_query(query_closing, True, "", "", "", "")
             End If
+        ElseIf report_mark_type = "221" Then
+            'Debit Note
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_debit_note SET id_report_status='{0}' WHERE id_debit_note ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            If id_status_reportx = "6" Then
+                ' select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number ,rm.report_mark_datetime FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+                '
+                Dim q_date As String = "SELECT created_date FROM tb_debit_note WHERE id_debit_note='" & id_report & "'"
+                Dim dt_date As DataTable = execute_query(q_date, -1, True, "", "", "", "")
+                '
+                Dim report_date As String = Date.Parse(dt_date.Rows(0)("created_date").ToString).ToString("yyyy-MM-dd")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "','" & report_date & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                If FormDebitNoteDet.id_dn_type = "1" Then 'claim reject
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
+                    -- klaim reject nya dulu
+                    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT acc_coa_claim FROM tb_opt_purchasing) AS `id_acc`, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
+                    ,CONCAT('KLAIM ',dnd.description,' - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    UNION 
+                    -- lawannya DP
+                    SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
+                    ,CONCAT('KLAIM REJECT') AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    GROUP BY dnd.id_debit_note "
+                    execute_non_query(qjd, True, "", "", "", "")
+                ElseIf FormDebitNoteDet.id_dn_type = "2" Then 'claim terlambat
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
+                    -- klaim late nya dulu
+                    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT acc_coa_claim FROM tb_opt_purchasing) AS `id_acc`, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
+                    ,CONCAT('KLAIM TERLAMBAT - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    UNION 
+                    -- lawannya DP
+                    SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
+                    ,CONCAT('KLAIM TERLAMBAT') AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    GROUP BY dnd.id_debit_note "
+                    execute_non_query(qjd, True, "", "", "", "")
+                End If
+                ' update status 
+                If FormDebitNoteDet.id_dn_type = "1" Then 'claim reject
+                    query = String.Format("UPDATE tb_debit_note_det dnd
+                                            INNER JOIN tb_prod_order po ON po.id_prod_order=dnd.id_report AND dnd.report_mark_type='22' 
+                                            SET is_claimed_reject='1'
+                                            WHERE dnd.id_debit_note='{0}'", id_report)
+                    execute_non_query(query, True, "", "", "", "")
+                ElseIf FormDebitNoteDet.id_dn_type = "2" Then 'claim terlambat
+                    query = String.Format("UPDATE tb_debit_note_det dnd
+                                            INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=dnd.id_report AND dnd.report_mark_type='28' 
+                                            SET is_claimed_late='1'
+                                            WHERE dnd.id_debit_note='{0}'", id_report)
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+            End If
+
+            'refresh view
+            FormDebitNoteDet.load_form()
         End If
 
         'adding lead time

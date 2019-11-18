@@ -10,7 +10,7 @@ Public Class FormPopUpCOA
     Private helpery As MyTreeListSearchHelper
 
     Private Sub FormPopUpCOA_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If id_pop_up = "8" Or id_pop_up = "9" Or id_pop_up = "10" Or id_pop_up = "11" Or id_pop_up = "12" Then
+        If id_pop_up = "8" Or id_pop_up = "9" Or id_pop_up = "10" Or id_pop_up = "11" Or id_pop_up = "12" Or id_pop_up = "13" Then
             XTPOpenTrans.PageVisible = False
             XTPAccount.PageVisible = False
         End If
@@ -354,6 +354,12 @@ Public Class FormPopUpCOA
             FormAccounting.acc_coa_vat_in = GVAcc.GetFocusedRowCellValue("id_acc").ToString
             FormAccounting.TxtVATAccount.Text = GVAcc.GetFocusedRowCellValue("acc_name").ToString
             FormAccounting.TxtVATDesc.Text = GVAcc.GetFocusedRowCellValue("acc_description").ToString
+            Close()
+        ElseIf id_pop_up = "13" Then 'general setup
+            'claim account
+            FormAccounting.acc_coa_claim = GVAcc.GetFocusedRowCellValue("id_acc").ToString
+            FormAccounting.TEClaimAccount.Text = GVAcc.GetFocusedRowCellValue("acc_name").ToString
+            FormAccounting.TEClaimDesc.Text = GVAcc.GetFocusedRowCellValue("acc_description").ToString
             Close()
         End If
     End Sub

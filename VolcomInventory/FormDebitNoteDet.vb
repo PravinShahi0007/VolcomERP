@@ -3,6 +3,8 @@
     Public id_dn_type As String = "-1"
     Public id_comp As String = "-1"
 
+    Public is_view As String = "-1"
+
     Sub load_form()
         view_status()
         load_header()
@@ -10,6 +12,14 @@
 
         If id_dn = "-1" Then
             id_comp = FormDebitNote.SLEVendor.EditValue.ToString
+            '
+            Dim q_dp As String = "SELECT id_acc_dp FROM tb_m_comp WHERE id_comp='" & id_comp & "'"
+            Dim dt_dp As DataTable = execute_query(q_dp, -1, True, "", "", "", "")
+            If dt_dp.Rows(0)("id_acc_dp").ToString = "" Then
+                warningCustom("Please setup DP account first")
+                Close()
+            End If
+            '
             TEVendor.Text = FormDebitNote.SLEVendor.Text.ToString
 
             DECreated.Text = Date.Parse(Now().ToString).ToString("dd MMMM yyyy")
@@ -85,7 +95,7 @@
                         newRow("number") = i + 1
                         newRow("id_report") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "id_prod_order_rec").ToString
                         newRow("report_mark_type") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "report_mark_type").ToString
-                        newRow("report_number") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_number").ToString
+                        newRow("report_number") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "prod_order_rec_number").ToString
                         newRow("info_design") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "design_display_name").ToString
                         newRow("description") = "HASIL PRODUKSI DATANG TERLAMBAT" & vbNewLine & "Delivery Date PO : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "est_rec_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Delivery Date KO : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "est_rec_date_ko").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Received Date : " & Date.Parse(FormDebitNote.GVClaimLate.GetRowCellValue(i, "arrive_date").ToString).ToString("dd MMMM yyyy") & vbNewLine & "Charge Back : " & FormDebitNote.GVClaimLate.GetRowCellValue(i, "late_day").ToString & " hari kalender"
                         newRow("claim_percent") = FormDebitNote.GVClaimLate.GetRowCellValue(i, "claim_percent")
@@ -105,8 +115,14 @@
             BMark.Visible = False
             BtnPrint.Visible = False
         Else 'edit
+            BtnSave.Visible = False
             BMark.Visible = True
             BtnPrint.Visible = True
+        End If
+
+        If is_view = "1" Then
+            BCancelDebitNote.Visible = False
+            BtnPrint.Visible = False
         End If
 
         calculate()
@@ -147,6 +163,9 @@ WHERE dn.id_debit_note='" & id_dn & "'"
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             If data.Rows(0)("id_report_status").ToString = "6" Or data.Rows(0)("id_report_status").ToString = "5" Then
                 BCancelDebitNote.Visible = False
+                If data.Rows(0)("id_report_status").ToString = "6" Then
+                    BtnViewJournal.Visible = True
+                End If
             Else
                 BCancelDebitNote.Visible = True
             End If
@@ -161,10 +180,12 @@ JOIN (SELECT @curRow := 0) r
 WHERE dnd.id_debit_note='" & id_dn & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
+        GVItemList.BestFitColumns()
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_dn
+        FormReportMark.is_view = is_view
         FormReportMark.report_mark_type = "221"
         FormReportMark.ShowDialog()
     End Sub
@@ -228,7 +249,41 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
 
+        ReportDebitNote.id_report = id_dn
+        ReportDebitNote.dt = GCItemList.DataSource
+        Dim Report As New ReportDebitNote()
+
+        Report.LSay.Text = METotSay.Text
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVItemList)
+
+        '
+        Dim query As String = "SELECT dn.`id_debit_note`,dn.`id_comp`,dn.`number`,dn.`id_dn_type`,dnt.dn_type,dn.`created_date`,dn.id_report_status,st.`report_status`,dn.`note`,dn.`id_report_status`,emp.`employee_name`,comp.`comp_name`,comp.address_primary FROM tb_debit_note dn
+INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
+INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status st ON st.`id_report_status`=dn.`id_report_status`
+INNER JOIN tb_lookup_dn_type dnt ON dnt.id_dn_type=dn.id_dn_type
+WHERE dn.id_debit_note='" & id_dn & "'"
+        Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = dt
+        '
+
+        '' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
@@ -252,5 +307,29 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
             '
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=221 AND ad.id_report=" + id_dn + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
