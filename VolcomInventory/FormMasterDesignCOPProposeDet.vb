@@ -290,7 +290,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocus
                         kurs_after = decimalSQL(TETodayKurs.EditValue.ToString)
                         cop_after = decimalSQL(TEEcop.EditValue.ToString)
 
-                        If id_comp_contact = "-1" Then
+                        If Not id_comp_contact = "-1" Then
                             id_contact_after = "'" & id_comp_contact & "'"
                         Else
                             id_contact_after = "NULL"
