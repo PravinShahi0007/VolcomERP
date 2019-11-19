@@ -156,4 +156,9 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
         FormInvoiceFGPODP.type = "2"
         FormInvoiceFGPODP.ShowDialog()
     End Sub
+
+    Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
+        FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
+        FormInvoiceFGPODP.ShowDialog()
+    End Sub
 End Class

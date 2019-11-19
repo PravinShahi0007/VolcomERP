@@ -34,20 +34,25 @@
                 'vendor 
                 SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
                 'detail
-                For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
-                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                    newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
-                    newRow("report_mark_type") = "22"
-                    newRow("report_number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
-                    newRow("info_design") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
-                    newRow("qty") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "qty").ToString
-                    newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount").ToString
-                    newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat").ToString
-                    newRow("inv_number") = ""
-                    newRow("note") = ""
-                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                Next
-                calculate()
+                Try
+                    For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
+                        newRow("report_mark_type") = "22"
+                        newRow("report_number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
+                        newRow("info_design") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
+                        newRow("qty") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "qty")
+                        newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount")
+                        newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat")
+                        newRow("inv_number") = ""
+                        newRow("note") = ""
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
+                    calculate()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+
             Else
                 'edit
                 BtnPrint.Visible = True
@@ -184,7 +189,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
                 If Not i = 0 Then
                     inv_number += ","
                 End If
-                inv_number += GVList.GetRowCellValue(i, "inv_number").ToString
+                inv_number += "'" & GVList.GetRowCellValue(i, "inv_number").ToString & "'"
             Next
 
             'check on db
