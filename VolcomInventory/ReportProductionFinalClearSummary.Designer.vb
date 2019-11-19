@@ -25,6 +25,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -42,12 +43,12 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLDepartement = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLCompany = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +79,8 @@ Partial Public Class ReportProductionFinalClearSummary
         '
         'GVSummary
         '
+        Me.GVSummary.Appearance.Row.Options.UseTextOptions = True
+        Me.GVSummary.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVSummary.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
         Me.GVSummary.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
         Me.GVSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
@@ -120,7 +123,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GVSummary.AppearancePrint.Row.Options.UseFont = True
         Me.GVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
         Me.GVSummary.ColumnPanelRowHeight = 32
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn16, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "normal", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "minor", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "major", Me.GridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir", Me.GridColumn10, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumn11, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn12, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_reject", Me.GridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "persentase_reject", Me.GridColumn14, "")})
@@ -137,6 +140,7 @@ Partial Public Class ReportProductionFinalClearSummary
         'GridBand1
         '
         Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn16)
         Me.GridBand1.Columns.Add(Me.GridColumn2)
         Me.GridBand1.Columns.Add(Me.GridColumn3)
         Me.GridBand1.Columns.Add(Me.GridColumn4)
@@ -144,7 +148,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridBand1.Columns.Add(Me.GridColumn6)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 600
+        Me.GridBand1.Width = 529
         '
         'GridColumn1
         '
@@ -152,6 +156,17 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn1.FieldName = "no"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
+        Me.GridColumn1.Width = 23
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn16.Caption = "Number"
+        Me.GridColumn16.FieldName = "prod_fc_number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.Width = 65
         '
         'GridColumn2
         '
@@ -159,6 +174,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn2.FieldName = "prod_order_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
+        Me.GridColumn2.Width = 65
         '
         'GridColumn3
         '
@@ -182,6 +198,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn5.FieldName = "range"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
+        Me.GridColumn5.Width = 41
         '
         'GridColumn6
         '
@@ -189,6 +206,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn6.FieldName = "color"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
+        Me.GridColumn6.Width = 35
         '
         'gridBand2
         '
@@ -199,7 +217,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.gridBand2.Columns.Add(Me.GridColumn10)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 300
+        Me.gridBand2.Width = 148
         '
         'GridColumn7
         '
@@ -210,6 +228,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "normal", "{0:N2}")})
         Me.GridColumn7.Visible = True
+        Me.GridColumn7.Width = 43
         '
         'GridColumn8
         '
@@ -220,6 +239,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "minor", "{0:N2}")})
         Me.GridColumn8.Visible = True
+        Me.GridColumn8.Width = 36
         '
         'GridColumn9
         '
@@ -230,6 +250,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "major", "{0:N2}")})
         Me.GridColumn9.Visible = True
+        Me.GridColumn9.Width = 37
         '
         'GridColumn10
         '
@@ -240,6 +261,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir", "{0:N2}")})
         Me.GridColumn10.Visible = True
+        Me.GridColumn10.Width = 32
         '
         'gridBand3
         '
@@ -250,7 +272,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.gridBand3.Columns.Add(Me.GridColumn15)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 380
+        Me.gridBand3.Width = 317
         '
         'GridColumn11
         '
@@ -261,6 +283,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", "{0:N2}")})
         Me.GridColumn11.Visible = True
+        Me.GridColumn11.Width = 45
         '
         'GridColumn12
         '
@@ -271,6 +294,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N2}")})
         Me.GridColumn12.Visible = True
+        Me.GridColumn12.Width = 49
         '
         'GridColumn13
         '
@@ -280,9 +304,11 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn13.FieldName = "total_reject"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_reject", "{0:N2}")})
+        Me.GridColumn13.ToolTip = "Minor + Major + Afkir"
         Me.GridColumn13.UnboundExpression = "[minor] + [major] + [afkir]"
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn13.Visible = True
+        Me.GridColumn13.Width = 68
         '
         'GridColumn14
         '
@@ -292,6 +318,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GridColumn14.FieldName = "persentase_reject"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
+        Me.GridColumn14.ToolTip = "Total Reject / Qty Rec * 100"
         Me.GridColumn14.UnboundExpression = "[total_reject] / [qty_rec] * 100"
         Me.GridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn14.Visible = True
@@ -299,10 +326,10 @@ Partial Public Class ReportProductionFinalClearSummary
         '
         'GridColumn15
         '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn15.Caption = "Tanggal Input"
-        Me.GridColumn15.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn15.FieldName = "prod_order_date"
+        Me.GridColumn15.FieldName = "prod_fc_date"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.Width = 77
@@ -314,6 +341,18 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(854.0!, 60.83333!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(30.0!, 20.0!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "No"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'XLNumber
         '
@@ -362,18 +401,6 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel1
-        '
-        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(854.0!, 60.83333!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(30.0!, 20.0!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "No"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        '
         'ReportProductionFinalClearSummary
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
@@ -418,4 +445,5 @@ Partial Public Class ReportProductionFinalClearSummary
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

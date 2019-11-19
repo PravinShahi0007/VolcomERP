@@ -44,7 +44,6 @@ Partial Class FormProductionFinalClearSummary
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdProdFc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyPO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,6 +56,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -73,6 +73,10 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTanggalInput = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -338,9 +342,8 @@ Partial Class FormProductionFinalClearSummary
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdFc, Me.GridColumnNo, Me.GridColumnVendor, Me.GridColumnNumber, Me.GridColumnQtyPO, Me.GridColumnQtyRec})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdFc, Me.GridColumnNo, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput})
         Me.GVList.GridControl = Me.GCList
-        Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumnQtyPO, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnQtyRec, "{0:N2}")})
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowFooter = True
@@ -351,15 +354,6 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnIdProdFc.FieldName = "id_prod_fc"
         Me.GridColumnIdProdFc.Name = "GridColumnIdProdFc"
         Me.GridColumnIdProdFc.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.OptionsColumn.AllowEdit = False
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
         '
         'GridColumnVendor
         '
@@ -377,7 +371,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 2
+        Me.GridColumnNumber.VisibleIndex = 3
         '
         'GridColumnQtyPO
         '
@@ -387,9 +381,8 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnQtyPO.FieldName = "qty_po"
         Me.GridColumnQtyPO.Name = "GridColumnQtyPO"
         Me.GridColumnQtyPO.OptionsColumn.AllowEdit = False
-        Me.GridColumnQtyPO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", "{0:N2}")})
         Me.GridColumnQtyPO.Visible = True
-        Me.GridColumnQtyPO.VisibleIndex = 3
+        Me.GridColumnQtyPO.VisibleIndex = 5
         '
         'GridColumnQtyRec
         '
@@ -399,9 +392,8 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnQtyRec.FieldName = "qty_rec"
         Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
         Me.GridColumnQtyRec.OptionsColumn.AllowEdit = False
-        Me.GridColumnQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N2}")})
         Me.GridColumnQtyRec.Visible = True
-        Me.GridColumnQtyRec.VisibleIndex = 4
+        Me.GridColumnQtyRec.VisibleIndex = 6
         '
         'PanelControl2
         '
@@ -491,7 +483,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GVSummary.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVSummary.AppearancePrint.Row.Options.UseFont = True
         Me.GVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn16, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "normal", Me.GridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "minor", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "major", Me.GridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir", Me.GridColumn10, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumn11, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn12, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_reject", Me.GridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "persentase_reject", Me.GridColumn14, "")})
@@ -506,6 +498,7 @@ Partial Class FormProductionFinalClearSummary
         'GridBand1
         '
         Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn16)
         Me.GridBand1.Columns.Add(Me.GridColumn2)
         Me.GridBand1.Columns.Add(Me.GridColumn3)
         Me.GridBand1.Columns.Add(Me.GridColumn4)
@@ -513,7 +506,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GridBand1.Columns.Add(Me.GridColumn6)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 450
+        Me.GridBand1.Width = 525
         '
         'GridColumn1
         '
@@ -521,6 +514,13 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn1.FieldName = "no"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Number"
+        Me.GridColumn16.FieldName = "prod_fc_number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
         '
         'GridColumn2
         '
@@ -669,12 +669,48 @@ Partial Class FormProductionFinalClearSummary
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Tanggal Input"
-        Me.GridColumn15.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn15.FieldName = "prod_order_date"
+        Me.GridColumn15.FieldName = "prod_fc_date"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.Width = 77
+        '
+        'GridColumnDesign
+        '
+        Me.GridColumnDesign.Caption = "Design"
+        Me.GridColumnDesign.FieldName = "name"
+        Me.GridColumnDesign.Name = "GridColumnDesign"
+        Me.GridColumnDesign.OptionsColumn.AllowEdit = False
+        Me.GridColumnDesign.Visible = True
+        Me.GridColumnDesign.VisibleIndex = 2
+        '
+        'GridColumnCategory
+        '
+        Me.GridColumnCategory.Caption = "Category"
+        Me.GridColumnCategory.FieldName = "pl_category"
+        Me.GridColumnCategory.Name = "GridColumnCategory"
+        Me.GridColumnCategory.OptionsColumn.AllowEdit = False
+        Me.GridColumnCategory.Visible = True
+        Me.GridColumnCategory.VisibleIndex = 4
+        '
+        'GridColumnTanggalInput
+        '
+        Me.GridColumnTanggalInput.Caption = "Tanggal Input"
+        Me.GridColumnTanggalInput.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnTanggalInput.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTanggalInput.FieldName = "prod_fc_date"
+        Me.GridColumnTanggalInput.Name = "GridColumnTanggalInput"
+        Me.GridColumnTanggalInput.OptionsColumn.AllowEdit = False
+        Me.GridColumnTanggalInput.Visible = True
+        Me.GridColumnTanggalInput.VisibleIndex = 7
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
         '
         'FormProductionFinalClearSummary
         '
@@ -749,7 +785,6 @@ Partial Class FormProductionFinalClearSummary
     Friend WithEvents GridColumnQtyPO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtyRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -770,4 +805,9 @@ Partial Class FormProductionFinalClearSummary
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTanggalInput As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class
