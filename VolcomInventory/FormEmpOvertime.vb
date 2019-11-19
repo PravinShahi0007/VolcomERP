@@ -430,6 +430,7 @@
 
     Private Sub GVVerificationEmployee_DoubleClick(sender As Object, e As EventArgs) Handles GVVerificationEmployee.DoubleClick
         Try
+            FormEmpOvertimeVerification.is_hrd = is_hrd
             FormEmpOvertimeVerification.id = GVVerificationEmployee.GetFocusedRowCellValue("id_ot_verification").ToString
             FormEmpOvertimeVerification.id_ot = GVVerificationEmployee.GetFocusedRowCellValue("id_ot").ToString
             FormEmpOvertimeVerification.is_view = "1"
