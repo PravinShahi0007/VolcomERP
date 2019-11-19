@@ -145,6 +145,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -167,7 +168,7 @@ Partial Class FormEmpOvertime
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMEMultiline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1119,7 +1120,7 @@ Partial Class FormEmpOvertime
         Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVVerificationEmployee.AppearancePrint.Row.Options.UseFont = True
         Me.GVVerificationEmployee.ColumnPanelRowHeight = 32
-        Me.GVVerificationEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn22, Me.GridColumn36, Me.GridColumn37, Me.GridColumn39, Me.GridColumn41, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn26, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn52, Me.GridColumn63, Me.GridColumn21, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
+        Me.GVVerificationEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn22, Me.GridColumn36, Me.GridColumn37, Me.GridColumn39, Me.GridColumn41, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn26, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn52, Me.GridColumn63, Me.GridColumn21, Me.GridColumn64, Me.GridColumn53, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
         Me.GVVerificationEmployee.GridControl = Me.GCVerificationEmployee
         Me.GVVerificationEmployee.GroupCount = 1
         Me.GVVerificationEmployee.Name = "GVVerificationEmployee"
@@ -1352,6 +1353,16 @@ Partial Class FormEmpOvertime
         Me.GridColumn62.Visible = True
         Me.GridColumn62.VisibleIndex = 10
         '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Total (hours)"
+        Me.GridColumn52.DisplayFormat.FormatString = "N1"
+        Me.GridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn52.FieldName = "ot_hours"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 11
+        '
         'GridColumn63
         '
         Me.GridColumn63.AppearanceHeader.Options.UseTextOptions = True
@@ -1395,7 +1406,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn66.FieldName = "report_status"
         Me.GridColumn66.Name = "GridColumn66"
         Me.GridColumn66.Visible = True
-        Me.GridColumn66.VisibleIndex = 15
+        Me.GridColumn66.VisibleIndex = 16
         Me.GridColumn66.Width = 77
         '
         'GridColumn67
@@ -1404,7 +1415,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn67.FieldName = "created_by"
         Me.GridColumn67.Name = "GridColumn67"
         Me.GridColumn67.Visible = True
-        Me.GridColumn67.VisibleIndex = 16
+        Me.GridColumn67.VisibleIndex = 17
         '
         'GridColumn68
         '
@@ -1412,7 +1423,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn68.FieldName = "created_at"
         Me.GridColumn68.Name = "GridColumn68"
         Me.GridColumn68.Visible = True
-        Me.GridColumn68.VisibleIndex = 17
+        Me.GridColumn68.VisibleIndex = 18
         '
         'XtraScrollableControl1
         '
@@ -1537,15 +1548,13 @@ Partial Class FormEmpOvertime
         Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
         '
-        'GridColumn52
+        'GridColumn53
         '
-        Me.GridColumn52.Caption = "Total (hours)"
-        Me.GridColumn52.DisplayFormat.FormatString = "N1"
-        Me.GridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn52.FieldName = "ot_hours"
-        Me.GridColumn52.Name = "GridColumn52"
-        Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 11
+        Me.GridColumn53.Caption = "Valid"
+        Me.GridColumn53.FieldName = "is_valid"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 15
         '
         'FormEmpOvertime
         '
@@ -1762,4 +1771,5 @@ Partial Class FormEmpOvertime
     Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
     Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

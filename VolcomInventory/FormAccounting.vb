@@ -270,20 +270,29 @@ Public Class FormAccounting
     '------ TAB GENERAL SETUP
     Public acc_coa_receive As String = "-1"
     Public acc_coa_vat_in As String = "-1"
+    Public acc_coa_claim As String = "-1"
+
     Sub actionLoadGeneralSetup()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT IFNULL(o.acc_coa_receive,0) AS `acc_coa_receive`, rec.acc_name AS `rec_account`, rec.acc_description AS `rec_desc`,
-        IFNULL(o.acc_coa_vat_in,0) AS `acc_coa_vat_in`, vat.acc_name AS `vat_account`, vat.acc_description AS `vat_desc`
+        IFNULL(o.acc_coa_vat_in,0) AS `acc_coa_vat_in`, vat.acc_name AS `vat_account`, vat.acc_description AS `vat_desc`,
+        IFNULL(o.acc_coa_claim,0) AS `acc_coa_claim`, claim.acc_name AS `claim_account`, claim.acc_description AS `claim_desc`
         FROM tb_opt_purchasing o 
         LEFT JOIN tb_a_acc rec ON rec.id_acc = o.acc_coa_receive
-        LEFT JOIN tb_a_acc vat ON vat.id_acc = o.acc_coa_vat_in "
+        LEFT JOIN tb_a_acc vat ON vat.id_acc = o.acc_coa_vat_in
+        LEFT JOIN tb_a_acc claim ON claim.id_acc = o.acc_coa_claim"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         acc_coa_receive = data.Rows(0)("acc_coa_receive").ToString
         TxtRecAccount.Text = data.Rows(0)("rec_account").ToString
         TxtRecDesc.Text = data.Rows(0)("rec_desc").ToString
+        '
         acc_coa_vat_in = data.Rows(0)("acc_coa_vat_in").ToString
         TxtVATAccount.Text = data.Rows(0)("vat_account").ToString
         TxtVATDesc.Text = data.Rows(0)("vat_desc").ToString
+        '
+        acc_coa_claim = data.Rows(0)("acc_coa_claim").ToString
+        TEClaimAccount.Text = data.Rows(0)("claim_account").ToString
+        TEClaimDesc.Text = data.Rows(0)("claim_desc").ToString
         Cursor = Cursors.Default
     End Sub
 
@@ -295,18 +304,37 @@ Public Class FormAccounting
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to discard this changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save this changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
+            '
             If acc_coa_receive = "0" Then
                 acc_coa_receive = "NULL"
             End If
+
             If acc_coa_vat_in = "0" Then
                 acc_coa_vat_in = "NULL"
             End If
 
-            Dim query As String = "UPDATE tb_opt_purchasing SET acc_coa_receive=" + acc_coa_receive + ", acc_coa_vat_in=" + acc_coa_vat_in + " "
+            If acc_coa_claim = "0" Then
+                acc_coa_claim = "NULL"
+            End If
+
+            Dim query As String = "UPDATE tb_opt_purchasing SET acc_coa_receive=" + acc_coa_receive + ", acc_coa_vat_in=" + acc_coa_vat_in + ",acc_coa_claim=" + acc_coa_claim + " "
             execute_non_query(query, True, "", "", "", "")
+            '
+            If acc_coa_receive = "NULL" Then
+                acc_coa_receive = "0"
+            End If
+
+            If acc_coa_vat_in = "NULL" Then
+                acc_coa_vat_in = "0"
+            End If
+
+            If acc_coa_claim = "NULL" Then
+                acc_coa_claim = "0"
+            End If
+
             Cursor = Cursors.Default
         End If
     End Sub
@@ -321,6 +349,13 @@ Public Class FormAccounting
     Private Sub BtnBrowseVAT_Click(sender As Object, e As EventArgs) Handles BtnBrowseVAT.Click
         Cursor = Cursors.WaitCursor
         FormPopUpCOA.id_pop_up = "12"
+        FormPopUpCOA.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseClaim_Click(sender As Object, e As EventArgs) Handles BtnBrowseClaim.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpCOA.id_pop_up = "13"
         FormPopUpCOA.ShowDialog()
         Cursor = Cursors.Default
     End Sub
