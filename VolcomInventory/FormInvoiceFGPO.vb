@@ -195,7 +195,7 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
         End If
     End Sub
 
-    Private Sub BCreateBPLRec_Click(sender As Object, e As EventArgs) Handles BCreateBPLRec.Click
+    Private Sub BCreateBPLRec_Click(sender As Object, e As EventArgs)
         GVRecFGPO.ActiveFilterString = "[is_check]='yes'"
         If GVRecFGPO.RowCount > 0 Then
             'check if already DP
@@ -229,7 +229,7 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='28'"
         GVRecFGPO.ActiveFilterString = ""
     End Sub
 
-    Private Sub BFilterDesign_Click(sender As Object, e As EventArgs) Handles BFilterDesign.Click
+    Private Sub BFilterDesign_Click(sender As Object, e As EventArgs)
         load_list("1")
     End Sub
 
