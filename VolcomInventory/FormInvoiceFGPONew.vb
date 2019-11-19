@@ -8,7 +8,8 @@
     End Sub
 
     Sub view_type()
-
+        Dim query As String = "SELECT id_type,pn_type FROM tb_pn_type WHERE is_payment =1"
+        viewSearchLookupQuery(SLETypeInvoice, query, "id_type", "pn_type", "id_type")
     End Sub
 
     Sub view_fgpo()
@@ -25,10 +26,18 @@ GROUP BY po.`id_prod_order`"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If SLETypeInvoice.EditValue.ToString = "2" Then 'payment
+            'search qty order dikurangi sudah payment
+            Dim query As String = ""
+        ElseIf SLETypeInvoice.EditValue.ToString = "3" Then 'Extra
 
+        ElseIf SLETypeInvoice.EditValue.ToString = "4" Then 'over memo
+
+        End If
     End Sub
 
     Private Sub FormInvoiceFGPONew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        view_type()
+        view_fgpo()
     End Sub
 End Class

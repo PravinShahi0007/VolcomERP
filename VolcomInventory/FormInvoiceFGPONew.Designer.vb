@@ -26,15 +26,17 @@ Partial Class FormInvoiceFGPONew
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.SLEFGPO = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLETypeInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,6 +65,7 @@ Partial Class FormInvoiceFGPONew
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -84,6 +87,39 @@ Partial Class FormInvoiceFGPONew
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_prod_order"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "F.G. PO Number"
+        Me.GridColumn2.FieldName = "prod_order_number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 290
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Design Code"
+        Me.GridColumn3.FieldName = "design_code"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 307
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Design"
+        Me.GridColumn4.FieldName = "design_display_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 1035
         '
         'LabelControl2
         '
@@ -148,38 +184,19 @@ Partial Class FormInvoiceFGPONew
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Pick"
         '
-        'GridColumn1
+        'GridColumn5
         '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_prod_order"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn5.Caption = "ID"
+        Me.GridColumn5.FieldName = "id_type"
+        Me.GridColumn5.Name = "GridColumn5"
         '
-        'GridColumn2
+        'GridColumn6
         '
-        Me.GridColumn2.Caption = "F.G. PO Number"
-        Me.GridColumn2.FieldName = "pord_order_number"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 290
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Design Code"
-        Me.GridColumn3.FieldName = "design_code"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 307
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Design"
-        Me.GridColumn4.FieldName = "design_display_name"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 1035
+        Me.GridColumn6.Caption = "Type"
+        Me.GridColumn6.FieldName = "pn_type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
         '
         'FormInvoiceFGPONew
         '
@@ -223,4 +240,6 @@ Partial Class FormInvoiceFGPONew
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

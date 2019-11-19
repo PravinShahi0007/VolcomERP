@@ -25,7 +25,7 @@
         load_trans_type()
         load_det()
         '
-        If type = "1" Then
+        If type = "1" Then 'DP
             If id_invoice = "-1" Then
                 BtnPrint.Visible = False
                 BtnViewJournal.Visible = False
@@ -38,9 +38,9 @@
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
                     newRow("report_mark_type") = "22"
-                    newRow("number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
-                    newRow("description") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
-                    newRow("code") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_code").ToString
+                    newRow("report_number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
+                    newRow("info_design") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
+                    newRow("qty") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "qty").ToString
                     newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount").ToString
                     newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat").ToString
                     newRow("inv_number") = ""
@@ -76,6 +76,11 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 BMark.Visible = False
 
                 'add detail vendor, PO, receiving
+                FormInvoiceFGPONew.ShowDialog()
+
+                If GVList.RowCount <= 0 Then
+                    Close()
+                End If
 
                 'pop up DP
 
@@ -119,19 +124,11 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
     End Sub
 
     Sub load_det()
-        'DP union po union receiving
+        '
         Dim query As String = "
-Select pnd.`id_report` As id_report,pnd.report_mark_type, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
-INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='189'
-UNION
-Select pnd.`id_report` As id_report,pnd.report_mark_type, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
-INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='22'"
+Select pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` 
+FROM tb_pn_fgpo_det pnd
+WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
@@ -216,8 +213,8 @@ VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & add
                     'detail
                     query = ""
                     For i = 0 To GVList.RowCount - 1
-                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
-VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,report_number,info_design,`qty`,`value`,`vat`,`inv_number`,`note`)
+VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                     '
@@ -241,8 +238,8 @@ VALUES ('2','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & S
                     'detail
                     query = ""
                     For i = 0 To GVList.RowCount - 1
-                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
-VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,report_number,info_design,`value`,`vat`,`inv_number`,`note`)
+VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                     '
