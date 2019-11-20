@@ -18,9 +18,8 @@
                         Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
                         newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo_det").ToString
                         newRow("report_mark_type") = "199"
-                        newRow("number") = GVList.GetRowCellValue(i, "number").ToString
-                        newRow("description") = GVList.GetRowCellValue(i, "design_display_name").ToString
-                        newRow("code") = GVList.GetRowCellValue(i, "design_code").ToString
+                        newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString
+                        newRow("info_design") = GVList.GetRowCellValue(i, "design_display_name").ToString
                         newRow("value") = GVList.GetRowCellValue(i, "value") * -1
                         newRow("vat") = GVList.GetRowCellValue(i, "vat") * -1
                         newRow("inv_number") = GVList.GetRowCellValue(i, "inv_number").ToString

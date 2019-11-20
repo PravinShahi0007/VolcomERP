@@ -377,6 +377,7 @@
                     problem = True
                 End If
             End If
+
             If LELeaveType.EditValue.ToString = "6" Then
                 'check if sudah lebih dari 2 jam dalam sebulan.
                 Dim query_cek As String = "SELECT SUM(minutes_total) AS total_min FROM tb_emp_leave_det ld
