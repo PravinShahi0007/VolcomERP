@@ -23,7 +23,7 @@
 
             Dim where_string As String = ""
 
-            Dim query As String = "CALL view_cash_advance_report('" & date_from & "','" & date_to & "')"
+            Dim query As String = "CALL view_cash_advance_report_coa('" & date_from & "','" & date_to & "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCReport.DataSource = data
             GVReport.BestFitColumns()

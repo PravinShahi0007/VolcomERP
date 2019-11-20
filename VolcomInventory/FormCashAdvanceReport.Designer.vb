@@ -20,6 +20,8 @@ Partial Class FormCashAdvanceReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintDefault = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintAdvance = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.DateTo = New DevExpress.XtraEditors.DateEdit()
@@ -30,21 +32,23 @@ Partial Class FormCashAdvanceReport
         Me.GVReport = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPurpose = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDateCreated = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReconcileDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReconcileActualDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCashInAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCashInAdvancePeriode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCashOnHandOut = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumnPurpose = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCashInAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOverdue = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BPrintAdvance = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrintDefault = New DevExpress.XtraEditors.SimpleButton()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOADesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +58,7 @@ Partial Class FormCashAdvanceReport
         CType(Me.GCReport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -71,6 +76,22 @@ Partial Class FormCashAdvanceReport
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1012, 48)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BPrintDefault
+        '
+        Me.BPrintDefault.Location = New System.Drawing.Point(723, 10)
+        Me.BPrintDefault.Name = "BPrintDefault"
+        Me.BPrintDefault.Size = New System.Drawing.Size(48, 23)
+        Me.BPrintDefault.TabIndex = 8940
+        Me.BPrintDefault.Text = "Print"
+        '
+        'BPrintAdvance
+        '
+        Me.BPrintAdvance.Location = New System.Drawing.Point(586, 10)
+        Me.BPrintAdvance.Name = "BPrintAdvance"
+        Me.BPrintAdvance.Size = New System.Drawing.Size(131, 23)
+        Me.BPrintAdvance.TabIndex = 8939
+        Me.BPrintAdvance.Text = "Print Advance Report"
         '
         'BPrint
         '
@@ -142,7 +163,7 @@ Partial Class FormCashAdvanceReport
         Me.GCReport.Location = New System.Drawing.Point(0, 48)
         Me.GCReport.MainView = Me.GVReport
         Me.GCReport.Name = "GCReport"
-        Me.GCReport.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCReport.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemMemoEdit1})
         Me.GCReport.Size = New System.Drawing.Size(1012, 533)
         Me.GCReport.TabIndex = 21
         Me.GCReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReport})
@@ -176,7 +197,7 @@ Partial Class FormCashAdvanceReport
         Me.GVReport.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVReport.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVReport.ColumnPanelRowHeight = 32
-        Me.GVReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumnEmployee, Me.GridColumnPurpose, Me.GridColumnDateCreated, Me.GridColumnReconcileDueDate, Me.GridColumnReconcileActualDate, Me.GridColumnCashInAdvance, Me.GridColumnCashInAdvancePeriode, Me.GridColumnExpense, Me.GridColumnAdvance, Me.GridColumnCashOnHandOut, Me.GridColumnStatus, Me.GridColumnOverdue})
+        Me.GVReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumnEmployee, Me.GridColumnPurpose, Me.GridColumnDateCreated, Me.GridColumnReconcileDueDate, Me.GridColumnReconcileActualDate, Me.GridColumnCashInAdvance, Me.GridColumnCashInAdvancePeriode, Me.GridColumnCOA, Me.GridColumnCOADesc, Me.GridColumn1, Me.GridColumnExpense, Me.GridColumnAdvance, Me.GridColumnCashOnHandOut, Me.GridColumnStatus, Me.GridColumnOverdue})
         Me.GVReport.GridControl = Me.GCReport
         Me.GVReport.Name = "GVReport"
         Me.GVReport.OptionsBehavior.AutoExpandAllGroups = True
@@ -199,6 +220,22 @@ Partial Class FormCashAdvanceReport
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 0
+        '
+        'GridColumnEmployee
+        '
+        Me.GridColumnEmployee.Caption = "Employee"
+        Me.GridColumnEmployee.FieldName = "employee_name"
+        Me.GridColumnEmployee.Name = "GridColumnEmployee"
+        Me.GridColumnEmployee.Visible = True
+        Me.GridColumnEmployee.VisibleIndex = 2
+        '
+        'GridColumnPurpose
+        '
+        Me.GridColumnPurpose.Caption = "Purpose"
+        Me.GridColumnPurpose.FieldName = "note"
+        Me.GridColumnPurpose.Name = "GridColumnPurpose"
+        Me.GridColumnPurpose.Visible = True
+        Me.GridColumnPurpose.VisibleIndex = 3
         '
         'GridColumnDateCreated
         '
@@ -230,81 +267,6 @@ Partial Class FormCashAdvanceReport
         Me.GridColumnReconcileActualDate.Visible = True
         Me.GridColumnReconcileActualDate.VisibleIndex = 6
         '
-        'GridColumnCashInAdvancePeriode
-        '
-        Me.GridColumnCashInAdvancePeriode.Caption = "Cash In Advance (Periode)"
-        Me.GridColumnCashInAdvancePeriode.DisplayFormat.FormatString = "N2"
-        Me.GridColumnCashInAdvancePeriode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnCashInAdvancePeriode.FieldName = "val_ca"
-        Me.GridColumnCashInAdvancePeriode.Name = "GridColumnCashInAdvancePeriode"
-        Me.GridColumnCashInAdvancePeriode.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_ca", "{0:N2}")})
-        Me.GridColumnCashInAdvancePeriode.Visible = True
-        Me.GridColumnCashInAdvancePeriode.VisibleIndex = 7
-        '
-        'GridColumnExpense
-        '
-        Me.GridColumnExpense.Caption = "Expense"
-        Me.GridColumnExpense.DisplayFormat.FormatString = "N2"
-        Me.GridColumnExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnExpense.FieldName = "expense"
-        Me.GridColumnExpense.Name = "GridColumnExpense"
-        Me.GridColumnExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
-        Me.GridColumnExpense.Visible = True
-        Me.GridColumnExpense.VisibleIndex = 9
-        '
-        'GridColumnAdvance
-        '
-        Me.GridColumnAdvance.Caption = "Advance"
-        Me.GridColumnAdvance.DisplayFormat.FormatString = "N2"
-        Me.GridColumnAdvance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAdvance.FieldName = "advance"
-        Me.GridColumnAdvance.Name = "GridColumnAdvance"
-        Me.GridColumnAdvance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "advance", "{0:N2}")})
-        Me.GridColumnAdvance.Visible = True
-        Me.GridColumnAdvance.VisibleIndex = 10
-        '
-        'GridColumnCashOnHandOut
-        '
-        Me.GridColumnCashOnHandOut.Caption = "Cash On Hand Out"
-        Me.GridColumnCashOnHandOut.DisplayFormat.FormatString = "N2"
-        Me.GridColumnCashOnHandOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnCashOnHandOut.FieldName = "cash_out"
-        Me.GridColumnCashOnHandOut.Name = "GridColumnCashOnHandOut"
-        Me.GridColumnCashOnHandOut.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
-        Me.GridColumnCashOnHandOut.Visible = True
-        Me.GridColumnCashOnHandOut.VisibleIndex = 11
-        '
-        'GridColumnStatus
-        '
-        Me.GridColumnStatus.Caption = "Proposal Status (updated)"
-        Me.GridColumnStatus.FieldName = "report_status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 4
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
-        'GridColumnPurpose
-        '
-        Me.GridColumnPurpose.Caption = "Purpose"
-        Me.GridColumnPurpose.FieldName = "note"
-        Me.GridColumnPurpose.Name = "GridColumnPurpose"
-        Me.GridColumnPurpose.Visible = True
-        Me.GridColumnPurpose.VisibleIndex = 3
-        '
-        'GridColumnEmployee
-        '
-        Me.GridColumnEmployee.Caption = "Employee"
-        Me.GridColumnEmployee.FieldName = "employee_name"
-        Me.GridColumnEmployee.Name = "GridColumnEmployee"
-        Me.GridColumnEmployee.Visible = True
-        Me.GridColumnEmployee.VisibleIndex = 2
-        '
         'GridColumnCashInAdvance
         '
         Me.GridColumnCashInAdvance.AppearanceCell.Options.UseTextOptions = True
@@ -319,29 +281,103 @@ Partial Class FormCashAdvanceReport
         Me.GridColumnCashInAdvance.Visible = True
         Me.GridColumnCashInAdvance.VisibleIndex = 8
         '
+        'GridColumnCashInAdvancePeriode
+        '
+        Me.GridColumnCashInAdvancePeriode.Caption = "Cash In Advance (Periode)"
+        Me.GridColumnCashInAdvancePeriode.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCashInAdvancePeriode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCashInAdvancePeriode.FieldName = "val_ca"
+        Me.GridColumnCashInAdvancePeriode.Name = "GridColumnCashInAdvancePeriode"
+        Me.GridColumnCashInAdvancePeriode.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_ca", "{0:N2}")})
+        Me.GridColumnCashInAdvancePeriode.Visible = True
+        Me.GridColumnCashInAdvancePeriode.VisibleIndex = 7
+        '
+        'GridColumnExpense
+        '
+        Me.GridColumnExpense.Caption = "Total Expense"
+        Me.GridColumnExpense.DisplayFormat.FormatString = "N2"
+        Me.GridColumnExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnExpense.FieldName = "expense"
+        Me.GridColumnExpense.Name = "GridColumnExpense"
+        Me.GridColumnExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
+        Me.GridColumnExpense.Visible = True
+        Me.GridColumnExpense.VisibleIndex = 12
+        '
+        'GridColumnAdvance
+        '
+        Me.GridColumnAdvance.Caption = "Advance"
+        Me.GridColumnAdvance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAdvance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAdvance.FieldName = "advance"
+        Me.GridColumnAdvance.Name = "GridColumnAdvance"
+        Me.GridColumnAdvance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "advance", "{0:N2}")})
+        Me.GridColumnAdvance.Visible = True
+        Me.GridColumnAdvance.VisibleIndex = 12
+        '
+        'GridColumnCashOnHandOut
+        '
+        Me.GridColumnCashOnHandOut.Caption = "Cash On Hand Out"
+        Me.GridColumnCashOnHandOut.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCashOnHandOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCashOnHandOut.FieldName = "cash_out"
+        Me.GridColumnCashOnHandOut.Name = "GridColumnCashOnHandOut"
+        Me.GridColumnCashOnHandOut.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cash_out", "{0:N2}")})
+        Me.GridColumnCashOnHandOut.Visible = True
+        Me.GridColumnCashOnHandOut.VisibleIndex = 13
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Proposal Status (updated)"
+        Me.GridColumnStatus.FieldName = "report_status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 4
+        '
         'GridColumnOverdue
         '
         Me.GridColumnOverdue.Caption = "Overdue (days)"
         Me.GridColumnOverdue.FieldName = "overdue"
         Me.GridColumnOverdue.Name = "GridColumnOverdue"
         Me.GridColumnOverdue.Visible = True
-        Me.GridColumnOverdue.VisibleIndex = 12
+        Me.GridColumnOverdue.VisibleIndex = 14
         '
-        'BPrintAdvance
+        'RepositoryItemCheckEdit1
         '
-        Me.BPrintAdvance.Location = New System.Drawing.Point(586, 10)
-        Me.BPrintAdvance.Name = "BPrintAdvance"
-        Me.BPrintAdvance.Size = New System.Drawing.Size(131, 23)
-        Me.BPrintAdvance.TabIndex = 8939
-        Me.BPrintAdvance.Text = "Print Advance Report"
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
-        'BPrintDefault
+        'GridColumnCOA
         '
-        Me.BPrintDefault.Location = New System.Drawing.Point(723, 10)
-        Me.BPrintDefault.Name = "BPrintDefault"
-        Me.BPrintDefault.Size = New System.Drawing.Size(48, 23)
-        Me.BPrintDefault.TabIndex = 8940
-        Me.BPrintDefault.Text = "Print"
+        Me.GridColumnCOA.Caption = "COA Expense"
+        Me.GridColumnCOA.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnCOA.FieldName = "coa"
+        Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.Visible = True
+        Me.GridColumnCOA.VisibleIndex = 9
+        '
+        'GridColumnCOADesc
+        '
+        Me.GridColumnCOADesc.Caption = "COA Expense Description"
+        Me.GridColumnCOADesc.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnCOADesc.FieldName = "coa_desc"
+        Me.GridColumnCOADesc.Name = "GridColumnCOADesc"
+        Me.GridColumnCOADesc.Visible = True
+        Me.GridColumnCOADesc.VisibleIndex = 10
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Expense"
+        Me.GridColumn1.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn1.FieldName = "coa_expense"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 11
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'FormCashAdvanceReport
         '
@@ -366,6 +402,7 @@ Partial Class FormCashAdvanceReport
         CType(Me.GCReport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVReport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -396,4 +433,8 @@ Partial Class FormCashAdvanceReport
     Friend WithEvents GridColumnOverdue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrintAdvance As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrintDefault As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnCOA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOADesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

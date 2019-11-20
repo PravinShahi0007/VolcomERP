@@ -3,6 +3,8 @@
     Public is_view As String = "-1"
     Public type As String = "1"
 
+    Public id_po As String = "-1"
+
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
     End Sub
@@ -83,27 +85,28 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 'add detail vendor, PO, receiving
                 FormInvoiceFGPONew.ShowDialog()
 
+                'pop up DP
+                Dim query_pop As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
+                ,dsg.`design_code`,dsg.`design_display_name`
+                FROM `tb_pn_fgpo_det` pnd
+                INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
+                INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
+                Dim data_pop As DataTable = execute_query(query_pop, -1, True, "", "", "", "")
+                If data_pop.Rows.Count > 0 Then
+                    FormInvoiceFGPODPPop.id_po = id_po
+                    FormInvoiceFGPODPPop.ShowDialog()
+                End If
+
+                '
+                calculate()
+
                 If GVList.RowCount <= 0 Then
                     Close()
                 End If
 
-                'pop up DP
-
-                '                Dim query_pop As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
-                ',dsg.`design_code`,dsg.`design_display_name`
-                'FROM `tb_pn_fgpo_det` pnd
-                'INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-                'INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
-                'INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-                'INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-                'WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(0, "id_prod_order").ToString & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
-                '                Dim data_pop As DataTable = execute_query(query_pop, -1, True, "", "", "", "")
-                '                If data_pop.Rows.Count > 0 Then
-                '                    FormInvoiceFGPODPPop.id_po = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(0, "id_prod_order").ToString
-                '                    FormInvoiceFGPODPPop.ShowDialog()
-                '                End If
-
-                '
                 calculate()
             Else
                 'edit
@@ -301,6 +304,17 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString
     Private Sub SMEditCost_Click(sender As Object, e As EventArgs) Handles SMEditCost.Click
         If GVList.RowCount > 0 Then
             FormInvoiceFGPODPSplit.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BDP_Click(sender As Object, e As EventArgs) 
+
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) 
+        If GVList.RowCount > 0 Then
+            GVList.DeleteSelectedRows()
+            calculate()
         End If
     End Sub
 End Class
