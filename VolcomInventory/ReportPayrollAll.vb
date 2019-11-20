@@ -229,9 +229,9 @@
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Calculate
                     If gridView.Name = "GVPayrollOffice" Then
-                        sum_tot_ded_store += e.FieldValue
-                    Else
                         sum_tot_ded_office += e.FieldValue
+                    Else
+                        sum_tot_ded_store += e.FieldValue
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
                     If gridView.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
