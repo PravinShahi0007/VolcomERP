@@ -202,6 +202,12 @@
         summary_custom(item, e, GVOvertimeOffice)
     End Sub
 
+    Private Sub GVOvertimeStore_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVOvertimeStore.CustomSummaryCalculate
+        Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
+
+        summary_custom(item, e, GVOvertimeStore)
+    End Sub
+
     Sub summary_custom(item As DevExpress.XtraGrid.GridSummaryItem, e As DevExpress.Data.CustomSummaryEventArgs, gridView As DevExpress.XtraGrid.Views.Grid.GridView)
         If item.FieldName.ToString = "Point Reguler" Then
             Select Case e.SummaryProcess
@@ -218,7 +224,7 @@
                         sum_point_reg_store += e.FieldValue
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
-                    If GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                    If gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
                         If gridView.Name = "GVOvertimeOffice" Then
                             e.TotalValue = sum_point_reg_office
                         Else
@@ -251,7 +257,7 @@
                         sum_point_reg_store += e.FieldValue
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
-                    If GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                    If gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
                         If gridView.Name = "GVOvertimeOffice" Then
                             e.TotalValue = sum_ot_reg_office
                         Else
@@ -284,7 +290,7 @@
                         sum_point_evt_store += e.FieldValue
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
-                    If GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                    If gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
                         If gridView.Name = "GVOvertimeOffice" Then
                             e.TotalValue = sum_point_evt_office
                         Else
@@ -317,7 +323,7 @@
                         sum_ot_evt_store += e.FieldValue
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
-                    If GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                    If gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
                         If gridView.Name = "GVOvertimeOffice" Then
                             e.TotalValue = sum_ot_evt_office
                         Else
@@ -350,7 +356,7 @@
                         sum_tot_store += e.FieldValue
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
-                    If GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                    If gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
                         If gridView.Name = "GVOvertimeOffice" Then
                             e.TotalValue = sum_tot_office
                         Else
@@ -372,13 +378,13 @@
             Select Case e.SummaryProcess
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
                     Try
-                        Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
-                        Dim alphabet As String = GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
+                        Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(gridView.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
+                        Dim alphabet As String = gridView.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
 
-                        Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
-                        Dim alphabet_sub As String = GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
+                        Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                        Dim alphabet_sub As String = gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
 
-                        If GVOvertimeOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                        If gridView.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
                             If e.GroupLevel = 1 Then
                                 e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
                             Else
