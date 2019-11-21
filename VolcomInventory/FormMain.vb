@@ -13692,6 +13692,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Sub
 
     Private Sub NBSendEmailAcc_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSendEmailAcc.LinkClicked
-
+        Try
+            FormMailManage.MdiParent = Me
+            FormMailManage.id_menu = "1"
+            FormMailManage.Show()
+            FormMailManage.WindowState = FormWindowState.Maximized
+            FormMailManage.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
     End Sub
 End Class
