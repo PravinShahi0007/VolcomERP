@@ -33,9 +33,9 @@
             stopCustom("Please select store group first")
         Else
             Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`, sp.`sales_pos_start_period`, sp.`sales_pos_end_period`
-            ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,
+            ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`, sp.sales_pos_total_qty,
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
-            ,sp.report_mark_type,rmt.report_mark_type_name,
+            ,sp.report_mark_type,rmt.report_mark_type_name
             ,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -44,7 +44,8 @@
             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
             WHERE sp.`id_report_status`='6' AND c.id_comp_group='" + id_comp_group + "'
-            GROUP BY sp.`id_sales_pos` "
+            GROUP BY sp.`id_sales_pos` 
+            ORDER BY id_sales_pos ASC "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCInvoiceList.DataSource = data
             GVInvoiceList.BestFitColumns()
@@ -54,5 +55,28 @@
 
     Private Sub BtnAlreadyProcessed_Click(sender As Object, e As EventArgs) Handles BtnAlreadyProcessed.Click
         loadInvoice("AND sp.is_pending_mail=2 ")
+    End Sub
+
+    Private Sub CESelectAllInvoice_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAllInvoice.CheckedChanged
+        Dim val As String = ""
+        If CESelectAllInvoice.EditValue = True Then
+            val = "yes"
+        Else
+            val = "no"
+        End If
+
+        For i As Integer = 0 To GVInvoiceList.RowCount - 1
+            GVInvoiceList.SetRowCellValue(i, "is_check", val)
+        Next
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        makeSafeGV(GVInvoiceList)
+        GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
+
+        'load detil form
+
+
+        GVInvoiceList.ActiveFilterString = ""
     End Sub
 End Class
