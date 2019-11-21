@@ -29,8 +29,10 @@
         Dim itime As String = "2"
         If id_report_status = "1" Then
             itime = "2"
+            LabelNotice.Visible = False
         ElseIf id_report_status = "6" Then
             itime = "1"
+            LabelNotice.Visible = True
         End If
         pre_load_mark_horz_plain_acc(rmt, id_sales_pos, "(                       )", itime, XrTable1)
     End Sub

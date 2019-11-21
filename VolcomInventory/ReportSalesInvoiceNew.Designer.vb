@@ -88,6 +88,7 @@ Partial Public Class ReportSalesInvoiceNew
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LabelNotice = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -879,8 +880,8 @@ Partial Public Class ReportSalesInvoiceNew
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.LabelPPN, Me.XrLabel34, Me.XrLabel33, Me.XrLabel32, Me.LabelDasarPPN, Me.XrLabel30, Me.XrLabel29, Me.XrLabel28, Me.XrLabel24, Me.LabelPotPenjualan, Me.LabelNetto, Me.LabelDiscountValue, Me.XrLabel10, Me.XrLabel3, Me.XrLabel2, Me.XrLabel21, Me.LabelSay})
-        Me.ReportFooter.HeightF = 125.1629!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.LabelPPN, Me.XrLabel34, Me.XrLabel33, Me.XrLabel32, Me.LabelDasarPPN, Me.XrLabel30, Me.XrLabel29, Me.XrLabel28, Me.XrLabel24, Me.LabelPotPenjualan, Me.LabelNetto, Me.LabelDiscountValue, Me.XrLabel10, Me.XrLabel3, Me.XrLabel2, Me.XrLabel21, Me.LabelSay, Me.LabelNotice})
+        Me.ReportFooter.HeightF = 148.0796!
         Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
@@ -907,6 +908,19 @@ Partial Public Class ReportSalesInvoiceNew
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
+        '
+        'LabelNotice
+        '
+        Me.LabelNotice.Font = New System.Drawing.Font("Segoe UI", 6.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNotice.LocationFloat = New DevExpress.Utils.PointFloat(0!, 112.3851!)
+        Me.LabelNotice.Name = "LabelNotice"
+        Me.LabelNotice.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelNotice.SizeF = New System.Drawing.SizeF(771.9999!, 24.23613!)
+        Me.LabelNotice.StylePriority.UseFont = False
+        Me.LabelNotice.StylePriority.UseTextAlignment = False
+        Me.LabelNotice.Text = "* This is computer generated Invoice Slip. Signature not required."
+        Me.LabelNotice.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelNotice.Visible = False
         '
         'ReportSalesInvoiceNew
         '
@@ -989,4 +1003,5 @@ Partial Public Class ReportSalesInvoiceNew
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelNotice As DevExpress.XtraReports.UI.XRLabel
 End Class
