@@ -75,6 +75,8 @@
         GridColumnExpense.Visible = False
         GridColumnCashOnHandOut.Visible = False
         GridColumnCOADesc.Visible = False
+        GridColumnCOA.Visible = False
+        GridColumnCoaExpense.Visible = False
         '
         GVReport.ActiveFilterString = "[advance]>0"
         '

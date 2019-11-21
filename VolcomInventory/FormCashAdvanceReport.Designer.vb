@@ -34,13 +34,13 @@ Partial Class FormCashAdvanceReport
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPurpose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnDateCreated = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReconcileDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReconcileActualDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCashInAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCashInAdvancePeriode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnCOADesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCoaExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnExpense = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -186,22 +186,27 @@ Partial Class FormCashAdvanceReport
         Me.GVReport.AppearancePrint.GroupRow.Options.UseBorderColor = True
         Me.GVReport.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVReport.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVReport.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVReport.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
         Me.GVReport.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVReport.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
         Me.GVReport.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVReport.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVReport.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVReport.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
         Me.GVReport.AppearancePrint.Lines.Options.UseBackColor = True
         Me.GVReport.AppearancePrint.Row.BackColor = System.Drawing.Color.White
         Me.GVReport.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVReport.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVReport.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVReport.AppearancePrint.Row.Options.UseTextOptions = True
+        Me.GVReport.AppearancePrint.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GVReport.ColumnPanelRowHeight = 32
         Me.GVReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumnEmployee, Me.GridColumnPurpose, Me.GridColumnDateCreated, Me.GridColumnReconcileDueDate, Me.GridColumnReconcileActualDate, Me.GridColumnCashInAdvance, Me.GridColumnCashInAdvancePeriode, Me.GridColumnCOA, Me.GridColumnCOADesc, Me.GridColumnCoaExpense, Me.GridColumnExpense, Me.GridColumnAdvance, Me.GridColumnCashOnHandOut, Me.GridColumnStatus, Me.GridColumnOverdue})
         Me.GVReport.GridControl = Me.GCReport
         Me.GVReport.Name = "GVReport"
         Me.GVReport.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVReport.OptionsBehavior.Editable = False
+        Me.GVReport.OptionsPrint.AllowMultilineHeaders = True
         Me.GVReport.OptionsView.ColumnAutoWidth = False
         Me.GVReport.OptionsView.RowAutoHeight = True
         Me.GVReport.OptionsView.ShowFooter = True
@@ -232,10 +237,19 @@ Partial Class FormCashAdvanceReport
         'GridColumnPurpose
         '
         Me.GridColumnPurpose.Caption = "Purpose"
+        Me.GridColumnPurpose.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnPurpose.FieldName = "note"
+        Me.GridColumnPurpose.MaxWidth = 250
         Me.GridColumnPurpose.Name = "GridColumnPurpose"
         Me.GridColumnPurpose.Visible = True
         Me.GridColumnPurpose.VisibleIndex = 3
+        Me.GridColumnPurpose.Width = 250
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumnDateCreated
         '
@@ -301,10 +315,6 @@ Partial Class FormCashAdvanceReport
         Me.GridColumnCOA.Visible = True
         Me.GridColumnCOA.VisibleIndex = 9
         '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
-        '
         'GridColumnCOADesc
         '
         Me.GridColumnCOADesc.Caption = "COA Expense Description"
@@ -316,12 +326,19 @@ Partial Class FormCashAdvanceReport
         '
         'GridColumnCoaExpense
         '
+        Me.GridColumnCoaExpense.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCoaExpense.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnCoaExpense.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.GridColumnCoaExpense.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCoaExpense.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnCoaExpense.Caption = "Expense"
         Me.GridColumnCoaExpense.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnCoaExpense.FieldName = "coa_expense"
+        Me.GridColumnCoaExpense.MinWidth = 80
         Me.GridColumnCoaExpense.Name = "GridColumnCoaExpense"
         Me.GridColumnCoaExpense.Visible = True
         Me.GridColumnCoaExpense.VisibleIndex = 11
+        Me.GridColumnCoaExpense.Width = 120
         '
         'GridColumnExpense
         '
@@ -329,10 +346,12 @@ Partial Class FormCashAdvanceReport
         Me.GridColumnExpense.DisplayFormat.FormatString = "N2"
         Me.GridColumnExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnExpense.FieldName = "expense"
+        Me.GridColumnExpense.MinWidth = 100
         Me.GridColumnExpense.Name = "GridColumnExpense"
         Me.GridColumnExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "expense", "{0:N2}")})
         Me.GridColumnExpense.Visible = True
         Me.GridColumnExpense.VisibleIndex = 12
+        Me.GridColumnExpense.Width = 100
         '
         'GridColumnAdvance
         '
