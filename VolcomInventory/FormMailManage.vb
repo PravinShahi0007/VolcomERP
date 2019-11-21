@@ -43,7 +43,8 @@
             INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
-            WHERE sp.`id_report_status`='6' AND c.id_comp_group='" + id_comp_group + "'
+            WHERE sp.`id_report_status`='6' AND c.id_comp_group='" + id_comp_group + "' 
+            " + cond + "
             GROUP BY sp.`id_sales_pos` 
             ORDER BY id_sales_pos ASC "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
