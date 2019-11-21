@@ -53,6 +53,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPODesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOPaymentType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPODPAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDPAmountVAT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,8 +61,8 @@ Partial Class FormInvoiceFGPO
         Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
         Me.BCreateDP = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GV = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPayment = New DevExpress.XtraGrid.GridControl()
+        Me.GVPayment = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +73,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreatePayment = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendorPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -97,8 +99,8 @@ Partial Class FormInvoiceFGPO
         CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCDPFGPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GV, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -338,7 +340,7 @@ Partial Class FormInvoiceFGPO
         '
         'GVDPFGPO
         '
-        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GCDPListFGPODPAmount, Me.GridColumnDPAmountVAT, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
+        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GridColumn18, Me.GCDPListFGPODPAmount, Me.GridColumnDPAmountVAT, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
         Me.GVDPFGPO.GridControl = Me.GCDPFGPO
         Me.GVDPFGPO.Name = "GVDPFGPO"
         Me.GVDPFGPO.OptionsView.ShowGroupPanel = False
@@ -353,6 +355,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOCheck.Name = "GCDPListFGPOCheck"
         Me.GCDPListFGPOCheck.Visible = True
         Me.GCDPListFGPOCheck.VisibleIndex = 0
+        Me.GCDPListFGPOCheck.Width = 92
         '
         'RICECheck
         '
@@ -376,7 +379,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPONumber.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPONumber.Visible = True
         Me.GCDPListFGPONumber.VisibleIndex = 3
-        Me.GCDPListFGPONumber.Width = 92
+        Me.GCDPListFGPONumber.Width = 113
         '
         'GCDPListFGPOVendorCode
         '
@@ -386,7 +389,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendorCode.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOVendorCode.Visible = True
         Me.GCDPListFGPOVendorCode.VisibleIndex = 1
-        Me.GCDPListFGPOVendorCode.Width = 76
+        Me.GCDPListFGPOVendorCode.Width = 93
         '
         'GCDPListFGPOVendor
         '
@@ -396,7 +399,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendor.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOVendor.Visible = True
         Me.GCDPListFGPOVendor.VisibleIndex = 2
-        Me.GCDPListFGPOVendor.Width = 178
+        Me.GCDPListFGPOVendor.Width = 220
         '
         'GCDPListFGPODesign
         '
@@ -406,7 +409,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODesign.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPODesign.Visible = True
         Me.GCDPListFGPODesign.VisibleIndex = 4
-        Me.GCDPListFGPODesign.Width = 208
+        Me.GCDPListFGPODesign.Width = 257
         '
         'GCDPListFGPOPaymentType
         '
@@ -416,7 +419,22 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOPaymentType.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOPaymentType.Visible = True
         Me.GCDPListFGPOPaymentType.VisibleIndex = 5
-        Me.GCDPListFGPOPaymentType.Width = 90
+        Me.GCDPListFGPOPaymentType.Width = 111
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Qty"
+        Me.GridColumn18.DisplayFormat.FormatString = "N0"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "qty"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 7
+        Me.GridColumn18.Width = 92
         '
         'GCDPListFGPODPAmount
         '
@@ -432,8 +450,8 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODPAmount.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPODPAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount", "{0:N2}")})
         Me.GCDPListFGPODPAmount.Visible = True
-        Me.GCDPListFGPODPAmount.VisibleIndex = 7
-        Me.GCDPListFGPODPAmount.Width = 212
+        Me.GCDPListFGPODPAmount.VisibleIndex = 8
+        Me.GCDPListFGPODPAmount.Width = 233
         '
         'GridColumnDPAmountVAT
         '
@@ -449,7 +467,8 @@ Partial Class FormInvoiceFGPO
         Me.GridColumnDPAmountVAT.OptionsColumn.AllowEdit = False
         Me.GridColumnDPAmountVAT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount_vat", "{0:N2}")})
         Me.GridColumnDPAmountVAT.Visible = True
-        Me.GridColumnDPAmountVAT.VisibleIndex = 8
+        Me.GridColumnDPAmountVAT.VisibleIndex = 9
+        Me.GridColumnDPAmountVAT.Width = 126
         '
         'GCDPListFGPOAmount
         '
@@ -466,7 +485,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
         Me.GCDPListFGPOAmount.Visible = True
         Me.GCDPListFGPOAmount.VisibleIndex = 6
-        Me.GCDPListFGPOAmount.Width = 226
+        Me.GCDPListFGPOAmount.Width = 279
         '
         'GCDPListFGPOQty
         '
@@ -510,29 +529,30 @@ Partial Class FormInvoiceFGPO
         '
         'XTPPayment
         '
-        Me.XTPPayment.Controls.Add(Me.GridControl2)
+        Me.XTPPayment.Controls.Add(Me.GCPayment)
+        Me.XTPPayment.Controls.Add(Me.BCreatePayment)
         Me.XTPPayment.Name = "XTPPayment"
         Me.XTPPayment.Size = New System.Drawing.Size(1155, 558)
         Me.XTPPayment.Text = "Payment"
         '
-        'GridControl2
+        'GCPayment
         '
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl2.MainView = Me.GV
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1155, 558)
-        Me.GridControl2.TabIndex = 2
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GV})
+        Me.GCPayment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPayment.Location = New System.Drawing.Point(0, 0)
+        Me.GCPayment.MainView = Me.GVPayment
+        Me.GCPayment.Name = "GCPayment"
+        Me.GCPayment.Size = New System.Drawing.Size(1155, 521)
+        Me.GCPayment.TabIndex = 2
+        Me.GCPayment.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayment})
         '
-        'GV
+        'GVPayment
         '
-        Me.GV.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
-        Me.GV.GridControl = Me.GridControl2
-        Me.GV.Name = "GV"
-        Me.GV.OptionsBehavior.Editable = False
-        Me.GV.OptionsBehavior.ReadOnly = True
-        Me.GV.OptionsView.ShowGroupPanel = False
+        Me.GVPayment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
+        Me.GVPayment.GridControl = Me.GCPayment
+        Me.GVPayment.Name = "GVPayment"
+        Me.GVPayment.OptionsBehavior.Editable = False
+        Me.GVPayment.OptionsBehavior.ReadOnly = True
+        Me.GVPayment.OptionsView.ShowGroupPanel = False
         '
         'GridColumn14
         '
@@ -638,6 +658,25 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn38.VisibleIndex = 1
         Me.GridColumn38.Width = 171
         '
+        'BCreatePayment
+        '
+        Me.BCreatePayment.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreatePayment.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePayment.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePayment.Appearance.Options.UseBackColor = True
+        Me.BCreatePayment.Appearance.Options.UseFont = True
+        Me.BCreatePayment.Appearance.Options.UseForeColor = True
+        Me.BCreatePayment.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePayment.Location = New System.Drawing.Point(0, 521)
+        Me.BCreatePayment.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePayment.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePayment.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePayment.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreatePayment.Name = "BCreatePayment"
+        Me.BCreatePayment.Size = New System.Drawing.Size(1155, 37)
+        Me.BCreatePayment.TabIndex = 20
+        Me.BCreatePayment.Text = "Create BPL"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SLEVendorPayment)
@@ -727,8 +766,8 @@ Partial Class FormInvoiceFGPO
         CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCDPFGPO.ResumeLayout(False)
         Me.XTPPayment.ResumeLayout(False)
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GV, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -786,8 +825,8 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumnDPAmountVAT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GV As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPayment As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPayment As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
@@ -798,4 +837,6 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCreatePayment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
