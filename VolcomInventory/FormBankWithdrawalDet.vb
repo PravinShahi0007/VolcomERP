@@ -150,13 +150,21 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
 
     Sub load_det()
         Dim query As String = ""
-        If report_mark_type = "139" Then
-            query = "SELECT pyd.*,po.purc_order_number as number FROM tb_payment_det pyd INNER JOIN tb_purc_order po ON po.id_purc_order=pyd.id_report WHERE pyd.id_payment='" & id_payment & "'"
-        ElseIf report_mark_type = "157" Then
-            query = "SELECT pyd.*,e.number AS `number` FROM tb_payment_det pyd INNER JOIN tb_item_expense e ON e.id_item_expense=pyd.id_report WHERE pyd.id_payment='" + id_payment + "'"
-        ElseIf report_mark_type = "189" Then
-            query = "SELECT pyd.*,po.number as number FROM tb_payment_det pyd INNER JOIN tb_pn_fgpo po ON po.id_pn_fgpo=pyd.id_report WHERE pyd.id_payment='" & id_payment & "'"
-        End If
+        'If report_mark_type = "139" Then
+        '    query = "SELECT pyd.*,po.purc_order_number as number FROM tb_payment_det pyd INNER JOIN tb_purc_order po ON po.id_purc_order=pyd.id_report WHERE pyd.id_payment='" & id_payment & "'"
+        'ElseIf report_mark_type = "157" Then
+        '    query = "SELECT pyd.*,e.number AS `number` FROM tb_payment_det pyd INNER JOIN tb_item_expense e ON e.id_item_expense=pyd.id_report WHERE pyd.id_payment='" + id_payment + "'"
+        'ElseIf report_mark_type = "189" Then
+        '    query = "SELECT pyd.*,po.number as number FROM tb_payment_det pyd INNER JOIN tb_pn_fgpo po ON po.id_pn_fgpo=pyd.id_report WHERE pyd.id_payment='" & id_payment & "'"
+        'End If
+
+        query = "SELECT ''AS `no`,pnd.id_pn_det,pnd.id_report,pnd.report_mark_type,comp.comp_number,pnd.number,pnd.vendor
+,pnd.id_comp,pnd.id_acc,acc.acc_name,acc.acc_description,pnd.id_dc,pnd.total_pay,pnd.value,pnd.balance_due,pnd.note
+FROM tb_pn_det pnd
+INNER JOIN tb_a_acc acc ON acc.id_acc=pnd.id_acc
+INNER JOIN tb_m_comp comp ON comp.id_comp=pnd.id_comp
+WHERE pnd.id_pn='" & id_payment & "'"
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         calculate_amount()
@@ -432,5 +440,25 @@ VALUES('189','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.To
         FormReportMark.is_view = is_view
         FormReportMark.id_report = id_payment
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If GVList.RowCount > 0 And GVList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this detail ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVList.DeleteSelectedRows()
+                GCList.RefreshDataSource()
+                GVList.RefreshData()
+                calculate_amount()
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
