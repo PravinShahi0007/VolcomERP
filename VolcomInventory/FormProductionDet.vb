@@ -10,7 +10,9 @@
     '
     Public is_no_cost As String = "-1"
     '
-    Private Sub FormProductionDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Dim is_submit As String = "-1"
+    '
+    Sub load_form()
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
         '
@@ -32,7 +34,6 @@
             TEPONumber.Text = "[auto generate]"
             TEVendorName.Text = "[auto generate]"
             '
-            XTPWorkOrder.PageVisible = False
             XTPListWO.PageVisible = False
             XTPMRS.PageVisible = False
             DDBPrint.Visible = False
@@ -54,6 +55,8 @@
                 BPickPD.Enabled = True
             End If
             check_design_vendor()
+            '
+            BCancelFGPO.Visible = False
         Else
             'edit
             Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number`,po.reff_number FROM tb_prod_order po
@@ -64,6 +67,7 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             id_report_status_g = data.Rows(0)("id_report_status").ToString
+            is_submit = data.Rows(0)("is_submit").ToString
 
             TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
             TEVendorName.Text = data.Rows(0)("comp_number").ToString & " - " & data.Rows(0)("comp_name").ToString
@@ -97,12 +101,18 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             view_list_purchase()
             view_bom()
             allow_status()
-            XTPWorkOrder.PageVisible = True
+
             XTPListWO.PageVisible = True
             XTPMRS.PageVisible = True
             'wo
             view_wo()
             view_mrs()
+            '
+            If id_report_status_g = "6" Or id_report_status_g = "5" Then
+                BCancelFGPO.Visible = False
+            Else
+                BCancelFGPO.Visible = True
+            End If
         End If
         '
         If is_no_cost = "1" Then
@@ -112,6 +122,10 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             XTPBOM.PageVisible = True
             XTPListWO.PageVisible = True
         End If
+    End Sub
+
+    Private Sub FormProductionDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
 
     Sub check_design_vendor()
@@ -302,9 +316,7 @@ GROUP BY m_ovh_p.id_ovh_price"
                         End If
                     Next
                 End If
-                'insert who prepared
-                insert_who_prepared("22", last_id, id_user)
-                'end insert who prepared
+
                 increase_inc_prod("1")
                 '
                 add_wo(last_id)
@@ -321,6 +333,7 @@ GROUP BY m_ovh_p.id_ovh_price"
             Else
                 query = String.Format("UPDATE tb_prod_order SET id_prod_demand_design='{0}',prod_order_number='{1}',id_po_type='{2}',id_term_production='{3}',prod_order_note='{4}',id_delivery='{6}',prod_order_lead_time='{7}',reff_number='{8}' WHERE id_prod_order='{5}'", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue, LECategory.EditValue, MENote.Text, id_prod_order, id_delivery, TELeadTime.Text, addSlashes(TEReff.Text))
                 execute_non_query(query, True, "", "", "", "")
+
                 'update mark
                 query = String.Format("UPDATE tb_report_mark SET info='{0}' WHERE id_report='{1}' AND report_mark_type='22'", LEPOType.Text, id_prod_order)
                 execute_non_query(query, True, "", "", "", "")
@@ -405,9 +418,16 @@ GROUP BY m_ovh_p.id_ovh_price"
     'End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_prod_order
-        FormReportMark.report_mark_type = "22"
-        FormReportMark.ShowDialog()
+        If BMark.Text = "Mark" Then
+            FormReportMark.id_report = id_prod_order
+            FormReportMark.report_mark_type = "22"
+            FormReportMark.ShowDialog()
+        ElseIf BMark.Text = "Submit" Then
+            submit_who_prepared("22", id_prod_order, id_user)
+            Dim query As String = "UPDATE tb_prod_order SET is_submit='1' WHERE id_purc_order='" & id_prod_order & "'"
+            execute_non_query(query, True, "", "", "", "")
+            load_form()
+        End If
     End Sub
 
     Private Sub BAddWO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAddWO.Click
@@ -416,29 +436,25 @@ GROUP BY m_ovh_p.id_ovh_price"
         FormProductionWO.ShowDialog()
     End Sub
     Sub allow_status()
-        If check_edit_report_status(id_report_status_g, "22", id_prod_order) Then
-            BSave.Enabled = True
-            GridColumnBOM.OptionsColumn.AllowEdit = True
-            '
-            BPickDesign.Enabled = False
-            BPickPD.Enabled = False
-            BSaveWO.Visible = True
-        Else
+        If is_submit.ToString = "1" Then
             BSave.Enabled = False
             GridColumnBOM.OptionsColumn.AllowEdit = False
             '
             BPickDesign.Enabled = False
             BPickPD.Enabled = False
             BSaveWO.Visible = False
-        End If
+            '
+            BMark.Text = "Mark"
+        Else
+            BSave.Enabled = True
+            GridColumnBOM.OptionsColumn.AllowEdit = True
+            '
+            BPickDesign.Enabled = False
+            BPickPD.Enabled = False
+            BSaveWO.Visible = True
 
-        'If check_print_report_status(id_report_status_g) Then
-        '    'BPrint.Enabled = True
-        '    'DDBPrint.Enabled = True
-        'Else
-        '    'BPrint.Enabled = False
-        '    'DDBPrint.Enabled = False
-        'End If
+            BMark.Text = "Submit"
+        End If
     End Sub
     '======================= begin WO ===============================
     Sub view_wo()
@@ -675,10 +691,14 @@ GROUP BY m_ovh_p.id_ovh_price"
         ReportProductionWO.id_po = id_prod_order
         ReportProductionWO.is_po_print = "1"
 
-        If check_print_report_status(id_report_status_g) Then
-            ReportProductionWO.is_pre = "-1"
+        If Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
+            warningCustom("Can't print, please complete all approval on system first")
         Else
-            ReportProductionWO.is_pre = "1"
+            If check_print_report_status(id_report_status_g) Then
+                ReportProductionWO.is_pre = "-1"
+            Else
+                ReportProductionWO.is_pre = "1"
+            End If
         End If
 
         Dim Report As New ReportProductionWO()
@@ -831,5 +851,24 @@ GROUP BY m_ovh_p.id_ovh_price"
         FormViewProdDemand.is_for_production = True
         FormViewProdDemand.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCancelFGPO_Click(sender As Object, e As EventArgs) Handles BCancelFGPO.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel this FGPO ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                FormReportMark.id_report = id_prod_order
+                FormReportMark.report_mark_type = "22"
+                FormReportMark.change_status("5")
+                Close()
+            Catch ex As Exception
+                DevExpress.XtraEditors.XtraMessageBox.Show(ex.ToString, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
