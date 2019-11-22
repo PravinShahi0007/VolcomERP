@@ -4128,6 +4128,9 @@ Public Class FormImportExcel
                         PBC.PerformStep()
                         PBC.Update()
                     Next
+                    FormEmpHoliday.load_year()
+                    FormEmpHoliday.SLEYear.EditValue = execute_query("SELECT YEAR(MAX(emp_holiday_date)) AS year FROM tb_emp_holiday", 0, True, "", "", "", "")
+                    FormEmpHoliday.view_holiday()
                     Close()
                 Else
                     stopCustom("No data available.")

@@ -66,7 +66,12 @@ Partial Class FormBankWithdrawalDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,15 +81,10 @@ Partial Class FormBankWithdrawalDet
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPJournal = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPJournal = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDraft = New DevExpress.XtraGrid.GridControl()
         Me.GVDraft = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNoDraft = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -134,9 +134,9 @@ Partial Class FormBankWithdrawalDet
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
-        Me.XTPJournal.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
+        Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -588,12 +588,50 @@ Partial Class FormBankWithdrawalDet
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID Det"
+        Me.GridColumn4.FieldName = "id_pn_det"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
         'GridColumnIdRec
         '
         Me.GridColumnIdRec.Caption = "ID Report"
         Me.GridColumnIdRec.FieldName = "id_report"
         Me.GridColumnIdRec.Name = "GridColumnIdRec"
         Me.GridColumnIdRec.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Report Mark Type"
+        Me.GridColumn3.FieldName = "report_mark_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "No"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 64
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "COA"
+        Me.GridColumn12.FieldName = "acc_name"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        Me.GridColumn12.Width = 57
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "CC"
+        Me.GridColumn15.FieldName = "comp_code"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
+        Me.GridColumn15.Width = 132
         '
         'GridColumnNumber
         '
@@ -697,13 +735,6 @@ Partial Class FormBankWithdrawalDet
         Me.XTPPayment.Size = New System.Drawing.Size(939, 250)
         Me.XTPPayment.Text = "Payment"
         '
-        'XTPJournal
-        '
-        Me.XTPJournal.Controls.Add(Me.GCDraft)
-        Me.XTPJournal.Name = "XTPJournal"
-        Me.XTPJournal.Size = New System.Drawing.Size(939, 250)
-        Me.XTPJournal.Text = "Draft Journal"
-        '
         'PanelControl5
         '
         Me.PanelControl5.Controls.Add(Me.BtnDelete)
@@ -734,41 +765,12 @@ Partial Class FormBankWithdrawalDet
         Me.BtnAdd.TabIndex = 2
         Me.BtnAdd.Text = "Add"
         '
-        'GridColumn3
+        'XTPJournal
         '
-        Me.GridColumn3.Caption = "Report Mark Type"
-        Me.GridColumn3.FieldName = "report_mark_type"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "ID Det"
-        Me.GridColumn4.FieldName = "id_pn_det"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "No"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 64
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "COA"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 57
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "CC"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 2
-        Me.GridColumn15.Width = 132
+        Me.XTPJournal.Controls.Add(Me.GCDraft)
+        Me.XTPJournal.Name = "XTPJournal"
+        Me.XTPJournal.Size = New System.Drawing.Size(939, 250)
+        Me.XTPJournal.Text = "Draft Journal"
         '
         'GCDraft
         '
@@ -926,9 +928,9 @@ Partial Class FormBankWithdrawalDet
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPPayment.ResumeLayout(False)
-        Me.XTPJournal.ResumeLayout(False)
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
+        Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

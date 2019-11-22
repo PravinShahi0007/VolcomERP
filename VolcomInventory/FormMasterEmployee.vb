@@ -164,8 +164,8 @@
             'emp
             Dim id_employee As String = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
             Dim dtemp As DataTable = execute_query("SELECT * FROM tb_m_employee WHERE id_employee=" + id_employee + "", -1, True, "", "", "", "")
-            Dim qinsemp As String = "INSERT INTO tb_m_employee(id_employee, id_sex, id_employee_active, employee_code, employee_name, employee_nick_name) 
-            VALUES('" + GVEmployee.GetFocusedRowCellValue("id_employee").ToString + "','" + GVEmployee.GetFocusedRowCellValue("id_sex").ToString + "', '" + GVEmployee.GetFocusedRowCellValue("id_employee_active").ToString + "', '" + addSlashes(GVEmployee.GetFocusedRowCellValue("employee_code").ToString) + "','" + addSlashes(GVEmployee.GetFocusedRowCellValue("employee_name").ToString) + "', '" + addSlashes(GVEmployee.GetFocusedRowCellValue("employee_nick_name").ToString) + "'); "
+            Dim qinsemp As String = "INSERT INTO tb_m_employee(id_employee, id_sex, id_employee_active, employee_code, employee_name, employee_nick_name, email_external) 
+            VALUES('" + GVEmployee.GetFocusedRowCellValue("id_employee").ToString + "','" + GVEmployee.GetFocusedRowCellValue("id_sex").ToString + "', '" + GVEmployee.GetFocusedRowCellValue("id_employee_active").ToString + "', '" + addSlashes(GVEmployee.GetFocusedRowCellValue("employee_code").ToString) + "','" + addSlashes(GVEmployee.GetFocusedRowCellValue("employee_name").ToString) + "', '" + addSlashes(GVEmployee.GetFocusedRowCellValue("employee_nick_name").ToString) + "', '" + addSlashes(GVEmployee.GetFocusedRowCellValue("email_external").ToString) + "'); "
             execute_non_query(qinsemp, False, host, username, pass, db)
             SplashScreenManager1.CloseWaitForm()
             infoCustom("Clone data success")

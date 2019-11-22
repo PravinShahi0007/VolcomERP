@@ -61,6 +61,7 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnEmpPosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpSts = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDeductType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDeduct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDeductCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -225,7 +226,7 @@ Partial Class FormEmpPayrollDeduction
         '
         'BBJamsostek
         '
-        Me.BBJamsostek.Caption = "BPJSTK && BPJS Kesehatan"
+        Me.BBJamsostek.Caption = "BPJSTK"
         Me.BBJamsostek.Id = 12
         Me.BBJamsostek.Name = "BBJamsostek"
         '
@@ -319,7 +320,7 @@ Partial Class FormEmpPayrollDeduction
         '
         'GVDeduction
         '
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCCheck, Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GCIsOfficePayroll, Me.GridColumnGroup, Me.GridColumnDept, Me.GCSubDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpSts, Me.GridColumnDeductType, Me.GridColumnDeductCategory, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnNote})
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCCheck, Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GCIsOfficePayroll, Me.GridColumnGroup, Me.GridColumnDept, Me.GCSubDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpSts, Me.GridColumnDeductType, Me.GridColumnIdDeduct, Me.GridColumnDeductCategory, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnNote})
         Me.GVDeduction.GridControl = Me.GCDeduction
         Me.GVDeduction.GroupCount = 3
         Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", Me.GridColumnValue, "{0:N0}")})
@@ -445,6 +446,12 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnDeductType.OptionsColumn.AllowEdit = False
         Me.GridColumnDeductType.Visible = True
         Me.GridColumnDeductType.VisibleIndex = 5
+        '
+        'GridColumnIdDeduct
+        '
+        Me.GridColumnIdDeduct.FieldName = "id_salary_deduction"
+        Me.GridColumnIdDeduct.Name = "GridColumnIdDeduct"
+        Me.GridColumnIdDeduct.OptionsColumn.AllowEdit = False
         '
         'GridColumnDeductCategory
         '
@@ -576,4 +583,5 @@ Partial Class FormEmpPayrollDeduction
     Friend WithEvents GridColumnGroup As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCheck As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnIdDeduct As DevExpress.XtraGrid.Columns.GridColumn
 End Class

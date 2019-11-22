@@ -684,6 +684,7 @@ Partial Public Class ReportEmpPayrollReportPajak
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
         Me.ReportFooter.HeightF = 100.0!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable1

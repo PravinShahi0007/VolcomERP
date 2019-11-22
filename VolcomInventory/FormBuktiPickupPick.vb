@@ -97,6 +97,7 @@
                 If GVList.IsValidRowHandle(i) Then
                     data.Rows.Add(
                         GVList.GetRowCellValue(i, "id_pl_sales_order_del"),
+                        0,
                         GVList.GetRowCellValue(i, "pl_sales_order_del_number"),
                         GVList.GetRowCellValue(i, "combine_number"),
                         GVList.GetRowCellValue(i, "wh"),

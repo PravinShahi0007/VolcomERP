@@ -27,6 +27,7 @@
             Dim data As DataTable = New DataTable
 
             data.Columns.Add("id_pl_sales_order_del", GetType(Integer))
+            data.Columns.Add("no", GetType(Integer))
             data.Columns.Add("pl_sales_order_del_number", GetType(String))
             data.Columns.Add("combine_number", GetType(String))
             data.Columns.Add("wh", GetType(String))
@@ -65,7 +66,7 @@
 
             'detail
             Dim query_det As String = "
-                SELECT a.id_pl_sales_order_del, a.pl_sales_order_del_number, IFNULL(comb.combine_number, '-') AS combine_number, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS wh, CONCAT(d.comp_number, ' - ', d.comp_name) AS store, dg.comp_group, b.sales_order_number, b.sales_order_ol_shop_number, cat.so_status, IFNULL(det.total, 0) AS total, a.pl_sales_order_del_date
+                SELECT a.id_pl_sales_order_del, 0 AS no, a.pl_sales_order_del_number, IFNULL(comb.combine_number, '-') AS combine_number, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS wh, CONCAT(d.comp_number, ' - ', d.comp_name) AS store, dg.comp_group, b.sales_order_number, b.sales_order_ol_shop_number, cat.so_status, IFNULL(det.total, 0) AS total, a.pl_sales_order_del_date
                 FROM tb_del_pickup_det AS pickup_det
                 LEFT JOIN tb_pl_sales_order_del AS a ON pickup_det.id_pl_sales_order_del = a.id_pl_sales_order_del
                 INNER JOIN tb_sales_order b ON a.id_sales_order = b.id_sales_order
@@ -332,5 +333,13 @@
 
             Close()
         End If
+    End Sub
+
+    Private Sub GVList_RowCountChanged(sender As Object, e As EventArgs) Handles GVList.RowCountChanged
+        For i = 0 To GVList.RowCount - 1
+            If GVList.IsValidRowHandle(i) Then
+                GVList.SetRowCellValue(i, "no", i + 1)
+            End If
+        Next
     End Sub
 End Class
