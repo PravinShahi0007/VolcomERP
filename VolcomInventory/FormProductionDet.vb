@@ -678,89 +678,80 @@ GROUP BY m_ovh_p.id_ovh_price"
     End Sub
 
     Private Sub BarLargeButtonItem1_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarLargeButtonItem1.ItemClick
-        'ReportProduction.id_prod_order = id_prod_order
-        'If check_print_report_status(id_report_status_g) Then
-        '    ReportProduction.is_pre = "-1"
-        'Else
-        '    ReportProduction.is_pre = "1"
-        'End If
-
-        'Dim Report As New ReportProduction()
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        ReportProductionWO.id_po = id_prod_order
-        ReportProductionWO.is_po_print = "1"
-
         If Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
+            ReportProductionWO.id_po = id_prod_order
+            ReportProductionWO.is_po_print = "1"
+
             If check_print_report_status(id_report_status_g) Then
                 ReportProductionWO.is_pre = "-1"
             Else
                 ReportProductionWO.is_pre = "1"
             End If
-        End If
 
-        Dim Report As New ReportProductionWO()
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+            Dim Report As New ReportProductionWO()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
     End Sub
 
     Private Sub BarButtonItem2_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
-        'print(GCBOM, "Bill Of Material - " & TEDesign.Text & " - " & TEDesignCode.Text)
-        '... 
-        ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVBOM.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        ReportProdBOM.id_prod_order = id_prod_order
-        ReportProdBOM.dt = GCBOM.DataSource
-
-        If check_print_report_status(id_report_status_g) Then
-            ReportProdBOM.is_pre = "-1"
+        If Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
+            warningCustom("Can't print, please complete all approval on system first")
         Else
-            ReportProdBOM.is_pre = "1"
-        End If
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVBOM.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            ReportProdBOM.id_prod_order = id_prod_order
+            ReportProdBOM.dt = GCBOM.DataSource
 
-        Dim Report As New ReportProdBOM()
-        Report.GVBOM.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        
-        ' Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
-        Report.LCode.Text = TEDesignCode.Text
-        Report.LDesign.Text = TEDesign.Text
-        Report.LPONo.Text = TEPONumber.Text
-        Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
-        Report.LBOMType.Text = LECategory.Text
-        Report.LNote.Text = MEBOMNote.Text
-        Report.LVendor.Text = TEVendorName.Text
-        'cost here
-        Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
-        Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
-        Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N0")
-        Report.LUnitCost.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue)).ToString("N2")
-        '
-        ReportStyleGridview(Report.GVBOM)
-        '
-        Report.GVBOM.AppearancePrint.Row.Font = New Font("Tahoma", 6, FontStyle.Regular)
+            If check_print_report_status(id_report_status_g) Then
+                ReportProdBOM.is_pre = "-1"
+            Else
+                ReportProdBOM.is_pre = "1"
+            End If
 
-        Dim query As String = "SELECT "
-        query += " m_p.id_design, bom.id_bom, bom.id_product, bom.is_default, bom.bom_name, bom.id_currency, bom.kurs, bom.id_term_production"
-        query += " FROM tb_bom bom"
-        query += " INNER JOIN tb_m_product m_p ON m_p.id_product=bom.id_product"
-        query += " WHERE m_p.id_design='" & get_prod_demand_design_x(id_prod_demand_design, "3") & "' AND bom.is_default='1' "
-        query += " LIMIT 1"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            Report.LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
-            'Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs")).ToString("N2")
-            'Report.LNote.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue) * data.Rows(0)("kurs")).ToString("N2")
+            Dim Report As New ReportProdBOM()
+            Report.GVBOM.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            ' Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
+            Report.LCode.Text = TEDesignCode.Text
+            Report.LDesign.Text = TEDesign.Text
+            Report.LPONo.Text = TEPONumber.Text
+            Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
+            Report.LBOMType.Text = LECategory.Text
+            Report.LNote.Text = MEBOMNote.Text
+            Report.LVendor.Text = TEVendorName.Text
+            'cost here
+            Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
+            Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
+            Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N0")
+            Report.LUnitCost.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue)).ToString("N2")
+            '
+            ReportStyleGridview(Report.GVBOM)
+            '
+            Report.GVBOM.AppearancePrint.Row.Font = New Font("Tahoma", 6, FontStyle.Regular)
+
+            Dim query As String = "SELECT "
+            query += " m_p.id_design, bom.id_bom, bom.id_product, bom.is_default, bom.bom_name, bom.id_currency, bom.kurs, bom.id_term_production"
+            query += " FROM tb_bom bom"
+            query += " INNER JOIN tb_m_product m_p ON m_p.id_product=bom.id_product"
+            query += " WHERE m_p.id_design='" & get_prod_demand_design_x(id_prod_demand_design, "3") & "' AND bom.is_default='1' "
+            query += " LIMIT 1"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                Report.LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
+                'Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs")).ToString("N2")
+                'Report.LNote.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue) * data.Rows(0)("kurs")).ToString("N2")
+            End If
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         End If
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
     End Sub
 
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
