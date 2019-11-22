@@ -3208,4 +3208,9 @@ GROUP BY pdp.`id_prod_demand_design`"
 </table>"
         Return body_temp
     End Function
+
+    Function email_body_invoice_penjualan(ByVal dtp As DataTable)
+        Dim body_temp As String = ""
+        Return body_temp
+    End Function
 End Class
