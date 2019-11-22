@@ -627,9 +627,24 @@ Public Class FormProduction
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        FormProductionPrint.dt = GCProd.DataSource
-        FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
-        FormProductionPrint.ShowDialog()
+        GVProd.ActiveFilterString = "[is_check]='yes'"
+        Dim is_approved As Boolean = True
+        For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+            If Not check_allow_print(GVProd.GetRowCellValue(i, "id_report_status").ToString, "22", GVProd.GetRowCellValue(i, "id_prod_order").ToString) Then
+                is_approved = False
+            End If
+        Next
+        GVProd.ActiveFilterString = ""
+
+        If is_approved = True Then
+            FormProductionPrint.dt = GCProd.DataSource
+            FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
+            FormProductionPrint.ShowDialog()
+        Else
+            warningCustom("Please complete approval on PO first before create summary.")
+        End If
+
+
     End Sub
 
     Private Sub BFilter_Click(sender As Object, e As EventArgs) Handles BFilter.Click
