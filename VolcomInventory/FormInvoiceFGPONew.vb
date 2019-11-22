@@ -273,7 +273,7 @@ HAVING qty_rec_remaining > 0"
             newRow("inv_number") = ""
             newRow("note") = ""
             TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
-
+            FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
             Close()
         Else
             warningCustom("No receiving")
@@ -319,6 +319,7 @@ WHERE pnd.`id_pn_fgpo`='-1'"
                 newRow("note") = ""
                 TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
             Next
+            FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
             Close()
         Else
             warningCustom("No receiving")

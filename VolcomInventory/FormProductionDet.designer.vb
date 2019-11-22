@@ -127,8 +127,9 @@ Partial Class FormProductionDet
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.BCOP = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancelFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
@@ -1384,6 +1385,7 @@ Partial Class FormProductionDet
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BCancelFGPO)
         Me.GroupControl3.Controls.Add(Me.BCOP)
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
         Me.GroupControl3.Controls.Add(Me.DDBPrint)
@@ -1397,17 +1399,16 @@ Partial Class FormProductionDet
         Me.GroupControl3.Size = New System.Drawing.Size(971, 40)
         Me.GroupControl3.TabIndex = 52
         '
-        'BCOP
+        'BCancelFGPO
         '
-        Me.BCOP.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCOP.ImageIndex = 11
-        Me.BCOP.ImageList = Me.ImgBut
-        Me.BCOP.Location = New System.Drawing.Point(346, 2)
-        Me.BCOP.Name = "BCOP"
-        Me.BCOP.Size = New System.Drawing.Size(170, 36)
-        Me.BCOP.TabIndex = 5
-        Me.BCOP.Text = "Get Cost of Production"
-        Me.BCOP.Visible = False
+        Me.BCancelFGPO.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelFGPO.ImageIndex = 1
+        Me.BCancelFGPO.ImageList = Me.ImgBut
+        Me.BCancelFGPO.Location = New System.Drawing.Point(105, 2)
+        Me.BCancelFGPO.Name = "BCancelFGPO"
+        Me.BCancelFGPO.Size = New System.Drawing.Size(112, 36)
+        Me.BCancelFGPO.TabIndex = 16
+        Me.BCancelFGPO.Text = "Cancel FGPO"
         '
         'ImgBut
         '
@@ -1425,6 +1426,18 @@ Partial Class FormProductionDet
         Me.ImgBut.Images.SetKeyName(9, "18_24x24.png")
         Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
         Me.ImgBut.Images.SetKeyName(11, "document_32.png")
+        '
+        'BCOP
+        '
+        Me.BCOP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCOP.ImageIndex = 11
+        Me.BCOP.ImageList = Me.ImgBut
+        Me.BCOP.Location = New System.Drawing.Point(346, 2)
+        Me.BCOP.Name = "BCOP"
+        Me.BCOP.Size = New System.Drawing.Size(170, 36)
+        Me.BCOP.TabIndex = 5
+        Me.BCOP.Text = "Get Cost of Production"
+        Me.BCOP.Visible = False
         '
         'BtnAttachment
         '
@@ -2694,4 +2707,5 @@ Partial Class FormProductionDet
     Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents TEReff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BCancelFGPO As DevExpress.XtraEditors.SimpleButton
 End Class

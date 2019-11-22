@@ -107,7 +107,7 @@
     Sub allow_status_po()
         Dim query As String = "SELECT id_prod_order FROM tb_prod_order po
                                 INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-                                WHERE (po.`id_report_status`!= 1 AND po.`id_report_status`!= 5)
+                                WHERE po.`id_report_status`!= 5
                                 AND pdd.id_design='" & id_design & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
