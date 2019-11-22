@@ -891,6 +891,12 @@
     <Compile Include="FormEmpBPJSKesehatanDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpBPJSKesehatanPick.Designer.vb">
+      <DependentUpon>FormEmpBPJSKesehatanPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatanPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -7746,6 +7752,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpBPJSKesehatanDet.resx">
       <DependentUpon>FormEmpBPJSKesehatanDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpBPJSKesehatanPick.resx">
+      <DependentUpon>FormEmpBPJSKesehatanPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>

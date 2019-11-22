@@ -317,6 +317,9 @@
         ElseIf report_mark_type = "221" Then
             'debit note
             FormDebitNoteDet.Close()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            FormEmpBPJSKesehatanDet.Close()
         End If
     End Sub
     Sub show()
@@ -1120,6 +1123,11 @@
             FormDebitNoteDet.id_dn = id_report
             FormDebitNoteDet.is_view = "1"
             FormDebitNoteDet.ShowDialog()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            FormEmpBPJSKesehatanDet.id = id_report
+            FormEmpBPJSKesehatanDet.is_approve = "1"
+            FormEmpBPJSKesehatanDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2043,6 +2051,12 @@
             field_id = "id_debit_note"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            table_name = "tb_pay_bpjs_kesehatan"
+            field_id = "id_pay_bpjs_kesehatan"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2486,6 +2500,16 @@
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_design = "Date: " + datax.Rows(0)("ot_date").ToString
+                    End If
+                ElseIf report_mark_type = "223" Then
+                    'bpjs kesehatan
+                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period, IF(id_payroll_type = 1, 'Organic', 'Daily Worker') AS payroll_type
+                    FROM tb_emp_payroll
+                    WHERE id_payroll = (SELECT id_payroll FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = " + id_report + ")"
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("payroll_type").ToString
+                        info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
                 End If
             End If
