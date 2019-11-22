@@ -40,12 +40,12 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,21 +265,21 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         'XLPeriod
         '
         Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.0!)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.00002!)
         Me.XLPeriod.Name = "XLPeriod"
         Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLPeriod.SizeF = New System.Drawing.SizeF(300.0!, 16.0!)
+        Me.XLPeriod.SizeF = New System.Drawing.SizeF(400.0!, 16.0!)
         Me.XLPeriod.StylePriority.UseFont = False
         '
-        'XrLabel2
+        'XLTitle
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 31.99998!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(300.0!, 16.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.Text = "REKAP BPJS KESEHATAN PER DEPARTEMEN"
+        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(0!, 31.99998!)
+        Me.XLTitle.Name = "XLTitle"
+        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(400.0!, 16.0!)
+        Me.XLTitle.StylePriority.UseFont = False
+        Me.XLTitle.Text = "REKAP BPJS KESEHATAN PER DEPARTEMEN ([type])"
         '
         'XrLabel1
         '
@@ -287,7 +287,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(300.0!, 16.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(400.0!, 16.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.Text = "PT. VOLCOM INDONESIA"
         '
@@ -298,18 +298,6 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'ReportFooter
-        '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-        Me.ReportFooter.HeightF = 25.00001!
-        Me.ReportFooter.Name = "ReportFooter"
-        '
-        'ReportHeader
-        '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XrLabel1, Me.XLPeriod})
-        Me.ReportHeader.HeightF = 80.0!
-        Me.ReportHeader.Name = "ReportHeader"
         '
         'XrPageInfo1
         '
@@ -324,6 +312,19 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
         Me.XrPageInfo1.StylePriority.UseFont = False
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'ReportFooter
+        '
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.ReportFooter.HeightF = 25.00001!
+        Me.ReportFooter.KeepTogether = True
+        Me.ReportFooter.Name = "ReportFooter"
+        '
+        'ReportHeader
+        '
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLTitle, Me.XrLabel1, Me.XLPeriod})
+        Me.ReportHeader.HeightF = 80.0!
+        Me.ReportHeader.Name = "ReportHeader"
         '
         'ReportEmpPayrollReportBPJSKesehatan
         '
@@ -357,7 +358,7 @@ Partial Public Class ReportEmpPayrollReportBPJSKesehatan
     Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XLPeriod As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLTitle As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow

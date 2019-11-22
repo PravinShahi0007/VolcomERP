@@ -49,7 +49,7 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        Dim query As String = "SELECT ump, bpjs_max, bpjs_max_kelas_2 FROM tb_emp_payroll WHERE id_payroll = " + id_payroll
+        Dim query As String = "SELECT ump, bpjs_max, bpjs_max_kelas_2, IF(id_payroll_type = 1, 'Organic', 'Daily Worker') AS payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -75,11 +75,13 @@
 
         report.PrintingSystem.ContinuousPageNumbering = False
 
+        report.XLTitle.Text = report.XLTitle.Text.Replace("[type]", data.Rows(0)("payroll_type").ToUpper)
         report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
 
         report.id_pre = If(id_report_status = "6", "-1", "1")
-        report.id_payroll = id_payroll
+        report.id_report = id_payroll
         report.data = GCAllDepartements.DataSource
+        report.report_mark_type = "192"
 
         report.CreateDocument()
 
@@ -113,8 +115,9 @@
         'report_detail.XLClass2Before.Text = total_class2_before
 
         report_detail.id_pre = If(id_report_status = "6", "-1", "1")
-        report_detail.id_payroll = id_payroll
+        report_detail.id_report = id_payroll
         report_detail.data = GCEmployee.DataSource
+        report_detail.report_mark_type = "192"
 
         report_detail.CreateDocument()
 
