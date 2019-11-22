@@ -226,7 +226,7 @@ Partial Class FormEmpPayrollDeduction
         '
         'BBJamsostek
         '
-        Me.BBJamsostek.Caption = "BPJSTK && BPJS Kesehatan"
+        Me.BBJamsostek.Caption = "BPJSTK"
         Me.BBJamsostek.Id = 12
         Me.BBJamsostek.Name = "BBJamsostek"
         '
