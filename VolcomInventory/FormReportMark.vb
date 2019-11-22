@@ -561,6 +561,9 @@
         ElseIf report_mark_type = "221" Then
             'Debit Note
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_debit_note WHERE id_debit_note = '{0}'", id_report)
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5098,15 +5101,17 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             If id_status_reportx = "6" Then
                 'completed storage
                 Dim query_completed_stock As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-                SELECT r.id_departement, 1, dd.id_item, getAvgCost(dd.id_item), 154, r.id_item_req, dd.qty, NOW(), 1
+                SELECT IF(rd.is_store_request=1,0,r.id_departement) AS id_departement, 1, dd.id_item, getAvgCost(dd.id_item), 154, r.id_item_req, dd.qty, NOW(), 1
                 FROM tb_item_del d
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
+                INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.`id_item_req_det`
                 INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
                 WHERE d.id_item_del=" + id_report + "
                 UNION ALL
-                SELECT r.id_departement, 2, dd.id_item, getAvgCost(dd.id_item), " + report_mark_type + ", d.id_item_del, dd.qty, NOW(), 1
+                SELECT IF(rd.is_store_request=1,0,r.id_departement) AS id_departement, 2, dd.id_item, getAvgCost(dd.id_item), " + report_mark_type + ", d.id_item_del, dd.qty, NOW(), 1
                 FROM tb_item_del d
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
+                INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.`id_item_req_det`
                 INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
                 WHERE d.id_item_del=" + id_report + ";
                 CALL update_item_reqdel_stt(" + id_report + "); "
@@ -6496,6 +6501,19 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
 
             'refresh view
             FormDebitNoteDet.load_form()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                FormEmpBPJSKesehatanDet.update_changes()
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_pay_bpjs_kesehatan SET id_report_status='{0}' WHERE id_pay_bpjs_kesehatan ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time

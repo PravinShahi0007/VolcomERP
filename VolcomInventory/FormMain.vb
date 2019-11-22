@@ -1765,6 +1765,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             FormEmpBPJSKesehatanDet.id = "0"
             FormEmpBPJSKesehatanDet.is_approve = "0"
+
+            FormEmpBPJSKesehatanDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2871,8 +2873,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Catch ex As Exception
                 End Try
             ElseIf formName = "FormEmpBPJSKesehatan" Then
-                FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_emp_bpjs_kesehatan").ToString
+                FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_pay_bpjs_kesehatan").ToString
                 FormEmpBPJSKesehatanDet.is_approve = "0"
+
+                FormEmpBPJSKesehatanDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -13689,5 +13693,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Catch ex As Exception
             errorProcess()
         End Try
+    End Sub
+
+    Private Sub NBSendEmailAcc_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSendEmailAcc.LinkClicked
+
     End Sub
 End Class

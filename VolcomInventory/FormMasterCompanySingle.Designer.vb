@@ -1039,6 +1039,7 @@ Partial Class FormMasterCompanySingle
         Me.TECompanyPrintedName.Name = "TECompanyPrintedName"
         Me.TECompanyPrintedName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECompanyPrintedName.Properties.Appearance.Options.UseFont = True
+        Me.TECompanyPrintedName.Properties.MaxLength = 49
         Me.TECompanyPrintedName.Size = New System.Drawing.Size(230, 20)
         Me.TECompanyPrintedName.TabIndex = 3
         '
@@ -1068,6 +1069,7 @@ Partial Class FormMasterCompanySingle
         Me.TECompanyName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECompanyName.Properties.Appearance.Options.UseBackColor = True
         Me.TECompanyName.Properties.Appearance.Options.UseFont = True
+        Me.TECompanyName.Properties.MaxLength = 49
         Me.TECompanyName.Size = New System.Drawing.Size(365, 20)
         Me.TECompanyName.TabIndex = 2
         '
