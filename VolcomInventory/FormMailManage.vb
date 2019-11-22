@@ -72,12 +72,50 @@
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
-        makeSafeGV(GVInvoiceList)
-        GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
+        Dim id_comp_group As String = SLEStoreGroup.EditValue.ToString
+        If id_comp_group <> "0" Then
+            Cursor = Cursors.WaitCursor
+            '--- check email group
+            Dim qcg As String = "-- cari to untuk group toko
+            SELECT cc.email AS `email_group`
+            FROM tb_mail_manage_mapping m
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+            WHERE m.id_comp_group=" + id_comp_group + " AND m.report_mark_type=225 AND m.id_mail_member_type=2 AND cc.email!='' "
+            Dim dcg As DataTable = execute_query(qcg, -1, True, "", "", "", "")
+            If dcg.Rows.Count <= 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Email store group not found. Please mapping email first.")
+                Exit Sub
+            End If
 
-        'load detil form
+            '-- check email from (internal)
+            Dim qci As String = "-- cari internal from
+            SELECT e.email_external
+            FROM tb_mail_manage_mapping_intern i
+            INNER JOIN tb_m_user u ON u.id_user = i.id_user
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE i.report_mark_type=225 AND i.id_mail_member_type=1 AND e.email_external!='' "
+            Dim dci As DataTable = execute_query(qci, -1, True, "", "", "", "")
+            If dci.Rows.Count <= 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Email from not found. Please mapping email first.")
+                Exit Sub
+            End If
 
 
-        GVInvoiceList.ActiveFilterString = ""
+            '---filter check
+            makeSafeGV(GVInvoiceList)
+            GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
+            'load detil form
+            infoCustom("load detil yaa")
+
+
+            GVInvoiceList.ActiveFilterString = ""
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        GCInvoiceList.DataSource = Nothing
     End Sub
 End Class
