@@ -39,30 +39,31 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
             '
             If report_mark_type = "139" Then 'purchasing
                 'load header
-                SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
-                SLEPayType.EditValue = id_pay_type
-                '
-                If id_pay_type = "2" Then 'Payment
-                    GridColumnPayment.OptionsColumn.AllowEdit = False
-                Else
-                    GridColumnPayment.OptionsColumn.AllowEdit = True
-                End If
-                '
-                SLEReportType.EditValue = report_mark_type
-                'load detail
-                For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
-                    'id_report,number,total,balance due
-                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                    newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
-                    newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
-                    newRow("total_dp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp").ToString
-                    newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
-                    newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
-                    newRow("note") = ""
-                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                Next
-                '
-                calculate_amount()
+                Try
+                    SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
+                    SLEPayType.EditValue = id_pay_type
+                    '
+                    SLEReportType.EditValue = report_mark_type
+                    'load detail
+                    For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
+                        'id_report,number,total,balance due
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
+                        newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
+                        newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                        newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                        newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
+                        newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp").ToString
+                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
+                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
+                        newRow("note") = ""
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
+                    '
+                    calculate_amount()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
             ElseIf report_mark_type = "157" Then 'expense
                 'load header
                 Dim id_comp As String = FormBankWithdrawal.SLEVendorExpense.EditValue
@@ -82,8 +83,11 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
                     'id_report,number,total,balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_item_expense").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                     newRow("number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "number").ToString
-                    newRow("total_dp") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "total_dp")
+                    newRow("total_pay") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "total_dp")
                     newRow("value") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("note") = ""
@@ -102,8 +106,10 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
                     'id_report,number,total,balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_pn_fgpo").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                     newRow("number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "number").ToString
-                    newRow("total_dp") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_paid")
+                    newRow("total_pay") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_paid")
                     newRow("value") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
                     newRow("note") = ""
@@ -263,15 +269,13 @@ WHERE py.`id_payment`='" & id_payment & "'"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If id_payment = "-1" Then
             If report_mark_type = "139" Then 'purchasing
-                'cek dp 0
-                Dim dp_is_zero As Boolean = False
-                If id_pay_type = "1" Then 'dp
-                    For i As Integer = 0 To GVList.RowCount - 1
-                        If GVList.GetRowCellValue(i, "value") = 0 Then
-                            dp_is_zero = True
-                        End If
-                    Next
-                End If
+                'cek value 0
+                Dim value_is_zero As Boolean = False
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If GVList.GetRowCellValue(i, "value") = 0 Then
+                        value_is_zero = True
+                    End If
+                Next
                 'cek paid no exceed balance
                 Dim paid_more As Boolean = False
                 For i As Integer = 0 To GVList.RowCount - 1
@@ -282,10 +286,10 @@ WHERE py.`id_payment`='" & id_payment & "'"
                 '
                 If GVList.RowCount = 0 Then
                     warningCustom("No item listed.")
-                ElseIf dp_is_zero = True Then
-                    warningCustom("You must fill dp value.")
+                ElseIf value_is_zero = True Then
+                    warningCustom("You must fill value.")
                 ElseIf paid_more = True Then
-                    warningCustom("You pay more than balance.")
+                    warningCustom("You pay more than balance due.")
                 Else
                     'header
                     Dim query As String = "INSERT INTO tb_payment(report_mark_type,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
