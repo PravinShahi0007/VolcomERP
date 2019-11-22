@@ -224,7 +224,7 @@ Partial Class FormBankDepositDet
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.Label1.Location = New System.Drawing.Point(6, 14)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(146, 21)
+        Me.Label1.Size = New System.Drawing.Size(149, 21)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Receive Payment To"
         '
