@@ -22,14 +22,25 @@ Partial Class FormMailManageDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMailManageDet))
         Me.XTCMail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPreview = New DevExpress.XtraTab.XtraTabPage()
+        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.MemoEdit5 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MemoEdit3 = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.MemoEdit2 = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPData = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSend = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -44,42 +55,53 @@ Partial Class FormMailManageDet
         Me.TxtMailType = New DevExpress.XtraEditors.TextEdit()
         Me.TxtEmailNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit2 = New DevExpress.XtraEditors.MemoEdit()
-        Me.MemoEdit3 = New DevExpress.XtraEditors.MemoEdit()
-        Me.MemoEdit5 = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
+        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPFrom = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPTo = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFrom = New DevExpress.XtraGrid.GridControl()
+        Me.GVFrom = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCTo = New DevExpress.XtraGrid.GridControl()
+        Me.GVTo = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XTCMail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMail.SuspendLayout()
         Me.XTPreview.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MemoEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPData.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCData.SuspendLayout()
+        Me.XTPFrom.SuspendLayout()
+        Me.XTPTo.SuspendLayout()
+        Me.XTPDetail.SuspendLayout()
+        CType(Me.GCFrom, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVFrom, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCTo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVTo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMail
@@ -100,10 +122,102 @@ Partial Class FormMailManageDet
         Me.XTPreview.Size = New System.Drawing.Size(822, 348)
         Me.XTPreview.Text = "Preview"
         '
+        'WebBrowser1
+        '
+        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WebBrowser1.Location = New System.Drawing.Point(315, 0)
+        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebBrowser1.Name = "WebBrowser1"
+        Me.WebBrowser1.Size = New System.Drawing.Size(507, 348)
+        Me.WebBrowser1.TabIndex = 1
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TextEdit3)
+        Me.PanelControl4.Controls.Add(Me.LabelControl12)
+        Me.PanelControl4.Controls.Add(Me.MemoEdit5)
+        Me.PanelControl4.Controls.Add(Me.MemoEdit3)
+        Me.PanelControl4.Controls.Add(Me.LabelControl10)
+        Me.PanelControl4.Controls.Add(Me.LabelControl11)
+        Me.PanelControl4.Controls.Add(Me.MemoEdit2)
+        Me.PanelControl4.Controls.Add(Me.LabelControl9)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(315, 348)
+        Me.PanelControl4.TabIndex = 0
+        '
+        'TextEdit3
+        '
+        Me.TextEdit3.Enabled = False
+        Me.TextEdit3.Location = New System.Drawing.Point(14, 285)
+        Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Size = New System.Drawing.Size(283, 20)
+        Me.TextEdit3.TabIndex = 9
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(14, 266)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl12.TabIndex = 17
+        Me.LabelControl12.Text = "Subject"
+        '
+        'MemoEdit5
+        '
+        Me.MemoEdit5.Location = New System.Drawing.Point(14, 201)
+        Me.MemoEdit5.Name = "MemoEdit5"
+        Me.MemoEdit5.Size = New System.Drawing.Size(283, 59)
+        Me.MemoEdit5.TabIndex = 16
+        '
+        'MemoEdit3
+        '
+        Me.MemoEdit3.Location = New System.Drawing.Point(14, 117)
+        Me.MemoEdit3.Name = "MemoEdit3"
+        Me.MemoEdit3.Size = New System.Drawing.Size(283, 59)
+        Me.MemoEdit3.TabIndex = 15
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 98)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl10.TabIndex = 11
+        Me.LabelControl10.Text = "To"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(14, 182)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl11.TabIndex = 13
+        Me.LabelControl11.Text = "Cc"
+        '
+        'MemoEdit2
+        '
+        Me.MemoEdit2.Location = New System.Drawing.Point(14, 34)
+        Me.MemoEdit2.Name = "MemoEdit2"
+        Me.MemoEdit2.Size = New System.Drawing.Size(283, 59)
+        Me.MemoEdit2.TabIndex = 9
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(14, 15)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl9.TabIndex = 9
+        Me.LabelControl9.Text = "From"
+        '
         'XTPData
         '
+        Me.XTPData.Controls.Add(Me.XTCData)
         Me.XTPData.Name = "XTPData"
-        Me.XTPData.Size = New System.Drawing.Size(822, 292)
+        Me.XTPData.Size = New System.Drawing.Size(822, 348)
         Me.XTPData.Text = "Data"
         '
         'PanelControl2
@@ -164,16 +278,6 @@ Partial Class FormMailManageDet
         Me.PanelControl1.Size = New System.Drawing.Size(828, 152)
         Me.PanelControl1.TabIndex = 1
         '
-        'DateEdit1
-        '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(90, 11)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(243, 20)
-        Me.DateEdit1.TabIndex = 9
-        '
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -190,6 +294,26 @@ Partial Class FormMailManageDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(342, 148)
         Me.PanelControl3.TabIndex = 8
+        '
+        'DateEdit2
+        '
+        Me.DateEdit2.EditValue = Nothing
+        Me.DateEdit2.Location = New System.Drawing.Point(90, 63)
+        Me.DateEdit2.Name = "DateEdit2"
+        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit2.Size = New System.Drawing.Size(243, 20)
+        Me.DateEdit2.TabIndex = 14
+        '
+        'DateEdit1
+        '
+        Me.DateEdit1.EditValue = Nothing
+        Me.DateEdit1.Location = New System.Drawing.Point(90, 11)
+        Me.DateEdit1.Name = "DateEdit1"
+        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Size = New System.Drawing.Size(243, 20)
+        Me.DateEdit1.TabIndex = 9
         '
         'TextEdit2
         '
@@ -310,106 +434,88 @@ Partial Class FormMailManageDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Email Number"
         '
-        'DateEdit2
+        'XTCData
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(90, 63)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Size = New System.Drawing.Size(243, 20)
-        Me.DateEdit2.TabIndex = 14
+        Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCData.Location = New System.Drawing.Point(0, 0)
+        Me.XTCData.Name = "XTCData"
+        Me.XTCData.SelectedTabPage = Me.XTPFrom
+        Me.XTCData.Size = New System.Drawing.Size(822, 348)
+        Me.XTCData.TabIndex = 0
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFrom, Me.XTPTo, Me.XTPDetail})
         '
-        'PanelControl4
+        'XTPFrom
         '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.TextEdit3)
-        Me.PanelControl4.Controls.Add(Me.LabelControl12)
-        Me.PanelControl4.Controls.Add(Me.MemoEdit5)
-        Me.PanelControl4.Controls.Add(Me.MemoEdit3)
-        Me.PanelControl4.Controls.Add(Me.LabelControl10)
-        Me.PanelControl4.Controls.Add(Me.LabelControl11)
-        Me.PanelControl4.Controls.Add(Me.MemoEdit2)
-        Me.PanelControl4.Controls.Add(Me.LabelControl9)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(315, 348)
-        Me.PanelControl4.TabIndex = 0
+        Me.XTPFrom.Controls.Add(Me.GCFrom)
+        Me.XTPFrom.Name = "XTPFrom"
+        Me.XTPFrom.Size = New System.Drawing.Size(793, 342)
+        Me.XTPFrom.Text = "From"
         '
-        'LabelControl9
+        'XTPTo
         '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(14, 15)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl9.TabIndex = 9
-        Me.LabelControl9.Text = "From"
+        Me.XTPTo.Controls.Add(Me.GCTo)
+        Me.XTPTo.Name = "XTPTo"
+        Me.XTPTo.Size = New System.Drawing.Size(793, 342)
+        Me.XTPTo.Text = "To"
         '
-        'LabelControl10
+        'XTPDetail
         '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(14, 98)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(12, 13)
-        Me.LabelControl10.TabIndex = 11
-        Me.LabelControl10.Text = "To"
+        Me.XTPDetail.Controls.Add(Me.GCDetail)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(793, 342)
+        Me.XTPDetail.Text = "Detail"
         '
-        'LabelControl11
+        'GCFrom
         '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(14, 182)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(12, 13)
-        Me.LabelControl11.TabIndex = 13
-        Me.LabelControl11.Text = "Cc"
+        Me.GCFrom.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCFrom.Location = New System.Drawing.Point(0, 0)
+        Me.GCFrom.MainView = Me.GVFrom
+        Me.GCFrom.Name = "GCFrom"
+        Me.GCFrom.Size = New System.Drawing.Size(793, 342)
+        Me.GCFrom.TabIndex = 0
+        Me.GCFrom.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFrom})
         '
-        'MemoEdit2
+        'GVFrom
         '
-        Me.MemoEdit2.Location = New System.Drawing.Point(14, 34)
-        Me.MemoEdit2.Name = "MemoEdit2"
-        Me.MemoEdit2.Size = New System.Drawing.Size(283, 59)
-        Me.MemoEdit2.TabIndex = 9
+        Me.GVFrom.GridControl = Me.GCFrom
+        Me.GVFrom.Name = "GVFrom"
+        Me.GVFrom.OptionsBehavior.Editable = False
+        Me.GVFrom.OptionsView.ShowGroupPanel = False
         '
-        'MemoEdit3
+        'GCTo
         '
-        Me.MemoEdit3.Location = New System.Drawing.Point(14, 117)
-        Me.MemoEdit3.Name = "MemoEdit3"
-        Me.MemoEdit3.Size = New System.Drawing.Size(283, 59)
-        Me.MemoEdit3.TabIndex = 15
+        Me.GCTo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCTo.Location = New System.Drawing.Point(0, 0)
+        Me.GCTo.MainView = Me.GVTo
+        Me.GCTo.Name = "GCTo"
+        Me.GCTo.Size = New System.Drawing.Size(793, 342)
+        Me.GCTo.TabIndex = 1
+        Me.GCTo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTo})
         '
-        'MemoEdit5
+        'GVTo
         '
-        Me.MemoEdit5.Location = New System.Drawing.Point(14, 201)
-        Me.MemoEdit5.Name = "MemoEdit5"
-        Me.MemoEdit5.Size = New System.Drawing.Size(283, 59)
-        Me.MemoEdit5.TabIndex = 16
+        Me.GVTo.GridControl = Me.GCTo
+        Me.GVTo.Name = "GVTo"
+        Me.GVTo.OptionsBehavior.Editable = False
+        Me.GVTo.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl12
+        'GCDetail
         '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(14, 266)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl12.TabIndex = 17
-        Me.LabelControl12.Text = "Subject"
+        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDetail.Location = New System.Drawing.Point(0, 0)
+        Me.GCDetail.MainView = Me.GVDetail
+        Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.Size = New System.Drawing.Size(793, 342)
+        Me.GCDetail.TabIndex = 2
+        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
-        'TextEdit3
+        'GVDetail
         '
-        Me.TextEdit3.Enabled = False
-        Me.TextEdit3.Location = New System.Drawing.Point(14, 285)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(283, 20)
-        Me.TextEdit3.TabIndex = 9
-        '
-        'WebBrowser1
-        '
-        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WebBrowser1.Location = New System.Drawing.Point(315, 0)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(507, 348)
-        Me.WebBrowser1.TabIndex = 1
+        Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsBehavior.Editable = False
+        Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
         'FormMailManageDet
         '
@@ -427,31 +533,43 @@ Partial Class FormMailManageDet
         CType(Me.XTCMail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCMail.ResumeLayout(False)
         Me.XTPreview.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MemoEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPData.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
-        CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCData.ResumeLayout(False)
+        Me.XTPFrom.ResumeLayout(False)
+        Me.XTPTo.ResumeLayout(False)
+        Me.XTPDetail.ResumeLayout(False)
+        CType(Me.GCFrom, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVFrom, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCTo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVTo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -491,4 +609,14 @@ Partial Class FormMailManageDet
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MemoEdit2 As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPFrom As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCFrom As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVFrom As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents XTPTo As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCTo As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVTo As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
