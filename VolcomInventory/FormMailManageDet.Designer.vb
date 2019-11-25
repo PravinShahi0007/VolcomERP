@@ -343,6 +343,8 @@ Partial Class FormMailManageDet
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDetail.OptionsBehavior.Editable = False
+        Me.GVDetail.OptionsView.ColumnAutoWidth = False
+        Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
         'PanelControl2

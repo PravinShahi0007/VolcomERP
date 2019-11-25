@@ -42,9 +42,12 @@
                     End If
                     id_sales_pos += FormMailManage.GVInvoiceList.GetRowCellValue(i, "id_sales_pos").ToString
                 Next
-                Dim qdet As String = "SELECT cg.comp_name AS `group_company`, g.description AS `group_store`,sp.sales_pos_start_period, sp.sales_pos_end_period,prd.period, prd.amount AS `total_amount`,
-                sp.id_sales_pos, sp.sales_pos_number, CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, sp.sales_pos_total_qty AS `qty_invoice`, 
-                CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `amount`
+                Dim qdet As String = "SELECT '' AS `no`, sp.id_sales_pos, sp.sales_pos_number,
+                CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, g.description AS `group_store`,
+                cg.comp_name AS `group_company`, 
+                sp.sales_pos_total_qty AS `qty_invoice`, 
+                CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `amount`,
+                prd.amount AS `total_amount`
                 FROM tb_sales_pos sp 
                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
                 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -65,9 +68,29 @@
                 WHERE sp.id_sales_pos IN (" + id_sales_pos + ") "
                 Dim ddet As DataTable = execute_query(qdet, -1, True, "", "", "", "")
                 GCDetail.DataSource = ddet
+                'hide column
+                GVDetail.Columns("id_sales_pos").Visible = False
+                GVDetail.Columns("total_amount").Visible = False
+                'caption
+                GVDetail.Columns("id_sales_pos").Caption = "No"
+                GVDetail.Columns("sales_pos_number").Caption = "Invoice Number"
+                GVDetail.Columns("store").Caption = "Store"
+                GVDetail.Columns("group_store").Caption = "Store Group"
+                GVDetail.Columns("group_company").Caption = "Company"
+                GVDetail.Columns("qty_invoice").Caption = "Qty"
+                GVDetail.Columns("amount").Caption = "Amount"
+                'display format
+                GVDetail.Columns("qty_invoice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVDetail.Columns("qty_invoice").DisplayFormat.FormatString = "{0:N0}"
+                GVDetail.Columns("amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVDetail.Columns("amount").DisplayFormat.FormatString = "{0:N2}"
+                'summary
+                GVDetail.Columns("qty_invoice").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                GVDetail.Columns("qty_invoice").SummaryItem.DisplayFormat = "{0:n0}"
+                GVDetail.Columns("amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                GVDetail.Columns("amount").SummaryItem.DisplayFormat = "{0:n2}"
+                'bestfit
                 GVDetail.BestFitColumns()
-                'custom column
-
 
 
                 'load html preview
@@ -81,4 +104,9 @@
         End If
     End Sub
 
+    Private Sub GVDetail_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDetail.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
 End Class
