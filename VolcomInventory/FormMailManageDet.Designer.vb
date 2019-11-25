@@ -33,21 +33,36 @@ Partial Class FormMailManageDet
         Me.MemoEdit2 = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPData = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPFrom = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCMember = New DevExpress.XtraGrid.GridControl()
+        Me.GVMember = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_mail_manage_member = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_mail_manage = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_mail_member_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_user = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_address = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_member_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSend = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.DEUpdatedDate = New DevExpress.XtraEditors.DateEdit()
+        Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtUpdatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtMailStatus = New DevExpress.XtraEditors.TextEdit()
@@ -55,16 +70,6 @@ Partial Class FormMailManageDet
         Me.TxtMailType = New DevExpress.XtraEditors.TextEdit()
         Me.TxtEmailNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPFrom = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPTo = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCFrom = New DevExpress.XtraGrid.GridControl()
-        Me.GVFrom = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCTo = New DevExpress.XtraGrid.GridControl()
-        Me.GVTo = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
-        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XTCMail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMail.SuspendLayout()
         Me.XTPreview.SuspendLayout()
@@ -75,33 +80,30 @@ Partial Class FormMailManageDet
         CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPData.SuspendLayout()
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCData.SuspendLayout()
+        Me.XTPFrom.SuspendLayout()
+        CType(Me.GCMember, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVMember, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDetail.SuspendLayout()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCData.SuspendLayout()
-        Me.XTPFrom.SuspendLayout()
-        Me.XTPTo.SuspendLayout()
-        Me.XTPDetail.SuspendLayout()
-        CType(Me.GCFrom, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVFrom, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCTo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVTo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMail
@@ -150,9 +152,9 @@ Partial Class FormMailManageDet
         '
         'TextEdit3
         '
-        Me.TextEdit3.Enabled = False
         Me.TextEdit3.Location = New System.Drawing.Point(14, 285)
         Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Properties.ReadOnly = True
         Me.TextEdit3.Size = New System.Drawing.Size(283, 20)
         Me.TextEdit3.TabIndex = 9
         '
@@ -169,6 +171,7 @@ Partial Class FormMailManageDet
         '
         Me.MemoEdit5.Location = New System.Drawing.Point(14, 201)
         Me.MemoEdit5.Name = "MemoEdit5"
+        Me.MemoEdit5.Properties.ReadOnly = True
         Me.MemoEdit5.Size = New System.Drawing.Size(283, 59)
         Me.MemoEdit5.TabIndex = 16
         '
@@ -176,6 +179,7 @@ Partial Class FormMailManageDet
         '
         Me.MemoEdit3.Location = New System.Drawing.Point(14, 117)
         Me.MemoEdit3.Name = "MemoEdit3"
+        Me.MemoEdit3.Properties.ReadOnly = True
         Me.MemoEdit3.Size = New System.Drawing.Size(283, 59)
         Me.MemoEdit3.TabIndex = 15
         '
@@ -201,6 +205,7 @@ Partial Class FormMailManageDet
         '
         Me.MemoEdit2.Location = New System.Drawing.Point(14, 34)
         Me.MemoEdit2.Name = "MemoEdit2"
+        Me.MemoEdit2.Properties.ReadOnly = True
         Me.MemoEdit2.Size = New System.Drawing.Size(283, 59)
         Me.MemoEdit2.TabIndex = 9
         '
@@ -219,6 +224,126 @@ Partial Class FormMailManageDet
         Me.XTPData.Name = "XTPData"
         Me.XTPData.Size = New System.Drawing.Size(822, 348)
         Me.XTPData.Text = "Data"
+        '
+        'XTCData
+        '
+        Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCData.Location = New System.Drawing.Point(0, 0)
+        Me.XTCData.Name = "XTCData"
+        Me.XTCData.SelectedTabPage = Me.XTPFrom
+        Me.XTCData.Size = New System.Drawing.Size(822, 348)
+        Me.XTCData.TabIndex = 0
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFrom, Me.XTPDetail})
+        '
+        'XTPFrom
+        '
+        Me.XTPFrom.Controls.Add(Me.GCMember)
+        Me.XTPFrom.Name = "XTPFrom"
+        Me.XTPFrom.Size = New System.Drawing.Size(793, 342)
+        Me.XTPFrom.Text = "From/To/Cc"
+        '
+        'GCMember
+        '
+        Me.GCMember.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCMember.Location = New System.Drawing.Point(0, 0)
+        Me.GCMember.MainView = Me.GVMember
+        Me.GCMember.Name = "GCMember"
+        Me.GCMember.Size = New System.Drawing.Size(793, 342)
+        Me.GCMember.TabIndex = 0
+        Me.GCMember.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMember})
+        '
+        'GVMember
+        '
+        Me.GVMember.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_mail_manage_member, Me.GridColumnid_mail_manage, Me.GridColumnid_mail_member_type, Me.GridColumnid_user, Me.GridColumnid_comp_group, Me.GridColumndescription, Me.GridColumnmail_address, Me.GridColumnmail_member_type})
+        Me.GVMember.GridControl = Me.GCMember
+        Me.GVMember.GroupCount = 1
+        Me.GVMember.Name = "GVMember"
+        Me.GVMember.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVMember.OptionsBehavior.Editable = False
+        Me.GVMember.OptionsView.ShowGroupedColumns = True
+        Me.GVMember.OptionsView.ShowGroupPanel = False
+        Me.GVMember.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnmail_member_type, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnid_mail_manage_member
+        '
+        Me.GridColumnid_mail_manage_member.Caption = "id_mail_manage_member"
+        Me.GridColumnid_mail_manage_member.FieldName = "id_mail_manage_member"
+        Me.GridColumnid_mail_manage_member.Name = "GridColumnid_mail_manage_member"
+        '
+        'GridColumnid_mail_manage
+        '
+        Me.GridColumnid_mail_manage.Caption = "id_mail_manage"
+        Me.GridColumnid_mail_manage.FieldName = "id_mail_manage"
+        Me.GridColumnid_mail_manage.Name = "GridColumnid_mail_manage"
+        '
+        'GridColumnid_mail_member_type
+        '
+        Me.GridColumnid_mail_member_type.Caption = "id_mail_member_type"
+        Me.GridColumnid_mail_member_type.FieldName = "id_mail_member_type"
+        Me.GridColumnid_mail_member_type.Name = "GridColumnid_mail_member_type"
+        '
+        'GridColumnid_user
+        '
+        Me.GridColumnid_user.Caption = "id_user"
+        Me.GridColumnid_user.FieldName = "id_user"
+        Me.GridColumnid_user.Name = "GridColumnid_user"
+        '
+        'GridColumnid_comp_group
+        '
+        Me.GridColumnid_comp_group.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
+        '
+        'GridColumndescription
+        '
+        Me.GridColumndescription.Caption = "Name"
+        Me.GridColumndescription.FieldName = "description"
+        Me.GridColumndescription.Name = "GridColumndescription"
+        Me.GridColumndescription.Visible = True
+        Me.GridColumndescription.VisibleIndex = 1
+        '
+        'GridColumnmail_address
+        '
+        Me.GridColumnmail_address.Caption = "Email"
+        Me.GridColumnmail_address.FieldName = "mail_address"
+        Me.GridColumnmail_address.Name = "GridColumnmail_address"
+        Me.GridColumnmail_address.Visible = True
+        Me.GridColumnmail_address.VisibleIndex = 2
+        '
+        'GridColumnmail_member_type
+        '
+        Me.GridColumnmail_member_type.Caption = "Type"
+        Me.GridColumnmail_member_type.FieldName = "mail_member_type"
+        Me.GridColumnmail_member_type.FieldNameSortGroup = "id_mail_member_type"
+        Me.GridColumnmail_member_type.Name = "GridColumnmail_member_type"
+        Me.GridColumnmail_member_type.Visible = True
+        Me.GridColumnmail_member_type.VisibleIndex = 0
+        '
+        'XTPDetail
+        '
+        Me.XTPDetail.Controls.Add(Me.GCDetail)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(793, 342)
+        Me.XTPDetail.Text = "Detail"
+        '
+        'GCDetail
+        '
+        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDetail.Location = New System.Drawing.Point(0, 0)
+        Me.GCDetail.MainView = Me.GVDetail
+        Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.Size = New System.Drawing.Size(793, 342)
+        Me.GCDetail.TabIndex = 2
+        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
+        '
+        'GVDetail
+        '
+        Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDetail.OptionsBehavior.Editable = False
+        Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
         'PanelControl2
         '
@@ -240,6 +365,7 @@ Partial Class FormMailManageDet
         Me.BtnCancel.Size = New System.Drawing.Size(105, 44)
         Me.BtnCancel.TabIndex = 2
         Me.BtnCancel.Text = "Cancelled"
+        Me.BtnCancel.Visible = False
         '
         'BtnDraft
         '
@@ -264,7 +390,7 @@ Partial Class FormMailManageDet
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.PanelControl3)
-        Me.PanelControl1.Controls.Add(Me.MemoEdit1)
+        Me.PanelControl1.Controls.Add(Me.MENote)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.TxtMailStatus)
@@ -281,10 +407,10 @@ Partial Class FormMailManageDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.DateEdit2)
-        Me.PanelControl3.Controls.Add(Me.DateEdit1)
-        Me.PanelControl3.Controls.Add(Me.TextEdit2)
-        Me.PanelControl3.Controls.Add(Me.TextEdit1)
+        Me.PanelControl3.Controls.Add(Me.DEUpdatedDate)
+        Me.PanelControl3.Controls.Add(Me.DECreatedDate)
+        Me.PanelControl3.Controls.Add(Me.TxtUpdatedBy)
+        Me.PanelControl3.Controls.Add(Me.TxtCreatedBy)
         Me.PanelControl3.Controls.Add(Me.LabelControl8)
         Me.PanelControl3.Controls.Add(Me.LabelControl7)
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
@@ -295,41 +421,43 @@ Partial Class FormMailManageDet
         Me.PanelControl3.Size = New System.Drawing.Size(342, 148)
         Me.PanelControl3.TabIndex = 8
         '
-        'DateEdit2
+        'DEUpdatedDate
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(90, 63)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Size = New System.Drawing.Size(243, 20)
-        Me.DateEdit2.TabIndex = 14
+        Me.DEUpdatedDate.EditValue = Nothing
+        Me.DEUpdatedDate.Enabled = False
+        Me.DEUpdatedDate.Location = New System.Drawing.Point(90, 63)
+        Me.DEUpdatedDate.Name = "DEUpdatedDate"
+        Me.DEUpdatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUpdatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUpdatedDate.Size = New System.Drawing.Size(243, 20)
+        Me.DEUpdatedDate.TabIndex = 14
         '
-        'DateEdit1
+        'DECreatedDate
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(90, 11)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(243, 20)
-        Me.DateEdit1.TabIndex = 9
+        Me.DECreatedDate.EditValue = Nothing
+        Me.DECreatedDate.Enabled = False
+        Me.DECreatedDate.Location = New System.Drawing.Point(90, 11)
+        Me.DECreatedDate.Name = "DECreatedDate"
+        Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Size = New System.Drawing.Size(243, 20)
+        Me.DECreatedDate.TabIndex = 9
         '
-        'TextEdit2
+        'TxtUpdatedBy
         '
-        Me.TextEdit2.Enabled = False
-        Me.TextEdit2.Location = New System.Drawing.Point(90, 88)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(243, 20)
-        Me.TextEdit2.TabIndex = 13
+        Me.TxtUpdatedBy.Enabled = False
+        Me.TxtUpdatedBy.Location = New System.Drawing.Point(90, 88)
+        Me.TxtUpdatedBy.Name = "TxtUpdatedBy"
+        Me.TxtUpdatedBy.Size = New System.Drawing.Size(243, 20)
+        Me.TxtUpdatedBy.TabIndex = 13
         '
-        'TextEdit1
+        'TxtCreatedBy
         '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(90, 37)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(243, 20)
-        Me.TextEdit1.TabIndex = 9
+        Me.TxtCreatedBy.Enabled = False
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(90, 37)
+        Me.TxtCreatedBy.Name = "TxtCreatedBy"
+        Me.TxtCreatedBy.Size = New System.Drawing.Size(243, 20)
+        Me.TxtCreatedBy.TabIndex = 9
         '
         'LabelControl8
         '
@@ -367,12 +495,13 @@ Partial Class FormMailManageDet
         Me.LabelControl5.TabIndex = 9
         Me.LabelControl5.Text = "Created Date"
         '
-        'MemoEdit1
+        'MENote
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(89, 91)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(243, 43)
-        Me.MemoEdit1.TabIndex = 7
+        Me.MENote.Enabled = False
+        Me.MENote.Location = New System.Drawing.Point(89, 91)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(243, 43)
+        Me.MENote.TabIndex = 7
         '
         'LabelControl4
         '
@@ -434,89 +563,6 @@ Partial Class FormMailManageDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Email Number"
         '
-        'XTCData
-        '
-        Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCData.Location = New System.Drawing.Point(0, 0)
-        Me.XTCData.Name = "XTCData"
-        Me.XTCData.SelectedTabPage = Me.XTPFrom
-        Me.XTCData.Size = New System.Drawing.Size(822, 348)
-        Me.XTCData.TabIndex = 0
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFrom, Me.XTPTo, Me.XTPDetail})
-        '
-        'XTPFrom
-        '
-        Me.XTPFrom.Controls.Add(Me.GCFrom)
-        Me.XTPFrom.Name = "XTPFrom"
-        Me.XTPFrom.Size = New System.Drawing.Size(793, 342)
-        Me.XTPFrom.Text = "From"
-        '
-        'XTPTo
-        '
-        Me.XTPTo.Controls.Add(Me.GCTo)
-        Me.XTPTo.Name = "XTPTo"
-        Me.XTPTo.Size = New System.Drawing.Size(793, 342)
-        Me.XTPTo.Text = "To"
-        '
-        'XTPDetail
-        '
-        Me.XTPDetail.Controls.Add(Me.GCDetail)
-        Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(793, 342)
-        Me.XTPDetail.Text = "Detail"
-        '
-        'GCFrom
-        '
-        Me.GCFrom.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCFrom.Location = New System.Drawing.Point(0, 0)
-        Me.GCFrom.MainView = Me.GVFrom
-        Me.GCFrom.Name = "GCFrom"
-        Me.GCFrom.Size = New System.Drawing.Size(793, 342)
-        Me.GCFrom.TabIndex = 0
-        Me.GCFrom.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFrom})
-        '
-        'GVFrom
-        '
-        Me.GVFrom.GridControl = Me.GCFrom
-        Me.GVFrom.Name = "GVFrom"
-        Me.GVFrom.OptionsBehavior.Editable = False
-        Me.GVFrom.OptionsView.ShowGroupPanel = False
-        '
-        'GCTo
-        '
-        Me.GCTo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCTo.Location = New System.Drawing.Point(0, 0)
-        Me.GCTo.MainView = Me.GVTo
-        Me.GCTo.Name = "GCTo"
-        Me.GCTo.Size = New System.Drawing.Size(793, 342)
-        Me.GCTo.TabIndex = 1
-        Me.GCTo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTo})
-        '
-        'GVTo
-        '
-        Me.GVTo.GridControl = Me.GCTo
-        Me.GVTo.Name = "GVTo"
-        Me.GVTo.OptionsBehavior.Editable = False
-        Me.GVTo.OptionsView.ShowGroupPanel = False
-        '
-        'GCDetail
-        '
-        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDetail.Location = New System.Drawing.Point(0, 0)
-        Me.GCDetail.MainView = Me.GVDetail
-        Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(793, 342)
-        Me.GCDetail.TabIndex = 2
-        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
-        '
-        'GVDetail
-        '
-        Me.GVDetail.GridControl = Me.GCDetail
-        Me.GVDetail.Name = "GVDetail"
-        Me.GVDetail.OptionsBehavior.Editable = False
-        Me.GVDetail.OptionsView.ShowGroupPanel = False
-        '
         'FormMailManageDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -541,6 +587,14 @@ Partial Class FormMailManageDet
         CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPData.ResumeLayout(False)
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCData.ResumeLayout(False)
+        Me.XTPFrom.ResumeLayout(False)
+        CType(Me.GCMember, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVMember, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDetail.ResumeLayout(False)
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -549,27 +603,16 @@ Partial Class FormMailManageDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCData.ResumeLayout(False)
-        Me.XTPFrom.ResumeLayout(False)
-        Me.XTPTo.ResumeLayout(False)
-        Me.XTPDetail.ResumeLayout(False)
-        CType(Me.GCFrom, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVFrom, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCTo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVTo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -587,18 +630,18 @@ Partial Class FormMailManageDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtMailStatus As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtUpdatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUpdatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents WebBrowser1 As WebBrowser
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
@@ -611,12 +654,17 @@ Partial Class FormMailManageDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPFrom As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCFrom As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVFrom As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents XTPTo As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCTo As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVTo As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCMember As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVMember As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_mail_manage_member As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_mail_manage As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_mail_member_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_user As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmail_address As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmail_member_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

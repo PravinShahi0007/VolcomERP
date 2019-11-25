@@ -3260,25 +3260,21 @@ GROUP BY pdp.`id_prod_demand_design`"
 		                  		<td width='20%'>Store Head Office</td>
 		                  		<td width='2%'>:</td>
 		                  		<td width='77%'>PT Selancar Mandiri</td>
-                        </tr>
+                            </tr>
                         
-                        <tr>
-                            <td width='20%'>Group Store</td>
-                            <td width='2%'>:</td>
-                            <td width='77%'>Planet Surf</td>
-                        </tr>
+                            <tr>
+                                <td width='20%'>Group Store</td>
+                                <td width='2%'>:</td>
+                                <td width='77%'>Planet Surf</td>
+                            </tr>
 
-                        <tr>
-                            <td width='20%'>Periode</td>
-                            <td width='2%'>:</td>
-                            <td width='77%'>01-11-2019 s/d 07-11-2019</td>
-                        </tr>
+                            <tr>
+                                <td width='20%'>Periode</td>
+                                <td width='2%'>:</td>
+                                <td width='77%'>01-11-2019 s/d 07-11-2019</td>
+                            </tr>
 
-		                  	<tr>
-		                  		<td width='20%'>Total Invoice</td>
-		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>0</td>
-		                  	</tr>
+		            
 
 		                  	<tr>
 		                  		<td width='20%'>Amount</td>

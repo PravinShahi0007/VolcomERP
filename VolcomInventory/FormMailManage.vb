@@ -107,7 +107,9 @@
             makeSafeGV(GVInvoiceList)
             GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
             'load detil form
-            infoCustom("load detil yaa")
+            FormMailManageDet.rmt = "225"
+            FormMailManageDet.action = "ins"
+            FormMailManageDet.ShowDialog()
 
 
             GVInvoiceList.ActiveFilterString = ""
