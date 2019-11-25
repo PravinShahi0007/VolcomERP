@@ -2883,6 +2883,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormPopUpCompGroup" Then
                 FormMasterCompGroupDet.id_comp_group = FormPopUpCompGroup.GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
                 FormMasterCompGroupDet.ShowDialog()
+            ElseIf formName = "FormAccountingJournalAdj" Then
+                FormAccountingJournalAdjDet.id_trans_adj = FormAccountingJournalAdj.GVAccTrans.GetFocusedRowCellValue("id_acc_trans_adj").ToString
+                FormAccountingJournalAdjDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
