@@ -3259,19 +3259,19 @@ GROUP BY pdp.`id_prod_demand_design`"
 		                  	<tr>
 		                  		<td width='20%'>Store Head Office</td>
 		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>PT Selancar Mandiri</td>
+		                  		<td width='77%'>" + dtp.Rows(0)("group_company").ToString + "</td>
                             </tr>
                         
                             <tr>
                                 <td width='20%'>Group Store</td>
                                 <td width='2%'>:</td>
-                                <td width='77%'>Planet Surf</td>
+                                <td width='77%'>" + dtp.Rows(0)("group_store").ToString + "</td>
                             </tr>
 
                             <tr>
                                 <td width='20%'>Periode</td>
                                 <td width='2%'>:</td>
-                                <td width='77%'>01-11-2019 s/d 07-11-2019</td>
+                                <td width='77%'>" + dtp.Rows(0)("period").ToString + "</td>
                             </tr>
 
 		            
@@ -3279,7 +3279,7 @@ GROUP BY pdp.`id_prod_demand_design`"
 		                  	<tr>
 		                  		<td width='20%'>Amount</td>
 		                  		<td width='2%'>:</td>
-		                  		<td width='77%'>75.000.000</td>
+		                  		<td width='77%'>Rp " + Decimal.Parse(dtp.Rows(0)("total_amount").ToString).ToString("N2") + "</td>
 		                  	</tr>
 
 
@@ -3307,12 +3307,25 @@ GROUP BY pdp.`id_prod_demand_design`"
                       <th>No</th>
                       <th>Invoive Number</th>
                       <th>Store</th>
-                      <th>Total Qty</th>
+                      <th>Qty</th>
                       <th>Amount</th>
-                    </tr>
-      
+                    </tr> "
+        For i As Integer = 0 To dtp.Rows.Count - 1
+            body_temp += "<tr>
+                <td>" + (i + 1).ToString + "</td>
+                <td>" + dtp.Rows(i)("sales_pos_number").ToString + "</td>
+                <td>" + dtp.Rows(i)("store").ToString + "</td>
+                <td align='center'>" + Decimal.Parse(dtp.Rows(i)("qty_invoice").ToString).ToString("N0") + "</td>
+                <td align='center'>" + Decimal.Parse(dtp.Rows(i)("amount").ToString).ToString("N2") + "</td>
+            </tr>"
+        Next
 
-                  </table>
+        body_temp += "<tr>
+            <th colspan='3'>TOTAL</th>
+            <th>" + Decimal.Parse(dtp.Rows(0)("total_qty").ToString).ToString("N0") + "</th>
+            <th>" + Decimal.Parse(dtp.Rows(0)("total_amount").ToString).ToString("N2") + "</th>
+        </tr>
+        </table>
                   </td>
 
                  </tr>

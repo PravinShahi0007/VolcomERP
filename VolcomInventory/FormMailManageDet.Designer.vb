@@ -24,13 +24,12 @@ Partial Class FormMailManageDet
         Me.XTPreview = New DevExpress.XtraTab.XtraTabPage()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit5 = New DevExpress.XtraEditors.MemoEdit()
-        Me.MemoEdit3 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MECC = New DevExpress.XtraEditors.MemoEdit()
+        Me.METo = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit2 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEFrom = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPData = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
@@ -70,15 +69,15 @@ Partial Class FormMailManageDet
         Me.TxtMailType = New DevExpress.XtraEditors.TextEdit()
         Me.TxtEmailNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.MESubject = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.XTCMail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMail.SuspendLayout()
         Me.XTPreview.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPData.SuspendLayout()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
@@ -104,6 +103,7 @@ Partial Class FormMailManageDet
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMail
@@ -112,7 +112,7 @@ Partial Class FormMailManageDet
         Me.XTCMail.Location = New System.Drawing.Point(0, 152)
         Me.XTCMail.Name = "XTCMail"
         Me.XTCMail.SelectedTabPage = Me.XTPreview
-        Me.XTCMail.Size = New System.Drawing.Size(828, 376)
+        Me.XTCMail.Size = New System.Drawing.Size(828, 411)
         Me.XTCMail.TabIndex = 0
         Me.XTCMail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPreview, Me.XTPData})
         '
@@ -121,7 +121,7 @@ Partial Class FormMailManageDet
         Me.XTPreview.Controls.Add(Me.WebBrowser1)
         Me.XTPreview.Controls.Add(Me.PanelControl4)
         Me.XTPreview.Name = "XTPreview"
-        Me.XTPreview.Size = New System.Drawing.Size(822, 348)
+        Me.XTPreview.Size = New System.Drawing.Size(822, 383)
         Me.XTPreview.Text = "Preview"
         '
         'WebBrowser1
@@ -130,33 +130,25 @@ Partial Class FormMailManageDet
         Me.WebBrowser1.Location = New System.Drawing.Point(315, 0)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(507, 348)
+        Me.WebBrowser1.Size = New System.Drawing.Size(507, 383)
         Me.WebBrowser1.TabIndex = 1
         '
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.TextEdit3)
+        Me.PanelControl4.Controls.Add(Me.MESubject)
         Me.PanelControl4.Controls.Add(Me.LabelControl12)
-        Me.PanelControl4.Controls.Add(Me.MemoEdit5)
-        Me.PanelControl4.Controls.Add(Me.MemoEdit3)
+        Me.PanelControl4.Controls.Add(Me.MECC)
+        Me.PanelControl4.Controls.Add(Me.METo)
         Me.PanelControl4.Controls.Add(Me.LabelControl10)
         Me.PanelControl4.Controls.Add(Me.LabelControl11)
-        Me.PanelControl4.Controls.Add(Me.MemoEdit2)
+        Me.PanelControl4.Controls.Add(Me.MEFrom)
         Me.PanelControl4.Controls.Add(Me.LabelControl9)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(315, 348)
+        Me.PanelControl4.Size = New System.Drawing.Size(315, 383)
         Me.PanelControl4.TabIndex = 0
-        '
-        'TextEdit3
-        '
-        Me.TextEdit3.Location = New System.Drawing.Point(14, 285)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(283, 20)
-        Me.TextEdit3.TabIndex = 9
         '
         'LabelControl12
         '
@@ -167,21 +159,21 @@ Partial Class FormMailManageDet
         Me.LabelControl12.TabIndex = 17
         Me.LabelControl12.Text = "Subject"
         '
-        'MemoEdit5
+        'MECC
         '
-        Me.MemoEdit5.Location = New System.Drawing.Point(14, 201)
-        Me.MemoEdit5.Name = "MemoEdit5"
-        Me.MemoEdit5.Properties.ReadOnly = True
-        Me.MemoEdit5.Size = New System.Drawing.Size(283, 59)
-        Me.MemoEdit5.TabIndex = 16
+        Me.MECC.Location = New System.Drawing.Point(14, 201)
+        Me.MECC.Name = "MECC"
+        Me.MECC.Properties.ReadOnly = True
+        Me.MECC.Size = New System.Drawing.Size(283, 59)
+        Me.MECC.TabIndex = 16
         '
-        'MemoEdit3
+        'METo
         '
-        Me.MemoEdit3.Location = New System.Drawing.Point(14, 117)
-        Me.MemoEdit3.Name = "MemoEdit3"
-        Me.MemoEdit3.Properties.ReadOnly = True
-        Me.MemoEdit3.Size = New System.Drawing.Size(283, 59)
-        Me.MemoEdit3.TabIndex = 15
+        Me.METo.Location = New System.Drawing.Point(14, 117)
+        Me.METo.Name = "METo"
+        Me.METo.Properties.ReadOnly = True
+        Me.METo.Size = New System.Drawing.Size(283, 59)
+        Me.METo.TabIndex = 15
         '
         'LabelControl10
         '
@@ -201,13 +193,13 @@ Partial Class FormMailManageDet
         Me.LabelControl11.TabIndex = 13
         Me.LabelControl11.Text = "Cc"
         '
-        'MemoEdit2
+        'MEFrom
         '
-        Me.MemoEdit2.Location = New System.Drawing.Point(14, 34)
-        Me.MemoEdit2.Name = "MemoEdit2"
-        Me.MemoEdit2.Properties.ReadOnly = True
-        Me.MemoEdit2.Size = New System.Drawing.Size(283, 59)
-        Me.MemoEdit2.TabIndex = 9
+        Me.MEFrom.Location = New System.Drawing.Point(14, 34)
+        Me.MEFrom.Name = "MEFrom"
+        Me.MEFrom.Properties.ReadOnly = True
+        Me.MEFrom.Size = New System.Drawing.Size(283, 59)
+        Me.MEFrom.TabIndex = 9
         '
         'LabelControl9
         '
@@ -353,7 +345,7 @@ Partial Class FormMailManageDet
         Me.PanelControl2.Controls.Add(Me.BtnDraft)
         Me.PanelControl2.Controls.Add(Me.BtnSend)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 528)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 563)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(828, 48)
         Me.PanelControl2.TabIndex = 2
@@ -565,11 +557,19 @@ Partial Class FormMailManageDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Email Number"
         '
+        'MESubject
+        '
+        Me.MESubject.Location = New System.Drawing.Point(14, 285)
+        Me.MESubject.Name = "MESubject"
+        Me.MESubject.Properties.ReadOnly = True
+        Me.MESubject.Size = New System.Drawing.Size(283, 35)
+        Me.MESubject.TabIndex = 18
+        '
         'FormMailManageDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(828, 576)
+        Me.ClientSize = New System.Drawing.Size(828, 611)
         Me.Controls.Add(Me.XTCMail)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
@@ -584,10 +584,9 @@ Partial Class FormMailManageDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPData.ResumeLayout(False)
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
@@ -615,6 +614,7 @@ Partial Class FormMailManageDet
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -646,13 +646,12 @@ Partial Class FormMailManageDet
     Friend WithEvents DEUpdatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents WebBrowser1 As WebBrowser
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MemoEdit5 As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents MemoEdit3 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MECC As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents METo As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MemoEdit2 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEFrom As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPFrom As DevExpress.XtraTab.XtraTabPage
@@ -669,4 +668,5 @@ Partial Class FormMailManageDet
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmail_address As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmail_member_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents MESubject As DevExpress.XtraEditors.MemoEdit
 End Class

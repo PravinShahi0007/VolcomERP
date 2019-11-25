@@ -44,10 +44,11 @@
                 Next
                 Dim qdet As String = "SELECT '' AS `no`, sp.id_sales_pos, sp.sales_pos_number,
                 CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, g.description AS `group_store`,
-                cg.comp_name AS `group_company`, 
+                cg.comp_name AS `group_company`, prd.period,
                 sp.sales_pos_total_qty AS `qty_invoice`, 
                 CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `amount`,
-                prd.amount AS `total_amount`
+                prd.amount AS `total_amount`,
+                prd.total_qty AS `total_qty`
                 FROM tb_sales_pos sp 
                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
                 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -56,7 +57,8 @@
                 INNER JOIN (
 	                SELECT c.id_comp_group,
 	                GROUP_CONCAT(DISTINCT CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d %M %Y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d %M %Y')) ORDER BY sp.id_sales_pos ASC SEPARATOR ', ') AS `period`,
-	                SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `amount`
+	                SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `amount`,
+                    SUM(sp.sales_pos_total_qty) AS `total_qty`
 	                FROM tb_sales_pos sp
 	                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
 	                INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -70,9 +72,11 @@
                 GCDetail.DataSource = ddet
                 'hide column
                 GVDetail.Columns("id_sales_pos").Visible = False
+                GVDetail.Columns("period").Visible = False
                 GVDetail.Columns("total_amount").Visible = False
+                GVDetail.Columns("total_qty").Visible = False
                 'caption
-                GVDetail.Columns("id_sales_pos").Caption = "No"
+                GVDetail.Columns("no").Caption = "No"
                 GVDetail.Columns("sales_pos_number").Caption = "Invoice Number"
                 GVDetail.Columns("store").Caption = "Store"
                 GVDetail.Columns("group_store").Caption = "Store Group"
@@ -93,11 +97,24 @@
                 GVDetail.BestFitColumns()
 
 
-                'load html preview
-                'Dim dt As DataTable = Nothing
-                'Dim m As New ClassSendEmail()
-                'Dim html As String = m.email_body_invoice_penjualan(dt)
-                'WebBrowser1.DocumentText = html
+                'load 'from/to/cc & html preview
+                GVMember.ActiveFilterString = ""
+                For j As Integer = 0 To ((GVMember.RowCount - 1) - GetGroupRowCount(GVMember))
+                    Dim id_mail_member_type As String = GVMember.GetRowCellValue(j, "id_mail_member_type").ToString
+                    Dim mail_address As String = GVMember.GetRowCellValue(j, "mail_address").ToString
+
+                    If id_mail_member_type = "1" Then
+                        MEFrom.Text += mail_address + "; "
+                    ElseIf id_mail_member_type = "2" Then
+                        METo.Text += mail_address + "; "
+                    Else
+                        MECC.Text += mail_address + "; "
+                    End If
+                Next
+                MESubject.Text = addSlashes("Invoice Penjualan Per " + ddet.Rows(0)("period").ToString)
+                Dim m As New ClassSendEmail()
+                Dim html As String = m.email_body_invoice_penjualan(ddet)
+                WebBrowser1.DocumentText = html
             End If
         ElseIf action = "upd" Then
 
