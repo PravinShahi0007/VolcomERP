@@ -3246,16 +3246,16 @@ GROUP BY pdp.`id_prod_demand_design`"
                 <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
                  <tbody>
                  <tr>
-                  <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                  <td style='padding:15.0pt 15.0pt 0pt 15.0pt' colspan='3'>
                   <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>INVOICE PENJUALAN</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                    <b><span class='MsoNormal' style='line-height:14.25pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>INVOICE PENJUALAN</span></b>
                   </div>
                   </td>
                  </tr>
 
                  <tr>
-                 	<td colspan='3'>
-	                  	<table width='100%' style='padding:5.0pt 5.0pt 0.0pt 14.0pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;' border='0'>
+                 	<td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+	                  	<table cellpadding='1' width='100%' style='padding:5.0pt 5.0pt 0.0pt 14.0pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;' border='0'>
 		                  	<tr>
 		                  		<td width='20%'>Store Head Office</td>
 		                  		<td width='2%'>:</td>

@@ -214,7 +214,7 @@ Partial Class FormMailManageDet
         '
         Me.XTPData.Controls.Add(Me.XTCData)
         Me.XTPData.Name = "XTPData"
-        Me.XTPData.Size = New System.Drawing.Size(822, 348)
+        Me.XTPData.Size = New System.Drawing.Size(822, 383)
         Me.XTPData.Text = "Data"
         '
         'XTCData
@@ -224,7 +224,7 @@ Partial Class FormMailManageDet
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPFrom
-        Me.XTCData.Size = New System.Drawing.Size(822, 348)
+        Me.XTCData.Size = New System.Drawing.Size(822, 383)
         Me.XTCData.TabIndex = 0
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFrom, Me.XTPDetail})
         '
@@ -232,7 +232,7 @@ Partial Class FormMailManageDet
         '
         Me.XTPFrom.Controls.Add(Me.GCMember)
         Me.XTPFrom.Name = "XTPFrom"
-        Me.XTPFrom.Size = New System.Drawing.Size(793, 342)
+        Me.XTPFrom.Size = New System.Drawing.Size(793, 377)
         Me.XTPFrom.Text = "From/To/Cc"
         '
         'GCMember
@@ -241,7 +241,7 @@ Partial Class FormMailManageDet
         Me.GCMember.Location = New System.Drawing.Point(0, 0)
         Me.GCMember.MainView = Me.GVMember
         Me.GCMember.Name = "GCMember"
-        Me.GCMember.Size = New System.Drawing.Size(793, 342)
+        Me.GCMember.Size = New System.Drawing.Size(793, 377)
         Me.GCMember.TabIndex = 0
         Me.GCMember.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMember})
         '
@@ -316,7 +316,7 @@ Partial Class FormMailManageDet
         '
         Me.XTPDetail.Controls.Add(Me.GCDetail)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(793, 342)
+        Me.XTPDetail.Size = New System.Drawing.Size(793, 377)
         Me.XTPDetail.Text = "Detail"
         '
         'GCDetail
@@ -325,7 +325,7 @@ Partial Class FormMailManageDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(793, 342)
+        Me.GCDetail.Size = New System.Drawing.Size(793, 377)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
