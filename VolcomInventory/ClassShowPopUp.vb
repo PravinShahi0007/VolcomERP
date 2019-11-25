@@ -488,7 +488,7 @@
             FormViewSalesOrder.id_sales_order = id_report
             FormViewSalesOrder.ShowDialog()
         ElseIf report_mark_type = "40" Then
-            'Entry Journal
+            'Adjustment Journal
             FormViewJournalAdj.id_trans_adj = id_report
             FormViewJournalAdj.ShowDialog()
         ElseIf report_mark_type = "41" Then
@@ -1377,7 +1377,7 @@
             table_name = "tb_a_acc_trans_adj"
             field_id = "id_acc_trans_adj"
             field_number = "acc_trans_adj_number"
-            field_date = "acc_trans_adj_date"
+            field_date = "date_created"
         ElseIf report_mark_type = "41" Then
             'Adj In FG
             table_name = "tb_adj_in_fg"

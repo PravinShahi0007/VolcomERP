@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormAccountingJournalAdjDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormAccountingJournalAdjDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAccountingJournalAdjDet))
@@ -40,10 +40,10 @@ Partial Class FormAccountingJournalAdjDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.Bprint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
@@ -55,14 +55,14 @@ Partial Class FormAccountingJournalAdjDet
         Me.TEUserEntry = New DevExpress.XtraEditors.TextEdit()
         Me.TEJournalNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DERefDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
         Me.TEDate = New DevExpress.XtraEditors.TextEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPJournalRev = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPNewEntry = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPDraftJournal = New DevExpress.XtraTab.XtraTabPage()
         Me.GCRevJournal = New DevExpress.XtraGrid.GridControl()
         Me.GVRevJournal = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,6 +74,8 @@ Partial Class FormAccountingJournalAdjDet
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.XTPNewEntry = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDraftJournal = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDraftJournal = New DevExpress.XtraGrid.GridControl()
         Me.GVDraftJournal = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,9 +98,9 @@ Partial Class FormAccountingJournalAdjDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCGeneralheader.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,17 +109,19 @@ Partial Class FormAccountingJournalAdjDet
         CType(Me.TEJournalNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPJournalRev.SuspendLayout()
-        Me.XTPNewEntry.SuspendLayout()
-        Me.XTPDraftJournal.SuspendLayout()
         CType(Me.GCRevJournal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRevJournal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPNewEntry.SuspendLayout()
+        Me.XTPDraftJournal.SuspendLayout()
         CType(Me.GCDraftJournal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraftJournal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,7 +152,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCJournalDet.Size = New System.Drawing.Size(738, 258)
+        Me.GCJournalDet.Size = New System.Drawing.Size(738, 264)
         Me.GCJournalDet.TabIndex = 16
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
@@ -271,7 +275,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.PanelControl4.Controls.Add(Me.MENote)
         Me.PanelControl4.Controls.Add(Me.LabelControl3)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 400)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 428)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(744, 58)
         Me.PanelControl4.TabIndex = 18
@@ -312,40 +316,6 @@ Partial Class FormAccountingJournalAdjDet
         Me.BDelMat.TabIndex = 16
         Me.BDelMat.Text = "Delete"
         '
-        'BAddMat
-        '
-        Me.BAddMat.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAddMat.ImageIndex = 0
-        Me.BAddMat.ImageList = Me.LargeImageCollection
-        Me.BAddMat.Location = New System.Drawing.Point(645, 2)
-        Me.BAddMat.Name = "BAddMat"
-        Me.BAddMat.Size = New System.Drawing.Size(91, 35)
-        Me.BAddMat.TabIndex = 17
-        Me.BAddMat.Text = "Add"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BMark)
-        Me.PanelControl2.Controls.Add(Me.Bprint)
-        Me.PanelControl2.Controls.Add(Me.BCancel)
-        Me.PanelControl2.Controls.Add(Me.BSave)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 458)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(744, 39)
-        Me.PanelControl2.TabIndex = 15
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.ImageIndex = 4
-        Me.BMark.ImageList = Me.LargeImageCollection
-        Me.BMark.Location = New System.Drawing.Point(2, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 35)
-        Me.BMark.TabIndex = 21
-        Me.BMark.Text = "Mark"
-        '
         'LargeImageCollection
         '
         Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
@@ -366,6 +336,40 @@ Partial Class FormAccountingJournalAdjDet
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BAddMat
+        '
+        Me.BAddMat.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddMat.ImageIndex = 0
+        Me.BAddMat.ImageList = Me.LargeImageCollection
+        Me.BAddMat.Location = New System.Drawing.Point(645, 2)
+        Me.BAddMat.Name = "BAddMat"
+        Me.BAddMat.Size = New System.Drawing.Size(91, 35)
+        Me.BAddMat.TabIndex = 17
+        Me.BAddMat.Text = "Add"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BMark)
+        Me.PanelControl2.Controls.Add(Me.Bprint)
+        Me.PanelControl2.Controls.Add(Me.BCancel)
+        Me.PanelControl2.Controls.Add(Me.BSave)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 486)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(744, 39)
+        Me.PanelControl2.TabIndex = 15
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(75, 35)
+        Me.BMark.TabIndex = 21
+        Me.BMark.Text = "Mark"
         '
         'Bprint
         '
@@ -407,7 +411,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.PCGeneralheader.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCGeneralheader.Location = New System.Drawing.Point(0, 0)
         Me.PCGeneralheader.Name = "PCGeneralheader"
-        Me.PCGeneralheader.Size = New System.Drawing.Size(744, 75)
+        Me.PCGeneralheader.Size = New System.Drawing.Size(744, 97)
         Me.PCGeneralheader.TabIndex = 14
         '
         'PanelControl5
@@ -421,7 +425,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(351, 71)
+        Me.PanelControl5.Size = New System.Drawing.Size(351, 93)
         Me.PanelControl5.TabIndex = 21
         '
         'LabelControl4
@@ -467,19 +471,42 @@ Partial Class FormAccountingJournalAdjDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
+        Me.PanelControl1.Controls.Add(Me.DERefDate)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.LTransNo)
         Me.PanelControl1.Controls.Add(Me.TEDate)
         Me.PanelControl1.Controls.Add(Me.TENumber)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(449, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(433, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(293, 71)
+        Me.PanelControl1.Size = New System.Drawing.Size(309, 93)
         Me.PanelControl1.TabIndex = 20
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 67)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(76, 13)
+        Me.LabelControl5.TabIndex = 160
+        Me.LabelControl5.Text = "Reference Date"
+        '
+        'DERefDate
+        '
+        Me.DERefDate.EditValue = Nothing
+        Me.DERefDate.Location = New System.Drawing.Point(94, 64)
+        Me.DERefDate.Name = "DERefDate"
+        Me.DERefDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DERefDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERefDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERefDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DERefDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERefDate.Size = New System.Drawing.Size(203, 20)
+        Me.DERefDate.TabIndex = 159
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(21, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl1.TabIndex = 2
@@ -487,7 +514,7 @@ Partial Class FormAccountingJournalAdjDet
         '
         'LTransNo
         '
-        Me.LTransNo.Location = New System.Drawing.Point(21, 41)
+        Me.LTransNo.Location = New System.Drawing.Point(12, 41)
         Me.LTransNo.Name = "LTransNo"
         Me.LTransNo.Size = New System.Drawing.Size(23, 13)
         Me.LTransNo.TabIndex = 0
@@ -495,7 +522,7 @@ Partial Class FormAccountingJournalAdjDet
         '
         'TEDate
         '
-        Me.TEDate.Location = New System.Drawing.Point(76, 38)
+        Me.TEDate.Location = New System.Drawing.Point(94, 38)
         Me.TEDate.Name = "TEDate"
         Me.TEDate.Properties.ReadOnly = True
         Me.TEDate.Size = New System.Drawing.Size(203, 20)
@@ -503,7 +530,7 @@ Partial Class FormAccountingJournalAdjDet
         '
         'TENumber
         '
-        Me.TENumber.Location = New System.Drawing.Point(76, 9)
+        Me.TENumber.Location = New System.Drawing.Point(94, 9)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Size = New System.Drawing.Size(203, 20)
         Me.TENumber.TabIndex = 3
@@ -512,10 +539,10 @@ Partial Class FormAccountingJournalAdjDet
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 75)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 97)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPJournalRev
-        Me.XtraTabControl1.Size = New System.Drawing.Size(744, 325)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(744, 331)
         Me.XtraTabControl1.TabIndex = 19
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPJournalRev, Me.XTPNewEntry, Me.XTPDraftJournal})
         '
@@ -523,23 +550,8 @@ Partial Class FormAccountingJournalAdjDet
         '
         Me.XTPJournalRev.Controls.Add(Me.GCRevJournal)
         Me.XTPJournalRev.Name = "XTPJournalRev"
-        Me.XTPJournalRev.Size = New System.Drawing.Size(738, 297)
+        Me.XTPJournalRev.Size = New System.Drawing.Size(738, 303)
         Me.XTPJournalRev.Text = "Reverse Journal"
-        '
-        'XTPNewEntry
-        '
-        Me.XTPNewEntry.Controls.Add(Me.GCJournalDet)
-        Me.XTPNewEntry.Controls.Add(Me.PanelControl3)
-        Me.XTPNewEntry.Name = "XTPNewEntry"
-        Me.XTPNewEntry.Size = New System.Drawing.Size(738, 297)
-        Me.XTPNewEntry.Text = "New Entry"
-        '
-        'XTPDraftJournal
-        '
-        Me.XTPDraftJournal.Controls.Add(Me.GCDraftJournal)
-        Me.XTPDraftJournal.Name = "XTPDraftJournal"
-        Me.XTPDraftJournal.Size = New System.Drawing.Size(738, 297)
-        Me.XTPDraftJournal.Text = "Draft Journal"
         '
         'GCRevJournal
         '
@@ -548,7 +560,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.GCRevJournal.MainView = Me.GVRevJournal
         Me.GCRevJournal.Name = "GCRevJournal"
         Me.GCRevJournal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4})
-        Me.GCRevJournal.Size = New System.Drawing.Size(738, 297)
+        Me.GCRevJournal.Size = New System.Drawing.Size(738, 303)
         Me.GCRevJournal.TabIndex = 17
         Me.GCRevJournal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRevJournal})
         '
@@ -666,6 +678,21 @@ Partial Class FormAccountingJournalAdjDet
         Me.RepositoryItemTextEdit4.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit4.Name = "RepositoryItemTextEdit4"
         '
+        'XTPNewEntry
+        '
+        Me.XTPNewEntry.Controls.Add(Me.GCJournalDet)
+        Me.XTPNewEntry.Controls.Add(Me.PanelControl3)
+        Me.XTPNewEntry.Name = "XTPNewEntry"
+        Me.XTPNewEntry.Size = New System.Drawing.Size(738, 303)
+        Me.XTPNewEntry.Text = "New Entry"
+        '
+        'XTPDraftJournal
+        '
+        Me.XTPDraftJournal.Controls.Add(Me.GCDraftJournal)
+        Me.XTPDraftJournal.Name = "XTPDraftJournal"
+        Me.XTPDraftJournal.Size = New System.Drawing.Size(738, 303)
+        Me.XTPDraftJournal.Text = "Draft Journal"
+        '
         'GCDraftJournal
         '
         Me.GCDraftJournal.Dock = System.Windows.Forms.DockStyle.Fill
@@ -673,7 +700,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.GCDraftJournal.MainView = Me.GVDraftJournal
         Me.GCDraftJournal.Name = "GCDraftJournal"
         Me.GCDraftJournal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit5, Me.RepositoryItemTextEdit6})
-        Me.GCDraftJournal.Size = New System.Drawing.Size(738, 297)
+        Me.GCDraftJournal.Size = New System.Drawing.Size(738, 303)
         Me.GCDraftJournal.TabIndex = 17
         Me.GCDraftJournal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraftJournal})
         '
@@ -795,7 +822,7 @@ Partial Class FormAccountingJournalAdjDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(744, 497)
+        Me.ClientSize = New System.Drawing.Size(744, 525)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl2)
@@ -818,9 +845,9 @@ Partial Class FormAccountingJournalAdjDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCGeneralheader.ResumeLayout(False)
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -831,17 +858,19 @@ Partial Class FormAccountingJournalAdjDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPJournalRev.ResumeLayout(False)
-        Me.XTPNewEntry.ResumeLayout(False)
-        Me.XTPDraftJournal.ResumeLayout(False)
         CType(Me.GCRevJournal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRevJournal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPNewEntry.ResumeLayout(False)
+        Me.XTPDraftJournal.ResumeLayout(False)
         CType(Me.GCDraftJournal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraftJournal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -913,4 +942,6 @@ Partial Class FormAccountingJournalAdjDet
     Friend WithEvents RepositoryItemTextEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DERefDate As DevExpress.XtraEditors.DateEdit
 End Class

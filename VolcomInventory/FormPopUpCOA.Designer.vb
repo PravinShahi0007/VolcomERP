@@ -111,7 +111,6 @@ Partial Class FormPopUpCOA
         Me.TreeList1.OptionsBehavior.AutoPopulateColumns = False
         Me.TreeList1.OptionsBehavior.Editable = False
         Me.TreeList1.OptionsBehavior.EnableFiltering = True
-        Me.TreeList1.OptionsFind.AllowFindPanel = True
         Me.TreeList1.OptionsFind.AlwaysVisible = True
         Me.TreeList1.OptionsView.EnableAppearanceEvenRow = True
         Me.TreeList1.ParentFieldName = "id_acc_parent"
@@ -284,7 +283,7 @@ Partial Class FormPopUpCOA
         Me.GCAcc.MainView = Me.GVAcc
         Me.GCAcc.Name = "GCAcc"
         Me.GCAcc.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.is_active_company, Me.RepositoryItemCheckEdit1})
-        Me.GCAcc.Size = New System.Drawing.Size(809, 344)
+        Me.GCAcc.Size = New System.Drawing.Size(809, 337)
         Me.GCAcc.TabIndex = 5
         Me.GCAcc.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAcc})
         '
@@ -373,9 +372,9 @@ Partial Class FormPopUpCOA
         Me.PanelControl4.Controls.Add(Me.BCancelTable)
         Me.PanelControl4.Controls.Add(Me.BPickTable)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 344)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 337)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(809, 33)
+        Me.PanelControl4.Size = New System.Drawing.Size(809, 40)
         Me.PanelControl4.TabIndex = 9
         '
         'BCancelTable
@@ -386,7 +385,7 @@ Partial Class FormPopUpCOA
         Me.BCancelTable.ImageList = Me.ImgBut
         Me.BCancelTable.Location = New System.Drawing.Point(627, 2)
         Me.BCancelTable.Name = "BCancelTable"
-        Me.BCancelTable.Size = New System.Drawing.Size(88, 29)
+        Me.BCancelTable.Size = New System.Drawing.Size(88, 36)
         Me.BCancelTable.TabIndex = 19
         Me.BCancelTable.Text = "Cancel"
         '
@@ -397,7 +396,7 @@ Partial Class FormPopUpCOA
         Me.BPickTable.ImageList = Me.ImgBut
         Me.BPickTable.Location = New System.Drawing.Point(715, 2)
         Me.BPickTable.Name = "BPickTable"
-        Me.BPickTable.Size = New System.Drawing.Size(92, 29)
+        Me.BPickTable.Size = New System.Drawing.Size(92, 36)
         Me.BPickTable.TabIndex = 18
         Me.BPickTable.Text = "Pick"
         '
