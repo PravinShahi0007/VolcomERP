@@ -36,7 +36,6 @@
             data.Columns.Add("sales_order_number", GetType(String))
             data.Columns.Add("sales_order_ol_shop_number", GetType(String))
             data.Columns.Add("so_status", GetType(String))
-            data.Columns.Add("total_remaining", GetType(Decimal))
             data.Columns.Add("total", GetType(Decimal))
             data.Columns.Add("pl_sales_order_del_date", GetType(Date))
 
