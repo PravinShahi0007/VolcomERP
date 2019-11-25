@@ -1,7 +1,12 @@
 ﻿Public Class FormMasterCompGroupDet 
     Public id_comp_group As String = "-1"
     Private Sub FormMasterCompGroupDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-       
+        If Not id_comp_group = "-1" Then
+            Dim query As String = "SELECT * FROM tb_m_comp_group WHERE id_comp_group = " + id_comp_group
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TECompanyGroup.EditValue = data.Rows(0)("comp_group").ToString
+            TEDescription.EditValue = data.Rows(0)("description").ToString
+        End If
     End Sub
 
     Private Sub BCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancel.Click
