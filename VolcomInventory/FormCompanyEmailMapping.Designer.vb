@@ -1,0 +1,259 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormCompanyEmailMapping
+    Inherits DevExpress.XtraEditors.XtraForm
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Me.GCListStoreGroup = New DevExpress.XtraGrid.GridControl()
+        Me.GVListStoreGroup = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabControl = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPStoreGroup = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPInternal = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCListInternal = New DevExpress.XtraGrid.GridControl()
+        Me.GVListInternal = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.GCListStoreGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListStoreGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl.SuspendLayout()
+        Me.XTPStoreGroup.SuspendLayout()
+        Me.XTPInternal.SuspendLayout()
+        CType(Me.GCListInternal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListInternal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'GCListStoreGroup
+        '
+        Me.GCListStoreGroup.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListStoreGroup.Location = New System.Drawing.Point(0, 0)
+        Me.GCListStoreGroup.MainView = Me.GVListStoreGroup
+        Me.GCListStoreGroup.Name = "GCListStoreGroup"
+        Me.GCListStoreGroup.Size = New System.Drawing.Size(1002, 701)
+        Me.GCListStoreGroup.TabIndex = 0
+        Me.GCListStoreGroup.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListStoreGroup})
+        '
+        'GVListStoreGroup
+        '
+        Me.GVListStoreGroup.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVListStoreGroup.GridControl = Me.GCListStoreGroup
+        Me.GVListStoreGroup.Name = "GVListStoreGroup"
+        Me.GVListStoreGroup.OptionsBehavior.Editable = False
+        Me.GVListStoreGroup.OptionsFind.AlwaysVisible = True
+        Me.GVListStoreGroup.OptionsView.ColumnAutoWidth = False
+        Me.GVListStoreGroup.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "GridColumn13"
+        Me.GridColumn13.FieldName = "id_mail_manage_mapping"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Store Group"
+        Me.GridColumn1.FieldName = "comp_group"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Contact Name"
+        Me.GridColumn2.FieldName = "contact_person"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 78
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Position"
+        Me.GridColumn3.FieldName = "position"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Email"
+        Me.GridColumn4.FieldName = "email"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Type"
+        Me.GridColumn5.FieldName = "report_mark_type_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Member Type"
+        Me.GridColumn6.FieldName = "mail_member_type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'XtraTabControl
+        '
+        Me.XtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl.Name = "XtraTabControl"
+        Me.XtraTabControl.SelectedTabPage = Me.XTPStoreGroup
+        Me.XtraTabControl.Size = New System.Drawing.Size(1008, 729)
+        Me.XtraTabControl.TabIndex = 1
+        Me.XtraTabControl.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPStoreGroup, Me.XTPInternal})
+        '
+        'XTPStoreGroup
+        '
+        Me.XTPStoreGroup.Controls.Add(Me.GCListStoreGroup)
+        Me.XTPStoreGroup.Name = "XTPStoreGroup"
+        Me.XTPStoreGroup.Size = New System.Drawing.Size(1002, 701)
+        Me.XTPStoreGroup.Text = "Store Group"
+        '
+        'XTPInternal
+        '
+        Me.XTPInternal.Controls.Add(Me.GCListInternal)
+        Me.XTPInternal.Name = "XTPInternal"
+        Me.XTPInternal.Size = New System.Drawing.Size(1002, 701)
+        Me.XTPInternal.Text = "Internal"
+        '
+        'GCListInternal
+        '
+        Me.GCListInternal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListInternal.Location = New System.Drawing.Point(0, 0)
+        Me.GCListInternal.MainView = Me.GVListInternal
+        Me.GCListInternal.Name = "GCListInternal"
+        Me.GCListInternal.Size = New System.Drawing.Size(1002, 701)
+        Me.GCListInternal.TabIndex = 1
+        Me.GCListInternal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListInternal})
+        '
+        'GVListInternal
+        '
+        Me.GVListInternal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn7, Me.GridColumn9, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12})
+        Me.GVListInternal.GridControl = Me.GCListInternal
+        Me.GVListInternal.Name = "GVListInternal"
+        Me.GVListInternal.OptionsBehavior.Editable = False
+        Me.GVListInternal.OptionsFind.AlwaysVisible = True
+        Me.GVListInternal.OptionsView.ColumnAutoWidth = False
+        Me.GVListInternal.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "id_mail_manage_mapping_intern"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Name"
+        Me.GridColumn7.FieldName = "employee_name"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Position"
+        Me.GridColumn9.FieldName = "employee_position"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Email"
+        Me.GridColumn8.FieldName = "email_external"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.Width = 78
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Type"
+        Me.GridColumn11.FieldName = "report_mark_type_name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 3
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Member Type"
+        Me.GridColumn12.FieldName = "mail_member_type"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 4
+        '
+        'FormCompanyEmailMapping
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.Controls.Add(Me.XtraTabControl)
+        Me.Name = "FormCompanyEmailMapping"
+        Me.Text = "Email Mapping"
+        CType(Me.GCListStoreGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListStoreGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl.ResumeLayout(False)
+        Me.XTPStoreGroup.ResumeLayout(False)
+        Me.XTPInternal.ResumeLayout(False)
+        CType(Me.GCListInternal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListInternal, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
+    End Sub
+
+    Friend WithEvents GCListStoreGroup As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVListStoreGroup As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents XtraTabControl As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPStoreGroup As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPInternal As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCListInternal As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVListInternal As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+End Class
