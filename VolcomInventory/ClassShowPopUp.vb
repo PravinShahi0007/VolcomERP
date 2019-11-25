@@ -489,8 +489,9 @@
             FormViewSalesOrder.ShowDialog()
         ElseIf report_mark_type = "40" Then
             'Adjustment Journal
-            FormViewJournalAdj.id_trans_adj = id_report
-            FormViewJournalAdj.ShowDialog()
+            FormAccountingJournalAdjDet.is_view = "1"
+            FormAccountingJournalAdjDet.id_trans_adj = id_report
+            FormAccountingJournalAdjDet.ShowDialog()
         ElseIf report_mark_type = "41" Then
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report

@@ -4,7 +4,6 @@
     Private Sub FormPopUpJournal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_billing_type(LEBillingView)
         load_rmt()
-
     End Sub
 
     Private Sub FormPopUpJournal_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed

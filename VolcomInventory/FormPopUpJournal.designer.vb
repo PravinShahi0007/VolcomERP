@@ -23,6 +23,7 @@ Partial Class FormPopUpJournal
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPopUpJournal))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl()
@@ -32,9 +33,18 @@ Partial Class FormPopUpJournal
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEReportNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.SLEReportMarkType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LEBillingView = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
         Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,35 +58,27 @@ Partial Class FormPopUpJournal
         Me.RTE1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RTE2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LEBillingView = New DevExpress.XtraEditors.LookUpEdit()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEReportMarkType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TEReportNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneral.SuspendLayout()
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.TEReportNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBillingView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RTE1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RTE2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEBillingView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEReportNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -101,6 +103,27 @@ Partial Class FormPopUpJournal
         Me.BtnCancel.Size = New System.Drawing.Size(86, 39)
         Me.BtnCancel.TabIndex = 2
         Me.BtnCancel.Text = "Cancel"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
         'BtnSave
         '
@@ -191,6 +214,24 @@ Partial Class FormPopUpJournal
         Me.GridColumn4.VisibleIndex = 4
         Me.GridColumn4.Width = 182
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Report Number"
+        Me.GridColumn18.FieldName = "report_number"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
+        Me.GridColumn18.Width = 160
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Bill Type"
+        Me.GridColumn17.FieldName = "bill_type"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        Me.GridColumn17.Width = 141
+        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Id report Status"
@@ -214,6 +255,77 @@ Partial Class FormPopUpJournal
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 3
         Me.GridColumn7.Width = 555
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.TEReportNumber)
+        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Controls.Add(Me.SLEReportMarkType)
+        Me.PanelControl1.Controls.Add(Me.LEBillingView)
+        Me.PanelControl1.Controls.Add(Me.BView)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(2, 20)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(814, 40)
+        Me.PanelControl1.TabIndex = 8
+        '
+        'TEReportNumber
+        '
+        Me.TEReportNumber.Location = New System.Drawing.Point(393, 9)
+        Me.TEReportNumber.Name = "TEReportNumber"
+        Me.TEReportNumber.Size = New System.Drawing.Size(132, 20)
+        Me.TEReportNumber.TabIndex = 152
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(307, 12)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(80, 13)
+        Me.Label1.TabIndex = 151
+        Me.Label1.Text = "Report Number"
+        '
+        'SLEReportMarkType
+        '
+        Me.SLEReportMarkType.Location = New System.Drawing.Point(109, 9)
+        Me.SLEReportMarkType.Name = "SLEReportMarkType"
+        Me.SLEReportMarkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEReportMarkType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEReportMarkType.Size = New System.Drawing.Size(192, 20)
+        Me.SLEReportMarkType.TabIndex = 150
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LEBillingView
+        '
+        Me.LEBillingView.Location = New System.Drawing.Point(10, 9)
+        Me.LEBillingView.Name = "LEBillingView"
+        Me.LEBillingView.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEBillingView.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEBillingView.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEBillingView.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LEBillingView.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEBillingView.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LEBillingView.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBillingView.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bill_type", "Id Billing Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bill_type", "Billing Type")})
+        Me.LEBillingView.Properties.NullText = ""
+        Me.LEBillingView.Properties.ShowFooter = False
+        Me.LEBillingView.Size = New System.Drawing.Size(93, 20)
+        Me.LEBillingView.TabIndex = 149
+        '
+        'BView
+        '
+        Me.BView.Location = New System.Drawing.Point(531, 8)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(119, 22)
+        Me.BView.TabIndex = 148
+        Me.BView.Text = "View Transaction"
         '
         'GCJournalDet
         '
@@ -357,114 +469,19 @@ Partial Class FormPopUpJournal
         Me.RTE2.Mask.UseMaskAsDisplayFormat = True
         Me.RTE2.Name = "RTE2"
         '
-        'PanelControl1
+        'GridColumn19
         '
-        Me.PanelControl1.Controls.Add(Me.TEReportNumber)
-        Me.PanelControl1.Controls.Add(Me.Label1)
-        Me.PanelControl1.Controls.Add(Me.SLEReportMarkType)
-        Me.PanelControl1.Controls.Add(Me.LEBillingView)
-        Me.PanelControl1.Controls.Add(Me.BView)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(2, 20)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(814, 40)
-        Me.PanelControl1.TabIndex = 8
+        Me.GridColumn19.Caption = "ID"
+        Me.GridColumn19.FieldName = "report_mark_type"
+        Me.GridColumn19.Name = "GridColumn19"
         '
-        'LargeImageCollection
+        'GridColumn20
         '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Bill Type"
-        Me.GridColumn17.FieldName = "bill_type"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 0
-        Me.GridColumn17.Width = 141
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Report Number"
-        Me.GridColumn18.FieldName = "report_number"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 2
-        Me.GridColumn18.Width = 160
-        '
-        'LEBillingView
-        '
-        Me.LEBillingView.Location = New System.Drawing.Point(10, 9)
-        Me.LEBillingView.Name = "LEBillingView"
-        Me.LEBillingView.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEBillingView.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEBillingView.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.LEBillingView.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.LEBillingView.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEBillingView.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.LEBillingView.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEBillingView.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bill_type", "Id Billing Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bill_type", "Billing Type")})
-        Me.LEBillingView.Properties.NullText = ""
-        Me.LEBillingView.Properties.ShowFooter = False
-        Me.LEBillingView.Size = New System.Drawing.Size(93, 20)
-        Me.LEBillingView.TabIndex = 149
-        '
-        'BView
-        '
-        Me.BView.Location = New System.Drawing.Point(531, 8)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(119, 22)
-        Me.BView.TabIndex = 148
-        Me.BView.Text = "View Transaction"
-        '
-        'SLEReportMarkType
-        '
-        Me.SLEReportMarkType.Location = New System.Drawing.Point(109, 9)
-        Me.SLEReportMarkType.Name = "SLEReportMarkType"
-        Me.SLEReportMarkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEReportMarkType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEReportMarkType.Size = New System.Drawing.Size(192, 20)
-        Me.SLEReportMarkType.TabIndex = 150
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(307, 12)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(80, 13)
-        Me.Label1.TabIndex = 151
-        Me.Label1.Text = "Report Number"
-        '
-        'TEReportNumber
-        '
-        Me.TEReportNumber.Location = New System.Drawing.Point(393, 9)
-        Me.TEReportNumber.Name = "TEReportNumber"
-        Me.TEReportNumber.Size = New System.Drawing.Size(132, 20)
-        Me.TEReportNumber.TabIndex = 152
+        Me.GridColumn20.Caption = "Report Mark Type"
+        Me.GridColumn20.FieldName = "report_mark_type_name"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
         '
         'FormPopUpJournal
         '
@@ -482,24 +499,24 @@ Partial Class FormPopUpJournal
         Me.Text = "Pick Entry"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneral.ResumeLayout(False)
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAccTrans, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.TEReportNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBillingView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RTE1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RTE2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEBillingView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEReportNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -540,4 +557,6 @@ Partial Class FormPopUpJournal
     Friend WithEvents Label1 As Label
     Friend WithEvents SLEReportMarkType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

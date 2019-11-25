@@ -7,7 +7,9 @@
     Public id_report As String = "-1"
     '
     Public id_report_status_g As String = "1"
-
+    '
+    Public is_view As String = "-1"
+    '
     Private Sub FormAccountingJournalAdjDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         DERefDate.EditValue = Now()
 
@@ -18,22 +20,25 @@
             Dim strDate As String = regDate.ToString("yyyy\-MM\-dd")
             TEDate.Text = view_date_from(strDate, 0)
 
-            Dim query As String = "SELECT a.id_acc_trans_adj_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_adj_det_note as note FROM tb_a_acc_trans_adj_det a INNER JOIN tb_a_acc b WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCJournalDet.DataSource = data
-
             BPickJournal.Enabled = True
             Bprint.Visible = False
             BMark.Visible = False
+            '
+            PCButton.Visible = True
+            '
+            BSave.Visible = True
         Else 'edit
-            Dim query As String = "SELECT a.acc_trans_adj_number,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.id_user,a.acc_trans_adj_note,id_report_status FROM tb_a_acc_trans_adj a WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
+            Dim query As String = "SELECT a.acc_trans_adj_number,a.id_acc_trans,a.date_reffrence,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.id_user,a.acc_trans_adj_note,id_report_status FROM tb_a_acc_trans_adj a WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            id_trans = data.Rows(0)("id_acc_trans").ToString
+
             id_report_status_g = data.Rows(0)("id_report_status").ToString
-
             TEUserEntry.Text = get_user_identify(data.Rows(0)("id_user").ToString, 1)
-
             TENumber.Text = data.Rows(0)("acc_trans_adj_number").ToString
+
+            DERefDate.EditValue = data.Rows(0)("date_reffrence")
+
             Dim strDate As String = data.Rows(0)("date_created").ToString
             TEDate.Text = view_date_from(strDate, 0)
             MENote.Text = data.Rows(0)("acc_trans_adj_note").ToString
@@ -41,8 +46,20 @@
             BPickJournal.Enabled = False
             allow_status()
             '
-            Bprint.Visible = True
+
             BMark.Visible = True
+            '
+            PCButton.Visible = False
+            '
+            If id_report_status_g = "6" Then
+                BViewJournal.Visible = True
+                Bprint.Visible = True
+            Else
+                BViewJournal.Visible = False
+                Bprint.Visible = False
+            End If
+            '
+            BSave.Visible = False
         End If
         '
         view_det()
@@ -255,6 +272,7 @@ WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_trans_adj
         FormReportMark.report_mark_type = "40"
+        FormReportMark.is_view = is_view
         FormReportMark.ShowDialog()
     End Sub
 
@@ -324,5 +342,29 @@ WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
         If e.Column.FieldName = "debit" Or e.Column.FieldName = "credit" Then
             view_draft()
         End If
+    End Sub
+
+    Private Sub BViewJournal_Click(sender As Object, e As EventArgs) Handles BViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=40 AND ad.id_report=" + id_trans_adj + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "40"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

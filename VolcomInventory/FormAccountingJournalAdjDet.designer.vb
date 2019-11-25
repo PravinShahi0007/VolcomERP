@@ -38,7 +38,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCButton = New DevExpress.XtraEditors.PanelControl()
         Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
@@ -87,6 +87,7 @@ Partial Class FormAccountingJournalAdjDet
         Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.BViewJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPJournal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BalanceMenu.SuspendLayout()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,8 +97,8 @@ Partial Class FormAccountingJournalAdjDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCButton, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCButton.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -295,15 +296,15 @@ Partial Class FormAccountingJournalAdjDet
         Me.LabelControl3.TabIndex = 3
         Me.LabelControl3.Text = "Note"
         '
-        'PanelControl3
+        'PCButton
         '
-        Me.PanelControl3.Controls.Add(Me.BDelMat)
-        Me.PanelControl3.Controls.Add(Me.BAddMat)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(738, 39)
-        Me.PanelControl3.TabIndex = 17
+        Me.PCButton.Controls.Add(Me.BDelMat)
+        Me.PCButton.Controls.Add(Me.BAddMat)
+        Me.PCButton.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCButton.Location = New System.Drawing.Point(0, 0)
+        Me.PCButton.Name = "PCButton"
+        Me.PCButton.Size = New System.Drawing.Size(738, 39)
+        Me.PCButton.TabIndex = 17
         '
         'BDelMat
         '
@@ -350,6 +351,7 @@ Partial Class FormAccountingJournalAdjDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BViewJournal)
         Me.PanelControl2.Controls.Add(Me.BMark)
         Me.PanelControl2.Controls.Add(Me.Bprint)
         Me.PanelControl2.Controls.Add(Me.BCancel)
@@ -569,6 +571,8 @@ Partial Class FormAccountingJournalAdjDet
         Me.GVRevJournal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
         Me.GVRevJournal.GridControl = Me.GCRevJournal
         Me.GVRevJournal.Name = "GVRevJournal"
+        Me.GVRevJournal.OptionsBehavior.Editable = False
+        Me.GVRevJournal.OptionsBehavior.ReadOnly = True
         Me.GVRevJournal.OptionsView.ShowFooter = True
         Me.GVRevJournal.OptionsView.ShowGroupPanel = False
         '
@@ -681,7 +685,7 @@ Partial Class FormAccountingJournalAdjDet
         'XTPNewEntry
         '
         Me.XTPNewEntry.Controls.Add(Me.GCJournalDet)
-        Me.XTPNewEntry.Controls.Add(Me.PanelControl3)
+        Me.XTPNewEntry.Controls.Add(Me.PCButton)
         Me.XTPNewEntry.Name = "XTPNewEntry"
         Me.XTPNewEntry.Size = New System.Drawing.Size(738, 303)
         Me.XTPNewEntry.Text = "New Entry"
@@ -709,6 +713,8 @@ Partial Class FormAccountingJournalAdjDet
         Me.GVDraftJournal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
         Me.GVDraftJournal.GridControl = Me.GCDraftJournal
         Me.GVDraftJournal.Name = "GVDraftJournal"
+        Me.GVDraftJournal.OptionsBehavior.Editable = False
+        Me.GVDraftJournal.OptionsBehavior.ReadOnly = True
         Me.GVDraftJournal.OptionsView.ShowFooter = True
         Me.GVDraftJournal.OptionsView.ShowGroupPanel = False
         '
@@ -818,6 +824,17 @@ Partial Class FormAccountingJournalAdjDet
         Me.RepositoryItemTextEdit6.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit6.Name = "RepositoryItemTextEdit6"
         '
+        'BViewJournal
+        '
+        Me.BViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BViewJournal.ImageIndex = 15
+        Me.BViewJournal.ImageList = Me.LargeImageCollection
+        Me.BViewJournal.Location = New System.Drawing.Point(417, 2)
+        Me.BViewJournal.Name = "BViewJournal"
+        Me.BViewJournal.Size = New System.Drawing.Size(110, 35)
+        Me.BViewJournal.TabIndex = 22
+        Me.BViewJournal.Text = "View Journal"
+        '
         'FormAccountingJournalAdjDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -843,8 +860,8 @@ Partial Class FormAccountingJournalAdjDet
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCButton, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCButton.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -895,7 +912,7 @@ Partial Class FormAccountingJournalAdjDet
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCButton As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAddMat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BDelMat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
@@ -944,4 +961,5 @@ Partial Class FormAccountingJournalAdjDet
     Friend WithEvents RepositoryItemTextEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DERefDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BViewJournal As DevExpress.XtraEditors.SimpleButton
 End Class
