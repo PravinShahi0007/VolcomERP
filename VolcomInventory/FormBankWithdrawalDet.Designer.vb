@@ -593,6 +593,8 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn4.Caption = "ID Det"
         Me.GridColumn4.FieldName = "id_pn_det"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowFocus = False
         '
         'GridColumnIdRec
         '
@@ -600,38 +602,48 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumnIdRec.FieldName = "id_report"
         Me.GridColumnIdRec.Name = "GridColumnIdRec"
         Me.GridColumnIdRec.OptionsColumn.AllowEdit = False
+        Me.GridColumnIdRec.OptionsColumn.AllowFocus = False
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Report Mark Type"
         Me.GridColumn3.FieldName = "report_mark_type"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
         '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "No"
+        Me.GridColumn11.FieldName = "no"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.AllowFocus = False
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 64
+        Me.GridColumn11.Width = 112
         '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "COA"
         Me.GridColumn12.FieldName = "acc_name"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.AllowFocus = False
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 57
+        Me.GridColumn12.Width = 100
         '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "CC"
-        Me.GridColumn15.FieldName = "comp_code"
+        Me.GridColumn15.FieldName = "comp_number"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.AllowFocus = False
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 2
-        Me.GridColumn15.Width = 132
+        Me.GridColumn15.Width = 92
         '
         'GridColumnNumber
         '
@@ -639,9 +651,10 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumnNumber.FieldName = "number"
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
+        Me.GridColumnNumber.OptionsColumn.AllowFocus = False
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 3
-        Me.GridColumnNumber.Width = 132
+        Me.GridColumnNumber.Width = 164
         '
         'GridColumnNote
         '
@@ -650,7 +663,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 4
-        Me.GridColumnNote.Width = 136
+        Me.GridColumnNote.Width = 525
         '
         'GridColumn2
         '
@@ -664,10 +677,11 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn2.FieldName = "total_pay"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 5
-        Me.GridColumn2.Width = 132
+        Me.GridColumn2.Width = 202
         '
         'GridColumnPayment
         '
@@ -684,7 +698,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnPayment.Visible = True
         Me.GridColumnPayment.VisibleIndex = 7
-        Me.GridColumnPayment.Width = 136
+        Me.GridColumnPayment.Width = 127
         '
         'RITEDecimal
         '
@@ -705,10 +719,11 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumnBBaldue.FieldName = "balance_due"
         Me.GridColumnBBaldue.Name = "GridColumnBBaldue"
         Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
+        Me.GridColumnBBaldue.OptionsColumn.AllowFocus = False
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         Me.GridColumnBBaldue.Visible = True
         Me.GridColumnBBaldue.VisibleIndex = 6
-        Me.GridColumnBBaldue.Width = 132
+        Me.GridColumnBBaldue.Width = 202
         '
         'RICECheckReceive
         '
