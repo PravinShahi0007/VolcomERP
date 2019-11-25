@@ -1765,6 +1765,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             FormEmpBPJSKesehatanDet.id = "0"
             FormEmpBPJSKesehatanDet.is_approve = "0"
+
+            FormEmpBPJSKesehatanDet.ShowDialog()
+        ElseIf formName = "FormPopUpCompGroup" Then
+            FormMasterCompGroupDet.id_comp_group = "-1"
+            FormMasterCompGroupDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2871,8 +2876,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Catch ex As Exception
                 End Try
             ElseIf formName = "FormEmpBPJSKesehatan" Then
-                FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_emp_bpjs_kesehatan").ToString
+                FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_pay_bpjs_kesehatan").ToString
                 FormEmpBPJSKesehatanDet.is_approve = "0"
+
+                FormEmpBPJSKesehatanDet.ShowDialog()
+            ElseIf formName = "FormPopUpCompGroup" Then
+                FormMasterCompGroupDet.id_comp_group = FormPopUpCompGroup.GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
+                FormMasterCompGroupDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7724,6 +7734,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormTrackingReturn.GCList, "Tracking Return")
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             print(FormEmpBPJSKesehatan.GCList, "BPJS Kesehatan")
+        ElseIf formName = "FormPopUpCompGroup" Then
+            print(FormPopUpCompGroup.GCGroupComp, "Company Group")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8526,6 +8538,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormTrackingReturn.Close()
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             FormEmpBPJSKesehatan.Close()
+        ElseIf formName = "FormPopUpCompGroup" Then
+            FormPopUpCompGroup.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9393,6 +9407,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormTrackingReturn.load_form()
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             FormEmpBPJSKesehatan.load_form()
+        ElseIf formName = "FormPopUpCompGroup" Then
+            FormPopUpCompGroup.view_comp_group()
         End If
     End Sub
     'Switch
@@ -13686,6 +13702,22 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpBPJSKesehatan.Show()
             FormEmpBPJSKesehatan.WindowState = FormWindowState.Maximized
             FormEmpBPJSKesehatan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBSendEmailAcc_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSendEmailAcc.LinkClicked
+
+    End Sub
+
+    Private Sub NBCompanyGroup_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompanyGroup.LinkClicked
+        Try
+            FormPopUpCompGroup.MdiParent = Me
+            FormPopUpCompGroup.is_menu = "1"
+            FormPopUpCompGroup.Show()
+            FormPopUpCompGroup.WindowState = FormWindowState.Maximized
+            FormPopUpCompGroup.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

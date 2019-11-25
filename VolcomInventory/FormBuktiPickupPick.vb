@@ -31,7 +31,7 @@
 
         For i = 0 To FormBuktiPickupDet.GVList.RowCount - 1
             If FormBuktiPickupDet.GVList.IsValidRowHandle(i) Then
-                where_not_in += where_not_in + FormBuktiPickupDet.GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString + ","
+                where_not_in += FormBuktiPickupDet.GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString + ","
             End If
         Next
 
@@ -97,6 +97,7 @@
                 If GVList.IsValidRowHandle(i) Then
                     data.Rows.Add(
                         GVList.GetRowCellValue(i, "id_pl_sales_order_del"),
+                        0,
                         GVList.GetRowCellValue(i, "pl_sales_order_del_number"),
                         GVList.GetRowCellValue(i, "combine_number"),
                         GVList.GetRowCellValue(i, "wh"),
@@ -105,7 +106,6 @@
                         GVList.GetRowCellValue(i, "sales_order_number"),
                         GVList.GetRowCellValue(i, "sales_order_ol_shop_number"),
                         GVList.GetRowCellValue(i, "so_status"),
-                        GVList.GetRowCellValue(i, "total_remaining"),
                         GVList.GetRowCellValue(i, "total"),
                         Date.Parse(GVList.GetRowCellValue(i, "pl_sales_order_del_date"))
                     )

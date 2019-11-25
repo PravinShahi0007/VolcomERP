@@ -93,7 +93,7 @@ Module Database
         Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;", host, username, password, database)
 
         'Enable when developing
-        If is_test = "2" Then
+        If is_test = "1" Then
             Console.WriteLine(command_text)
         End If
 

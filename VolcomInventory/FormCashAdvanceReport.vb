@@ -40,6 +40,7 @@
         GridColumnCashOnHandOut.Visible = False
         GridColumnAdvance.Visible = False
         GridColumnOverdue.Visible = False
+        GridColumnCOADesc.Visible = False
         '
         GVReport.ActiveFilterString = "[expense]>0"
         '
@@ -56,10 +57,13 @@
         GridColumnReconcileActualDate.VisibleIndex = 6
         GridColumnCashInAdvancePeriode.VisibleIndex = 7
         GridColumnCashInAdvance.VisibleIndex = 8
-        GridColumnExpense.VisibleIndex = 9
-        GridColumnAdvance.VisibleIndex = 10
-        GridColumnCashOnHandOut.VisibleIndex = 11
-        GridColumnOverdue.VisibleIndex = 12
+        GridColumnCOA.VisibleIndex = 9
+        GridColumnCOADesc.VisibleIndex = 10
+        GridColumnCoaExpense.VisibleIndex = 11
+        GridColumnExpense.VisibleIndex = 12
+        GridColumnAdvance.VisibleIndex = 13
+        GridColumnCashOnHandOut.VisibleIndex = 14
+        GridColumnOverdue.VisibleIndex = 15
     End Sub
 
     Private Sub BPrintAdvance_Click(sender As Object, e As EventArgs) Handles BPrintAdvance.Click
@@ -70,6 +74,9 @@
         GridColumnCashInAdvance.Visible = False
         GridColumnExpense.Visible = False
         GridColumnCashOnHandOut.Visible = False
+        GridColumnCOADesc.Visible = False
+        GridColumnCOA.Visible = False
+        GridColumnCoaExpense.Visible = False
         '
         GVReport.ActiveFilterString = "[advance]>0"
         '
@@ -86,9 +93,12 @@
         GridColumnReconcileActualDate.VisibleIndex = 6
         GridColumnCashInAdvancePeriode.VisibleIndex = 7
         GridColumnCashInAdvance.VisibleIndex = 8
-        GridColumnExpense.VisibleIndex = 9
-        GridColumnAdvance.VisibleIndex = 10
-        GridColumnCashOnHandOut.VisibleIndex = 11
-        GridColumnOverdue.VisibleIndex = 12
+        GridColumnCOA.VisibleIndex = 9
+        GridColumnCOADesc.VisibleIndex = 10
+        GridColumnCoaExpense.VisibleIndex = 11
+        GridColumnExpense.VisibleIndex = 12
+        GridColumnAdvance.VisibleIndex = 13
+        GridColumnCashOnHandOut.VisibleIndex = 14
+        GridColumnOverdue.VisibleIndex = 15
     End Sub
 End Class
