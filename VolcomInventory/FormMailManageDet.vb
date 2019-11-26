@@ -82,7 +82,7 @@
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
             TxtEmailNumber.Text = "[auto_generated]"
-            TxtMailStatus.Text = "New Email"
+            TxtMailStatus.Text = "Pending"
 
             If rmt = "225" Then 'INVOICE PWNJUALAN
                 '-- mail type
@@ -255,11 +255,19 @@
     End Sub
 
     Private Sub BtnSend_Click(sender As Object, e As EventArgs) Handles BtnSend.Click
-
+        Cursor = Cursors.WaitCursor
+        'ada konfirmasi
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to send this email ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            save("2", "")
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnDraft_Click(sender As Object, e As EventArgs) Handles BtnDraft.Click
-
+        Cursor = Cursors.WaitCursor
+        save("1", "")
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -274,8 +282,8 @@
         If action = "ins" Then
             'insert head
             Dim query As String = "INSERT INTO tb_mail_manage(number, created_date, created_by, updated_date, updated_by, report_mark_type, id_mail_status, mail_status_note, mail_subject) VALUES
-            ('', NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + rmt + "', '" + id_status_par + "', '" + note_par + "', '" + mail_subject + "'); SELECT LAST_INSERT_ID(); "
-            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            ('', NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + rmt + "', '1', '" + note_par + "', '" + mail_subject + "'); SELECT LAST_INSERT_ID(); "
+            id = execute_query(query, 0, True, "", "", "", "")
             execute_non_query("CALL gen_number(" + id + ", " + rmt + ")", True, "", "", "", "")
 
             'insert member
@@ -323,7 +331,13 @@
             End If
 
             'send email
-            sendEmail()
+            If id_status_par = "2" Then 'send
+                sendEmail()
+            ElseIf id_status_par = "1" Then 'draft
+                Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
+                id_mail_status=1, mail_status_note='Sent successfully' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("1", "Draft Email") + "; "
+                execute_non_query(querylog, True, "", "", "", "")
+            End If
 
             'actionLoad & refresh
             action = "upd"
@@ -338,7 +352,27 @@
                 Close()
             End If
         Else
+            'send email
+            If id_status_par = "2" Then 'send
+                sendEmail()
+            ElseIf id_status_par = "1" Then 'draft
+                Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
+                id_mail_status=1, mail_status_note='Sent successfully' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("1", "Draft Email") + "; "
+                execute_non_query(querylog, True, "", "", "", "")
+            End If
 
+            'actionLoad & refresh
+            action = "upd"
+            actionLoad()
+            FormMailManage.XTCMailManage.SelectedTabPageIndex = 0
+            FormMailManage.viewMailManage()
+            makeSafeGV(FormMailManage.GVData)
+            FormMailManage.GVData.FocusedRowHandle = find_row(FormMailManage.GVData, "id_mail_manage", id)
+
+            'jika tidak gagal langsung close
+            If id_mail_status <> "3" Then
+                Close()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
@@ -350,6 +384,9 @@
         sm.report_mark_type = rmt
         Try
             sm.send_email()
+            Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
+            id_mail_status=2, mail_status_note='Sent successfully' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("2", "Sent successfully") + "; "
+            execute_non_query(querylog, True, "", "", "", "")
         Catch ex As Exception
             Dim query As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
             id_mail_status=3, mail_status_note='" + addSlashes(ex.ToString) + "' WHERE id_mail_manage='" + id + "';" + queryInsertLog("3", ex.ToString) + "; "
@@ -359,7 +396,7 @@
 
     Function queryInsertLog(ByVal id_status_par As String, ByVal note_par As String) As String
         Dim query As String = "INSERT INTO tb_mail_manage_log(id_mail_manage, log_date, id_user, id_mail_status, note) VALUES 
-        ('" + id + "', NOW(),'" + id_user + "', '" + id_status_par + "', '" + addSlashes(note_par) + "') "
+        ('" + id + "', NOW(),'" + id_user + "', '" + id_status_par + "', 'Failed : " + addSlashes(note_par) + "') "
         Return query
     End Function
 

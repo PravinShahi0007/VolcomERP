@@ -123,8 +123,20 @@
 
     Sub viewMailManage()
         Cursor = Cursors.WaitCursor
+
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
         Dim mm As New ClassMailManage()
-        Dim query As String = mm.queryMain("-1", "2")
+        Dim query As String = mm.queryMain("AND (m.created_date>='" + date_from_selected + "' AND m.created_date<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
