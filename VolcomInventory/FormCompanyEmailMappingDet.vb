@@ -32,15 +32,16 @@
 
         If tab = "store_group" Then
             LCName.Text = "Store Group"
-            query_name = "SELECT id_comp_group AS id, comp_group AS `name`, description AS detail, CONCAT(comp_group, ' | ', description) AS description FROM tb_m_comp_group"
+            query_name = "SELECT id_comp_group AS id, comp_group AS `name`, description AS detail, CONCAT(comp_group, ' | ', description) AS description FROM tb_m_comp_group WHERE id_comp IS NOT NULL"
             GridColumnVName.Caption = "Store Group"
             GridColumnVDetail.Caption = "Description"
         Else
             LCName.Text = "Employee"
             query_name = "
-                SELECT usr.id_user AS id, emp.employee_code AS `name`, emp.employee_name AS detail, CONCAT(emp.employee_code, ' | ', emp.employee_name) AS description
+                SELECT usr.id_user AS id, emp.employee_code AS `name`, CONCAT(emp.employee_name, ' | ', emp.email_external) AS detail, CONCAT(emp.employee_code, ' | ', emp.employee_name, ' | ', emp.email_external) AS description
                 FROM tb_m_user AS usr
                 LEFT JOIN tb_m_employee AS emp ON usr.id_employee = emp.id_employee
+                WHERE emp.id_employee_active = 1
             "
             GridColumnVName.Caption = "Code"
             GridColumnVDetail.Caption = "Name"
@@ -57,12 +58,12 @@
     End Sub
 
     Private Sub FormCompanyEmailMappingDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FormCompanyEmailMapping.form_load()
+
         Dispose()
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
-        FormCompanyEmailMapping.form_load()
-
         Close()
     End Sub
 
@@ -72,23 +73,33 @@
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
         If tab = "store_group" Then
-            For i = 0 To PCCheck.Controls.Count - 1
-                Dim c As DevExpress.XtraEditors.CheckEdit = CType(PCCheck.Controls.Item(i), DevExpress.XtraEditors.CheckEdit)
+            If Not SLUEContact.EditValue Is Nothing Then
+                For i = 0 To PCCheck.Controls.Count - 1
+                    Dim c As DevExpress.XtraEditors.CheckEdit = CType(PCCheck.Controls.Item(i), DevExpress.XtraEditors.CheckEdit)
 
-                Dim query As String = "INSERT INTO tb_mail_manage_mapping (id_comp_group, id_comp_contact, report_mark_type, id_mail_member_type) VALUES (" + SLUEName.EditValue.ToString + ", " + SLUEContact.EditValue.ToString + ", " + c.Name.ToString.Replace("CheckEdit", "") + ", " + SLUEType.EditValue.ToString + ")"
+                    If c.EditValue Then
+                        Dim query As String = "INSERT INTO tb_mail_manage_mapping (id_comp_group, id_comp_contact, report_mark_type, id_mail_member_type) VALUES (" + SLUEName.EditValue.ToString + ", " + SLUEContact.EditValue.ToString + ", " + c.Name.ToString.Replace("CheckEdit", "") + ", " + SLUEType.EditValue.ToString + ")"
 
-                execute_non_query(query, True, "", "", "", "")
-            Next
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                Next
+
+                Close()
+            Else
+                errorCustom("Contact cannot be blank.")
+            End If
         Else
             For i = 0 To PCCheck.Controls.Count - 1
                 Dim c As DevExpress.XtraEditors.CheckEdit = CType(PCCheck.Controls.Item(i), DevExpress.XtraEditors.CheckEdit)
 
-                Dim query As String = "INSERT INTO tb_mail_manage_mapping_intern (id_user, report_mark_type, id_mail_member_type) VALUES (" + SLUEName.EditValue.ToString + ", " + c.Name.ToString.Replace("CheckEdit", "") + ", " + SLUEType.EditValue.ToString + ")"
+                If c.EditValue Then
+                    Dim query As String = "INSERT INTO tb_mail_manage_mapping_intern (id_user, report_mark_type, id_mail_member_type) VALUES (" + SLUEName.EditValue.ToString + ", " + c.Name.ToString.Replace("CheckEdit", "") + ", " + SLUEType.EditValue.ToString + ")"
 
-                execute_non_query(query, True, "", "", "", "")
+                    execute_non_query(query, True, "", "", "", "")
+                End If
             Next
-        End If
 
-        Close()
+            Close()
+        End If
     End Sub
 End Class
