@@ -24,6 +24,8 @@ Partial Class FormMailManage
         Me.XTCMailManage = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSalesInvoiceList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoiceList = New DevExpress.XtraGrid.GridControl()
+        Me.CMSSalesInvoice = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVInvoiceList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -51,6 +53,7 @@ Partial Class FormMailManage
         Me.CESelectAllInvoice = New DevExpress.XtraEditors.CheckEdit()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAlreadyProcessed = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPending = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -87,12 +90,11 @@ Partial Class FormMailManage
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPUnpaidBill = New DevExpress.XtraTab.XtraTabPage()
-        Me.CMSSalesInvoice = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPSalesInvoiceList.SuspendLayout()
         CType(Me.GCInvoiceList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSSalesInvoice.SuspendLayout()
         CType(Me.GVInvoiceList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,7 +118,6 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CMSSalesInvoice.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -150,6 +151,18 @@ Partial Class FormMailManage
         Me.GCInvoiceList.Size = New System.Drawing.Size(921, 332)
         Me.GCInvoiceList.TabIndex = 18
         Me.GCInvoiceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceList})
+        '
+        'CMSSalesInvoice
+        '
+        Me.CMSSalesInvoice.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.CMSSalesInvoice.Name = "CMSSalesInvoice"
+        Me.CMSSalesInvoice.Size = New System.Drawing.Size(131, 26)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "view detail"
         '
         'GVInvoiceList
         '
@@ -418,6 +431,7 @@ Partial Class FormMailManage
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.BtnAlreadyProcessed)
         Me.PanelControl1.Controls.Add(Me.BtnPending)
         Me.PanelControl1.Controls.Add(Me.SLEStoreGroup)
@@ -427,6 +441,24 @@ Partial Class FormMailManage
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(921, 43)
         Me.PanelControl1.TabIndex = 3
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.OrangeRed
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Location = New System.Drawing.Point(436, 11)
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(179, 20)
+        Me.SimpleButton1.TabIndex = 8926
+        Me.SimpleButton1.Text = "Pending Mail (Store Group)"
         '
         'BtnAlreadyProcessed
         '
@@ -753,18 +785,6 @@ Partial Class FormMailManage
         Me.XTPUnpaidBill.Size = New System.Drawing.Size(921, 415)
         Me.XTPUnpaidBill.Text = "Unpaid Sales Invoice"
         '
-        'CMSSalesInvoice
-        '
-        Me.CMSSalesInvoice.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.CMSSalesInvoice.Name = "CMSSalesInvoice"
-        Me.CMSSalesInvoice.Size = New System.Drawing.Size(153, 48)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "view detail"
-        '
         'FormMailManage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -780,6 +800,7 @@ Partial Class FormMailManage
         Me.XTCMailManage.ResumeLayout(False)
         Me.XTPSalesInvoiceList.ResumeLayout(False)
         CType(Me.GCInvoiceList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSSalesInvoice.ResumeLayout(False)
         CType(Me.GVInvoiceList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -805,7 +826,6 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CMSSalesInvoice.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -878,4 +898,5 @@ Partial Class FormMailManage
     Friend WithEvents GridColumnto As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMSSalesInvoice As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
