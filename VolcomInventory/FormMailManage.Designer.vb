@@ -71,6 +71,21 @@ Partial Class FormMailManage
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPUnpaidBill = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_mail_manage = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnupdated_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnupdated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_mark_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_mark_type_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_mail_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_status_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_subject = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnto = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPSalesInvoiceList.SuspendLayout()
@@ -96,6 +111,8 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -491,6 +508,7 @@ Partial Class FormMailManage
         '
         'XTPHistory
         '
+        Me.XTPHistory.Controls.Add(Me.GCData)
         Me.XTPHistory.Controls.Add(Me.PanelControl2)
         Me.XTPHistory.Name = "XTPHistory"
         Me.XTPHistory.Size = New System.Drawing.Size(921, 415)
@@ -608,6 +626,128 @@ Partial Class FormMailManage
         Me.XTPUnpaidBill.Size = New System.Drawing.Size(921, 415)
         Me.XTPUnpaidBill.Text = "Unpaid Sales Invoice"
         '
+        'GCData
+        '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 43)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(921, 372)
+        Me.GCData.TabIndex = 16
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_mail_manage, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnupdated_date, Me.GridColumnupdated_by_name, Me.GridColumnreport_mark_type, Me.GridColumnreport_mark_type_name, Me.GridColumnid_mail_status, Me.GridColumnmail_status, Me.GridColumnmail_status_note, Me.GridColumnmail_subject, Me.GridColumnto})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowGroupedColumns = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_mail_manage
+        '
+        Me.GridColumnid_mail_manage.Caption = "id_mail_manage"
+        Me.GridColumnid_mail_manage.FieldName = "id_mail_manage"
+        Me.GridColumnid_mail_manage.Name = "GridColumnid_mail_manage"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Email Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumncreated_date
+        '
+        Me.GridColumncreated_date.Caption = "Created Date"
+        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumncreated_date.FieldName = "created_date"
+        Me.GridColumncreated_date.Name = "GridColumncreated_date"
+        Me.GridColumncreated_date.Visible = True
+        Me.GridColumncreated_date.VisibleIndex = 4
+        '
+        'GridColumncreated_by_name
+        '
+        Me.GridColumncreated_by_name.Caption = "Created By"
+        Me.GridColumncreated_by_name.FieldName = "created_by_name"
+        Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
+        Me.GridColumncreated_by_name.Visible = True
+        Me.GridColumncreated_by_name.VisibleIndex = 5
+        '
+        'GridColumnupdated_date
+        '
+        Me.GridColumnupdated_date.Caption = "Updated Date"
+        Me.GridColumnupdated_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnupdated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnupdated_date.FieldName = "updated_date"
+        Me.GridColumnupdated_date.Name = "GridColumnupdated_date"
+        Me.GridColumnupdated_date.Visible = True
+        Me.GridColumnupdated_date.VisibleIndex = 6
+        '
+        'GridColumnupdated_by_name
+        '
+        Me.GridColumnupdated_by_name.Caption = "Updated By"
+        Me.GridColumnupdated_by_name.FieldName = "updated_by_name"
+        Me.GridColumnupdated_by_name.Name = "GridColumnupdated_by_name"
+        Me.GridColumnupdated_by_name.Visible = True
+        Me.GridColumnupdated_by_name.VisibleIndex = 7
+        '
+        'GridColumnreport_mark_type
+        '
+        Me.GridColumnreport_mark_type.Caption = "report_mark_type"
+        Me.GridColumnreport_mark_type.FieldName = "report_mark_type"
+        Me.GridColumnreport_mark_type.Name = "GridColumnreport_mark_type"
+        '
+        'GridColumnreport_mark_type_name
+        '
+        Me.GridColumnreport_mark_type_name.Caption = "Type"
+        Me.GridColumnreport_mark_type_name.FieldName = "report_mark_type_name"
+        Me.GridColumnreport_mark_type_name.Name = "GridColumnreport_mark_type_name"
+        Me.GridColumnreport_mark_type_name.Visible = True
+        Me.GridColumnreport_mark_type_name.VisibleIndex = 1
+        '
+        'GridColumnid_mail_status
+        '
+        Me.GridColumnid_mail_status.Caption = "id_mail_status"
+        Me.GridColumnid_mail_status.FieldName = "id_mail_status"
+        Me.GridColumnid_mail_status.Name = "GridColumnid_mail_status"
+        '
+        'GridColumnmail_status
+        '
+        Me.GridColumnmail_status.Caption = "Last Status"
+        Me.GridColumnmail_status.FieldName = "mail_status"
+        Me.GridColumnmail_status.Name = "GridColumnmail_status"
+        Me.GridColumnmail_status.Visible = True
+        Me.GridColumnmail_status.VisibleIndex = 8
+        '
+        'GridColumnmail_status_note
+        '
+        Me.GridColumnmail_status_note.Caption = "Note"
+        Me.GridColumnmail_status_note.FieldName = "mail_status_note"
+        Me.GridColumnmail_status_note.Name = "GridColumnmail_status_note"
+        '
+        'GridColumnmail_subject
+        '
+        Me.GridColumnmail_subject.Caption = "Subject"
+        Me.GridColumnmail_subject.FieldName = "mail_subject"
+        Me.GridColumnmail_subject.Name = "GridColumnmail_subject"
+        Me.GridColumnmail_subject.Visible = True
+        Me.GridColumnmail_subject.VisibleIndex = 2
+        '
+        'GridColumnto
+        '
+        Me.GridColumnto.Caption = "Destination To"
+        Me.GridColumnto.FieldName = "to"
+        Me.GridColumnto.Name = "GridColumnto"
+        Me.GridColumnto.Visible = True
+        Me.GridColumnto.VisibleIndex = 3
+        Me.GridColumnto.Width = 155
+        '
         'FormMailManage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -646,6 +786,8 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -701,4 +843,19 @@ Partial Class FormMailManage
     Friend WithEvents BtnAlreadyProcessed As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnsales_pos_start_period As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_pos_end_period As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_mail_manage As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncreated_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnupdated_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnupdated_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_mark_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_mark_type_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_mail_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmail_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmail_status_note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmail_subject As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnto As DevExpress.XtraGrid.Columns.GridColumn
 End Class

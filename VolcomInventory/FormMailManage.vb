@@ -120,4 +120,18 @@
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
         GCInvoiceList.DataSource = Nothing
     End Sub
+
+    Sub viewMailManage()
+        Cursor = Cursors.WaitCursor
+        Dim mm As New ClassMailManage()
+        Dim query As String = mm.queryMain("-1", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
+        viewMailManage()
+    End Sub
 End Class
