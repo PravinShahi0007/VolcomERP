@@ -2487,11 +2487,12 @@
                     End If
                 ElseIf report_mark_type = "192" Then
                     'payroll
-                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period
+                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period, IF(id_payroll_type = 1, 'Organic', 'Daily Worker') AS payroll_type
                     FROM tb_emp_payroll
                     WHERE id_payroll = " + id_report + ""
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("payroll_type").ToString
                         info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
                 ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then

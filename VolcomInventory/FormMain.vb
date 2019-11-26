@@ -1764,7 +1764,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBuktiPickupDet.ShowDialog()
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             FormEmpBPJSKesehatanDet.id = "0"
-            FormEmpBPJSKesehatanDet.is_approve = "0"
+            FormEmpBPJSKesehatanDet.is_approve = FormEmpBPJSKesehatan.is_approve
 
             FormEmpBPJSKesehatanDet.ShowDialog()
         ElseIf formName = "FormPopUpCompGroup" Then
@@ -2892,7 +2892,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End Try
             ElseIf formName = "FormEmpBPJSKesehatan" Then
                 FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_pay_bpjs_kesehatan").ToString
-                FormEmpBPJSKesehatanDet.is_approve = "0"
+                FormEmpBPJSKesehatanDet.is_approve = FormEmpBPJSKesehatan.is_approve
 
                 FormEmpBPJSKesehatanDet.ShowDialog()
             ElseIf formName = "FormPopUpCompGroup" Then
