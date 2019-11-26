@@ -24,6 +24,7 @@ Partial Class FormMailManageDet
         Me.XTPreview = New DevExpress.XtraTab.XtraTabPage()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.MESubject = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.MECC = New DevExpress.XtraEditors.MemoEdit()
         Me.METo = New DevExpress.XtraEditors.MemoEdit()
@@ -40,7 +41,7 @@ Partial Class FormMailManageDet
         Me.GridColumnid_mail_manage = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_mail_member_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_user = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_contact = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmail_address = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmail_member_type = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,6 +49,7 @@ Partial Class FormMailManageDet
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSend = New DevExpress.XtraEditors.SimpleButton()
@@ -69,12 +71,12 @@ Partial Class FormMailManageDet
         Me.TxtMailType = New DevExpress.XtraEditors.TextEdit()
         Me.TxtEmailNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.MESubject = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.XTCMail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMail.SuspendLayout()
         Me.XTPreview.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,7 +105,6 @@ Partial Class FormMailManageDet
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMail
@@ -149,6 +150,14 @@ Partial Class FormMailManageDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(315, 383)
         Me.PanelControl4.TabIndex = 0
+        '
+        'MESubject
+        '
+        Me.MESubject.Location = New System.Drawing.Point(14, 285)
+        Me.MESubject.Name = "MESubject"
+        Me.MESubject.Properties.ReadOnly = True
+        Me.MESubject.Size = New System.Drawing.Size(283, 35)
+        Me.MESubject.TabIndex = 18
         '
         'LabelControl12
         '
@@ -247,7 +256,7 @@ Partial Class FormMailManageDet
         '
         'GVMember
         '
-        Me.GVMember.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_mail_manage_member, Me.GridColumnid_mail_manage, Me.GridColumnid_mail_member_type, Me.GridColumnid_user, Me.GridColumnid_comp_group, Me.GridColumndescription, Me.GridColumnmail_address, Me.GridColumnmail_member_type})
+        Me.GVMember.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_mail_manage_member, Me.GridColumnid_mail_manage, Me.GridColumnid_mail_member_type, Me.GridColumnid_user, Me.GridColumnid_comp_contact, Me.GridColumndescription, Me.GridColumnmail_address, Me.GridColumnmail_member_type})
         Me.GVMember.GridControl = Me.GCMember
         Me.GVMember.GroupCount = 1
         Me.GVMember.Name = "GVMember"
@@ -281,11 +290,11 @@ Partial Class FormMailManageDet
         Me.GridColumnid_user.FieldName = "id_user"
         Me.GridColumnid_user.Name = "GridColumnid_user"
         '
-        'GridColumnid_comp_group
+        'GridColumnid_comp_contact
         '
-        Me.GridColumnid_comp_group.Caption = "id_comp_group"
-        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
-        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
+        Me.GridColumnid_comp_contact.Caption = "id_comp_contact"
+        Me.GridColumnid_comp_contact.FieldName = "id_comp_contact"
+        Me.GridColumnid_comp_contact.Name = "GridColumnid_comp_contact"
         '
         'GridColumndescription
         '
@@ -341,6 +350,7 @@ Partial Class FormMailManageDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnLog)
         Me.PanelControl2.Controls.Add(Me.BtnCancel)
         Me.PanelControl2.Controls.Add(Me.BtnDraft)
         Me.PanelControl2.Controls.Add(Me.BtnSend)
@@ -349,6 +359,17 @@ Partial Class FormMailManageDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(828, 48)
         Me.PanelControl2.TabIndex = 2
+        '
+        'BtnLog
+        '
+        Me.BtnLog.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLog.Image = CType(resources.GetObject("BtnLog.Image"), System.Drawing.Image)
+        Me.BtnLog.Location = New System.Drawing.Point(2, 2)
+        Me.BtnLog.Name = "BtnLog"
+        Me.BtnLog.Size = New System.Drawing.Size(105, 44)
+        Me.BtnLog.TabIndex = 3
+        Me.BtnLog.Text = "Log Email"
+        Me.BtnLog.Visible = False
         '
         'BtnCancel
         '
@@ -423,6 +444,8 @@ Partial Class FormMailManageDet
         Me.DEUpdatedDate.Name = "DEUpdatedDate"
         Me.DEUpdatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUpdatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUpdatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUpdatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUpdatedDate.Size = New System.Drawing.Size(243, 20)
         Me.DEUpdatedDate.TabIndex = 14
         '
@@ -434,6 +457,8 @@ Partial Class FormMailManageDet
         Me.DECreatedDate.Name = "DECreatedDate"
         Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreatedDate.Size = New System.Drawing.Size(243, 20)
         Me.DECreatedDate.TabIndex = 9
         '
@@ -511,9 +536,9 @@ Partial Class FormMailManageDet
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Location = New System.Drawing.Point(15, 68)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl3.TabIndex = 5
-        Me.LabelControl3.Text = "Status"
+        Me.LabelControl3.Text = "Last Status"
         '
         'TxtMailStatus
         '
@@ -557,14 +582,6 @@ Partial Class FormMailManageDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Email Number"
         '
-        'MESubject
-        '
-        Me.MESubject.Location = New System.Drawing.Point(14, 285)
-        Me.MESubject.Name = "MESubject"
-        Me.MESubject.Properties.ReadOnly = True
-        Me.MESubject.Size = New System.Drawing.Size(283, 35)
-        Me.MESubject.TabIndex = 18
-        '
         'FormMailManageDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -584,6 +601,7 @@ Partial Class FormMailManageDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -614,7 +632,6 @@ Partial Class FormMailManageDet
         CType(Me.TxtMailStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMailType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtEmailNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -664,9 +681,10 @@ Partial Class FormMailManageDet
     Friend WithEvents GridColumnid_mail_manage As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_mail_member_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_user As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_comp_contact As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmail_address As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmail_member_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents MESubject As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
 End Class

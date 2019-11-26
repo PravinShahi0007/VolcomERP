@@ -3313,7 +3313,7 @@ GROUP BY pdp.`id_prod_demand_design`"
         For i As Integer = 0 To dtp.Rows.Count - 1
             body_temp += "<tr>
                 <td>" + (i + 1).ToString + "</td>
-                <td>" + dtp.Rows(i)("sales_pos_number").ToString + "</td>
+                <td>" + dtp.Rows(i)("report_number").ToString + "</td>
                 <td>" + dtp.Rows(i)("store").ToString + "</td>
                 <td align='center'>" + Decimal.Parse(dtp.Rows(i)("qty_invoice").ToString).ToString("N0") + "</td>
                 <td align='center'>" + Decimal.Parse(dtp.Rows(i)("amount").ToString).ToString("N2") + "</td>
