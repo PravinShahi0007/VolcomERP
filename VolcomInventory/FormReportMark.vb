@@ -2273,6 +2273,9 @@
                     INNER JOIN tb_a_acc_trans_adj a ON a.id_acc_trans_adj=ad.id_acc_trans_adj
                     WHERE ad.`id_acc_trans_adj`='" + id_report + "'"
                 execute_non_query(qjd, True, "", "", "", "")
+                'set adjusted status
+                qjd = "UPDATE tb_a_acc_trans SET is_adjusted='1' WHERE id_acc_trans='" & id_trans & "'"
+                execute_non_query(qjd, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_a_acc_trans_adj SET id_report_status='{0}' WHERE id_acc_trans_adj ='{1}'", id_status_reportx, id_report)
