@@ -440,4 +440,33 @@
         SET main.is_pending_mail=" + is_pending_mail_par + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnAttach.Click
+        Cursor = Cursors.WaitCursor
+        If rmt = "225" Then
+            Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+            Dim rpt As New ReportSalesInvoiceNew()
+            Dim query As String = "SELECT * FROM tb_mail_manage_det md WHERE md.id_mail_manage='" + id + "' "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            For i As Integer = 0 To data.Rows.Count - 1
+                ReportSalesInvoiceNew.id_sales_pos = data.Rows(i)("id_report").ToString
+                ReportSalesInvoiceNew.id_report_status = "6"
+                ReportSalesInvoiceNew.rmt = data.Rows(i)("report_mark_type").ToString
+                Dim Report As New ReportSalesInvoiceNew()
+                Report.LabelTitle.Text = "INVOICE SLIP"
+                Report.PrintingSystem.ContinuousPageNumbering = False
+                Report.CreateDocument()
+
+                For j = 0 To Report.Pages.Count - 1
+                    list.Add(Report.Pages(j))
+                Next
+            Next
+            rpt.Pages.AddRange(list)
+            Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(rpt)
+            tool_detail.ShowPreview()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+
 End Class

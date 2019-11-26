@@ -1847,6 +1847,37 @@ Public Class ClassSendEmail
                 End If
             Next
 
+            '-- start attachment 
+            'Create a New report. 
+            Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+            Dim rpt As New ReportSalesInvoiceNew()
+            Dim query As String = "SELECT * FROM tb_mail_manage_det md WHERE md.id_mail_manage='" + id_report + "' "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            For i As Integer = 0 To data.Rows.Count - 1
+                ReportSalesInvoiceNew.id_sales_pos = data.Rows(i)("id_report").ToString
+                ReportSalesInvoiceNew.id_report_status = "6"
+                ReportSalesInvoiceNew.rmt = data.Rows(i)("report_mark_type").ToString
+                Dim Report As New ReportSalesInvoiceNew()
+                Report.LabelTitle.Text = "INVOICE SLIP"
+                Report.PrintingSystem.ContinuousPageNumbering = False
+                Report.CreateDocument()
+
+                For j = 0 To Report.Pages.Count - 1
+                    list.Add(Report.Pages(j))
+                Next
+            Next
+            rpt.Pages.AddRange(list)
+
+            ' Create a new memory stream and export the report into it as PDF.
+            Dim Mem As New MemoryStream()
+            'Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+            rpt.ExportToPdf(Mem)
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, "sal_inv_" & report_mark_type & "_" & id_report & ".pdf", "application/pdf")
+            mail.Attachments.Add(Att)
+            '-- end attachment
+
 
             Dim body_temp As String = email_body_invoice_penjualan(dt)
             Dim subject_mail As String = execute_query("SELECT m.mail_subject FROM tb_mail_manage m WHERE m.id_mail_manage=" + id_report + "", 0, True, "", "", "", "")

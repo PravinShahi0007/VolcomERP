@@ -24,6 +24,8 @@ Partial Class FormMailManageDet
         Me.XTPreview = New DevExpress.XtraTab.XtraTabPage()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAttach = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.MESubject = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.MECC = New DevExpress.XtraEditors.MemoEdit()
@@ -71,8 +73,6 @@ Partial Class FormMailManageDet
         Me.TxtMailType = New DevExpress.XtraEditors.TextEdit()
         Me.TxtEmailNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCMail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMail.SuspendLayout()
         Me.XTPreview.SuspendLayout()
@@ -139,7 +139,7 @@ Partial Class FormMailManageDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl4.Controls.Add(Me.BtnAttach)
         Me.PanelControl4.Controls.Add(Me.LabelControl13)
         Me.PanelControl4.Controls.Add(Me.MESubject)
         Me.PanelControl4.Controls.Add(Me.LabelControl12)
@@ -154,6 +154,24 @@ Partial Class FormMailManageDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(315, 397)
         Me.PanelControl4.TabIndex = 0
+        '
+        'BtnAttach
+        '
+        Me.BtnAttach.Image = CType(resources.GetObject("BtnAttach.Image"), System.Drawing.Image)
+        Me.BtnAttach.Location = New System.Drawing.Point(14, 345)
+        Me.BtnAttach.Name = "BtnAttach"
+        Me.BtnAttach.Size = New System.Drawing.Size(115, 23)
+        Me.BtnAttach.TabIndex = 21
+        Me.BtnAttach.Text = "View Attachment"
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(14, 326)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl13.TabIndex = 20
+        Me.LabelControl13.Text = "Attachment File"
         '
         'MESubject
         '
@@ -227,7 +245,7 @@ Partial Class FormMailManageDet
         '
         Me.XTPData.Controls.Add(Me.XTCData)
         Me.XTPData.Name = "XTPData"
-        Me.XTPData.Size = New System.Drawing.Size(822, 383)
+        Me.XTPData.Size = New System.Drawing.Size(822, 397)
         Me.XTPData.Text = "Data"
         '
         'XTCData
@@ -237,7 +255,7 @@ Partial Class FormMailManageDet
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPFrom
-        Me.XTCData.Size = New System.Drawing.Size(822, 383)
+        Me.XTCData.Size = New System.Drawing.Size(822, 397)
         Me.XTCData.TabIndex = 0
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFrom, Me.XTPDetail})
         '
@@ -245,7 +263,7 @@ Partial Class FormMailManageDet
         '
         Me.XTPFrom.Controls.Add(Me.GCMember)
         Me.XTPFrom.Name = "XTPFrom"
-        Me.XTPFrom.Size = New System.Drawing.Size(793, 377)
+        Me.XTPFrom.Size = New System.Drawing.Size(793, 391)
         Me.XTPFrom.Text = "From/To/Cc"
         '
         'GCMember
@@ -254,7 +272,7 @@ Partial Class FormMailManageDet
         Me.GCMember.Location = New System.Drawing.Point(0, 0)
         Me.GCMember.MainView = Me.GVMember
         Me.GCMember.Name = "GCMember"
-        Me.GCMember.Size = New System.Drawing.Size(793, 377)
+        Me.GCMember.Size = New System.Drawing.Size(793, 391)
         Me.GCMember.TabIndex = 0
         Me.GCMember.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMember})
         '
@@ -329,7 +347,7 @@ Partial Class FormMailManageDet
         '
         Me.XTPDetail.Controls.Add(Me.GCDetail)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(793, 377)
+        Me.XTPDetail.Size = New System.Drawing.Size(793, 391)
         Me.XTPDetail.Text = "Detail"
         '
         'GCDetail
@@ -338,7 +356,7 @@ Partial Class FormMailManageDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(793, 377)
+        Me.GCDetail.Size = New System.Drawing.Size(793, 391)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -586,24 +604,6 @@ Partial Class FormMailManageDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Email Number"
         '
-        'LabelControl13
-        '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(14, 326)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(75, 13)
-        Me.LabelControl13.TabIndex = 20
-        Me.LabelControl13.Text = "Attachment File"
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(14, 345)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(115, 23)
-        Me.SimpleButton1.TabIndex = 21
-        Me.SimpleButton1.Text = "View Attachment"
-        '
         'FormMailManageDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -709,6 +709,6 @@ Partial Class FormMailManageDet
     Friend WithEvents GridColumnmail_member_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents MESubject As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAttach As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class
