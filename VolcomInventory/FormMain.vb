@@ -6182,11 +6182,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     If FormCompanyEmailMapping.GVListStoreGroup.RowCount > 0 And FormCompanyEmailMapping.GVListStoreGroup.FocusedRowHandle >= 0 Then
                         Dim query_del As String = "DELETE FROM tb_mail_manage_mapping WHERE id_mail_manage_mapping = " + FormCompanyEmailMapping.GVListStoreGroup.GetFocusedRowCellValue("id_mail_manage_mapping").ToString
                         execute_non_query(query_del, True, "", "", "", "")
+
+                        FormCompanyEmailMapping.form_load()
                     End If
                 Else
                     If FormCompanyEmailMapping.GVListInternal.RowCount > 0 And FormCompanyEmailMapping.GVListInternal.FocusedRowHandle >= 0 Then
-                        Dim query_del As String = "DELETE FROM tb_mail_manage_mapping_intern WHERE tb_mail_manage_mapping_intern = " + FormCompanyEmailMapping.GVListInternal.GetFocusedRowCellValue("tb_mail_manage_mapping_intern").ToString
+                        Dim query_del As String = "DELETE FROM tb_mail_manage_mapping_intern WHERE id_mail_manage_mapping_intern = " + FormCompanyEmailMapping.GVListInternal.GetFocusedRowCellValue("id_mail_manage_mapping_intern").ToString
                         execute_non_query(query_del, True, "", "", "", "")
+
+                        FormCompanyEmailMapping.form_load()
                     End If
                 End If
             End If

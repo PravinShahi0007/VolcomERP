@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormCompanyEmailMapping
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormCompanyEmailMapping
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GCListStoreGroup = New DevExpress.XtraGrid.GridControl()
         Me.GVListStoreGroup = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -63,11 +63,14 @@ Partial Class FormCompanyEmailMapping
         '
         Me.GVListStoreGroup.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVListStoreGroup.GridControl = Me.GCListStoreGroup
+        Me.GVListStoreGroup.GroupCount = 1
         Me.GVListStoreGroup.Name = "GVListStoreGroup"
+        Me.GVListStoreGroup.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVListStoreGroup.OptionsBehavior.Editable = False
         Me.GVListStoreGroup.OptionsFind.AlwaysVisible = True
         Me.GVListStoreGroup.OptionsView.ColumnAutoWidth = False
         Me.GVListStoreGroup.OptionsView.ShowGroupPanel = False
+        Me.GVListStoreGroup.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn13
         '
@@ -163,11 +166,14 @@ Partial Class FormCompanyEmailMapping
         '
         Me.GVListInternal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn7, Me.GridColumn9, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12})
         Me.GVListInternal.GridControl = Me.GCListInternal
+        Me.GVListInternal.GroupCount = 1
         Me.GVListInternal.Name = "GVListInternal"
+        Me.GVListInternal.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVListInternal.OptionsBehavior.Editable = False
         Me.GVListInternal.OptionsFind.AlwaysVisible = True
         Me.GVListInternal.OptionsView.ColumnAutoWidth = False
         Me.GVListInternal.OptionsView.ShowGroupPanel = False
+        Me.GVListInternal.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn14
         '
@@ -197,7 +203,7 @@ Partial Class FormCompanyEmailMapping
         Me.GridColumn8.FieldName = "email_external"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 3
         Me.GridColumn8.Width = 78
         '
         'GridColumn11
@@ -206,7 +212,7 @@ Partial Class FormCompanyEmailMapping
         Me.GridColumn11.FieldName = "report_mark_type_name"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
+        Me.GridColumn11.VisibleIndex = 4
         '
         'GridColumn12
         '
@@ -214,7 +220,7 @@ Partial Class FormCompanyEmailMapping
         Me.GridColumn12.FieldName = "mail_member_type"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.VisibleIndex = 5
         '
         'FormCompanyEmailMapping
         '
