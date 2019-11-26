@@ -19,6 +19,7 @@ Partial Class FormMailManage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMailManage))
         Me.XTCMailManage = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSalesInvoiceList = New DevExpress.XtraTab.XtraTabPage()
@@ -86,6 +87,8 @@ Partial Class FormMailManage
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPUnpaidBill = New DevExpress.XtraTab.XtraTabPage()
+        Me.CMSSalesInvoice = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPSalesInvoiceList.SuspendLayout()
@@ -113,6 +116,7 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSSalesInvoice.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -137,6 +141,7 @@ Partial Class FormMailManage
         '
         'GCInvoiceList
         '
+        Me.GCInvoiceList.ContextMenuStrip = Me.CMSSalesInvoice
         Me.GCInvoiceList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCInvoiceList.Location = New System.Drawing.Point(0, 43)
         Me.GCInvoiceList.MainView = Me.GVInvoiceList
@@ -748,6 +753,18 @@ Partial Class FormMailManage
         Me.XTPUnpaidBill.Size = New System.Drawing.Size(921, 415)
         Me.XTPUnpaidBill.Text = "Unpaid Sales Invoice"
         '
+        'CMSSalesInvoice
+        '
+        Me.CMSSalesInvoice.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.CMSSalesInvoice.Name = "CMSSalesInvoice"
+        Me.CMSSalesInvoice.Size = New System.Drawing.Size(153, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "view detail"
+        '
         'FormMailManage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -788,6 +805,7 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSSalesInvoice.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -858,4 +876,6 @@ Partial Class FormMailManage
     Friend WithEvents GridColumnmail_status_note As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmail_subject As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnto As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMSSalesInvoice As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -446,12 +446,11 @@
         If rmt = "225" Then
             Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
             Dim rpt As New ReportSalesInvoiceNew()
-            Dim query As String = "SELECT * FROM tb_mail_manage_det md WHERE md.id_mail_manage='" + id + "' "
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            For i As Integer = 0 To data.Rows.Count - 1
-                ReportSalesInvoiceNew.id_sales_pos = data.Rows(i)("id_report").ToString
+            GVDetail.ActiveFilterString = ""
+            For i As Integer = 0 To GVDetail.RowCount - 1
+                ReportSalesInvoiceNew.id_sales_pos = GVDetail.GetRowCellValue(i, "id_report").ToString
                 ReportSalesInvoiceNew.id_report_status = "6"
-                ReportSalesInvoiceNew.rmt = data.Rows(i)("report_mark_type").ToString
+                ReportSalesInvoiceNew.rmt = GVDetail.GetRowCellValue(i, "report_mark_type").ToString
                 Dim Report As New ReportSalesInvoiceNew()
                 Report.LabelTitle.Text = "INVOICE SLIP"
                 Report.PrintingSystem.ContinuousPageNumbering = False

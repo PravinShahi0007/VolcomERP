@@ -171,4 +171,15 @@
     Private Sub FormMailManage_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        If GVInvoiceList.RowCount > 0 And GVInvoiceList.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.report_mark_type = GVInvoiceList.GetFocusedRowCellValue("report_mark_type").ToString
+            m.id_report = GVInvoiceList.GetFocusedRowCellValue("id_sales_pos").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
