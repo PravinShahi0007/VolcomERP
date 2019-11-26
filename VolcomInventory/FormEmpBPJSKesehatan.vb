@@ -29,7 +29,11 @@
     Private Sub FormEmpBPJSKesehatan_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
-        button_main("1", "1", "0")
+        If is_approve = "0" Then
+            button_main("1", "1", "0")
+        Else
+            button_main("0", "0", "0")
+        End If
     End Sub
 
     Private Sub FormEmpBPJSKesehatan_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -38,7 +42,7 @@
 
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
         FormEmpBPJSKesehatanDet.id = GVList.GetFocusedRowCellValue("id_pay_bpjs_kesehatan").ToString
-        FormEmpBPJSKesehatanDet.is_approve = "0"
+        FormEmpBPJSKesehatanDet.is_approve = is_approve
 
         FormEmpBPJSKesehatanDet.ShowDialog()
     End Sub

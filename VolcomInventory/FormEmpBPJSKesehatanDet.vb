@@ -47,6 +47,20 @@
             GCFixedSalary.OptionsColumn.AllowEdit = False
         End If
 
+        If is_approve = "1" Then
+            SBAutoGenerate.Enabled = False
+            SBRemove.Enabled = False
+            SBAdd.Enabled = False
+            SBClose.Enabled = True
+            SBPrint.Enabled = False
+            SBSave.Enabled = False
+            SBSubmit.Enabled = False
+
+            SLUEPayroll.ReadOnly = True
+
+            GCFixedSalary.OptionsColumn.AllowEdit = False
+        End If
+
         LUEReportStatus.Properties.ReadOnly = True
 
         loaded = True
