@@ -136,7 +136,7 @@
         End Try
 
         Dim mm As New ClassMailManage()
-        Dim query As String = mm.queryMain("AND (m.created_date>='" + date_from_selected + "' AND m.created_date<='" + date_until_selected + "') ", "2")
+        Dim query As String = mm.queryMain("AND (DATE(m.created_date)>='" + date_from_selected + "' AND DATE(m.created_date)<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -145,5 +145,30 @@
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
         viewMailManage()
+    End Sub
+
+    Private Sub XTCMailManage_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCMailManage.SelectedPageChanged
+        check_menu()
+    End Sub
+
+    Sub check_menu()
+        checkFormAccess(Name)
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub FormMailManage_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        check_menu()
+    End Sub
+
+    Private Sub FormMailManage_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
     End Sub
 End Class

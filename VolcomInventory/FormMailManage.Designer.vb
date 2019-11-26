@@ -59,18 +59,6 @@ Partial Class FormMailManage
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
-        Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEStoreDeposit = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTPUnpaidBill = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_mail_manage = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,6 +74,18 @@ Partial Class FormMailManage
         Me.GridColumnmail_status_note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmail_subject = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnto = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
+        Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStoreDeposit = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPUnpaidBill = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPSalesInvoiceList.SuspendLayout()
@@ -103,6 +103,8 @@ Partial Class FormMailManage
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPHistory.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,8 +113,6 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -514,118 +514,6 @@ Partial Class FormMailManage
         Me.XTPHistory.Size = New System.Drawing.Size(921, 415)
         Me.XTPHistory.Text = "History"
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.DEUntilList)
-        Me.PanelControl2.Controls.Add(Me.BViewPayment)
-        Me.PanelControl2.Controls.Add(Me.DEFromList)
-        Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.LabelControl6)
-        Me.PanelControl2.Controls.Add(Me.SLEStoreDeposit)
-        Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(921, 43)
-        Me.PanelControl2.TabIndex = 15
-        '
-        'DEUntilList
-        '
-        Me.DEUntilList.EditValue = Nothing
-        Me.DEUntilList.Location = New System.Drawing.Point(190, 13)
-        Me.DEUntilList.Name = "DEUntilList"
-        Me.DEUntilList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEUntilList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntilList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilList.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntilList.TabIndex = 8922
-        '
-        'BViewPayment
-        '
-        Me.BViewPayment.Location = New System.Drawing.Point(307, 13)
-        Me.BViewPayment.Name = "BViewPayment"
-        Me.BViewPayment.Size = New System.Drawing.Size(60, 19)
-        Me.BViewPayment.TabIndex = 8916
-        Me.BViewPayment.Text = "view"
-        '
-        'DEFromList
-        '
-        Me.DEFromList.EditValue = Nothing
-        Me.DEFromList.Location = New System.Drawing.Point(46, 13)
-        Me.DEFromList.Name = "DEFromList"
-        Me.DEFromList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEFromList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFromList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFromList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEFromList.Size = New System.Drawing.Size(111, 20)
-        Me.DEFromList.TabIndex = 8921
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(163, 16)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl4.TabIndex = 8920
-        Me.LabelControl4.Text = "Until"
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(16, 16)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl6.TabIndex = 8919
-        Me.LabelControl6.Text = "From"
-        '
-        'SLEStoreDeposit
-        '
-        Me.SLEStoreDeposit.Location = New System.Drawing.Point(50, 102)
-        Me.SLEStoreDeposit.Name = "SLEStoreDeposit"
-        Me.SLEStoreDeposit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStoreDeposit.Properties.View = Me.GridView1
-        Me.SLEStoreDeposit.Size = New System.Drawing.Size(177, 20)
-        Me.SLEStoreDeposit.TabIndex = 8918
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn29})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Comp Contact"
-        Me.GridColumn1.FieldName = "id_comp_contact"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Vendor"
-        Me.GridColumn29.FieldName = "comp_name"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 0
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(18, 105)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl1.TabIndex = 8917
-        Me.LabelControl1.Text = "Store"
-        '
-        'XTPUnpaidBill
-        '
-        Me.XTPUnpaidBill.Name = "XTPUnpaidBill"
-        Me.XTPUnpaidBill.Size = New System.Drawing.Size(921, 415)
-        Me.XTPUnpaidBill.Text = "Unpaid Sales Invoice"
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -748,6 +636,118 @@ Partial Class FormMailManage
         Me.GridColumnto.VisibleIndex = 3
         Me.GridColumnto.Width = 155
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.DEUntilList)
+        Me.PanelControl2.Controls.Add(Me.BViewPayment)
+        Me.PanelControl2.Controls.Add(Me.DEFromList)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Controls.Add(Me.SLEStoreDeposit)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(921, 43)
+        Me.PanelControl2.TabIndex = 15
+        '
+        'DEUntilList
+        '
+        Me.DEUntilList.EditValue = Nothing
+        Me.DEUntilList.Location = New System.Drawing.Point(190, 13)
+        Me.DEUntilList.Name = "DEUntilList"
+        Me.DEUntilList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntilList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilList.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilList.TabIndex = 8922
+        '
+        'BViewPayment
+        '
+        Me.BViewPayment.Location = New System.Drawing.Point(307, 13)
+        Me.BViewPayment.Name = "BViewPayment"
+        Me.BViewPayment.Size = New System.Drawing.Size(60, 19)
+        Me.BViewPayment.TabIndex = 8916
+        Me.BViewPayment.Text = "view"
+        '
+        'DEFromList
+        '
+        Me.DEFromList.EditValue = Nothing
+        Me.DEFromList.Location = New System.Drawing.Point(46, 13)
+        Me.DEFromList.Name = "DEFromList"
+        Me.DEFromList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFromList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromList.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromList.TabIndex = 8921
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(163, 16)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8920
+        Me.LabelControl4.Text = "Until"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl6.TabIndex = 8919
+        Me.LabelControl6.Text = "From"
+        '
+        'SLEStoreDeposit
+        '
+        Me.SLEStoreDeposit.Location = New System.Drawing.Point(50, 102)
+        Me.SLEStoreDeposit.Name = "SLEStoreDeposit"
+        Me.SLEStoreDeposit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreDeposit.Properties.View = Me.GridView1
+        Me.SLEStoreDeposit.Size = New System.Drawing.Size(177, 20)
+        Me.SLEStoreDeposit.TabIndex = 8918
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn29})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Comp Contact"
+        Me.GridColumn1.FieldName = "id_comp_contact"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Vendor"
+        Me.GridColumn29.FieldName = "comp_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(18, 105)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl1.TabIndex = 8917
+        Me.LabelControl1.Text = "Store"
+        '
+        'XTPUnpaidBill
+        '
+        Me.XTPUnpaidBill.Name = "XTPUnpaidBill"
+        Me.XTPUnpaidBill.Size = New System.Drawing.Size(921, 415)
+        Me.XTPUnpaidBill.Text = "Unpaid Sales Invoice"
+        '
         'FormMailManage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -777,6 +777,8 @@ Partial Class FormMailManage
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPHistory.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -786,8 +788,6 @@ Partial Class FormMailManage
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

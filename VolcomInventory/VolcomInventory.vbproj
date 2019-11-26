@@ -2068,6 +2068,12 @@
     <Compile Include="FormMailManage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMailManageCancel.Designer.vb">
+      <DependentUpon>FormMailManageCancel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageCancel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMailManageDet.Designer.vb">
       <DependentUpon>FormMailManageDet.vb</DependentUpon>
     </Compile>
@@ -8376,6 +8382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMailManage.resx">
       <DependentUpon>FormMailManage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageCancel.resx">
+      <DependentUpon>FormMailManageCancel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMailManageDet.resx">
       <DependentUpon>FormMailManageDet.vb</DependentUpon>

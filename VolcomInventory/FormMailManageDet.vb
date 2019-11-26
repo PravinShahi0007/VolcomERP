@@ -229,6 +229,11 @@
                 BtnCancel.Visible = False
             End If
 
+            'jika cancel
+            If id_mail_status = "4" Then
+                BtnSend.Visible = False
+            End If
+
             'cek di log jika sudah pernah sent
             If checkAlreadySent() Then
                 BtnDraft.Visible = False
@@ -271,7 +276,26 @@
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        If checkAlreadySent() Then
+            stopCustom("Can't cancel this transaction because email already sent")
+        Else
+            FormMailManageCancel.rmt = rmt
+            FormMailManageCancel.id_mail_manage = id
+            FormMailManageCancel.ShowDialog()
+            actionLoad()
+            refreshMainView()
+            If id_mail_status = "4" Then
+                Close()
+            End If
+        End If
+    End Sub
 
+    Sub refreshMainView()
+        FormMailManage.XTCMailManage.SelectedTabPageIndex = 0
+        FormMailManage.viewMailManage()
+        makeSafeGV(FormMailManage.GVData)
+        FormMailManage.GVData.FocusedRowHandle = find_row(FormMailManage.GVData, "id_mail_manage", id)
+        FormMailManage.SLEStoreGroup.EditValue = "0"
     End Sub
 
     Sub save(ByVal id_status_par As String, ByVal note_par As String)
@@ -335,17 +359,14 @@
                 sendEmail()
             ElseIf id_status_par = "1" Then 'draft
                 Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
-                id_mail_status=1, mail_status_note='Sent successfully' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("1", "Draft Email") + "; "
+                id_mail_status=1, mail_status_note='Draft Email' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("1", "Draft Email") + "; "
                 execute_non_query(querylog, True, "", "", "", "")
             End If
 
             'actionLoad & refresh
             action = "upd"
             actionLoad()
-            FormMailManage.XTCMailManage.SelectedTabPageIndex = 0
-            FormMailManage.viewMailManage()
-            makeSafeGV(FormMailManage.GVData)
-            FormMailManage.GVData.FocusedRowHandle = find_row(FormMailManage.GVData, "id_mail_manage", id)
+            refreshMainView()
 
             'jika tidak gagal langsung close
             If id_mail_status <> "3" Then
@@ -357,17 +378,14 @@
                 sendEmail()
             ElseIf id_status_par = "1" Then 'draft
                 Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
-                id_mail_status=1, mail_status_note='Sent successfully' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("1", "Draft Email") + "; "
+                id_mail_status=1, mail_status_note='Draft Email' WHERE id_mail_manage='" + id + "'; " + queryInsertLog("1", "Draft Email") + "; "
                 execute_non_query(querylog, True, "", "", "", "")
             End If
 
             'actionLoad & refresh
             action = "upd"
             actionLoad()
-            FormMailManage.XTCMailManage.SelectedTabPageIndex = 0
-            FormMailManage.viewMailManage()
-            makeSafeGV(FormMailManage.GVData)
-            FormMailManage.GVData.FocusedRowHandle = find_row(FormMailManage.GVData, "id_mail_manage", id)
+            refreshMainView()
 
             'jika tidak gagal langsung close
             If id_mail_status <> "3" Then

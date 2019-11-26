@@ -2898,6 +2898,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormPopUpCompGroup" Then
                 FormMasterCompGroupDet.id_comp_group = FormPopUpCompGroup.GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
                 FormMasterCompGroupDet.ShowDialog()
+            ElseIf formName = "FormMailManage" Then
+                If FormMailManage.XTCMailManage.SelectedTabPageIndex = 0 Then
+                    FormMailManageDet.action = "upd"
+                    FormMailManageDet.id = FormMailManage.GVData.GetFocusedRowCellValue("id_mail_manage").ToString
+                    FormMailManageDet.rmt = FormMailManage.GVData.GetFocusedRowCellValue("report_mark_type").ToString
+                    FormMailManageDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
