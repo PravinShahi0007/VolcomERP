@@ -264,7 +264,7 @@ Public Class FormMain
             BBView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
+        If formName = "formemployeepps" Or formName = "FormAccountingSummary" Or formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -2898,6 +2898,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormPopUpCompGroup" Then
                 FormMasterCompGroupDet.id_comp_group = FormPopUpCompGroup.GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
                 FormMasterCompGroupDet.ShowDialog()
+            ElseIf formName = "FormAccountingJournalAdj" Then
+                FormAccountingJournalAdjDet.id_trans_adj = FormAccountingJournalAdj.GVAccTrans.GetFocusedRowCellValue("id_acc_trans_adj").ToString
+                FormAccountingJournalAdjDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

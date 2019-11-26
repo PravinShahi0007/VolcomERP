@@ -35,13 +35,13 @@
 
     Sub view_jurnal()
         Dim query As String = ""
-        query = "SELECT t.id_acc_trans,t.id_acc_trans_adj,t.acc_trans_adj_number,b.acc_trans_number,t.id_report_status,f.report_status,t.acc_trans_adj_note,i.employee_name,  DATE_FORMAT(t.date_created, '%d %M %Y') AS date_created "
-        query += "FROM tb_a_acc_trans_adj t "
-        query += "INNER JOIN tb_a_acc_trans b ON t.id_acc_trans=b.id_acc_trans "
-        query += "INNER JOIN tb_m_user h ON t.id_user = h.id_user "
-        query += "INNER JOIN tb_m_employee i ON h.id_employee = i.id_employee "
-        query += "INNER JOIN tb_lookup_report_status f ON t.id_report_status = f.id_report_status "
-        query += "ORDER BY t.id_acc_trans DESC "
+        query = "SELECT t.id_acc_trans,t.id_acc_trans_adj,t.acc_trans_adj_number,b.acc_trans_number,t.id_report_status,f.report_status,t.acc_trans_adj_note,i.employee_name,  DATE_FORMAT(t.date_created, '%d %M %Y') AS date_created 
+                FROM tb_a_acc_trans_adj t 
+                INNER JOIN tb_a_acc_trans b ON t.id_acc_trans=b.id_acc_trans 
+                INNER JOIN tb_m_user h ON t.id_user = h.id_user 
+                INNER JOIN tb_m_employee i ON h.id_employee = i.id_employee 
+                INNER JOIN tb_lookup_report_status f ON t.id_report_status = f.id_report_status 
+                ORDER BY t.id_acc_trans DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAccTrans.DataSource = data
     End Sub
