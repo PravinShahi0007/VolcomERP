@@ -71,6 +71,8 @@ Partial Class FormMailManageDet
         Me.TxtMailType = New DevExpress.XtraEditors.TextEdit()
         Me.TxtEmailNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCMail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMail.SuspendLayout()
         Me.XTPreview.SuspendLayout()
@@ -113,7 +115,7 @@ Partial Class FormMailManageDet
         Me.XTCMail.Location = New System.Drawing.Point(0, 152)
         Me.XTCMail.Name = "XTCMail"
         Me.XTCMail.SelectedTabPage = Me.XTPreview
-        Me.XTCMail.Size = New System.Drawing.Size(828, 411)
+        Me.XTCMail.Size = New System.Drawing.Size(828, 425)
         Me.XTCMail.TabIndex = 0
         Me.XTCMail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPreview, Me.XTPData})
         '
@@ -122,7 +124,7 @@ Partial Class FormMailManageDet
         Me.XTPreview.Controls.Add(Me.WebBrowser1)
         Me.XTPreview.Controls.Add(Me.PanelControl4)
         Me.XTPreview.Name = "XTPreview"
-        Me.XTPreview.Size = New System.Drawing.Size(822, 383)
+        Me.XTPreview.Size = New System.Drawing.Size(822, 397)
         Me.XTPreview.Text = "Preview"
         '
         'WebBrowser1
@@ -131,12 +133,14 @@ Partial Class FormMailManageDet
         Me.WebBrowser1.Location = New System.Drawing.Point(315, 0)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(507, 383)
+        Me.WebBrowser1.Size = New System.Drawing.Size(507, 397)
         Me.WebBrowser1.TabIndex = 1
         '
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl4.Controls.Add(Me.LabelControl13)
         Me.PanelControl4.Controls.Add(Me.MESubject)
         Me.PanelControl4.Controls.Add(Me.LabelControl12)
         Me.PanelControl4.Controls.Add(Me.MECC)
@@ -148,7 +152,7 @@ Partial Class FormMailManageDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(315, 383)
+        Me.PanelControl4.Size = New System.Drawing.Size(315, 397)
         Me.PanelControl4.TabIndex = 0
         '
         'MESubject
@@ -355,7 +359,7 @@ Partial Class FormMailManageDet
         Me.PanelControl2.Controls.Add(Me.BtnDraft)
         Me.PanelControl2.Controls.Add(Me.BtnSend)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 563)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 577)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(828, 48)
         Me.PanelControl2.TabIndex = 2
@@ -444,7 +448,7 @@ Partial Class FormMailManageDet
         Me.DEUpdatedDate.Name = "DEUpdatedDate"
         Me.DEUpdatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUpdatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUpdatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUpdatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.DEUpdatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUpdatedDate.Size = New System.Drawing.Size(243, 20)
         Me.DEUpdatedDate.TabIndex = 14
@@ -457,7 +461,7 @@ Partial Class FormMailManageDet
         Me.DECreatedDate.Name = "DECreatedDate"
         Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreatedDate.Size = New System.Drawing.Size(243, 20)
         Me.DECreatedDate.TabIndex = 9
@@ -582,11 +586,29 @@ Partial Class FormMailManageDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Email Number"
         '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(14, 326)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl13.TabIndex = 20
+        Me.LabelControl13.Text = "Attachment File"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(14, 345)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(115, 23)
+        Me.SimpleButton1.TabIndex = 21
+        Me.SimpleButton1.Text = "View Attachment"
+        '
         'FormMailManageDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(828, 611)
+        Me.ClientSize = New System.Drawing.Size(828, 625)
         Me.Controls.Add(Me.XTCMail)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
@@ -687,4 +709,6 @@ Partial Class FormMailManageDet
     Friend WithEvents GridColumnmail_member_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents MESubject As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class

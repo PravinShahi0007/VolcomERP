@@ -552,7 +552,7 @@ Partial Class FormMailManage
         'GridColumncreated_date
         '
         Me.GridColumncreated_date.Caption = "Created Date"
-        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumncreated_date.FieldName = "created_date"
         Me.GridColumncreated_date.Name = "GridColumncreated_date"
@@ -570,7 +570,7 @@ Partial Class FormMailManage
         'GridColumnupdated_date
         '
         Me.GridColumnupdated_date.Caption = "Updated Date"
-        Me.GridColumnupdated_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnupdated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
         Me.GridColumnupdated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnupdated_date.FieldName = "updated_date"
         Me.GridColumnupdated_date.Name = "GridColumnupdated_date"

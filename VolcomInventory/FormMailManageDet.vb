@@ -78,6 +78,19 @@
         End If
     End Sub
 
+    Function getSavedInvoice() As String
+        Dim qinv As String = "SELECT d.id_report FROM tb_mail_manage_det d WHERE d.id_mail_manage=" + id + " "
+        Dim dinv As DataTable = execute_query(qinv, -1, True, "", "", "", "")
+        Dim id_sales_pos As String = ""
+        For i As Integer = 0 To dinv.Rows.Count - 1
+            If i > 0 Then
+                id_sales_pos += ","
+            End If
+            id_sales_pos += dinv.Rows(i)("id_report").ToString
+        Next
+        Return id_sales_pos
+    End Function
+
     Sub actionLoad()
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
@@ -135,7 +148,7 @@
                         MECC.Text += mail_address + "; "
                     End If
                 Next
-                MESubject.Text = addSlashes("Invoice Penjualan " + ddet.Rows(0)("group_store").ToString + " Periode " + ddet.Rows(0)("period").ToString)
+                MESubject.Text = addSlashes("Sales Invoice " + ddet.Rows(0)("group_store").ToString + " : " + ddet.Rows(0)("period").ToString)
                 Dim m As New ClassSendEmail()
                 Dim html As String = m.email_body_invoice_penjualan(ddet)
                 WebBrowser1.DocumentText = html
@@ -178,21 +191,16 @@
                 GVMember.BestFitColumns()
 
                 '--- load data
-                Dim qinv As String = "SELECT d.id_report FROM tb_mail_manage_det d WHERE d.id_mail_manage=" + id + " "
-                Dim dinv As DataTable = execute_query(qinv, -1, True, "", "", "", "")
-                Dim id_sales_pos As String = ""
-                For i As Integer = 0 To dinv.Rows.Count - 1
-                    If i > 0 Then
-                        id_sales_pos += ","
-                    End If
-                    id_sales_pos += dinv.Rows(i)("id_report").ToString
-                Next
+                Dim id_sales_pos As String = getSavedInvoice()
                 Dim ddet As DataTable = dtLoadDetail(id_sales_pos)
                 GCDetail.DataSource = ddet
                 columnDetail()
 
                 '-- load 'from/to/cc & html preview
                 GVMember.ActiveFilterString = ""
+                MEFrom.Text = ""
+                METo.Text = ""
+                MECC.Text = ""
                 For j As Integer = 0 To ((GVMember.RowCount - 1) - GetGroupRowCount(GVMember))
                     Dim id_mail_member_type As String = GVMember.GetRowCellValue(j, "id_mail_member_type").ToString
                     Dim mail_address As String = GVMember.GetRowCellValue(j, "mail_address").ToString
@@ -211,14 +219,13 @@
             End If
 
             '-- muncul dialog jika eror send
-            If id_mail_status = "3" And checkAlreadySent() Then
-                errorCustom("Last log show this email is 'FAILED' to send. Click 'RESEND' to try again.")
+            If id_mail_status = "3" And Not checkAlreadySent() Then
+                stopCustom("Last log show this email is 'FAILED' to send. Click 'RESEND' to try again.")
             End If
 
             '-- permision
             'general btn
             BtnLog.Visible = True
-            BtnSend.Text = "Resend"
 
             'jika draft dan fail
             If id_mail_status = "1" Or id_mail_status = "3" Then
@@ -238,6 +245,7 @@
             If checkAlreadySent() Then
                 BtnDraft.Visible = False
                 BtnCancel.Visible = False
+                BtnSend.Text = "Resend"
             End If
         End If
         Cursor = Cursors.Default
@@ -400,6 +408,9 @@
         Dim sm As New ClassSendEmail()
         sm.id_report = id
         sm.report_mark_type = rmt
+        Dim id_sales_pos As String = getSavedInvoice()
+        sm.dt = dtLoadDetail(id_sales_pos)
+
         Try
             sm.send_email()
             Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
@@ -414,7 +425,7 @@
 
     Function queryInsertLog(ByVal id_status_par As String, ByVal note_par As String) As String
         Dim query As String = "INSERT INTO tb_mail_manage_log(id_mail_manage, log_date, id_user, id_mail_status, note) VALUES 
-        ('" + id + "', NOW(),'" + id_user + "', '" + id_status_par + "', 'Failed : " + addSlashes(note_par) + "') "
+        ('" + id + "', NOW(),'" + id_user + "', '" + id_status_par + "', '" + addSlashes(note_par) + "') "
         Return query
     End Function
 

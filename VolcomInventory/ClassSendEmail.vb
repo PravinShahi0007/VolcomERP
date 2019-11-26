@@ -1819,6 +1819,41 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
+        ElseIf report_mark_type = "225" Then
+            'EMAIL INVOICE PENJUALAN
+            Dim comp_name As String = execute_query("SELECT c.comp_name FROM tb_m_comp c WHERE c.id_comp=1", 0, True, "", "", "", "")
+            Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, "Sales Invoice - " + comp_name + "")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+
+            'Send to => design_code : email; design : contact person;
+            Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
+            FROM tb_mail_manage_member m 
+            LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+            LEFT JOIN tb_m_user u ON u.id_user = m.id_user
+            LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type>1 
+            ORDER BY m.id_mail_member_type ASC,m.id_mail_manage_member ASC "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("mail_address").ToString, data_send_to.Rows(i)("display_name").ToString)
+                If data_send_to.Rows(i)("id_mail_member_type").ToString = "2" Then
+                    mail.To.Add(to_mail)
+                ElseIf data_send_to.Rows(i)("id_mail_member_type").ToString = "3" Then
+                    mail.CC.Add(to_mail)
+                End If
+            Next
+
+
+            Dim body_temp As String = email_body_invoice_penjualan(dt)
+            Dim subject_mail As String = execute_query("SELECT m.mail_subject FROM tb_mail_manage m WHERE m.id_mail_manage=" + id_report + "", 0, True, "", "", "", "")
+            mail.Subject = subject_mail
+            mail.IsBodyHtml = True
+            mail.Body = body_temp
+            client.Send(mail)
         End If
     End Sub
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)
@@ -3248,16 +3283,16 @@ GROUP BY pdp.`id_prod_demand_design`"
                  <tr>
                   <td style='padding:15.0pt 15.0pt 0pt 15.0pt' colspan='3'>
                   <div>
-                    <b><span class='MsoNormal' style='line-height:14.25pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>INVOICE PENJUALAN</span></b>
+                    <b><span class='MsoNormal' style='line-height:14.25pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>SALES INVOICE</span></b>
                   </div>
                   </td>
                  </tr>
 
                  <tr>
                  	<td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
-	                  	<table cellpadding='1' width='100%' style='padding:5.0pt 5.0pt 0.0pt 14.0pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;' border='0'>
+	                  	<table cellpadding='0' width='100%' style='padding:5.0pt 5.0pt 0.0pt 0.0pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;' border='0'>
 		                  	<tr>
-		                  		<td width='20%'>Store Head Office</td>
+		                  		<td width='20%'>Store HO</td>
 		                  		<td width='2%'>:</td>
 		                  		<td width='77%'>" + dtp.Rows(0)("group_company").ToString + "</td>
                             </tr>
@@ -3269,7 +3304,7 @@ GROUP BY pdp.`id_prod_demand_design`"
                             </tr>
 
                             <tr>
-                                <td width='20%'>Periode</td>
+                                <td width='20%'>Period</td>
                                 <td width='2%'>:</td>
                                 <td width='77%'>" + dtp.Rows(0)("period").ToString + "</td>
                             </tr>
