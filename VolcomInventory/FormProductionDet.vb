@@ -424,7 +424,7 @@ GROUP BY m_ovh_p.id_ovh_price"
             FormReportMark.ShowDialog()
         ElseIf BMark.Text = "Submit" Then
             submit_who_prepared("22", id_prod_order, id_user)
-            Dim query As String = "UPDATE tb_prod_order SET is_submit='1' WHERE id_purc_order='" & id_prod_order & "'"
+            Dim query As String = "UPDATE tb_prod_order SET is_submit='1' WHERE id_prod_order='" & id_prod_order & "'"
             execute_non_query(query, True, "", "", "", "")
             load_form()
         End If
