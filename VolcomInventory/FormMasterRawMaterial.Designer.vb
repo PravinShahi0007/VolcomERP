@@ -30,8 +30,6 @@ Partial Class FormMasterRawMaterial
         Me.GridColumnCategoryMaterial = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnImportFK = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPMaterialDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCMatDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVMatDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -67,8 +65,6 @@ Partial Class FormMasterRawMaterial
         CType(Me.GCRawMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRawMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         Me.XTPMaterialDetail.SuspendLayout()
         CType(Me.GCMatDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMatDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,7 +94,6 @@ Partial Class FormMasterRawMaterial
         'XTPRawMaterial
         '
         Me.XTPRawMaterial.Controls.Add(Me.GCRawMat)
-        Me.XTPRawMaterial.Controls.Add(Me.PanelControl2)
         Me.XTPRawMaterial.Name = "XTPRawMaterial"
         Me.XTPRawMaterial.Size = New System.Drawing.Size(673, 278)
         Me.XTPRawMaterial.Text = "Sub Category"
@@ -106,10 +101,10 @@ Partial Class FormMasterRawMaterial
         'GCRawMat
         '
         Me.GCRawMat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRawMat.Location = New System.Drawing.Point(0, 46)
+        Me.GCRawMat.Location = New System.Drawing.Point(0, 0)
         Me.GCRawMat.MainView = Me.GVRawMat
         Me.GCRawMat.Name = "GCRawMat"
-        Me.GCRawMat.Size = New System.Drawing.Size(673, 232)
+        Me.GCRawMat.Size = New System.Drawing.Size(673, 278)
         Me.GCRawMat.TabIndex = 2
         Me.GCRawMat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRawMat, Me.GridView2})
         '
@@ -172,24 +167,6 @@ Partial Class FormMasterRawMaterial
         '
         Me.GridView2.GridControl = Me.GCRawMat
         Me.GridView2.Name = "GridView2"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BtnImportFK)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(673, 46)
-        Me.PanelControl2.TabIndex = 3
-        '
-        'BtnImportFK
-        '
-        Me.BtnImportFK.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnImportFK.Location = New System.Drawing.Point(552, 2)
-        Me.BtnImportFK.Name = "BtnImportFK"
-        Me.BtnImportFK.Size = New System.Drawing.Size(119, 42)
-        Me.BtnImportFK.TabIndex = 4
-        Me.BtnImportFK.Text = "Import Excel"
         '
         'XTPMaterialDetail
         '
@@ -459,8 +436,6 @@ Partial Class FormMasterRawMaterial
         CType(Me.GCRawMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRawMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
         Me.XTPMaterialDetail.ResumeLayout(False)
         CType(Me.GCMatDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMatDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -500,8 +475,6 @@ Partial Class FormMasterRawMaterial
     Friend WithEvents GridColumnDateCreated As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMatCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCategoryMaterial As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnImportFK As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCList As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPMasterMat As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPListMat As DevExpress.XtraTab.XtraTabPage
