@@ -616,11 +616,11 @@ Partial Class FormMatRecPurcDet
         'GCRoll
         '
         Me.GCRoll.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRoll.Location = New System.Drawing.Point(0, 33)
+        Me.GCRoll.Location = New System.Drawing.Point(0, 38)
         Me.GCRoll.MainView = Me.GVRoll
         Me.GCRoll.Name = "GCRoll"
         Me.GCRoll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2, Me.RepositoryItemSpinEdit3})
-        Me.GCRoll.Size = New System.Drawing.Size(887, 122)
+        Me.GCRoll.Size = New System.Drawing.Size(887, 117)
         Me.GCRoll.TabIndex = 6
         Me.GCRoll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRoll})
         '
@@ -740,7 +740,7 @@ Partial Class FormMatRecPurcDet
         Me.PCRoll.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PCRoll.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PCRoll.Name = "PCRoll"
-        Me.PCRoll.Size = New System.Drawing.Size(887, 33)
+        Me.PCRoll.Size = New System.Drawing.Size(887, 38)
         Me.PCRoll.TabIndex = 7
         '
         'BDelPieces
@@ -750,7 +750,7 @@ Partial Class FormMatRecPurcDet
         Me.BDelPieces.ImageList = Me.LargeImageCollection
         Me.BDelPieces.Location = New System.Drawing.Point(686, 2)
         Me.BDelPieces.Name = "BDelPieces"
-        Me.BDelPieces.Size = New System.Drawing.Size(103, 29)
+        Me.BDelPieces.Size = New System.Drawing.Size(103, 34)
         Me.BDelPieces.TabIndex = 2
         Me.BDelPieces.Text = "Delete"
         '
@@ -777,7 +777,7 @@ Partial Class FormMatRecPurcDet
         Me.BAddPieces.ImageList = Me.LargeImageCollection
         Me.BAddPieces.Location = New System.Drawing.Point(789, 2)
         Me.BAddPieces.Name = "BAddPieces"
-        Me.BAddPieces.Size = New System.Drawing.Size(96, 29)
+        Me.BAddPieces.Size = New System.Drawing.Size(96, 34)
         Me.BAddPieces.TabIndex = 0
         Me.BAddPieces.Text = "Add"
         '
