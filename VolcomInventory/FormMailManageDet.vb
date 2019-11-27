@@ -470,7 +470,11 @@
         FormMailManage.viewMailManage()
         makeSafeGV(FormMailManage.GVData)
         FormMailManage.GVData.FocusedRowHandle = find_row(FormMailManage.GVData, "id_mail_manage", id)
-        FormMailManage.SLEStoreGroup.EditValue = "0"
+        If rmt = "225" Then
+            FormMailManage.SLEStoreGroup.EditValue = "0"
+        ElseIf rmt = "226" Or rmt = "227" Then
+            FormMailManage.SLEStoreGroupUnpaid.EditValue = "0"
+        End If
     End Sub
 
     Sub save(ByVal id_status_par As String, ByVal note_par As String)
