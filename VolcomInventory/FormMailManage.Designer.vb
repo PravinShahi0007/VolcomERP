@@ -53,7 +53,7 @@ Partial Class FormMailManage
         Me.CESelectAllInvoice = New DevExpress.XtraEditors.CheckEdit()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPendingGroup = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAlreadyProcessed = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPending = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -126,7 +126,7 @@ Partial Class FormMailManage
         Me.XTCMailManage.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCMailManage.Location = New System.Drawing.Point(0, 0)
         Me.XTCMailManage.Name = "XTCMailManage"
-        Me.XTCMailManage.SelectedTabPage = Me.XTPSalesInvoiceList
+        Me.XTCMailManage.SelectedTabPage = Me.XTPHistory
         Me.XTCMailManage.Size = New System.Drawing.Size(927, 443)
         Me.XTCMailManage.TabIndex = 0
         Me.XTCMailManage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPHistory, Me.XTPSalesInvoiceList, Me.XTPUnpaidBill})
@@ -431,7 +431,7 @@ Partial Class FormMailManage
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BtnPendingGroup)
         Me.PanelControl1.Controls.Add(Me.BtnAlreadyProcessed)
         Me.PanelControl1.Controls.Add(Me.BtnPending)
         Me.PanelControl1.Controls.Add(Me.SLEStoreGroup)
@@ -442,23 +442,23 @@ Partial Class FormMailManage
         Me.PanelControl1.Size = New System.Drawing.Size(921, 43)
         Me.PanelControl1.TabIndex = 3
         '
-        'SimpleButton1
+        'BtnPendingGroup
         '
-        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.OrangeRed
-        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton1.Appearance.Options.UseBackColor = True
-        Me.SimpleButton1.Appearance.Options.UseFont = True
-        Me.SimpleButton1.Appearance.Options.UseForeColor = True
-        Me.SimpleButton1.Location = New System.Drawing.Point(436, 11)
-        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(179, 20)
-        Me.SimpleButton1.TabIndex = 8926
-        Me.SimpleButton1.Text = "Pending Mail (Store Group)"
+        Me.BtnPendingGroup.Appearance.BackColor = System.Drawing.Color.OrangeRed
+        Me.BtnPendingGroup.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnPendingGroup.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnPendingGroup.Appearance.Options.UseBackColor = True
+        Me.BtnPendingGroup.Appearance.Options.UseFont = True
+        Me.BtnPendingGroup.Appearance.Options.UseForeColor = True
+        Me.BtnPendingGroup.Location = New System.Drawing.Point(436, 11)
+        Me.BtnPendingGroup.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnPendingGroup.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnPendingGroup.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnPendingGroup.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnPendingGroup.Name = "BtnPendingGroup"
+        Me.BtnPendingGroup.Size = New System.Drawing.Size(179, 20)
+        Me.BtnPendingGroup.TabIndex = 8926
+        Me.BtnPendingGroup.Text = "Pending Mail (Store Group)"
         '
         'BtnAlreadyProcessed
         '
@@ -898,5 +898,5 @@ Partial Class FormMailManage
     Friend WithEvents GridColumnto As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMSSalesInvoice As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPendingGroup As DevExpress.XtraEditors.SimpleButton
 End Class

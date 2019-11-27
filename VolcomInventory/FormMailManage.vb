@@ -1,5 +1,8 @@
 ﻿Public Class FormMailManage
     Public id_menu As String = "1"
+    Public already_open_invoice As Boolean = False
+    Public already_open_invoice_unpaid As Boolean = False
+
     '1=for accounting
 
     Private Sub FormMailManage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -7,7 +10,7 @@
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
 
-        'invoice list
+        '-- invoice list
         load_group_store()
     End Sub
 
@@ -149,6 +152,16 @@
 
     Private Sub XTCMailManage_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCMailManage.SelectedPageChanged
         check_menu()
+        If XTCMailManage.SelectedTabPageIndex = 0 Then
+
+        ElseIf XTCMailManage.SelectedTabPageIndex = 1 Then
+            If Not already_open_invoice Then
+                'load pending invoice
+                FormMailManagePendingInvoice.show_direct = True
+                viewPendingMailGroup()
+            End If
+        ElseIf XTCMailManage.SelectedTabPageIndex = 2 Then
+        End If
     End Sub
 
     Sub check_menu()
@@ -181,5 +194,15 @@
             m.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnPendingGroup_Click(sender As Object, e As EventArgs) Handles BtnPendingGroup.Click
+        viewPendingMailGroup()
+    End Sub
+
+    Sub viewPendingMailGroup()
+        Cursor = Cursors.WaitCursor
+        FormMailManagePendingInvoice.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
