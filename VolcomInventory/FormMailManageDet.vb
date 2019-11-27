@@ -43,6 +43,31 @@
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
             WHERE sp.id_sales_pos IN (" + id_sales_pos_par + ") "
             dt = execute_query(qdet, -1, True, "", "", "", "")
+        ElseIf rmt = "226" Or rmt = "227" Then
+            Dim qdet As String = "SELECT '' AS `no`, sp.id_sales_pos AS `id_report`, sp.sales_pos_number AS `report_number`,
+            CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, g.description AS `group_store`,
+            cg.comp_name AS `group_company`, 
+            CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`,
+            DATE_FORMAT(sp.sales_pos_due_date,'%d-%m-%y') AS `sales_pos_due_date`,
+            CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `amount`,
+            sp.report_mark_type
+            FROM tb_sales_pos sp 
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            INNER JOIN tb_m_comp_group g ON g.id_comp_group = c.id_comp_group
+            INNER JOIN tb_m_comp cg ON cg.id_comp = g.id_comp
+            INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+            LEFT JOIN (
+                SELECT pyd.id_report, pyd.report_mark_type, 
+                COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+                SUM(pyd.value) AS  `value`
+                FROM tb_rec_payment_det pyd
+                INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+                WHERE py.`id_report_status`=6
+                GROUP BY pyd.id_report, pyd.report_mark_type
+            ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+            WHERE sp.id_sales_pos IN (" + id_sales_pos_par + ") "
+            dt = execute_query(qdet, -1, True, "", "", "", "")
         End If
         Return dt
     End Function
@@ -71,6 +96,27 @@
             'summary
             GVDetail.Columns("qty_invoice").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVDetail.Columns("qty_invoice").SummaryItem.DisplayFormat = "{0:n0}"
+            GVDetail.Columns("amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVDetail.Columns("amount").SummaryItem.DisplayFormat = "{0:n2}"
+            'bestfit
+            GVDetail.BestFitColumns()
+        ElseIf rmt = "226" Or rmt = "227" Then
+            'hide column
+            GVDetail.Columns("id_report").Visible = False
+            GVDetail.Columns("report_mark_type").Visible = False
+            'caption
+            GVDetail.Columns("no").Caption = "No"
+            GVDetail.Columns("report_number").Caption = "Invoice Number"
+            GVDetail.Columns("store").Caption = "Store"
+            GVDetail.Columns("group_store").Caption = "Store Group"
+            GVDetail.Columns("group_company").Caption = "Company"
+            GVDetail.Columns("period").Caption = "Period"
+            GVDetail.Columns("sales_pos_due_date").Caption = "Due Date"
+            GVDetail.Columns("amount").Caption = "Amount"
+            'display format
+            GVDetail.Columns("amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVDetail.Columns("amount").DisplayFormat.FormatString = "{0:N2}"
+            'summary
             GVDetail.Columns("amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVDetail.Columns("amount").SummaryItem.DisplayFormat = "{0:n2}"
             'bestfit
@@ -108,14 +154,14 @@
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_user u ON u.id_user = m.id_user
                 INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-                WHERE e.email_external!=''
+                WHERE e.email_external!='' AND m.report_mark_type='" + rmt + "'
                 UNION
                 SELECT m.id_mail_manage_mapping AS `index`,0 AS `id_mail_manage_member`,0 AS `id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
                 cc.contact_person AS `description`, cc.email AS `mail_address`
                 FROM tb_mail_manage_mapping m
                 INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
-                WHERE m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "' AND cc.email!=''
+                WHERE m.id_comp_group='" + FormMailManage.SLEStoreGroup.EditValue.ToString + "' AND cc.email!='' AND m.report_mark_type='" + rmt + "'
                 ORDER BY id_mail_member_type ASC, `index` ASC "
                 Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
                 GCMember.DataSource = df
@@ -151,6 +197,72 @@
                 MESubject.Text = addSlashes("Sales Invoice " + ddet.Rows(0)("group_store").ToString + " : " + ddet.Rows(0)("period").ToString)
                 Dim m As New ClassSendEmail()
                 Dim html As String = m.email_body_invoice_penjualan(ddet)
+                WebBrowser1.DocumentText = html
+            ElseIf rmt = "226" Or rmt = "227" Then
+                '-- mail type
+                TxtMailType.Text = execute_query("SELECT report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type='" + rmt + "'", 0, True, "", "", "", "")
+
+                '--- load member
+                Dim qf As String = "SELECT m.id_mail_manage_mapping_intern AS `index`,0 AS `id_mail_manage_member`,0 AS `id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type,m.id_user,0 AS `id_comp_contact`, 
+                e.employee_name AS `description`,e.email_external AS `mail_address` 
+                FROM tb_mail_manage_mapping_intern m
+                INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
+                INNER JOIN tb_m_user u ON u.id_user = m.id_user
+                INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+                WHERE e.email_external!='' AND m.report_mark_type='" + rmt + "'
+                UNION
+                SELECT m.id_mail_manage_mapping AS `index`,0 AS `id_mail_manage_member`,0 AS `id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
+                cc.contact_person AS `description`, cc.email AS `mail_address`
+                FROM tb_mail_manage_mapping m
+                INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+                WHERE m.id_comp_group='" + FormMailManage.SLEStoreGroupUnpaid.EditValue.ToString + "' AND cc.email!='' AND m.report_mark_type='" + rmt + "'
+                ORDER BY id_mail_member_type ASC, `index` ASC "
+                Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+                GCMember.DataSource = df
+                GVMember.BestFitColumns()
+
+                '--- load data
+                Dim id_sales_pos As String = ""
+                For i As Integer = 0 To (FormMailManage.GVUnpaid.RowCount - 1)
+                    If i > 0 Then
+                        id_sales_pos += ","
+                    End If
+                    id_sales_pos += FormMailManage.GVUnpaid.GetRowCellValue(i, "id_sales_pos").ToString
+                Next
+                Console.WriteLine(id_sales_pos)
+                Dim ddet As DataTable = dtLoadDetail(id_sales_pos)
+                GCDetail.DataSource = ddet
+                columnDetail()
+
+
+                '-- load 'from/to/cc & html preview
+                GVMember.ActiveFilterString = ""
+                For j As Integer = 0 To ((GVMember.RowCount - 1) - GetGroupRowCount(GVMember))
+                    Dim id_mail_member_type As String = GVMember.GetRowCellValue(j, "id_mail_member_type").ToString
+                    Dim mail_address As String = GVMember.GetRowCellValue(j, "mail_address").ToString
+
+                    If id_mail_member_type = "1" Then
+                        MEFrom.Text += mail_address + "; "
+                    ElseIf id_mail_member_type = "2" Then
+                        METo.Text += mail_address + "; "
+                    Else
+                        MECC.Text += mail_address + "; "
+                    End If
+                Next
+                Dim title As String = ""
+                Dim subj As String = ""
+                If rmt = "226" Then
+                    title = "H-3 Invoice Jatuh Tempo"
+                    subj = "Email Pemberitahuan : " + title
+                Else
+                    title = "Invoice Jatuh Tempo"
+                    subj = "Email Peringatan : " + title
+                End If
+                MESubject.Text = addSlashes(subj)
+                Dim total_amount As String = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+                Dim m As New ClassSendEmail()
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, title.ToUpper, total_amount)
                 WebBrowser1.DocumentText = html
             End If
         ElseIf action = "upd" Then
@@ -215,6 +327,61 @@
                 Next
                 Dim m As New ClassSendEmail()
                 Dim html As String = m.email_body_invoice_penjualan(ddet)
+                WebBrowser1.DocumentText = html
+            ElseIf rmt = "226" Or rmt = "227" Then
+                '-- load member
+                Dim qf As String = "SELECT m.id_mail_manage_member AS `index`,m.`id_mail_manage_member`,m.`id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type,m.id_user, 0 AS `id_comp_contact`, 
+                e.employee_name AS `description`, m.mail_address AS `mail_address` 
+                FROM tb_mail_manage_member m
+                INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
+                INNER JOIN tb_m_user u ON u.id_user = m.id_user
+                INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+                WHERE m.id_mail_manage=" + id + " AND ISNULL(m.id_comp_contact)
+                UNION
+                SELECT m.id_mail_manage_member AS `index`,m.`id_mail_manage_member`,m.`id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
+                cc.contact_person AS `description`, cc.email AS `mail_address`
+                FROM tb_mail_manage_member m
+                INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+                WHERE m.id_mail_manage=" + id + " AND ISNULL(m.id_user)
+                ORDER BY id_mail_member_type ASC, `index` ASC "
+                Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+                GCMember.DataSource = df
+                GVMember.BestFitColumns()
+
+                '--- load data
+                Dim id_sales_pos As String = getSavedInvoice()
+                Dim ddet As DataTable = dtLoadDetail(id_sales_pos)
+                GCDetail.DataSource = ddet
+                columnDetail()
+
+                '-- load 'from/to/cc & html preview
+                GVMember.ActiveFilterString = ""
+                For j As Integer = 0 To ((GVMember.RowCount - 1) - GetGroupRowCount(GVMember))
+                    Dim id_mail_member_type As String = GVMember.GetRowCellValue(j, "id_mail_member_type").ToString
+                    Dim mail_address As String = GVMember.GetRowCellValue(j, "mail_address").ToString
+
+                    If id_mail_member_type = "1" Then
+                        MEFrom.Text += mail_address + "; "
+                    ElseIf id_mail_member_type = "2" Then
+                        METo.Text += mail_address + "; "
+                    Else
+                        MECC.Text += mail_address + "; "
+                    End If
+                Next
+                Dim title As String = ""
+                Dim subj As String = ""
+                If rmt = "226" Then
+                    title = "H-3 Invoice Jatuh Tempo"
+                    subj = "Email Pemberitahuan : " + title
+                Else
+                    title = "Invoice Jatuh Tempo"
+                    subj = "Email Peringatan : " + title
+                End If
+                MESubject.Text = addSlashes(subj)
+                Dim total_amount As String = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+                Dim m As New ClassSendEmail()
+                Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, title.ToUpper, total_amount)
                 WebBrowser1.DocumentText = html
             End If
 

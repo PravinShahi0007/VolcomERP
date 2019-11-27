@@ -2,6 +2,7 @@
     Public id_menu As String = "1"
     Public already_open_invoice As Boolean = False
     Public already_open_invoice_unpaid As Boolean = False
+    Public rmt_unpaid As String = "-1"
 
     '1=for accounting
 
@@ -60,7 +61,7 @@
 
     Sub loadUnpaidInvoice(ByVal cond As String)
         Cursor = Cursors.WaitCursor
-        Dim id_comp_group As String = SLEStoreGroup.EditValue.ToString
+        Dim id_comp_group As String = SLEStoreGroupUnpaid.EditValue.ToString
 
         If id_comp_group = "0" Then
             stopCustom("Please select store group first")
@@ -77,6 +78,15 @@
             INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+            LEFT JOIN (
+	            SELECT pyd.id_report, pyd.report_mark_type, 
+	            COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+	            SUM(pyd.value) AS  `value`
+	            FROM tb_rec_payment_det pyd
+	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+	            WHERE py.`id_report_status`=6
+	            GROUP BY pyd.id_report, pyd.report_mark_type
+            ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
             WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND c.id_comp_group='" + id_comp_group + "' 
             " + cond + "
             GROUP BY sp.`id_sales_pos` 
@@ -250,15 +260,124 @@
         Next
     End Sub
 
-    Private Sub BtnAllInvoiceOpen_Click(sender As Object, e As EventArgs) Handles BtnAllInvoiceOpen.Click
-        loadUnpaidInvoice("")
+    Sub invisibleAllButtonUnpaid()
+        BtnProceedEmailNotice.Visible = False
+        BtnProceedEmailWarning.Visible = False
     End Sub
 
-    Private Sub BtnMinThreeOverdue_Click(sender As Object, e As EventArgs) Handles BtnMinThreeOverdue.Click
+    Private Sub BtnMinThreeOverdue_Click_1(sender As Object, e As EventArgs) Handles BtnMinThreeOverdue.Click
+        invisibleAllButtonUnpaid()
+        rmt_unpaid = "226"
         loadUnpaidInvoice("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>=-5 AND DATEDIFF(NOW(),sp.`sales_pos_due_date`)<0) ")
+        If GVUnpaid.RowCount > 0 Then
+            BtnProceedEmailNotice.Visible = True
+        End If
     End Sub
 
-    Private Sub BtnOverdue_Click(sender As Object, e As EventArgs) Handles BtnOverdue.Click
+    Private Sub BtnAlreadyProcessedUnpaud_Click(sender As Object, e As EventArgs) Handles BtnOverdue.Click
+        invisibleAllButtonUnpaid()
+        rmt_unpaid = "227"
         loadUnpaidInvoice("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>=0) ")
+        If GVUnpaid.RowCount > 0 Then
+            BtnProceedEmailWarning.Visible = True
+        End If
+    End Sub
+
+    Private Sub BtnProceedEmailPeringatan_Click(sender As Object, e As EventArgs) Handles BtnProceedEmailWarning.Click
+        Dim id_comp_group As String = SLEStoreGroupUnpaid.EditValue.ToString
+        If id_comp_group <> "0" Then
+            Cursor = Cursors.WaitCursor
+            '--- check email group
+            Dim qcg As String = "-- cari to untuk group toko
+            SELECT cc.email AS `email_group`
+            FROM tb_mail_manage_mapping m
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+            WHERE m.id_comp_group=" + id_comp_group + " AND m.report_mark_type=" + rmt_unpaid + " AND m.id_mail_member_type=2 AND cc.email!='' "
+            Dim dcg As DataTable = execute_query(qcg, -1, True, "", "", "", "")
+            If dcg.Rows.Count <= 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Email store group not found. Please mapping email first.")
+                Exit Sub
+            End If
+
+            '-- check email from (internal)
+            Dim qci As String = "-- cari internal from
+            SELECT e.email_external
+            FROM tb_mail_manage_mapping_intern i
+            INNER JOIN tb_m_user u ON u.id_user = i.id_user
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE i.report_mark_type=" + rmt_unpaid + " AND i.id_mail_member_type=1 AND e.email_external!='' "
+            Dim dci As DataTable = execute_query(qci, -1, True, "", "", "", "")
+            If dci.Rows.Count <= 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Email from not found. Please mapping email first.")
+                Exit Sub
+            End If
+
+
+            '---filter check
+            makeSafeGV(GVUnpaid)
+            GVUnpaid.ActiveFilterString = "[is_check]='yes'"
+            'load detil form
+            FormMailManageDet.rmt = rmt_unpaid
+            FormMailManageDet.action = "ins"
+            FormMailManageDet.ShowDialog()
+
+
+            GVUnpaid.ActiveFilterString = ""
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SLEStoreGroupUnpaid_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroupUnpaid.EditValueChanged
+        GCInvoiceList.DataSource = Nothing
+        invisibleAllButtonUnpaid()
+        rmt_unpaid = "-1"
+    End Sub
+
+    Private Sub BtnProceedEmailNotice_Click(sender As Object, e As EventArgs) Handles BtnProceedEmailNotice.Click
+        Dim id_comp_group As String = SLEStoreGroupUnpaid.EditValue.ToString
+        If id_comp_group <> "0" Then
+            Cursor = Cursors.WaitCursor
+            '--- check email group
+            Dim qcg As String = "-- cari to untuk group toko
+            SELECT cc.email AS `email_group`
+            FROM tb_mail_manage_mapping m
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+            WHERE m.id_comp_group=" + id_comp_group + " AND m.report_mark_type=" + rmt_unpaid + " AND m.id_mail_member_type=2 AND cc.email!='' "
+            Dim dcg As DataTable = execute_query(qcg, -1, True, "", "", "", "")
+            If dcg.Rows.Count <= 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Email store group not found. Please mapping email first.")
+                Exit Sub
+            End If
+
+            '-- check email from (internal)
+            Dim qci As String = "-- cari internal from
+            SELECT e.email_external
+            FROM tb_mail_manage_mapping_intern i
+            INNER JOIN tb_m_user u ON u.id_user = i.id_user
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE i.report_mark_type=" + rmt_unpaid + " AND i.id_mail_member_type=1 AND e.email_external!='' "
+            Dim dci As DataTable = execute_query(qci, -1, True, "", "", "", "")
+            If dci.Rows.Count <= 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Email from not found. Please mapping email first.")
+                Exit Sub
+            End If
+
+
+            '---filter check
+            makeSafeGV(GVUnpaid)
+            GVUnpaid.ActiveFilterString = "[is_check]='yes'"
+            'load detil form
+            FormMailManageDet.rmt = rmt_unpaid
+            FormMailManageDet.action = "ins"
+            FormMailManageDet.ShowDialog()
+
+
+            GVUnpaid.ActiveFilterString = ""
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
