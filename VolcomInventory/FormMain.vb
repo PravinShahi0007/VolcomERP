@@ -264,7 +264,7 @@ Public Class FormMain
             BBView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
+        If formName = "formemployeepps" Or formName = "FormAccountingSummary" Or formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -1764,7 +1764,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBuktiPickupDet.ShowDialog()
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             FormEmpBPJSKesehatanDet.id = "0"
-            FormEmpBPJSKesehatanDet.is_approve = "0"
+            FormEmpBPJSKesehatanDet.is_approve = FormEmpBPJSKesehatan.is_approve
 
             FormEmpBPJSKesehatanDet.ShowDialog()
         ElseIf formName = "FormPopUpCompGroup" Then
@@ -2892,7 +2892,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End Try
             ElseIf formName = "FormEmpBPJSKesehatan" Then
                 FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_pay_bpjs_kesehatan").ToString
-                FormEmpBPJSKesehatanDet.is_approve = "0"
+                FormEmpBPJSKesehatanDet.is_approve = FormEmpBPJSKesehatan.is_approve
 
                 FormEmpBPJSKesehatanDet.ShowDialog()
             ElseIf formName = "FormPopUpCompGroup" Then
@@ -2905,6 +2905,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormMailManageDet.rmt = FormMailManage.GVData.GetFocusedRowCellValue("report_mark_type").ToString
                     FormMailManageDet.ShowDialog()
                 End If
+            ElseIf formName = "FormAccountingJournalAdj" Then
+                FormAccountingJournalAdjDet.id_trans_adj = FormAccountingJournalAdj.GVAccTrans.GetFocusedRowCellValue("id_acc_trans_adj").ToString
+                FormAccountingJournalAdjDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8590,6 +8593,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPopUpCompGroup.Close()
         ElseIf formName = "FormCompanyEmailMapping" Then
             FormCompanyEmailMapping.Close()
+        ElseIf formName = "FormPurcItem" Then
+            FormPurcItem.Close()
         Else
             RPSubMenu.Visible = False
         End If

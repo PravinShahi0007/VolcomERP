@@ -488,9 +488,10 @@
             FormViewSalesOrder.id_sales_order = id_report
             FormViewSalesOrder.ShowDialog()
         ElseIf report_mark_type = "40" Then
-            'Entry Journal
-            FormViewJournalAdj.id_trans_adj = id_report
-            FormViewJournalAdj.ShowDialog()
+            'Adjustment Journal
+            FormAccountingJournalAdjDet.is_view = "1"
+            FormAccountingJournalAdjDet.id_trans_adj = id_report
+            FormAccountingJournalAdjDet.ShowDialog()
         ElseIf report_mark_type = "41" Then
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report
@@ -1377,7 +1378,7 @@
             table_name = "tb_a_acc_trans_adj"
             field_id = "id_acc_trans_adj"
             field_number = "acc_trans_adj_number"
-            field_date = "acc_trans_adj_date"
+            field_date = "date_created"
         ElseIf report_mark_type = "41" Then
             'Adj In FG
             table_name = "tb_adj_in_fg"
@@ -2487,11 +2488,12 @@
                     End If
                 ElseIf report_mark_type = "192" Then
                     'payroll
-                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period
+                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period, IF(id_payroll_type = 1, 'Organic', 'Daily Worker') AS payroll_type
                     FROM tb_emp_payroll
                     WHERE id_payroll = " + id_report + ""
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("payroll_type").ToString
                         info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
                 ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
