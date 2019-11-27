@@ -580,81 +580,84 @@ GROUP BY pl.`id_mat_purc_list`"
         '' Show the report's preview. 
         'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         'Tool.ShowPreview()
+        If Not check_allow_print(id_report_status_g, "13", id_purc) Then
+            warningCustom("Can't print, please complete internal approval on system first")
+        Else
+            Cursor = Cursors.WaitCursor
+            ReportMatPurchase.dt = GCListPurchase.DataSource
+            ReportMatPurchase.id_mat_purc = id_purc
+            'ReportMatPurchase.is_pre = "1"
+            Dim Report As New ReportMatPurchase()
+            '
+            GridColumnColor.Visible = False
+            GridColumnDiscount.Visible = False
+            GVListPurchase.BestFitColumns()
+            '
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVListPurchase.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVListPurchase.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        Cursor = Cursors.WaitCursor
-        ReportMatPurchase.dt = GCListPurchase.DataSource
-        ReportMatPurchase.id_mat_purc = id_purc
-        'ReportMatPurchase.is_pre = "1"
-        Dim Report As New ReportMatPurchase()
-        '
-        GridColumnColor.Visible = False
-        GridColumnDiscount.Visible = False
-        GVListPurchase.BestFitColumns()
-        '
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVListPurchase.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVListPurchase.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            'Grid Detail
+            ReportStyleGridview(Report.GVListPurchase)
+            '
+            Report.GVListPurchase.AppearancePrint.Row.Font = New Font("Tahoma", 8, FontStyle.Regular)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVListPurchase)
-        '
-        Report.GVListPurchase.AppearancePrint.Row.Font = New Font("Tahoma", 8, FontStyle.Regular)
+            '
+            'Parse val
+            Report.LPORev.Text = TEPORevNumber.Text
+            Report.LPONumber.Text = TEPONumber.Text
 
-        '
-        'Parse val
-        Report.LPORev.Text = TEPORevNumber.Text
-        Report.LPONumber.Text = TEPONumber.Text
+            Report.LPODate.Text = TEDate.Text
+            Report.LLeadTime.Text = TELeadTime.Text
+            Report.LRecDate.Text = TERecDate.Text
+            Report.LTOP.Text = TETOP.Text
+            Report.LDueDate.Text = TEDueDate.Text
 
-        Report.LPODate.Text = TEDate.Text
-        Report.LLeadTime.Text = TELeadTime.Text
-        Report.LRecDate.Text = TERecDate.Text
-        Report.LTOP.Text = TETOP.Text
-        Report.LDueDate.Text = TEDueDate.Text
+            Report.LToName.Text = TECompName.Text
+            Report.LToAddress.Text = MECompAddress.Text
+            Report.LToAttn.Text = TECompAttn.Text
 
-        Report.LToName.Text = TECompName.Text
-        Report.LToAddress.Text = MECompAddress.Text
-        Report.LToAttn.Text = TECompAttn.Text
+            Report.LShipToName.Text = TECompShipToName.Text
+            Report.LShipToAddress.Text = MECompShipToAddress.Text
 
-        Report.LShipToName.Text = TECompShipToName.Text
-        Report.LShipToAddress.Text = MECompShipToAddress.Text
+            Report.LTax.Text = get_company_x(get_id_company(id_comp_ship_to), "4")
+            Report.LNPWMP.Text = get_company_x(get_id_company(id_comp_ship_to), "5")
 
-        Report.LTax.Text = get_company_x(get_id_company(id_comp_ship_to), "4")
-        Report.LNPWMP.Text = get_company_x(get_id_company(id_comp_ship_to), "5")
+            Report.LRange.Text = get_range_x(get_id_range(get_id_season(LEDelivery.EditValue.ToString)), "1")
+            Report.LSeason.Text = LESeason.Text
+            Report.LDelivery.Text = LEDelivery.Text
 
-        Report.LRange.Text = get_range_x(get_id_range(get_id_season(LEDelivery.EditValue.ToString)), "1")
-        Report.LSeason.Text = LESeason.Text
-        Report.LDelivery.Text = LEDelivery.Text
+            Report.LPayment.Text = LEpayment.Text
+            Report.LPOType.Text = LEPOType.Text
+            '    id_cur = data.Rows(0)("id_currency").ToString
+            Report.LCur.Text = LECurrency.Text
+            Report.LKurs.Text = TEKurs.Text
+            Report.LVat.Text = TEVat.Text
+            Report.LDiscount.Text = TEDiscount.Text
+            Report.LVatTot.Text = TEVatTot.Text
 
-        Report.LPayment.Text = LEpayment.Text
-        Report.LPOType.Text = LEPOType.Text
-        '    id_cur = data.Rows(0)("id_currency").ToString
-        Report.LCur.Text = LECurrency.Text
-        Report.LKurs.Text = TEKurs.Text
-        Report.LVat.Text = TEVat.Text
-        Report.LDiscount.Text = TEDiscount.Text
-        Report.LVatTot.Text = TEVatTot.Text
+            '    gross_tot = sub_tot + discount
+            Report.LGrossTot.Text = TEGrossTot.Text
 
-        '    gross_tot = sub_tot + discount
-        Report.LGrossTot.Text = TEGrossTot.Text
+            '    total = sub_tot + vat
+            Report.LTot.Text = TETot.Text
+            Report.LSay.Text = METotSay.Text.ToString
+            Report.LNote.Text = MENote.Text
 
-        '    total = sub_tot + vat
-        Report.LTot.Text = TETot.Text
-        Report.LSay.Text = METotSay.Text.ToString
-        Report.LNote.Text = MENote.Text
-
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        '
-        GridColumnColor.Visible = True
-        GridColumnDiscount.Visible = True
-        '
-        Cursor = Cursors.Default
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            '
+            GridColumnColor.Visible = True
+            GridColumnDiscount.Visible = True
+            '
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub Bdel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Bdel.Click

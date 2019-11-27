@@ -74,17 +74,19 @@ Partial Class FormMasterRawMaterialSingle
         '
         'BGenerate
         '
-        Me.BGenerate.Location = New System.Drawing.Point(514, 8)
+        Me.BGenerate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BGenerate.Location = New System.Drawing.Point(525, 2)
         Me.BGenerate.Name = "BGenerate"
-        Me.BGenerate.Size = New System.Drawing.Size(86, 23)
+        Me.BGenerate.Size = New System.Drawing.Size(93, 35)
         Me.BGenerate.TabIndex = 8
         Me.BGenerate.Text = "Generate Code"
         '
         'BtnSave
         '
-        Me.BtnSave.Location = New System.Drawing.Point(606, 8)
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.Location = New System.Drawing.Point(618, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 23)
+        Me.BtnSave.Size = New System.Drawing.Size(75, 35)
         Me.BtnSave.TabIndex = 9
         Me.BtnSave.Text = "Save"
         '
@@ -167,6 +169,7 @@ Partial Class FormMasterRawMaterialSingle
         Me.DNCodeMaterial.Name = "DNCodeMaterial"
         Me.DNCodeMaterial.Size = New System.Drawing.Size(378, 24)
         Me.DNCodeMaterial.TabIndex = 38
+        Me.DNCodeMaterial.Visible = False
         '
         'GCCodeMaterial
         '

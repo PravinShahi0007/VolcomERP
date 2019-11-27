@@ -59,6 +59,14 @@
                     End If
                 End If
 
+                Dim query_det As String = "SELECT * FROM tb_m_mat_det md WHERE md.id_mat='" & id_mat & "'"
+                Dim d_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                If d_det.Rows.Count > 0 Then
+                    PCSave.Visible = False
+                Else
+                    PCSave.Visible = True
+                End If
+
             Catch ex As Exception
                 errorConnection()
                 Close()
@@ -92,63 +100,74 @@
             Dim id_mat_cat As String = LEMatCat.EditValue
             Dim mat_code As String = addSlashes(TxtMaterialCode.Text)
 
-            If action = "ins" Then 'INSERT RAW MATERIAL
-                Try
-                    'insert master mat
-                    query = "INSERT INTO tb_m_mat(mat_name, mat_display_name, id_uom, mat_code, id_mat_cat) "
-                    query += "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');SELECT LAST_INSERT_ID(); "
-                    query = String.Format(query, mat_name, mat_display_name, id_uom, mat_code, id_mat_cat)
+            Dim code_ok As Boolean = True
 
-                    id_mat = execute_query(query, 0, True, "", "", "", "")
-                    query = String.Format("DELETE FROM tb_m_mat_code WHERE id_mat='" & id_mat & "'")
-                    execute_non_query(query, True, "", "", "", "")
-                    For i As Integer = 0 To GVCodeMaterial.RowCount - 1
-                        Try
-                            If Not GVCodeMaterial.GetRowCellValue(i, "value").ToString = "" Or GVCodeMaterial.GetRowCellValue(i, "value").ToString = 0 Then
-                                query = String.Format("INSERT INTO tb_m_mat_code(id_mat, id_code_detail) VALUES('{0}','{1}')", id_mat, GVCodeMaterial.GetRowCellValue(i, "value").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Catch ex As Exception
-                        End Try
-                    Next
+            For i As Integer = 0 To GVCodeMaterial.RowCount - 1
+                If GVCodeMaterial.GetRowCellValue(i, "value").ToString = "" Then
+                    code_ok = False
+                End If
+            Next
+            If code_ok = False Then
+                stopCustom("Please complete input on code section")
+            Else
+                If action = "ins" Then 'INSERT RAW MATERIAL
+                    Try
+                        'insert master mat
+                        query = "INSERT INTO tb_m_mat(mat_name, mat_display_name, id_uom, mat_code, id_mat_cat) "
+                        query += "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');SELECT LAST_INSERT_ID(); "
+                        query = String.Format(query, mat_name, mat_display_name, id_uom, mat_code, id_mat_cat)
 
-                    'other
-                    logData("tb_m_mat", 1)
-                    FormMasterRawMaterial.viewMat()
-                    Close()
-                Catch ex As Exception
-                    errorConnection()
-                    Close()
-                End Try
-            ElseIf action = "upd" Then 'UPDATE RAW MATERILA
-                Try
-                    'update tb
-                    query = "UPDATE tb_m_mat SET mat_name='{0}', mat_display_name='{1}', id_uom = '{2}', mat_code='{3}', id_mat_cat='{4}' "
-                    query += "WHERE id_mat = '{5}' "
-                    query = String.Format(query, mat_name, mat_display_name, id_uom, mat_code, id_mat_cat, id_mat)
-                    execute_non_query(query, True, "", "", "", "")
+                        id_mat = execute_query(query, 0, True, "", "", "", "")
+                        query = String.Format("DELETE FROM tb_m_mat_code WHERE id_mat='" & id_mat & "'")
+                        execute_non_query(query, True, "", "", "", "")
+                        For i As Integer = 0 To GVCodeMaterial.RowCount - 1
+                            Try
+                                If Not GVCodeMaterial.GetRowCellValue(i, "value").ToString = "" Or GVCodeMaterial.GetRowCellValue(i, "value").ToString = 0 Then
+                                    query = String.Format("INSERT INTO tb_m_mat_code(id_mat, id_code_detail) VALUES('{0}','{1}')", id_mat, GVCodeMaterial.GetRowCellValue(i, "value").ToString)
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Catch ex As Exception
+                            End Try
+                        Next
 
-                    'update code
-                    query = String.Format("DELETE FROM tb_m_mat_code WHERE id_mat='" & id_mat & "'")
-                    execute_non_query(query, True, "", "", "", "")
-                    For i As Integer = 0 To GVCodeMaterial.RowCount - 1
-                        Try
-                            If Not GVCodeMaterial.GetRowCellValue(i, "value").ToString = "" Or GVCodeMaterial.GetRowCellValue(i, "value").ToString = 0 Then
-                                query = String.Format("INSERT INTO tb_m_mat_code(id_mat, id_code_detail) VALUES('{0}','{1}')", id_mat, GVCodeMaterial.GetRowCellValue(i, "value").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Catch ex As Exception
-                        End Try
-                    Next
+                        'other
+                        logData("tb_m_mat", 1)
+                        FormMasterRawMaterial.viewMat()
+                        Close()
+                    Catch ex As Exception
+                        errorConnection()
+                        Close()
+                    End Try
+                ElseIf action = "upd" Then 'UPDATE RAW MATERILA
+                    Try
+                        'update tb
+                        query = "UPDATE tb_m_mat SET mat_name='{0}', mat_display_name='{1}', id_uom = '{2}', mat_code='{3}', id_mat_cat='{4}' "
+                        query += "WHERE id_mat = '{5}' "
+                        query = String.Format(query, mat_name, mat_display_name, id_uom, mat_code, id_mat_cat, id_mat)
+                        execute_non_query(query, True, "", "", "", "")
 
-                    'others
-                    logData("tb_m_mat", 2)
-                    FormMasterRawMaterial.viewMat()
-                    Close()
-                Catch ex As Exception
-                    errorConnection()
-                    Close()
-                End Try
+                        'update code
+                        query = String.Format("DELETE FROM tb_m_mat_code WHERE id_mat='" & id_mat & "'")
+                        execute_non_query(query, True, "", "", "", "")
+                        For i As Integer = 0 To GVCodeMaterial.RowCount - 1
+                            Try
+                                If Not GVCodeMaterial.GetRowCellValue(i, "value").ToString = "" Or GVCodeMaterial.GetRowCellValue(i, "value").ToString = 0 Then
+                                    query = String.Format("INSERT INTO tb_m_mat_code(id_mat, id_code_detail) VALUES('{0}','{1}')", id_mat, GVCodeMaterial.GetRowCellValue(i, "value").ToString)
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Catch ex As Exception
+                            End Try
+                        Next
+
+                        'others
+                        logData("tb_m_mat", 2)
+                        FormMasterRawMaterial.viewMat()
+                        Close()
+                    Catch ex As Exception
+                        errorConnection()
+                        Close()
+                    End Try
+                End If
             End If
         End If
     End Sub

@@ -445,8 +445,18 @@
             FormViewMatAdjOut.ShowDialog()
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'receive FG QC
-            FormViewProductionRec.id_receive = id_report
-            FormViewProductionRec.ShowDialog()
+            Dim q_before As String = "SELECT GROUP_CONCAT(rec.prod_order_rec_number) AS rec_before
+FROM tb_prod_order_rec rec 
+WHERE (rec.id_report_status!='6' AND rec.id_report_status!='5') AND rec.`id_prod_order_rec` < '" & id_report & "' AND rec.`id_prod_order`=(SELECT id_prod_order FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_report & "')
+GROUP BY rec.`id_prod_order`"
+            Dim dt As DataTable = execute_query(q_before, -1, True, "", "", "", "")
+            '
+            If dt.Rows.Count > 0 Then
+                warningCustom("Please approve receiving before this : " & dt.Rows(0)("rec_before").ToString)
+            Else
+                FormViewProductionRec.id_receive = id_report
+                FormViewProductionRec.ShowDialog()
+            End If
         ElseIf report_mark_type = "29" Then
             'Production Work Order
             FormViewProductionMRS.id_mrs = id_report

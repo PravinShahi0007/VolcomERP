@@ -8586,6 +8586,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPopUpCompGroup.Close()
         ElseIf formName = "FormCompanyEmailMapping" Then
             FormCompanyEmailMapping.Close()
+        ElseIf formName = "FormPurcItem" Then
+            FormPurcItem.Close()
         Else
             RPSubMenu.Visible = False
         End If

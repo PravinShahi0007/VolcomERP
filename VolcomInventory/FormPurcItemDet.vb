@@ -42,9 +42,11 @@ WHERE it.id_item='" & id_item & "'"
             '
             load_price()
             load_doc()
+            load_history()
             '
             XTPAttachment.PageVisible = True
             XTPPriceList.PageVisible = True
+            XTPHistory.PageVisible = True
 
             'check if item already PR
             query = "SELECT * FROM tb_purc_req_det prd 
@@ -69,6 +71,7 @@ WHERE pr.id_report_status!=5"
             '
             XTPAttachment.PageVisible = False
             XTPPriceList.PageVisible = False
+            XTPHistory.PageVisible = False
             '
             SLEPurchaseCategory.EditValue = Nothing
         End If
@@ -129,6 +132,21 @@ WHERE id_status='2'"
     Sub load_item_type()
         Dim query As String = "SELECT id_item_type,item_type FROM tb_lookup_purc_item_type WHERE is_active='1'"
         viewSearchLookupQuery(SLEItemType, query, "id_item_type", "item_type", "id_item_type")
+    End Sub
+
+    Sub load_history()
+        Dim query As String = "
+            SELECT o.purc_order_number, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS vendor, DATE_FORMAT(o.date_created, '%d %M %Y') AS `date`, odet.qty, odet.value
+            FROM tb_purc_order_det AS odet
+            LEFT JOIN tb_purc_order AS o ON odet.id_purc_order = o.id_purc_order
+            LEFT JOIN tb_m_comp_contact AS compc ON o.id_comp_contact = compc.id_comp_contact
+            LEFT JOIN tb_m_comp AS comp ON compc.id_comp = comp.id_comp
+            WHERE o.id_report_status <> 5 AND odet.id_item = " +id_item+"
+        "
+
+        GCHistory.DataSource = execute_query(query, -1, True, "", "", "", "")
+
+        GVHistory.BestFitColumns()
     End Sub
 
     Private Sub FormPurcItemDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
