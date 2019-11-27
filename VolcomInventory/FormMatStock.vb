@@ -594,6 +594,17 @@
         BGVFGStock.Columns("id_mat_det").Visible = False
         BGVFGStock.BestFitColumns()
 
+        'visible index
+        BGVFGStock.Columns("mat_cat").VisibleIndex = 0
+        BGVFGStock.Columns("code").VisibleIndex = 1
+        BGVFGStock.Columns("name").VisibleIndex = 2
+        BGVFGStock.Columns("color").VisibleIndex = 3
+        BGVFGStock.Columns("size").VisibleIndex = 4
+        BGVFGStock.Columns("year").VisibleIndex = 5
+        BGVFGStock.Columns("lot").VisibleIndex = 6
+        BGVFGStock.Columns("uom").VisibleIndex = 7
+        BGVFGStock.Columns("price").VisibleIndex = 8
+
         'Enable Group
         GroupControlStockSum.Enabled = True
         Cursor = Cursors.Default
