@@ -213,6 +213,9 @@ GROUP BY pl.`id_mat_purc_list`"
             Else
                 XTPList.PageVisible = False
             End If
+            '
+            BSave.Visible = False
+            PCButton.Visible = False
         End If
 
         allow_status()
@@ -342,6 +345,7 @@ GROUP BY pl.`id_mat_purc_list`"
 
     Private Sub BSearchCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSearchCompTo.Click
         FormPopUpContact.id_pop_up = "14"
+        FormPopUpContact.id_cat = "1"
         FormPopUpContact.ShowDialog()
     End Sub
 
@@ -816,6 +820,9 @@ GROUP BY pl.`id_mat_purc_list`"
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.Print, DevExpress.XtraPrinting.CommandVisibility.None)
+        Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintDirect, DevExpress.XtraPrinting.CommandVisibility.None)
+        Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
         Tool.ShowPreview()
 
         GridColumnColor.Visible = True
