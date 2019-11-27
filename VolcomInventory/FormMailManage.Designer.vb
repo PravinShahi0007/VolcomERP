@@ -22,6 +22,33 @@ Partial Class FormMailManage
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMailManage))
         Me.XTCMailManage = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_mail_manage = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnupdated_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnupdated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_mark_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_mark_type_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_mail_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_status_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_subject = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnto = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
+        Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStoreDeposit = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSalesInvoiceList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoiceList = New DevExpress.XtraGrid.GridControl()
         Me.CMSSalesInvoice = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -53,6 +80,7 @@ Partial Class FormMailManage
         Me.CESelectAllInvoice = New DevExpress.XtraEditors.CheckEdit()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPendingGroup = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAlreadyProcessed = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPending = New DevExpress.XtraEditors.SimpleButton()
@@ -62,36 +90,63 @@ Partial Class FormMailManage
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_mail_manage = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncreated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnupdated_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnupdated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnreport_mark_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnreport_mark_type_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_mail_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnmail_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnmail_status_note = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnmail_subject = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnto = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
-        Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEStoreDeposit = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPUnpaidBill = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCUnpaid = New DevExpress.XtraGrid.GridControl()
+        Me.GVUnpaid = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_rec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotaldue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndue_days = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAllUnpaidInvoice = New DevExpress.XtraEditors.CheckEdit()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAllInvoiceOpen = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMinThreeOverdue = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnOverdue = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEStoreGroupUnpaid = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
+        Me.XTPHistory.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSalesInvoiceList.SuspendLayout()
         CType(Me.GCInvoiceList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSSalesInvoice.SuspendLayout()
@@ -105,19 +160,26 @@ Partial Class FormMailManage
         CType(Me.CESelectAllInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl8.SuspendLayout()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPHistory.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPUnpaidBill.SuspendLayout()
+        CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.CESelectAllUnpaidInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl9.SuspendLayout()
+        CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -130,6 +192,242 @@ Partial Class FormMailManage
         Me.XTCMailManage.Size = New System.Drawing.Size(927, 443)
         Me.XTCMailManage.TabIndex = 0
         Me.XTCMailManage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPHistory, Me.XTPSalesInvoiceList, Me.XTPUnpaidBill})
+        '
+        'XTPHistory
+        '
+        Me.XTPHistory.Controls.Add(Me.GCData)
+        Me.XTPHistory.Controls.Add(Me.PanelControl2)
+        Me.XTPHistory.Name = "XTPHistory"
+        Me.XTPHistory.Size = New System.Drawing.Size(921, 415)
+        Me.XTPHistory.Text = "History"
+        '
+        'GCData
+        '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 43)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(921, 372)
+        Me.GCData.TabIndex = 16
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_mail_manage, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnupdated_date, Me.GridColumnupdated_by_name, Me.GridColumnreport_mark_type, Me.GridColumnreport_mark_type_name, Me.GridColumnid_mail_status, Me.GridColumnmail_status, Me.GridColumnmail_status_note, Me.GridColumnmail_subject, Me.GridColumnto})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowGroupedColumns = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_mail_manage
+        '
+        Me.GridColumnid_mail_manage.Caption = "id_mail_manage"
+        Me.GridColumnid_mail_manage.FieldName = "id_mail_manage"
+        Me.GridColumnid_mail_manage.Name = "GridColumnid_mail_manage"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Email Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumncreated_date
+        '
+        Me.GridColumncreated_date.Caption = "Created Date"
+        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumncreated_date.FieldName = "created_date"
+        Me.GridColumncreated_date.Name = "GridColumncreated_date"
+        Me.GridColumncreated_date.Visible = True
+        Me.GridColumncreated_date.VisibleIndex = 4
+        '
+        'GridColumncreated_by_name
+        '
+        Me.GridColumncreated_by_name.Caption = "Created By"
+        Me.GridColumncreated_by_name.FieldName = "created_by_name"
+        Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
+        Me.GridColumncreated_by_name.Visible = True
+        Me.GridColumncreated_by_name.VisibleIndex = 5
+        '
+        'GridColumnupdated_date
+        '
+        Me.GridColumnupdated_date.Caption = "Updated Date"
+        Me.GridColumnupdated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnupdated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnupdated_date.FieldName = "updated_date"
+        Me.GridColumnupdated_date.Name = "GridColumnupdated_date"
+        Me.GridColumnupdated_date.Visible = True
+        Me.GridColumnupdated_date.VisibleIndex = 6
+        '
+        'GridColumnupdated_by_name
+        '
+        Me.GridColumnupdated_by_name.Caption = "Updated By"
+        Me.GridColumnupdated_by_name.FieldName = "updated_by_name"
+        Me.GridColumnupdated_by_name.Name = "GridColumnupdated_by_name"
+        Me.GridColumnupdated_by_name.Visible = True
+        Me.GridColumnupdated_by_name.VisibleIndex = 7
+        '
+        'GridColumnreport_mark_type
+        '
+        Me.GridColumnreport_mark_type.Caption = "report_mark_type"
+        Me.GridColumnreport_mark_type.FieldName = "report_mark_type"
+        Me.GridColumnreport_mark_type.Name = "GridColumnreport_mark_type"
+        '
+        'GridColumnreport_mark_type_name
+        '
+        Me.GridColumnreport_mark_type_name.Caption = "Type"
+        Me.GridColumnreport_mark_type_name.FieldName = "report_mark_type_name"
+        Me.GridColumnreport_mark_type_name.Name = "GridColumnreport_mark_type_name"
+        Me.GridColumnreport_mark_type_name.Visible = True
+        Me.GridColumnreport_mark_type_name.VisibleIndex = 1
+        '
+        'GridColumnid_mail_status
+        '
+        Me.GridColumnid_mail_status.Caption = "id_mail_status"
+        Me.GridColumnid_mail_status.FieldName = "id_mail_status"
+        Me.GridColumnid_mail_status.Name = "GridColumnid_mail_status"
+        '
+        'GridColumnmail_status
+        '
+        Me.GridColumnmail_status.Caption = "Last Status"
+        Me.GridColumnmail_status.FieldName = "mail_status"
+        Me.GridColumnmail_status.Name = "GridColumnmail_status"
+        Me.GridColumnmail_status.Visible = True
+        Me.GridColumnmail_status.VisibleIndex = 8
+        '
+        'GridColumnmail_status_note
+        '
+        Me.GridColumnmail_status_note.Caption = "Note"
+        Me.GridColumnmail_status_note.FieldName = "mail_status_note"
+        Me.GridColumnmail_status_note.Name = "GridColumnmail_status_note"
+        '
+        'GridColumnmail_subject
+        '
+        Me.GridColumnmail_subject.Caption = "Subject"
+        Me.GridColumnmail_subject.FieldName = "mail_subject"
+        Me.GridColumnmail_subject.Name = "GridColumnmail_subject"
+        Me.GridColumnmail_subject.Visible = True
+        Me.GridColumnmail_subject.VisibleIndex = 2
+        '
+        'GridColumnto
+        '
+        Me.GridColumnto.Caption = "Destination To"
+        Me.GridColumnto.FieldName = "to"
+        Me.GridColumnto.Name = "GridColumnto"
+        Me.GridColumnto.Visible = True
+        Me.GridColumnto.VisibleIndex = 3
+        Me.GridColumnto.Width = 155
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.DEUntilList)
+        Me.PanelControl2.Controls.Add(Me.BViewPayment)
+        Me.PanelControl2.Controls.Add(Me.DEFromList)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Controls.Add(Me.SLEStoreDeposit)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(921, 43)
+        Me.PanelControl2.TabIndex = 15
+        '
+        'DEUntilList
+        '
+        Me.DEUntilList.EditValue = Nothing
+        Me.DEUntilList.Location = New System.Drawing.Point(190, 13)
+        Me.DEUntilList.Name = "DEUntilList"
+        Me.DEUntilList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntilList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilList.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilList.TabIndex = 8922
+        '
+        'BViewPayment
+        '
+        Me.BViewPayment.Location = New System.Drawing.Point(307, 13)
+        Me.BViewPayment.Name = "BViewPayment"
+        Me.BViewPayment.Size = New System.Drawing.Size(60, 19)
+        Me.BViewPayment.TabIndex = 8916
+        Me.BViewPayment.Text = "view"
+        '
+        'DEFromList
+        '
+        Me.DEFromList.EditValue = Nothing
+        Me.DEFromList.Location = New System.Drawing.Point(46, 13)
+        Me.DEFromList.Name = "DEFromList"
+        Me.DEFromList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFromList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromList.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromList.TabIndex = 8921
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(163, 16)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8920
+        Me.LabelControl4.Text = "Until"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl6.TabIndex = 8919
+        Me.LabelControl6.Text = "From"
+        '
+        'SLEStoreDeposit
+        '
+        Me.SLEStoreDeposit.Location = New System.Drawing.Point(50, 102)
+        Me.SLEStoreDeposit.Name = "SLEStoreDeposit"
+        Me.SLEStoreDeposit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreDeposit.Properties.View = Me.GridView1
+        Me.SLEStoreDeposit.Size = New System.Drawing.Size(177, 20)
+        Me.SLEStoreDeposit.TabIndex = 8918
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn29})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Comp Contact"
+        Me.GridColumn1.FieldName = "id_comp_contact"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Vendor"
+        Me.GridColumn29.FieldName = "comp_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(18, 105)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl1.TabIndex = 8917
+        Me.LabelControl1.Text = "Store"
         '
         'XTPSalesInvoiceList
         '
@@ -431,7 +729,7 @@ Partial Class FormMailManage
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BtnPendingGroup)
+        Me.PanelControl1.Controls.Add(Me.PanelControl8)
         Me.PanelControl1.Controls.Add(Me.BtnAlreadyProcessed)
         Me.PanelControl1.Controls.Add(Me.BtnPending)
         Me.PanelControl1.Controls.Add(Me.SLEStoreGroup)
@@ -442,6 +740,16 @@ Partial Class FormMailManage
         Me.PanelControl1.Size = New System.Drawing.Size(921, 43)
         Me.PanelControl1.TabIndex = 3
         '
+        'PanelControl8
+        '
+        Me.PanelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl8.Controls.Add(Me.BtnPendingGroup)
+        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl8.Location = New System.Drawing.Point(709, 2)
+        Me.PanelControl8.Name = "PanelControl8"
+        Me.PanelControl8.Size = New System.Drawing.Size(210, 39)
+        Me.PanelControl8.TabIndex = 8930
+        '
         'BtnPendingGroup
         '
         Me.BtnPendingGroup.Appearance.BackColor = System.Drawing.Color.OrangeRed
@@ -450,15 +758,15 @@ Partial Class FormMailManage
         Me.BtnPendingGroup.Appearance.Options.UseBackColor = True
         Me.BtnPendingGroup.Appearance.Options.UseFont = True
         Me.BtnPendingGroup.Appearance.Options.UseForeColor = True
-        Me.BtnPendingGroup.Location = New System.Drawing.Point(436, 11)
+        Me.BtnPendingGroup.Location = New System.Drawing.Point(8, 9)
         Me.BtnPendingGroup.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnPendingGroup.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnPendingGroup.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnPendingGroup.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnPendingGroup.Name = "BtnPendingGroup"
-        Me.BtnPendingGroup.Size = New System.Drawing.Size(179, 20)
+        Me.BtnPendingGroup.Size = New System.Drawing.Size(195, 20)
         Me.BtnPendingGroup.TabIndex = 8926
-        Me.BtnPendingGroup.Text = "Pending Mail (Store Group)"
+        Me.BtnPendingGroup.Text = "Pending Mail (By Group Store)"
         '
         'BtnAlreadyProcessed
         '
@@ -543,247 +851,466 @@ Partial Class FormMailManage
         Me.LabelControl3.TabIndex = 8922
         Me.LabelControl3.Text = "Store Group"
         '
-        'XTPHistory
-        '
-        Me.XTPHistory.Controls.Add(Me.GCData)
-        Me.XTPHistory.Controls.Add(Me.PanelControl2)
-        Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.Size = New System.Drawing.Size(921, 415)
-        Me.XTPHistory.Text = "History"
-        '
-        'GCData
-        '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 43)
-        Me.GCData.MainView = Me.GVData
-        Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(921, 372)
-        Me.GCData.TabIndex = 16
-        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
-        '
-        'GVData
-        '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_mail_manage, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnupdated_date, Me.GridColumnupdated_by_name, Me.GridColumnreport_mark_type, Me.GridColumnreport_mark_type_name, Me.GridColumnid_mail_status, Me.GridColumnmail_status, Me.GridColumnmail_status_note, Me.GridColumnmail_subject, Me.GridColumnto})
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVData.OptionsBehavior.Editable = False
-        Me.GVData.OptionsView.ColumnAutoWidth = False
-        Me.GVData.OptionsView.ShowGroupedColumns = True
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_mail_manage
-        '
-        Me.GridColumnid_mail_manage.Caption = "id_mail_manage"
-        Me.GridColumnid_mail_manage.FieldName = "id_mail_manage"
-        Me.GridColumnid_mail_manage.Name = "GridColumnid_mail_manage"
-        '
-        'GridColumnnumber
-        '
-        Me.GridColumnnumber.Caption = "Email Number"
-        Me.GridColumnnumber.FieldName = "number"
-        Me.GridColumnnumber.Name = "GridColumnnumber"
-        Me.GridColumnnumber.Visible = True
-        Me.GridColumnnumber.VisibleIndex = 0
-        '
-        'GridColumncreated_date
-        '
-        Me.GridColumncreated_date.Caption = "Created Date"
-        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumncreated_date.FieldName = "created_date"
-        Me.GridColumncreated_date.Name = "GridColumncreated_date"
-        Me.GridColumncreated_date.Visible = True
-        Me.GridColumncreated_date.VisibleIndex = 4
-        '
-        'GridColumncreated_by_name
-        '
-        Me.GridColumncreated_by_name.Caption = "Created By"
-        Me.GridColumncreated_by_name.FieldName = "created_by_name"
-        Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
-        Me.GridColumncreated_by_name.Visible = True
-        Me.GridColumncreated_by_name.VisibleIndex = 5
-        '
-        'GridColumnupdated_date
-        '
-        Me.GridColumnupdated_date.Caption = "Updated Date"
-        Me.GridColumnupdated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumnupdated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnupdated_date.FieldName = "updated_date"
-        Me.GridColumnupdated_date.Name = "GridColumnupdated_date"
-        Me.GridColumnupdated_date.Visible = True
-        Me.GridColumnupdated_date.VisibleIndex = 6
-        '
-        'GridColumnupdated_by_name
-        '
-        Me.GridColumnupdated_by_name.Caption = "Updated By"
-        Me.GridColumnupdated_by_name.FieldName = "updated_by_name"
-        Me.GridColumnupdated_by_name.Name = "GridColumnupdated_by_name"
-        Me.GridColumnupdated_by_name.Visible = True
-        Me.GridColumnupdated_by_name.VisibleIndex = 7
-        '
-        'GridColumnreport_mark_type
-        '
-        Me.GridColumnreport_mark_type.Caption = "report_mark_type"
-        Me.GridColumnreport_mark_type.FieldName = "report_mark_type"
-        Me.GridColumnreport_mark_type.Name = "GridColumnreport_mark_type"
-        '
-        'GridColumnreport_mark_type_name
-        '
-        Me.GridColumnreport_mark_type_name.Caption = "Type"
-        Me.GridColumnreport_mark_type_name.FieldName = "report_mark_type_name"
-        Me.GridColumnreport_mark_type_name.Name = "GridColumnreport_mark_type_name"
-        Me.GridColumnreport_mark_type_name.Visible = True
-        Me.GridColumnreport_mark_type_name.VisibleIndex = 1
-        '
-        'GridColumnid_mail_status
-        '
-        Me.GridColumnid_mail_status.Caption = "id_mail_status"
-        Me.GridColumnid_mail_status.FieldName = "id_mail_status"
-        Me.GridColumnid_mail_status.Name = "GridColumnid_mail_status"
-        '
-        'GridColumnmail_status
-        '
-        Me.GridColumnmail_status.Caption = "Last Status"
-        Me.GridColumnmail_status.FieldName = "mail_status"
-        Me.GridColumnmail_status.Name = "GridColumnmail_status"
-        Me.GridColumnmail_status.Visible = True
-        Me.GridColumnmail_status.VisibleIndex = 8
-        '
-        'GridColumnmail_status_note
-        '
-        Me.GridColumnmail_status_note.Caption = "Note"
-        Me.GridColumnmail_status_note.FieldName = "mail_status_note"
-        Me.GridColumnmail_status_note.Name = "GridColumnmail_status_note"
-        '
-        'GridColumnmail_subject
-        '
-        Me.GridColumnmail_subject.Caption = "Subject"
-        Me.GridColumnmail_subject.FieldName = "mail_subject"
-        Me.GridColumnmail_subject.Name = "GridColumnmail_subject"
-        Me.GridColumnmail_subject.Visible = True
-        Me.GridColumnmail_subject.VisibleIndex = 2
-        '
-        'GridColumnto
-        '
-        Me.GridColumnto.Caption = "Destination To"
-        Me.GridColumnto.FieldName = "to"
-        Me.GridColumnto.Name = "GridColumnto"
-        Me.GridColumnto.Visible = True
-        Me.GridColumnto.VisibleIndex = 3
-        Me.GridColumnto.Width = 155
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.DEUntilList)
-        Me.PanelControl2.Controls.Add(Me.BViewPayment)
-        Me.PanelControl2.Controls.Add(Me.DEFromList)
-        Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.LabelControl6)
-        Me.PanelControl2.Controls.Add(Me.SLEStoreDeposit)
-        Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(921, 43)
-        Me.PanelControl2.TabIndex = 15
-        '
-        'DEUntilList
-        '
-        Me.DEUntilList.EditValue = Nothing
-        Me.DEUntilList.Location = New System.Drawing.Point(190, 13)
-        Me.DEUntilList.Name = "DEUntilList"
-        Me.DEUntilList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEUntilList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntilList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilList.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntilList.TabIndex = 8922
-        '
-        'BViewPayment
-        '
-        Me.BViewPayment.Location = New System.Drawing.Point(307, 13)
-        Me.BViewPayment.Name = "BViewPayment"
-        Me.BViewPayment.Size = New System.Drawing.Size(60, 19)
-        Me.BViewPayment.TabIndex = 8916
-        Me.BViewPayment.Text = "view"
-        '
-        'DEFromList
-        '
-        Me.DEFromList.EditValue = Nothing
-        Me.DEFromList.Location = New System.Drawing.Point(46, 13)
-        Me.DEFromList.Name = "DEFromList"
-        Me.DEFromList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEFromList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFromList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFromList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEFromList.Size = New System.Drawing.Size(111, 20)
-        Me.DEFromList.TabIndex = 8921
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(163, 16)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl4.TabIndex = 8920
-        Me.LabelControl4.Text = "Until"
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(16, 16)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl6.TabIndex = 8919
-        Me.LabelControl6.Text = "From"
-        '
-        'SLEStoreDeposit
-        '
-        Me.SLEStoreDeposit.Location = New System.Drawing.Point(50, 102)
-        Me.SLEStoreDeposit.Name = "SLEStoreDeposit"
-        Me.SLEStoreDeposit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStoreDeposit.Properties.View = Me.GridView1
-        Me.SLEStoreDeposit.Size = New System.Drawing.Size(177, 20)
-        Me.SLEStoreDeposit.TabIndex = 8918
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn29})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Comp Contact"
-        Me.GridColumn1.FieldName = "id_comp_contact"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Vendor"
-        Me.GridColumn29.FieldName = "comp_name"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 0
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(18, 105)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl1.TabIndex = 8917
-        Me.LabelControl1.Text = "Store"
-        '
         'XTPUnpaidBill
         '
+        Me.XTPUnpaidBill.Controls.Add(Me.GCUnpaid)
+        Me.XTPUnpaidBill.Controls.Add(Me.PanelControl6)
+        Me.XTPUnpaidBill.Controls.Add(Me.PanelControl5)
         Me.XTPUnpaidBill.Name = "XTPUnpaidBill"
         Me.XTPUnpaidBill.Size = New System.Drawing.Size(921, 415)
         Me.XTPUnpaidBill.Text = "Unpaid Sales Invoice"
+        '
+        'GCUnpaid
+        '
+        Me.GCUnpaid.ContextMenuStrip = Me.CMSSalesInvoice
+        Me.GCUnpaid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCUnpaid.Location = New System.Drawing.Point(0, 43)
+        Me.GCUnpaid.MainView = Me.GVUnpaid
+        Me.GCUnpaid.Name = "GCUnpaid"
+        Me.GCUnpaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3})
+        Me.GCUnpaid.Size = New System.Drawing.Size(921, 332)
+        Me.GCUnpaid.TabIndex = 19
+        Me.GCUnpaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUnpaid})
+        '
+        'GVUnpaid
+        '
+        Me.GVUnpaid.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn24, Me.GridColumn27, Me.GridColumn28, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumntotal_rec, Me.GridColumntotaldue, Me.GridColumndue_days, Me.GridColumn33})
+        Me.GVUnpaid.GridControl = Me.GCUnpaid
+        Me.GVUnpaid.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumn17, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total_qty", Me.GridColumn30, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total", Me.GridColumn13, "{0:N2}")})
+        Me.GVUnpaid.Name = "GVUnpaid"
+        Me.GVUnpaid.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVUnpaid.OptionsFind.AlwaysVisible = True
+        Me.GVUnpaid.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GVUnpaid.OptionsView.ColumnAutoWidth = False
+        Me.GVUnpaid.OptionsView.ShowFooter = True
+        Me.GVUnpaid.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "*"
+        Me.GridColumn7.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumn7.FieldName = "is_check"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID"
+        Me.GridColumn8.FieldName = "id_sales_pos"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Number"
+        Me.GridColumn9.FieldName = "sales_pos_number"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.Width = 165
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Created Date"
+        Me.GridColumn11.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn11.FieldName = "sales_pos_date"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 6
+        Me.GridColumn11.Width = 92
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Total Sales"
+        Me.GridColumn13.DisplayFormat.FormatString = "N2"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "sales_pos_total"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total", "{0:N2}")})
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Store Discount (%)"
+        Me.GridColumn14.DisplayFormat.FormatString = "N2"
+        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn14.FieldName = "sales_pos_discount"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Width = 127
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "VAT (%)"
+        Me.GridColumn15.DisplayFormat.FormatString = "N2"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn15.FieldName = "sales_pos_vat"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Potongan"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "sales_pos_potongan"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn17.Caption = "Amount Invoice"
+        Me.GridColumn17.DisplayFormat.FormatString = "N2"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn17.FieldName = "amount"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 11
+        Me.GridColumn17.Width = 111
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Due Date"
+        Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn18.FieldName = "sales_pos_due_date"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 9
+        Me.GridColumn18.Width = 108
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Store"
+        Me.GridColumn20.FieldName = "comp_name"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 4
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Store Code"
+        Me.GridColumn21.FieldName = "comp_number"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 3
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Type"
+        Me.GridColumn22.FieldName = "report_mark_type_name"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 2
+        Me.GridColumn22.Width = 115
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Id Invoice Type"
+        Me.GridColumn24.FieldName = "report_mark_type"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Group Store"
+        Me.GridColumn27.FieldName = "comp_group"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 5
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "id_comp"
+        Me.GridColumn28.FieldName = "id_comp"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Total Qty"
+        Me.GridColumn30.DisplayFormat.FormatString = "N0"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn30.FieldName = "sales_pos_total_qty"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total_qty", "{0:N0}")})
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Start Period"
+        Me.GridColumn31.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn31.FieldName = "sales_pos_start_period"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 7
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "End Period"
+        Me.GridColumn32.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn32.FieldName = "sales_pos_end_period"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 8
+        '
+        'GridColumntotal_rec
+        '
+        Me.GridColumntotal_rec.Caption = "Amount Received"
+        Me.GridColumntotal_rec.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotal_rec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_rec.FieldName = "total_rec"
+        Me.GridColumntotal_rec.Name = "GridColumntotal_rec"
+        Me.GridColumntotal_rec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
+        Me.GridColumntotal_rec.Visible = True
+        Me.GridColumntotal_rec.VisibleIndex = 12
+        Me.GridColumntotal_rec.Width = 116
+        '
+        'GridColumntotaldue
+        '
+        Me.GridColumntotaldue.Caption = "Balance"
+        Me.GridColumntotaldue.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotaldue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotaldue.FieldName = "total_due"
+        Me.GridColumntotaldue.Name = "GridColumntotaldue"
+        Me.GridColumntotaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_due", "{0:N2}")})
+        Me.GridColumntotaldue.Visible = True
+        Me.GridColumntotaldue.VisibleIndex = 13
+        '
+        'GridColumndue_days
+        '
+        Me.GridColumndue_days.Caption = "Due Days Origin"
+        Me.GridColumndue_days.FieldName = "due_days"
+        Me.GridColumndue_days.Name = "GridColumndue_days"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Due Days"
+        Me.GridColumn33.FieldName = "due_days_view"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.UnboundExpression = "Iif([due_days] = 0, [due_days], Iif([due_days] < 0, [due_days], Concat('+', [due_" &
+    "days])))"
+        Me.GridColumn33.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 10
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit3.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit3.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit3.ValueUnchecked = "No"
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.PanelControl7)
+        Me.PanelControl6.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 375)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(921, 40)
+        Me.PanelControl6.TabIndex = 5
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.CESelectAllUnpaidInvoice)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(84, 36)
+        Me.PanelControl7.TabIndex = 20
+        '
+        'CESelectAllUnpaidInvoice
+        '
+        Me.CESelectAllUnpaidInvoice.Location = New System.Drawing.Point(9, 8)
+        Me.CESelectAllUnpaidInvoice.Name = "CESelectAllUnpaidInvoice"
+        Me.CESelectAllUnpaidInvoice.Properties.Caption = "Select All"
+        Me.CESelectAllUnpaidInvoice.Size = New System.Drawing.Size(66, 19)
+        Me.CESelectAllUnpaidInvoice.TabIndex = 21
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SimpleButton2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton2.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton2.Appearance.Options.UseBackColor = True
+        Me.SimpleButton2.Appearance.Options.UseFont = True
+        Me.SimpleButton2.Appearance.Options.UseForeColor = True
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Location = New System.Drawing.Point(820, 2)
+        Me.SimpleButton2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(99, 36)
+        Me.SimpleButton2.TabIndex = 19
+        Me.SimpleButton2.Text = "Proceed"
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.PanelControl9)
+        Me.PanelControl5.Controls.Add(Me.BtnAllInvoiceOpen)
+        Me.PanelControl5.Controls.Add(Me.BtnMinThreeOverdue)
+        Me.PanelControl5.Controls.Add(Me.BtnOverdue)
+        Me.PanelControl5.Controls.Add(Me.SLEStoreGroupUnpaid)
+        Me.PanelControl5.Controls.Add(Me.LabelControl2)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(921, 43)
+        Me.PanelControl5.TabIndex = 4
+        '
+        'PanelControl9
+        '
+        Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl9.Controls.Add(Me.SimpleButton5)
+        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl9.Location = New System.Drawing.Point(710, 2)
+        Me.PanelControl9.Name = "PanelControl9"
+        Me.PanelControl9.Size = New System.Drawing.Size(209, 39)
+        Me.PanelControl9.TabIndex = 8929
+        '
+        'SimpleButton5
+        '
+        Me.SimpleButton5.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen
+        Me.SimpleButton5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton5.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton5.Appearance.Options.UseBackColor = True
+        Me.SimpleButton5.Appearance.Options.UseFont = True
+        Me.SimpleButton5.Appearance.Options.UseForeColor = True
+        Me.SimpleButton5.Location = New System.Drawing.Point(3, 9)
+        Me.SimpleButton5.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton5.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton5.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton5.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton5.Name = "SimpleButton5"
+        Me.SimpleButton5.Size = New System.Drawing.Size(201, 20)
+        Me.SimpleButton5.TabIndex = 8928
+        Me.SimpleButton5.Text = "All Invoice Open (By Group Store)"
+        '
+        'BtnAllInvoiceOpen
+        '
+        Me.BtnAllInvoiceOpen.Appearance.BackColor = System.Drawing.Color.Teal
+        Me.BtnAllInvoiceOpen.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnAllInvoiceOpen.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnAllInvoiceOpen.Appearance.Options.UseBackColor = True
+        Me.BtnAllInvoiceOpen.Appearance.Options.UseFont = True
+        Me.BtnAllInvoiceOpen.Appearance.Options.UseForeColor = True
+        Me.BtnAllInvoiceOpen.Location = New System.Drawing.Point(229, 11)
+        Me.BtnAllInvoiceOpen.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnAllInvoiceOpen.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnAllInvoiceOpen.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnAllInvoiceOpen.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnAllInvoiceOpen.Name = "BtnAllInvoiceOpen"
+        Me.BtnAllInvoiceOpen.Size = New System.Drawing.Size(111, 20)
+        Me.BtnAllInvoiceOpen.TabIndex = 8927
+        Me.BtnAllInvoiceOpen.Text = "All Invoice Open"
+        '
+        'BtnMinThreeOverdue
+        '
+        Me.BtnMinThreeOverdue.Appearance.BackColor = System.Drawing.Color.Coral
+        Me.BtnMinThreeOverdue.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnMinThreeOverdue.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnMinThreeOverdue.Appearance.Options.UseBackColor = True
+        Me.BtnMinThreeOverdue.Appearance.Options.UseFont = True
+        Me.BtnMinThreeOverdue.Appearance.Options.UseForeColor = True
+        Me.BtnMinThreeOverdue.Location = New System.Drawing.Point(344, 11)
+        Me.BtnMinThreeOverdue.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnMinThreeOverdue.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnMinThreeOverdue.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnMinThreeOverdue.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnMinThreeOverdue.Name = "BtnMinThreeOverdue"
+        Me.BtnMinThreeOverdue.Size = New System.Drawing.Size(97, 20)
+        Me.BtnMinThreeOverdue.TabIndex = 8926
+        Me.BtnMinThreeOverdue.Text = "(H-3) Overdue"
+        '
+        'BtnOverdue
+        '
+        Me.BtnOverdue.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnOverdue.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnOverdue.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnOverdue.Appearance.Options.UseBackColor = True
+        Me.BtnOverdue.Appearance.Options.UseFont = True
+        Me.BtnOverdue.Appearance.Options.UseForeColor = True
+        Me.BtnOverdue.Location = New System.Drawing.Point(444, 11)
+        Me.BtnOverdue.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnOverdue.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnOverdue.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnOverdue.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnOverdue.Name = "BtnOverdue"
+        Me.BtnOverdue.Size = New System.Drawing.Size(75, 20)
+        Me.BtnOverdue.TabIndex = 8924
+        Me.BtnOverdue.Text = "Overdue"
+        '
+        'SLEStoreGroupUnpaid
+        '
+        Me.SLEStoreGroupUnpaid.Location = New System.Drawing.Point(78, 11)
+        Me.SLEStoreGroupUnpaid.Name = "SLEStoreGroupUnpaid"
+        Me.SLEStoreGroupUnpaid.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreGroupUnpaid.Properties.View = Me.GridView2
+        Me.SLEStoreGroupUnpaid.Size = New System.Drawing.Size(145, 20)
+        Me.SLEStoreGroupUnpaid.TabIndex = 8923
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "id_comp_group"
+        Me.GridColumn3.FieldName = "id_comp_group"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Group"
+        Me.GridColumn5.FieldName = "comp_group"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "description"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(14, 14)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl2.TabIndex = 8922
+        Me.LabelControl2.Text = "Store Group"
         '
         'FormMailManage
         '
@@ -798,6 +1325,18 @@ Partial Class FormMailManage
         Me.Text = "Mail Management"
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCMailManage.ResumeLayout(False)
+        Me.XTPHistory.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSalesInvoiceList.ResumeLayout(False)
         CType(Me.GCInvoiceList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMSSalesInvoice.ResumeLayout(False)
@@ -812,20 +1351,27 @@ Partial Class FormMailManage
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl8.ResumeLayout(False)
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPHistory.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPUnpaidBill.ResumeLayout(False)
+        CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        CType(Me.CESelectAllUnpaidInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl9.ResumeLayout(False)
+        CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -899,4 +1445,48 @@ Partial Class FormMailManage
     Friend WithEvents CMSSalesInvoice As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BtnPendingGroup As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnMinThreeOverdue As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnOverdue As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEStoreGroupUnpaid As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectAllUnpaidInvoice As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCUnpaid As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVUnpaid As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumntotal_rec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotaldue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndue_days As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAllInvoiceOpen As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
 End Class
