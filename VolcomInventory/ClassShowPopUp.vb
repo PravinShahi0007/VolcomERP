@@ -2620,7 +2620,7 @@ GROUP BY rec.`id_prod_order`"
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
             ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, IF(ISNULL(pp.id_design),1,2) AS already_pp,IF(ISNULL(rec.id_prod_order),1,2) AS already_rec,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
+                query_view = "SELECT 'no' AS is_check, IF(ISNULL(pp.id_design),2,1) AS already_pp,IF(ISNULL(rec.id_prod_order),2,1) AS already_rec,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
 INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
 INNER JOIN (
 	SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
