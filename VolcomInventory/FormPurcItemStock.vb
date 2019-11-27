@@ -78,7 +78,7 @@
         End If
 
         Dim stc As New ClassPurcItemStock()
-        Dim query As String = stc.queryGetStock(dept, date_until_selected, "")
+        Dim query As String = stc.queryGetStock(dept, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
         GVSOH.BestFitColumns()
@@ -104,7 +104,7 @@
         Dim id_dept As String = LEDeptSC.EditValue.ToString
         Dim id_item As String = SLEITem.EditValue.ToString
 
-        Dim query As String = "CALL view_stock_card_item(" + id_dept + ", " + id_item + ", '" + date_from_selected + "', '" + date_until_selected + "')"
+        Dim query As String = "CALL view_stock_card_item(" + id_dept + ", " + id_item + ", '" + date_from_selected + "', '" + date_until_selected + "','')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSC.DataSource = data
         GVSC.BestFitColumns()
@@ -139,10 +139,33 @@
         End If
 
         Dim stc As New ClassPurcItemStock()
-        Dim query As String = stc.queryGetStock(dept, date_until_selected, "fisik")
+        stc.opt = "fisik"
+        Dim query As String = stc.queryGetStock(dept, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
         GVSOH.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BStockCardFisik_Click(sender As Object, e As EventArgs) Handles BStockCardFisik.Click
+        Cursor = Cursors.WaitCursor
+        Dim date_from_selected As String = "1997-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromSC.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_until_selected = DateTime.Parse(DEUntilSC.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim id_dept As String = LEDeptSC.EditValue.ToString
+        Dim id_item As String = SLEITem.EditValue.ToString
+
+        Dim query As String = "CALL view_stock_card_item(" + id_dept + ", " + id_item + ", '" + date_from_selected + "', '" + date_until_selected + "','fisik')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSC.DataSource = data
+        GVSC.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 End Class

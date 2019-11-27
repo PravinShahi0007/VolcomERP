@@ -1,5 +1,6 @@
 ﻿Public Class ClassPurcItemStock
-    Public Function queryGetStock(ByVal cond As String, ByVal date_until_selected As String, ByVal opt As String) As String
+    Public opt As String = ""
+    Public Function queryGetStock(ByVal cond As String, ByVal date_until_selected As String) As String
         Dim q_where As String = ""
         If opt = "fisik" Then
             q_where = " AND i.report_mark_type!='154' "
