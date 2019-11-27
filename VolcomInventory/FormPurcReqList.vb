@@ -121,7 +121,7 @@
 
             Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
             showpopup.report_mark_type = report_mark_type
-            showpopup.id_report = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_purc_req").ToString
+            showpopup.id_report = GVPurcReqHistorySubmit.GetFocusedRowCellValue("id_purc_req").ToString
             showpopup.show()
             Cursor = Cursors.Default
         Else
