@@ -953,6 +953,7 @@ Partial Class FormPurcReqDet
         Me.TENoteIA.Size = New System.Drawing.Size(682, 20)
         Me.TENoteIA.TabIndex = 8914
         Me.TENoteIA.TabStop = False
+        Me.TENoteIA.Visible = False
         '
         'TENoteIC
         '
@@ -976,6 +977,7 @@ Partial Class FormPurcReqDet
         Me.SLEIAApproval.Properties.View = Me.GridView3
         Me.SLEIAApproval.Size = New System.Drawing.Size(177, 20)
         Me.SLEIAApproval.TabIndex = 8912
+        Me.SLEIAApproval.Visible = False
         '
         'GridView3
         '
@@ -1039,6 +1041,7 @@ Partial Class FormPurcReqDet
         Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl11.TabIndex = 8910
         Me.LabelControl11.Text = "IA Approval"
+        Me.LabelControl11.Visible = False
         '
         'LabelControl4
         '

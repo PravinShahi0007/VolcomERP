@@ -90,8 +90,14 @@
         End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCPurcReqNeedSubmit.DataSource = data
-        GVPurcReqNeedSubmit.BestFitColumns()
+        If XTCPurcReq.SelectedTabPageIndex = 0 Then 'need submit
+            GCPurcReqNeedSubmit.DataSource = data
+            GVPurcReqNeedSubmit.BestFitColumns()
+        Else
+            GCPurcReqHistorySubmit.DataSource = data
+            GVPurcReqHistorySubmit.BestFitColumns()
+        End If
+
         check_menu()
     End Sub
 
@@ -101,6 +107,23 @@
             FormPurcReqICApproval.id_user_created = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_user_created").ToString
             FormPurcReqICApproval.id_report = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_purc_req").ToString
             FormPurcReqICApproval.ShowDialog()
+        Else
+            warningCustom("No purchase request on list.")
+        End If
+    End Sub
+
+    Private Sub GVPurcReqHistorySubmit_DoubleClick(sender As Object, e As EventArgs) Handles GVPurcReqHistorySubmit.DoubleClick
+        If GVPurcReqHistorySubmit.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim report_mark_type As String = "-1"
+
+            report_mark_type = "201"
+
+            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+            showpopup.report_mark_type = report_mark_type
+            showpopup.id_report = GVPurcReqNeedSubmit.GetFocusedRowCellValue("id_purc_req").ToString
+            showpopup.show()
+            Cursor = Cursors.Default
         Else
             warningCustom("No purchase request on list.")
         End If
