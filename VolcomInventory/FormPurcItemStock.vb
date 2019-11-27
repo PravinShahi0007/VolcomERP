@@ -78,7 +78,7 @@
         End If
 
         Dim stc As New ClassPurcItemStock()
-        Dim query As String = stc.queryGetStock(dept, date_until_selected)
+        Dim query As String = stc.queryGetStock(dept, date_until_selected, "")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
         GVSOH.BestFitColumns()
@@ -120,5 +120,29 @@
             s.report_mark_type = rmt
             s.show()
         End If
+    End Sub
+
+    Private Sub BStockFisik_Click(sender As Object, e As EventArgs) Handles BStockFisik.Click
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_until_selected = DateTime.Parse(DESOHUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim dept As String = LEDeptSum.EditValue.ToString
+        If dept <> "0" Then
+            dept = "AND i.id_departement=" + dept + ""
+        Else
+            dept = ""
+        End If
+
+        Dim stc As New ClassPurcItemStock()
+        Dim query As String = stc.queryGetStock(dept, date_until_selected, "fisik")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOH.DataSource = data
+        GVSOH.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 End Class
