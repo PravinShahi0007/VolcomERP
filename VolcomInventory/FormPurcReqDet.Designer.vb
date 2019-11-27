@@ -156,10 +156,13 @@ Partial Class FormPurcReqDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TENoteIA)
         Me.PanelControl1.Controls.Add(Me.BtnAttachment)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.SLEIAApproval)
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
+        Me.PanelControl1.Controls.Add(Me.LabelControl11)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 515)
@@ -845,7 +848,7 @@ Partial Class FormPurcReqDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(586, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(367, 76)
+        Me.PanelControl6.Size = New System.Drawing.Size(367, 98)
         Me.PanelControl6.TabIndex = 172
         '
         'LabelControl21
@@ -905,7 +908,7 @@ Partial Class FormPurcReqDet
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(2, 2)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(422, 76)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(422, 98)
         Me.PanelControlBottomLeft.TabIndex = 171
         '
         'MENote
@@ -915,7 +918,7 @@ Partial Class FormPurcReqDet
         Me.MENote.Location = New System.Drawing.Point(103, 7)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(303, 60)
+        Me.MENote.Size = New System.Drawing.Size(303, 85)
         Me.MENote.TabIndex = 6
         '
         'LabelControl18
@@ -928,16 +931,13 @@ Partial Class FormPurcReqDet
         '
         'PCIAIC
         '
-        Me.PCIAIC.Controls.Add(Me.TENoteIA)
         Me.PCIAIC.Controls.Add(Me.TENoteIC)
-        Me.PCIAIC.Controls.Add(Me.SLEIAApproval)
         Me.PCIAIC.Controls.Add(Me.SLEICApproval)
-        Me.PCIAIC.Controls.Add(Me.LabelControl11)
         Me.PCIAIC.Controls.Add(Me.LabelControl4)
         Me.PCIAIC.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCIAIC.Location = New System.Drawing.Point(2, 78)
+        Me.PCIAIC.Location = New System.Drawing.Point(2, 100)
         Me.PCIAIC.Name = "PCIAIC"
-        Me.PCIAIC.Size = New System.Drawing.Size(951, 64)
+        Me.PCIAIC.Size = New System.Drawing.Size(951, 42)
         Me.PCIAIC.TabIndex = 173
         Me.PCIAIC.Visible = False
         '
@@ -946,13 +946,14 @@ Partial Class FormPurcReqDet
         Me.TENoteIA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TENoteIA.EditValue = ""
-        Me.TENoteIA.Location = New System.Drawing.Point(255, 36)
+        Me.TENoteIA.Location = New System.Drawing.Point(337, 11)
         Me.TENoteIA.Name = "TENoteIA"
         Me.TENoteIA.Properties.EditValueChangedDelay = 1
         Me.TENoteIA.Properties.ReadOnly = True
-        Me.TENoteIA.Size = New System.Drawing.Size(682, 20)
+        Me.TENoteIA.Size = New System.Drawing.Size(270, 20)
         Me.TENoteIA.TabIndex = 8914
         Me.TENoteIA.TabStop = False
+        Me.TENoteIA.Visible = False
         '
         'TENoteIC
         '
@@ -970,12 +971,13 @@ Partial Class FormPurcReqDet
         'SLEIAApproval
         '
         Me.SLEIAApproval.Enabled = False
-        Me.SLEIAApproval.Location = New System.Drawing.Point(72, 36)
+        Me.SLEIAApproval.Location = New System.Drawing.Point(154, 11)
         Me.SLEIAApproval.Name = "SLEIAApproval"
         Me.SLEIAApproval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEIAApproval.Properties.View = Me.GridView3
         Me.SLEIAApproval.Size = New System.Drawing.Size(177, 20)
         Me.SLEIAApproval.TabIndex = 8912
+        Me.SLEIAApproval.Visible = False
         '
         'GridView3
         '
@@ -1034,11 +1036,12 @@ Partial Class FormPurcReqDet
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(9, 39)
+        Me.LabelControl11.Location = New System.Drawing.Point(91, 14)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl11.TabIndex = 8910
         Me.LabelControl11.Text = "IA Approval"
+        Me.LabelControl11.Visible = False
         '
         'LabelControl4
         '
@@ -1079,6 +1082,7 @@ Partial Class FormPurcReqDet
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
