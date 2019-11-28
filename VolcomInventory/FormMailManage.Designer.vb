@@ -942,19 +942,24 @@ Partial Class FormMailManage
         '
         'BandedGridColumnLastNumberEN
         '
-        Me.BandedGridColumnLastNumberEN.Caption = "Last Number EN"
+        Me.BandedGridColumnLastNumberEN.Caption = "Last Number"
+        Me.BandedGridColumnLastNumberEN.FieldName = "mail_notice_no"
         Me.BandedGridColumnLastNumberEN.Name = "BandedGridColumnLastNumberEN"
         Me.BandedGridColumnLastNumberEN.Visible = True
         '
         'BandedGridColumnCreatedDateEN
         '
-        Me.BandedGridColumnCreatedDateEN.Caption = "Created Date EN"
+        Me.BandedGridColumnCreatedDateEN.Caption = "Date"
+        Me.BandedGridColumnCreatedDateEN.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.BandedGridColumnCreatedDateEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnCreatedDateEN.FieldName = "mail_notice_date"
         Me.BandedGridColumnCreatedDateEN.Name = "BandedGridColumnCreatedDateEN"
         Me.BandedGridColumnCreatedDateEN.Visible = True
         '
         'BandedGridColumnStatusEN
         '
-        Me.BandedGridColumnStatusEN.Caption = "Status EN"
+        Me.BandedGridColumnStatusEN.Caption = "Status"
+        Me.BandedGridColumnStatusEN.FieldName = "mail_notice_status"
         Me.BandedGridColumnStatusEN.Name = "BandedGridColumnStatusEN"
         Me.BandedGridColumnStatusEN.Visible = True
         '
@@ -970,21 +975,26 @@ Partial Class FormMailManage
         '
         'BandedGridColumnLastNumberEW
         '
-        Me.BandedGridColumnLastNumberEW.Caption = "Last Number EW"
+        Me.BandedGridColumnLastNumberEW.Caption = "Last Number"
+        Me.BandedGridColumnLastNumberEW.FieldName = "mail_warning_no"
         Me.BandedGridColumnLastNumberEW.Name = "BandedGridColumnLastNumberEW"
         Me.BandedGridColumnLastNumberEW.Visible = True
         Me.BandedGridColumnLastNumberEW.Width = 115
         '
         'BandedGridColumnCreatedDateEW
         '
-        Me.BandedGridColumnCreatedDateEW.Caption = "Created Date EW"
+        Me.BandedGridColumnCreatedDateEW.Caption = "Date"
+        Me.BandedGridColumnCreatedDateEW.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.BandedGridColumnCreatedDateEW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnCreatedDateEW.FieldName = "mail_warning_date"
         Me.BandedGridColumnCreatedDateEW.Name = "BandedGridColumnCreatedDateEW"
         Me.BandedGridColumnCreatedDateEW.Visible = True
         Me.BandedGridColumnCreatedDateEW.Width = 112
         '
         'BandedGridColumnStatusEW
         '
-        Me.BandedGridColumnStatusEW.Caption = "Status EW"
+        Me.BandedGridColumnStatusEW.Caption = "Status"
+        Me.BandedGridColumnStatusEW.FieldName = "mail_warning_status"
         Me.BandedGridColumnStatusEW.Name = "BandedGridColumnStatusEW"
         Me.BandedGridColumnStatusEW.Visible = True
         '
