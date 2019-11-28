@@ -148,6 +148,8 @@ Partial Class FormMailManage
         Me.GridColumnmail_numberinv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmail_dateinv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmail_statusinv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMSUnpaid = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
@@ -194,6 +196,7 @@ Partial Class FormMailManage
         Me.PanelControl9.SuspendLayout()
         CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSUnpaid.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -877,7 +880,7 @@ Partial Class FormMailManage
         '
         'GCUnpaid
         '
-        Me.GCUnpaid.ContextMenuStrip = Me.CMSSalesInvoice
+        Me.GCUnpaid.ContextMenuStrip = Me.CMSUnpaid
         Me.GCUnpaid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCUnpaid.Location = New System.Drawing.Point(0, 43)
         Me.GCUnpaid.MainView = Me.GVUnpaid
@@ -1461,6 +1464,18 @@ Partial Class FormMailManage
         Me.GridColumnmail_statusinv.FieldName = "mail_status"
         Me.GridColumnmail_statusinv.Name = "GridColumnmail_statusinv"
         '
+        'CMSUnpaid
+        '
+        Me.CMSUnpaid.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem1})
+        Me.CMSUnpaid.Name = "CMSUnpaid"
+        Me.CMSUnpaid.Size = New System.Drawing.Size(153, 48)
+        '
+        'ViewDetailToolStripMenuItem1
+        '
+        Me.ViewDetailToolStripMenuItem1.Name = "ViewDetailToolStripMenuItem1"
+        Me.ViewDetailToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem1.Text = "view detail"
+        '
         'FormMailManage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1521,6 +1536,7 @@ Partial Class FormMailManage
         Me.PanelControl9.ResumeLayout(False)
         CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSUnpaid.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1652,4 +1668,6 @@ Partial Class FormMailManage
     Friend WithEvents GridColumnmail_numberinv As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmail_dateinv As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmail_statusinv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMSUnpaid As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem1 As ToolStripMenuItem
 End Class

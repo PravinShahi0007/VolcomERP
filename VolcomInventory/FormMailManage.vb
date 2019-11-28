@@ -3,16 +3,27 @@
     Public already_open_invoice As Boolean = False
     Public already_open_invoice_unpaid As Boolean = False
     Public rmt_unpaid As String = "-1"
+    Dim dt_sekarang As DateTime
 
     '1=for accounting
 
     Private Sub FormMailManage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
-        DEFromList.EditValue = dt_now.Rows(0)("tgl")
-        DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+        dt_sekarang = dt_now.Rows(0)("tgl")
+        loadDateNow()
 
         '-- invoice list
         load_group_store()
+    End Sub
+
+    Sub loadDateNow()
+        DEFromList.EditValue = dt_sekarang
+        DEUntilList.EditValue = dt_sekarang
+    End Sub
+
+    Sub defaultViewHistory()
+        GCData.DataSource = Nothing
+        loadDateNow()
     End Sub
 
     Sub load_group_store()
@@ -257,12 +268,15 @@
         If XTCMailManage.SelectedTabPageIndex = 0 Then
 
         ElseIf XTCMailManage.SelectedTabPageIndex = 1 Then
+            defaultViewHistory()
+
             If Not already_open_invoice Then
                 'load pending invoice
                 FormMailManagePendingInvoice.show_direct = True
                 viewPendingMailGroup()
             End If
         ElseIf XTCMailManage.SelectedTabPageIndex = 2 Then
+            defaultViewHistory()
         End If
     End Sub
 
@@ -474,5 +488,16 @@
 
     Private Sub BtnPendingMailUnpaidGroupStoreMinThree_Click(sender As Object, e As EventArgs) Handles BtnPendingMailUnpaidGroupStoreMinThree.Click
         viewUnpaidGroup("226")
+    End Sub
+
+    Private Sub ViewDetailToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem1.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.report_mark_type = GVUnpaid.GetFocusedRowCellValue("report_mark_type").ToString
+            m.id_report = GVUnpaid.GetFocusedRowCellValue("id_sales_pos").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
