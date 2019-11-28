@@ -662,5 +662,10 @@
         Cursor = Cursors.Default
     End Sub
 
-
+    Private Sub BtnLog_Click(sender As Object, e As EventArgs) Handles BtnLog.Click
+        Cursor = Cursors.WaitCursor
+        FormMailManageLog.id = id
+        FormMailManageLog.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
