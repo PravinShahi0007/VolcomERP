@@ -1885,6 +1885,77 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
+        ElseIf report_mark_type = "226" Or report_mark_type = "227" Then
+            'EMAIL pemberitahuan/peringatan
+            Dim comp_name As String = execute_query("SELECT c.comp_name FROM tb_m_comp c WHERE c.id_comp=1", 0, True, "", "", "", "")
+            Dim mail_address_from As String = execute_query("SELECT m.mail_address FROM tb_mail_manage_member m WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type=1 ORDER BY m.id_mail_manage_member ASC LIMIT 1", 0, True, "", "", "", "")
+
+            Dim from_mail As MailAddress = New MailAddress(mail_address_from, "" + par1 + " - " + comp_name + "")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+
+            'Send to => design_code : email; design : contact person;
+            Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
+            FROM tb_mail_manage_member m 
+            LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+            LEFT JOIN tb_m_user u ON u.id_user = m.id_user
+            LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type>1 
+            ORDER BY m.id_mail_member_type ASC,m.id_mail_manage_member ASC "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("mail_address").ToString, data_send_to.Rows(i)("display_name").ToString)
+                If data_send_to.Rows(i)("id_mail_member_type").ToString = "2" Then
+                    mail.To.Add(to_mail)
+                ElseIf data_send_to.Rows(i)("id_mail_member_type").ToString = "3" Then
+                    mail.CC.Add(to_mail)
+                End If
+            Next
+
+            '-- start attachment 
+            'Create a New report. 
+            'Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+            'Dim rpt As New ReportSalesInvoiceNew()
+            'Dim query As String = "SELECT * FROM tb_mail_manage_det md WHERE md.id_mail_manage='" + id_report + "' "
+            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            'For i As Integer = 0 To data.Rows.Count - 1
+            '    ReportSalesInvoiceNew.id_sales_pos = data.Rows(i)("id_report").ToString
+            '    ReportSalesInvoiceNew.id_report_status = "6"
+            '    ReportSalesInvoiceNew.rmt = data.Rows(i)("report_mark_type").ToString
+            '    Dim Report As New ReportSalesInvoiceNew()
+            '    Report.LabelTitle.Text = "INVOICE SLIP"
+            '    Report.PrintingSystem.ContinuousPageNumbering = False
+            '    Report.CreateDocument()
+
+            '    For j = 0 To Report.Pages.Count - 1
+            '        list.Add(Report.Pages(j))
+            '    Next
+            'Next
+            'rpt.Pages.AddRange(list)
+
+            '' Create a new memory stream and export the report into it as PDF.
+            'Dim Mem As New MemoryStream()
+            ''Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+            'rpt.ExportToPdf(Mem)
+            '' Create a new attachment and put the PDF report into it.
+            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            'Dim Att = New Attachment(Mem, "sal_inv_" & report_mark_type & "_" & id_report & ".pdf", "application/pdf")
+            'mail.Attachments.Add(Att)
+            '-- end attachment
+
+            Dim tit As String = ""
+            If report_mark_type = "226" Then
+                tit = "H-3 Invoice Jatuh Tempo"
+            ElseIf report_mark_type = "227" Then
+                tit = "Invoice Jatuh Tempo"
+            End If
+            Dim subject_mail As String = execute_query("SELECT m.mail_subject FROM tb_mail_manage m WHERE m.id_mail_manage=" + id_report + "", 0, True, "", "", "", "")
+            Dim body_temp As String = email_body_invoice_jatuh_tempo(dt, tit.ToUpper, par2)
+            mail.Subject = subject_mail
+            mail.IsBodyHtml = True
+            mail.Body = body_temp
+            client.Send(mail)
         End If
     End Sub
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)

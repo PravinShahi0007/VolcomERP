@@ -582,6 +582,18 @@
         Dim id_sales_pos As String = getSavedInvoice()
         sm.dt = dtLoadDetail(id_sales_pos)
 
+        'jika ada parameter lain
+        If rmt = "226" Or "227" Then
+            Dim ttl As String = ""
+            If rmt = "226" Then
+                ttl = "Email Pemberitahuan"
+            Else
+                ttl = "Email Peringatan"
+            End If
+            sm.par1 = ttl.ToUpper
+            sm.par2 = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+        End If
+
         Try
             sm.send_email()
             Dim querylog As String = "UPDATE tb_mail_manage SET updated_date=NOW(), updated_by='" + id_user + "', 
