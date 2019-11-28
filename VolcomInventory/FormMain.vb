@@ -2898,6 +2898,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormPopUpCompGroup" Then
                 FormMasterCompGroupDet.id_comp_group = FormPopUpCompGroup.GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
                 FormMasterCompGroupDet.ShowDialog()
+            ElseIf formName = "FormMailManage" Then
+                If FormMailManage.XTCMailManage.SelectedTabPageIndex = 0 Then
+                    FormMailManageDet.action = "upd"
+                    FormMailManageDet.id = FormMailManage.GVData.GetFocusedRowCellValue("id_mail_manage").ToString
+                    FormMailManageDet.rmt = FormMailManage.GVData.GetFocusedRowCellValue("report_mark_type").ToString
+                    FormMailManageDet.ShowDialog()
+                End If
             ElseIf formName = "FormAccountingJournalAdj" Then
                 FormAccountingJournalAdjDet.id_trans_adj = FormAccountingJournalAdj.GVAccTrans.GetFocusedRowCellValue("id_acc_trans_adj").ToString
                 FormAccountingJournalAdjDet.ShowDialog()
@@ -13758,7 +13765,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Sub
 
     Private Sub NBSendEmailAcc_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSendEmailAcc.LinkClicked
-
+        Try
+            FormMailManage.MdiParent = Me
+            FormMailManage.id_menu = "1"
+            FormMailManage.Show()
+            FormMailManage.WindowState = FormWindowState.Maximized
+            FormMailManage.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
     End Sub
 
     Private Sub NBCompanyGroup_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompanyGroup.LinkClicked
