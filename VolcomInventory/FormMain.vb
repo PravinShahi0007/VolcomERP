@@ -7787,6 +7787,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Else
                 print(FormCompanyEmailMapping.GCListInternal, "Internal Mapping")
             End If
+        ElseIf formName = "FormMailManage" Then
+            If FormMailManage.XTCMailManage.SelectedTabPageIndex = 0 Then
+                print_raw(FormMailManage.GCData, "")
+            ElseIf FormMailManage.XTCMailManage.SelectedTabPageIndex = 1 Then
+                print_raw(FormMailManage.GCInvoiceList, "")
+            ElseIf FormMailManage.XTCMailManage.SelectedTabPageIndex = 2 Then
+                print_raw(FormMailManage.GCUnpaid, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8595,6 +8603,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompanyEmailMapping.Close()
         ElseIf formName = "FormPurcItem" Then
             FormPurcItem.Close()
+        ElseIf formName = "FormMailManage" Then
+            FormMailManage.Close()
         Else
             RPSubMenu.Visible = False
         End If
