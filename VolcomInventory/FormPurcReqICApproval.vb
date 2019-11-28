@@ -22,7 +22,7 @@
             End If
             execute_non_query(query, True, "", "", "", "")
             '
-            If step_approve = "2" Then
+            If step_approve = "1" Then
                 submit_pr()
             End If
             '
@@ -41,7 +41,7 @@
             End If
             execute_non_query(query, True, "", "", "", "")
             '
-            If step_approve = "2" Then
+            If step_approve = "1" Then
                 submit_pr()
             End If
             '
@@ -50,27 +50,30 @@
     End Sub
 
     Sub submit_pr()
-        Dim query As String = "SELECT ic_approval,ia_approval FROM tb_purc_req WHERE id_purc_req='" & id_report & "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            If data.Rows(0)("ic_approval").ToString = "1" Or data.Rows(0)("ia_approval").ToString = "1" Then
-                'do nothing
-            ElseIf data.Rows(0)("ic_approval").ToString = "2" And data.Rows(0)("ia_approval").ToString = "2" Then
-                'sama - sama setuju
-                Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_report & "'"
-                execute_non_query(query_upd, True, "", "", "", "")
-                submit_who_prepared("201", id_report, id_user_created)
-            ElseIf data.Rows(0)("ic_approval").ToString = "3" And data.Rows(0)("ia_approval").ToString = "3" Then
-                'sama - sama gk setuju
-                Dim query_upd As String = "UPDATE tb_purc_req SET id_report_status='5' WHERE id_purc_req='" & id_report & "'"
-                execute_non_query(query_upd, True, "", "", "", "")
-            Else
-                'bentrok
-                Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_report & "'"
-                execute_non_query(query_upd, True, "", "", "", "")
-                submit_who_prepared("218", id_report, id_user_created)
-            End If
-        End If
+        'Dim query As String = "SELECT ic_approval,ia_approval FROM tb_purc_req WHERE id_purc_req='" & id_report & "'"
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'If data.Rows.Count > 0 Then
+        '    If data.Rows(0)("ic_approval").ToString = "1" Or data.Rows(0)("ia_approval").ToString = "1" Then
+        '        'do nothing
+        '    ElseIf data.Rows(0)("ic_approval").ToString = "2" And data.Rows(0)("ia_approval").ToString = "2" Then
+        '        'sama - sama setuju
+        '        Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_report & "'"
+        '        execute_non_query(query_upd, True, "", "", "", "")
+        '        submit_who_prepared("201", id_report, id_user_created)
+        '    ElseIf data.Rows(0)("ic_approval").ToString = "3" And data.Rows(0)("ia_approval").ToString = "3" Then
+        '        'sama - sama gk setuju
+        '        Dim query_upd As String = "UPDATE tb_purc_req SET id_report_status='5' WHERE id_purc_req='" & id_report & "'"
+        '        execute_non_query(query_upd, True, "", "", "", "")
+        '    Else
+        '        'bentrok
+        '        Dim query_upd As String = "UPDATE tb_purc_req SET is_submit='1' WHERE id_purc_req='" & id_report & "'"
+        '        execute_non_query(query_upd, True, "", "", "", "")
+        '        submit_who_prepared("218", id_report, id_user_created)
+        '        'submit_who_prepared("201", id_report, id_user_created)
+        '    End If
+        'End If
+
+        submit_who_prepared("201", id_report, id_user_created)
     End Sub
 
     Private Sub BViewDocument_Click(sender As Object, e As EventArgs) Handles BViewDocument.Click

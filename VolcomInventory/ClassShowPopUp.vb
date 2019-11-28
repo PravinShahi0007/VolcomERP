@@ -445,8 +445,18 @@
             FormViewMatAdjOut.ShowDialog()
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'receive FG QC
-            FormViewProductionRec.id_receive = id_report
-            FormViewProductionRec.ShowDialog()
+            Dim q_before As String = "SELECT GROUP_CONCAT(rec.prod_order_rec_number) AS rec_before
+FROM tb_prod_order_rec rec 
+WHERE (rec.id_report_status!='6' AND rec.id_report_status!='5') AND rec.`id_prod_order_rec` < '" & id_report & "' AND rec.`id_prod_order`=(SELECT id_prod_order FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_report & "')
+GROUP BY rec.`id_prod_order`"
+            Dim dt As DataTable = execute_query(q_before, -1, True, "", "", "", "")
+            '
+            If dt.Rows.Count > 0 Then
+                warningCustom("Please approve receiving before this : " & dt.Rows(0)("rec_before").ToString)
+            Else
+                FormViewProductionRec.id_receive = id_report
+                FormViewProductionRec.ShowDialog()
+            End If
         ElseIf report_mark_type = "29" Then
             'Production Work Order
             FormViewProductionMRS.id_mrs = id_report
@@ -2610,7 +2620,7 @@
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
             ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, IF(ISNULL(pp.id_design),1,2) AS already_pp,IF(ISNULL(rec.id_prod_order),1,2) AS already_rec,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
+                query_view = "SELECT 'no' AS is_check,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
 INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
 INNER JOIN (
 	SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
@@ -2639,12 +2649,11 @@ LEFT JOIN (
 LEFT JOIN (
 	SELECT id_prod_order FROM tb_prod_order_rec WHERE id_report_status!=5
 )rec ON rec.id_prod_order=det.`id_prod_order`
-WHERE tb.id_report_status='6' "
+WHERE tb.id_report_status='6' AND IF(ISNULL(pp.id_design),2,1)=2 AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
-                query_view += " GROUP BY tb.id_prod_order
-HAVING (already_pp = 2 AND already_rec = 2)"
+                query_view += " GROUP BY tb.id_prod_order"
                 '
                 query_view_blank = "SELECT tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,0.00 AS qty,ovh.currency,ovh.unit_price,0.00 AS amount FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order

@@ -57,6 +57,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnStorageCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntype = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDeptSC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEITem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -71,7 +72,8 @@ Partial Class FormPurcItemStock
         Me.DEFromSC = New DevExpress.XtraEditors.DateEdit()
         Me.LEDeptSC = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnDeptSC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BStockFisik = New DevExpress.XtraEditors.SimpleButton()
+        Me.BStockCardFisik = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -105,7 +107,7 @@ Partial Class FormPurcItemStock
         Me.XTCStock.Location = New System.Drawing.Point(0, 0)
         Me.XTCStock.Name = "XTCStock"
         Me.XTCStock.SelectedTabPage = Me.XTPSOH
-        Me.XTCStock.Size = New System.Drawing.Size(890, 592)
+        Me.XTCStock.Size = New System.Drawing.Size(967, 592)
         Me.XTCStock.TabIndex = 0
         Me.XTCStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOH, Me.XTPStockCard})
         '
@@ -114,7 +116,7 @@ Partial Class FormPurcItemStock
         Me.XTPSOH.Controls.Add(Me.GCSOH)
         Me.XTPSOH.Controls.Add(Me.PCNav)
         Me.XTPSOH.Name = "XTPSOH"
-        Me.XTPSOH.Size = New System.Drawing.Size(884, 564)
+        Me.XTPSOH.Size = New System.Drawing.Size(961, 564)
         Me.XTPSOH.Text = "Stock On Hand"
         '
         'GCSOH
@@ -123,7 +125,7 @@ Partial Class FormPurcItemStock
         Me.GCSOH.Location = New System.Drawing.Point(0, 48)
         Me.GCSOH.MainView = Me.GVSOH
         Me.GCSOH.Name = "GCSOH"
-        Me.GCSOH.Size = New System.Drawing.Size(884, 516)
+        Me.GCSOH.Size = New System.Drawing.Size(961, 516)
         Me.GCSOH.TabIndex = 1
         Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
         '
@@ -175,7 +177,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.VisibleIndex = 3
         '
         'GridColumnAmount
         '
@@ -187,8 +189,6 @@ Partial Class FormPurcItemStock
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumnAmount.UnboundExpression = "[qty] * [value]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 5
         '
         'GridColumnIdDept
         '
@@ -211,11 +211,10 @@ Partial Class FormPurcItemStock
         Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValue.FieldName = "value"
         Me.GridColumnValue.Name = "GridColumnValue"
-        Me.GridColumnValue.Visible = True
-        Me.GridColumnValue.VisibleIndex = 3
         '
         'PCNav
         '
+        Me.PCNav.Controls.Add(Me.BStockFisik)
         Me.PCNav.Controls.Add(Me.BtnView)
         Me.PCNav.Controls.Add(Me.LabelControl2)
         Me.PCNav.Controls.Add(Me.DESOHUntil)
@@ -226,7 +225,7 @@ Partial Class FormPurcItemStock
         Me.PCNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCNav.Location = New System.Drawing.Point(0, 0)
         Me.PCNav.Name = "PCNav"
-        Me.PCNav.Size = New System.Drawing.Size(884, 48)
+        Me.PCNav.Size = New System.Drawing.Size(961, 48)
         Me.PCNav.TabIndex = 0
         '
         'BtnView
@@ -298,7 +297,7 @@ Partial Class FormPurcItemStock
         Me.XTPStockCard.Controls.Add(Me.GCSC)
         Me.XTPStockCard.Controls.Add(Me.PanelControl1)
         Me.XTPStockCard.Name = "XTPStockCard"
-        Me.XTPStockCard.Size = New System.Drawing.Size(884, 564)
+        Me.XTPStockCard.Size = New System.Drawing.Size(961, 564)
         Me.XTPStockCard.Text = "Stock Card"
         '
         'GCSC
@@ -308,7 +307,7 @@ Partial Class FormPurcItemStock
         Me.GCSC.Location = New System.Drawing.Point(0, 50)
         Me.GCSC.MainView = Me.GVSC
         Me.GCSC.Name = "GCSC"
-        Me.GCSC.Size = New System.Drawing.Size(884, 514)
+        Me.GCSC.Size = New System.Drawing.Size(961, 514)
         Me.GCSC.TabIndex = 2
         Me.GCSC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSC})
         '
@@ -414,8 +413,17 @@ Partial Class FormPurcItemStock
         Me.GridColumnStatus.Visible = True
         Me.GridColumnStatus.VisibleIndex = 3
         '
+        'GridColumnDeptSC
+        '
+        Me.GridColumnDeptSC.Caption = "Department"
+        Me.GridColumnDeptSC.FieldName = "departement"
+        Me.GridColumnDeptSC.Name = "GridColumnDeptSC"
+        Me.GridColumnDeptSC.Visible = True
+        Me.GridColumnDeptSC.VisibleIndex = 0
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BStockCardFisik)
         Me.PanelControl1.Controls.Add(Me.SLEITem)
         Me.PanelControl1.Controls.Add(Me.DEUntilSC)
         Me.PanelControl1.Controls.Add(Me.LabelControl7)
@@ -428,7 +436,7 @@ Partial Class FormPurcItemStock
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(884, 50)
+        Me.PanelControl1.Size = New System.Drawing.Size(961, 50)
         Me.PanelControl1.TabIndex = 1
         '
         'SLEITem
@@ -547,19 +555,29 @@ Partial Class FormPurcItemStock
         Me.LabelControl5.TabIndex = 18
         Me.LabelControl5.Text = "Departement"
         '
-        'GridColumnDeptSC
+        'BStockFisik
         '
-        Me.GridColumnDeptSC.Caption = "Department"
-        Me.GridColumnDeptSC.FieldName = "departement"
-        Me.GridColumnDeptSC.Name = "GridColumnDeptSC"
-        Me.GridColumnDeptSC.Visible = True
-        Me.GridColumnDeptSC.VisibleIndex = 0
+        Me.BStockFisik.Image = CType(resources.GetObject("BStockFisik.Image"), System.Drawing.Image)
+        Me.BStockFisik.Location = New System.Drawing.Point(786, 12)
+        Me.BStockFisik.Name = "BStockFisik"
+        Me.BStockFisik.Size = New System.Drawing.Size(91, 23)
+        Me.BStockFisik.TabIndex = 25
+        Me.BStockFisik.Text = "Stock Fisik"
+        '
+        'BStockCardFisik
+        '
+        Me.BStockCardFisik.Image = CType(resources.GetObject("BStockCardFisik.Image"), System.Drawing.Image)
+        Me.BStockCardFisik.Location = New System.Drawing.Point(846, 13)
+        Me.BStockCardFisik.Name = "BStockCardFisik"
+        Me.BStockCardFisik.Size = New System.Drawing.Size(83, 23)
+        Me.BStockCardFisik.TabIndex = 29
+        Me.BStockCardFisik.Text = "Stock Fisik"
         '
         'FormPurcItemStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(890, 592)
+        Me.ClientSize = New System.Drawing.Size(967, 592)
         Me.Controls.Add(Me.XTCStock)
         Me.MinimizeBox = False
         Me.Name = "FormPurcItemStock"
@@ -646,4 +664,6 @@ Partial Class FormPurcItemStock
     Friend WithEvents GridColumntype As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDeptSC As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BStockFisik As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BStockCardFisik As DevExpress.XtraEditors.SimpleButton
 End Class

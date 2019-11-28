@@ -7,7 +7,7 @@
         'generate type
         Dim location As Integer = 0
 
-        Dim report_mark_types As DataTable = execute_query("SELECT report_mark_type, report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type IN (225, 226)", -1, True, "", "", "", "")
+        Dim report_mark_types As DataTable = execute_query("SELECT report_mark_type, report_mark_type_name FROM tb_lookup_report_mark_type WHERE is_mail_acc = 1", -1, True, "", "", "", "")
 
         Dim i As Integer = 0
 
