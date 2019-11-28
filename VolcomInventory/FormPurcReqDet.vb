@@ -14,9 +14,9 @@
     Sub load_approval_ic_ia()
         Dim query As String = "SELECT '1' AS id_approval,'No Action' AS approval
 UNION
-SELECT '2' AS id_approval,'No Action' AS approval
+SELECT '2' AS id_approval,'Approve' AS approval
 UNION
-SELECT '3' AS id_approval,'No Action' AS approval"
+SELECT '3' AS id_approval,'Not Approve' AS approval"
         viewSearchLookupQuery(SLEICApproval, query, "id_approval", "approval", "id_approval")
         viewSearchLookupQuery(SLEIAApproval, query, "id_approval", "approval", "id_approval")
     End Sub
