@@ -947,10 +947,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(855.0001!, 33.99998!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(804.9999!, 33.99998!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(40.0!, 23.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "Type"
@@ -968,7 +968,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(915.0001!, 33.99998!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(844.9999!, 33.99998!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -980,10 +980,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XLPeriod
         '
         Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(855.0!, 11.0!)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(804.9999!, 10.99998!)
         Me.XLPeriod.Name = "XLPeriod"
         Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLPeriod.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
+        Me.XLPeriod.SizeF = New System.Drawing.SizeF(270.0!, 23.0!)
         Me.XLPeriod.StylePriority.UseFont = False
         Me.XLPeriod.StylePriority.UseTextAlignment = False
         Me.XLPeriod.Text = "[period]"
@@ -992,11 +992,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XLTitle
         '
         Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 22.99995!)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(269.9999!, 22.99995!)
         Me.XLTitle.Multiline = True
         Me.XLTitle.Name = "XLTitle"
         Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(635.0!, 41.15005!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(535.0!, 41.15005!)
         Me.XLTitle.StylePriority.UseFont = False
         Me.XLTitle.StylePriority.UseTextAlignment = False
         Me.XLTitle.Text = "Summary Monthly Payroll"
@@ -1005,10 +1005,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XLType
         '
         Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(930.0001!, 33.99998!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(859.9999!, 33.99998!)
         Me.XLType.Name = "XLType"
         Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLType.SizeF = New System.Drawing.SizeF(145.0!, 23.0!)
+        Me.XLType.SizeF = New System.Drawing.SizeF(215.0002!, 23.0!)
         Me.XLType.StylePriority.UseFont = False
         Me.XLType.StylePriority.UseTextAlignment = False
         Me.XLType.Text = "[type]"

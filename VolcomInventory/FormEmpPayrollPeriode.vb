@@ -29,14 +29,28 @@
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If formIsValid(ErrorProvider) Then
-            Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
-            Dim date_end As String = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim date_start As String = "NULL"
+            Dim date_end As String = "NULL"
+
+            Try
+                date_start = "'" + Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+            Catch ex As Exception
+            End Try
+
+            Try
+                date_end = "'" + Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+            Catch ex As Exception
+            End Try
 
             Dim ot_date_start As String = "NULL"
             Dim ot_date_end As String = "NULL"
 
             Try
                 ot_date_start = "'" + Date.Parse(DEStartOt.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+            Catch ex As Exception
+            End Try
+
+            Try
                 ot_date_end = "'" + Date.Parse(DEEndOt.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
             Catch ex As Exception
             End Try
@@ -45,14 +59,14 @@
             Dim id_payroll_type As String = LEPayrollType.EditValue.ToString
 
             If id_payroll = "-1" Then
-                Dim query As String = "INSERT INTO tb_emp_payroll(periode_start,periode_end,ot_periode_start,ot_periode_end,note,last_upd,id_user_upd,id_payroll_type) VALUES('" & date_start & "','" & date_end & "'," & ot_date_start & "," & ot_date_end & ",'" & note & "',NOW(),'" & id_user & "','" & id_payroll_type & "'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_emp_payroll(periode_start,periode_end,ot_periode_start,ot_periode_end,note,last_upd,id_user_upd,id_payroll_type) VALUES(" & date_start & "," & date_end & "," & ot_date_start & "," & ot_date_end & ",'" & addSlashes(note) & "',NOW(),'" & id_user & "','" & id_payroll_type & "'); SELECT LAST_INSERT_ID();"
                 id_payroll = execute_query(query, 0, True, "", "", "", "")
                 '
                 FormEmpPayroll.load_payroll()
                 FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
                 Close()
             Else 'edit
-                Dim query As String = "UPDATE tb_emp_payroll SET periode_start='" & date_start & "',periode_end='" & date_end & "',ot_periode_start=" & ot_date_start & ",ot_periode_end=" & ot_date_end & ",note='" & note & "',last_upd=NOW(),id_user_upd='" & id_user & "',id_payroll_type='" & id_payroll_type & "' WHERE id_payroll='" & id_payroll & "'"
+                Dim query As String = "UPDATE tb_emp_payroll SET periode_start=" & date_start & ",periode_end=" & date_end & ",ot_periode_start=" & ot_date_start & ",ot_periode_end=" & ot_date_end & ",note='" & addSlashes(note) & "',last_upd=NOW(),id_user_upd='" & id_user & "',id_payroll_type='" & id_payroll_type & "' WHERE id_payroll='" & id_payroll & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 FormEmpPayroll.load_payroll()
@@ -70,7 +84,9 @@
     End Sub
 
     Private Sub DEStart_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEStart.Validating
-        If DEStart.Text.ToString = "" Then
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + LEPayrollType.EditValue.ToString, 0, True, "", "", "", "")
+
+        If DEStart.Text.ToString = "" And is_thr = "2" Then
             ErrorProvider.SetError(DEStart, "Don't leave it blank.")
         Else
             ErrorProvider.SetError(DEStart, String.Empty)
@@ -82,6 +98,30 @@
             ErrorProvider.SetError(DEEnd, "Don't leave it blank.")
         Else
             ErrorProvider.SetError(DEEnd, String.Empty)
+        End If
+    End Sub
+
+    Private Sub LEPayrollType_EditValueChanged(sender As Object, e As EventArgs) Handles LEPayrollType.EditValueChanged
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + LEPayrollType.EditValue.ToString, 0, True, "", "", "", "")
+
+        If is_thr = "1" Then
+            LCEnd.Text = "Date"
+
+            PCStart.Visible = False
+            PCEnd.Visible = True
+            PCStartOt.Visible = False
+            PCEndOt.Visible = False
+
+            Size = New Size(445, 230)
+        Else
+            LCEnd.Text = "Period End"
+
+            PCStart.Visible = True
+            PCEnd.Visible = True
+            PCStartOt.Visible = True
+            PCEndOt.Visible = True
+
+            Size = New Size(445, 320)
         End If
     End Sub
 End Class

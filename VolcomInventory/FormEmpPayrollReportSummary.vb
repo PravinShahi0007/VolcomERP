@@ -25,6 +25,23 @@
         Else
             SBPrint.Enabled = True
         End If
+
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
+        If is_thr = "1" Then
+            GVSummary.Columns("salary").Visible = False
+            GVSummary.Columns("event_overtime").Visible = False
+            GVSummary.Columns("d_cooperative_loan").Visible = False
+            GVSummary.Columns("d_bpjskes").Visible = False
+            GVSummary.Columns("d_jaminan_pensiun").Visible = False
+            GVSummary.Columns("d_bpjstk").Visible = False
+            GVSummary.Columns("d_cooperative_contribution").Visible = False
+            GVSummary.Columns("d_missing").Visible = False
+            GVSummary.Columns("d_meditation_cash").Visible = False
+            GVSummary.Columns("d_other").Visible = False
+
+            GVSummary.Columns("balance").Caption = "Total THR"
+        End If
     End Sub
 
     Sub load_sum()
@@ -156,6 +173,8 @@
             End If
         Next
 
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
         Dim report As ReportEmpPayrollReportAllDepartement = New ReportEmpPayrollReportAllDepartement
 
         report.id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
@@ -164,6 +183,9 @@
         report.data_store = data_payroll_2
         report.id_pre = If(id_report_status = "6", "-1", "1")
         report.type = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+        If is_thr = "1" Then
+            report.XLTitle.Text = "Summary " + Environment.NewLine + execute_query("SELECT REPLACE(payroll_type, 'Daily Worker', '') AS payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+        End If
 
         report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
         report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
@@ -174,6 +196,8 @@
     End Sub
 
     Function total_all(data_ori As DataTable) As DataTable
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
         Dim data As DataTable = New DataTable
 
         data.Columns.Add("information", GetType(String))
@@ -185,7 +209,9 @@
 
         data.Rows.Add("TRANSFER BCA EFEKTIF " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("eff_trans_date").ToString).ToString("dd MMMM yyyy").ToUpper, 0, 0, 0, 0, 0)
         data.Rows.Add("CASH EFEKTIF " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("eff_trans_date").ToString).ToString("dd MMMM yyyy").ToUpper, 0, 0, 0, 0, 0)
-        data.Rows.Add("Cooperative ", 0, 0, 0, 0, 0)
+        If is_thr = "2" Then
+            data.Rows.Add("Cooperative ", 0, 0, 0, 0, 0)
+        End If
 
         Dim transfer As Decimal = 0.00
         Dim cash As Decimal = 0.00
@@ -201,26 +227,36 @@
                     'bemo corner
                     data.Rows(0)("bemo_corner") += transfer
                     data.Rows(1)("bemo_corner") += cash
-                    data.Rows(2)("bemo_corner") += cooperative
+                    If is_thr = "2" Then
+                        data.Rows(2)("bemo_corner") += cooperative
+                    End If
                 ElseIf data_ori.Rows(i)("id_departement").ToString = "15" Then
                     'kuta square
                     data.Rows(0)("kuta_square") += transfer
                     data.Rows(1)("kuta_square") += cash
-                    data.Rows(2)("kuta_square") += cooperative
+                    If is_thr = "2" Then
+                        data.Rows(2)("kuta_square") += cooperative
+                    End If
                 ElseIf data_ori.Rows(i)("id_departement").ToString = "23" Then
                     'seminyak
                     data.Rows(0)("seminyak") += transfer
                     data.Rows(1)("seminyak") += cash
-                    data.Rows(2)("seminyak") += cooperative
+                    If is_thr = "2" Then
+                        data.Rows(2)("seminyak") += cooperative
+                    End If
                 ElseIf data_ori.Rows(i)("id_departement").ToString = "17" Then
                     'sogo
                     data.Rows(0)("volcom_sogo") += transfer
                     data.Rows(1)("volcom_sogo") += cash
-                    data.Rows(2)("volcom_sogo") += cooperative
+                    If is_thr = "2" Then
+                        data.Rows(2)("volcom_sogo") += cooperative
+                    End If
                 Else
                     data.Rows(0)("volcom_indonesia") += transfer
                     data.Rows(1)("volcom_indonesia") += cash
-                    data.Rows(2)("volcom_indonesia") += cooperative
+                    If is_thr = "2" Then
+                        data.Rows(2)("volcom_indonesia") += cooperative
+                    End If
                 End If
             End If
         Next

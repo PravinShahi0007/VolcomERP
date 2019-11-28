@@ -2,6 +2,15 @@
     Public id_payroll As String = "-1"
     Private Sub FormEmpPayrollAdjustment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
+        If is_thr = "1" Then
+            GridColumnTotDays.Caption = "Total Years"
+        Else
+            GridColumnTotDays.Caption = "Total Days"
+        End If
+
         load_adjustment()
     End Sub
     Sub load_adjustment()
@@ -117,13 +126,15 @@
         Next
 
         'report
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
         Dim report As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
 
         report.type = "adjustment"
         report.id_payroll = id_payroll
         report.id_pre = If(id_report_status = "6", "-1", "1")
 
-        report.XLTitle.Text = "Bonus / Adjustment"
+        report.XLTitle.Text = If(is_thr = "1", "Adjustment", "Bonus / Adjustment")
         report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
         report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
