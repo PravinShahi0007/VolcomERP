@@ -1915,33 +1915,24 @@ Public Class ClassSendEmail
 
             '-- start attachment 
             'Create a New report. 
-            'Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
-            'Dim rpt As New ReportSalesInvoiceNew()
-            'Dim query As String = "SELECT * FROM tb_mail_manage_det md WHERE md.id_mail_manage='" + id_report + "' "
-            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            'For i As Integer = 0 To data.Rows.Count - 1
-            '    ReportSalesInvoiceNew.id_sales_pos = data.Rows(i)("id_report").ToString
-            '    ReportSalesInvoiceNew.id_report_status = "6"
-            '    ReportSalesInvoiceNew.rmt = data.Rows(i)("report_mark_type").ToString
-            '    Dim Report As New ReportSalesInvoiceNew()
-            '    Report.LabelTitle.Text = "INVOICE SLIP"
-            '    Report.PrintingSystem.ContinuousPageNumbering = False
-            '    Report.CreateDocument()
-
-            '    For j = 0 To Report.Pages.Count - 1
-            '        list.Add(Report.Pages(j))
-            '    Next
-            'Next
-            'rpt.Pages.AddRange(list)
+            Dim id_sales_pos As String = ""
+            For i As Integer = 0 To (dt.Rows.Count - 1)
+                If i > 0 Then
+                    id_sales_pos += ","
+                End If
+                id_sales_pos += dt.Rows(i)("id_report").ToString
+            Next
+            ReportSummaryInvoice.id = id_sales_pos
+            Dim rpt As New ReportSummaryInvoice()
 
             '' Create a new memory stream and export the report into it as PDF.
-            'Dim Mem As New MemoryStream()
-            ''Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
-            'rpt.ExportToPdf(Mem)
+            Dim Mem As New MemoryStream()
+            'Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+            rpt.ExportToXlsx(Mem)
             '' Create a new attachment and put the PDF report into it.
-            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
-            'Dim Att = New Attachment(Mem, "sal_inv_" & report_mark_type & "_" & id_report & ".pdf", "application/pdf")
-            'mail.Attachments.Add(Att)
+            Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, "list_inv" & report_mark_type & "_" & id_report & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            mail.Attachments.Add(Att)
             '-- end attachment
 
             Dim tit As String = ""

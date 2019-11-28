@@ -646,6 +646,18 @@
             rpt.Pages.AddRange(list)
             Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(rpt)
             tool_detail.ShowPreview()
+        ElseIf rmt = "226" Or rmt = "227" Then
+            Dim id_sales_pos As String = ""
+            For i As Integer = 0 To (GVDetail.RowCount - 1)
+                If i > 0 Then
+                    id_sales_pos += ","
+                End If
+                id_sales_pos += GVDetail.GetRowCellValue(i, "id_report").ToString
+            Next
+            ReportSummaryInvoice.id = id_sales_pos
+            Dim rpt As New ReportSummaryInvoice()
+            Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(rpt)
+            tool_detail.ShowPreview()
         End If
         Cursor = Cursors.Default
     End Sub
