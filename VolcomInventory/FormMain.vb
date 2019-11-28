@@ -264,7 +264,7 @@ Public Class FormMain
             BBView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
+        If formName = "formemployeepps" Or formName = "FormAccountingSummary" Or formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -1764,12 +1764,27 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBuktiPickupDet.ShowDialog()
         ElseIf formName = "FormEmpBPJSKesehatan" Then
             FormEmpBPJSKesehatanDet.id = "0"
-            FormEmpBPJSKesehatanDet.is_approve = "0"
+            FormEmpBPJSKesehatanDet.is_approve = FormEmpBPJSKesehatan.is_approve
 
             FormEmpBPJSKesehatanDet.ShowDialog()
         ElseIf formName = "FormPopUpCompGroup" Then
             FormMasterCompGroupDet.id_comp_group = "-1"
             FormMasterCompGroupDet.ShowDialog()
+        ElseIf formName = "FormCompanyEmailMapping" Then
+            'email mapping
+            If FormCompanyEmailMapping.XtraTabControl.SelectedTabPageIndex = 0 Then
+                FormCompanyEmailMappingDet.tab = "store_group"
+
+                FormCompanyEmailMappingDet.id = "0"
+
+                FormCompanyEmailMappingDet.ShowDialog()
+            Else
+                FormCompanyEmailMappingDet.tab = "internal"
+
+                FormCompanyEmailMappingDet.id = "0"
+
+                FormCompanyEmailMappingDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2877,12 +2892,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End Try
             ElseIf formName = "FormEmpBPJSKesehatan" Then
                 FormEmpBPJSKesehatanDet.id = FormEmpBPJSKesehatan.GVList.GetFocusedRowCellValue("id_pay_bpjs_kesehatan").ToString
-                FormEmpBPJSKesehatanDet.is_approve = "0"
+                FormEmpBPJSKesehatanDet.is_approve = FormEmpBPJSKesehatan.is_approve
 
                 FormEmpBPJSKesehatanDet.ShowDialog()
             ElseIf formName = "FormPopUpCompGroup" Then
                 FormMasterCompGroupDet.id_comp_group = FormPopUpCompGroup.GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
                 FormMasterCompGroupDet.ShowDialog()
+            ElseIf formName = "FormAccountingJournalAdj" Then
+                FormAccountingJournalAdjDet.id_trans_adj = FormAccountingJournalAdj.GVAccTrans.GetFocusedRowCellValue("id_acc_trans_adj").ToString
+                FormAccountingJournalAdjDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6159,6 +6177,26 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     End Try
                 End If
             End If
+        ElseIf formName = "FormCompanyEmailMapping" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                If FormCompanyEmailMapping.XtraTabControl.SelectedTabPageIndex = 0 Then
+                    If FormCompanyEmailMapping.GVListStoreGroup.RowCount > 0 And FormCompanyEmailMapping.GVListStoreGroup.FocusedRowHandle >= 0 Then
+                        Dim query_del As String = "DELETE FROM tb_mail_manage_mapping WHERE id_mail_manage_mapping = " + FormCompanyEmailMapping.GVListStoreGroup.GetFocusedRowCellValue("id_mail_manage_mapping").ToString
+                        execute_non_query(query_del, True, "", "", "", "")
+
+                        FormCompanyEmailMapping.form_load()
+                    End If
+                Else
+                    If FormCompanyEmailMapping.GVListInternal.RowCount > 0 And FormCompanyEmailMapping.GVListInternal.FocusedRowHandle >= 0 Then
+                        Dim query_del As String = "DELETE FROM tb_mail_manage_mapping_intern WHERE id_mail_manage_mapping_intern = " + FormCompanyEmailMapping.GVListInternal.GetFocusedRowCellValue("id_mail_manage_mapping_intern").ToString
+                        execute_non_query(query_del, True, "", "", "", "")
+
+                        FormCompanyEmailMapping.form_load()
+                    End If
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7736,6 +7774,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormEmpBPJSKesehatan.GCList, "BPJS Kesehatan")
         ElseIf formName = "FormPopUpCompGroup" Then
             print(FormPopUpCompGroup.GCGroupComp, "Company Group")
+        ElseIf formName = "FormCompanyEmailMapping" Then
+            If FormCompanyEmailMapping.XtraTabControl.SelectedTabPageIndex = 0 Then
+                print(FormCompanyEmailMapping.GCListStoreGroup, "Store Group Mapping")
+            Else
+                print(FormCompanyEmailMapping.GCListInternal, "Internal Mapping")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8540,6 +8584,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpBPJSKesehatan.Close()
         ElseIf formName = "FormPopUpCompGroup" Then
             FormPopUpCompGroup.Close()
+        ElseIf formName = "FormCompanyEmailMapping" Then
+            FormCompanyEmailMapping.Close()
+        ElseIf formName = "FormPurcItem" Then
+            FormPurcItem.Close()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9409,6 +9457,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEmpBPJSKesehatan.load_form()
         ElseIf formName = "FormPopUpCompGroup" Then
             FormPopUpCompGroup.view_comp_group()
+        ElseIf formName = "FormCompanyEmailMapping" Then
+            FormCompanyEmailMapping.form_load()
         End If
     End Sub
     'Switch
@@ -13718,6 +13768,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPopUpCompGroup.Show()
             FormPopUpCompGroup.WindowState = FormWindowState.Maximized
             FormPopUpCompGroup.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBCompanyEmailMapping_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompanyEmailMapping.LinkClicked
+        Try
+            FormCompanyEmailMapping.MdiParent = Me
+            FormCompanyEmailMapping.Show()
+            FormCompanyEmailMapping.WindowState = FormWindowState.Maximized
+            FormCompanyEmailMapping.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

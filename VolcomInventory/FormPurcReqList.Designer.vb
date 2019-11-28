@@ -40,6 +40,13 @@ Partial Class FormPurcReqList
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcReq.SuspendLayout()
         Me.XTPPurcReq.SuspendLayout()
@@ -106,7 +113,7 @@ Partial Class FormPurcReqList
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 2
-        Me.GridColumn29.Width = 152
+        Me.GridColumn29.Width = 101
         '
         'GridColumn1
         '
@@ -115,7 +122,7 @@ Partial Class FormPurcReqList
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 365
+        Me.GridColumn1.Width = 206
         '
         'GridColumn3
         '
@@ -126,7 +133,7 @@ Partial Class FormPurcReqList
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
-        Me.GridColumn3.Width = 344
+        Me.GridColumn3.Width = 187
         '
         'GridColumn4
         '
@@ -135,7 +142,7 @@ Partial Class FormPurcReqList
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 0
-        Me.GridColumn4.Width = 325
+        Me.GridColumn4.Width = 183
         '
         'GridColumn5
         '
@@ -144,7 +151,7 @@ Partial Class FormPurcReqList
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 317
+        Me.GridColumn5.Width = 172
         '
         'GridColumn28
         '
@@ -157,7 +164,7 @@ Partial Class FormPurcReqList
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 5
-        Me.GridColumn28.Width = 129
+        Me.GridColumn28.Width = 73
         '
         'XtraTabPage2
         '
@@ -178,8 +185,12 @@ Partial Class FormPurcReqList
         '
         'GVPurcReqHistorySubmit
         '
+        Me.GVPurcReqHistorySubmit.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
         Me.GVPurcReqHistorySubmit.GridControl = Me.GCPurcReqHistorySubmit
         Me.GVPurcReqHistorySubmit.Name = "GVPurcReqHistorySubmit"
+        Me.GVPurcReqHistorySubmit.OptionsBehavior.Editable = False
+        Me.GVPurcReqHistorySubmit.OptionsBehavior.ReadOnly = True
+        Me.GVPurcReqHistorySubmit.OptionsFind.AlwaysVisible = True
         Me.GVPurcReqHistorySubmit.OptionsView.ShowGroupPanel = False
         '
         'PanelControl1
@@ -240,6 +251,73 @@ Partial Class FormPurcReqList
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Departement"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "id_purc_req"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Requirement Date"
+        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn7.FieldName = "requirement_date"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 101
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Request Number"
+        Me.GridColumn8.FieldName = "purc_req_number"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.Width = 206
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Date Created"
+        Me.GridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn9.FieldName = "date_created"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
+        Me.GridColumn9.Width = 187
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Departement"
+        Me.GridColumn10.FieldName = "departement"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        Me.GridColumn10.Width = 183
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Created By"
+        Me.GridColumn11.FieldName = "created_by"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 172
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Status"
+        Me.GridColumn12.FieldName = "report_status"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.Width = 73
+        '
         'FormPurcReqList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -290,4 +368,11 @@ Partial Class FormPurcReqList
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

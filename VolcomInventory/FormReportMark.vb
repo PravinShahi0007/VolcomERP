@@ -2232,6 +2232,52 @@
             'End Try
         ElseIf report_mark_type = "40" Then
             'Entry Journal
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                ' date
+                Dim q_d As String = "SELECT id_report,report_mark_type,report_number,acc_trans_adj_number,date_created,date_reffrence,id_acc_trans FROM tb_a_acc_trans_adj WHERE id_acc_trans_adj='" & id_report & "'"
+                Dim dt_d As DataTable = execute_query(q_d, -1, True, "", "", "", "")
+
+                Dim date_created As String = Date.Parse(dt_d.Rows(0)("date_created").ToString).ToString("yyyy-MM-dd")
+                Dim id_trans As String = dt_d.Rows(0)("id_acc_trans").ToString
+                Dim t_number As String = dt_d.Rows(0)("acc_trans_adj_number").ToString
+                '
+                Dim trx_number As String = dt_d.Rows(0)("report_number").ToString
+                Dim trx_id As String = dt_d.Rows(0)("id_report").ToString
+                Dim trx_rmt As String = dt_d.Rows(0)("report_mark_type").ToString
+
+                ' select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','25','" + id_user_prepared + "', '" & date_created & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,report_mark_type_ref, id_report_ref, report_number_ref, id_comp)
+                    SELECT '" + id_acc_trans + "', a.id_acc, 0, a.credit AS debit, a.debit AS credit, a.acc_trans_det_note, '" + report_mark_type + "', '" + id_report + "', '" + t_number + "', '" + trx_rmt + "','" + trx_id + "','" + trx_number + "', 0
+                    FROM tb_a_acc_trans_det a 
+                    INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
+                    WHERE a.id_acc_trans='" + id_trans + "'
+                    UNION
+                    SELECT '" + id_acc_trans + "', ad.id_acc, 0, ad.debit, ad.credit, ad.acc_trans_adj_det_note, '" + report_mark_type + "', '" + id_report + "', a.acc_trans_adj_number, a.report_mark_type,a.id_report,a.report_number, 0
+                    FROM `tb_a_acc_trans_adj_det` ad
+                    INNER JOIN tb_a_acc_trans_adj a ON a.id_acc_trans_adj=ad.id_acc_trans_adj
+                    WHERE ad.`id_acc_trans_adj`='" + id_report + "'"
+                execute_non_query(qjd, True, "", "", "", "")
+                'set adjusted status
+                qjd = "UPDATE tb_a_acc_trans SET is_adjusted='1' WHERE id_acc_trans='" & id_trans & "'"
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
             query = String.Format("UPDATE tb_a_acc_trans_adj SET id_report_status='{0}' WHERE id_acc_trans_adj ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
@@ -5528,12 +5574,12 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                                     -- kas keluar
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, NULL,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,'' AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, NULL,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_from) AS `note`,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     UNION ALL
                                     -- cash advance
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, NULL,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,'' AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, NULL,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_to) AS `note`,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0"
                 execute_non_query(qjd, True, "", "", "", "")

@@ -156,10 +156,7 @@ Public Class FormAccounting
         query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM"
         query += " ("
         query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM tb_a_acc_trans_det GROUP BY id_acc"
-        query += " UNION"
-        query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM tb_a_acc_trans_adj_det GROUP BY id_acc"
-        query += " ) a GROUP BY id_acc"
-        query += " ) entry ON entry.id_acc=a.id_acc"
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim data_filter As DataRow() = data.Select("[id_acc_parent] is NULL AND [id_status]='1'")
 

@@ -86,6 +86,8 @@
 
             TERecNumber.Enabled = False
             view_list_rec()
+            BSave.Visible = False
+            PCRoll.Visible = False
         End If
         view_list_pcs()
         allow_status()
