@@ -26,13 +26,37 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnPending_Click(sender As Object, e As EventArgs) Handles BtnPending.Click
-        loadInvoice("AND sp.is_pending_mail=1 ")
+    Sub viewPendingInvoice()
+        GridColumnmail_numberinv.Visible = False
+        GridColumnmail_dateinv.Visible = False
+        GridColumnmail_statusinv.Visible = False
+        loadInvoice("AND sp.is_pending_mail=1 ", "1")
+        BCreatePO.Visible = True
     End Sub
 
-    Sub loadInvoice(ByVal cond As String)
+    Private Sub BtnPending_Click(sender As Object, e As EventArgs) Handles BtnPending.Click
+        viewPendingInvoice()
+    End Sub
+
+    Sub loadInvoice(ByVal cond As String, ByVal typ As String)
         Cursor = Cursors.WaitCursor
         Dim id_comp_group As String = SLEStoreGroup.EditValue.ToString
+
+        Dim qry_show_mail As String = ""
+        Dim col_show_mail As String = ""
+        If typ = "2" Then
+            'already proceess
+            col_show_mail = ", id_mail_manage, mail_number, mail_date, mail_status "
+            qry_show_mail = "LEFT JOIN (
+                SELECT m.id_mail_manage, m.number AS `mail_number`, 
+                m.updated_date AS `mail_date`,md.id_report, stt.mail_status
+                FROM tb_mail_manage_det md
+                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
+                INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
+                WHERE m.report_mark_type=225
+                GROUP BY md.id_report
+            ) em ON em.id_report = sp.id_sales_pos "
+        End If
 
         If id_comp_group = "0" Then
             stopCustom("Please select store group first")
@@ -42,12 +66,14 @@
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
             ,sp.report_mark_type,rmt.report_mark_type_name
             ,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days
+            " + col_show_mail + "
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
             INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+            " + qry_show_mail + "
             WHERE sp.`id_report_status`='6' AND c.id_comp_group='" + id_comp_group + "' 
             " + cond + "
             GROUP BY sp.`id_sales_pos` 
@@ -125,7 +151,11 @@
     End Sub
 
     Private Sub BtnAlreadyProcessed_Click(sender As Object, e As EventArgs) Handles BtnAlreadyProcessed.Click
-        loadInvoice("AND sp.is_pending_mail=2 ")
+        GridColumnmail_numberinv.VisibleIndex = "1"
+        GridColumnmail_dateinv.VisibleIndex = "2"
+        GridColumnmail_statusinv.VisibleIndex = "3"
+        loadInvoice("AND sp.is_pending_mail=2 ", "2")
+        BCreatePO.Visible = False
     End Sub
 
     Private Sub CESelectAllInvoice_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAllInvoice.CheckedChanged
@@ -176,10 +206,14 @@
             '---filter check
             makeSafeGV(GVInvoiceList)
             GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
-            'load detil form
-            FormMailManageDet.rmt = "225"
-            FormMailManageDet.action = "ins"
-            FormMailManageDet.ShowDialog()
+            If GVInvoiceList.RowCount > 0 Then
+                'load detil form
+                FormMailManageDet.rmt = "225"
+                FormMailManageDet.action = "ins"
+                FormMailManageDet.ShowDialog()
+            Else
+                stopCustom("No data selected")
+            End If
 
 
             GVInvoiceList.ActiveFilterString = ""
@@ -189,6 +223,7 @@
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
         GCInvoiceList.DataSource = Nothing
+        BCreatePO.Visible = False
     End Sub
 
     Sub viewMailManage()
@@ -360,10 +395,15 @@
             '---filter check
             makeSafeGV(GVUnpaid)
             GVUnpaid.ActiveFilterString = "[is_check]='yes'"
-            'load detil form
-            FormMailManageDet.rmt = rmt_unpaid
-            FormMailManageDet.action = "ins"
-            FormMailManageDet.ShowDialog()
+
+            If GVUnpaid.RowCount > 0 Then
+                'load detil form
+                FormMailManageDet.rmt = rmt_unpaid
+                FormMailManageDet.action = "ins"
+                FormMailManageDet.ShowDialog()
+            Else
+                stopCustom("No data selected")
+            End If
 
 
             GVUnpaid.ActiveFilterString = ""
@@ -412,10 +452,15 @@
             '---filter check
             makeSafeGV(GVUnpaid)
             GVUnpaid.ActiveFilterString = "[is_check]='yes'"
-            'load detil form
-            FormMailManageDet.rmt = rmt_unpaid
-            FormMailManageDet.action = "ins"
-            FormMailManageDet.ShowDialog()
+            If GVUnpaid.RowCount > 0 Then
+                'load detil form
+                FormMailManageDet.rmt = rmt_unpaid
+                FormMailManageDet.action = "ins"
+                FormMailManageDet.ShowDialog()
+            Else
+                stopCustom("No data selected")
+            End If
+
 
 
             GVUnpaid.ActiveFilterString = ""

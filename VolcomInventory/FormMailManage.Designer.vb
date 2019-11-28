@@ -137,6 +137,7 @@ Partial Class FormMailManage
         Me.BtnOverdue = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMinThreeOverdue = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPendingMailUnpaidGroupStoreMinThree = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPendingMailUnpaidGroupStore = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStoreGroupUnpaid = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -144,7 +145,9 @@ Partial Class FormMailManage
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnPendingMailUnpaidGroupStoreMinThree = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnmail_numberinv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_dateinv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_statusinv = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
@@ -475,7 +478,7 @@ Partial Class FormMailManage
         '
         'GVInvoiceList
         '
-        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnsales_pos_total, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumnAmount, Me.GridColumn12, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn25, Me.GridColumn26, Me.GridColumncomp_group_list, Me.GridColumnid_comp, Me.GridColumnsales_pos_total_qty, Me.GridColumnsales_pos_start_period, Me.GridColumnsales_pos_end_period})
+        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnsales_pos_total, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumnAmount, Me.GridColumn12, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn25, Me.GridColumn26, Me.GridColumncomp_group_list, Me.GridColumnid_comp, Me.GridColumnsales_pos_total_qty, Me.GridColumnsales_pos_start_period, Me.GridColumnsales_pos_end_period, Me.GridColumnmail_numberinv, Me.GridColumnmail_dateinv, Me.GridColumnmail_statusinv})
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total_qty", Me.GridColumnsales_pos_total_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total", Me.GridColumnsales_pos_total, "{0:N2}")})
         Me.GVInvoiceList.Name = "GVInvoiceList"
@@ -737,6 +740,7 @@ Partial Class FormMailManage
         Me.BCreatePO.Size = New System.Drawing.Size(99, 36)
         Me.BCreatePO.TabIndex = 19
         Me.BCreatePO.Text = "Proceed"
+        Me.BCreatePO.Visible = False
         '
         'PanelControl1
         '
@@ -1354,6 +1358,24 @@ Partial Class FormMailManage
         Me.PanelControl9.Size = New System.Drawing.Size(403, 39)
         Me.PanelControl9.TabIndex = 8929
         '
+        'BtnPendingMailUnpaidGroupStoreMinThree
+        '
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.BackColor = System.Drawing.Color.Orange
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseBackColor = True
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseFont = True
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseForeColor = True
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Location = New System.Drawing.Point(8, 9)
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Name = "BtnPendingMailUnpaidGroupStoreMinThree"
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Size = New System.Drawing.Size(196, 20)
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.TabIndex = 8934
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Text = "H-3 Jatuh Tempo (Store Group)"
+        '
         'BtnPendingMailUnpaidGroupStore
         '
         Me.BtnPendingMailUnpaidGroupStore.Appearance.BackColor = System.Drawing.Color.OrangeRed
@@ -1419,23 +1441,25 @@ Partial Class FormMailManage
         Me.LabelControl2.TabIndex = 8922
         Me.LabelControl2.Text = "Store Group"
         '
-        'BtnPendingMailUnpaidGroupStoreMinThree
+        'GridColumnmail_numberinv
         '
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.BackColor = System.Drawing.Color.Orange
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseBackColor = True
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseFont = True
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseForeColor = True
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Location = New System.Drawing.Point(8, 9)
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Name = "BtnPendingMailUnpaidGroupStoreMinThree"
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Size = New System.Drawing.Size(196, 20)
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.TabIndex = 8934
-        Me.BtnPendingMailUnpaidGroupStoreMinThree.Text = "H-3 Jatuh Tempo (Store Group)"
+        Me.GridColumnmail_numberinv.Caption = "Email No"
+        Me.GridColumnmail_numberinv.FieldName = "mail_number"
+        Me.GridColumnmail_numberinv.Name = "GridColumnmail_numberinv"
+        '
+        'GridColumnmail_dateinv
+        '
+        Me.GridColumnmail_dateinv.Caption = "Email Date"
+        Me.GridColumnmail_dateinv.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnmail_dateinv.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnmail_dateinv.FieldName = "mail_date"
+        Me.GridColumnmail_dateinv.Name = "GridColumnmail_dateinv"
+        '
+        'GridColumnmail_statusinv
+        '
+        Me.GridColumnmail_statusinv.Caption = "Email Status"
+        Me.GridColumnmail_statusinv.FieldName = "mail_status"
+        Me.GridColumnmail_statusinv.Name = "GridColumnmail_statusinv"
         '
         'FormMailManage
         '
@@ -1625,4 +1649,7 @@ Partial Class FormMailManage
     Friend WithEvents GridColumntotaldue As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnProceedEmailNotice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPendingMailUnpaidGroupStoreMinThree As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnmail_numberinv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmail_dateinv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnmail_statusinv As DevExpress.XtraGrid.Columns.GridColumn
 End Class

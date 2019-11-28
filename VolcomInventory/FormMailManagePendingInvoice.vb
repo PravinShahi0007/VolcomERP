@@ -89,7 +89,7 @@
             If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
                 Cursor = Cursors.WaitCursor
                 FormMailManage.SLEStoreGroup.EditValue = GVData.GetFocusedRowCellValue("id_comp_group").ToString
-                FormMailManage.loadInvoice("AND sp.is_pending_mail=1 ")
+                FormMailManage.viewPendingInvoice()
                 Close()
                 Cursor = Cursors.Default
             End If
