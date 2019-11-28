@@ -150,9 +150,31 @@
 	            INNER JOIN tb_report_mark rm ON rm.id_report = r.id_rec_payment AND rm.report_mark_type=162 AND rm.id_report_status=1
 	            WHERE rd.report_mark_type=118 AND s.id_comp_group='" + id_comp_group + "' AND s.id_commerce_type=2 
 	            AND so.sales_order_ol_shop_number='" + order_number + "'  
+                UNION ALL
+                -- bukti pickup
+                SELECT p.id_pickup AS `id_report`, 217, p.updated_date AS `trans_time`, LPAD(p.id_pickup,7,'0') AS `trans_number`, p.id_report_status 
+                FROM tb_del_pickup p
+                INNER JOIN tb_del_pickup_det pd ON pd.id_pickup = p.id_pickup
+                INNER JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = pd.id_pl_sales_order_del
+                INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = del.id_store_contact_to
+                INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+                INNER JOIN tb_m_comp_group sg ON sg.id_comp_group = s.id_comp_group
+                INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
+                WHERE so.sales_order_ol_shop_number='" + order_number + "' AND s.id_comp_group='" + id_comp_group + "' AND p.id_report_status=6
             ) a 
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = a.report_mark_type
             INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = a.id_report_status
+            UNION ALL
+            /*update status*/
+            SELECT 0 AS `id_report` , 0 AS `report_mark_type`, 'Status Updated' AS `trans_type`, stt.status_date AS trans_time, so.sales_order_ol_shop_number AS trans_number, 0 AS id_report_status, stt.`status` AS report_status
+            FROM tb_sales_order_det_status stt
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+            INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+            INNER JOIN tb_m_comp_group sg ON sg.id_comp_group = s.id_comp_group
+            WHERE so.sales_order_ol_shop_number='" + order_number + "' AND s.id_comp_group='" + id_comp_group + "' AND s.id_commerce_type=2
+            GROUP BY stt.`status`
             ORDER BY `trans_time` ASC "
             Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
             GCData.DataSource = dd

@@ -7,7 +7,7 @@
     End Sub
 
     Sub load_deduction()
-        Dim query As String = "SELECT 'no' AS is_check, pyd.id_payroll_deduction,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(sald.use_days = 2, '-', pyd.total_days) AS total_days,emp.`id_employee`,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,emp.`employee_code`,emp.`employee_name`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status,pyd.`deduction`,sald.`salary_deduction`,saldc.salary_deduction_cat,pyd.note FROM tb_emp_payroll_deduction pyd
+        Dim query As String = "SELECT 'no' AS is_check, pyd.id_payroll_deduction,IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) AS is_office_payroll,IF(IFNULL(dep.is_office_payroll, dep_ori.is_office_payroll) = '2', 'STORE', 'OFFICE') AS group_report,IF(sald.use_days = 2, '-', pyd.total_days) AS total_days,emp.`id_employee`,IFNULL(dep.departement, dep_ori.departement) AS departement,IF(dep.id_departement = 17, IFNULL(sub.departement_sub, sub_ori.departement_sub), IFNULL(dep.departement, dep_ori.departement)) AS departement_sub,emp.`employee_code`,emp.`employee_name`,IFNULL(emp_pos.employee_position,emp.`employee_position`) AS employee_position,IFNULL(sts.`employee_status`, sts_ori.`employee_status`) AS employee_status,pyd.`deduction`,pyd.`id_salary_deduction`,sald.`salary_deduction`,saldc.salary_deduction_cat,pyd.note FROM tb_emp_payroll_deduction pyd
             LEFT JOIN tb_m_employee emp ON emp.`id_employee`=pyd.`id_employee`
             LEFT JOIN (
                 SELECT * FROM (
@@ -178,78 +178,40 @@
             End If
         Next
 
-        'print office
-        Dim report1 As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
+        'report
+        Dim report As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
 
-        report1.PrintingSystem.ContinuousPageNumbering = False
+        report.type = "deduction"
+        report.id_payroll = id_payroll
+        report.id_pre = If(id_report_status = "6", "-1", "1")
 
-        report1.type = "deduction"
-        report1.id_payroll = id_payroll
-        report1.is_office_payroll = "1"
-        report1.id_pre = If(id_report_status = "6", "-1", "1")
+        report.XLTitle.Text = "Deduction"
+        report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
-        report1.XLTitle.Text = "Deduction"
-        report1.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report1.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report1.XLLocation.Text = "Office"
-
-        report1.CreateDocument()
-
-        'print store
-        Dim report2 As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
-
-        report2.type = "deduction"
-        report2.id_payroll = id_payroll
-        report2.is_office_payroll = "2"
-        report2.id_pre = If(id_report_status = "6", "-1", "1")
-
-        report2.XLTitle.Text = "Deduction"
-        report2.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report2.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report2.XLLocation.Text = "Store"
-
-        report2.CreateDocument()
-
-        'combine
-        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
-
-        'report1
-        If already_office Then
-            For i = 0 To report1.Pages.Count - 1
-                list.Add(report1.Pages(i))
-            Next
+        If Not already_office Then
+            report.DetailReportOffice.Visible = False
         End If
 
-        'report2
-        If already_store Then
-            For i = 0 To report2.Pages.Count - 1
-                list.Add(report2.Pages(i))
-            Next
+        If Not already_store Then
+            report.DetailReportStore.Visible = False
         End If
 
-        If already_office Then
-            report1.Pages.AddRange(list)
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report1)
-
-            tool.ShowPreview()
-        End If
-
-        If already_store And Not already_office Then
-            report2.Pages.AddRange(list)
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report2)
-
-            tool.ShowPreview()
-        End If
+        tool.ShowPreview()
     End Sub
 
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
-        FormEmpPayrollDeductionDet.id = GVDeduction.GetFocusedRowCellValue("id_payroll_deduction")
-        FormEmpPayrollDeductionDet.id_popup = "1"
-        FormEmpPayrollDeductionDet.id_payroll = id_payroll
+        If Not GVDeduction.GetFocusedRowCellValue("id_salary_deduction").ToString = "1" Then
+            FormEmpPayrollDeductionDet.id = GVDeduction.GetFocusedRowCellValue("id_payroll_deduction")
+            FormEmpPayrollDeductionDet.id_popup = "1"
+            FormEmpPayrollDeductionDet.id_payroll = id_payroll
 
-        FormEmpPayrollDeductionDet.ShowDialog()
+            FormEmpPayrollDeductionDet.ShowDialog()
+        Else
+            errorCustom("BPJS Kesehatan Contribution cannot be edited")
+        End If
     End Sub
 
     Private Sub GVDeduction_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVDeduction.CustomDrawRowFooter
@@ -290,6 +252,14 @@
 
         If info.Column.Caption = "Sub Departement" And Not info.EditValue.ToString.Contains("SOGO") Then
             info.GroupText = " "
+        End If
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles RepositoryItemCheckEdit.EditValueChanging
+        If GVDeduction.GetFocusedRowCellValue("id_salary_deduction").ToString = "1" Then
+            errorCustom("BPJS Kesehatan Contribution cannot be deleted")
+
+            e.Cancel = True
         End If
     End Sub
 End Class

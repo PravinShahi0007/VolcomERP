@@ -44,8 +44,9 @@ Partial Class FormItemReqAddStore
         Me.TxtQty = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LAvailable = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAvailable = New DevExpress.XtraEditors.TextEdit()
+        Me.CEStoreRequest = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,11 +58,12 @@ Partial Class FormItemReqAddStore
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAvailable.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEStoreRequest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(17, 19)
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 7)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl1.TabIndex = 21
@@ -69,7 +71,7 @@ Partial Class FormItemReqAddStore
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(194, 19)
+        Me.LabelControl2.Location = New System.Drawing.Point(17, 52)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl2.TabIndex = 23
@@ -77,12 +79,12 @@ Partial Class FormItemReqAddStore
         '
         'SLECat
         '
-        Me.SLECat.Location = New System.Drawing.Point(17, 34)
+        Me.SLECat.Location = New System.Drawing.Point(17, 26)
         Me.SLECat.Name = "SLECat"
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.ShowClearButton = False
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECat.Size = New System.Drawing.Size(173, 20)
+        Me.SLECat.Size = New System.Drawing.Size(241, 20)
         Me.SLECat.TabIndex = 0
         '
         'SearchLookUpEdit1View
@@ -109,12 +111,12 @@ Partial Class FormItemReqAddStore
         '
         'SLEItem
         '
-        Me.SLEItem.Location = New System.Drawing.Point(194, 34)
+        Me.SLEItem.Location = New System.Drawing.Point(17, 71)
         Me.SLEItem.Name = "SLEItem"
         Me.SLEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItem.Properties.ShowClearButton = False
         Me.SLEItem.Properties.View = Me.GridView1
-        Me.SLEItem.Size = New System.Drawing.Size(239, 20)
+        Me.SLEItem.Size = New System.Drawing.Size(416, 20)
         Me.SLEItem.TabIndex = 1
         '
         'GridView1
@@ -144,9 +146,9 @@ Partial Class FormItemReqAddStore
         Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.BtnAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 207)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 235)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(563, 48)
+        Me.PanelControl1.Size = New System.Drawing.Size(563, 45)
         Me.PanelControl1.TabIndex = 100
         '
         'BtnClose
@@ -155,7 +157,7 @@ Partial Class FormItemReqAddStore
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
         Me.BtnClose.Location = New System.Drawing.Point(394, 2)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(83, 44)
+        Me.BtnClose.Size = New System.Drawing.Size(83, 41)
         Me.BtnClose.TabIndex = 6
         Me.BtnClose.Text = "Close"
         '
@@ -165,13 +167,13 @@ Partial Class FormItemReqAddStore
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
         Me.BtnAdd.Location = New System.Drawing.Point(477, 2)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(84, 44)
+        Me.BtnAdd.Size = New System.Drawing.Size(84, 41)
         Me.BtnAdd.TabIndex = 5
         Me.BtnAdd.Text = "Add"
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(17, 65)
+        Me.LabelControl3.Location = New System.Drawing.Point(17, 93)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(26, 13)
         Me.LabelControl3.TabIndex = 25
@@ -179,7 +181,7 @@ Partial Class FormItemReqAddStore
         '
         'SLEStore
         '
-        Me.SLEStore.Location = New System.Drawing.Point(17, 84)
+        Me.SLEStore.Location = New System.Drawing.Point(17, 112)
         Me.SLEStore.Name = "SLEStore"
         Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStore.Properties.NullText = "- Select Store -"
@@ -224,7 +226,7 @@ Partial Class FormItemReqAddStore
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(439, 65)
+        Me.LabelControl4.Location = New System.Drawing.Point(441, 93)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl4.TabIndex = 27
@@ -232,7 +234,7 @@ Partial Class FormItemReqAddStore
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(439, 84)
+        Me.TxtQty.Location = New System.Drawing.Point(441, 112)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -243,32 +245,32 @@ Partial Class FormItemReqAddStore
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(17, 133)
+        Me.MENote.Location = New System.Drawing.Point(17, 161)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(528, 51)
+        Me.MENote.Size = New System.Drawing.Size(530, 51)
         Me.MENote.TabIndex = 4
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(17, 114)
+        Me.LabelControl5.Location = New System.Drawing.Point(17, 142)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl5.TabIndex = 102
         Me.LabelControl5.Text = "Remark"
         '
-        'LabelControl6
+        'LAvailable
         '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(439, 19)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(52, 13)
-        Me.LabelControl6.TabIndex = 103
-        Me.LabelControl6.Text = "Available"
+        Me.LAvailable.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LAvailable.Location = New System.Drawing.Point(441, 56)
+        Me.LAvailable.Name = "LAvailable"
+        Me.LAvailable.Size = New System.Drawing.Size(52, 13)
+        Me.LAvailable.TabIndex = 103
+        Me.LAvailable.Text = "Available"
         '
         'TxtAvailable
         '
         Me.TxtAvailable.Enabled = False
-        Me.TxtAvailable.Location = New System.Drawing.Point(439, 34)
+        Me.TxtAvailable.Location = New System.Drawing.Point(441, 71)
         Me.TxtAvailable.Name = "TxtAvailable"
         Me.TxtAvailable.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtAvailable.Properties.Appearance.Options.UseFont = True
@@ -279,13 +281,22 @@ Partial Class FormItemReqAddStore
         Me.TxtAvailable.Size = New System.Drawing.Size(106, 20)
         Me.TxtAvailable.TabIndex = 104
         '
+        'CEStoreRequest
+        '
+        Me.CEStoreRequest.Location = New System.Drawing.Point(264, 26)
+        Me.CEStoreRequest.Name = "CEStoreRequest"
+        Me.CEStoreRequest.Properties.Caption = "From Purchasing Storage"
+        Me.CEStoreRequest.Size = New System.Drawing.Size(143, 19)
+        Me.CEStoreRequest.TabIndex = 8912
+        '
         'FormItemReqAddStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(563, 255)
+        Me.ClientSize = New System.Drawing.Size(563, 280)
+        Me.Controls.Add(Me.CEStoreRequest)
         Me.Controls.Add(Me.TxtAvailable)
-        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.LAvailable)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.MENote)
         Me.Controls.Add(Me.TxtQty)
@@ -314,6 +325,7 @@ Partial Class FormItemReqAddStore
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAvailable.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEStoreRequest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -342,6 +354,7 @@ Partial Class FormItemReqAddStore
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnCompNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnComp As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LAvailable As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtAvailable As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CEStoreRequest As DevExpress.XtraEditors.CheckEdit
 End Class

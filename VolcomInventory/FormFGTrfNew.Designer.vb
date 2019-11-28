@@ -77,6 +77,7 @@ Partial Class FormFGTrfNew
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,7 +364,7 @@ Partial Class FormFGTrfNew
         Me.XTPSOList.Controls.Add(Me.PanelControlNavPrepare)
         Me.XTPSOList.Name = "XTPSOList"
         Me.XTPSOList.Size = New System.Drawing.Size(668, 357)
-        Me.XTPSOList.Text = "Prepare Order List"
+        Me.XTPSOList.Text = "Order List"
         '
         'GCSalesOrder
         '
@@ -378,7 +379,7 @@ Partial Class FormFGTrfNew
         '
         'GVSalesOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnCreatedProcess, Me.GridColumnReference, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate})
+        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnCreatedProcess, Me.GridColumnReference, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate, Me.GridColumnorder_type})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.Name = "GVSalesOrder"
         Me.GVSalesOrder.OptionsBehavior.ReadOnly = True
@@ -393,7 +394,7 @@ Partial Class FormFGTrfNew
         Me.GridColumnSalesTargetNumb.Name = "GridColumnSalesTargetNumb"
         Me.GridColumnSalesTargetNumb.Visible = True
         Me.GridColumnSalesTargetNumb.VisibleIndex = 0
-        Me.GridColumnSalesTargetNumb.Width = 128
+        Me.GridColumnSalesTargetNumb.Width = 195
         '
         'GridColumnTo
         '
@@ -401,8 +402,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnTo.FieldName = "store_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 2
-        Me.GridColumnTo.Width = 116
+        Me.GridColumnTo.VisibleIndex = 3
+        Me.GridColumnTo.Width = 182
         '
         'GridColumnSalesTargetDate
         '
@@ -412,8 +413,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnSalesTargetDate.FieldName = "sales_order_date"
         Me.GridColumnSalesTargetDate.Name = "GridColumnSalesTargetDate"
         Me.GridColumnSalesTargetDate.Visible = True
-        Me.GridColumnSalesTargetDate.VisibleIndex = 5
-        Me.GridColumnSalesTargetDate.Width = 94
+        Me.GridColumnSalesTargetDate.VisibleIndex = 6
+        Me.GridColumnSalesTargetDate.Width = 147
         '
         'GridColumnDSalesTargetNote
         '
@@ -435,8 +436,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnPrepareStatus.FieldName = "prepare_status"
         Me.GridColumnPrepareStatus.Name = "GridColumnPrepareStatus"
         Me.GridColumnPrepareStatus.Visible = True
-        Me.GridColumnPrepareStatus.VisibleIndex = 7
-        Me.GridColumnPrepareStatus.Width = 78
+        Me.GridColumnPrepareStatus.VisibleIndex = 8
+        Me.GridColumnPrepareStatus.Width = 122
         '
         'GridColumn9
         '
@@ -445,8 +446,8 @@ Partial Class FormFGTrfNew
         Me.GridColumn9.FieldName = "so_completness"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
-        Me.GridColumn9.Width = 99
+        Me.GridColumn9.VisibleIndex = 11
+        Me.GridColumn9.Width = 167
         '
         'GridColumnIdSalesOrder
         '
@@ -462,8 +463,8 @@ Partial Class FormFGTrfNew
         Me.GridColumn1Category.FieldNameSortGroup = "id_so_status"
         Me.GridColumn1Category.Name = "GridColumn1Category"
         Me.GridColumn1Category.Visible = True
-        Me.GridColumn1Category.VisibleIndex = 4
-        Me.GridColumn1Category.Width = 78
+        Me.GridColumn1Category.VisibleIndex = 5
+        Me.GridColumn1Category.Width = 122
         '
         'GridColumn10
         '
@@ -471,8 +472,8 @@ Partial Class FormFGTrfNew
         Me.GridColumn10.FieldName = "warehouse_name_to"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        Me.GridColumn10.Width = 78
+        Me.GridColumn10.VisibleIndex = 4
+        Me.GridColumn10.Width = 122
         '
         'GridColumnReff
         '
@@ -491,8 +492,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnCreatedProcess.FieldName = "created_process"
         Me.GridColumnCreatedProcess.Name = "GridColumnCreatedProcess"
         Me.GridColumnCreatedProcess.Visible = True
-        Me.GridColumnCreatedProcess.VisibleIndex = 6
-        Me.GridColumnCreatedProcess.Width = 95
+        Me.GridColumnCreatedProcess.VisibleIndex = 7
+        Me.GridColumnCreatedProcess.Width = 149
         '
         'GridColumnReference
         '
@@ -500,7 +501,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnReference.FieldName = "sales_order_gen_reff"
         Me.GridColumnReference.Name = "GridColumnReference"
         Me.GridColumnReference.Visible = True
-        Me.GridColumnReference.VisibleIndex = 1
+        Me.GridColumnReference.VisibleIndex = 2
+        Me.GridColumnReference.Width = 117
         '
         'GridColumnPrintedBy
         '
@@ -509,7 +511,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnPrintedBy.Name = "GridColumnPrintedBy"
         Me.GridColumnPrintedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnPrintedBy.Visible = True
-        Me.GridColumnPrintedBy.VisibleIndex = 8
+        Me.GridColumnPrintedBy.VisibleIndex = 9
+        Me.GridColumnPrintedBy.Width = 117
         '
         'GridColumnPrintedDate
         '
@@ -520,7 +523,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnPrintedDate.Name = "GridColumnPrintedDate"
         Me.GridColumnPrintedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnPrintedDate.Visible = True
-        Me.GridColumnPrintedDate.VisibleIndex = 9
+        Me.GridColumnPrintedDate.VisibleIndex = 10
+        Me.GridColumnPrintedDate.Width = 117
         '
         'GridView2
         '
@@ -611,6 +615,15 @@ Partial Class FormFGTrfNew
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
+        '
+        'GridColumnorder_type
+        '
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.OptionsColumn.AllowEdit = False
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
         '
         'FormFGTrfNew
         '
@@ -711,4 +724,5 @@ Partial Class FormFGTrfNew
     Friend WithEvents GridColumnPrintedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrintedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnpreparedby As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

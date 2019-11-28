@@ -1,6 +1,9 @@
 ﻿Public Class FormItemReqAdd
     Public data_par As DataTable
-
+    '
+    Dim is_from_storage As Boolean = False
+    Public id_departement As String = "-1"
+    '
     Private Sub FormItemReqAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCat()
         fill_dt()
@@ -45,12 +48,18 @@
         Else
             id_item_cat = "AND im.id_item_cat='" + id_item_cat + "' "
         End If
-        Dim cond As String = "AND (i.id_departement=" + id_departement_user + " OR i.id_departement=" + id_purc_store + ") " + id_item_cat
+        '
+        Dim cond As String = ""
+
+        If is_from_storage = True Then
+            cond = "AND (i.id_departement=" + id_purc_store + ") " + id_item_cat
+        Else
+            cond = "AND (i.id_departement=" + id_departement + ") " + id_item_cat
+        End If
 
         Dim stc As New ClassPurcItemStock()
         Dim query As String = stc.queryGetStock(cond, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
 
         'data
         If data_par.Rows.Count = 0 Then
@@ -75,6 +84,14 @@
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        If CEStoreRequest.Checked = True Then
+            is_from_storage = True
+            GridColumnQty.Visible = False
+        Else
+            is_from_storage = False
+            GridColumnQty.VisibleIndex = 3
+        End If
+        '
         viewData()
     End Sub
 
@@ -87,7 +104,7 @@
             Dim rh As Integer = e.RowHandle
             If e.Value >= 0 Then
                 Dim old_value As Decimal = GVSOH.ActiveEditor.OldEditValue
-                If e.Value > GVSOH.GetRowCellValue(rh, "qty") Then
+                If e.Value > GVSOH.GetRowCellValue(rh, "qty") And is_from_storage = False Then
                     warningCustom("Can't exceed " + GVSOH.GetRowCellValue(rh, "qty").ToString)
                     GVSOH.SetRowCellValue(rh, "qty_req", old_value)
                 End If
@@ -108,6 +125,11 @@
                 newRow("id_item") = GVSOH.GetRowCellValue(i, "id_item").ToString
                 newRow("item_desc") = GVSOH.GetRowCellValue(i, "item_desc").ToString
                 newRow("qty") = GVSOH.GetRowCellValue(i, "qty_req")
+                If is_from_storage = True Then
+                    newRow("is_store_request") = "yes"
+                Else
+                    newRow("is_store_request") = "no"
+                End If
                 newRow("remark") = GVSOH.GetRowCellValue(i, "remark").ToString
                 TryCast(FormItemReqDet.GCData.DataSource, DataTable).Rows.Add(newRow)
                 FormItemReqDet.GCData.RefreshDataSource()

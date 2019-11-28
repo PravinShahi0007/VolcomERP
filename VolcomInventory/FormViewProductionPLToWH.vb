@@ -90,10 +90,26 @@
         End Try
         view_barcode_list()
         viewDetail()
+        viewReference()
         check_but()
         allowDelete()
         allow_status()
     End Sub
+
+    Sub viewReference()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT plq.id_prod_fc, q.prod_fc_number, SUM(qd.prod_fc_det_qty) AS `total_qty`
+        FROM tb_pl_prod_order_qc plq
+        INNER JOIN tb_prod_fc q ON q.id_prod_fc = plq.id_prod_fc
+        INNER JOIN tb_prod_fc_det qd ON qd.id_prod_fc = q.id_prod_fc
+        WHERE plq.id_pl_prod_order=" + id_pl_prod_order + "
+        GROUP BY qd.id_prod_fc "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCQC.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+
     Sub allow_status()
         MENote.Properties.ReadOnly = True
         DERet.Properties.ReadOnly = True

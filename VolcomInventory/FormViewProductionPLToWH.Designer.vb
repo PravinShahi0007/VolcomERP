@@ -19,76 +19,85 @@ Partial Class FormViewProductionPLToWH
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormViewProductionPLToWH))
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl
-        Me.PanelControlTopMain = New DevExpress.XtraEditors.PanelControl
-        Me.TxtAllocation = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl
-        Me.MEAdrressCompTo = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit
-        Me.TEDesign = New DevExpress.XtraEditors.TextEdit
-        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit
-        Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit
-        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl
-        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtRetOutNumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl
-        Me.DERet = New DevExpress.XtraEditors.TextEdit
-        Me.PEView = New DevExpress.XtraEditors.PictureEdit
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl
-        Me.PBProcess = New System.Windows.Forms.ProgressBar
-        Me.LabelStatusProcess = New DevExpress.XtraEditors.LabelControl
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl
-        Me.SCCReturn = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupControlRet = New DevExpress.XtraEditors.GroupControl
-        Me.GCRetDetail = New DevExpress.XtraGrid.GridControl
-        Me.GVRetDetail = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdRet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSamplePurcDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnEanCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUniqueRange = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl
-        Me.GCBarcode = New DevExpress.XtraGrid.GridControl
-        Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdProdOrderDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControlTopMain = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtAllocation = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEAdrressCompTo = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtRetOutNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DERet = New DevExpress.XtraEditors.TextEdit()
+        Me.PEView = New DevExpress.XtraEditors.PictureEdit()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.PBProcess = New System.Windows.Forms.ProgressBar()
+        Me.LabelStatusProcess = New DevExpress.XtraEditors.LabelControl()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.SCCReturn = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControlRet = New DevExpress.XtraEditors.GroupControl()
+        Me.GCRetDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVRetDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdRet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSamplePurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEanCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUniqueRange = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
+        Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
+        Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProdOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPProductList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPQCRef = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCQC = New DevExpress.XtraGrid.GridControl()
+        Me.GVQC = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnprod_fc_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_pl_prod_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +141,12 @@ Partial Class FormViewProductionPLToWH
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPProductList.SuspendLayout()
+        Me.XTPQCRef.SuspendLayout()
+        CType(Me.GCQC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVQC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -148,16 +163,16 @@ Partial Class FormViewProductionPLToWH
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnAttachment.Location = New System.Drawing.Point(476, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(474, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(395, 32)
+        Me.BtnAttachment.Size = New System.Drawing.Size(397, 32)
         Me.BtnAttachment.TabIndex = 5
         Me.BtnAttachment.Text = "Attachment"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.Location = New System.Drawing.Point(22, 2)
+        Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
         Me.BMark.Size = New System.Drawing.Size(454, 32)
         Me.BMark.TabIndex = 4
@@ -216,15 +231,15 @@ Partial Class FormViewProductionPLToWH
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl4)
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControlTopMain.Location = New System.Drawing.Point(131, 2)
+        Me.PanelControlTopMain.Location = New System.Drawing.Point(129, 2)
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
-        Me.PanelControlTopMain.Size = New System.Drawing.Size(464, 129)
+        Me.PanelControlTopMain.Size = New System.Drawing.Size(466, 129)
         Me.PanelControlTopMain.TabIndex = 10007
         '
         'TxtAllocation
         '
         Me.TxtAllocation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtAllocation.EditValue = ""
         Me.TxtAllocation.Location = New System.Drawing.Point(82, 170)
         Me.TxtAllocation.Name = "TxtAllocation"
@@ -232,7 +247,7 @@ Partial Class FormViewProductionPLToWH
         Me.TxtAllocation.Properties.Appearance.Options.UseFont = True
         Me.TxtAllocation.Properties.EditValueChangedDelay = 1
         Me.TxtAllocation.Properties.ReadOnly = True
-        Me.TxtAllocation.Size = New System.Drawing.Size(340, 20)
+        Me.TxtAllocation.Size = New System.Drawing.Size(342, 20)
         Me.TxtAllocation.TabIndex = 10005
         Me.TxtAllocation.TabStop = False
         '
@@ -289,7 +304,7 @@ Partial Class FormViewProductionPLToWH
         'TEDesign
         '
         Me.TEDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEDesign.EditValue = ""
         Me.TEDesign.Location = New System.Drawing.Point(82, 84)
         Me.TEDesign.Name = "TEDesign"
@@ -297,14 +312,14 @@ Partial Class FormViewProductionPLToWH
         Me.TEDesign.Properties.Appearance.Options.UseFont = True
         Me.TEDesign.Properties.EditValueChangedDelay = 1
         Me.TEDesign.Properties.ReadOnly = True
-        Me.TEDesign.Size = New System.Drawing.Size(340, 20)
+        Me.TEDesign.Size = New System.Drawing.Size(342, 20)
         Me.TEDesign.TabIndex = 10002
         Me.TEDesign.TabStop = False
         '
         'TxtNameCompFrom
         '
         Me.TxtNameCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNameCompFrom.EditValue = ""
         Me.TxtNameCompFrom.Location = New System.Drawing.Point(190, 32)
         Me.TxtNameCompFrom.Name = "TxtNameCompFrom"
@@ -312,7 +327,7 @@ Partial Class FormViewProductionPLToWH
         Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(232, 20)
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(234, 20)
         Me.TxtNameCompFrom.TabIndex = 8888
         Me.TxtNameCompFrom.TabStop = False
         '
@@ -341,7 +356,7 @@ Partial Class FormViewProductionPLToWH
         'TxtNameCompTo
         '
         Me.TxtNameCompTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNameCompTo.EditValue = ""
         Me.TxtNameCompTo.Location = New System.Drawing.Point(190, 58)
         Me.TxtNameCompTo.Name = "TxtNameCompTo"
@@ -349,20 +364,20 @@ Partial Class FormViewProductionPLToWH
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompTo.Properties.ReadOnly = True
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(232, 20)
+        Me.TxtNameCompTo.Size = New System.Drawing.Size(234, 20)
         Me.TxtNameCompTo.TabIndex = 5555
         Me.TxtNameCompTo.TabStop = False
         '
         'TxtOrderNumber
         '
         Me.TxtOrderNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtOrderNumber.EditValue = ""
         Me.TxtOrderNumber.Location = New System.Drawing.Point(82, 6)
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtOrderNumber.Properties.ReadOnly = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(340, 20)
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(342, 20)
         Me.TxtOrderNumber.TabIndex = 9999
         '
         'LabelControl3
@@ -462,7 +477,7 @@ Partial Class FormViewProductionPLToWH
         '
         Me.PEView.Dock = System.Windows.Forms.DockStyle.Left
         Me.PEView.Enabled = False
-        Me.PEView.Location = New System.Drawing.Point(22, 2)
+        Me.PEView.Location = New System.Drawing.Point(20, 2)
         Me.PEView.Name = "PEView"
         Me.PEView.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PEView.Properties.ShowMenu = False
@@ -563,7 +578,7 @@ Partial Class FormViewProductionPLToWH
         Me.SCCReturn.Horizontal = False
         Me.SCCReturn.Location = New System.Drawing.Point(0, 133)
         Me.SCCReturn.Name = "SCCReturn"
-        Me.SCCReturn.Panel1.Controls.Add(Me.GroupControlRet)
+        Me.SCCReturn.Panel1.Controls.Add(Me.XtraTabControl1)
         Me.SCCReturn.Panel1.Text = "Panel1"
         Me.SCCReturn.Panel2.Controls.Add(Me.GroupControlListBarcode)
         Me.SCCReturn.Panel2.Text = "Panel2"
@@ -582,19 +597,19 @@ Partial Class FormViewProductionPLToWH
         Me.GroupControlRet.Enabled = False
         Me.GroupControlRet.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlRet.Name = "GroupControlRet"
-        Me.GroupControlRet.Size = New System.Drawing.Size(873, 171)
+        Me.GroupControlRet.Size = New System.Drawing.Size(867, 143)
         Me.GroupControlRet.TabIndex = 180
         Me.GroupControlRet.Text = "Product List"
         '
         'GCRetDetail
         '
         Me.GCRetDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRetDetail.Location = New System.Drawing.Point(22, 2)
+        Me.GCRetDetail.Location = New System.Drawing.Point(20, 2)
         Me.GCRetDetail.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(849, 167)
+        Me.GCRetDetail.Size = New System.Drawing.Size(845, 139)
         Me.GCRetDetail.TabIndex = 1
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -710,7 +725,7 @@ Partial Class FormViewProductionPLToWH
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
@@ -761,11 +776,11 @@ Partial Class FormViewProductionPLToWH
         'GCBarcode
         '
         Me.GCBarcode.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBarcode.Location = New System.Drawing.Point(22, 2)
+        Me.GCBarcode.Location = New System.Drawing.Point(20, 2)
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(849, 162)
+        Me.GCBarcode.Size = New System.Drawing.Size(851, 162)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -841,12 +856,86 @@ Partial Class FormViewProductionPLToWH
         'RepositoryItemSpinEdit2
         '
         Me.RepositoryItemSpinEdit2.AutoHeight = False
-        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit2.EditValueChangedDelay = 50
         Me.RepositoryItemSpinEdit2.Mask.EditMask = "n2"
         Me.RepositoryItemSpinEdit2.Mask.SaveLiteral = False
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
+        '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPProductList
+        Me.XtraTabControl1.Size = New System.Drawing.Size(873, 171)
+        Me.XtraTabControl1.TabIndex = 181
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPProductList, Me.XTPQCRef})
+        '
+        'XTPProductList
+        '
+        Me.XTPProductList.Controls.Add(Me.GroupControlRet)
+        Me.XTPProductList.Name = "XTPProductList"
+        Me.XTPProductList.Size = New System.Drawing.Size(867, 143)
+        Me.XTPProductList.Text = "Product List"
+        '
+        'XTPQCRef
+        '
+        Me.XTPQCRef.Controls.Add(Me.GCQC)
+        Me.XTPQCRef.Name = "XTPQCRef"
+        Me.XTPQCRef.Size = New System.Drawing.Size(867, 143)
+        Me.XTPQCRef.Text = "QC Reference"
+        '
+        'GCQC
+        '
+        Me.GCQC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCQC.Location = New System.Drawing.Point(0, 0)
+        Me.GCQC.MainView = Me.GVQC
+        Me.GCQC.Name = "GCQC"
+        Me.GCQC.Size = New System.Drawing.Size(867, 143)
+        Me.GCQC.TabIndex = 1
+        Me.GCQC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVQC})
+        '
+        'GVQC
+        '
+        Me.GVQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnprod_fc_number, Me.GridColumntotal_qty, Me.GridColumnid_pl_prod_order, Me.GridColumnstt})
+        Me.GVQC.GridControl = Me.GCQC
+        Me.GVQC.Name = "GVQC"
+        Me.GVQC.OptionsBehavior.Editable = False
+        Me.GVQC.OptionsView.ShowFooter = True
+        Me.GVQC.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnprod_fc_number
+        '
+        Me.GridColumnprod_fc_number.Caption = "Number"
+        Me.GridColumnprod_fc_number.FieldName = "prod_fc_number"
+        Me.GridColumnprod_fc_number.Name = "GridColumnprod_fc_number"
+        Me.GridColumnprod_fc_number.Visible = True
+        Me.GridColumnprod_fc_number.VisibleIndex = 0
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 1
+        '
+        'GridColumnid_pl_prod_order
+        '
+        Me.GridColumnid_pl_prod_order.Caption = "id_pl_prod_order"
+        Me.GridColumnid_pl_prod_order.FieldName = "id_pl_prod_order"
+        Me.GridColumnid_pl_prod_order.Name = "GridColumnid_pl_prod_order"
+        '
+        'GridColumnstt
+        '
+        Me.GridColumnstt.Caption = "Status"
+        Me.GridColumnstt.FieldName = "stt"
+        Me.GridColumnstt.Name = "GridColumnstt"
         '
         'FormViewProductionPLToWH
         '
@@ -908,6 +997,12 @@ Partial Class FormViewProductionPLToWH
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPProductList.ResumeLayout(False)
+        Me.XTPQCRef.ResumeLayout(False)
+        CType(Me.GCQC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVQC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -979,4 +1074,13 @@ Partial Class FormViewProductionPLToWH
     Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents TxtAllocation As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPProductList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPQCRef As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCQC As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVQC As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnprod_fc_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pl_prod_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstt As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -10,7 +10,7 @@ Public Class FormPopUpCOA
     Private helpery As MyTreeListSearchHelper
 
     Private Sub FormPopUpCOA_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If id_pop_up = "8" Or id_pop_up = "9" Or id_pop_up = "10" Or id_pop_up = "11" Or id_pop_up = "12" Then
+        If id_pop_up = "8" Or id_pop_up = "9" Or id_pop_up = "10" Or id_pop_up = "11" Or id_pop_up = "12" Or id_pop_up = "13" Then
             XTPOpenTrans.PageVisible = False
             XTPAccount.PageVisible = False
         End If
@@ -289,7 +289,8 @@ Public Class FormPopUpCOA
                 Dim newRow As DataRow = (TryCast(FormAccountingJournalBill.GCJournalDet.DataSource, DataTable)).NewRow()
                 newRow("id_acc") = TreeList1.FocusedNode("id_acc").ToString()
                 newRow("acc_name") = TreeList1.FocusedNode("acc_name").ToString()
-                newRow("note") = TreeList1.FocusedNode("acc_description").ToString()
+                newRow("acc_description") = TreeList1.FocusedNode("acc_description").ToString()
+                newRow("note") = ""
                 newRow("debit") = 0
                 newRow("credit") = 0
                 newRow("id_comp") = 0
@@ -303,6 +304,7 @@ Public Class FormPopUpCOA
                 ' FormAccountingJournalDet.check_but()
                 FormAccountingJournalBill.but_check()
                 FormAccountingJournalBill.GVJournalDet.FocusedRowHandle = 0
+                FormAccountingJournalBill.GVJournalDet.BestFitColumns()
                 Close()
             End If
         ElseIf id_pop_up = "7" Then 'Mapping in company single
@@ -352,6 +354,12 @@ Public Class FormPopUpCOA
             FormAccounting.acc_coa_vat_in = GVAcc.GetFocusedRowCellValue("id_acc").ToString
             FormAccounting.TxtVATAccount.Text = GVAcc.GetFocusedRowCellValue("acc_name").ToString
             FormAccounting.TxtVATDesc.Text = GVAcc.GetFocusedRowCellValue("acc_description").ToString
+            Close()
+        ElseIf id_pop_up = "13" Then 'general setup
+            'claim account
+            FormAccounting.acc_coa_claim = GVAcc.GetFocusedRowCellValue("id_acc").ToString
+            FormAccounting.TEClaimAccount.Text = GVAcc.GetFocusedRowCellValue("acc_name").ToString
+            FormAccounting.TEClaimDesc.Text = GVAcc.GetFocusedRowCellValue("acc_description").ToString
             Close()
         End If
     End Sub

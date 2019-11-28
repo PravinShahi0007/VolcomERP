@@ -6,16 +6,30 @@
         Close()
     End Sub
 
-    Private Sub FormPurcItemDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub load_form()
+        load_vendor_type()
         load_uom()
         load_item_type()
         load_purc_cat()
         load_cat()
-        load_vendor_type()
         '
         If Not id_item = "-1" Then 'edit
-            Dim query As String = "SELECT * FROM tb_item WHERE id_item='" & id_item & "'"
+            TEStatus.Visible = True
+            LStatus.Visible = True
+
+            Dim query As String = "SELECT it.*,icd.`id_vendor_type` FROM tb_item it
+INNER JOIN tb_item_cat_detail icd ON icd.id_item_cat_detail=it.id_item_cat_detail 
+WHERE it.id_item='" & id_item & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            If data.Rows(0)("is_active").ToString = "1" Then
+                TEStatus.Text = "Active"
+                BNonActive.Visible = True
+            Else
+                TEStatus.Text = "Not Active"
+                BNonActive.Visible = False
+            End If
+
             TECode.Text = data.Rows(0)("id_item").ToString
             TEDesc.Text = data.Rows(0)("item_desc").ToString
 
@@ -24,12 +38,15 @@
             '
             SLEPurchaseCategory.EditValue = data.Rows(0)("id_item_cat_detail").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
+            SLEVendorType.EditValue = data.Rows(0)("id_vendor_type").ToString
             '
             load_price()
             load_doc()
+            load_history()
             '
             XTPAttachment.PageVisible = True
             XTPPriceList.PageVisible = True
+            XTPHistory.PageVisible = True
 
             'check if item already PR
             query = "SELECT * FROM tb_purc_req_det prd 
@@ -47,17 +64,25 @@ WHERE pr.id_report_status!=5"
                 PCSetPrice.Visible = True
             End If
         Else
+            TEStatus.Visible = False
+            LStatus.Visible = False
+
             TECode.Text = "[Auto Generate]"
             '
             XTPAttachment.PageVisible = False
             XTPPriceList.PageVisible = False
+            XTPHistory.PageVisible = False
             '
             SLEPurchaseCategory.EditValue = Nothing
         End If
     End Sub
 
+    Private Sub FormPurcItemDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
     Sub load_vendor_type()
-        Dim query As String = "SELECT * FROM tb_vendor_type"
+        Dim query As String = "SELECT id_vendor_type,vendor_type FROM tb_vendor_type"
         viewSearchLookupQuery(SLEVendorType, query, "id_vendor_type", "vendor_type", "id_vendor_type")
     End Sub
 
@@ -107,6 +132,21 @@ WHERE id_status='2'"
     Sub load_item_type()
         Dim query As String = "SELECT id_item_type,item_type FROM tb_lookup_purc_item_type WHERE is_active='1'"
         viewSearchLookupQuery(SLEItemType, query, "id_item_type", "item_type", "id_item_type")
+    End Sub
+
+    Sub load_history()
+        Dim query As String = "
+            SELECT o.purc_order_number, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS vendor, DATE_FORMAT(o.date_created, '%d %M %Y') AS `date`, odet.qty, odet.value
+            FROM tb_purc_order_det AS odet
+            LEFT JOIN tb_purc_order AS o ON odet.id_purc_order = o.id_purc_order
+            LEFT JOIN tb_m_comp_contact AS compc ON o.id_comp_contact = compc.id_comp_contact
+            LEFT JOIN tb_m_comp AS comp ON compc.id_comp = comp.id_comp
+            WHERE o.id_report_status <> 5 AND odet.id_item = " +id_item+"
+        "
+
+        GCHistory.DataSource = execute_query(query, -1, True, "", "", "", "")
+
+        GVHistory.BestFitColumns()
     End Sub
 
     Private Sub FormPurcItemDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -162,7 +202,6 @@ WHERE id_status='2'"
             SLECat.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_item_cat").ToString
             SLEVendorType.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_vendor_type").ToString
         Catch ex As Exception
-
         End Try
     End Sub
 
@@ -178,5 +217,13 @@ WHERE id_status='2'"
             FormPurcOrderDet.set_same_detail_price(Decimal.Parse(GVPriceList.GetFocusedRowCellValue("price").ToString))
             Close()
         End If
+    End Sub
+
+    Private Sub BNonActive_Click(sender As Object, e As EventArgs) Handles BNonActive.Click
+        Dim query As String = "UPDATE tb_item SET is_active='2' WHERE id_item='" & id_item & "'"
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom("Item non active")
+        load_form()
+        FormPurcItem.load_item()
     End Sub
 End Class

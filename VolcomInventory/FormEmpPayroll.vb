@@ -354,6 +354,44 @@
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         Dim data As DataTable = GCPayroll.DataSource
 
+        'alphabeth
+        Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+
+        data.DefaultView.Sort = "departement ASC, departement_sub ASC"
+        data = data.DefaultView.ToTable
+
+        Dim iAlphabet As Integer = 0
+        Dim iInterger As Integer = 1
+
+        Dim last_departement As String = ""
+        Dim last_departement_sub As String = ""
+
+        For i = 0 To data.Rows.Count - 1
+            Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("departement").ToString, "\(([A-Z])\)", "").ToString()
+            Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("departement_sub").ToString, "\(([A-Z])\)", "").ToString()
+
+            If i = 0 Then
+                last_departement = curr_departement
+                last_departement_sub = curr_departement_sub
+            End If
+
+            If Not last_departement = curr_departement Then
+                iAlphabet += 1
+                iInterger = 0
+            End If
+
+            If Not last_departement_sub = curr_departement_sub Then
+                iInterger += 1
+            End If
+
+            data.Rows(i)("departement") = curr_departement + " (" + alphabet(iAlphabet) + ")"
+            data.Rows(i)("departement_sub") = curr_departement_sub + " (" + alphabet(iAlphabet) + iInterger.ToString + ")"
+
+            last_departement = curr_departement
+            last_departement_sub = curr_departement_sub
+        Next
+
+        'report
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, 0, True, "", "", "", "")
 
         Dim already_office As Boolean = False
@@ -368,85 +406,45 @@
         Next
 
         'office
-        Dim data_payroll_1 As DataTable = data.Clone
+        Dim data_payroll_office As DataTable = data.Clone
 
         For j = 0 To data.Rows.Count - 1
             If data.Rows(j)("is_office_payroll").ToString = "1" Then
-                data_payroll_1.ImportRow(data.Rows(j))
+                data_payroll_office.ImportRow(data.Rows(j))
             End If
         Next
 
-        Dim report_office_1 As ReportPayrollAll = New ReportPayrollAll
-
-        report_office_1.PrintingSystem.ContinuousPageNumbering = False
-
-        report_office_1.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-        report_office_1.dt = data_payroll_1
-        report_office_1.last_alphabet = 0
-        report_office_1.id_pre = If(id_report_status = "6", "-1", "1")
-        report_office_1.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
-
-        report_office_1.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report_office_1.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report_office_1.XLLocation.Text = "Office"
-
-        report_office_1.CreateDocument()
-
         'store
-        Dim data_payroll_2 As DataTable = data.Clone
+        Dim data_payroll_store As DataTable = data.Clone
 
         For j = 0 To data.Rows.Count - 1
             If data.Rows(j)("is_office_payroll").ToString = "2" Then
-                data_payroll_2.ImportRow(data.Rows(j))
+                data_payroll_store.ImportRow(data.Rows(j))
             End If
         Next
 
-        Dim report_office_2 As ReportPayrollAll = New ReportPayrollAll
+        Dim report As ReportPayrollAll = New ReportPayrollAll
 
-        report_office_2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-        report_office_2.dt = data_payroll_2
-        report_office_2.last_alphabet = data_payroll_1.AsDataView.ToTable(True, "departement").Rows.Count
-        report_office_2.id_pre = If(id_report_status = "6", "-1", "1")
-        report_office_2.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+        report.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        report.id_pre = If(id_report_status = "6", "-1", "1")
+        report.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+        report.dt_office = data_payroll_office
+        report.dt_store = data_payroll_store
 
-        report_office_2.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report_office_2.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report_office_2.XLLocation.Text = "Store"
-
-        report_office_2.CreateDocument()
-
-        'combine
-        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
-
-        'report_office_1
-        If already_office Then
-            For i = 0 To report_office_1.Pages.Count - 1
-                list.Add(report_office_1.Pages(i))
-            Next
+        If Not already_office Then
+            report.DetailReportOffice.Visible = False
         End If
 
-        'report_office_2
-        If already_store Then
-            For i = 0 To report_office_2.Pages.Count - 1
-                list.Add(report_office_2.Pages(i))
-            Next
+        If Not already_store Then
+            report.DetailReportStore.Visible = False
         End If
 
-        If already_office Then
-            report_office_1.Pages.AddRange(list)
+        report.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report_office_1)
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-            tool.ShowPreview()
-        End If
-
-        If already_store And Not already_office Then
-            report_office_2.Pages.AddRange(list)
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report_office_2)
-
-            tool.ShowPreview()
-        End If
+        tool.ShowPreview()
     End Sub
 
     Private Sub BBBcaFormat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBcaFormat.ItemClick

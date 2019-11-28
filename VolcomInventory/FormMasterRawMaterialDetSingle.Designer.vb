@@ -310,6 +310,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.DNCodeMaterial.Name = "DNCodeMaterial"
         Me.DNCodeMaterial.Size = New System.Drawing.Size(440, 24)
         Me.DNCodeMaterial.TabIndex = 10
+        Me.DNCodeMaterial.Visible = False
         '
         'GCCodeMaterial
         '

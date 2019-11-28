@@ -167,6 +167,14 @@ Partial Class FormEmpAttnSum
         Me.DEStartSum = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
+        Me.PopupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBIDetailSick = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BBIDetailLate = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.XTCReportAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReportAttendance.SuspendLayout()
         Me.XTPMonthly.SuspendLayout()
@@ -196,6 +204,8 @@ Partial Class FormEmpAttnSum
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCReportAttendance
@@ -1562,6 +1572,62 @@ Partial Class FormEmpAttnSum
         Me.BViewSum.TabIndex = 1
         Me.BViewSum.Text = "View"
         '
+        'PopupMenu
+        '
+        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBIDetailSick), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIDetailLate)})
+        Me.PopupMenu.Manager = Me.BarManager
+        Me.PopupMenu.Name = "PopupMenu"
+        '
+        'BBIDetailSick
+        '
+        Me.BBIDetailSick.Caption = "Detail Sick"
+        Me.BBIDetailSick.Id = 0
+        Me.BBIDetailSick.Name = "BBIDetailSick"
+        '
+        'BarManager
+        '
+        Me.BarManager.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager.Form = Me
+        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBIDetailSick, Me.BBIDetailLate})
+        Me.BarManager.MaxItemId = 2
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1166, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 328)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1166, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 328)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1166, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 328)
+        '
+        'BBIDetailLate
+        '
+        Me.BBIDetailLate.Caption = "Detail Late"
+        Me.BBIDetailLate.Id = 1
+        Me.BBIDetailLate.Name = "BBIDetailLate"
+        '
         'FormEmpAttnSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1569,6 +1635,10 @@ Partial Class FormEmpAttnSum
         Me.ClientSize = New System.Drawing.Size(1166, 328)
         Me.Controls.Add(Me.XTCReportAttendance)
         Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -1604,7 +1674,10 @@ Partial Class FormEmpAttnSum
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -1754,4 +1827,12 @@ Partial Class FormEmpAttnSum
     Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents GridColumn99 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn100 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PopupMenu As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBIDetailSick As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents BBIDetailLate As DevExpress.XtraBars.BarButtonItem
 End Class

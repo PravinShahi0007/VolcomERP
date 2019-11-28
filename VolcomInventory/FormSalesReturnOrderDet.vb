@@ -17,8 +17,17 @@
 
 
     Private Sub FormSalesReturnOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        viewOrderType()
         viewReportStatus()
         actionLoad()
+    End Sub
+
+    Sub viewOrderType()
+        Dim query As String = "SELECT ot.id_order_type, ot.order_type, ot.description
+        FROM tb_lookup_order_type ot
+        WHERE ot.type=1
+        ORDER BY ot.id_order_type ASC "
+        viewLookupQuery(LEOrderType, query, 0, "order_type", "id_order_type")
     End Sub
 
     Sub actionLoad()
@@ -41,11 +50,12 @@
             'query view based on edit id's
             Dim query As String = "SELECT d.id_comp, a.id_sales_return_order, a.id_store_contact_to, getCompByContact(a.id_store_contact_to, 4) AS `id_wh_drawer_store`, getCompByContact(a.id_store_contact_to, 6) AS `id_wh_rack_store`, getCompByContact(a.id_store_contact_to, 7) AS `id_wh_locator_store`, (d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, a.id_report_status, f.report_status, "
             query += "a.sales_return_order_note, a.sales_return_order_date, a.sales_return_order_note, a.sales_return_order_number, "
-            query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, a.sales_return_order_est_del_date, a.id_prepare_status, a.is_on_hold "
+            query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, a.sales_return_order_est_del_date, a.id_prepare_status, a.is_on_hold, IFNULL(a.id_order_type,0) AS `id_order_type`, ot.order_type "
             query += "FROM tb_sales_return_order a "
             query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
             query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
             query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
+            query += "LEFT JOIN tb_lookup_order_type ot ON ot.id_order_type = a.id_order_type "
             query += "WHERE a.id_sales_return_order = '" + id_sales_return_order + "' "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
@@ -70,6 +80,12 @@
             Else
                 CEOnHold.EditValue = False
             End If
+            If data.Rows(0)("id_order_type").ToString = "0" Then
+                LEOrderType.EditValue = Nothing
+            Else
+                LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", data.Rows(0)("id_order_type").ToString)
+            End If
+
 
             'detail2
             viewDetail()
@@ -239,6 +255,7 @@
             Else
                 is_on_hold = "2"
             End If
+            Dim id_order_type As String = LEOrderType.EditValue.ToString
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -252,8 +269,8 @@
                             sales_return_order_number = header_number_sales("4")
                         End If
 
-                        Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, sales_return_order_est_del_date, is_on_hold) "
-                        query += "VALUES('" + id_store_contact_to + "', '" + sales_return_order_number + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY), '" + sales_return_order_est_del_date + "', '" + is_on_hold + "'); SELECT LAST_INSERT_ID(); "
+                        Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, sales_return_order_est_del_date, is_on_hold, id_order_type) "
+                        query += "VALUES('" + id_store_contact_to + "', '" + sales_return_order_number + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY), '" + sales_return_order_est_del_date + "', '" + is_on_hold + "', '" + id_order_type + "'); SELECT LAST_INSERT_ID(); "
                         id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
                         increase_inc_sales("4")
 
@@ -421,6 +438,7 @@
 
     Sub allow_status()
         CEOnHold.Enabled = False
+        LEOrderType.Enabled = False
         If check_edit_report_status(id_report_status, "45", id_sales_return_order) Then
             PanelControlNav.Enabled = False
             MENote.Properties.ReadOnly = False
@@ -871,5 +889,17 @@
         Cursor = Cursors.WaitCursor
         print_raw(GCItemList, "")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEOrderType_EditValueChanged(sender As Object, e As EventArgs) Handles LEOrderType.EditValueChanged
+        Try
+            Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+            Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+            Dim value As String = row("description").ToString
+            TxtOrderType.Text = value
+        Catch ex As Exception
+            TxtOrderType.Text = ""
+        End Try
+
     End Sub
 End Class

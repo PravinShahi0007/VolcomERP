@@ -127,8 +127,9 @@ Partial Class FormProductionDet
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.BCOP = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancelFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
@@ -165,6 +166,8 @@ Partial Class FormProductionDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEReff = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -225,8 +228,6 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEReff = New DevExpress.XtraEditors.TextEdit()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -293,6 +294,7 @@ Partial Class FormProductionDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -313,7 +315,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdOrder
@@ -1182,8 +1183,6 @@ Partial Class FormProductionDet
         Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn39.FieldName = "gross_amount"
         Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.UnboundExpression = "[price] * [qty]"
-        Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 12
         '
@@ -1198,7 +1197,7 @@ Partial Class FormProductionDet
         Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn38.FieldName = "amount"
         Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.UnboundExpression = "[price] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
+        Me.GridColumn38.UnboundExpression = "Round([price] * [qty], 2)* ((100 + [prod_order_wo_vat]) / 100)"
         Me.GridColumn38.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 13
@@ -1232,7 +1231,7 @@ Partial Class FormProductionDet
         Me.GridColumn21.FieldName = "act_amount"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
-        Me.GridColumn21.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty]"
+        Me.GridColumn21.UnboundExpression = "Round([price] * [qty], 2)* [prod_order_wo_kurs] "
         Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 16
@@ -1248,7 +1247,8 @@ Partial Class FormProductionDet
         Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn40.FieldName = "GridColumn40"
         Me.GridColumn40.Name = "GridColumn40"
-        Me.GridColumn40.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
+        Me.GridColumn40.UnboundExpression = "Round([price] * [qty], 2) * [prod_order_wo_kurs]  * ((100 + [prod_order_wo_vat]) " &
+    "/ 100)"
         Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 17
@@ -1385,6 +1385,7 @@ Partial Class FormProductionDet
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BCancelFGPO)
         Me.GroupControl3.Controls.Add(Me.BCOP)
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
         Me.GroupControl3.Controls.Add(Me.DDBPrint)
@@ -1398,17 +1399,16 @@ Partial Class FormProductionDet
         Me.GroupControl3.Size = New System.Drawing.Size(971, 40)
         Me.GroupControl3.TabIndex = 52
         '
-        'BCOP
+        'BCancelFGPO
         '
-        Me.BCOP.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCOP.ImageIndex = 11
-        Me.BCOP.ImageList = Me.ImgBut
-        Me.BCOP.Location = New System.Drawing.Point(346, 2)
-        Me.BCOP.Name = "BCOP"
-        Me.BCOP.Size = New System.Drawing.Size(170, 36)
-        Me.BCOP.TabIndex = 5
-        Me.BCOP.Text = "Get Cost of Production"
-        Me.BCOP.Visible = False
+        Me.BCancelFGPO.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelFGPO.ImageIndex = 1
+        Me.BCancelFGPO.ImageList = Me.ImgBut
+        Me.BCancelFGPO.Location = New System.Drawing.Point(105, 2)
+        Me.BCancelFGPO.Name = "BCancelFGPO"
+        Me.BCancelFGPO.Size = New System.Drawing.Size(112, 36)
+        Me.BCancelFGPO.TabIndex = 16
+        Me.BCancelFGPO.Text = "Cancel FGPO"
         '
         'ImgBut
         '
@@ -1426,6 +1426,18 @@ Partial Class FormProductionDet
         Me.ImgBut.Images.SetKeyName(9, "18_24x24.png")
         Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
         Me.ImgBut.Images.SetKeyName(11, "document_32.png")
+        '
+        'BCOP
+        '
+        Me.BCOP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCOP.ImageIndex = 11
+        Me.BCOP.ImageList = Me.ImgBut
+        Me.BCOP.Location = New System.Drawing.Point(346, 2)
+        Me.BCOP.Name = "BCOP"
+        Me.BCOP.Size = New System.Drawing.Size(170, 36)
+        Me.BCOP.TabIndex = 5
+        Me.BCOP.Text = "Get Cost of Production"
+        Me.BCOP.Visible = False
         '
         'BtnAttachment
         '
@@ -1816,6 +1828,23 @@ Partial Class FormProductionDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(361, 131)
         Me.PanelControl4.TabIndex = 175
+        '
+        'TEReff
+        '
+        Me.TEReff.EditValue = ""
+        Me.TEReff.Location = New System.Drawing.Point(243, 37)
+        Me.TEReff.Name = "TEReff"
+        Me.TEReff.Properties.EditValueChangedDelay = 1
+        Me.TEReff.Size = New System.Drawing.Size(113, 20)
+        Me.TEReff.TabIndex = 176
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(215, 40)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl15.TabIndex = 175
+        Me.LabelControl15.Text = "Reff"
         '
         'LabelControl6
         '
@@ -2358,23 +2387,6 @@ Partial Class FormProductionDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(215, 40)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
-        Me.LabelControl15.TabIndex = 175
-        Me.LabelControl15.Text = "Reff"
-        '
-        'TEReff
-        '
-        Me.TEReff.EditValue = ""
-        Me.TEReff.Location = New System.Drawing.Point(243, 37)
-        Me.TEReff.Name = "TEReff"
-        Me.TEReff.Properties.EditValueChangedDelay = 1
-        Me.TEReff.Size = New System.Drawing.Size(113, 20)
-        Me.TEReff.TabIndex = 176
-        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2464,6 +2476,7 @@ Partial Class FormProductionDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2484,7 +2497,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.TEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2695,4 +2707,5 @@ Partial Class FormProductionDet
     Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents TEReff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BCancelFGPO As DevExpress.XtraEditors.SimpleButton
 End Class

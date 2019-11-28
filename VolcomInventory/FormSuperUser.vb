@@ -19,10 +19,16 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormStockUniS78New.ShowDialog()
+        'FormStockUniS78New.ShowDialog()
         'FormTestCheckvb.ShowDialog()
         'Dim nm As New ClassSendEmail
         'nm.par1 = TextEdit1.Text
+        'nm.report_mark_type = "186"
+        'nm.send_email()
+
+        'send mail pre final
+        'Dim nm As New ClassSendEmail
+        'nm.par1 = "5255"
         'nm.report_mark_type = "186"
         'nm.send_email()
 

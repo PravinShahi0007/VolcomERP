@@ -63,6 +63,7 @@ Partial Class FormSalesReturnOrder
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCSalesReturnOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesReturnOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,7 +93,7 @@ Partial Class FormSalesReturnOrder
         '
         'GVSalesReturnOrder
         '
-        Me.GVSalesReturnOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnEstDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus})
+        Me.GVSalesReturnOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnEstDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumnorder_type})
         Me.GVSalesReturnOrder.GridControl = Me.GCSalesReturnOrder
         Me.GVSalesReturnOrder.Name = "GVSalesReturnOrder"
         Me.GVSalesReturnOrder.OptionsBehavior.ReadOnly = True
@@ -114,7 +115,7 @@ Partial Class FormSalesReturnOrder
         Me.GridColumnTo.FieldName = "store_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 1
+        Me.GridColumnTo.VisibleIndex = 2
         '
         'GridColumnSalesTargetDate
         '
@@ -122,7 +123,7 @@ Partial Class FormSalesReturnOrder
         Me.GridColumnSalesTargetDate.FieldName = "sales_return_order_date"
         Me.GridColumnSalesTargetDate.Name = "GridColumnSalesTargetDate"
         Me.GridColumnSalesTargetDate.Visible = True
-        Me.GridColumnSalesTargetDate.VisibleIndex = 2
+        Me.GridColumnSalesTargetDate.VisibleIndex = 3
         '
         'GridColumnEstDate
         '
@@ -130,7 +131,7 @@ Partial Class FormSalesReturnOrder
         Me.GridColumnEstDate.FieldName = "sales_return_order_est_date"
         Me.GridColumnEstDate.Name = "GridColumnEstDate"
         Me.GridColumnEstDate.Visible = True
-        Me.GridColumnEstDate.VisibleIndex = 3
+        Me.GridColumnEstDate.VisibleIndex = 4
         '
         'GridColumnDSalesTargetNote
         '
@@ -138,7 +139,7 @@ Partial Class FormSalesReturnOrder
         Me.GridColumnDSalesTargetNote.FieldName = "sales_return_order_note"
         Me.GridColumnDSalesTargetNote.Name = "GridColumnDSalesTargetNote"
         Me.GridColumnDSalesTargetNote.Visible = True
-        Me.GridColumnDSalesTargetNote.VisibleIndex = 4
+        Me.GridColumnDSalesTargetNote.VisibleIndex = 5
         '
         'GridColumnReportStatus
         '
@@ -146,7 +147,7 @@ Partial Class FormSalesReturnOrder
         Me.GridColumnReportStatus.FieldName = "report_status"
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.Visible = True
-        Me.GridColumnReportStatus.VisibleIndex = 5
+        Me.GridColumnReportStatus.VisibleIndex = 6
         '
         'GridColumnPrepareStatus
         '
@@ -154,7 +155,7 @@ Partial Class FormSalesReturnOrder
         Me.GridColumnPrepareStatus.FieldName = "prepare_status"
         Me.GridColumnPrepareStatus.Name = "GridColumnPrepareStatus"
         Me.GridColumnPrepareStatus.Visible = True
-        Me.GridColumnPrepareStatus.VisibleIndex = 6
+        Me.GridColumnPrepareStatus.VisibleIndex = 7
         '
         'GridView2
         '
@@ -177,7 +178,7 @@ Partial Class FormSalesReturnOrder
         Me.XTPOrder.Controls.Add(Me.GCSalesReturnOrder)
         Me.XTPOrder.Name = "XTPOrder"
         Me.XTPOrder.Size = New System.Drawing.Size(710, 398)
-        Me.XTPOrder.Text = "Return Order List"
+        Me.XTPOrder.Text = "List"
         '
         'XTPOnHold
         '
@@ -203,7 +204,7 @@ Partial Class FormSalesReturnOrder
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailOnHoldToolStripMenuItem, Me.ShowWhereItIsUsedToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(184, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(184, 48)
         '
         'ViewDetailOnHoldToolStripMenuItem
         '
@@ -430,6 +431,15 @@ Partial Class FormSalesReturnOrder
         Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "Store"
         '
+        'GridColumnorder_type
+        '
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.OptionsColumn.AllowEdit = False
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
+        '
         'FormSalesReturnOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -442,7 +452,7 @@ Partial Class FormSalesReturnOrder
         Me.Name = "FormSalesReturnOrder"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Return Order"
+        Me.Text = "Propose Return"
         CType(Me.GCSalesReturnOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSalesReturnOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -504,4 +514,5 @@ Partial Class FormSalesReturnOrder
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewDetailOnHoldToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShowWhereItIsUsedToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

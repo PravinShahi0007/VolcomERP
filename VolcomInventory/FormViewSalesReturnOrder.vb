@@ -27,12 +27,13 @@
         'query view based on edit id's
         Dim query As String = "SELECT d.id_comp, a.id_sales_return_order, a.id_store_contact_to, getCompByContact(a.id_store_contact_to, 4) AS `id_wh_drawer`, getCompByContact(a.id_store_contact_to, 6) AS `id_wh_rack`, getCompByContact(a.id_store_contact_to, 7) AS `id_wh_locator`, (d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, a.id_report_status, f.report_status, "
         query += "a.sales_return_order_note, a.sales_return_order_date, a.sales_return_order_note, a.sales_return_order_number, "
-        query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, prep_stt.prepare_status, a.id_prepare_status "
+        query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, prep_stt.prepare_status, a.id_prepare_status, ot.order_type, ot.description "
         query += "FROM tb_sales_return_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
         query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_lookup_prepare_status prep_stt ON prep_stt.id_prepare_status = a.id_prepare_status "
+        query += "LEFT JOIN tb_lookup_order_type ot ON ot.id_order_type = a.id_order_type "
         query += "WHERE a.id_sales_return_order = '" + id_sales_return_order + "' "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         id_report_status = data.Rows(0)("id_report_status").ToString
@@ -51,6 +52,8 @@
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_prepare_status = data.Rows(0)("id_prepare_status").ToString
         TxtOrderStatus.Text = data.Rows(0)("prepare_status").ToString
+        TxtOrderType.Text = data.Rows(0)("order_type").ToString
+        TxtOrderTypeDescription.Text = data.Rows(0)("description").ToString
 
         If is_detail_soh <> "-1" Then
             TxtOrderStatus.Visible = True

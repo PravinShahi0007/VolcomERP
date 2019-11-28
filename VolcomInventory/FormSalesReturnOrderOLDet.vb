@@ -357,8 +357,8 @@
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, id_wh_contact_to, id_sales_order, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date) "
-                    query += "VALUES('" + id_store_contact_to + "','" + id_wh_contact_to + "', '" + id_sales_order + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, id_wh_contact_to, id_sales_order, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, id_order_type) "
+                    query += "VALUES('" + id_store_contact_to + "','" + id_wh_contact_to + "', '" + id_sales_order + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "', '2'); SELECT LAST_INSERT_ID(); "
                     id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("4")
 

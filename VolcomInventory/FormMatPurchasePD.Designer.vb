@@ -68,6 +68,7 @@ Partial Class FormMatPurchasePD
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.UnselectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -445,6 +446,7 @@ Partial Class FormMatPurchasePD
         'PanelControl9
         '
         Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl9.Controls.Add(Me.LabelControl2)
         Me.PanelControl9.Controls.Add(Me.TEToleransi)
         Me.PanelControl9.Controls.Add(Me.TETotalAmount)
         Me.PanelControl9.Controls.Add(Me.LabelControl3)
@@ -470,7 +472,7 @@ Partial Class FormMatPurchasePD
         Me.TEToleransi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEToleransi.Properties.Mask.SaveLiteral = False
         Me.TEToleransi.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEToleransi.Size = New System.Drawing.Size(65, 20)
+        Me.TEToleransi.Size = New System.Drawing.Size(51, 20)
         Me.TEToleransi.TabIndex = 162
         '
         'TETotalAmount
@@ -572,6 +574,14 @@ Partial Class FormMatPurchasePD
         Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.UnselectAllToolStripMenuItem.Text = "Unselect all"
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(169, 42)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl2.TabIndex = 163
+        Me.LabelControl2.Text = "%"
+        '
         'FormMatPurchasePD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -667,4 +677,5 @@ Partial Class FormMatPurchasePD
     Friend WithEvents UnselectAllToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LNumber As Label
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

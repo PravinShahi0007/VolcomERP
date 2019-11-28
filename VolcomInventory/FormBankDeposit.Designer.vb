@@ -53,6 +53,9 @@ Partial Class FormBankDeposit
         Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_dc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndc_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -84,18 +87,20 @@ Partial Class FormBankDeposit
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndate_received = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnlast_approved_by = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStoreDeposit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
-        Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -117,12 +122,12 @@ Partial Class FormBankDeposit
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -158,10 +163,11 @@ Partial Class FormBankDeposit
         '
         'GVInvoiceList
         '
-        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnid_acc_ar, Me.GridColumnid_acc_sales, Me.GridColumnid_acc_sales_return, Me.GridColumncomp_group_list, Me.GridColumnid_acc, Me.GridColumnCOA, Me.GridColumnid_comp})
+        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn10, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnid_acc_ar, Me.GridColumnid_acc_sales, Me.GridColumnid_acc_sales_return, Me.GridColumncomp_group_list, Me.GridColumnid_acc, Me.GridColumnCOA, Me.GridColumnid_comp, Me.GridColumnid_dc, Me.GridColumndc_code, Me.GridColumnnote_inv})
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.Name = "GVInvoiceList"
         Me.GVInvoiceList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVInvoiceList.OptionsFind.AlwaysVisible = True
         Me.GVInvoiceList.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVInvoiceList.OptionsView.ColumnAutoWidth = False
         Me.GVInvoiceList.OptionsView.ShowGroupPanel = False
@@ -416,6 +422,7 @@ Partial Class FormBankDeposit
         Me.GridColumnCOA.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumnCOA.FieldName = "is_found_coa"
         Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.OptionsColumn.AllowEdit = False
         Me.GridColumnCOA.UnboundExpression = "Iif([id_acc] <> 0, 'Yes', 'No')"
         Me.GridColumnCOA.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnCOA.Visible = True
@@ -435,6 +442,24 @@ Partial Class FormBankDeposit
         Me.GridColumnid_comp.Caption = "id_comp"
         Me.GridColumnid_comp.FieldName = "id_comp"
         Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        '
+        'GridColumnid_dc
+        '
+        Me.GridColumnid_dc.Caption = "id_dc"
+        Me.GridColumnid_dc.FieldName = "id_dc"
+        Me.GridColumnid_dc.Name = "GridColumnid_dc"
+        '
+        'GridColumndc_code
+        '
+        Me.GridColumndc_code.Caption = "dc_code"
+        Me.GridColumndc_code.FieldName = "dc_code"
+        Me.GridColumndc_code.Name = "GridColumndc_code"
+        '
+        'GridColumnnote_inv
+        '
+        Me.GridColumnnote_inv.Caption = "note"
+        Me.GridColumnnote_inv.FieldName = "note"
+        Me.GridColumnnote_inv.Name = "GridColumnnote_inv"
         '
         'BCreatePO
         '
@@ -624,7 +649,7 @@ Partial Class FormBankDeposit
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn15, Me.GridColumn20, Me.GridColumn5, Me.GridColumn22, Me.GridColumn18, Me.GridColumn21, Me.GridColumndate_received, Me.GridColumnlast_approved_by})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -667,7 +692,7 @@ Partial Class FormBankDeposit
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 2
+        Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 109
         '
         'GridColumn20
@@ -683,7 +708,7 @@ Partial Class FormBankDeposit
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 3
+        Me.GridColumn20.VisibleIndex = 4
         Me.GridColumn20.Width = 120
         '
         'GridColumn5
@@ -698,7 +723,7 @@ Partial Class FormBankDeposit
         Me.GridColumn5.FieldName = "val_need_pay"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         Me.GridColumn5.Width = 136
         '
         'GridColumn22
@@ -708,7 +733,7 @@ Partial Class FormBankDeposit
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
+        Me.GridColumn22.VisibleIndex = 7
         Me.GridColumn22.Width = 109
         '
         'GridColumn18
@@ -718,7 +743,7 @@ Partial Class FormBankDeposit
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 5
+        Me.GridColumn18.VisibleIndex = 6
         '
         'GridColumn21
         '
@@ -727,6 +752,26 @@ Partial Class FormBankDeposit
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Width = 103
+        '
+        'GridColumndate_received
+        '
+        Me.GridColumndate_received.Caption = "Bank Received Date"
+        Me.GridColumndate_received.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumndate_received.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumndate_received.FieldName = "date_received"
+        Me.GridColumndate_received.Name = "GridColumndate_received"
+        Me.GridColumndate_received.Visible = True
+        Me.GridColumndate_received.VisibleIndex = 2
+        Me.GridColumndate_received.Width = 137
+        '
+        'GridColumnlast_approved_by
+        '
+        Me.GridColumnlast_approved_by.Caption = "Last Approved By"
+        Me.GridColumnlast_approved_by.FieldName = "last_approved_by"
+        Me.GridColumnlast_approved_by.Name = "GridColumnlast_approved_by"
+        Me.GridColumnlast_approved_by.Visible = True
+        Me.GridColumnlast_approved_by.VisibleIndex = 8
+        Me.GridColumnlast_approved_by.Width = 127
         '
         'RepositoryItemCheckEdit1
         '
@@ -749,6 +794,50 @@ Partial Class FormBankDeposit
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(995, 48)
         Me.PanelControl2.TabIndex = 14
+        '
+        'DEUntilList
+        '
+        Me.DEUntilList.EditValue = Nothing
+        Me.DEUntilList.Location = New System.Drawing.Point(190, 12)
+        Me.DEUntilList.Name = "DEUntilList"
+        Me.DEUntilList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntilList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilList.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilList.TabIndex = 8922
+        '
+        'DEFromList
+        '
+        Me.DEFromList.EditValue = Nothing
+        Me.DEFromList.Location = New System.Drawing.Point(46, 12)
+        Me.DEFromList.Name = "DEFromList"
+        Me.DEFromList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFromList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromList.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromList.TabIndex = 8921
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(163, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8920
+        Me.LabelControl4.Text = "Until"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(16, 15)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl6.TabIndex = 8919
+        Me.LabelControl6.Text = "From"
         '
         'SLEStoreDeposit
         '
@@ -797,50 +886,6 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
-        'DEUntilList
-        '
-        Me.DEUntilList.EditValue = Nothing
-        Me.DEUntilList.Location = New System.Drawing.Point(190, 12)
-        Me.DEUntilList.Name = "DEUntilList"
-        Me.DEUntilList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEUntilList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntilList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilList.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntilList.TabIndex = 8922
-        '
-        'DEFromList
-        '
-        Me.DEFromList.EditValue = Nothing
-        Me.DEFromList.Location = New System.Drawing.Point(46, 12)
-        Me.DEFromList.Name = "DEFromList"
-        Me.DEFromList.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEFromList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFromList.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFromList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEFromList.Size = New System.Drawing.Size(111, 20)
-        Me.DEFromList.TabIndex = 8921
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(163, 15)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl4.TabIndex = 8920
-        Me.LabelControl4.Text = "Until"
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(16, 15)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl6.TabIndex = 8919
-        Me.LabelControl6.Text = "From"
-        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -852,7 +897,7 @@ Partial Class FormBankDeposit
         Me.MinimizeBox = False
         Me.Name = "FormBankDeposit"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Bank Deposit"
+        Me.Text = "Bukti Bank Masuk"
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPO.ResumeLayout(False)
         Me.XTPInvoice.ResumeLayout(False)
@@ -876,12 +921,12 @@ Partial Class FormBankDeposit
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreDeposit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -962,4 +1007,9 @@ Partial Class FormBankDeposit
     Friend WithEvents DEFromList As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumndate_received As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnlast_approved_by As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_dc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndc_code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote_inv As DevExpress.XtraGrid.Columns.GridColumn
 End Class

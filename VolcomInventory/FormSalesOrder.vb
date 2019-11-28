@@ -77,7 +77,7 @@
         'Dim query As String = query_c.queryMain(cond, "2")
         Dim query As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, 
         a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, 
-        ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, 
+        ('No') AS `is_select`, cat.id_so_status, cat.so_status, ot.order_type, del_cat.id_so_cat, del_cat.so_cat, 
         IFNULL(so_item.tot_so,0.00) AS `total_order`,  IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,
         a.id_so_type,prep.id_user, prep.prepared_date, gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, 
         eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name 
@@ -93,6 +93,7 @@
         INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status 
         INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = a.id_prepare_status 
         INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = a.id_so_status 
+        INNER JOIN tb_lookup_order_type ot ON ot.id_order_type = cat.id_order_type
         Left JOIN( 
 	        Select a.id_report, a.id_user, a.report_mark_datetime AS `prepared_date` 
 	        From tb_report_mark a Where a.report_mark_type ='39' and a.id_report_status='1' group by a.id_report 
@@ -110,6 +111,7 @@
         ORDER BY a.id_sales_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
+        GVSalesOrder.BestFitColumns()
         check_menu()
         RepositoryItemProgressBar1.LookAndFeel.SkinName = "Blue"
     End Sub

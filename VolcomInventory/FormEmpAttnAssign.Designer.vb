@@ -57,7 +57,7 @@ Partial Class FormEmpAttnAssign
         Me.LEDeptSum.Name = "LEDeptSum"
         Me.LEDeptSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDeptSum.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEDeptSum.Size = New System.Drawing.Size(151, 20)
+        Me.LEDeptSum.Size = New System.Drawing.Size(262, 20)
         Me.LEDeptSum.TabIndex = 14
         '
         'LabelControl1
@@ -70,7 +70,7 @@ Partial Class FormEmpAttnAssign
         '
         'BPrintSum
         '
-        Me.BPrintSum.Location = New System.Drawing.Point(330, 6)
+        Me.BPrintSum.Location = New System.Drawing.Point(441, 6)
         Me.BPrintSum.Name = "BPrintSum"
         Me.BPrintSum.Size = New System.Drawing.Size(86, 25)
         Me.BPrintSum.TabIndex = 12
@@ -78,7 +78,7 @@ Partial Class FormEmpAttnAssign
         '
         'BViewSum
         '
-        Me.BViewSum.Location = New System.Drawing.Point(238, 6)
+        Me.BViewSum.Location = New System.Drawing.Point(349, 6)
         Me.BViewSum.Name = "BViewSum"
         Me.BViewSum.Size = New System.Drawing.Size(86, 25)
         Me.BViewSum.TabIndex = 1

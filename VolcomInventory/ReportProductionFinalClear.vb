@@ -12,11 +12,13 @@
     End Sub
 
     Private Sub ReportProductionFinalClear_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_prod_fc WHERE id_prod_fc = " + id_prod_fc, 0, True, "", "", "", "")
+
         GCItemList.DataSource = dt
         If is_pre_print = "1" Then
-            pre_load_mark_horz("105", id_prod_fc, "2", "2", XrTable1)
+            pre_load_mark_horz(report_mark_type, id_prod_fc, "2", "2", XrTable1)
         Else
-            load_mark_horz("105", id_prod_fc, "2", "1", XrTable1)
+            load_mark_horz(report_mark_type, id_prod_fc, "2", "1", XrTable1)
         End If
     End Sub
 

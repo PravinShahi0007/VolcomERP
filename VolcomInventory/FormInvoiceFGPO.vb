@@ -27,14 +27,6 @@
     Private Sub FormInvoiceFGPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
         load_list("0")
-        load_design()
-    End Sub
-
-    Sub load_design()
-        Dim query As String = "SELECT 0 AS id_design,'All' as design_code,'All' as design_display_name
-                                UNION 
-                                Select id_design,design_code,design_display_name FROM tb_m_design"
-        viewSearchLookupQuery(SLEDesignStockStore, query, "id_design", "design_display_name", "id_design")
     End Sub
 
     Sub load_vendor()
@@ -57,53 +49,7 @@
         End If
         '
         If XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
-            If XTCPelunasan.SelectedTabPageIndex = 0 Then
-                'list Pelunasan
 
-            ElseIf XTCPelunasan.SelectedTabPageIndex = 1 Then
-                'list Receiving
-                If is_filter_design = "1" Then
-                    If Not SLEDesignStockStore.EditValue.ToString = "0" Then
-                        query_where = " AND dsg.id_design = '" & SLEDesignStockStore.EditValue.ToString & "'"
-                    End If
-                End If
-
-                Dim query As String = "SELECT 'no' AS is_check,rec.id_prod_order,rec.`id_prod_order_rec`,rec.`prod_order_rec_number`
-,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec
-,SUM(recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS amount_rec
-,SUM((wod.prod_order_wo_vat/100)*recd.`prod_order_rec_det_qty`*wod.prod_order_wo_det_price) AS vat_rec
-,rec.`delivery_order_date`,rec.`delivery_order_number`,c.`comp_name`,c.`comp_number` 
-,dsg.`design_display_name`,dsg.design_code
-,po.`prod_order_number`,po.`id_prod_order`
-FROM tb_prod_order_rec_det recd
-INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
-INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
-INNER JOIN 
-(
-	SELECT pod.`id_prod_order_det`,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,wo.id_ovh_price FROM tb_prod_order_wo_det wod
-	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
-	INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=wod.`id_prod_order_det`
-	WHERE wo.`is_main_vendor`='1'
-	GROUP BY wod.`id_prod_order_det`
-) wod ON wod.id_prod_order_det=pod.`id_prod_order_det`
-INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wod.id_ovh_price
-INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
-INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp 
-INNER JOIN tb_prod_order po ON po.id_prod_order=pod.`id_prod_order` 
-INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
-INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
-WHERE 1=1 " & query_where & "
-GROUP BY rec.`id_prod_order_rec`"
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                GCRecFGPO.DataSource = data
-                GVRecFGPO.BestFitColumns()
-
-                If SLEVendorPayment.EditValue.ToString = "0" Or SLEDesignStockStore.EditValue.ToString = "0" Or Not is_filter_design = "1" Then
-                    BCreateBPLRec.Visible = False
-                Else
-                    BCreateBPLRec.Visible = True
-                End If
-            End If
         ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
             If XTCDP.SelectedTabPageIndex = 0 Then
                 'list DP
@@ -123,7 +69,7 @@ WHERE 1=1 " & query_where
             ElseIf XTCDP.SelectedTabPageIndex = 1 Then
                 'list FGPO for DP
                 Dim query As String = "SELECT 'no' AS is_check,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`,SUM(wod.`prod_order_wo_det_qty`) AS qty, wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS po_amount,(py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS dp_amount 
-,wod.`prod_order_wo_det_price`* SUM(wod.`prod_order_wo_det_qty`) AS po_amount,wod.`prod_order_wo_det_price`*(wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS po_amount_vat,(py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS dp_amount_vat
+,wod.`prod_order_wo_det_price`* SUM(wod.`prod_order_wo_det_qty`) AS po_amount,SUM(wod.`prod_order_wo_det_qty`) as qty,wod.`prod_order_wo_det_price`*(wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS po_amount_vat,(py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS dp_amount_vat
 FROM tb_prod_order_wo_det wod
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
@@ -188,48 +134,31 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
         GVDPFGPO.ActiveFilterString = ""
     End Sub
 
-    Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
-        If GVDP.RowCount > 0 Then
-            FormInvoiceFGPODP.id_dp = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
-            FormInvoiceFGPODP.ShowDialog()
-        End If
+
+    Private Sub BCreateBPLRec_Click(sender As Object, e As EventArgs)
+
     End Sub
 
-    Private Sub BCreateBPLRec_Click(sender As Object, e As EventArgs) Handles BCreateBPLRec.Click
-        GVRecFGPO.ActiveFilterString = "[is_check]='yes'"
-        If GVRecFGPO.RowCount > 0 Then
-            'check if already DP
-            Dim id As String = ""
-            For i = 0 To GVRecFGPO.RowCount - 1
-                If Not i = 0 Then
-                    id += ","
-                End If
-                id += "'" & GVRecFGPO.GetRowCellValue(i, "id_prod_order_rec").ToString & "'"
-            Next
-            '
-            Dim query_check As String = "SELECT * FROM tb_pn_fgpo_det pnd
-INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5
-LEFT JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=pnd.`id_report` 
-WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='28'"
-            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-            If data_check.Rows.Count > 0 Then
-                Dim number_already_dp As String = ""
-                For i = 0 To data_check.Rows.Count - 1
-                    If Not i = 0 Then
-                        number_already_dp += ","
-                    End If
-                    number_already_dp += "'" & data_check.Rows(i)("prod_order_rec_number").ToString & "'"
-                Next
-                warningCustom("Receiving with number : " & number_already_dp & " already process.")
-            Else
-                FormInvoiceFGPODP.type = "2"
-                FormInvoiceFGPODP.ShowDialog()
-            End If
-        End If
-        GVRecFGPO.ActiveFilterString = ""
-    End Sub
-
-    Private Sub BFilterDesign_Click(sender As Object, e As EventArgs) Handles BFilterDesign.Click
+    Private Sub BFilterDesign_Click(sender As Object, e As EventArgs)
         load_list("1")
+    End Sub
+
+    Private Sub GVDPFGPO_DoubleClick(sender As Object, e As EventArgs) Handles GVDPFGPO.DoubleClick
+        If GVDPFGPO.RowCount > 0 Then
+            FormReportPaymentFGPO.id_fgpo = GVDPFGPO.GetFocusedRowCellValue("id_prod_order").ToString
+            FormReportPaymentFGPO.ShowDialog()
+        Else
+            warningCustom("Please choose FGPO first")
+        End If
+    End Sub
+
+    Private Sub BCreatePayment_Click(sender As Object, e As EventArgs) Handles BCreatePayment.Click
+        FormInvoiceFGPODP.type = "2"
+        FormInvoiceFGPODP.ShowDialog()
+    End Sub
+
+    Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
+        FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
+        FormInvoiceFGPODP.ShowDialog()
     End Sub
 End Class

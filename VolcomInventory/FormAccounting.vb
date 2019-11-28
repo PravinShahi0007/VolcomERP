@@ -78,7 +78,7 @@ Public Class FormAccounting
         CONCAT(dp.acc_name,' - ', dp.acc_description) AS `acc_dp`,
         CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
         CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`,
-        CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`
+        CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group
         FROM tb_m_comp
         INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat
         LEFT JOIN tb_a_acc ap ON ap.id_acc = tb_m_comp.id_acc_ap
@@ -89,6 +89,7 @@ Public Class FormAccounting
         INNER JOIN tb_m_city cty ON cty.id_city = tb_m_comp.id_city
         INNER JOIN tb_m_state stt ON stt.id_state = cty.id_state
         LEFT JOIN tb_m_area_acc are ON are.id_area_acc = stt.id_area_acc
+        LEFT JOIN tb_m_comp_group cg ON cg.id_comp_group = tb_m_comp.id_comp_group
         WHERE tb_m_comp.id_comp>0 "
         If id_comp_cat <> "0" Then
             query += "AND tb_m_comp.id_comp_cat='" + id_comp_cat + "' "
@@ -107,7 +108,7 @@ Public Class FormAccounting
             NULL AS `acc_dp`,
             CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
             CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`,
-            CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`
+            CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group
             FROM tb_m_comp
             INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat
             INNER JOIN tb_m_comp_comm_extra ON tb_m_comp_comm_extra.id_comp = tb_m_comp.id_comp
@@ -116,7 +117,8 @@ Public Class FormAccounting
             LEFT JOIN tb_a_acc sal_ret ON sal_ret.id_acc = tb_m_comp_comm_extra.id_acc_sales_return 
             INNER JOIN tb_m_city cty ON cty.id_city = tb_m_comp.id_city
             INNER JOIN tb_m_state stt ON stt.id_state = cty.id_state
-            LEFT JOIN tb_m_area_acc are ON are.id_area_acc = stt.id_area_acc "
+            LEFT JOIN tb_m_area_acc are ON are.id_area_acc = stt.id_area_acc 
+            LEFT JOIN tb_m_comp_group cg ON cg.id_comp_group = tb_m_comp.id_comp_group "
         End If
         query += "ORDER BY comp_number ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -154,10 +156,7 @@ Public Class FormAccounting
         query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM"
         query += " ("
         query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM tb_a_acc_trans_det GROUP BY id_acc"
-        query += " UNION"
-        query += " SELECT id_acc,SUM(debit) AS debit,SUM(credit) AS credit FROM tb_a_acc_trans_adj_det GROUP BY id_acc"
-        query += " ) a GROUP BY id_acc"
-        query += " ) entry ON entry.id_acc=a.id_acc"
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim data_filter As DataRow() = data.Select("[id_acc_parent] is NULL AND [id_status]='1'")
 
@@ -268,20 +267,29 @@ Public Class FormAccounting
     '------ TAB GENERAL SETUP
     Public acc_coa_receive As String = "-1"
     Public acc_coa_vat_in As String = "-1"
+    Public acc_coa_claim As String = "-1"
+
     Sub actionLoadGeneralSetup()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT IFNULL(o.acc_coa_receive,0) AS `acc_coa_receive`, rec.acc_name AS `rec_account`, rec.acc_description AS `rec_desc`,
-        IFNULL(o.acc_coa_vat_in,0) AS `acc_coa_vat_in`, vat.acc_name AS `vat_account`, vat.acc_description AS `vat_desc`
+        IFNULL(o.acc_coa_vat_in,0) AS `acc_coa_vat_in`, vat.acc_name AS `vat_account`, vat.acc_description AS `vat_desc`,
+        IFNULL(o.acc_coa_claim,0) AS `acc_coa_claim`, claim.acc_name AS `claim_account`, claim.acc_description AS `claim_desc`
         FROM tb_opt_purchasing o 
         LEFT JOIN tb_a_acc rec ON rec.id_acc = o.acc_coa_receive
-        LEFT JOIN tb_a_acc vat ON vat.id_acc = o.acc_coa_vat_in "
+        LEFT JOIN tb_a_acc vat ON vat.id_acc = o.acc_coa_vat_in
+        LEFT JOIN tb_a_acc claim ON claim.id_acc = o.acc_coa_claim"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         acc_coa_receive = data.Rows(0)("acc_coa_receive").ToString
         TxtRecAccount.Text = data.Rows(0)("rec_account").ToString
         TxtRecDesc.Text = data.Rows(0)("rec_desc").ToString
+        '
         acc_coa_vat_in = data.Rows(0)("acc_coa_vat_in").ToString
         TxtVATAccount.Text = data.Rows(0)("vat_account").ToString
         TxtVATDesc.Text = data.Rows(0)("vat_desc").ToString
+        '
+        acc_coa_claim = data.Rows(0)("acc_coa_claim").ToString
+        TEClaimAccount.Text = data.Rows(0)("claim_account").ToString
+        TEClaimDesc.Text = data.Rows(0)("claim_desc").ToString
         Cursor = Cursors.Default
     End Sub
 
@@ -293,18 +301,37 @@ Public Class FormAccounting
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to discard this changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save this changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
+            '
             If acc_coa_receive = "0" Then
                 acc_coa_receive = "NULL"
             End If
+
             If acc_coa_vat_in = "0" Then
                 acc_coa_vat_in = "NULL"
             End If
 
-            Dim query As String = "UPDATE tb_opt_purchasing SET acc_coa_receive=" + acc_coa_receive + ", acc_coa_vat_in=" + acc_coa_vat_in + " "
+            If acc_coa_claim = "0" Then
+                acc_coa_claim = "NULL"
+            End If
+
+            Dim query As String = "UPDATE tb_opt_purchasing SET acc_coa_receive=" + acc_coa_receive + ", acc_coa_vat_in=" + acc_coa_vat_in + ",acc_coa_claim=" + acc_coa_claim + " "
             execute_non_query(query, True, "", "", "", "")
+            '
+            If acc_coa_receive = "NULL" Then
+                acc_coa_receive = "0"
+            End If
+
+            If acc_coa_vat_in = "NULL" Then
+                acc_coa_vat_in = "0"
+            End If
+
+            If acc_coa_claim = "NULL" Then
+                acc_coa_claim = "0"
+            End If
+
             Cursor = Cursors.Default
         End If
     End Sub
@@ -319,6 +346,13 @@ Public Class FormAccounting
     Private Sub BtnBrowseVAT_Click(sender As Object, e As EventArgs) Handles BtnBrowseVAT.Click
         Cursor = Cursors.WaitCursor
         FormPopUpCOA.id_pop_up = "12"
+        FormPopUpCOA.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseClaim_Click(sender As Object, e As EventArgs) Handles BtnBrowseClaim.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpCOA.id_pop_up = "13"
         FormPopUpCOA.ShowDialog()
         Cursor = Cursors.Default
     End Sub

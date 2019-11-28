@@ -1,7 +1,9 @@
 ﻿Public Class FormInvoiceFGPODP
-    Public id_dp As String = "-1"
+    Public id_invoice As String = "-1"
     Public is_view As String = "-1"
     Public type As String = "1"
+
+    Public id_po As String = "-1"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -25,8 +27,8 @@
         load_trans_type()
         load_det()
         '
-        If type = "1" Then
-            If id_dp = "-1" Then
+        If type = "1" Then 'DP
+            If id_invoice = "-1" Then
                 BtnPrint.Visible = False
                 BtnViewJournal.Visible = False
                 BMark.Visible = False
@@ -34,20 +36,25 @@
                 'vendor 
                 SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
                 'detail
-                For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
-                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                    newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
-                    newRow("report_mark_type") = "22"
-                    newRow("number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
-                    newRow("description") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
-                    newRow("code") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_code").ToString
-                    newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount").ToString
-                    newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat").ToString
-                    newRow("inv_number") = ""
-                    newRow("note") = ""
-                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                Next
-                calculate()
+                Try
+                    For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
+                        newRow("report_mark_type") = "22"
+                        newRow("report_number") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_number").ToString
+                        newRow("info_design") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "design_display_name").ToString
+                        newRow("qty") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "qty")
+                        newRow("value") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount")
+                        newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat")
+                        newRow("inv_number") = ""
+                        newRow("note") = ""
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
+                    calculate()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+
             Else
                 'edit
                 BtnPrint.Visible = True
@@ -57,7 +64,7 @@
                 Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
+WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count > 0 Then
                     TENumber.Text = data.Rows(0)("number").ToString
@@ -68,49 +75,39 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
                     MENote.Text = data.Rows(0)("note").ToString
                 End If
             End If
-        ElseIf type = "2" Then
+        ElseIf type = "2" Then 'payment
             SLEPayType.EditValue = "2"
-            If id_dp = "-1" Then 'new
+            If id_invoice = "-1" Then 'new
                 BtnPrint.Visible = False
                 BtnViewJournal.Visible = False
                 BMark.Visible = False
-                'vendor
-                SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
-                'detail
-                Try
-                    For i = 0 To FormInvoiceFGPO.GVRecFGPO.RowCount - 1
-                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                        newRow("id_report") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "id_prod_order_rec").ToString
-                        newRow("report_mark_type") = "28"
-                        newRow("number") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "prod_order_rec_number").ToString
-                        newRow("description") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "design_display_name").ToString
-                        newRow("code") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "design_code").ToString
-                        newRow("value") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "amount_rec").ToString
-                        newRow("vat") = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(i, "vat_rec").ToString
-                        newRow("inv_number") = ""
-                        newRow("note") = ""
-                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                    Next
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                End Try
+
+                'add detail vendor, PO, receiving
+                FormInvoiceFGPONew.ShowDialog()
 
                 'pop up DP
                 Dim query_pop As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
-,dsg.`design_code`,dsg.`design_display_name`
-FROM `tb_pn_fgpo_det` pnd
-INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
-INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(0, "id_prod_order").ToString & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
+                ,dsg.`design_code`,dsg.`design_display_name`
+                FROM `tb_pn_fgpo_det` pnd
+                INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
+                INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
+                MsgBox(query_pop)
                 Dim data_pop As DataTable = execute_query(query_pop, -1, True, "", "", "", "")
                 If data_pop.Rows.Count > 0 Then
-                    FormInvoiceFGPODPPop.id_po = FormInvoiceFGPO.GVRecFGPO.GetRowCellValue(0, "id_prod_order").ToString
+                    FormInvoiceFGPODPPop.id_po = id_po
                     FormInvoiceFGPODPPop.ShowDialog()
                 End If
 
                 '
+                calculate()
+
+                If GVList.RowCount <= 0 Then
+                    Close()
+                End If
+
                 calculate()
             Else
                 'edit
@@ -121,7 +118,7 @@ WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & FormInvoiceFGPO.GVRecF
                 Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
+WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count > 0 Then
                     TENumber.Text = data.Rows(0)("number").ToString
@@ -136,19 +133,11 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
     End Sub
 
     Sub load_det()
-        'DP union po union receiving
+        '
         Dim query As String = "
-Select pnd.`id_report` As id_report,pnd.report_mark_type, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
-INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pnd.`id_pn_fgpo`='" & id_dp & "' AND pnd.report_mark_type='189'
-UNION
-Select pnd.`id_report` As id_report,pnd.report_mark_type, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
-INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pnd.`id_pn_fgpo`='" & id_dp & "' AND pnd.report_mark_type='22'"
+Select pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` 
+FROM tb_pn_fgpo_det pnd
+WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
@@ -204,13 +193,13 @@ WHERE pnd.`id_pn_fgpo`='" & id_dp & "' AND pnd.report_mark_type='22'"
                 If Not i = 0 Then
                     inv_number += ","
                 End If
-                inv_number += GVList.GetRowCellValue(i, "inv_number").ToString
+                inv_number += "'" & GVList.GetRowCellValue(i, "inv_number").ToString & "'"
             Next
 
             'check on db
             Dim check_q As String = "SELECT * FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_pn_fgpo!='" & id_dp & "'"
+WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_pn_fgpo!='" & id_invoice & "'"
             Dim dt_q As DataTable = execute_query(check_q, -1, True, "", "", "", "")
             If dt_q.Rows.Count > 0 Then
                 is_dup = True
@@ -224,23 +213,23 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
             warningCustom("Invoice number duplicate")
         Else
             If type = "1" Then
-                If id_dp = "-1" Then
+                If id_invoice = "-1" Then
                     'new
                     'header
                     Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
 VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
-                    id_dp = execute_query(query, 0, True, "", "", "", "")
+                    id_invoice = execute_query(query, 0, True, "", "", "", "")
                     'detail
                     query = ""
                     For i = 0 To GVList.RowCount - 1
-                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
-VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,report_number,info_design,`qty`,`value`,`vat`,`inv_number`,`note`)
+VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                     '
-                    query = "CALL gen_number('" & id_dp & "','189')"
+                    query = "CALL gen_number('" & id_invoice & "','189')"
                     execute_non_query(query, True, "", "", "", "")
-                    submit_who_prepared("189", id_dp, id_user)
+                    submit_who_prepared("189", id_invoice, id_user)
                     '
                     infoCustom("BPL Created")
                     Close()
@@ -249,23 +238,23 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
                     Dim query As String = ""
                 End If
             ElseIf type = "2" Then 'pelunasan
-                If id_dp = "-1" Then
+                If id_invoice = "-1" Then
                     'new
                     'header
                     Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
 VALUES ('2','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
-                    id_dp = execute_query(query, 0, True, "", "", "", "")
+                    id_invoice = execute_query(query, 0, True, "", "", "", "")
                     'detail
                     query = ""
                     For i = 0 To GVList.RowCount - 1
-                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`vat`,`inv_number`,`note`)
-VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,report_number,info_design,`value`,`vat`,`inv_number`,`note`)
+VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                     '
-                    query = "CALL gen_number('" & id_dp & "','189')"
+                    query = "CALL gen_number('" & id_invoice & "','189')"
                     execute_non_query(query, True, "", "", "", "")
-                    submit_who_prepared("189", id_dp, id_user)
+                    submit_who_prepared("189", id_invoice, id_user)
                     '
                     infoCustom("BPL Created")
                     Close()
@@ -283,7 +272,7 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
         Dim id_acc_trans As String = ""
         Try
             id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
-            WHERE ad.report_mark_type=189 AND ad.id_report=" + id_dp + "
+            WHERE ad.report_mark_type=189 AND ad.id_report=" + id_invoice + "
             GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
         Catch ex As Exception
             id_acc_trans = ""
@@ -309,13 +298,24 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.report_mark_type = "189"
         FormReportMark.is_view = is_view
-        FormReportMark.id_report = id_dp
+        FormReportMark.id_report = id_invoice
         FormReportMark.ShowDialog()
     End Sub
 
     Private Sub SMEditCost_Click(sender As Object, e As EventArgs) Handles SMEditCost.Click
         If GVList.RowCount > 0 Then
             FormInvoiceFGPODPSplit.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BDP_Click(sender As Object, e As EventArgs) 
+
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) 
+        If GVList.RowCount > 0 Then
+            GVList.DeleteSelectedRows()
+            calculate()
         End If
     End Sub
 End Class
