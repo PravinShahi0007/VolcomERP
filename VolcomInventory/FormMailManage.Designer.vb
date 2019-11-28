@@ -144,6 +144,7 @@ Partial Class FormMailManage
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnPendingMailUnpaidGroupStoreMinThree = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
@@ -1314,7 +1315,7 @@ Partial Class FormMailManage
         Me.BtnOverdue.Appearance.Options.UseBackColor = True
         Me.BtnOverdue.Appearance.Options.UseFont = True
         Me.BtnOverdue.Appearance.Options.UseForeColor = True
-        Me.BtnOverdue.Location = New System.Drawing.Point(330, 11)
+        Me.BtnOverdue.Location = New System.Drawing.Point(354, 11)
         Me.BtnOverdue.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnOverdue.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnOverdue.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -1322,11 +1323,11 @@ Partial Class FormMailManage
         Me.BtnOverdue.Name = "BtnOverdue"
         Me.BtnOverdue.Size = New System.Drawing.Size(93, 20)
         Me.BtnOverdue.TabIndex = 8933
-        Me.BtnOverdue.Text = "Overdue"
+        Me.BtnOverdue.Text = "Jatuh Tempo"
         '
         'BtnMinThreeOverdue
         '
-        Me.BtnMinThreeOverdue.Appearance.BackColor = System.Drawing.Color.Orange
+        Me.BtnMinThreeOverdue.Appearance.BackColor = System.Drawing.Color.DarkOrange
         Me.BtnMinThreeOverdue.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.BtnMinThreeOverdue.Appearance.ForeColor = System.Drawing.Color.White
         Me.BtnMinThreeOverdue.Appearance.Options.UseBackColor = True
@@ -1338,18 +1339,19 @@ Partial Class FormMailManage
         Me.BtnMinThreeOverdue.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnMinThreeOverdue.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnMinThreeOverdue.Name = "BtnMinThreeOverdue"
-        Me.BtnMinThreeOverdue.Size = New System.Drawing.Size(98, 20)
+        Me.BtnMinThreeOverdue.Size = New System.Drawing.Size(119, 20)
         Me.BtnMinThreeOverdue.TabIndex = 8932
-        Me.BtnMinThreeOverdue.Text = "(H-3) Overdue"
+        Me.BtnMinThreeOverdue.Text = "H-3 Jatuh Tempo"
         '
         'PanelControl9
         '
         Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl9.Controls.Add(Me.BtnPendingMailUnpaidGroupStoreMinThree)
         Me.PanelControl9.Controls.Add(Me.BtnPendingMailUnpaidGroupStore)
         Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl9.Location = New System.Drawing.Point(738, 2)
+        Me.PanelControl9.Location = New System.Drawing.Point(516, 2)
         Me.PanelControl9.Name = "PanelControl9"
-        Me.PanelControl9.Size = New System.Drawing.Size(181, 39)
+        Me.PanelControl9.Size = New System.Drawing.Size(403, 39)
         Me.PanelControl9.TabIndex = 8929
         '
         'BtnPendingMailUnpaidGroupStore
@@ -1360,15 +1362,15 @@ Partial Class FormMailManage
         Me.BtnPendingMailUnpaidGroupStore.Appearance.Options.UseBackColor = True
         Me.BtnPendingMailUnpaidGroupStore.Appearance.Options.UseFont = True
         Me.BtnPendingMailUnpaidGroupStore.Appearance.Options.UseForeColor = True
-        Me.BtnPendingMailUnpaidGroupStore.Location = New System.Drawing.Point(7, 9)
+        Me.BtnPendingMailUnpaidGroupStore.Location = New System.Drawing.Point(210, 9)
         Me.BtnPendingMailUnpaidGroupStore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnPendingMailUnpaidGroupStore.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnPendingMailUnpaidGroupStore.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnPendingMailUnpaidGroupStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnPendingMailUnpaidGroupStore.Name = "BtnPendingMailUnpaidGroupStore"
-        Me.BtnPendingMailUnpaidGroupStore.Size = New System.Drawing.Size(167, 20)
+        Me.BtnPendingMailUnpaidGroupStore.Size = New System.Drawing.Size(182, 20)
         Me.BtnPendingMailUnpaidGroupStore.TabIndex = 8928
-        Me.BtnPendingMailUnpaidGroupStore.Text = "Ovedue (By Group Store)"
+        Me.BtnPendingMailUnpaidGroupStore.Text = "Jatuh Tempo (Store Group)"
         '
         'SLEStoreGroupUnpaid
         '
@@ -1416,6 +1418,24 @@ Partial Class FormMailManage
         Me.LabelControl2.Size = New System.Drawing.Size(58, 13)
         Me.LabelControl2.TabIndex = 8922
         Me.LabelControl2.Text = "Store Group"
+        '
+        'BtnPendingMailUnpaidGroupStoreMinThree
+        '
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.BackColor = System.Drawing.Color.Orange
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseBackColor = True
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseFont = True
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Appearance.Options.UseForeColor = True
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Location = New System.Drawing.Point(8, 9)
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Name = "BtnPendingMailUnpaidGroupStoreMinThree"
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Size = New System.Drawing.Size(196, 20)
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.TabIndex = 8934
+        Me.BtnPendingMailUnpaidGroupStoreMinThree.Text = "H-3 Jatuh Tempo (Store Group)"
         '
         'FormMailManage
         '
@@ -1604,4 +1624,5 @@ Partial Class FormMailManage
     Friend WithEvents GridColumntotal_rec As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumntotaldue As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnProceedEmailNotice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPendingMailUnpaidGroupStoreMinThree As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -269,6 +269,14 @@
 
     Sub viewPendingMailGroup()
         Cursor = Cursors.WaitCursor
+        FormMailManagePendingInvoice.rmt = "225"
+        FormMailManagePendingInvoice.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewUnpaidGroup(ByVal rmtpar As String)
+        Cursor = Cursors.WaitCursor
+        FormMailManagePendingInvoice.rmt = rmtpar
         FormMailManagePendingInvoice.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -291,7 +299,7 @@
         BtnProceedEmailWarning.Visible = False
     End Sub
 
-    Private Sub BtnMinThreeOverdue_Click_1(sender As Object, e As EventArgs) Handles BtnMinThreeOverdue.Click
+    Sub unpaidMinOvedue()
         invisibleAllButtonUnpaid()
         rmt_unpaid = "226"
         loadUnpaidInvoice("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>=-5 AND DATEDIFF(NOW(),sp.`sales_pos_due_date`)<0) ")
@@ -300,13 +308,21 @@
         End If
     End Sub
 
-    Private Sub BtnAlreadyProcessedUnpaud_Click(sender As Object, e As EventArgs) Handles BtnOverdue.Click
+    Private Sub BtnMinThreeOverdue_Click_1(sender As Object, e As EventArgs) Handles BtnMinThreeOverdue.Click
+        unpaidMinOvedue()
+    End Sub
+
+    Sub unpaidOverdue()
         invisibleAllButtonUnpaid()
         rmt_unpaid = "227"
         loadUnpaidInvoice("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>=0) ")
         If GVUnpaid.RowCount > 0 Then
             BtnProceedEmailWarning.Visible = True
         End If
+    End Sub
+
+    Private Sub BtnAlreadyProcessedUnpaud_Click(sender As Object, e As EventArgs) Handles BtnOverdue.Click
+        unpaidOverdue()
     End Sub
 
     Private Sub BtnProceedEmailPeringatan_Click(sender As Object, e As EventArgs) Handles BtnProceedEmailWarning.Click
@@ -356,7 +372,7 @@
     End Sub
 
     Private Sub SLEStoreGroupUnpaid_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroupUnpaid.EditValueChanged
-        GCInvoiceList.DataSource = Nothing
+        GCUnpaid.DataSource = Nothing
         invisibleAllButtonUnpaid()
         rmt_unpaid = "-1"
     End Sub
@@ -405,5 +421,13 @@
             GVUnpaid.ActiveFilterString = ""
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnPendingMailUnpaidGroupStore_Click(sender As Object, e As EventArgs) Handles BtnPendingMailUnpaidGroupStore.Click
+        viewUnpaidGroup("227")
+    End Sub
+
+    Private Sub BtnPendingMailUnpaidGroupStoreMinThree_Click(sender As Object, e As EventArgs) Handles BtnPendingMailUnpaidGroupStoreMinThree.Click
+        viewUnpaidGroup("226")
     End Sub
 End Class
