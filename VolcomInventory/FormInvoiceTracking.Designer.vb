@@ -288,7 +288,6 @@ Partial Class FormInvoiceTracking
         Me.GVUnpaid.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.BandedGridColumn4, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumntotal_rec, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bbm_value", Me.BandedGridColumnbbm_value, "{0:N2}")})
         Me.GVUnpaid.Name = "GVUnpaid"
         Me.GVUnpaid.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVUnpaid.OptionsBehavior.Editable = False
         Me.GVUnpaid.OptionsFind.AlwaysVisible = True
         Me.GVUnpaid.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVUnpaid.OptionsView.ColumnAutoWidth = False

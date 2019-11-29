@@ -1930,6 +1930,12 @@
     <Compile Include="FormInvoiceTracking.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceTrackingBBM.Designer.vb">
+      <DependentUpon>FormInvoiceTrackingBBM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceTrackingBBM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatMain.Designer.vb">
       <DependentUpon>FormItemCatMain.vb</DependentUpon>
     </Compile>
@@ -8337,6 +8343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceTracking.resx">
       <DependentUpon>FormInvoiceTracking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceTrackingBBM.resx">
+      <DependentUpon>FormInvoiceTrackingBBM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMain.resx">
       <DependentUpon>FormItemCatMain.vb</DependentUpon>

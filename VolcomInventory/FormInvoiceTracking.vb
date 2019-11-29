@@ -164,4 +164,15 @@
         GCUnpaid.DataSource = data
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepoBtnMoreBBM_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnMoreBBM.ButtonClick
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormInvoiceTrackingBBM.Text = FormInvoiceTrackingBBM.Text + " " + GVUnpaid.GetFocusedRowCellValue("sales_pos_number").ToString
+            FormInvoiceTrackingBBM.rmt = GVUnpaid.GetFocusedRowCellValue("report_mark_type").ToString
+            FormInvoiceTrackingBBM.id_report = GVUnpaid.GetFocusedRowCellValue("id_sales_pos").ToString
+            FormInvoiceTrackingBBM.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
