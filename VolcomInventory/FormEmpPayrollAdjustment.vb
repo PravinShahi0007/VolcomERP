@@ -138,6 +138,10 @@
         report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
         report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
+        If is_thr = "1" Then
+            report.XLPeriod.Text = "Period " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+        End If
+
         If Not already_office Then
             report.DetailReportOffice.Visible = False
         End If

@@ -177,18 +177,34 @@
 
         Dim report As ReportEmpPayrollReportAllDepartement = New ReportEmpPayrollReportAllDepartement
 
+        If is_thr = "1" Then
+            report.Landscape = False
+            report.XrLine1.SizeF = New SizeF(733, 20)
+            report.XLTitle.SizeF = New SizeF(275, 41.15)
+            report.XLTitle.LocationF = New PointF(220, 23)
+            report.XLPeriod.SizeF = New SizeF(205, 23)
+            report.XLPeriod.LocationF = New PointF(525, 11)
+            report.XLType.SizeF = New SizeF(150, 23)
+            report.XrLabel1.LocationF = New PointF(525, 34)
+            report.XrLabel3.LocationF = New PointF(565, 34)
+            report.XLType.LocationF = New PointF(580, 34)
+            report.XrTable1.SizeF = New SizeF(733, 25)
+        End If
+
         report.id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         report.data = total_all(data)
         report.data_office = data_payroll_1
         report.data_store = data_payroll_2
         report.id_pre = If(id_report_status = "6", "-1", "1")
         report.type = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
-        If is_thr = "1" Then
-            report.XLTitle.Text = "Summary " + Environment.NewLine + execute_query("SELECT REPLACE(payroll_type, 'Daily Worker', '') AS payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
-        End If
 
         report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
         report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
+
+        If is_thr = "1" Then
+            report.XLTitle.Text = "Summary " + Environment.NewLine + execute_query("SELECT REPLACE(payroll_type, 'Daily Worker', '') AS payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+            report.XLPeriod.Text = "Period " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+        End If
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 

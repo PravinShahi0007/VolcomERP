@@ -527,8 +527,12 @@
         report.dt_office = data_payroll_office
         report.dt_store = data_payroll_store
 
+        report.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
+
         If is_thr = "1" Then
             report.XLTitle.Text = execute_query("SELECT REPLACE(payroll_type, 'Daily Worker', '') AS payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+            report.XLPeriod.Text = "Period " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
         End If
 
         If Not already_office Then
@@ -538,9 +542,6 @@
         If Not already_store Then
             report.DetailReportStore.Visible = False
         End If
-
-        report.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
