@@ -305,7 +305,7 @@ Partial Public Class ReportEmpPayrollDeduction
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(805.0001!, 33.99998!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(854.9999!, 33.99998!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(40.0!, 23.0!)
@@ -326,7 +326,7 @@ Partial Public Class ReportEmpPayrollDeduction
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(845.0001!, 34.00002!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(894.9999!, 34.00002!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -338,10 +338,10 @@ Partial Public Class ReportEmpPayrollDeduction
         'XLPeriod
         '
         Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(805.0001!, 11.00001!)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(854.9999!, 11.00001!)
         Me.XLPeriod.Name = "XLPeriod"
         Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLPeriod.SizeF = New System.Drawing.SizeF(270.0!, 23.0!)
+        Me.XLPeriod.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
         Me.XLPeriod.StylePriority.UseFont = False
         Me.XLPeriod.StylePriority.UseTextAlignment = False
         Me.XLPeriod.Text = "[period]"
@@ -350,10 +350,10 @@ Partial Public Class ReportEmpPayrollDeduction
         'XLTitle
         '
         Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(270.0!, 33.99998!)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 33.99998!)
         Me.XLTitle.Name = "XLTitle"
         Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(535.0!, 23.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(634.9999!, 23.0!)
         Me.XLTitle.StylePriority.UseFont = False
         Me.XLTitle.StylePriority.UseTextAlignment = False
         Me.XLTitle.Text = "[title]"
@@ -362,10 +362,10 @@ Partial Public Class ReportEmpPayrollDeduction
         'XLType
         '
         Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(860.0001!, 34.00002!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(909.9999!, 34.00002!)
         Me.XLType.Name = "XLType"
         Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLType.SizeF = New System.Drawing.SizeF(215.0002!, 23.0!)
+        Me.XLType.SizeF = New System.Drawing.SizeF(165.0004!, 23.0!)
         Me.XLType.StylePriority.UseFont = False
         Me.XLType.StylePriority.UseTextAlignment = False
         Me.XLType.Text = "[type]"
