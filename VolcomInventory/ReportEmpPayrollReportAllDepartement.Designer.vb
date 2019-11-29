@@ -194,7 +194,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCInformation.Name = "GCInformation"
         Me.GCInformation.Visible = True
         Me.GCInformation.VisibleIndex = 0
-        Me.GCInformation.Width = 200
+        Me.GCInformation.Width = 225
         '
         'GCVCIN
         '
@@ -207,12 +207,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCIN.DisplayFormat.FormatString = "N0"
         Me.GCVCIN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCVCIN.FieldName = "volcom_indonesia"
-        Me.GCVCIN.MaxWidth = 100
+        Me.GCVCIN.MaxWidth = 75
         Me.GCVCIN.Name = "GCVCIN"
         Me.GCVCIN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "volcom_indonesia", "{0:N0}")})
         Me.GCVCIN.Visible = True
         Me.GCVCIN.VisibleIndex = 1
-        Me.GCVCIN.Width = 100
         '
         'GCVCINSOGO
         '
@@ -225,11 +224,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCINSOGO.DisplayFormat.FormatString = "N0"
         Me.GCVCINSOGO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCVCINSOGO.FieldName = "volcom_sogo"
+        Me.GCVCINSOGO.MaxWidth = 75
         Me.GCVCINSOGO.Name = "GCVCINSOGO"
         Me.GCVCINSOGO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "volcom_sogo", "{0:N0}")})
         Me.GCVCINSOGO.Visible = True
         Me.GCVCINSOGO.VisibleIndex = 2
-        Me.GCVCINSOGO.Width = 100
         '
         'GCVCBC
         '
@@ -242,12 +241,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCBC.DisplayFormat.FormatString = "N0"
         Me.GCVCBC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCVCBC.FieldName = "bemo_corner"
-        Me.GCVCBC.MaxWidth = 100
+        Me.GCVCBC.MaxWidth = 75
         Me.GCVCBC.Name = "GCVCBC"
         Me.GCVCBC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bemo_corner", "{0:N0}")})
         Me.GCVCBC.Visible = True
         Me.GCVCBC.VisibleIndex = 3
-        Me.GCVCBC.Width = 100
         '
         'GCVCKS
         '
@@ -260,12 +258,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCKS.DisplayFormat.FormatString = "N0"
         Me.GCVCKS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCVCKS.FieldName = "kuta_square"
-        Me.GCVCKS.MaxWidth = 100
+        Me.GCVCKS.MaxWidth = 75
         Me.GCVCKS.Name = "GCVCKS"
         Me.GCVCKS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "kuta_square", "{0:N0}")})
         Me.GCVCKS.Visible = True
         Me.GCVCKS.VisibleIndex = 4
-        Me.GCVCKS.Width = 100
         '
         'GCVCSM
         '
@@ -278,12 +275,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCVCSM.DisplayFormat.FormatString = "N0"
         Me.GCVCSM.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCVCSM.FieldName = "seminyak"
-        Me.GCVCSM.MaxWidth = 100
+        Me.GCVCSM.MaxWidth = 75
         Me.GCVCSM.Name = "GCVCSM"
         Me.GCVCSM.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "seminyak", "{0:N0}")})
         Me.GCVCSM.Visible = True
         Me.GCVCSM.VisibleIndex = 5
-        Me.GCVCSM.Width = 100
         '
         'GCTotal
         '
@@ -295,14 +291,13 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         Me.GCTotal.DisplayFormat.FormatString = "N0"
         Me.GCTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCTotal.FieldName = "total"
-        Me.GCTotal.MaxWidth = 100
+        Me.GCTotal.MaxWidth = 75
         Me.GCTotal.Name = "GCTotal"
         Me.GCTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GCTotal.UnboundExpression = "[volcom_indonesia] +[volcom_sogo]+ [bemo_corner] + [kuta_square] + [seminyak]"
         Me.GCTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GCTotal.Visible = True
         Me.GCTotal.VisibleIndex = 6
-        Me.GCTotal.Width = 100
         '
         'XLLocation
         '
@@ -947,10 +942,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(855.0001!, 33.99998!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(804.9999!, 33.99998!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(40.0!, 23.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "Type"
@@ -968,7 +963,7 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(915.0001!, 33.99998!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(844.9999!, 33.99998!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -980,10 +975,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XLPeriod
         '
         Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(855.0!, 11.0!)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(804.9999!, 10.99998!)
         Me.XLPeriod.Name = "XLPeriod"
         Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLPeriod.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
+        Me.XLPeriod.SizeF = New System.Drawing.SizeF(270.0!, 23.0!)
         Me.XLPeriod.StylePriority.UseFont = False
         Me.XLPeriod.StylePriority.UseTextAlignment = False
         Me.XLPeriod.Text = "[period]"
@@ -992,11 +987,11 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XLTitle
         '
         Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 22.99995!)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(269.9999!, 22.99995!)
         Me.XLTitle.Multiline = True
         Me.XLTitle.Name = "XLTitle"
         Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(635.0!, 41.15005!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(535.0!, 41.15005!)
         Me.XLTitle.StylePriority.UseFont = False
         Me.XLTitle.StylePriority.UseTextAlignment = False
         Me.XLTitle.Text = "Summary Monthly Payroll"
@@ -1005,10 +1000,10 @@ Partial Public Class ReportEmpPayrollReportAllDepartement
         'XLType
         '
         Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(930.0001!, 33.99998!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(859.9999!, 33.99998!)
         Me.XLType.Name = "XLType"
         Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLType.SizeF = New System.Drawing.SizeF(145.0!, 23.0!)
+        Me.XLType.SizeF = New System.Drawing.SizeF(215.0002!, 23.0!)
         Me.XLType.StylePriority.UseFont = False
         Me.XLType.StylePriority.UseTextAlignment = False
         Me.XLType.Text = "[type]"

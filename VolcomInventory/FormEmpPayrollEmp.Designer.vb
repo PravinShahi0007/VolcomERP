@@ -43,7 +43,9 @@ Partial Class FormEmpPayrollEmp
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployeeActive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCActiveStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCActualJoinDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCLastWorkingDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCReligion = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -132,7 +134,7 @@ Partial Class FormEmpPayrollEmp
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdEmployeeSalary, Me.GCTotalWorkdays, Me.GCActualWorkdays, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeActive, Me.GCActiveStatus, Me.GCLastWorkingDate})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdEmployee, Me.GCIdEmployeeSalary, Me.GCTotalWorkdays, Me.GCActualWorkdays, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeActive, Me.GCActiveStatus, Me.GCActualJoinDate, Me.GCLastWorkingDate, Me.GCReligion})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
@@ -256,13 +258,29 @@ Partial Class FormEmpPayrollEmp
         Me.GCActiveStatus.Visible = True
         Me.GCActiveStatus.VisibleIndex = 6
         '
+        'GCActualJoinDate
+        '
+        Me.GCActualJoinDate.Caption = "Actual Join Date"
+        Me.GCActualJoinDate.FieldName = "employee_actual_join_date"
+        Me.GCActualJoinDate.Name = "GCActualJoinDate"
+        Me.GCActualJoinDate.Visible = True
+        Me.GCActualJoinDate.VisibleIndex = 7
+        Me.GCActualJoinDate.Width = 108
+        '
         'GCLastWorkingDate
         '
         Me.GCLastWorkingDate.Caption = "Last Working Date"
         Me.GCLastWorkingDate.FieldName = "employee_last_date"
         Me.GCLastWorkingDate.Name = "GCLastWorkingDate"
         Me.GCLastWorkingDate.Visible = True
-        Me.GCLastWorkingDate.VisibleIndex = 7
+        Me.GCLastWorkingDate.VisibleIndex = 8
+        Me.GCLastWorkingDate.Width = 98
+        '
+        'GCReligion
+        '
+        Me.GCReligion.Caption = "Religion"
+        Me.GCReligion.FieldName = "religion"
+        Me.GCReligion.Name = "GCReligion"
         '
         'FormEmpPayrollEmp
         '
@@ -308,4 +326,6 @@ Partial Class FormEmpPayrollEmp
     Friend WithEvents GCTotalWorkdays As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCActualWorkdays As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCLastWorkingDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCReligion As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCActualJoinDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class
