@@ -855,6 +855,11 @@ GROUP BY m_ovh_p.id_ovh_price"
                 FormReportMark.id_report = id_prod_order
                 FormReportMark.report_mark_type = "22"
                 FormReportMark.change_status("5")
+
+                'nonaktif mark
+                Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "22", id_prod_order)
+                execute_non_query(queryrm, True, "", "", "", "")
+
                 Close()
             Catch ex As Exception
                 DevExpress.XtraEditors.XtraMessageBox.Show(ex.ToString, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
