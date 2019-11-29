@@ -13808,4 +13808,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
     End Sub
+
+    Private Sub NBInvTracking_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvTracking.LinkClicked
+        Try
+            FormInvoiceTracking.MdiParent = Me
+            FormInvoiceTracking.Show()
+            FormInvoiceTracking.WindowState = FormWindowState.Maximized
+            FormInvoiceTracking.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
 End Class

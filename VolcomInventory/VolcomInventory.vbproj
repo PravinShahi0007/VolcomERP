@@ -1924,6 +1924,12 @@
     <Compile Include="FormInvoiceFGPONew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceTracking.Designer.vb">
+      <DependentUpon>FormInvoiceTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceTracking.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatMain.Designer.vb">
       <DependentUpon>FormItemCatMain.vb</DependentUpon>
     </Compile>
