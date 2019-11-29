@@ -74,6 +74,9 @@ Partial Class FormMailManage
         Me.GridColumnsales_pos_total_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_start_period = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_end_period = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_numberinv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_dateinv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmail_statusinv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -92,6 +95,8 @@ Partial Class FormMailManage
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPUnpaidBill = New DevExpress.XtraTab.XtraTabPage()
         Me.GCUnpaid = New DevExpress.XtraGrid.GridControl()
+        Me.CMSUnpaid = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVUnpaid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -145,11 +150,6 @@ Partial Class FormMailManage
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnmail_numberinv = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnmail_dateinv = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnmail_statusinv = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CMSUnpaid = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCMailManage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMailManage.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
@@ -182,6 +182,7 @@ Partial Class FormMailManage
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPUnpaidBill.SuspendLayout()
         CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSUnpaid.SuspendLayout()
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,7 +197,6 @@ Partial Class FormMailManage
         Me.PanelControl9.SuspendLayout()
         CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CMSUnpaid.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCMailManage
@@ -688,6 +688,26 @@ Partial Class FormMailManage
         Me.GridColumnsales_pos_end_period.Visible = True
         Me.GridColumnsales_pos_end_period.VisibleIndex = 8
         '
+        'GridColumnmail_numberinv
+        '
+        Me.GridColumnmail_numberinv.Caption = "Email No"
+        Me.GridColumnmail_numberinv.FieldName = "mail_number"
+        Me.GridColumnmail_numberinv.Name = "GridColumnmail_numberinv"
+        '
+        'GridColumnmail_dateinv
+        '
+        Me.GridColumnmail_dateinv.Caption = "Email Date"
+        Me.GridColumnmail_dateinv.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnmail_dateinv.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnmail_dateinv.FieldName = "mail_date"
+        Me.GridColumnmail_dateinv.Name = "GridColumnmail_dateinv"
+        '
+        'GridColumnmail_statusinv
+        '
+        Me.GridColumnmail_statusinv.Caption = "Email Status"
+        Me.GridColumnmail_statusinv.FieldName = "mail_status"
+        Me.GridColumnmail_statusinv.Name = "GridColumnmail_statusinv"
+        '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
@@ -889,6 +909,18 @@ Partial Class FormMailManage
         Me.GCUnpaid.Size = New System.Drawing.Size(921, 332)
         Me.GCUnpaid.TabIndex = 19
         Me.GCUnpaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUnpaid})
+        '
+        'CMSUnpaid
+        '
+        Me.CMSUnpaid.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem1})
+        Me.CMSUnpaid.Name = "CMSUnpaid"
+        Me.CMSUnpaid.Size = New System.Drawing.Size(131, 26)
+        '
+        'ViewDetailToolStripMenuItem1
+        '
+        Me.ViewDetailToolStripMenuItem1.Name = "ViewDetailToolStripMenuItem1"
+        Me.ViewDetailToolStripMenuItem1.Size = New System.Drawing.Size(130, 22)
+        Me.ViewDetailToolStripMenuItem1.Text = "view detail"
         '
         'GVUnpaid
         '
@@ -1156,7 +1188,7 @@ Partial Class FormMailManage
         '
         'GridColumn33
         '
-        Me.GridColumn33.Caption = "Due Days"
+        Me.GridColumn33.Caption = "Age (Day)"
         Me.GridColumn33.FieldName = "due_days_view"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.UnboundExpression = "Iif([due_days] = 0, [due_days], Iif([due_days] < 0, [due_days], Concat('+', [due_" &
@@ -1204,7 +1236,7 @@ Partial Class FormMailManage
         '
         'GridColumntotal_rec
         '
-        Me.GridColumntotal_rec.Caption = "Amount Received"
+        Me.GridColumntotal_rec.Caption = "Amount Paid"
         Me.GridColumntotal_rec.DisplayFormat.FormatString = "N2"
         Me.GridColumntotal_rec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumntotal_rec.FieldName = "total_rec"
@@ -1444,38 +1476,6 @@ Partial Class FormMailManage
         Me.LabelControl2.TabIndex = 8922
         Me.LabelControl2.Text = "Store Group"
         '
-        'GridColumnmail_numberinv
-        '
-        Me.GridColumnmail_numberinv.Caption = "Email No"
-        Me.GridColumnmail_numberinv.FieldName = "mail_number"
-        Me.GridColumnmail_numberinv.Name = "GridColumnmail_numberinv"
-        '
-        'GridColumnmail_dateinv
-        '
-        Me.GridColumnmail_dateinv.Caption = "Email Date"
-        Me.GridColumnmail_dateinv.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumnmail_dateinv.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnmail_dateinv.FieldName = "mail_date"
-        Me.GridColumnmail_dateinv.Name = "GridColumnmail_dateinv"
-        '
-        'GridColumnmail_statusinv
-        '
-        Me.GridColumnmail_statusinv.Caption = "Email Status"
-        Me.GridColumnmail_statusinv.FieldName = "mail_status"
-        Me.GridColumnmail_statusinv.Name = "GridColumnmail_statusinv"
-        '
-        'CMSUnpaid
-        '
-        Me.CMSUnpaid.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem1})
-        Me.CMSUnpaid.Name = "CMSUnpaid"
-        Me.CMSUnpaid.Size = New System.Drawing.Size(153, 48)
-        '
-        'ViewDetailToolStripMenuItem1
-        '
-        Me.ViewDetailToolStripMenuItem1.Name = "ViewDetailToolStripMenuItem1"
-        Me.ViewDetailToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.ViewDetailToolStripMenuItem1.Text = "view detail"
-        '
         'FormMailManage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1521,6 +1521,7 @@ Partial Class FormMailManage
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPUnpaidBill.ResumeLayout(False)
         CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSUnpaid.ResumeLayout(False)
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1536,7 +1537,6 @@ Partial Class FormMailManage
         Me.PanelControl9.ResumeLayout(False)
         CType(Me.SLEStoreGroupUnpaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CMSUnpaid.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

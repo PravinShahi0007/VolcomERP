@@ -8335,6 +8335,9 @@
     <EmbeddedResource Include="FormInvoiceFGPONew.resx">
       <DependentUpon>FormInvoiceFGPONew.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceTracking.resx">
+      <DependentUpon>FormInvoiceTracking.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMain.resx">
       <DependentUpon>FormItemCatMain.vb</DependentUpon>
     </EmbeddedResource>
