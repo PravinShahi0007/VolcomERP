@@ -19,7 +19,7 @@
                 viewDataUnpaid("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>=-5 AND DATEDIFF(NOW(),sp.`sales_pos_due_date`)<0) ")
                 LabelControlJT.Text = "H-3 Jatuh Tempo"
             Else
-                viewDataUnpaid("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>=0) ")
+                viewDataUnpaid("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>0) ")
                 LabelControlJT.Text = "Jatuh Tempo"
             End If
             XTPInvoiceJatuhTempo.PageVisible = True
