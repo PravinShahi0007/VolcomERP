@@ -48,10 +48,10 @@
                         newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
                         newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                         newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
-                        newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp").ToString
-                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
-                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
-                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
+                        newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp")
+                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
                         newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
@@ -79,14 +79,19 @@
                     'id_report,number,total,balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_item_expense").ToString
-                    newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
-                    newRow("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
-                    newRow("id_comp") = "1"
-                    newRow("comp_number") = "000"
-                    newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                    newRow("report_mark_type") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_comp_default").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "comp_number_default").ToString
                     newRow("number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "total_dp")
                     newRow("value") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
+                    newRow("value_view") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "balance")
                     newRow("note") = ""
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
@@ -101,7 +106,7 @@
                 SLEPayType.Visible = False
                 'load detail
                 For i As Integer = 0 To FormBankWithdrawal.GVFGPO.RowCount - 1
-                    'id_report,number,total,balance due
+                    'id_report, number, total, balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_pn_fgpo").ToString
                     newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
@@ -116,6 +121,8 @@
                 calculate_amount()
             End If
         Else
+            PCAddDel.Visible = False
+            '
             BtnPrint.Visible = True
             BMark.Visible = True
             BtnSave.Visible = False
@@ -328,6 +335,16 @@ WHERE py.`id_pn`='" & id_payment & "'"
         If e.Column.FieldName.ToString = "value" Then
             'set value
             calculate_amount()
+        ElseIf e.Column.FieldName.ToString = "value_view" Then
+            Dim rh As Integer = e.RowHandle
+            Dim val As Decimal = 0
+            Dim id_dc As String = GVList.GetRowCellValue(rh, "id_dc").ToString
+            If id_dc = "2" Then 'credit
+                val = e.Value * -1
+            Else
+                val = e.Value
+            End If
+            GVList.SetRowCellValue(rh, "value", val)
         End If
     End Sub
 
@@ -376,7 +393,12 @@ VALUES('139','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.To
 
                 'done
                 infoCustom("Payment created")
-                FormBankWithdrawal.load_po()
+                If FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 1 Then
+                    FormBankWithdrawal.load_po()
+                ElseIf FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 2 Then
+                    FormBankWithdrawal.load_expense()
+                End If
+
                 FormBankWithdrawal.load_payment()
                 FormBankWithdrawal.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_pn", id_payment)
                 FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 0
@@ -526,6 +548,8 @@ VALUES('139','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.To
         End If
     End Sub
 
+
+
     Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
@@ -533,12 +557,20 @@ VALUES('139','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.To
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        FormBankWithdrawalAdd.action = "ins"
-        FormBankWithdrawalAdd.ShowDialog()
+        If id_payment = "-1" Then
+            FormBankWithdrawalAdd.action = "ins"
+            FormBankWithdrawalAdd.ShowDialog()
+        End If
     End Sub
 
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
-        FormBankWithdrawalAdd.action = "upd"
-        FormBankWithdrawalAdd.ShowDialog()
+        If id_payment = "-1" And GVList.FocusedRowHandle >= 0 Then
+            If GVList.GetFocusedRowCellValue("id_report") = "0" Then
+                Cursor = Cursors.WaitCursor
+                FormBankWithdrawalAdd.action = "upd"
+                FormBankWithdrawalAdd.ShowDialog()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class

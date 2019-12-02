@@ -330,7 +330,16 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
     End Sub
 
     Private Sub BtnViewExpense_Click(sender As Object, e As EventArgs) Handles BtnViewExpense.Click
-        load_expense()
+        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data_check.Rows(0)("id_acc_dp").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "1" Then
+            warningCustom("This vendor DP account is not set.")
+        ElseIf data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+            warningCustom("This vendor AP account is not set.")
+        Else
+            load_expense()
+        End If
     End Sub
 
     Sub load_expense()
@@ -338,11 +347,23 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
 
         Dim where_string As String = ""
         Dim having_string As String = ""
+
+        Dim q_acc As String = ""
+        Dim q_join_acc As String = ""
+
         If Not SLEVendorExpense.EditValue.ToString = "0" Then
             where_string = "AND e.id_comp='" & SLEVendorExpense.EditValue.ToString & "' "
         End If
 
-        If SLEStatusPaymentExpense.EditValue.ToString = "0" Then 'open include overdue and only dp\
+        If SLEPayTypeExpense.EditValue.ToString = "2" Then 'payment
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
+        ElseIf SLEPayTypeExpense.EditValue.ToString = "1" Then 'DP
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
+        End If
+
+        If SLEStatusPaymentExpense.EditValue.ToString = "0" Then 'open include overdue and only dp
             where_string += "AND e.is_pay_later=1 AND e.is_open=1 "
             BCreateExpense.Visible = True
         ElseIf SLEStatusPaymentExpense.EditValue.ToString = "1" Then 'paid
@@ -357,6 +378,8 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
         End If
 
         Dim e As New ClassItemExpense()
+        e.q_acc = q_acc
+        e.q_join = q_join_acc
         Dim query As String = e.queryMain(where_string, "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCExpense.DataSource = data
@@ -366,6 +389,7 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
 
     Private Sub BCreateExpense_Click(sender As Object, e As EventArgs) Handles BCreateExpense.Click
         Cursor = Cursors.WaitCursor
+
         GVExpense.ActiveFilterString = ""
         GVExpense.ActiveFilterString = "[is_select]='yes'"
 
@@ -396,6 +420,7 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
             warningCustom("No data selected")
         End If
         GVExpense.ActiveFilterString = ""
+
         Cursor = Cursors.Default
     End Sub
 
