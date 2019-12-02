@@ -21,10 +21,10 @@ Partial Class FormInvoiceTrackingBBM
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceTrackingBBM))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid_rec_payment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndate_created = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndate_received = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,6 +45,26 @@ Partial Class FormInvoiceTrackingBBM
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(490, 47)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnDiscard
+        '
+        Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDiscard.Image = CType(resources.GetObject("BtnDiscard.Image"), System.Drawing.Image)
+        Me.BtnDiscard.Location = New System.Drawing.Point(303, 2)
+        Me.BtnDiscard.Name = "BtnDiscard"
+        Me.BtnDiscard.Size = New System.Drawing.Size(99, 43)
+        Me.BtnDiscard.TabIndex = 1
+        Me.BtnDiscard.Text = "Discard"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(402, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(86, 43)
+        Me.BtnPrint.TabIndex = 0
+        Me.BtnPrint.Text = "Print"
         '
         'GCData
         '
@@ -67,26 +87,6 @@ Partial Class FormInvoiceTrackingBBM
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(402, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(86, 43)
-        Me.BtnPrint.TabIndex = 0
-        Me.BtnPrint.Text = "Print"
-        '
-        'BtnDiscard
-        '
-        Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDiscard.Image = CType(resources.GetObject("BtnDiscard.Image"), System.Drawing.Image)
-        Me.BtnDiscard.Location = New System.Drawing.Point(303, 2)
-        Me.BtnDiscard.Name = "BtnDiscard"
-        Me.BtnDiscard.Size = New System.Drawing.Size(99, 43)
-        Me.BtnDiscard.TabIndex = 1
-        Me.BtnDiscard.Text = "Discard"
-        '
         'GridColumnid_rec_payment
         '
         Me.GridColumnid_rec_payment.Caption = "id_rec_payment"
@@ -101,7 +101,7 @@ Partial Class FormInvoiceTrackingBBM
         Me.GridColumndate_created.FieldName = "date_created"
         Me.GridColumndate_created.Name = "GridColumndate_created"
         Me.GridColumndate_created.Visible = True
-        Me.GridColumndate_created.VisibleIndex = 0
+        Me.GridColumndate_created.VisibleIndex = 1
         '
         'GridColumndate_received
         '
@@ -111,7 +111,7 @@ Partial Class FormInvoiceTrackingBBM
         Me.GridColumndate_received.FieldName = "date_received"
         Me.GridColumndate_received.Name = "GridColumndate_received"
         Me.GridColumndate_received.Visible = True
-        Me.GridColumndate_received.VisibleIndex = 1
+        Me.GridColumndate_received.VisibleIndex = 2
         '
         'GridColumnnumber
         '
@@ -119,7 +119,7 @@ Partial Class FormInvoiceTrackingBBM
         Me.GridColumnnumber.FieldName = "number"
         Me.GridColumnnumber.Name = "GridColumnnumber"
         Me.GridColumnnumber.Visible = True
-        Me.GridColumnnumber.VisibleIndex = 2
+        Me.GridColumnnumber.VisibleIndex = 0
         '
         'GridColumnvalue
         '

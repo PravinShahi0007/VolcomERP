@@ -27,4 +27,15 @@
         print_raw(GCData, "")
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim bbm As New ClassShowPopUp()
+            bbm.report_mark_type = "162"
+            bbm.id_report = GVData.GetFocusedRowCellValue("id_rec_payment").ToString
+            bbm.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
