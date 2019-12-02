@@ -99,8 +99,9 @@
             CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
             ,sp.report_mark_type,rmt.report_mark_type_name
             ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),sp.`sales_pos_due_date`) AS due_days,
-            mail_warning_no, mail_warning_date, mail_warning_status,
-            mail_notice_no, mail_notice_date, mail_notice_status,
+            id_mail_warning_no,mail_warning_no, mail_warning_date, mail_warning_status,
+            id_mail_notice_no,mail_notice_no, mail_notice_date, mail_notice_status,
+            id_mail_invoice, mail_invoice_no, mail_invoice_date, mail_invoice_status,
             bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -119,7 +120,7 @@
             ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
             LEFT JOIN (
                 SELECT * FROM (
-	                SELECT m.id_mail_manage, m.number AS `mail_warning_no`, 
+	                SELECT m.id_mail_manage AS `id_mail_warning_no`, m.number AS `mail_warning_no`, 
 	                m.updated_date AS `mail_warning_date`,md.id_report, stt.mail_status AS `mail_warning_status`
 	                FROM tb_mail_manage_det md
 	                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
@@ -131,7 +132,7 @@
             ) w ON w.id_report = sp.id_sales_pos
             LEFT JOIN (
                 SELECT * FROM (
-	                SELECT m.id_mail_manage, m.number AS `mail_notice_no`, 
+	                SELECT m.id_mail_manage AS `id_mail_notice_no`, m.number AS `mail_notice_no`, 
 	                m.updated_date AS `mail_notice_date`,md.id_report, stt.mail_status AS `mail_notice_status`
 	                FROM tb_mail_manage_det md
 	                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
@@ -141,6 +142,18 @@
                 ) n 
                 GROUP BY n.id_report
             ) n ON n.id_report = sp.id_sales_pos
+            LEFT JOIN (
+                SELECT * FROM (
+	                SELECT m.id_mail_manage AS `id_mail_invoice`, m.number AS `mail_invoice_no`, 
+	                m.updated_date AS `mail_invoice_date`,md.id_report, stt.mail_status AS `mail_invoice_status`
+	                FROM tb_mail_manage_det md
+	                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
+	                INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
+	                WHERE m.report_mark_type=225
+	                ORDER BY m.id_mail_manage DESC
+                ) n 
+                GROUP BY n.id_report
+            ) i ON i.id_report = sp.id_sales_pos
             LEFT JOIN (
 	            SELECT * FROM  (
 		            SELECT r.id_rec_payment AS `id_bbm`, rd.id_report, r.number AS `bbm_number`, r.value AS `bbm_value`,
@@ -225,6 +238,39 @@
             bbm.id_report = GVUnpaid.GetFocusedRowCellValue("id_bbm").ToString
             bbm.report_mark_type = "162"
             bbm.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkEMailNotice_Click(sender As Object, e As EventArgs) Handles RepoLinkEMailNotice.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMailManageDet.action="upd"
+            FormMailManageDet.id = GVUnpaid.GetFocusedRowCellValue("id_mail_notice_no").ToString
+            FormMailManageDet.rmt = "226"
+            FormMailManageDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkEmailWarning_Click(sender As Object, e As EventArgs) Handles RepoLinkEmailWarning.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMailManageDet.action = "upd"
+            FormMailManageDet.id = GVUnpaid.GetFocusedRowCellValue("id_mail_warning_no").ToString
+            FormMailManageDet.rmt = "227"
+            FormMailManageDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkEmailInvoice_Click(sender As Object, e As EventArgs) Handles RepoLinkEmailInvoice.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMailManageDet.action = "upd"
+            FormMailManageDet.id = GVUnpaid.GetFocusedRowCellValue("id_mail_invoice").ToString
+            FormMailManageDet.rmt = "225"
+            FormMailManageDet.ShowDialog()
             Cursor = Cursors.Default
         End If
     End Sub
