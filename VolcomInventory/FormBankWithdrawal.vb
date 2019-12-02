@@ -324,7 +324,7 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
 
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
         If GVList.RowCount > 0 Then
-            FormBankWithdrawalDet.id_payment = GVList.GetFocusedRowCellValue("id_payment")
+            FormBankWithdrawalDet.id_payment = GVList.GetFocusedRowCellValue("id_pn")
             FormBankWithdrawalDet.ShowDialog()
         End If
     End Sub

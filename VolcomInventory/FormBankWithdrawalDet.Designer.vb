@@ -66,6 +66,7 @@ Partial Class FormBankWithdrawalDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -99,7 +100,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -593,6 +593,12 @@ Partial Class FormBankWithdrawalDet
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Acc Name"
+        Me.GridColumn20.FieldName = "acc_name"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "ID Det"
@@ -619,6 +625,10 @@ Partial Class FormBankWithdrawalDet
         '
         'GridColumn11
         '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn11.Caption = "No"
         Me.GridColumn11.FieldName = "no"
         Me.GridColumn11.Name = "GridColumn11"
@@ -857,6 +867,10 @@ Partial Class FormBankWithdrawalDet
         '
         'GridColumnNoDraft
         '
+        Me.GridColumnNoDraft.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNoDraft.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNoDraft.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNoDraft.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnNoDraft.Caption = "No"
         Me.GridColumnNoDraft.FieldName = "no"
         Me.GridColumnNoDraft.Name = "GridColumnNoDraft"
@@ -943,12 +957,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Acc Name"
-        Me.GridColumn20.FieldName = "acc_name"
-        Me.GridColumn20.Name = "GridColumn20"
         '
         'FormBankWithdrawalDet
         '

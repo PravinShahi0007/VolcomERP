@@ -675,7 +675,7 @@ Partial Class FormBankWithdrawal
         'GridColumn8
         '
         Me.GridColumn8.Caption = "ID"
-        Me.GridColumn8.FieldName = "id_payment"
+        Me.GridColumn8.FieldName = "id_pn"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         '

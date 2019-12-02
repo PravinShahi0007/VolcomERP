@@ -5308,10 +5308,10 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             'completed
             If id_status_reportx = "6" Then
                 'select header
-                Dim qu_payment As String = "SELECT id_pay_type,report_mark_type FROM tb_payment py WHERE py.id_payment='" & id_report & "'"
+                Dim qu_payment As String = "SELECT id_pay_type,report_mark_type FROM tb_pn py WHERE py.id_pn='" & id_report & "'"
                 Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
                 If data_payment.Rows.Count > 0 Then
-                    If data_payment.Rows(0)("report_mark_type").ToString = "189" Then  'if only one payment type (all payment)
+                    If data_payment.Rows(0)("report_mark_type").ToString = "189" Then  'FGPO no DP on BBM, only on BPL
                         'auto journal
                         Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                         Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -5329,21 +5329,21 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                                             SELECT * FROM
                                             (
                                                 /* Pay from */
-                                                SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159,py.id_payment, py.number
-                                                FROM tb_payment py
+                                                SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159,py.id_pn, py.number
+                                                FROM tb_pn py
                                                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                                                WHERE py.id_payment=" & id_report & "
+                                                WHERE py.id_pn=" & id_report & "
                                                 UNION ALL
                                                 /* Hutang dagang */
-                                                SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, cc.id_comp,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_payment, py.number
-                                                FROM tb_payment py
+                                                SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, cc.id_comp,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_pn, py.number
+                                                FROM tb_pn py
                                                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
                                                 INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
-                                                WHERE py.id_payment=" & id_report & "           
+                                                WHERE py.id_pn=" & id_report & "           
                                             )trx WHERE trx.debit != 0 OR trx.credit != 0"
                         execute_non_query(qjd, True, "", "", "", "")
                         'check if can close
-                        Dim query_close As String = "SELECT * FROM tb_payment_det pyd WHERE pyd.id_payment='" & id_report & "' AND pyd.`value`=balance_due"
+                        Dim query_close As String = "SELECT * FROM tb_pn_det pyd WHERE pyd.id_pn='" & id_report & "' AND pyd.`value`=balance_due"
                         Dim data_close As DataTable = execute_query(query_close, -1, True, "", "", "", "")
                         If data_close.Rows.Count > 0 Then
                             If data_payment.Rows(0)("report_mark_type").ToString = "189" Then
