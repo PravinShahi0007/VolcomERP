@@ -68,6 +68,10 @@ Partial Class FormInvoiceTracking
         Me.GridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumntotal_rec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumntotaldue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmail_invoice_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkEmailInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.BandedGridColumnmail_invoice_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmail_invoice_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnLastNumberEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkEMailNotice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnCreatedDateEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -86,13 +90,9 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnid_mail_notice_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_mail_warning_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_bbm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_mail_invoice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BandedGridColumnmail_invoice_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepoLinkEmailInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.BandedGridColumnid_mail_invoice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnmail_invoice_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnmail_invoice_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -113,13 +113,13 @@ Partial Class FormInvoiceTracking
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkEmailInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkEMailNotice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkEmailWarning, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkEmailInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -549,6 +549,38 @@ Partial Class FormInvoiceTracking
         Me.GridColumntotaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_due", "{0:N2}")})
         Me.GridColumntotaldue.Visible = True
         '
+        'BandedGridColumnmail_invoice_no
+        '
+        Me.BandedGridColumnmail_invoice_no.Caption = "Last Number"
+        Me.BandedGridColumnmail_invoice_no.ColumnEdit = Me.RepoLinkEmailInvoice
+        Me.BandedGridColumnmail_invoice_no.FieldName = "mail_invoice_no"
+        Me.BandedGridColumnmail_invoice_no.Name = "BandedGridColumnmail_invoice_no"
+        Me.BandedGridColumnmail_invoice_no.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnmail_invoice_no.Visible = True
+        '
+        'RepoLinkEmailInvoice
+        '
+        Me.RepoLinkEmailInvoice.AutoHeight = False
+        Me.RepoLinkEmailInvoice.Name = "RepoLinkEmailInvoice"
+        '
+        'BandedGridColumnmail_invoice_date
+        '
+        Me.BandedGridColumnmail_invoice_date.Caption = "Date"
+        Me.BandedGridColumnmail_invoice_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.BandedGridColumnmail_invoice_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnmail_invoice_date.FieldName = "mail_invoice_date"
+        Me.BandedGridColumnmail_invoice_date.Name = "BandedGridColumnmail_invoice_date"
+        Me.BandedGridColumnmail_invoice_date.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnmail_invoice_date.Visible = True
+        '
+        'BandedGridColumnmail_invoice_status
+        '
+        Me.BandedGridColumnmail_invoice_status.Caption = "Status"
+        Me.BandedGridColumnmail_invoice_status.FieldName = "mail_invoice_status"
+        Me.BandedGridColumnmail_invoice_status.Name = "BandedGridColumnmail_invoice_status"
+        Me.BandedGridColumnmail_invoice_status.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnmail_invoice_status.Visible = True
+        '
         'BandedGridColumnLastNumberEN
         '
         Me.BandedGridColumnLastNumberEN.Caption = "Last Number"
@@ -702,6 +734,13 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnid_bbm.Name = "BandedGridColumnid_bbm"
         Me.BandedGridColumnid_bbm.OptionsColumn.ReadOnly = True
         '
+        'BandedGridColumnid_mail_invoice
+        '
+        Me.BandedGridColumnid_mail_invoice.Caption = "id_mail_invoice"
+        Me.BandedGridColumnid_mail_invoice.FieldName = "id_mail_invoice"
+        Me.BandedGridColumnid_mail_invoice.Name = "BandedGridColumnid_mail_invoice"
+        Me.BandedGridColumnid_mail_invoice.OptionsColumn.ReadOnly = True
+        '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
@@ -716,45 +755,6 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         '
-        'BandedGridColumnmail_invoice_no
-        '
-        Me.BandedGridColumnmail_invoice_no.Caption = "Last Number"
-        Me.BandedGridColumnmail_invoice_no.ColumnEdit = Me.RepoLinkEmailInvoice
-        Me.BandedGridColumnmail_invoice_no.FieldName = "mail_invoice_no"
-        Me.BandedGridColumnmail_invoice_no.Name = "BandedGridColumnmail_invoice_no"
-        Me.BandedGridColumnmail_invoice_no.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnmail_invoice_no.Visible = True
-        '
-        'RepoLinkEmailInvoice
-        '
-        Me.RepoLinkEmailInvoice.AutoHeight = False
-        Me.RepoLinkEmailInvoice.Name = "RepoLinkEmailInvoice"
-        '
-        'BandedGridColumnid_mail_invoice
-        '
-        Me.BandedGridColumnid_mail_invoice.Caption = "id_mail_invoice"
-        Me.BandedGridColumnid_mail_invoice.FieldName = "id_mail_invoice"
-        Me.BandedGridColumnid_mail_invoice.Name = "BandedGridColumnid_mail_invoice"
-        Me.BandedGridColumnid_mail_invoice.OptionsColumn.ReadOnly = True
-        '
-        'BandedGridColumnmail_invoice_date
-        '
-        Me.BandedGridColumnmail_invoice_date.Caption = "Date"
-        Me.BandedGridColumnmail_invoice_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.BandedGridColumnmail_invoice_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumnmail_invoice_date.FieldName = "mail_invoice_date"
-        Me.BandedGridColumnmail_invoice_date.Name = "BandedGridColumnmail_invoice_date"
-        Me.BandedGridColumnmail_invoice_date.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnmail_invoice_date.Visible = True
-        '
-        'BandedGridColumnmail_invoice_status
-        '
-        Me.BandedGridColumnmail_invoice_status.Caption = "Status"
-        Me.BandedGridColumnmail_invoice_status.FieldName = "mail_invoice_status"
-        Me.BandedGridColumnmail_invoice_status.Name = "BandedGridColumnmail_invoice_status"
-        Me.BandedGridColumnmail_invoice_status.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnmail_invoice_status.Visible = True
-        '
         'gridBand2
         '
         Me.gridBand2.Columns.Add(Me.GridColumn7)
@@ -762,6 +762,7 @@ Partial Class FormInvoiceTracking
         Me.gridBand2.Columns.Add(Me.GridColumn21)
         Me.gridBand2.Columns.Add(Me.GridColumn20)
         Me.gridBand2.Columns.Add(Me.GridColumn27)
+        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 0
         Me.gridBand2.Width = 390
@@ -859,13 +860,13 @@ Partial Class FormInvoiceTracking
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkEmailInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkEMailNotice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkEmailWarning, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkEmailInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -937,15 +938,15 @@ Partial Class FormInvoiceTracking
     Friend WithEvents BandedGridColumnid_mail_notice_no As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoLinkEmailWarning As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BandedGridColumnid_mail_warning_no As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnmail_invoice_no As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoLinkEmailInvoice As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BandedGridColumnmail_invoice_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnmail_invoice_status As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_mail_invoice As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnid_mail_invoice As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
