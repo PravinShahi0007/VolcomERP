@@ -1380,6 +1380,9 @@
             End Try
         ElseIf report_mark_type = "16" Then
             'Receive material purchase
+            If id_status_reportx = 3 Then
+                id_status_reportx = 6
+            End If
             If id_status_reportx = 6 Then 'Completed
                 Dim is_ok As String = "1"
                 For i As Integer = 0 To FormMatRecPurcDet.GVListPurchase.RowCount - 1
@@ -1425,7 +1428,6 @@
                     If data.Rows.Count > 0 Then
                         execute_non_query(query_upd_storage, True, "", "", "", "")
                     End If
-
 
                     'post journal
                     Dim queryj As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)

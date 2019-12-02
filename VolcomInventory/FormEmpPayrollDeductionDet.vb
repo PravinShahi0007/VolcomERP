@@ -4,6 +4,8 @@
     Public id_popup As String = "1"
     Public id_payroll As String = "-1"
 
+    Private payroll_type As DataTable = New DataTable
+
     Sub load_deduction()
         Dim column As String = "deduction"
 
@@ -16,9 +18,14 @@
         Dim query_where_typ As String = ""
         Dim query_where_cat As String = ""
 
-        If Not FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+        If payroll_type.Rows(0)("is_dw").ToString = "1" Then
             query_where_typ = "WHERE id_salary_" + column + "_cat IN (SELECT id_salary_" + column + "_cat FROM tb_lookup_salary_" + column + " WHERE use_dw = 1)"
             query_where_cat = "WHERE use_dw = 1"
+        End If
+
+        If payroll_type.Rows(0)("is_thr").ToString = "1" Then
+            query_where_typ = "WHERE id_salary_" + column + "_cat IN (SELECT id_salary_" + column + "_cat FROM tb_lookup_salary_" + column + " WHERE use_thr = 1)"
+            query_where_cat = "WHERE use_thr = 1"
         End If
 
         Dim query_type As String = "SELECT id_salary_" + column + "_cat AS id_salary_deduction_cat, salary_" + column + "_cat AS salary_deduction_cat FROM tb_lookup_salary_" + column + "_cat" + " " + query_where_typ
@@ -35,6 +42,19 @@
             Text = "Deduction Detail"
         ElseIf id_popup = "2" Then
             Text = "Bonus / Adjustment Detail"
+        End If
+
+        'type
+        payroll_type = execute_query("SELECT is_dw, is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, -1, True, "", "", "", "")
+
+        If payroll_type.Rows(0)("is_thr").ToString = "1" Then
+            GCWorkingDays.Caption = "Working Years"
+            GCTotalDays.Caption = "Total Years"
+            GCActualWorkingDays.Caption = "Actual Working Years"
+        Else
+            GCWorkingDays.Caption = "Actual Working Days"
+            GCTotalDays.Caption = "Total Days"
+            GCActualWorkingDays.Caption = "Actual Working Days"
         End If
 
         load_deduction()
@@ -261,11 +281,19 @@
                 Dim value As Integer = 0
 
                 Try
-                    Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
-                    Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
-                    Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
+                    If payroll_type.Rows(0)("is_thr").ToString = "1" Then
+                        Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
+                        Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
+                        Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
 
-                    value = (total_days / workdays) * total_salary
+                        value = total_days * total_salary
+                    Else
+                        Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
+                        Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
+                        Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
+
+                        value = (total_days / workdays) * total_salary
+                    End If
                 Catch ex As Exception
                 End Try
 
