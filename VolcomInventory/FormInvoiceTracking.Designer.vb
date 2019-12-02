@@ -23,7 +23,7 @@ Partial Class FormInvoiceTracking
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceTracking))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CEPromo = New DevExpress.XtraEditors.CheckEdit()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -85,10 +85,12 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnbtn_more_bbm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnMoreBBM = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepoLinkInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,12 +102,14 @@ Partial Class FormInvoiceTracking
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.CEPromo)
-        Me.PanelControl1.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl1.Controls.Add(Me.CEShowHighlight)
         Me.PanelControl1.Controls.Add(Me.SLEStoreGroup)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
@@ -127,13 +131,13 @@ Partial Class FormInvoiceTracking
         Me.CEPromo.Size = New System.Drawing.Size(89, 19)
         Me.CEPromo.TabIndex = 8925
         '
-        'CheckEdit1
+        'CEShowHighlight
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(706, 12)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Show Highlight"
-        Me.CheckEdit1.Size = New System.Drawing.Size(100, 19)
-        Me.CheckEdit1.TabIndex = 8924
+        Me.CEShowHighlight.Location = New System.Drawing.Point(706, 12)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "Show Highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(90, 19)
+        Me.CEShowHighlight.TabIndex = 8924
         '
         'SLEStoreGroup
         '
@@ -176,7 +180,7 @@ Partial Class FormInvoiceTracking
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(813, 12)
+        Me.BView.Location = New System.Drawing.Point(802, 12)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 20)
         Me.BView.TabIndex = 8913
@@ -274,7 +278,7 @@ Partial Class FormInvoiceTracking
         Me.GCUnpaid.Location = New System.Drawing.Point(0, 43)
         Me.GCUnpaid.MainView = Me.GVUnpaid
         Me.GCUnpaid.Name = "GCUnpaid"
-        Me.GCUnpaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepoBtnMoreBBM})
+        Me.GCUnpaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepoBtnMoreBBM, Me.RepositoryItemCheckEdit2, Me.RepoLinkInvoice})
         Me.GCUnpaid.Size = New System.Drawing.Size(1173, 463)
         Me.GCUnpaid.TabIndex = 20
         Me.GCUnpaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUnpaid})
@@ -326,9 +330,10 @@ Partial Class FormInvoiceTracking
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Number"
+        Me.GridColumn9.ColumnEdit = Me.RepoLinkInvoice
         Me.GridColumn9.FieldName = "sales_pos_number"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.Width = 165
         '
@@ -714,6 +719,16 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemCheckEdit3.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit3.ValueUnchecked = "No"
         '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        '
+        'RepoLinkInvoice
+        '
+        Me.RepoLinkInvoice.AutoHeight = False
+        Me.RepoLinkInvoice.Name = "RepoLinkInvoice"
+        '
         'FormInvoiceTracking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -729,7 +744,7 @@ Partial Class FormInvoiceTracking
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -741,6 +756,8 @@ Partial Class FormInvoiceTracking
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -796,7 +813,7 @@ Partial Class FormInvoiceTracking
     Friend WithEvents BandedGridColumnCreatedDateEW As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnStatusEW As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEShowHighlight As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BandedGridColumnbbm_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnbbm_created_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnbbm_received_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -809,4 +826,6 @@ Partial Class FormInvoiceTracking
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnbbm_value As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepoLinkInvoice As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

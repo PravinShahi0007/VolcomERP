@@ -175,4 +175,46 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub CEShowHighlight_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowHighlight.CheckedChanged
+        AddHandler GVUnpaid.RowStyle, AddressOf custom_cell
+        GCUnpaid.Focus()
+    End Sub
+
+    Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If CEShowHighlight.EditValue = True Then
+            Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim aging As Integer = 0
+            Try
+                aging = currview.GetRowCellValue(e.RowHandle, "due_days")
+            Catch ex As Exception
+                aging = 0
+            End Try
+
+            If aging >= -5 And aging < 0 Then
+                e.Appearance.BackColor = Color.Yellow
+            ElseIf aging = 0 Then
+                e.Appearance.BackColor = Color.OrangeRed
+            ElseIf aging > 0 Then
+                e.Appearance.BackColor = Color.Crimson
+            Else
+                e.Appearance.BackColor = Color.Empty
+            End If
+        Else
+            e.Appearance.BackColor = Color.Empty
+        End If
+    End Sub
+
+    Private Sub RepoLinkInvoice_Click(sender As Object, e As EventArgs) Handles RepoLinkInvoice.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim inv As New ClassShowPopUp()
+            inv.id_report = GVUnpaid.GetFocusedRowCellValue("id_sales_pos").ToString
+            inv.report_mark_type = GVUnpaid.GetFocusedRowCellValue("report_mark_type").ToString
+            inv.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
