@@ -18,15 +18,25 @@
             where_not_included = "AND emp.id_employee NOT IN (" + not_included + ")"
         End If
 
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
+        Dim query_sal As String = ""
+
+        If is_thr = "1" Then
+            query_sal = "basic_salary + allow_job + allow_meal + allow_trans"
+        Else
+            query_sal = "basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car"
+        End If
+
         Dim query As String = "
-            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, ROUND(prl.workdays, 0) AS workdays, ROUND(prl.actual_workdays, 0) AS actual_workdays, ROUND((IF(emp.id_employee_status = 3, (sal.total_salary * dp.total_workdays), sal.total_salary)), 0) AS total_salary
+            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, prl.workdays, prl.actual_workdays, ROUND((IF(emp.id_employee_status = 3, (sal.total_salary * dp.total_workdays), sal.total_salary)), 0) AS total_salary
             FROM tb_emp_payroll_det AS prl
             LEFT JOIN tb_m_employee AS emp ON prl.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON emp.id_departement = dp.id_departement
             LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
             LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
             LEFT JOIN (
-                SELECT id_employee_salary, (basic_salary + allow_job + allow_meal + allow_trans + allow_house + allow_car) AS total_salary
+                SELECT id_employee_salary, (" + query_sal + ") AS total_salary
                 FROM tb_m_employee_salary
             ) AS sal ON sal.id_employee_salary = prl.id_salary
             WHERE prl.id_payroll = " + id_payroll + " " + where_not_included + "
@@ -62,10 +72,10 @@
                     Dim employee_name As String = GVEmployee.GetRowCellValue(selected_row, "employee_name").ToString
                     Dim employee_position As String = GVEmployee.GetRowCellValue(selected_row, "employee_position").ToString
                     Dim employee_status As String = GVEmployee.GetRowCellValue(selected_row, "employee_status").ToString
-                    Dim workdays As Integer = GVEmployee.GetRowCellValue(selected_row, "workdays")
-                    Dim actual_workdays As Integer = GVEmployee.GetRowCellValue(selected_row, "actual_workdays")
+                    Dim workdays As Decimal = GVEmployee.GetRowCellValue(selected_row, "workdays")
+                    Dim actual_workdays As Decimal = GVEmployee.GetRowCellValue(selected_row, "actual_workdays")
                     Dim total_salary As Integer = GVEmployee.GetRowCellValue(selected_row, "total_salary")
-                    Dim total_days As Integer = 0
+                    Dim total_days As Decimal = 0.00
                     Dim value As Integer = 0
 
                     data.Rows.Add(id_employee, departement, employee_code, employee_name, employee_position, employee_status, workdays, actual_workdays, total_salary, total_days, value)
