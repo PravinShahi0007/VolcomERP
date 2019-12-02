@@ -43,6 +43,7 @@ Partial Class FormInvoiceTracking
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCUnpaid = New DevExpress.XtraGrid.GridControl()
         Me.GVUnpaid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -50,6 +51,7 @@ Partial Class FormInvoiceTracking
         Me.GridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -68,18 +70,22 @@ Partial Class FormInvoiceTracking
         Me.GridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumntotal_rec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumntotaldue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnmail_invoice_no = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkEmailInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnmail_invoice_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmail_invoice_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnLastNumberEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkEMailNotice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnCreatedDateEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnStatusEN = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnLastNumberEW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkEmailWarning = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnCreatedDateEW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnStatusEW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnbbm_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkBBM = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnbbm_created_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -93,12 +99,6 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnid_mail_invoice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -315,6 +315,18 @@ Partial Class FormInvoiceTracking
         Me.GVUnpaid.OptionsView.ShowGroupPanel = False
         Me.GVUnpaid.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn27, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.GridColumn7)
+        Me.gridBand2.Columns.Add(Me.GridColumn9)
+        Me.gridBand2.Columns.Add(Me.GridColumn21)
+        Me.gridBand2.Columns.Add(Me.GridColumn20)
+        Me.gridBand2.Columns.Add(Me.GridColumn27)
+        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 390
+        '
         'GridColumn7
         '
         Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
@@ -370,6 +382,31 @@ Partial Class FormInvoiceTracking
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail Invoice"
+        Me.GridBand1.Columns.Add(Me.GridColumn8)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn15)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Columns.Add(Me.GridColumn22)
+        Me.GridBand1.Columns.Add(Me.GridColumn11)
+        Me.GridBand1.Columns.Add(Me.GridColumn31)
+        Me.GridBand1.Columns.Add(Me.GridColumn32)
+        Me.GridBand1.Columns.Add(Me.GridColumn18)
+        Me.GridBand1.Columns.Add(Me.GridColumndue_days)
+        Me.GridBand1.Columns.Add(Me.GridColumn33)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Columns.Add(Me.GridColumn24)
+        Me.GridBand1.Columns.Add(Me.GridColumn28)
+        Me.GridBand1.Columns.Add(Me.GridColumn30)
+        Me.GridBand1.Columns.Add(Me.GridColumntotal_rec)
+        Me.GridBand1.Columns.Add(Me.GridColumntotaldue)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 842
         '
         'GridColumn8
         '
@@ -549,6 +586,16 @@ Partial Class FormInvoiceTracking
         Me.GridColumntotaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_due", "{0:N2}")})
         Me.GridColumntotaldue.Visible = True
         '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "Email Invoice"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_no)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_date)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_status)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 2
+        Me.gridBand6.Width = 225
+        '
         'BandedGridColumnmail_invoice_no
         '
         Me.BandedGridColumnmail_invoice_no.Caption = "Last Number"
@@ -581,6 +628,16 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnmail_invoice_status.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnmail_invoice_status.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Email Pemberitahuan"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnLastNumberEN)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnCreatedDateEN)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnStatusEN)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        Me.gridBand3.Width = 225
+        '
         'BandedGridColumnLastNumberEN
         '
         Me.BandedGridColumnLastNumberEN.Caption = "Last Number"
@@ -612,6 +669,16 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnStatusEN.Name = "BandedGridColumnStatusEN"
         Me.BandedGridColumnStatusEN.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnStatusEN.Visible = True
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Email Peringatan"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnLastNumberEW)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnCreatedDateEW)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnStatusEW)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.Width = 302
         '
         'BandedGridColumnLastNumberEW
         '
@@ -646,6 +713,18 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnStatusEW.Name = "BandedGridColumnStatusEW"
         Me.BandedGridColumnStatusEW.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnStatusEW.Visible = True
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "Bukti Bank Masuk"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_number)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_created_date)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_received_date)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_value)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnbtn_more_bbm)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 5
+        Me.gridBand5.Width = 375
         '
         'BandedGridColumnbbm_number
         '
@@ -754,85 +833,6 @@ Partial Class FormInvoiceTracking
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Columns.Add(Me.GridColumn7)
-        Me.gridBand2.Columns.Add(Me.GridColumn9)
-        Me.gridBand2.Columns.Add(Me.GridColumn21)
-        Me.gridBand2.Columns.Add(Me.GridColumn20)
-        Me.gridBand2.Columns.Add(Me.GridColumn27)
-        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 390
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Detail Invoice"
-        Me.GridBand1.Columns.Add(Me.GridColumn8)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn15)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Columns.Add(Me.GridColumn22)
-        Me.GridBand1.Columns.Add(Me.GridColumn11)
-        Me.GridBand1.Columns.Add(Me.GridColumn31)
-        Me.GridBand1.Columns.Add(Me.GridColumn32)
-        Me.GridBand1.Columns.Add(Me.GridColumn18)
-        Me.GridBand1.Columns.Add(Me.GridColumndue_days)
-        Me.GridBand1.Columns.Add(Me.GridColumn33)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand1.Columns.Add(Me.GridColumn24)
-        Me.GridBand1.Columns.Add(Me.GridColumn28)
-        Me.GridBand1.Columns.Add(Me.GridColumn30)
-        Me.GridBand1.Columns.Add(Me.GridColumntotal_rec)
-        Me.GridBand1.Columns.Add(Me.GridColumntotaldue)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 842
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "Email Invoice"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_no)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_date)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnmail_invoice_status)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 2
-        Me.gridBand6.Width = 225
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Email Pemberitahuan"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnLastNumberEN)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnCreatedDateEN)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnStatusEN)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 3
-        Me.gridBand3.Width = 225
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "Email Peringatan"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnLastNumberEW)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnCreatedDateEW)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnStatusEW)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
-        Me.gridBand4.Width = 302
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "Bukti Bank Masuk"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_number)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_created_date)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_received_date)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbbm_value)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnbtn_more_bbm)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 5
-        Me.gridBand5.Width = 375
         '
         'FormInvoiceTracking
         '
