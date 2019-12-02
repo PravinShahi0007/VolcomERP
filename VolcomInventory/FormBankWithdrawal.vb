@@ -169,11 +169,11 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
         End If
 
         If SLEPayType.EditValue.ToString = "2" Then 'payment
-            q_acc = ",acc.id_acc,acc.acc_name "
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
             where_string += " AND po.is_close_rec='1'"
         ElseIf SLEPayType.EditValue.ToString = "1" Then 'DP
-            q_acc = ",acc.id_acc,acc.acc_name "
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
         End If
 
@@ -206,8 +206,11 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
 ,IFNULL(payment_dp.value,0) as total_dp
 ,IFNULL(payment_pending.jml,0) as total_pending
 ,DATEDIFF(po.`pay_due_date`,NOW()) AS due_days
+,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
+,po.report_mark_type
 " & q_acc & "
 FROM tb_purc_order po
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
 INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee

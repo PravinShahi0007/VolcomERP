@@ -24,18 +24,6 @@
             BtnPrint.Visible = False
             BMark.Visible = False
             BtnSave.Visible = True
-            'check account
-            Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
-INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp
-WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
-            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-            If data_check.Rows(0)("id_acc_dp").ToString = "0" And id_pay_type = "1" Then
-                warningCustom("This vendor DP account is not set.")
-                Close()
-            ElseIf data_check.Rows(0)("id_acc_ap").ToString = "0" And id_pay_type = "2" Then
-                warningCustom("This vendor AP account is not set.")
-                Close()
-            End If
             '
             If report_mark_type = "139" Then 'purchasing
                 'load header
@@ -49,14 +37,22 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
                         'id_report,number,total,balance due
                         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                         newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
+                        newRow("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
                         newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
-                        newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                        newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
+                        newRow("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                        newRow("id_dc") = "1"
+                        newRow("dc_code") = "D"
+                        newRow("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
+                        newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
                         newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                         newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
                         newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp").ToString
                         newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
+                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
                         newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due").ToString
-                        newRow("note") = ""
+                        newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
                     '
@@ -84,7 +80,9 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "id_item_expense").ToString
                     newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
-                    newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_comp") = "1"
+                    newRow("comp_number") = "000"
                     newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                     newRow("number") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVExpense.GetRowCellValue(i, "total_dp")
@@ -150,6 +148,72 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
         End If
     End Sub
 
+    Private Sub XTCBBM_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCBBK.SelectedPageChanged
+        If XTCBBK.SelectedTabPageIndex = 1 Then
+            viewBlankJournal()
+            viewDraftJournal()
+        End If
+    End Sub
+
+    Sub viewBlankJournal()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0.00 AS `debit`, 0.00 AS `credit` "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDraft.DataSource = data
+        GVDraft.DeleteSelectedRows()
+        GVDraft.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewDraftJournal()
+        Cursor = Cursors.WaitCursor
+        If GVList.RowCount > 0 Then
+            makeSafeGV(GVList)
+            Dim jum_row As Integer = 0
+
+            'header
+            jum_row += 1
+            Dim qh As String = "SELECT * FROM tb_a_acc WHERE id_acc='" + SLEPayFrom.EditValue.ToString + "' "
+            Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
+            Dim newRowh As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+            newRowh("no") = jum_row
+            newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
+            newRowh("acc_description") = dh.Rows(0)("acc_description").ToString
+            newRowh("cc") = "000"
+            newRowh("report_number") = ""
+            newRowh("note") = MENote.Text
+            newRowh("debit") = 0
+            newRowh("credit") = TETotal.EditValue
+            TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
+            GCDraft.RefreshDataSource()
+            GVDraft.RefreshData()
+
+            'detil
+            For i As Integer = 0 To GVList.RowCount - 1
+                jum_row += 1
+                Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                newRow("no") = jum_row
+                newRow("acc_name") = GVList.GetRowCellValue(i, "acc_name").ToString
+                newRow("acc_description") = GVList.GetRowCellValue(i, "acc_description").ToString
+                newRow("cc") = GVList.GetRowCellValue(i, "comp_number").ToString
+                newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString
+                newRow("note") = GVList.GetRowCellValue(i, "note").ToString
+                If GVList.GetRowCellValue(i, "id_dc").ToString = "1" Then
+                    newRow("debit") = Math.Abs(GVList.GetRowCellValue(i, "value"))
+                    newRow("credit") = 0
+                Else
+                    newRow("debit") = 0
+                    newRow("credit") = GVList.GetRowCellValue(i, "value")
+                End If
+                TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
+                GCDraft.RefreshDataSource()
+                GVDraft.RefreshData()
+            Next
+            GVDraft.BestFitColumns()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub FormBankWithdrawalDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
     End Sub
@@ -165,10 +229,11 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
         'End If
 
         query = "SELECT ''AS `no`,pnd.id_pn_det,pnd.id_report,pnd.report_mark_type,comp.comp_number,pnd.number,pnd.vendor
-,pnd.id_comp,pnd.id_acc,acc.acc_name,acc.acc_description,pnd.id_dc,pnd.total_pay,pnd.value,pnd.balance_due,pnd.note
+,pnd.id_comp,pnd.id_acc,dc.dc_code,acc.acc_name,acc.acc_description,pnd.id_dc,pnd.total_pay,pnd.value,pnd.value AS value_view,pnd.balance_due,pnd.note
 FROM tb_pn_det pnd
 INNER JOIN tb_a_acc acc ON acc.id_acc=pnd.id_acc
 INNER JOIN tb_m_comp comp ON comp.id_comp=pnd.id_comp
+INNER JOIN tb_lookup_dc dc ON dc.id_dc=pnd.id_dc
 WHERE pnd.id_pn='" & id_payment & "'"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -464,5 +529,15 @@ VALUES('189','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.To
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        FormBankWithdrawalAdd.action = "ins"
+        FormBankWithdrawalAdd.ShowDialog()
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
+        FormBankWithdrawalAdd.action = "upd"
+        FormBankWithdrawalAdd.ShowDialog()
     End Sub
 End Class
