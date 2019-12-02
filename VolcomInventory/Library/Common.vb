@@ -6786,4 +6786,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Return data
     End Function
 
+    Public Function trimSpace(ByVal txt As String)
+        Dim out As String = txt
+
+        out = out.Trim()
+
+        out = RegularExpressions.Regex.Replace(out, " {2,}", " ")
+
+        Return out
+    End Function
+
 End Module
