@@ -13,6 +13,8 @@ Public Class FormSalesDelOrderSlip
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_do")
     Public is_view As String = "-1"
+    Dim is_use_unique_code As String = "-1"
+    Dim id_store As String = "-1"
 
     Private Sub FormSalesDelOrderSlip_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -57,6 +59,7 @@ Public Class FormSalesDelOrderSlip
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store_contact_to = data.Rows(0)("id_store_contact_to").ToString
+            id_store = data.Rows(0)("id_store").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
             TxtNameCompFrom.Text = data.Rows(0)("wh_name").ToString
@@ -68,10 +71,11 @@ Public Class FormSalesDelOrderSlip
             TxtSalesDelOrderNumber.Text = data.Rows(0)("combine_number").ToString
             MENote.Text = data.Rows(0)("combine_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
 
             'main
             Dim query_cd As ClassSalesDelOrder = New ClassSalesDelOrder()
-            Dim queryd As String = query_cd.queryMain("AND a.id_combine='" + id_pl_sales_order_del_slip + "' ", "1")
+            Dim queryd As String = query_cd.queryMainLess("AND a.id_combine='" + id_pl_sales_order_del_slip + "' ", "1")
             Dim datad As DataTable = execute_query(queryd, -1, True, "", "", "", "")
             GCSalesDelOrder.DataSource = datad
 
@@ -100,7 +104,7 @@ Public Class FormSalesDelOrderSlip
 
     Sub viewSalesDelOrder()
         Dim del As New ClassSalesDelOrder()
-        Dim query As String = del.queryMain("AND a.id_report_status=1 AND a.is_combine=2 AND a.id_comp_contact_from='" + id_comp_contact_from + "' AND a.id_store_contact_to='" + id_store_contact_to + "' AND a.last_update_by=" + id_user + " ", "2")
+        Dim query As String = del.queryMainLess("AND a.id_report_status=1 AND a.is_combine=2 AND a.id_comp_contact_from='" + id_comp_contact_from + "' AND a.id_store_contact_to='" + id_store_contact_to + "' AND a.last_update_by=" + id_user + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesDelOrder.DataSource = data
     End Sub
@@ -170,43 +174,77 @@ Public Class FormSalesDelOrderSlip
     End Sub
 
     Sub getReport()
-        GridColumnNo.VisibleIndex = 0
-        GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
-        For i As Integer = 0 To GVItemList.RowCount - 1
-            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
-        Next
-        GCItemList.RefreshDataSource()
-        GVItemList.RefreshData()
-        ReportSalesDelOrderSlip.dt = GCItemList.DataSource
-        ReportSalesDelOrderSlip.id_pl_sales_order_del = id_pl_sales_order_del_slip
-        Dim Report As New ReportSalesDelOrderSlip()
+        If is_use_unique_code = "-1" Then
+            GridColumnNo.VisibleIndex = 0
+            GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
+            For i As Integer = 0 To GVItemList.RowCount - 1
+                GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+            Next
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+            ReportSalesDelOrderDet.dt = GCItemList.DataSource
+            ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del_slip
+            ReportSalesDelOrderDet.rmt = "103"
+            Dim Report As New ReportSalesDelOrderDet()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVItemList)
+            'Grid Detail
+            ReportStyleGridview(Report.GVItemList)
 
-        'Parse val
-        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-        Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-        Report.LabelAddress.Text = MEAdrressCompTo.Text
-        Report.LRecDate.Text = DEForm.Text
-        Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
-        Report.LabelNote.Text = MENote.Text
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
 
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        GVItemList.ActiveFilterString = ""
-        GridColumnNo.Visible = False
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            GVItemList.ActiveFilterString = ""
+            GridColumnNo.Visible = False
+        Else
+            ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del_slip
+            ReportSalesDelOrderOwnStore.rmt = "103"
+            ReportSalesDelOrderOwnStore.is_combine = "1"
+            ReportSalesDelOrderOwnStore.id_report_status = id_report_status
+            ReportSalesDelOrderOwnStore.id_store = id_store
+            ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
+            ReportSalesDelOrderOwnStore.is_no_print = "-1"
+            Dim Report As New ReportSalesDelOrderOwnStore()
+
+
+            'Grid Detail
+            ReportStyleGridviewBlackLine(Report.GVItemList)
+
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPrepare.Text = "-"
+            Report.LabelCat.Text = "-"
+            Report.LabelUni3.Text = "-"
+            Report.LabelUni6.Text = "-"
+            Report.PanelUni.Visible = False
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
+
     End Sub
 
     Private Sub BtnPrePrinting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrePrinting.ItemClick
@@ -215,7 +253,7 @@ Public Class FormSalesDelOrderSlip
 
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderSlip.id_pre = "1"
+        ReportSalesDelOrderOwnStore.id_pre = "1"
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -226,7 +264,7 @@ Public Class FormSalesDelOrderSlip
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderSlip.id_pre = "-1"
+        ReportSalesDelOrderOwnStore.id_pre = "-1"
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -388,7 +426,8 @@ Public Class FormSalesDelOrderSlip
                         execute_non_query(query_mark_single, True, "", "", "", "")
                     End If
 
-                    FormSalesDelOrder.viewSalesDelOrder()
+                    'FormSalesDelOrder.viewSalesDelOrder()
+                    FormSalesDelOrder.GCSalesDelOrder.DataSource = Nothing
                     action = "upd"
                     makeSafeGV(GVSalesDelOrder)
                     makeSafeGV(GVItemList)

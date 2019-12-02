@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormItemReqDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormItemReqDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormItemReqDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -49,6 +49,8 @@ Partial Class FormItemReqDet
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnITemName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPurcStorage = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdItemn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,6 +63,8 @@ Partial Class FormItemReqDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEditStoreFromPurcStorage = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnQtyDetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -92,12 +96,14 @@ Partial Class FormItemReqDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRequest.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEditStoreFromPurcStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavDetail.SuspendLayout()
         Me.SuspendLayout()
@@ -112,13 +118,13 @@ Partial Class FormItemReqDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(819, 76)
+        Me.PanelControl1.Size = New System.Drawing.Size(819, 66)
         Me.PanelControl1.TabIndex = 9
         '
         'TxtRequestedBy
         '
         Me.TxtRequestedBy.Enabled = False
-        Me.TxtRequestedBy.Location = New System.Drawing.Point(97, 40)
+        Me.TxtRequestedBy.Location = New System.Drawing.Point(97, 36)
         Me.TxtRequestedBy.Name = "TxtRequestedBy"
         Me.TxtRequestedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtRequestedBy.Properties.Appearance.Options.UseFont = True
@@ -128,7 +134,7 @@ Partial Class FormItemReqDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(17, 43)
+        Me.LabelControl2.Location = New System.Drawing.Point(17, 39)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl2.TabIndex = 9
@@ -137,7 +143,7 @@ Partial Class FormItemReqDet
         'TxtDept
         '
         Me.TxtDept.Enabled = False
-        Me.TxtDept.Location = New System.Drawing.Point(97, 14)
+        Me.TxtDept.Location = New System.Drawing.Point(97, 10)
         Me.TxtDept.Name = "TxtDept"
         Me.TxtDept.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDept.Properties.Appearance.Options.UseFont = True
@@ -147,7 +153,7 @@ Partial Class FormItemReqDet
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(17, 17)
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 13)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl1.TabIndex = 8
@@ -161,15 +167,15 @@ Partial Class FormItemReqDet
         Me.PanelControl2.Controls.Add(Me.TxtNumber)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(519, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(474, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(298, 72)
+        Me.PanelControl2.Size = New System.Drawing.Size(343, 62)
         Me.PanelControl2.TabIndex = 5
         '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 41)
+        Me.LabelControl4.Location = New System.Drawing.Point(7, 37)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 7
@@ -179,7 +185,7 @@ Partial Class FormItemReqDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(86, 38)
+        Me.DECreated.Location = New System.Drawing.Point(133, 34)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -187,23 +193,23 @@ Partial Class FormItemReqDet
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(200, 20)
+        Me.DECreated.Size = New System.Drawing.Size(196, 20)
         Me.DECreated.TabIndex = 6
         '
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(86, 12)
+        Me.TxtNumber.Location = New System.Drawing.Point(133, 8)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(200, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(196, 20)
         Me.TxtNumber.TabIndex = 5
         '
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 15)
+        Me.LabelControl3.Location = New System.Drawing.Point(7, 11)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl3.TabIndex = 5
@@ -228,7 +234,7 @@ Partial Class FormItemReqDet
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
         Me.BtnCancell.Location = New System.Drawing.Point(91, 2)
         Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(121, 37)
+        Me.BtnCancell.Size = New System.Drawing.Size(130, 37)
         Me.BtnCancell.TabIndex = 10
         Me.BtnCancell.Text = "Cancell Request"
         Me.BtnCancell.Visible = False
@@ -378,13 +384,14 @@ Partial Class FormItemReqDet
         Me.GCData.Location = New System.Drawing.Point(0, 40)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(813, 289)
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPurcStorage})
+        Me.GCData.Size = New System.Drawing.Size(813, 299)
         Me.GCData.TabIndex = 15
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnStt})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumn4, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnStt})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -399,7 +406,7 @@ Partial Class FormItemReqDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 85
+        Me.GridColumnNo.Width = 81
         '
         'GridColumnITemName
         '
@@ -409,7 +416,26 @@ Partial Class FormItemReqDet
         Me.GridColumnITemName.OptionsColumn.AllowEdit = False
         Me.GridColumnITemName.Visible = True
         Me.GridColumnITemName.VisibleIndex = 1
-        Me.GridColumnITemName.Width = 515
+        Me.GridColumnITemName.Width = 437
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "From Purchasing Storage"
+        Me.GridColumn4.ColumnEdit = Me.RICEPurcStorage
+        Me.GridColumn4.FieldName = "is_store_request"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 153
+        '
+        'RICEPurcStorage
+        '
+        Me.RICEPurcStorage.AutoHeight = False
+        Me.RICEPurcStorage.Name = "RICEPurcStorage"
+        Me.RICEPurcStorage.ValueChecked = "yes"
+        Me.RICEPurcStorage.ValueUnchecked = "no"
         '
         'GridColumnIdItemn
         '
@@ -428,8 +454,8 @@ Partial Class FormItemReqDet
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 2
-        Me.GridColumnQty.Width = 515
+        Me.GridColumnQty.VisibleIndex = 3
+        Me.GridColumnQty.Width = 476
         '
         'GridColumnRemark
         '
@@ -437,8 +463,8 @@ Partial Class FormItemReqDet
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 3
-        Me.GridColumnRemark.Width = 517
+        Me.GridColumnRemark.VisibleIndex = 4
+        Me.GridColumnRemark.Width = 485
         '
         'GridColumnStt
         '
@@ -449,10 +475,10 @@ Partial Class FormItemReqDet
         'XTCRequest
         '
         Me.XTCRequest.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCRequest.Location = New System.Drawing.Point(0, 76)
+        Me.XTCRequest.Location = New System.Drawing.Point(0, 66)
         Me.XTCRequest.Name = "XTCRequest"
         Me.XTCRequest.SelectedTabPage = Me.XTPSummary
-        Me.XTCRequest.Size = New System.Drawing.Size(819, 357)
+        Me.XTCRequest.Size = New System.Drawing.Size(819, 367)
         Me.XTCRequest.TabIndex = 16
         Me.XTCRequest.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
         '
@@ -461,7 +487,7 @@ Partial Class FormItemReqDet
         Me.XTPSummary.Controls.Add(Me.GCData)
         Me.XTPSummary.Controls.Add(Me.PanelControlNav)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(813, 329)
+        Me.XTPSummary.Size = New System.Drawing.Size(813, 339)
         Me.XTPSummary.Text = "Summary"
         '
         'XTPDetail
@@ -469,7 +495,7 @@ Partial Class FormItemReqDet
         Me.XTPDetail.Controls.Add(Me.GCDetail)
         Me.XTPDetail.Controls.Add(Me.PanelControlNavDetail)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(813, 329)
+        Me.XTPDetail.Size = New System.Drawing.Size(813, 339)
         Me.XTPDetail.Text = "Detail"
         '
         'GCDetail
@@ -478,13 +504,14 @@ Partial Class FormItemReqDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 40)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(813, 289)
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEditStoreFromPurcStorage})
+        Me.GCDetail.Size = New System.Drawing.Size(813, 299)
         Me.GCDetail.TabIndex = 16
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnQtyDetail, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnCombine})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumnQtyDetail, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnCombine})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyDetail, "{0:N2}")})
         Me.GVDetail.Name = "GVDetail"
@@ -509,7 +536,7 @@ Partial Class FormItemReqDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 4
         Me.GridColumn2.Width = 176
         '
         'GridColumn3
@@ -518,6 +545,22 @@ Partial Class FormItemReqDet
         Me.GridColumn3.FieldName = "id_item"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "From Purchasing Storage"
+        Me.GridColumn10.ColumnEdit = Me.RepositoryItemCheckEditStoreFromPurcStorage
+        Me.GridColumn10.FieldName = "is_store_request"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        '
+        'RepositoryItemCheckEditStoreFromPurcStorage
+        '
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.AutoHeight = False
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.Name = "RepositoryItemCheckEditStoreFromPurcStorage"
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.ValueChecked = "yes"
+        Me.RepositoryItemCheckEditStoreFromPurcStorage.ValueUnchecked = "no"
         '
         'GridColumnQtyDetail
         '
@@ -529,7 +572,7 @@ Partial Class FormItemReqDet
         Me.GridColumnQtyDetail.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyDetail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQtyDetail.Visible = True
-        Me.GridColumnQtyDetail.VisibleIndex = 4
+        Me.GridColumnQtyDetail.VisibleIndex = 5
         Me.GridColumnQtyDetail.Width = 176
         '
         'GridColumn5
@@ -538,7 +581,7 @@ Partial Class FormItemReqDet
         Me.GridColumn5.FieldName = "remark"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         Me.GridColumn5.Width = 186
         '
         'GridColumn6
@@ -576,7 +619,7 @@ Partial Class FormItemReqDet
         Me.GridColumnCombine.Caption = "Group"
         Me.GridColumnCombine.FieldName = "grp"
         Me.GridColumnCombine.Name = "GridColumnCombine"
-        Me.GridColumnCombine.UnboundExpression = "Concat([id_item], '#*mt*#', [item_desc])"
+        Me.GridColumnCombine.UnboundExpression = "Concat([id_item], '#*mt*#', [item_desc], '#*mt*#', [is_store_request])"
         Me.GridColumnCombine.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
         'PanelControlNavDetail
@@ -649,12 +692,14 @@ Partial Class FormItemReqDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCRequest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRequest.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEditStoreFromPurcStorage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavDetail.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -712,4 +757,8 @@ Partial Class FormItemReqDet
     Friend WithEvents BtnAddDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCombine As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEPurcStorage As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEditStoreFromPurcStorage As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

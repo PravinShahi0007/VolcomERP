@@ -50,6 +50,9 @@ Partial Class FormFGProposePriceCOPList
         Me.GridColumnCOP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOPMngKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOPMgn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnadditional_cost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncop_min_add = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncop_mng_value_min_add = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -220,7 +223,7 @@ Partial Class FormFGProposePriceCOPList
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect, Me.GridColumnCOPStatus, Me.GridColumnRateType, Me.GridColumnRate, Me.GridColumnCOP, Me.GridColumnCOPMngKurs, Me.GridColumnCOPMgn})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect, Me.GridColumnCOPStatus, Me.GridColumnRateType, Me.GridColumnRate, Me.GridColumnCOP, Me.GridColumncop_min_add, Me.GridColumnCOPMngKurs, Me.GridColumnCOPMgn, Me.GridColumnadditional_cost, Me.GridColumncop_mng_value_min_add})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -303,7 +306,7 @@ Partial Class FormFGProposePriceCOPList
         Me.GridColumnRateType.Name = "GridColumnRateType"
         Me.GridColumnRateType.OptionsColumn.AllowEdit = False
         Me.GridColumnRateType.Visible = True
-        Me.GridColumnRateType.VisibleIndex = 4
+        Me.GridColumnRateType.VisibleIndex = 5
         '
         'GridColumnRate
         '
@@ -314,7 +317,7 @@ Partial Class FormFGProposePriceCOPList
         Me.GridColumnRate.Name = "GridColumnRate"
         Me.GridColumnRate.OptionsColumn.AllowEdit = False
         Me.GridColumnRate.Visible = True
-        Me.GridColumnRate.VisibleIndex = 5
+        Me.GridColumnRate.VisibleIndex = 6
         '
         'GridColumnCOP
         '
@@ -325,7 +328,7 @@ Partial Class FormFGProposePriceCOPList
         Me.GridColumnCOP.Name = "GridColumnCOP"
         Me.GridColumnCOP.OptionsColumn.AllowEdit = False
         Me.GridColumnCOP.Visible = True
-        Me.GridColumnCOP.VisibleIndex = 6
+        Me.GridColumnCOP.VisibleIndex = 7
         '
         'GridColumnCOPMngKurs
         '
@@ -336,7 +339,7 @@ Partial Class FormFGProposePriceCOPList
         Me.GridColumnCOPMngKurs.Name = "GridColumnCOPMngKurs"
         Me.GridColumnCOPMngKurs.OptionsColumn.AllowEdit = False
         Me.GridColumnCOPMngKurs.Visible = True
-        Me.GridColumnCOPMngKurs.VisibleIndex = 7
+        Me.GridColumnCOPMngKurs.VisibleIndex = 9
         '
         'GridColumnCOPMgn
         '
@@ -347,7 +350,44 @@ Partial Class FormFGProposePriceCOPList
         Me.GridColumnCOPMgn.Name = "GridColumnCOPMgn"
         Me.GridColumnCOPMgn.OptionsColumn.AllowEdit = False
         Me.GridColumnCOPMgn.Visible = True
-        Me.GridColumnCOPMgn.VisibleIndex = 8
+        Me.GridColumnCOPMgn.VisibleIndex = 10
+        '
+        'GridColumnadditional_cost
+        '
+        Me.GridColumnadditional_cost.Caption = "Additional Cost"
+        Me.GridColumnadditional_cost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnadditional_cost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnadditional_cost.FieldName = "additional_cost"
+        Me.GridColumnadditional_cost.Name = "GridColumnadditional_cost"
+        Me.GridColumnadditional_cost.Visible = True
+        Me.GridColumnadditional_cost.VisibleIndex = 4
+        '
+        'GridColumncop_min_add
+        '
+        Me.GridColumncop_min_add.Caption = "COP (Min. Additional)"
+        Me.GridColumncop_min_add.DisplayFormat.FormatString = "N2"
+        Me.GridColumncop_min_add.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncop_min_add.FieldName = "cop_min_add"
+        Me.GridColumncop_min_add.Name = "GridColumncop_min_add"
+        Me.GridColumncop_min_add.OptionsColumn.AllowEdit = False
+        Me.GridColumncop_min_add.UnboundExpression = "[cop_value] - [additional_cost]"
+        Me.GridColumncop_min_add.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumncop_min_add.Visible = True
+        Me.GridColumncop_min_add.VisibleIndex = 8
+        Me.GridColumncop_min_add.Width = 74
+        '
+        'GridColumncop_mng_value_min_add
+        '
+        Me.GridColumncop_mng_value_min_add.Caption = "COP Manag. Rate (Min. Additional)"
+        Me.GridColumncop_mng_value_min_add.DisplayFormat.FormatString = "N2"
+        Me.GridColumncop_mng_value_min_add.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncop_mng_value_min_add.FieldName = "cop_mng_value_min_add"
+        Me.GridColumncop_mng_value_min_add.Name = "GridColumncop_mng_value_min_add"
+        Me.GridColumncop_mng_value_min_add.OptionsColumn.AllowEdit = False
+        Me.GridColumncop_mng_value_min_add.UnboundExpression = "[cop_mng_value] - [additional_cost]"
+        Me.GridColumncop_mng_value_min_add.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumncop_mng_value_min_add.Visible = True
+        Me.GridColumncop_mng_value_min_add.VisibleIndex = 11
         '
         'FormFGProposePriceCOPList
         '
@@ -407,4 +447,7 @@ Partial Class FormFGProposePriceCOPList
     Friend WithEvents LEDivision As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnViewList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnadditional_cost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncop_min_add As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncop_mng_value_min_add As DevExpress.XtraGrid.Columns.GridColumn
 End Class

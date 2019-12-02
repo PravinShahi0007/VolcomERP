@@ -110,6 +110,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='')", oledbconn)
         ElseIf id_pop_up = "43" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([SEX]='')", oledbconn)
+        ElseIf id_pop_up = "44" Then
+            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -796,7 +798,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "15" Then
             'RETURN ORDER
             Try
-                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list('0', '" + FormSalesOrderDet.id_comp_par + "', '" + FormSalesOrderDet.id_store + "')", -1, True, "", "", "", "")
+                Dim dt As DataTable = execute_query("CALL view_sales_order_prod_list_less('0', '" + FormSalesOrderDet.id_comp_par + "')", -1, True, "", "", "", "")
                 Dim tb1 = data_temp.AsEnumerable()
                 Dim tb2 = dt.AsEnumerable()
                 Dim query = From table1 In tb1
@@ -1519,7 +1521,7 @@ Public Class FormImportExcel
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_wh").Visible = False
             GVData.Columns("id_user").Visible = False
-            GVData.Columns("Class").Visible = False
+            'GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
             GVData.Columns("Style").VisibleIndex = 1
             GVData.Columns("Size").VisibleIndex = 2
@@ -1701,7 +1703,6 @@ Public Class FormImportExcel
                                 .CodeImport = If(result_prod Is Nothing, "0", result_prod("design_code_import")),
                                 .Code = If(result_prod Is Nothing, "0", result_prod("design_code")),
                                 .Description = If(result_prod Is Nothing, "0", result_prod("design_display_name")),
-                                .POOldSistem = table1("po_sistem_lama"),
                                 .hs_code = table1("hs_kode"),
                                 .AjuNumber = table1("aju_number"),
                                 .PibNumber = table1("pib_number"),
@@ -1743,7 +1744,6 @@ Public Class FormImportExcel
                 GVData.Columns("IdPO").Visible = False
                 GVData.Columns("hs_code").Caption = "HS Code"
                 GVData.Columns("CodeImport").Caption = "Code Import"
-                GVData.Columns("POOldSistem").Caption = "PO Reff #"
                 GVData.Columns("AjuNumber").Caption = "Aju Number"
                 GVData.Columns("PibNumber").Caption = "PIB Number"
                 GVData.Columns("PibDate").Caption = "PIB Date"
@@ -2124,7 +2124,7 @@ Public Class FormImportExcel
                 GVData.Columns("NIK").Caption = "NIK"
 
                 GVData.Columns("Deduction").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GVData.Columns("Deduction").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("Deduction").DisplayFormat.FormatString = "{0:N0}"
 
                 GVData.OptionsView.ColumnAutoWidth = False
                 GVData.BestFitColumns()
@@ -2331,7 +2331,7 @@ Public Class FormImportExcel
                 Next
             Next
             qry += ") a ); ALTER TABLE tb_bex_month_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
@@ -2674,6 +2674,10 @@ Public Class FormImportExcel
             Dim qdel As String = "SELECT * FROM tb_season_delivery d WHERE d.id_season=" + FormFGLinePlan.SLESeason.EditValue.ToString + "; "
             Dim ddel As DataTable = execute_query(qdel, -1, True, "", "", "", "")
 
+            'line plan type
+            Dim qtyp As String = "SELECT * FROM tb_lookup_line_plan_cat "
+            Dim dtyp As DataTable = execute_query(qtyp, -1, True, "", "", "", "")
+
             Dim tb1 = data_temp.AsEnumerable() 'datatable xls
             Dim tb2 = ddv.AsEnumerable() 'datatable division
             Dim tb3 = dcat.AsEnumerable() 'datatable cat
@@ -2681,6 +2685,8 @@ Public Class FormImportExcel
             Dim tb5 = dcl.AsEnumerable() 'datatable class
             Dim tb6 = dcol.AsEnumerable() 'datatable color
             Dim tb7 = ddel.AsEnumerable()
+            Dim tb8 = dtyp.AsEnumerable()
+
             Dim query = From xls In tb1
                         Group Join div In tb2
                         On xls("SEX").ToString.ToUpper Equals div("display_name").ToString.ToUpper Into divjoin = Group
@@ -2700,7 +2706,12 @@ Public Class FormImportExcel
                         Group Join del In tb7
                         On xls("DEL").ToString Equals del("delivery").ToString Into deljoin = Group
                         From delresult In deljoin.DefaultIfEmpty()
+                        Group Join typ In tb8
+                        On xls("TYPE").ToString.ToUpper Equals typ("line_plan_cat").ToString.ToUpper Into typjoin = Group
+                        From typresult In typjoin.DefaultIfEmpty()
                         Select New With {
+                                    .id_line_plan_cat = If(typresult Is Nothing, "0", typresult("id_line_plan_cat").ToString),
+                                    .PlanType = If(typresult Is Nothing, "", typresult("line_plan_cat").ToString),
                                     .id_division = If(divresult Is Nothing, "0", divresult("id_code_detail").ToString),
                                     .Division = If(divresult Is Nothing, "", divresult("display_name").ToString),
                                     .id_category = If(catresult Is Nothing, "0", catresult("id_code_detail").ToString),
@@ -2718,7 +2729,7 @@ Public Class FormImportExcel
                                     .Qty = If(xls("QTY").ToString = "", 0, xls("QTY")),
                                     .MarkUp = If(xls("QTY").ToString = "", 0, xls("MARK UP")),
                                     .TargetPrice = If(xls("TARGET PRICE").ToString = "", 0, xls("TARGET PRICE")),
-                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", ""), "OK")
+                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing Or typresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", "") + If(typresult Is Nothing, "Plan Type not found", ""), "OK")
                                 }
 
             GCData.DataSource = Nothing
@@ -2727,6 +2738,7 @@ Public Class FormImportExcel
             GVData.PopulateColumns()
 
             'hide
+            GVData.Columns("id_line_plan_cat").Visible = False
             GVData.Columns("id_delivery").Visible = False
             GVData.Columns("id_division").Visible = False
             GVData.Columns("id_category").Visible = False
@@ -2745,6 +2757,165 @@ Public Class FormImportExcel
             'bestfit
             GVData.OptionsView.ColumnAutoWidth = False
             GVData.BestFitColumns()
+        ElseIf id_pop_up = "44" Then 'import awb receiving data inbound
+            Try
+                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,a_weight,a_tot_price FROM tb_wh_awbill 
+                                        WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2'"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                                On table1("awb_no").ToString.ToLower Equals table_tmp("awbill_no").ToString.ToLower Into awb = Group
+                            From result_awb In awb.DefaultIfEmpty()
+                            Select New With
+                                {
+                                    .IdAwb = If(result_awb Is Nothing, "0", result_awb("id_awbill")),
+                                    .AWB = If(result_awb Is Nothing, table1("awb_no"), result_awb("awbill_no")),
+                                    .inv_no_old = If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")),
+                                    .a_weight_old = If(result_awb Is Nothing, "0", result_awb("a_weight")),
+                                    .a_tot_price_old = If(result_awb Is Nothing, "0", result_awb("a_tot_price")),
+                                    .inv_no_new = If(table1("inv_no").ToString = "", If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")), table1("inv_no")),
+                                    .a_weight_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_weight")), table1("a_weight")),
+                                    .a_tot_price_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_tot_price")), If(result_awb Is Nothing, table1("a_weight"), If(table1("a_weight") < result_awb("cargo_min_weight"), result_awb("cargo_min_weight"), table1("a_weight"))) * If(result_awb Is Nothing, 0, result_awb("cargo_rate"))),
+                                    .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdAwb").Visible = False
+                GVData.Columns("AWB").Caption = "AWB Number"
+                GVData.Columns("inv_no_old").Caption = "(Old) Invoice Number"
+                GVData.Columns("inv_no_new").Caption = "Invoice Number"
+                GVData.Columns("note").Caption = "Note"
+
+                GVData.Columns("a_weight_old").Caption = "(Old) Cargo Weight"
+                GVData.Columns("a_tot_price_old").Caption = "(Old) Invoice Amount"
+                GVData.Columns("a_weight_new").Caption = "Cargo Weight"
+                GVData.Columns("a_tot_price_new").Caption = "Invoice Amount"
+
+                GVData.Columns("a_weight_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_weight_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_new").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatString = "N2"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        ElseIf id_pop_up = "45" Or id_pop_up = "46" Then 'import att nip volcom & nik sogo
+            Try
+                Dim queryx As String = "
+                    SELECT emp.id_employee, emp.employee_code, emp.employee_name, emp.employee_position, emp.id_departement, dep.departement, dep_sub.departement_sub, emp.id_employee_status, sts.employee_status" + If(id_pop_up = "45", ",emp.employee_nik_sogo", "") + "
+                    FROM tb_m_employee emp
+                    LEFT JOIN tb_m_departement dep ON dep.id_departement = emp.id_departement
+                    LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub = emp.id_departement_sub
+                    LEFT JOIN tb_lookup_employee_status sts ON emp.id_employee_status = sts.id_employee_status
+                    WHERE emp.id_employee_active = '1'
+                "
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                'trim nik
+                For i = 0 To data_temp.Rows.Count - 1
+                    data_temp.Rows(i)("EMPLOYEE NIK") = data_temp.Rows(i)("EMPLOYEE NIK").ToString.Replace("'", "").Replace(" ", "")
+                Next
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                If id_pop_up = "45" Then
+                    Dim query = From table1 In tb1
+                                Group Join table_tmp In tb2
+                                On table1("EMPLOYEE NIK").ToString.ToLower Equals table_tmp("employee_nik_sogo").ToString.ToLower Into emp = Group
+                                From result_emp In emp.DefaultIfEmpty()
+                                Select New With
+                            {
+                                .IdEmployee = If(result_emp Is Nothing, "", result_emp("id_employee")),
+                                .NIK = If(result_emp Is Nothing, "", result_emp("employee_code")),
+                                .NIKSogo = If(result_emp Is Nothing, "", result_emp("employee_nik_sogo")),
+                                .Name = If(result_emp Is Nothing, "", result_emp("employee_name")),
+                                .Position = If(result_emp Is Nothing, "", result_emp("employee_position")),
+                                .IdDepartement = If(result_emp Is Nothing, "", result_emp("id_departement")),
+                                .Departement = If(result_emp Is Nothing, "", result_emp("departement")),
+                                .DepartementSub = If(result_emp Is Nothing, "", result_emp("departement_sub")),
+                                .IdEmployeeStatus = If(result_emp Is Nothing, "", result_emp("id_employee_status")),
+                                .EmployeeStatus = If(result_emp Is Nothing, "", result_emp("employee_status")),
+                                .Date = table1("DATE"),
+                                .TimeIn = table1("TIME IN"),
+                                .TimeOut = table1("TIME OUT")
+                            }
+
+                    GCData.DataSource = Nothing
+                    GCData.DataSource = query.ToList()
+                Else
+                    Dim query = From table1 In tb1
+                                Group Join table_tmp In tb2
+                                On table1("EMPLOYEE NIK").ToString.ToLower Equals table_tmp("employee_code").ToString.ToLower Into emp = Group
+                                From result_emp In emp.DefaultIfEmpty()
+                                Select New With
+                            {
+                                .IdEmployee = If(result_emp Is Nothing, "", result_emp("id_employee")),
+                                .NIK = If(result_emp Is Nothing, "", result_emp("employee_code")),
+                                .Name = If(result_emp Is Nothing, "", result_emp("employee_name")),
+                                .Position = If(result_emp Is Nothing, "", result_emp("employee_position")),
+                                .IdDepartement = If(result_emp Is Nothing, "", result_emp("id_departement")),
+                                .Departement = If(result_emp Is Nothing, "", result_emp("departement")),
+                                .DepartementSub = If(result_emp Is Nothing, "", result_emp("departement_sub")),
+                                .IdEmployeeStatus = If(result_emp Is Nothing, "", result_emp("id_employee_status")),
+                                .EmployeeStatus = If(result_emp Is Nothing, "", result_emp("employee_status")),
+                                .Date = table1("DATE"),
+                                .TimeIn = table1("TIME IN"),
+                                .TimeOut = table1("TIME OUT")
+                            }
+
+                    GCData.DataSource = Nothing
+                    GCData.DataSource = query.ToList()
+                End If
+
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdEmployee").Visible = False
+                GVData.Columns("IdDepartement").Visible = False
+                GVData.Columns("IdEmployeeStatus").Visible = False
+                GVData.Columns("NIK").Caption = "NIK"
+
+                If id_pop_up = "45" Then
+                    GVData.Columns("NIKSogo").Caption = "NIK Sogo"
+                End If
+
+                GVData.Columns("Departement").Caption = "Departement"
+                GVData.Columns("DepartementSub").Caption = "Sub Departement"
+                GVData.Columns("EmployeeStatus").Caption = "Employee Status"
+
+                GVData.Columns("Date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("Date").DisplayFormat.FormatString = "dd MMMM yyyy"
+
+                GVData.Columns("TimeIn").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("TimeIn").DisplayFormat.FormatString = "HH:mm:ss"
+
+                GVData.Columns("TimeOut").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("TimeOut").DisplayFormat.FormatString = "HH:mm:ss"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2805,7 +2976,7 @@ Public Class FormImportExcel
                     e.Appearance.BackColor2 = Color.Salmon
                 End If
             End If
-        ElseIf id_pop_up = "35" Then
+        ElseIf id_pop_up = "35" Or id_pop_up = "44" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("note")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -3957,6 +4128,9 @@ Public Class FormImportExcel
                         PBC.PerformStep()
                         PBC.Update()
                     Next
+                    FormEmpHoliday.load_year()
+                    FormEmpHoliday.SLEYear.EditValue = execute_query("SELECT YEAR(MAX(emp_holiday_date)) AS year FROM tb_emp_holiday", 0, True, "", "", "", "")
+                    FormEmpHoliday.view_holiday()
                     Close()
                 Else
                     stopCustom("No data available.")
@@ -4007,6 +4181,7 @@ Public Class FormImportExcel
                             newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
                             newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
                             newRow("id_sample") = "0"
+                            newRow("id_detail_on_hold") = "0"
                             TryCast(FormSalesReturnOrderDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
                             FormSalesReturnOrderDet.GCItemList.RefreshDataSource()
                             FormSalesReturnOrderDet.GVItemList.RefreshData()
@@ -4037,7 +4212,6 @@ Public Class FormImportExcel
                             End If
 
                             Dim query_exec As String = "UPDATE tb_prod_order SET 
-                                                        po_lama_no='" & GVData.GetRowCellValue(i, "POOldSistem").ToString & "',
                                                         hs_code='" & GVData.GetRowCellValue(i, "hs_code").ToString & "',
                                                         aju_no='" & GVData.GetRowCellValue(i, "AjuNumber").ToString & "',
                                                         pib_no='" & GVData.GetRowCellValue(i, "PibNumber").ToString & "', 
@@ -4234,7 +4408,6 @@ Public Class FormImportExcel
                         PBC.Update()
                     Next
                     infoCustom("Import Success")
-                    FormMasterEmployee.viewEmployee("-1")
                     Close()
                 End If
             ElseIf id_pop_up = "36" Then 'import koperasi pinjaman
@@ -4251,7 +4424,7 @@ Public Class FormImportExcel
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
                             Dim query_exec As String = "INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction,note)
-                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & "','" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
+                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "',ROUND(" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & ",0),'" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '
@@ -4655,6 +4828,7 @@ Public Class FormImportExcel
 
                         Dim id_season As String = FormFGLinePlan.SLESeason.EditValue.ToString
                         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_line_plan_cat As String = GVData.GetRowCellValue(i, "id_line_plan_cat").ToString
                             Dim id_delivery As String = GVData.GetRowCellValue(i, "id_delivery").ToString
                             Dim id_division As String = GVData.GetRowCellValue(i, "id_division").ToString
                             Dim id_category As String = GVData.GetRowCellValue(i, "id_category").ToString
@@ -4672,6 +4846,7 @@ Public Class FormImportExcel
 
                             'query
                             Dim query_ins As String = "INSERT INTO tb_fg_line_plan (
+                                `id_line_plan_cat`,
 	                            `id_season` ,
 	                            `id_delivery` ,
 	                            `id_division`,
@@ -4687,6 +4862,7 @@ Public Class FormImportExcel
                                 `input_date`
                             ) 
                             VALUES(
+                                '" + id_line_plan_cat + "',
                                 '" + id_season + "' ,
                                 '" + id_delivery + "' ,
                                 '" + id_division + "',
@@ -4706,6 +4882,7 @@ Public Class FormImportExcel
                             PBC.PerformStep()
                             PBC.Update()
                         Next
+                        FormFGLinePlan.viewlinePlanCat()
                         FormFGLinePlan.viewData()
                         Close()
                     Else
@@ -4713,6 +4890,95 @@ Public Class FormImportExcel
                         makeSafeGV(GVData)
                     End If
                     Cursor = Cursors.Default
+                End If
+            ElseIf id_pop_up = "44" Then 'import awb receiving inbound
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? Only 'OK' data will updated.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdAwb").ToString = "0" Then
+                            '
+                            Dim query_exec As String = "UPDATE tb_wh_awbill SET awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    Close()
+                End If
+            ElseIf id_pop_up = "45" Or id_pop_up = "46" Then 'import att nip volcom & nik sogo
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim data_employee As DataTable = FormEmpInputAttendanceDet.GCEmployee.DataSource
+
+                    Dim allow_dept As DataTable = execute_query("SELECT allow_input_departement AS id_departement FROM tb_emp_attn_input_dep WHERE id_departement = " + id_departement_user, -1, True, "", "", "", "")
+
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "" Then
+                            Dim include_database As String = execute_query("SELECT IFNULL((SELECT input_det.id_employee FROM tb_emp_attn_input_det AS input_det LEFT JOIN tb_emp_attn_input AS input ON input_det.id_emp_attn_input = input.id_emp_attn_input WHERE input_det.id_employee = " + GVData.GetRowCellValue(i, "IdEmployee").ToString + " AND input_det.date = '" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + "' AND input.id_report_status <> 5), 0)", 0, True, "", "", "", "")
+
+                            FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = "[id_employee] = '" + GVData.GetRowCellValue(i, "IdEmployee").ToString + "' AND [date] = #" + Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("dd MMMM yyyy") + "#"
+
+                            If include_database = "0" And FormEmpInputAttendanceDet.GVEmployee.RowCount = 0 Then
+                                Dim check_allow_dept As Boolean = True
+
+                                If Not FormEmpInputAttendance.is_hrd = "1" Then
+                                    If allow_dept.Rows.Count <= 0 Then
+                                        check_allow_dept = False
+                                    Else
+                                        For j = 0 To allow_dept.Rows.Count - 1
+                                            If Not allow_dept.Rows(j)("id_departement").ToString = GVData.GetRowCellValue(i, "IdDepartement").ToString Then
+                                                check_allow_dept = False
+                                            End If
+                                        Next
+                                    End If
+                                End If
+
+                                If check_allow_dept Then
+                                    Dim time_in As Nullable(Of DateTime) = Nothing
+                                    Dim time_out As Nullable(Of DateTime) = Nothing
+
+                                    Try
+                                        time_in = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeIn").ToString).ToString("HH:mm:ss"))
+                                    Catch ex As Exception
+                                    End Try
+
+                                    Try
+                                        time_out = DateTime.Parse(Date.Parse(GVData.GetRowCellValue(i, "Date").ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(GVData.GetRowCellValue(i, "TimeOut").ToString).ToString("HH:mm:ss"))
+                                    Catch ex As Exception
+                                    End Try
+
+                                    data_employee.Rows.Add("0",
+                                                       GVData.GetRowCellValue(i, "IdDepartement").ToString,
+                                                       GVData.GetRowCellValue(i, "Departement").ToString,
+                                                       GVData.GetRowCellValue(i, "IdEmployee").ToString,
+                                                       GVData.GetRowCellValue(i, "NIK").ToString,
+                                                       GVData.GetRowCellValue(i, "Name").ToString,
+                                                       GVData.GetRowCellValue(i, "Position").ToString,
+                                                       GVData.GetRowCellValue(i, "IdEmployeeStatus").ToString,
+                                                       GVData.GetRowCellValue(i, "EmployeeStatus").ToString,
+                                                       GVData.GetRowCellValue(i, "Date"),
+                                                       time_in,
+                                                       time_out)
+                                End If
+
+                                FormEmpInputAttendanceDet.GVEmployee.ActiveFilterString = ""
+                            End If
+                        End If
+                    Next
+
+                    FormEmpInputAttendanceDet.GCEmployee.DataSource = data_employee
+                    FormEmpInputAttendanceDet.GVEmployee.BestFitColumns()
+
+                    infoCustom("Import Success")
+                    Close()
                 End If
             End If
         End If

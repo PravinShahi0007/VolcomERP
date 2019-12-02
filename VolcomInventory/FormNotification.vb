@@ -28,18 +28,18 @@
         Dispose()
     End Sub
 
-    Private Sub GVNotif_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVNotif.RowStyle
-        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
-        If (e.RowHandle >= 0) Then
-            Dim is_read As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("is_read"))
-            If is_read = "2" Or is_read = "3" Then
-                e.Appearance.ForeColor = Color.White
-                e.Appearance.FontStyleDelta = FontStyle.Bold
-                e.Appearance.BackColor = Color.CornflowerBlue
-                e.Appearance.BackColor2 = Color.CornflowerBlue
-            End If
-        End If
-    End Sub
+    'Private Sub GVNotif_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVNotif.RowStyle
+    '    Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+    '    If (e.RowHandle >= 0) Then
+    '        Dim is_read As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("is_read"))
+    '        If is_read = "2" Or is_read = "3" Then
+    '            e.Appearance.ForeColor = Color.White
+    '            e.Appearance.FontStyleDelta = FontStyle.Bold
+    '            e.Appearance.BackColor = Color.CornflowerBlue
+    '            e.Appearance.BackColor2 = Color.CornflowerBlue
+    '        End If
+    '    End If
+    'End Sub
 
     Private Sub GVNotif_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVNotif.CellValueChanged
 

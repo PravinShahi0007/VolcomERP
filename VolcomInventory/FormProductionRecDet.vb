@@ -19,8 +19,6 @@ Public Class FormProductionRecDet
     Dim id_prod_over_memo As String = "NULL"
     Dim qty_limit As Integer = 0
 
-
-
     Private Sub FormProductionRecDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         BShowOrder.Focus()
         allowDelete()
@@ -335,10 +333,29 @@ Public Class FormProductionRecDet
         End If
 
         If check_print_report_status(LEReportStatus.EditValue.ToString) Then
+            '
+            GridColumnPOQty.OptionsColumn.AllowShowHide = False
+            GridColumnRemainingQty.OptionsColumn.AllowShowHide = False
+            GridColumnExtra.OptionsColumn.AllowShowHide = False
+
+            GridColumnPOQty.Visible = True
+            GridColumnRemainingQty.Visible = True
+            GridColumnExtra.Visible = True
+
             BPrint.Enabled = True
         Else
+            GridColumnPOQty.OptionsColumn.AllowShowHide = True
+            GridColumnRemainingQty.OptionsColumn.AllowShowHide = True
+            GridColumnExtra.OptionsColumn.AllowShowHide = True
+
+            GridColumnPOQty.Visible = False
+            GridColumnRemainingQty.Visible = False
+            GridColumnExtra.Visible = False
+
             BPrint.Enabled = False
         End If
+
+        GVListPurchase.BestFitColumns()
 
         'bof column
         If bof_column = "1" And LEReportStatus.EditValue.ToString <> "5" Then
@@ -353,53 +370,73 @@ Public Class FormProductionRecDet
     End Sub
 
     Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
-        Cursor = Cursors.WaitCursor
-        GVListPurchase.BestFitColumns()
-        ReportProductionRec.dt = GCListPurchase.DataSource
-        ReportProductionRec.id_receive = id_receive
+        Dim rmt As String = ""
+        '
         If is_over_tol = "1" Then
-            ReportProductionRec.rmt = "127"
+            rmt = "127"
         Else
-            ReportProductionRec.rmt = "28"
+            rmt = "28"
         End If
-        Dim Report As New ReportProductionRec()
+        '
+        If Not check_allow_print(LEReportStatus.EditValue.ToString, rmt, id_receive) Then
+            warningCustom("Can't print, please complete approval on system first")
+        Else
+            Cursor = Cursors.WaitCursor
+            GVListPurchase.BestFitColumns()
+            ReportProductionRec.dt = GCListPurchase.DataSource
+            ReportProductionRec.id_receive = id_receive
+            ReportProductionRec.rmt = rmt
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVListPurchase.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVListPurchase.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim Report As New ReportProductionRec()
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVListPurchase)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVListPurchase.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVListPurchase.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Parse val
-        Report.LPONumber.Text = TEPONumber.Text.ToString
-        Report.LPOType.Text = TxtPOType.Text.ToString
-        Report.LDONumber.Text = TEDONumber.Text.ToString
-        Report.LRecNumber.Text = TERecNumber.Text.ToString
+            'Grid Detail
+            ReportStyleGridview(Report.GVListPurchase)
 
-        ' Report.id_comp_from = id_comp_from
-        Report.LFromName.Text = TECompName.Text.ToString
-        ' Report.id_comp_to = id_comp_to
-        Report.LToName.Text = TECompShipToName.Text.ToString
+            'Parse val
+            Report.LPONumber.Text = TEPONumber.Text.ToString
+            Report.LPOType.Text = TxtPOType.Text.ToString
+            Report.LDONumber.Text = TEDONumber.Text.ToString
+            Report.LRecNumber.Text = TERecNumber.Text.ToString
 
-        Report.LRecDate.Text = TERecDate.Text.ToString
-        Report.LDODate.Text = TEDODate.Text.ToString
-        Report.LabelArriveDate.Text = DEArrive.Text.ToString
+            ' 
+            Report.LFromName.Text = TECompName.Text.ToString
+            ' 
+            Report.LToName.Text = TECompShipToName.Text.ToString
 
-        Report.LNote.Text = MENote.Text.ToString
-        Report.GVListPurchase.OptionsPrint.PrintFooter = False
-        Report.LTotalReceived.Text = GVListPurchase.Columns("prod_order_rec_det_qty").SummaryText.ToString
+            Report.LRecDate.Text = TERecDate.Text.ToString
+            Report.LDODate.Text = TEDODate.Text.ToString
+            Report.LabelArriveDate.Text = DEArrive.Text.ToString
 
-
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        Cursor = Cursors.Default
+            Report.LNote.Text = MENote.Text.ToString
+            Report.GVListPurchase.OptionsPrint.PrintFooter = False
+            Report.LTotalReceived.Text = GVListPurchase.Columns("prod_order_rec_det_qty").SummaryText.ToString
+            '
+            Dim query As String = "SELECT GROUP_CONCAT(rec.prod_order_rec_number) AS rec_before
+FROM tb_prod_order_rec rec 
+WHERE rec.id_report_status='6' AND rec.`id_prod_order_rec` < '" & id_receive & "' AND rec.`id_prod_order`=(SELECT id_prod_order FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_receive & "')
+GROUP BY rec.`id_prod_order`"
+            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+            '
+            If dt.Rows.Count > 0 Then
+                Report.LRecBefore.Text = dt.Rows(0)("rec_before").ToString
+            Else
+                Report.LRecBefore.Text = "-"
+            End If
+            '
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click

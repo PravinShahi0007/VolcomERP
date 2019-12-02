@@ -36,6 +36,24 @@
                 cond_coa = False
             End If
 
+            'cek coa biaya
+            Dim cond_coa_biaya As Boolean = True
+            Dim qcoa_biaya As String = "SELECT itm.`id_item_cat`,cat.`item_cat`,coa.`id_item_coa`,dep.`departement` FROM tb_purc_order_det pod
+INNER JOIN tb_purc_req_det rd ON rd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_purc_req req ON req.`id_purc_req`=rd.`id_purc_req`
+INNER JOIN tb_item itm ON rd.`id_item`=itm.`id_item`
+INNER JOIN `tb_item_cat` cat ON cat.`id_item_cat` = itm.`id_item_cat`
+INNER JOIN tb_m_departement dep ON dep.`id_departement`=req.`id_departement`
+LEFT JOIN tb_item_coa coa ON coa.`id_item_cat`=itm.`id_item_cat` AND req.`id_departement`=coa.`id_departement`
+WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
+            Dim dcoa_biaya As DataTable = execute_query(qcoa_biaya, -1, True, "", "", "", "")
+            If dcoa_biaya.Rows.Count > 0 Then
+                For i = 0 To dcoa_biaya.Rows.Count - 1
+                    err_coa += "- COA : Mapping Category " & dcoa_biaya.Rows(i)("item_cat").ToString & " for Departement " & dcoa_biaya.Rows(i)("departement").ToString & System.Environment.NewLine
+                Next
+                cond_coa_biaya = False
+            End If
+
             'cek coa vendor
             Dim cond_coa_vendor As Boolean = True
             Dim qcoa_vendor As String = "SELECT c.id_comp, ap.id_acc 
@@ -49,10 +67,13 @@
                 cond_coa_vendor = False
             End If
 
-            If Not cond_coa Or Not cond_coa_vendor Then
+            If Not cond_coa Or Not cond_coa_vendor Or Not cond_coa_biaya Then
                 warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
                 Close()
             End If
+
+            'cek coa biaya
+
 
             'purc order detail
             TxtDO.Focus()
@@ -61,6 +82,8 @@
             DEArrivalDate.EditValue = getTimeDB()
             DEArrivalDate.Properties.MaxValue = DECreated.EditValue
             viewSummary()
+            XTCReceive.SelectedTabPageIndex = 2
+            CEShowHighlight.Checked = True
         Else
             XTCReceive.SelectedTabPageIndex = 0
 
@@ -91,20 +114,21 @@
         Dim query As String = ""
         If action = "ins" Then
             Dim po As New ClassPurcOrder()
-            query = po.queryOrderDetails(id_purc_order, "HAVING qty_remaining>0")
+            query = po.queryOrderDetails(id_purc_order, "HAVING qty_remaining>0 AND is_drop='2'")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDetail.DataSource = data
 
             'isi qty
             For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
                 Dim id_item As String = GVSummary.GetRowCellValue(i, "id_item").ToString
+                Dim item_detail As String = GVSummary.GetRowCellValue(i, "item_detail").ToString
                 Dim qty_total As Decimal = GVSummary.GetRowCellValue(i, "qty")
                 makeSafeGV(GVDetail)
-                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "'"
+                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' AND [item_detail]='" + item_detail + "'"
                 For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                     If qty_total > 0 Then
                         Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")
-                        Dim qty_input As Decimal = 0
+                        Dim qty_input As Decimal = 0.00
                         If qty <= qty_total Then
                             qty_input = qty
                         Else
@@ -121,7 +145,7 @@
             GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_order_det,req.purc_req_number,d.departement, 
-            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty
+            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty, reqd.item_detail
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
             INNER JOIN tb_item i ON i.id_item = pod.id_item
@@ -152,18 +176,18 @@
         Dim query As String = ""
         If action = "ins" Then
             query = "SELECT 0 AS `id_purc_rec_det`,0 AS `id_purc_rec`,
-            pod.id_item, i.item_desc, i.id_uom, u.uom,
-            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty`, '' AS  `note`, '' AS `stt`
+            pod.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
+            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, 0.00 AS qty,(SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_rem`, '' AS  `note`, '' AS `stt`
             FROM tb_purc_order_det pod
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
             LEFT JOIN (
-	            SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	            SELECT rd.id_item, SUM(rd.qty) AS `qty` ,rd.`id_purc_order_det`
 	            FROM tb_purc_rec_det rd
 	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-	            GROUP BY rd.id_item
-            ) rd ON rd.id_item = pod.id_item
+	            GROUP BY rd.id_item,rd.`id_purc_order_det`
+            ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
             LEFT JOIN (
 	            SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	            FROM tb_purc_return_det retd
@@ -171,18 +195,20 @@
 	            WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status=6
 	            GROUP BY retd.id_item
             ) retd ON retd.id_item = pod.id_item
-            WHERE pod.id_purc_order=" + id_purc_order + "
-            GROUP BY pod.id_item "
+            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+            WHERE pod.is_drop='2' AND pod.id_purc_order=" + id_purc_order + "
+            GROUP BY pod.id_item,reqd.item_detail "
         ElseIf action = "upd" Then
-            query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec, 
-            rd.id_item, i.item_desc, i.id_uom, u.uom,
+            query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec,  
+            rd.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
             rd.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(rd.qty) AS `qty`, rd.note,  '' AS `stt`
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_item i ON i.id_item = rd.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
             WHERE rd.id_purc_rec=" + id + " 
-            GROUP BY rd.id_item "
+            GROUP BY rd.id_item,reqd.item_detail "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
@@ -346,6 +372,7 @@
         Dim id_purc_order_det As String = GVSummary.GetRowCellValue(rh, "id_purc_order_det").ToString
         Dim id_purc_rec_det As String = GVSummary.GetRowCellValue(rh, "id_purc_rec_det").ToString
         Dim id_item As String = GVSummary.GetRowCellValue(rh, "id_item").ToString
+        Dim item_detail As String = addSlashes(GVSummary.GetRowCellValue(rh, "item_detail").ToString)
         If e.Column.FieldName = "qty" Then
             If e.Value >= 0 Then
                 Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
@@ -354,12 +381,12 @@
                 pod.`value` 
                 FROM tb_purc_order_det pod
                 LEFT JOIN (
-	                SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	                SELECT rd.id_item, SUM(rd.qty) AS `qty`,rd.id_purc_order_det
 	                FROM tb_purc_rec_det rd
 	                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 	                WHERE r.id_purc_order=" + id_purc_order + " AND rd.id_item=" + id_item + " AND r.id_report_status!=5 
-	                GROUP BY rd.id_item
-                ) rd ON rd.id_item = pod.id_item
+	                GROUP BY rd.id_item,rd.id_purc_order_det
+                ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
                 LEFT JOIN (
 	                SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	                FROM tb_purc_return_det retd
@@ -367,8 +394,9 @@
 	                WHERE ret.id_purc_order=" + id_purc_order + " AND retd.id_item=" + id_item + " AND ret.id_report_status=6
 	                GROUP BY retd.id_item
                 ) retd ON retd.id_item = pod.id_item
-                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + "
-                GROUP BY pod.id_item "
+                INNER JOIN tb_purc_req_det prd ON prd.id_purc_req_det=pod.id_purc_req_det
+                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND prd.item_detail='" & item_detail & "'
+                GROUP BY pod.id_item, prd.item_detail "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
                 If e.Value > dcek.Rows(0)("qty_remaining") Then
                     warningCustom("Qty can't exceed " + dcek.Rows(0)("qty_remaining").ToString)

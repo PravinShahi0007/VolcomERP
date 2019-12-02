@@ -5,6 +5,7 @@ Public Class FormSalesDelOrderDet
     Public id_pl_sales_order_del As String = "-1"
     Public id_sales_order As String = "-1"
     Public id_store_contact_to As String = "-1"
+    Dim id_store As String = "-1"
     Public id_comp_contact_from As String = "-1"
     Public id_report_status As String
     Public id_pl_sales_order_del_det_list As New List(Of String)
@@ -83,10 +84,12 @@ Public Class FormSalesDelOrderDet
 
             'query view based on edit id's
             Dim query_c As New ClassSalesDelOrder()
-            Dim query As String = query_c.queryMain("AND a.id_pl_sales_order_del=" + id_pl_sales_order_del + " ", "2")
+            Dim query As String = query_c.queryMainLess("AND a.id_pl_sales_order_del=" + id_pl_sales_order_del + " ", "2")
+
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store_contact_to = data.Rows(0)("id_store_contact_to").ToString
+            id_store = data.Rows(0)("id_store").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
             TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
             TxtNameCompFrom.Text = data.Rows(0)("wh_name").ToString
@@ -107,6 +110,7 @@ Public Class FormSalesDelOrderDet
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
             TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
+            is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
 
             'uniform
             Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
@@ -134,12 +138,43 @@ Public Class FormSalesDelOrderDet
         End If
     End Sub
     Sub viewSalesOrder()
-        Dim query_c As New ClassSalesOrder()
-        Dim query As String = query_c.queryMain("AND a.id_sales_order=" + id_sales_order + " ", "2")
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'Dim query_c As New ClassSalesOrder()
+        'Dim query As String = query_c.queryMain("AND a.id_sales_order=" + id_sales_order + " ", "2")
+        Dim qso As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,  
+        IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type, a.final_comment, a.final_date, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.id_prepare_status 
+        FROM tb_sales_order a 
+        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
+        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+        INNER JOIN tb_m_comp_contact wh_c ON wh_c.id_comp_contact = a.id_warehouse_contact_to 
+        INNER JOIN tb_m_comp wh ON wh_c.id_comp = wh.id_comp 
+        INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status 
+        INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = a.id_prepare_status 
+        INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = a.id_so_status 
+        LEFT JOIN ( 
+            SELECT so_det.id_sales_order, SUM(so_det.sales_order_det_qty) AS tot_so  
+            FROM tb_sales_order_det so_det GROUP BY so_det.id_sales_order 
+        ) so_item ON so_item.id_sales_order = a.id_sales_order 
+        LEFT JOIN tb_fg_so_reff an On an.id_fg_so_reff = a.id_fg_so_reff 
+        LEFT JOIN tb_lookup_pd_alloc alloc On alloc.id_pd_alloc = d.id_pd_alloc 
+        LEFT JOIN tb_lookup_so_cat del_cat On del_cat.id_so_cat = alloc.id_so_cat 
+        LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = wh.id_drawer_def 
+        LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=a.id_emp_uni_period 
+        LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = a.id_uni_type 
+        LEFT JOIN tb_emp_uni_budget ub ON ub.id_emp_uni_budget = a.id_emp_uni_budget
+        LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee 
+        WHERE a.id_sales_order>0 AND a.id_sales_order=" + id_sales_order + "  ORDER BY a.id_sales_order DESC "
+        Dim data As DataTable = execute_query(qso, -1, True, "", "", "", "")
+
+        'cek masi open ato close
+        If data.Rows(0)("id_prepare_status") = "2" Then
+            stopCustom("This order already closed")
+            FormSalesDelOrder.viewSalesOrder()
+            Close()
+        End If
 
         'SO
         TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
+        MENote.Text = data.Rows(0)("sales_order_note").ToString
 
         'store data
         Dim id_comp_to As String = data.Rows(0)("id_store").ToString
@@ -218,7 +253,7 @@ Public Class FormSalesDelOrderDet
     Sub viewDetail()
         If action = "ins" Then
             'action
-            Dim query As String = "CALL view_sales_order_limit('" + id_sales_order + "', '0', '0')"
+            Dim query As String = "CALL view_sales_order_limit_less('" + id_sales_order + "', '0', '0')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         ElseIf action = "upd" Then
@@ -568,7 +603,7 @@ Public Class FormSalesDelOrderDet
         Dim cond_check_data As Boolean = True
         Dim dt_cek As DataTable
         If action = "ins" Then
-            dt_cek = execute_query("CALL view_sales_order_limit(" + id_sales_order + ", 0, 0)", -1, True, "", "", "", "")
+            dt_cek = execute_query("CALL view_sales_order_limit_less(" + id_sales_order + ", 0, 0)", -1, True, "", "", "", "")
         Else
             dt_cek = execute_query("CALL view_sales_order_limit(" + id_sales_order + ", 0, " + id_pl_sales_order_del + ")", -1, True, "", "", "", "")
         End If
@@ -612,7 +647,7 @@ Public Class FormSalesDelOrderDet
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 BtnSave.Enabled = False
-                Dim pl_sales_order_del_note As String = MENote.Text.ToString
+                Dim pl_sales_order_del_note As String = addSlashes(MENote.Text.ToString)
                 If action = "ins" Then
                     'query main table
                     Dim pl_sales_order_del_number As String = ""
@@ -691,8 +726,9 @@ Public Class FormSalesDelOrderDet
                     submit_who_prepared("43", id_pl_sales_order_del, id_user)
 
 
-                    FormSalesDelOrder.viewSalesDelOrder()
-                    FormSalesDelOrder.GVSalesDelOrder.FocusedRowHandle = find_row(FormSalesDelOrder.GVSalesDelOrder, "id_pl_sales_order_del", id_pl_sales_order_del)
+                    FormSalesDelOrder.GCSalesDelOrder.DataSource = Nothing
+                    'FormSalesDelOrder.viewSalesDelOrder()
+                    'FormSalesDelOrder.GVSalesDelOrder.FocusedRowHandle = find_row(FormSalesDelOrder.GVSalesDelOrder, "id_pl_sales_order_del", id_pl_sales_order_del)
                     action = "upd"
                     actionLoad()
                     exportToBOF(False)
@@ -874,14 +910,19 @@ Public Class FormSalesDelOrderDet
 
     Sub loadCodeDetail()
         Cursor = Cursors.WaitCursor
-        Dim id_product_param As String = ""
-        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
-            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
-                id_product_param += ";"
-            End If
-        Next
-        codeAvailableIns(id_product_param)
+        makeSafeGV(GVItemList)
+        GVItemList.ActiveFilterString = "[status]<>'0'"
+        If GVItemList.RowCount > 0 Then
+            Dim id_product_param As String = ""
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+                If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                    id_product_param += ";"
+                End If
+            Next
+            codeAvailableIns(id_product_param)
+        End If
+        GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 
@@ -1042,7 +1083,7 @@ Public Class FormSalesDelOrderDet
         If Not code_found Then
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
             GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-            stopCustom("Data not found!")
+            stopCustomDialog("Data not found!")
         Else
             'jika akun normal/sale
             If (id_store_type = "1" Or id_store_type = "2") And id_so_status <> 8 Then
@@ -1050,9 +1091,9 @@ Public Class FormSalesDelOrderDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
                     If id_store_type = "1" Then
-                        stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for normal product. ")
                     Else
-                        stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for sale product. ")
                     End If
                     Cursor = Cursors.Default
                     Exit Sub
@@ -1063,11 +1104,11 @@ Public Class FormSalesDelOrderDet
                 If jum_limit <= 0 Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("This item cannot scan, because limit qty is zero.")
+                    stopCustomDialog("This item cannot scan, because limit qty is zero.")
                 ElseIf jum_scan >= jum_limit Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Maximum qty : " + jum_limit.ToString)
+                    stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                 Else
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_sales_order_del_det_counting", "0")
@@ -1092,20 +1133,20 @@ Public Class FormSalesDelOrderDet
                 If Not code_found Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data not found or duplicate!")
+                    stopCustomDialog("Data not found or duplicate!")
                 ElseIf code_duplicate Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data duplicate !")
+                    stopCustomDialog("Data duplicate !")
                 Else
                     If jum_limit <= 0 Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("This item cannot scan, because limit qty is zero.")
+                        stopCustomDialog("This item cannot scan, because limit qty is zero.")
                     ElseIf jum_scan >= jum_limit Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Maximum qty : " + jum_limit.ToString)
+                        stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                     Else
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_sales_order_del_det_counting", "0")
@@ -1123,7 +1164,7 @@ Public Class FormSalesDelOrderDet
             Else 'not found
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                 GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Data not found !")
+                stopCustomDialog("Data not found !")
             End If
         End If
     End Sub
@@ -1205,47 +1246,83 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Sub getReport()
-        GridColumnNo.VisibleIndex = 0
-        GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
-        For i As Integer = 0 To GVItemList.RowCount - 1
-            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
-        Next
-        GCItemList.RefreshDataSource()
-        GVItemList.RefreshData()
-        ReportSalesDelOrderDet.dt = GCItemList.DataSource
-        ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
-        Dim Report As New ReportSalesDelOrderDet()
+        If is_use_unique_code = "-1" Then
+            GridColumnNo.VisibleIndex = 0
+            GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
+            For i As Integer = 0 To GVItemList.RowCount - 1
+                GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+            Next
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+            ReportSalesDelOrderDet.dt = GCItemList.DataSource
+            ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
+            Dim Report As New ReportSalesDelOrderDet()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVItemList)
+            'Grid Detail
+            ReportStyleGridview(Report.GVItemList)
 
-        'Parse val
-        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-        Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-        Report.LabelAddress.Text = MEAdrressCompTo.Text
-        Report.LRecDate.Text = DEForm.Text
-        Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
-        Report.LabelNote.Text = MENote.Text
-        Report.LabelPrepare.Text = TxtSalesOrder.Text
-        Report.LabelCat.Text = LEStatusSO.Text
-        Report.LabelUni3.Text = TxtNIK.Text
-        Report.LabelUni6.Text = TxtEmployee.Text
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPrepare.Text = TxtSalesOrder.Text
+            Report.LabelCat.Text = LEStatusSO.Text
+            Report.LabelUni3.Text = TxtNIK.Text
+            Report.LabelUni6.Text = TxtEmployee.Text
 
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        GVItemList.ActiveFilterString = ""
-        GridColumnNo.Visible = False
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            GVItemList.ActiveFilterString = ""
+            GridColumnNo.Visible = False
+        Else
+            ReportSalesDelOrderOwnStore.id = id_pl_sales_order_del
+            ReportSalesDelOrderOwnStore.rmt = "43"
+            ReportSalesDelOrderOwnStore.id_report_status = id_report_status
+            ReportSalesDelOrderOwnStore.id_store = id_store
+            ReportSalesDelOrderOwnStore.is_combine = "2"
+            ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
+            ReportSalesDelOrderOwnStore.is_no_print = "-1"
+            Dim Report As New ReportSalesDelOrderOwnStore()
+
+
+            'Grid Detail
+            ReportStyleGridviewBlackLine(Report.GVItemList)
+
+            'Parse val
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelAddress.Text = MEAdrressCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPrepare.Text = TxtSalesOrder.Text
+            Report.LabelCat.Text = LEStatusSO.Text
+            Report.LabelUni3.Text = TxtNIK.Text
+            Report.LabelUni6.Text = TxtEmployee.Text
+            If id_so_status = "7" Or id_so_status = "9" Then
+                Report.PanelUni.Visible = True
+            Else
+                Report.PanelUni.Visible = False
+            End If
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
     End Sub
 
     'Color Cell
@@ -1304,7 +1381,11 @@ Public Class FormSalesDelOrderDet
 
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderDet.id_pre = "1"
+        If is_use_unique_code = "-1" Then
+            ReportSalesDelOrderDet.id_pre = "1"
+        Else
+            ReportSalesDelOrderOwnStore.id_pre = "1"
+        End If
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -1315,7 +1396,12 @@ Public Class FormSalesDelOrderDet
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderDet.id_pre = "-1"
+        If is_use_unique_code = "-1" Then
+            ReportSalesDelOrderDet.id_pre = "-1"
+        Else
+            ReportSalesDelOrderOwnStore.id_pre = "-1"
+        End If
+
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -1348,7 +1434,7 @@ Public Class FormSalesDelOrderDet
             Cursor = Cursors.WaitCursor
             GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
             If GVBarcode.RowCount <= 0 Then
-                stopCustom("Code not found.")
+                stopCustomDialog("Code not found.")
                 GVBarcode.ActiveFilterString = ""
                 TxtDeleteScan.Text = ""
                 TxtDeleteScan.Focus()
@@ -1420,6 +1506,7 @@ Public Class FormSalesDelOrderDet
             GridColumnRemark.VisibleIndex = 5
             GridColumnOrderNumber.VisibleIndex = 6
             GridColumnCustomer.VisibleIndex = 7
+            GridColumnNoteDel.VisibleIndex = 8
             GVItemList.OptionsPrint.PrintFooter = False
             GVItemList.OptionsPrint.PrintHeader = False
 
@@ -1459,6 +1546,7 @@ Public Class FormSalesDelOrderDet
             GridColumnTo.Visible = False
             GridColumnOrderNumber.Visible = False
             GridColumnCustomer.Visible = False
+            GridColumnNoteDel.Visible = False
             GVItemList.OptionsPrint.PrintFooter = True
             GVItemList.OptionsPrint.PrintHeader = True
             Cursor = Cursors.Default
@@ -1495,22 +1583,24 @@ Public Class FormSalesDelOrderDet
             colIndex = 0
             For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
                 colIndex = colIndex + 1
-                If j = 0 Then 'code
+                If j = 0 Then 'code A
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
-                ElseIf j = 1 Then 'qty
+                ElseIf j = 1 Then ' B
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "pl_sales_order_del_det_qty")
-                ElseIf j = 2 Then 'number
+                ElseIf j = 2 Then 'number C
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "number").ToString
-                ElseIf j = 3 Then 'from
+                ElseIf j = 3 Then 'from D
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "from").ToString
-                ElseIf j = 4 Then 'to
+                ElseIf j = 4 Then 'to E
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "to").ToString
-                ElseIf j = 5 Then 'remark detil
+                ElseIf j = 5 Then 'remark detil F
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "pl_sales_order_del_det_note").ToString
-                ElseIf j = 6 Then 'order number
+                ElseIf j = 6 Then 'order number G
                     wSheet.Cells(rowIndex + 1, colIndex) = TxtOLShopNumber.Text
-                ElseIf j = 7 Then 'customer Name
+                ElseIf j = 7 Then 'customer Name H
                     wSheet.Cells(rowIndex + 1, colIndex) = TxtCustomer.Text
+                ElseIf j = 8 Then 'note I
+                    wSheet.Cells(rowIndex + 1, colIndex) = MENote.Text
                 End If
             Next
         Next

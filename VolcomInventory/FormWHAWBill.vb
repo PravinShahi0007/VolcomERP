@@ -341,7 +341,7 @@
         Else
             If CERO.Checked = True Then 'view do
                 gridBandRO.Visible = True
-                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,do.do_no,do.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
+                query = "SELECT awb.awbill_no,awbd.qty,awbd.act_qty,(awbd.qty-awbd.act_qty) AS diff_qty,'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') AS is_cod,awbd.do_no,awbd.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number AS account,comp_store.comp_name AS account_name,comp_cargo.comp_name AS cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) AS volume,
                             DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,
                             DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,
                             (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,
@@ -352,8 +352,8 @@
                             INNER JOIN tb_m_comp comp_store ON comp_store.id_comp=awb.id_store
                             INNER JOIN tb_m_comp comp_cargo ON comp_cargo.id_comp=awb.id_cargo
                             LEFT JOIN tb_m_comp_group grp ON grp.id_comp_group = comp_store.id_comp_group
-                            INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
-                            INNER JOIN tb_wh_awb_do DO ON do.do_no=awbd.do_no
+                            INNER JOIN tb_wh_awbill_det_in awbd ON awbd.id_awbill=awb.id_awbill
+                            LEFT JOIN tb_wh_awb_do DO ON do.do_no=awbd.do_no
                             LEFT JOIN
                             (
 	                            SELECT id_wh_awb_det
@@ -367,7 +367,7 @@
                 query += " ORDER BY awb.id_awbill,awbd.do_no ASC"
             Else
                 gridBandRO.Visible = False
-                query = "SELECT awb.awbill_no,awb.awbill_inv_no,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT awb.awbill_no,'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_inv_no,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -557,12 +557,58 @@
     Private Sub FormWHAWBill_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_lock = "1" Then
             PCLock.Visible = True
+            PCLockIn.Visible = True
         Else
             PCLock.Visible = False
+            PCLockIn.Visible = False
         End If
     End Sub
 
     Private Sub BReportInvoice_Click(sender As Object, e As EventArgs) Handles BReportInvoice.Click
         FormAWBInvoiceReport.ShowDialog()
+    End Sub
+
+    Private Sub BImportAwb_Click(sender As Object, e As EventArgs) Handles BImportAwb.Click
+        FormImportExcel.id_pop_up = "44"
+        FormImportExcel.ShowDialog()
+    End Sub
+
+    Private Sub CESelAllInboud_CheckedChanged(sender As Object, e As EventArgs) Handles CESelAllInboud.CheckedChanged
+        If GVAwbillIn.RowCount > 0 Then
+            For i As Integer = 0 To ((GVAwbillIn.RowCount - 1) - GetGroupRowCount(GVAwbillIn))
+                If CESelAllInboud.Checked = False Then
+                    GVAwbillIn.SetRowCellValue(i, "is_check", "no")
+                Else
+                    GVAwbillIn.SetRowCellValue(i, "is_check", "yes")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BLockInbound_Click(sender As Object, e As EventArgs) Handles BLockInbound.Click
+        Cursor = Cursors.WaitCursor
+        'search id det
+        Dim where_string As String = ""
+        makeSafeGV(GVAwbillIn)
+        GVAwbillIn.ActiveFilterString = "[is_check]='yes'"
+        If GVAwbillIn.RowCount > 0 Then
+            For i As Integer = 0 To GVAwbillIn.RowCount - 1
+                If i = 0 Then
+                    where_string = GVAwbillIn.GetRowCellValue(i, "id_awbill").ToString
+                Else
+                    where_string += "," & GVAwbillIn.GetRowCellValue(i, "id_awbill").ToString
+                End If
+            Next
+            makeSafeGV(GVAwbillIn)
+            'update
+            Dim query_upd As String = "UPDATE tb_wh_awbill SET is_lock='1' WHERE id_awbill IN (" & where_string & ")"
+            execute_non_query(query_upd, True, "", "", "", "")
+            infoCustom("Process locked.")
+            load_inbound()
+            '
+            Cursor = Cursors.Default
+        Else
+            stopCustom("Please choose collie first.")
+        End If
     End Sub
 End Class

@@ -197,6 +197,7 @@ Public Class FormProduction
         query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark,RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,length(d.design_display_name)-3) AS class_dsg "
         query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,IF(ISNULL(ko.lead_time_prod),NULL,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)) AS est_del_date_ko,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date,prod_order_wo_top AS lead_time_pay "
         query += ",wo_price.prod_order_wo_vat as vat,wo_price.wo_price AS po_amount_rp,wo_price.wo_price_no_kurs AS po_amount,wo_price.currency as po_curr,wo_price.prod_order_wo_kurs AS po_kurs,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit "
+        query += ",IF(ISNULL(kp.sample_proto_2),a.sample_proto_2,kp.sample_proto_2) AS sample_proto_2 "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b On a.id_prod_demand_design = b.id_prod_demand_design "
@@ -215,12 +216,12 @@ Public Class FormProduction
         query += "LEFT JOIN tb_m_comp comp On comp.id_comp=cc.id_comp "
         query += "LEFT JOIN 
                     (
-	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
+	                    SELECT * FROM tb_report_mark WHERE report_mark_type='22' GROUP BY report_mark_type,id_report
                     ) mark ON mark.id_report=a.id_prod_order AND mark.report_mark_type='22' "
         query += "LEFT JOIN (
 	                SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,wo.prod_order_wo_vat,
-	                (SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
-                    ,(SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * (100 + wo.prod_order_wo_vat)/100) AS `wo_price_no_kurs`
+	                (SUM(CAST(wod.prod_order_wo_det_price * pod.prod_order_qty AS DECIMAL(13,2))) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
+                    ,(SUM(CAST(wod.prod_order_wo_det_price * pod.prod_order_qty AS DECIMAL(13,2))) * (100 + wo.prod_order_wo_vat)/100) AS `wo_price_no_kurs`
 	                FROM tb_prod_order_wo wo
 	                INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
 	                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
@@ -271,6 +272,12 @@ Public Class FormProduction
 		                    ORDER BY id_prod_order_ko_det DESC
 	                    )ko GROUP BY ko.id_prod_order
                     ) ko ON ko.id_prod_order=a.id_prod_order "
+        query += "LEFT JOIN (
+	                    SELECT * FROM (
+		                    SELECT * FROM tb_prod_order_kp_det
+		                    ORDER BY id_prod_order_kp_det DESC
+	                    )kp GROUP BY kp.id_prod_order
+                    ) kp ON kp.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN
                  (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
                     FROM tb_report_mark mark
@@ -469,7 +476,7 @@ Public Class FormProduction
         query += "INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh "
         query += "LEFT JOIN 
                     (
-	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
+	                    SELECT * FROM tb_report_mark WHERE mark.report_mark_type='23' GROUP BY report_mark_type,id_report
                     ) mark ON mark.id_report=a.id_prod_order_wo AND mark.report_mark_type='23' "
         '
         query += "LEFT JOIN
@@ -620,9 +627,24 @@ Public Class FormProduction
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        FormProductionPrint.dt = GCProd.DataSource
-        FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
-        FormProductionPrint.ShowDialog()
+        GVProd.ActiveFilterString = "[is_check]='yes'"
+        Dim is_approved As Boolean = True
+        For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+            If Not check_allow_print(GVProd.GetRowCellValue(i, "id_report_status").ToString, "22", GVProd.GetRowCellValue(i, "id_prod_order").ToString) Then
+                is_approved = False
+            End If
+        Next
+        GVProd.ActiveFilterString = ""
+
+        If is_approved = True Then
+            FormProductionPrint.dt = GCProd.DataSource
+            FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
+            FormProductionPrint.ShowDialog()
+        Else
+            warningCustom("Please complete approval on PO first before create summary.")
+        End If
+
+
     End Sub
 
     Private Sub BFilter_Click(sender As Object, e As EventArgs) Handles BFilter.Click
@@ -642,7 +664,6 @@ Public Class FormProduction
         Catch ex As Exception
             stopCustom("Please select PD first")
         End Try
-
         Cursor = Cursors.Default
     End Sub
 
@@ -665,7 +686,7 @@ Public Class FormProduction
             query_where += " AND c.id_comp='" & SLEVendorKO.EditValue.ToString & "'"
         End If
         '
-        Dim query As String = "SELECT ko.*,c.`comp_name` FROM tb_prod_order_ko ko
+        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void','-') AS status,c.`comp_name` FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ko.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE ko.id_prod_order_ko 
@@ -687,6 +708,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " ORDER BY k
         query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
         query += "WHERE comp.id_comp_cat='1'"
         viewSearchLookupQuery(SLEVendorKO, query, "id_comp", "comp_name_label", "id_comp")
+        viewSearchLookupQuery(SLEVendorKP, query, "id_comp", "comp_name_label", "id_comp")
     End Sub
 
     Sub view_ko()
@@ -696,5 +718,38 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " ORDER BY k
 
     Private Sub BEditKO_Click(sender As Object, e As EventArgs) Handles BEditKO.Click
         view_ko()
+    End Sub
+
+    Private Sub BViewKP_Click(sender As Object, e As EventArgs) Handles BViewKP.Click
+        Dim query_where As String = ""
+        '
+        If Not SLEVendorKP.EditValue.ToString = "0" Then
+            query_where += " AND c.id_comp='" & SLEVendorKP.EditValue.ToString & "'"
+        End If
+        '
+        Dim query As String = "SELECT kp.*,IF(kp.is_void='1','Void','-') AS status,c.`comp_name` FROM tb_prod_order_kp kp
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=kp.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE kp.id_prod_order_kp 
+IN (SELECT MAX(id_prod_order_kp) AS id FROM `tb_prod_order_kp`
+GROUP BY id_prod_order_kp_reff) AND is_purc_mat=2 " & query_where & " ORDER BY kp.id_prod_order_kp DESC"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCKP.DataSource = data
+        If GVKP.RowCount > 0 Then
+            BEditKP.Visible = True
+        Else
+            BEditKP.Visible = False
+        End If
+        GVKP.BestFitColumns()
+    End Sub
+
+    Sub view_kp()
+        FormProductionKP.id_kp = GVKP.GetFocusedRowCellValue("id_prod_order_kp").ToString
+        FormProductionKP.ShowDialog()
+    End Sub
+
+    Private Sub BEditKP_Click(sender As Object, e As EventArgs) Handles BEditKP.Click
+        view_kp()
     End Sub
 End Class

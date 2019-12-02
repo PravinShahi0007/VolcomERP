@@ -57,6 +57,7 @@ Partial Class FormPurcReceive
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDOVENDOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRec.SuspendLayout()
         Me.XTPOrder.SuspendLayout()
@@ -102,7 +103,7 @@ Partial Class FormPurcReceive
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnIdComp})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn8, Me.GridColumn5, Me.GridColumn6, Me.GridColumnIdComp})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsView.ShowGroupPanel = False
@@ -187,7 +188,7 @@ Partial Class FormPurcReceive
         Me.GridColumn6.FieldName = "last_update"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.VisibleIndex = 9
         '
         'GridColumnIdComp
         '
@@ -383,6 +384,16 @@ Partial Class FormPurcReceive
         Me.GridColumnDOVENDOR.Visible = True
         Me.GridColumnDOVENDOR.VisibleIndex = 1
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Est Receive Date"
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn8.FieldName = "est_date_receive"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 8
+        '
         'FormPurcReceive
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -447,4 +458,5 @@ Partial Class FormPurcReceive
     Friend WithEvents GridColumnArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDOVENDOR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -28,8 +28,7 @@ Public Class FormFGLineList
         End If
     End Sub
 
-
-    Private Sub FormFGLineList_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Sub actionLoad()
         Cursor = Cursors.WaitCursor
         checkFormAccessSingle(Name)
         viewSeason() 'season
@@ -66,6 +65,9 @@ Public Class FormFGLineList
             BtnDesign.Visible = True
             SMDeleteDesign.Visible = True
         Else
+            BBProposePrice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBDs.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BtnDesign.Visible = False
             SMDeleteDesign.Visible = False
         End If
 
@@ -80,6 +82,10 @@ Public Class FormFGLineList
         End Try
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormFGLineList_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        actionLoad()
     End Sub
 
     'view season
@@ -103,6 +109,8 @@ Public Class FormFGLineList
 
     Private Sub BtnView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnView.Click
         Cursor = Cursors.WaitCursor
+        BGVLineList.ColumnPanelRowHeight = 40
+        CheckEditOpt.EditValue = False
         CheckImg.EditValue = False
         BtnView.Text = "Loading..."
         BtnView.Enabled = False
@@ -116,7 +124,7 @@ Public Class FormFGLineList
 
         BtnView.Text = "View Line List"
         BtnView.Enabled = True
-        PanelOpt.Visible = False
+        PanelOpt.Visible = True
         PanelImg.Visible = True
         BGVLineList.RowHeight = 10
         Cursor = Cursors.Default
@@ -178,7 +186,7 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         nothingLineList()
         CheckEditOpt.EditValue = False
-        PanelOpt.Visible = True
+        PanelOpt.Visible = False
         PanelImg.Visible = False
         Cursor = Cursors.Default
     End Sub
@@ -187,7 +195,7 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         nothingLineList()
         CheckEditOpt.EditValue = False
-        PanelOpt.Visible = True
+        PanelOpt.Visible = False
         PanelImg.Visible = False
 
 
@@ -1057,23 +1065,23 @@ Public Class FormFGLineList
                     End If
 
                     'cek vendor cost
-                    Dim qcost As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name` 
-                    FROM tb_prod_demand_design pdd
-                    INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-                    WHERE ISNULL(d.prod_order_cop_pd_vendor) 
-                    AND (" + dsg_cek + ")
-                    GROUP BY d.id_design 
-                    ORDER BY d.design_display_name ASC "
-                    Dim dcost As DataTable = execute_query(qcost, -1, True, "", "", "", "")
-                    If dcost.Rows.Count > 0 Then
-                        Dim err As String = "Cost data is not complete, please make sure or contact Purchasing Dept." + System.Environment.NewLine
-                        For g As Integer = 0 To dcost.Rows.Count - 1
-                            err += dcost.Rows(g)("code").ToString + " - " + dcost.Rows(g)("name").ToString + System.Environment.NewLine
-                        Next
-                        warningCustom(err)
-                        Cursor = Cursors.Default
-                        Exit Sub
-                    End If
+                    'Dim qcost As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name` 
+                    'FROM tb_prod_demand_design pdd
+                    'INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                    'WHERE ISNULL(d.prod_order_cop_pd_vendor) 
+                    'AND (" + dsg_cek + ")
+                    'GROUP BY d.id_design 
+                    'ORDER BY d.design_display_name ASC "
+                    'Dim dcost As DataTable = execute_query(qcost, -1, True, "", "", "", "")
+                    'If dcost.Rows.Count > 0 Then
+                    '    Dim err As String = "Cost data is not complete, please make sure or contact Purchasing Dept." + System.Environment.NewLine
+                    '    For g As Integer = 0 To dcost.Rows.Count - 1
+                    '        err += dcost.Rows(g)("code").ToString + " - " + dcost.Rows(g)("name").ToString + System.Environment.NewLine
+                    '    Next
+                    '    warningCustom(err)
+                    '    Cursor = Cursors.Default
+                    '    Exit Sub
+                    'End If
 
                     'cek US approval
                     If is_need_us_approval = "1" Then
@@ -1309,5 +1317,42 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         FormFGLineListQuickUpdDel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSetActualInStoreDate_Click(sender As Object, e As EventArgs) Handles BtnSetActualInStoreDate.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(BGVLineList)
+        BGVLineList.ActiveFilterString = "[Select_sct]='Yes'"
+        If BGVLineList.RowCount > 0 Then
+            FormFGLineListInStoreDateActual.ShowDialog()
+        Else
+            stopCustom("No data selected")
+        End If
+        BGVLineList.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEditOpt_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditOpt.CheckedChanged
+        If CheckEditOpt.EditValue = True Then
+            BGVLineList.ColumnPanelRowHeight = 80
+            Dim idx As Integer = 0
+            For b As Integer = 0 To BGVLineList.Bands.VisibleBandCount - 1
+                If BGVLineList.Bands(b).Caption = "TOTAL QTY DESIGN" Then
+                    idx = BGVLineList.Bands(b).VisibleIndex
+                ElseIf BGVLineList.Bands(b).Caption = "TOTAL QTY BREAKDOWN SIZE" Then
+                    BGVLineList.Bands(b).Visible = True
+                    BGVLineList.Bands(b).VisibleIndex = idx + 1
+                    Exit For
+                End If
+            Next
+        Else
+            BGVLineList.ColumnPanelRowHeight = 40
+            For b As Integer = 0 To BGVLineList.Bands.VisibleBandCount - 1
+                If BGVLineList.Bands(b).Caption = "TOTAL QTY BREAKDOWN SIZE" Then
+                    BGVLineList.Bands(b).Visible = False
+                    Exit For
+                End If
+            Next
+        End If
     End Sub
 End Class

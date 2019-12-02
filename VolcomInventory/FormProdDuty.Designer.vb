@@ -25,11 +25,11 @@ Partial Class FormProdDuty
         Me.SMEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnProdNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDelivery = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnVendorCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCompName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnProdNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPOVolpro = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -201,7 +201,6 @@ Partial Class FormProdDuty
         Me.GVProd.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand3, Me.gridBand4, Me.gridBand6, Me.gridBand7, Me.gridBand2, Me.gridBand5})
         Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnVendorCode, Me.GridColumnCompName, Me.BandedGridColumnCode, Me.GridColumnProdNo, Me.BandedGridColumnPOVolpro, Me.BandedGridColumnUSCode, Me.BandedGridColumnQtyRec, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.BandedGridColumnQtyPIB, Me.BandedGridColumnPIBVolume, Me.BandedGridColumnPIBUOM, Me.BandedGridColumnIDCurPIB, Me.BandedGridColumnPIBCur, Me.BandedGridColumnPIBKurs, Me.BandedGridColumnFabrication, Me.BandedGridColumnCIF, Me.BandedGridColumnCIFRp, Me.BandedGridColumnHSCode, Me.BandedGridColumnColor, Me.BandedGridColumnFOB, Me.BandedGridColumnTotFOB, Me.BandedGridColumnImportFrom, Me.BandedGridColumnDestPort, Me.BandedGridColumnLSNo, Me.BandedGridColumnLSDate, Me.BandedGridColumnPIBNo, Me.BandedGridColumnAJU, Me.BandedGridColumnPIBDate, Me.BandedGridColumnCOO, Me.BandedGridColumnFreightUSD, Me.BandedGridColumnPPJK, Me.BandedGridColumnPPJKInvNo, Me.BandedGridColumnPIBDueDate, Me.BandedGridColumnPIBPRDueDate, Me.BandedGridColumnDutyPaid, Me.BandedGridColumnPRProposed, Me.BandedGridColumnDutyP, Me.BandedGridColumnSDP, Me.BandedGridColumnSVATP, Me.BandedGridColumnSRP, Me.BandedGridColumnSTP, Me.BandedGridColumnPPHPercent, Me.GridColumnOrderQty, Me.BandedGridColumnQtySalesEst, Me.BandedGridColumnEst, Me.BandedGridColumnRevAftDisc, Me.BandedGridColumnEstRoyS, Me.BandedGridColumnEstRoyD, Me.BandedGridColumnBM1, Me.BandedGridColumnTotDeclareEst, Me.BandedGridColumnPPNEst, Me.BandedGridColumnPPHEst, Me.BandedGridColumnFinal, Me.BandedGridColumnQtySalesActual, Me.BandedGridColumnRevAfterTax, Me.BandedGridColumnAmoRoyaltySales, Me.BandedGridColumnFinalRoyS, Me.BandedGridColumnCIFFinal, Me.BandedGridColumn3, Me.BandedGridColumnBMFinal, Me.BandedGridColumnFinalRoyD, Me.BandedGridColumnPPNF, Me.BandedGridColumnPPHF, Me.BandedGridColumnTotDeclareF, Me.BandedGridColumnDiffPrice, Me.BandedGridColumnDiffRoyD, Me.BandedGridColumnOutBM, Me.BandedGridColumnPPNDiff, Me.BandedGridColumnPPHDiff, Me.BandedGridColumnVPDiff, Me.BandedGridColumn17, Me.BandedGridColumnRemRevAftTax, Me.BandedGridColumnTotRemaining, Me.BandedGridColumnAmoRoySalesRemaining, Me.BandedGridColumnRemCIF, Me.BandedGridColumnRemBM, Me.BandedGridColumnRemainingTotDeclare, Me.BandedGridColumnRemPPN, Me.BandedGridColumnRemPPH, Me.BandedGridColumn8, Me.BandedGridColumn1, Me.BandedGridColumn7, Me.BandedGridColumn6, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.BandedGridColumnRoyPib, Me.BandedGridColumnFreightCostRP, Me.BandedGridColumn100OutBM, Me.BandedGridColumn100OutPPN, Me.BandedGridColumn100OutPPH, Me.BandedGridColumn100OutTotal})
         Me.GVProd.GridControl = Me.GCProd
-        Me.GVProd.GroupCount = 2
         Me.GVProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cif", Me.BandedGridColumnCIF, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cif_kurs", Me.BandedGridColumnCIFRp, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FOB", Me.BandedGridColumnFOB, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_FOB_rp", Me.BandedGridColumnTotFOB, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "freight_usd", Me.BandedGridColumnFreightUSD, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.BandedGridColumnQtyPIB, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrderQty, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "est_price_after_disc", Me.BandedGridColumnRevAftDisc, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_st", Me.BandedGridColumnQtySalesEst, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bm_pib", Me.BandedGridColumnBM1, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_pib", Me.BandedGridColumnTotDeclareEst, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "royalty_ppn_pib", Me.BandedGridColumnPPNEst, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "royalty_pph_pib", Me.BandedGridColumnPPHEst, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "act_sales_qty", Me.BandedGridColumnQtySalesActual, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_freight_cost", Me.BandedGridColumnFreightCostRP, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "royalty_pib", Me.BandedGridColumnRoyPib, "{0:N4}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_revenue_taxed_final", Me.BandedGridColumnRevAfterTax, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "royalty_sales_final", Me.BandedGridColumnAmoRoyaltySales, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cif_final", Me.BandedGridColumnCIFFinal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_declare_final", Me.BandedGridColumnTotDeclareF, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bm_final", Me.BandedGridColumnBMFinal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "royalty_ppn_final", Me.BandedGridColumnPPNF, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "royalty_pph_final", Me.BandedGridColumnPPHF, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_outstanding", Me.BandedGridColumnVPDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding_bm", Me.BandedGridColumnOutBM, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding_ppn", Me.BandedGridColumnPPNDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding_pph", Me.BandedGridColumnPPHDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_after_tax_full", Me.BandedGridColumnRemRevAftTax, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_remaining", Me.BandedGridColumnTotRemaining, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "royalty_sales_remaining", Me.BandedGridColumnAmoRoySalesRemaining, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_declare_remaining", Me.BandedGridColumnRemainingTotDeclare, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cif_remaining", Me.BandedGridColumnRemCIF, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bm_remaining", Me.BandedGridColumnRemBM, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ppn_remaining", Me.BandedGridColumnRemPPN, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_remaining", Me.BandedGridColumnRemPPH, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding_bm_f", Me.BandedGridColumn100OutBM, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding_ppn_f", Me.BandedGridColumn100OutPPN, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding_pph_f", Me.BandedGridColumn100OutPPH, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_outstanding_f", Me.BandedGridColumn100OutTotal, "{0:N2}")})
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsBehavior.Editable = False
@@ -209,17 +208,17 @@ Partial Class FormProdDuty
         Me.GVProd.OptionsView.ColumnAutoWidth = False
         Me.GVProd.OptionsView.ShowFooter = True
         Me.GVProd.OptionsView.ShowGroupPanel = False
-        Me.GVProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDelivery, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPO, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPO, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridBand1
         '
         Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
         Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand1.Columns.Add(Me.GridColumnProdNo)
         Me.GridBand1.Columns.Add(Me.GridColumnSeason)
         Me.GridBand1.Columns.Add(Me.GridColumnDelivery)
         Me.GridBand1.Columns.Add(Me.GridColumnVendorCode)
         Me.GridBand1.Columns.Add(Me.GridColumnCompName)
+        Me.GridBand1.Columns.Add(Me.GridColumnProdNo)
         Me.GridBand1.Columns.Add(Me.BandedGridColumnPOVolpro)
         Me.GridBand1.Columns.Add(Me.GridColumnDesign)
         Me.GridBand1.Columns.Add(Me.BandedGridColumnCode)
@@ -242,14 +241,7 @@ Partial Class FormProdDuty
         Me.GridBand1.Columns.Add(Me.GridColumnIdPO)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 994
-        '
-        'GridColumnProdNo
-        '
-        Me.GridColumnProdNo.Caption = "PO #"
-        Me.GridColumnProdNo.FieldName = "prod_order_number"
-        Me.GridColumnProdNo.Name = "GridColumnProdNo"
-        Me.GridColumnProdNo.Width = 74
+        Me.GridBand1.Width = 1068
         '
         'GridColumnSeason
         '
@@ -282,10 +274,18 @@ Partial Class FormProdDuty
         Me.GridColumnCompName.Visible = True
         Me.GridColumnCompName.Width = 79
         '
+        'GridColumnProdNo
+        '
+        Me.GridColumnProdNo.Caption = "ERP PO #"
+        Me.GridColumnProdNo.FieldName = "prod_order_number"
+        Me.GridColumnProdNo.Name = "GridColumnProdNo"
+        Me.GridColumnProdNo.Visible = True
+        Me.GridColumnProdNo.Width = 74
+        '
         'BandedGridColumnPOVolpro
         '
         Me.BandedGridColumnPOVolpro.Caption = "PO REFF#"
-        Me.BandedGridColumnPOVolpro.FieldName = "po_lama_no"
+        Me.BandedGridColumnPOVolpro.FieldName = "reff_number"
         Me.BandedGridColumnPOVolpro.Name = "BandedGridColumnPOVolpro"
         Me.BandedGridColumnPOVolpro.Visible = True
         '
@@ -1867,6 +1867,10 @@ Partial Class FormProdDuty
     Friend WithEvents BandedGridColumnCIFFinal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnBMFinal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnOutBM As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn100OutBM As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn100OutPPN As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn100OutPPH As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn100OutTotal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1874,8 +1878,4 @@ Partial Class FormProdDuty
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn100OutBM As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn100OutPPN As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn100OutPPH As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn100OutTotal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

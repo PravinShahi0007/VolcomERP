@@ -33,13 +33,14 @@
 
         If data.Rows.Count > 0 Then
             TEKurs.EditValue = data.Rows(0)("kurs_trans")
+            TEFixFloating.EditValue = data.Rows(0)("fixed_floating")
         End If
 
         load_kurs()
     End Sub
 
     Sub load_kurs()
-        Dim query As String = "SELECT kt.id_kurs_trans,kt.created_by,kt.created_date,kt.kurs_trans,emp.employee_name FROM tb_kurs_trans kt INNER JOIN tb_m_user usr ON usr.id_user=kt.created_by INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee ORDER BY kt.id_kurs_trans DESC"
+        Dim query As String = "SELECT kt.id_kurs_trans,kt.created_by,kt.created_date,kt.kurs_trans,kt.fixed_floating,(kt.kurs_trans + kt.fixed_floating) AS management_rate,emp.employee_name FROM tb_kurs_trans kt INNER JOIN tb_m_user usr ON usr.id_user=kt.created_by INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee ORDER BY kt.id_kurs_trans DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCKursTrans.DataSource = data
         GVKursTrans.BestFitColumns()
@@ -48,14 +49,22 @@
     Private Sub BGetKurs_Click(sender As Object, e As EventArgs) Handles BGetKurs.Click
         Cursor = Cursors.WaitCursor
         Try
+            Net.ServicePointManager.SecurityProtocol = DirectCast(3072, Net.SecurityProtocolType)
+
             Dim webClient As New Net.WebClient
-            Dim result As String = webClient.DownloadString("http://www.fiskal.kemenkeu.go.id/dw-kurs-db.asp")
+            Dim result As String = webClient.DownloadString("https://fiskal.kemenkeu.go.id/dw-kurs-db.asp")
             Dim str_kurs_dec As String = Between(result, "Dolar Amerika Serikat (USD)</td><td class='text-right'>", " <img src='data/aimages").Replace(",", "").Replace(" ", "")
             '
             Dim query_sel As String = "SELECT CAST('" & str_kurs_dec & "' AS DECIMAL(13,2)) as kurs"
             Dim data_sel As DataTable = execute_query(query_sel, -1, True, "", "", "", "")
             If data_sel.Rows.Count > 0 Then
                 TEKurs.EditValue = data_sel.Rows(0)("kurs")
+                'get last fixed floating
+                Dim q As String = "SELECT * FROM tb_kurs_trans ORDER BY id_kurs_trans DESC LIMIT 1"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    TEFixFloating.EditValue = dt.Rows(0)("fixed_floating")
+                End If
             Else
                 warningCustom("Connection error, please try again later.")
             End If
@@ -79,7 +88,8 @@
         If TEKurs.EditValue < 0 Then
             warningCustom("Please type kurs correctly")
         Else
-            Dim query As String = "INSERT INTO tb_kurs_trans(created_by,created_date,kurs_trans) VALUES('" & id_user & "',NOW(),'" & decimalSQL(TEKurs.EditValue.ToString) & "')"
+            Dim query As String = "INSERT INTO tb_kurs_trans(created_by,created_date,kurs_trans,fixed_floating) VALUES('" & id_user & "',NOW(),'" & decimalSQL(TEKurs.EditValue.ToString) & "','" & decimalSQL(TEFixFloating.EditValue.ToString) & "');
+UPDATE tb_opt SET rate_management='" & decimalSQL((TEKurs.EditValue + TEFixFloating.EditValue).ToString) & "'"
             execute_non_query(query, True, "", "", "", "'")
             load_kurs()
         End If

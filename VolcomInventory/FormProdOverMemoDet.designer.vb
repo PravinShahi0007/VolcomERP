@@ -52,6 +52,7 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.DEExpired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,7 +173,7 @@ Partial Class FormProdOverMemoDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumnQty})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumn1, Me.GridColumnQty})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -200,7 +201,7 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnPONumber.OptionsColumn.AllowEdit = False
         Me.GridColumnPONumber.Visible = True
         Me.GridColumnPONumber.VisibleIndex = 0
-        Me.GridColumnPONumber.Width = 170
+        Me.GridColumnPONumber.Width = 89
         '
         'GridColumnCode
         '
@@ -210,7 +211,7 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 228
+        Me.GridColumnCode.Width = 120
         '
         'GridColumnDescription
         '
@@ -220,7 +221,7 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 2
-        Me.GridColumnDescription.Width = 974
+        Me.GridColumnDescription.Width = 514
         '
         'GridColumnRemark
         '
@@ -228,8 +229,8 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 4
-        Me.GridColumnRemark.Width = 260
+        Me.GridColumnRemark.VisibleIndex = 5
+        Me.GridColumnRemark.Width = 117
         '
         'GridColumnQty
         '
@@ -239,6 +240,7 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 3
+        Me.GridColumnQty.Width = 39
         '
         'PanelControlNav
         '
@@ -396,6 +398,17 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl21.TabIndex = 144
         Me.LabelControl21.Text = "Status"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Claim (%)"
+        Me.GridColumn1.DisplayFormat.FormatString = "N0"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "claim_percent"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.Width = 62
+        '
         'FormProdOverMemoDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -469,4 +482,5 @@ Partial Class FormProdOverMemoDet
     Friend WithEvents GridColumnDescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -99,6 +99,20 @@ Partial Class FormFGDesignList
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCRequestChangesBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCRequestChangesDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPDesign = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPProposeChanges = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPropose = New DevExpress.XtraGrid.GridControl()
+        Me.GVPropose = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_changes = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_receive_qc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +146,12 @@ Partial Class FormFGDesignList
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTPDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDesign.SuspendLayout()
+        Me.XTPList.SuspendLayout()
+        Me.XTPProposeChanges.SuspendLayout()
+        CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -144,7 +164,7 @@ Partial Class FormFGDesignList
         Me.PanelControlNavLineList.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNavLineList.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNavLineList.Name = "PanelControlNavLineList"
-        Me.PanelControlNavLineList.Size = New System.Drawing.Size(758, 39)
+        Me.PanelControlNavLineList.Size = New System.Drawing.Size(833, 40)
         Me.PanelControlNavLineList.TabIndex = 2
         '
         'PCNavLineList
@@ -155,7 +175,7 @@ Partial Class FormFGDesignList
         Me.PCNavLineList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PCNavLineList.Location = New System.Drawing.Point(165, 2)
         Me.PCNavLineList.Name = "PCNavLineList"
-        Me.PCNavLineList.Size = New System.Drawing.Size(318, 35)
+        Me.PCNavLineList.Size = New System.Drawing.Size(393, 36)
         Me.PCNavLineList.TabIndex = 105
         '
         'SLESeason
@@ -168,7 +188,7 @@ Partial Class FormFGDesignList
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(265, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(393, 20)
         Me.SLESeason.TabIndex = 95
         '
         'SearchLookUpEdit1View
@@ -214,9 +234,9 @@ Partial Class FormFGDesignList
         Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelOpt.Controls.Add(Me.CheckImg)
         Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelOpt.Location = New System.Drawing.Point(483, 2)
+        Me.PanelOpt.Location = New System.Drawing.Point(558, 2)
         Me.PanelOpt.Name = "PanelOpt"
-        Me.PanelOpt.Size = New System.Drawing.Size(96, 35)
+        Me.PanelOpt.Size = New System.Drawing.Size(96, 36)
         Me.PanelOpt.TabIndex = 107
         Me.PanelOpt.Visible = False
         '
@@ -233,9 +253,9 @@ Partial Class FormFGDesignList
         Me.PanelControlFreeze.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlFreeze.Controls.Add(Me.CheckEditFreeze)
         Me.PanelControlFreeze.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlFreeze.Location = New System.Drawing.Point(579, 2)
+        Me.PanelControlFreeze.Location = New System.Drawing.Point(654, 2)
         Me.PanelControlFreeze.Name = "PanelControlFreeze"
-        Me.PanelControlFreeze.Size = New System.Drawing.Size(97, 35)
+        Me.PanelControlFreeze.Size = New System.Drawing.Size(97, 36)
         Me.PanelControlFreeze.TabIndex = 108
         Me.PanelControlFreeze.Visible = False
         '
@@ -255,7 +275,7 @@ Partial Class FormFGDesignList
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(163, 35)
+        Me.PanelControl1.Size = New System.Drawing.Size(163, 36)
         Me.PanelControl1.TabIndex = 106
         '
         'SLEType
@@ -305,10 +325,10 @@ Partial Class FormFGDesignList
         '
         Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnView.ImageIndex = 15
-        Me.BtnView.Location = New System.Drawing.Point(676, 2)
+        Me.BtnView.Location = New System.Drawing.Point(751, 2)
         Me.BtnView.LookAndFeel.SkinName = "Metropolis"
         Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(80, 35)
+        Me.BtnView.Size = New System.Drawing.Size(80, 36)
         Me.BtnView.TabIndex = 94
         Me.BtnView.Text = "View"
         '
@@ -318,9 +338,9 @@ Partial Class FormFGDesignList
         Me.PanelApp.Controls.Add(Me.BtnApproveUS)
         Me.PanelApp.Controls.Add(Me.BtnApprove)
         Me.PanelApp.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelApp.Location = New System.Drawing.Point(0, 343)
+        Me.PanelApp.Location = New System.Drawing.Point(0, 315)
         Me.PanelApp.Name = "PanelApp"
-        Me.PanelApp.Size = New System.Drawing.Size(758, 43)
+        Me.PanelApp.Size = New System.Drawing.Size(833, 43)
         Me.PanelApp.TabIndex = 107
         Me.PanelApp.Visible = False
         '
@@ -331,7 +351,7 @@ Partial Class FormFGDesignList
         Me.PanelSelect.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelSelect.Controls.Add(Me.CheckSelAll)
         Me.PanelSelect.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelSelect.Location = New System.Drawing.Point(444, 2)
+        Me.PanelSelect.Location = New System.Drawing.Point(519, 2)
         Me.PanelSelect.Name = "PanelSelect"
         Me.PanelSelect.Size = New System.Drawing.Size(86, 39)
         Me.PanelSelect.TabIndex = 0
@@ -355,7 +375,7 @@ Partial Class FormFGDesignList
         Me.BtnApproveUS.Appearance.Options.UseFont = True
         Me.BtnApproveUS.Appearance.Options.UseForeColor = True
         Me.BtnApproveUS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnApproveUS.Location = New System.Drawing.Point(530, 2)
+        Me.BtnApproveUS.Location = New System.Drawing.Point(605, 2)
         Me.BtnApproveUS.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnApproveUS.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
         Me.BtnApproveUS.LookAndFeel.SkinName = "Metropolis"
@@ -375,7 +395,7 @@ Partial Class FormFGDesignList
         Me.BtnApprove.Appearance.Options.UseFont = True
         Me.BtnApprove.Appearance.Options.UseForeColor = True
         Me.BtnApprove.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnApprove.Location = New System.Drawing.Point(640, 2)
+        Me.BtnApprove.Location = New System.Drawing.Point(715, 2)
         Me.BtnApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
         Me.BtnApprove.LookAndFeel.SkinName = "Metropolis"
@@ -480,11 +500,11 @@ Partial Class FormFGDesignList
         'GCDesign
         '
         Me.GCDesign.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDesign.Location = New System.Drawing.Point(0, 39)
+        Me.GCDesign.Location = New System.Drawing.Point(0, 40)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
         Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1, Me.RepositoryItemCheckEdit3})
-        Me.GCDesign.Size = New System.Drawing.Size(758, 304)
+        Me.GCDesign.Size = New System.Drawing.Size(833, 275)
         Me.GCDesign.TabIndex = 106
         Me.GCDesign.TabStop = False
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign, Me.GridView2})
@@ -497,9 +517,9 @@ Partial Class FormFGDesignList
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
         Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc})
         Me.GVDesign.GridControl = Me.GCDesign
-        Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}")})
+        Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", Me.GridColumntotal_receive_qc, "{0:N0}")})
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDesign.OptionsCustomization.AllowRowSizing = True
@@ -704,7 +724,7 @@ Partial Class FormFGDesignList
         Me.GridColumnApp.Name = "GridColumnApp"
         Me.GridColumnApp.OptionsColumn.AllowEdit = False
         Me.GridColumnApp.Visible = True
-        Me.GridColumnApp.VisibleIndex = 17
+        Me.GridColumnApp.VisibleIndex = 21
         Me.GridColumnApp.Width = 84
         '
         'GridColumnAppDate
@@ -717,7 +737,7 @@ Partial Class FormFGDesignList
         Me.GridColumnAppDate.Name = "GridColumnAppDate"
         Me.GridColumnAppDate.OptionsColumn.AllowEdit = False
         Me.GridColumnAppDate.Visible = True
-        Me.GridColumnAppDate.VisibleIndex = 16
+        Me.GridColumnAppDate.VisibleIndex = 20
         '
         'GridColumnUpdBy
         '
@@ -726,7 +746,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 21
+        Me.GridColumnUpdBy.VisibleIndex = 25
         Me.GridColumnUpdBy.Width = 60
         '
         'GridColumnLastUpdated
@@ -739,7 +759,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
         Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
-        Me.GridColumnLastUpdated.VisibleIndex = 20
+        Me.GridColumnLastUpdated.VisibleIndex = 24
         Me.GridColumnLastUpdated.Width = 54
         '
         'GridColumnSelect
@@ -824,7 +844,7 @@ Partial Class FormFGDesignList
         Me.GridColumnTotalOrder.Name = "GridColumnTotalOrder"
         Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", "{0:n0}")})
         Me.GridColumnTotalOrder.Visible = True
-        Me.GridColumnTotalOrder.VisibleIndex = 15
+        Me.GridColumnTotalOrder.VisibleIndex = 18
         Me.GridColumnTotalOrder.Width = 58
         '
         'GridColumnStatusOrder
@@ -853,7 +873,7 @@ Partial Class FormFGDesignList
         Me.GridColumn6.UnboundExpression = "Iif([is_design_app_us] = '1', 'Yes', 'No')"
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 18
+        Me.GridColumn6.VisibleIndex = 22
         '
         'GridColumn8
         '
@@ -865,7 +885,7 @@ Partial Class FormFGDesignList
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 19
+        Me.GridColumn8.VisibleIndex = 23
         '
         'GCRequestChangesBy
         '
@@ -881,14 +901,137 @@ Partial Class FormFGDesignList
         Me.GCRequestChangesDate.Name = "GCRequestChangesDate"
         Me.GCRequestChangesDate.OptionsColumn.AllowEdit = False
         '
+        'XTPDesign
+        '
+        Me.XTPDesign.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTPDesign.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTPDesign.Location = New System.Drawing.Point(0, 0)
+        Me.XTPDesign.Name = "XTPDesign"
+        Me.XTPDesign.SelectedTabPage = Me.XTPList
+        Me.XTPDesign.Size = New System.Drawing.Size(839, 386)
+        Me.XTPDesign.TabIndex = 108
+        Me.XTPDesign.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPProposeChanges})
+        '
+        'XTPList
+        '
+        Me.XTPList.Controls.Add(Me.GCDesign)
+        Me.XTPList.Controls.Add(Me.PanelApp)
+        Me.XTPList.Controls.Add(Me.PanelControlNavLineList)
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(833, 358)
+        Me.XTPList.Text = "List"
+        '
+        'XTPProposeChanges
+        '
+        Me.XTPProposeChanges.Controls.Add(Me.GCPropose)
+        Me.XTPProposeChanges.Name = "XTPProposeChanges"
+        Me.XTPProposeChanges.Size = New System.Drawing.Size(833, 358)
+        Me.XTPProposeChanges.Text = "Propose Changes"
+        '
+        'GCPropose
+        '
+        Me.GCPropose.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPropose.Location = New System.Drawing.Point(0, 0)
+        Me.GCPropose.MainView = Me.GVPropose
+        Me.GCPropose.Name = "GCPropose"
+        Me.GCPropose.Size = New System.Drawing.Size(833, 358)
+        Me.GCPropose.TabIndex = 0
+        Me.GCPropose.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPropose})
+        '
+        'GVPropose
+        '
+        Me.GVPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_changes, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumnnote, Me.GridColumnreport_status})
+        Me.GVPropose.GridControl = Me.GCPropose
+        Me.GVPropose.Name = "GVPropose"
+        Me.GVPropose.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPropose.OptionsBehavior.Editable = False
+        Me.GVPropose.OptionsFind.AlwaysVisible = True
+        Me.GVPropose.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_changes
+        '
+        Me.GridColumnid_changes.Caption = "id"
+        Me.GridColumnid_changes.FieldName = "id_changes"
+        Me.GridColumnid_changes.Name = "GridColumnid_changes"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumncreated_date
+        '
+        Me.GridColumncreated_date.Caption = "Created Date"
+        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumncreated_date.FieldName = "created_date"
+        Me.GridColumncreated_date.Name = "GridColumncreated_date"
+        Me.GridColumncreated_date.Visible = True
+        Me.GridColumncreated_date.VisibleIndex = 1
+        '
+        'GridColumnnote
+        '
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.Visible = True
+        Me.GridColumnnote.VisibleIndex = 2
+        '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 3
+        '
+        'GridColumnpd_number
+        '
+        Me.GridColumnpd_number.Caption = "PD"
+        Me.GridColumnpd_number.FieldName = "pd_number"
+        Me.GridColumnpd_number.Name = "GridColumnpd_number"
+        Me.GridColumnpd_number.Visible = True
+        Me.GridColumnpd_number.VisibleIndex = 15
+        '
+        'GridColumnpd_created_date
+        '
+        Me.GridColumnpd_created_date.Caption = "PD Created Date"
+        Me.GridColumnpd_created_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnpd_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnpd_created_date.FieldName = "pd_created_date"
+        Me.GridColumnpd_created_date.Name = "GridColumnpd_created_date"
+        Me.GridColumnpd_created_date.Visible = True
+        Me.GridColumnpd_created_date.VisibleIndex = 16
+        '
+        'GridColumnpd_status
+        '
+        Me.GridColumnpd_status.Caption = "PD Status"
+        Me.GridColumnpd_status.FieldName = "pd_status"
+        Me.GridColumnpd_status.Name = "GridColumnpd_status"
+        Me.GridColumnpd_status.Visible = True
+        Me.GridColumnpd_status.VisibleIndex = 17
+        '
+        'GridColumntotal_receive_qc
+        '
+        Me.GridColumntotal_receive_qc.Caption = "Total Received in QC"
+        Me.GridColumntotal_receive_qc.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_receive_qc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_receive_qc.FieldName = "total_receive_qc"
+        Me.GridColumntotal_receive_qc.Name = "GridColumntotal_receive_qc"
+        Me.GridColumntotal_receive_qc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", "{0:N0}")})
+        Me.GridColumntotal_receive_qc.Visible = True
+        Me.GridColumntotal_receive_qc.VisibleIndex = 19
+        Me.GridColumntotal_receive_qc.Width = 71
+        '
         'FormFGDesignList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(758, 386)
-        Me.Controls.Add(Me.GCDesign)
-        Me.Controls.Add(Me.PanelApp)
-        Me.Controls.Add(Me.PanelControlNavLineList)
+        Me.ClientSize = New System.Drawing.Size(839, 386)
+        Me.Controls.Add(Me.XTPDesign)
         Me.MaximizeBox = False
         Me.Name = "FormFGDesignList"
         Me.ShowInTaskbar = False
@@ -929,6 +1072,12 @@ Partial Class FormFGDesignList
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTPDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDesign.ResumeLayout(False)
+        Me.XTPList.ResumeLayout(False)
+        Me.XTPProposeChanges.ResumeLayout(False)
+        CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1011,4 +1160,18 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCRequestChangesBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCRequestChangesDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPProposeChanges As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPropose As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPropose As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_changes As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpd_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpd_created_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpd_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_receive_qc As DevExpress.XtraGrid.Columns.GridColumn
 End Class

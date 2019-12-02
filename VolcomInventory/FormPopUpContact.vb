@@ -85,7 +85,6 @@
             Else
                 GVCompany.ActiveFilterString = filter_str
             End If
-
         End If
     End Sub
 
@@ -99,7 +98,7 @@
             id_company = "-1"
         End If
 
-        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number, email,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number, email,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' AND is_default =1", id_company), -1, True, "", "", "", "")
         GCCompanyContactList.DataSource = data
         If Not data.Rows.Count > 0 Or id_company = "-1" Then
             BtnSave.Enabled = False
@@ -110,12 +109,27 @@
 
     Sub view_company()
         Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_store_type, tb_m_comp.id_wh_type, IFNULL(tb_m_comp.id_commerce_type,1) AS `id_commerce_type`,tb_m_comp.id_drawer_def,
-        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code "
+        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code, IFNULL(tb_m_comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(tb_m_comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar` "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
-            query += "AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
+            If id_cat.Contains(",") Then
+                Dim cat_split = id_cat.Split(",")
+                Dim q_tmbh As String = ""
+                For i = 0 To UBound(cat_split)
+                    If i = 0 Then
+                        q_tmbh += " tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    Else
+                        q_tmbh += " OR tb_m_comp.id_comp_cat = '" + cat_split(i) + "' "
+                    End If
+                Next i
+                '
+                query += " AND (" & q_tmbh & ")"
+            Else
+                query += " AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
+            End If
         End If
+
         If id_pop_up = "38" Then
             query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 "
         End If
@@ -165,7 +179,13 @@
                 query += "AND tb_m_comp.id_so_type = '" + id_so_type + "' "
             End If
         End If
+        '
 
+        If id_pop_up = "68" Then 'production complience only
+            query += "AND tb_m_comp.is_active=1 "
+        End If
+
+        '
         'filter by comp_number
         If comp_number <> "-1" Then
             query += "AND tb_m_comp.comp_number='" + addSlashes(comp_number) + "' "
@@ -173,6 +193,17 @@
         '
         If is_must_active = "1" Then
             query += " AND tb_m_comp.is_active=1 "
+        End If
+
+        If id_pop_up = "86" Then
+            'search vendor type minimum
+            Dim max_vendor_type As Integer = 1
+            For i As Integer = 0 To FormPurcOrderDet.GVPurcReq.RowCount - 1
+                If FormPurcOrderDet.GVPurcReq.GetRowCellValue(i, "id_vendor_type") > max_vendor_type Then
+                    max_vendor_type = FormPurcOrderDet.GVPurcReq.GetRowCellValue(i, "id_vendor_type")
+                End If
+            Next
+            query += " AND tb_m_comp.id_vendor_type >= '" & max_vendor_type.ToString & "' "
         End If
         '
         query += "ORDER BY comp_name "
@@ -511,10 +542,13 @@
             FormSalesReturnOrderDet.id_wh_drawer = GVCompanyContactList.GetFocusedRowCellDisplayText("id_wh_drawer").ToString
             FormSalesReturnOrderDet.id_wh_rack = GVCompanyContactList.GetFocusedRowCellDisplayText("id_wh_rack").ToString
             FormSalesReturnOrderDet.id_wh_locator = GVCompanyContactList.GetFocusedRowCellDisplayText("id_wh_locator").ToString
+            FormSalesReturnOrderDet.loadStock()
             FormSalesReturnOrderDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
             FormSalesReturnOrderDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormSalesReturnOrderDet.MEAdrressCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
             FormSalesReturnOrderDet.viewDetail()
+            FormSalesReturnOrderDet.viewCargoRate()
+            FormSalesReturnOrderDet.checkOnHold()
             FormSalesReturnOrderDet.check_but()
             Close()
         ElseIf id_pop_up = "41" Then
@@ -559,6 +593,19 @@
             FormSalesPOSDet.MEAdrressCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "3")
             FormSalesPOSDet.TENPWP.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "5")
             FormSalesPOSDet.LETypeSO.ItemIndex = FormSalesPOSDet.LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8"))
+
+            'isi coa
+            If FormSalesPOSDet.id_menu <> "3" And FormSalesPOSDet.id_menu <> "4" Then
+                FormSalesPOSDet.id_acc_sales = GVCompany.GetFocusedRowCellValue("id_acc_sales").ToString
+                FormSalesPOSDet.id_acc_sales_return = GVCompany.GetFocusedRowCellValue("id_acc_sales_return").ToString
+                FormSalesPOSDet.id_acc_ar = GVCompany.GetFocusedRowCellValue("id_acc_ar").ToString
+                FormSalesPOSDet.viewCheckCOA(FormSalesPOSDet.TxtCodeCompFrom.Text + " - " + FormSalesPOSDet.TxtNameCompFrom.Text)
+
+                If Not FormSalesPOSDet.cond_coa Then
+                    Exit Sub
+                End If
+            End If
+
             FormSalesPOSDet.viewDetail()
             FormSalesPOSDet.viewDetailCode()
             FormSalesPOSDet.viewStockStore()
@@ -916,7 +963,7 @@
                 Dim id_comp As String = GVCompany.GetFocusedRowCellValue("id_comp").ToString
                 Dim dtcomp As DataTable = execute_query("SELECT * FROM tb_m_comp WHERE id_comp=" + id_comp + "", -1, True, "", "", "", "")
                 Dim qinscomp As String = "INSERT INTO tb_m_comp(id_comp, id_comp_cat, comp_number, id_city, comp_name, comp_display_name, address_primary, address_other, fax, postal_code, email, website, id_tax, npwp, is_active, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_comp_group, id_pd_alloc, id_wh_type, id_wh, id_acc_sale_ar, id_acc_sale_fg, id_so_type, id_drawer_def, awb_destination, awb_zone, awb_cargo_code, awb_rank, is_own_store) "
-                qinscomp += "SELECT '" + dtcomp.Rows(0)("id_comp").ToString + "', '" + dtcomp.Rows(0)("id_comp_cat").ToString + "', '" + dtcomp.Rows(0)("comp_number").ToString + "', '" + dtcomp.Rows(0)("id_city").ToString + "', '" + dtcomp.Rows(0)("comp_name").ToString + "', '" + dtcomp.Rows(0)("comp_display_name").ToString + "', '" + dtcomp.Rows(0)("address_primary").ToString + "', '" + dtcomp.Rows(0)("address_other").ToString + "', '" + dtcomp.Rows(0)("fax").ToString + "', '" + dtcomp.Rows(0)("postal_code").ToString + "', '" + dtcomp.Rows(0)("email").ToString + "', '" + dtcomp.Rows(0)("website").ToString + "', '" + dtcomp.Rows(0)("id_tax").ToString + "', '" + dtcomp.Rows(0)("npwp").ToString + "', '" + dtcomp.Rows(0)("is_active").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_departement").ToString) + ", '" + decimalSQL(dtcomp.Rows(0)("comp_commission").ToString) + "', '" + dtcomp.Rows(0)("id_store_type").ToString + "', '" + dtcomp.Rows(0)("id_area").ToString + "', '" + dtcomp.Rows(0)("id_employee_rep").ToString + "', '" + dtcomp.Rows(0)("id_comp_group").ToString + "', '" + dtcomp.Rows(0)("id_pd_alloc").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_wh_type").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_wh").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_ar").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_fg").ToString) + ", '" + dtcomp.Rows(0)("id_so_type").ToString + "', '" + dtcomp.Rows(0)("id_drawer_def").ToString + "', " + checkNullInput(dtcomp.Rows(0)("awb_destination").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_zone").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_cargo_code").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_rank").ToString) + ", '" + dtcomp.Rows(0)("is_own_store").ToString + "'; SELECT LAST_INSERT_ID() "
+                qinscomp += "SELECT '" + dtcomp.Rows(0)("id_comp").ToString + "', '" + dtcomp.Rows(0)("id_comp_cat").ToString + "', '" + dtcomp.Rows(0)("comp_number").ToString + "', '" + dtcomp.Rows(0)("id_city").ToString + "', '" + dtcomp.Rows(0)("comp_name").ToString + "', '" + dtcomp.Rows(0)("comp_display_name").ToString + "', '" + dtcomp.Rows(0)("address_primary").ToString + "', '" + dtcomp.Rows(0)("address_other").ToString + "', '" + dtcomp.Rows(0)("fax").ToString + "', '" + dtcomp.Rows(0)("postal_code").ToString + "', '" + dtcomp.Rows(0)("email").ToString + "', '" + dtcomp.Rows(0)("website").ToString + "', '" + dtcomp.Rows(0)("id_tax").ToString + "', '" + dtcomp.Rows(0)("npwp").ToString + "', '" + dtcomp.Rows(0)("is_active").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_departement").ToString) + ", '" + decimalSQL(dtcomp.Rows(0)("comp_commission").ToString) + "', " + checkNullInput(dtcomp.Rows(0)("id_store_type").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_area").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_employee_rep").ToString) + ", '" + dtcomp.Rows(0)("id_comp_group").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_pd_alloc").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_wh_type").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_wh").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_ar").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_fg").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_so_type").ToString) + ", '" + dtcomp.Rows(0)("id_drawer_def").ToString + "', " + checkNullInput(dtcomp.Rows(0)("awb_destination").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_zone").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_cargo_code").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_rank").ToString) + ", '" + dtcomp.Rows(0)("is_own_store").ToString + "'; SELECT LAST_INSERT_ID() "
                 execute_non_query(qinscomp, False, host, username, pass, db)
 
                 'contact
@@ -990,6 +1037,20 @@
             FormSalesPOSDet.id_comp_contact_bill = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormSalesPOSDet.TxtNameBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
             FormSalesPOSDet.TxtCodeBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+            FormSalesPOSDet.id_comp_bill_to = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+
+            'isi coa
+            If FormSalesPOSDet.id_menu = "4" Then
+                FormSalesPOSDet.id_acc_sales = GVCompany.GetFocusedRowCellValue("id_acc_sales").ToString
+                FormSalesPOSDet.id_acc_sales_return = GVCompany.GetFocusedRowCellValue("id_acc_sales_return").ToString
+                FormSalesPOSDet.id_acc_ar = GVCompany.GetFocusedRowCellValue("id_acc_ar").ToString
+                FormSalesPOSDet.viewCheckCOA(FormSalesPOSDet.TxtCodeBillTo.Text + " - " + FormSalesPOSDet.TxtNameBillTo.Text)
+
+                If Not FormSalesPOSDet.cond_coa Then
+                    Exit Sub
+                End If
+            End If
+
             FormSalesPOSDet.getDiscount()
             FormSalesPOSDet.getNetto()
             FormSalesPOSDet.getVat()

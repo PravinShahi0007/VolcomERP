@@ -20,6 +20,10 @@
     Sub viewLegal()
         Dim query As String = "SELECT id_legal_type,legal_type FROM tb_lookup_legal_type WHERE is_active='1' "
         viewLookupQuery(LELegalType, query, 0, "legal_type", "id_legal_type")
+        '
+        If Not FormMasterCompanySingle.LELegalType.EditValue.ToString = "0" Then
+            LELegalType.ItemIndex = LELegalType.Properties.GetDataSourceRowIndex("id_legal_type", FormMasterCompanySingle.LELegalType.EditValue.ToString)
+        End If
     End Sub
     Sub load_comp()
         Dim query As String = "SELECT comp_number,comp_name FROM tb_m_comp WHERE id_comp='" & id_comp & "'"
@@ -68,7 +72,6 @@ VALUES('" & id_comp & "','" & LELegalType.EditValue.ToString & "','" & addSlashe
 
         fd.Title = "Upload file"
         fd.InitialDirectory = "C:\"
-        fd.Filter = "Pdf Files|*.pdf"
 
         fd.FilterIndex = 2
         fd.RestoreDirectory = True

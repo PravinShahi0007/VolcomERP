@@ -56,6 +56,7 @@
         Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_return_order_date>='" + date_from_selected + "' AND a.sales_return_order_date<='" + date_until_selected + "') " + cond_status, "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturnOrder.DataSource = data
+        GVSalesReturnOrder.BestFitColumns()
     End Sub
 
     Sub viewRecProduct()
@@ -942,4 +943,122 @@
             Return True
         End If
     End Function
+
+    Private Sub PrintUniqueCodeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PrintUniqueCodeToolStripMenuItem1.Click
+        Cursor = Cursors.WaitCursor
+        If GVPL.FocusedRowHandle >= 0 And GVPL.RowCount > 0 Then
+            FormUniqueRevProduct.id_pl_prod_order_rec = GVPL.GetFocusedRowCellValue("id_pl_prod_order_rec").ToString
+            FormUniqueRevProduct.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        Cursor = Cursors.WaitCursor
+        If GVSalesReturn.FocusedRowHandle >= 0 And GVSalesReturn.RowCount > 0 Then
+            FormUniqueSalesReturn.id_sales_return = GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+            FormUniqueSalesReturn.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVSalesReturn_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVSalesReturn.PopupMenuShowing
+        If GVSalesReturn.GetFocusedRowCellValue("id_ret_type").ToString = "2" Then
+            ToolStripMenuItem1.Visible = False
+        Else
+            ToolStripMenuItem1.Visible = True
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        Cursor = Cursors.WaitCursor
+        If GVSalesReturnQC.FocusedRowHandle >= 0 And GVSalesReturnQC.RowCount > 0 Then
+            FormUniqueSalesReturnQC.id_sales_return_qc = GVSalesReturnQC.GetFocusedRowCellValue("id_sales_return_qc").ToString
+            FormUniqueSalesReturnQC.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        Cursor = Cursors.WaitCursor
+        If GVFGTrf.FocusedRowHandle >= 0 And GVFGTrf.RowCount > 0 Then
+            FormUniqueFGTrf.id_fg_trf = GVFGTrf.GetFocusedRowCellValue("id_fg_trf").ToString
+            FormUniqueFGTrf.fg_trf_number = GVFGTrf.GetFocusedRowCellValue("fg_trf_number").ToString
+            FormUniqueFGTrf.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CancelCombineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CancelCombineToolStripMenuItem.Click
+        If GVSalesReturn.FocusedRowHandle >= 0 And GVSalesReturn.RowCount > 0 Then
+            Dim combine_number As String = GVSalesReturn.GetFocusedRowCellValue("combine_number").ToString
+            Dim id_store_contact_from As String = GVSalesReturn.GetFocusedRowCellValue("id_store_contact_from").ToString
+            Dim id_comp_contact_to As String = GVSalesReturn.GetFocusedRowCellValue("id_comp_contact_to").ToString
+            Dim sales_return_store_number As String = GVSalesReturn.GetFocusedRowCellValue("sales_return_store_number").ToString
+
+            If combine_number <> "" Then
+                'cek combine status
+                Dim id_rs As String = execute_query("SELECT MAX(id_report_status) AS `id_report_status` FROM tb_sales_return WHERE combine_number='" + combine_number + "' ", 0, True, "", "", "", "")
+                If id_rs <> "1" Then
+                    stopCustom("Can't cancel this combine because already approved ")
+                    Exit Sub
+                End If
+
+
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell combine number : " + combine_number + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    Dim query As String = "/*update keterangan rm*/
+                    UPDATE tb_report_mark rm 
+                    INNER JOIN tb_sales_return r ON r.id_sales_return = rm.id_report
+                    SET rm.info_design = ''
+                    WHERE (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120) AND r.combine_number='" + combine_number + "';
+                    /*update combine number*/
+                    UPDATE tb_sales_return SET combine_number='' WHERE combine_number='" + combine_number + "'; 
+                    /*insert log cancell*/
+                    INSERT INTO tb_sales_return_cancel_combine_hist(combine_number, id_store_contact_from, id_comp_contact_to, sales_return_store_number, cancelled_date, cancelled_by) 
+                    VALUES('" + combine_number + "', '" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + sales_return_store_number + "', NOW(), " + id_user + "); "
+                    execute_non_query(query, True, "", "", "", "")
+                    GCSalesReturn.DataSource = Nothing
+                    Cursor = Cursors.Default
+                End If
+            Else
+                stopCustom("Combine number not found")
+            End If
+        End If
+    End Sub
+
+    Private Sub ViewPreDel_Opened(sender As Object, e As EventArgs) Handles ViewPreDel.Opened
+        If GVSalesDelOrder.RowCount > 0 And GVSalesDelOrder.FocusedRowHandle >= 0 Then
+            If GVSalesDelOrder.GetFocusedRowCellValue("is_use_unique_code").ToString = "1" And GVSalesDelOrder.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                SendEmailConfirmationToolStripMenuItem.Visible = True
+            Else
+                SendEmailConfirmationToolStripMenuItem.Visible = False
+            End If
+        End If
+    End Sub
+
+    Private Sub SendEmailConfirmationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendEmailConfirmationToolStripMenuItem.Click
+        If GVSalesDelOrder.RowCount > 0 And GVSalesDelOrder.FocusedRowHandle >= 0 Then
+            Dim report_number As String = ""
+            Dim id_report As String = ""
+            Dim rmt As String = ""
+            If GVSalesDelOrder.GetFocusedRowCellValue("id_combine").ToString = "0" Then
+                report_number = GVSalesDelOrder.GetFocusedRowCellValue("pl_sales_order_del_number").ToString
+                id_report = GVSalesDelOrder.GetFocusedRowCellValue("id_pl_sales_order_del").ToString
+                rmt = "43"
+            Else
+                report_number = GVSalesDelOrder.GetFocusedRowCellValue("combine_number").ToString
+                id_report = GVSalesDelOrder.GetFocusedRowCellValue("id_combine").ToString
+                rmt = "103"
+            End If
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to send delivery confirmation for this delivery : " + report_number + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim d As New ClassSalesDelOrder()
+                d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
 End Class

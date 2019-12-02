@@ -18,6 +18,22 @@
 
     Private Sub FormReportMark_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'checkFormAccessSingle(Name)
+        'block load 
+        If report_mark_type = "22" Then
+            'Prod order - cek jika ada yang sedang diproses di perubajan design
+            Dim query_cek As String = "SELECT * 
+            FROM tb_m_design_changes_det pcd
+            INNER JOIN tb_m_design d ON d.id_design = pcd.id_design
+            INNER JOIN tb_m_design_changes pc ON pc.id_changes = pcd.id_changes
+            WHERE d.id_design_rev_from=" + FormViewProduction.id_design + " AND pc.id_report_status!=5 "
+            Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+            If data_cek.Rows.Count > 0 Then
+                stopCustom("Cannot approve this order, because it's being processed for design changes.")
+                Close()
+                Exit Sub
+            End If
+        End If
+
         act_load()
         '
         '
@@ -67,6 +83,7 @@
             '
         End If
     End Sub
+
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status WHERE id_report_status!='7' "
         If not_allow_complete = "1" Then
@@ -106,7 +123,7 @@
         ElseIf report_mark_type = "8" Then
             'bom
             query = String.Format("SELECT id_report_status FROM tb_bom WHERE id_bom = '{0}'", id_report)
-        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             'prod demand
             query = String.Format("SELECT id_report_status,(prod_demand_number) AS report_number FROM tb_prod_Demand WHERE id_prod_demand = '{0}'", id_report)
         ElseIf report_mark_type = "10" Then
@@ -361,7 +378,7 @@
         ElseIf report_mark_type = "104" Then
             'Leave Propose For Admin Manager
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clear
             query = String.Format("SELECT id_report_status, prod_fc_number as report_number FROM tb_prod_fc WHERE id_prod_fc = '{0}'", id_report)
         ElseIf report_mark_type = "107" Then
@@ -418,16 +435,16 @@
         ElseIf report_mark_type = "136" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase Request
             query = String.Format("SELECT id_report_status,purc_req_number as report_number FROM tb_purc_req WHERE id_purc_req = '{0}'", id_report)
         ElseIf report_mark_type = "138" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
-        ElseIf report_mark_type = "139" Then
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then
             'Purchase Order
             query = String.Format("SELECT id_report_status,purc_order_number as report_number FROM tb_purc_order WHERE id_purc_order = '{0}'", id_report)
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "194" Or report_mark_type = "210" Then
             'PD REVISION
             query = String.Format("SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number FROM tb_prod_demand_rev INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand WHERE id_prod_demand_rev = '{0}'", id_report)
         ElseIf report_mark_type = "142" Then
@@ -493,27 +510,60 @@
         ElseIf report_mark_type = "180" Then
             'propose employee changes
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_pps WHERE id_employee_pps = '{0}'", id_report)
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'overtime
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
         ElseIf report_mark_type = "185" Then
             'sample purchase close
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_purc_close WHERE id_ot = '{0}'", id_report)
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'overtime report
-            query = String.Format("SELECT id_check_status AS id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
+            query = String.Format("SELECT vr.id_report_status, ot.number FROM tb_ot_verification AS vr LEFT JOIN tb_ot AS ot ON vr.id_ot = ot.id_ot WHERE id_ot_verification = '{0}'", id_report)
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             query = String.Format("SELECT tb_fg_propose_price_rev.id_report_status AS id_report_status, CONCAT(tb_fg_propose_price.fg_propose_price_number,'/REV ', tb_fg_propose_price_rev.rev_count) as report_number 
             FROM tb_fg_propose_price_rev 
             INNER JOIN tb_fg_propose_price ON tb_fg_propose_price.id_fg_propose_price = tb_fg_propose_price_rev.id_fg_propose_price
             WHERE id_fg_propose_price_rev = '{0}'", id_report)
+        ElseIf report_mark_type = "189" Then
+            'Invoice FGPO
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_pn_fgpo WHERE id_pn_fgpo = '{0}'", id_report)
         ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             'work order MTC/IT
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_work_order WHERE id_work_order = '{0}'", id_report)
         ElseIf report_mark_type = "192" Then
             'payroll
             query = String.Format("SELECT id_report_status, report_number FROM tb_emp_payroll WHERE id_payroll = '{0}'", id_report)
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            query = String.Format("SELECT id_report_status, number AS report_number FROM tb_sample_po_mat WHERE id_sample_po_mat = '{0}'", id_report)
+        ElseIf report_mark_type = "197" Then
+            'propose employee salary
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_sal_pps WHERE id_employee_sal_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "200" Then
+            'design changes
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_m_design_changes WHERE id_changes = '{0}'", id_report)
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'OPEX Budget Propose
+            query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_opex_pps WHERE id_b_opex_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "207" Then
+            'PROPOSE MAIN CATEGORY
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_cat_main_pps WHERE id_item_cat_main_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'OPEX Budget Propose
+            query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "211" Then
+            'input attendance
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_emp_attn_input WHERE id_emp_attn_input = '{0}'", id_report)
+        ElseIf report_mark_type = "212" Then
+            'fgpo closing
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_order_close WHERE id_prod_order_close = '{0}'", id_report)
+        ElseIf report_mark_type = "221" Then
+            'Debit Note
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_debit_note WHERE id_debit_note = '{0}'", id_report)
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -959,16 +1009,16 @@
     Sub change_status(ByVal id_status_reportx As String)
         Dim query As String = ""
         If report_mark_type = "1" Then
-            If id_report_status_report = "3" Then
-                id_report_status_report = "6"
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
             End If
+
             'sample purchase
             query = String.Format("UPDATE tb_sample_purc SET id_report_status='{0}' WHERE id_sample_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
             Try
                 FormSamplePurchaseDet.allow_status()
-                FormViewSamplePurchase.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePurchase.view_sample_purc()
             Catch ex As Exception
             End Try
@@ -1105,7 +1155,7 @@
                 'FormWork.view_sample_purc()
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             'PROD DEMAND
             'auto completed
             If id_status_reportx = "2" Then
@@ -1137,9 +1187,13 @@
                 End If
 
                 'notif email
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_notif(report_mark_type, id_report)
+                Try
+                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                    mail.report_mark_type = report_mark_type
+                    mail.send_email_notif(report_mark_type, id_report)
+                Catch ex As Exception
+                    execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                End Try
             End If
 
             'update status
@@ -1245,6 +1299,9 @@
             'material purchase
             If id_status_reportx = 3 Then 'Approved then completed
                 id_status_reportx = 6
+            ElseIf id_status_reportx = 5 Then 'cancel
+                query = "UPDATE `tb_mat_purc_list` SET id_mat_purc=NULL,id_comp_contact=NULL,mat_det_price=NULL,id_mat_det_price=NULL WHERE id_mat_purc='" & id_report & "'"
+                execute_non_query(query, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_mat_purc SET id_report_status='{0}' WHERE id_mat_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
@@ -1323,6 +1380,9 @@
             End Try
         ElseIf report_mark_type = "16" Then
             'Receive material purchase
+            If id_status_reportx = 3 Then
+                id_status_reportx = 6
+            End If
             If id_status_reportx = 6 Then 'Completed
                 Dim is_ok As String = "1"
                 For i As Integer = 0 To FormMatRecPurcDet.GVListPurchase.RowCount - 1
@@ -1368,7 +1428,6 @@
                     If data.Rows.Count > 0 Then
                         execute_non_query(query_upd_storage, True, "", "", "", "")
                     End If
-
 
                     'post journal
                     Dim queryj As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
@@ -1700,6 +1759,12 @@
             '
             query = String.Format("UPDATE tb_prod_order_wo SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            '
+            If id_status_reportx = "5" Then
+                query = String.Format("UPDATE tb_m_design SET pp_is_approve='2',final_is_approve='2' WHERE id_design=(SELECT pdd.id_design FROM tb_prod_order po INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design` WHERE po.`id_prod_order`='{0}' LIMIT 1)", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+            '
             'infoCustom("Status changed.")
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
@@ -1887,6 +1952,10 @@
             End If
         ElseIf report_mark_type = "29" Then
             'Production MRS
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             query = String.Format("UPDATE tb_prod_order_mrs SET id_report_status='{0}' WHERE id_prod_order_mrs='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
@@ -2165,6 +2234,52 @@
             'End Try
         ElseIf report_mark_type = "40" Then
             'Entry Journal
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                ' date
+                Dim q_d As String = "SELECT id_report,report_mark_type,report_number,acc_trans_adj_number,date_created,date_reffrence,id_acc_trans FROM tb_a_acc_trans_adj WHERE id_acc_trans_adj='" & id_report & "'"
+                Dim dt_d As DataTable = execute_query(q_d, -1, True, "", "", "", "")
+
+                Dim date_created As String = Date.Parse(dt_d.Rows(0)("date_created").ToString).ToString("yyyy-MM-dd")
+                Dim id_trans As String = dt_d.Rows(0)("id_acc_trans").ToString
+                Dim t_number As String = dt_d.Rows(0)("acc_trans_adj_number").ToString
+                '
+                Dim trx_number As String = dt_d.Rows(0)("report_number").ToString
+                Dim trx_id As String = dt_d.Rows(0)("id_report").ToString
+                Dim trx_rmt As String = dt_d.Rows(0)("report_mark_type").ToString
+
+                ' select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','25','" + id_user_prepared + "', '" & date_created & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,report_mark_type_ref, id_report_ref, report_number_ref, id_comp)
+                    SELECT '" + id_acc_trans + "', a.id_acc, 0, a.credit AS debit, a.debit AS credit, a.acc_trans_det_note, '" + report_mark_type + "', '" + id_report + "', '" + t_number + "', '" + trx_rmt + "','" + trx_id + "','" + trx_number + "', 0
+                    FROM tb_a_acc_trans_det a 
+                    INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
+                    WHERE a.id_acc_trans='" + id_trans + "'
+                    UNION
+                    SELECT '" + id_acc_trans + "', ad.id_acc, 0, ad.debit, ad.credit, ad.acc_trans_adj_det_note, '" + report_mark_type + "', '" + id_report + "', a.acc_trans_adj_number, a.report_mark_type,a.id_report,a.report_number, 0
+                    FROM `tb_a_acc_trans_adj_det` ad
+                    INNER JOIN tb_a_acc_trans_adj a ON a.id_acc_trans_adj=ad.id_acc_trans_adj
+                    WHERE ad.`id_acc_trans_adj`='" + id_report + "'"
+                execute_non_query(qjd, True, "", "", "", "")
+                'set adjusted status
+                qjd = "UPDATE tb_a_acc_trans SET is_adjusted='1' WHERE id_acc_trans='" & id_trans & "'"
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
             query = String.Format("UPDATE tb_a_acc_trans_adj SET id_report_status='{0}' WHERE id_acc_trans_adj ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
@@ -2338,10 +2453,11 @@
                 stt.changeStatus(id_report, id_status_reportx)
             End If
 
-
             'infoCustom("Status changed.")
 
+            Dim combine_number As String = ""
             If form_origin = "FormSalesReturnDet" Then
+                combine_number = FormSalesReturnDet.TxtCombineNumber.Text
                 FormSalesReturnDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSalesReturnDet.check_but()
                 FormSalesReturnDet.actionLoad()
@@ -2350,6 +2466,13 @@
                 FormSalesReturn.GVSalesReturn.FocusedRowHandle = find_row(FormSalesReturn.GVSalesReturn, "id_sales_return", id_report)
             Else
                 'code here
+                combine_number = FormViewSalesReturn.TxtCombineNumber.Text
+            End If
+
+            'update status for related combine number
+            If combine_number <> "" And report_mark_type <> "111" Then
+                Dim query_upd_single As String = "UPDATE tb_sales_return SET id_report_status=" + id_status_reportx + ", last_update=NOW(), last_update_by=" + id_user + " WHERE combine_number='" + combine_number + "' AND id_sales_return!=" + id_report + " "
+                execute_non_query(query_upd_single, True, "", "", "", "")
             End If
         ElseIf report_mark_type = "47" Then
             'Return Production
@@ -2373,7 +2496,7 @@
                     Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
                     Dim id_mat_det_price As String = data.Rows(i)("id_mat_det_price_cost").ToString
                     Dim mat_det_price As Decimal = data.Rows(i)("mat_det_price_cost")
-                    Dim mat_wo_rec_det_qty As String = data.Rows(i)("mat_prod_ret_in_det_qty").ToString
+                    Dim mat_wo_rec_det_qty As String = decimalSQL(Decimal.Parse(data.Rows(i)("mat_prod_ret_in_det_qty").ToString).ToString)
                     Dim mat_wo_rec_number As String = data.Rows(i)("mat_prod_ret_in_number").ToString
                     Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_report,report_mark_type,id_stock_status,id_mat_det_price,price) "
                     'update storage
@@ -2993,7 +3116,7 @@
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        stopCustom(ex.ToString)
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 Else
                     'non reguler - ada normal & sale price
@@ -3043,7 +3166,7 @@
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        stopCustom(ex.ToString)
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 End If
             End If
@@ -3643,7 +3766,6 @@
                                 FROM tb_emp_leave lve WHERE lve.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'"
                         execute_non_query(query_pot, True, "", "", "", "")
                     End If
-
                 End If
 
                 'complete
@@ -3796,7 +3918,7 @@
 
             FormSalesDelOrderSlip.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
             FormSalesDelOrderSlip.actionLoad()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'Final Clear
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -3847,6 +3969,12 @@
             'Invoice missing promo
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'completed
+                Dim inv As ClassSalesInv = New ClassSalesInv()
+                inv.postingJournal(id_report, report_mark_type)
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
@@ -4135,6 +4263,11 @@
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+                query = "INSERT INTO tb_item_cat(`id_expense_type`,`id_item_cat_main` ,`item_cat`, `item_cat_en`)
+		                SELECT d.id_expense_type,d.id_item_cat_main, d.item_cat, d.item_cat_en 
+		                FROM tb_item_cat_propose_det d
+		                WHERE d.id_item_cat_propose = '" & id_report & "'"
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             'jika cancel
@@ -4253,18 +4386,18 @@
             FormBudgetExpenseProposeDet.actionLoad()
             FormBudgetExpensePropose.viewData()
             FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id_report)
-        ElseIf report_mark_type = "137" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase request
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             ElseIf id_status_reportx = "5" Then
                 'Cancel Storage
-                Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,-`value`,is_actual,id_report,report_mark_type)
-                                                 SELECT id_b_expense,NOW(),`value`,'2' AS is_actual,id_purc_req AS id_report,'137' AS report_mark_type
-                                                 FROM tb_purc_req_det prd
-                                                 WHERE prd.`id_purc_req`='" & id_report & "'"
-                execute_non_query(query_trans, True, "", "", "", "")
+                'Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,-`value`,is_actual,id_report,report_mark_type)
+                '                                 SELECT id_b_expense,NOW(),`value`,'2' AS is_actual,id_purc_req AS id_report,'137' AS report_mark_type
+                '                                 FROM tb_purc_req_det prd
+                '                                 WHERE prd.`id_purc_req`='" & id_report & "'"
+                'execute_non_query(query_trans, True, "", "", "", "")
             End If
 
             'update status
@@ -4370,7 +4503,7 @@
             FormBudgetExpenseRevisionDet.actionLoad()
             FormBudgetExpenseRevision.viewData()
             FormBudgetExpenseRevision.GVData.FocusedRowHandle = find_row(FormBudgetExpenseRevision.GVData, "id_b_expense_revision", id_report)
-        ElseIf report_mark_type = "139" Then
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then
             'Purchase Order
             'auto completed
             If id_status_reportx = "3" Then
@@ -4380,7 +4513,7 @@
             'update status
             query = String.Format("UPDATE tb_purc_order SET id_report_status='{0}' WHERE id_purc_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "194" Or report_mark_type = "210" Then
             Cursor = Cursors.WaitCursor
             'pd revision
             'auto completed
@@ -4403,7 +4536,7 @@
 	                FROM tb_prod_demand_design_rev rd
 	                INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design AND po.id_report_status!=5
-	                WHERE rd.id_prod_demand_rev=" + id_report + "
+	                WHERE rd.id_prod_demand_rev=" + id_report + " AND rd.is_cancel_po=1
                 ) src ON src.id_prod_order = main.id_prod_order
                 SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note;
                 UPDATE tb_report_mark main
@@ -4412,13 +4545,27 @@
 	                FROM tb_prod_demand_design_rev rd
 	                INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design
-	                WHERE rd.id_prod_demand_rev=" + id_report + "
+	                WHERE rd.id_prod_demand_rev=" + id_report + " AND rd.is_cancel_po=1
                 ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
-                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; "
+                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; 
+                UPDATE tb_m_design main 
+                INNER JOIN (
+	                SELECT rd.id_design 
+	                FROM tb_prod_demand_rev r
+	                INNER JOIN tb_prod_demand_design_rev rd ON rd.id_prod_demand_rev = r.id_prod_demand_rev
+	                WHERE r.id_prod_demand_rev=" + id_report + " AND rd.id_pd_status_rev=2
+                ) src ON src.id_design = main.id_design
+                SET main.id_lookup_status_order=2, main.id_active=2; "
                 execute_non_query(query_void, True, "", "", "", "")
 
 
-                Dim qpr As String = "SELECT * FROM tb_prod_demand_design_rev pdd
+                Dim qpr As String = "SELECT pdd.`id_prod_demand_design_rev`,pdd.`id_prod_demand_rev`,pdd.`id_prod_demand_design`, pdd_org.`id_delivery`, pdd.`id_design`, pdd.`id_currency`, pdd.`prod_demand_design_propose_price`,
+                pdd.`additional_price`, pdd.`prod_demand_design_estimate_price`, pdd.`prod_demand_design_total_cost`, pdd.`additional_cost`, pdd.`royalty_design`, pdd.`royalty_special`, pdd.`inflation`,
+                pdd.`rate_current`, pdd.`rate_management`, pdd.`msrp`, pdd.`msrp_rp`, pdd.`date_available_start`, pdd.`id_pd_status_rev`, pdd.`is_cancel_po`, pdd.`cancel_po_note`,
+                pd.`id_prod_demand_rev`, pd.`id_prod_demand`, pd.`rev_count`, pd.`id_report_status`,
+                pd.`created_date`, pd.`note`, pd.`is_confirm`, pd.`report_mark_type`
+                FROM tb_prod_demand_design_rev pdd
+                INNER JOIN tb_prod_demand_design pdd_org ON pdd_org.id_prod_demand_design = pdd.id_prod_demand_design
                 INNER JOIN tb_prod_demand_rev pd ON pd.id_prod_demand_rev = pdd.id_prod_demand_rev
                 WHERE pdd.id_prod_demand_rev=" + id_report + " AND pdd.id_pd_status_rev=1 "
                 Dim dpr As DataTable = execute_query(qpr, -1, True, "", "", "", "")
@@ -4436,6 +4583,7 @@
 	                `royalty_special`,
 	                `inflation` ,
 	                `rate_current`,
+                    `rate_management`,
 	                `msrp` ,
 	                `msrp_rp` ,
 	                `date_available_start`,
@@ -4455,6 +4603,7 @@
                     '" + decimalSQL(dpr.Rows(i)("royalty_special").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("inflation").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("rate_current").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("rate_management").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("msrp").ToString) + "',
                     '" + decimalSQL(dpr.Rows(i)("msrp_rp").ToString) + "',
                     '" + DateTime.Parse(dpr.Rows(i)("date_available_start").ToString).ToString("yyyy-MM-dd") + "',
@@ -4464,30 +4613,62 @@
                     '" + dpr.Rows(i)("id_prod_demand_design").ToString + "'
                     ); SELECT LAST_INSERT_ID();"
                     Dim id_prod_demand_design As String = execute_query(qins, 0, True, "", "", "", "")
+                    If dpr.Rows(i)("is_cancel_po").ToString = "2" Then
+                        'select PO
+                        'Dim id_po As String = execute_query("SELECT id_prod_order FROM tb_prod_order WHERE id_report_status!=5 AND id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design").ToString + "", 0, True, "", "", "", "")
+
+                        'change reference pdd
+                        Dim qpo As String = "UPDATE tb_prod_order SET id_prod_demand_design=" + id_prod_demand_design + " 
+                        WHERE id_prod_demand_design=" + dpr.Rows(i)("id_prod_demand_design").ToString + " AND id_report_status!=5 "
+                        execute_non_query(qpo, True, "", "", "", "")
+                    End If
 
                     'insert new pdp
-                    Dim qins_pdp As String = "INSERT INTO tb_prod_demand_product (
-	                `id_prod_demand_design`,
-	                `id_product`,
-	                `id_bom`,
-	                `prod_demand_product_qty`
-                    )
-                    SELECT '" + id_prod_demand_design + "', pdp.id_product, pdp.id_bom, pdp.prod_demand_product_qty
-                    FROM tb_prod_demand_product_rev pdp
-                    WHERE pdp.id_prod_demand_design_rev=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + "; SELECT LAST_INSERT_ID();"
-                    Dim id_prod_demand_product As String = execute_query(qins_pdp, 0, True, "", "", "", "")
-
-                    'insert new pdp alloc
-                    Dim qins_alloc As String = "INSERT INTO tb_prod_demand_alloc (
-                    `id_prod_demand_product`,
-                    `id_pd_alloc`,
-                    `prod_demand_alloc_qty`
-                    )
-                    SELECT '" + id_prod_demand_product + "', a.id_pd_alloc, a.prod_demand_alloc_qty
-                    FROM tb_prod_demand_alloc_rev a
-                    INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_product_rev = a.id_prod_demand_product_rev
+                    Dim qprev As String = "SELECT * FROM tb_prod_demand_product_rev pdp 
                     WHERE pdp.id_prod_demand_design_rev=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + "; "
-                    execute_non_query(qins_alloc, True, "", "", "", "")
+                    Dim dprev As DataTable = execute_query(qprev, -1, True, "", "", "", "")
+                    For p As Integer = 0 To dprev.Rows.Count - 1
+                        Dim id_bom As String = dprev.Rows(p)("id_bom").ToString
+                        If id_bom = "" Then
+                            id_bom = "NULL "
+                        End If
+                        Dim qins_pdp As String = "INSERT INTO tb_prod_demand_product (
+	                    `id_prod_demand_design`,
+	                    `id_product`,
+	                    `id_bom`,
+	                    `prod_demand_product_qty`
+                        ) VALUES(
+                        " + id_prod_demand_design + " ,
+                        " + dprev.Rows(p)("id_product").ToString + " ,
+                        " + id_bom + " ,
+                        " + decimalSQL(dprev.Rows(p)("prod_demand_product_qty").ToString) + " 
+                        ); SELECT LAST_INSERT_ID(); "
+                        Dim id_prod_demand_product As String = execute_query(qins_pdp, 0, True, "", "", "", "")
+                        If dpr.Rows(i)("is_cancel_po").ToString = "2" Then
+                            Dim qpdp_cr As String = "UPDATE tb_prod_order_det main 
+                            INNER JOIN (
+	                            SELECT pod.id_prod_order_det 
+	                            FROM tb_prod_order_det pod
+	                            INNER JOIN tb_prod_order po ON po.id_prod_order = pod.id_prod_order
+	                            INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+	                            WHERE po.id_prod_demand_design=" + id_prod_demand_design + " AND po.id_report_status!=5 AND pdp.id_product=" + dprev.Rows(p)("id_product").ToString + "
+                            ) src ON src.id_prod_order_det = main.id_prod_order_det
+                            SET main.id_prod_demand_product=" + id_prod_demand_product + " "
+                            execute_non_query(qpdp_cr, True, "", "", "", "")
+                        End If
+
+                        'insert new pdp alloc
+                        Dim qins_alloc As String = "INSERT INTO tb_prod_demand_alloc (
+                        `id_prod_demand_product`,
+                        `id_pd_alloc`,
+                        `prod_demand_alloc_qty`
+                        )
+                        SELECT '" + id_prod_demand_product + "', a.id_pd_alloc, a.prod_demand_alloc_qty
+                        FROM tb_prod_demand_alloc_rev a
+                        WHERE a.id_prod_demand_product_rev=" + dprev.Rows(p)("id_prod_demand_product_rev").ToString + "; "
+                        execute_non_query(qins_alloc, True, "", "", "", "")
+                    Next
+
                 Next
             End If
 
@@ -4593,6 +4774,8 @@
             'completed
             If id_status_reportx = "6" Then
                 'stock only OPEX
+                Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
+
                 Dim qs As String = "INSERT INTO tb_storage_item (
                     `id_departement`,
 	                `id_storage_category`,
@@ -4605,21 +4788,62 @@
 	                `storage_item_notes`,
 	                `id_stock_status`
                 )
-                SELECT rq.id_departement, 1, rd.id_item, pod.`value`, 148, " + id_report + ", rd.qty, NOW(),'', 1
+                SELECT IF(rq.is_store_purchase=1,'" & id_purc_store & "',rq.id_departement) AS id_departement, 1, rd.id_item, pod.`value`, 148, " + id_report + ", rd.qty, NOW(),'', 1
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1; "
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'; "
                 execute_non_query(qs, True, "", "", "", "")
+
+                'budget move to actual
+                Dim qb As String = "-- opex
+                INSERT INTO tb_b_expense_opex_trans(id_b_expense_opex,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
+                SELECT rqd.id_b_expense_opex,1,rq.id_departement,NOW(),-(pod.`value` * rd.qty),rd.id_item, pod.id_purc_order, 139 AS rmt, 'Receiving Reverse PO'
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
+                INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'
+                UNION ALL
+                SELECT rqd.id_b_expense_opex,1,rq.id_departement,NOW(),(pod.`value` * rd.qty),rd.id_item, " + id_report + ", 148 AS rmt, 'Receiving PO'
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
+                INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1';
+                -- capex
+                INSERT INTO tb_b_expense_trans(id_b_expense,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
+                SELECT rqd.id_b_expense,1,rq.id_departement,NOW(),-(pod.`value` * rd.qty),rd.id_item, pod.id_purc_order, 202, 'Receiving Reverse PO'
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
+                INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2 AND i.id_item_type='1'
+                UNION ALL
+                SELECT rqd.id_b_expense,1,rq.id_departement,NOW(),(pod.`value` * rd.qty),rd.id_item, " + id_report + ", 148, 'Receiving'
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
+                INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2 AND i.id_item_type='1';"
+                execute_non_query(qb, True, "", "", "", "")
 
                 'asset
                 Dim qa As String = "SELECT rd.id_item, rd.id_purc_rec_det, rd.qty, coa.id_coa_out, rq.id_departement, i.item_desc, NOW(), (pod.`value` - pod.discount) AS `cost`, 2
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_order_det
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
@@ -4656,23 +4880,47 @@
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                VALUES ('" + header_number_acc("1") + "','" + report_number + "','0','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 increase_inc_acc("1")
 
                 'det journal
-                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                /*total value item inventory*/
-                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
+                /*total biaya jasa atau non inventory */
+                SELECT " + id_acc_trans + ",o.id_coa_out AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
                 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN (
- 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value
+	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
+	                FROM tb_purc_order_det pod
+	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
+	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
+	                GROUP BY pod.id_purc_order
+                 ) poall ON poall.id_purc_order = r.id_purc_order
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                INNER JOIN tb_purc_req_det reqd ON pod.id_purc_req_det=reqd.id_purc_req_det
+                INNER JOIN tb_purc_req req ON req.id_purc_req=reqd.id_purc_req
+                INNER JOIN tb_item_coa o ON o.id_item_cat=i.id_item_cat AND o.id_departement=req.id_departement
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='2'
+                GROUP BY rd.id_purc_rec
+                UNION ALL
+                /*total value item inventory*/
+                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
+                SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
+                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN (
+ 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
 	                FROM tb_purc_order_det pod
 	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
 	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
@@ -4681,20 +4929,21 @@
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
                 JOIN tb_opt_purchasing o
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'
                 GROUP BY rd.id_purc_rec
                 UNION ALL
                 /*total value item asset*/
                 SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+                INNER JOIN tb_m_departement dep ON dep.id_departement
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
                 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN (
- 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value
+ 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
 	                FROM tb_purc_order_det pod
 	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
 	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
@@ -4711,14 +4960,14 @@
                 /*total vat in*/
                 SELECT " + id_acc_trans + ",o.acc_coa_vat_in AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
                 (po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value)) AS `debit`,
-                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
                 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN (
- 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value
+ 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
 	                FROM tb_purc_order_det pod
 	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
 	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
@@ -4731,7 +4980,7 @@
                 /*total value item inventory + total value item asset + vat in*/
                 SELECT " + id_acc_trans + ", comp.id_acc_ap AS `id_acc`, cont.id_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) + ((po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value))) AS `credit`,
-                '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number
+                '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -4739,7 +4988,7 @@
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
                 INNER JOIN (
- 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value
+ 	                SELECT pod.id_purc_order,SUM(pod.qty) AS `qty`, SUM(pod.qty*(pod.`value`-pod.discount)) AS `value`, po.disc_value, po.purc_order_number, po.id_expense_type
 	                FROM tb_purc_order_det pod
 	                INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
 	                WHERE pod.id_purc_order=" + FormPurcReceiveDet.id_purc_order + "
@@ -4763,14 +5012,19 @@
             FormPurcReceive.viewReceive()
             FormPurcReceive.GVReceive.FocusedRowHandle = find_row(FormPurcReceive.GVReceive, "id_purc_rec", id_report)
         ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
-            'Cancel Report
+            'COP Propose
             'auto complete
             If id_status_reportx = "3" Or id_status_reportx = "6" Then
                 id_status_reportx = "6"
                 'complete
                 query = "UPDATE tb_m_design dsg
 INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design=dsg.id_design AND copd.`id_design_cop_propose`='" & id_report & "'
-SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost`"
+SET dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost`;
+UPDATE tb_m_design_cop SET is_active='2' WHERE id_design IN (SELECT id_design FROM tb_design_cop_propose_det WHERE id_design_cop_propose='" & id_report & "');
+INSERT INTO `tb_m_design_cop`(description,id_design,date_created,id_currency,kurs,before_kurs,additional,is_active)
+SELECT cmp.description,copd.id_design,NOW(),cmp.id_currency,cmp.kurs,cmp.before_kurs,cmp.additional,1 FROM tb_design_cop_propose_comp cmp
+INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design_cop_propose_det=cmp.id_design_cop_propose_det
+WHERE copd.id_design_cop_propose='" & id_report & "';"
                 execute_non_query(query, True, "", "", "", "")
             End If
             'update status
@@ -4900,16 +5154,20 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
 
             If id_status_reportx = "6" Then
                 'completed storage
+                Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
+
                 Dim query_completed_stock As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-                SELECT r.id_departement, 1, dd.id_item, getAvgCost(dd.id_item), 154, r.id_item_req, dd.qty, NOW(), 1
+                SELECT IF(rd.is_store_request=1,'" & id_purc_store & "',r.id_departement) AS id_departement, 1, dd.id_item, getAvgCost(dd.id_item), IF(r.is_for_store=1,163,154) AS rmt, r.id_item_req, dd.qty, NOW(), 1
                 FROM tb_item_del d
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
+                INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.`id_item_req_det`
                 INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
-                WHERE d.id_item_del=" + id_report + "
+                WHERE d.id_item_del=" + id_report + " AND rd.is_store_request='2'
                 UNION ALL
-                SELECT r.id_departement, 2, dd.id_item, getAvgCost(dd.id_item), " + report_mark_type + ", d.id_item_del, dd.qty, NOW(), 1
+                SELECT IF(rd.is_store_request=1,'" & id_purc_store & "',r.id_departement) AS id_departement, 2, dd.id_item, getAvgCost(dd.id_item), " + report_mark_type + " AS rmt, d.id_item_del, dd.qty, NOW(), 1
                 FROM tb_item_del d
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
+                INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.`id_item_req_det`
                 INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
                 WHERE d.id_item_del=" + id_report + ";
                 CALL update_item_reqdel_stt(" + id_report + "); "
@@ -5053,9 +5311,8 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 Dim qu_payment As String = "SELECT id_pay_type,report_mark_type FROM tb_payment py WHERE py.id_payment='" & id_report & "'"
                 Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
                 If data_payment.Rows.Count > 0 Then
-                    If data_payment.Rows(0)("id_pay_type").ToString = "1" Then 'DP
-                        'auto jurnal
-                        'Select user prepared
+                    If data_payment.Rows(0)("report_mark_type").ToString = "189" Then  'if only one payment type (all payment)
+                        'auto journal
                         Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                         Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
                         Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
@@ -5063,12 +5320,54 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
 
                         'main journal
                         Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                        VALUES('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                         Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                         increase_inc_acc("1")
 
-                        'det journal
+                        ''det journal
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                                            SELECT * FROM
+                                            (
+                                                /* Pay from */
+                                                SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159,py.id_payment, py.number
+                                                FROM tb_payment py
+                                                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
+                                                WHERE py.id_payment=" & id_report & "
+                                                UNION ALL
+                                                /* Hutang dagang */
+                                                SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, cc.id_comp,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_payment, py.number
+                                                FROM tb_payment py
+                                                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
+                                                INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
+                                                WHERE py.id_payment=" & id_report & "           
+                                            )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                        execute_non_query(qjd, True, "", "", "", "")
+                        'check if can close
+                        Dim query_close As String = "SELECT * FROM tb_payment_det pyd WHERE pyd.id_payment='" & id_report & "' AND pyd.`value`=balance_due"
+                        Dim data_close As DataTable = execute_query(query_close, -1, True, "", "", "", "")
+                        If data_close.Rows.Count > 0 Then
+                            If data_payment.Rows(0)("report_mark_type").ToString = "189" Then
+                                query_close = "UPDATE tb_pn_fgpo SET is_open='2' WHERE id_pn_fgpo='" & data_close.Rows(0)("id_report").ToString & "'"
+                                execute_non_query(query_close, True, "", "", "", "")
+                            End If
+                        End If
+                    Else 'have distinct type of payment
+                        If data_payment.Rows(0)("id_pay_type").ToString = "1" Then 'DP
+                            'auto jurnal
+                            'Select user prepared
+                            Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                            Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                            Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                            Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                            'main journal
+                            Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                            Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                            increase_inc_acc("1")
+
+                            'det journal
+                            Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                         SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_payfrom AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159,py.id_payment, py.number
                         FROM tb_payment py
                         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
@@ -5079,22 +5378,22 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
                         INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
                         WHERE py.id_payment=" & id_report & ""
-                        execute_non_query(qjd, True, "", "", "", "")
-                    Else 'payment
-                        'auto journal
-                        Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
-                        Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
-                        Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
-                        Dim report_number As String = du.Rows(0)("report_number").ToString
+                            execute_non_query(qjd, True, "", "", "", "")
+                        Else 'payment
+                            'auto journal
+                            Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                            Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                            Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                            Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                        'main journal
-                        Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                            'main journal
+                            Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
                         VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                        Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
-                        increase_inc_acc("1")
+                            Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                            increase_inc_acc("1")
 
-                        'det journal
-                        Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                            'det journal
+                            Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                                             SELECT * FROM
                                             (
                                             /* uang keluar kalau ada */
@@ -5124,21 +5423,22 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                                             WHERE py.id_payment=" & id_report & "
                                             GROUP BY py.id_payment
                                             )trx WHERE trx.debit != 0 OR trx.credit != 0"
-                        execute_non_query(qjd, True, "", "", "", "")
-                        If data_payment.Rows(0)("report_mark_type").ToString = "139" Then
-                            'close pay in tb_purc_order
-                            Dim qc As String = "UPDATE tb_purc_order po
+                            execute_non_query(qjd, True, "", "", "", "")
+                            If data_payment.Rows(0)("report_mark_type").ToString = "139" Or report_mark_type = "202" Then
+                                'close pay in tb_purc_order
+                                Dim qc As String = "UPDATE tb_purc_order po
                                             INNER JOIN tb_payment_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_payment`=" & id_report & "
                                             SET po.is_close_pay='1'"
-                            execute_non_query(qc, True, "", "", "", "")
-                            FormBankWithdrawal.load_po()
-                        ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
-                            'close expense
-                            Dim qc As String = "UPDATE tb_item_expense e
+                                execute_non_query(qc, True, "", "", "", "")
+                                FormBankWithdrawal.load_po()
+                            ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
+                                'close expense
+                                Dim qc As String = "UPDATE tb_item_expense e
                                             INNER JOIN tb_payment_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_payment`=" & id_report & "
                                             SET e.is_open='2'"
-                            execute_non_query(qc, True, "", "", "", "")
-                            FormBankWithdrawal.load_expense()
+                                execute_non_query(qc, True, "", "", "", "")
+                                FormBankWithdrawal.load_expense()
+                            End If
                         End If
                     End If
                 End If
@@ -5172,6 +5472,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
+
             'completed
             If id_status_reportx = "6" Then
                 'auto jurnal
@@ -5181,47 +5482,62 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                'main journal
-                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
-                increase_inc_acc("1")
 
-                'det journal
-                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                                    -- kas masuk
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, cc.id_comp,  0 AS `qty`,py.value AS `debit`, 0 AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
-                                    FROM tb_rec_payment py
-                                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                                    WHERE py.id_rec_payment=" & id_report & " AND py.`value` > 0
-                                    UNION ALL
-                                    -- kurangi piutang (AR)
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
-                                    FROM tb_rec_payment py
-                                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                                    INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
-                                    WHERE py.id_rec_payment=" & id_report & " AND py.`value` > 0
-                                    UNION ALL
-                                    -- lebih bayar keluar berapa dari mana credit
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_to AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.`val_need_pay` AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
-                                    FROM tb_rec_payment py
-                                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                                    WHERE py.id_rec_payment=" & id_report & " AND py.`val_need_pay` > 0
-                                    UNION ALL
-                                    -- tambah piutang (AR) debit
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`, cc.id_comp,  0 AS `qty`,py.`val_need_pay` AS `debit`, 0 AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
-                                    FROM tb_rec_payment py
-                                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
-                                    INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
-                                    WHERE py.id_rec_payment=" & id_report & " AND py.`val_need_pay` > 0"
-                execute_non_query(qjd, True, "", "", "", "")
+                If FormBankDepositDet.TETotal.EditValue > 0 Then 'BBM
+                    'main journal
+                    Dim date_reference As String = DateTime.Parse(FormBankDepositDet.DERecDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                    Dim date_created As String = DateTime.Parse(FormBankDepositDet.DEDateCreated.EditValue.ToString).ToString("yyyy-MM-dd")
+                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','21','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                    Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                    increase_inc_acc("1")
+
+                    'det journal
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_rec AS `id_acc`, 1,  0 AS `qty`,
+                    py.value AS `debit`, 0 AS `credit`,
+                    py.note AS `note`,162,py.id_rec_payment, py.number, NULL, NULL, NULL, '' AS `vendor`
+                    FROM tb_rec_payment py
+                    WHERE py.id_rec_payment=" + id_report + " AND py.`value` > 0
+                    UNION ALL
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pyd.id_acc AS `id_acc`, pyd.id_comp,0 AS `qty`, 
+                    IF(pyd.id_dc=1, ABS(pyd.value), 0) AS `debit`, IF(pyd.id_dc=2, pyd.value, 0) AS `credit`,
+                    pyd.note AS `note`, 
+                    162, py.id_rec_payment, py.number,
+                    pyd.report_mark_type, pyd.id_report, pyd.number, pyd.vendor
+                    FROM tb_rec_payment_det pyd
+                    INNER JOIN tb_rec_payment py ON py.id_rec_payment = pyd.id_rec_payment
+                    INNER JOIN tb_lookup_dc dc ON dc.id_dc = pyd.id_dc
+                    INNER JOIN tb_a_acc a ON a.id_acc = pyd.id_acc
+                    LEFT JOIN tb_m_comp comp ON comp.id_comp = pyd.id_comp
+                    WHERE pyd.id_rec_payment=" + id_report + " "
+                    execute_non_query(qjd, True, "", "", "", "")
+                Else 'BBK
+                    'UNION ALL
+                    '-- lebih bayar keluar berapa dari mana credit
+                    'Select '" & id_acc_trans & "' AS id_acc_trans,py.id_acc_pay_to AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.`val_need_pay` AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
+                    'From tb_rec_payment py
+                    'INNER Join tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
+                    'WHERE py.id_rec_payment = " & id_report & " And py.`val_need_pay` > 0
+                    ' -- tambah piutang (AR) debit => credit note
+                    'Select Case'" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`, cc.id_comp,  0 AS `qty`,py.`val_need_pay` AS `debit`, 0 AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
+                    'From tb_rec_payment py
+                    'INNER Join tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
+                    'INNER Join tb_m_comp comp ON comp.id_comp=cc.id_comp
+                    'WHERE py.id_rec_payment = " & id_report & " And py.`val_need_pay` > 0
+                End If
+
                 'close if complete rec
-                qjd = "UPDATE tb_sales_pos pos
-INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=pos.`id_sales_pos` AND pyd.`report_mark_type`=pos.`report_mark_type`
-SET pos.`is_close_rec_payment`=1
-WHERE pyd.`id_rec_payment`='" & id_report & "'
-AND pyd.`value`=balance_due AND pyd.`value` != 0"
-                execute_non_query(qjd, True, "", "", "", "")
+                If FormBankDepositDet.type_rec = "1" Then
+                    'INVOICE PENJUALAN
+                    Dim qjd_upd = "UPDATE tb_sales_pos pos
+                    INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=pos.`id_sales_pos` AND pyd.`report_mark_type`=pos.`report_mark_type`
+                    SET pos.`is_close_rec_payment`=1
+                    WHERE pyd.`id_rec_payment`='" & id_report & "'
+                    AND pyd.`value`=balance_due AND pyd.`value` != 0 "
+                    execute_non_query(qjd_upd, True, "", "", "", "")
+                End If
+
             End If
 
             'update
@@ -5229,8 +5545,14 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
-            FormBankDeposit.load_deposit()
-            FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
+            FormBankDepositDet.form_load()
+            Try
+                FormBankDeposit.load_deposit()
+                FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
+                FormBankDeposit.load_invoice()
+            Catch ex As Exception
+
+            End Try
         ElseIf report_mark_type = "167" Then
             'Cash Advance
             'auto completed
@@ -5254,12 +5576,12 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                                     -- kas keluar
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, NULL,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,'' AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, NULL,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_from) AS `note`,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     UNION ALL
                                     -- cash advance
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, NULL,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,'' AS `note`,167,ca.id_cash_advance, ca.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, NULL,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,(SELECT acc_description FROM tb_a_acc WHERE id_acc = ca.id_acc_to) AS `note`,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0"
                 execute_non_query(qjd, True, "", "", "", "")
@@ -5325,13 +5647,13 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     -- detail
-                                    UNION
+                                    UNION ALL
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,car.id_acc AS `id_acc`, NULL,  0 AS `qty`, car.value AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
                                     FROM tb_cash_advance ca
                                     INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
                                     WHERE ca.id_cash_advance=" & id_report & " AND car.`value` > 0
                                     --
-                                    UNION
+                                    UNION ALL
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,card.id_acc AS `id_acc`, NULL,  0 AS `qty`, IF(card.id_bill_type = 21, card.value, 0) AS `debit`, IF(card.id_bill_type = 21, 0, card.value)  AS `credit`,card.description AS `note`,174,ca.id_cash_advance,ca.number
                                 FROM tb_cash_advance ca
                                 INNER JOIN tb_cash_advance_report_det card ON ca.id_cash_advance = card.id_cash_advance
@@ -5605,6 +5927,10 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             ' update tb_m_employee
             If id_status_reportx = "6" Then
+                Dim progress As FormEmployeePpsProgress = New FormEmployeePpsProgress()
+
+                progress.Show()
+
                 Dim query_pps As String = "SELECT id_type, id_employee FROM tb_employee_pps WHERE id_employee_pps = '" + id_report + "'"
                 Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
 
@@ -5612,15 +5938,18 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 FormEmployeePpsDet.is_new = If(data_pps.Rows(0)("id_type").ToString = "1", "-1", "1")
                 FormEmployeePpsDet.id_employee = If(data_pps.Rows(0)("id_employee").ToString = "", "-1", data_pps.Rows(0)("id_employee").ToString)
 
-                FormEmployeePpsDet.updateChanges()
+                progress.ProgressBarControl.EditValue = 10
+
+                FormEmployeePpsDet.updateChanges(progress)
+
+                progress.ProgressBarControl.EditValue = 100
+
+                progress.Close()
             End If
 
             'update
             query = String.Format("UPDATE tb_employee_pps SET id_report_status='{0}' WHERE id_employee_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-            'refresh view
-            FormEmployeePpsDet.initLoad()
         ElseIf report_mark_type = "183" Then
             'invoice different margin
             If id_status_reportx = "3" Then
@@ -5657,17 +5986,27 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+            End If
+
+            'sendmail
+            If report_mark_type = "184" Or report_mark_type = "213" Then
+                If id_status_reportx = "2" Then
+                    'FormEmpOvertimeDet.send_mail()
+                End If
+            End If
+
+            If report_mark_type = "219" Or report_mark_type = "220" Then
+                If id_status_reportx = "6" Then
+                    'FormEmpOvertimeDet.send_mail()
+                End If
             End If
 
             'update
             query = String.Format("UPDATE tb_ot SET id_report_status='{0}' WHERE id_ot ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-            'refresh view
-            FormEmpOvertimeDet.form_load()
         ElseIf report_mark_type = "185" Then
             'sample purchase close
             If id_status_reportx = "3" Then
@@ -5680,22 +6019,25 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             'refresh view
             FormSamplePurcCloseDet.load_form()
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
 
             If id_status_reportx = "6" Then
-                FormEmpOvertimeDet.id = id_report
-                FormEmpOvertimeDet.updateChanges()
+                Dim data_ver As DataTable = execute_query("SELECT id_ot, ot_date FROM tb_ot_verification WHERE id_ot_verification = " + id_report + " LIMIT 1", -1, True, "", "", "", "")
+
+                FormEmpOvertimeVerification.id = id_report
+                FormEmpOvertimeVerification.id_ot = data_ver.Rows(0)("id_ot").ToString
+                FormEmpOvertimeVerification.is_view = "0"
+                FormEmpOvertimeVerification.ot_date = Date.Parse(data_ver.Rows(0)("ot_date").ToString)
+
+                FormEmpOvertimeVerification.update_changes()
             End If
 
             'update
-            query = String.Format("UPDATE tb_ot SET id_check_status='{0}' WHERE id_ot ='{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_ot_verification SET id_report_status='{0}' WHERE id_ot_verification ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
-            'refresh view
-            FormEmpOvertimeDet.form_load()
         ElseIf report_mark_type = "188" Then
             'FG PROPOSE PRICE
             If id_status_reportx = "2" Then
@@ -5813,45 +6155,421 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                         End If
                     Next
                 End If
-            ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
-                If id_status_reportx = "3" Then
-                    id_status_reportx = "6"
-                End If
 
-                'update
-                query = String.Format("UPDATE tb_work_order SET id_report_status='{0}' WHERE id_work_order ='{1}'", id_status_reportx, id_report)
+                query = String.Format("UPDATE tb_fg_propose_price_rev SET id_report_status='{0}' WHERE id_fg_propose_price_rev ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
+                'infoCustom("Status changed.")
 
-                'refresh view
-                FormWorkOrderDet.load_form()
-            ElseIf report_mark_type = "192" Then
-                'payroll
-                If id_status_reportx = "3" Then
-                    id_status_reportx = "6"
+                If form_origin = "FormFGProposePriceRev" Then
+                    FormFGProposePriceRev.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                    FormFGProposePriceRev.actionLoad()
+                    FormFGProposePrice.viewRevision()
+                    FormFGProposePrice.GVRev.FocusedRowHandle = find_row(FormFGProposePrice.GVRev, "id_fg_propose_price_rev", id_report)
                 End If
-
-                'update
-                query = String.Format("UPDATE tb_emp_payroll SET id_report_status='{0}' WHERE id_payroll ='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-
-                'refresh view
-                FormEmpPayroll.load_payroll()
-
-                FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
-
-                FormEmpPayroll.load_payroll_detail()
+            End If
+        ElseIf report_mark_type = "189" Then
+            'Invoice FGPO
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
             End If
 
-            query = String.Format("UPDATE tb_fg_propose_price_rev SET id_report_status='{0}' WHERE id_fg_propose_price_rev ='{1}'", id_status_reportx, id_report)
+            If id_status_reportx = "6" Then
+                'Select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                                    SELECT * FROM
+                                    (
+                                        /* DP vendor */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                        UNION ALL
+                                        /* uang muka PPN WIP */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                        UNION ALL
+                                        /* hutang dagang total */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(pnd.value + pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_pn_fgpo SET id_report_status='{0}' WHERE id_pn_fgpo ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            'infoCustom("Status changed.")
 
-            If form_origin = "FormFGProposePriceRev" Then
-                FormFGProposePriceRev.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormFGProposePriceRev.actionLoad()
-                FormFGProposePrice.viewRevision()
-                FormFGProposePrice.GVRev.FocusedRowHandle = find_row(FormFGProposePrice.GVRev, "id_fg_propose_price_rev", id_report)
+            'refresh view
+            FormInvoiceFGPO.load_list("0")
+        ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
             End If
+
+            'update
+            query = String.Format("UPDATE tb_work_order SET id_report_status='{0}' WHERE id_work_order ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormWorkOrderDet.load_form()
+        ElseIf report_mark_type = "192" Then
+            'payroll
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_emp_payroll SET id_report_status='{0}' WHERE id_payroll ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormEmpPayroll.load_payroll()
+
+            FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
+
+            FormEmpPayroll.load_payroll_detail()
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sample_po_mat SET id_report_status='{0}' WHERE id_sample_po_mat ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormSampleExpenseDet.load_head()
+        ElseIf report_mark_type = "197" Then
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            ' update to tb_m_employee and tb_m_employee_salary
+            If id_status_reportx = "6" Then
+                FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
+                FormProposeEmpSalaryDet.is_duplicate = "-1"
+
+                FormProposeEmpSalaryDet.update_changes()
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_employee_sal_pps SET id_report_status='{0}' WHERE id_employee_sal_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "200" Then
+            Cursor = Cursors.WaitCursor
+            'propose design changes
+            'auto completed
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim query_comp As String = "
+                /*update design new*/
+                UPDATE tb_m_design main
+                INNER JOIN (
+	                SELECT det.id_design
+	                FROM tb_m_design_changes_det det
+	                INNER JOIN tb_m_design_changes c ON c.id_changes = det.id_changes
+	                WHERE det.id_changes=" + id_report + "
+                ) src ON src.id_design = main.id_design 
+                SET main.is_process=2, main.last_updated=NOW(), main.updated_by=" + id_user + ", main.is_approved=1,
+                main.approved_by=" + id_user + ", main.approved_time=NOW(); "
+                execute_non_query(query_comp, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_m_design_changes SET id_report_status='{0}' WHERE id_changes ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+
+            'refresh view
+            FormFGDesignListChanges.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormFGDesignListChanges.actionLoad()
+            FormFGDesignList.viewPropose()
+            FormFGDesignList.GVPropose.FocusedRowHandle = find_row(FormFGDesignList.GVPropose, "id_changes", id_report)
+            Cursor = Cursors.Default
+        ElseIf report_mark_type = "203" Or report_mark_type = "204" Then
+            'budget OPEX propose
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then 'complete update/insert budget
+                'cek type first
+                Dim query_pps As String = "SELECT id_type FROM tb_b_opex_pps WHERE id_b_opex_pps ='" & id_report & "'"
+                Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
+                If data_pps.Rows.Count > 0 Then
+                    If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,ppsd.`year`,ppsd.`value_after`
+FROM `tb_b_opex_pps` pps
+INNER JOIN tb_b_opex_pps_det ppsd ON ppsd.id_b_opex_pps=pps.id_b_opex_pps
+WHERE pps.id_b_opex_pps='" & id_report & "' AND value_after!=0"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'insert budget
+                            Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat_main,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                            execute_non_query(ins_det, True, "", "", "", "")
+                        Next
+                    Else 'revision
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,ppsd.`year`,ppsd.`value_before`,ppsd.`value_after`,IFNULL(bo.`id_b_expense_opex`,'') AS id_b_expense_opex
+FROM `tb_b_opex_pps` pps
+INNER JOIN tb_b_opex_pps_det ppsd ON ppsd.id_b_opex_pps=pps.id_b_opex_pps
+LEFT JOIN tb_b_expense_opex bo ON bo.`id_item_cat_main`=ppsd.id_item_cat_main AND ppsd.year=bo.`year` AND bo.`is_active`='1'
+WHERE pps.id_b_opex_pps='" & id_report & "' AND (value_after!=0 OR value_before!=0)"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+
+                            If Not data_det.Rows(i)("id_b_expense_opex").ToString = "" Then
+                                'update budget
+                                Dim upd_det As String = "UPDATE tb_b_expense_opex SET value_expense='" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "' WHERE id_b_expense_opex='" & data_det.Rows(i)("id_b_expense_opex").ToString & "'"
+                                execute_non_query(upd_det, True, "", "", "", "")
+                            Else
+                                'insert budget
+                                Dim ins_det As String = "INSERT INTO `tb_b_expense_opex`(id_item_cat_main,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                                execute_non_query(ins_det, True, "", "", "", "")
+                            End If
+                        Next
+                    End If
+                End If
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_b_opex_pps SET id_report_status='{0}' WHERE id_b_opex_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            'FormSampleBudget.load_propose()
+            'FormSampleBudget.load_budget()
+        ElseIf report_mark_type = "207" Then
+            'POPOSE MAIN CATEGORY
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                query = "INSERT INTO tb_item_cat_main(`id_expense_type`,`item_cat_main`)
+		                SELECT d.id_expense_type, d.item_cat_main 
+		                FROM tb_item_cat_main_pps_det d
+		                WHERE d.id_item_cat_main_pps = '" & id_report & "'"
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'jika cancel
+
+            'update status
+            query = String.Format("UPDATE tb_item_cat_main_pps SET id_report_status='{0}' WHERE id_item_cat_main_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormItemCatMainDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormItemCatMainDet.actionLoad()
+            FormItemCatMain.view_propose()
+            FormItemCatMain.GVData.FocusedRowHandle = find_row(FormItemCatMain.GVData, "id_item_cat_main_pps", id_report)
+        ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
+            'budget OPEX propose
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then 'complete update/insert budget
+                'cek type first
+                Dim query_pps As String = "SELECT id_type FROM tb_b_expense_propose WHERE id_b_expense_propose ='" & id_report & "'"
+                Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
+                If data_pps.Rows.Count > 0 Then
+                    If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,pps.id_departement,ppsd.`year`,ppsd.`value_after`
+FROM `tb_b_expense_propose` pps
+INNER JOIN tb_b_expense_propose_year ppsd ON ppsd.id_b_expense_propose=pps.id_b_expense_propose
+WHERE pps.id_b_expense_propose='" & id_report & "' AND value_after!=0"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'insert budget
+                            Dim ins_det As String = "INSERT INTO `tb_b_expense`(id_item_cat_main,id_departement,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("id_departement").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                            execute_non_query(ins_det, True, "", "", "", "")
+                        Next
+                    Else 'revision
+                        Dim query_det As String = "SELECT ppsd.`id_item_cat_main`,pps.id_departement,ppsd.`year`,ppsd.`value_before`,ppsd.`value_after`,IFNULL(bo.`id_b_expense`,'') AS id_b_expense
+FROM `tb_b_expense_propose` pps
+INNER JOIN tb_b_expense_propose_year ppsd ON ppsd.id_b_expense_propose=pps.id_b_expense_propose
+LEFT JOIN tb_b_expense bo ON bo.`id_item_cat_main`=ppsd.id_item_cat_main AND ppsd.year=bo.`year` AND bo.`is_active`='1' AND pps.id_departement=bo.id_departement
+WHERE pps.id_b_expense_propose='" & id_report & "' AND (value_after!=0 OR value_before!=0)"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+
+                            If Not data_det.Rows(i)("id_b_expense").ToString = "" Then
+                                'update budget
+                                Dim upd_det As String = "UPDATE tb_b_expense SET value_expense='" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "' WHERE id_b_expense='" & data_det.Rows(i)("id_b_expense").ToString & "'"
+                                execute_non_query(upd_det, True, "", "", "", "")
+                            Else
+                                'insert budget
+                                Dim ins_det As String = "INSERT INTO `tb_b_expense`(id_item_cat_main,id_departement,`year`,value_expense)
+VALUES('" & data_det.Rows(i)("id_item_cat_main").ToString & "','" & data_det.Rows(i)("id_departement").ToString & "','" & data_det.Rows(i)("year").ToString & "','" & decimalSQL(data_det.Rows(i)("value_after").ToString) & "');"
+                                execute_non_query(ins_det, True, "", "", "", "")
+                            End If
+                        Next
+                    End If
+                End If
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_b_expense_propose SET id_report_status='{0}' WHERE id_b_expense_propose ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            'FormSampleBudget.load_propose()
+            'FormSampleBudget.load_budget()
+        ElseIf report_mark_type = "211" Then
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_emp_attn_input SET id_report_status='{0}' WHERE id_emp_attn_input ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "212" Then
+            'prod order closing
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_prod_order_close SET id_report_status='{0}' WHERE id_prod_order_close ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            If id_status_reportx = "6" Then
+                'update is close
+                Dim query_closing As String = "UPDATE tb_prod_order po 
+INNER JOIN `tb_prod_order_close_det` pocd ON pocd.id_prod_order=po.id_prod_order
+SET po.is_closing_rec='1'
+WHERE pocd.id_prod_order_close = '" & id_report & "'"
+                execute_non_query(query_closing, True, "", "", "", "")
+            End If
+        ElseIf report_mark_type = "221" Then
+            'Debit Note
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_debit_note SET id_report_status='{0}' WHERE id_debit_note ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            If id_status_reportx = "6" Then
+                ' select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number ,rm.report_mark_datetime FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+                '
+                Dim q_date As String = "SELECT created_date FROM tb_debit_note WHERE id_debit_note='" & id_report & "'"
+                Dim dt_date As DataTable = execute_query(q_date, -1, True, "", "", "", "")
+                '
+                Dim report_date As String = Date.Parse(dt_date.Rows(0)("created_date").ToString).ToString("yyyy-MM-dd")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "','" & report_date & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                If FormDebitNoteDet.id_dn_type = "1" Then 'claim reject
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
+                    -- klaim reject nya dulu
+                    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT acc_coa_claim FROM tb_opt_purchasing) AS `id_acc`, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
+                    ,CONCAT('KLAIM ',dnd.description,' - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    UNION 
+                    -- lawannya DP
+                    SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
+                    ,CONCAT('KLAIM REJECT') AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    GROUP BY dnd.id_debit_note "
+                    execute_non_query(qjd, True, "", "", "", "")
+                ElseIf FormDebitNoteDet.id_dn_type = "2" Then 'claim terlambat
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
+                    -- klaim late nya dulu
+                    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT acc_coa_claim FROM tb_opt_purchasing) AS `id_acc`, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
+                    ,CONCAT('KLAIM TERLAMBAT - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    UNION 
+                    -- lawannya DP
+                    SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
+                    ,CONCAT('KLAIM TERLAMBAT') AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
+                    INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp
+                    WHERE dnd.id_debit_note='" & id_report & "'
+                    GROUP BY dnd.id_debit_note "
+                    execute_non_query(qjd, True, "", "", "", "")
+                End If
+                ' update status 
+                If FormDebitNoteDet.id_dn_type = "1" Then 'claim reject
+                    query = String.Format("UPDATE tb_debit_note_det dnd
+                                            INNER JOIN tb_prod_order po ON po.id_prod_order=dnd.id_report AND dnd.report_mark_type='22' 
+                                            SET is_claimed_reject='1'
+                                            WHERE dnd.id_debit_note='{0}'", id_report)
+                    execute_non_query(query, True, "", "", "", "")
+                ElseIf FormDebitNoteDet.id_dn_type = "2" Then 'claim terlambat
+                    query = String.Format("UPDATE tb_debit_note_det dnd
+                                            INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=dnd.id_report AND dnd.report_mark_type='28' 
+                                            SET is_claimed_late='1'
+                                            WHERE dnd.id_debit_note='{0}'", id_report)
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+            End If
+
+            'refresh view
+            FormDebitNoteDet.load_form()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                FormEmpBPJSKesehatanDet.update_changes()
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_pay_bpjs_kesehatan SET id_report_status='{0}' WHERE id_pay_bpjs_kesehatan ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time
@@ -5861,11 +6579,12 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             Dim query_set As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status>'" & id_status_reportx & "' AND id_report_status='" & data_auto.Rows(0)("id_report_status").ToString & "' ORDER BY level"
             Dim data_set As DataTable = execute_query(query_set, -1, True, "", "", "", "")
             For i As Integer = 0 To data_set.Rows.Count - 1
-                If data_set.Rows(i)("level").ToString() = "1" Then
-                    query = "UPDATE tb_report_mark b SET b.report_mark_start_datetime=NOW(),b.report_mark_lead_time=(SELECT IFNULL(z.lead_time,'00-00-00') FROM tb_mark_asg_user z WHERE z.id_mark_asg=b.id_mark_asg AND z.id_user=b.id_user LIMIT 1) WHERE b.id_report_mark='" & data_set.Rows(i)("id_report_mark").ToString & "'"
-                Else
-                    query = "UPDATE tb_report_mark b SET b.report_mark_start_datetime=(SELECT a.report_mark_start_datetime_end FROM (SELECT ADDTIME(z.report_mark_start_datetime,z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg=" & data_set.Rows(i)("id_mark_asg").ToString() & " AND z.id_report=" & data_set.Rows(i)("id_report").ToString() & " AND z.level=" & data_set.Rows(i)("level").ToString() & "-1 LIMIT 1) a),b.report_mark_lead_time=(SELECT IFNULL(z.lead_time,'00-00-00') FROM tb_mark_asg_user z WHERE z.id_mark_asg=b.id_mark_asg AND z.id_user=b.id_user LIMIT 1) WHERE b.id_report_mark='" & data_set.Rows(i)("id_report_mark").ToString & "'"
-                End If
+                query = "UPDATE tb_report_mark b SET b.report_mark_start_datetime=NOW(),b.report_mark_lead_time=(SELECT IFNULL(z.lead_time,'00-00-00') FROM tb_mark_asg_user z WHERE z.id_mark_asg=b.id_mark_asg AND z.id_user=b.id_user LIMIT 1) WHERE b.id_report_mark='" & data_set.Rows(i)("id_report_mark").ToString & "'"
+                'If data_set.Rows(i)("level").ToString() = "1" Then
+                '    query = "UPDATE tb_report_mark b SET b.report_mark_start_datetime=NOW(),b.report_mark_lead_time=(SELECT IFNULL(z.lead_time,'00-00-00') FROM tb_mark_asg_user z WHERE z.id_mark_asg=b.id_mark_asg AND z.id_user=b.id_user LIMIT 1) WHERE b.id_report_mark='" & data_set.Rows(i)("id_report_mark").ToString & "'"
+                'Else
+                '    query = "UPDATE tb_report_mark b SET b.report_mark_start_datetime=(SELECT a.report_mark_start_datetime_end FROM (SELECT ADDTIME(z.report_mark_start_datetime,z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg=" & data_set.Rows(i)("id_mark_asg").ToString() & " AND z.id_report=" & data_set.Rows(i)("id_report").ToString() & " AND z.level=" & data_set.Rows(i)("level").ToString() & "-1 LIMIT 1) a),b.report_mark_lead_time=(SELECT IFNULL(z.lead_time,'00-00-00') FROM tb_mark_asg_user z WHERE z.id_mark_asg=b.id_mark_asg AND z.id_user=b.id_user LIMIT 1) WHERE b.id_report_mark='" & data_set.Rows(i)("id_report_mark").ToString & "'"
+                'End If
                 execute_non_query(query, True, "", "", "", "")
             Next
         End If
@@ -6627,27 +7346,27 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
         End If
     End Sub
 
-    Private Sub GVMark_RowStyle(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVMark.RowStyle
-        If (e.RowHandle >= 0) Then
-            'pick field
-            'see if already marked
-            If check_available_asg_color(sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_report_mark"))) Then
-                'already marked
-                Dim lead_time As String = sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("raw_lead_time"))
-                'condition
-                If Not lead_time = "" Then
-                    If Integer.Parse(check_date_passed_now(lead_time)) > 0 Then
-                        e.Appearance.BackColor = Color.Salmon
-                        e.Appearance.BackColor2 = Color.Salmon
-                    End If
-                End If
-            End If
-            '
-            If sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_user")).ToString = id_user Then
-                e.Appearance.Font = New Font(GVMark.Appearance.Row.Font, FontStyle.Bold)
-            End If
-        End If
-    End Sub
+    'Private Sub GVMark_RowStyle(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVMark.RowStyle
+    'If (e.RowHandle >= 0) Then
+    '    'pick field
+    '    'see if already marked
+    '    If check_available_asg_color(sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_report_mark"))) Then
+    '        'already marked
+    '        Dim lead_time As String = sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("raw_lead_time"))
+    '        'condition
+    '        If Not lead_time = "" Then
+    '            If Integer.Parse(check_date_passed_now(lead_time)) > 0 Then
+    '                e.Appearance.BackColor = Color.Salmon
+    '                e.Appearance.BackColor2 = Color.Salmon
+    '            End If
+    '        End If
+    '    End If
+    '    '
+    '    If sender.GetRowCellDisplayText(e.RowHandle, sender.Columns("id_user")).ToString = id_user Then
+    '        e.Appearance.Font = New Font(GVMark.Appearance.Row.Font, FontStyle.Bold)
+    '    End If
+    'End If
+    'End Sub
 
     Private Sub BClearLeadTime_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BClearLeadTime.Click
         'MsgBox(id_report_status_report)
@@ -6672,7 +7391,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
         End If
 
         Dim dt As DataTable = get_who_prepared(report_mark_type, id_report)
-        If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "11" Then
             pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)

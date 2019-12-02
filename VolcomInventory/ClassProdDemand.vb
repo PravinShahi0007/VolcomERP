@@ -517,11 +517,24 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT r.id_prod_demand_rev, r.id_prod_demand, pd.prod_demand_number, pd.id_pd_kind, r.rev_count, r.id_report_status, stt.report_status, r.created_date, r.note, r.is_confirm, pd.id_season, s.season
+        Dim query As String = "SELECT r.id_prod_demand_rev, r.id_prod_demand, pd.prod_demand_number, pd.id_pd_kind, r.rev_count, r.id_report_status, stt.report_status, r.created_date, r.note, r.is_confirm, pd.id_season, s.season, 
+        la.employee_name AS `last_approved_by`, IFNULL(r.report_mark_type,0) AS `report_mark_type`
         FROM tb_prod_demand_rev r
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = r.id_prod_demand
         INNER JOIN tb_season s ON s.id_season = pd.id_season
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+        LEFT JOIN (
+			SELECT a.id_report, a.id_user, a.username, a.employee_name 
+			FROM (
+				SELECT rm.id_report, rm.id_user, u.username, e.employee_name
+				FROM tb_report_mark rm 
+				INNER JOIN tb_m_user u ON u.id_user = rm.id_user
+				INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+				WHERE (rm.report_mark_type=143 OR rm.report_mark_type=144 OR rm.report_mark_type=145) AND rm.id_report_status>1 AND rm.id_mark=2
+				ORDER BY rm.report_mark_datetime DESC
+			) a
+			GROUP BY a.id_report
+		) la ON la.id_report = r.id_prod_demand_rev
         WHERE r.id_prod_demand_rev>0 "
         query += condition + " "
         query += "GROUP BY r.id_prod_demand_rev "
@@ -607,5 +620,63 @@
         For j As Integer = 1 To 10
             GVDesign.Columns("qty" + j.ToString).Visible = False
         Next
+    End Sub
+
+    Sub viewBreakSizeDetail(ByVal id_prod_demand As String, ByVal gc As DevExpress.XtraGrid.GridControl, ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        'get size
+        gc.DataSource = Nothing
+        gc.RepositoryItems.Clear()
+
+        'repo
+        Dim riTE As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+        riTE.NullText = "-"
+        gc.RepositoryItems.Add(riTE)
+
+        Dim qz As String = "SELECT cd.id_code_detail, cd.display_name 
+        FROM tb_prod_demand_design pdd
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdd.is_void=2
+        GROUP BY cd.id_code_detail
+        ORDER BY cd.id_code_detail ASC "
+        Dim dz As DataTable = execute_query(qz, -1, True, "", "", "", "")
+
+        Dim query As String = "SELECT '' AS `NO`,dsg.design_code_import AS `CODE IMPORT`, dsg.design_code AS `CODE` , dsg.design_display_name AS `DESCRIPTION`,
+        GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY prodc.id_code_detail ASC SEPARATOR ', ') AS `SIZE CHART`, "
+        For i As Integer = 0 To dz.Rows.Count - 1
+            query += "IFNULL(SUM(CASE WHEN cd.id_code_detail=" + dz.Rows(i)("id_code_detail").ToString + " THEN pdp.prod_demand_product_qty END),0) AS `" + dz.Rows(i)("display_name").ToString + "`, "
+        Next
+        query += "SUM(pdp.prod_demand_product_qty) AS `TOTAL QTY`
+        FROM tb_prod_demand_design pdd
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design AND pdp.prod_demand_product_qty>0
+        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = pdd.id_design
+        WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdd.is_void=2
+        GROUP BY pdd.id_prod_demand_design
+        ORDER BY pdd.id_prod_demand_design ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        gc.DataSource = data
+
+        For i As Integer = 0 To dz.Rows.Count - 1
+            'display format
+            gv.Columns(dz.Rows(i)("display_name").ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns(dz.Rows(i)("display_name").ToString).DisplayFormat.FormatString = "{0:n0}"
+
+            'smmary
+            gv.Columns(dz.Rows(i)("display_name").ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            gv.Columns(dz.Rows(i)("display_name").ToString).SummaryItem.DisplayFormat = "{0:n0}"
+
+            'repo
+            gv.Columns(dz.Rows(i)("display_name").ToString).ColumnEdit = riTE
+        Next
+        gv.Columns("TOTAL QTY").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        gv.Columns("TOTAL QTY").DisplayFormat.FormatString = "{0:n0}"
+        gv.Columns("TOTAL QTY").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        gv.Columns("TOTAL QTY").SummaryItem.DisplayFormat = "{0:n0}"
+        gv.BestFitColumns()
     End Sub
 End Class

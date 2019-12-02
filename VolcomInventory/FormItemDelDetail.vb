@@ -69,20 +69,29 @@
     End Sub
 
     Private Function getRmg(ByVal cond As String) As DataTable
-        Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.id_prepare_status, ps.prepare_status, rd.final_reason, (rd.qty-IFNULL(dq.qty_del,0.0)) AS `qty`, 
-        '' AS remark, '' AS `stt`
-        FROM tb_item_req_det rd
-        INNER JOIN tb_item i ON i.id_item = rd.id_item
-        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-        LEFT JOIN (
-	        SELECT dd.id_item_req_det, SUM(dd.qty) AS `qty_del`
-	        FROM tb_item_del_det dd
-	        INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
-	        WHERE d.id_report_status!=5
-	        GROUP BY dd.id_item_req_det
-        ) dq ON dq.id_item_req_det = rd.id_item_req_det
-        INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = rd.id_prepare_status
-        WHERE rd.id_item_req=" + id_req + " " + cond
+        Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
+        Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.id_prepare_status, ps.prepare_status, rd.final_reason, IF(rd.is_store_request=1,IF(si.qty>(rd.qty-IFNULL(dq.qty_del,0.0)),(rd.qty-IFNULL(dq.qty_del,0.0)),si.qty),(rd.qty-IFNULL(dq.qty_del,0.0))) AS `qty`,rd.qty AS `qty_request`,IFNULL(dq.qty_del,0.0) AS `qty_delivered`, 
+                            IF(rd.is_store_request=1,IF(si.qty>(rd.qty-IFNULL(dq.qty_del,0.0)),(rd.qty-IFNULL(dq.qty_del,0.0)),si.qty),(rd.qty-IFNULL(dq.qty_del,0.0))) AS qty_limit,si.qty AS stok,
+                            '' AS remark, '' AS `stt`,IF(rd.is_store_request=1,'yes','no') as is_store_request
+                            FROM tb_item_req_det rd
+                            INNER JOIN tb_item_req r ON r.`id_item_req`=rd.`id_item_req`
+                            INNER JOIN tb_item i ON i.id_item = rd.id_item
+                            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+                            LEFT JOIN (
+	                            SELECT dd.id_item_req_det, SUM(dd.qty) AS `qty_del`
+	                            FROM tb_item_del_det dd
+	                            INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+	                            WHERE d.id_report_status!=5
+	                            GROUP BY dd.id_item_req_det
+                            ) dq ON dq.id_item_req_det = rd.id_item_req_det
+                            LEFT JOIN
+                            (
+	                            SELECT id_departement,id_storage_category,id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty
+	                            FROM `tb_storage_item` si
+	                            GROUP BY si.`id_item`,si.`id_departement`
+                            ) si ON si.id_departement=IF(rd.`is_store_request`=1," & id_purc_store & ",r.`id_departement`) AND si.id_item=rd.`id_item`
+                            INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = rd.id_prepare_status
+                            WHERE rd.id_item_req=" + id_req + " " + cond
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
@@ -106,18 +115,21 @@
         Return data
     End Function
 
-
     Sub viewDetail()
         Dim data As DataTable = Nothing
         If action = "ins" Then
             data = getRmg("")
         ElseIf action = "upd" Then
-            Dim query As String = "SELECT dd.id_item_del_det, dd.id_item_del, dd.id_item_req_det, dd.id_item, i.item_desc, u.uom, dd.qty, dd.remark 
+            Dim query As String = "SELECT dd.id_item_del_det, IF(rd.is_store_request=1,'yes','no') as is_store_request,dd.id_item_del, dd.id_item_req_det, dd.id_item, i.item_desc, u.uom, dd.qty, dd.remark 
             FROM tb_item_del_det dd
             INNER JOIN tb_item i ON i.id_item = dd.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.id_item_req_det
             WHERE dd.id_item_del=" + id + " "
             data = execute_query(query, -1, True, "", "", "", "")
+            GridColumnQtyDelivered.Visible = False
+            GridColumnQtyLimit.Visible = False
+            GridColumnQtyReq.Visible = False
         End If
         GCData.DataSource = data
         GVData.BestFitColumns()

@@ -43,18 +43,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEUnitCostBOM.Properties.ReadOnly = True
                 TEUnitCostPD.Properties.ReadOnly = True
                 '
-                TEUnitPrice.EditValue = True
-                TEAddCost.Properties.ReadOnly = True
-                TEUnitCostBOM.EditValue = True
-                TEUnitCostPD.EditValue = True
-                '
             Else
-                'if local can edit (Nanti ditutup setelah material average/lifo jalan)
-                If FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_source").ToString = "Local" Then
-                    TEUnitPrice.Properties.ReadOnly = False
-                Else
-                    TEUnitPrice.Properties.ReadOnly = True
-                End If
+                'if local can edit (Nanti ditutup setelah material average/lifo jalan) / Bu farida minta lokal bisa edit juga 05/13/2019 via lan messenger
+                'If FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_source").ToString = "Import" Then
+                'TEUnitPrice.Properties.ReadOnly = False
+                'Else
+                'TEUnitPrice.Properties.ReadOnly = True
+                'End If
 
                 TEAddCost.Properties.ReadOnly = False
                 TEUnitCostBOM.Properties.ReadOnly = False
@@ -542,11 +537,14 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 If Not GVCostMan.GetRowCellValue(i, "id_currency").ToString = "1" Then
                     actual_price = GVCostMan.GetRowCellValue(i, "actual_price")
                     price = kurs * actual_price
-                    '
-                    qty = GVCostMan.GetRowCellValue(i, "qty")
-                    total += qty * price
                 Else
                     price = GVCostMan.GetRowCellValue(i, "actual_price")
+                End If
+
+                If GVCostMan.GetRowCellValue(i, "id_category").ToString = "3" Then
+                    qty = GVCostMan.GetRowCellValue(i, "qty")
+                    total = total - (qty * price)
+                Else
                     qty = GVCostMan.GetRowCellValue(i, "qty")
                     total += qty * price
                 End If
@@ -601,11 +599,14 @@ WHERE `id_design`='" & id_design & "' "
                 If Not GVCostMan.GetRowCellValue(i, "id_currency").ToString = "1" Then
                     actual_price = GVCostMan.GetRowCellValue(i, "actual_price")
                     price = kurs * actual_price
-                    '
-                    qty = GVCostMan.GetRowCellValue(i, "qty")
-                    total += qty * price
                 Else
                     price = GVCostMan.GetRowCellValue(i, "actual_price")
+                End If
+
+                If GVCostMan.GetRowCellValue(i, "id_category").ToString = "3" Then
+                    qty = GVCostMan.GetRowCellValue(i, "qty")
+                    total = total - (qty * price)
+                Else
                     qty = GVCostMan.GetRowCellValue(i, "qty")
                     total += qty * price
                 End If
@@ -646,7 +647,7 @@ WHERE `id_design`='" & id_design & "' "
         Else
             If LEStatus.EditValue.ToString = "1" Then
                 'prefinal
-                Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
+                Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 Try
@@ -659,7 +660,7 @@ WHERE `id_design`='" & id_design & "' "
                 End Try
             Else
                 'final
-                Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_approve_by='" & id_user & "',final_is_approve='1',final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
+                Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "',final_is_approve='1',final_is_approve_date=NOW(),final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 Try

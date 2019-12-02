@@ -38,6 +38,10 @@ Partial Class FormProdDemandRevSingle
         Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRevdobe = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrent_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrent_cost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrent_add_cost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncurrent_size_chart = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +81,7 @@ Partial Class FormProdDemandRevSingle
         '
         Me.SLETypeLineList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLETypeLineList.Enabled = False
         Me.SLETypeLineList.Location = New System.Drawing.Point(92, 12)
         Me.SLETypeLineList.Name = "SLETypeLineList"
         Me.SLETypeLineList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -155,14 +160,18 @@ Partial Class FormProdDemandRevSingle
         '
         'GVDesign
         '
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumncode, Me.GridColumnName, Me.GridColumnOrderNumber, Me.GridColumnOrder, Me.GridColumnRevdobe})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumncode, Me.GridColumnName, Me.GridColumnOrderNumber, Me.GridColumnOrder, Me.GridColumnRevdobe, Me.GridColumncurrent_qty, Me.GridColumncurrent_cost, Me.GridColumncurrent_add_cost, Me.GridColumncurrent_size_chart})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDesign.OptionsView.ColumnAutoWidth = False
+        Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDesign.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdProdDemandDesign
         '
+        Me.GridColumnIdProdDemandDesign.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnIdProdDemandDesign.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnIdProdDemandDesign.Caption = "Id Prod Demand Design"
         Me.GridColumnIdProdDemandDesign.FieldName = "id_prod_demand_design"
         Me.GridColumnIdProdDemandDesign.Name = "GridColumnIdProdDemandDesign"
@@ -170,6 +179,8 @@ Partial Class FormProdDemandRevSingle
         '
         'GridColumncode
         '
+        Me.GridColumncode.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumncode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumncode.Caption = "Code"
         Me.GridColumncode.FieldName = "code"
         Me.GridColumncode.Name = "GridColumncode"
@@ -179,6 +190,8 @@ Partial Class FormProdDemandRevSingle
         '
         'GridColumnName
         '
+        Me.GridColumnName.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnName.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnName.Caption = "Description"
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.Name = "GridColumnName"
@@ -188,6 +201,8 @@ Partial Class FormProdDemandRevSingle
         '
         'GridColumnOrderNumber
         '
+        Me.GridColumnOrderNumber.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnOrderNumber.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnOrderNumber.Caption = "FG PO"
         Me.GridColumnOrderNumber.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnOrderNumber.FieldName = "prod_order_number"
@@ -198,18 +213,20 @@ Partial Class FormProdDemandRevSingle
         '
         'GridColumnOrder
         '
+        Me.GridColumnOrder.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnOrder.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnOrder.Caption = "Ordered"
         Me.GridColumnOrder.DisplayFormat.FormatString = "n0"
         Me.GridColumnOrder.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOrder.FieldName = "ordered"
         Me.GridColumnOrder.Name = "GridColumnOrder"
         Me.GridColumnOrder.OptionsColumn.AllowEdit = False
-        Me.GridColumnOrder.Visible = True
-        Me.GridColumnOrder.VisibleIndex = 3
         '
         'GridColumnRevdobe
         '
-        Me.GridColumnRevdobe.Caption = "Received"
+        Me.GridColumnRevdobe.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnRevdobe.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnRevdobe.Caption = "Received by QC"
         Me.GridColumnRevdobe.DisplayFormat.FormatString = "n0"
         Me.GridColumnRevdobe.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnRevdobe.FieldName = "received"
@@ -217,6 +234,48 @@ Partial Class FormProdDemandRevSingle
         Me.GridColumnRevdobe.OptionsColumn.AllowEdit = False
         Me.GridColumnRevdobe.Visible = True
         Me.GridColumnRevdobe.VisibleIndex = 4
+        '
+        'GridColumncurrent_qty
+        '
+        Me.GridColumncurrent_qty.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumncurrent_qty.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumncurrent_qty.Caption = "Current Total Qty"
+        Me.GridColumncurrent_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumncurrent_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncurrent_qty.FieldName = "current_qty"
+        Me.GridColumncurrent_qty.Name = "GridColumncurrent_qty"
+        Me.GridColumncurrent_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "current_qty", "{0:N0}")})
+        Me.GridColumncurrent_qty.Visible = True
+        Me.GridColumncurrent_qty.VisibleIndex = 3
+        Me.GridColumncurrent_qty.Width = 68
+        '
+        'GridColumncurrent_cost
+        '
+        Me.GridColumncurrent_cost.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumncurrent_cost.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumncurrent_cost.Caption = "Current Cost"
+        Me.GridColumncurrent_cost.DisplayFormat.FormatString = "N2"
+        Me.GridColumncurrent_cost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncurrent_cost.FieldName = "current_cost"
+        Me.GridColumncurrent_cost.Name = "GridColumncurrent_cost"
+        Me.GridColumncurrent_cost.Width = 98
+        '
+        'GridColumncurrent_add_cost
+        '
+        Me.GridColumncurrent_add_cost.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumncurrent_add_cost.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumncurrent_add_cost.Caption = "Current Additional Cost"
+        Me.GridColumncurrent_add_cost.DisplayFormat.FormatString = "N2"
+        Me.GridColumncurrent_add_cost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncurrent_add_cost.FieldName = "current_add_cost"
+        Me.GridColumncurrent_add_cost.Name = "GridColumncurrent_add_cost"
+        Me.GridColumncurrent_add_cost.Width = 130
+        '
+        'GridColumncurrent_size_chart
+        '
+        Me.GridColumncurrent_size_chart.Caption = "Current Size Chart"
+        Me.GridColumncurrent_size_chart.FieldName = "current_size_chart"
+        Me.GridColumncurrent_size_chart.Name = "GridColumncurrent_size_chart"
         '
         'FormProdDemandRevSingle
         '
@@ -261,4 +320,8 @@ Partial Class FormProdDemandRevSingle
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumncurrent_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncurrent_cost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncurrent_add_cost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncurrent_size_chart As DevExpress.XtraGrid.Columns.GridColumn
 End Class

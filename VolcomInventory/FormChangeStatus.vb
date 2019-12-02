@@ -59,6 +59,8 @@
             Dim query_jml As String = ""
             If id_pop_up = "3" Then 'return krn byk rmt
                 query_jml = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", gv.GetRowCellValue(c, "rmt").ToString, id_report)
+            ElseIf id_pop_up = "4" Then
+                query_jml = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", gv.GetRowCellValue(c, "rmk").ToString, id_report)
             Else
                 query_jml = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", report_mark_type, id_report)
             End If
@@ -67,6 +69,7 @@
                 assigned = False
             End If
         Next
+
 
         If (assigned = True) Or id_status_reportx = "5" Then
             If id_pop_up = "1" Then
@@ -131,6 +134,7 @@
                                 removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx)
                                 insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
                                 sendEmailConfirmation(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_commerce_type").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                                sendEmailConfirmationforConceptStore(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "43")
                             Else
                                 'jika delivery combine
                                 Dim id_del As String = FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString
@@ -140,6 +144,7 @@
                                     stt.insertUniqueCodeHead(id_combine, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_store").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString)
                                     removeAppListCombine("103", id_combine, id_status_reportx)
                                     insertFinalCommentCombine("103", id_combine, id_status_reportx, note)
+                                    sendEmailConfirmationforConceptStore(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString, id_combine, "103")
                                 End If
                             End If
                             PBC.PerformStep()
@@ -149,8 +154,10 @@
                     End If
                 End If
                 FormSalesOrderSvcLevel.GVSalesDelOrder.ActiveFilterString = ""
-                FormSalesOrderSvcLevel.viewDO()
-                FormSalesOrderSvcLevel.viewSalesOrder()
+                FormSalesOrderSvcLevel.GCSalesDelOrder.DataSource = Nothing
+                FormSalesOrderSvcLevel.GCSalesOrder.DataSource = Nothing
+                'FormSalesOrderSvcLevel.viewDO()
+                'FormSalesOrderSvcLevel.viewSalesOrder()
                 Close()
             ElseIf id_pop_up = "3" Then
                 Dim check_stt As Boolean = False
@@ -302,20 +309,33 @@
     End Sub
 
     Private Sub insertFinalComment(ByVal rmt As String, ByVal id_report As String, ByVal id_report_status As String, ByVal comment As String)
-        Dim query As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date) VALUES "
-        query += "('" + rmt + "', '" + id_report + "', '" + id_report_status + "', '" + id_user + "', '" + comment + "', NOW()) "
+        Dim query As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date, ip_user) VALUES "
+        query += "('" + rmt + "', '" + id_report + "', '" + id_report_status + "', '" + id_user + "', '" + comment + "', NOW(), '" + GetIPv4Address() + "') "
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
     Private Sub insertFinalCommentCombine(ByVal rmt As String, ByVal id_report As String, ByVal id_report_status As String, ByVal comment As String)
         'head 
-        Dim query As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date) 
-        SELECT '" + rmt + "', '" + id_report + "', '" + id_report_status + "', '" + id_user + "', '" + comment + "', NOW() 
+        Dim query As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date, ip_user) 
+        SELECT '" + rmt + "', '" + id_report + "', '" + id_report_status + "', '" + id_user + "', '" + comment + "', NOW(), '" + GetIPv4Address() + "'
         UNION ALL
-        SELECT '43',del.id_pl_sales_order_del,  '" + id_report_status + "', '" + id_user + "',  '" + comment + "', NOW() 
+        SELECT '43',del.id_pl_sales_order_del,  '" + id_report_status + "', '" + id_user + "',  '" + comment + "', NOW() , '" + GetIPv4Address() + "'
         FROM tb_pl_sales_order_del del WHERE del.id_combine=" + id_report + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Private Function GetIPv4Address() As String
+        GetIPv4Address = String.Empty
+        Dim strHostName As String = System.Net.Dns.GetHostName()
+        Dim iphe As System.Net.IPHostEntry = System.Net.Dns.GetHostEntry(strHostName)
+
+        For Each ipheal As System.Net.IPAddress In iphe.AddressList
+            If ipheal.AddressFamily = System.Net.Sockets.AddressFamily.InterNetwork Then
+                GetIPv4Address = ipheal.ToString()
+            End If
+        Next
+
+    End Function
 
     Private Sub removeAppList(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_status_reportx As String)
         If SLEStatusRec.EditValue.ToString = "5" Then
@@ -364,6 +384,15 @@
                     em.dt = data
                     em.send_email()
                 End If
+            End If
+        End If
+    End Sub
+
+    Sub sendEmailConfirmationforConceptStore(ByVal is_use_unique_code As String, ByVal id_report As String, ByVal rmt As String)
+        If id_pop_up = "2" Then
+            If is_use_unique_code = "1" And SLEStatusRec.EditValue.ToString = "6" Then
+                Dim d As New ClassSalesDelOrder()
+                d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
             End If
         End If
     End Sub

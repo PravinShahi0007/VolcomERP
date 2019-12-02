@@ -15,4 +15,15 @@
             End If
         End If
     End Sub
+
+    Private Sub GVSchedule_CustomColumnSort(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnSortEventArgs) Handles GVSchedule.CustomColumnSort
+        If e.Column.FieldName = "leave_month" Or e.Column.FieldName = "late_month" Then
+            Dim val1 As DateTime = Convert.ToDateTime(e.Value1)
+            Dim val2 As DateTime = Convert.ToDateTime(e.Value2)
+
+            e.Result = Comparer.Default.Compare(val1, val2)
+
+            e.Handled = True
+        End If
+    End Sub
 End Class

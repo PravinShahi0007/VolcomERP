@@ -107,6 +107,18 @@
         Else
             BDelete.Visible = True
         End If
+        '
+        If GVBankWithdrawal.RowCount = 0 Then
+            BDelBBK.Visible = False
+        Else
+            BDelBBK.Visible = False
+        End If
+        '
+        If GVBankDeposit.RowCount = 0 Then
+            BDelBBM.Visible = False
+        Else
+            BDelBBM.Visible = False
+        End If
     End Sub
 
     Sub load_type()
@@ -129,8 +141,14 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             TENumber.Text = data.Rows(0)("number").ToString
-
-            DEActualReconcile.EditValue = data.Rows(0)("report_back_date")
+            '
+            If data.Rows(0)("act_report_back_date").ToString = "" Then
+                DEActualReconcileDate.EditValue = Now
+            Else
+                DEActualReconcileDate.EditValue = data.Rows(0)("act_report_back_date").ToString
+            End If
+            '
+            DEStartReconcile.EditValue = data.Rows(0)("report_back_date")
             DEDueDate.EditValue = data.Rows(0)("report_back_due_date")
             '
             SLEType.EditValue = data.Rows(0)("id_cash_advance_type").ToString
@@ -139,7 +157,7 @@
             '
             TECashInAdvance.EditValue = Math.Round(data.Rows(0)("val_ca"), 2)
             MENote.EditValue = data.Rows(0)("note").ToString
-
+            '
             check_but()
         End If
     End Sub
@@ -187,6 +205,7 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         'check
         Dim acc_selected = True
+        Dim val_ok = True
 
         If XTPWithdrawal.PageVisible Then
             For i = 0 To GVBankWithdrawal.RowCount - 1
@@ -194,16 +213,40 @@
                     acc_selected = False
                 End If
             Next
+            '
+            If Not GVJournalDet.Columns("value").SummaryItem.SummaryValue - GVBankWithdrawal.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
+                val_ok = False
+            End If
         ElseIf XTPDeposit.PageVisible Then
             For i = 0 To GVBankDeposit.RowCount - 1
                 If GVBankDeposit.GetRowCellValue(i, "id_acc").ToString = "" Then
                     acc_selected = False
                 End If
             Next
+            '
+            If Not GVBankDeposit.Columns("value").SummaryItem.SummaryValue + GVJournalDet.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
+                val_ok = False
+            End If
         End If
 
         'save
-        If acc_selected Then
+        If acc_selected = False Then
+            If XTPWithdrawal.PageVisible Then
+                XTCCA.SelectedTabPageIndex = 1
+            ElseIf XTPDeposit.PageVisible Then
+                XTCCA.SelectedTabPageIndex = 2
+            End If
+
+            warningCustom("Please check your account")
+        ElseIf val_ok = False Then
+            If XTPWithdrawal.PageVisible Then
+                XTCCA.SelectedTabPageIndex = 1
+            ElseIf XTPDeposit.PageVisible Then
+                XTCCA.SelectedTabPageIndex = 2
+            End If
+
+            warningCustom("Please make sure your cash is balance")
+        Else
             Dim query As String = ""
 
             'report
@@ -228,26 +271,23 @@
             End If
 
             If XTPWithdrawal.PageVisible Or XTPDeposit.PageVisible Then
-                query = "INSERT INTO tb_cash_advance_report_det(id_cash_advance,id_acc,description,value,note,id_bill_type) VALUES ('" & id_ca & "', '" & GVSelected.GetRowCellValue(0, "id_acc").ToString & "', '" & addSlashes(GVSelected.GetRowCellValue(0, "description").ToString) & "', '" & decimalSQL(GVSelected.GetRowCellValue(0, "value").ToString) & "', '" & addSlashes(GVSelected.GetRowCellValue(0, "note").ToString) & "', '" & id_bill_type & "')"
+                'loop
+                For i As Integer = 0 To GVSelected.RowCount - 1
+                    query = "INSERT INTO tb_cash_advance_report_det(id_cash_advance,id_acc,description,value,note,id_bill_type) VALUES ('" & id_ca & "', '" & GVSelected.GetRowCellValue(i, "id_acc").ToString & "', '" & addSlashes(GVSelected.GetRowCellValue(i, "description").ToString) & "', '" & decimalSQL(GVSelected.GetRowCellValue(i, "value").ToString) & "', '" & addSlashes(GVSelected.GetRowCellValue(i, "note").ToString) & "', '" & id_bill_type & "')"
+                Next
 
                 execute_non_query(query, True, "", "", "", "")
             End If
-
+            '
+            query = "UPDATE tb_cash_advance SET act_report_back_date=NOW() WHERE id_cash_advance='" & id_ca & "'"
+            execute_non_query(query, True, "", "", "", "")
+            '
             infoCustom("Report saved")
 
             'add mark
             submit_who_prepared("174", id_ca, id_user)
 
             load_det()
-        Else
-
-            If XTPWithdrawal.PageVisible Then
-                XTCCA.SelectedTabPageIndex = 1
-            ElseIf XTPDeposit.PageVisible Then
-                XTCCA.SelectedTabPageIndex = 2
-            End If
-
-            warningCustom("Please insert account")
         End If
     End Sub
 
@@ -388,7 +428,7 @@
         Report.XLCashAdvance.Text = "Rp. " + TECashInAdvance.Text
         Report.XLPropose.Text = MENote.Text
         Report.XLTypeCash.Text = SLEType.Text
-        Report.XLRecDate.Text = DEActualReconcile.Text
+        Report.XLRecDate.Text = DEStartReconcile.Text
         Report.XLRecDueDate.Text = DEDueDate.Text
         If XTPWithdrawal.PageVisible Then
             Report.XLType.Text = "Bank Withdrawal (BBK)"
@@ -417,5 +457,31 @@
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BAddBBK_Click(sender As Object, e As EventArgs) Handles BAddBBK.Click
+        GVBankWithdrawal.AddNewRow()
+        GVBankWithdrawal.FocusedRowHandle = GVBankWithdrawal.RowCount - 1
+        check_but()
+    End Sub
+
+    Private Sub BDelBBK_Click(sender As Object, e As EventArgs) Handles BDelBBK.Click
+        If GVBankWithdrawal.RowCount > 0 Then
+            GVBankWithdrawal.DeleteSelectedRows()
+            check_but()
+        End If
+    End Sub
+
+    Private Sub BAddBBM_Click(sender As Object, e As EventArgs) Handles BAddBBM.Click
+        GVBankDeposit.AddNewRow()
+        GVBankDeposit.FocusedRowHandle = GVBankWithdrawal.RowCount - 1
+        check_but()
+    End Sub
+
+    Private Sub BDelBBM_Click(sender As Object, e As EventArgs) Handles BDelBBM.Click
+        If GVBankDeposit.RowCount > 0 Then
+            GVBankDeposit.DeleteSelectedRows()
+            check_but()
+        End If
     End Sub
 End Class

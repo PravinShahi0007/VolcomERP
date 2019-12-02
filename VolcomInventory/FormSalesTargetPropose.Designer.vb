@@ -23,9 +23,6 @@ Partial Class FormSalesTargetPropose
         Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.XTPRev = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCRev = New DevExpress.XtraGrid.GridControl()
-        Me.GVRev = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_sales_trg_propose = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnyear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,6 +30,10 @@ Partial Class FormSalesTargetPropose
         Me.GridColumnupdated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPRev = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRev = New DevExpress.XtraGrid.GridControl()
+        Me.GVRev = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnUpdatedByName = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPropose.SuspendLayout()
         Me.XTPNew.SuspendLayout()
@@ -73,39 +74,13 @@ Partial Class FormSalesTargetPropose
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_trg_propose, Me.GridColumnyear, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumnupdated_date, Me.GridColumnnote, Me.GridColumnstt})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_trg_propose, Me.GridColumnyear, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumnupdated_date, Me.GridColumnnote, Me.GridColumnstt, Me.GridColumnUpdatedByName})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'XTPRev
-        '
-        Me.XTPRev.Controls.Add(Me.GCRev)
-        Me.XTPRev.Name = "XTPRev"
-        Me.XTPRev.Size = New System.Drawing.Size(828, 464)
-        Me.XTPRev.Text = "Revision"
-        '
-        'GCRev
-        '
-        Me.GCRev.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRev.Location = New System.Drawing.Point(0, 0)
-        Me.GCRev.MainView = Me.GVRev
-        Me.GCRev.Name = "GCRev"
-        Me.GCRev.Size = New System.Drawing.Size(828, 464)
-        Me.GCRev.TabIndex = 1
-        Me.GCRev.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRev})
-        '
-        'GVRev
-        '
-        Me.GVRev.GridControl = Me.GCRev
-        Me.GVRev.Name = "GVRev"
-        Me.GVRev.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVRev.OptionsBehavior.Editable = False
-        Me.GVRev.OptionsFind.AlwaysVisible = True
-        Me.GVRev.OptionsView.ShowGroupPanel = False
         '
         'GridColumnid_sales_trg_propose
         '
@@ -155,7 +130,7 @@ Partial Class FormSalesTargetPropose
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 4
+        Me.GridColumnnote.VisibleIndex = 5
         '
         'GridColumnstt
         '
@@ -163,7 +138,41 @@ Partial Class FormSalesTargetPropose
         Me.GridColumnstt.FieldName = "report_status"
         Me.GridColumnstt.Name = "GridColumnstt"
         Me.GridColumnstt.Visible = True
-        Me.GridColumnstt.VisibleIndex = 5
+        Me.GridColumnstt.VisibleIndex = 6
+        '
+        'XTPRev
+        '
+        Me.XTPRev.Controls.Add(Me.GCRev)
+        Me.XTPRev.Name = "XTPRev"
+        Me.XTPRev.Size = New System.Drawing.Size(828, 464)
+        Me.XTPRev.Text = "Revision"
+        '
+        'GCRev
+        '
+        Me.GCRev.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRev.Location = New System.Drawing.Point(0, 0)
+        Me.GCRev.MainView = Me.GVRev
+        Me.GCRev.Name = "GCRev"
+        Me.GCRev.Size = New System.Drawing.Size(828, 464)
+        Me.GCRev.TabIndex = 1
+        Me.GCRev.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRev})
+        '
+        'GVRev
+        '
+        Me.GVRev.GridControl = Me.GCRev
+        Me.GVRev.Name = "GVRev"
+        Me.GVRev.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVRev.OptionsBehavior.Editable = False
+        Me.GVRev.OptionsFind.AlwaysVisible = True
+        Me.GVRev.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnUpdatedByName
+        '
+        Me.GridColumnUpdatedByName.Caption = "Updated By"
+        Me.GridColumnUpdatedByName.FieldName = "updated_by_name"
+        Me.GridColumnUpdatedByName.Name = "GridColumnUpdatedByName"
+        Me.GridColumnUpdatedByName.Visible = True
+        Me.GridColumnUpdatedByName.VisibleIndex = 4
         '
         'FormSalesTargetPropose
         '
@@ -199,4 +208,5 @@ Partial Class FormSalesTargetPropose
     Friend WithEvents GridColumnupdated_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnstt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnUpdatedByName As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -71,6 +71,7 @@ Partial Class FormSampleExpenseDet
         Me.GCAfter = New DevExpress.XtraGrid.GridControl()
         Me.GVAfter = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -670,7 +671,7 @@ Partial Class FormSampleExpenseDet
         '
         'GVAfter
         '
-        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn4})
+        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn4})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
         Me.GVAfter.OptionsView.ShowFooter = True
@@ -683,13 +684,22 @@ Partial Class FormSampleExpenseDet
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "No."
+        Me.GridColumn7.FieldName = "no"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Description"
         Me.GridColumn2.FieldName = "description"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 693
         '
         'GridColumn3
@@ -704,7 +714,7 @@ Partial Class FormSampleExpenseDet
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 128
         '
         'GridColumn5
@@ -717,7 +727,7 @@ Partial Class FormSampleExpenseDet
         Me.GridColumn5.FieldName = "uom"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.VisibleIndex = 3
         Me.GridColumn5.Width = 111
         '
         'GridColumn6
@@ -732,7 +742,7 @@ Partial Class FormSampleExpenseDet
         Me.GridColumn6.FieldName = "value"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.VisibleIndex = 4
         Me.GridColumn6.Width = 396
         '
         'GridColumn4
@@ -751,7 +761,7 @@ Partial Class FormSampleExpenseDet
         Me.GridColumn4.UnboundExpression = "[qty] * [value]"
         Me.GridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         Me.GridColumn4.Width = 304
         '
         'RepositoryItemCheckEdit1
@@ -896,4 +906,5 @@ Partial Class FormSampleExpenseDet
     Friend WithEvents LabelControl29 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

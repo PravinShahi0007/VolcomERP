@@ -61,7 +61,10 @@
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
         ppd.price, ppd.sale_price, ppd.additional_price, ppd.cop_date,
         ppd.id_design_price_type_master, ptm.design_price_type AS `design_price_type_master`, ppd.id_design_price_type_print, ptp.design_price_type AS `design_price_type_print`,
-        ppd.remark, ppd.is_active, sa.status
+        ppd.remark, ppd.is_active, sa.status,
+        pdd.prod_demand_design_propose_price AS `pd_price`, pdd.additional_price AS `pd_additional_price`,(pdd.prod_demand_design_propose_price-pdd.additional_price) AS `pd_price_min_add`,
+        pdd.prod_demand_design_total_cost AS `pd_cop`, pdd.additional_cost AS `pd_additional_cost`, (pdd.prod_demand_design_total_cost-pdd.additional_cost) AS `pd_cop_min_add`,
+        IF(pdd.rate_current>1, pdd.rate_current, pdd.rate_management) AS `pd_rate`
         FROM tb_fg_propose_price_detail ppd
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
         INNER JOIN tb_season_delivery del ON del.id_delivery = d.id_delivery
@@ -112,6 +115,7 @@
         INNER JOIN tb_lookup_status sa ON sa.id_status = ppd.is_active 
         INNER JOIN tb_lookup_design_price_type ptm ON ptm.id_design_price_type = ppd.id_design_price_type_master
         INNER JOIN tb_lookup_design_price_type ptp ON ptp.id_design_price_type = ppd.id_design_price_type_print
+        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = ppd.id_prod_demand_design
         WHERE ppd.id_fg_propose_price_detail>0 "
         query += condition + " "
         query += "ORDER BY d.design_display_name ASC "
@@ -166,7 +170,7 @@
 	        INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price = pp.id_fg_propose_price
 	        WHERE pp.id_report_status!=5
         ) pp ON pp.id_design = d.id_design
-        WHERE d.id_season=" + id_ss + " AND d.id_lookup_status_order=1 AND src.id_src=" + source + " "
+        WHERE d.id_season=" + id_ss + " AND (d.id_lookup_status_order=1 OR d.id_lookup_status_order=3) AND src.id_src=" + source + " "
         If is_for_add_list Then
             query += " AND ISNULL(pp.id_fg_propose_price) HAVING id_cop_status>0 "
         End If

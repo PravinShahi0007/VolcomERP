@@ -13,7 +13,8 @@
 
     Private Sub FormSampleExpense_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
-        check_menu()
+        checkFormAccess(Name)
+        button_main("1", "1", "0")
     End Sub
 
     Sub check_menu()
@@ -41,8 +42,8 @@
     End Sub
 
     Sub load_purc(ByVal opt As String)
-        Dim query As String = "SELECT po.number,emp.`employee_name`,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
-,sb.`description` AS budget,sts.`report_status`,cur.`currency`,det.amount,(po.kurs*det.amount) AS amount_rp
+        Dim query As String = "SELECT po.id_sample_po_mat,po.number,emp.`employee_name`,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`,po.`note`,po.`kurs`
+,sb.`description` AS budget,sts.`report_status`,cur.`currency`,ROUND(((det.amount * (po.vat / 100)) + det.amount),2) AS amount,ROUND((po.kurs*((det.amount * (po.vat / 100)) + det.amount)),2) AS amount_rp
 FROM tb_sample_po_mat po 
 INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -51,13 +52,13 @@ INNER JOIN tb_sample_purc_budget sb ON sb.`id_sample_purc_budget`=po.`id_sample_
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=po.`id_report_status`
 INNER JOIN 
 (
-	SELECT pomd.`id_sample_po_mat`,(pomd.`qty`*pomd.`value`) AS amount FROM  tb_sample_po_mat_det pomd
+	SELECT pomd.`id_sample_po_mat`,SUM(pomd.`qty`*pomd.`value`) AS amount FROM  tb_sample_po_mat_det pomd
 	GROUP BY pomd.`id_sample_po_mat`
 ) det ON det.id_sample_po_mat=po.`id_sample_po_mat`"
         If opt = "2" Then
-            query += " WHERE DATE(po.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(po.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'
-ORDER BY po.id_sample_po_mat DESC"
+            query += " WHERE DATE(po.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(po.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         End If
+        query += "ORDER BY po.id_sample_po_mat DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurchaseList.DataSource = data
         GVPurchaseList.BestFitColumns()
@@ -73,6 +74,13 @@ ORDER BY po.id_sample_po_mat DESC"
     End Sub
 
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        If GVPurchaseList.RowCount > 0 Then
+            FormSampleExpenseDet.id_purc = GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat")
+            FormSampleExpenseDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVPurchaseList_DoubleClick(sender As Object, e As EventArgs) Handles GVPurchaseList.DoubleClick
         If GVPurchaseList.RowCount > 0 Then
             FormSampleExpenseDet.id_purc = GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat")
             FormSampleExpenseDet.ShowDialog()

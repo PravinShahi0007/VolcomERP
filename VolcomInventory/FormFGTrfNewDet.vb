@@ -131,7 +131,7 @@ Public Class FormFGTrfNewDet
         Dim query As String = "SELECT a.id_so_type, a.id_so_status, a.id_sales_order, a.id_store_contact_to, d.id_wh_type, (d.comp_name) AS store_name_to,a.id_report_status, f.report_status, "
         query += "a.sales_order_note,a.sales_order_date, a.sales_order_note, a.sales_order_number, "
         query += "DATE_FORMAT(a.sales_order_date,'%d %M %Y') AS sales_order_date, (SELECT COUNT(id_pl_sales_order_del) FROM tb_pl_sales_order_del WHERE tb_pl_sales_order_del.id_sales_order = a.id_sales_order) AS pl_created, "
-        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name` "
+        query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name`, a.id_prepare_status "
         query += "FROM tb_sales_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -141,6 +141,13 @@ Public Class FormFGTrfNewDet
         query += "WHERE a.id_sales_order = '" + id_sales_order + "' "
         query += "ORDER BY a.id_sales_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'cek masi open ato close
+        If data.Rows(0)("id_prepare_status") = "2" Then
+            stopCustom("This order already closed")
+            FormFGTrfNew.viewSalesOrder()
+            Close()
+        End If
 
         'SO
         TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
@@ -398,10 +405,10 @@ Public Class FormFGTrfNewDet
     '-------------------------------------------------------------------------------------
     'SAAT INI PARAMETER HANYA ID PROD KARENA PRODUCTION HANYA ADA 1 COST (19 Sept 2014)
     '-----------------------------------------------------------------------------------
-    Sub codeAvailableIns(ByVal id_product_param As String)
+    Sub codeAvailableIns(ByVal id_product_param As String, ByVal id_product_param_comma As String)
         dt.Clear()
         Dim query As String = ""
-        query = "CALL view_stock_fg_unique_del('" + id_product_param + "')"
+        query = "CALL view_stock_fg_unique_del_less('" + id_product_param_comma + "')"
         Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
         dt = datax
         'For k As Integer = 0 To (datax.Rows.Count - 1)
@@ -410,7 +417,7 @@ Public Class FormFGTrfNewDet
 
         'not unique 
         Dim query_c As ClassDesign = New ClassDesign()
-        Dim query_not As String = query_c.queryOldDesignCode(id_product_param)
+        Dim query_not As String = query_c.queryOldDesignCodeLess(id_product_param_comma)
         Dim data_not As DataTable = execute_query(query_not, -1, True, "", "", "", "")
 
         'merge
@@ -563,20 +570,28 @@ Public Class FormFGTrfNewDet
 
     Sub loadCodeDetail()
         Cursor = Cursors.WaitCursor
-        Dim id_product_param As String = ""
-        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
-            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
-                id_product_param += ";"
-            End If
-        Next
-        codeAvailableIns(id_product_param)
+        makeSafeGV(GVItemList)
+        GVItemList.ActiveFilterString = "[status]<>'0'"
+        If GVItemList.RowCount > 0 Then
+            Dim id_product_param As String = ""
+            Dim id_product_param_comma As String = ""
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+                id_product_param_comma += GVItemList.GetRowCellValue(i, "id_product").ToString
+                If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                    id_product_param += ";"
+                    id_product_param_comma += ","
+                End If
+            Next
+            codeAvailableIns(id_product_param, id_product_param_comma)
+        End If
+        GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 
     Sub startScan()
         loadCodeDetail()
-        verifyTrans()
+        'verifyTrans()
         disableControl()
         newRowsBc()
         'allowDelete()
@@ -745,7 +760,7 @@ Public Class FormFGTrfNewDet
         If Not code_found Then
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
             GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-            stopCustom("Data not found or duplicate!")
+            stopCustomDialog("Data not found or duplicate!")
         Else
             'jika akun normal/sale
             If id_wh_type = "1" Or id_wh_type = "2" Then
@@ -753,9 +768,9 @@ Public Class FormFGTrfNewDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
                     If id_wh_type = "1" Then
-                        stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for normal product. ")
                     Else
-                        stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
+                        stopCustomDialog(TxtCodeCompTo.Text + " is only for sale product. ")
                     End If
                     Cursor = Cursors.Default
                     Exit Sub
@@ -766,16 +781,16 @@ Public Class FormFGTrfNewDet
                 If Not code_found Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data not found or duplicate!")
+                    stopCustomDialog("Data not found or duplicate!")
                 Else
                     If jum_limit <= 0 Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("This item cannot scan, because limit qty is zero.")
+                        stopCustomDialog("This item cannot scan, because limit qty is zero.")
                     ElseIf jum_scan >= jum_limit Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Maximum qty : " + jum_limit.ToString)
+                        stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                     Else
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_fg_trf_det_counting", "0")
@@ -802,20 +817,20 @@ Public Class FormFGTrfNewDet
                 If Not code_found Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data not found or duplicate!")
+                    stopCustomDialog("Data not found or duplicate!")
                 ElseIf code_duplicate Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Data duplicate !")
+                    stopCustomDialog("Data duplicate !")
                 Else
                     If jum_limit <= 0 Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("This item cannot scan, because limit qty is zero.")
+                        stopCustomDialog("This item cannot scan, because limit qty is zero.")
                     ElseIf jum_scan >= jum_limit Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Maximum qty : " + jum_limit.ToString)
+                        stopCustomDialog("Maximum qty : " + jum_limit.ToString)
                     Else
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_fg_trf_det_counting", "0")
@@ -834,7 +849,7 @@ Public Class FormFGTrfNewDet
             Else
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                 GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Data not found !")
+                stopCustomDialog("Data not found !")
             End If
         End If
         Cursor = Cursors.Default
@@ -1055,7 +1070,7 @@ Public Class FormFGTrfNewDet
                 Cursor = Cursors.WaitCursor
                 BtnSave.Enabled = False
 
-                Dim fg_trf_note As String = MENote.Text.ToString
+                Dim fg_trf_note As String = addSlashes(MENote.Text.ToString)
                 If action = "ins" Then
                     'query main table
                     Dim fg_trf_number As String = header_number_sales("15")
@@ -1366,7 +1381,7 @@ Public Class FormFGTrfNewDet
             Cursor = Cursors.WaitCursor
             GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
             If GVBarcode.RowCount <= 0 Then
-                stopCustom("Code not found.")
+                stopCustomDialog("Code not found.")
                 GVBarcode.ActiveFilterString = ""
                 TxtDeleteScan.Text = ""
                 TxtDeleteScan.Focus()

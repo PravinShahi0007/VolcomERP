@@ -20,6 +20,9 @@
     Public id_propose_changes As String = "-1"
     Public report_mark_type As String = "-1"
     Public id_report_status_pc As String = "-1"
+    Public id_design_rev_from As String = "NULL"
+    Public is_pcd As String = "-1"
+    Public id_changes As String = "-1"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -32,6 +35,34 @@
         lookup.Properties.DisplayMember = "uom"
         lookup.Properties.ValueMember = "id_uom"
         lookup.ItemIndex = 0
+    End Sub
+
+    'view line plan
+    Sub viewLinePlan()
+        Dim id_ss As String = LESeason.EditValue.ToString
+
+        'get class design
+        Dim id_cls As String = "0"
+        Dim qcl As String = "SELECT dc.id_code_detail FROM tb_m_design_code dc
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail
+        WHERE dc.id_design=" + id_design + " AND cd.id_code=30 "
+        Dim dcl As DataTable = execute_query(qcl, -1, True, "", "", "", "")
+        If dcl.Rows.Count > 0 Then
+            id_cls = dcl.Rows(0)("id_code_detail").ToString
+        End If
+
+        Dim query As String = "SELECT lp.id_fg_line_plan, cd.display_name AS `class`, cdc.display_name AS `color`,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
+        FROM tb_fg_line_plan lp 
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = lp.id_class
+        LEFT JOIN tb_m_code_detail cdc ON cd.id_code_detail = lp.id_color
+        WHERE lp.id_fg_line_plan=0
+        UNION
+        SELECT lp.id_fg_line_plan, cd.display_name AS `class`, cdc.display_name AS `color`,lp.description, lp.`benchmark`, lp.mark_up,lp.target_price, (lp.target_price / lp.mark_up) AS `target_cost`
+        FROM tb_fg_line_plan lp 
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = lp.id_class
+        LEFT JOIN tb_m_code_detail cdc ON cd.id_code_detail = lp.id_color
+        WHERE lp.id_season=" + id_ss + " AND lp.id_class='" + id_cls + "' "
+        viewSearchLookupQuery(SLELinePlan, query, "id_fg_line_plan", "description", "id_fg_line_plan")
     End Sub
 
     'tampung counting
@@ -433,6 +464,7 @@
                 query += "INNER JOIN tb_season_delivery del ON a.id_delivery = del.id_delivery "
                 query += "INNER JOIN tb_lookup_status d ON d.id_status = a.id_active  "
                 query += "INNER JOIN tb_lookup_ret_code ret ON ret.id_ret_code = a.id_ret_code "
+                query += "INNER JOIN tb_fg_line_plan lp ON lp.id_fg_line_plan = a.id_fg_line_plan "
                 query += "WHERE a.id_design = '" + id_design + "' "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -443,7 +475,12 @@
                 If id_pop_up = "3" Then
                     TEDisplayNameNonMD.Text = data.Rows(0)("design_display_name").ToString
                 Else
-                    TEDisplayName.Text = data.Rows(0)("design_display_name").ToString
+
+                    If is_pcd = "1" Then
+                        TEDisplayName.Text = ""
+                    Else
+                        TEDisplayName.Text = data.Rows(0)("design_display_name").ToString
+                    End If
                 End If
 
                 'code
@@ -468,6 +505,7 @@
                 LESeason.EditValue = data.Rows(0)("id_season").ToString
                 SLESeasonOrigin.EditValue = data.Rows(0)("id_season_orign").ToString
                 LESampleOrign.EditValue = data.Rows(0)("id_sample").ToString
+                SLELinePlan.EditValue = data.Rows(0)("id_fg_line_plan").ToString
 
                 SLEDel.EditValue = data.Rows(0)("id_delivery").ToString
                 SLEDelAct.EditValue = data.Rows(0)("id_delivery_act").ToString
@@ -484,6 +522,9 @@
                     CheckEditApproved.EditValue = True
                 Else
                     CheckEditApproved.EditValue = False
+                End If
+                If is_pcd = "1" Then
+                    is_approved = "2"
                 End If
 
                 If dupe = "-1" And id_pop_up = "5" Then ' only for dsg Line List
@@ -954,6 +995,7 @@
             SLESeasonOrigin.Enabled = False
             BtnAddSeasonOrign.Enabled = False
 
+            SLELinePlan.Enabled = True
             LESeason.Enabled = True
             BtnAddSeaason.Enabled = True
             XTPLineList.PageVisible = True
@@ -1130,6 +1172,7 @@
             DEWHDate.Enabled = False
             DEInStoreDet.Enabled = False
             BtnAddRetCode.Enabled = False
+            SLELinePlan.Enabled = False
 
             'comment
             PanelControlComment.Visible = True
@@ -1171,9 +1214,9 @@
         Dim is_permanent_master_dsg As String = get_setup_field("is_permanent_master_dsg")
         If is_permanent_master_dsg = "1" And dupe = "-1" Then
             Dim query_cek_po As String = ""
-            query_cek_po += "SELECT COUNT(*) FROM tb_prod_order pr_ord "
-            query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand_design = pd_dsg.id_prod_demand_design "
-            query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' "
+            query_cek_po += "SELECT COUNT(*) FROM tb_prod_demand pr_ord "
+            query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand = pd_dsg.id_prod_demand "
+            query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' AND pr_ord.is_pd=1 "
             Dim jum_cek_po As String = execute_query(query_cek_po, 0, True, "", "", "", "")
             'jika uda ada PO yg diproses
             If jum_cek_po > 0 Then
@@ -1212,6 +1255,7 @@
                 TEDisplayNameNonMD.Enabled = False
                 DEWHDate.Enabled = False
                 BtnAddRetCode.Enabled = False
+                SLELinePlan.Enabled = False
             End If
         End If
 
@@ -1429,7 +1473,7 @@
         End If
 
         ValidateChildren()
-        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign, is_old_design As String
+        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_fg_line_plan, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign, is_old_design As String
         namex = addSlashes(TEName.Text.TrimStart(" ").TrimEnd(" "))
 
         'code & display name
@@ -1474,6 +1518,7 @@
         End Try
         design_fabrication = addSlashes(TxtFabrication.Text)
         id_lookup_status_order = "1"
+        id_fg_line_plan = SLELinePlan.EditValue.ToString
 
         id_design_ref = Nothing
         Try
@@ -1501,12 +1546,12 @@
         If id_pop_up = "-1" Then
             Dim query_cek_code As String = ""
             If id_design = "-1" Then 'New
-                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
+                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
             Else 'Edit
                 If dupe = "-1" Then
-                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' AND a.id_active=1 "
+                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' "
                 Else
-                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
+                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
                 End If
             End If
             Dim jum_row As String = execute_query(query_cek_code, 0, True, "", "", "", "")
@@ -1747,7 +1792,14 @@
                     Else
                         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                         If confirm = Windows.Forms.DialogResult.Yes Then
-                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design) "
+                            Dim is_process As String = ""
+                            If is_pcd = "1" Then
+                                is_process = "1"
+                            Else
+                                is_process = "2"
+                            End If
+
+                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from) "
                             query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                             If design_eos = "-1" Then
                                 query += "NULL, "
@@ -1771,8 +1823,20 @@
                                 query += "'" + id_design_ref + "', "
                             End If
                             query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
-                            query += ", '" + is_old_design + "');SELECT LAST_INSERT_ID(); "
+                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ");SELECT LAST_INSERT_ID(); "
                             id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
+
+                            'save detil propose change design
+                            If is_pcd = "1" Then
+                                Dim id_pdd As String = FormFGDesignListChangesDesign.GVData.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                                Dim id_po As String = FormFGDesignListChangesDesign.GVData.GetFocusedRowCellValue("id_prod_order").ToString
+                                If id_po = "0" Or id_po = "" Then
+                                    id_po = "NULL"
+                                End If
+                                Dim query_pcd_det As String = "INSERT INTO tb_m_design_changes_det(id_changes, id_design, id_prod_demand_design, id_prod_order) 
+                                VALUES(" + id_changes + "," + id_design_tersimpan + ", " + id_pdd + ", " + id_po + "); SELECT LAST_INSERT_ID(); "
+                                Dim id_detail_pcd As String = execute_query(query_pcd_det, 0, True, "", "", "", "")
+                            End If
 
                             'cek image
                             save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & ".jpg")
@@ -1835,12 +1899,19 @@
                                 FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                             End If
 
-                            dupe = "-1"
-                            id_design = id_design_tersimpan
-                            Dim stt As New ClassDesign
-                            stt.updatedTime(id_design)
-                            infoCustom(display_name + ", has been sucessfully created.")
-                            actionLoad()
+                            If is_pcd = "1" Then
+                                execute_non_query("CALL gen_design_changes(" + id_changes + ")", True, "", "", "", "")
+                                FormFGDesignListChangesDesign.viewData()
+                                FormFGDesignListChanges.viewDetail()
+                                Close()
+                            Else
+                                dupe = "-1"
+                                id_design = id_design_tersimpan
+                                Dim stt As New ClassDesign
+                                stt.updatedTime(id_design)
+                                infoCustom(display_name + ", has been sucessfully created.")
+                                actionLoad()
+                            End If
                         End If
                     End If
                 Else
@@ -1874,7 +1945,8 @@
                                 query += "id_design_ref='" + id_design_ref + "', "
                             End If
                             query += "id_active='" + id_active + "', "
-                            query += "design_detail='" + design_detail + "' "
+                            query += "design_detail='" + design_detail + "', 
+                            id_fg_line_plan='" + id_fg_line_plan + "' "
                             query += "WHERE id_design='{5}' "
                             query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
                             execute_non_query(query, True, "", "", "", "")
@@ -1939,6 +2011,14 @@
                             stt.updatedTime(id_design)
 
                             Cursor = Cursors.Default
+
+                            If is_pcd = "1" Then
+                                execute_non_query("CALL gen_design_changes(" + id_changes + ")", True, "", "", "", "")
+                                FormFGDesignListChanges.viewDetail()
+                                FormFGDesignListChanges.GVData.FocusedRowHandle = find_row(FormFGDesignListChanges.GVData, "id_design_new", id_design)
+                                Close()
+                                Exit Sub
+                            End If
                             infoCustom("Edit has been sucessfully.")
                             actionLoad()
                         End If
@@ -2266,6 +2346,7 @@
         Catch ex As Exception
         End Try
         viewDelivery(id_s)
+        viewLinePlan()
     End Sub
 
     Private Sub GCProductPrice_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GCProductPrice.Click
@@ -2775,7 +2856,12 @@
 
         'desc
         Dim full_desc As String = ""
-        full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+        If CEPRM.EditValue = True Then
+            full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+        Else
+            full_desc = class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+        End If
+
 
         If full_desc.Length > 25 Then
             TEDisplayNameNonMD.Text = full_desc.Substring(0, 25)
@@ -3040,5 +3126,9 @@
         End If
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLELinePlan_MouseDown(sender As Object, e As MouseEventArgs) Handles SLELinePlan.MouseDown
+        SLELinePlan.Properties.View.BestFitColumns()
     End Sub
 End Class

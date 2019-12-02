@@ -8,6 +8,11 @@
     End Sub
 
     Sub actionLoad()
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCUni.TabPages
+            XTCUni.SelectedTabPage = t
+        Next t
+        XTCUni.SelectedTabPage = XTCUni.TabPages(0)
+
         If action = "ins" Then
             XTCUni.Enabled = False
             BtnSave.Text = "Create New"
@@ -31,6 +36,7 @@
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
             viewDept()
+            viewGroupSize()
 
             'permission
             If is_public_form Then
@@ -66,6 +72,21 @@
             query += "(SELECT id_departement,departement FROM tb_m_departement a WHERE (a.id_user_admin=" + id_user + " OR a.id_user_admin_backup=" + id_user + " OR a.id_departement=" + id_departement_user + ") ORDER BY a.departement ASC) "
         End If
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
+        viewLookupQuery(LEDeptSizeProfile, query, 0, "departement", "id_departement")
+        Cursor = Cursors.Default
+    End Sub
+
+    Dim dtz As DataTable = Nothing
+    Sub viewGroupSize()
+        Cursor = Cursors.WaitCursor
+        Try
+            dtz.Clear()
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT t.id_emp_uni_size_template, t.template_name 
+        FROM tb_emp_uni_size_template t 
+        ORDER BY t.id_sex ASC, t.id_emp_uni_size_template ASC "
+        dtz = execute_query(query, -1, True, "", "", "", "")
         Cursor = Cursors.Default
     End Sub
 
@@ -411,5 +432,175 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewSizeProfile()
+        Cursor = Cursors.WaitCursor
+        'dept
+        Dim id_dept As String = ""
+        If LEDeptSizeProfile.EditValue <> "0" Then
+            id_dept = "AND e.id_departement=" + LEDeptSizeProfile.EditValue.ToString + " "
+        End If
 
+        'caption column
+        For i As Integer = 0 To dtz.Rows.Count - 1
+            GVSizeProfile.Columns(dtz.Rows(i)("id_emp_uni_size_template").ToString).Caption = dtz.Rows(i)("template_name").ToString
+        Next
+
+        Dim query As String = "SELECT d.id_departement, d.departement,e.id_employee, e.employee_code,e.employee_name, e.id_sex,
+        IFNULL(sz1.1,'-') AS `1`,
+        IFNULL(sz2.2,'-') AS `2`,
+        IFNULL(sz3.3,'-') AS `3`,
+        IFNULL(sz4.4,'-') AS `4`,
+        IFNULL(sz5.5,'-') AS `5`,
+        IFNULL(sz6.6,'-') AS `6`,
+        IFNULL(sz7.7,'-') AS `7`,
+        IFNULL(sz8.8,'-') AS `8`,
+        IFNULL(sz9.9,'-') AS `9`,
+        IFNULL(sz10.10,'-') AS `10`,
+        IFNULL(sz11.11,'-') AS `11`,
+        IFNULL(sz12.12,'-') AS `12`,
+        IFNULL(sz13.13,'-') AS `13`
+        FROM tb_m_employee e 
+        INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `1`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=1
+	        GROUP BY s.id_employee
+        ) sz1 ON sz1.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `2`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=2
+	        GROUP BY s.id_employee
+        ) sz2 ON sz2.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `3`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=3
+	        GROUP BY s.id_employee
+        ) sz3 ON sz3.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `4`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=4
+	        GROUP BY s.id_employee
+        ) sz4 ON sz4.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `5`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=5
+	        GROUP BY s.id_employee
+        ) sz5 ON sz5.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `6`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=6
+	        GROUP BY s.id_employee
+        ) sz6 ON sz6.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `7`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=7
+	        GROUP BY s.id_employee
+        ) sz7 ON sz7.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `8`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=8
+	        GROUP BY s.id_employee
+        ) sz8 ON sz8.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `9`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=9
+	        GROUP BY s.id_employee
+        ) sz9 ON sz9.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `10`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=10
+	        GROUP BY s.id_employee
+        ) sz10 ON sz10.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `11`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=11
+	        GROUP BY s.id_employee
+        ) sz11 ON sz11.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `12`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=12
+	        GROUP BY s.id_employee
+        ) sz12 ON sz12.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `13`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=13
+	        GROUP BY s.id_employee
+        ) sz13 ON sz13.id_employee = e.id_employee
+        WHERE e.id_employee_active=1
+        " + id_dept + "
+        ORDER BY  d.departement ASC,e.id_employee_level ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSizeProfile.DataSource = data
+        GVSizeProfile.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrintSizeProfile_Click(sender As Object, e As EventArgs) Handles BtnPrintSizeProfile.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCSizeProfile, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnGroupSizeGuidance_Click(sender As Object, e As EventArgs) Handles BtnGroupSizeGuidance.Click
+        Cursor = Cursors.WaitCursor
+        FormEmpUniGroupSizeGuide.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        viewSizeProfile()
+    End Sub
+
+    Private Sub LEDeptSizeProfile_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSizeProfile.EditValueChanged
+        GCSizeProfile.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEGroupSize_EditValueChanged(sender As Object, e As EventArgs)
+        GCSizeProfile.DataSource = Nothing
+    End Sub
+
+    Private Sub RepoBtnAddSize_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnAddSize.ButtonClick
+
+    End Sub
+
+    Private Sub GVSizeProfile_DoubleClick(sender As Object, e As EventArgs) Handles GVSizeProfile.DoubleClick
+        Dim is_enable_size_profile As String = get_setup_field("is_enable_size_profile")
+        If GVSizeProfile.RowCount > 0 And GVSizeProfile.FocusedRowHandle >= 0 Then
+            If is_public_form Then
+                If is_enable_size_profile = "1" Then
+                    FormEmpUniSizeMain.ShowDialog()
+                Else
+                    stopCustom("Waktu setup size telah usai. Silahkan hubungi HRD Dept. ")
+                End If
+            Else
+                FormEmpUniSizeMain.ShowDialog()
+            End If
+        End If
+    End Sub
 End Class

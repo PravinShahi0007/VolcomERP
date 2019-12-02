@@ -5,6 +5,7 @@
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
     Dim rmt As String = ""
+    Dim rmt_appr As String = ""
     Dim season As String = ""
     Dim is_load_break_size_rev As Boolean = False
     Dim is_load_break_size As Boolean = False
@@ -39,7 +40,10 @@
             rmt = "144"
         ElseIf data.Rows(0)("id_pd_kind").ToString = "3" Then
             rmt = "145"
+        ElseIf data.Rows(0)("id_pd_kind").ToString = "4" Then
+            rmt = "210"
         End If
+        rmt_appr = data.Rows(0)("report_mark_type").ToString
         viewDetail()
         allow_status()
     End Sub
@@ -70,25 +74,37 @@
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            MENote.Enabled = False
+            MENote.Enabled = True
             PanelControlNav.Visible = True
             BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
             PanelControlNav.Visible = False
             BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+        End If
+
+        'reset propose
+        If is_view = "-1" And is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
         End If
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
             BtnConfirm.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
             PanelControlNav.Visible = False
+            BtnSaveChanges.Visible = False
         End If
     End Sub
 
@@ -182,6 +198,18 @@
         '    cond_exist_file = False
         'End If
 
+        'cek rmt untuk approval
+        makeSafeGV(GVRevision)
+        GVRevision.ActiveFilterString = "[is_cancel_po]=1"
+        If GVRevision.RowCount > 0 Then
+            'batal po
+            rmt_appr = rmt
+        Else
+            'ubah alokasi/price aja => lokal MD
+            rmt_appr = "194"
+        End If
+        GVRevision.ActiveFilterString = ""
+
         If Not cond_exist_file Then
             stopCustom("Please attach document first")
         ElseIf GVRevision.RowCount <= 0 Then
@@ -190,12 +218,13 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm PD revision ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
+
                 'update confirm
-                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1 WHERE id_prod_demand_rev='" + id + "'"
+                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1, report_mark_type=" + rmt_appr + ", note='" + addSlashes(MENote.Text) + "' WHERE id_prod_demand_rev='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
 
                 'submit approval 
-                submit_who_prepared(rmt, id, id_user)
+                submit_who_prepared(rmt_appr, id, id_user)
                 BtnConfirm.Visible = False
                 actionLoad()
                 infoCustom("PD Revision submitted. Waiting for approval.")
@@ -297,7 +326,7 @@
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = rmt
+        FormReportMark.report_mark_type = rmt_appr
         FormReportMark.id_report = id
         FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
@@ -613,6 +642,45 @@
                     End Try
                     e.TotalValue = sum_res
             End Select
+        End If
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt_appr + " AND rm.id_report_status=2 
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt_appr + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_prod_demand_rev SET is_confirm=2, report_mark_type=NULL WHERE id_prod_demand_rev=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                FormProdDemandRev.viewData()
+                FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            'head
+            Dim query As String = "UPDATE tb_prod_demand_rev SET note='" + addSlashes(MENote.Text) + "' WHERE id_prod_demand_rev='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+
+            FormProdDemandRev.viewData()
+            FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)
+            actionLoad()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

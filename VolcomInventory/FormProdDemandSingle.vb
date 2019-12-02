@@ -80,10 +80,10 @@
         actionLoad()
 
         'divisi non md - tidak punya divisi biarkan stelah action load
-        If SLEKind.EditValue.ToString <> "1" Then
-            LESampleDivision.EditValue = Nothing
-            LESampleDivision.Enabled = False
-        End If
+        'If SLEKind.EditValue.ToString <> "1" Then
+        'LESampleDivision.EditValue = Nothing
+        'LESampleDivision.Enabled = False
+        'End If
 
 
 
@@ -107,7 +107,7 @@
     'type
     Sub viewKind()
         Dim query As String = "SELECT * FROM tb_lookup_pd_kind "
-        If id_role_login <> id_role_super_admin Then
+        If id_role_login <> id_role_super_admin And id_role_login <> "18" Then
             query += "WHERE id_departement='" + id_departement_user + "' "
         End If
         query += "ORDER BY id_pd_kind ASC "
@@ -155,6 +155,7 @@
     Sub actionLoad()
         If action = "ins" Then
             'LabelPD.Text = "New Production Demand"
+            BtnResetPropose.Visible = False
             BtnPrint.Enabled = False
             BMark.Visible = False
             BtnAttachment.Enabled = False
@@ -179,6 +180,9 @@
             SLEKind.EditValue = id_pd_kind
             LEPDType.ItemIndex = LEPDType.Properties.GetDataSourceRowIndex("id_pd_type", id_pd_type)
             LEBudget.ItemIndex = LEBudget.Properties.GetDataSourceRowIndex("id_pd_budget", id_pd_budget)
+            If id_division = "0" Then
+                LESampleDivision.EditValue = Nothing
+            End If
             LESampleDivision.ItemIndex = LESampleDivision.Properties.GetDataSourceRowIndex("id_code_detail", id_division)
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_report_status)
             TxtRateCurrent.EditValue = rate_current
@@ -191,8 +195,10 @@
                 report_mark_type = "9"
             ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
                 report_mark_type = "80"
-            Else 'HRD
+            ElseIf SLEKind.EditValue.ToString = "3" Then 'HRD
                 report_mark_type = "81"
+            ElseIf SLEKind.EditValue.ToString = "4" Then 'SALES
+                report_mark_type = "206"
             End If
 
             'Design tab
@@ -230,12 +236,21 @@
             LECat.Enabled = False
         End If
 
+        'reset propose
+        If is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
         If id_report_status = "6" Then
             PanelControlCENONActive.Visible = True
             XTPRevision.PageVisible = True
             BtnCancellPropose.Visible = False
+            BtnResetPropose.Visible = False
         ElseIf id_report_status = "5" Then
             BtnCancellPropose.Visible = False
+            BtnResetPropose.Visible = False
         End If
     End Sub
 
@@ -249,8 +264,10 @@
             rmt = "9"
         ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
             rmt = "80"
-        Else 'HRD
+        ElseIf SLEKind.EditValue.ToString = "3" Then 'HRD
             rmt = "81"
+        ElseIf SLEKind.EditValue.ToString = "4" Then 'SALES
+            rmt = "206"
         End If
 
         If Not formIsValidInPanel(EPProdDemand, GroupGeneralHeader) Then
@@ -404,14 +421,26 @@
 
     'Add Design
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
-        FormProdDemandDesignSingle.action = "ins"
-        FormProdDemandDesignSingle.ShowDialog()
+        Cursor = Cursors.WaitCursor
+        FormProdDemandAdd.ShowDialog()
+        Cursor = Cursors.Default
+        'FormProdDemandDesignSingle.action = "ins"
+        'FormProdDemandDesignSingle.ShowDialog()
     End Sub
     'Edit Design
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
-        FormProdDemandDesignSingle.action = "upd"
-        FormProdDemandDesignSingle.id_prod_demand_design = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-        FormProdDemandDesignSingle.ShowDialog()
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMasterDesignSingle.id_pop_up = "-1"
+            FormMasterDesignSingle.form_name = "FormFGLineList"
+            FormMasterDesignSingle.id_design = GVDesign.GetFocusedRowCellValue("id_design_desc_report_column").ToString
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        'FormProdDemandDesignSingle.action = "upd"
+        'FormProdDemandDesignSingle.id_prod_demand_design = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+        'FormProdDemandDesignSingle.ShowDialog()
     End Sub
 
     Private Sub BBom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BBom.Click
@@ -581,76 +610,134 @@
         End If
     End Sub
 
+    Sub printStyleReport(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        gv.OptionsPrint.UsePrintStyles = True
+        gv.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        gv.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        gv.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
+        gv.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        gv.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        gv.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        gv.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        gv.AppearancePrint.GroupRow.ForeColor = Color.Black
+        gv.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+
+        gv.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        gv.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        gv.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        gv.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        gv.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        gv.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+
+        gv.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        gv.OptionsPrint.ExpandAllDetails = True
+        gv.OptionsPrint.UsePrintStyles = True
+        gv.OptionsPrint.PrintDetails = True
+        gv.OptionsPrint.PrintFooter = True
+    End Sub
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         If Not check_allow_print(id_report_status, report_mark_type, id_prod_demand) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
-            ReportProdDemandNew.dt = GCDesign.DataSource
-            ReportProdDemandNew.id_prod_demand = id_prod_demand
-            If id_report_status <> "6" Then
-                ReportProdDemandNew.is_pre = "1"
+            If CEBreakSizeDetail.EditValue = False Then
+                ReportProdDemandNew.dt = GCDesign.DataSource
+                ReportProdDemandNew.id_prod_demand = id_prod_demand
+                If id_report_status <> "6" Then
+                    ReportProdDemandNew.is_pre = "1"
+                Else
+                    ReportProdDemandNew.is_pre = "1"
+                End If
+                ReportProdDemandNew.id_report_status = LEReportStatus.EditValue.ToString
+
+                ReportProdDemandNew.rmt = report_mark_type
+                Dim Report As New ReportProdDemandNew()
+
+                '' '... 
+                '' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'style
+                printStyleReport(Report.GVDesign)
+
+                'value
+                Report.LabelNumber.Text = TxtProdDemandNumber.Text
+                Report.LabelDate.Text = DEForm.Text.ToUpper
+                Report.LabelSeason.Text = SLESeason.Text
+                Report.LabelDivision.Text = LESampleDivision.Text
+                Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+                Report.LabelRateCurrent.Text = TxtRateCurrent.Text
+                Report.LNote.Text = MENote.Text
+
+                ' Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
             Else
-                ReportProdDemandNew.is_pre = "-1"
+                'with break down size detail
+                XTCDetail.SelectedTabPageIndex = 1
+                ReportProdDemandNewBreakSize.dt = GCDesign.DataSource
+                ReportProdDemandNewBreakSize.dt2 = GCSize.DataSource
+                ReportProdDemandNewBreakSize.id_prod_demand = id_prod_demand
+                If id_report_status <> "6" Then
+                    ReportProdDemandNewBreakSize.is_pre = "1"
+                Else
+                    ReportProdDemandNewBreakSize.is_pre = "1"
+                End If
+                ReportProdDemandNewBreakSize.id_report_status = LEReportStatus.EditValue.ToString
+
+                ReportProdDemandNewBreakSize.rmt = report_mark_type
+                Dim Report As New ReportProdDemandNewBreakSize()
+
+                '' '... 
+                '' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                str = New System.IO.MemoryStream()
+                GVSize.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVSize.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'style
+                printStyleReport(Report.GVDesign)
+                printStyleReport(Report.GVSize)
+
+                'value
+                Report.LabelNumber.Text = TxtProdDemandNumber.Text
+                Report.LabelDate.Text = DEForm.Text.ToUpper
+                Report.LabelSeason.Text = SLESeason.Text
+                Report.LabelDivision.Text = LESampleDivision.Text
+                Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+                Report.LabelRateCurrent.Text = TxtRateCurrent.Text
+                Report.LNote.Text = MENote.Text
+
+                ' Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
             End If
-            ReportProdDemandNew.id_report_status = LEReportStatus.EditValue.ToString
-
-            ReportProdDemandNew.rmt = report_mark_type
-            Dim Report As New ReportProdDemandNew()
-
-            '' '... 
-            '' ' creating and saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            GVDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-
-            'style
-            Report.GVDesign.OptionsPrint.UsePrintStyles = True
-            Report.GVDesign.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-            Report.GVDesign.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            Report.GVDesign.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
-
-            Report.GVDesign.AppearancePrint.GroupFooter.BackColor = Color.Transparent
-            Report.GVDesign.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            Report.GVDesign.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
-
-            Report.GVDesign.AppearancePrint.GroupRow.BackColor = Color.Transparent
-            Report.GVDesign.AppearancePrint.GroupRow.ForeColor = Color.Black
-            Report.GVDesign.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
-            Report.GVDesign.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-            Report.GVDesign.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            Report.GVDesign.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            Report.GVDesign.AppearancePrint.FooterPanel.BackColor = Color.Transparent
-            Report.GVDesign.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            Report.GVDesign.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
-
-            Report.GVDesign.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
-
-            Report.GVDesign.OptionsPrint.ExpandAllDetails = True
-            Report.GVDesign.OptionsPrint.UsePrintStyles = True
-            Report.GVDesign.OptionsPrint.PrintDetails = True
-            Report.GVDesign.OptionsPrint.PrintFooter = True
-
-
-            Report.LabelNumber.Text = TxtProdDemandNumber.Text
-            Report.LabelDate.Text = DEForm.Text.ToUpper
-            Report.LabelSeason.Text = SLESeason.Text
-            Report.LabelDivision.Text = LESampleDivision.Text
-            Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-            Report.LabelRateCurrent.Text = TxtRateCurrent.Text
-            Report.LNote.Text = MENote.Text
-
-            ' Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
+            'set default
+            If CEBreakSizeDetail.EditValue = True Then
+                XTCDetail.SelectedTabPageIndex = 0
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
@@ -733,22 +820,24 @@
     'End Sub
 
     Private Sub SLEKind_EditValueChanged(sender As Object, e As EventArgs) Handles SLEKind.EditValueChanged
-        If SLEKind.EditValue.ToString <> "1" Then
-            LESampleDivision.EditValue = Nothing
-            LESampleDivision.Enabled = False
-        Else
-            LESampleDivision.EditValue = 3823
-            LESampleDivision.Enabled = True
-        End If
+        'If SLEKind.EditValue.ToString <> "1" Then
+        '    LESampleDivision.EditValue = Nothing
+        '    LESampleDivision.Enabled = False
+        'Else
+        '    LESampleDivision.EditValue = 3823
+        '    LESampleDivision.Enabled = True
+        'End If
     End Sub
 
     Private Sub CheckEditShowActive_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditShowNonActive.CheckedChanged
         Cursor = Cursors.WaitCursor
         If CheckEditShowNonActive.EditValue = True Then
+            GridColumndrop_ref.VisibleIndex = GridColumnMoveDrop.VisibleIndex + 1
             Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
         Else
+            GridColumndrop_ref.Visible = False
             Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + " AND is_void=2 ')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
@@ -944,5 +1033,101 @@
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report_status=2 
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id_prod_demand + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim query_upd As String = "-- delete report mark
+                    DELETE FROM tb_report_mark WHERE report_mark_type=" + report_mark_type + " AND id_report=" + id_prod_demand + "; 
+                    -- reset confirm
+                    UPDATE tb_prod_demand SET is_confirm=2 WHERE id_prod_demand=" + id_prod_demand + "; "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                    Close()
+                End Try
+
+
+                'refresh
+                FormProdDemand.viewProdDemand()
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row_as_is(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                is_confirm = "2"
+                action = "upd"
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub RepoLinkDropRef_Click(sender As Object, e As EventArgs) Handles RepoLinkDropRef.Click
+        Cursor = Cursors.WaitCursor
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            Dim type_drop_ref As String = "0"
+            Try
+                type_drop_ref = GVDesign.GetFocusedRowCellValue("type_drop_ref").ToString
+            Catch ex As Exception
+                type_drop_ref = "0"
+            End Try
+
+            If type_drop_ref <> "0" Then
+
+                Dim id_drop_ref As String = "-1"
+                Try
+                    id_drop_ref = GVDesign.GetFocusedRowCellValue("id_drop_ref").ToString
+                Catch ex As Exception
+                End Try
+
+
+                If type_drop_ref = "1" Then
+                    FormProdDemandRevDet.id = id_drop_ref
+                    FormProdDemandRevDet.is_view = "1"
+                    FormProdDemandRevDet.ShowDialog()
+                ElseIf type_drop_ref = "2" Then
+                    FormFGDesignListChanges.id = id_drop_ref
+                    FormFGDesignListChanges.is_view = "1"
+                    FormFGDesignListChanges.ShowDialog()
+                End If
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSizeDetail_Click(sender As Object, e As EventArgs) Handles BtnSizeDetail.Click
+        Cursor = Cursors.WaitCursor
+        FormProdDemandSize.rmt = report_mark_type
+        FormProdDemandSize.id_report_status = id_report_status
+        FormProdDemandSize.status = LEReportStatus.Text.ToUpper
+        FormProdDemandSize.season = SLESeason.Text
+        FormProdDemandSize.created_date = DEForm.Text.ToUpper
+        FormProdDemandSize.division = LESampleDivision.Text
+        FormProdDemandSize.id = id_prod_demand
+        FormProdDemandSize.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewBreakdownSize()
+        Cursor = Cursors.WaitCursor
+        Dim pd As New ClassProdDemand()
+        pd.viewBreakSizeDetail(id_prod_demand, GCSize, GVSize)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCDetail_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCDetail.SelectedPageChanged
+        If XTCDetail.SelectedTabPageIndex = 1 Then
+            viewBreakdownSize()
+        End If
+    End Sub
+
+    Private Sub GVSize_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSize.CustomColumnDisplayText
+        If e.Column.FieldName = "NO" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

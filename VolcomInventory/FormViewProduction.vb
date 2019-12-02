@@ -3,7 +3,10 @@
     Public id_prod_demand As String = "-1"
     Public id_prod_demand_design As String = "-1"
     Public id_delivery As String = "-1"
-
+    Public id_design As String = "-1"
+    '
+    Public is_no_cost As String = "-1"
+    '
     Private Sub FormViewProduction_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         '
         RCIMainVendorWO.ValueChecked = Convert.ToSByte(1)
@@ -42,6 +45,7 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             id_prod_demand_design = data.Rows(0)("id_prod_demand_design").ToString()
             id_prod_demand = get_prod_demand_design_x(id_prod_demand_design, "1")
             id_delivery = get_prod_demand_design_x(id_prod_demand_design, "2")
+            id_design = get_prod_demand_design_x(id_prod_demand_design, "3")
             '
             TEPDNo.Text = get_prod_demand_x(id_prod_demand, "1")
             TEDesign.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "1")
@@ -54,6 +58,14 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             view_list_purchase()
             view_bom()
             view_wo()
+        End If
+        '
+        If is_no_cost = "1" Then
+            XTPBOM.PageVisible = False
+            XTPOverhead.PageVisible = False
+        Else
+            XTPBOM.PageVisible = True
+            XTPOverhead.PageVisible = True
         End If
     End Sub
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit)
@@ -223,5 +235,9 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         showpopup.double_click(addSlashes(TEPDNo.Text.ToString))
         showpopup.show()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormViewProduction_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

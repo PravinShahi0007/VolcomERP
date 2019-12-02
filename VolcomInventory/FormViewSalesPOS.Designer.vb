@@ -111,6 +111,10 @@ Partial Class FormViewSalesPOS
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtBOF = New DevExpress.XtraEditors.TextEdit()
+        Me.DEBOF = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtOLStoreNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,11 +162,18 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBOF.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBOF.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBOF.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl16)
+        Me.GroupGeneralHeader.Controls.Add(Me.DEBOF)
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtBOF)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl13)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtOLStoreNumber)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelOLStoreNumber)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtInvoice)
@@ -1158,6 +1169,48 @@ Partial Class FormViewSalesPOS
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(724, 95)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(28, 13)
+        Me.LabelControl13.TabIndex = 8953
+        Me.LabelControl13.Text = "BOF#"
+        '
+        'TxtBOF
+        '
+        Me.TxtBOF.EditValue = ""
+        Me.TxtBOF.Location = New System.Drawing.Point(796, 92)
+        Me.TxtBOF.Name = "TxtBOF"
+        Me.TxtBOF.Properties.EditValueChangedDelay = 1
+        Me.TxtBOF.Properties.ReadOnly = True
+        Me.TxtBOF.Size = New System.Drawing.Size(151, 20)
+        Me.TxtBOF.TabIndex = 8954
+        Me.TxtBOF.TabStop = False
+        '
+        'DEBOF
+        '
+        Me.DEBOF.EditValue = Nothing
+        Me.DEBOF.Enabled = False
+        Me.DEBOF.Location = New System.Drawing.Point(796, 118)
+        Me.DEBOF.Name = "DEBOF"
+        Me.DEBOF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBOF.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEBOF.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEBOF.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBOF.Size = New System.Drawing.Size(151, 20)
+        Me.DEBOF.TabIndex = 8955
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl16.Location = New System.Drawing.Point(724, 121)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl16.TabIndex = 8956
+        Me.LabelControl16.Text = "BOF Date"
+        '
         'FormViewSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1225,6 +1278,9 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBOF.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBOF.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBOF.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1320,4 +1376,8 @@ Partial Class FormViewSalesPOS
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDesignPriceCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPriceCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEBOF As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TxtBOF As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class

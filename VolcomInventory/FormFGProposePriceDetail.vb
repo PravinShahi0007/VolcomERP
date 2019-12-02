@@ -1,4 +1,16 @@
-﻿Public Class FormFGProposePriceDetail
+﻿Imports System.Runtime.CompilerServices
+
+Module GridExtensions
+    <Extension()>
+    Function GetRowGroupIndexByRowHandle(ByVal view As DevExpress.XtraGrid.Views.Grid.GridView, ByVal rowHandle As Integer) As Integer
+        Dim parentRowHandle As Integer = view.GetParentRowHandle(rowHandle)
+        Dim childCount As Integer = view.GetChildRowCount(parentRowHandle)
+        Dim lastRowHandle As Integer = view.GetChildRowHandle(parentRowHandle, childCount - 1)
+        Return (childCount - 1) - Math.Abs(lastRowHandle - rowHandle)
+    End Function
+End Module
+
+Public Class FormFGProposePriceDetail
     Public id As String = "-1"
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
@@ -136,6 +148,22 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewDetailAnalysis(ByVal show_non_aktif As Boolean)
+        Cursor = Cursors.WaitCursor
+
+        Dim cond As String = "AND ppd.id_fg_propose_price=" + id + " "
+        If Not show_non_aktif Then
+            cond += "AND ppd.is_active=1 "
+        Else
+            ' GridColumnActive.Visible = True
+        End If
+        Dim pp As New ClassFGProposePrice
+        Dim data As DataTable = pp.dataDetail(cond)
+        GCAnalysis.DataSource = data
+        GVAnalysis.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub allow_status()
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
@@ -163,12 +191,21 @@
             GVData.OptionsBehavior.ReadOnly = True
         End If
 
+        'reset propose
+        If is_view = "-1" And is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
         If id_report_status = "6" Then
             BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
             PanelControlShowNonActive.Visible = True
             XTPRevision.PageVisible = True
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
             BtnConfirm.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
@@ -332,22 +369,90 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        If Not check_allow_print(id_report_status, rmt, id) Then
-            warningCustom("Can't print, please complete all approval on system first")
-        Else
-            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            gv = GVData
-            ReportFGProposePriceDetail.dt = GCData.DataSource
-            ReportFGProposePriceDetail.id = id
-            If id_report_status <> "6" Then
-                ReportFGProposePriceDetail.is_pre = "1"
+        If XTCDetail.SelectedTabPageIndex = 0 Then
+            If Not check_allow_print(id_report_status, rmt, id) Then
+                warningCustom("Can't print, please complete all approval on system first")
             Else
-                ReportFGProposePriceDetail.is_pre = "-1"
-            End If
-            ReportFGProposePriceDetail.id_report_status = LEReportStatus.EditValue.ToString
+                Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+                gv = GVData
+                ReportFGProposePriceDetail.dt = GCData.DataSource
+                ReportFGProposePriceDetail.id = id
+                If id_report_status <> "6" Then
+                    ReportFGProposePriceDetail.is_pre = "1"
+                Else
+                    ReportFGProposePriceDetail.is_pre = "-1"
+                End If
+                ReportFGProposePriceDetail.id_report_status = LEReportStatus.EditValue.ToString
 
-            ReportFGProposePriceDetail.rmt = rmt
-            Dim Report As New ReportFGProposePriceDetail()
+                ReportFGProposePriceDetail.rmt = rmt
+                Dim Report As New ReportFGProposePriceDetail()
+
+                '... 
+                ' creating And saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'style
+                Report.GVData.OptionsPrint.UsePrintStyles = True
+                Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+                Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+                Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+
+                Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+                Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+                Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+                Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+                Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+                Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+
+                Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+                Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+                Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+                Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+                Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+                Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+
+                Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+                Report.GVData.OptionsPrint.ExpandAllDetails = True
+                Report.GVData.OptionsPrint.UsePrintStyles = True
+                Report.GVData.OptionsPrint.PrintDetails = True
+                Report.GVData.OptionsPrint.PrintFooter = True
+
+                Report.LabelNumber.Text = TxtNumber.Text
+                Report.LabelSeason.Text = SLESeason.Text
+                Report.LabelDivision.Text = TxtDivision.Text
+                Report.LabelSource.Text = TxtSource.Text.ToUpper
+                Report.LabelType.Text = TxtType.Text.ToUpper
+                Report.LabelDate.Text = DECreated.Text.ToUpper
+                Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+                Report.LNote.Text = MENote.Text
+
+                ' Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+            End If
+        ElseIf XTCDetail.SelectedTabPageIndex = 1 Then
+            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            gv = GVAnalysis
+            ReportFGProposePriceAnalysis.dt = GCAnalysis.DataSource
+            ReportFGProposePriceAnalysis.id = id
+            If id_report_status <> "6" Then
+                ReportFGProposePriceAnalysis.is_pre = "1"
+            Else
+                ReportFGProposePriceAnalysis.is_pre = "-1"
+            End If
+            ReportFGProposePriceAnalysis.id_report_status = LEReportStatus.EditValue.ToString
+
+            ReportFGProposePriceAnalysis.rmt = rmt
+            Dim Report As New ReportFGProposePriceAnalysis()
 
             '... 
             ' creating And saving the view's layout to a new memory stream 
@@ -355,38 +460,47 @@
             str = New System.IO.MemoryStream()
             gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            Report.GVAnalysis.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'style
-            Report.GVData.OptionsPrint.UsePrintStyles = True
-            Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+            Report.GVAnalysis.OptionsPrint.UsePrintStyles = True
+            Report.GVAnalysis.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVAnalysis.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVAnalysis.AppearancePrint.GroupFooter.BorderColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVAnalysis.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVAnalysis.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVAnalysis.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
+            Report.GVAnalysis.AppearancePrint.BandPanel.BorderColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.BandPanel.BackColor = Color.Transparent
+            Report.GVAnalysis.AppearancePrint.BandPanel.ForeColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.BandPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVAnalysis.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVAnalysis.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVAnalysis.AppearancePrint.FooterPanel.BorderColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVAnalysis.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVAnalysis.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVAnalysis.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
-            Report.GVData.OptionsPrint.ExpandAllDetails = True
-            Report.GVData.OptionsPrint.UsePrintStyles = True
-            Report.GVData.OptionsPrint.PrintDetails = True
-            Report.GVData.OptionsPrint.PrintFooter = True
+            Report.GVAnalysis.AppearancePrint.Lines.BackColor = Color.Black
+
+            Report.GVAnalysis.OptionsPrint.ExpandAllDetails = True
+            Report.GVAnalysis.OptionsPrint.UsePrintStyles = True
+            Report.GVAnalysis.OptionsPrint.PrintDetails = True
+            Report.GVAnalysis.OptionsPrint.PrintFooter = True
 
             Report.LabelNumber.Text = TxtNumber.Text
             Report.LabelSeason.Text = SLESeason.Text
@@ -395,7 +509,7 @@
             Report.LabelType.Text = TxtType.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToUpper
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-            Report.LNote.Text = MENote.Text
+            'Report.LNote.Text = MENote.Text
 
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -437,11 +551,25 @@
         End If
     End Sub
 
+
+
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
-        If e.Column.FieldName = "no" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        If GetGroupRowCount(GVData) <= 0 Then
+            If e.Column.FieldName = "no" Then
+                e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+            End If
+        Else
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            If e.Column.FieldName <> "no" Then Return
+            If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
+                Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
+            End If
         End If
     End Sub
+
+
+
 
     Private Sub CEFreeze_CheckedChanged(sender As Object, e As EventArgs) Handles CEFreeze.CheckedChanged
         If CEFreeze.EditValue = True Then
@@ -585,6 +713,171 @@
             m.id_report = id_report
             m.report_mark_type = rmt
             m.show()
+        End If
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=2 
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_fg_propose_price SET is_confirm=2 WHERE id_fg_propose_price=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                FormFGProposePrice.viewPropose()
+                FormFGProposePrice.GVFGPropose.FocusedRowHandle = find_row(FormFGProposePrice.GVFGPropose, "id_fg_propose_price", id)
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Dim tot_cost As Decimal
+    Dim tot_prc As Decimal
+    Dim tot_cost_grp As Decimal
+    Dim tot_prc_grp As Decimal
+
+    Dim tot_cost_mng As Decimal
+    Dim tot_cost_grp_mng As Decimal
+
+    Dim tot_prc_sale As Decimal
+    Dim tot_prc_grp_sale As Decimal
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_cost = 0.0
+            tot_prc = 0.0
+            tot_cost_grp = 0.0
+            tot_prc_grp = 0.0
+
+            tot_cost_mng = 0.0
+            tot_cost_grp_mng = 0.0
+
+            tot_prc_sale = 0.0
+            tot_prc_grp_sale = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost_min_add").ToString, "0.00"))
+            Dim cost_mng As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost_manag_rate_min_add").ToString, "0.00"))
+            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_amount_min_add"), "0.00"))
+            Dim prc_sale As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_amount_sale_min_add"), "0.00"))
+            Select Case summaryID
+                Case "a"
+                    tot_cost += cost
+                    tot_prc += prc
+                Case "b"
+                    tot_cost_grp += cost
+                    tot_prc_grp += prc
+                Case "a_mng"
+                    tot_cost_mng += cost_mng
+                    tot_prc += prc
+                Case "b_mng"
+                    tot_cost_grp_mng += cost_mng
+                    tot_prc_grp += prc
+                Case "a_sale"
+                    tot_cost += cost
+                    tot_prc_sale += prc_sale
+                Case "b_sale"
+                    tot_cost_grp += cost
+                    tot_prc_grp_sale += prc_sale
+                Case "a_mng_sale"
+                    tot_cost_mng += cost_mng
+                    tot_prc_sale += prc_sale
+                Case "b_mng_sale"
+                    tot_cost_grp_mng += cost_mng
+                    tot_prc_grp_sale += prc_sale
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case "a" 'total summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc / tot_cost
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "b" 'group summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp / tot_cost_grp
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "a_mng" 'total summary mng
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc / tot_cost_mng
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "b_mng" 'group summary mng
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp / tot_cost_grp_mng
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "a_sale" 'total summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_sale / tot_cost
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "b_sale" 'group summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp_sale / tot_cost_grp
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "a_mng_sale" 'total summary mng
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_sale / tot_cost_mng
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "b_mng_sale" 'group summary mng
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp_sale / tot_cost_grp_mng
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
+
+    Private Sub XTCDetail_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCDetail.SelectedPageChanged
+        Cursor = Cursors.WaitCursor
+        If XTCDetail.SelectedTabPageIndex = 1 Then
+            If id_report_status = "1" And is_confirm = "2" Then
+                saveChangesDetail()
+            End If
+            viewDetailAnalysis(False)
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVAnalysis_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVAnalysis.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class

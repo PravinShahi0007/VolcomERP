@@ -1,14 +1,13 @@
 ﻿Public Class FormProductionSummary
     Private Sub FormProductionSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
-        DEFrom.EditValue = data_dt.Rows(0)("dt")
-        DEUntil.EditValue = data_dt.Rows(0)("dt")
         DEFromPD.EditValue = data_dt.Rows(0)("dt")
         DEUntilPD.EditValue = data_dt.Rows(0)("dt")
         DEFromMat.EditValue = data_dt.Rows(0)("dt")
         DEUntilMat.EditValue = data_dt.Rows(0)("dt")
-        DEFrom.Focus()
 
+        viewDesign()
+        viewSeason()
         viewVendor()
     End Sub
 
@@ -23,22 +22,50 @@
 
     Sub viewApprovedPO()
         Cursor = Cursors.WaitCursor
-        Dim date_from_selected As String = "0000-01-01"
-        Dim date_until_selected As String = "9999-01-01"
-        Try
-            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-        Try
-            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
+        Dim id_design As String = "-1"
+        Dim id_season As String = "-1"
+        Dim id_comp As String = "-1"
 
-        Dim query As String = "CALL view_po_approved('" + date_from_selected + "', '" + date_until_selected + "', '" + id_user + "','-1')"
+        If Not SLEDesignStockStore.EditValue.ToString = "0" Then
+            id_design = SLEDesignStockStore.EditValue.ToString
+        End If
+
+        If Not SLESeason.EditValue.ToString = "-1" Then
+            id_season = SLESeason.EditValue.ToString
+        End If
+
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            id_comp = SLEVendor.EditValue.ToString
+        End If
+
+        Dim query As String = "CALL view_po_approved('" + id_design + "', '" + id_season + "', '" + id_comp + "', '" + id_user + "','-1')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
         Cursor = Cursors.Default
         bestfit_band()
+    End Sub
+
+    Sub viewDesign()
+        Dim query As String = ""
+        query += "CALL view_design_order(TRUE)"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        SLEDesignStockStore.Properties.DataSource = Nothing
+        SLEDesignStockStore.Properties.DataSource = data
+        SLEDesignStockStore.Properties.DisplayMember = "display_name"
+        SLEDesignStockStore.Properties.ValueMember = "id_design"
+        If data.Rows.Count.ToString >= 1 Then
+            SLEDesignStockStore.EditValue = data.Rows(0)("id_design").ToString
+        Else
+            SLEDesignStockStore.EditValue = Nothing
+        End If
+    End Sub
+
+    Sub viewSeason()
+        Dim query As String = "SELECT '-1' AS id_season, 'All Season' as season UNION "
+        query += "(SELECT id_season,season FROM tb_season a "
+        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
+        query += "ORDER BY b.range ASC)"
+        viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
 
     Sub bestfit_band()
@@ -57,13 +84,7 @@
         GVDesign.BestFitColumns()
     End Sub
 
-    Private Sub DEFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFrom.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            DEUntil.Focus()
-        End If
-    End Sub
-
-    Private Sub DEUntil_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntil.KeyDown
+    Private Sub DEUntil_KeyDown(sender As Object, e As KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             BtnView.Focus()
         End If
@@ -89,9 +110,7 @@
     End Sub
 
     Private Sub XTCSum_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCSum.SelectedPageChanged
-        If XTCSum.SelectedTabPageIndex = 0 Then
-            DEFrom.Focus()
-        ElseIf XTCSum.SelectedTabPageIndex = 1 Then
+        If XTCSum.SelectedTabPageIndex = 1 Then
             DEFromPD.Focus()
         ElseIf XTCSum.SelectedTabPageIndex = 2 Then
             DEFromMat.Focus()
@@ -277,6 +296,16 @@
         Else
             SLEVendor.EditValue = Nothing
         End If
+
+        SLEVendorAppOrder.Properties.DataSource = Nothing
+        SLEVendorAppOrder.Properties.DataSource = data
+        SLEVendorAppOrder.Properties.DisplayMember = "comp_name_label"
+        SLEVendorAppOrder.Properties.ValueMember = "id_comp"
+        If data.Rows.Count.ToString >= 1 Then
+            SLEVendorAppOrder.EditValue = data.Rows(0)("id_comp").ToString
+        Else
+            SLEVendorAppOrder.EditValue = Nothing
+        End If
     End Sub
 
     Dim tot_cop_pd As Decimal = 0
@@ -381,7 +410,7 @@
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
 
-        Dim query As String = "CALL view_po_approved('" + date_from_selected + "', '" + date_until_selected + "', '" + id_user + "','" & addSlashes(TEPONumber.Text) & "')"
+        Dim query As String = "CALL view_po_approved('-1', '-1', '-1','-1','" & addSlashes(TEPONumber.Text) & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
         Cursor = Cursors.Default

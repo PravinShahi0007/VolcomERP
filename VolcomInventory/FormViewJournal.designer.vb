@@ -49,6 +49,7 @@ Partial Class FormViewJournal
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,14 +81,13 @@ Partial Class FormViewJournal
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnIdReport, Me.GridColumnReportMT, Me.GridColumnDesc})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnIdReport, Me.GridColumnReportMT, Me.GridColumnDesc, Me.GridColumn8})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.Name = "GVJournalDet"
         Me.GVJournalDet.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVJournalDet.OptionsBehavior.Editable = False
         Me.GVJournalDet.OptionsView.ShowFooter = True
         Me.GVJournalDet.OptionsView.ShowGroupPanel = False
-        Me.GVJournalDet.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumn6
         '
@@ -134,7 +134,7 @@ Partial Class FormViewJournal
         Me.GridColumn3.FieldName = "note"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 4
         Me.GridColumn3.Width = 300
         '
         'GridColumn4
@@ -151,7 +151,7 @@ Partial Class FormViewJournal
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         Me.GridColumn4.Width = 138
         '
         'RepositoryItemTextEdit1
@@ -180,7 +180,7 @@ Partial Class FormViewJournal
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         Me.GridColumn5.Width = 134
         '
         'RepositoryItemTextEdit2
@@ -209,7 +209,7 @@ Partial Class FormViewJournal
         '
         'GridColumnDesc
         '
-        Me.GridColumnDesc.Caption = "Description"
+        Me.GridColumnDesc.Caption = "Account Description"
         Me.GridColumnDesc.FieldName = "acc_description"
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
@@ -319,9 +319,9 @@ Partial Class FormViewJournal
         '
         Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Number"
+        Me.LabelControl1.Text = "Type"
         '
         'TEDate
         '
@@ -350,6 +350,14 @@ Partial Class FormViewJournal
         Me.SMViewTransaction.Name = "SMViewTransaction"
         Me.SMViewTransaction.Size = New System.Drawing.Size(157, 22)
         Me.SMViewTransaction.Text = "View document"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "CC"
+        Me.GridColumn8.FieldName = "comp_number"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 3
         '
         'FormViewJournal
         '
@@ -417,4 +425,5 @@ Partial Class FormViewJournal
     Friend WithEvents GridColumnReportMT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LEBilling As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

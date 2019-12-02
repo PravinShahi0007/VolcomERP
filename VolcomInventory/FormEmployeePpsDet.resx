@@ -514,7 +514,7 @@
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="SBRekAtt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="SBPosAtt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAA10RVh0VGl0
         bGUAQXR0YWNoO3wCt50AAALOSURBVDhPpZLbU1JBGMDXZBjFRDgckIuCCoqI3CVDRVFUlAYlvIF3RHTU
@@ -532,7 +532,7 @@
         7u0DWYDwT49j7j//vRHyGw3t7WpPD3wwAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="SBPosAtt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="SBRekAtt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAA10RVh0VGl0
         bGUAQXR0YWNoO3wCt50AAALOSURBVDhPpZLbU1JBGMDXZBjFRDgckIuCCoqI3CVDRVFUlAYlvIF3RHTU
@@ -622,7 +622,7 @@
         06IJS4uYGfZfsL/EfAg2WyeJKPAXwK/ZFBl5w44AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="SBRekAttB.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="SBPosAttB.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAA10RVh0VGl0
         bGUAQXR0YWNoO3wCt50AAALOSURBVDhPpZLbU1JBGMDXZBjFRDgckIuCCoqI3CVDRVFUlAYlvIF3RHTU
@@ -640,7 +640,7 @@
         7u0DWYDwT49j7j//vRHyGw3t7WpPD3wwAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="SBPosAttB.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="SBRekAttB.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAA10RVh0VGl0
         bGUAQXR0YWNoO3wCt50AAALOSURBVDhPpZLbU1JBGMDXZBjFRDgckIuCCoqI3CVDRVFUlAYlvIF3RHTU

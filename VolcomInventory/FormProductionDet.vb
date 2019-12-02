@@ -7,8 +7,12 @@
     Public is_pd_base As String = "-1"
     Public date_created As Date
     Public is_wo_view As String = "-1"
-
-    Private Sub FormProductionDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    '
+    Public is_no_cost As String = "-1"
+    '
+    Dim is_submit As String = "-1"
+    '
+    Sub load_form()
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
         '
@@ -30,7 +34,6 @@
             TEPONumber.Text = "[auto generate]"
             TEVendorName.Text = "[auto generate]"
             '
-            XTPWorkOrder.PageVisible = False
             XTPListWO.PageVisible = False
             XTPMRS.PageVisible = False
             DDBPrint.Visible = False
@@ -52,9 +55,11 @@
                 BPickPD.Enabled = True
             End If
             check_design_vendor()
+            '
+            BCancelFGPO.Visible = False
         Else
             'edit
-            Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number` FROM tb_prod_order po
+            Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number`,po.reff_number FROM tb_prod_order po
 LEFT JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`='1'
 LEFT JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
 LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
@@ -62,6 +67,7 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             id_report_status_g = data.Rows(0)("id_report_status").ToString
+            is_submit = data.Rows(0)("is_submit").ToString
 
             TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
             TEVendorName.Text = data.Rows(0)("comp_number").ToString & " - " & data.Rows(0)("comp_name").ToString
@@ -69,6 +75,7 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             MENote.Text = data.Rows(0)("prod_order_note").ToString
             LEPOType.EditValue = data.Rows(0)("id_po_type").ToString()
             LECategory.EditValue = data.Rows(0)("id_term_production").ToString()
+            TEReff.Text = data.Rows(0)("reff_number").ToString
             '
             date_created = data.Rows(0)("prod_order_date")
             TELeadTime.Text = data.Rows(0)("prod_order_lead_time").ToString
@@ -94,13 +101,31 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             view_list_purchase()
             view_bom()
             allow_status()
-            XTPWorkOrder.PageVisible = True
+
             XTPListWO.PageVisible = True
             XTPMRS.PageVisible = True
             'wo
             view_wo()
             view_mrs()
+            '
+            If id_report_status_g = "6" Or id_report_status_g = "5" Then
+                BCancelFGPO.Visible = False
+            Else
+                BCancelFGPO.Visible = True
+            End If
         End If
+        '
+        If is_no_cost = "1" Then
+            XTPBOM.PageVisible = False
+            XTPListWO.PageVisible = False
+        Else
+            XTPBOM.PageVisible = True
+            XTPListWO.PageVisible = True
+        End If
+    End Sub
+
+    Private Sub FormProductionDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
 
     Sub check_design_vendor()
@@ -257,6 +282,8 @@ GROUP BY m_ovh_p.id_ovh_price"
             'new
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
+            ElseIf get_setup_field("is_must_reff_bof").ToString = "1" And TEReff.Text = "" Then
+                warningCustom("Please insert BOF FGPO number on Reff !")
             Else
                 'check if local or import
                 Dim tolerance_over_def As String = ""
@@ -274,7 +301,10 @@ GROUP BY m_ovh_p.id_ovh_price"
                 End If
                 '
                 Dim po_number As String = header_number_prod(1)
-                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def)
+                Dim is_use_qc_report As String = execute_query("SELECT getUseQCReport(" + get_id_season(id_delivery) + "); ", 0, True, "", "", "", "")
+
+
+                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount,reff_number, is_use_qc_report) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}','{10}', '{11}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def, addSlashes(TEReff.Text), is_use_qc_report)
                 Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
                 '
                 If GVListProduct.RowCount > 0 Then
@@ -286,9 +316,7 @@ GROUP BY m_ovh_p.id_ovh_price"
                         End If
                     Next
                 End If
-                'insert who prepared
-                insert_who_prepared("22", last_id, id_user)
-                'end insert who prepared
+
                 increase_inc_prod("1")
                 '
                 add_wo(last_id)
@@ -303,8 +331,9 @@ GROUP BY m_ovh_p.id_ovh_price"
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
             Else
-                query = String.Format("UPDATE tb_prod_order SET id_prod_demand_design='{0}',prod_order_number='{1}',id_po_type='{2}',id_term_production='{3}',prod_order_note='{4}',id_delivery='{6}',prod_order_lead_time='{7}' WHERE id_prod_order='{5}'", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue, LECategory.EditValue, MENote.Text, id_prod_order, id_delivery, TELeadTime.Text)
+                query = String.Format("UPDATE tb_prod_order SET id_prod_demand_design='{0}',prod_order_number='{1}',id_po_type='{2}',id_term_production='{3}',prod_order_note='{4}',id_delivery='{6}',prod_order_lead_time='{7}',reff_number='{8}' WHERE id_prod_order='{5}'", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue, LECategory.EditValue, MENote.Text, id_prod_order, id_delivery, TELeadTime.Text, addSlashes(TEReff.Text))
                 execute_non_query(query, True, "", "", "", "")
+
                 'update mark
                 query = String.Format("UPDATE tb_report_mark SET info='{0}' WHERE id_report='{1}' AND report_mark_type='22'", LEPOType.Text, id_prod_order)
                 execute_non_query(query, True, "", "", "", "")
@@ -389,9 +418,16 @@ GROUP BY m_ovh_p.id_ovh_price"
     'End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_prod_order
-        FormReportMark.report_mark_type = "22"
-        FormReportMark.ShowDialog()
+        If BMark.Text = "Mark" Then
+            FormReportMark.id_report = id_prod_order
+            FormReportMark.report_mark_type = "22"
+            FormReportMark.ShowDialog()
+        ElseIf BMark.Text = "Submit" Then
+            submit_who_prepared("22", id_prod_order, id_user)
+            Dim query As String = "UPDATE tb_prod_order SET is_submit='1' WHERE id_prod_order='" & id_prod_order & "'"
+            execute_non_query(query, True, "", "", "", "")
+            load_form()
+        End If
     End Sub
 
     Private Sub BAddWO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAddWO.Click
@@ -400,29 +436,25 @@ GROUP BY m_ovh_p.id_ovh_price"
         FormProductionWO.ShowDialog()
     End Sub
     Sub allow_status()
-        If check_edit_report_status(id_report_status_g, "22", id_prod_order) Then
-            BSave.Enabled = True
-            GridColumnBOM.OptionsColumn.AllowEdit = True
-            '
-            BPickDesign.Enabled = False
-            BPickPD.Enabled = False
-            BSaveWO.Visible = True
-        Else
+        If is_submit.ToString = "1" Then
             BSave.Enabled = False
             GridColumnBOM.OptionsColumn.AllowEdit = False
             '
             BPickDesign.Enabled = False
             BPickPD.Enabled = False
             BSaveWO.Visible = False
-        End If
+            '
+            BMark.Text = "Mark"
+        Else
+            BSave.Enabled = True
+            GridColumnBOM.OptionsColumn.AllowEdit = True
+            '
+            BPickDesign.Enabled = False
+            BPickPD.Enabled = False
+            BSaveWO.Visible = True
 
-        'If check_print_report_status(id_report_status_g) Then
-        '    'BPrint.Enabled = True
-        '    'DDBPrint.Enabled = True
-        'Else
-        '    'BPrint.Enabled = False
-        '    'DDBPrint.Enabled = False
-        'End If
+            BMark.Text = "Submit"
+        End If
     End Sub
     '======================= begin WO ===============================
     Sub view_wo()
@@ -461,11 +493,12 @@ GROUP BY m_ovh_p.id_ovh_price"
                             cur.`currency`,cur.`id_currency`,
                             wo.prod_order_wo_del_date,
                             wod.qty,
-                            wod.price,wo.prod_order_wo_kurs
+                            wod.price,wo.prod_order_wo_kurs,
+                            wod.gross_amount
                             FROM tb_prod_order_wo wo 
                             LEFT JOIN 
                             (
-	                            SELECT id_prod_order_wo,prod_order_wo_det_price AS price,SUM(prod_order_wo_det_qty) AS qty FROM tb_prod_order_wo_det
+	                            SELECT id_prod_order_wo,prod_order_wo_det_price AS price,SUM(CAST(prod_order_wo_det_qty*prod_order_wo_det_price AS DECIMAL(13,2))) AS gross_amount,SUM(prod_order_wo_det_qty) AS qty FROM tb_prod_order_wo_det
 	                            GROUP BY id_prod_order_wo
                             ) AS wod ON wod.id_prod_order_wo=wo.`id_prod_order_wo`
                             INNER JOIN tb_m_ovh_price b ON wo.id_ovh_price=b.id_ovh_price 
@@ -645,85 +678,80 @@ GROUP BY m_ovh_p.id_ovh_price"
     End Sub
 
     Private Sub BarLargeButtonItem1_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarLargeButtonItem1.ItemClick
-        'ReportProduction.id_prod_order = id_prod_order
-        'If check_print_report_status(id_report_status_g) Then
-        '    ReportProduction.is_pre = "-1"
-        'Else
-        '    ReportProduction.is_pre = "1"
-        'End If
-
-        'Dim Report As New ReportProduction()
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        ReportProductionWO.id_po = id_prod_order
-        ReportProductionWO.is_po_print = "1"
-
-        If check_print_report_status(id_report_status_g) Then
-            ReportProductionWO.is_pre = "-1"
+        If Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
+            warningCustom("Can't print, please complete all approval on system first")
         Else
-            ReportProductionWO.is_pre = "1"
-        End If
+            ReportProductionWO.id_po = id_prod_order
+            ReportProductionWO.is_po_print = "1"
 
-        Dim Report As New ReportProductionWO()
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+            If check_print_report_status(id_report_status_g) Then
+                ReportProductionWO.is_pre = "-1"
+            Else
+                ReportProductionWO.is_pre = "1"
+            End If
+
+            Dim Report As New ReportProductionWO()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
     End Sub
 
     Private Sub BarButtonItem2_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
-        'print(GCBOM, "Bill Of Material - " & TEDesign.Text & " - " & TEDesignCode.Text)
-        '... 
-        ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVBOM.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        ReportProdBOM.id_prod_order = id_prod_order
-        ReportProdBOM.dt = GCBOM.DataSource
-
-        If check_print_report_status(id_report_status_g) Then
-            ReportProdBOM.is_pre = "-1"
+        If Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
+            warningCustom("Can't print, please complete all approval on system first")
         Else
-            ReportProdBOM.is_pre = "1"
-        End If
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVBOM.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            ReportProdBOM.id_prod_order = id_prod_order
+            ReportProdBOM.dt = GCBOM.DataSource
 
-        Dim Report As New ReportProdBOM()
-        Report.GVBOM.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        
-        ' Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
-        Report.LCode.Text = TEDesignCode.Text
-        Report.LDesign.Text = TEDesign.Text
-        Report.LPONo.Text = TEPONumber.Text
-        Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
-        Report.LBOMType.Text = LECategory.Text
-        Report.LNote.Text = MEBOMNote.Text
-        Report.LVendor.Text = TEVendorName.Text
-        'cost here
-        Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
-        Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
-        Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N0")
-        Report.LUnitCost.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue)).ToString("N2")
-        '
-        ReportStyleGridview(Report.GVBOM)
-        '
-        Report.GVBOM.AppearancePrint.Row.Font = New Font("Tahoma", 6, FontStyle.Regular)
+            If check_print_report_status(id_report_status_g) Then
+                ReportProdBOM.is_pre = "-1"
+            Else
+                ReportProdBOM.is_pre = "1"
+            End If
 
-        Dim query As String = "SELECT "
-        query += " m_p.id_design, bom.id_bom, bom.id_product, bom.is_default, bom.bom_name, bom.id_currency, bom.kurs, bom.id_term_production"
-        query += " FROM tb_bom bom"
-        query += " INNER JOIN tb_m_product m_p ON m_p.id_product=bom.id_product"
-        query += " WHERE m_p.id_design='" & get_prod_demand_design_x(id_prod_demand_design, "3") & "' AND bom.is_default='1' "
-        query += " LIMIT 1"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            Report.LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
-            'Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs")).ToString("N2")
-            'Report.LNote.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue) * data.Rows(0)("kurs")).ToString("N2")
+            Dim Report As New ReportProdBOM()
+            Report.GVBOM.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            ' Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
+            Report.LCode.Text = TEDesignCode.Text
+            Report.LDesign.Text = TEDesign.Text
+            Report.LPONo.Text = TEPONumber.Text
+            Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
+            Report.LBOMType.Text = LECategory.Text
+            Report.LNote.Text = MEBOMNote.Text
+            Report.LVendor.Text = TEVendorName.Text
+            'cost here
+            Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
+            Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
+            Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N0")
+            Report.LUnitCost.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue)).ToString("N2")
+            '
+            ReportStyleGridview(Report.GVBOM)
+            '
+            Report.GVBOM.AppearancePrint.Row.Font = New Font("Tahoma", 6, FontStyle.Regular)
+
+            Dim query As String = "SELECT "
+            query += " m_p.id_design, bom.id_bom, bom.id_product, bom.is_default, bom.bom_name, bom.id_currency, bom.kurs, bom.id_term_production"
+            query += " FROM tb_bom bom"
+            query += " INNER JOIN tb_m_product m_p ON m_p.id_product=bom.id_product"
+            query += " WHERE m_p.id_design='" & get_prod_demand_design_x(id_prod_demand_design, "3") & "' AND bom.is_default='1' "
+            query += " LIMIT 1"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                Report.LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
+                'Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs")).ToString("N2")
+                'Report.LNote.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue) * data.Rows(0)("kurs")).ToString("N2")
+            End If
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         End If
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
     End Sub
 
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
@@ -814,5 +842,29 @@ GROUP BY m_ovh_p.id_ovh_price"
         FormViewProdDemand.is_for_production = True
         FormViewProdDemand.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCancelFGPO_Click(sender As Object, e As EventArgs) Handles BCancelFGPO.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel this FGPO ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                FormReportMark.id_report = id_prod_order
+                FormReportMark.report_mark_type = "22"
+                FormReportMark.change_status("5")
+
+                'nonaktif mark
+                Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "22", id_prod_order)
+                execute_non_query(queryrm, True, "", "", "", "")
+
+                Close()
+            Catch ex As Exception
+                DevExpress.XtraEditors.XtraMessageBox.Show(ex.ToString, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

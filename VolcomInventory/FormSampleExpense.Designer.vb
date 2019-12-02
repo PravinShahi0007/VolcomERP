@@ -38,6 +38,10 @@ Partial Class FormSampleExpense
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,6 +79,7 @@ Partial Class FormSampleExpense
         Me.BEdit.TabIndex = 8910
         Me.BEdit.TabStop = False
         Me.BEdit.Text = "Edit"
+        Me.BEdit.Visible = False
         '
         'LargeImageCollection
         '
@@ -167,7 +172,7 @@ Partial Class FormSampleExpense
         '
         'GVPurchaseList
         '
-        Me.GVPurchaseList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn5})
+        Me.GVPurchaseList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn6, Me.GridColumn5})
         Me.GVPurchaseList.GridControl = Me.GCPurchaseList
         Me.GVPurchaseList.Name = "GVPurchaseList"
         Me.GVPurchaseList.OptionsBehavior.ReadOnly = True
@@ -176,7 +181,7 @@ Partial Class FormSampleExpense
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_sample_budget_pps"
+        Me.GridColumn1.FieldName = "id_sample_po_mat"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
@@ -185,7 +190,7 @@ Partial Class FormSampleExpense
         Me.GridColumn2.FieldName = "number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 169
         '
         'GridColumn3
@@ -196,16 +201,16 @@ Partial Class FormSampleExpense
         Me.GridColumn3.FieldName = "date_created"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 206
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Created By"
+        Me.GridColumn4.Caption = "Requested By"
         Me.GridColumn4.FieldName = "employee_name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 258
         '
         'GridColumn6
@@ -214,7 +219,7 @@ Partial Class FormSampleExpense
         Me.GridColumn6.FieldName = "note"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.VisibleIndex = 7
         Me.GridColumn6.Width = 812
         '
         'GridColumn5
@@ -223,8 +228,44 @@ Partial Class FormSampleExpense
         Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 8
         Me.GridColumn5.Width = 187
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Budget"
+        Me.GridColumn7.FieldName = "budget"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Currency"
+        Me.GridColumn8.FieldName = "currency"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 4
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Kurs"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "kurs"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 5
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Total"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "amount"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 6
         '
         'FormSampleExpense
         '
@@ -270,4 +311,8 @@ Partial Class FormSampleExpense
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

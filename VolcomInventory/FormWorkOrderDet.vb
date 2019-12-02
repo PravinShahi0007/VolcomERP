@@ -12,7 +12,7 @@
         load_work_order_type()
         load_urgency()
         TEReqNUmber.Text = "[auto_generate]"
-        TEReqBy.Text = get_emp(id_user, "4")
+        TEReqBy.Text = get_emp(id_user, "3")
         TEDep.Text = get_emp(id_user, "5")
         DEDateCreated.EditValue = Now
 
@@ -134,7 +134,24 @@ SELECT '1' AS is_urgent,'Urgent' AS urgent"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim query As String = "SELECT IF(wo.is_urgent = 2, 'Not Urgent', 'Urgent') AS urgent,wo.id_report_status,wot.`work_order_type`,wo.`number`,wo.`note`,DATE_FORMAT(wo.`created_date`, '%e %M %Y') AS created_date,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
+        INNER JOIN tb_m_user usr ON usr.`id_user`=wo.`created_by`
+        INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+        INNER JOIN tb_m_departement dep ON dep.`id_departement`=wo.`id_departement_created`
+        INNER jOIN tb_lookup_work_order_type wot ON wot.id_work_order_type=wo.id_work_order_type
+        WHERE wo.`id_work_order`='" & id_wo & "'"
 
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        ReportWorkOrder.id_pre = If(data.Rows(0)("id_report_status") = "6", "-1", "1")
+        ReportWorkOrder.id_wo = id_wo
+        ReportWorkOrder.rmt = rmt
+        ReportWorkOrder.data = data
+
+        Dim Report As New ReportWorkOrder()
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 
     Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click

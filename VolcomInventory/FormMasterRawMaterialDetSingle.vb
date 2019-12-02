@@ -76,10 +76,9 @@ Public Class FormMasterRawMaterialDetSingle
                     id_mat_det = execute_query(query, 0, True, "", "", "", "")
 
                     logData("tb_mat_det", 1)
-
-                    query = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost) VALUES('{0}','Default Price','1',(SELECT id_comp_contact FROM tb_m_comp_contact LIMIT 1),'0',DATE(NOW()),'1')", id_mat_det)
+                    '
+                    query = String.Format("INSERT INTO tb_m_mat_det_price(id_mat_det,mat_det_price_name,id_currency,id_comp_contact,mat_det_price,mat_det_price_date,is_default_cost,is_default_po) VALUES('{0}','Default Price','1',(SELECT id_comp_contact FROM tb_m_comp_contact LIMIT 1),'0',DATE(NOW()),'1','1')", id_mat_det)
                     execute_non_query(query, True, "", "", "", "")
-
                     'cek image
                     If Not PictureEdit1.EditValue Is Nothing Then
                         save_image_ori(PictureEdit1, material_image_path, id_mat_det & ".jpg")
@@ -141,8 +140,9 @@ Public Class FormMasterRawMaterialDetSingle
                 End Try
             End If
             Cursor = Cursors.Default
-            End If
+        End If
     End Sub
+
     'Form Load
     Private Sub FormMasterRawMaterialDetSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_form()
@@ -223,6 +223,7 @@ Public Class FormMasterRawMaterialDetSingle
                     Next
                 End If
             End If
+
             'check if used
             Dim query_check As String = "SELECT mdprice.`id_mat_det` FROM `tb_mat_purc_det` mpd
                                         INNER JOIN `tb_mat_purc` mp ON mp.`id_mat_purc`=mpd.`id_mat_purc` AND mp.`id_report_status`!=5
@@ -241,9 +242,9 @@ Public Class FormMasterRawMaterialDetSingle
             Else
                 PCSave.Visible = True
             End If
-            '
         End If
     End Sub
+
     'View Inventory Method
     Sub viewInventoryMethod()
         Dim query As String = "(SELECT ('0') AS id_method, ('-Select Method-') AS method) "
@@ -251,11 +252,13 @@ Public Class FormMasterRawMaterialDetSingle
         query += "(SELECT id_method, method FROM tb_lookup_inventory_method ORDER BY method ASC) "
         viewLookupQuery(LEMethod, query, 0, "method", "id_method")
     End Sub
+
     'View fabric type
     Sub viewFabType()
         Dim query As String = "SELECT id_fab_type, fab_type FROM tb_lookup_fab_type ORDER BY id_fab_type DESC "
         viewLookupQuery(LEFabType, query, 0, "fab_type", "id_fab_type")
     End Sub
+
     'View Template
     Private Sub viewTemplate(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
         Dim query As String = "SELECT id_template_code,template_code FROM tb_template_code ORDER BY template_code ASC"
@@ -421,7 +424,7 @@ Public Class FormMasterRawMaterialDetSingle
     '----PRICE-------------------
     'View Price
     Sub viewPrice()
-        Dim query As String = "SELECT a.id_mat_det,a.id_mat_det_price,a.mat_det_price,a.mat_det_price_name,a.mat_det_price_date,c.comp_name,a.id_currency,d.currency,IF(a.is_default_cost=1,'yes','no') AS is_default_cost FROM tb_m_mat_det_price a "
+        Dim query As String = "SELECT a.id_mat_det,a.id_mat_det_price,a.mat_det_price,a.mat_det_price_name,a.mat_det_price_date,c.comp_name,a.id_currency,d.currency,IF(a.is_default_cost=1,'yes','no') AS is_default_cost,IF(a.is_default_po=1,'yes','no') AS is_default_po FROM tb_m_mat_det_price a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_comp_contact = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
         query += "INNER JOIN tb_lookup_currency d ON a.id_currency = d.id_currency "
@@ -457,12 +460,18 @@ Public Class FormMasterRawMaterialDetSingle
     End Sub
     'Delete Price
     Private Sub BtnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDelete.Click
-        Dim query_, res As String
+        Dim query_, res, list_pd As String
         'check first
         query_ = String.Format("SELECT count(id_storage_mat) FROM tb_storage_mat WHERE id_mat_det='{0}' ", id_mat_det)
         res = execute_query(query_, 0, True, "", "", "", "")
+        '
+        query_ = String.Format("SELECT COUNT(id_mat_purc_list) FROM `tb_mat_purc_list` WHERE id_mat_det_price='{0}' ", GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString)
+        list_pd = execute_query(query_, 0, True, "", "", "", "")
+
         If Not res = "0" Then
             stopCustom("Material already used with default cost.")
+        ElseIf Not res = "0" Then
+            stopCustom("Material price already used on PO.")
         Else
             Dim confirm As DialogResult = XtraMessageBox.Show("Are you sure want to delete this price?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -479,20 +488,28 @@ Public Class FormMasterRawMaterialDetSingle
             End If
         End If
     End Sub
+
     'Edit Price
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
-        Dim query_, res As String
+        Dim query_, res, list_pd As String
         'check first
         query_ = String.Format("SELECT count(id_storage_mat) FROM tb_storage_mat WHERE id_mat_det='{0}' ", id_mat_det)
         res = execute_query(query_, 0, True, "", "", "", "")
+        '
+        query_ = String.Format("SELECT COUNT(id_mat_purc_list) FROM `tb_mat_purc_list` WHERE id_mat_det_price='{0}' ", GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString)
+        list_pd = execute_query(query_, 0, True, "", "", "", "")
+
         If Not res = "0" Then
             stopCustom("Material already used with default cost.")
+        ElseIf Not res = "0" Then
+            stopCustom("Material price already used on PO.")
         Else
             FormMasterRawMaterialPrcSingle.action = "upd"
             FormMasterRawMaterialPrcSingle.id_mat_det_price = GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString
             FormMasterRawMaterialPrcSingle.ShowDialog()
         End If
     End Sub
+
     '----------MOVEMENT-----------------
     Sub viewMovement()
         Dim query As String = "SELECT *, CONCAT(DATE(a.mat_det_movement_datetime),' ',TIME(a.mat_det_movement_datetime)) AS time_movement "
@@ -503,6 +520,7 @@ Public Class FormMasterRawMaterialDetSingle
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMovement.DataSource = data
     End Sub
+
     'View Image
     Private Sub BViewImage_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BViewImage.Click
         Try
@@ -514,6 +532,7 @@ Public Class FormMasterRawMaterialDetSingle
         Catch ex As Exception
         End Try
     End Sub
+
     Private Sub PictureEdit1_Modified(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PictureEdit1.Modified
         BViewImage.Enabled = False
     End Sub
@@ -538,11 +557,11 @@ Public Class FormMasterRawMaterialDetSingle
         ElseIf Not res = "0" Then
             stopCustom("Material already stored by default cost.")
             'ElseIf Not price.Substring(price.Length - 2) = "00" Then
-            '    stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
+            'stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
         Else
             Dim confirm As DialogResult
 
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change material cost to this price? All material listed on MRS will changes, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            confirm = XtraMessageBox.Show("Are you sure want to change material cost to this price? All material listed on MRS will changes, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Try
@@ -553,7 +572,7 @@ Public Class FormMasterRawMaterialDetSingle
                     viewPrice()
                     infoCustom("Default cost changed.")
                 Catch ex As Exception
-                    DevExpress.XtraEditors.XtraMessageBox.Show("Please check your connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Please check your connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
                 Cursor = Cursors.Default
             End If
@@ -569,5 +588,28 @@ Public Class FormMasterRawMaterialDetSingle
         FormCodeTemplateEdit.id_pop_up = "4"
         FormCodeTemplateEdit.id_template_code = LETemplate.EditValue.ToString
         FormCodeTemplateEdit.ShowDialog()
+    End Sub
+
+    Private Sub BSetPrice_Click(sender As Object, e As EventArgs) Handles BSetPrice.Click
+        Dim id_mat_det_price As String = GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString
+
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change material price to this price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                'get old id_mat_det_price
+                Dim query As String = ""
+                query = String.Format("UPDATE tb_m_mat_det_price SET is_default_po='2' WHERE id_mat_det='{1}'; UPDATE tb_m_mat_det_price SET is_default_po='1' WHERE id_mat_det_price = '{0}';", id_mat_det_price, id_mat_det)
+                execute_non_query(query, True, "", "", "", "")
+                '
+                viewPrice()
+                infoCustom("Default PO Price changed.")
+            Catch ex As Exception
+                XtraMessageBox.Show("Please check your connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

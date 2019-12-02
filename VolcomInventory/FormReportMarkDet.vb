@@ -55,6 +55,28 @@
                 Dim query_upd_single As String = String.Format("UPDATE tb_report_mark Set is_use='2' WHERE (" + asg + ") ;UPDATE tb_report_mark Set id_mark='{0}',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE (" + rm + ") ", id_mark_var, addSlashes(MEComment.Text))
                 execute_non_query(query_upd_single, True, "", "", "", "")
             End If
+        ElseIf FormReportMark.report_mark_type = "46" Or FormReportMark.report_mark_type = "113" Or FormReportMark.report_mark_type = "120" Then
+            'return
+            Dim query_get_combine As String = "SELECT combine_number FROM tb_sales_return WHERE id_sales_return=" + FormReportMark.id_report + " "
+            Dim combine_number As String = execute_query(query_get_combine, 0, True, "", "", "", "")
+            If combine_number <> "" Then
+                Dim id_user_combine_app As String = FormReportMark.GVMark.GetFocusedRowCellValue("id_user").ToString
+                Dim query_upd_all As String = "/*update is use*/
+                UPDATE tb_report_mark rm
+                INNER JOIN (
+	                SELECT r.id_sales_return FROM tb_sales_return r WHERE r.combine_number='" + combine_number + "'
+                ) r ON r.id_sales_return = rm.id_report AND (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120) 
+                AND rm.id_report_status=3
+                SET rm.is_use=2;
+                /*update mark*/
+                UPDATE tb_report_mark rm
+                INNER JOIN (
+	                SELECT r.id_sales_return FROM tb_sales_return r WHERE r.combine_number='" + combine_number + "'
+                ) r ON r.id_sales_return = rm.id_report AND (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120) 
+                AND rm.id_user=" + id_user_combine_app + " AND rm.id_report_status=3
+                SET rm.is_use=1, rm.id_mark=" + id_mark_var + ", report_mark_note='" + addSlashes(MEComment.Text) + "', report_mark_datetime=NOW(); "
+                execute_non_query(query_upd_all, True, "", "", "", "")
+            End If
         End If
     End Sub
 
@@ -188,7 +210,7 @@
                 'delete all mark
                 Dim qm As String = "DELETE FROM tb_report_mark WHERE id_report=" + id_report + " AND report_mark_type=" + report_mark_type + " "
                 execute_non_query(qm, True, "", "", "", "")
-            ElseIf report_mark_type = "134" Or report_mark_type = "135" Then
+            ElseIf report_mark_type = "134" Or report_mark_type = "135" Or report_mark_type = "180" Then
                 'set cancel item cat & mapping
                 FormReportMark.report_mark_type = report_mark_type
                 FormReportMark.id_report = id_report

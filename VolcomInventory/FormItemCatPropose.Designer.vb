@@ -35,6 +35,7 @@ Partial Class FormItemCatPropose
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPItemCatPropose = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,7 +135,7 @@ Partial Class FormItemCatPropose
         '
         'GVItemCat
         '
-        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVItemCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.GridColumn8, Me.GridColumn9})
         Me.GVItemCat.GridControl = Me.GCItemCat
         Me.GVItemCat.Name = "GVItemCat"
         Me.GVItemCat.OptionsBehavior.Editable = False
@@ -153,7 +154,7 @@ Partial Class FormItemCatPropose
         Me.GridColumn7.FieldName = "expense_type"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.VisibleIndex = 1
         '
         'GridColumn8
         '
@@ -161,7 +162,7 @@ Partial Class FormItemCatPropose
         Me.GridColumn8.FieldName = "item_cat"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 2
         '
         'GridColumn9
         '
@@ -175,6 +176,14 @@ Partial Class FormItemCatPropose
         Me.XTPItemCatPropose.Name = "XTPItemCatPropose"
         Me.XTPItemCatPropose.Size = New System.Drawing.Size(945, 500)
         Me.XTPItemCatPropose.Text = "Setup Budget Category"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Main Category"
+        Me.GridColumn10.FieldName = "item_cat_main"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
         '
         'FormItemCatPropose
         '
@@ -213,4 +222,5 @@ Partial Class FormItemCatPropose
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPItemCatPropose As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

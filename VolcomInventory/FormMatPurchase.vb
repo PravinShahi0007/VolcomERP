@@ -9,10 +9,20 @@
         '
         viewSeason()
         view_mat_purc()
+        view_mat_det_pd()
         '
         viewVendorKO()
         'GVMatPurchase.ActiveFilterString = "[id_mat_purc] > 1 AND [id_mat_purc] < 6"
-        viewProdDemand()
+    End Sub
+
+    Sub view_mat_det_pd()
+        Dim query As String = "SELECT '0' AS id_mat_det, '0' AS id_mat, 'ALL' AS mat_det_code, 'ALL' AS mat_det_display_name , '-' AS uom
+UNION
+SELECT md.`id_mat_det`,md.`id_mat`,md.`mat_det_code`,md.`mat_det_display_name` ,uom.`uom`
+FROM tb_m_mat_det md
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
+        viewSearchLookupQuery(SLEMatDet, query, "id_mat_det", "mat_det_display_name", "id_mat_det")
     End Sub
 
     Sub viewVendorKO()
@@ -26,6 +36,7 @@
     Private Sub viewSeason()
         Dim query As String = "SELECT '0' as id_season,'All season' AS season UNION (SELECT id_season,season FROM tb_season ORDER BY id_season DESC)"
         viewSearchLookupQuery(LESeason, query, "id_season", "season", "id_season")
+        viewSearchLookupQuery(SLEReport, query, "id_season", "season", "id_season")
     End Sub
     Private Sub FormMatPurchase_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -41,64 +52,36 @@
             query_where += " AND del.id_season='" & LESeason.EditValue.ToString & "'"
         End If
 
-        Dim query = "SELECT '' AS `no`,a.mat_purc_vat as vat,'no' AS is_check,IFNULL(rev.mat_purc_number,'-') AS mat_purc_rev_number,a.id_report_status,h.report_status,a.id_mat_purc, 
-DATE_ADD(a.`mat_purc_date`,INTERVAL a.`mat_purc_lead_time` DAY) AS est_del_date,a.id_comp_contact_to AS id_comp_contact,d.id_comp AS id_comp,
-DATE_ADD(a.`mat_purc_date`,INTERVAL (a.`mat_purc_lead_time`+a.`mat_purc_top`) DAY) AS payment_due_date,
-a.`mat_purc_lead_time` AS lead_time,a.`mat_purc_top` AS top,
-b.id_season,a.id_delivery,i.delivery, rang.`range`,
-b.season, g.payment,
-d.comp_name AS comp_name_to,  d.`comp_number` AS comp_number_to,
-f.comp_name AS comp_name_ship_to, 
-a.mat_purc_number,
-a.mat_purc_date, del.`id_season`, 
-DATE_ADD(a.mat_purc_date,INTERVAL a.mat_purc_lead_time DAY) AS mat_purc_lead_time, 
-DATE_ADD(a.mat_purc_date,INTERVAL (a.mat_purc_top+a.mat_purc_lead_time) DAY) AS mat_purc_top 
-,cur.`currency` AS po_curr,a.`mat_purc_kurs` AS po_kurs
-,SUM(mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`)* ((100 + a.mat_purc_vat)/100) AS po_amount
-,SUM(mpd.`mat_purc_det_qty`) AS qty_order
-,SUM(IF(a.`id_currency`=1,1,a.`mat_purc_kurs`) * mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`) * ((100 + a.mat_purc_vat)/100) AS po_amount_rp
-,uom.`uom`
-FROM tb_mat_purc a INNER JOIN tb_season_delivery i ON a.id_delivery = i.id_delivery 
-INNER JOIN tb_season b ON i.id_season = b.id_season 
-INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_to = c.id_comp_contact 
-INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
-INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact 
-INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp 
-INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment 
-LEFT JOIN tb_mat_purc rev ON rev.id_mat_purc = a.id_mat_purc_rev 
-INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status
-INNER JOIN `tb_season_delivery` del ON a.`id_delivery`=del.`id_delivery`
-INNER JOIN tb_season ssn ON ssn.`id_season`=del.`id_season`
-INNER JOIN `tb_range` rang ON rang.id_range=ssn.id_range
-INNER JOIN tb_mat_purc_det mpd ON mpd.`id_mat_purc`=a.`id_mat_purc`
-INNER JOIN tb_lookup_currency cur ON cur.id_currency=a.id_currency
-INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=mpd.`id_mat_det_price`
-INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
-INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat`
-INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
-WHERE 1=1 " & query_where & "
-GROUP BY mpd.`id_mat_purc`"
+        Dim query = q_mat(query_where)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMatPurchase.DataSource = data
         check_menu()
     End Sub
     Sub check_menu()
-        If GVMatPurchase.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
+        If XTCPurcMat.SelectedTabPageIndex = 0 Then
+            If GVMatPurchase.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                '
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                '
+            End If
+        Else
+            bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            '
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-            '
         End If
     End Sub
 
@@ -157,31 +140,8 @@ GROUP BY mpd.`id_mat_purc`"
         End If
     End Sub
     '========= from PD =============
-    Sub viewProdDemand()
-        Dim query As String = "SELECT *,c.report_status FROM tb_prod_demand a "
-        query += "INNER JOIN tb_season b ON a.id_season = b.id_season "
-        query += "INNER JOIN tb_lookup_report_status c ON c.id_report_status = a.id_report_status "
-        query += "ORDER BY a.id_prod_demand DESC "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCProdDemand.DataSource = data
-        GVProdDemand.Columns("season").GroupIndex = 0
-        If data.Rows.Count > 0 Then
-            GVProdDemand.FocusedRowHandle = 0
-            view_product()
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-        Else
-            'hide all except new
-            bnew_active = "1"
-            bedit_active = "0"
-            bdel_active = "0"
-        End If
-        checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
-    End Sub
-    Private Sub GVProdDemand_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProdDemand.FocusedRowChanged
+
+    Private Sub GVProdDemand_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs)
         Dim focusedRowHandle As Integer = -1
         If e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle OrElse e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle Then
             Return
@@ -214,38 +174,6 @@ GROUP BY mpd.`id_mat_purc`"
             End If
         End If
     End Sub
-    'Row Click Number
-    Private Sub GVProdDemand_RowClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVProdDemand.RowClick
-        view_product()
-        'checkPrintStatus()
-    End Sub
-
-    Sub view_product()
-        Try
-            Dim id_prod_demand As String = GVProdDemand.GetFocusedRowCellDisplayText("id_prod_demand").ToString
-            Dim query As String = "CALL view_prod_demand('" & id_prod_demand & "', 0)"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCProduct.DataSource = data
-            GVProduct.ClearGrouping()
-            GVProduct.Columns("category").GroupIndex = 0
-            GVProduct.Columns("design_name").GroupIndex = 1
-            GVProduct.ExpandAllGroups()
-            '
-            If check_print_report_status(GVProdDemand.GetFocusedRowCellDisplayText("id_report_status").ToString) Then
-                BCreate.Enabled = True
-            Else
-                BCreate.Enabled = False
-            End If
-        Catch ex As Exception
-            errorConnection()
-        End Try
-    End Sub
-
-    Private Sub BCreate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCreate.Click
-        FormProdDemandMat.id_prod_demand = GVProdDemand.GetFocusedRowCellDisplayText("id_prod_demand").ToString
-        FormProdDemandMat.is_in_mat = "1"
-        FormProdDemandMat.ShowDialog()
-    End Sub
 
     Private Sub GVMatPurchase_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVMatPurchase.DoubleClick
         If GVMatPurchase.RowCount > 0 Then
@@ -270,10 +198,6 @@ GROUP BY mpd.`id_mat_purc`"
         FormMatPurcSum.dt = GCMatPurchase.DataSource
         FormMatPurcSum.GVProd.ActiveFilterString = "[is_check]='yes'"
         FormMatPurcSum.ShowDialog()
-    End Sub
-
-    Private Sub BShowPrintPanel_Click(sender As Object, e As EventArgs) Handles BShowPrintPanel.Click
-        PCFilterDate.Visible = True
     End Sub
 
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
@@ -315,5 +239,260 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=1 " & query_where & " ORDER BY k
     Private Sub BEditKO_Click(sender As Object, e As EventArgs) Handles BEditKO.Click
         FormProductionKO.id_ko = GVKO.GetFocusedRowCellValue("id_prod_order_ko").ToString
         FormProductionKO.ShowDialog()
+    End Sub
+
+    Private Sub BGenerateFromPD_Click(sender As Object, e As EventArgs) Handles BGenerateFromPD.Click
+        FormMatPurchasePD.ShowDialog()
+    End Sub
+
+    Sub load_list_mat_from_pd()
+        Dim query As String = ""
+        Dim query_where = ""
+        If Not SLEMatDet.EditValue.ToString = "0" Then
+            query_where = " WHERE md.id_mat_det='" & SLEMatDet.EditValue.ToString & "'"
+        End If
+
+        query = q_list(query_where)
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCListMatPD.DataSource = data
+        GVListMatPD.BestFitColumns()
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        load_list_mat_from_pd()
+    End Sub
+
+    Private Sub GVListMatPD_DoubleClick(sender As Object, e As EventArgs) Handles GVListMatPD.DoubleClick
+        If GVListMatPD.RowCount > 0 Then
+            FormMatPurchasePD.id_list = GVListMatPD.GetFocusedRowCellValue("id_mat_purc_list").ToString
+            FormMatPurchasePD.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        GVListMatPD.ActiveFilterString = "[is_check]='yes'"
+        If GVListMatPD.RowCount > 0 Then
+            'create PO
+            'check vendor, id_currency must same
+            Dim id_comp_contact As String = ""
+            Dim id_currency As String = ""
+            Dim not_same As Boolean = False
+            Dim po_created As Boolean = False
+            For i As Integer = 0 To GVListMatPD.RowCount - 1
+                If id_comp_contact = "" And id_currency = "" Then
+                    id_comp_contact = GVListMatPD.GetRowCellValue(i, "id_comp_contact").ToString
+                    id_currency = GVListMatPD.GetRowCellValue(i, "id_currency").ToString
+                Else
+                    If Not id_comp_contact = GVListMatPD.GetRowCellValue(i, "id_comp_contact").ToString Or Not id_currency = GVListMatPD.GetRowCellValue(i, "id_currency").ToString Then
+                        not_same = True
+                        Exit For
+                    End If
+                End If
+                Dim query_check As String = "SELECT id_mat_purc FROM tb_mat_purc_list WHERE id_mat_purc_list='" & GVListMatPD.GetRowCellValue(i, "id_mat_purc_list") & "'"
+                Dim id_cek As String = execute_query(query_check, 0, True, "", "", "", "")
+                '
+                If Not id_cek = "" Then
+                    po_created = True
+                End If
+            Next
+            '
+            If not_same = True Then
+                warningCustom("Make sure only material with same vendor and same currency selected.")
+            ElseIf po_created = True Then
+                warningCustom("Make sure PO not already created.")
+            Else
+                FormMatPurchaseDet.is_from_list = "1"
+                FormMatPurchaseDet.ShowDialog()
+            End If
+        Else
+            warningCustom("Please choose list first")
+        End If
+        GVListMatPD.ActiveFilterString = ""
+    End Sub
+
+    Private Sub XTCPurcMat_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPurcMat.SelectedPageChanged
+        check_menu()
+    End Sub
+
+    Sub open_mat()
+        FormMasterRawMaterialDetSingle.action = "upd"
+
+        FormMasterRawMaterialDetSingle.id_mat = GVListMatPD.GetFocusedRowCellValue("id_mat").ToString
+        FormMasterRawMaterialDetSingle.LabelPrintedName.Text = GVListMatPD.GetFocusedRowCellValue("mat_display_name").ToString
+        FormMasterRawMaterialDetSingle.TxtMaterialTypeCode.Text = GVListMatPD.GetFocusedRowCellValue("mat_code").ToString
+
+        FormMasterRawMaterialDetSingle.id_mat_det = GVListMatPD.GetFocusedRowCellValue("id_mat_det").ToString
+        FormMasterRawMaterialDetSingle.ShowDialog()
+    End Sub
+
+    Private Sub SMMasterMat_Click(sender As Object, e As EventArgs) Handles SMMasterMat.Click
+        If GVListMatPD.RowCount > 0 Then
+            open_mat()
+        End If
+    End Sub
+
+    Private Sub BSearchReport_Click(sender As Object, e As EventArgs) Handles BSearchReport.Click
+        view_report()
+    End Sub
+
+    Sub view_report()
+        Dim query_where As String = ""
+        If Not SLEReport.EditValue.ToString = "0" Then
+            query_where += " WHERE del.id_season='" & SLEReport.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT pd.*,dsg.`design_code`,dsg.`design_display_name`,listt.`id_mat_purc_list`
+,COUNT(listt.`id_mat_purc_list`) AS jml_list,GROUP_CONCAT(listt.`id_mat_purc_list`) AS id_list_group,GROUP_CONCAT(LPAD(listt.`id_mat_purc_list`,6,'0')) AS list_group
+,COUNT(mp.`id_mat_purc`) AS jml_po,GROUP_CONCAT(DISTINCT(mp.`id_mat_purc`)) AS id_po_group ,GROUP_CONCAT(DISTINCT(mp.mat_purc_number)) AS po_group
+FROM
+(
+	SELECT IFNULL(pdpo.id_prod_demand,newest_pd.id_prod_demand) AS id_prod_demand,
+	IFNULL(pdpo.id_design,newest_pd.id_design) AS id_design,
+	IFNULL(pdpo.id_prod_demand_design,newest_pd.id_prod_demand_design) AS id_prod_demand_design,
+	IFNULL(pdpo.id_product,newest_pd.id_product) AS id_product,
+	IFNULL(pdpo.id_prod_demand_product,newest_pd.id_prod_demand_product) AS id_prod_demand_product,
+	IFNULL(pdpo.prod_demand_product_qty,newest_pd.prod_demand_product_qty) AS prod_demand_product_qty,
+	IFNULL(pdpo.prod_demand_number,newest_pd.prod_demand_number) AS prod_demand_number,
+    IFNULL(pdpo.id_delivery,newest_pd.id_delivery) AS id_delivery
+	FROM (
+		SELECT * FROM (
+			SELECT pdd.id_delivery,pd.id_prod_demand,pdd.`id_design`,pdd.`id_prod_demand_design`,pdp.`id_product`,pdp.`id_prod_demand_product`,pdp.`prod_demand_product_qty`,pd.`prod_demand_number` FROM tb_prod_demand pd
+			INNER JOIN tb_prod_demand_design pdd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+			INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+			WHERE pd.id_report_status=6 AND pd.`is_pd`=1 AND pd.`is_void_pd`=2
+			ORDER BY pdp.id_prod_demand_product DESC
+		) pd GROUP BY id_product
+	) newest_pd 
+	LEFT JOIN
+	(
+		SELECT pdd.id_delivery,pd.`id_prod_demand`,pdd.`id_design`,pdd.`id_prod_demand_design`,pdp.id_product,pdp.id_prod_demand_product,pdp.prod_demand_product_qty,po.id_prod_order,pd.`prod_demand_number` 
+		FROM tb_prod_order po
+		INNER JOIN `tb_prod_demand_design` pdd ON po.id_prod_demand_design=pdd.`id_prod_demand_design`
+		INNER JOIN tb_prod_demand pd ON pdd.`id_prod_demand`=pd.`id_prod_demand`
+		INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+		WHERE pd.`is_pd`=1 AND pd.`is_void_pd` =2 AND pd.`id_report_status`=6 AND po.`id_report_status`!=5
+		GROUP BY pdp.id_product
+	)pdpo ON pdpo.id_product=newest_pd.id_product
+	GROUP BY IFNULL(pdpo.id_prod_demand_design,newest_pd.id_prod_demand_design)
+)pd 
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pd.id_design
+INNER JOIN `tb_season_delivery` del ON pd.`id_delivery`=del.`id_delivery`
+LEFT JOIN `tb_mat_purc_list_pd` listpd ON listpd.`id_prod_demand_design`=pd.id_prod_demand_design
+LEFT JOIN tb_mat_purc_list listt ON listt.`id_mat_purc_list`=listpd.`id_mat_purc_list` AND listt.`is_cancel`!=1
+LEFT JOIN `tb_mat_purc` mp ON mp.`id_mat_purc`=listt.`id_mat_purc` AND mp.`id_report_status`!=5
+" & query_where & "
+GROUP BY pd.id_prod_demand_design"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPD.DataSource = data
+        GVPD.BestFitColumns()
+    End Sub
+
+    Private Sub BShowFilterPanel_Click(sender As Object, e As EventArgs) Handles BShowFilterPanel.Click
+        PCFilterDate.Visible = True
+    End Sub
+
+    Private Sub ViewPOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewPOToolStripMenuItem.Click
+        If GVPD.GetFocusedRowCellValue("id_po_group").ToString = "" Then
+            warningCustom("No PO listed")
+        Else
+            XTCPurcMat.SelectedTabPageIndex = 0
+            Dim query = q_mat(" AND a.id_mat_purc IN (" & GVPD.GetFocusedRowCellValue("id_po_group").ToString & ")")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCMatPurchase.DataSource = data
+            GVMatPurchase.ExpandAllGroups()
+            check_menu()
+        End If
+    End Sub
+
+    Function q_mat(ByVal q_where As String)
+        Dim query As String = "SELECT '' AS `no`,a.mat_purc_vat as vat,'no' AS is_check,IFNULL(rev.mat_purc_number,'-') AS mat_purc_rev_number,a.id_report_status,h.report_status,a.id_mat_purc, 
+DATE_ADD(a.`mat_purc_date`,INTERVAL a.`mat_purc_lead_time` DAY) AS est_del_date,a.id_comp_contact_to AS id_comp_contact,d.id_comp AS id_comp,
+DATE_ADD(a.`mat_purc_date`,INTERVAL (a.`mat_purc_lead_time`+a.`mat_purc_top`) DAY) AS payment_due_date,
+a.`mat_purc_lead_time` AS lead_time,a.`mat_purc_top` AS top,
+b.id_season,a.id_delivery,i.delivery, rang.`range`,
+b.season, g.payment,
+d.comp_name AS comp_name_to,  d.`comp_number` AS comp_number_to,
+f.comp_name AS comp_name_ship_to, 
+a.mat_purc_number,
+a.mat_purc_date, del.`id_season`, 
+DATE_ADD(a.mat_purc_date,INTERVAL a.mat_purc_lead_time DAY) AS mat_purc_lead_time, 
+DATE_ADD(a.mat_purc_date,INTERVAL (a.mat_purc_top+a.mat_purc_lead_time) DAY) AS mat_purc_top 
+,cur.`currency` AS po_curr,a.`mat_purc_kurs` AS po_kurs
+,SUM(mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`)* ((100 + a.mat_purc_vat)/100) AS po_amount
+,SUM(mpd.`mat_purc_det_qty`) AS qty_order
+,SUM(IF(a.`id_currency`=1,1,a.`mat_purc_kurs`) * mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`) * ((100 + a.mat_purc_vat)/100) AS po_amount_rp
+,uom.`uom`
+FROM tb_mat_purc a INNER JOIN tb_season_delivery i ON a.id_delivery = i.id_delivery 
+INNER JOIN tb_season b ON i.id_season = b.id_season 
+INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_to = c.id_comp_contact 
+INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact 
+INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp 
+INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment 
+LEFT JOIN tb_mat_purc rev ON rev.id_mat_purc = a.id_mat_purc_rev 
+INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status
+INNER JOIN `tb_season_delivery` del ON a.`id_delivery`=del.`id_delivery`
+INNER JOIN tb_season ssn ON ssn.`id_season`=del.`id_season`
+INNER JOIN `tb_range` rang ON rang.id_range=ssn.id_range
+INNER JOIN tb_mat_purc_det mpd ON mpd.`id_mat_purc`=a.`id_mat_purc`
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=a.id_currency
+INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=mpd.`id_mat_det_price`
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
+WHERE 1=1 " & q_where & "
+GROUP BY mpd.`id_mat_purc`"
+        Return query
+    End Function
+
+    Function q_list(ByVal q_where As String)
+        Dim query As String = "SELECT 'no' AS is_check,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
+,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
+,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
+,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
+,md.mat_det_name,color.display_name AS color,size.display_name AS size
+,m.mat_code,m.mat_display_name,m.id_mat,md.id_mat_det
+,mdp.min_qty_in_bulk,mdp.bulk_unit, CONCAT(mdp.min_qty_in_bulk,'/',IF(mdp.bulk_unit='','pcs',mdp.bulk_unit)) AS conversion
+,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
+,ROUND((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
+,IF(mdp.min_qty_in_bulk=1,'',CONCAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),' ',mdp.bulk_unit)) AS order_note
+,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk) AS total_qty_order_conv
+,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
+FROM `tb_mat_purc_list` pl
+INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=pl.`id_mat_det`
+INNER JOIN tb_m_mat m ON m.id_mat=md.id_mat
+LEFT JOIN tb_mat_purc mp ON mp.`id_mat_purc`=pl.`id_mat_purc`
+INNER JOIN tb_m_mat_det_price mdp ON mdp.is_default_po='1' AND mdp.id_mat_det=pl.id_mat_det
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=mdp.id_comp_contact
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=mdp.id_currency
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=1
+) color ON color.id_mat_det=md.id_mat_det
+LEFT JOIN
+(
+	SELECT mdc.id_mat_det,mcd.display_name FROM tb_m_mat_det_code mdc
+	INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=mdc.id_code_detail AND mcd.id_code=13
+) size ON size.id_mat_det=md.id_mat_det
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+" & q_where & "
+GROUP BY pl.`id_mat_purc_list`"
+        Return query
+    End Function
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        If GVPD.GetFocusedRowCellValue("id_list_group").ToString = "" Then
+            warningCustom("No List created")
+        Else
+            XTCPurcMat.SelectedTabPageIndex = 1
+            XTCListPD.SelectedTabPageIndex = 0
+            Dim query = q_list(" WHERE pl.`id_mat_purc_list` IN (" & GVPD.GetFocusedRowCellValue("id_list_group").ToString & ")")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCListMatPD.DataSource = data
+            GVListMatPD.BestFitColumns()
+            check_menu()
+        End If
     End Sub
 End Class

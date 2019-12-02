@@ -110,7 +110,7 @@ INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=mdp.`id_mat_det`
 INNER JOIN `tb_m_mat_det_code` mdc ON mdc.id_mat_det = md.id_mat_det
 INNER JOIN `tb_m_code_detail` cd ON cd.id_code_detail=mdc.id_code_detail AND cd.id_code='1'
 LEFT JOIN(
-    SELECT revtimes.id_purc_order,COUNT(DISTINCT revtimes.id_purc_order) AS revision_times FROM
+    SELECT revtimes.id_purc_order,COUNT(DISTINCT revtimes.revision) AS revision_times FROM
     (
 	    SELECT kod.id_purc_order,kod.revision FROM tb_prod_order_ko_det kod
 	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko`
@@ -145,7 +145,7 @@ LEFT JOIN (
 	GROUP BY wo.id_prod_order_wo
 ) wo_price ON wo_price.id_prod_order= po.id_prod_order
 LEFT JOIN(
-    SELECT revtimes.id_prod_order,COUNT(DISTINCT revtimes.id_prod_order) AS revision_times FROM
+    SELECT revtimes.id_prod_order,COUNT(DISTINCT revtimes.revision) AS revision_times FROM
     (
 	    SELECT kod.id_prod_order,kod.revision FROM tb_prod_order_ko_det kod
 	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko`

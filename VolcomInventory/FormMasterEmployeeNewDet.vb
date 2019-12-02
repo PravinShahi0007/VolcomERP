@@ -48,6 +48,11 @@
     Sub viewBPJSStatus()
         Dim query As String = "SELECT * FROM tb_lookup_bpjs_status"
         viewLookupQuery(LEBPJSStatus, query, 0, "bpjs_status", "id_bpjs_status")
+        viewLookupQuery(LEBPJSStatusHusband, query, 0, "bpjs_status", "id_bpjs_status")
+        viewLookupQuery(LEBPJSStatusWife, query, 0, "bpjs_status", "id_bpjs_status")
+        viewLookupQuery(LEBPJSStatusChild1, query, 0, "bpjs_status", "id_bpjs_status")
+        viewLookupQuery(LEBPJSStatusChild2, query, 0, "bpjs_status", "id_bpjs_status")
+        viewLookupQuery(LEBPJSStatusChild3, query, 0, "bpjs_status", "id_bpjs_status")
     End Sub
 
     Sub viewEmployeeStatus()
@@ -78,6 +83,7 @@
         query += "ORDER BY pos.id_employee_position DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPosition.DataSource = data
+        GVPosition.BestFitColumns()
         If GVPosition.RowCount > 0 Then
             BtnDeletePosition.Enabled = True
         Else
@@ -111,6 +117,7 @@
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         data_dt = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEJoinDate.EditValue = data_dt.Rows(0)("dt")
+        DEActualJoinDate.EditValue = data_dt.Rows(0)("dt")
         TxtCode.Focus()
         viewSex()
         viewBloodType()
@@ -170,12 +177,23 @@
             Dim query As String = "CALL view_employee('AND emp.id_employee=" + id_employee + " ', 1)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             Dim datarow As DataRow = data.Rows(0)
+
+            If datarow("id_departement").ToString = "17" Then
+                PCSogo.Visible = True
+                PanelControlTop.Size = New Size(838, 201)
+            Else
+                PCSogo.Visible = False
+                PanelControlTop.Size = New Size(838, 173)
+            End If
+
             'general tab
             TxtCode.Text = datarow("employee_code").ToString
+            TxtSogoNIK.Text = datarow("employee_nik_sogo").ToString
             TxtFullName.Text = datarow("employee_name").ToString
             TxtNickName.Text = datarow("employee_nick_name").ToString
             TxtInitialName.Text = datarow("employee_initial_name").ToString
             DEJoinDate.EditValue = datarow("employee_join_date")
+            DEActualJoinDate.EditValue = datarow("employee_actual_join_date")
             DELastDay.EditValue = datarow("employee_last_date")
             LEActive.ItemIndex = LEActive.Properties.GetDataSourceRowIndex("id_employee_active", data.Rows(0)("id_employee_active").ToString)
             LEActive.ReadOnly = True
@@ -199,20 +217,41 @@
             TxtBPJSTK.Text = datarow("employee_bpjs_tk").ToString
             DERegBPJSTK.EditValue = datarow("employee_bpjs_tk_date")
             TxtBPJSSehat.Text = datarow("employee_bpjs_kesehatan").ToString
+            TxtBPJSSehatHusband.Text = datarow("employee_bpjs_kesehatan_husband").ToString
+            TxtBPJSSehatWife.Text = datarow("employee_bpjs_kesehatan_wife").ToString
+            TxtBPJSSehatChild1.Text = datarow("employee_bpjs_kesehatan_child1").ToString
+            TxtBPJSSehatChild2.Text = datarow("employee_bpjs_kesehatan_child2").ToString
+            TxtBPJSSehatChild3.Text = datarow("employee_bpjs_kesehatan_child3").ToString
             LEBPJSStatus.ItemIndex = LEBPJSStatus.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status").ToString)
             LEBPJSStatus.ReadOnly = True
+            LEBPJSStatusHusband.ItemIndex = LEBPJSStatusHusband.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status_husband").ToString)
+            LEBPJSStatusHusband.ReadOnly = True
+            LEBPJSStatusWife.ItemIndex = LEBPJSStatusWife.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status_wife").ToString)
+            LEBPJSStatusWife.ReadOnly = True
+            LEBPJSStatusChild1.ItemIndex = LEBPJSStatusChild1.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status_child1").ToString)
+            LEBPJSStatusChild1.ReadOnly = True
+            LEBPJSStatusChild2.ItemIndex = LEBPJSStatusChild2.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status_child2").ToString)
+            LEBPJSStatusChild2.ReadOnly = True
+            LEBPJSStatusChild3.ItemIndex = LEBPJSStatusChild3.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status_child3").ToString)
+            LEBPJSStatusChild3.ReadOnly = True
             DERegBPJSKes.EditValue = datarow("employee_bpjs_kesehatan_date")
+            DERegBPJSKesHusband.EditValue = datarow("employee_bpjs_kesehatan_date_husband")
+            DERegBPJSKesWife.EditValue = datarow("employee_bpjs_kesehatan_date_wife")
+            DERegBPJSKesChild1.EditValue = datarow("employee_bpjs_kesehatan_date_child1")
+            DERegBPJSKesChild2.EditValue = datarow("employee_bpjs_kesehatan_date_child2")
+            DERegBPJSKesChild3.EditValue = datarow("employee_bpjs_kesehatan_date_child3")
             TxtNpwp.Text = datarow("employee_npwp").ToString
             LENPWPStatus.ItemIndex = LENPWPStatus.Properties.GetDataSourceRowIndex("id_npwp_status", data.Rows(0)("id_npwp_status").ToString)
             LENPWPStatus.ReadOnly = True
             TENoRek.Text = datarow("employee_no_rek").ToString
-            TENoRek.Text = datarow("employee_rek_name").ToString
+            TERekeningName.Text = datarow("employee_rek_name").ToString
             TxtPhone.Text = datarow("phone").ToString
             TxtMobilePhone.Text = datarow("phone_mobile").ToString
             TxtPhoneExt.Text = datarow("phone_ext").ToString
             TxtEmailLocal.Text = datarow("email_lokal").ToString
             TxtEmailExternal.Text = datarow("email_external").ToString
             TxtOtherEmail.Text = datarow("email_other").ToString
+            TxtPersonalEmail.Text = datarow("email_personal").ToString
             MEAddress.Text = datarow("address_primary").ToString
             MEAddressBoarding.Text = datarow("address_additional").ToString
             id_marriage_stattus_db = data.Rows(0)("id_marriage_status").ToString
@@ -232,6 +271,36 @@
                 CEBPJS.Checked = True
             Else
                 CEBPJS.Checked = False
+            End If
+            '
+            If data.Rows(0)("is_bpjs_volcom_husband").ToString = "yes" Then
+                CEBPJSHusband.Checked = True
+            Else
+                CEBPJSHusband.Checked = False
+            End If
+            '
+            If data.Rows(0)("is_bpjs_volcom_wife").ToString = "yes" Then
+                CEBPJSWife.Checked = True
+            Else
+                CEBPJSWife.Checked = False
+            End If
+            '
+            If data.Rows(0)("is_bpjs_volcom_child1").ToString = "yes" Then
+                CEBPJSChild1.Checked = True
+            Else
+                CEBPJSChild1.Checked = False
+            End If
+            '
+            If data.Rows(0)("is_bpjs_volcom_child2").ToString = "yes" Then
+                CEBPJSChild2.Checked = True
+            Else
+                CEBPJSChild2.Checked = False
+            End If
+            '
+            If data.Rows(0)("is_bpjs_volcom_child3").ToString = "yes" Then
+                CEBPJSChild3.Checked = True
+            Else
+                CEBPJSChild3.Checked = False
             End If
             '
             If data.Rows(0)("is_jp").ToString = "yes" Then
@@ -394,6 +463,7 @@
             Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
             Dim employee_initial_name As String = addSlashes(TxtInitialName.Text)
             Dim employee_join_date As String = addSlashes(DateTime.Parse(DEJoinDate.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Dim employee_actual_join_date As String = addSlashes(DateTime.Parse(DEActualJoinDate.EditValue.ToString).ToString("yyyy-MM-dd"))
             Dim employee_last_date As String = "NULL"
             Try
                 employee_last_date = checkNullInput(DateTime.Parse(DELastDay.EditValue.ToString).ToString("yyyy-MM-dd"))
@@ -482,8 +552,8 @@
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main
-                    Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek,employee_rek_name, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other,is_bpjs_volcom,is_jp,is_jht,is_koperasi,is_pic) "
-                    query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "','" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "','" & is_bpjs_volcom & "','" & is_jp & "','" & is_jht & "','" & is_koperasi & "','" & is_pic & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_actual_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek,employee_rek_name, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other,is_bpjs_volcom,is_jp,is_jht,is_koperasi,is_pic) "
+                    query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', '" + employee_actual_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "','" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "','" & is_bpjs_volcom & "','" & is_jp & "','" & is_jht & "','" & is_koperasi & "','" & is_pic & "'); SELECT LAST_INSERT_ID(); "
                     id_employee = execute_query(query, 0, True, "", "", "", "")
 
                     'pic
@@ -509,6 +579,7 @@
                 query += "employee_nick_name='" + employee_nick_name + "', "
                 query += "employee_initial_name='" + employee_initial_name + "', "
                 query += "employee_join_date='" + employee_join_date + "', "
+                query += "employee_actual_join_date='" + employee_actual_join_date + "', "
                 query += "employee_last_date=" + employee_last_date + ", "
                 query += "id_employee_active='" + id_employee_active + "', "
                 query += "id_sex='" + id_sex + "', "
@@ -719,6 +790,10 @@
 
     Private Sub DEJoinDate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEJoinDate.Validating
         EP_DE_cant_blank(ErrorProvider1, DEJoinDate)
+    End Sub
+
+    Private Sub DEActualJoinDate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEActualJoinDate.Validating
+        EP_DE_cant_blank(ErrorProvider1, DEActualJoinDate)
     End Sub
 
     Private Sub BtnAddSalary_Click(sender As Object, e As EventArgs) Handles BtnAddSalary.Click

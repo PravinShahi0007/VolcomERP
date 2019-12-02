@@ -48,6 +48,9 @@
 
     Sub actionLoad()
         If id_trans = "-1" Then 'new
+            Dim dt_now As DateTime = getTimeDB()
+            DERefDate.EditValue = dt_now
+
             load_number()
             view_det()
             but_check()
@@ -55,7 +58,7 @@
             '
             BMark.Visible = True
             Bprint.Visible = True
-            Dim query As String = "SELECT a.acc_trans_number,date_created,a.id_user,a.acc_trans_note,id_report_status,a.report_number,a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
+            Dim query As String = "SELECT a.acc_trans_number,date_created, date_reference,a.id_user,a.acc_trans_note,id_report_status,a.report_number,a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             id_report_status_g = data.Rows(0)("id_report_status").ToString
@@ -65,6 +68,7 @@
             TENumber.Text = data.Rows(0)("acc_trans_number").ToString
 
             TEDate.EditValue = data.Rows(0)("date_created")
+            DERefDate.EditValue = data.Rows(0)("date_reference")
 
             MENote.Text = data.Rows(0)("acc_trans_note").ToString
             TEReffNumber.Text = data.Rows(0)("report_number").ToString
@@ -74,6 +78,7 @@
             TEReffNumber.Properties.ReadOnly = True
             TENumber.Properties.ReadOnly = True
             '
+            DERefDate.Enabled = False
             LEBilling.Enabled = False
             PCButton.Enabled = False
             view_det()
@@ -147,9 +152,10 @@
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this journal entry ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim date_reference As String = DateTime.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 If id_trans = "-1" Then
                     'new
-                    Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created,id_user,acc_trans_note,id_bill_type) VALUES('{0}',NOW(),'{1}','{2}','{3}'); SELECT LAST_INSERT_ID()", header_number_acc("1"), id_user, MENote.Text, LEBilling.EditValue.ToString)
+                    Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created, date_reference,id_user,acc_trans_note,id_bill_type) VALUES('{0}',NOW(),'" + date_reference + "','{1}','{2}','{3}'); SELECT LAST_INSERT_ID()", header_number_acc("1"), id_user, MENote.Text, LEBilling.EditValue.ToString)
                     id_trans = execute_query(query, 0, True, "", "", "", "")
 
                     increase_inc_acc("1")
