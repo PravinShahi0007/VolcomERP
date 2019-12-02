@@ -19,9 +19,10 @@ Partial Class FormInvoiceTracking
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceTracking))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLSTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.CEPromo = New DevExpress.XtraEditors.CheckEdit()
         Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -124,6 +125,7 @@ Partial Class FormInvoiceTracking
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExportToXLSTrf)
         Me.PanelControl1.Controls.Add(Me.CEPromo)
         Me.PanelControl1.Controls.Add(Me.CEShowHighlight)
         Me.PanelControl1.Controls.Add(Me.SLEStoreGroup)
@@ -138,6 +140,16 @@ Partial Class FormInvoiceTracking
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1173, 43)
         Me.PanelControl1.TabIndex = 3
+        '
+        'BtnExportToXLSTrf
+        '
+        Me.BtnExportToXLSTrf.Image = CType(resources.GetObject("BtnExportToXLSTrf.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(866, 12)
+        Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
+        Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(106, 20)
+        Me.BtnExportToXLSTrf.TabIndex = 8926
+        Me.BtnExportToXLSTrf.Text = "Export to XLS"
         '
         'CEPromo
         '
@@ -196,11 +208,12 @@ Partial Class FormInvoiceTracking
         '
         'BView
         '
+        Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
         Me.BView.Location = New System.Drawing.Point(802, 12)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 20)
         Me.BView.TabIndex = 8913
-        Me.BView.Text = "view"
+        Me.BView.Text = "View"
         '
         'LabelControl3
         '
@@ -949,4 +962,5 @@ Partial Class FormInvoiceTracking
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BtnExportToXLSTrf As DevExpress.XtraEditors.SimpleButton
 End Class
