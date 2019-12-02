@@ -809,7 +809,7 @@ Partial Class FormCashAdvanceReconcile
         Me.XTPWithdrawal.Name = "XTPWithdrawal"
         Me.XTPWithdrawal.PageVisible = False
         Me.XTPWithdrawal.Size = New System.Drawing.Size(1002, 543)
-        Me.XTPWithdrawal.Text = "Bank Withdrawal (BBK)"
+        Me.XTPWithdrawal.Text = "Bukti Kas Keluar (BKK)"
         '
         'GCBankWithdrawal
         '
@@ -999,7 +999,7 @@ Partial Class FormCashAdvanceReconcile
         Me.XTPDeposit.Name = "XTPDeposit"
         Me.XTPDeposit.PageVisible = False
         Me.XTPDeposit.Size = New System.Drawing.Size(1002, 543)
-        Me.XTPDeposit.Text = "Bank Deposit (BBM)"
+        Me.XTPDeposit.Text = "Bukti Kas Masuk (BKM)"
         '
         'GCBankDeposit
         '
