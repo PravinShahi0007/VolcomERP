@@ -47,6 +47,7 @@ Partial Class FormInvoiceTracking
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -79,6 +80,7 @@ Partial Class FormInvoiceTracking
         Me.BandedGridColumnStatusEW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnbbm_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkBBM = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnbbm_created_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnbbm_received_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnbbm_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -86,7 +88,7 @@ Partial Class FormInvoiceTracking
         Me.RepoBtnMoreBBM = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RepoLinkInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.BandedGridColumnid_bbm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CEPromo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,10 +102,11 @@ Partial Class FormInvoiceTracking
         CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -278,7 +281,7 @@ Partial Class FormInvoiceTracking
         Me.GCUnpaid.Location = New System.Drawing.Point(0, 43)
         Me.GCUnpaid.MainView = Me.GVUnpaid
         Me.GCUnpaid.Name = "GCUnpaid"
-        Me.GCUnpaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepoBtnMoreBBM, Me.RepositoryItemCheckEdit2, Me.RepoLinkInvoice})
+        Me.GCUnpaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepoBtnMoreBBM, Me.RepositoryItemCheckEdit2, Me.RepoLinkInvoice, Me.RepoLinkBBM})
         Me.GCUnpaid.Size = New System.Drawing.Size(1173, 463)
         Me.GCUnpaid.TabIndex = 20
         Me.GCUnpaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUnpaid})
@@ -286,7 +289,7 @@ Partial Class FormInvoiceTracking
         'GVUnpaid
         '
         Me.GVUnpaid.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.GridBand1, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.GVUnpaid.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.GridColumn15, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.GridColumn18, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn24, Me.GridColumn27, Me.GridColumn28, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumntotal_rec, Me.GridColumntotaldue, Me.GridColumndue_days, Me.GridColumn33, Me.BandedGridColumnLastNumberEN, Me.BandedGridColumnCreatedDateEN, Me.BandedGridColumnStatusEN, Me.BandedGridColumnLastNumberEW, Me.BandedGridColumnCreatedDateEW, Me.BandedGridColumnStatusEW, Me.BandedGridColumnbbm_number, Me.BandedGridColumnbbm_created_date, Me.BandedGridColumnbbm_received_date, Me.BandedGridColumnbtn_more_bbm, Me.BandedGridColumnbbm_value})
+        Me.GVUnpaid.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.GridColumn15, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.GridColumn18, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn24, Me.GridColumn27, Me.GridColumn28, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumntotal_rec, Me.GridColumntotaldue, Me.GridColumndue_days, Me.GridColumn33, Me.BandedGridColumnLastNumberEN, Me.BandedGridColumnCreatedDateEN, Me.BandedGridColumnStatusEN, Me.BandedGridColumnLastNumberEW, Me.BandedGridColumnCreatedDateEW, Me.BandedGridColumnStatusEW, Me.BandedGridColumnbbm_number, Me.BandedGridColumnbbm_created_date, Me.BandedGridColumnbbm_received_date, Me.BandedGridColumnbtn_more_bbm, Me.BandedGridColumnbbm_value, Me.BandedGridColumnid_bbm})
         Me.GVUnpaid.GridControl = Me.GCUnpaid
         Me.GVUnpaid.GroupCount = 1
         Me.GVUnpaid.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.BandedGridColumn4, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumntotal_rec, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bbm_value", Me.BandedGridColumnbbm_value, "{0:N2}")})
@@ -336,6 +339,11 @@ Partial Class FormInvoiceTracking
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.Width = 165
+        '
+        'RepoLinkInvoice
+        '
+        Me.RepoLinkInvoice.AutoHeight = False
+        Me.RepoLinkInvoice.Name = "RepoLinkInvoice"
         '
         'GridColumn21
         '
@@ -653,10 +661,16 @@ Partial Class FormInvoiceTracking
         'BandedGridColumnbbm_number
         '
         Me.BandedGridColumnbbm_number.Caption = "Last Number"
+        Me.BandedGridColumnbbm_number.ColumnEdit = Me.RepoLinkBBM
         Me.BandedGridColumnbbm_number.FieldName = "bbm_number"
         Me.BandedGridColumnbbm_number.Name = "BandedGridColumnbbm_number"
         Me.BandedGridColumnbbm_number.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnbbm_number.Visible = True
+        '
+        'RepoLinkBBM
+        '
+        Me.RepoLinkBBM.AutoHeight = False
+        Me.RepoLinkBBM.Name = "RepoLinkBBM"
         '
         'BandedGridColumnbbm_created_date
         '
@@ -724,10 +738,12 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         '
-        'RepoLinkInvoice
+        'BandedGridColumnid_bbm
         '
-        Me.RepoLinkInvoice.AutoHeight = False
-        Me.RepoLinkInvoice.Name = "RepoLinkInvoice"
+        Me.BandedGridColumnid_bbm.Caption = "id_bbm"
+        Me.BandedGridColumnid_bbm.FieldName = "id_bbm"
+        Me.BandedGridColumnid_bbm.Name = "BandedGridColumnid_bbm"
+        Me.BandedGridColumnid_bbm.OptionsColumn.ReadOnly = True
         '
         'FormInvoiceTracking
         '
@@ -754,10 +770,11 @@ Partial Class FormInvoiceTracking
         CType(Me.GCUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnMoreBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -828,4 +845,6 @@ Partial Class FormInvoiceTracking
     Friend WithEvents BandedGridColumnbbm_value As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoLinkInvoice As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepoLinkBBM As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BandedGridColumnid_bbm As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

@@ -101,7 +101,7 @@
             ,DATEDIFF(IF(sp.is_close_rec_payment=2,NOW(), IF(ISNULL(bbm.bbm_received_date),NOW(),bbm.bbm_received_date)),sp.`sales_pos_due_date`) AS due_days,
             mail_warning_no, mail_warning_date, mail_warning_status,
             mail_notice_no, mail_notice_date, mail_notice_status,
-            bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`
+            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -143,7 +143,7 @@
             ) n ON n.id_report = sp.id_sales_pos
             LEFT JOIN (
 	            SELECT * FROM  (
-		            SELECT r.id_rec_payment, rd.id_report, r.number AS `bbm_number`, r.value AS `bbm_value`,
+		            SELECT r.id_rec_payment AS `id_bbm`, rd.id_report, r.number AS `bbm_number`, r.value AS `bbm_value`,
 		            r.date_created AS `bbm_created_date`,
 		            r.date_received AS `bbm_received_date`
 		            FROM tb_rec_payment_det rd
@@ -214,6 +214,17 @@
             inv.id_report = GVUnpaid.GetFocusedRowCellValue("id_sales_pos").ToString
             inv.report_mark_type = GVUnpaid.GetFocusedRowCellValue("report_mark_type").ToString
             inv.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkBBM_Click(sender As Object, e As EventArgs) Handles RepoLinkBBM.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim bbm As New ClassShowPopUp()
+            bbm.id_report = GVUnpaid.GetFocusedRowCellValue("id_bbm").ToString
+            bbm.report_mark_type = "162"
+            bbm.show()
             Cursor = Cursors.Default
         End If
     End Sub
