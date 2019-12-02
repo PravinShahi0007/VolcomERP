@@ -472,33 +472,36 @@ Partial Class FormMatRecPurcDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 542)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(909, 36)
+        Me.GroupControl1.Size = New System.Drawing.Size(909, 40)
         Me.GroupControl1.TabIndex = 40
         '
         'BAttach
         '
         Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttach.Location = New System.Drawing.Point(597, 2)
+        Me.BAttach.Image = CType(resources.GetObject("BAttach.Image"), System.Drawing.Image)
+        Me.BAttach.Location = New System.Drawing.Point(543, 2)
         Me.BAttach.Name = "BAttach"
-        Me.BAttach.Size = New System.Drawing.Size(85, 32)
+        Me.BAttach.Size = New System.Drawing.Size(109, 36)
         Me.BAttach.TabIndex = 10
         Me.BAttach.Text = "Attachment"
         '
         'BPrint
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.Location = New System.Drawing.Point(682, 2)
+        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
+        Me.BPrint.Location = New System.Drawing.Point(652, 2)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(75, 32)
+        Me.BPrint.Size = New System.Drawing.Size(87, 36)
         Me.BPrint.TabIndex = 9
         Me.BPrint.Text = "Print"
         '
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.Location = New System.Drawing.Point(757, 2)
+        Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
+        Me.BCancel.Location = New System.Drawing.Point(739, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(75, 32)
+        Me.BCancel.Size = New System.Drawing.Size(93, 36)
         Me.BCancel.TabIndex = 8
         Me.BCancel.Text = "Cancel"
         '
@@ -506,18 +509,20 @@ Partial Class FormMatRecPurcDet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Enabled = False
+        Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
         Me.BSave.Location = New System.Drawing.Point(832, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(75, 32)
+        Me.BSave.Size = New System.Drawing.Size(75, 36)
         Me.BSave.TabIndex = 7
         Me.BSave.Text = "Save"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
         Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 32)
+        Me.BMark.Size = New System.Drawing.Size(75, 36)
         Me.BMark.TabIndex = 5
         Me.BMark.Text = "Mark"
         '
@@ -1263,7 +1268,7 @@ Partial Class FormMatRecPurcDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(909, 578)
+        Me.ClientSize = New System.Drawing.Size(909, 582)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GConListPurchase)

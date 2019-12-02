@@ -27,17 +27,24 @@ Partial Class FormEmpPayrollPeriode
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LCStart = New DevExpress.XtraEditors.LabelControl()
+        Me.LCEnd = New DevExpress.XtraEditors.LabelControl()
+        Me.LCPayrollNote = New DevExpress.XtraEditors.LabelControl()
         Me.MEPayrollNote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LCEndOt = New DevExpress.XtraEditors.LabelControl()
         Me.DEEndOt = New DevExpress.XtraEditors.DateEdit()
         Me.DEStartOt = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LCStartOt = New DevExpress.XtraEditors.LabelControl()
         Me.LEPayrollType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LCPayrollType = New DevExpress.XtraEditors.LabelControl()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.PCStart = New DevExpress.XtraEditors.PanelControl()
+        Me.PCEnd = New DevExpress.XtraEditors.PanelControl()
+        Me.PCPayrollType = New DevExpress.XtraEditors.PanelControl()
+        Me.PCStartOt = New DevExpress.XtraEditors.PanelControl()
+        Me.PCEndOt = New DevExpress.XtraEditors.PanelControl()
+        Me.PCPayrollNote = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +59,19 @@ Partial Class FormEmpPayrollPeriode
         CType(Me.DEStartOt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPayrollType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCStart, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCStart.SuspendLayout()
+        CType(Me.PCEnd, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCEnd.SuspendLayout()
+        CType(Me.PCPayrollType, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPayrollType.SuspendLayout()
+        CType(Me.PCStartOt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCStartOt.SuspendLayout()
+        CType(Me.PCEndOt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCEndOt.SuspendLayout()
+        CType(Me.PCPayrollNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPayrollNote.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -59,9 +79,9 @@ Partial Class FormEmpPayrollPeriode
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 223)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 243)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(434, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(429, 38)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnCancel
@@ -69,7 +89,7 @@ Partial Class FormEmpPayrollPeriode
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(282, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(277, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 12
@@ -102,7 +122,7 @@ Partial Class FormEmpPayrollPeriode
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(357, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(352, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 11
@@ -112,7 +132,7 @@ Partial Class FormEmpPayrollPeriode
         'DEEnd
         '
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(122, 38)
+        Me.DEEnd.Location = New System.Drawing.Point(125, 5)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -125,7 +145,7 @@ Partial Class FormEmpPayrollPeriode
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(122, 11)
+        Me.DEStart.Location = New System.Drawing.Point(125, 5)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -135,53 +155,53 @@ Partial Class FormEmpPayrollPeriode
         Me.DEStart.Size = New System.Drawing.Size(290, 20)
         Me.DEStart.TabIndex = 8927
         '
-        'LabelControl2
+        'LCStart
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 14)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl2.TabIndex = 8929
-        Me.LabelControl2.Text = "Period Start"
+        Me.LCStart.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCStart.Location = New System.Drawing.Point(13, 6)
+        Me.LCStart.Name = "LCStart"
+        Me.LCStart.Size = New System.Drawing.Size(57, 13)
+        Me.LCStart.TabIndex = 8929
+        Me.LCStart.Text = "Period Start"
         '
-        'LabelControl1
+        'LCEnd
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 41)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(51, 13)
-        Me.LabelControl1.TabIndex = 8931
-        Me.LabelControl1.Text = "Period End"
+        Me.LCEnd.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCEnd.Location = New System.Drawing.Point(15, 8)
+        Me.LCEnd.Name = "LCEnd"
+        Me.LCEnd.Size = New System.Drawing.Size(51, 13)
+        Me.LCEnd.TabIndex = 8931
+        Me.LCEnd.Text = "Period End"
         '
-        'LabelControl3
+        'LCPayrollNote
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 145)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl3.TabIndex = 8932
-        Me.LabelControl3.Text = "Note"
+        Me.LCPayrollNote.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCPayrollNote.Location = New System.Drawing.Point(15, 8)
+        Me.LCPayrollNote.Name = "LCPayrollNote"
+        Me.LCPayrollNote.Size = New System.Drawing.Size(23, 13)
+        Me.LCPayrollNote.TabIndex = 8932
+        Me.LCPayrollNote.Text = "Note"
         '
         'MEPayrollNote
         '
-        Me.MEPayrollNote.Location = New System.Drawing.Point(122, 143)
+        Me.MEPayrollNote.Location = New System.Drawing.Point(125, 7)
         Me.MEPayrollNote.Name = "MEPayrollNote"
         Me.MEPayrollNote.Size = New System.Drawing.Size(290, 68)
         Me.MEPayrollNote.TabIndex = 8933
         '
-        'LabelControl4
+        'LCEndOt
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 120)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(98, 13)
-        Me.LabelControl4.TabIndex = 8937
-        Me.LabelControl4.Text = "Overtime Period End"
+        Me.LCEndOt.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCEndOt.Location = New System.Drawing.Point(15, 8)
+        Me.LCEndOt.Name = "LCEndOt"
+        Me.LCEndOt.Size = New System.Drawing.Size(98, 13)
+        Me.LCEndOt.TabIndex = 8937
+        Me.LCEndOt.Text = "Overtime Period End"
         '
         'DEEndOt
         '
         Me.DEEndOt.EditValue = Nothing
-        Me.DEEndOt.Location = New System.Drawing.Point(122, 117)
+        Me.DEEndOt.Location = New System.Drawing.Point(125, 7)
         Me.DEEndOt.Name = "DEEndOt"
         Me.DEEndOt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEndOt.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -194,7 +214,7 @@ Partial Class FormEmpPayrollPeriode
         'DEStartOt
         '
         Me.DEStartOt.EditValue = Nothing
-        Me.DEStartOt.Location = New System.Drawing.Point(122, 90)
+        Me.DEStartOt.Location = New System.Drawing.Point(125, 5)
         Me.DEStartOt.Name = "DEStartOt"
         Me.DEStartOt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStartOt.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -204,54 +224,124 @@ Partial Class FormEmpPayrollPeriode
         Me.DEStartOt.Size = New System.Drawing.Size(290, 20)
         Me.DEStartOt.TabIndex = 8934
         '
-        'LabelControl5
+        'LCStartOt
         '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 93)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(104, 13)
-        Me.LabelControl5.TabIndex = 8936
-        Me.LabelControl5.Text = "Overtime Period Start"
+        Me.LCStartOt.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCStartOt.Location = New System.Drawing.Point(15, 8)
+        Me.LCStartOt.Name = "LCStartOt"
+        Me.LCStartOt.Size = New System.Drawing.Size(104, 13)
+        Me.LCStartOt.TabIndex = 8936
+        Me.LCStartOt.Text = "Overtime Period Start"
         '
         'LEPayrollType
         '
-        Me.LEPayrollType.Location = New System.Drawing.Point(122, 64)
+        Me.LEPayrollType.Location = New System.Drawing.Point(125, 7)
         Me.LEPayrollType.Name = "LEPayrollType"
         Me.LEPayrollType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEPayrollType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payroll_type", "Type")})
         Me.LEPayrollType.Size = New System.Drawing.Size(290, 20)
         Me.LEPayrollType.TabIndex = 8939
         '
-        'LabelControl7
+        'LCPayrollType
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(12, 67)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl7.TabIndex = 8940
-        Me.LabelControl7.Text = "Type"
+        Me.LCPayrollType.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCPayrollType.Location = New System.Drawing.Point(15, 8)
+        Me.LCPayrollType.Name = "LCPayrollType"
+        Me.LCPayrollType.Size = New System.Drawing.Size(24, 13)
+        Me.LCPayrollType.TabIndex = 8940
+        Me.LCPayrollType.Text = "Type"
         '
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
         '
+        'PCStart
+        '
+        Me.PCStart.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCStart.Controls.Add(Me.DEStart)
+        Me.PCStart.Controls.Add(Me.LCStart)
+        Me.PCStart.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCStart.Location = New System.Drawing.Point(0, 10)
+        Me.PCStart.Name = "PCStart"
+        Me.PCStart.Size = New System.Drawing.Size(429, 30)
+        Me.PCStart.TabIndex = 8941
+        '
+        'PCEnd
+        '
+        Me.PCEnd.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCEnd.Controls.Add(Me.LCEnd)
+        Me.PCEnd.Controls.Add(Me.DEEnd)
+        Me.PCEnd.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCEnd.Location = New System.Drawing.Point(0, 40)
+        Me.PCEnd.Name = "PCEnd"
+        Me.PCEnd.Size = New System.Drawing.Size(429, 30)
+        Me.PCEnd.TabIndex = 8942
+        '
+        'PCPayrollType
+        '
+        Me.PCPayrollType.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPayrollType.Controls.Add(Me.LCPayrollType)
+        Me.PCPayrollType.Controls.Add(Me.LEPayrollType)
+        Me.PCPayrollType.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCPayrollType.Location = New System.Drawing.Point(0, 70)
+        Me.PCPayrollType.Name = "PCPayrollType"
+        Me.PCPayrollType.Size = New System.Drawing.Size(429, 30)
+        Me.PCPayrollType.TabIndex = 8943
+        '
+        'PCStartOt
+        '
+        Me.PCStartOt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCStartOt.Controls.Add(Me.LCStartOt)
+        Me.PCStartOt.Controls.Add(Me.DEStartOt)
+        Me.PCStartOt.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCStartOt.Location = New System.Drawing.Point(0, 100)
+        Me.PCStartOt.Name = "PCStartOt"
+        Me.PCStartOt.Size = New System.Drawing.Size(429, 30)
+        Me.PCStartOt.TabIndex = 8944
+        '
+        'PCEndOt
+        '
+        Me.PCEndOt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCEndOt.Controls.Add(Me.LCEndOt)
+        Me.PCEndOt.Controls.Add(Me.DEEndOt)
+        Me.PCEndOt.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCEndOt.Location = New System.Drawing.Point(0, 130)
+        Me.PCEndOt.Name = "PCEndOt"
+        Me.PCEndOt.Size = New System.Drawing.Size(429, 30)
+        Me.PCEndOt.TabIndex = 8945
+        '
+        'PCPayrollNote
+        '
+        Me.PCPayrollNote.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPayrollNote.Controls.Add(Me.LCPayrollNote)
+        Me.PCPayrollNote.Controls.Add(Me.MEPayrollNote)
+        Me.PCPayrollNote.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PCPayrollNote.Location = New System.Drawing.Point(0, 160)
+        Me.PCPayrollNote.Name = "PCPayrollNote"
+        Me.PCPayrollNote.Size = New System.Drawing.Size(429, 83)
+        Me.PCPayrollNote.TabIndex = 8946
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(429, 10)
+        Me.PanelControl2.TabIndex = 8947
+        '
         'FormEmpPayrollPeriode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(434, 261)
-        Me.Controls.Add(Me.LEPayrollType)
-        Me.Controls.Add(Me.LabelControl7)
-        Me.Controls.Add(Me.LabelControl4)
-        Me.Controls.Add(Me.DEEndOt)
-        Me.Controls.Add(Me.DEStartOt)
-        Me.Controls.Add(Me.LabelControl5)
-        Me.Controls.Add(Me.MEPayrollNote)
-        Me.Controls.Add(Me.LabelControl3)
-        Me.Controls.Add(Me.LabelControl1)
-        Me.Controls.Add(Me.DEEnd)
-        Me.Controls.Add(Me.DEStart)
-        Me.Controls.Add(Me.LabelControl2)
+        Me.ClientSize = New System.Drawing.Size(429, 281)
+        Me.Controls.Add(Me.PCPayrollNote)
+        Me.Controls.Add(Me.PCEndOt)
+        Me.Controls.Add(Me.PCStartOt)
+        Me.Controls.Add(Me.PCPayrollType)
+        Me.Controls.Add(Me.PCEnd)
+        Me.Controls.Add(Me.PCStart)
+        Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -273,8 +363,26 @@ Partial Class FormEmpPayrollPeriode
         CType(Me.DEStartOt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPayrollType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCStart, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCStart.ResumeLayout(False)
+        Me.PCStart.PerformLayout()
+        CType(Me.PCEnd, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCEnd.ResumeLayout(False)
+        Me.PCEnd.PerformLayout()
+        CType(Me.PCPayrollType, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPayrollType.ResumeLayout(False)
+        Me.PCPayrollType.PerformLayout()
+        CType(Me.PCStartOt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCStartOt.ResumeLayout(False)
+        Me.PCStartOt.PerformLayout()
+        CType(Me.PCEndOt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCEndOt.ResumeLayout(False)
+        Me.PCEndOt.PerformLayout()
+        CType(Me.PCPayrollNote, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPayrollNote.ResumeLayout(False)
+        Me.PCPayrollNote.PerformLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -284,15 +392,22 @@ Partial Class FormEmpPayrollPeriode
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCStart As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCEnd As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCPayrollNote As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEPayrollNote As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCEndOt As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEEndOt As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEStartOt As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCStartOt As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEPayrollType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCPayrollType As DevExpress.XtraEditors.LabelControl
     Friend WithEvents ErrorProvider As ErrorProvider
+    Friend WithEvents PCStart As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCPayrollNote As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCEndOt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCStartOt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCPayrollType As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCEnd As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class

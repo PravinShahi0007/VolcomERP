@@ -800,7 +800,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             execute_non_query(query_trans, True, "", "", "", "")
             submit_who_prepared(rmt, id_po, id_user)
 
-            query = "UPDATE tb_purc_order SET is_submit='1' WHERE id_purc_order='" & id_po & "'"
+            query = "UPDATE tb_purc_order SET is_submit='1',report_mark_type='" & rmt & "' WHERE id_purc_order='" & id_po & "'"
             execute_non_query(query, True, "", "", "", "")
             '
             load_form()
