@@ -18,6 +18,8 @@
         DEUntil.EditValue = data_dt.Rows(0)("dt")
         DEFromDetail.EditValue = data_dt.Rows(0)("dt")
         DEUntilDetail.EditValue = data_dt.Rows(0)("dt")
+        DEUpdatedFrom.EditValue = data_dt.Rows(0)("dt")
+        DEUpdatedUntil.EditValue = data_dt.Rows(0)("dt")
         viewComp()
         viewCompGroup()
     End Sub
@@ -521,5 +523,9 @@
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub LabelControl5_Click(sender As Object, e As EventArgs) Handles LabelControl5.Click
+
     End Sub
 End Class
