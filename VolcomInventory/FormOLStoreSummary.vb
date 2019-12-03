@@ -238,23 +238,37 @@
 
     Private Sub BtnViewDetail_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
         viewRmtDetail()
-        viewDetail()
+        viewDetail("1")
     End Sub
 
-    Sub viewDetail()
+    Sub viewDetail(ByVal type_par As String)
         Cursor = Cursors.WaitCursor
-        'Prepare paramater
+        'Prepare paramater date
+        Dim cond_date As String = ""
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
         Try
             date_from_selected = DateTime.Parse(DEFromDetail.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-
         Try
             date_until_selected = DateTime.Parse(DEUntilDetail.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+        If type_par = "1" Then
+            cond_date = "AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        End If
+        Dim upd_date_from_selected As String = "0000-01-01"
+        Dim upd_date_until_selected As String = "9999-01-01"
+        Try
+            upd_date_from_selected = DateTime.Parse(DEUpdatedFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            upd_date_until_selected = DateTime.Parse(DEUpdatedUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
 
         Dim id_comp As String = SLECompDetail.EditValue.ToString
         Dim qcomp1 As String = ""
@@ -265,6 +279,12 @@
         Else
             qcomp1 = "AND cc.id_comp=" + id_comp + " "
             qcomp2 = "AND c.id_comp=" + id_comp + " "
+        End If
+
+        'having
+        Dim cond_having As String = ""
+        If type_par = "2" Then
+            cond_having = "AND (DATE(ol_store_date)>='" + upd_date_from_selected + "' AND DATE(ol_store_date)<='" + upd_date_until_selected + "') "
         End If
 
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
@@ -352,7 +372,11 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
         INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
-        WHERE so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') AND ISNULL(oc.id_sales_order) AND c.id_commerce_type=2 " + qcomp2 + " "
+        WHERE so.id_report_status=6  
+        " + cond_date + "
+        AND ISNULL(oc.id_sales_order) AND c.id_commerce_type=2 " + qcomp2 + " 
+        HAVING 1=1 
+        " + cond_having + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
@@ -526,6 +550,15 @@
     End Sub
 
     Private Sub LabelControl5_Click(sender As Object, e As EventArgs) Handles LabelControl5.Click
+
+    End Sub
+
+    Private Sub BtnViewUpdated_Click(sender As Object, e As EventArgs) Handles BtnViewUpdated.Click
+        viewRmtDetail()
+        viewDetail("2")
+    End Sub
+
+    Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint
 
     End Sub
 End Class

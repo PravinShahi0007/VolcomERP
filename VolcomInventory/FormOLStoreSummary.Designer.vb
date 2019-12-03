@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormOLStoreSummary
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormOLStoreSummary
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStoreSummary))
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -186,6 +186,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnTrackOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntilDetail = New DevExpress.XtraEditors.DateEdit()
@@ -199,7 +200,6 @@ Partial Class FormOLStoreSummary
         Me.DEFromDetail = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1617,6 +1617,7 @@ Partial Class FormOLStoreSummary
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BtnViewUpdated)
+        Me.PanelControl2.Controls.Add(Me.LabelControl10)
         Me.PanelControl2.Controls.Add(Me.LabelControl9)
         Me.PanelControl2.Controls.Add(Me.DEUpdatedUntil)
         Me.PanelControl2.Controls.Add(Me.LabelControl8)
@@ -1732,23 +1733,30 @@ Partial Class FormOLStoreSummary
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Controls.Add(Me.BtnTrackOrder)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(986, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(1107, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(237, 100)
+        Me.PanelControl3.Size = New System.Drawing.Size(116, 100)
         Me.PanelControl3.TabIndex = 5
         '
         'BtnTrackOrder
         '
         Me.BtnTrackOrder.Image = CType(resources.GetObject("BtnTrackOrder.Image"), System.Drawing.Image)
-        Me.BtnTrackOrder.Location = New System.Drawing.Point(80, 8)
+        Me.BtnTrackOrder.Location = New System.Drawing.Point(9, 31)
         Me.BtnTrackOrder.LookAndFeel.SkinName = "Blue"
         Me.BtnTrackOrder.Name = "BtnTrackOrder"
-        Me.BtnTrackOrder.Size = New System.Drawing.Size(108, 20)
+        Me.BtnTrackOrder.Size = New System.Drawing.Size(97, 23)
         Me.BtnTrackOrder.TabIndex = 4
-        Me.BtnTrackOrder.Text = "Order Tracking"
+        Me.BtnTrackOrder.Text = "Search Order"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(1117, 17)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl10.TabIndex = 13
+        Me.LabelControl10.Text = "Order Tracking"
         '
         'BtnViewDetail
         '
@@ -1864,14 +1872,6 @@ Partial Class FormOLStoreSummary
         Me.XTPSummary.Size = New System.Drawing.Size(1225, 469)
         Me.XTPSummary.Text = "Summary"
         '
-        'LabelControl10
-        '
-        Me.LabelControl10.Location = New System.Drawing.Point(12, 11)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(62, 13)
-        Me.LabelControl10.TabIndex = 13
-        Me.LabelControl10.Text = "Quick Search"
-        '
         'FormOLStoreSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1936,7 +1936,6 @@ Partial Class FormOLStoreSummary
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
         CType(Me.DEUntilDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECompDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
