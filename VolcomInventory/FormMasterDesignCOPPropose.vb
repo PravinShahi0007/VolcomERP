@@ -285,19 +285,7 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSl
             End If
         Next
         '
-        If is_addcost = True Then
-            If CENeedMarketing.Checked = True Then
-                FormDocumentUpload.report_mark_type = "173"
-            Else
-                FormDocumentUpload.report_mark_type = "150"
-            End If
-        Else
-            If CENeedMarketing.Checked = True Then
-                FormDocumentUpload.report_mark_type = "172"
-            Else
-                FormDocumentUpload.report_mark_type = "155"
-            End If
-        End If
+        FormDocumentUpload.report_mark_type = get_report_mark_type()
         '
         FormDocumentUpload.is_no_delete = "1"
 

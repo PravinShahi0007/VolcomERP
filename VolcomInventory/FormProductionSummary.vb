@@ -410,7 +410,7 @@
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
 
-        Dim query As String = "CALL view_po_approved('" + date_from_selected + "', '" + date_until_selected + "', '" + id_user + "','" & addSlashes(TEPONumber.Text) & "')"
+        Dim query As String = "CALL view_po_approved('-1', '-1', '-1','-1','" & addSlashes(TEPONumber.Text) & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
         Cursor = Cursors.Default

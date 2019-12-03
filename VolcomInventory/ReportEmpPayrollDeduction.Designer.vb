@@ -187,7 +187,7 @@ Partial Public Class ReportEmpPayrollDeduction
         '
         Me.GCNIP.Caption = "NIP"
         Me.GCNIP.FieldName = "NIP"
-        Me.GCNIP.MinWidth = 50
+        Me.GCNIP.MinWidth = 45
         Me.GCNIP.Name = "GCNIP"
         Me.GCNIP.Visible = True
         Me.GCNIP.Width = 218
@@ -198,7 +198,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCEmployee.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployee.Caption = "Employee"
         Me.GCEmployee.FieldName = "Employee"
-        Me.GCEmployee.MinWidth = 185
+        Me.GCEmployee.MinWidth = 180
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GCEmployee.Visible = True
@@ -305,10 +305,10 @@ Partial Public Class ReportEmpPayrollDeduction
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(855.0!, 33.99998!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(854.9999!, 33.99998!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(40.0!, 23.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "Type"
@@ -326,7 +326,7 @@ Partial Public Class ReportEmpPayrollDeduction
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(915.0007!, 33.99998!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(894.9999!, 34.00002!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -338,7 +338,7 @@ Partial Public Class ReportEmpPayrollDeduction
         'XLPeriod
         '
         Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(854.9999!, 11.0!)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(854.9999!, 11.00001!)
         Me.XLPeriod.Name = "XLPeriod"
         Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLPeriod.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
@@ -353,7 +353,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 33.99998!)
         Me.XLTitle.Name = "XLTitle"
         Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(635.0!, 23.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(634.9999!, 23.0!)
         Me.XLTitle.StylePriority.UseFont = False
         Me.XLTitle.StylePriority.UseTextAlignment = False
         Me.XLTitle.Text = "[title]"
@@ -362,10 +362,10 @@ Partial Public Class ReportEmpPayrollDeduction
         'XLType
         '
         Me.XLType.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(930.0007!, 33.99998!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(909.9999!, 34.00002!)
         Me.XLType.Name = "XLType"
         Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLType.SizeF = New System.Drawing.SizeF(145.0!, 23.0!)
+        Me.XLType.SizeF = New System.Drawing.SizeF(165.0004!, 23.0!)
         Me.XLType.StylePriority.UseFont = False
         Me.XLType.StylePriority.UseTextAlignment = False
         Me.XLType.Text = "[type]"
@@ -571,7 +571,7 @@ Partial Public Class ReportEmpPayrollDeduction
         '
         Me.GCNIPStore.Caption = "NIP"
         Me.GCNIPStore.FieldName = "NIP"
-        Me.GCNIPStore.MinWidth = 50
+        Me.GCNIPStore.MinWidth = 45
         Me.GCNIPStore.Name = "GCNIPStore"
         Me.GCNIPStore.Visible = True
         Me.GCNIPStore.Width = 218
@@ -582,7 +582,7 @@ Partial Public Class ReportEmpPayrollDeduction
         Me.GCEmployeeStore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployeeStore.Caption = "Employee"
         Me.GCEmployeeStore.FieldName = "Employee"
-        Me.GCEmployeeStore.MinWidth = 185
+        Me.GCEmployeeStore.MinWidth = 180
         Me.GCEmployeeStore.Name = "GCEmployeeStore"
         Me.GCEmployeeStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GCEmployeeStore.Visible = True

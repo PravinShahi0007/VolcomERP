@@ -147,7 +147,7 @@
         ElseIf report_mark_type = "104" Then
             'propose leave HRD
             FormEmpLeaveDet.Close()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clearance
             FormProductionFinalClearDet.Close()
         ElseIf report_mark_type = "108" Then
@@ -314,6 +314,12 @@
         ElseIf report_mark_type = "217" Then
             'bukti pickup
             FormBuktiPickupDet.Close()
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            FormDebitNoteDet.Close()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            FormEmpBPJSKesehatanDet.Close()
         End If
     End Sub
     Sub show()
@@ -439,8 +445,18 @@
             FormViewMatAdjOut.ShowDialog()
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'receive FG QC
-            FormViewProductionRec.id_receive = id_report
-            FormViewProductionRec.ShowDialog()
+            Dim q_before As String = "SELECT GROUP_CONCAT(rec.prod_order_rec_number) AS rec_before
+FROM tb_prod_order_rec rec 
+WHERE (rec.id_report_status!='6' AND rec.id_report_status!='5') AND rec.`id_prod_order_rec` < '" & id_report & "' AND rec.`id_prod_order`=(SELECT id_prod_order FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_report & "')
+GROUP BY rec.`id_prod_order`"
+            Dim dt As DataTable = execute_query(q_before, -1, True, "", "", "", "")
+            '
+            If dt.Rows.Count > 0 Then
+                warningCustom("Please approve receiving before this : " & dt.Rows(0)("rec_before").ToString)
+            Else
+                FormViewProductionRec.id_receive = id_report
+                FormViewProductionRec.ShowDialog()
+            End If
         ElseIf report_mark_type = "29" Then
             'Production Work Order
             FormViewProductionMRS.id_mrs = id_report
@@ -482,9 +498,10 @@
             FormViewSalesOrder.id_sales_order = id_report
             FormViewSalesOrder.ShowDialog()
         ElseIf report_mark_type = "40" Then
-            'Entry Journal
-            FormViewJournalAdj.id_trans_adj = id_report
-            FormViewJournalAdj.ShowDialog()
+            'Adjustment Journal
+            FormAccountingJournalAdjDet.is_view = "1"
+            FormAccountingJournalAdjDet.id_trans_adj = id_report
+            FormAccountingJournalAdjDet.ShowDialog()
         ElseIf report_mark_type = "41" Then
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report
@@ -734,7 +751,7 @@
             FormEmpLeaveDet.report_mark_type = "104"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clear
             FormProductionFinalClearDet.id_prod_fc = id_report
             FormProductionFinalClearDet.action = "upd"
@@ -1112,6 +1129,16 @@
             'bukti pickup
             FormBuktiPickupDet.id_pickup = id_report
             FormBuktiPickupDet.ShowDialog()
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            FormDebitNoteDet.id_dn = id_report
+            FormDebitNoteDet.is_view = "1"
+            FormDebitNoteDet.ShowDialog()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            FormEmpBPJSKesehatanDet.id = id_report
+            FormEmpBPJSKesehatanDet.is_approve = "1"
+            FormEmpBPJSKesehatanDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1361,7 +1388,7 @@
             table_name = "tb_a_acc_trans_adj"
             field_id = "id_acc_trans_adj"
             field_number = "acc_trans_adj_number"
-            field_date = "acc_trans_adj_date"
+            field_date = "date_created"
         ElseIf report_mark_type = "41" Then
             'Adj In FG
             table_name = "tb_adj_in_fg"
@@ -1688,7 +1715,7 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'FINAL CLEARANCE
             table_name = "tb_prod_fc"
             field_id = "id_prod_fc"
@@ -2029,6 +2056,18 @@
             field_id = "id_pickup"
             field_number = "id_pickup"
             field_date = "created_date"
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            table_name = "tb_debit_note"
+            field_id = "id_debit_note"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            table_name = "tb_pay_bpjs_kesehatan"
+            field_id = "id_pay_bpjs_kesehatan"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2335,7 +2374,7 @@
                         info_col = datax.Rows(0)("total_qty").ToString
                         info_report = datax.Rows(0)("store").ToString
                     End If
-                ElseIf report_mark_type = "105" Then
+                ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
                     'final clearance
                     Dim fcl As New ClassProductionFinalClear()
                     query = fcl.queryMain("AND f.id_prod_fc=" + id_report + " ", "1")
@@ -2459,11 +2498,13 @@
                     End If
                 ElseIf report_mark_type = "192" Then
                     'payroll
-                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period
-                    FROM tb_emp_payroll
-                    WHERE id_payroll = " + id_report + ""
+                    query = "SELECT IF(pytype.is_thr = 1, DATE_FORMAT(py.periode_end,'%Y'), DATE_FORMAT(py.periode_end,'%M %Y')) AS period, pytype.payroll_type
+                    FROM tb_emp_payroll AS py
+                    LEFT JOIN tb_emp_payroll_type AS pytype ON py.id_payroll_type = pytype.id_payroll_type
+                    WHERE py.id_payroll = " + id_report + ""
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("payroll_type").ToString
                         info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
                 ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
@@ -2472,6 +2513,16 @@
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_design = "Date: " + datax.Rows(0)("ot_date").ToString
+                    End If
+                ElseIf report_mark_type = "223" Then
+                    'bpjs kesehatan
+                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period, IF(id_payroll_type = 1, 'Organic', 'Daily Worker') AS payroll_type
+                    FROM tb_emp_payroll
+                    WHERE id_payroll = (SELECT id_payroll FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = " + id_report + ")"
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("payroll_type").ToString
+                        info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
                 End If
             End If
@@ -2570,7 +2621,7 @@
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
             ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, IF(ISNULL(pp.id_design),1,2) AS already_pp,IF(ISNULL(rec.id_prod_order),1,2) AS already_rec,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
+                query_view = "SELECT 'no' AS is_check,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
 INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
 INNER JOIN (
 	SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
@@ -2599,12 +2650,11 @@ LEFT JOIN (
 LEFT JOIN (
 	SELECT id_prod_order FROM tb_prod_order_rec WHERE id_report_status!=5
 )rec ON rec.id_prod_order=det.`id_prod_order`
-WHERE tb.id_report_status='6' "
+WHERE tb.id_report_status='6' AND IF(ISNULL(pp.id_design),2,1)=2 AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
-                query_view += " GROUP BY tb.id_prod_order
-HAVING (already_pp = 2 AND already_rec = 2)"
+                query_view += " GROUP BY tb.id_prod_order"
                 '
                 query_view_blank = "SELECT tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,0.00 AS qty,ovh.currency,ovh.unit_price,0.00 AS amount FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
@@ -2644,7 +2694,7 @@ HAVING (already_pp = 2 AND already_rec = 2)"
                                     INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                     " & generate_left_join_cancel("query") & "
                                     GROUP BY tb.id_prod_order"
-            ElseIf report_mark_type = "105" Then
+            ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
                 'QC Report/Final CLearance
                 'saat pick
                 query_view = "SELECT 'no' AS is_check,f." & field_id & " AS `id_report`, f." & field_number & " AS `number`, f." & field_date & " AS `date_created`, po.id_prod_order, po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
@@ -2912,7 +2962,7 @@ HAVING (already_pp = 2 AND already_rec = 2)"
             gv.OptionsView.ColumnAutoWidth = False
             '
             gv.BestFitColumns()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clearance
             If opt = "pick" Then
                 gv.Columns("is_check").Caption = "*"

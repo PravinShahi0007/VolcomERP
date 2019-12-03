@@ -4,15 +4,24 @@
     Dim bdel_active As String = "1"
 
     Private Sub FormEmpEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_status()
         viewEmployee("-1")
     End Sub
 
+    Sub view_status()
+        Dim query As String = "SELECT * FROM `tb_lookup_employee_active`"
+        viewSearchLookupQuery(SLEStatus, query, "id_employee_active", "employee_active", "id_employee_active")
+    End Sub
+
     Sub viewEmployee(ByVal cond_param As String)
-        'Dim query As String = "CALL view_employee('" + cond_param + "', '2')"
+        Dim q_where As String = ""
+
+        q_where = " AND emp.id_employee_active='" & SLEStatus.EditValue.ToString & "'"
+
         Dim query As String = "SELECT emp.id_employee,  0 AS `id_other_email`, emp.employee_name, emp.id_departement , dept.departement, 
         emp.email_lokal, emp.email_lokal_pass, emp.email_external, emp.email_external_pass, emp.email_other, emp.email_other_pass,'1' AS `type`
         FROM tb_m_employee emp
-        INNER JOIN tb_m_departement dept ON dept.id_departement = emp.id_departement
+        INNER JOIN tb_m_departement dept ON dept.id_departement = emp.id_departement " & q_where & "
         UNION ALL
         SELECT 0 AS `id_employee`, oth.id_other_email, oth.name AS `employee_name`, oth.id_departement, dept_oth.departement,
         oth.email_lokal, oth.email_lokal_pass, oth.email_external, oth.email_external_pass, oth.email_other, oth.email_other_pass, '2' AS `type`
@@ -81,5 +90,9 @@
         If GVEmail.RowCount > 0 And GVEmail.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
         End If
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        viewEmployee("-1")
     End Sub
 End Class

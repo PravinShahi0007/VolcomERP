@@ -45,6 +45,37 @@
             pre_load_mark_horz("192", id_payroll, "2", "2", XrTable1)
         End If
 
+        'column
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + type, 0, True, "", "", "", "")
+
+        If is_thr = "1" Then
+            GVSummaryOffice.Columns("salary").Visible = False
+            GVSummaryOffice.Columns("event_overtime").Visible = False
+            GVSummaryOffice.Columns("d_cooperative_loan").Visible = False
+            GVSummaryOffice.Columns("d_bpjskes").Visible = False
+            GVSummaryOffice.Columns("d_jaminan_pensiun").Visible = False
+            GVSummaryOffice.Columns("d_bpjstk").Visible = False
+            GVSummaryOffice.Columns("d_cooperative_contribution").Visible = False
+            GVSummaryOffice.Columns("d_missing").Visible = False
+            GVSummaryOffice.Columns("d_meditation_cash").Visible = False
+            GVSummaryOffice.Columns("d_other").Visible = False
+
+            GVSummaryOffice.Columns("balance").Caption = "Total THR"
+
+            GVSummaryStore.Columns("salary").Visible = False
+            GVSummaryStore.Columns("event_overtime").Visible = False
+            GVSummaryStore.Columns("d_cooperative_loan").Visible = False
+            GVSummaryStore.Columns("d_bpjskes").Visible = False
+            GVSummaryStore.Columns("d_jaminan_pensiun").Visible = False
+            GVSummaryStore.Columns("d_bpjstk").Visible = False
+            GVSummaryStore.Columns("d_cooperative_contribution").Visible = False
+            GVSummaryStore.Columns("d_missing").Visible = False
+            GVSummaryStore.Columns("d_meditation_cash").Visible = False
+            GVSummaryStore.Columns("d_other").Visible = False
+
+            GVSummaryStore.Columns("balance").Caption = "Total THR"
+        End If
+
         GVSummaryOffice.AppearancePrint.Row.BorderColor = Color.Black
         GVSummaryOffice.AppearancePrint.Row.Options.UseBorderColor = True
     End Sub

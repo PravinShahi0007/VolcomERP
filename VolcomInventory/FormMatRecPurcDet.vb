@@ -86,6 +86,8 @@
 
             TERecNumber.Enabled = False
             view_list_rec()
+            BSave.Visible = False
+            PCRoll.Visible = False
         End If
         view_list_pcs()
         allow_status()
@@ -497,6 +499,9 @@
     Private Sub BAttach_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAttach.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_order
+        If LEReportStatus.EditValue.ToString = "6" Or LEReportStatus.EditValue.ToString = "5" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         FormDocumentUpload.report_mark_type = "16"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default

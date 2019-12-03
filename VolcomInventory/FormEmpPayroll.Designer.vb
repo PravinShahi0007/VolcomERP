@@ -46,9 +46,9 @@ Partial Class FormEmpPayroll
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.BBBcaFormat = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIBPJSKesehatan = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIBPJSTK = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIPajak = New DevExpress.XtraBars.BarButtonItem()
         Me.GCPayrollPeriode = New DevExpress.XtraGrid.GridControl()
         Me.GVPayrollPeriode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,19 +86,25 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnActWorkdays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEActWorkdays = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BandedGridColumnOvertimeHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumnActWorkdaysDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RITEActWorkdaysDW = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumnBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnTotalSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnBasicSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnJobAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnMealAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnTransportAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnTotFixedSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnHousingAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnVehicleAttndAllowance = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnTotTHP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBTHR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnActualJoinDateTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnLengthTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnTotalSalaryTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RITETotalSalaryTHR = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnActWorkdaysDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RITEActWorkdaysDW = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTotalSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBBonusAdjustment = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnTotalAdjustment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBOvertime = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -151,6 +157,8 @@ Partial Class FormEmpPayroll
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetting = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
@@ -170,6 +178,7 @@ Partial Class FormEmpPayroll
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICESent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITETotalSalaryTHR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -264,7 +273,7 @@ Partial Class FormEmpPayroll
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BBBcaFormat, Me.BarButtonItem4, Me.BarButtonItem5, Me.BarButtonItem6})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BBBcaFormat, Me.BBIBPJSKesehatan, Me.BBIBPJSTK, Me.BBIPajak})
         Me.BarManager1.MaxItemId = 19
         '
         'barDockControlTop
@@ -370,23 +379,23 @@ Partial Class FormEmpPayroll
         Me.BBBcaFormat.Id = 14
         Me.BBBcaFormat.Name = "BBBcaFormat"
         '
-        'BarButtonItem4
+        'BBIBPJSKesehatan
         '
-        Me.BarButtonItem4.Caption = "Report BPJS Kesehatan"
-        Me.BarButtonItem4.Id = 15
-        Me.BarButtonItem4.Name = "BarButtonItem4"
+        Me.BBIBPJSKesehatan.Caption = "Report BPJS Kesehatan"
+        Me.BBIBPJSKesehatan.Id = 15
+        Me.BBIBPJSKesehatan.Name = "BBIBPJSKesehatan"
         '
-        'BarButtonItem5
+        'BBIBPJSTK
         '
-        Me.BarButtonItem5.Caption = "Report BPJSTK"
-        Me.BarButtonItem5.Id = 16
-        Me.BarButtonItem5.Name = "BarButtonItem5"
+        Me.BBIBPJSTK.Caption = "Report BPJSTK"
+        Me.BBIBPJSTK.Id = 16
+        Me.BBIBPJSTK.Name = "BBIBPJSTK"
         '
-        'BarButtonItem6
+        'BBIPajak
         '
-        Me.BarButtonItem6.Caption = "Report Pajak"
-        Me.BarButtonItem6.Id = 18
-        Me.BarButtonItem6.Name = "BarButtonItem6"
+        Me.BBIPajak.Caption = "Report Pajak"
+        Me.BBIPajak.Id = 18
+        Me.BBIPajak.Name = "BBIPajak"
         '
         'GCPayrollPeriode
         '
@@ -401,10 +410,11 @@ Partial Class FormEmpPayroll
         '
         'GVPayrollPeriode
         '
-        Me.GVPayrollPeriode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnCheck, Me.GridColumnPStart, Me.GridColumnPEnd, Me.GridColumnIDPayrollType, Me.GridColumn1, Me.GridColumnLastUpd, Me.GridColumnLastUpdBy, Me.GridColumnNote, Me.GCStatus})
+        Me.GVPayrollPeriode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnCheck, Me.GridColumnPStart, Me.GridColumnPEnd, Me.GridColumnIDPayrollType, Me.GridColumn1, Me.GridColumnLastUpd, Me.GridColumnLastUpdBy, Me.GridColumnNote, Me.GCStatus, Me.GridColumn6, Me.GridColumn7})
         Me.GVPayrollPeriode.GridControl = Me.GCPayrollPeriode
         Me.GVPayrollPeriode.Name = "GVPayrollPeriode"
         Me.GVPayrollPeriode.NewItemRowText = "edita"
+        Me.GVPayrollPeriode.OptionsView.ColumnAutoWidth = False
         Me.GVPayrollPeriode.OptionsView.ShowGroupPanel = False
         '
         'GridColumnID
@@ -420,8 +430,6 @@ Partial Class FormEmpPayroll
         Me.GridColumnCheck.ColumnEdit = Me.RepositoryItemCheckEdit
         Me.GridColumnCheck.FieldName = "is_check"
         Me.GridColumnCheck.Name = "GridColumnCheck"
-        Me.GridColumnCheck.Visible = True
-        Me.GridColumnCheck.VisibleIndex = 0
         '
         'RepositoryItemCheckEdit
         '
@@ -439,7 +447,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnPStart.Name = "GridColumnPStart"
         Me.GridColumnPStart.OptionsColumn.AllowEdit = False
         Me.GridColumnPStart.Visible = True
-        Me.GridColumnPStart.VisibleIndex = 1
+        Me.GridColumnPStart.VisibleIndex = 0
         Me.GridColumnPStart.Width = 222
         '
         'GridColumnPEnd
@@ -451,7 +459,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnPEnd.Name = "GridColumnPEnd"
         Me.GridColumnPEnd.OptionsColumn.AllowEdit = False
         Me.GridColumnPEnd.Visible = True
-        Me.GridColumnPEnd.VisibleIndex = 2
+        Me.GridColumnPEnd.VisibleIndex = 1
         Me.GridColumnPEnd.Width = 189
         '
         'GridColumnIDPayrollType
@@ -468,7 +476,7 @@ Partial Class FormEmpPayroll
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
+        Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 186
         '
         'GridColumnLastUpd
@@ -480,7 +488,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnLastUpd.Name = "GridColumnLastUpd"
         Me.GridColumnLastUpd.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpd.Visible = True
-        Me.GridColumnLastUpd.VisibleIndex = 4
+        Me.GridColumnLastUpd.VisibleIndex = 3
         Me.GridColumnLastUpd.Width = 256
         '
         'GridColumnLastUpdBy
@@ -490,7 +498,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnLastUpdBy.Name = "GridColumnLastUpdBy"
         Me.GridColumnLastUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdBy.Visible = True
-        Me.GridColumnLastUpdBy.VisibleIndex = 5
+        Me.GridColumnLastUpdBy.VisibleIndex = 4
         Me.GridColumnLastUpdBy.Width = 208
         '
         'GridColumnNote
@@ -500,7 +508,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 6
+        Me.GridColumnNote.VisibleIndex = 5
         Me.GridColumnNote.Width = 571
         '
         'GCStatus
@@ -510,7 +518,7 @@ Partial Class FormEmpPayroll
         Me.GCStatus.Name = "GCStatus"
         Me.GCStatus.OptionsColumn.AllowEdit = False
         Me.GCStatus.Visible = True
-        Me.GCStatus.VisibleIndex = 7
+        Me.GCStatus.VisibleIndex = 6
         '
         'PanelControl4
         '
@@ -573,7 +581,7 @@ Partial Class FormEmpPayroll
         Me.GCPayroll.Location = New System.Drawing.Point(0, 39)
         Me.GCPayroll.MainView = Me.GVPayroll
         Me.GCPayroll.Name = "GCPayroll"
-        Me.GCPayroll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending, Me.RITEActWorkdaysDW, Me.RICECheck, Me.RITEActWorkdays, Me.RICESent})
+        Me.GCPayroll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending, Me.RITEActWorkdaysDW, Me.RICECheck, Me.RITEActWorkdays, Me.RICESent, Me.RITETotalSalaryTHR})
         Me.GCPayroll.Size = New System.Drawing.Size(1338, 623)
         Me.GCPayroll.TabIndex = 1
         Me.GCPayroll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayroll})
@@ -592,11 +600,11 @@ Partial Class FormEmpPayroll
         '
         'GVPayroll
         '
-        Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand8, Me.GBWorkingDays, Me.GBDW, Me.GBSalary, Me.GBBonusAdjustment, Me.GBOvertime, Me.GBDeduction, Me.GBTotal, Me.GBExtraNote})
-        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDPayroll, Me.GridColumnIDEmployee, Me.GCIsOfficePayroll, Me.GridColumnGroupReport, Me.GridColumnDepartement, Me.BandedGridColumn1, Me.GridColumnDepartementSub, Me.BandedGridColumnCheck, Me.BandedGridColumnSent, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnWorkingDays, Me.BandedGridColumnActWorkdays, Me.BandedGridColumnOvertimeHours, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.BandedGridColumnTotalAdjustment, Me.BandedGridColumnTotalDeduction, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.BandedGridColumnTotalPaymentOt, Me.BandedGridColumnActWorkdaysDW, Me.GridColumnBasicSalaryDW, Me.GridColumnTotalSalaryDW, Me.BandedGridColumnGrandTotal, Me.BandedGridColumnPending, Me.BandedGridColumnCash})
+        Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand8, Me.GBWorkingDays, Me.GBSalary, Me.GBTHR, Me.GBDW, Me.GBBonusAdjustment, Me.GBOvertime, Me.GBDeduction, Me.GBTotal, Me.GBExtraNote})
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDPayroll, Me.GridColumnIDEmployee, Me.GCIsOfficePayroll, Me.GridColumnGroupReport, Me.GridColumnDepartement, Me.BandedGridColumn1, Me.GridColumnDepartementSub, Me.BandedGridColumnCheck, Me.BandedGridColumnSent, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnWorkingDays, Me.BandedGridColumnActWorkdays, Me.BandedGridColumnOvertimeHours, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.BandedGridColumnTotFixedSalary, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.BandedGridColumnTotalAdjustment, Me.BandedGridColumnTotalDeduction, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.BandedGridColumnTotalPaymentOt, Me.BandedGridColumnActWorkdaysDW, Me.GridColumnBasicSalaryDW, Me.GridColumnTotalSalaryDW, Me.BandedGridColumnActualJoinDateTHR, Me.BandedGridColumnLengthTHR, Me.BandedGridColumnTotalSalaryTHR, Me.BandedGridColumnGrandTotal, Me.BandedGridColumnPending, Me.BandedGridColumnCash})
         Me.GVPayroll.GridControl = Me.GCPayroll
         Me.GVPayroll.GroupCount = 3
-        Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GridColumnBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GridColumnJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GridColumnMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GridColumnTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GridColumnHousingAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GridColumnVehicleAttndAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", Me.GridColumnTotTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", Me.BandedGridColumnTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", Me.BandedGridColumnTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_point", Me.GridColumnPointRegular, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_wages", Me.GridColumnOTReguler, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_point", Me.GridColumnPointMkt, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_wages", Me.GridColumnOtMkt, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_point", Me.GridColumnPointIA, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_wages", Me.GridColumnOtIA, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_point", Me.GridColumnPointProd, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_wages", Me.GridColumnOTProd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_point", Me.GridColumnPointSales, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_wages", Me.GridColumnOtSales, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_point", Me.GridColumnPointGeneral, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_wages", Me.GridColumnOtGeneral, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", Me.BandedGridColumnTotalPaymentOt, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", Me.BandedGridColumnGrandTotal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "id_departement_sub", Me.BandedGridColumn1, "{0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", Me.GridColumnTotalSalaryDW, "{0:N0}")})
+        Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GridColumnBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GridColumnJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GridColumnMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GridColumnTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GridColumnHousingAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GridColumnVehicleAttndAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", Me.GridColumnTotTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", Me.BandedGridColumnTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", Me.BandedGridColumnTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_point", Me.GridColumnPointRegular, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_wages", Me.GridColumnOTReguler, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_point", Me.GridColumnPointMkt, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_wages", Me.GridColumnOtMkt, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_point", Me.GridColumnPointIA, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_wages", Me.GridColumnOtIA, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_point", Me.GridColumnPointProd, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_wages", Me.GridColumnOTProd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_point", Me.GridColumnPointSales, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_wages", Me.GridColumnOtSales, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_point", Me.GridColumnPointGeneral, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_wages", Me.GridColumnOtGeneral, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", Me.BandedGridColumnTotalPaymentOt, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", Me.BandedGridColumnGrandTotal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "id_departement_sub", Me.BandedGridColumn1, "{0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", Me.GridColumnTotalSalaryDW, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_salary_basic", Me.BandedGridColumnTotFixedSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_thr", Me.BandedGridColumnTotalSalaryTHR, "{0:N0}")})
         Me.GVPayroll.Name = "GVPayroll"
         Me.GVPayroll.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVPayroll.OptionsMenu.ShowConditionalFormattingItem = True
@@ -623,7 +631,7 @@ Partial Class FormEmpPayroll
         Me.gridBand8.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBand8.Name = "gridBand8"
         Me.gridBand8.VisibleIndex = 0
-        Me.gridBand8.Width = 423
+        Me.gridBand8.Width = 429
         '
         'GridColumnGroupReport
         '
@@ -708,7 +716,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.Width = 84
+        Me.GridColumnStatus.Width = 90
         '
         'GBWorkingDays
         '
@@ -766,57 +774,6 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnOvertimeHours.Visible = True
         Me.BandedGridColumnOvertimeHours.Width = 93
         '
-        'GBDW
-        '
-        Me.GBDW.Columns.Add(Me.BandedGridColumnActWorkdaysDW)
-        Me.GBDW.Columns.Add(Me.GridColumnBasicSalaryDW)
-        Me.GBDW.Columns.Add(Me.GridColumnTotalSalaryDW)
-        Me.GBDW.Name = "GBDW"
-        Me.GBDW.VisibleIndex = 2
-        Me.GBDW.Width = 290
-        '
-        'BandedGridColumnActWorkdaysDW
-        '
-        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumnActWorkdaysDW.Caption = "Actual Working Days"
-        Me.BandedGridColumnActWorkdaysDW.ColumnEdit = Me.RITEActWorkdaysDW
-        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatString = "N1"
-        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnActWorkdaysDW.FieldName = "actual_workdays"
-        Me.BandedGridColumnActWorkdaysDW.Name = "BandedGridColumnActWorkdaysDW"
-        Me.BandedGridColumnActWorkdaysDW.Visible = True
-        Me.BandedGridColumnActWorkdaysDW.Width = 109
-        '
-        'RITEActWorkdaysDW
-        '
-        Me.RITEActWorkdaysDW.AutoHeight = False
-        Me.RITEActWorkdaysDW.DisplayFormat.FormatString = "N1"
-        Me.RITEActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEActWorkdaysDW.Name = "RITEActWorkdaysDW"
-        '
-        'GridColumnBasicSalaryDW
-        '
-        Me.GridColumnBasicSalaryDW.Caption = "Daily Salary"
-        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatString = "N0"
-        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBasicSalaryDW.FieldName = "basic_salary"
-        Me.GridColumnBasicSalaryDW.Name = "GridColumnBasicSalaryDW"
-        Me.GridColumnBasicSalaryDW.OptionsColumn.AllowEdit = False
-        Me.GridColumnBasicSalaryDW.Visible = True
-        Me.GridColumnBasicSalaryDW.Width = 106
-        '
-        'GridColumnTotalSalaryDW
-        '
-        Me.GridColumnTotalSalaryDW.Caption = "Total Salary"
-        Me.GridColumnTotalSalaryDW.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTotalSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalSalaryDW.FieldName = "total_salary_dw"
-        Me.GridColumnTotalSalaryDW.Name = "GridColumnTotalSalaryDW"
-        Me.GridColumnTotalSalaryDW.OptionsColumn.AllowEdit = False
-        Me.GridColumnTotalSalaryDW.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
-        Me.GridColumnTotalSalaryDW.Visible = True
-        '
         'GBSalary
         '
         Me.GBSalary.AppearanceHeader.Options.UseTextOptions = True
@@ -826,12 +783,13 @@ Partial Class FormEmpPayroll
         Me.GBSalary.Columns.Add(Me.GridColumnJobAllowance)
         Me.GBSalary.Columns.Add(Me.GridColumnMealAllowance)
         Me.GBSalary.Columns.Add(Me.GridColumnTransportAllowance)
+        Me.GBSalary.Columns.Add(Me.BandedGridColumnTotFixedSalary)
         Me.GBSalary.Columns.Add(Me.GridColumnHousingAllowance)
         Me.GBSalary.Columns.Add(Me.GridColumnVehicleAttndAllowance)
         Me.GBSalary.Columns.Add(Me.GridColumnTotTHP)
         Me.GBSalary.Name = "GBSalary"
-        Me.GBSalary.VisibleIndex = 3
-        Me.GBSalary.Width = 627
+        Me.GBSalary.VisibleIndex = 2
+        Me.GBSalary.Width = 702
         '
         'GridColumnBasicSalary
         '
@@ -894,6 +852,17 @@ Partial Class FormEmpPayroll
         Me.GridColumnTransportAllowance.Visible = True
         Me.GridColumnTransportAllowance.Width = 108
         '
+        'BandedGridColumnTotFixedSalary
+        '
+        Me.BandedGridColumnTotFixedSalary.Caption = "Fixed Salary"
+        Me.BandedGridColumnTotFixedSalary.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnTotFixedSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnTotFixedSalary.FieldName = "tot_salary_basic"
+        Me.BandedGridColumnTotFixedSalary.Name = "BandedGridColumnTotFixedSalary"
+        Me.BandedGridColumnTotFixedSalary.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnTotFixedSalary.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_salary_basic", "{0:N0}")})
+        Me.BandedGridColumnTotFixedSalary.Visible = True
+        '
         'GridColumnHousingAllowance
         '
         Me.GridColumnHousingAllowance.AppearanceCell.Options.UseTextOptions = True
@@ -941,6 +910,110 @@ Partial Class FormEmpPayroll
         Me.GridColumnTotTHP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", "{0:N0}")})
         Me.GridColumnTotTHP.Visible = True
         '
+        'GBTHR
+        '
+        Me.GBTHR.Columns.Add(Me.BandedGridColumnActualJoinDateTHR)
+        Me.GBTHR.Columns.Add(Me.BandedGridColumnLengthTHR)
+        Me.GBTHR.Columns.Add(Me.BandedGridColumnTotalSalaryTHR)
+        Me.GBTHR.Name = "GBTHR"
+        Me.GBTHR.VisibleIndex = 3
+        Me.GBTHR.Width = 280
+        '
+        'BandedGridColumnActualJoinDateTHR
+        '
+        Me.BandedGridColumnActualJoinDateTHR.Caption = "Actual Join Date"
+        Me.BandedGridColumnActualJoinDateTHR.FieldName = "employee_actual_join_date"
+        Me.BandedGridColumnActualJoinDateTHR.Name = "BandedGridColumnActualJoinDateTHR"
+        Me.BandedGridColumnActualJoinDateTHR.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnActualJoinDateTHR.Visible = True
+        Me.BandedGridColumnActualJoinDateTHR.Width = 88
+        '
+        'BandedGridColumnLengthTHR
+        '
+        Me.BandedGridColumnLengthTHR.Caption = "Length of Work (Year)"
+        Me.BandedGridColumnLengthTHR.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnLengthTHR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnLengthTHR.FieldName = "actual_workdays"
+        Me.BandedGridColumnLengthTHR.Name = "BandedGridColumnLengthTHR"
+        Me.BandedGridColumnLengthTHR.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnLengthTHR.Visible = True
+        Me.BandedGridColumnLengthTHR.Width = 117
+        '
+        'BandedGridColumnTotalSalaryTHR
+        '
+        Me.BandedGridColumnTotalSalaryTHR.Caption = "Total THR"
+        Me.BandedGridColumnTotalSalaryTHR.ColumnEdit = Me.RITETotalSalaryTHR
+        Me.BandedGridColumnTotalSalaryTHR.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnTotalSalaryTHR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnTotalSalaryTHR.FieldName = "total_salary_thr"
+        Me.BandedGridColumnTotalSalaryTHR.Name = "BandedGridColumnTotalSalaryTHR"
+        Me.BandedGridColumnTotalSalaryTHR.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnTotalSalaryTHR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_thr", "{0:N0}")})
+        Me.BandedGridColumnTotalSalaryTHR.Visible = True
+        '
+        'RITETotalSalaryTHR
+        '
+        Me.RITETotalSalaryTHR.AutoHeight = False
+        Me.RITETotalSalaryTHR.DisplayFormat.FormatString = "N0"
+        Me.RITETotalSalaryTHR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITETotalSalaryTHR.EditFormat.FormatString = "N0"
+        Me.RITETotalSalaryTHR.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITETotalSalaryTHR.Mask.EditMask = "N0"
+        Me.RITETotalSalaryTHR.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITETotalSalaryTHR.Mask.UseMaskAsDisplayFormat = True
+        Me.RITETotalSalaryTHR.Name = "RITETotalSalaryTHR"
+        '
+        'GBDW
+        '
+        Me.GBDW.Columns.Add(Me.BandedGridColumnActWorkdaysDW)
+        Me.GBDW.Columns.Add(Me.GridColumnBasicSalaryDW)
+        Me.GBDW.Columns.Add(Me.GridColumnTotalSalaryDW)
+        Me.GBDW.Name = "GBDW"
+        Me.GBDW.VisibleIndex = 4
+        Me.GBDW.Width = 290
+        '
+        'BandedGridColumnActWorkdaysDW
+        '
+        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnActWorkdaysDW.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumnActWorkdaysDW.Caption = "Actual Working Days"
+        Me.BandedGridColumnActWorkdaysDW.ColumnEdit = Me.RITEActWorkdaysDW
+        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatString = "N1"
+        Me.BandedGridColumnActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnActWorkdaysDW.FieldName = "actual_workdays"
+        Me.BandedGridColumnActWorkdaysDW.Name = "BandedGridColumnActWorkdaysDW"
+        Me.BandedGridColumnActWorkdaysDW.Visible = True
+        Me.BandedGridColumnActWorkdaysDW.Width = 109
+        '
+        'RITEActWorkdaysDW
+        '
+        Me.RITEActWorkdaysDW.AutoHeight = False
+        Me.RITEActWorkdaysDW.DisplayFormat.FormatString = "N1"
+        Me.RITEActWorkdaysDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEActWorkdaysDW.Name = "RITEActWorkdaysDW"
+        '
+        'GridColumnBasicSalaryDW
+        '
+        Me.GridColumnBasicSalaryDW.Caption = "Daily Salary"
+        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatString = "N0"
+        Me.GridColumnBasicSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBasicSalaryDW.FieldName = "basic_salary"
+        Me.GridColumnBasicSalaryDW.Name = "GridColumnBasicSalaryDW"
+        Me.GridColumnBasicSalaryDW.OptionsColumn.AllowEdit = False
+        Me.GridColumnBasicSalaryDW.Visible = True
+        Me.GridColumnBasicSalaryDW.Width = 106
+        '
+        'GridColumnTotalSalaryDW
+        '
+        Me.GridColumnTotalSalaryDW.Caption = "Total Salary"
+        Me.GridColumnTotalSalaryDW.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalSalaryDW.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalSalaryDW.FieldName = "total_salary_dw"
+        Me.GridColumnTotalSalaryDW.Name = "GridColumnTotalSalaryDW"
+        Me.GridColumnTotalSalaryDW.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalSalaryDW.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
+        Me.GridColumnTotalSalaryDW.Visible = True
+        '
         'GBBonusAdjustment
         '
         Me.GBBonusAdjustment.AppearanceHeader.Options.UseTextOptions = True
@@ -948,7 +1021,7 @@ Partial Class FormEmpPayroll
         Me.GBBonusAdjustment.Caption = "Bonus / Adjustment"
         Me.GBBonusAdjustment.Columns.Add(Me.BandedGridColumnTotalAdjustment)
         Me.GBBonusAdjustment.Name = "GBBonusAdjustment"
-        Me.GBBonusAdjustment.VisibleIndex = 4
+        Me.GBBonusAdjustment.VisibleIndex = 5
         Me.GBBonusAdjustment.Width = 131
         '
         'BandedGridColumnTotalAdjustment
@@ -986,7 +1059,7 @@ Partial Class FormEmpPayroll
         Me.GBOvertime.Columns.Add(Me.GridColumnOtGeneral)
         Me.GBOvertime.Columns.Add(Me.BandedGridColumnTotalPaymentOt)
         Me.GBOvertime.Name = "GBOvertime"
-        Me.GBOvertime.VisibleIndex = 5
+        Me.GBOvertime.VisibleIndex = 6
         Me.GBOvertime.Width = 1288
         '
         'GridColumnPointRegular
@@ -1202,7 +1275,7 @@ Partial Class FormEmpPayroll
         Me.GBDeduction.Caption = "Deduction"
         Me.GBDeduction.Columns.Add(Me.BandedGridColumnTotalDeduction)
         Me.GBDeduction.Name = "GBDeduction"
-        Me.GBDeduction.VisibleIndex = 6
+        Me.GBDeduction.VisibleIndex = 7
         Me.GBDeduction.Width = 90
         '
         'BandedGridColumnTotalDeduction
@@ -1225,7 +1298,7 @@ Partial Class FormEmpPayroll
         '
         Me.GBTotal.Columns.Add(Me.BandedGridColumnGrandTotal)
         Me.GBTotal.Name = "GBTotal"
-        Me.GBTotal.VisibleIndex = 7
+        Me.GBTotal.VisibleIndex = 8
         Me.GBTotal.Width = 75
         '
         'BandedGridColumnGrandTotal
@@ -1249,7 +1322,7 @@ Partial Class FormEmpPayroll
         Me.GBExtraNote.Columns.Add(Me.BandedGridColumnPending)
         Me.GBExtraNote.Columns.Add(Me.BandedGridColumnCash)
         Me.GBExtraNote.Name = "GBExtraNote"
-        Me.GBExtraNote.VisibleIndex = 8
+        Me.GBExtraNote.VisibleIndex = 9
         Me.GBExtraNote.Width = 150
         '
         'BandedGridColumnPending
@@ -1368,7 +1441,7 @@ Partial Class FormEmpPayroll
         '
         'PopupMenu1
         '
-        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem5), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem6), New DevExpress.XtraBars.LinkPersistInfo(Me.BBBcaFormat), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem2, False)})
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIBPJSTK), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BBIBPJSKesehatan, False), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIPajak), New DevExpress.XtraBars.LinkPersistInfo(Me.BBBcaFormat), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem2, False)})
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
@@ -1559,6 +1632,16 @@ Partial Class FormEmpPayroll
         Me.BSetting.TabIndex = 0
         Me.BSetting.Text = "Setting"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.FieldName = "is_thr"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.FieldName = "is_dw"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
         'FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1594,6 +1677,7 @@ Partial Class FormEmpPayroll
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICESent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITETotalSalaryTHR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1708,8 +1792,8 @@ Partial Class FormEmpPayroll
     Friend WithEvents RITEActWorkdaysDW As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents BandedGridColumnCheck As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnOvertimeHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BarButtonItem5 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBIBPJSTK As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBIBPJSKesehatan As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GCIsOfficePayroll As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SBSendSlip As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnGroupReport As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1722,17 +1806,8 @@ Partial Class FormEmpPayroll
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BandedGridColumnSent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RICESent As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBWorkingDays As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBDW As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnTotalSalaryDW As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GBSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBBonusAdjustment As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBOvertime As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBDeduction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBTotal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GBExtraNote As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BarButtonItem6 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBIPajak As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBExportExcel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnCheck As DevExpress.XtraGrid.Columns.GridColumn
@@ -1743,4 +1818,21 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BandedGridColumnActualJoinDateTHR As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnLengthTHR As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnTotalSalaryTHR As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBWorkingDays As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBDW As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBTHR As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnTotFixedSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GBBonusAdjustment As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBOvertime As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBDeduction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBTotal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBExtraNote As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RITETotalSalaryTHR As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -27,25 +27,12 @@
         query += ",'Normal' AS 'entry',a.id_acc_trans AS id_report,'' AS number_adj "
         query += "FROM tb_a_acc_trans_det a "
         query += "INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc "
-        query += "INNER JOIN tb_a_acc_trans c ON c.id_acc_trans=a.id_acc_trans "
-        query += "UNION "
-        query += "SELECT c.id_acc_trans,d.acc_trans_number,c.date_created,a.id_acc_trans_adj_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) AS debit,CAST(a.credit AS DECIMAL(13,2)) AS credit,a.acc_trans_adj_det_note AS note  "
-        query += ",'Adjustment' AS 'entry',a.id_acc_trans_adj AS id_report,c.acc_trans_adj_number AS number_adj "
-        query += "FROM tb_a_acc_trans_adj_det a  "
-        query += "INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc  "
-        query += "INNER JOIN tb_a_acc_trans_adj c ON c.id_acc_trans_adj=a.id_acc_trans_adj "
-        query += "INNER JOIN tb_a_acc_trans d ON d.id_acc_trans=c.id_acc_trans "
-        query += ") uni "
-        query += "WHERE (id_acc_trans IN ( "
-        query += "SELECT a.id_acc_trans FROM tb_a_acc_trans_det a "
-        query += "INNER JOIN tb_a_acc_trans b ON a.id_acc_trans=b.id_acc_trans "
-        query += "WHERE a.id_acc IN (" & id_acc_child & ") AND (DATE(date_created) <= '" & end_date & "') AND (DATE(date_created) >= '" & start_date & "') "
-        query += "GROUP BY a.id_acc_trans ) "
-        query += "OR id_acc_trans IN ( "
-        query += "SELECT b.id_acc_trans FROM tb_a_acc_trans_adj_det a "
-        query += "INNER JOIN tb_a_acc_trans_adj b ON a.id_acc_trans_adj=b.id_acc_trans_adj "
-        query += "WHERE a.id_acc IN (" & id_acc_child & ") AND (DATE(date_created) <= '" & end_date & "') AND (DATE(date_created) >= '" & start_date & "') "
-        query += "GROUP BY b.id_acc_trans )) "
+        query += "INNER JOIN tb_a_acc_trans c ON c.id_acc_trans=a.id_acc_trans) uni "
+        query += "WHERE (id_acc_trans IN ( 
+SELECT a.id_acc_trans FROM tb_a_acc_trans_det a 
+INNER JOIN tb_a_acc_trans b ON a.id_acc_trans=b.id_acc_trans 
+WHERE a.id_acc IN (" & id_acc_child & ") AND (DATE(date_created) <= '" & end_date & "') AND (DATE(date_created) >= '" & start_date & "') 
+GROUP BY a.id_acc_trans ))"
         If is_full = "2" Then
             query += "AND id_acc IN (" & id_acc_child & ") "
         End If

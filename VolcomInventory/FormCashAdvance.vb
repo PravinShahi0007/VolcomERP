@@ -153,17 +153,19 @@ WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
     End Sub
 
     Private Sub BAccountability_Click(sender As Object, e As EventArgs) Handles BAccountability.Click
-        If GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
-            'If GVListOpen.GetFocusedRowCellValue("rb_status").ToString = "Closed" Then
-            'warningCustom("Cash advance already closed")
-            'Else
-            FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
-            FormCashAdvanceReconcile.ShowDialog()
-            'End If
-        ElseIf GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "5" Then
-            warningCustom("This report is cancelled")
-        Else
-            warningCustom("This report need approve first")
+        If GVListOpen.RowCount > 0 Then
+            If GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                'If GVListOpen.GetFocusedRowCellValue("rb_status").ToString = "Closed" Then
+                'warningCustom("Cash advance already closed")
+                'Else
+                FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
+                FormCashAdvanceReconcile.ShowDialog()
+                'End If
+            ElseIf GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "5" Then
+                warningCustom("This report is cancelled")
+            Else
+                warningCustom("This report need approve first")
+            End If
         End If
     End Sub
 

@@ -118,7 +118,7 @@
         FormMain.but_edit()
     End Sub
 
-    Private Sub BtnImportFK_Click(sender As Object, e As EventArgs) Handles BtnImportFK.Click
+    Private Sub BtnImportFK_Click(sender As Object, e As EventArgs) 
         Cursor = Cursors.WaitCursor
         FormImportExcel.id_pop_up = "12"
         FormImportExcel.ShowDialog()

@@ -27,6 +27,7 @@ Partial Class FormPurcReqICApproval
         Me.TEEmployee = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit()
+        Me.BViewDocument = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.MEComment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,7 +41,7 @@ Partial Class FormPurcReqICApproval
         Me.BRefuse.Appearance.Options.UseBackColor = True
         Me.BRefuse.Appearance.Options.UseFont = True
         Me.BRefuse.Appearance.Options.UseForeColor = True
-        Me.BRefuse.Location = New System.Drawing.Point(169, 156)
+        Me.BRefuse.Location = New System.Drawing.Point(169, 181)
         Me.BRefuse.LookAndFeel.SkinMaskColor = System.Drawing.Color.DarkRed
         Me.BRefuse.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Black
         Me.BRefuse.LookAndFeel.SkinName = "Metropolis"
@@ -59,7 +60,7 @@ Partial Class FormPurcReqICApproval
         Me.BAccept.Appearance.Options.UseBackColor = True
         Me.BAccept.Appearance.Options.UseFont = True
         Me.BAccept.Appearance.Options.UseForeColor = True
-        Me.BAccept.Location = New System.Drawing.Point(303, 156)
+        Me.BAccept.Location = New System.Drawing.Point(303, 181)
         Me.BAccept.LookAndFeel.SkinName = "Metropolis"
         Me.BAccept.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BAccept.LookAndFeel.UseDefaultLookAndFeel = False
@@ -116,11 +117,29 @@ Partial Class FormPurcReqICApproval
         Me.PictureSeason.Size = New System.Drawing.Size(113, 109)
         Me.PictureSeason.TabIndex = 140
         '
+        'BViewDocument
+        '
+        Me.BViewDocument.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BViewDocument.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BViewDocument.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BViewDocument.Appearance.Options.UseBackColor = True
+        Me.BViewDocument.Appearance.Options.UseFont = True
+        Me.BViewDocument.Appearance.Options.UseForeColor = True
+        Me.BViewDocument.Location = New System.Drawing.Point(169, 149)
+        Me.BViewDocument.LookAndFeel.SkinName = "Metropolis"
+        Me.BViewDocument.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BViewDocument.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BViewDocument.Name = "BViewDocument"
+        Me.BViewDocument.Size = New System.Drawing.Size(271, 26)
+        Me.BViewDocument.TabIndex = 147
+        Me.BViewDocument.Text = "View Document"
+        '
         'FormPurcReqICApproval
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(461, 214)
+        Me.ClientSize = New System.Drawing.Size(461, 239)
+        Me.Controls.Add(Me.BViewDocument)
         Me.Controls.Add(Me.BRefuse)
         Me.Controls.Add(Me.BAccept)
         Me.Controls.Add(Me.LabelControl1)
@@ -150,4 +169,5 @@ Partial Class FormPurcReqICApproval
     Friend WithEvents TEEmployee As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PictureSeason As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents BViewDocument As DevExpress.XtraEditors.SimpleButton
 End Class

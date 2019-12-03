@@ -643,58 +643,68 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Cursor = Cursors.WaitCursor
-        ReportPurcOrder.id_po = id_po
-        ReportPurcOrder.dt = GCSummary.DataSource
-        Dim Report As New ReportPurcOrder()
+        Dim rmt As String = ""
         If SLEPurcType.EditValue.ToString = "1" Then
-            Report.rmt = "139" 'opex
+            rmt = "139" 'opex
         Else
-            Report.rmt = "202" 'capex
+            rmt = "202" 'capex
         End If
 
-        ' ...
-        ' creating and saving the view's layout to a new memory stream 
-        '
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-
-        'Grid Detail
-        ReportStyleGridview(Report.GVSummary)
-        '
-        Report.GVSummary.BestFitColumns()
-        'Parse val
-        If CECashPurchase.Checked = True Then
-            Report.LCashPurchase.Text = "yes"
+        If Not check_allow_print(LEReportStatus.EditValue.ToString, rmt, id_po) Then
+            warningCustom("Can't print, please complete internal approval on system first")
         Else
-            Report.LCashPurchase.Text = "no"
-        End If
-        Report.LPONumber.Text = TEPONumber.Text
-        Report.LTOP.Text = LEPaymentTerm.Text.ToUpper
-        Report.LDateCreated.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
-        Report.LEtaDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
-        Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
-        Report.LShipVia.Text = LEShipVia.Text.ToUpper
-        Report.LDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
-        Report.LTerbilang.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TEGrandTotal.EditValue.ToString))
-        '
-        Report.LTotal.Text = TETotal.Text
-        Report.LDiscount.Text = TEDiscTotal.Text
-        Report.LVat.Text = TEVATValue.Text
-        Report.LGrandTotal.Text = TEGrandTotal.Text
-        'Report.LNote.Text = MENote.Text
-        '
-        Report.LabelAttn.Text = TEVendorAttn.Text
-        Report.LTo.Text = TEVendorName.Text
-        Report.LToAdress.Text = MEAdrressCompTo.Text
-        Report.LPhone.Text = TEVendorPhone.Text
-        Report.LEmail.Text = TEVendorEmail.Text
-        '
-        Dim query As String = "SELECT pr.purc_req_number,dep.departement
+            Cursor = Cursors.WaitCursor
+            ReportPurcOrder.id_po = id_po
+            ReportPurcOrder.dt = GCSummary.DataSource
+            Dim Report As New ReportPurcOrder()
+            If SLEPurcType.EditValue.ToString = "1" Then
+                Report.rmt = "139" 'opex
+            Else
+                Report.rmt = "202" 'capex
+            End If
+
+            ' ...
+            ' creating and saving the view's layout to a new memory stream 
+            '
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVSummary)
+            '
+            Report.GVSummary.BestFitColumns()
+            'Parse val
+            If CECashPurchase.Checked = True Then
+                Report.LCashPurchase.Text = "yes"
+            Else
+                Report.LCashPurchase.Text = "no"
+            End If
+            Report.LPONumber.Text = TEPONumber.Text
+            Report.LTOP.Text = LEPaymentTerm.Text.ToUpper
+            Report.LDateCreated.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+            Report.LEtaDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+            Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
+            Report.LShipVia.Text = LEShipVia.Text.ToUpper
+            Report.LDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+            Report.LTerbilang.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TEGrandTotal.EditValue.ToString))
+            '
+            Report.LTotal.Text = TETotal.Text
+            Report.LDiscount.Text = TEDiscTotal.Text
+            Report.LVat.Text = TEVATValue.Text
+            Report.LGrandTotal.Text = TEGrandTotal.Text
+            'Report.LNote.Text = MENote.Text
+            '
+            Report.LabelAttn.Text = TEVendorAttn.Text
+            Report.LTo.Text = TEVendorName.Text
+            Report.LToAdress.Text = MEAdrressCompTo.Text
+            Report.LPhone.Text = TEVendorPhone.Text
+            Report.LEmail.Text = TEVendorEmail.Text
+            '
+            Dim query As String = "SELECT pr.purc_req_number,dep.departement
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
@@ -705,27 +715,28 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                                 INNER JOIN tb_vendor_type vt ON vt.id_vendor_type=icd.id_vendor_type
                                 INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
                                 WHERE pod.`id_purc_order`='" & id_po & "' GROUP BY pr.id_purc_req"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        For i = 0 To data.Rows.Count - 1
-            If i > 0 Then
-                Report.LPrNo.Text += ", "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            For i = 0 To data.Rows.Count - 1
+                If i > 0 Then
+                    Report.LPrNo.Text += ", "
+                End If
+                Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
+            Next
+            '
+            Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+            Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+
+            If Not LEReportStatus.EditValue = "6" Then
+                Report.id_pre = "2"
+            Else
+                Report.id_pre = "1"
             End If
-            Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
-        Next
-        '
-        Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
-        Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
 
-        If Not LEReportStatus.EditValue = "6" Then
-            Report.id_pre = "2"
-        Else
-            Report.id_pre = "1"
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            Cursor = Cursors.Default
         End If
-
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        Cursor = Cursors.Default
     End Sub
 
     Private Sub TEVATPercent_EditValueChanged(sender As Object, e As EventArgs) Handles TEVATPercent.EditValueChanged
@@ -772,14 +783,14 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Dim query_trans As String = ""
             If rmt = "139" Then 'opex
                 query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
+                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
                                 FROM `tb_purc_order_det` pod
                                 INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
                                 WHERE pod.`id_purc_order`='" & id_po & "'"
             Else 'capex
                 query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                SELECT prd.id_b_expense,pr.id_departement,NOW(),pod.`value`,prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                                SELECT prd.id_b_expense,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
                                 FROM `tb_purc_order_det` pod
                                 INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
@@ -789,7 +800,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             execute_non_query(query_trans, True, "", "", "", "")
             submit_who_prepared(rmt, id_po, id_user)
 
-            query = "UPDATE tb_purc_order SET is_submit='1' WHERE id_purc_order='" & id_po & "'"
+            query = "UPDATE tb_purc_order SET is_submit='1',report_mark_type='" & rmt & "' WHERE id_purc_order='" & id_po & "'"
             execute_non_query(query, True, "", "", "", "")
             '
             load_form()

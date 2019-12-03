@@ -38,9 +38,12 @@
         data.Columns.Add("id_prod_fc", GetType(String))
         data.Columns.Add("no", GetType(Integer))
         data.Columns.Add("vendor", GetType(String))
+        data.Columns.Add("name", GetType(String))
         data.Columns.Add("prod_fc_number", GetType(String))
+        data.Columns.Add("pl_category", GetType(String))
         data.Columns.Add("qty_po", GetType(Decimal))
         data.Columns.Add("qty_rec", GetType(Decimal))
+        data.Columns.Add("prod_fc_date", GetType(String))
 
         GCList.DataSource = data
 
@@ -75,10 +78,13 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, fc.prod_fc_number, fc_sum_det.qty_po, fc_sum_det.qty_rec
+            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
             FROM tb_prod_fc_sum_det AS fc_sum_det
             LEFT JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
+            LEFT JOIN tb_lookup_pl_category AS cat ON fc.id_pl_category = cat.id_pl_category
             LEFT JOIN tb_prod_order AS po ON fc.id_prod_order = po.id_prod_order
+            LEFT JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+            LEFT JOIN tb_m_design d ON d.id_design = pdd.id_design
             LEFT JOIN tb_prod_order_wo AS wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor = 1
             LEFT JOIN tb_m_ovh_price AS ovh ON ovh.id_ovh_price = wo.id_ovh_price
             LEFT JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = ovh.id_comp_contact 
@@ -232,12 +238,16 @@
         Next
 
         Dim query As String = "
-            SELECT 0 AS no, po.prod_order_number, comp.comp_name AS vendor, d.design_display_name AS name, rg.range, col.display_name AS color, qc_report.normal, qc_report.minor, qc_report.major, qc_report.afkir, qty_po.qty_po, qty_rec.qty_rec, po.prod_order_date
+            SELECT 0 AS no, fc.prod_fc_number, po.prod_order_number, comp.comp_name AS vendor, d.design_display_name AS name, rg.range, color.color, qc_report.normal, qc_report.minor, qc_report.major, qc_report.afkir, qty_po.qty_po, qty_rec.qty_rec, fc.prod_fc_date
             FROM tb_prod_order AS po
             LEFT JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
             LEFT JOIN tb_m_design d ON d.id_design = pdd.id_design
-            LEFT JOIN tb_m_design_code dc_col ON dc_col.id_design = d.id_design
-            LEFT JOIN tb_m_code_detail col ON col.id_code_detail = dc_col.id_code_detail AND col.id_code=14
+            LEFT JOIN (
+                SELECT dc_col.id_design, col.display_name AS color
+                FROM tb_m_design_code AS dc_col
+                LEFT JOIN tb_m_code_detail AS col ON dc_col.id_code_detail = col.id_code_detail
+                WHERE col.id_code = 14
+            ) color ON d.id_design = color.id_design
             LEFT JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
             LEFT JOIN tb_season ss ON ss.id_season = del.id_season
             LEFT JOIN tb_range rg ON rg.id_range = ss.id_range
@@ -266,6 +276,12 @@
 	            WHERE rec.id_report_status = 6
 	            GROUP BY rec.id_prod_order
             ) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
+            LEFT JOIN (
+                SELECT id_prod_order, GROUP_CONCAT(DISTINCT prod_fc_number ORDER BY prod_fc_number ASC SEPARATOR ', ') AS prod_fc_number, GROUP_CONCAT(DISTINCT DATE_FORMAT(prod_fc_date, '%d %b %Y') ORDER BY prod_fc_date ASC SEPARATOR ', ') AS prod_fc_date
+                FROM tb_prod_fc
+                WHERE id_prod_fc IN (" + include + ")
+                GROUP BY id_prod_order
+            ) AS fc ON po.id_prod_order = fc.id_prod_order
             WHERE po.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (" + include + "))
             GROUP BY po.id_prod_order
         "

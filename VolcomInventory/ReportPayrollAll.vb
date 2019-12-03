@@ -16,6 +16,11 @@
 
             GBDW.Visible = False
 
+            GBTHR.Visible = False
+
+            GCTotalPaymentOvertime.Visible = True
+            GCTotalDeduction.Visible = True
+
             GCPosition.Caption = "Employee" + Environment.NewLine + "Position"
             GCStatus.Caption = "Employee" + Environment.NewLine + "Status"
             GCActualWorkingDays.Caption = "Actual" + Environment.NewLine + "WD"
@@ -31,6 +36,11 @@
             GBSalaryStore.Visible = True
 
             GBDWStore.Visible = False
+
+            GBTHRStore.Visible = False
+
+            GCTotalPaymentOvertimeStore.Visible = True
+            GCTotalDeductionStore.Visible = True
 
             GCPositionStore.Caption = "Employee" + Environment.NewLine + "Position"
             GCStatusStore.Caption = "Employee" + Environment.NewLine + "Status"
@@ -57,6 +67,11 @@
 
             GBDW.Visible = True
 
+            GBTHR.Visible = False
+
+            GCTotalPaymentOvertime.Visible = True
+            GCTotalDeduction.Visible = True
+
             GCStatus.Width = 100
 
             'store
@@ -71,6 +86,55 @@
             GCTotalTHPStore.Visible = False
 
             GBDWStore.Visible = True
+
+            GBTHRStore.Visible = False
+
+            GCTotalPaymentOvertimeStore.Visible = True
+            GCTotalDeductionStore.Visible = True
+
+            GCStatusStore.Width = 100
+        End If
+
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + type, 0, True, "", "", "", "")
+
+        If is_thr = "1" Then
+            'office
+            GCTotalAdjustment.Caption = "Total" + Environment.NewLine + "Adjustment"
+            GCGrandTotal.Caption = "Grand" + Environment.NewLine + "Total"
+            GCActualJoinDateTHR.Caption = "Actual" + Environment.NewLine + "Join Date"
+            GCLengthOfWorkTHR.Caption = "Length of Work" + Environment.NewLine + "(Year)"
+            GCTotalSalaryTHR.Caption = "Total" + Environment.NewLine + "THR"
+
+            GBWorkingDays.Visible = False
+
+            GCTotalTHP.Visible = False
+
+            GBDW.Visible = False
+
+            GBTHR.Visible = True
+
+            GCTotalPaymentOvertime.Visible = False
+            GCTotalDeduction.Visible = False
+
+            GCStatus.Width = 100
+
+            'store
+            GCTotalAdjustmentStore.Caption = "Total" + Environment.NewLine + "Adjustment"
+            GCGrandTotalStore.Caption = "Grand" + Environment.NewLine + "Total"
+            GCActualJoinDateTHRStore.Caption = "Actual" + Environment.NewLine + "Join Date"
+            GCLengthOfWorkTHRStore.Caption = "Length of Work" + Environment.NewLine + "(Year)"
+            GCTotalSalaryTHRStore.Caption = "Total" + Environment.NewLine + "THR"
+
+            GBWorkingDaysStore.Visible = False
+
+            GCTotalTHPStore.Visible = False
+
+            GBDWStore.Visible = False
+
+            GBTHRStore.Visible = True
+
+            GCTotalPaymentOvertimeStore.Visible = False
+            GCTotalDeductionStore.Visible = False
 
             GCStatusStore.Width = 100
         End If
@@ -132,6 +196,7 @@
     Dim sum_tot_ot_office As Double = 0
     Dim sum_tot_dw_office As Double = 0
     Dim sum_tot_office As Double = 0
+    Dim sum_tot_thr_office As Double = 0
 
     Dim sum_tot_thp_store As Double = 0
     Dim sum_tot_adj_store As Double = 0
@@ -139,6 +204,7 @@
     Dim sum_tot_ot_store As Double = 0
     Dim sum_tot_dw_store As Double = 0
     Dim sum_tot_store As Double = 0
+    Dim sum_tot_thr_store As Double = 0
 
     Private Sub GVPayrollOffice_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVPayrollOffice.CustomSummaryCalculate
         Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
@@ -229,9 +295,9 @@
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Calculate
                     If gridView.Name = "GVPayrollOffice" Then
-                        sum_tot_ded_store += e.FieldValue
-                    Else
                         sum_tot_ded_office += e.FieldValue
+                    Else
+                        sum_tot_ded_store += e.FieldValue
                     End If
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
                     If gridView.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
@@ -345,6 +411,39 @@
                                 e.TotalValue = sum_tot_office
                             Else
                                 e.TotalValue = sum_tot_store
+                            End If
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_salary_thr" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    If gridView.Name = "GVPayrollOffice" Then
+                        sum_tot_thr_office = 0
+                    Else
+                        sum_tot_thr_store = 0
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If gridView.Name = "GVPayrollOffice" Then
+                        sum_tot_thr_office += e.FieldValue
+                    Else
+                        sum_tot_thr_store += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If gridView.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        If gridView.Name = "GVPayrollOffice" Then
+                            e.TotalValue = sum_tot_thr_office
+                        Else
+                            e.TotalValue = sum_tot_thr_store
+                        End If
+                    Else
+                        If e.GroupLevel = 0 Then
+                            If gridView.Name = "GVPayrollOffice" Then
+                                e.TotalValue = sum_tot_thr_office
+                            Else
+                                e.TotalValue = sum_tot_thr_store
                             End If
                         End If
                     End If

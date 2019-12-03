@@ -3794,6 +3794,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = ""
             row_role.Cells.Add(cell)
         End If
+
         'ack by 
         If "1" = "1" Then 'need approve
             Dim cell As New XRTableCell()
@@ -6783,6 +6784,16 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         WHERE p.id_design=" + id_design_par + " AND p.id_design_price_type=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
+    End Function
+
+    Public Function trimSpace(ByVal txt As String)
+        Dim out As String = txt
+
+        out = out.Trim()
+
+        out = RegularExpressions.Regex.Replace(out, " {2,}", " ")
+
+        Return out
     End Function
 
 End Module

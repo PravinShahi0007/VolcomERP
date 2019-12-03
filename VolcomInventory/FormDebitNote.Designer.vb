@@ -21,8 +21,8 @@ Partial Class FormDebitNote
     Private Sub InitializeComponent()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListDebitNote = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDebitNote = New DevExpress.XtraGrid.GridControl()
+        Me.GVDebitNote = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -120,8 +120,8 @@ Partial Class FormDebitNote
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPListDebitNote.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDebitNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDebitNote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPFGPOReject.SuspendLayout()
         CType(Me.GCSumClaimReject, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSumClaimReject, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,27 +161,29 @@ Partial Class FormDebitNote
         '
         'XTPListDebitNote
         '
-        Me.XTPListDebitNote.Controls.Add(Me.GridControl1)
+        Me.XTPListDebitNote.Controls.Add(Me.GCDebitNote)
         Me.XTPListDebitNote.Name = "XTPListDebitNote"
         Me.XTPListDebitNote.Size = New System.Drawing.Size(1160, 484)
         Me.XTPListDebitNote.Text = "List Debit Note"
         '
-        'GridControl1
+        'GCDebitNote
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1160, 484)
-        Me.GridControl1.TabIndex = 1
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCDebitNote.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDebitNote.Location = New System.Drawing.Point(0, 0)
+        Me.GCDebitNote.MainView = Me.GVDebitNote
+        Me.GCDebitNote.Name = "GCDebitNote"
+        Me.GCDebitNote.Size = New System.Drawing.Size(1160, 484)
+        Me.GCDebitNote.TabIndex = 1
+        Me.GCDebitNote.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDebitNote})
         '
-        'GridView1
+        'GVDebitNote
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVDebitNote.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8})
+        Me.GVDebitNote.GridControl = Me.GCDebitNote
+        Me.GVDebitNote.Name = "GVDebitNote"
+        Me.GVDebitNote.OptionsBehavior.Editable = False
+        Me.GVDebitNote.OptionsBehavior.ReadOnly = True
+        Me.GVDebitNote.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -200,6 +202,8 @@ Partial Class FormDebitNote
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Date Created"
+        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn7.FieldName = "created_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
@@ -232,6 +236,8 @@ Partial Class FormDebitNote
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Amount"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "amount"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
@@ -1224,8 +1230,8 @@ Partial Class FormDebitNote
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPListDebitNote.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDebitNote, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDebitNote, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPFGPOReject.ResumeLayout(False)
         CType(Me.GCSumClaimReject, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSumClaimReject, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1259,8 +1265,8 @@ Partial Class FormDebitNote
     Friend WithEvents XTPListDebitNote As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPFGPOReject As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPFGPOLate As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCDebitNote As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDebitNote As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn

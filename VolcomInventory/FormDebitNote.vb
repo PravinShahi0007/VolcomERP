@@ -33,13 +33,39 @@
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+        load_form()
+    End Sub
 
+    Sub load_form()
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            load_debit_note()
         ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
             load_claim_reject()
         ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
             load_claim_late()
         End If
+    End Sub
+
+    Sub load_debit_note()
+        Dim q_where As String = ""
+        '
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            q_where = " WHERE dn.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT dn.id_debit_note,dn.number,dnt.`dn_type`,dn.`created_date`,sts.`report_status`,emp.`employee_name`,comp.`comp_name`,SUM((dnd.claim_percent/100)*dnd.unit_price*dnd.qty) AS amount 
+FROM tb_debit_note_det dnd
+INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` 
+INNER JOIN tb_lookup_dn_type dnt ON dnt.`id_dn_type`=dn.`id_dn_type`
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=dn.`id_report_status`
+INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp comp ON comp.`id_comp`=dn.`id_comp`
+" & q_where & "
+GROUP BY dnd.`id_debit_note`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDebitNote.DataSource = data
+        GVDebitNote.BestFitColumns()
     End Sub
 
     Sub load_claim_late()
@@ -49,7 +75,7 @@
             q_where = " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,'22' AS report_mark_type,s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
+        Dim query As String = "SELECT 'no' AS is_check,'28' AS report_mark_type,r.`id_prod_order_rec`,s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
 ,dsg.design_display_name,dsg.design_code,SUBSTRING(dsg.`design_display_name`,1,CHAR_LENGTH(dsg.`design_display_name`) - 4) AS dsg_name,RIGHT(dsg.`design_display_name`,3) AS color 
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY) AS est_rec_date_ko
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date
@@ -64,7 +90,7 @@
 ,c.comp_name
 ,r.id_prod_order
 FROM tb_prod_order_rec_det rd
-INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6'
+INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6' AND r.is_claimed_late=2
 INNER JOIN `tb_prod_order_close_det` cd ON cd.`id_prod_order`=r.`id_prod_order`
 INNER JOIN `tb_prod_order_close` cl ON cl.`id_prod_order_close`=cd.`id_prod_order_close`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=cd.`id_prod_order`
@@ -104,8 +130,13 @@ LEFT JOIN (
 	    ORDER BY id_prod_order_ko_det DESC
     )ko GROUP BY ko.id_prod_order
 ) ko ON ko.id_prod_order=po.id_prod_order
+LEFT JOIN (
+    SELECT id_report FROM tb_debit_note_det dnd
+    INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dnd.`report_mark_type`=28 AND dn.`id_report_status`!=5
+    GROUP BY dnd.id_report
+) dn ON dn.id_report=r.id_prod_order_rec
 INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
-WHERE cl.`id_report_status`='6' AND  ld.`claim_percent` > 0 " & q_where & "
+WHERE cl.`id_report_status`='6' AND  ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & "
 GROUP BY rd.`id_prod_order_rec`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClaimLate.DataSource = data
@@ -149,7 +180,7 @@ GROUP BY rd.`id_prod_order_rec`"
                                 INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close
                                 INNER JOIN tb_pl_prod_order fc ON fc.`id_prod_order`=pocd.`id_prod_order`
                                 INNER JOIN tb_pl_prod_order_det fcd ON fcd.`id_pl_prod_order`=fc.`id_pl_prod_order` AND fc.id_report_status='6'
-                                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order`
+                                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pocd.`id_prod_order` AND po.is_claimed_reject=2
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
                                 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
                                 INNER JOIN tb_lookup_pl_category_sub plc ON plc.`id_pl_category_sub`=fc.`id_pl_category_sub`
@@ -172,7 +203,12 @@ GROUP BY rd.`id_prod_order_rec`"
 	                                INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec`=rec.`id_prod_order_rec` AND rec.`id_report_status`='6'
 	                                GROUP BY rec.id_prod_order
                                 ) rec ON rec.`id_prod_order`=pocd.`id_prod_order`
-                                WHERE poc.id_report_status = '6' " & q_where & "
+                                LEFT JOIN (
+                                    SELECT id_report FROM tb_debit_note_det dnd
+                                    INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dnd.`report_mark_type`=22 AND dn.`id_report_status`!=5
+                                    GROUP BY dnd.id_report
+                                ) dn ON dn.id_report=po.id_prod_order
+                                WHERE poc.id_report_status = '6' AND ISNULL(dn.id_report) " & q_where & "
                                 GROUP BY pocd.`id_prod_order`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSumClaimReject.DataSource = data
@@ -208,5 +244,12 @@ GROUP BY rd.`id_prod_order_rec`"
         End If
         GVClaimLate.ActiveFilterString = ""
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVDebitNote_DoubleClick(sender As Object, e As EventArgs) Handles GVDebitNote.DoubleClick
+        If GVDebitNote.RowCount > 0 Then
+            FormDebitNoteDet.id_dn = GVDebitNote.GetFocusedRowCellValue("id_debit_note").ToString
+            FormDebitNoteDet.ShowDialog()
+        End If
     End Sub
 End Class

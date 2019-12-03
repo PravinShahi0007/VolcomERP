@@ -241,6 +241,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassItemRequest.vb" />
+    <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProdOverMemo.vb" />
@@ -275,6 +276,18 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="FormBankWithdrawalAdd.Designer.vb">
+      <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCompanyEmailMapping.Designer.vb">
+      <DependentUpon>FormCompanyEmailMapping.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompanyEmailMapping.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CryptFile.vb" />
     <Compile Include="FindPanel.vb">
       <SubType>Component</SubType>
@@ -759,6 +772,12 @@
     <Compile Include="FormChangeStatus.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCompanyEmailMappingDet.Designer.vb">
+      <DependentUpon>FormCompanyEmailMappingDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompanyEmailMappingDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDataReff.Designer.vb">
       <DependentUpon>FormDataReff.vb</DependentUpon>
     </Compile>
@@ -877,6 +896,24 @@
       <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpAttnSumDetailSick.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatan.Designer.vb">
+      <DependentUpon>FormEmpBPJSKesehatan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatanDet.Designer.vb">
+      <DependentUpon>FormEmpBPJSKesehatanDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatanDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatanPick.Designer.vb">
+      <DependentUpon>FormEmpBPJSKesehatanPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpBPJSKesehatanPick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
@@ -1887,6 +1924,24 @@
     <Compile Include="FormInvoiceFGPODPSplit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceFGPONew.Designer.vb">
+      <DependentUpon>FormInvoiceFGPONew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPONew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceTracking.Designer.vb">
+      <DependentUpon>FormInvoiceTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceTracking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceTrackingBBM.Designer.vb">
+      <DependentUpon>FormInvoiceTrackingBBM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceTrackingBBM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatMain.Designer.vb">
       <DependentUpon>FormItemCatMain.vb</DependentUpon>
     </Compile>
@@ -2023,6 +2078,36 @@
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </Compile>
     <Compile Include="FormListPOMat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManage.Designer.vb">
+      <DependentUpon>FormMailManage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManageCancel.Designer.vb">
+      <DependentUpon>FormMailManageCancel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageCancel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManageDet.Designer.vb">
+      <DependentUpon>FormMailManageDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManageLog.Designer.vb">
+      <DependentUpon>FormMailManageLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManageLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMailManagePendingInvoice.Designer.vb">
+      <DependentUpon>FormMailManagePendingInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailManagePendingInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterAsset.Designer.vb">
@@ -5397,6 +5482,12 @@
     <Compile Include="FormSOHSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockQC.Designer.vb">
+      <DependentUpon>FormStockQC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockQC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockUniS78New.Designer.vb">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </Compile>
@@ -7318,6 +7409,12 @@
     <Compile Include="ReportSetupBudgetOPEX.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSummaryInvoice.Designer.vb">
+      <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSummaryInvoice.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportWHDelEmpty.Designer.vb">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
     </Compile>
@@ -7379,6 +7476,12 @@
     <EmbeddedResource Include="barcodeaa.resx">
       <DependentUpon>barcodeaa.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalAdd.resx">
+      <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCompanyEmailMapping.resx">
+      <DependentUpon>FormCompanyEmailMapping.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccess.resx">
       <DependentUpon>FormAccess.vb</DependentUpon>
@@ -7656,6 +7759,9 @@
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCompanyEmailMappingDet.resx">
+      <DependentUpon>FormCompanyEmailMappingDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -7716,6 +7822,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttnSumDetailSick.resx">
       <DependentUpon>FormEmpAttnSumDetailSick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpBPJSKesehatan.resx">
+      <DependentUpon>FormEmpBPJSKesehatan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpBPJSKesehatanDet.resx">
+      <DependentUpon>FormEmpBPJSKesehatanDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpBPJSKesehatanPick.resx">
+      <DependentUpon>FormEmpBPJSKesehatanPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
@@ -8238,6 +8353,15 @@
     <EmbeddedResource Include="FormInvoiceFGPODPSplit.resx">
       <DependentUpon>FormInvoiceFGPODPSplit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceFGPONew.resx">
+      <DependentUpon>FormInvoiceFGPONew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceTracking.resx">
+      <DependentUpon>FormInvoiceTracking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceTrackingBBM.resx">
+      <DependentUpon>FormInvoiceTrackingBBM.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMain.resx">
       <DependentUpon>FormItemCatMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -8306,6 +8430,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManage.resx">
+      <DependentUpon>FormMailManage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageCancel.resx">
+      <DependentUpon>FormMailManageCancel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageDet.resx">
+      <DependentUpon>FormMailManageDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManageLog.resx">
+      <DependentUpon>FormMailManageLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailManagePendingInvoice.resx">
+      <DependentUpon>FormMailManagePendingInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterAsset.resx">
       <DependentUpon>FormMasterAsset.vb</DependentUpon>
@@ -10339,6 +10478,9 @@
       <DependentUpon>FormSOHSum.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockQC.resx">
+      <DependentUpon>FormStockQC.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockUniS78New.resx">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </EmbeddedResource>
@@ -11453,6 +11595,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSetupBudgetOPEX.resx">
       <DependentUpon>ReportSetupBudgetOPEX.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSummaryInvoice.resx">
+      <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHDelEmpty.resx">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>

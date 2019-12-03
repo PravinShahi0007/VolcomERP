@@ -589,7 +589,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GridColumn14.FieldName = "after_kurs"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "after_kurs", "{0:N2}")})
-        Me.GridColumn14.UnboundExpression = "[before_kurs] + 1"
+        Me.GridColumn14.UnboundExpression = "Iif([id_currency] = 1, [before_kurs], [before_kurs] * [kurs])"
         Me.GridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4

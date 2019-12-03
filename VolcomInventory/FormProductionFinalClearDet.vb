@@ -213,7 +213,9 @@ Public Class FormProductionFinalClearDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status, "105", id_prod_fc) Then
+        Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_prod_fc WHERE id_prod_fc = " + id_prod_fc, 0, True, "", "", "", "")
+
+        If check_edit_report_status(id_report_status, report_mark_type, id_prod_fc) Then
             MENote.Enabled = True
         Else
             MENote.Enabled = False
@@ -249,7 +251,7 @@ Public Class FormProductionFinalClearDet
         End If
 
         'ATTACH
-        If check_attach_report_status(id_report_status, "105", id_prod_fc) Then
+        If check_attach_report_status(id_report_status, report_mark_type, id_prod_fc) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
@@ -388,7 +390,7 @@ Public Class FormProductionFinalClearDet
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = "105"
+        FormReportMark.report_mark_type = execute_query("SELECT report_mark_type FROM tb_prod_fc WHERE id_prod_fc = " + id_prod_fc, 0, True, "", "", "", "")
         FormReportMark.id_report = id_prod_fc
         If is_view = "1" Then
             FormReportMark.is_view = "1"
@@ -400,7 +402,7 @@ Public Class FormProductionFinalClearDet
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
-        FormDocumentUpload.report_mark_type = "105"
+        FormDocumentUpload.report_mark_type = execute_query("SELECT report_mark_type FROM tb_prod_fc WHERE id_prod_fc = " + id_prod_fc, 0, True, "", "", "", "")
         FormDocumentUpload.id_report = id_prod_fc
         If is_view = "1" Then
             FormDocumentUpload.is_view = "1"
@@ -622,8 +624,9 @@ Public Class FormProductionFinalClearDet
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
-                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status) "
-                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim report_mark_type As String = If(id_pl_category = "1", "224", "105")
+                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, report_mark_type) "
+                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1', '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
                     id_prod_fc = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_prod("12")
 
@@ -669,7 +672,7 @@ Public Class FormProductionFinalClearDet
                     End If
 
                     'submit who prepared
-                    submit_who_prepared("105", id_prod_fc, id_user)
+                    submit_who_prepared(report_mark_type, id_prod_fc, id_user)
 
 
                     FormProductionFinalClear.GCProd.DataSource = Nothing
@@ -739,7 +742,7 @@ Public Class FormProductionFinalClearDet
     Private Sub BtnPrePrinting_Click(sender As Object, e As EventArgs) Handles BtnPrePrinting.Click
         'If id_report_status = "1" Then
         FormProdDemandPrintOpt.id = id_prod_fc
-        FormProdDemandPrintOpt.rmt = "105"
+        FormProdDemandPrintOpt.rmt = execute_query("SELECT report_mark_type FROM tb_prod_fc WHERE id_prod_fc = " + id_prod_fc, 0, True, "", "", "", "")
         FormProdDemandPrintOpt.ShowDialog()
         ' End If
         ReportProductionFinalClear.is_pre_print = "1"
