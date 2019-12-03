@@ -11522,11 +11522,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     Private Sub NBStockQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockQC.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormFGStock.MdiParent = Me
-            FormFGStock.id_pop_up = "1"
-            FormFGStock.Show()
-            FormFGStock.WindowState = FormWindowState.Maximized
-            FormFGStock.Focus()
+            FormStockQC.MdiParent = Me
+            FormStockQC.Show()
+            FormStockQC.WindowState = FormWindowState.Maximized
+            FormStockQC.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
