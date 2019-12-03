@@ -4839,7 +4839,7 @@
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2 AND i.id_item_type='1';"
                 execute_non_query(qb, True, "", "", "", "")
 
-                'asset
+                ' asset
                 Dim qa As String = "SELECT rd.id_item, rd.id_purc_rec_det, rd.qty, coa.id_coa_out, rq.id_departement, i.item_desc, NOW(), (pod.`value` - pod.discount) AS `cost`, 2
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -4977,7 +4977,7 @@
                 WHERE rd.id_purc_rec=" + id_report + " AND po.vat_percent>0
                 GROUP BY rd.id_purc_rec
                 UNION ALL
-                /*total value item inventory + total value item asset + vat in*/
+                /* Total value item inventory + total value item asset + vat in ke AP */
                 SELECT " + id_acc_trans + ", comp.id_acc_ap AS `id_acc`, cont.id_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`,
                 SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) + ((po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value))) AS `credit`,
                 '' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) as rmt_reff,  po.id_purc_order, po.purc_order_number
@@ -4997,14 +4997,18 @@
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec; "
                 execute_non_query(qjd, True, "", "", "", "")
+
+                'update
+                Dim query_complete As String = ""
+                query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
+                execute_non_query(query_complete, True, "", "", "", "")
+
+                'jika klop diinsert jurnal balik DP nya jika ada
+                Dim q_dp As String = ""
+
             End If
 
-            'update
-            Dim query_complete As String = ""
-            If id_status_reportx = "6" Then
-                query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");"
-            End If
-            query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';" + query_complete, id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
@@ -5335,7 +5339,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 	                                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
 	                                    WHERE py.id_pn=" & id_report & "
 	                                    UNION ALL
-	                                    /* Hutang dagang + DP + other */
+	                                    /* Hutang dagang */
 	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`, pnd.id_comp,  0 AS `qty`,IF(pnd.id_dc=2,0,ABS(pnd.value)) AS `debit`, IF(pnd.id_dc=2,ABS(pnd.value),0) AS `credit`,'' AS `note`,159,pn.id_pn, pn.number,pnd.report_mark_type,pnd.id_report,pnd.number,pnd.vendor
 	                                    FROM tb_pn_det pnd
 	                                    INNER JOIN tb_pn pn ON pnd.id_pn=pn.id_pn

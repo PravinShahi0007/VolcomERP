@@ -60,7 +60,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='8'"
+                                WHERE c.id_comp_cat='8' or c.id_comp_cat='1'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
@@ -68,7 +68,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='1' "
+                                WHERE c.id_comp_cat='1' or c.id_comp_cat='1'"
         viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
@@ -196,6 +196,8 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
         Dim query As String = "SELECT 'no' AS is_check
 ,po.is_close_pay,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
 ,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
+,SUM(pod.qty*(pod.value-pod.discount))-po.disc_value AS amo_po
+,po.vat_value AS amo_vat
 ,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
 ,po.close_rec_reason
