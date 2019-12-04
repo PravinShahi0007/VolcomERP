@@ -29,7 +29,7 @@
 
         Try
             If Not DateEditTo.EditValue.ToString = "" Then
-                where_date_to = "AND fc.prod_fc_date <= '" + Date.Parse(DateEditFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+                where_date_to = "AND fc.prod_fc_date <= '" + Date.Parse(DateEditTo.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
             End If
         Catch ex As Exception
         End Try
@@ -68,7 +68,7 @@
 	            WHERE rec.id_report_status = 6
 	            GROUP BY rec.id_prod_order
             ) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
-            WHERE fc.id_report_status = 6 AND fc.id_prod_fc NOT IN (SELECT id_prod_fc FROM (" + where_id_prod_fc + ") AS not_include) " + where_vendor + " " + where_date_from + " " + where_date_to + "
+            WHERE fc.id_report_status <> 5 AND fc.id_prod_fc NOT IN (SELECT id_prod_fc FROM (" + where_id_prod_fc + ") AS not_include) " + where_vendor + " " + where_date_from + " " + where_date_to + "
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
