@@ -402,7 +402,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
 	                GROUP BY retd.id_item
                 ) retd ON retd.id_item = pod.id_item
                 INNER JOIN tb_purc_req_det prd ON prd.id_purc_req_det=pod.id_purc_req_det
-                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND prd.item_detail='" & item_detail & "'
+                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND IFNULL(prd.item_detail,'')='" & item_detail & "'
                 GROUP BY pod.id_item, prd.item_detail "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
                 If e.Value > dcek.Rows(0)("qty_remaining") Then

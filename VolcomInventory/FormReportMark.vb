@@ -5379,7 +5379,22 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 	                                    WHERE pn.id_pn=" & id_report & "                 
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
                 execute_non_query(qjd, True, "", "", "", "")
-
+                '
+                If data_payment.Rows(0)("report_mark_type").ToString = "139" Or report_mark_type = "202" Then
+                    'close pay in tb_purc_order
+                    Dim qc As String = "UPDATE tb_purc_order po
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.`id_pn`=" & id_report & "
+                                                SET po.is_close_pay='1'"
+                    execute_non_query(qc, True, "", "", "", "")
+                    FormBankWithdrawal.load_po()
+                ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
+                    'close expense
+                    Dim qc As String = "UPDATE tb_item_expense e
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_pn`=" & id_report & "
+                                                SET e.is_open='2'"
+                    execute_non_query(qc, True, "", "", "", "")
+                    FormBankWithdrawal.load_expense()
+                End If
                 '
                 'If data_payment.Rows.Count > 0 Then
                 '    If data_payment.Rows(0)("report_mark_type").ToString = "189" Then  'FGPO no DP on BBM, only on BPL
