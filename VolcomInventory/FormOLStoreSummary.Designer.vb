@@ -1617,7 +1617,6 @@ Partial Class FormOLStoreSummary
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BtnViewUpdated)
-        Me.PanelControl2.Controls.Add(Me.LabelControl10)
         Me.PanelControl2.Controls.Add(Me.LabelControl9)
         Me.PanelControl2.Controls.Add(Me.DEUpdatedUntil)
         Me.PanelControl2.Controls.Add(Me.LabelControl8)
@@ -1734,16 +1733,17 @@ Partial Class FormOLStoreSummary
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.BtnTrackOrder)
+        Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(1107, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(1031, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(116, 100)
+        Me.PanelControl3.Size = New System.Drawing.Size(192, 100)
         Me.PanelControl3.TabIndex = 5
         '
         'BtnTrackOrder
         '
         Me.BtnTrackOrder.Image = CType(resources.GetObject("BtnTrackOrder.Image"), System.Drawing.Image)
-        Me.BtnTrackOrder.Location = New System.Drawing.Point(9, 31)
+        Me.BtnTrackOrder.Location = New System.Drawing.Point(87, 10)
         Me.BtnTrackOrder.LookAndFeel.SkinName = "Blue"
         Me.BtnTrackOrder.Name = "BtnTrackOrder"
         Me.BtnTrackOrder.Size = New System.Drawing.Size(97, 23)
@@ -1752,7 +1752,7 @@ Partial Class FormOLStoreSummary
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(1117, 17)
+        Me.LabelControl10.Location = New System.Drawing.Point(10, 15)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(71, 13)
         Me.LabelControl10.TabIndex = 13
@@ -1936,6 +1936,7 @@ Partial Class FormOLStoreSummary
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
         CType(Me.DEUntilDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECompDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
