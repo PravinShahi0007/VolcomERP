@@ -25,84 +25,36 @@
             BMark.Visible = False
             BtnSave.Visible = True
             '
-            If report_mark_type = "139" Then 'purchasing
+            If report_mark_type = "139" Or report_mark_type = "202" Then 'purchasing
                 'load header
                 Try
                     SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
                     SLEPayType.EditValue = id_pay_type
                     '
                     SLEReportType.EditValue = report_mark_type
-                    'DP if pay type
-                    If id_pay_type = "1" Then 'DP
-                        'DP
-                        For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
-                            'dp
-                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                            newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
-                            newRow("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
-                            newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
-                            newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            newRow("acc_description") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
-                            newRow("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
-                            newRow("id_dc") = "1"
-                            newRow("dc_code") = "D"
-                            newRow("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
-                            newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
-                            newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
-                            newRow("total_pay") = 0
-                            newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "amo_po")
-                            newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "amo_po")
-                            newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "amo_po")
-                            newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-
-                            'vat
-                            Dim newRow_vat As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                            newRow_vat("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
-                            newRow_vat("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
-                            newRow_vat("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
-                            newRow_vat("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            newRow_vat("acc_description") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
-                            newRow_vat("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
-                            newRow_vat("id_dc") = "1"
-                            newRow_vat("dc_code") = "D"
-                            newRow_vat("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
-                            newRow_vat("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
-                            newRow_vat("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            newRow_vat("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
-                            newRow_vat("total_pay") = 0
-                            newRow_vat("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "amo_vat")
-                            newRow_vat("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "amo_vat")
-                            newRow_vat("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "amo_vat")
-                            newRow_vat("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow_vat)
-                        Next
-                    Else
-                        'load detail
-                        For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
-                            'id_report,number,total,balance due
-                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                            newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
-                            newRow("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
-                            newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
-                            newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            newRow("acc_description") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
-                            newRow("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
-                            newRow("id_dc") = "1"
-                            newRow("dc_code") = "D"
-                            newRow("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
-                            newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
-                            newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
-                            newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp")
-                            newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
-                            newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
-                            newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
-                            newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
-                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                        Next
-                    End If
+                    'load detail
+                    For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
+                        'id_report,number,total,balance due
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_purc_order").ToString
+                        newRow("report_mark_type") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "report_mark_type").ToString
+                        newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
+                        newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_description").ToString
+                        newRow("vendor") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number").ToString
+                        newRow("id_dc") = "1"
+                        newRow("dc_code") = "D"
+                        newRow("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
+                        newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
+                        newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                        newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
+                        newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp")
+                        newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("value_view") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("balance_due") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
+                        newRow("note") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
                     '
                     calculate_amount()
                 Catch ex As Exception
@@ -422,7 +374,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
             Else
                 'header
                 Dim query As String = "INSERT INTO tb_pn(report_mark_type,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
-VALUES('139','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+VALUES('" & report_mark_type & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                 id_payment = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 query = "INSERT INTO tb_pn_det(id_pn,id_report,report_mark_type,number,vendor,id_comp,id_acc,id_dc,total_pay,value,balance_due,note) VALUES"

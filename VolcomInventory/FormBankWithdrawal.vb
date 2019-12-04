@@ -194,7 +194,7 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
         End If
 
         Dim query As String = "SELECT 'no' AS is_check
-,po.is_close_pay,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
+,po.report_mark_type,po.is_close_pay,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
 ,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
 ,SUM(pod.qty*(pod.value-pod.discount))-po.disc_value AS amo_po
 ,po.vat_value AS amo_vat
@@ -230,19 +230,19 @@ LEFT JOIN
 LEFT JOIN
 (
 	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
-	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND pyd.report_mark_type='139'
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=po.id_purc_order
 LEFT JOIN
 (
 	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
-	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND pyd.report_mark_type='139' AND py.id_pay_type=1
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202') AND py.id_pay_type=1
 	GROUP BY pyd.id_report
 )payment_dp ON payment_dp.id_report=po.id_purc_order
 LEFT JOIN
 (
 	SELECT COUNT(pyd.id_report) as jml,pyd.id_report FROM `tb_pn_det` pyd
-	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND pyd.report_mark_type='139'
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=po.id_purc_order
 WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
@@ -298,7 +298,7 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
             If id_pay_type_po = "1" Then 'dp
                 '
                 If GVPOList.RowCount > 0 Then
-                    FormBankWithdrawalDet.report_mark_type = "139"
+                    FormBankWithdrawalDet.report_mark_type = GVPOList.GetFocusedRowCellValue("report_mark_type").ToString
                     FormBankWithdrawalDet.id_pay_type = id_pay_type_po
                     FormBankWithdrawalDet.ShowDialog()
                 Else
@@ -306,7 +306,7 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
                 End If
             ElseIf id_pay_type_po = "2" Then 'payment
                 If GVPOList.RowCount > 0 Then
-                    FormBankWithdrawalDet.report_mark_type = "139"
+                    FormBankWithdrawalDet.report_mark_type = GVPOList.GetFocusedRowCellValue("report_mark_type").ToString
                     FormBankWithdrawalDet.id_pay_type = id_pay_type_po
                     FormBankWithdrawalDet.ShowDialog()
                 Else
