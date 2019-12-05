@@ -94,7 +94,6 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
                 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
                 WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
-                MsgBox(query_pop)
                 Dim data_pop As DataTable = execute_query(query_pop, -1, True, "", "", "", "")
                 If data_pop.Rows.Count > 0 Then
                     FormInvoiceFGPODPPop.id_po = id_po
@@ -191,10 +190,12 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
                 '        End If
                 '    End If
                 'Next
-                If Not i = 0 Then
-                    inv_number += ","
+                If Not GVList.GetRowCellValue(i, "report_mark_type").ToString = "199" Then
+                    If Not inv_number = "" Then
+                        inv_number += ","
+                    End If
+                    inv_number += "'" & GVList.GetRowCellValue(i, "inv_number").ToString & "'"
                 End If
-                inv_number += "'" & GVList.GetRowCellValue(i, "inv_number").ToString & "'"
             Next
 
             'check on db
@@ -213,7 +214,7 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
         ElseIf is_dup Then
             warningCustom("Invoice number duplicate")
         Else
-            If type = "1" Then
+            If type = "1" Then 'DP
                 If id_invoice = "-1" Then
                     'new
                     'header
@@ -247,8 +248,8 @@ VALUES ('2','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & S
                     id_invoice = execute_query(query, 0, True, "", "", "", "")
                     'detail
                     query = ""
-                    For i = 0 To GVList.RowCount - 1
-                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,report_number,info_design,`value`,`vat`,`inv_number`,`note`)
+                    For i = 0 To GVList.RowCount - 1 '
+                        query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,report_number,info_design,qty,`value`,`vat`,`inv_number`,`note`)
 VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "vat").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
                     Next
                     execute_non_query(query, True, "", "", "", "")
