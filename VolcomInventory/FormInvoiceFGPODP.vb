@@ -183,13 +183,14 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "'"
             'check on grid
             Dim inv_number As String = ""
             For i = 0 To GVList.RowCount - 1
-                For j = 0 To GVList.RowCount - 1
-                    If Not i = j Then
-                        If GVList.GetRowCellValue(i, "inv_number").ToString = GVList.GetRowCellValue(j, "inv_number").ToString Then
-                            is_dup = True
-                        End If
-                    End If
-                Next
+                ' can duplicate
+                'For j = 0 To GVList.RowCount - 1
+                '    If Not i = j Then
+                '        If GVList.GetRowCellValue(i, "inv_number").ToString = GVList.GetRowCellValue(j, "inv_number").ToString Then
+                '            is_dup = True
+                '        End If
+                '    End If
+                'Next
                 If Not i = 0 Then
                     inv_number += ","
                 End If
