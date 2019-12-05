@@ -6261,6 +6261,17 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             End If
 
             If id_status_reportx = "6" Then
+                'select detail
+                Dim pn_type As String = ""
+                Dim pn_date As String = ""
+
+                Dim q_head As String = "SELECT id_pn_fgpo,`type`, FROM tb_pn_fgpo WHERE id_pn_fgpo='" & id_report & "'"
+                Dim dt_head As DataTable = execute_query(q_head, -1, True, "", "", "", "")
+                If dt_head.Rows.Count > 0 Then
+                    pn_type = dt_head.Rows(0)("type").ToString
+                    pn_date = Date.Parse(dt_head.Rows(0)("type").ToString).ToString("yyyy-MM-dd")
+                End If
+
                 'Select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -6269,12 +6280,14 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', '" & pn_date & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 increase_inc_acc("1")
 
                 'det journal
-                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                Dim qjd As String = ""
+                If pn_type = "1" Then 'dp
+                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                                     SELECT * FROM
                                     (
                                         /* DP vendor */
@@ -6301,6 +6314,44 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                                         WHERE pn.id_pn_fgpo=" & id_report & "
                                         GROUP BY pn.id_pn_fgpo
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                ElseIf pn_type = "2" Then 'payment
+                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                                    SELECT * FROM
+                                    (
+                                        /* Balik DP jika ada */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                        UNION ALL
+                                        /* Balik VAT DP jika ada */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                        UNION ALL
+                                        /* Payment */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                        UNION ALL
+                                        /* Hutang Dagang */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM tb_pn_fgpo_det pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        WHERE pn.id_pn_fgpo=" & id_report & "
+                                        GROUP BY pn.id_pn_fgpo
+                                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                End If
+
                 execute_non_query(qjd, True, "", "", "", "")
             End If
 
