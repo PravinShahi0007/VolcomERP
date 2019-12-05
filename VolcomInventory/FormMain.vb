@@ -8614,6 +8614,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormInvoiceTracking" Then
             FormInvoiceTracking.Close()
             FormInvoiceTracking.Dispose()
+        ElseIf formName = "FormStockQC" Then
+            FormStockQC.Close()
+            FormStockQC.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
