@@ -262,21 +262,21 @@
 	            SELECT fc.id_prod_order, SUM(IF(fc.id_pl_category = 1, fc_det.prod_fc_det_qty, 0)) AS normal, SUM(IF(fc.id_pl_category = 2, fc_det.prod_fc_det_qty, 0)) AS minor, SUM(IF(fc.id_pl_category = 3, fc_det.prod_fc_det_qty, 0)) AS major, SUM(IF(fc.id_pl_category = 4, fc_det.prod_fc_det_qty, 0)) AS afkir
 	            FROM tb_prod_fc_det AS fc_det
 	            LEFT JOIN tb_prod_fc AS fc ON fc_det.id_prod_fc = fc.id_prod_fc
-	            WHERE fc.id_report_status = 6
+	            WHERE fc.id_prod_fc IN (" + include + ")
 	            GROUP BY fc.id_prod_order
             ) AS qc_report ON po.id_prod_order = qc_report.id_prod_order
             LEFT JOIN (
 	            SELECT po_det.id_prod_order, SUM(po_det.prod_order_qty) AS qty_po
 	            FROM tb_prod_order_det AS po_det
 	            LEFT JOIN tb_prod_order AS po ON po_det.id_prod_order = po.id_prod_order
-	            WHERE po.id_report_status = 6
+	            WHERE po_det.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (" + include + "))
 	            GROUP BY po_det.id_prod_order
             ) AS qty_po ON po.id_prod_order = qty_po.id_prod_order
             LEFT JOIN (
 	            SELECT rec.id_prod_order, SUM(rec_det.prod_order_rec_det_qty) AS qty_rec
 	            FROM tb_prod_order_rec_det AS rec_det
 	            LEFT JOIN tb_prod_order_rec AS rec ON rec_det.id_prod_order_rec = rec.id_prod_order_rec
-	            WHERE rec.id_report_status = 6
+	            WHERE rec.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (" + include + "))
 	            GROUP BY rec.id_prod_order
             ) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
             LEFT JOIN (
