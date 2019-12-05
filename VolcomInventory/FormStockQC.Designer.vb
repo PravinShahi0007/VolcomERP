@@ -86,6 +86,7 @@ Partial Class FormStockQC
         Me.TxtProductSC = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.BSearchSC = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCSCIdCodeDetail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -491,7 +492,7 @@ Partial Class FormStockQC
         'GVSC
         '
         Me.GVSC.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2})
-        Me.GVSC.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCSCSize, Me.GCSCPONumber, Me.GCSCNumber, Me.GCSCDate, Me.GCSCQTY, Me.GCSCType, Me.GCSCStockQC, Me.GCSCStockNormal, Me.GCSCStockMinor, Me.GCSCStockMajor, Me.GCSCStockAfkir, Me.GCSCTotal})
+        Me.GVSC.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCSCIdCodeDetail, Me.GCSCSize, Me.GCSCPONumber, Me.GCSCNumber, Me.GCSCDate, Me.GCSCQTY, Me.GCSCType, Me.GCSCStockQC, Me.GCSCStockNormal, Me.GCSCStockMinor, Me.GCSCStockMajor, Me.GCSCStockAfkir, Me.GCSCTotal})
         Me.GVSC.GridControl = Me.GCSC
         Me.GVSC.GroupCount = 1
         Me.GVSC.Name = "GVSC"
@@ -518,6 +519,7 @@ Partial Class FormStockQC
         '
         Me.GCSCSize.Caption = "Size"
         Me.GCSCSize.FieldName = "size"
+        Me.GCSCSize.FieldNameSortGroup = "id_code_detail"
         Me.GCSCSize.Name = "GCSCSize"
         Me.GCSCSize.Visible = True
         '
@@ -740,6 +742,11 @@ Partial Class FormStockQC
         Me.BSearchSC.TabIndex = 8903
         Me.BSearchSC.Text = "View Data"
         '
+        'GCSCIdCodeDetail
+        '
+        Me.GCSCIdCodeDetail.FieldName = "id_code_detail"
+        Me.GCSCIdCodeDetail.Name = "GCSCIdCodeDetail"
+        '
         'FormStockQC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -850,4 +857,5 @@ Partial Class FormStockQC
     Friend WithEvents GCSCTotal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCSCIdCodeDetail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
