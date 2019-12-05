@@ -6319,28 +6319,21 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                                     SELECT * FROM
                                     (
                                         /* Balik DP jika ada */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
-                                        FROM tb_pn_fgpo_det pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(-pnd.value) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM `tb_pn_fgpo_det` pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pn.id_pn_fgpo=" & id_report & "
-                                        GROUP BY pn.id_pn_fgpo
+                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='199'
                                         UNION ALL
                                         /* Balik VAT DP jika ada */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
-                                        FROM tb_pn_fgpo_det pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                         SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(-pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        FROM `tb_pn_fgpo_det` pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pn.id_pn_fgpo=" & id_report & "
-                                        GROUP BY pn.id_pn_fgpo
+                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='199'
                                         UNION ALL
                                         /* Payment */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
-                                        FROM tb_pn_fgpo_det pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
-                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pn.id_pn_fgpo=" & id_report & "
-                                        GROUP BY pn.id_pn_fgpo
+                                        kerjain ini sep
                                         UNION ALL
                                         /* Hutang Dagang */
                                         SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
