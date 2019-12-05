@@ -220,7 +220,7 @@ Public Class FormSalesOrderDet
         EPForm.SetIconPadding(TxtNameCompTo, 28)
     End Sub
 
-    Private Function checkOrderExist(ByVal qry_par As String, ByVal show_number As Boolean) As String
+    Private Function checkOrderExist(ByVal qry_par As String, ByVal show_number As Boolean)
         Dim cond_isnull As String = ""
         If show_number = False Then
             cond_isnull = "AND ISNULL(b.id_sales_order)"
@@ -246,7 +246,7 @@ Public Class FormSalesOrderDet
         Else
             Dim qnum As String = query + "LIMIT 1 "
             Dim dnum As DataTable = execute_query(qnum, -1, True, "", "", "", "")
-            Return dnum.Rows(0)("sales_order_number").ToString
+            Return dnum
         End If
     End Function
 
@@ -317,7 +317,7 @@ Public Class FormSalesOrderDet
         GVItemList.ActiveFilterString = ""
 
         'blok order jika sudah pernah dibuat khiusus new wholesale
-        Dim existing_order As String = ""
+        Dim dt_existing_order As DataTable = Nothing
         Dim cond_no_exist As Boolean = True
         If LEStatusSO.EditValue.ToString = "6" And is_block_same_nw = "1" Then
             Dim qry As String = ""
@@ -333,7 +333,7 @@ Public Class FormSalesOrderDet
             Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
             If dcek.Rows.Count = 0 Then
                 cond_no_exist = False
-                existing_order = checkOrderExist(qry, True)
+                dt_existing_order = checkOrderExist(qry, True)
             End If
         End If
 
@@ -353,7 +353,13 @@ Public Class FormSalesOrderDet
         ElseIf Not cond_not_blank_item_id_ol_shop Then
             stopCustom("Please input order id & ol store id")
         ElseIf Not cond_no_exist Then
-            stopCustom("This order already exist in order number : " + existing_order)
+            Cursor = Cursors.WaitCursor
+            FormCustomDialog.LabelContent.Text = "This order already exist in order number : " + dt_existing_order.Rows(0)("sales_order_number").ToString
+            FormCustomDialog.id_report = dt_existing_order.Rows(0)("id_sales_order").ToString
+            FormCustomDialog.rmt = "39"
+            FormCustomDialog.BtnAction.Text = "View " + dt_existing_order.Rows(0)("sales_order_number").ToString
+            FormCustomDialog.ShowDialog()
+            Cursor = Cursors.Default
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString

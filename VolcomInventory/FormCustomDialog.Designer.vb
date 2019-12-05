@@ -43,9 +43,9 @@ Partial Class FormCustomDialog
         'BtnAction
         '
         Me.BtnAction.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAction.Location = New System.Drawing.Point(264, 2)
+        Me.BtnAction.Location = New System.Drawing.Point(251, 2)
         Me.BtnAction.Name = "BtnAction"
-        Me.BtnAction.Size = New System.Drawing.Size(121, 36)
+        Me.BtnAction.Size = New System.Drawing.Size(134, 36)
         Me.BtnAction.TabIndex = 1
         Me.BtnAction.Text = "Action Button"
         '
