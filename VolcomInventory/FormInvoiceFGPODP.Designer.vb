@@ -509,6 +509,7 @@ Partial Class FormInvoiceFGPODP
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVList.OptionsCustomization.AllowSort = False
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
