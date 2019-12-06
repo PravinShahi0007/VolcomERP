@@ -16,6 +16,7 @@
                     Next
                     If is_already = False Then
                         Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_prod_order") = id_po
                         newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo_det").ToString
                         newRow("report_mark_type") = "199"
                         newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString

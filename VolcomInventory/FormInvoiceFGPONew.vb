@@ -265,6 +265,7 @@ HAVING qty_rec_remaining > 0"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BPick.Click
         If GVInvoice.RowCount > 0 Then
             Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
+            newRow("id_prod_order") = SLEFGPO.EditValue.ToString
             newRow("id_report") = GVInvoice.GetFocusedRowCellValue("id_report")
             newRow("report_mark_type") = GVInvoice.GetFocusedRowCellValue("report_mark_type")
             newRow("report_number") = GVInvoice.GetFocusedRowCellValue("report_number")
@@ -310,6 +311,7 @@ WHERE pnd.`id_pn_fgpo`='-1'"
         If GVInvoice.RowCount > 0 Then
             For i As Integer = 0 To GVInvoice.RowCount - 1
                 Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
+                newRow("id_report") = SLEFGPO.EditValue.ToString
                 newRow("id_report") = GVInvoice.GetRowCellValue(i, "id_report")
                 newRow("report_mark_type") = GVInvoice.GetRowCellValue(i, "report_mark_type")
                 newRow("report_number") = GVInvoice.GetRowCellValue(i, "report_number")
