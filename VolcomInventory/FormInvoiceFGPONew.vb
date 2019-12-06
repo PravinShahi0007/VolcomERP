@@ -394,7 +394,7 @@ WHERE po.id_prod_order='" & id_po & "'"
 
     Private Sub BLoadHistory_Click(sender As Object, e As EventArgs) Handles BLoadHistory.Click
         Dim id_po As String = SLEFGPO.EditValue.ToString
-        Dim query As String = "SELECT pn.`id_pn_fgpo`,pn.number,pnd.`id_report`,pnd.`report_mark_type`,pnd.report_number AS reff,pn.created_by,emp.employee_name,pnd.`qty`,pnd.`value` AS `value`,pnd.`vat`,typ.pn_type
+        Dim query As String = "SELECT pn.`id_pn_fgpo`,pn.number,pnd.`id_report`,pn.created_date,pnd.`report_mark_type`,pnd.report_number AS reff,pn.created_by,emp.employee_name,pnd.`qty`,pnd.`value` AS `value`,pnd.`vat`,typ.pn_type AS `type`
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo` AND pn.`id_report_status`!=5
 INNER JOIN tb_m_user usr ON usr.id_user=pn.created_by
