@@ -66,9 +66,15 @@ LEFT JOIN
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.id_comp
     WHERE wo.id_prod_order='" & id_po & "' AND wo.is_main_vendor=1
 )wo ON wo.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+    SELECT id_report FROM `tb_pn_fgpo_det` pnd
+    INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+    WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5
+)used ON used.id_report=pnd.id_pn_fgpo
 INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
+WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1' AND ISNULL(used.id_report)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
     End Sub

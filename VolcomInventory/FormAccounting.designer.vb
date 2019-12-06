@@ -74,6 +74,10 @@ Partial Class FormAccounting
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCGeneralSetup = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPurchasing = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnBrowseClaim = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEClaimDesc = New DevExpress.XtraEditors.TextEdit()
+        Me.TEClaimAccount = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnBrowseVAT = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseRec = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
@@ -86,10 +90,6 @@ Partial Class FormAccounting
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BtnBrowseClaim = New DevExpress.XtraEditors.SimpleButton()
-        Me.TEClaimDesc = New DevExpress.XtraEditors.TextEdit()
-        Me.TEClaimAccount = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -113,13 +113,13 @@ Partial Class FormAccounting
         CType(Me.XTCGeneralSetup, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneralSetup.SuspendLayout()
         Me.XTPPurchasing.SuspendLayout()
+        CType(Me.TEClaimDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEClaimAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVATDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVATAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRecDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRecAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BalanceMenu.SuspendLayout()
-        CType(Me.TEClaimDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEClaimAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCGeneral
@@ -624,6 +624,41 @@ Partial Class FormAccounting
         Me.XTPPurchasing.Size = New System.Drawing.Size(706, 334)
         Me.XTPPurchasing.Text = "Purchasing"
         '
+        'BtnBrowseClaim
+        '
+        Me.BtnBrowseClaim.Image = CType(resources.GetObject("BtnBrowseClaim.Image"), System.Drawing.Image)
+        Me.BtnBrowseClaim.Location = New System.Drawing.Point(613, 127)
+        Me.BtnBrowseClaim.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BtnBrowseClaim.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnBrowseClaim.Name = "BtnBrowseClaim"
+        Me.BtnBrowseClaim.Size = New System.Drawing.Size(27, 20)
+        Me.BtnBrowseClaim.TabIndex = 13
+        Me.BtnBrowseClaim.ToolTip = "Browse"
+        '
+        'TEClaimDesc
+        '
+        Me.TEClaimDesc.Enabled = False
+        Me.TEClaimDesc.Location = New System.Drawing.Point(189, 127)
+        Me.TEClaimDesc.Name = "TEClaimDesc"
+        Me.TEClaimDesc.Size = New System.Drawing.Size(420, 20)
+        Me.TEClaimDesc.TabIndex = 12
+        '
+        'TEClaimAccount
+        '
+        Me.TEClaimAccount.Enabled = False
+        Me.TEClaimAccount.Location = New System.Drawing.Point(19, 127)
+        Me.TEClaimAccount.Name = "TEClaimAccount"
+        Me.TEClaimAccount.Size = New System.Drawing.Size(164, 20)
+        Me.TEClaimAccount.TabIndex = 11
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(19, 108)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl4.TabIndex = 10
+        Me.LabelControl4.Text = "HPP Claim"
+        '
         'BtnBrowseVAT
         '
         Me.BtnBrowseVAT.Image = CType(resources.GetObject("BtnBrowseVAT.Image"), System.Drawing.Image)
@@ -654,7 +689,7 @@ Partial Class FormAccounting
         Me.BtnDiscard.Appearance.Options.UseBackColor = True
         Me.BtnDiscard.Appearance.Options.UseFont = True
         Me.BtnDiscard.Appearance.Options.UseForeColor = True
-        Me.BtnDiscard.Location = New System.Drawing.Point(426, 157)
+        Me.BtnDiscard.Location = New System.Drawing.Point(426, 168)
         Me.BtnDiscard.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnDiscard.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnDiscard.Name = "BtnDiscard"
@@ -670,7 +705,7 @@ Partial Class FormAccounting
         Me.BtnSave.Appearance.Options.UseBackColor = True
         Me.BtnSave.Appearance.Options.UseFont = True
         Me.BtnSave.Appearance.Options.UseForeColor = True
-        Me.BtnSave.Location = New System.Drawing.Point(536, 157)
+        Me.BtnSave.Location = New System.Drawing.Point(536, 168)
         Me.BtnSave.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnSave.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnSave.Name = "BtnSave"
@@ -738,41 +773,6 @@ Partial Class FormAccounting
         Me.SMViewTransaction.Size = New System.Drawing.Size(136, 22)
         Me.SMViewTransaction.Text = "Transaction"
         '
-        'BtnBrowseClaim
-        '
-        Me.BtnBrowseClaim.Image = CType(resources.GetObject("BtnBrowseClaim.Image"), System.Drawing.Image)
-        Me.BtnBrowseClaim.Location = New System.Drawing.Point(613, 127)
-        Me.BtnBrowseClaim.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.BtnBrowseClaim.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnBrowseClaim.Name = "BtnBrowseClaim"
-        Me.BtnBrowseClaim.Size = New System.Drawing.Size(27, 20)
-        Me.BtnBrowseClaim.TabIndex = 13
-        Me.BtnBrowseClaim.ToolTip = "Browse"
-        '
-        'TEClaimDesc
-        '
-        Me.TEClaimDesc.Enabled = False
-        Me.TEClaimDesc.Location = New System.Drawing.Point(189, 127)
-        Me.TEClaimDesc.Name = "TEClaimDesc"
-        Me.TEClaimDesc.Size = New System.Drawing.Size(420, 20)
-        Me.TEClaimDesc.TabIndex = 12
-        '
-        'TEClaimAccount
-        '
-        Me.TEClaimAccount.Enabled = False
-        Me.TEClaimAccount.Location = New System.Drawing.Point(19, 127)
-        Me.TEClaimAccount.Name = "TEClaimAccount"
-        Me.TEClaimAccount.Size = New System.Drawing.Size(164, 20)
-        Me.TEClaimAccount.TabIndex = 11
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(19, 108)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
-        Me.LabelControl4.TabIndex = 10
-        Me.LabelControl4.Text = "HPP Claim"
-        '
         'FormAccounting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -811,13 +811,13 @@ Partial Class FormAccounting
         Me.XTCGeneralSetup.ResumeLayout(False)
         Me.XTPPurchasing.ResumeLayout(False)
         Me.XTPPurchasing.PerformLayout()
+        CType(Me.TEClaimDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEClaimAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVATDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVATAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRecDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRecAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BalanceMenu.ResumeLayout(False)
-        CType(Me.TEClaimDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEClaimAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

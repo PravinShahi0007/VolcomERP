@@ -6278,11 +6278,11 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 Dim pn_type As String = ""
                 Dim pn_date As String = ""
 
-                Dim q_head As String = "SELECT id_pn_fgpo,`type`, FROM tb_pn_fgpo WHERE id_pn_fgpo='" & id_report & "'"
+                Dim q_head As String = "SELECT id_pn_fgpo,`type`,created_date FROM tb_pn_fgpo WHERE id_pn_fgpo='" & id_report & "'"
                 Dim dt_head As DataTable = execute_query(q_head, -1, True, "", "", "", "")
                 If dt_head.Rows.Count > 0 Then
                     pn_type = dt_head.Rows(0)("type").ToString
-                    pn_date = Date.Parse(dt_head.Rows(0)("type").ToString).ToString("yyyy-MM-dd")
+                    pn_date = Date.Parse(dt_head.Rows(0)("created_date").ToString).ToString("yyyy-MM-dd")
                 End If
 
                 'Select user prepared
@@ -6327,36 +6327,53 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                                         WHERE pn.id_pn_fgpo=" & id_report & "
                                         GROUP BY pn.id_pn_fgpo
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
-                ElseIf pn_type = "2" Then 'payment
-                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                ElseIf pn_type = "2" Or pn_type = "3" Or pn_type = "4" Then 'payment / extra / over memo
+                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
                                     SELECT * FROM
                                     (
-                                        /* HPP */
-
-                                        /* Balik DP jika ada */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(-pnd.value) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        /* HPP jika domestik or international */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,(pnd.value) AS `debit`,0 AS `credit`,pnd.`info_design` AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
                                         FROM `tb_pn_fgpo_det` pnd
                                         INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='199'
+                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
+                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='28'
                                         UNION ALL
-                                        /* Balik VAT DP jika ada */
-                                         SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(-pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        /* Balik DP */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,0 AS `debit`,(-pnd.value) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
                                         FROM `tb_pn_fgpo_det` pnd
                                         INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
                                         WHERE pnd.`id_pn_fgpo`='" & id_report & "' AND pnd.report_mark_type='199'
                                         UNION ALL
-                                        /* VAT Payment */
-                                        kerjain ini sep
-                                        UNION ALL
-                                        /* Payment ke Hutang Dagang */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
-                                        FROM tb_pn_fgpo_det pnd
-                                        INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
+                                        /* VAT */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT id_acc_vat_fg FROM tb_opt_accounting) AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF((pnd.vat)<0,0,(pnd.vat)) AS `debit`,IF((pnd.vat)<0,(-pnd.vat),0) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                                        FROM `tb_pn_fgpo_det` pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
-                                        WHERE pn.id_pn_fgpo=" & id_report & "
-                                        GROUP BY pn.id_pn_fgpo
+                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
+                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' 
+                                        UNION ALL
+                                        /* Hutang Dagang */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF(SUM(pnd.vat+pnd.value)<0,SUM(-(pnd.vat+pnd.value)),0) AS `debit`,IF(SUM(pnd.vat+pnd.value)<0,0,SUM(pnd.vat+pnd.value)) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, NULL, NULL, NULL, comp.comp_number
+                                        FROM `tb_pn_fgpo_det` pnd
+                                        INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                                        INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                                        INNER JOIN tb_m_city city ON city.id_city=comp.id_city
+                                        INNER JOIN tb_m_state stte ON stte.id_state=city.id_state
+                                        INNER JOIN tb_m_region reg ON reg.id_region=stte.id_region
+                                        INNER JOIN tb_m_country cou ON cou.id_country=reg.id_country
+                                        WHERE pnd.`id_pn_fgpo`='" & id_report & "' 
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
                 End If
                 execute_non_query(qjd, True, "", "", "", "")
