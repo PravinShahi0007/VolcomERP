@@ -542,6 +542,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 0
+        Me.GridColumn14.Width = 233
         '
         'GridColumn15
         '
@@ -550,6 +551,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn15.Width = 233
         '
         'BLoadHistory
         '
@@ -770,6 +772,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn16.Width = 233
         '
         'GridColumn17
         '
@@ -778,6 +781,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 3
+        Me.GridColumn17.Width = 233
         '
         'GridColumn18
         '
@@ -786,12 +790,13 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn18.Caption = "Value"
-        Me.GridColumn18.DisplayFormat.FormatString = "N0"
+        Me.GridColumn18.DisplayFormat.FormatString = "N2"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "value"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 5
+        Me.GridColumn18.Width = 290
         '
         'GridColumn19
         '
@@ -800,12 +805,13 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn19.Caption = "Vat"
-        Me.GridColumn19.DisplayFormat.FormatString = "N0"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "vat"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 6
+        Me.GridColumn19.Width = 292
         '
         'GridColumn20
         '
@@ -820,6 +826,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 4
+        Me.GridColumn20.Width = 118
         '
         'FormInvoiceFGPONew
         '
@@ -925,7 +932,7 @@ Partial Class FormInvoiceFGPONew
     Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
