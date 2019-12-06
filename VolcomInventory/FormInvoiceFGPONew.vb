@@ -332,9 +332,14 @@ WHERE pnd.`id_pn_fgpo`='-1'"
 
     Private Sub BLoadPO_Click(sender As Object, e As EventArgs) Handles BLoadPO.Click
         Dim id_po As String = SLEFGPO.EditValue.ToString
-        Dim query As String = "SELECT po.id_prod_order,po.prod_order_number,dsg.design_code,dsg.design_display_name,rec_normal.qty AS qty_rec,rec_extra.qty AS qty_rec_extra,IFNULL(rec_over.qty,0) AS qty_rec_over
+        Dim query As String = "SELECT po.id_prod_order,pod.qty AS qty_po,po.prod_order_number,dsg.design_code,dsg.design_display_name,rec_normal.qty AS qty_rec,rec_extra.qty AS qty_rec_extra,IFNULL(rec_over.qty,0) AS qty_rec_over
 ,inv.qty_inv,inv.qty_inv_extra,inv.qty_inv_over
 FROM tb_prod_order po
+INNER JOIN 
+(
+	SELECT pod.`id_prod_order`,SUM(pod.`prod_order_qty`) AS qty FROM tb_prod_order_det pod 
+	WHERE pod.`id_prod_order`='" & id_po & "'
+)pod ON pod.id_prod_order=po.`id_prod_order`
 LEFT JOIN
 (
 	SELECT rec.`id_prod_order`,IF(SUM(recd.`prod_order_rec_det_qty`)>po.qty,po.qty,SUM(recd.`prod_order_rec_det_qty`)) AS qty 
@@ -384,6 +389,6 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 WHERE po.id_prod_order='" & id_po & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRec.DataSource = data
-        GVRec.BestFitColumns()
+        BGVRec.BestFitColumns()
     End Sub
 End Class
