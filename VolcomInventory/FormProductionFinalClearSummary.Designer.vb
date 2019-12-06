@@ -37,6 +37,7 @@ Partial Class FormProductionFinalClearSummary
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl = New DevExpress.XtraTab.XtraTabControl()
@@ -49,6 +50,8 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClaim = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTanggalInput = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -77,7 +80,6 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -294,6 +296,16 @@ Partial Class FormProductionFinalClearSummary
         Me.SBPrint.TabIndex = 20
         Me.SBPrint.Text = "Print"
         '
+        'SBReset
+        '
+        Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
+        Me.SBReset.Location = New System.Drawing.Point(687, 2)
+        Me.SBReset.Name = "SBReset"
+        Me.SBReset.Size = New System.Drawing.Size(95, 45)
+        Me.SBReset.TabIndex = 22
+        Me.SBReset.Text = "Reset"
+        '
         'SBSave
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
@@ -344,8 +356,9 @@ Partial Class FormProductionFinalClearSummary
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdFc, Me.GridColumnNo, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdFc, Me.GridColumnNo, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnClaim, Me.GridColumnQty, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput})
         Me.GVList.GridControl = Me.GCList
+        Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumnQtyPO, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnQtyRec, "{0:N2}")})
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowFooter = True
@@ -402,6 +415,28 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnCategory.Visible = True
         Me.GridColumnCategory.VisibleIndex = 4
         '
+        'GridColumnClaim
+        '
+        Me.GridColumnClaim.Caption = "Claim"
+        Me.GridColumnClaim.FieldName = "pl_category_sub"
+        Me.GridColumnClaim.Name = "GridColumnClaim"
+        Me.GridColumnClaim.OptionsColumn.AllowEdit = False
+        Me.GridColumnClaim.Visible = True
+        Me.GridColumnClaim.VisibleIndex = 5
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "prod_fc_det_qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", "{0:N2}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.Width = 73
+        '
         'GridColumnQtyPO
         '
         Me.GridColumnQtyPO.Caption = "Qty PO"
@@ -410,8 +445,9 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnQtyPO.FieldName = "qty_po"
         Me.GridColumnQtyPO.Name = "GridColumnQtyPO"
         Me.GridColumnQtyPO.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyPO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", "{0:N2}")})
         Me.GridColumnQtyPO.Visible = True
-        Me.GridColumnQtyPO.VisibleIndex = 5
+        Me.GridColumnQtyPO.VisibleIndex = 7
         '
         'GridColumnQtyRec
         '
@@ -421,8 +457,9 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnQtyRec.FieldName = "qty_rec"
         Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
         Me.GridColumnQtyRec.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N2}")})
         Me.GridColumnQtyRec.Visible = True
-        Me.GridColumnQtyRec.VisibleIndex = 6
+        Me.GridColumnQtyRec.VisibleIndex = 8
         '
         'GridColumnTanggalInput
         '
@@ -433,7 +470,8 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnTanggalInput.Name = "GridColumnTanggalInput"
         Me.GridColumnTanggalInput.OptionsColumn.AllowEdit = False
         Me.GridColumnTanggalInput.Visible = True
-        Me.GridColumnTanggalInput.VisibleIndex = 7
+        Me.GridColumnTanggalInput.VisibleIndex = 9
+        Me.GridColumnTanggalInput.Width = 77
         '
         'PanelControl2
         '
@@ -714,16 +752,6 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn15.Visible = True
         Me.GridColumn15.Width = 77
         '
-        'SBReset
-        '
-        Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
-        Me.SBReset.Location = New System.Drawing.Point(687, 2)
-        Me.SBReset.Name = "SBReset"
-        Me.SBReset.Size = New System.Drawing.Size(95, 45)
-        Me.SBReset.TabIndex = 22
-        Me.SBReset.Text = "Reset"
-        '
         'FormProductionFinalClearSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -822,4 +850,6 @@ Partial Class FormProductionFinalClearSummary
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnClaim As DevExpress.XtraGrid.Columns.GridColumn
 End Class
