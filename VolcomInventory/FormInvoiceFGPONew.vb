@@ -327,4 +327,61 @@ WHERE pnd.`id_pn_fgpo`='-1'"
             warningCustom("No receiving")
         End If
     End Sub
+
+    Private Sub BLoadPO_Click(sender As Object, e As EventArgs) Handles BLoadPO.Click
+        Dim id_po As String = SLEFGPO.EditValue.ToString
+        Dim query As String = "SELECT po.id_prod_order,po.prod_order_number,dsg.design_code,dsg.design_display_name,rec_normal.qty AS qty_rec,rec_extra.qty AS qty_rec_extra,IFNULL(rec_over.qty,0) AS qty_rec_over
+,inv.qty_inv,inv.qty_inv_extra,inv.qty_inv_over
+FROM tb_prod_order po
+LEFT JOIN
+(
+	SELECT rec.`id_prod_order`,IF(SUM(recd.`prod_order_rec_det_qty`)>po.qty,po.qty,SUM(recd.`prod_order_rec_det_qty`)) AS qty 
+	FROM tb_prod_order_rec_det recd
+	INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
+	INNER JOIN 
+	(
+		SELECT pod.`id_prod_order`,SUM(pod.`prod_order_qty`) AS qty FROM tb_prod_order_det pod 
+		WHERE pod.`id_prod_order`='" & id_po & "'
+	)po ON po.id_prod_order=rec.`id_prod_order`
+	WHERE rec.`id_prod_order`='" & id_po & "' AND is_over_tol='2'
+)rec_normal ON rec_normal.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+	SELECT rec.`id_prod_order`,IF(SUM(recd.`prod_order_rec_det_qty`)>po.qty,SUM(recd.`prod_order_rec_det_qty`)-po.qty,0) AS qty 
+	FROM tb_prod_order_rec_det recd
+	INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
+	INNER JOIN 
+	(
+		SELECT pod.`id_prod_order`,SUM(pod.`prod_order_qty`) AS qty FROM tb_prod_order_det pod 
+		WHERE pod.`id_prod_order`='" & id_po & "'
+	)po ON po.id_prod_order=rec.`id_prod_order`
+	WHERE rec.`id_prod_order`='" & id_po & "' AND is_over_tol='2'
+)rec_extra ON rec_extra.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+	SELECT rec.`id_prod_order`,SUM(recd.`prod_order_rec_det_qty`) AS qty 
+	FROM tb_prod_order_rec_det recd
+	INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
+	INNER JOIN 
+	(
+		SELECT pod.`id_prod_order`,SUM(pod.`prod_order_qty`) AS qty FROM tb_prod_order_det pod 
+		WHERE pod.`id_prod_order`='" & id_po & "'
+	)po ON po.id_prod_order=rec.`id_prod_order`
+	WHERE rec.`id_prod_order`='" & id_po & "' AND is_over_tol='1'
+)rec_over ON rec_over.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+	SELECT rec.`id_prod_order`,SUM(IF(pn.`type`=2,pnd.`qty`,0)) AS qty_inv,SUM(IF(pn.`type`=3,pnd.`qty`,0)) AS qty_inv_extra,SUM(IF(pn.`type`=3,pnd.`qty`,0)) AS qty_inv_over
+	FROM tb_pn_fgpo_det pnd
+	INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo` AND pnd.`report_mark_type`='28' AND pn.`id_report_status`!=5
+	INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=pnd.`id_report`
+	WHERE rec.`id_prod_order`='" & id_po & "'
+)inv ON inv.id_prod_order=po.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+WHERE po.id_prod_order='" & id_po & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRec.DataSource = data
+        GVRec.BestFitColumns()
+    End Sub
 End Class
