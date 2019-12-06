@@ -42,6 +42,8 @@
         data.Columns.Add("name", GetType(String))
         data.Columns.Add("prod_fc_number", GetType(String))
         data.Columns.Add("pl_category", GetType(String))
+        data.Columns.Add("pl_category_sub", GetType(String))
+        data.Columns.Add("prod_fc_det_qty", GetType(Decimal))
         data.Columns.Add("qty_po", GetType(Decimal))
         data.Columns.Add("qty_rec", GetType(Decimal))
         data.Columns.Add("prod_fc_date", GetType(String))
@@ -80,10 +82,11 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
+            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category AS pl_category_sub, qty.prod_fc_det_qty, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
             FROM tb_prod_fc_sum_det AS fc_sum_det
             LEFT JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
             LEFT JOIN tb_lookup_pl_category AS cat ON fc.id_pl_category = cat.id_pl_category
+            LEFT JOIN tb_lookup_pl_category AS cat_sub ON fc.id_pl_category_sub = cat_sub.id_pl_category
             LEFT JOIN tb_prod_order AS po ON fc.id_prod_order = po.id_prod_order
             LEFT JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
             LEFT JOIN tb_m_design d ON d.id_design = pdd.id_design
@@ -91,6 +94,11 @@
             LEFT JOIN tb_m_ovh_price AS ovh ON ovh.id_ovh_price = wo.id_ovh_price
             LEFT JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = ovh.id_comp_contact 
             LEFT JOIN tb_m_comp AS comp ON comp.id_comp = cc.id_comp
+            LEFT JOIN (
+                SELECT id_prod_fc, SUM(prod_fc_det_qty) AS prod_fc_det_qty
+                FROM tb_prod_fc_det
+                GROUP BY id_prod_fc
+            ) AS qty ON fc.id_prod_fc = qty.id_prod_fc
             WHERE fc_sum_det.id_prod_fc_sum = " + id_prod_fc_sum + "
         "
 
