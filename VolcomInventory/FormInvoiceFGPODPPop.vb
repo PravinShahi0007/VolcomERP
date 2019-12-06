@@ -17,7 +17,7 @@
                     If is_already = False Then
                         Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
                         newRow("id_prod_order") = id_po
-                        newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo_det").ToString
+                        newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo").ToString
                         newRow("report_mark_type") = "199"
                         newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString
                         newRow("info_design") = GVList.GetRowCellValue(i, "design_display_name").ToString
@@ -71,7 +71,7 @@ LEFT JOIN
 (
     SELECT id_report FROM `tb_pn_fgpo_det` pnd
     INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-    WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5
+    WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5 AND pnd.id_prod_order='" & id_po & "'
 )used ON used.id_report=pnd.id_pn_fgpo
 INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
