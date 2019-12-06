@@ -59,7 +59,7 @@ INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
 LEFT JOIN 
 (
-    SELECT c.`comp_name`,c.id_comp
+    SELECT c.`comp_name`,c.id_comp,wo.id_prod_order
     FROM tb_prod_order_wo wo
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
     INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovhp.id_comp_contact
