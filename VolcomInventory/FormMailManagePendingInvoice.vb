@@ -46,7 +46,7 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         LEFT JOIN tb_m_comp hc ON hc.id_comp = cg.id_comp
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
-        WHERE sp.`id_report_status`='6' AND sp.is_pending_mail=1
+        WHERE sp.`id_report_status`='6' AND sp.is_pending_mail=1 AND sp.sales_pos_total>0
         GROUP BY cg.id_comp_group 
         ORDER BY id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -75,7 +75,7 @@
            WHERE py.`id_report_status`=6
            GROUP BY pyd.id_report, pyd.report_mark_type
         ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
-        WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2
+        WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
         " + cond_par + "
         GROUP BY c.id_comp_group "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

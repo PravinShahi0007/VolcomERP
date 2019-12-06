@@ -564,6 +564,9 @@
         ElseIf report_mark_type = "223" Then
             'bpjs kesehatan
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = '{0}'", id_report)
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_fc_sum WHERE id_prod_fc_sum = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5655,7 +5658,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','7','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 increase_inc_acc("1")
 
@@ -5721,8 +5724,18 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
                 'main journal
+                Dim id_bill_type As String = execute_query("SELECT IFNULL((SELECT id_bill_type FROM tb_cash_advance_report_det WHERE id_cash_advance = " + id_report + "), 7) AS id_bill_type", 0, True, "", "", "", "")
+
+                If id_bill_type = "22" Then
+                    id_bill_type = "7"
+                End If
+
+                If id_bill_type = "21" Then
+                    id_bill_type = "8"
+                End If
+
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','" + id_bill_type + "','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 increase_inc_acc("1")
 
@@ -6700,6 +6713,15 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
 
             'update
             query = String.Format("UPDATE tb_pay_bpjs_kesehatan SET id_report_status='{0}' WHERE id_pay_bpjs_kesehatan ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_prod_fc_sum SET id_report_status='{0}' WHERE id_prod_fc_sum ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

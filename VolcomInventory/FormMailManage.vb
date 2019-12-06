@@ -41,7 +41,7 @@
         GridColumnmail_numberinv.Visible = False
         GridColumnmail_dateinv.Visible = False
         GridColumnmail_statusinv.Visible = False
-        loadInvoice("AND sp.is_pending_mail=1 ", "1")
+        loadInvoice("AND sp.sales_pos_total>0 AND sp.is_pending_mail=1 ", "1")
         BCreatePO.Visible = True
     End Sub
 
@@ -165,7 +165,7 @@
         GridColumnmail_numberinv.VisibleIndex = "1"
         GridColumnmail_dateinv.VisibleIndex = "2"
         GridColumnmail_statusinv.VisibleIndex = "3"
-        loadInvoice("AND sp.is_pending_mail=2 ", "2")
+        loadInvoice("AND sp.sales_pos_total>0 AND sp.is_pending_mail=2 ", "2")
         BCreatePO.Visible = False
     End Sub
 
@@ -364,7 +364,7 @@
     Sub unpaidOverdue()
         invisibleAllButtonUnpaid()
         rmt_unpaid = "227"
-        loadUnpaidInvoice("AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>0) ")
+        loadUnpaidInvoice("AND sp.sales_pos_total>0 AND (DATEDIFF(NOW(),sp.`sales_pos_due_date`)>0) ")
         If GVUnpaid.RowCount > 0 Then
             BtnProceedEmailWarning.Visible = True
         End If
