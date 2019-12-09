@@ -182,7 +182,47 @@
         resetNew()
     End Sub
 
-    Private Sub PanelControl2_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl2.Paint
+    Private Sub BSearchSC_Click(sender As Object, e As EventArgs) Handles BSearchSC.Click
+        view_stock_card()
+    End Sub
 
+    Sub view_stock_card()
+        Dim po_number As String = TxtProductSC.EditValue.ToString
+
+        If Not po_number = "" Then
+            Dim query As String = ""
+
+            'detail
+            query = "
+                SELECT comp.comp_name AS vendor, d.design_code, d.design_display_name
+                FROM tb_prod_order AS po
+                LEFT JOIN tb_prod_demand_design AS pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                LEFT JOIN tb_m_design AS d ON d.id_design = pdd.id_design
+                LEFT JOIN tb_prod_order_wo AS wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor = 1
+                LEFT JOIN tb_m_ovh_price AS ovh ON ovh.id_ovh_price = wo.id_ovh_price
+                LEFT JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = ovh.id_comp_contact 
+                LEFT JOIN tb_m_comp AS comp ON comp.id_comp = cc.id_comp
+                WHERE po.prod_order_number = '" + po_number + "'
+            "
+
+            Dim data_detail As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            TxtVendor.EditValue = data_detail.Rows(0)("vendor")
+            TxtCode.EditValue = data_detail.Rows(0)("design_code")
+            TxtDescription.EditValue = data_detail.Rows(0)("design_display_name")
+
+            'list
+            query = "CALL view_stock_card_qc('" + po_number + "')"
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            GCSC.DataSource = data
+
+            GVSC.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub BtnBrowsePOSC_Click(sender As Object, e As EventArgs) Handles BtnBrowsePOSC.Click
+        FormStockQCBrowsePO.ShowDialog()
     End Sub
 End Class
