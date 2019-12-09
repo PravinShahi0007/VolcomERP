@@ -548,8 +548,6 @@ VALUES('" & report_mark_type & "','" & SLEPayFrom.EditValue.ToString & "','" & S
         End If
     End Sub
 
-
-
     Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()

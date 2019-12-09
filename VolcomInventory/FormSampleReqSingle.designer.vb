@@ -735,7 +735,7 @@ Partial Class FormSampleReqSingle
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(102, 5)
+        Me.LEReportStatus.Location = New System.Drawing.Point(59, 4)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -748,7 +748,7 @@ Partial Class FormSampleReqSingle
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(60, 9)
+        Me.LabelControl21.Location = New System.Drawing.Point(17, 8)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -849,7 +849,6 @@ Partial Class FormSampleReqSingle
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleReqSingle"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Borrow Requisition"

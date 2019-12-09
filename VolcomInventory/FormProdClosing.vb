@@ -379,4 +379,11 @@ WHERE cl.`is_active`='1'"
             infoCustom("No closing proposed")
         End If
     End Sub
+
+    Private Sub BFilter_Click(sender As Object, e As EventArgs) Handles BFilter.Click
+        Cursor = Cursors.WaitCursor
+        GVProd.ActiveFilterString = ""
+        GVProd.ActiveFilterString = "[qty_rec]>0 AND [qc_outstanding] <= 0"
+        Cursor = Cursors.Default
+    End Sub
 End Class

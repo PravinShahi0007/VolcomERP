@@ -120,6 +120,7 @@ Partial Class FormProdClosing
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BFilter = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,6 +154,7 @@ Partial Class FormProdClosing
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BFilter)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.SLEVendor)
         Me.PanelControl1.Controls.Add(Me.SLESeason)
@@ -179,13 +181,13 @@ Partial Class FormProdClosing
         '
         'SLEVendor
         '
-        Me.SLEVendor.Location = New System.Drawing.Point(501, 9)
+        Me.SLEVendor.Location = New System.Drawing.Point(429, 9)
         Me.SLEVendor.Name = "SLEVendor"
         Me.SLEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEVendor.Properties.Appearance.Options.UseFont = True
         Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVendor.Properties.View = Me.GridView14
-        Me.SLEVendor.Size = New System.Drawing.Size(197, 20)
+        Me.SLEVendor.Size = New System.Drawing.Size(146, 20)
         Me.SLEVendor.TabIndex = 8912
         '
         'GridView14
@@ -222,13 +224,13 @@ Partial Class FormProdClosing
         '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(292, 9)
+        Me.SLESeason.Location = New System.Drawing.Point(261, 9)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(163, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(122, 20)
         Me.SLESeason.TabIndex = 8911
         '
         'SearchLookUpEdit1View
@@ -255,7 +257,7 @@ Partial Class FormProdClosing
         '
         'BSearch
         '
-        Me.BSearch.Location = New System.Drawing.Point(704, 7)
+        Me.BSearch.Location = New System.Drawing.Point(581, 7)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(59, 23)
         Me.BSearch.TabIndex = 8910
@@ -264,7 +266,7 @@ Partial Class FormProdClosing
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(461, 12)
+        Me.LabelControl3.Location = New System.Drawing.Point(389, 12)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl3.TabIndex = 8909
@@ -273,7 +275,7 @@ Partial Class FormProdClosing
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(251, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(220, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl1.TabIndex = 8908
@@ -285,7 +287,7 @@ Partial Class FormProdClosing
         Me.SLEDesignStockStore.Name = "SLEDesignStockStore"
         Me.SLEDesignStockStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDesignStockStore.Properties.View = Me.GVSLEDesgSearch
-        Me.SLEDesignStockStore.Size = New System.Drawing.Size(195, 20)
+        Me.SLEDesignStockStore.Size = New System.Drawing.Size(164, 20)
         Me.SLEDesignStockStore.TabIndex = 8907
         '
         'GVSLEDesgSearch
@@ -1130,6 +1132,15 @@ Partial Class FormProdClosing
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
+        'BFilter
+        '
+        Me.BFilter.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BFilter.Location = New System.Drawing.Point(678, 2)
+        Me.BFilter.Name = "BFilter"
+        Me.BFilter.Size = New System.Drawing.Size(119, 33)
+        Me.BFilter.TabIndex = 8914
+        Me.BFilter.Text = "Filter Ready to Close"
+        '
         'FormProdClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1276,4 +1287,5 @@ Partial Class FormProdClosing
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BFilter As DevExpress.XtraEditors.SimpleButton
 End Class
