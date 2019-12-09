@@ -2557,7 +2557,29 @@ Public Class FormImportExcel
             connection.Close()
             connection.Dispose()
 
+            'pemenuhan stok
+            makeSafeGV(GVData)
+            For d As Integer = 0 To data_prod.Rows.Count - 1
+                Dim qty As Decimal = data_prod.Rows(d)("available_qty")
+                Dim qty_fulfil As Decimal = 0
+                For r As Integer = 0 To GVData.RowCount - 1
+                    If GVData.GetRowCellValue(r, "stock_availability").ToString = "NO STOCK" And GVData.GetRowCellValue(r, "id_product").ToString = data_prod.Rows(d)("id_product").ToString Then
+                        GVData.SetRowCellValue(r, "stock_availability", "OK")
+                        qty_fulfil += 1
+                    End If
+                    If qty_fulfil = qty Then
+                        Exit For
+                    End If
+                Next
+            Next
 
+            'column position
+            GVData.Columns("Status").Caption = "Format Import"
+            GVData.Columns("Status").VisibleIndex = 0
+            GVData.Columns("Status").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GVData.Columns("stock_availability").Caption = "Stock Status"
+            GVData.Columns("stock_availability").VisibleIndex = 2
+            GVData.Columns("stock_availability").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
             'option
             GVData.OptionsView.ShowFooter = True
@@ -2962,7 +2984,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Or id_pop_up = "42" Or id_pop_up = "43" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -2981,6 +3003,20 @@ Public Class FormImportExcel
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.Salmon
+            End If
+        ElseIf id_pop_up = "41" Then
+            If e.Column.FieldName.ToString = "Status" Then
+                Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
+                If stt <> "OK" Then
+                    e.Appearance.BackColor = Color.Salmon
+                    e.Appearance.BackColor2 = Color.Salmon
+                End If
+            ElseIf e.Column.FieldName.ToString = "stock_availability" Then
+                Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("stock_availability")).ToString
+                If stt <> "OK" Then
+                    e.Appearance.BackColor = Color.Yellow
+                    e.Appearance.BackColor2 = Color.Yellow
+                End If
             End If
         End If
     End Sub
