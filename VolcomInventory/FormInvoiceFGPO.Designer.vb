@@ -218,6 +218,7 @@ Partial Class FormInvoiceFGPO
         'GridColumn6
         '
         Me.GridColumn6.Caption = "ID"
+        Me.GridColumn6.FieldName = "id_pn_fgpo"
         Me.GridColumn6.Name = "GridColumn6"
         '
         'GridColumn7
@@ -557,6 +558,7 @@ Partial Class FormInvoiceFGPO
         'GridColumn14
         '
         Me.GridColumn14.Caption = "ID"
+        Me.GridColumn14.FieldName = "id_pn_fgpo"
         Me.GridColumn14.Name = "GridColumn14"
         '
         'GridColumn15
@@ -566,7 +568,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 2
-        Me.GridColumn15.Width = 99
+        Me.GridColumn15.Width = 87
         '
         'GridColumn16
         '
@@ -577,7 +579,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 3
-        Me.GridColumn16.Width = 106
+        Me.GridColumn16.Width = 94
         '
         'GridColumn17
         '
@@ -586,7 +588,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 4
-        Me.GridColumn17.Width = 183
+        Me.GridColumn17.Width = 162
         '
         'GridColumn33
         '
@@ -595,7 +597,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 8
-        Me.GridColumn33.Width = 235
+        Me.GridColumn33.Width = 165
         '
         'GridColumn34
         '
@@ -610,7 +612,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 5
-        Me.GridColumn34.Width = 230
+        Me.GridColumn34.Width = 204
         '
         'GridColumn35
         '
@@ -625,6 +627,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 6
+        Me.GridColumn35.Width = 66
         '
         'GridColumn36
         '
@@ -639,6 +642,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn36.Name = "GridColumn36"
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 7
+        Me.GridColumn36.Width = 114
         '
         'GridColumn37
         '
@@ -647,7 +651,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 0
-        Me.GridColumn37.Width = 107
+        Me.GridColumn37.Width = 94
         '
         'GridColumn38
         '
@@ -656,7 +660,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 1
-        Me.GridColumn38.Width = 171
+        Me.GridColumn38.Width = 151
         '
         'BCreatePayment
         '
