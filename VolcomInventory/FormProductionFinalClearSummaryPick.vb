@@ -44,10 +44,10 @@
         Next
 
         Dim query As String = "
-            SELECT 'no' AS is_select, fc.id_prod_fc, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category AS pl_category_sub, qty.prod_fc_det_qty, qty_po.qty_po, qty_rec.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
+            SELECT 'no' AS is_select, fc.id_prod_fc, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, qty_po.qty_po, qty_rec.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
             FROM tb_prod_fc AS fc
             LEFT JOIN tb_lookup_pl_category AS cat ON fc.id_pl_category = cat.id_pl_category
-            LEFT JOIN tb_lookup_pl_category AS cat_sub ON fc.id_pl_category_sub = cat_sub.id_pl_category
+            LEFT JOIN tb_lookup_pl_category_sub AS cat_sub ON fc.id_pl_category_sub = cat_sub.id_pl_category_sub
             LEFT JOIN tb_prod_order AS po ON fc.id_prod_order = po.id_prod_order
             LEFT JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
             LEFT JOIN tb_m_design d ON d.id_design = pdd.id_design

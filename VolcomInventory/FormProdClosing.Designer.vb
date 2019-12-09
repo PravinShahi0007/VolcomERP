@@ -21,6 +21,7 @@ Partial Class FormProdClosing
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BFilter = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -120,7 +121,7 @@ Partial Class FormProdClosing
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BFilter = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,6 +169,15 @@ Partial Class FormProdClosing
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(897, 37)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BFilter
+        '
+        Me.BFilter.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BFilter.Location = New System.Drawing.Point(678, 2)
+        Me.BFilter.Name = "BFilter"
+        Me.BFilter.Size = New System.Drawing.Size(119, 33)
+        Me.BFilter.TabIndex = 8914
+        Me.BFilter.Text = "Filter Ready to Close"
         '
         'SimpleButton1
         '
@@ -1069,6 +1079,7 @@ Partial Class FormProdClosing
         'XTPPropose
         '
         Me.XTPPropose.Controls.Add(Me.GCClosing)
+        Me.XTPPropose.Controls.Add(Me.BRefresh)
         Me.XTPPropose.Name = "XTPPropose"
         Me.XTPPropose.Size = New System.Drawing.Size(897, 460)
         Me.XTPPropose.Text = "Propose Closing"
@@ -1079,7 +1090,7 @@ Partial Class FormProdClosing
         Me.GCClosing.Location = New System.Drawing.Point(0, 0)
         Me.GCClosing.MainView = Me.GVClosing
         Me.GCClosing.Name = "GCClosing"
-        Me.GCClosing.Size = New System.Drawing.Size(897, 460)
+        Me.GCClosing.Size = New System.Drawing.Size(897, 427)
         Me.GCClosing.TabIndex = 0
         Me.GCClosing.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVClosing})
         '
@@ -1132,14 +1143,14 @@ Partial Class FormProdClosing
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
-        'BFilter
+        'BRefresh
         '
-        Me.BFilter.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BFilter.Location = New System.Drawing.Point(678, 2)
-        Me.BFilter.Name = "BFilter"
-        Me.BFilter.Size = New System.Drawing.Size(119, 33)
-        Me.BFilter.TabIndex = 8914
-        Me.BFilter.Text = "Filter Ready to Close"
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRefresh.Location = New System.Drawing.Point(0, 427)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(897, 33)
+        Me.BRefresh.TabIndex = 1
+        Me.BRefresh.Text = "Refresh"
         '
         'FormProdClosing
         '
@@ -1288,4 +1299,5 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BFilter As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
 End Class
