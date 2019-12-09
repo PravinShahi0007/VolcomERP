@@ -30,7 +30,8 @@
 FROM tb_prod_order_close poc
 INNER JOIN tb_m_user usr ON usr.`id_user`=poc.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`"
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`
+ORDER BY poc.id_prod_order_close DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClosing.DataSource = data
         GVClosing.BestFitColumns()
@@ -390,5 +391,9 @@ WHERE cl.`is_active`='1'"
         GVProd.ActiveFilterString = ""
         GVProd.ActiveFilterString = "[qty_rec]>0 AND [qc_outstanding] <= 0"
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        view_close()
     End Sub
 End Class
