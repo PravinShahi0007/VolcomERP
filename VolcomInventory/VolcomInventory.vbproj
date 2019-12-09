@@ -778,6 +778,12 @@
     <Compile Include="FormCompanyEmailMappingDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCustomDialog.Designer.vb">
+      <DependentUpon>FormCustomDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCustomDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDataReff.Designer.vb">
       <DependentUpon>FormDataReff.vb</DependentUpon>
     </Compile>
@@ -7773,6 +7779,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCompanyEmailMappingDet.resx">
       <DependentUpon>FormCompanyEmailMappingDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCustomDialog.resx">
+      <DependentUpon>FormCustomDialog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
