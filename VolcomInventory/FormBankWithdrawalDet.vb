@@ -46,7 +46,6 @@
                         newRow("dc_code") = "D"
                         newRow("id_comp") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_comp_default").ToString
                         newRow("comp_number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "comp_number_default").ToString
-                        newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
                         newRow("number") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "purc_order_number").ToString
                         newRow("total_pay") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_dp")
                         newRow("value") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "total_due")
@@ -109,13 +108,21 @@
                     'id_report, number, total, balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_pn_fgpo").ToString
-                    newRow("id_acc") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "id_acc").ToString
-                    newRow("acc_name") = FormBankWithdrawal.GVPOList.GetRowCellValue(i, "acc_name").ToString
+                    newRow("report_mark_type") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_comp_default").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "comp_number_default").ToString
                     newRow("number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_paid")
                     newRow("value") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
+                    newRow("value_view") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
-                    newRow("note") = ""
+                    newRow("note") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_name").ToString
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
