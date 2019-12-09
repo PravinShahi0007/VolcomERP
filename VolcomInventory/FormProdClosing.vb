@@ -30,7 +30,8 @@
 FROM tb_prod_order_close poc
 INNER JOIN tb_m_user usr ON usr.`id_user`=poc.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`"
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=poc.`id_report_status`
+ORDER BY poc.id_prod_order_close DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClosing.DataSource = data
         GVClosing.BestFitColumns()
@@ -190,7 +191,12 @@ WHERE cl.`is_active`='1'"
                             WHERE rec.id_report_status='6'
                             GROUP BY rec.id_prod_order
                         ) rec_date ON rec_date.id_prod_order=a.id_prod_order 
-                        WHERE a.is_closing_rec='2' " & query_where & "
+                        LEFT JOIN
+                        (
+                            SELECT poc.id_prod_order_close,id_prod_order FROM tb_prod_order_close_det pocd
+                            INNER JOIN tb_prod_order_close poc ON poc.id_report_status!=5 AND poc.id_prod_order_close=pocd.id_prod_order_close
+                        ) poc ON poc.id_prod_order=a.id_prod_order
+                        WHERE a.is_closing_rec='2' AND ISNULL(poc.id_prod_order_close) " & query_where & "
                         GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -378,5 +384,16 @@ WHERE cl.`is_active`='1'"
         Else
             infoCustom("No closing proposed")
         End If
+    End Sub
+
+    Private Sub BFilter_Click(sender As Object, e As EventArgs) Handles BFilter.Click
+        Cursor = Cursors.WaitCursor
+        GVProd.ActiveFilterString = ""
+        GVProd.ActiveFilterString = "[qty_rec]>0 AND [qc_outstanding] <= 0"
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        view_close()
     End Sub
 End Class

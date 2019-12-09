@@ -17,6 +17,11 @@
             so.report_mark_type = rmt
             so.id_report = id_report
             so.show()
+        ElseIf rmt = "48" Or rmt = "54" Or rmt = "117" Or rmt = "183" Then
+            Dim inv As New ClassShowPopUp()
+            inv.report_mark_type = rmt
+            inv.id_report = id_report
+            inv.show()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -26,5 +31,12 @@
             My.Computer.Audio.Play(Application.StartupPath + "\error.wav")
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BtnDiscard_Click(sender As Object, e As EventArgs) Handles BtnDiscard.Click
+        If rmt = "48" Or rmt = "54" Or rmt = "117" Or rmt = "183" Then
+            FormSalesPOSDet.discard_transaction = True
+        End If
+        Close()
     End Sub
 End Class

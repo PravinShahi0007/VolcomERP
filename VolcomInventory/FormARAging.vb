@@ -150,7 +150,7 @@
 	        SELECT pyd.id_report, pyd.report_mark_type, py.date_created, py.`number`, SUM(pyd.`value`) AS `value`,
 	        COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_on_process`
 	        FROM tb_rec_payment_det pyd
-	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`!=5
+	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`=6
 	        GROUP BY pyd.id_report, pyd.report_mark_type
         ) pyd ON pyd.`id_report`=p.`id_sales_pos` AND pyd.`report_mark_type`=p.`report_mark_type`
         WHERE 1=1 " + cond + "

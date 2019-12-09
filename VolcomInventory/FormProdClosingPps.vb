@@ -256,7 +256,7 @@ LEFT JOIN
 	INNER JOIN tb_m_claim_reject_det crd ON crd.`id_claim_reject`=pocd.`id_claim_reject` AND crd.`id_pl_category_sub`=fc.`id_pl_category_sub`
 	WHERE pocd.id_prod_order_close = '" & id_pps & "'
 	GROUP BY pocd.`id_prod_order`
-) claim_reject ON claim_reject.id_prod_order=po.`id_prod_order` AND claim_late.claim_qty > 0
+) claim_reject ON claim_reject.id_prod_order=po.`id_prod_order` AND claim_reject.claim_qty > 0
 WHERE pocd.`id_prod_order_close`='" & id_pps & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
