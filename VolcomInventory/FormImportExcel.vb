@@ -2518,7 +2518,7 @@ Public Class FormImportExcel
                 End If
                 qry_det += "SELECT '" + data_temp.Rows(d)("Order Number").ToString + "' AS `order_number`,'" + data_temp.Rows(d)("Order Item Id").ToString + "' AS `item_id`,  '" + data_temp.Rows(d)("Zalora Id").ToString + "' AS `ol_store_id`, LEFT('" + data_temp.Rows(d)("Seller SKU").ToString + "',9) AS `design_code`, IF(" + size_check + "<'10',LPAD('" + data_temp.Rows(d)("Variation").ToString + "',2,'0'),IF('" + data_temp.Rows(d)("Variation").ToString + "'='One Size', 'ALL', REPLACE('" + data_temp.Rows(d)("Variation").ToString + "',' in',''))) AS `size`,
                 '" + DateTime.Parse(data_temp.Rows(d)("Created at").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "' AS `created_date_ol_store`, '" + addSlashes(data_temp.Rows(d)("Customer Name").ToString) + "' AS `customer_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Name").ToString) + "' AS `shipping_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Address").ToString) + "' AS `shipping_address`,
-                '" + addSlashes(data_temp.Rows(d)("Shipping Phone Number").ToString) + "' AS `shipping_phone`, '" + addSlashes(data_temp.Rows(d)("Shipping City").ToString) + "' AS `shipping_city`, '" + data_temp.Rows(d)("Shipping Postcode").ToString + "' AS `shipping_post_code`, '" + addSlashes(data_temp.Rows(d)("Shipping Region").ToString) + "' AS `shipping_region`,  '" + addSlashes(data_temp.Rows(d)("Payment Method").ToString) + "' AS `payment_method`,  '" + data_temp.Rows(d)("Tracking Code").ToString + "' AS `tracking_code`, '" + id_user + "' AS `id_user` "
+                '" + addSlashes(data_temp.Rows(d)("Shipping Phone Number").ToString) + "' AS `shipping_phone`, '" + addSlashes(data_temp.Rows(d)("Shipping City").ToString) + "' AS `shipping_city`, '" + data_temp.Rows(d)("Shipping Postcode").ToString + "' AS `shipping_post_code`, '" + addSlashes(data_temp.Rows(d)("Shipping Region").ToString) + "' AS `shipping_region`,  '" + addSlashes(data_temp.Rows(d)("Payment Method").ToString) + "' AS `payment_method`,  '" + data_temp.Rows(d)("Tracking Code").ToString + "' AS `tracking_code`,'" + data_temp.Rows(d)("Zalora SKU").ToString + "' AS `ol_store_sku`, '" + id_user + "' AS `id_user` "
             Next
             qry += qry_det + ") a ); ALTER TABLE tb_so_ol_store CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
             command.CommandText = qry
@@ -4746,6 +4746,7 @@ Public Class FormImportExcel
                             newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
                             newRow("design_price") = GVData.GetRowCellValue(i, "design_price")
                             newRow("design_cop") = GVData.GetRowCellValue(i, "design_cop")
+                            newRow("ol_store_sku") = GVData.GetRowCellValue(i, "ol_store_sku").ToString
                             newRow("customer_name") = GVData.GetRowCellValue(i, "customer_name").ToString
                             newRow("shipping_name") = GVData.GetRowCellValue(i, "shipping_name").ToString
                             newRow("shipping_address") = GVData.GetRowCellValue(i, "shipping_address").ToString
