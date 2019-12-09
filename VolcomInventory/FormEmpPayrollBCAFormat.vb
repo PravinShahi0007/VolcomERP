@@ -156,8 +156,13 @@ Public Class FormEmpPayrollBCAFormat
         Cursor = Cursors.Default
         If fdlg.ShowDialog() = DialogResult.OK Then
             Dim type As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "DW ", "")
+            Dim is_thr As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString
 
             TBFileAddress.Text = fdlg.SelectedPath & "\Salary " + type + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".csv"
+
+            If is_thr = "1" Then
+                TBFileAddress.Text = fdlg.SelectedPath & "\" + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy") + ".csv"
+            End If
         End If
         fdlg.Dispose()
     End Sub
