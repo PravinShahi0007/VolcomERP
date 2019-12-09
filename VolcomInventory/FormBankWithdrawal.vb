@@ -452,18 +452,23 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         GVFGPO.ActiveFilterString = ""
         GVFGPO.ActiveFilterString = "[is_check]='yes'"
 
-        Dim is_pending As Boolean = False
-        'check
-        For i As Integer = 0 To GVFGPO.RowCount - 1
-            If GVFGPO.GetRowCellValue(i, "total_pending") > 0 Then
-                is_pending = True
+        If GVFGPO.RowCount > 0 Then
+            Dim is_pending As Boolean = False
+            'check
+            For i As Integer = 0 To GVFGPO.RowCount - 1
+                If GVFGPO.GetRowCellValue(i, "total_pending") > 0 Then
+                    is_pending = True
+                End If
+            Next
+
+            If is_pending = True Then
+                warningCustom("Please process all pending payment for selected purchase")
+            Else
+                FormBankWithdrawalDet.report_mark_type = "189"
+                FormBankWithdrawalDet.ShowDialog()
             End If
-        Next
-        If is_pending = True Then
-            warningCustom("Please process all pending payment for selected purchase")
         Else
-            FormBankWithdrawalDet.report_mark_type = "189"
-            FormBankWithdrawalDet.ShowDialog()
+            warningCustom("Please select item first.")
         End If
 
         GVFGPO.ActiveFilterString = ""

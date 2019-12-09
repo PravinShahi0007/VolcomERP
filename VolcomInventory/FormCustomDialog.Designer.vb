@@ -25,6 +25,7 @@ Partial Class FormCustomDialog
         Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
         Me.PictureEditIcon = New DevExpress.XtraEditors.PictureEdit()
         Me.LabelContent = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -33,6 +34,7 @@ Partial Class FormCustomDialog
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnAction)
+        Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnOK)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 171)
@@ -43,7 +45,7 @@ Partial Class FormCustomDialog
         'BtnAction
         '
         Me.BtnAction.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAction.Location = New System.Drawing.Point(251, 2)
+        Me.BtnAction.Location = New System.Drawing.Point(176, 2)
         Me.BtnAction.Name = "BtnAction"
         Me.BtnAction.Size = New System.Drawing.Size(134, 36)
         Me.BtnAction.TabIndex = 1
@@ -86,6 +88,15 @@ Partial Class FormCustomDialog
         Me.LabelContent.TabIndex = 20
         Me.LabelContent.Text = "ERROR STRING"
         '
+        'BtnDiscard
+        '
+        Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDiscard.Location = New System.Drawing.Point(310, 2)
+        Me.BtnDiscard.Name = "BtnDiscard"
+        Me.BtnDiscard.Size = New System.Drawing.Size(75, 36)
+        Me.BtnDiscard.TabIndex = 2
+        Me.BtnDiscard.Text = "Discard"
+        '
         'FormCustomDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -113,4 +124,5 @@ Partial Class FormCustomDialog
     Friend WithEvents BtnOK As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PictureEditIcon As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents LabelContent As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnDiscard As DevExpress.XtraEditors.SimpleButton
 End Class
