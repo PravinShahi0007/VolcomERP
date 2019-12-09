@@ -778,6 +778,12 @@
     <Compile Include="FormCompanyEmailMappingDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCustomDialog.Designer.vb">
+      <DependentUpon>FormCustomDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCustomDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDataReff.Designer.vb">
       <DependentUpon>FormDataReff.vb</DependentUpon>
     </Compile>
@@ -1886,6 +1892,12 @@
       <DependentUpon>FormFingerPrint.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFingerPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFollowUpAR.Designer.vb">
+      <DependentUpon>FormFollowUpAR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFollowUpAR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormGuide.Designer.vb">
@@ -5488,6 +5500,12 @@
     <Compile Include="FormStockQC.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockQCBrowsePO.Designer.vb">
+      <DependentUpon>FormStockQCBrowsePO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockQCBrowsePO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockUniS78New.Designer.vb">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </Compile>
@@ -7762,6 +7780,9 @@
     <EmbeddedResource Include="FormCompanyEmailMappingDet.resx">
       <DependentUpon>FormCompanyEmailMappingDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCustomDialog.resx">
+      <DependentUpon>FormCustomDialog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -8334,6 +8355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFingerPrint.resx">
       <DependentUpon>FormFingerPrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFollowUpAR.resx">
+      <DependentUpon>FormFollowUpAR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
@@ -10480,6 +10504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockQC.resx">
       <DependentUpon>FormStockQC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockQCBrowsePO.resx">
+      <DependentUpon>FormStockQCBrowsePO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockUniS78New.resx">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>

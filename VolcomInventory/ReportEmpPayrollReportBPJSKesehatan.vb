@@ -61,9 +61,12 @@
             total_contribution.BackColor = Color.Transparent
 
             'calculate total
+            '*uncomment if, if total all sogo include
+            'If data.Rows(i)("is_sub") = 0 Then
             total_company += data.Rows(i)("company_contribution")
             total_employee += data.Rows(i)("employee_contribution")
             total += data.Rows(i)("total_contribution")
+            'End If
         Next
 
         XTRowTotal.HeightF = 16

@@ -21,6 +21,7 @@ Partial Class FormEmpBPJSKesehatanDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpBPJSKesehatanDet))
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
@@ -31,6 +32,7 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.GCIdDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdDepartementSub = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDepartementSub = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -71,6 +73,7 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAllDepartements = New DevExpress.XtraGrid.GridControl()
         Me.GVAllDepartements = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCIsSub = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCANo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCADepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAConpanyContribution = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -79,7 +82,9 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCEmployeeBpjs = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -120,6 +125,7 @@ Partial Class FormEmpBPJSKesehatanDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBAttachment)
         Me.PanelControl3.Controls.Add(Me.SBSave)
         Me.PanelControl3.Controls.Add(Me.SBPrint)
         Me.PanelControl3.Controls.Add(Me.SBClose)
@@ -130,6 +136,16 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1008, 52)
         Me.PanelControl3.TabIndex = 10
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.Location = New System.Drawing.Point(604, 6)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(113, 40)
+        Me.SBAttachment.TabIndex = 5
+        Me.SBAttachment.Text = "Attachment"
         '
         'SBSave
         '
@@ -155,7 +171,7 @@ Partial Class FormEmpBPJSKesehatanDet
         '
         Me.SBClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(628, 6)
+        Me.SBClose.Location = New System.Drawing.Point(509, 6)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(89, 40)
         Me.SBClose.TabIndex = 2
@@ -193,14 +209,15 @@ Partial Class FormEmpBPJSKesehatanDet
         '
         'GVInput
         '
-        Me.GVInput.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCIdEmployee, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCEmployeeBPJSKesehatan, Me.GCDOB, Me.GCIdEmployeeSalary, Me.GCFixedSalary, Me.GCBPJSKesehatanContribution})
+        Me.GVInput.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIdDepartement, Me.GCIdDepartementSub, Me.GCDepartement, Me.GCDepartementSub, Me.GCIdEmployee, Me.GCEmployeeCode, Me.GCEmployeeName, Me.GCEmployeePosition, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCEmployeeBPJSKesehatan, Me.GCDOB, Me.GCIdEmployeeSalary, Me.GCFixedSalary, Me.GCBPJSKesehatanContribution})
         Me.GVInput.GridControl = Me.GCInput
-        Me.GVInput.GroupCount = 1
+        Me.GVInput.GroupCount = 2
         Me.GVInput.Name = "GVInput"
         Me.GVInput.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVInput.OptionsView.ColumnAutoWidth = False
+        Me.GVInput.OptionsView.ShowGroupExpandCollapseButtons = False
         Me.GVInput.OptionsView.ShowGroupPanel = False
-        Me.GVInput.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVInput.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartementSub, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GCIdDepartement
         '
@@ -223,6 +240,15 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.GCDepartement.Visible = True
         Me.GCDepartement.VisibleIndex = 0
         Me.GCDepartement.Width = 86
+        '
+        'GCDepartementSub
+        '
+        Me.GCDepartementSub.Caption = "Departement Sub"
+        Me.GCDepartementSub.FieldName = "departement_sub"
+        Me.GCDepartementSub.Name = "GCDepartementSub"
+        Me.GCDepartementSub.OptionsColumn.AllowEdit = False
+        Me.GCDepartementSub.Visible = True
+        Me.GCDepartementSub.VisibleIndex = 3
         '
         'GCIdEmployee
         '
@@ -565,7 +591,7 @@ Partial Class FormEmpBPJSKesehatanDet
         '
         'GVAllDepartements
         '
-        Me.GVAllDepartements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCANo, Me.GCADepartement, Me.GCAConpanyContribution, Me.GCAEmployeeContribution, Me.GCATotalContribution})
+        Me.GVAllDepartements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCIsSub, Me.GCANo, Me.GCADepartement, Me.GCAConpanyContribution, Me.GCAEmployeeContribution, Me.GCATotalContribution})
         Me.GVAllDepartements.GridControl = Me.GCAllDepartements
         Me.GVAllDepartements.Name = "GVAllDepartements"
         Me.GVAllDepartements.OptionsBehavior.AutoExpandAllGroups = True
@@ -573,6 +599,11 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.GVAllDepartements.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVAllDepartements.OptionsView.ShowFooter = True
         Me.GVAllDepartements.OptionsView.ShowGroupPanel = False
+        '
+        'GCIsSub
+        '
+        Me.GCIsSub.FieldName = "is_sub"
+        Me.GCIsSub.Name = "GCIsSub"
         '
         'GCANo
         '
@@ -598,7 +629,7 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.GCAConpanyContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCAConpanyContribution.FieldName = "company_contribution"
         Me.GCAConpanyContribution.Name = "GCAConpanyContribution"
-        Me.GCAConpanyContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution", "{0:N0}")})
+        Me.GCAConpanyContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "company_contribution", "{0:N0}")})
         Me.GCAConpanyContribution.Visible = True
         Me.GCAConpanyContribution.VisibleIndex = 2
         '
@@ -609,7 +640,7 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.GCAEmployeeContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCAEmployeeContribution.FieldName = "employee_contribution"
         Me.GCAEmployeeContribution.Name = "GCAEmployeeContribution"
-        Me.GCAEmployeeContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution", "{0:N0}")})
+        Me.GCAEmployeeContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_contribution", "{0:N0}")})
         Me.GCAEmployeeContribution.Visible = True
         Me.GCAEmployeeContribution.VisibleIndex = 3
         '
@@ -620,7 +651,7 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.GCATotalContribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCATotalContribution.FieldName = "total_contribution"
         Me.GCATotalContribution.Name = "GCATotalContribution"
-        Me.GCATotalContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", "{0:N0}")})
+        Me.GCATotalContribution.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_contribution", "{0:N0}")})
         Me.GCATotalContribution.Visible = True
         Me.GCATotalContribution.VisibleIndex = 4
         '
@@ -643,17 +674,23 @@ Partial Class FormEmpBPJSKesehatanDet
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GCNo, Me.GridColumn2, Me.GCEmployeeBpjs, Me.GCEmployeeDOB, Me.GCEmployeeSalary, Me.GCCompanyContribution, Me.GCEmployeeContribution, Me.GCTotalContribution, Me.GCClass})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn1, Me.GridColumn8, Me.GCNo, Me.GridColumn2, Me.GCEmployeeBpjs, Me.GCEmployeeDOB, Me.GCEmployeeSalary, Me.GCCompanyContribution, Me.GCEmployeeContribution, Me.GCTotalContribution, Me.GCClass})
         Me.GVEmployee.GridControl = Me.GCEmployee
-        Me.GVEmployee.GroupCount = 1
+        Me.GVEmployee.GroupCount = 2
         Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "employee_name", Me.GridColumn2, "{0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "company_contribution", Me.GCCompanyContribution, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "employee_contribution", Me.GCEmployeeContribution, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_contribution", Me.GCTotalContribution, "{0:N0}")})
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsBehavior.Editable = False
         Me.GVEmployee.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVEmployee.OptionsView.ShowFooter = True
+        Me.GVEmployee.OptionsView.ShowGroupExpandCollapseButtons = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
-        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn8, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.FieldName = "id_departement"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'GridColumn1
         '
@@ -663,6 +700,14 @@ Partial Class FormEmpBPJSKesehatanDet
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 86
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Departement Sub"
+        Me.GridColumn8.FieldName = "departement_sub"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
         '
         'GCNo
         '
@@ -867,4 +912,9 @@ Partial Class FormEmpBPJSKesehatanDet
     Friend WithEvents GCEmployeeContribution As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCTotalContribution As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCClass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDepartementSub As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIsSub As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
