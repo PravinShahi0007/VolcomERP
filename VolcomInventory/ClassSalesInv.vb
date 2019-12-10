@@ -65,7 +65,11 @@
         execute_non_query(query, True, "", "", "", "")
 
         'posting journal
-        postingJournal(id_report_param, report_mark_type_param)
+        Dim query_cek As String = "SELECT * FROM tb_a_acc_trans_draft d WHERE d.report_mark_type=" + report_mark_type_param + " AND d.id_report=" + id_report_param + " "
+        Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+        If data_cek.Rows.Count > 0 Then
+            postingJournal(id_report_param, report_mark_type_param)
+        End If
     End Sub
 
     Public Sub postingJournal(ByVal id_report_param As String, ByVal report_mark_type_param As String)
@@ -76,6 +80,8 @@
             id_bill_type = "13"
         ElseIf report_mark_type_param = "132" Then
             id_bill_type = "27"
+        ElseIf report_mark_type_param = "116" Then
+            id_bill_type = "5"
         End If
 
         'select user prepared 
@@ -84,9 +90,12 @@
         Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
         Dim report_number As String = du.Rows(0)("report_number").ToString
 
+        'select created date
+        Dim trans_date As String = execute_query("SELECT DATE_FORMAT(p.sales_pos_date,'%Y-%m-%d') AS `trans_date` FROM tb_sales_pos p WHERE p.id_sales_pos='" + id_report_param + "' AND p.report_mark_type='" + report_mark_type_param + "' ", 0, True, "", "", "", "")
+
         'main journal
-        Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
-        VALUES ('" + header_number_acc("1") + "','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+        Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) 
+        VALUES ('" + header_number_acc("1") + "','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', '" + trans_date + "','" + trans_date + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
         Dim id As String = execute_query(query, 0, True, "", "", "", "")
         increase_inc_acc("1")
 

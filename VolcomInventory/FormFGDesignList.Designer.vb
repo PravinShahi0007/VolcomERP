@@ -109,6 +109,10 @@ Partial Class FormFGDesignList
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpd_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_receive_qc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -513,9 +517,9 @@ Partial Class FormFGDesignList
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
         Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc})
         Me.GVDesign.GridControl = Me.GCDesign
-        Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}")})
+        Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", Me.GridColumntotal_receive_qc, "{0:N0}")})
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDesign.OptionsCustomization.AllowRowSizing = True
@@ -720,7 +724,7 @@ Partial Class FormFGDesignList
         Me.GridColumnApp.Name = "GridColumnApp"
         Me.GridColumnApp.OptionsColumn.AllowEdit = False
         Me.GridColumnApp.Visible = True
-        Me.GridColumnApp.VisibleIndex = 17
+        Me.GridColumnApp.VisibleIndex = 21
         Me.GridColumnApp.Width = 84
         '
         'GridColumnAppDate
@@ -733,7 +737,7 @@ Partial Class FormFGDesignList
         Me.GridColumnAppDate.Name = "GridColumnAppDate"
         Me.GridColumnAppDate.OptionsColumn.AllowEdit = False
         Me.GridColumnAppDate.Visible = True
-        Me.GridColumnAppDate.VisibleIndex = 16
+        Me.GridColumnAppDate.VisibleIndex = 20
         '
         'GridColumnUpdBy
         '
@@ -742,7 +746,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 21
+        Me.GridColumnUpdBy.VisibleIndex = 25
         Me.GridColumnUpdBy.Width = 60
         '
         'GridColumnLastUpdated
@@ -755,7 +759,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
         Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
-        Me.GridColumnLastUpdated.VisibleIndex = 20
+        Me.GridColumnLastUpdated.VisibleIndex = 24
         Me.GridColumnLastUpdated.Width = 54
         '
         'GridColumnSelect
@@ -840,7 +844,7 @@ Partial Class FormFGDesignList
         Me.GridColumnTotalOrder.Name = "GridColumnTotalOrder"
         Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", "{0:n0}")})
         Me.GridColumnTotalOrder.Visible = True
-        Me.GridColumnTotalOrder.VisibleIndex = 15
+        Me.GridColumnTotalOrder.VisibleIndex = 18
         Me.GridColumnTotalOrder.Width = 58
         '
         'GridColumnStatusOrder
@@ -869,7 +873,7 @@ Partial Class FormFGDesignList
         Me.GridColumn6.UnboundExpression = "Iif([is_design_app_us] = '1', 'Yes', 'No')"
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 18
+        Me.GridColumn6.VisibleIndex = 22
         '
         'GridColumn8
         '
@@ -881,7 +885,7 @@ Partial Class FormFGDesignList
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 19
+        Me.GridColumn8.VisibleIndex = 23
         '
         'GCRequestChangesBy
         '
@@ -983,6 +987,44 @@ Partial Class FormFGDesignList
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 3
+        '
+        'GridColumnpd_number
+        '
+        Me.GridColumnpd_number.Caption = "PD"
+        Me.GridColumnpd_number.FieldName = "pd_number"
+        Me.GridColumnpd_number.Name = "GridColumnpd_number"
+        Me.GridColumnpd_number.Visible = True
+        Me.GridColumnpd_number.VisibleIndex = 15
+        '
+        'GridColumnpd_created_date
+        '
+        Me.GridColumnpd_created_date.Caption = "PD Created Date"
+        Me.GridColumnpd_created_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnpd_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnpd_created_date.FieldName = "pd_created_date"
+        Me.GridColumnpd_created_date.Name = "GridColumnpd_created_date"
+        Me.GridColumnpd_created_date.Visible = True
+        Me.GridColumnpd_created_date.VisibleIndex = 16
+        '
+        'GridColumnpd_status
+        '
+        Me.GridColumnpd_status.Caption = "PD Status"
+        Me.GridColumnpd_status.FieldName = "pd_status"
+        Me.GridColumnpd_status.Name = "GridColumnpd_status"
+        Me.GridColumnpd_status.Visible = True
+        Me.GridColumnpd_status.VisibleIndex = 17
+        '
+        'GridColumntotal_receive_qc
+        '
+        Me.GridColumntotal_receive_qc.Caption = "Total Received in QC"
+        Me.GridColumntotal_receive_qc.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_receive_qc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_receive_qc.FieldName = "total_receive_qc"
+        Me.GridColumntotal_receive_qc.Name = "GridColumntotal_receive_qc"
+        Me.GridColumntotal_receive_qc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", "{0:N0}")})
+        Me.GridColumntotal_receive_qc.Visible = True
+        Me.GridColumntotal_receive_qc.VisibleIndex = 19
+        Me.GridColumntotal_receive_qc.Width = 71
         '
         'FormFGDesignList
         '
@@ -1128,4 +1170,8 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpd_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpd_created_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpd_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_receive_qc As DevExpress.XtraGrid.Columns.GridColumn
 End Class

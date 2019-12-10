@@ -156,8 +156,13 @@ Public Class FormEmpPayrollBCAFormat
         Cursor = Cursors.Default
         If fdlg.ShowDialog() = DialogResult.OK Then
             Dim type As String = If(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4", "DW ", "")
+            Dim is_thr As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString
 
             TBFileAddress.Text = fdlg.SelectedPath & "\Salary " + type + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy") + ".csv"
+
+            If is_thr = "1" Then
+                TBFileAddress.Text = fdlg.SelectedPath & "\" + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy") + ".csv"
+            End If
         End If
         fdlg.Dispose()
     End Sub
@@ -166,7 +171,20 @@ Public Class FormEmpPayrollBCAFormat
         GCBCAFormat.DataSource = execute_query("CALL view_payroll_bca_format('" & id_payroll & "')", -1, True, "", "", "", "")
 
         If CESamePeriod.EditValue Then
-            Dim id_payroll_before As String = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE periode_start = (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND id_payroll_type = 4), 0) AS id_payroll", 0, True, "", "", "", "")
+            Dim query As String = "SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE periode_start = (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND id_payroll_type = 4), 0) AS id_payroll"
+
+            Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
+            If is_thr = "1" Then
+                query = "
+                    SELECT py.id_payroll 
+                    FROM tb_emp_payroll AS py 
+                    LEFT JOIN tb_emp_payroll_type AS pytype ON py.id_payroll_type = pytype.id_payroll_type 
+                    WHERE py.periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND pytype.is_thr = 1 AND pytype.is_dw = 1 AND pytype.id_religion = (SELECT id_religion FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "))
+                "
+            End If
+
+            Dim id_payroll_before As String = execute_query(query, 0, True, "", "", "", "")
 
             If Not id_payroll_before = "0" Then
                 Dim query_before As String = "CALL view_payroll_bca_format('" & id_payroll_before & "')"

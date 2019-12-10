@@ -575,6 +575,22 @@ Module Common
         End If
     End Sub
 
+    '=>=========== opt code header purchasing =====================
+    Function get_opt_purchasing_field(ByVal field As String)
+        'opt as var choose field
+        Dim ret_var, query As String
+        ret_var = ""
+
+        Try
+            query = "SELECT " & field & " FROM tb_opt_purchasing LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        Catch ex As Exception
+            ret_var = ""
+        End Try
+
+        Return ret_var
+    End Function
+
     '=>=========== opt code header sales =====================
     Function get_opt_sales_field(ByVal field As String)
         'opt as var choose field
@@ -2264,7 +2280,8 @@ Module Common
 
         words.Append(".")
         words.Replace(words(0), Char.ToUpper(words(0)), 0, 1)
-        Return words.ToString()
+
+        Return words.ToString.First().ToString().ToUpper() + words.ToString.Substring(1)
     End Function
 
     Private Sub AddWords(ByVal number As Short, ByVal suffix As String)
@@ -2818,13 +2835,18 @@ Module Common
                 If data.Rows(i)("id_report_status").ToString() = data.Rows(0)("id_report_status").ToString() Then
                     'set lead time
                     If data.Rows(i)("level").ToString() = "1" Then
-                        'yang bos paling atas kasi dulu
                         query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "','" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
                     Else
-                        'baru selanjutnya
-                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
-                        query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
+                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','2',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "','" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
                     End If
+                    'If data.Rows(i)("level").ToString() = "1" Then
+                    '    'yang bos paling atas kasi dulu
+                    '    query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "','" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
+                    'Else
+                    '    'baru selanjutnya
+                    '    query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
+                    '    query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
+                    'End If
                 Else
                     If data.Rows(i)("level").ToString() = "1" Then
                         query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
@@ -2836,6 +2858,7 @@ Module Common
             End If
         Next
     End Sub
+
     Sub submit_who_prepared(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_userx As String)
         'report mark type = tb_lookup_report_mark_type ->
         Dim report_detail As ClassShowPopUp = New ClassShowPopUp()
@@ -2896,13 +2919,18 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
                 If data.Rows(i)("id_report_status").ToString() = data.Rows(0)("id_report_status").ToString() Then
                     'set lead time
                     If data.Rows(i)("level").ToString() = "1" Then
-                        'yang bos paling atas kasi dulu
                         query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "','" & data.Rows(i)("is_need_upload").ToString & "')"
                     Else
-                        'baru selanjutnya
-                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
-                        query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "','" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
+                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','2',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "','" & data.Rows(i)("is_need_upload").ToString & "')"
                     End If
+                    'If data.Rows(i)("level").ToString() = "1" Then
+                    '    'yang bos paling atas kasi dulu
+                    '    query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "','" & data.Rows(i)("is_need_upload").ToString & "')"
+                    'Else
+                    '    'baru selanjutnya
+                    '    query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
+                    '    query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "','" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
+                    'End If
                 Else
                     If data.Rows(i)("level").ToString() = "1" Then
                         query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
@@ -2978,13 +3006,17 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 If data.Rows(i)("id_report_status").ToString() = data.Rows(0)("id_report_status").ToString() Then
                     'set lead time
                     If data.Rows(i)("level").ToString() = "1" Then
-                        'yang bos paling atas kasi dulu
                         query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
                     Else
-                        'baru selanjutnya
-                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
-                        query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
+                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','2',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
                     End If
+                    'If data.Rows(i)("level").ToString() = "1" Then
+                    '    'yang bos paling atas kasi dulu
+                    'Else
+                    '    'baru selanjutnya
+                    '    query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
+                    '    query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
+                    'End If
                 Else
                     If data.Rows(i)("level").ToString() = "1" Then
                         query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
@@ -3416,6 +3448,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Dim cellsInRow As Integer = data.Rows.Count
         Dim rowHeight As Single = 25.0F
 
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
+        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
+        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
+        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
+
         'header
         Dim row_head As New XRTableRow()
         row_head.HeightF = rowHeight
@@ -3440,33 +3480,29 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 If data.Rows(j)("report_status").ToString = data.Rows(j - 1)("report_status").ToString Then
                     cell.Text = ""
                 Else
-                    cell.Text = data.Rows(j)("report_status_display").ToString
+                    If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1") Then
+                        cell.Text = ""
+                    Else
+                        cell.Text = data.Rows(j)("report_status_display").ToString
+                    End If
                 End If
             Else
-                cell.Text = data.Rows(j)("report_status_display").ToString
+                If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1") Then
+                    cell.Text = ""
+                Else
+                    cell.Text = data.Rows(j)("report_status_display").ToString
+                End If
             End If
 
             row_head.Cells.Add(cell)
         Next j
 
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
-        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
-        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
-        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
-        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
-
-        'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        'Approved by CEO & CFO
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            Dim q_cek As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' AND id_report_status='3'"
-            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
-            If dt_cek.Rows.Count > 0 Then
-                cell.Text = ""
-            Else
-                cell.Text = get_report_mark_status("3", "1")
-            End If
+            cell.Text = get_report_mark_status("3", "1")
             row_head.Cells.Add(cell)
         End If
 
@@ -3512,10 +3548,18 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Next j
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
-            cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
+            ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            Else
+                cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            End If
             row_name.Cells.Add(cell)
         End If
 
@@ -3541,19 +3585,22 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
             row_role.Cells.Add(cell)
         Next j
+
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
 
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
             row_role.Cells.Add(cell)
         End If
+
         xrtable.Rows.Add(row_role)
 
         If include_time = "1" Then 'time included
@@ -3569,7 +3616,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 row_time.Cells.Add(cell)
             Next j
             'Approved by CEO
-            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
@@ -3747,6 +3794,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             cell.Text = ""
             row_role.Cells.Add(cell)
         End If
+
         'ack by 
         If "1" = "1" Then 'need approve
             Dim cell As New XRTableCell()
@@ -3864,14 +3912,16 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             row_head.Cells.Add(cell)
         Next j
 
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
         query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
         query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
         query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
         Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
@@ -3921,10 +3971,18 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Next j
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
-            cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
+            ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            Else
+                cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            End If
             row_name.Cells.Add(cell)
         End If
 
@@ -3951,12 +4009,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             row_role.Cells.Add(cell)
         Next j
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
@@ -3977,7 +4036,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 row_time.Cells.Add(cell)
             Next j
             'Approved by CEO
-            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
@@ -4303,7 +4362,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         '2 = false
 
         xrtable.Borders = DevExpress.XtraPrinting.BorderSide.None
-        xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         'XrTableCell1.Visible = False
 
         Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,d.employee_position AS role "
@@ -4320,6 +4379,14 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Dim cellsInRow As Integer = data.Rows.Count
         Dim rowHeight As Single = 25.0F
 
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
+        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
+        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
+        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
+
         'header
         Dim row_head As New XRTableRow()
         row_head.HeightF = rowHeight
@@ -4333,10 +4400,10 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 If data.Rows(j)("report_status").ToString = data.Rows(j + 1)("report_status").ToString Then
                     cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
                 Else
-                    cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+                    cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
                 End If
             Else
-                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             End If
 
             'merge or not
@@ -4344,39 +4411,37 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 If data.Rows(j)("report_status").ToString = data.Rows(j - 1)("report_status").ToString Then
                     cell.Text = ""
                 Else
-                    cell.Text = data.Rows(j)("report_status_display").ToString
+                    If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1") Then
+                        cell.Text = ""
+                    Else
+                        cell.Text = data.Rows(j)("report_status_display").ToString
+                    End If
                 End If
             Else
-                cell.Text = data.Rows(j)("report_status_display").ToString
+                If data.Rows(j)("id_report_status").ToString = "3" And (data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1") Then
+                    cell.Text = ""
+                Else
+                    cell.Text = data.Rows(j)("report_status_display").ToString
+                End If
             End If
 
             row_head.Cells.Add(cell)
         Next j
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
-        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
-        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
-        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
-        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
-            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            Dim q_cek As String = "SELECT * FROM tb_mark_asg WHERE report_mark_type='" & report_mark_type & "' AND id_report_status='3'"
-            Dim dt_cek As DataTable = execute_query(q_cek, -1, True, "", "", "", "")
-            If dt_cek.Rows.Count > 0 Then
-                cell.Text = ""
-            Else
-                cell.Text = get_report_mark_status("3", "1")
-            End If
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
 
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            cell.Text = get_report_mark_status("3", "1")
             row_head.Cells.Add(cell)
         End If
+
         'opt
         If Not opt = "2" Then
             Dim cell As New XRTableCell()
-            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
             cell.Text = get_report_mark_status("7", "1")
             row_head.Cells.Add(cell)
@@ -4415,10 +4480,18 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Next j
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
-            cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
+            ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            Else
+                cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            End If
             row_name.Cells.Add(cell)
         End If
 
@@ -4445,12 +4518,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Next j
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
@@ -4472,7 +4546,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 row_time.Cells.Add(cell)
             Next j
             'Approved by CEO
-            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
@@ -4486,6 +4560,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             xrtable.Rows.Add(row_time)
         End If
     End Sub
+
     'for list
     Sub pre_load_list_horz(ByVal report_mark_type As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
         'opt
@@ -4506,11 +4581,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                                 INNER JOIN tb_m_role role ON role.id_role=c.id_role 
                                 WHERE c.id_user='" & id_user & "'        
                                 UNION
-                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,d.employee_name,d.employee_position AS role
+                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,CONCAT(d.employee_name,IF(ISNULL(d_extra.employee_name),'',CONCAT(' / ','\r\n',d_extra.employee_name))),d.employee_position AS role
                                 FROM tb_print_list_emp a 
                                 INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
                                 LEFT JOIN tb_m_user c ON a.id_user=c.id_user 
                                 LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee 
+                                LEFT JOIN tb_m_user c_extra ON a.id_user_extra=c_extra.id_user 
+                                LEFT JOIN tb_m_employee d_extra ON d_extra.id_employee=c_extra.id_employee 
                                 INNER JOIN tb_m_role role ON role.id_role=c.id_role 
                                 WHERE a.report_mark_type='" & report_mark_type & "' 
                                 ORDER BY a.id_print_list_emp)"
@@ -4578,7 +4655,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         For j As Integer = 0 To cellsInRow - 1
             Dim cell As New XRTableCell()
-
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = data.Rows(j)("employee_name").ToString
 
@@ -4661,20 +4739,24 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
             row_head.Cells.Add(cell)
         Next j
-        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.is_need_cfo_appr,rmt.id_user_ceo,rmt.id_user_cfo,emp_cfo.employee_name AS cfo_name,emp.employee_name FROM tb_lookup_report_mark_type rmt"
         query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
         query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " Left JOIN tb_m_user us_cfo ON us_cfo.id_user=rmt.id_user_cfo"
+        query_ceo += " LEFT JOIN tb_m_employee emp_cfo On emp_cfo.id_employee=us_cfo.id_employee"
         query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
         Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
             cell.Text = "Approved By,"
             row_head.Cells.Add(cell)
         End If
+
         'opt
         If Not opt = "2" Then
             Dim cell As New XRTableCell()
@@ -4719,8 +4801,16 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.CanGrow = True
+            cell.Multiline = True
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
-            cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            If data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" And data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString & " / " & vbNewLine & data_ceo.Rows(0)("cfo_name").ToString
+            ElseIf data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then
+                cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            Else
+                cell.Text = data_ceo.Rows(0)("cfo_name").ToString
+            End If
             row_name.Cells.Add(cell)
         End If
 
@@ -4747,12 +4837,13 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Next j
 
         'Approved by CEO
-        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = ""
             row_role.Cells.Add(cell)
         End If
+
         If Not opt = "2" Then 'opt
             Dim cell As New XRTableCell()
             cell.Text = ""
@@ -4774,7 +4865,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                 row_time.Cells.Add(cell)
             Next j
             'Approved by CEO
-            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Or data_ceo.Rows(0)("is_need_cfo_appr").ToString = "1" Then 'need approve
                 Dim cell As New XRTableCell()
                 cell.Text = ""
                 row_time.Cells.Add(cell)
@@ -4852,10 +4943,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         cell_fc_name.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
         cell_fc_name.Text = get_emp(get_setup_field("id_user_cancel_management"), "3")
         row_name.Cells.Add(cell_fc_name)
+
         'ceo
         Dim cell_ceo_name As New XRTableCell()
         cell_ceo_name.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
-        cell_ceo_name.Text = get_emp(get_setup_field("id_emp_director"), "2")
+        cell_ceo_name.Text = get_emp(get_setup_field("id_emp_director"), "2") & " / " & vbNewLine & get_emp(get_setup_field("id_emp_vice_director"), "2")
+        cell_ceo_name.Multiline = True
         row_name.Cells.Add(cell_ceo_name)
 
         xrtable.Rows.Add(row_name)
@@ -4875,7 +4968,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         Dim cell_fc_role As New XRTableCell()
         cell_fc_role.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
-        cell_fc_role.Text = "Financial Control"
+        cell_fc_role.Text = get_emp(get_setup_field("id_user_cancel_management"), "6")
         row_role.Cells.Add(cell_fc_role)
         '
         Dim cell_ceo_role As New XRTableCell()
@@ -4920,15 +5013,30 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Dim dir As String = ""
         If opt = "1" Then
             dir = get_setup_field("pic_path_sample") & "\"
+            viewImages(PE, dir, id_goods, is_open)
         ElseIf opt = "2" Then
             dir = get_setup_field("pic_path_design") & "\"
+            viewImages(PE, dir, id_goods, is_open)
         ElseIf opt = "3" Then
             dir = get_setup_field("pic_path_mat") & "\"
+            viewImages(PE, dir, id_goods, is_open)
         ElseIf opt = "4" Then
             dir = get_setup_field("pic_path_emp") & "\"
+            viewImages_empty(PE, dir, id_goods, is_open)
         End If
-        viewImages(PE, dir, id_goods, is_open)
     End Sub
+
+    Sub viewImages_empty(ByVal PE As DevExpress.XtraEditors.PictureEdit, ByVal dir As String, ByVal id_goods As String, ByVal is_open As Boolean)
+        If System.IO.File.Exists(dir & id_goods & ".jpg") Then
+            If Not is_open Then
+                PE.LoadAsync(dir & id_goods & ".jpg")
+            Else
+                My.Computer.Network.DownloadFile(dir & id_goods & ".jpg", Application.StartupPath & "\imagestemp\" & id_goods & ".jpg", "", "", True, 100, True)
+                Process.Start(Application.StartupPath & "\imagestemp\" & id_goods & ".jpg")
+            End If
+        End If
+    End Sub
+
     Sub viewImages(ByVal PE As DevExpress.XtraEditors.PictureEdit, ByVal dir As String, ByVal id_goods As String, ByVal is_open As Boolean)
         If System.IO.File.Exists(dir & id_goods & ".jpg") Then
             If Not is_open Then
@@ -5124,6 +5232,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
     Sub ReportStyleGridview(ByVal BandedGridView1 As DevExpress.XtraGrid.Views.Grid.GridView)
         BandedGridView1.OptionsPrint.UsePrintStyles = True
 
+        BandedGridView1.AppearancePrint.Lines.BackColor = Color.Black
+
         BandedGridView1.AppearancePrint.FilterPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.FilterPanel.ForeColor = Color.Black
         BandedGridView1.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 7, FontStyle.Regular)
@@ -5139,10 +5249,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         BandedGridView1.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        BandedGridView1.AppearancePrint.HeaderPanel.BorderColor = Color.Black
         BandedGridView1.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.FooterPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        BandedGridView1.AppearancePrint.FooterPanel.BorderColor = Color.Black
         BandedGridView1.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
@@ -5246,13 +5358,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
     Sub load_billing_type(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
-        lookup.Properties.DataSource = data
-
-        lookup.Properties.DisplayMember = "bill_type"
-        lookup.Properties.ValueMember = "id_bill_type"
-        lookup.ItemIndex = 0
+        viewLookupQuery(lookup, query, 0, "bill_type", "id_bill_type")
     End Sub
     Sub load_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
@@ -6656,6 +6762,9 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         ElseIf opt = "5" Then 'get employee departement from id_user
             Dim query As String = "SELECT dep.departement FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE usr.id_user='" + param + "' LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "6" Then 'get employee position
+            Dim query As String = "SELECT employee_position FROM tb_m_employee WHERE id_employee='" + param + "' LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
         End If
         Return ret_var
     End Function
@@ -6675,6 +6784,16 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         WHERE p.id_design=" + id_design_par + " AND p.id_design_price_type=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
+    End Function
+
+    Public Function trimSpace(ByVal txt As String)
+        Dim out As String = txt
+
+        out = out.Trim()
+
+        out = RegularExpressions.Regex.Replace(out, " {2,}", " ")
+
+        Return out
     End Function
 
 End Module

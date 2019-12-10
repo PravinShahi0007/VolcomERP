@@ -75,13 +75,13 @@ Partial Class FormPurcAsset
         Me.BtnApply = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumnDepDetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnDetail = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumnIsValueAdded = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnassetType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumniDAsset = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnApplyAll = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelNavDep = New DevExpress.XtraEditors.PanelControl()
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnIsValueAdded = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnassetType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumniDAsset = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -220,18 +220,18 @@ Partial Class FormPurcAsset
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem, Me.ValueaddedAssetToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 48)
         '
         'RecordToolStripMenuItem
         '
         Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
-        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.RecordToolStripMenuItem.Text = "Record"
         '
         'ValueaddedAssetToolStripMenuItem
         '
         Me.ValueaddedAssetToolStripMenuItem.Name = "ValueaddedAssetToolStripMenuItem"
-        Me.ValueaddedAssetToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.ValueaddedAssetToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ValueaddedAssetToolStripMenuItem.Text = "Value-added asset"
         '
         'GVActive
@@ -614,6 +614,29 @@ Partial Class FormPurcAsset
         Me.BtnDetail.Name = "BtnDetail"
         Me.BtnDetail.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
+        'GridColumnIsValueAdded
+        '
+        Me.GridColumnIsValueAdded.Caption = "Is Value Added"
+        Me.GridColumnIsValueAdded.FieldName = "is_value_added"
+        Me.GridColumnIsValueAdded.Name = "GridColumnIsValueAdded"
+        '
+        'GridColumnassetType
+        '
+        Me.GridColumnassetType.Caption = "Type"
+        Me.GridColumnassetType.FieldName = "asset_type"
+        Me.GridColumnassetType.Name = "GridColumnassetType"
+        Me.GridColumnassetType.UnboundExpression = "Iif([is_value_added] = 1, 'Value-Added', 'Parent')"
+        Me.GridColumnassetType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnassetType.Visible = True
+        Me.GridColumnassetType.VisibleIndex = 2
+        Me.GridColumnassetType.Width = 116
+        '
+        'GridColumniDAsset
+        '
+        Me.GridColumniDAsset.Caption = "Id"
+        Me.GridColumniDAsset.FieldName = "id_purc_rec_asset"
+        Me.GridColumniDAsset.Name = "GridColumniDAsset"
+        '
         'BtnApplyAll
         '
         Me.BtnApplyAll.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
@@ -668,29 +691,6 @@ Partial Class FormPurcAsset
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Depreciation Schedule"
         '
-        'GridColumnIsValueAdded
-        '
-        Me.GridColumnIsValueAdded.Caption = "Is Value Added"
-        Me.GridColumnIsValueAdded.FieldName = "is_value_added"
-        Me.GridColumnIsValueAdded.Name = "GridColumnIsValueAdded"
-        '
-        'GridColumnassetType
-        '
-        Me.GridColumnassetType.Caption = "Type"
-        Me.GridColumnassetType.FieldName = "asset_type"
-        Me.GridColumnassetType.Name = "GridColumnassetType"
-        Me.GridColumnassetType.UnboundExpression = "Iif([is_value_added] = 1, 'Value-Added', 'Parent')"
-        Me.GridColumnassetType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumnassetType.Visible = True
-        Me.GridColumnassetType.VisibleIndex = 2
-        Me.GridColumnassetType.Width = 116
-        '
-        'GridColumniDAsset
-        '
-        Me.GridColumniDAsset.Caption = "Id"
-        Me.GridColumniDAsset.FieldName = "id_purc_rec_asset"
-        Me.GridColumniDAsset.Name = "GridColumniDAsset"
-        '
         'FormPurcAsset
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -700,7 +700,7 @@ Partial Class FormPurcAsset
         Me.MinimizeBox = False
         Me.Name = "FormPurcAsset"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Asset Management"
+        Me.Text = "Fixed Asset Management"
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCAsset.ResumeLayout(False)
         Me.XTPPending.ResumeLayout(False)

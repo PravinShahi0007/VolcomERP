@@ -62,14 +62,22 @@ Partial Class FormAccounting
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSalesAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSalesReturnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_commission = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnarea = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnGroup = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEOtherDiscount = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnViewCompany = New DevExpress.XtraEditors.SimpleButton()
         Me.LECompanyCategory = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCGeneralSetup = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPurchasing = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnBrowseClaim = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEClaimDesc = New DevExpress.XtraEditors.TextEdit()
+        Me.TEClaimAccount = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnBrowseVAT = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseRec = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
@@ -99,11 +107,14 @@ Partial Class FormAccounting
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CEOtherDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECompanyCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPGeneral.SuspendLayout()
         CType(Me.XTCGeneralSetup, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneralSetup.SuspendLayout()
         Me.XTPPurchasing.SuspendLayout()
+        CType(Me.TEClaimDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEClaimAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVATDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVATAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRecDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -368,10 +379,14 @@ Partial Class FormAccounting
         '
         'GVCompany
         '
-        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount})
+        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount, Me.GridColumncomp_commission, Me.GridColumnarea, Me.GridColumnGroup})
         Me.GVCompany.GridControl = Me.GCCompany
         Me.GVCompany.Name = "GVCompany"
+        Me.GVCompany.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVCompany.OptionsBehavior.Editable = False
+        Me.GVCompany.OptionsFind.AlwaysVisible = True
+        Me.GVCompany.OptionsView.ColumnAutoWidth = False
+        Me.GVCompany.OptionsView.ShowGroupedColumns = True
         Me.GVCompany.OptionsView.ShowGroupPanel = False
         '
         'GridColumn4
@@ -384,18 +399,20 @@ Partial Class FormAccounting
         '
         Me.CompanyCode.Caption = "Code"
         Me.CompanyCode.FieldName = "comp_number"
+        Me.CompanyCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.CompanyCode.Name = "CompanyCode"
         Me.CompanyCode.Visible = True
-        Me.CompanyCode.VisibleIndex = 1
+        Me.CompanyCode.VisibleIndex = 0
         Me.CompanyCode.Width = 79
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Company"
         Me.GridColumn5.FieldName = "comp_name"
+        Me.GridColumn5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.VisibleIndex = 1
         Me.GridColumn5.Width = 105
         '
         'GridColumn6
@@ -414,15 +431,15 @@ Partial Class FormAccounting
         Me.GridColumn7.FieldName = "is_active"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.VisibleIndex = 11
         Me.GridColumn7.Width = 52
         '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.ValueChecked = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.RepositoryItemCheckEdit2.ValueUnchecked = New Decimal(New Integer() {2, 0, 0, 0})
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
         '
         'Category
         '
@@ -440,7 +457,7 @@ Partial Class FormAccounting
         Me.GridColumn8.FieldName = "acc_ap"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 9
         '
         'RepositoryItemTextEdit1
         '
@@ -455,7 +472,7 @@ Partial Class FormAccounting
         Me.GridColumn10.FieldName = "acc_dp"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
+        Me.GridColumn10.VisibleIndex = 10
         '
         'GridColumn9
         '
@@ -464,7 +481,7 @@ Partial Class FormAccounting
         Me.GridColumn9.FieldName = "acc_ar"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.VisibleIndex = 6
         '
         'GridColumnSalesAccount
         '
@@ -473,7 +490,7 @@ Partial Class FormAccounting
         Me.GridColumnSalesAccount.FieldName = "acc_sales"
         Me.GridColumnSalesAccount.Name = "GridColumnSalesAccount"
         Me.GridColumnSalesAccount.Visible = True
-        Me.GridColumnSalesAccount.VisibleIndex = 3
+        Me.GridColumnSalesAccount.VisibleIndex = 7
         '
         'GridColumnSalesReturnAccount
         '
@@ -482,7 +499,33 @@ Partial Class FormAccounting
         Me.GridColumnSalesReturnAccount.FieldName = "acc_sales_return"
         Me.GridColumnSalesReturnAccount.Name = "GridColumnSalesReturnAccount"
         Me.GridColumnSalesReturnAccount.Visible = True
-        Me.GridColumnSalesReturnAccount.VisibleIndex = 4
+        Me.GridColumnSalesReturnAccount.VisibleIndex = 8
+        '
+        'GridColumncomp_commission
+        '
+        Me.GridColumncomp_commission.Caption = "Store Discount (%)"
+        Me.GridColumncomp_commission.DisplayFormat.FormatString = "N2"
+        Me.GridColumncomp_commission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncomp_commission.FieldName = "comp_commission"
+        Me.GridColumncomp_commission.Name = "GridColumncomp_commission"
+        Me.GridColumncomp_commission.Visible = True
+        Me.GridColumncomp_commission.VisibleIndex = 5
+        '
+        'GridColumnarea
+        '
+        Me.GridColumnarea.Caption = "Area"
+        Me.GridColumnarea.FieldName = "area"
+        Me.GridColumnarea.Name = "GridColumnarea"
+        Me.GridColumnarea.Visible = True
+        Me.GridColumnarea.VisibleIndex = 3
+        '
+        'GridColumnGroup
+        '
+        Me.GridColumnGroup.Caption = "Group"
+        Me.GridColumnGroup.FieldName = "comp_group"
+        Me.GridColumnGroup.Name = "GridColumnGroup"
+        Me.GridColumnGroup.Visible = True
+        Me.GridColumnGroup.VisibleIndex = 4
         '
         'RepositoryItemCheckEdit3
         '
@@ -493,6 +536,7 @@ Partial Class FormAccounting
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CEOtherDiscount)
         Me.PanelControl1.Controls.Add(Me.BtnViewCompany)
         Me.PanelControl1.Controls.Add(Me.LECompanyCategory)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -502,9 +546,17 @@ Partial Class FormAccounting
         Me.PanelControl1.Size = New System.Drawing.Size(708, 48)
         Me.PanelControl1.TabIndex = 0
         '
+        'CEOtherDiscount
+        '
+        Me.CEOtherDiscount.Location = New System.Drawing.Point(253, 13)
+        Me.CEOtherDiscount.Name = "CEOtherDiscount"
+        Me.CEOtherDiscount.Properties.Caption = "Show Other Discount (Store)"
+        Me.CEOtherDiscount.Size = New System.Drawing.Size(157, 19)
+        Me.CEOtherDiscount.TabIndex = 7
+        '
         'BtnViewCompany
         '
-        Me.BtnViewCompany.Location = New System.Drawing.Point(251, 11)
+        Me.BtnViewCompany.Location = New System.Drawing.Point(415, 11)
         Me.BtnViewCompany.Name = "BtnViewCompany"
         Me.BtnViewCompany.Size = New System.Drawing.Size(75, 23)
         Me.BtnViewCompany.TabIndex = 6
@@ -554,6 +606,10 @@ Partial Class FormAccounting
         '
         'XTPPurchasing
         '
+        Me.XTPPurchasing.Controls.Add(Me.BtnBrowseClaim)
+        Me.XTPPurchasing.Controls.Add(Me.TEClaimDesc)
+        Me.XTPPurchasing.Controls.Add(Me.TEClaimAccount)
+        Me.XTPPurchasing.Controls.Add(Me.LabelControl4)
         Me.XTPPurchasing.Controls.Add(Me.BtnBrowseVAT)
         Me.XTPPurchasing.Controls.Add(Me.BtnBrowseRec)
         Me.XTPPurchasing.Controls.Add(Me.BtnDiscard)
@@ -567,6 +623,41 @@ Partial Class FormAccounting
         Me.XTPPurchasing.Name = "XTPPurchasing"
         Me.XTPPurchasing.Size = New System.Drawing.Size(706, 334)
         Me.XTPPurchasing.Text = "Purchasing"
+        '
+        'BtnBrowseClaim
+        '
+        Me.BtnBrowseClaim.Image = CType(resources.GetObject("BtnBrowseClaim.Image"), System.Drawing.Image)
+        Me.BtnBrowseClaim.Location = New System.Drawing.Point(613, 127)
+        Me.BtnBrowseClaim.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BtnBrowseClaim.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnBrowseClaim.Name = "BtnBrowseClaim"
+        Me.BtnBrowseClaim.Size = New System.Drawing.Size(27, 20)
+        Me.BtnBrowseClaim.TabIndex = 13
+        Me.BtnBrowseClaim.ToolTip = "Browse"
+        '
+        'TEClaimDesc
+        '
+        Me.TEClaimDesc.Enabled = False
+        Me.TEClaimDesc.Location = New System.Drawing.Point(189, 127)
+        Me.TEClaimDesc.Name = "TEClaimDesc"
+        Me.TEClaimDesc.Size = New System.Drawing.Size(420, 20)
+        Me.TEClaimDesc.TabIndex = 12
+        '
+        'TEClaimAccount
+        '
+        Me.TEClaimAccount.Enabled = False
+        Me.TEClaimAccount.Location = New System.Drawing.Point(19, 127)
+        Me.TEClaimAccount.Name = "TEClaimAccount"
+        Me.TEClaimAccount.Size = New System.Drawing.Size(164, 20)
+        Me.TEClaimAccount.TabIndex = 11
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(19, 108)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl4.TabIndex = 10
+        Me.LabelControl4.Text = "HPP Claim"
         '
         'BtnBrowseVAT
         '
@@ -598,7 +689,7 @@ Partial Class FormAccounting
         Me.BtnDiscard.Appearance.Options.UseBackColor = True
         Me.BtnDiscard.Appearance.Options.UseFont = True
         Me.BtnDiscard.Appearance.Options.UseForeColor = True
-        Me.BtnDiscard.Location = New System.Drawing.Point(426, 117)
+        Me.BtnDiscard.Location = New System.Drawing.Point(426, 168)
         Me.BtnDiscard.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnDiscard.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnDiscard.Name = "BtnDiscard"
@@ -614,7 +705,7 @@ Partial Class FormAccounting
         Me.BtnSave.Appearance.Options.UseBackColor = True
         Me.BtnSave.Appearance.Options.UseFont = True
         Me.BtnSave.Appearance.Options.UseForeColor = True
-        Me.BtnSave.Location = New System.Drawing.Point(536, 117)
+        Me.BtnSave.Location = New System.Drawing.Point(536, 168)
         Me.BtnSave.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnSave.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnSave.Name = "BtnSave"
@@ -674,12 +765,12 @@ Partial Class FormAccounting
         '
         Me.BalanceMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewTransaction})
         Me.BalanceMenu.Name = "ContextMenuStripYM"
-        Me.BalanceMenu.Size = New System.Drawing.Size(136, 26)
+        Me.BalanceMenu.Size = New System.Drawing.Size(137, 26)
         '
         'SMViewTransaction
         '
         Me.SMViewTransaction.Name = "SMViewTransaction"
-        Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
+        Me.SMViewTransaction.Size = New System.Drawing.Size(136, 22)
         Me.SMViewTransaction.Text = "Transaction"
         '
         'FormAccounting
@@ -713,12 +804,15 @@ Partial Class FormAccounting
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.CEOtherDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECompanyCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPGeneral.ResumeLayout(False)
         CType(Me.XTCGeneralSetup, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCGeneralSetup.ResumeLayout(False)
         Me.XTPPurchasing.ResumeLayout(False)
         Me.XTPPurchasing.PerformLayout()
+        CType(Me.TEClaimDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEClaimAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVATDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVATAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRecDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -788,4 +882,12 @@ Partial Class FormAccounting
     Friend WithEvents TxtRecDesc As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtRecAccount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumncomp_commission As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEOtherDiscount As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnarea As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnGroup As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnBrowseClaim As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEClaimDesc As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEClaimAccount As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class

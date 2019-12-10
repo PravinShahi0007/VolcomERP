@@ -60,7 +60,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='8'"
+                                WHERE c.id_comp_cat='8' or c.id_comp_cat='1'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
@@ -68,7 +68,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='1' "
+                                WHERE c.id_comp_cat='1' or c.id_comp_cat='1'"
         viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
@@ -103,8 +103,8 @@ SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
             where_string = " AND py.id_pay_type='" & SLEPayTypePayment.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_payment`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
-FROM tb_payment py
+        Dim query As String = "SELECT py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN `tb_lookup_report_mark_type` rm ON rm.`report_mark_type`=py.`report_mark_type`
@@ -112,7 +112,7 @@ INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
 INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
-WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
+WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
@@ -125,29 +125,32 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
             where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS TYPE,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
+        Dim query As String = "SELECT 'no' AS is_check,'189' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS `type`,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
 ,det.amount AS total 
 ,IFNULL(payment.value,0) AS total_paid
 ,IFNULL(payment_pending.jml,0) AS total_pending
 ,(det.amount - IFNULL(payment.value,0)) AS balance
+,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
 FROM tb_pn_fgpo pn
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap
 INNER JOIN (
 	SELECT id_pn_fgpo,SUM(`value`+`vat`) AS amount FROM tb_pn_fgpo_det pnd 
 	GROUP BY pnd.`id_pn_fgpo`
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 LEFT JOIN
 (
-	SELECT COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_payment_det` pyd
-	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='189'
+	SELECT COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='189'
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
 LEFT JOIN
 (
-	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
-	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='189'
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND py.report_mark_type='189'
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=pn.id_pn_fgpo
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
@@ -160,37 +163,44 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
     '
     Sub load_po()
         Dim where_string As String = ""
+        Dim q_acc As String = ""
+        Dim q_join_acc As String = ""
         Dim having_string As String = ""
 
         If Not SLEVendor.EditValue.ToString = "0" Then
-            where_string = " AND po.id_comp_contact='" & SLEVendor.EditValue.ToString & "'"
+            where_string += " AND po.id_comp_contact='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        If SLEPayType.EditValue.ToString = "2" Then
-            where_string = " AND po.is_close_rec='1'"
+        If SLEPayType.EditValue.ToString = "2" Then 'payment
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
+            q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
+            where_string += " AND po.is_close_rec='1'"
+        ElseIf SLEPayType.EditValue.ToString = "1" Then 'DP
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
+            q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
         End If
 
         id_pay_type_po = SLEPayType.EditValue.ToString
 
         If SLEStatusPayment.EditValue.ToString = "0" Then 'open include overdue and only dp
-            'having_string = " HAVING total_due>0"
             where_string += " AND po.is_close_pay=2 "
             BCreatePO.Visible = True
         ElseIf SLEStatusPayment.EditValue.ToString = "1" Then 'paid
             where_string += " AND po.is_close_pay=1 "
-            'having_string = " HAVING total_due=0"
             BCreatePO.Visible = False
         ElseIf SLEStatusPayment.EditValue.ToString = "2" Then 'overdue
-            'having_string = " is_cl"
             where_string += " AND po.pay_due_date < DATE(NOW()) AND po.is_close_pay=2 "
             BCreatePO.Visible = True
         ElseIf SLEStatusPayment.EditValue.ToString = "3" Then 'overdue H-7
-            where_string += " AND DATE_SUB(po.pay_due_date, INTERVAL 7 DAYS) < DATE(NOW()) AND po.is_close_pay=2 "
+            where_string += " AND DATE_SUB(po.pay_due_date, INTERVAL 7 DAY) < DATE(NOW()) AND po.is_close_pay=2 "
             BCreatePO.Visible = True
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,po.is_close_pay,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
+        Dim query As String = "SELECT 'no' AS is_check
+,po.report_mark_type,po.is_close_pay,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
 ,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
+,SUM(pod.qty*(pod.value-pod.discount))-po.disc_value AS amo_po
+,po.vat_value AS amo_vat
 ,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
 ,po.close_rec_reason
@@ -201,7 +211,11 @@ WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
 ,IFNULL(payment_dp.value,0) as total_dp
 ,IFNULL(payment_pending.jml,0) as total_pending
 ,DATEDIFF(po.`pay_due_date`,NOW()) AS due_days
+,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
+,po.report_mark_type
+" & q_acc & "
 FROM tb_purc_order po
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
 INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
@@ -209,6 +223,7 @@ INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
 INNER JOIN tb_m_employee emp_upd ON emp_upd.id_employee=usr_upd.id_employee
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+" & q_join_acc & "
 LEFT JOIN 
 ( 
 	SELECT recd.`id_purc_order_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd 
@@ -217,20 +232,20 @@ LEFT JOIN
 ) rec ON rec.id_purc_order_det=pod.`id_purc_order_det`
 LEFT JOIN
 (
-	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
-	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139'
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=po.id_purc_order
 LEFT JOIN
 (
-	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
-	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139' AND py.id_pay_type=1
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202') AND py.id_pay_type=1
 	GROUP BY pyd.id_report
 )payment_dp ON payment_dp.id_report=po.id_purc_order
 LEFT JOIN
 (
-	SELECT COUNT(pyd.id_report) as jml,pyd.id_report FROM `tb_payment_det` pyd
-	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='139'
+	SELECT COUNT(pyd.id_report) as jml,pyd.id_report FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
 	GROUP BY pyd.id_report
 )payment_pending ON payment_pending.id_report=po.id_purc_order
 WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
@@ -240,7 +255,17 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        load_po()
+        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp
+WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data_check.Rows(0)("id_acc_dp").ToString = "0" And SLEPayType.EditValue.ToString = "1" Then
+            warningCustom("This vendor DP account is not set.")
+        ElseIf data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayType.EditValue.ToString = "2" Then
+            warningCustom("This vendor AP account is not set.")
+        Else
+            load_po()
+        End If
     End Sub
 
     Private Sub GVPOList_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVPOList.RowStyle
@@ -276,7 +301,7 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
             If id_pay_type_po = "1" Then 'dp
                 '
                 If GVPOList.RowCount > 0 Then
-                    FormBankWithdrawalDet.report_mark_type = "139"
+                    FormBankWithdrawalDet.report_mark_type = GVPOList.GetFocusedRowCellValue("report_mark_type").ToString
                     FormBankWithdrawalDet.id_pay_type = id_pay_type_po
                     FormBankWithdrawalDet.ShowDialog()
                 Else
@@ -284,7 +309,7 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
                 End If
             ElseIf id_pay_type_po = "2" Then 'payment
                 If GVPOList.RowCount > 0 Then
-                    FormBankWithdrawalDet.report_mark_type = "139"
+                    FormBankWithdrawalDet.report_mark_type = GVPOList.GetFocusedRowCellValue("report_mark_type").ToString
                     FormBankWithdrawalDet.id_pay_type = id_pay_type_po
                     FormBankWithdrawalDet.ShowDialog()
                 Else
@@ -304,13 +329,22 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
 
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
         If GVList.RowCount > 0 Then
-            FormBankWithdrawalDet.id_payment = GVList.GetFocusedRowCellValue("id_payment")
+            FormBankWithdrawalDet.id_payment = GVList.GetFocusedRowCellValue("id_pn")
             FormBankWithdrawalDet.ShowDialog()
         End If
     End Sub
 
     Private Sub BtnViewExpense_Click(sender As Object, e As EventArgs) Handles BtnViewExpense.Click
-        load_expense()
+        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data_check.Rows(0)("id_acc_dp").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "1" Then
+            warningCustom("This vendor DP account is not set.")
+        ElseIf data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+            warningCustom("This vendor AP account is not set.")
+        Else
+            load_expense()
+        End If
     End Sub
 
     Sub load_expense()
@@ -318,11 +352,23 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
 
         Dim where_string As String = ""
         Dim having_string As String = ""
+
+        Dim q_acc As String = ""
+        Dim q_join_acc As String = ""
+
         If Not SLEVendorExpense.EditValue.ToString = "0" Then
             where_string = "AND e.id_comp='" & SLEVendorExpense.EditValue.ToString & "' "
         End If
 
-        If SLEStatusPaymentExpense.EditValue.ToString = "0" Then 'open include overdue and only dp\
+        If SLEPayTypeExpense.EditValue.ToString = "2" Then 'payment
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
+        ElseIf SLEPayTypeExpense.EditValue.ToString = "1" Then 'DP
+            q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
+        End If
+
+        If SLEStatusPaymentExpense.EditValue.ToString = "0" Then 'open include overdue and only dp
             where_string += "AND e.is_pay_later=1 AND e.is_open=1 "
             BCreateExpense.Visible = True
         ElseIf SLEStatusPaymentExpense.EditValue.ToString = "1" Then 'paid
@@ -337,6 +383,8 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
         End If
 
         Dim e As New ClassItemExpense()
+        e.q_acc = q_acc
+        e.q_join = q_join_acc
         Dim query As String = e.queryMain(where_string, "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCExpense.DataSource = data
@@ -346,6 +394,7 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
 
     Private Sub BCreateExpense_Click(sender As Object, e As EventArgs) Handles BCreateExpense.Click
         Cursor = Cursors.WaitCursor
+
         GVExpense.ActiveFilterString = ""
         GVExpense.ActiveFilterString = "[is_select]='yes'"
 
@@ -376,6 +425,7 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
             warningCustom("No data selected")
         End If
         GVExpense.ActiveFilterString = ""
+
         Cursor = Cursors.Default
     End Sub
 
@@ -405,18 +455,23 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
         GVFGPO.ActiveFilterString = ""
         GVFGPO.ActiveFilterString = "[is_check]='yes'"
 
-        Dim is_pending As Boolean = False
-        'check
-        For i As Integer = 0 To GVFGPO.RowCount - 1
-            If GVFGPO.GetRowCellValue(i, "total_pending") > 0 Then
-                is_pending = True
+        If GVFGPO.RowCount > 0 Then
+            Dim is_pending As Boolean = False
+            'check
+            For i As Integer = 0 To GVFGPO.RowCount - 1
+                If GVFGPO.GetRowCellValue(i, "total_pending") > 0 Then
+                    is_pending = True
+                End If
+            Next
+
+            If is_pending = True Then
+                warningCustom("Please process all pending payment for selected purchase")
+            Else
+                FormBankWithdrawalDet.report_mark_type = "189"
+                FormBankWithdrawalDet.ShowDialog()
             End If
-        Next
-        If is_pending = True Then
-            warningCustom("Please process all pending payment for selected purchase")
         Else
-            FormBankWithdrawalDet.report_mark_type = "189"
-            FormBankWithdrawalDet.ShowDialog()
+            warningCustom("Please select item first.")
         End If
 
         GVFGPO.ActiveFilterString = ""

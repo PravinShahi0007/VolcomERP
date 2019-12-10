@@ -1,12 +1,61 @@
 ﻿Public Class ReportEmpPayrollDeduction
     Public type As String = ""
     Public id_payroll As String = ""
-    Public is_office_payroll As String = ""
     Public id_pre As String
 
     Private data_column As DataTable = New DataTable
 
     Private Sub ReportEmpPayrollDeduction_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        generate_report("1")
+        generate_report("2")
+
+        'mark
+        If id_pre = "-1" Then
+            load_mark_horz_plain("192", id_payroll, "2", "1", XrTable1)
+        Else
+            pre_load_mark_horz_plain("192", id_payroll, "2", "2", XrTable1)
+        End If
+    End Sub
+
+    Private Sub GVDeductionOffice_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDeductionOffice.CustomColumnDisplayText
+        If e.IsForGroupRow Then
+            'sogo
+            If e.DisplayText.ToString.Contains("SOGO") Then
+                If e.Column.Caption = "Departement" Then
+                    e.DisplayText = "Departement: " + e.DisplayText
+                ElseIf e.Column.Caption = "Sub Departement" Then
+                    e.DisplayText = "Sub Departement: " + e.DisplayText
+                End If
+            Else
+                If e.Column.Caption = "Departement" Then
+                    e.DisplayText = "Departement: " + e.DisplayText
+                ElseIf e.Column.Caption = "Sub Departement" Then
+                    e.DisplayText = ""
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub GVDeductionStore_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDeductionStore.CustomColumnDisplayText
+        If e.IsForGroupRow Then
+            'sogo
+            If e.DisplayText.ToString.Contains("SOGO") Then
+                If e.Column.Caption = "Departement" Then
+                    e.DisplayText = "Departement: " + e.DisplayText
+                ElseIf e.Column.Caption = "Sub Departement" Then
+                    e.DisplayText = "Sub Departement: " + e.DisplayText
+                End If
+            Else
+                If e.Column.Caption = "Departement" Then
+                    e.DisplayText = "Departement: " + e.DisplayText
+                ElseIf e.Column.Caption = "Sub Departement" Then
+                    e.DisplayText = ""
+                End If
+            End If
+        End If
+    End Sub
+
+    Sub generate_report(is_office_payroll As String)
         'get column
         Dim query_column As String = "
             (
@@ -115,7 +164,11 @@
             For j = 1 To data_column.Rows(i)("total")
                 'band
                 If Not last_cat = salary_adjustment_cat Then
-                    band = GVDeduction.Bands.AddBand(salary_adjustment_cat)
+                    If is_office_payroll = "1" Then
+                        band = GVDeductionOffice.Bands.AddBand(salary_adjustment_cat)
+                    Else
+                        band = GVDeductionStore.Bands.AddBand(salary_adjustment_cat)
+                    End If
                 End If
 
                 last_cat = salary_adjustment_cat
@@ -151,31 +204,31 @@
                 group_summary.ShowInGroupColumnFooter = column
                 group_summary.SummaryType = DevExpress.Data.SummaryItemType.Custom
 
-                GVDeduction.GroupSummary.Add(group_summary)
+                If is_office_payroll = "1" Then
+                    GVDeductionOffice.GroupSummary.Add(group_summary)
+                Else
+                    GVDeductionStore.GroupSummary.Add(group_summary)
+                End If
             Next
         Next
 
         'employee status width
         If data_column.Rows.Count >= 9 Then
-            GVDeduction.Columns("Employee Position").MinWidth = 110
+            If is_office_payroll = "1" Then
+                GVDeductionOffice.Columns("Employee Position").MinWidth = 110
+            Else
+                GVDeductionStore.Columns("Employee Position").MinWidth = 110
+            End If
         End If
 
         'departement naming
-        Dim last_alphabet As Integer = 0
-
-        If is_office_payroll = "2" Then
-            Dim data_employee_get As DataTable = get_employee("1")
-
-            last_alphabet = data_employee_get.AsDataView.ToTable(True, "departement").Rows.Count
-        End If
-
         data.DefaultView.Sort = "Departement ASC, Sub Departement ASC"
         data = data.DefaultView.ToTable
 
         Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 
-        Dim iAlphabet As Integer = last_alphabet
-        Dim iInterger As Integer = 0
+        Dim iAlphabet As Integer = 0
+        Dim iInterger As Integer = 1
 
         Dim last_departement As String = ""
         Dim last_departement_sub As String = ""
@@ -205,34 +258,14 @@
             last_departement_sub = curr_departement_sub
         Next
 
-        GCDeduction.DataSource = data
+        If is_office_payroll = "1" Then
+            GCDeductionOffice.DataSource = data
 
-        GCEmployee.SummaryItem.DisplayFormat = "Grand Total: " + XLLocation.Text.ToUpper
-
-        'mark
-        If id_pre = "-1" Then
-            load_mark_horz_plain("192", id_payroll, "2", "1", XrTable1)
+            GCEmployee.SummaryItem.DisplayFormat = "Grand Total: " + XLLocationOffice.Text.ToUpper
         Else
-            pre_load_mark_horz_plain("192", id_payroll, "2", "2", XrTable1)
-        End If
-    End Sub
+            GCDeductionStore.DataSource = data
 
-    Private Sub GVDeduction_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDeduction.CustomColumnDisplayText
-        If e.IsForGroupRow Then
-            'sogo
-            If e.DisplayText.ToString.Contains("SOGO") Then
-                If e.Column.Caption = "Departement" Then
-                    e.DisplayText = "Departement: " + e.DisplayText
-                ElseIf e.Column.Caption = "Sub Departement" Then
-                    e.DisplayText = "Sub Departement: " + e.DisplayText
-                End If
-            Else
-                If e.Column.Caption = "Departement" Then
-                    e.DisplayText = "Departement: " + e.DisplayText
-                ElseIf e.Column.Caption = "Sub Departement" Then
-                    e.DisplayText = ""
-                End If
-            End If
+            GCEmployeeStore.SummaryItem.DisplayFormat = "Grand Total: " + XLLocationStore.Text.ToUpper
         End If
     End Sub
 
@@ -278,11 +311,10 @@
         Return data_employee
     End Function
 
-    Dim total_list As DataTable = New DataTable
+    Dim sum_office As Decimal = 0
+    Dim sum_store As Decimal = 0
 
-    Dim sum As Decimal = 0
-
-    Private Sub GVDeduction_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVDeduction.CustomSummaryCalculate
+    Private Sub GVDeductionOffice_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVDeductionOffice.CustomSummaryCalculate
         Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
 
         For i = 0 To data_column.Rows.Count - 1
@@ -293,15 +325,15 @@
                 If item.FieldName.ToString = salary_adjustment + " " + j.ToString Then
                     Select Case e.SummaryProcess
                         Case DevExpress.Data.CustomSummaryProcess.Start
-                            sum = 0
+                            sum_office = 0
                         Case DevExpress.Data.CustomSummaryProcess.Calculate
-                            sum += e.FieldValue
+                            sum_office += e.FieldValue
                         Case DevExpress.Data.CustomSummaryProcess.Finalize
-                            If GVDeduction.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
-                                e.TotalValue = sum
+                            If GVDeductionOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                                e.TotalValue = sum_office
                             Else
                                 If e.GroupLevel = 0 Then
-                                    e.TotalValue = sum
+                                    e.TotalValue = sum_office
                                 End If
                             End If
                     End Select
@@ -312,13 +344,64 @@
         If item.FieldName.ToString = "Employee" Then
             Select Case e.SummaryProcess
                 Case DevExpress.Data.CustomSummaryProcess.Finalize
-                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVDeduction.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
-                    Dim alphabet As String = GVDeduction.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
+                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVDeductionOffice.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
+                    Dim alphabet As String = GVDeductionOffice.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
 
-                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVDeduction.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
-                    Dim alphabet_sub As String = GVDeduction.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
+                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVDeductionOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                    Dim alphabet_sub As String = GVDeductionOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
 
-                    If GVDeduction.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                    If GVDeductionOffice.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                        If e.GroupLevel = 1 Then
+                            e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
+                        Else
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    Else
+                        If e.GroupLevel = 0 Then
+                            e.TotalValue = "Total: " + alphabet.Replace("(", "").Replace(")", "")
+                        End If
+                    End If
+            End Select
+        End If
+    End Sub
+
+    Private Sub GVDeductionStore_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVDeductionStore.CustomSummaryCalculate
+        Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
+
+        For i = 0 To data_column.Rows.Count - 1
+            Dim salary_adjustment_cat As String = data_column.Rows(i)("salary_" + type + "_cat").ToString
+            Dim salary_adjustment As String = data_column.Rows(i)("salary_" + type + "").ToString
+
+            For j = 1 To data_column.Rows(i)("total")
+                If item.FieldName.ToString = salary_adjustment + " " + j.ToString Then
+                    Select Case e.SummaryProcess
+                        Case DevExpress.Data.CustomSummaryProcess.Start
+                            sum_office = 0
+                        Case DevExpress.Data.CustomSummaryProcess.Calculate
+                            sum_office += e.FieldValue
+                        Case DevExpress.Data.CustomSummaryProcess.Finalize
+                            If GVDeductionStore.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
+                                e.TotalValue = sum_office
+                            Else
+                                If e.GroupLevel = 0 Then
+                                    e.TotalValue = sum_office
+                                End If
+                            End If
+                    End Select
+                End If
+            Next
+        Next
+
+        If item.FieldName.ToString = "Employee" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(GVDeductionStore.GetRowCellValue(e.RowHandle, "Departement").ToString, "\(([A-Z])\)", "").ToString()
+                    Dim alphabet As String = GVDeductionStore.GetRowCellValue(e.RowHandle, "Departement").ToString.Replace(curr_departement, "")
+
+                    Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(GVDeductionStore.GetRowCellValue(e.RowHandle, "Sub Departement").ToString, "\(([A-Z][0-9])\)", "").ToString()
+                    Dim alphabet_sub As String = GVDeductionStore.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Replace(curr_departement_sub, "")
+
+                    If GVDeductionStore.GetRowCellValue(e.RowHandle, "Sub Departement").ToString.Contains("SOGO") Then
                         If e.GroupLevel = 1 Then
                             e.TotalValue = "Total: " + alphabet_sub.Replace("(", "").Replace(")", "")
                         Else

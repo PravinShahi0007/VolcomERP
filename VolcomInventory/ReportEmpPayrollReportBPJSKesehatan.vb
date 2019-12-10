@@ -1,7 +1,8 @@
 ﻿Public Class ReportEmpPayrollReportBPJSKesehatan
     Public id_pre As String
-    Public id_payroll As String
+    Public id_report As String
     Public data As DataTable
+    Public report_mark_type As String
 
     Private Sub ReportEmpPayrollReportBPJSKesehatan_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim row As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
@@ -60,9 +61,12 @@
             total_contribution.BackColor = Color.Transparent
 
             'calculate total
+            '*uncomment if, if total all sogo include
+            'If data.Rows(i)("is_sub") = 0 Then
             total_company += data.Rows(i)("company_contribution")
             total_employee += data.Rows(i)("employee_contribution")
             total += data.Rows(i)("total_contribution")
+            'End If
         Next
 
         XTRowTotal.HeightF = 16
@@ -73,9 +77,9 @@
 
         'mark
         If id_pre = "-1" Then
-            load_mark_horz("192", id_payroll, "2", "1", XrTable1)
+            load_mark_horz(report_mark_type, id_report, "2", "1", XrTable1)
         Else
-            pre_load_mark_horz("192", id_payroll, "2", "2", XrTable1)
+            pre_load_mark_horz(report_mark_type, id_report, "2", "2", XrTable1)
         End If
     End Sub
 End Class

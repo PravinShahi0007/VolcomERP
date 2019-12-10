@@ -323,7 +323,7 @@ Partial Class FormMatStock
         Me.XTPFGStockWHSum.Controls.Add(Me.GroupControl4)
         Me.XTPFGStockWHSum.Name = "XTPFGStockWHSum"
         Me.XTPFGStockWHSum.Size = New System.Drawing.Size(1154, 460)
-        Me.XTPFGStockWHSum.Text = "WH Stock Summary"
+        Me.XTPFGStockWHSum.Text = "Stock Summary"
         '
         'GroupControlStockSum
         '
@@ -400,6 +400,7 @@ Partial Class FormMatStock
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'GridColumn7
@@ -441,10 +442,8 @@ Partial Class FormMatStock
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Category"
-        Me.GridColumn4.FieldName = "mat_category"
+        Me.GridColumn4.FieldName = "display_name"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
         Me.GridColumn4.Width = 89
         '
         'GridColumn5
@@ -644,9 +643,9 @@ Partial Class FormMatStock
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl7.Location = New System.Drawing.Point(216, 5)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl7.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl7.TabIndex = 2
-        Me.LabelControl7.Text = "WH"
+        Me.LabelControl7.Text = "Warehouse"
         '
         'BtnViewStockSum
         '
@@ -1090,6 +1089,7 @@ Partial Class FormMatStock
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ColumnAutoWidth = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
@@ -1131,10 +1131,8 @@ Partial Class FormMatStock
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Category"
-        Me.GridColumn12.FieldName = "mat_category"
+        Me.GridColumn12.FieldName = "display_name"
         Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 0
         Me.GridColumn12.Width = 89
         '
         'GridColumn13
@@ -1771,6 +1769,7 @@ Partial Class FormMatStock
         Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView6.Name = "GridView6"
         Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ColumnAutoWidth = False
         Me.GridView6.OptionsView.ShowGroupPanel = False
         '
         'GridColumn55
@@ -1812,10 +1811,8 @@ Partial Class FormMatStock
         'GridColumn59
         '
         Me.GridColumn59.Caption = "Category"
-        Me.GridColumn59.FieldName = "mat_category"
+        Me.GridColumn59.FieldName = "display_name"
         Me.GridColumn59.Name = "GridColumn59"
-        Me.GridColumn59.Visible = True
-        Me.GridColumn59.VisibleIndex = 0
         Me.GridColumn59.Width = 89
         '
         'GridColumn60
@@ -1976,6 +1973,7 @@ Partial Class FormMatStock
         Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ColumnAutoWidth = False
         Me.GridView4.OptionsView.ShowGroupPanel = False
         '
         'GridColumn52
@@ -2017,10 +2015,8 @@ Partial Class FormMatStock
         'GridColumn64
         '
         Me.GridColumn64.Caption = "Category"
-        Me.GridColumn64.FieldName = "mat_category"
+        Me.GridColumn64.FieldName = "display_name"
         Me.GridColumn64.Name = "GridColumn64"
-        Me.GridColumn64.Visible = True
-        Me.GridColumn64.VisibleIndex = 0
         Me.GridColumn64.Width = 89
         '
         'GridColumn65

@@ -57,6 +57,7 @@ Partial Class FormMatPurchasePD
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEToleransi = New DevExpress.XtraEditors.TextEdit()
         Me.TETotalAmount = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -68,6 +69,11 @@ Partial Class FormMatPurchasePD
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.UnselectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SLEBreakDown = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,10 +99,13 @@ Partial Class FormMatPurchasePD
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEToleransiAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
+        CType(Me.SLEBreakDown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEBreakDown)
         Me.PanelControl1.Controls.Add(Me.PanelControl5)
         Me.PanelControl1.Controls.Add(Me.BDuplicate)
         Me.PanelControl1.Controls.Add(Me.BSetConsumption)
@@ -133,7 +142,7 @@ Partial Class FormMatPurchasePD
         '
         'BDuplicate
         '
-        Me.BDuplicate.Location = New System.Drawing.Point(589, 16)
+        Me.BDuplicate.Location = New System.Drawing.Point(718, 16)
         Me.BDuplicate.Name = "BDuplicate"
         Me.BDuplicate.Size = New System.Drawing.Size(60, 23)
         Me.BDuplicate.TabIndex = 6
@@ -141,7 +150,7 @@ Partial Class FormMatPurchasePD
         '
         'BSetConsumption
         '
-        Me.BSetConsumption.Location = New System.Drawing.Point(529, 16)
+        Me.BSetConsumption.Location = New System.Drawing.Point(658, 16)
         Me.BSetConsumption.Name = "BSetConsumption"
         Me.BSetConsumption.Size = New System.Drawing.Size(54, 23)
         Me.BSetConsumption.TabIndex = 5
@@ -294,7 +303,7 @@ Partial Class FormMatPurchasePD
         '
         'GVPD
         '
-        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCheck, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11})
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCheck, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11, Me.GridColumnSize})
         Me.GVPD.GridControl = Me.GCPD
         Me.GVPD.Name = "GVPD"
         Me.GVPD.OptionsFind.AlwaysVisible = True
@@ -445,6 +454,7 @@ Partial Class FormMatPurchasePD
         'PanelControl9
         '
         Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl9.Controls.Add(Me.LabelControl2)
         Me.PanelControl9.Controls.Add(Me.TEToleransi)
         Me.PanelControl9.Controls.Add(Me.TETotalAmount)
         Me.PanelControl9.Controls.Add(Me.LabelControl3)
@@ -458,6 +468,14 @@ Partial Class FormMatPurchasePD
         Me.PanelControl9.Size = New System.Drawing.Size(337, 98)
         Me.PanelControl9.TabIndex = 162
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(169, 42)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl2.TabIndex = 163
+        Me.LabelControl2.Text = "%"
+        '
         'TEToleransi
         '
         Me.TEToleransi.EditValue = ""
@@ -470,7 +488,7 @@ Partial Class FormMatPurchasePD
         Me.TEToleransi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEToleransi.Properties.Mask.SaveLiteral = False
         Me.TEToleransi.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEToleransi.Size = New System.Drawing.Size(65, 20)
+        Me.TEToleransi.Size = New System.Drawing.Size(51, 20)
         Me.TEToleransi.TabIndex = 162
         '
         'TETotalAmount
@@ -572,6 +590,48 @@ Partial Class FormMatPurchasePD
         Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.UnselectAllToolStripMenuItem.Text = "Unselect all"
         '
+        'SLEBreakDown
+        '
+        Me.SLEBreakDown.Location = New System.Drawing.Point(529, 18)
+        Me.SLEBreakDown.Name = "SLEBreakDown"
+        Me.SLEBreakDown.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEBreakDown.Properties.View = Me.GridView1
+        Me.SLEBreakDown.Size = New System.Drawing.Size(123, 20)
+        Me.SLEBreakDown.TabIndex = 9
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "ID"
+        Me.GridColumn14.FieldName = "id"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Description"
+        Me.GridColumn15.FieldName = "description"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        Me.GridColumn15.Width = 331
+        '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSize.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        '
         'FormMatPurchasePD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -616,6 +676,8 @@ Partial Class FormMatPurchasePD
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEToleransiAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
+        CType(Me.SLEBreakDown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -667,4 +729,10 @@ Partial Class FormMatPurchasePD
     Friend WithEvents UnselectAllToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LNumber As Label
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEBreakDown As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
 End Class

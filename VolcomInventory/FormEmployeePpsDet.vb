@@ -6,6 +6,8 @@
     Public show_payroll As Boolean = False
     Public id_report_status As String = "-1"
 
+    Private load_all As Boolean = False
+
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
         viewLookupQuery(LESex, query, 0, "sex", "id_sex")
@@ -187,6 +189,8 @@
             LEEmployeeStatus.Size = New Size(512, 20)
             LEEmployeeStatusB.Size = New Size(512, 20)
         End If
+
+        load_all = True
     End Sub
 
     Sub initLoad()
@@ -237,6 +241,8 @@
             If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
                 Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                AddHandler PEPosition.ImageChanged, AddressOf changeImage
+
                 PCPosAtt.Controls.Add(PEPosition)
 
                 pre_viewImages("4", PEPosition, id_employee + "_position_" + i.ToString, False)
@@ -248,16 +254,16 @@
         If Not PCPosAtt.HasChildren Then
             Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-            PCPosAtt.Controls.Add(PEPosition)
+            AddHandler PEPosition.ImageChanged, AddressOf changeImage
 
-            pre_viewImages("4", PEPosition, "default", False)
+            PCPosAtt.Controls.Add(PEPosition)
         End If
 
         If Not id_pps = "-1" Then
-            viewImages(PE, pps_path, id_pps + "_ava", False)
-            viewImages(PEKTP, pps_path, id_pps + "_ktp", False)
-            viewImages(PEKK, pps_path, id_pps + "_kk", False)
-            viewImages(PEREK, pps_path, id_pps + "_rek", False)
+            viewImages_empty(PE, pps_path, id_pps + "_ava", False)
+            viewImages_empty(PEKTP, pps_path, id_pps + "_ktp", False)
+            viewImages_empty(PEKK, pps_path, id_pps + "_kk", False)
+            viewImages_empty(PEREK, pps_path, id_pps + "_rek", False)
 
             ' position
             PCPosAtt.Controls.Clear()
@@ -266,9 +272,11 @@
                 If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
                     Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                    AddHandler PEPosition.ImageChanged, AddressOf changeImage
+
                     PCPosAtt.Controls.Add(PEPosition)
 
-                    viewImages(PEPosition, pps_path, id_pps + "_position_" + i.ToString, False)
+                    viewImages_empty(PEPosition, pps_path, id_pps + "_position_" + i.ToString, False)
                 Else
                     Exit For
                 End If
@@ -277,9 +285,11 @@
             If Not PCPosAtt.HasChildren Then
                 Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                AddHandler PEPosition.ImageChanged, AddressOf changeImage
+
                 PCPosAtt.Controls.Add(PEPosition)
 
-                viewImages(PEPosition, pps_path, "default", False)
+                viewImages_empty(PEPosition, pps_path, "default", False)
             End If
         End If
 
@@ -294,6 +304,8 @@
                 If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
                     Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                    AddHandler PEPositionB.ImageChanged, AddressOf changeImage
+
                     PCPosAttB.Controls.Add(PEPositionB)
 
                     pre_viewImages("4", PEPositionB, id_employee + "_position_" + i.ToString, False)
@@ -305,16 +317,16 @@
             If Not PCPosAttB.HasChildren Then
                 Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-                PCPosAttB.Controls.Add(PEPositionB)
+                AddHandler PEPositionB.ImageChanged, AddressOf changeImage
 
-                pre_viewImages("4", PEPositionB, "default", False)
+                PCPosAttB.Controls.Add(PEPositionB)
             End If
 
             If Not id_pps = "-1" Then
-                viewImages(PEB, pps_path, id_pps + "_ava_old", False)
-                viewImages(PEKTPB, pps_path, id_pps + "_ktp_old", False)
-                viewImages(PEKKB, pps_path, id_pps + "_kk_old", False)
-                viewImages(PEREKB, pps_path, id_pps + "_rek_old", False)
+                viewImages_empty(PEB, pps_path, id_pps + "_ava_old", False)
+                viewImages_empty(PEKTPB, pps_path, id_pps + "_ktp_old", False)
+                viewImages_empty(PEKKB, pps_path, id_pps + "_kk_old", False)
+                viewImages_empty(PEREKB, pps_path, id_pps + "_rek_old", False)
 
                 ' position
                 PCPosAttB.Controls.Clear()
@@ -323,9 +335,11 @@
                     If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + "_old.jpg") Then
                         Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
+                        AddHandler PEPositionB.ImageChanged, AddressOf changeImage
+
                         PCPosAttB.Controls.Add(PEPositionB)
 
-                        viewImages(PEPositionB, pps_path, id_pps + "_position_" + i.ToString + "_old", False)
+                        viewImages_empty(PEPositionB, pps_path, id_pps + "_position_" + i.ToString + "_old", False)
                     Else
                         Exit For
                     End If
@@ -334,9 +348,9 @@
                 If Not PCPosAttB.HasChildren Then
                     Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
 
-                    PCPosAttB.Controls.Add(PEPositionB)
+                    AddHandler PEPositionB.ImageChanged, AddressOf changeImage
 
-                    viewImages(PEPositionB, pps_path, "default", False)
+                    PCPosAttB.Controls.Add(PEPositionB)
                 End If
             End If
         End If
@@ -357,6 +371,7 @@
 
         If Not Array.IndexOf({"1", "5", "6"}, id_report_status).ToString = "-1" Then
             TxtCode.ReadOnly = True
+            TxtSogoNIK.ReadOnly = True
             TxtFullName.ReadOnly = True
             TxtNickName.ReadOnly = True
             TxtInitialName.ReadOnly = True
@@ -500,6 +515,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             TxtCode.EditValue = data.Rows(0)("employee_code").ToString
+            TxtSogoNIK.EditValue = data.Rows(0)("employee_nik_sogo").ToString
             TxtFullName.EditValue = data.Rows(0)("employee_name").ToString
             TxtNickName.EditValue = data.Rows(0)("employee_nick_name").ToString
             TxtInitialName.EditValue = data.Rows(0)("employee_initial_name").ToString
@@ -589,6 +605,7 @@
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
                 TxtCode.EditValue = data.Rows(0)("employee_code").ToString
+                TxtSogoNIK.EditValue = data.Rows(0)("employee_nik_sogo").ToString
                 TxtFullName.EditValue = data.Rows(0)("employee_name").ToString
                 TxtNickName.EditValue = data.Rows(0)("employee_nick_name").ToString
                 TxtInitialName.EditValue = data.Rows(0)("employee_initial_name").ToString
@@ -689,6 +706,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             TxtCodeB.EditValue = data.Rows(0)("employee_code").ToString
+            TxtSogoNIKB.EditValue = data.Rows(0)("employee_nik_sogo").ToString
             TxtFullNameB.EditValue = data.Rows(0)("employee_name").ToString
             TxtNickNameB.EditValue = data.Rows(0)("employee_nick_name").ToString
             TxtInitialNameB.EditValue = data.Rows(0)("employee_initial_name").ToString
@@ -833,6 +851,27 @@
                     data_cek = ""
                 End If
             End If
+
+            'check image
+            If PCPosAtt.HasChildren Then
+                For Each i As Control In PCPosAtt.Controls
+                    Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+                    If ic.EditValue Is Nothing Then
+                        data_cek = "Please add employee contract."
+                    End If
+                Next
+            Else
+                data_cek = "Please add employee contract."
+            End If
+
+            If PEKTP.EditValue Is Nothing Then
+                data_cek = "Please add employee KTP."
+            End If
+
+            If PE.EditValue Is Nothing Then
+                data_cek = "Please add employee photo."
+            End If
         End If
 
         If Not formIsValidInGroup(ErrorProvider1, GCGeneralPropose) Or Not formIsValidInGroup(ErrorProvider1, GCDetailPropose) Or Not formIsValidInGroup(ErrorProvider1, GCContractPropose) Or Not formIsValidInGroup(ErrorProvider1, GCPayrollPropose) Then
@@ -865,6 +904,7 @@
         Dim id_employee_store As String = If(id_employee = "-1", "NULL", "'" + id_employee + "'")
         Dim id_employee_active As String = LEActive.EditValue.ToString
         Dim employee_code As String = addSlashes(TxtCode.Text)
+        Dim employee_nik_sogo As String = If(LEDepartement.EditValue.ToString = "17", addSlashes(TxtSogoNIK.Text), "")
         Dim employee_name As String = addSlashes(TxtFullName.Text)
         Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
         Dim employee_initial_name As String = addSlashes(TxtInitialName.Text)
@@ -1041,11 +1081,11 @@
         Dim query As String = ""
 
         If id_pps = "-1" Then
-            query = "INSERT INTO tb_employee_pps(id_type, number, created_by, created_date, id_report_status, note, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', '" + id_employee_user + "', NOW(), '" + id_report_status_store + "', '" + note + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_actual_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + email_personal + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + id_bpjs_status + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_bpjs_kesehatan_husband + "', '" + id_bpjs_status_husband + "', '" + is_bpjs_volcom_husband + "', " + employee_bpjs_kesehatan_date_husband + ", '" + employee_bpjs_kesehatan_wife + "', '" + id_bpjs_status_wife + "', '" + is_bpjs_volcom_wife + "', " + employee_bpjs_kesehatan_date_wife + ", '" + employee_bpjs_kesehatan_child1 + "', '" + id_bpjs_status_child1 + "', '" + is_bpjs_volcom_child1 + "', " + employee_bpjs_kesehatan_date_child1 + ", '" + employee_bpjs_kesehatan_child2 + "', '" + id_bpjs_status_child2 + "', '" + is_bpjs_volcom_child2 + "', " + employee_bpjs_kesehatan_date_child2 + ", '" + employee_bpjs_kesehatan_child3 + "', '" + id_bpjs_status_child3 + "', '" + is_bpjs_volcom_child3 + "', " + employee_bpjs_kesehatan_date_child3 + ", '" + employee_npwp + "', '" + id_npwp_status + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', " + salary_date + ", '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
+            query = "INSERT INTO tb_employee_pps(id_type, number, created_by, created_date, id_report_status, note, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, employee_nik_sogo) VALUES('" + id_type + "', '" + number + "', '" + id_employee_user + "', NOW(), '" + id_report_status_store + "', '" + note + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_actual_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + email_personal + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + id_bpjs_status + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_bpjs_kesehatan_husband + "', '" + id_bpjs_status_husband + "', '" + is_bpjs_volcom_husband + "', " + employee_bpjs_kesehatan_date_husband + ", '" + employee_bpjs_kesehatan_wife + "', '" + id_bpjs_status_wife + "', '" + is_bpjs_volcom_wife + "', " + employee_bpjs_kesehatan_date_wife + ", '" + employee_bpjs_kesehatan_child1 + "', '" + id_bpjs_status_child1 + "', '" + is_bpjs_volcom_child1 + "', " + employee_bpjs_kesehatan_date_child1 + ", '" + employee_bpjs_kesehatan_child2 + "', '" + id_bpjs_status_child2 + "', '" + is_bpjs_volcom_child2 + "', " + employee_bpjs_kesehatan_date_child2 + ", '" + employee_bpjs_kesehatan_child3 + "', '" + id_bpjs_status_child3 + "', '" + is_bpjs_volcom_child3 + "', " + employee_bpjs_kesehatan_date_child3 + ", '" + employee_npwp + "', '" + id_npwp_status + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', " + salary_date + ", '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "', '" + employee_nik_sogo + "'); SELECT LAST_INSERT_ID();"
 
             id_pps = execute_query(query, 0, True, "", "", "", "")
         Else
-            query = "UPDATE tb_employee_pps SET updated_by = '" + id_employee_user + "', updated_date = NOW(), id_report_status = '" + id_report_status_store + "', note = '" + note + "', id_employee_active = '" + id_employee_active + "', employee_code = '" + employee_code + "', employee_name = '" + employee_name + "', employee_nick_name = '" + employee_nick_name + "', employee_initial_name = '" + employee_initial_name + "', id_departement = '" + id_departement + "', id_departement_sub = '" + id_departement_sub + "', id_sex = '" + id_sex + "', id_blood_type = '" + id_blood_type + "', id_religion = '" + id_religion + "', id_country = '" + id_country + "', id_education = '" + id_education + "', id_employee_status = '" + id_employee_status + "', start_period = " + start_period + ", end_period = " + end_period + ", employee_position_date = " + employee_position_date + ", employee_pob = '" + employee_pob + "', employee_dob = " + employee_dob + ", employee_ethnic = '" + employee_ethnic + "', employee_join_date = " + employee_join_date + ", employee_actual_join_date = " + employee_actual_join_date + ", employee_last_date = " + employee_last_date + ", employee_position = '" + employee_position + "', id_employee_level = '" + id_employee_level + "', phone = '" + phone + "', phone_mobile = '" + phone_mobile + "', email_personal = '" + email_personal + "', employee_ktp = '" + employee_ktp + "', employee_ktp_period = " + employee_ktp_period + ", employee_passport = '" + employee_passport + "', employee_passport_period = " + employee_passport_period + ", employee_bpjs_tk = '" + employee_bpjs_tk + "', employee_bpjs_tk_date = " + employee_bpjs_tk_date + ", is_jp = '" + is_jp + "', is_jht = '" + is_jht + "', employee_bpjs_kesehatan = '" + employee_bpjs_kesehatan + "', id_bpjs_status = '" + id_bpjs_status + "', is_bpjs_volcom = '" + is_bpjs_volcom + "', employee_bpjs_kesehatan_date = " + employee_bpjs_kesehatan_date + ", employee_bpjs_kesehatan_husband = '" + employee_bpjs_kesehatan_husband + "', id_bpjs_status_husband = '" + id_bpjs_status_husband + "', is_bpjs_volcom_husband = '" + is_bpjs_volcom_husband + "', employee_bpjs_kesehatan_date_husband = " + employee_bpjs_kesehatan_date_husband + ", employee_bpjs_kesehatan_wife = '" + employee_bpjs_kesehatan_wife + "', id_bpjs_status_wife = '" + id_bpjs_status_wife + "', is_bpjs_volcom_wife = '" + is_bpjs_volcom_wife + "', employee_bpjs_kesehatan_date_wife = " + employee_bpjs_kesehatan_date_wife + ", employee_bpjs_kesehatan_child1 = '" + employee_bpjs_kesehatan_child1 + "', id_bpjs_status_child1 = '" + id_bpjs_status_child1 + "', is_bpjs_volcom_child1 = '" + is_bpjs_volcom_child1 + "', employee_bpjs_kesehatan_date_child1 = " + employee_bpjs_kesehatan_date_child1 + ", employee_bpjs_kesehatan_child2 = '" + employee_bpjs_kesehatan_child2 + "', id_bpjs_status_child2 = '" + id_bpjs_status_child2 + "', is_bpjs_volcom_child2 = '" + is_bpjs_volcom_child2 + "', employee_bpjs_kesehatan_date_child2 = " + employee_bpjs_kesehatan_date_child2 + ", employee_bpjs_kesehatan_child3 = '" + employee_bpjs_kesehatan_child3 + "', id_bpjs_status_child3 = '" + id_bpjs_status_child3 + "', is_bpjs_volcom_child3 = '" + is_bpjs_volcom_child3 + "', employee_bpjs_kesehatan_date_child3 = " + employee_bpjs_kesehatan_date_child3 + ", employee_npwp = '" + employee_npwp + "', id_npwp_status = '" + id_npwp_status + "', employee_no_rek = '" + employee_no_rek + "', employee_rek_name = '" + employee_rek_name + "', address_primary = '" + address_primary + "', address_additional = '" + address_additional + "', id_marriage_status = '" + id_marriage_status + "', husband = '" + husband + "', wife = '" + wife + "', child1 = '" + child1 + "', child2 = '" + child2 + "', child3 = '" + child3 + "', basic_salary = '" + basic_salary + "', allow_job = '" + allow_job + "', allow_meal = '" + allow_meal + "', allow_trans = '" + allow_trans + "', allow_house = '" + allow_house + "', allow_car = '" + allow_car + "', salary_date = " + salary_date + ", note_bpjs_kesehatan = '" + note_bpjs_kesehatan + "', is_koperasi = '" + is_koperasi + "', is_pic = '" + is_pic + "' WHERE id_employee_pps = '" + id_pps + "'"
+            query = "UPDATE tb_employee_pps SET updated_by = '" + id_employee_user + "', updated_date = NOW(), id_report_status = '" + id_report_status_store + "', note = '" + note + "', id_employee_active = '" + id_employee_active + "', employee_code = '" + employee_code + "', employee_name = '" + employee_name + "', employee_nick_name = '" + employee_nick_name + "', employee_initial_name = '" + employee_initial_name + "', id_departement = '" + id_departement + "', id_departement_sub = '" + id_departement_sub + "', id_sex = '" + id_sex + "', id_blood_type = '" + id_blood_type + "', id_religion = '" + id_religion + "', id_country = '" + id_country + "', id_education = '" + id_education + "', id_employee_status = '" + id_employee_status + "', start_period = " + start_period + ", end_period = " + end_period + ", employee_position_date = " + employee_position_date + ", employee_pob = '" + employee_pob + "', employee_dob = " + employee_dob + ", employee_ethnic = '" + employee_ethnic + "', employee_join_date = " + employee_join_date + ", employee_actual_join_date = " + employee_actual_join_date + ", employee_last_date = " + employee_last_date + ", employee_position = '" + employee_position + "', id_employee_level = '" + id_employee_level + "', phone = '" + phone + "', phone_mobile = '" + phone_mobile + "', email_personal = '" + email_personal + "', employee_ktp = '" + employee_ktp + "', employee_ktp_period = " + employee_ktp_period + ", employee_passport = '" + employee_passport + "', employee_passport_period = " + employee_passport_period + ", employee_bpjs_tk = '" + employee_bpjs_tk + "', employee_bpjs_tk_date = " + employee_bpjs_tk_date + ", is_jp = '" + is_jp + "', is_jht = '" + is_jht + "', employee_bpjs_kesehatan = '" + employee_bpjs_kesehatan + "', id_bpjs_status = '" + id_bpjs_status + "', is_bpjs_volcom = '" + is_bpjs_volcom + "', employee_bpjs_kesehatan_date = " + employee_bpjs_kesehatan_date + ", employee_bpjs_kesehatan_husband = '" + employee_bpjs_kesehatan_husband + "', id_bpjs_status_husband = '" + id_bpjs_status_husband + "', is_bpjs_volcom_husband = '" + is_bpjs_volcom_husband + "', employee_bpjs_kesehatan_date_husband = " + employee_bpjs_kesehatan_date_husband + ", employee_bpjs_kesehatan_wife = '" + employee_bpjs_kesehatan_wife + "', id_bpjs_status_wife = '" + id_bpjs_status_wife + "', is_bpjs_volcom_wife = '" + is_bpjs_volcom_wife + "', employee_bpjs_kesehatan_date_wife = " + employee_bpjs_kesehatan_date_wife + ", employee_bpjs_kesehatan_child1 = '" + employee_bpjs_kesehatan_child1 + "', id_bpjs_status_child1 = '" + id_bpjs_status_child1 + "', is_bpjs_volcom_child1 = '" + is_bpjs_volcom_child1 + "', employee_bpjs_kesehatan_date_child1 = " + employee_bpjs_kesehatan_date_child1 + ", employee_bpjs_kesehatan_child2 = '" + employee_bpjs_kesehatan_child2 + "', id_bpjs_status_child2 = '" + id_bpjs_status_child2 + "', is_bpjs_volcom_child2 = '" + is_bpjs_volcom_child2 + "', employee_bpjs_kesehatan_date_child2 = " + employee_bpjs_kesehatan_date_child2 + ", employee_bpjs_kesehatan_child3 = '" + employee_bpjs_kesehatan_child3 + "', id_bpjs_status_child3 = '" + id_bpjs_status_child3 + "', is_bpjs_volcom_child3 = '" + is_bpjs_volcom_child3 + "', employee_bpjs_kesehatan_date_child3 = " + employee_bpjs_kesehatan_date_child3 + ", employee_npwp = '" + employee_npwp + "', id_npwp_status = '" + id_npwp_status + "', employee_no_rek = '" + employee_no_rek + "', employee_rek_name = '" + employee_rek_name + "', address_primary = '" + address_primary + "', address_additional = '" + address_additional + "', id_marriage_status = '" + id_marriage_status + "', husband = '" + husband + "', wife = '" + wife + "', child1 = '" + child1 + "', child2 = '" + child2 + "', child3 = '" + child3 + "', basic_salary = '" + basic_salary + "', allow_job = '" + allow_job + "', allow_meal = '" + allow_meal + "', allow_trans = '" + allow_trans + "', allow_house = '" + allow_house + "', allow_car = '" + allow_car + "', salary_date = " + salary_date + ", note_bpjs_kesehatan = '" + note_bpjs_kesehatan + "', is_koperasi = '" + is_koperasi + "', is_pic = '" + is_pic + "', employee_nik_sogo = '" + employee_nik_sogo + "' WHERE id_employee_pps = '" + id_pps + "'"
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -1053,16 +1093,20 @@
         'image
         If Not PE.EditValue Is Nothing Then
             save_image_ori(PE, pps_path, id_pps & "_ava.jpg")
-        Else
-            System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava.jpg", True)
-
-            System.IO.File.SetAttributes(pps_path + id_pps + "_ava.jpg", System.IO.FileAttributes.Normal)
         End If
 
         ' att
-        save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
-        save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
-        save_image_ori(PEREK, pps_path, id_pps & "_rek.jpg")
+        If Not PEKTP.EditValue Is Nothing Then
+            save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
+        End If
+
+        If Not PEKK.EditValue Is Nothing Then
+            save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
+        End If
+
+        If Not PEREK.EditValue Is Nothing Then
+            save_image_ori(PEREK, pps_path, id_pps & "_rek.jpg")
+        End If
 
         ' delete position
         For i = 1 To 100
@@ -1079,17 +1123,19 @@
             For Each i As Control In PCPosAtt.Controls
                 Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
+                If Not ic.EditValue Is Nothing Then
+                    save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
 
-                no += 1
+                    no += 1
+                End If
             Next
         End If
 
         ' store old
         If is_new = "-1" And id_report_status = "-1" Then
             Dim query_old As String = "
-                INSERT INTO tb_employee_pps_old(id_employee_pps, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic)
-                SELECT '" + id_pps + "' AS id_employee_pps, emp.id_employee, emp.id_employee_active, emp.employee_code, emp.employee_name, emp.employee_nick_name, emp.employee_initial_name, emp.id_departement, emp.id_departement_sub, emp.id_sex, emp.id_blood_type, emp.id_religion, emp.id_country, emp.id_education, emp.id_employee_status, emp.start_period, emp.end_period, pos.employee_position_date, emp.employee_pob, emp.employee_dob, emp.employee_ethnic, emp.employee_join_date, emp.employee_actual_join_date, emp.employee_last_date, emp.employee_position, emp.id_employee_level, emp.phone, emp.phone_mobile, emp.email_personal, emp.employee_ktp, emp.employee_ktp_period, emp.employee_passport, emp.employee_passport_period, emp.employee_bpjs_tk, emp.employee_bpjs_tk_date, emp.is_jp, emp.is_jht, emp.employee_bpjs_kesehatan, emp.id_bpjs_status, emp.is_bpjs_volcom, emp.employee_bpjs_kesehatan_date, emp.employee_bpjs_kesehatan_husband, emp.id_bpjs_status_husband, emp.is_bpjs_volcom_husband, emp.employee_bpjs_kesehatan_date_husband, emp.employee_bpjs_kesehatan_wife, emp.id_bpjs_status_wife, emp.is_bpjs_volcom_wife, emp.employee_bpjs_kesehatan_date_wife, emp.employee_bpjs_kesehatan_child1, emp.id_bpjs_status_child1, emp.is_bpjs_volcom_child1, emp.employee_bpjs_kesehatan_date_child1, emp.employee_bpjs_kesehatan_child2, emp.id_bpjs_status_child2, emp.is_bpjs_volcom_child2, emp.employee_bpjs_kesehatan_date_child2, emp.employee_bpjs_kesehatan_child3, emp.id_bpjs_status_child3, emp.is_bpjs_volcom_child3, emp.employee_bpjs_kesehatan_date_child3, emp.employee_npwp, emp.id_npwp_status, emp.employee_no_rek, emp.employee_rek_name, emp.address_primary, emp.address_additional, emp.id_marriage_status, emp.husband, emp.wife, emp.child1, emp.child2, emp.child3, sal.basic_salary, sal.allow_job, sal.allow_meal, sal.allow_trans, sal.allow_house, sal.allow_car, sal.salary_date, '' AS note_bpjs_kesehatan, emp.is_koperasi, emp.is_pic
+                INSERT INTO tb_employee_pps_old(id_employee_pps, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, employee_nik_sogo)
+                SELECT '" + id_pps + "' AS id_employee_pps, emp.id_employee, emp.id_employee_active, emp.employee_code, emp.employee_name, emp.employee_nick_name, emp.employee_initial_name, emp.id_departement, emp.id_departement_sub, emp.id_sex, emp.id_blood_type, emp.id_religion, emp.id_country, emp.id_education, emp.id_employee_status, emp.start_period, emp.end_period, pos.employee_position_date, emp.employee_pob, emp.employee_dob, emp.employee_ethnic, emp.employee_join_date, emp.employee_actual_join_date, emp.employee_last_date, emp.employee_position, emp.id_employee_level, emp.phone, emp.phone_mobile, emp.email_personal, emp.employee_ktp, emp.employee_ktp_period, emp.employee_passport, emp.employee_passport_period, emp.employee_bpjs_tk, emp.employee_bpjs_tk_date, emp.is_jp, emp.is_jht, emp.employee_bpjs_kesehatan, emp.id_bpjs_status, emp.is_bpjs_volcom, emp.employee_bpjs_kesehatan_date, emp.employee_bpjs_kesehatan_husband, emp.id_bpjs_status_husband, emp.is_bpjs_volcom_husband, emp.employee_bpjs_kesehatan_date_husband, emp.employee_bpjs_kesehatan_wife, emp.id_bpjs_status_wife, emp.is_bpjs_volcom_wife, emp.employee_bpjs_kesehatan_date_wife, emp.employee_bpjs_kesehatan_child1, emp.id_bpjs_status_child1, emp.is_bpjs_volcom_child1, emp.employee_bpjs_kesehatan_date_child1, emp.employee_bpjs_kesehatan_child2, emp.id_bpjs_status_child2, emp.is_bpjs_volcom_child2, emp.employee_bpjs_kesehatan_date_child2, emp.employee_bpjs_kesehatan_child3, emp.id_bpjs_status_child3, emp.is_bpjs_volcom_child3, emp.employee_bpjs_kesehatan_date_child3, emp.employee_npwp, emp.id_npwp_status, emp.employee_no_rek, emp.employee_rek_name, emp.address_primary, emp.address_additional, emp.id_marriage_status, emp.husband, emp.wife, emp.child1, emp.child2, emp.child3, sal.basic_salary, sal.allow_job, sal.allow_meal, sal.allow_trans, sal.allow_house, sal.allow_car, sal.salary_date, '' AS note_bpjs_kesehatan, emp.is_koperasi, emp.is_pic, emp.employee_nik_sogo
                 FROM tb_m_employee AS emp 
                 LEFT JOIN (SELECT * FROM tb_m_employee_position WHERE id_employee_position IN (SELECT MAX(id_employee_position) FROM tb_m_employee_position GROUP BY id_employee)) AS pos ON emp.id_employee = pos.id_employee
                 LEFT JOIN (
@@ -1109,16 +1155,20 @@
             'image
             If Not PEB.EditValue Is Nothing Then
                 save_image_ori(PEB, pps_path, id_pps & "_ava_old.jpg")
-            Else
-                System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava_old.jpg", True)
-
-                System.IO.File.SetAttributes(pps_path + id_pps + "_ava_old.jpg", System.IO.FileAttributes.Normal)
             End If
 
             ' att
-            save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
-            save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
-            save_image_ori(PEREKB, pps_path, id_pps & "_rek_old.jpg")
+            If Not PEKTPB.EditValue Is Nothing Then
+                save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
+            End If
+
+            If Not PEKKB.EditValue Is Nothing Then
+                save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
+            End If
+
+            If Not PEREKB.EditValue Is Nothing Then
+                save_image_ori(PEREKB, pps_path, id_pps & "_rek_old.jpg")
+            End If
 
             If PCPosAttB.HasChildren Then
                 Dim no As Integer = 1
@@ -1126,9 +1176,11 @@
                 For Each i As Control In PCPosAttB.Controls
                     Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                    save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
+                    If Not ic.EditValue Is Nothing Then
+                        save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
 
-                    no += 1
+                        no += 1
+                    End If
                 Next
             End If
         End If
@@ -1154,9 +1206,9 @@
         changes.Columns.Add("name", GetType(String))
 
         Dim query As String = "
-            SELECT '1' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "'
+            SELECT '1' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age, employee_nik_sogo FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "'
             UNION
-            SELECT '2' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'
+            SELECT '2' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age, employee_nik_sogo FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1167,6 +1219,7 @@
 
         column.Rows.Add("id_employee_active")
         column.Rows.Add("employee_code")
+        column.Rows.Add("employee_nik_sogo")
         column.Rows.Add("employee_name")
         column.Rows.Add("employee_nick_name")
         column.Rows.Add("employee_initial_name")
@@ -1262,6 +1315,10 @@
         For i = 0 To changes.Rows.Count - 1
             If changes.Rows(i)("name") = "employee_code" Then
                 ChangesProvider1.SetError(TxtCode, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_nik_sogo" Then
+                ChangesProvider1.SetError(TxtSogoNIK, "Changed")
             End If
 
             If changes.Rows(i)("name") = "employee_name" Then
@@ -1596,6 +1653,7 @@
         Dim status_changed As Boolean = False
         Dim position_changed As Boolean = False
         Dim salary_changed As Boolean = False
+        Dim join_date_changed As Boolean = False
 
         ' edited else new
         If is_new = "-1" Then
@@ -1623,6 +1681,10 @@
                     'If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
                     '    salary_changed = True
                     'End If
+
+                    If changes.Rows(i)("name") = "employee_join_date" Then
+                        join_date_changed = True
+                    End If
                 Next
 
                 progress.ProgressBarControl.EditValue = 30
@@ -1678,12 +1740,37 @@
                 '    execute_non_query(query, True, "", "", "", "")
                 'End If
 
+                If join_date_changed Then
+                    'remaining leave
+                    query = "
+                        INSERT INTO tb_emp_stock_leave(id_emp, qty, plus_minus, date_leave, date_expired, is_process_exp, `type`, note)
+                        SELECT id_emp, SUM(IF(plus_minus = 1, qty, -qty)) AS qty, 2 AS plus_minus, NOW() AS date_leave, date_expired, 1 AS is_process_exp, `type`, 'Auto adjustment leave' AS note
+                        FROM tb_emp_stock_leave
+                        WHERE id_emp = " + id_employee + "
+                        GROUP BY id_emp, `type`, date_expired
+                        HAVING SUM(IF(plus_minus = 1, qty, -qty)) > 0
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+
+                    'adv leave
+                    query = "
+                        INSERT INTO tb_emp_stock_leave_adv(id_emp, qty, adv_datetime)
+                        SELECT id_emp, -(SUM(qty)) AS qty, NOW() AS adv_datetime
+                        FROM tb_emp_stock_leave_adv
+                        WHERE id_emp = " + id_employee + "
+                        GROUP BY id_emp
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
                 progress.ProgressBarControl.EditValue = 40
             End If
         Else
             query = "
-                INSERT INTO tb_m_employee(id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, is_active, note_bpjs_kesehatan, is_koperasi, is_pic)
-                SELECT id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, '1' AS is_active, note_bpjs_kesehatan, is_koperasi, is_pic
+                INSERT INTO tb_m_employee(id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, is_active, note_bpjs_kesehatan, is_koperasi, is_pic, employee_nik_sogo)
+                SELECT id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_actual_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, email_personal, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_bpjs_kesehatan_husband, id_bpjs_status_husband, is_bpjs_volcom_husband, employee_bpjs_kesehatan_date_husband, employee_bpjs_kesehatan_wife, id_bpjs_status_wife, is_bpjs_volcom_wife, employee_bpjs_kesehatan_date_wife, employee_bpjs_kesehatan_child1, id_bpjs_status_child1, is_bpjs_volcom_child1, employee_bpjs_kesehatan_date_child1, employee_bpjs_kesehatan_child2, id_bpjs_status_child2, is_bpjs_volcom_child2, employee_bpjs_kesehatan_date_child2, employee_bpjs_kesehatan_child3, id_bpjs_status_child3, is_bpjs_volcom_child3, employee_bpjs_kesehatan_date_child3, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, '1' AS is_active, note_bpjs_kesehatan, is_koperasi, is_pic, employee_nik_sogo
                 FROM tb_employee_pps 
                 WHERE id_employee_pps = '" + id_pps + "';
                 SELECT LAST_INSERT_ID();
@@ -2040,14 +2127,34 @@
     End Sub
 
     Private Sub LEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartement.EditValueChanged
-        If Not LEDepartement.EditValue Is Nothing And Not LESubDepartement.EditValue Is Nothing Then
-            viewSubDepartement(LEDepartement.EditValue, LESubDepartement.EditValue)
+        PCSogo.Visible = False
+        GCContractPropose.Size = New Size(773, 275)
+
+        If Not LEDepartement.EditValue Is Nothing Then
+            If LEDepartement.EditValue.ToString = "17" Then
+                PCSogo.Visible = True
+                GCContractPropose.Size = New Size(773, 303)
+            End If
+
+            If Not LESubDepartement.EditValue Is Nothing Then
+                viewSubDepartement(LEDepartement.EditValue, LESubDepartement.EditValue)
+            End If
         End If
     End Sub
 
     Private Sub LEDepartementB_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartementB.EditValueChanged
-        If Not LEDepartementB.EditValue Is Nothing And Not LESubDepartementB.EditValue Is Nothing Then
-            viewSubDepartementB(LEDepartementB.EditValue, LESubDepartementB.EditValue)
+        PCSogoB.Visible = False
+        GCContractProposeB.Size = New Size(773, 275)
+
+        If Not LEDepartementB.EditValue Is Nothing Then
+            If LEDepartementB.EditValue.ToString = "17" Then
+                PCSogoB.Visible = True
+                GCContractProposeB.Size = New Size(773, 303)
+            End If
+
+            If Not LESubDepartementB.EditValue Is Nothing Then
+                viewSubDepartementB(LEDepartementB.EditValue, LESubDepartementB.EditValue)
+            End If
         End If
     End Sub
 
@@ -2100,6 +2207,73 @@
     Private Sub DEJoinDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEJoinDate.EditValueChanged
         If is_new = "1" Then
             DEActualJoinDate.EditValue = DEJoinDate.EditValue
+        End If
+    End Sub
+
+    Private Sub DEJoinDate_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles DEJoinDate.EditValueChanging
+        If load_all Then
+            If Not is_new = "1" Then
+                Dim confirm As DialogResult
+
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Changing join date will reset employee remaining leave to 0, are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                Else
+                    e.Cancel = True
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub TxtCode_EditValueChanged(sender As Object, e As EventArgs) Handles TxtCode.EditValueChanged
+        TxtCode.EditValue = TxtCode.EditValue.ToString.Trim()
+    End Sub
+
+    Private Sub TxtSogoNIK_EditValueChanged(sender As Object, e As EventArgs) Handles TxtSogoNIK.EditValueChanged
+        TxtSogoNIK.EditValue = TxtSogoNIK.EditValue.ToString.Trim()
+    End Sub
+
+    Private Sub PE_ImageChanged(sender As Object, e As EventArgs) Handles PE.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKTP_ImageChanged(sender As Object, e As EventArgs) Handles PEKTP.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKK_ImageChanged(sender As Object, e As EventArgs) Handles PEKK.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEREK_ImageChanged(sender As Object, e As EventArgs) Handles PEREK.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEB_ImageChanged(sender As Object, e As EventArgs) Handles PEB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKTPB_ImageChanged(sender As Object, e As EventArgs) Handles PEKTPB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEKKB_ImageChanged(sender As Object, e As EventArgs) Handles PEKKB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Private Sub PEREKB_ImageChanged(sender As Object, e As EventArgs) Handles PEREKB.ImageChanged
+        changeImage(sender, e)
+    End Sub
+
+    Sub changeImage(sender As Object, e As EventArgs)
+        Dim PEEdit As DevExpress.XtraEditors.PictureEdit = CType(sender, DevExpress.XtraEditors.PictureEdit)
+
+        If Not PEEdit.EditValue Is Nothing Then
+            Dim image As Image = FormEmployeePpsAtt.imageResize(CType(PEEdit.EditValue, Bitmap))
+
+            If Not image Is Nothing Then
+                PEEdit.EditValue = image
+            End If
         End If
     End Sub
 End Class

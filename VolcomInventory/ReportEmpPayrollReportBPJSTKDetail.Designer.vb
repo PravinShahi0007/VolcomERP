@@ -33,6 +33,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -42,6 +43,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XTTotal = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell25 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -50,6 +52,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell30 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XLLocation = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
@@ -59,8 +62,6 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,7 +99,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell20.StylePriority.UseBorders = False
         Me.XrTableCell20.StylePriority.UseTextAlignment = False
         Me.XrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell20.Weight = 4.2911628720863826R
+        Me.XrTableCell20.Weight = 4.29116287208638R
         '
         'XrTableCell22
         '
@@ -113,7 +114,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell22.StylePriority.UseTextAlignment = False
         Me.XrTableCell22.Text = "DIBAYAR OLEH PERUSAHAAN"
         Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell22.Weight = 0.97099360110302169R
+        Me.XrTableCell22.Weight = 0.970993601103022R
         '
         'XrTableCell24
         '
@@ -128,7 +129,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell24.StylePriority.UseTextAlignment = False
         Me.XrTableCell24.Text = "DIBAYAR OLEH KARYAWAN  "
         Me.XrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell24.Weight = 0.93967041806852247R
+        Me.XrTableCell24.Weight = 0.939670418068522R
         '
         'XrTableCell26
         '
@@ -140,7 +141,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell26.StylePriority.UseBorders = False
         Me.XrTableCell26.StylePriority.UseTextAlignment = False
         Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell26.Weight = 0.53248068195694409R
+        Me.XrTableCell26.Weight = 0.532480681956944R
         '
         'XTRow
         '
@@ -160,7 +161,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "NO."
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell1.Weight = 0.16833205053214528R
+        Me.XrTableCell1.Weight = 0.168332050532145R
         '
         'XrTableCell6
         '
@@ -172,7 +173,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "KPJ"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 0.5386625615646079R
+        Me.XrTableCell6.Weight = 0.538662561564608R
         '
         'XrTableCell5
         '
@@ -184,7 +185,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "NAMA"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell5.Weight = 1.3466563724572431R
+        Me.XrTableCell5.Weight = 1.34665637245724R
         '
         'XrTableCell4
         '
@@ -197,7 +198,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.Text = "JENIS KELAMIN"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell4.Weight = 0.33666411055832873R
+        Me.XrTableCell4.Weight = 0.336664110558329R
         '
         'XrTableCell2
         '
@@ -210,7 +211,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "LAHIR"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell2.Weight = 0.50499616176588891R
+        Me.XrTableCell2.Weight = 0.504996161765889R
         '
         'XrTableCell3
         '
@@ -224,7 +225,20 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell3.StylePriority.UseTextAlignment = False
         Me.XrTableCell3.Text = "KEP PROG"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell3.Weight = 0.5049961534310371R
+        Me.XrTableCell3.Weight = 0.504996153431037R
+        '
+        'XrTableCell11
+        '
+        Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell11.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell11.Name = "XrTableCell11"
+        Me.XrTableCell11.StylePriority.UseBackColor = False
+        Me.XrTableCell11.StylePriority.UseBorders = False
+        Me.XrTableCell11.StylePriority.UseTextAlignment = False
+        Me.XrTableCell11.Text = "UPAH"
+        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell11.Weight = 0.605995378090443R
         '
         'XrTableCell15
         '
@@ -238,7 +252,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
         Me.XrTableCell15.Text = "UPAH"
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell15.Weight = 0.60599537809044279R
+        Me.XrTableCell15.Weight = 0.605995378090443R
         '
         'XrTableCell7
         '
@@ -251,7 +265,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "JKK, JKM, JHT"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell7.Weight = 0.5386625570278496R
+        Me.XrTableCell7.Weight = 0.53866255702785R
         '
         'XrTableCell13
         '
@@ -264,7 +278,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell13.StylePriority.UseTextAlignment = False
         Me.XrTableCell13.Text = "JP"
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell13.Weight = 0.50499617645255779R
+        Me.XrTableCell13.Weight = 0.504996176452558R
         '
         'XrTableCell8
         '
@@ -303,7 +317,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
         Me.XrTableCell10.Text = "BAYAR KE BPJS KETENAGAKERJAAN"
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell10.Weight = 0.5723290663531595R
+        Me.XrTableCell10.Weight = 0.57232906635316R
         '
         'XTTotal
         '
@@ -320,7 +334,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell19.StylePriority.UseBorders = False
         Me.XrTableCell19.StylePriority.UseTextAlignment = False
         Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell19.Weight = 2.8953115632687361R
+        Me.XrTableCell19.Weight = 2.89531156326874R
         '
         'XrTableCell21
         '
@@ -336,7 +350,23 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell21.StylePriority.UseTextAlignment = False
         Me.XrTableCell21.Text = "GRAND TOTAL"
         Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell21.Weight = 0.50499596393544555R
+        Me.XrTableCell21.Weight = 0.504995963935446R
+        '
+        'XrTableCell12
+        '
+        Me.XrTableCell12.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell12.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell12.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell12.Name = "XrTableCell12"
+        Me.XrTableCell12.StylePriority.UseBackColor = False
+        Me.XrTableCell12.StylePriority.UseBorders = False
+        Me.XrTableCell12.StylePriority.UseFont = False
+        Me.XrTableCell12.StylePriority.UseTextAlignment = False
+        Me.XrTableCell12.Text = "0"
+        Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrTableCell12.Weight = 0.605995779359807R
         '
         'XrTableCell23
         '
@@ -352,7 +382,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell23.StylePriority.UseTextAlignment = False
         Me.XrTableCell23.Text = "0"
         Me.XrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell23.Weight = 0.60599495742595577R
+        Me.XrTableCell23.Weight = 0.605994957425956R
         '
         'XrTableCell25
         '
@@ -368,7 +398,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell25.StylePriority.UseTextAlignment = False
         Me.XrTableCell25.Text = "0"
         Me.XrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell25.Weight = 0.5386621363633628R
+        Me.XrTableCell25.Weight = 0.538662136363363R
         '
         'XrTableCell27
         '
@@ -384,7 +414,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell27.StylePriority.UseTextAlignment = False
         Me.XrTableCell27.Text = "0"
         Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell27.Weight = 0.50499616177516737R
+        Me.XrTableCell27.Weight = 0.504996161775167R
         '
         'XrTableCell28
         '
@@ -400,7 +430,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell28.StylePriority.UseTextAlignment = False
         Me.XrTableCell28.Text = "0"
         Me.XrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell28.Weight = 0.50499654773197422R
+        Me.XrTableCell28.Weight = 0.504996547731974R
         '
         'XrTableCell29
         '
@@ -416,7 +446,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell29.StylePriority.UseTextAlignment = False
         Me.XrTableCell29.Text = "0"
         Me.XrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell29.Weight = 0.50499531483119775R
+        Me.XrTableCell29.Weight = 0.504995314831198R
         '
         'XrTableCell30
         '
@@ -432,7 +462,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell30.StylePriority.UseTextAlignment = False
         Me.XrTableCell30.Text = "0"
         Me.XrTableCell30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell30.Weight = 0.57232983953710737R
+        Me.XrTableCell30.Weight = 0.572329839537107R
         '
         'TopMargin
         '
@@ -443,10 +473,25 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         '
         'BottomMargin
         '
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
         Me.BottomMargin.HeightF = 50.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(925.0!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'XLLocation
         '
@@ -497,6 +542,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
         Me.ReportFooter.HeightF = 25.00001!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable1
@@ -522,35 +568,6 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
         Me.XrTableCell17.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell17.Visible = False
         Me.XrTableCell17.Weight = 2.99999986405489R
-        '
-        'XrTableCell11
-        '
-        Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell11.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell11.Name = "XrTableCell11"
-        Me.XrTableCell11.StylePriority.UseBackColor = False
-        Me.XrTableCell11.StylePriority.UseBorders = False
-        Me.XrTableCell11.StylePriority.UseTextAlignment = False
-        Me.XrTableCell11.Text = "UPAH"
-        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 0.60599537809044268R
-        '
-        'XrTableCell12
-        '
-        Me.XrTableCell12.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell12.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell12.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell12.Name = "XrTableCell12"
-        Me.XrTableCell12.StylePriority.UseBackColor = False
-        Me.XrTableCell12.StylePriority.UseBorders = False
-        Me.XrTableCell12.StylePriority.UseFont = False
-        Me.XrTableCell12.StylePriority.UseTextAlignment = False
-        Me.XrTableCell12.Text = "0"
-        Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell12.Weight = 0.60599577935980686R
         '
         'ReportEmpPayrollReportBPJSTKDetail
         '
@@ -609,4 +626,5 @@ Partial Public Class ReportEmpPayrollReportBPJSTKDetail
     Friend WithEvents XrTableCell30 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
 End Class

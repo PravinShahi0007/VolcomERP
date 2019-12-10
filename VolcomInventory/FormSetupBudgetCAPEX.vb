@@ -6,7 +6,7 @@
     Dim report_desc As String = ""
     Dim report_year As String = ""
 
-    Dim is_admin As String = "-1"
+    Dim is_admin As String = "1"
 
     Sub check_menu()
         bnew_active = "0"
@@ -65,9 +65,10 @@
             dep = "AND bo.id_departement='" & LEDeptSum.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT ic.id_item_cat_main,ic.item_cat_main,'" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense,'') AS id_b_expense,IFNULL(bo.value_expense,0) AS value_expense
+        Dim query As String = "SELECT dep.departement,ic.id_item_cat_main,ic.item_cat_main,'" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense,'') AS id_b_expense,IFNULL(bo.value_expense,0) AS value_expense
 FROM tb_item_cat_main ic
 LEFT JOIN `tb_b_expense` bo ON bo.id_item_cat_main=ic.id_item_cat_main AND bo.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND bo.is_active='1' " & dep & "
+LEFT JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
 WHERE ic.id_expense_type='2'
 ORDER BY ic.id_item_cat_main"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -80,7 +81,7 @@ ORDER BY ic.id_item_cat_main"
         '
         Dim query As String = "SELECT COUNT(*) FROM `tb_b_expense_propose_year` ppd
 INNER JOIN tb_b_expense_propose pps ON pps.`id_b_expense_propose`=ppd.`id_b_expense_propose`
-WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND pps.`id_report_status` !=6"
+WHERE ppd.year='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND pps.`id_report_status` !=6 AND pps.id_departement='" & LEDeptSum.EditValue.ToString & "'"
         Dim jml As String = execute_query(query, 0, True, "", "", "", "").ToString
 
         If Not jml = "0" Then

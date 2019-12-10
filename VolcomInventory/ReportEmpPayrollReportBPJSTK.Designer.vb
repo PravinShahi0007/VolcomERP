@@ -45,10 +45,12 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -304,8 +306,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XrLabel2, Me.XLPeriod})
-        Me.TopMargin.HeightF = 68.0!
+        Me.TopMargin.HeightF = 30.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -313,7 +314,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 8.95834!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(350.0!, 16.0!)
@@ -323,7 +324,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 24.95832!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 31.99998!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(350.0!, 16.0!)
@@ -333,7 +334,7 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         'XLPeriod
         '
         Me.XLPeriod.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(0!, 40.95834!)
+        Me.XLPeriod.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.0!)
         Me.XLPeriod.Name = "XLPeriod"
         Me.XLPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLPeriod.SizeF = New System.Drawing.SizeF(350.0!, 16.0!)
@@ -341,15 +342,31 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         '
         'BottomMargin
         '
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
         Me.BottomMargin.HeightF = 50.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(583.0!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
         Me.ReportFooter.HeightF = 25.00001!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable1
@@ -376,10 +393,16 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
         Me.XrTableCell17.Visible = False
         Me.XrTableCell17.Weight = 2.99999986405489R
         '
+        'ReportHeader
+        '
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XLPeriod, Me.XrLabel1})
+        Me.ReportHeader.HeightF = 80.0!
+        Me.ReportHeader.Name = "ReportHeader"
+        '
         'ReportEmpPayrollReportBPJSTK
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(25, 69, 68, 50)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.ReportHeader})
+        Me.Margins = New System.Drawing.Printing.Margins(25, 69, 30, 50)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -420,4 +443,6 @@ Partial Public Class ReportEmpPayrollReportBPJSTK
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
 End Class

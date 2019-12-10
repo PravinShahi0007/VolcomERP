@@ -147,7 +147,7 @@
         ElseIf report_mark_type = "104" Then
             'propose leave HRD
             FormEmpLeaveDet.Close()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clearance
             FormProductionFinalClearDet.Close()
         ElseIf report_mark_type = "108" Then
@@ -192,19 +192,19 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase Request
             FormPurcReqDet.Close()
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.Close()
-        ElseIf report_mark_type = "139" Then
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then
             'Purchase Order
             FormPurcOrderDet.Close()
         ElseIf report_mark_type = "142" Then
             'Cancel Form
             FormReportMarkCancel.Close()
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
             'PD REVISION
             FormProdDemandRevDet.Close()
         ElseIf report_mark_type = "147" Then
@@ -261,15 +261,15 @@
         ElseIf report_mark_type = "180" Then
             'Employee Propose
             FormEmployeePpsDet.Close()
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
         ElseIf report_mark_type = "185" Then
             'Sample Purchase Closing
             FormSamplePurcClose.Close()
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'Overtime employee report
-            FormEmpOvertimeDet.Close()
+            FormEmpOvertimeVerification.Close()
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             FormFGProposePriceRev.Close()
@@ -306,6 +306,23 @@
         ElseIf report_mark_type = "208" Or report_mark_type = "209" Then
             'propose budget CAPEX
             FormSetupBudgetCAPEXDet.Close()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.Close()
+        ElseIf report_mark_type = "212" Then
+            'Prod order closing
+            FormProdClosingPps.Close()
+        ElseIf report_mark_type = "217" Then
+            'bukti pickup
+            FormBuktiPickupDet.Close()
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            FormDebitNoteDet.Close()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            FormEmpBPJSKesehatanDet.Close()
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            FormProductionFinalClearSummary.Close()
         End If
     End Sub
     Sub show()
@@ -431,8 +448,18 @@
             FormViewMatAdjOut.ShowDialog()
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'receive FG QC
-            FormViewProductionRec.id_receive = id_report
-            FormViewProductionRec.ShowDialog()
+            Dim q_before As String = "SELECT GROUP_CONCAT(rec.prod_order_rec_number) AS rec_before
+FROM tb_prod_order_rec rec 
+WHERE (rec.id_report_status!='6' AND rec.id_report_status!='5') AND rec.`id_prod_order_rec` < '" & id_report & "' AND rec.`id_prod_order`=(SELECT id_prod_order FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_report & "')
+GROUP BY rec.`id_prod_order`"
+            Dim dt As DataTable = execute_query(q_before, -1, True, "", "", "", "")
+            '
+            If dt.Rows.Count > 0 Then
+                warningCustom("Please approve receiving before this : " & dt.Rows(0)("rec_before").ToString)
+            Else
+                FormViewProductionRec.id_receive = id_report
+                FormViewProductionRec.ShowDialog()
+            End If
         ElseIf report_mark_type = "29" Then
             'Production Work Order
             FormViewProductionMRS.id_mrs = id_report
@@ -474,9 +501,10 @@
             FormViewSalesOrder.id_sales_order = id_report
             FormViewSalesOrder.ShowDialog()
         ElseIf report_mark_type = "40" Then
-            'Entry Journal
-            FormViewJournalAdj.id_trans_adj = id_report
-            FormViewJournalAdj.ShowDialog()
+            'Adjustment Journal
+            FormAccountingJournalAdjDet.is_view = "1"
+            FormAccountingJournalAdjDet.id_trans_adj = id_report
+            FormAccountingJournalAdjDet.ShowDialog()
         ElseIf report_mark_type = "41" Then
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report
@@ -726,7 +754,7 @@
             FormEmpLeaveDet.report_mark_type = "104"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'final clear
             FormProductionFinalClearDet.id_prod_fc = id_report
             FormProductionFinalClearDet.action = "upd"
@@ -854,7 +882,7 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'Purchase Request
             FormPurcReqDet.is_view = "1"
             FormPurcReqDet.id_req = id_report
@@ -864,12 +892,12 @@
             FormBudgetExpenseRevisionDet.id = id_report
             FormBudgetExpenseRevisionDet.is_view = "1"
             FormBudgetExpenseRevisionDet.ShowDialog()
-        ElseIf report_mark_type = "139" Then
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then
             'Purchase Order
             FormPurcOrderDet.id_po = id_report
             FormPurcOrderDet.is_view = "1"
             FormPurcOrderDet.ShowDialog()
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
             'PD REVISION
             FormProdDemandRevDet.id = id_report
             FormProdDemandRevDet.is_view = "1"
@@ -1018,10 +1046,10 @@
             FormEmployeePpsDet.show_payroll = True
 
             FormEmployeePpsDet.ShowDialog()
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_hrd = "1"
-            FormEmpOvertimeDet.is_check = "-1"
+            FormEmpOvertimeDet.is_view = "1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "185" Then
@@ -1030,12 +1058,16 @@
             FormSamplePurcCloseDet.is_view = "1"
 
             FormSamplePurcCloseDet.ShowDialog()
-        ElseIf report_mark_type = "187" Then
-            FormEmpOvertimeDet.id = id_report
-            FormEmpOvertimeDet.is_hrd = "1"
-            FormEmpOvertimeDet.is_check = "1"
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
+            Dim data_ver As DataTable = execute_query("SELECT id_ot, ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'", -1, True, "", "", "", "")
 
-            FormEmpOvertimeDet.ShowDialog()
+            FormEmpOvertimeVerification.is_hrd = "1"
+            FormEmpOvertimeVerification.id = id_report
+            FormEmpOvertimeVerification.id_ot = data_ver.Rows(0)("id_ot").ToString
+            FormEmpOvertimeVerification.is_view = "1"
+            FormEmpOvertimeVerification.ot_date = data_ver.Rows(0)("ot_date")
+
+            FormEmpOvertimeVerification.ShowDialog()
         ElseIf report_mark_type = "183" Then
             'sales invuuce diff margin
             FormViewSalesPOS.id_menu = "4"
@@ -1089,6 +1121,32 @@
             FormSetupBudgetCAPEXDet.id_pps = id_report
             FormSetupBudgetCAPEXDet.is_view = "1"
             FormSetupBudgetCAPEXDet.ShowDialog()
+        ElseIf report_mark_type = "211" Then
+            FormEmpInputAttendanceDet.id = id_report
+            FormEmpInputAttendanceDet.ShowDialog()
+        ElseIf report_mark_type = "212" Then
+            'prod order closing
+            FormProdClosingPps.id_pps = id_report
+            FormProdClosingPps.ShowDialog()
+        ElseIf report_mark_type = "217" Then
+            'bukti pickup
+            FormBuktiPickupDet.id_pickup = id_report
+            FormBuktiPickupDet.ShowDialog()
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            FormDebitNoteDet.id_dn = id_report
+            FormDebitNoteDet.is_view = "1"
+            FormDebitNoteDet.ShowDialog()
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            FormEmpBPJSKesehatanDet.id = id_report
+            FormEmpBPJSKesehatanDet.is_approve = "1"
+            FormEmpBPJSKesehatanDet.ShowDialog()
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            FormProductionFinalClearSummary.id_prod_fc_sum = id_report
+            FormProductionFinalClearSummary.is_vew = "1"
+            FormProductionFinalClearSummary.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1338,7 +1396,7 @@
             table_name = "tb_a_acc_trans_adj"
             field_id = "id_acc_trans_adj"
             field_number = "acc_trans_adj_number"
-            field_date = "acc_trans_adj_date"
+            field_date = "date_created"
         ElseIf report_mark_type = "41" Then
             'Adj In FG
             table_name = "tb_adj_in_fg"
@@ -1665,7 +1723,7 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
-        ElseIf report_mark_type = "105" Then
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
             'FINAL CLEARANCE
             table_name = "tb_prod_fc"
             field_id = "id_prod_fc"
@@ -1785,7 +1843,7 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "137" Or report_mark_type = "201" Then
+        ElseIf report_mark_type = "137" Or report_mark_type = "201" Or report_mark_type = "218" Then
             'purchase request
             table_name = "tb_purc_req"
             field_id = "id_purc_req"
@@ -1797,13 +1855,13 @@
             field_id = "id_b_expense_revision"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "139" Then
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then
             'purchase request
             table_name = "tb_purc_order"
             field_id = "id_purc_order"
             field_number = "purc_order_number"
             field_date = "date_created"
-        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
             ' PD REV
             table_name = "tb_prod_demand_rev"
             field_id = "id_prod_demand_rev"
@@ -1871,8 +1929,8 @@
             field_date = "created_date"
         ElseIf report_mark_type = "159" Then
             'item del
-            table_name = "tb_payment"
-            field_id = "id_payment"
+            table_name = "tb_pn"
+            field_id = "id_pn"
             field_number = "number"
             field_date = "date_created"
         ElseIf report_mark_type = "160" Or report_mark_type = "169" Then
@@ -1947,17 +2005,23 @@
             field_id = "id_employee_sal_pps"
             field_number = "number"
             field_date = "created_at"
-        ElseIf report_mark_type = "184" Then
+        ElseIf report_mark_type = "180" Then
+            'propose employee
+            table_name = "tb_employee_pps"
+            field_id = "id_employee_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             table_name = "tb_ot"
             field_id = "id_ot"
             field_number = "number"
             field_date = "created_at"
-        ElseIf report_mark_type = "187" Then
+        ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'Overtime employee report
-            table_name = "tb_ot"
-            field_id = "id_ot"
-            field_number = "number"
+            table_name = "tb_ot_verification"
+            field_id = "id_ot_verification"
+            field_number = "(SELECT number FROM tb_ot WHERE id_ot = tb_ot_verification.id_ot)"
             field_date = "NOW()"
         ElseIf report_mark_type = "200" Then
             'propose design changes
@@ -1983,6 +2047,41 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "211" Then
+            table_name = "tb_emp_attn_input"
+            field_id = "id_emp_attn_input"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "212" Then
+            'prod order closing propose
+            table_name = "tb_prod_order_close"
+            field_id = "id_prod_order_close"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "217" Then
+            'bukti pickup
+            table_name = "tb_del_pickup"
+            field_id = "id_pickup"
+            field_number = "id_pickup"
+            field_date = "created_date"
+        ElseIf report_mark_type = "221" Then
+            'debit note
+            table_name = "tb_debit_note"
+            field_id = "id_debit_note"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "223" Then
+            'bpjs kesehatan
+            table_name = "tb_pay_bpjs_kesehatan"
+            field_id = "id_pay_bpjs_kesehatan"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            table_name = "tb_prod_fc_sum"
+            field_id = "id_prod_fc_sum"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2289,7 +2388,7 @@
                         info_col = datax.Rows(0)("total_qty").ToString
                         info_report = datax.Rows(0)("store").ToString
                     End If
-                ElseIf report_mark_type = "105" Then
+                ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
                     'final clearance
                     Dim fcl As New ClassProductionFinalClear()
                     query = fcl.queryMain("AND f.id_prod_fc=" + id_report + " ", "1")
@@ -2349,7 +2448,7 @@
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("year").ToString
                     End If
-                ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+                ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Or report_mark_type = "210" Then
                     'pd revision
                     query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number
                     FROM tb_prod_demand_rev
@@ -2413,11 +2512,30 @@
                     End If
                 ElseIf report_mark_type = "192" Then
                     'payroll
-                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period
-                    FROM tb_emp_payroll
-                    WHERE id_payroll = " + id_report + ""
+                    query = "SELECT IF(pytype.is_thr = 1, DATE_FORMAT(py.periode_end,'%Y'), DATE_FORMAT(py.periode_end,'%M %Y')) AS period, pytype.payroll_type
+                    FROM tb_emp_payroll AS py
+                    LEFT JOIN tb_emp_payroll_type AS pytype ON py.id_payroll_type = pytype.id_payroll_type
+                    WHERE py.id_payroll = " + id_report + ""
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("payroll_type").ToString
+                        info_design = "Period: " + datax.Rows(0)("period").ToString
+                    End If
+                ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
+                    'Overtime employee report
+                    query = "SELECT DATE_FORMAT(ot_date,'%d %M %Y') AS ot_date FROM tb_ot_verification WHERE id_ot_verification = '" + id_report + "'"
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_design = "Date: " + datax.Rows(0)("ot_date").ToString
+                    End If
+                ElseIf report_mark_type = "223" Then
+                    'bpjs kesehatan
+                    query = "SELECT DATE_FORMAT(periode_end,'%M %Y') AS period, IF(id_payroll_type = 1, 'Organic', 'Daily Worker') AS payroll_type
+                    FROM tb_emp_payroll
+                    WHERE id_payroll = (SELECT id_payroll FROM tb_pay_bpjs_kesehatan WHERE id_pay_bpjs_kesehatan = " + id_report + ")"
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("payroll_type").ToString
                         info_design = "Period: " + datax.Rows(0)("period").ToString
                     End If
                 End If
@@ -2458,27 +2576,95 @@
                                 INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
+            ElseIf report_mark_type = "139" Then 'PO Opex
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                ,c.`comp_name`,et.expense_type
+                                FROM " & table_name & " tb
+                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                WHERE tb.id_report_status='6' AND tb.`id_expense_type`='1'"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb." & field_id & ""
+                '
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                    ,c.`comp_name`,et.expense_type
+                                    FROM " & table_name & " tb
+                                    INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                    INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                    INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                   WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,c.`comp_name`,et.expense_type " & generate_left_join_cancel("column") & "
+                                FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
+                               INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
+                               GROUP BY tb." & field_id
+            ElseIf report_mark_type = "202" Then 'capex
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                ,c.`comp_name`,et.expense_type
+                                FROM " & table_name & " tb
+                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                WHERE tb.id_report_status='6' AND tb.`id_expense_type`='2'"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb." & field_id & ""
+                '
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                    ,c.`comp_name`,et.expense_type
+                                    FROM " & table_name & " tb
+                                    INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                    INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                    INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                                   WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,c.`comp_name`,et.expense_type " & generate_left_join_cancel("column") & "
+                                FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
+                               INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_lookup_expense_type` et ON et.`id_expense_type`=tb.`id_expense_type`
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
+                               GROUP BY tb." & field_id
             ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
-                                INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
-                                INNER JOIN (
-	                                SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
-	                                INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
-	                                GROUP BY wo.`id_prod_order`
-                                )wo ON wo.id_prod_order=tb.id_prod_order
-                                INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
-                                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-                                INNER JOIN (
-	                                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
-                                    FROM tb_prod_order_wo wo
-                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
-                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
-                                    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
-                                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
-                                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
-                                    GROUP BY wo.id_prod_order_wo
-                                )ovh ON ovh.id_prod_order=tb.id_prod_order
-                                WHERE tb.id_report_status='6'"
+                query_view = "SELECT 'no' AS is_check,tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
+INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
+INNER JOIN (
+	SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
+	INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+	GROUP BY wo.`id_prod_order`
+)wo ON wo.id_prod_order=tb.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN (
+	SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
+    FROM tb_prod_order_wo wo
+    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
+    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+    GROUP BY wo.id_prod_order_wo
+)ovh ON ovh.id_prod_order=tb.id_prod_order
+LEFT JOIN (
+	SELECT id_design 
+	FROM `tb_fg_propose_price_detail` ppd
+	INNER JOIN tb_fg_propose_price pp ON pp.`id_fg_propose_price`=ppd.`id_fg_propose_price`
+	WHERE pp.id_report_status!=5
+	GROUP BY ppd.id_design
+)pp ON pp.id_design=dsg.`id_design`
+LEFT JOIN (
+	SELECT id_prod_order FROM tb_prod_order_rec WHERE id_report_status!=5
+)rec ON rec.id_prod_order=det.`id_prod_order`
+WHERE tb.id_report_status='6' AND IF(ISNULL(pp.id_design),2,1)=2 AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
@@ -2522,6 +2708,80 @@
                                     INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                     " & generate_left_join_cancel("query") & "
                                     GROUP BY tb.id_prod_order"
+            ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
+                'QC Report/Final CLearance
+                'saat pick
+                query_view = "SELECT 'no' AS is_check,f." & field_id & " AS `id_report`, f." & field_number & " AS `number`, f." & field_date & " AS `date_created`, po.id_prod_order, po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
+                cat.pl_category AS `category`, fd.total_qty
+                FROM tb_prod_fc f
+                INNER JOIN (
+	                SELECT fd.id_prod_fc, SUM(fd.prod_fc_det_qty) AS `total_qty` 
+	                FROM tb_prod_fc_det fd
+	                INNER JOIN tb_prod_fc f ON f.id_prod_fc = fd.id_prod_fc
+	                WHERE f.id_report_status=6
+	                GROUP BY fd.id_prod_fc
+                ) fd ON fd.id_prod_fc = f.id_prod_fc
+                INNER JOIN tb_lookup_pl_category cat ON cat.id_pl_category = f.id_pl_category
+                INNER JOIN tb_prod_order po ON po.id_prod_order = f.id_prod_order
+                INNER JOIN (
+	                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
+                    FROM tb_prod_order_wo wo
+                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+                    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
+                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                    GROUP BY wo.id_prod_order_wo
+                )ovh ON ovh.id_prod_order=po.id_prod_order
+                INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                WHERE f.id_report_status=6 AND po.is_closing_rec=2 "
+                'Left Join(
+                ' SELECT pl.id_prod_order, pl.id_pl_category
+                '    From tb_pl_prod_order pl
+                ' Where pl.id_report_status! = 5
+                '    Group By pl.id_prod_order, pl.id_pl_category
+                ') pl ON pl.id_prod_order = f.id_prod_order And pl.id_pl_category = f.id_pl_category
+                'AND ISNULL(pl.id_prod_order) 
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND f." & field_id & " NOT IN " & qb_id_not_include
+                End If
+
+                'saat blank - edit value pilih rmt
+                query_view_blank = "SELECT f." & field_id & " AS `id_report`, f." & field_number & " AS `number`, f." & field_date & " AS `date_created`, 0 as id_prod_order, '' AS prod_order_number, '' AS `vendor`, '' AS `code`, '' AS `name`, 
+                '' AS `category`, 0 AS `total_qty`
+                FROM tb_prod_fc f
+                WHERE f.id_report_status='-1' "
+
+                'saat edit
+                query_view_edit = "SELECT rmcr.id_report,f." & field_number & " AS number,f." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,
+                                po.id_prod_order,po.prod_order_number, ovh.comp_name AS `vendor`,d.design_code AS `code`, d.design_display_name AS `name`, 
+                                cat.pl_category AS `category`, fd.total_qty " & generate_left_join_cancel("column") & "
+                                FROM tb_report_mark_cancel_report rmcr 
+                                INNER JOIN " & table_name & " f ON f." & field_id & "=rmcr.id_report
+                                INNER JOIN (
+	                                SELECT fd.id_prod_fc, SUM(fd.prod_fc_det_qty) AS `total_qty` 
+	                                FROM tb_prod_fc_det fd
+	                                INNER JOIN tb_prod_fc f ON f.id_prod_fc = fd.id_prod_fc
+	                                WHERE f.id_report_status=6
+	                                GROUP BY fd.id_prod_fc
+                                ) fd ON fd.id_prod_fc = f.id_prod_fc
+                                INNER JOIN tb_lookup_pl_category cat ON cat.id_pl_category = f.id_pl_category
+                                INNER JOIN tb_prod_order po ON po.id_prod_order = f.id_prod_order
+                                INNER JOIN (
+	                                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price
+                                    FROM tb_prod_order_wo wo
+                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+                                    INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
+                                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+                                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                    GROUP BY wo.id_prod_order_wo
+                                )ovh ON ovh.id_prod_order=po.id_prod_order
+                                INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                                INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
+                                 " & generate_left_join_cancel("query") & "
+                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' "
             Else
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
@@ -2625,6 +2885,35 @@
 
             gv.Columns("id_report").OptionsColumn.AllowEdit = False
             gv.BestFitColumns()
+        ElseIf report_mark_type = "139" Or report_mark_type = "202" Then 'PO opex
+            If opt = "pick" Then
+                gv.Columns("is_check").Caption = "*"
+                gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                '
+                Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+                rpce.ValueUnchecked = "no"
+                rpce.ValueChecked = "yes"
+                '
+                gv.Columns("is_check").ColumnEdit = rpce
+            End If
+            gv.Columns("id_report").Visible = False
+            Try
+                gv.Columns("id_rmcr").Visible = False
+                gv.Columns("id_report_mark_cancel_report").Visible = False
+            Catch ex As Exception
+            End Try
+
+            gv.Columns("expense_type").Caption = "PO Type"
+            gv.Columns("comp_name").Caption = "Vendor"
+
+            gv.Columns("date_created").Caption = "Created Date"
+            gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+            gv.Columns("number").Caption = "Number"
+
+            gv.Columns("id_report").OptionsColumn.AllowEdit = False
+            gv.BestFitColumns()
         ElseIf report_mark_type = "22" Then
             If opt = "pick" Then
                 gv.Columns("is_check").Caption = "*"
@@ -2667,6 +2956,61 @@
             gv.Columns("design_display_name").Caption = "Style Name"
             gv.Columns("design_code_import").Caption = "Code Import"
             gv.Columns("design_code").Caption = "Code Local"
+            gv.Columns("id_report").OptionsColumn.AllowEdit = False
+            gv.OptionsView.ShowFooter = True
+            '
+            gv.AppearancePrint.HeaderPanel.BackColor = Color.LightGray
+            gv.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            gv.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+            gv.AppearancePrint.FooterPanel.BackColor = Color.LightGray
+            gv.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            gv.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+            gv.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+
+            gv.OptionsPrint.ExpandAllDetails = True
+            gv.OptionsPrint.UsePrintStyles = True
+            gv.OptionsPrint.PrintDetails = True
+            gv.OptionsPrint.PrintFooter = True
+            gv.OptionsView.ColumnAutoWidth = False
+            '
+            gv.BestFitColumns()
+        ElseIf report_mark_type = "105" Or report_mark_type = "224" Then
+            'final clearance
+            If opt = "pick" Then
+                gv.Columns("is_check").Caption = "*"
+                gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                '
+                Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+                rpce.ValueUnchecked = "no"
+                rpce.ValueChecked = "yes"
+                '
+                gv.Columns("is_check").ColumnEdit = rpce
+            End If
+            gv.Columns("id_report").Visible = False
+            gv.Columns("id_prod_order").Visible = False
+            Try
+                gv.Columns("id_rmcr").Visible = False
+                gv.Columns("id_report_mark_cancel_report").Visible = False
+            Catch ex As Exception
+            End Try
+
+            gv.Columns("number").Caption = "Number"
+            gv.Columns("date_created").Caption = "Created Date"
+            gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+            gv.Columns("total_qty").Caption = "Qty"
+            gv.Columns("total_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("total_qty").DisplayFormat.FormatString = "{0:n0}"
+            gv.Columns("total_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            gv.Columns("total_qty").SummaryItem.DisplayFormat = "{0:n0}"
+            gv.Columns("prod_order_number").Caption = "FGPO"
+            gv.Columns("vendor").Caption = "Vendor"
+            gv.Columns("name").Caption = "Style Name"
+            gv.Columns("code").Caption = "Code"
+            gv.Columns("category").Caption = "Category"
             gv.Columns("id_report").OptionsColumn.AllowEdit = False
             gv.OptionsView.ShowFooter = True
             '

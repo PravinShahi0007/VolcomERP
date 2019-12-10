@@ -74,10 +74,11 @@
                 infoCustom(ex.ToString)
             End Try
             BtnPrint.Visible = False
+            BAttachment.Visible = False
             BMark.Visible = False
         Else 'edit
             'load header
-            Dim query As String = "SELECT c.*,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
+            Dim query As String = "SELECT c.comp_name,c.comp_number,c.address_primary,c.fax,c.email,c.comp_number,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
 ,po.id_order_term,po.id_shipping_method,po.ship_destination,po.ship_address,po.id_expense_type,po.is_submit
 FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
@@ -101,15 +102,22 @@ WHERE po.id_purc_order='" & id_po & "'"
                 TEShipDestination.Text = data.Rows(0)("ship_destination").ToString
                 MESHipAddress.Text = data.Rows(0)("ship_address").ToString
                 '
+                If data.Rows(0)("is_cash_purchase").ToString = "1" Then
+                    CECashPurchase.Checked = True
+                Else
+                    CECashPurchase.Checked = False
+                End If
+                '
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 TEPONumber.Text = data.Rows(0)("purc_order_number")
                 TECreatedBy.Text = data.Rows(0)("employee_name").ToString
-                LEPaymentTerm.ItemIndex = LEPaymentTerm.Properties.GetDataSourceRowIndex("id_payment_purchasing", data.Rows(0)("id_payment_purchasing").ToString)
+                'LEPaymentTerm.ItemIndex = LEPaymentTerm.Properties.GetDataSourceRowIndex("id_payment_purchasing", data.Rows(0)("id_payment_purchasing").ToString)
+                LEPaymentTerm.EditValue = data.Rows(0)("id_payment_purchasing").ToString
                 DEEstReceiveDate.EditValue = data.Rows(0)("est_date_receive")
                 DEDueDate.EditValue = data.Rows(0)("pay_due_date")
                 '
                 MENote.Text = data.Rows(0)("note").ToString
-                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+
                 LEOrderTerm.ItemIndex = LEOrderTerm.Properties.GetDataSourceRowIndex("id_order_term", data.Rows(0)("id_order_term").ToString)
                 LEShipVia.ItemIndex = LEShipVia.Properties.GetDataSourceRowIndex("id_shipping_method", data.Rows(0)("id_shipping_method").ToString)
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
@@ -135,6 +143,7 @@ WHERE po.id_purc_order='" & id_po & "'"
 
             End If
             '
+            BAttachment.Visible = True
             If is_submit = "1" Then
                 BtnPrint.Visible = True
                 BSubmit.Visible = False
@@ -222,7 +231,7 @@ WHERE po.id_purc_order='" & id_po & "'"
             'check budget
             Dim q_budget As String = ""
             If GVPurcReq.GetRowCellValue(i, "id_expense_type").ToString = "1" Then 'opex
-                q_budget = "SELECT bdg.value_expense-IFNULL(SUM(bdgu.value_expense),0) AS remaining_budget FROM `tb_b_expense_opex` bdg 
+                q_budget = "SELECT bdg.value_expense-IFNULL(SUM(bdgu.value),0) AS remaining_budget FROM `tb_b_expense_opex` bdg 
 LEFT JOIN `tb_b_expense_opex_trans` bdgu ON bdgu.`id_b_expense_opex`=bdg.`id_b_expense_opex`
 WHERE bdg.`id_b_expense_opex`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense_opex").ToString & "'"
             Else
@@ -270,8 +279,10 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Next
             If is_found = False Then 'add new row
                 Dim newRow As DataRow = (TryCast(GCSummary.DataSource, DataTable)).NewRow()
+                newRow("no") = (GVSummary.RowCount + 1).ToString
                 newRow("id_item") = GVPurcReq.GetRowCellValue(i, "id_item").ToString
                 newRow("item_desc") = GVPurcReq.GetRowCellValue(i, "item_desc").ToString
+                newRow("item_desc_full") = GVPurcReq.GetRowCellValue(i, "item_desc").ToString & vbNewLine & "Note : " & GVPurcReq.GetRowCellValue(i, "item_detail").ToString
                 newRow("item_detail") = GVPurcReq.GetRowCellValue(i, "item_detail").ToString
                 newRow("uom") = GVPurcReq.GetRowCellValue(i, "uom")
                 newRow("qty_po") = GVPurcReq.GetRowCellValue(i, "qty_po")
@@ -304,15 +315,16 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         GVPurcReq.BestFitColumns()
 
         'summary_query
-        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,'' AS item_detail,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount"
+        Dim query_sum As String = "SELECT '' AS no,'' AS id_item,'' AS item_desc,'' AS item_desc_full,'' AS item_detail,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
         is_process = "2"
     End Sub
 
     Sub load_payment_term()
-        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
-        viewLookupQuery(LEPaymentTerm, query, 0, "payment_purchasing", "id_payment_purchasing")
+        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
+        viewSearchLookupQuery(LEPaymentTerm, query, "id_payment_purchasing", "payment_purchasing", "id_payment_purchasing")
+        LEPaymentTerm.EditValue = Nothing
     End Sub
 
     Sub load_order_term()
@@ -336,6 +348,13 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         Dim rmt As String = "-1"
+        Dim is_cash_purchase As String = "1"
+
+        If CECashPurchase.Checked = True Then
+            is_cash_purchase = "1"
+        Else
+            is_cash_purchase = "2"
+        End If
 
         If SLEPurcType.EditValue.ToString = "1" Then
             rmt = "139" 'opex
@@ -346,6 +365,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         If id_po = "-1" Then 'new
             If GVSummary.RowCount = 0 Then
                 warningCustom("Please make sure item listed")
+            ElseIf LEPaymentTerm.Text = "" Then
+                warningCustom("Please put your payment term")
             ElseIf id_vendor_contact = "-1" Then
                 warningCustom("Please make sure vendor already selected")
             ElseIf TETotal.EditValue = 0 Then
@@ -361,8 +382,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                     is_check = "2"
                 End If
 
-                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,pay_due_date,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value,vat_percent,vat_value,ship_destination,ship_address,id_expense_type)
-                                    VALUES('" & id_vendor_contact & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "','" & decimalSQL(TEVATPercent.EditValue.ToString) & "','" & decimalSQL(TEVATValue.EditValue.ToString) & "','" & addSlashes(TEShipDestination.Text) & "','" & addSlashes(MESHipAddress.Text) & "','" & SLEPurcType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,is_cash_purchase,id_payment_purchasing,`note`,`date_created`,est_date_receive,pay_due_date,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value,vat_percent,vat_value,ship_destination,ship_address,id_expense_type)
+                                    VALUES('" & id_vendor_contact & "','" & is_cash_purchase & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "','" & decimalSQL(TEVATPercent.EditValue.ToString) & "','" & decimalSQL(TEVATValue.EditValue.ToString) & "','" & addSlashes(TEShipDestination.Text) & "','" & addSlashes(MESHipAddress.Text) & "','" & SLEPurcType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_po = execute_query(query, 0, True, "", "", "", "")
 
                 'detail
@@ -391,6 +412,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Else
                 'still draft
                 Dim is_check As String = "1"
+
                 If CEPercent.Checked = True Then
                     is_check = "1"
                 Else
@@ -442,7 +464,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
     Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
         FormPopUpContact.id_pop_up = "86"
-        FormPopUpContact.id_cat = "8"
+        FormPopUpContact.id_cat = "1,8"
         FormPopUpContact.is_must_active = "1"
         FormPopUpContact.ShowDialog()
     End Sub
@@ -460,33 +482,6 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Dim is_process As String = "2"
-
-    Private Sub GVSummary_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSummary.CellValueChanged
-        If is_process = "2" Then
-            If e.Column.FieldName.ToString = "val_po" Then
-                'set value
-                GVSummary.GetFocusedRowCellValue("id_item")
-                calc_total(e.RowHandle, "2")
-            ElseIf e.Column.FieldName.ToString = "discount_percent" Then
-                'discount with percentage
-                calc_total(e.RowHandle, "1")
-            ElseIf e.Column.FieldName.ToString = "discount" Then
-                'discount without percentage
-                calc_total(e.RowHandle, "2")
-            End If
-            refresh_detail(e.RowHandle, GVSummary.GetFocusedRowCellValue("id_item").ToString, GVSummary.GetFocusedRowCellValue("item_detail").ToString)
-        End If
-    End Sub
-
-    Sub refresh_detail(ByVal summary_rowhandle As Integer, ByVal id_item As String, ByVal item_detail As String)
-        For i As Integer = 0 To GVPurcReq.RowCount - 1
-            If GVPurcReq.GetRowCellValue(i, "id_item").ToString = id_item And GVPurcReq.GetRowCellValue(i, "item_detail").ToString = item_detail Then
-                GVPurcReq.SetRowCellValue(i, "val_po", GVSummary.GetRowCellValue(summary_rowhandle, "val_po"))
-                GVPurcReq.SetRowCellValue(i, "discount_percent", GVSummary.GetRowCellValue(summary_rowhandle, "discount_percent"))
-                GVPurcReq.SetRowCellValue(i, "discount", GVSummary.GetRowCellValue(summary_rowhandle, "discount"))
-            End If
-        Next
-    End Sub
 
     Sub calc_total(ByVal rowhandle As Integer, ByVal opt As String)
         is_process = "1"
@@ -566,7 +561,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 	                                    WHERE cc.`is_default`='1'
 	                                    GROUP BY cc.`id_comp`
                                     )cc ON cc.id_comp=c.`id_comp`
-                                    WHERE c.id_comp_cat='8'
+                                    WHERE (c.id_comp_cat='8' or c.id_comp_cat='1') AND c.is_active='1'
                                     AND c.comp_number='" & TEVendorCode.Text & "' "
             query += " AND c.id_vendor_type >= '" & max_vendor_type.ToString & "' "
 
@@ -648,54 +643,100 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Cursor = Cursors.WaitCursor
-        ReportPurcOrder.id_po = id_po
-        ReportPurcOrder.dt = GCSummary.DataSource
-        Dim Report As New ReportPurcOrder()
-        ' ...
-        ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-
-        'Grid Detail
-        ReportStyleGridview(Report.GVSummary)
-
-        'Parse val
-        Report.LPoNumber.Text = "Number : " & TEPONumber.Text
-        Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
-        Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
-        Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
-        Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
-        Report.LShipVia.Text = LEShipVia.Text.ToUpper
-        Report.LPaymentDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
-        '
-        Report.LTotal.Text = TETotal.Text
-        Report.LDiscount.Text = TEDiscTotal.Text
-        Report.LVat.Text = TEVATValue.Text
-        Report.LGrandTotal.Text = TEGrandTotal.Text
-        Report.LNote.Text = MENote.Text
-        '
-        Report.LabelAttn.Text = TEVendorAttn.Text
-        Report.LTo.Text = TEVendorName.Text
-        Report.LToAdress.Text = MEAdrressCompTo.Text & vbNewLine & TEVendorPhone.Text & vbNewLine & TEVendorEmail.Text
-
-        Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
-        Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
-
-        If Not LEReportStatus.EditValue = "6" Then
-            Report.id_pre = "2"
+        Dim rmt As String = ""
+        If SLEPurcType.EditValue.ToString = "1" Then
+            rmt = "139" 'opex
         Else
-            Report.id_pre = "1"
+            rmt = "202" 'capex
         End If
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        Cursor = Cursors.Default
+        If Not check_allow_print(LEReportStatus.EditValue.ToString, rmt, id_po) Then
+            warningCustom("Can't print, please complete internal approval on system first")
+        Else
+            Cursor = Cursors.WaitCursor
+            ReportPurcOrder.id_po = id_po
+            ReportPurcOrder.dt = GCSummary.DataSource
+            Dim Report As New ReportPurcOrder()
+            If SLEPurcType.EditValue.ToString = "1" Then
+                Report.rmt = "139" 'opex
+            Else
+                Report.rmt = "202" 'capex
+            End If
+
+            ' ...
+            ' creating and saving the view's layout to a new memory stream 
+            '
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVSummary)
+            '
+            Report.GVSummary.BestFitColumns()
+            'Parse val
+            If CECashPurchase.Checked = True Then
+                Report.LCashPurchase.Text = "yes"
+            Else
+                Report.LCashPurchase.Text = "no"
+            End If
+            Report.LPONumber.Text = TEPONumber.Text
+            Report.LTOP.Text = LEPaymentTerm.Text.ToUpper
+            Report.LDateCreated.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+            Report.LEtaDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+            Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
+            Report.LShipVia.Text = LEShipVia.Text.ToUpper
+            Report.LDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+            Report.LTerbilang.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TEGrandTotal.EditValue.ToString))
+            '
+            Report.LTotal.Text = TETotal.Text
+            Report.LDiscount.Text = TEDiscTotal.Text
+            Report.LVat.Text = TEVATValue.Text
+            Report.LGrandTotal.Text = TEGrandTotal.Text
+            'Report.LNote.Text = MENote.Text
+            '
+            Report.LabelAttn.Text = TEVendorAttn.Text
+            Report.LTo.Text = TEVendorName.Text
+            Report.LToAdress.Text = MEAdrressCompTo.Text
+            Report.LPhone.Text = TEVendorPhone.Text
+            Report.LEmail.Text = TEVendorEmail.Text
+            '
+            Dim query As String = "SELECT pr.purc_req_number,dep.departement
+                                FROM tb_purc_order_det pod
+                                INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
+                                INNER JOIN tb_m_departement dep ON dep.`id_departement`=pr.`id_departement`
+                                INNER JOIN `tb_item` item ON item.`id_item`=pod.`id_item`
+                                INNER JOIN `tb_item_cat` ic ON item.`id_item_cat`=ic.`id_item_cat`
+                                INNER JOIN tb_item_cat_detail icd ON icd.`id_item_cat_detail`=item.`id_item_cat_detail`
+                                INNER JOIN tb_vendor_type vt ON vt.id_vendor_type=icd.id_vendor_type
+                                INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
+                                WHERE pod.`id_purc_order`='" & id_po & "' GROUP BY pr.id_purc_req"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            For i = 0 To data.Rows.Count - 1
+                If i > 0 Then
+                    Report.LPrNo.Text += ", "
+                End If
+                Report.LPrNo.Text += data.Rows(i)("purc_req_number").ToString & " (" & data.Rows(i)("departement").ToString & ")"
+            Next
+            '
+            Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+            Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+
+            If Not LEReportStatus.EditValue = "6" Then
+                Report.id_pre = "2"
+            Else
+                Report.id_pre = "1"
+            End If
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub TEVATPercent_EditValueChanged(sender As Object, e As EventArgs) Handles TEVATPercent.EditValueChanged
@@ -729,40 +770,68 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         Next
 
         If is_ok_budget Then
-            'generate number
-            Dim query As String = "CALL gen_number('" & id_po & "','" & rmt & "')"
-            execute_non_query(query, True, "", "", "", "")
-
             If SLEPurcType.EditValue.ToString = "1" Then
                 rmt = "139" 'opex
             Else
                 rmt = "202" 'capex
             End If
 
+            'generate number
+            Dim query As String = "CALL gen_number('" & id_po & "','" & rmt & "')"
+            execute_non_query(query, True, "", "", "", "")
+
             Dim query_trans As String = ""
             If rmt = "139" Then 'opex
-                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,date_trans,`value_expense`,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense_opex,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
-                                            FROM `tb_purc_order_det` pod
-                                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                            WHERE pod.`id_purc_order`='" & id_po & "'"
+                query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
+                                FROM `tb_purc_order_det` pod
+                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
+                                WHERE pod.`id_purc_order`='" & id_po & "'"
             Else 'capex
-                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
-                                            SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
-                                            FROM `tb_purc_order_det` pod
-                                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                            WHERE pod.`id_purc_order`='" & id_po & "'"
+                query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
+                                SELECT prd.id_b_expense,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                                FROM `tb_purc_order_det` pod
+                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
+                                WHERE pod.`id_purc_order`='" & id_po & "'"
             End If
             '
             execute_non_query(query_trans, True, "", "", "", "")
             submit_who_prepared(rmt, id_po, id_user)
 
-            query = "UPDATE tb_purc_order SET is_submit='1' WHERE id_purc_order='" & id_po & "'"
+            query = "UPDATE tb_purc_order SET is_submit='1',report_mark_type='" & rmt & "' WHERE id_purc_order='" & id_po & "'"
             execute_non_query(query, True, "", "", "", "")
             '
             load_form()
         Else
             warningCustom("Please make sure all budget is Ok")
         End If
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim rmt As String = "-1"
+        If SLEPurcType.EditValue.ToString = "1" Then
+            rmt = "139" 'opex
+        Else
+            rmt = "202" 'capex
+        End If
+
+        FormDocumentUpload.id_report = id_po
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEPaymentTerm_EditValueChanged(sender As Object, e As EventArgs) Handles LEPaymentTerm.EditValueChanged
+        Try
+            Dim val_day As Integer = 0
+            val_day = LEPaymentTerm.Properties.View.GetFocusedRowCellValue("val_day")
+            DEDueDate.EditValue = DateAdd(DateInterval.Day, val_day, Date.Parse(DEDateCreated.EditValue.ToString))
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
     End Sub
 End Class

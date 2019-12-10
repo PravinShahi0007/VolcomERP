@@ -39,7 +39,7 @@
           ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a 
           GROUP BY a.id_design 
         ) prc ON prc.id_design = d.id_design 
-        WHERE ddm.id_emp_uni_period=15 AND ddm.id_report_status=6  
+        WHERE ddm.id_emp_uni_period=17 AND ddm.id_report_status=6  
         GROUP BY p.id_design, SUBSTRING(p.product_full_code, 10, 1)
         ORDER BY dd.`no` ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

@@ -20,13 +20,15 @@ Public Class FormSalesOrderDet
     Public id_store_type As String = "-1"
     Public id_wh_type As String = "-1"
     Public id_account_type As String = "-1"
+    Dim is_block_same_nw As String = get_setup_field("is_block_same_nw")
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
         id_comp_cat_wh = get_setup_field("id_comp_cat_wh")
         viewReportStatus()
         viewSoType()
-        viewSoStatus()
+        viewOrderType()
+        'viewSoStatus()
         viewPeriodUniform()
         viewUniType()
         actionLoad()
@@ -66,7 +68,7 @@ Public Class FormSalesOrderDet
             BMark.Enabled = True
 
             'query view based on edit id's
-            Dim query As String = "SELECT a.id_so_status, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, IFNULL(d.id_commerce_type,1) AS `id_commerce_type`, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
+            Dim query As String = "SELECT a.id_so_status, h.id_order_type, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, IFNULL(d.id_commerce_type,1) AS `id_commerce_type`, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
             query += "a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, "
             query += "DATE_FORMAT(a.sales_order_date,'%Y-%m-%d') AS sales_order_datex, a.id_so_type, IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`, ps.id_prepare_status, ps.prepare_status, a.id_emp_uni_period, a.id_uni_type "
             query += "FROM tb_sales_order a "
@@ -101,6 +103,7 @@ Public Class FormSalesOrderDet
             MENote.Text = data.Rows(0)("sales_order_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
+            LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", data.Rows(0)("id_order_type").ToString)
             LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
             LEPeriodx.ItemIndex = LEPeriodx.Properties.GetDataSourceRowIndex("id_emp_uni_period", data.Rows(0)("id_emp_uni_period").ToString)
             LEUniType.ItemIndex = LEUniType.Properties.GetDataSourceRowIndex("id_uni_type", data.Rows(0)("id_uni_type").ToString)
@@ -149,10 +152,26 @@ Public Class FormSalesOrderDet
         viewLookupQuery(LETypeSO, query, 0, "so_type", "id_so_type")
     End Sub
 
+    Sub viewOrderType()
+        Dim query As String = "SELECT ot.id_order_type, ot.order_type, ot.description
+        FROM tb_lookup_so_status a 
+        INNER JOIN tb_lookup_order_type ot ON ot.id_order_type = a.id_order_type
+        INNER JOIN tb_lookup_so_status_acc b ON a.id_so_status = b.id_so_status 
+        WHERE b.id_departement='" + id_departement_user + "' 
+        GROUP BY ot.id_order_type
+        ORDER BY ot.id_order_type ASC "
+        viewLookupQuery(LEOrderType, query, 0, "order_type", "id_order_type")
+    End Sub
+
     Sub viewSoStatus()
+        Dim id_order_type As String = "-1"
+        Try
+            id_order_type = LEOrderType.EditValue.ToString
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT a.id_so_status, a.so_status FROM tb_lookup_so_status a "
         query += "INNER JOIN tb_lookup_so_status_acc b ON a.id_so_status = b.id_so_status "
-        query += "WHERE b.id_departement='" + id_departement_user + "' "
+        query += "WHERE b.id_departement='" + id_departement_user + "' AND a.id_order_type='" + id_order_type + "' "
         query += "ORDER BY a.id_so_status "
         viewLookupQuery(LEStatusSO, query, 0, "so_status", "id_so_status")
     End Sub
@@ -200,6 +219,36 @@ Public Class FormSalesOrderDet
         EP_TE_cant_blank(EPForm, TxtNameCompTo)
         EPForm.SetIconPadding(TxtNameCompTo, 28)
     End Sub
+
+    Private Function checkOrderExist(ByVal qry_par As String, ByVal show_number As Boolean)
+        Dim cond_isnull As String = ""
+        If show_number = False Then
+            cond_isnull = "AND ISNULL(b.id_sales_order)"
+        End If
+
+        Dim query As String = "SELECT a.id_store_contact_to, a.id_product, SUM(a.qty) AS `qty`, a.id_design_price, b.id_sales_order, b.sales_order_number
+        FROM (
+	        " + qry_par + "
+        ) a
+        LEFT JOIN (
+	        SELECT so.id_sales_order,so.sales_order_number,so.id_store_contact_to, sod.id_product, SUM(sod.sales_order_det_qty) AS `qty`, sod.id_design_price 
+	        FROM tb_sales_order_det sod
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	        WHERE so.id_report_status!=5 AND so.id_store_contact_to=" + id_store_contact_to + " AND so.id_so_status=6
+	        GROUP BY so.id_sales_order, sod.id_product
+        ) b ON b.id_store_contact_to = a.id_store_contact_to AND b.id_product = a.id_product AND b.qty = a.qty AND b.id_design_price = a.id_design_price
+        WHERE 1=1 
+        " + cond_isnull + "
+        GROUP BY a.id_product "
+
+        If Not show_number Then
+            Return query
+        Else
+            Dim qnum As String = query + "LIMIT 1 "
+            Dim dnum As DataTable = execute_query(qnum, -1, True, "", "", "", "")
+            Return dnum
+        End If
+    End Function
 
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         Cursor = Cursors.WaitCursor
@@ -267,6 +316,27 @@ Public Class FormSalesOrderDet
         End If
         GVItemList.ActiveFilterString = ""
 
+        'blok order jika sudah pernah dibuat khiusus new wholesale
+        Dim dt_existing_order As DataTable = Nothing
+        Dim cond_no_exist As Boolean = True
+        If LEStatusSO.EditValue.ToString = "6" And is_block_same_nw = "1" Then
+            Dim qry As String = ""
+            For f As Integer = 0 To GVItemList.RowCount - 1
+                If f > 0 Then
+                    qry += "UNION ALL "
+                End If
+                qry += "SELECT " + id_store_contact_to + " AS `id_store_contact_to`," + GVItemList.GetRowCellValue(f, "id_product").ToString + " AS `id_product`," + GVItemList.GetRowCellValue(f, "sales_order_det_qty").ToString + " AS `qty`, " + GVItemList.GetRowCellValue(f, "id_design_price").ToString + " AS `id_design_price` "
+            Next
+
+            'check
+            Dim qcek As String = checkOrderExist(qry, False)
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            If dcek.Rows.Count = 0 Then
+                cond_no_exist = False
+                dt_existing_order = checkOrderExist(qry, True)
+            End If
+        End If
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf Not cond_data Then
@@ -282,6 +352,14 @@ Public Class FormSalesOrderDet
             TxtOLShopNumber.Focus()
         ElseIf Not cond_not_blank_item_id_ol_shop Then
             stopCustom("Please input order id & ol store id")
+        ElseIf Not cond_no_exist Then
+            Cursor = Cursors.WaitCursor
+            FormCustomDialog.LabelContent.Text = "This order already exist in order number : " + dt_existing_order.Rows(0)("sales_order_number").ToString
+            FormCustomDialog.id_report = dt_existing_order.Rows(0)("id_sales_order").ToString
+            FormCustomDialog.rmt = "39"
+            FormCustomDialog.BtnAction.Text = "View " + dt_existing_order.Rows(0)("sales_order_number").ToString
+            FormCustomDialog.ShowDialog()
+            Cursor = Cursors.Default
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString
@@ -485,6 +563,7 @@ Public Class FormSalesOrderDet
             TxtOLShopNumber.Enabled = False
             DEOLShop.Enabled = False
         End If
+        LEOrderType.Enabled = False
 
         'attachment
         BtnAttachment.Enabled = True
@@ -659,12 +738,7 @@ Public Class FormSalesOrderDet
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim id_so_type As String = LETypeSO.EditValue.ToString
-            Dim query_cond As String = ""
-            If id_so_type <> "0" Then
-                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
-            Else
-                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
-            End If
+            Dim query_cond As String = "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
             Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
@@ -1342,5 +1416,13 @@ Public Class FormSalesOrderDet
         Cursor = Cursors.WaitCursor
         print_raw(GCItemList, "")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEOrderType_EditValueChanged(sender As Object, e As EventArgs) Handles LEOrderType.EditValueChanged
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+        Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+        Dim value As String = row("description").ToString
+        TxtOrderType.Text = value
+        viewSoStatus()
     End Sub
 End Class

@@ -25,11 +25,13 @@
     End Function
 
     Public Sub updateStock(ByVal id_item_req As String, ByVal id_storage_cat As String, ByVal rmt As String)
+        Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
+
         Dim query As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-        SELECT r.id_departement, " + id_storage_cat + ", rd.id_item, getAvgCost(rd.id_item), " + rmt + ", r.id_item_req, rd.qty, NOW(), 1
+        SELECT IF(rd.is_store_request=2,r.id_departement,'" & id_purc_store & "'), " & id_storage_cat & ", rd.id_item, getAvgCost(rd.id_item), " & rmt & ", r.id_item_req, rd.qty, NOW(), 1
         FROM tb_item_req r
         INNER JOIN tb_item_req_det rd ON rd.id_item_req = r.id_item_req
-        WHERE r.id_item_req=" + id_item_req + " "
+        WHERE r.id_item_req=" + id_item_req + " AND rd.is_store_request='2'"
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
@@ -39,13 +41,13 @@
         ElseIf order_type = "2" Then
             order_type = "DESC "
         End If
-
+        '
         If condition <> "-1" Then
             condition = condition
         Else
             condition = ""
         End If
-
+        '
         Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.id_prepare_status, ps.prepare_status, rd.final_reason, rd.qty, IFNULL(dq.qty_del,0.0) AS `qty_del`,
         rd.remark, 'No' AS `is_select`
         FROM tb_item_req_det rd

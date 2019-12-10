@@ -4,6 +4,8 @@
     Public id_popup As String = "1"
     Public id_payroll As String = "-1"
 
+    Private payroll_type As DataTable = New DataTable
+
     Sub load_deduction()
         Dim column As String = "deduction"
 
@@ -16,9 +18,14 @@
         Dim query_where_typ As String = ""
         Dim query_where_cat As String = ""
 
-        If Not FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+        If payroll_type.Rows(0)("is_dw").ToString = "1" Then
             query_where_typ = "WHERE id_salary_" + column + "_cat IN (SELECT id_salary_" + column + "_cat FROM tb_lookup_salary_" + column + " WHERE use_dw = 1)"
             query_where_cat = "WHERE use_dw = 1"
+        End If
+
+        If payroll_type.Rows(0)("is_thr").ToString = "1" Then
+            query_where_typ = "WHERE id_salary_" + column + "_cat IN (SELECT id_salary_" + column + "_cat FROM tb_lookup_salary_" + column + " WHERE use_thr = 1)"
+            query_where_cat = "WHERE use_thr = 1"
         End If
 
         Dim query_type As String = "SELECT id_salary_" + column + "_cat AS id_salary_deduction_cat, salary_" + column + "_cat AS salary_deduction_cat FROM tb_lookup_salary_" + column + "_cat" + " " + query_where_typ
@@ -35,6 +42,19 @@
             Text = "Deduction Detail"
         ElseIf id_popup = "2" Then
             Text = "Bonus / Adjustment Detail"
+        End If
+
+        'type
+        payroll_type = execute_query("SELECT is_dw, is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, -1, True, "", "", "", "")
+
+        If payroll_type.Rows(0)("is_thr").ToString = "1" Then
+            GCWorkingDays.Caption = "Working Years"
+            GCTotalDays.Caption = "Total Years"
+            GCActualWorkingDays.Caption = "Actual Working Years"
+        Else
+            GCWorkingDays.Caption = "Actual Working Days"
+            GCTotalDays.Caption = "Total Days"
+            GCActualWorkingDays.Caption = "Actual Working Days"
         End If
 
         load_deduction()
@@ -124,54 +144,58 @@
         EP_SLE_cant_blank(ErrorProvider, SLUECategory)
 
         If formIsValidInPanel(ErrorProvider, PanelControl1) Then
-            If GVDeduction.RowCount > 0 Then
-                Dim id_salary_dadj As String = SLUECategory.EditValue.ToString
-                Dim note As String = MENote.Text.ToString
+            If SLUECategory.EditValue.ToString = "1" Then
+                errorCustom(SLUECategory.Text + " cannot be added.")
+            Else
+                If GVDeduction.RowCount > 0 Then
+                    Dim id_salary_dadj As String = SLUECategory.EditValue.ToString
+                    Dim note As String = MENote.Text.ToString
 
-                Dim row As Integer = SLUECategory.Properties.GetIndexByKeyValue(SLUECategory.EditValue)
+                    Dim row As Integer = SLUECategory.Properties.GetIndexByKeyValue(SLUECategory.EditValue)
 
-                Dim data As DataTable = SLUECategory.Properties.DataSource
+                    Dim data As DataTable = SLUECategory.Properties.DataSource
 
-                For i = 0 To GVDeduction.RowCount - 1
-                    If GVDeduction.IsValidRowHandle(i) Then
-                        Dim id_employee As String = GVDeduction.GetRowCellValue(i, "id_employee").ToString
-                        Dim value As String = GVDeduction.GetRowCellValue(i, "value").ToString
-                        Dim total_days As String = If(data.Rows(row)("use_days").ToString = "1", GVDeduction.GetRowCellValue(i, "total_days").ToString, "")
-                        Dim increase As String = If(data.Rows(row)("use_days").ToString = "1", GVDeduction.GetRowCellValue(i, "total_salary").ToString, "0")
+                    For i = 0 To GVDeduction.RowCount - 1
+                        If GVDeduction.IsValidRowHandle(i) Then
+                            Dim id_employee As String = GVDeduction.GetRowCellValue(i, "id_employee").ToString
+                            Dim value As String = GVDeduction.GetRowCellValue(i, "value").ToString
+                            Dim total_days As String = If(data.Rows(row)("use_days").ToString = "1", GVDeduction.GetRowCellValue(i, "total_days").ToString, "")
+                            Dim increase As String = If(data.Rows(row)("use_days").ToString = "1", GVDeduction.GetRowCellValue(i, "total_salary").ToString, "0")
 
-                        Dim query As String = ""
+                            Dim query As String = ""
 
-                        If id = "-1" Then
-                            If id_popup = "1" Then
-                                query = "
+                            If id = "-1" Then
+                                If id_popup = "1" Then
+                                    query = "
                                     INSERT INTO tb_emp_payroll_deduction (id_payroll, id_salary_deduction, id_employee, total_days, increase, deduction, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
                                 "
-                            ElseIf id_popup = "2" Then
-                                query = "
+                                ElseIf id_popup = "2" Then
+                                    query = "
                                     INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, value, note) VALUES (" + id_payroll + ", " + id_salary_dadj + ", " + id_employee + ", " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", " + decimalSQL(increase) + ", " + decimalSQL(value) + ", '" + addSlashes(note) + "')
                                 "
+                                End If
+                            Else
+                                If id_popup = "1" Then
+                                    query = "UPDATE tb_emp_payroll_deduction SET id_salary_deduction = " + id_salary_dadj + ", total_days = " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", increase = " + decimalSQL(increase) + ", deduction = " + decimalSQL(value) + ", note = '" + addSlashes(note) + "' WHERE id_payroll_deduction = " + id
+                                ElseIf id_popup = "2" Then
+                                    query = "UPDATE tb_emp_payroll_adj SET id_salary_adj = " + id_salary_dadj + ", total_days = " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", increase = " + decimalSQL(increase) + ", value = " + decimalSQL(value) + ", note = '" + addSlashes(note) + "' WHERE id_payroll_adj = " + id
+                                End If
                             End If
-                        Else
-                            If id_popup = "1" Then
-                                query = "UPDATE tb_emp_payroll_deduction SET id_salary_deduction = " + id_salary_dadj + ", total_days = " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", increase = " + decimalSQL(increase) + ", deduction = " + decimalSQL(value) + ", note = '" + addSlashes(note) + "' WHERE id_payroll_deduction = " + id
-                            ElseIf id_popup = "2" Then
-                                query = "UPDATE tb_emp_payroll_adj SET id_salary_adj = " + id_salary_dadj + ", total_days = " + If(total_days = "", "NULL", decimalSQL(total_days)) + ", increase = " + decimalSQL(increase) + ", value = " + decimalSQL(value) + ", note = '" + addSlashes(note) + "' WHERE id_payroll_adj = " + id
-                            End If
+
+                            execute_non_query(query, True, "", "", "", "")
                         End If
+                    Next
 
-                        execute_non_query(query, True, "", "", "", "")
+                    If id_popup = "1" Then
+                        FormEmpPayrollDeduction.load_deduction()
+                    ElseIf id_popup = "2" Then
+                        FormEmpPayrollAdjustment.load_adjustment()
                     End If
-                Next
 
-                If id_popup = "1" Then
-                    FormEmpPayrollDeduction.load_deduction()
-                ElseIf id_popup = "2" Then
-                    FormEmpPayrollAdjustment.load_adjustment()
+                    Close()
+                Else
+                    errorCustom("No employee inserted.")
                 End If
-
-                Close()
-            Else
-                errorCustom("No employee inserted.")
             End If
         Else
             errorCustom("Please check your input.")
@@ -257,11 +281,19 @@
                 Dim value As Integer = 0
 
                 Try
-                    Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
-                    Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
-                    Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
+                    If payroll_type.Rows(0)("is_thr").ToString = "1" Then
+                        Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
+                        Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
+                        Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
 
-                    value = (total_days / workdays) * total_salary
+                        value = total_days * total_salary
+                    Else
+                        Dim total_days As Decimal = GVDeduction.GetRowCellValue(i, "total_days")
+                        Dim workdays As Decimal = GVDeduction.GetRowCellValue(i, "workdays")
+                        Dim total_salary As Integer = GVDeduction.GetRowCellValue(i, "total_salary")
+
+                        value = (total_days / workdays) * total_salary
+                    End If
                 Catch ex As Exception
                 End Try
 

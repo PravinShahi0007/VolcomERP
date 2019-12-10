@@ -18,7 +18,20 @@
         DEUntil.EditValue = data_dt.Rows(0)("dt")
         DEFromDetail.EditValue = data_dt.Rows(0)("dt")
         DEUntilDetail.EditValue = data_dt.Rows(0)("dt")
+        DEUpdatedFrom.EditValue = data_dt.Rows(0)("dt")
+        DEUpdatedUntil.EditValue = data_dt.Rows(0)("dt")
         viewComp()
+        viewCompGroup()
+    End Sub
+
+    Sub viewCompGroup()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg
+        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
+        GROUP BY cg.id_comp_group "
+        viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewComp()
@@ -51,6 +64,9 @@
             date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+
+        'group store
+        Dim id_comp_group As String = SLECompGroup.EditValue.ToString
 
         Dim id_comp As String = SLEComp.EditValue.ToString
         Dim query As String = "SELECT so.sales_order_number, so.sales_order_ol_shop_number, so.sales_order_date AS `order_date`, del.pl_sales_order_del_number, del.pl_sales_order_del_date AS `del_date`,ro.sales_return_order_number, ro.sales_return_order_date as `ro_date`, r.sales_return_number, r.sales_return_date AS `ret_date`, inv.sales_pos_number, inv.sales_pos_number AS `inv_date`, cn.sales_pos_cn_number, cn.sales_pos_cn_date AS `cn_date`,
@@ -124,7 +140,7 @@
             WHERE a.id_report_status=6 AND (ad.report_mark_type=48 OR ad.report_mark_type=54) AND coa.acc_name LIKE '1113%'
             GROUP BY sod.id_sales_order
         ) j ON j.id_sales_order = so.id_sales_order
-        WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        WHERE c.id_comp_group='" + id_comp_group + "' AND c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         Cursor = Cursors.Default
@@ -222,23 +238,37 @@
 
     Private Sub BtnViewDetail_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
         viewRmtDetail()
-        viewDetail()
+        viewDetail("1")
     End Sub
 
-    Sub viewDetail()
+    Sub viewDetail(ByVal type_par As String)
         Cursor = Cursors.WaitCursor
-        'Prepare paramater
+        'Prepare paramater date
+        Dim cond_date As String = ""
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
         Try
             date_from_selected = DateTime.Parse(DEFromDetail.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-
         Try
             date_until_selected = DateTime.Parse(DEUntilDetail.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+        If type_par = "1" Then
+            cond_date = "AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        End If
+        Dim upd_date_from_selected As String = "0000-01-01"
+        Dim upd_date_until_selected As String = "9999-01-01"
+        Try
+            upd_date_from_selected = DateTime.Parse(DEUpdatedFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            upd_date_until_selected = DateTime.Parse(DEUpdatedUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
 
         Dim id_comp As String = SLECompDetail.EditValue.ToString
         Dim qcomp1 As String = ""
@@ -251,9 +281,15 @@
             qcomp2 = "AND c.id_comp=" + id_comp + " "
         End If
 
+        'having
+        Dim cond_having As String = ""
+        If type_par = "2" Then
+            cond_having = "AND (DATE(ol_store_date)>='" + upd_date_from_selected + "' AND DATE(ol_store_date)<='" + upd_date_until_selected + "') "
+        End If
+
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
-        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
-        sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
+        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
+        sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sz.code_detail_name AS `size`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
         IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del_stt.report_status AS `del_status`,
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
         IFNULL(ret.id_sales_return,0) AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
@@ -261,7 +297,8 @@
         IFNULL(cn.id_sales_pos,0) AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
         IFNULL(rec_pay.id_rec_payment,0) AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
         IFNULL(ret_pay.id_rec_payment,0) AS `id_ret_pay`,ret_pay.`number` AS `ret_pay_number`, ret_pay.date_created AS `ret_pay_date`, IF(!ISNULL(ret_pay.id_report),'Returned', NULL) AS `ret_pay_status`,
-        '0' AS `report_mark_type`, IFNULL(stt.`status`, '-') AS `ol_store_status`, stt.status_date AS `ol_store_date`,
+        '0' AS `report_mark_type`, 
+        IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`
         FROM tb_sales_order so
@@ -285,6 +322,8 @@
             GROUP BY so.id_sales_order
         ) oc ON oc.id_sales_order = so.id_sales_order
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+        INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prodcode.id_code_detail
         LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
         LEFT JOIN tb_lookup_report_status del_stt ON del_stt.id_report_status = del.id_report_status
@@ -330,9 +369,14 @@
         ) ret_pay ON ret_pay.id_report = cn.id_sales_pos
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
         INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
-        WHERE so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') AND ISNULL(oc.id_sales_order) AND c.id_commerce_type=2 " + qcomp2 + " "
+        WHERE so.id_report_status=6  
+        " + cond_date + "
+        AND ISNULL(oc.id_sales_order) AND c.id_commerce_type=2 " + qcomp2 + " 
+        HAVING 1=1 
+        " + cond_having + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
@@ -481,5 +525,40 @@
             FormSalesOrderDet.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub RepoBtnDetailPickup_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailPickup.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_del") > 0 Then
+            Cursor = Cursors.WaitCursor
+            'cek bukti pickup
+            Dim query As String = "SELECT pd.id_pickup 
+            FROM tb_del_pickup_det pd 
+            INNER JOIN tb_del_pickup p ON p.id_pickup = pd.id_pickup
+            WHERE pd.id_pl_sales_order_del=" + GVDetail.GetFocusedRowCellValue("id_del").ToString + " AND p.id_report_status=6 "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                Dim m As New ClassShowPopUp
+                m.report_mark_type = "217"
+                m.id_report = data.Rows(0)("id_pickup").ToString
+                FormBuktiPickupDet.is_view_attachment = "1"
+                m.show()
+            Else
+                stopCustom("Attachment not found")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub LabelControl5_Click(sender As Object, e As EventArgs) Handles LabelControl5.Click
+
+    End Sub
+
+    Private Sub BtnViewUpdated_Click(sender As Object, e As EventArgs) Handles BtnViewUpdated.Click
+        viewRmtDetail()
+        viewDetail("2")
+    End Sub
+
+    Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint
+
     End Sub
 End Class

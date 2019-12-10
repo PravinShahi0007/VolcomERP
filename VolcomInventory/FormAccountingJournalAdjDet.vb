@@ -1,9 +1,18 @@
 ﻿Public Class FormAccountingJournalAdjDet
     Public id_trans_adj As String = "-1"
     Public id_trans As String = "-1"
+    '
+    Public report_mark_type As String = ""
+    Public report_number As String = ""
+    Public id_report As String = "-1"
+    '
     Public id_report_status_g As String = "1"
-
+    '
+    Public is_view As String = "-1"
+    '
     Private Sub FormAccountingJournalAdjDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        DERefDate.EditValue = Now()
+
         If id_trans_adj = "-1" Then 'new
             TEUserEntry.Text = get_user_identify(id_user, 1)
             TENumber.Text = header_number_acc("2")
@@ -11,36 +20,102 @@
             Dim strDate As String = regDate.ToString("yyyy\-MM\-dd")
             TEDate.Text = view_date_from(strDate, 0)
 
-            Dim query As String = "SELECT a.id_acc_trans_adj_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_adj_det_note as note FROM tb_a_acc_trans_adj_det a INNER JOIN tb_a_acc b WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCJournalDet.DataSource = data
-
             BPickJournal.Enabled = True
+            Bprint.Visible = False
+            BMark.Visible = False
+            '
+            PCButton.Visible = True
+            '
+            BSave.Visible = True
         Else 'edit
-            Dim query As String = "SELECT a.acc_trans_adj_number,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.id_user,a.acc_trans_adj_note,id_report_status FROM tb_a_acc_trans_adj a WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
+            Dim query As String = "SELECT a.acc_trans_adj_number,a.id_acc_trans,a.date_reffrence,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.id_user,a.acc_trans_adj_note,id_report_status FROM tb_a_acc_trans_adj a WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            id_trans = data.Rows(0)("id_acc_trans").ToString
 
             id_report_status_g = data.Rows(0)("id_report_status").ToString
-
             TEUserEntry.Text = get_user_identify(data.Rows(0)("id_user").ToString, 1)
-
             TENumber.Text = data.Rows(0)("acc_trans_adj_number").ToString
+
+            DERefDate.EditValue = data.Rows(0)("date_reffrence")
+
             Dim strDate As String = data.Rows(0)("date_created").ToString
             TEDate.Text = view_date_from(strDate, 0)
             MENote.Text = data.Rows(0)("acc_trans_adj_note").ToString
-            view_det()
+
             BPickJournal.Enabled = False
             allow_status()
+            '
+
+            BMark.Visible = True
+            '
+            PCButton.Visible = False
+            '
+            If id_report_status_g = "6" Then
+                BViewJournal.Visible = True
+                Bprint.Visible = True
+            Else
+                BViewJournal.Visible = False
+                Bprint.Visible = False
+            End If
+            '
+            BSave.Visible = False
         End If
+        '
+        view_det()
+        view_reverse()
+        view_draft()
+        '
         but_check()
     End Sub
     Private Sub BAddMat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAddMat.Click
         FormPopUpCOA.id_pop_up = "3"
         FormPopUpCOA.ShowDialog()
+        view_draft()
+    End Sub
+
+    Sub view_reverse()
+        Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description
+,a.debit as credit,a.credit as debit
+,a.acc_trans_det_note as note 
+FROM tb_a_acc_trans_det a 
+INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
+WHERE a.id_acc_trans='" & id_trans & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRevJournal.DataSource = data
+        '
+        view_draft()
+    End Sub
+
+    Sub view_draft()
+        Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description
+,a.debit as credit,a.credit as debit
+,a.acc_trans_det_note as note 
+FROM tb_a_acc_trans_det a 
+INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
+WHERE a.id_acc_trans='" & id_trans & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDraftJournal.DataSource = data
+        'add
+        For i As Integer = 0 To GVJournalDet.RowCount - 1
+            Dim newRow As DataRow = (TryCast(GCDraftJournal.DataSource, DataTable)).NewRow()
+            newRow("id_acc") = GVJournalDet.GetRowCellValue(i, "id_acc").ToString
+            newRow("acc_name") = GVJournalDet.GetRowCellValue(i, "acc_name").ToString
+            newRow("note") = GVJournalDet.GetRowCellValue(i, "note").ToString
+            newRow("debit") = GVJournalDet.GetRowCellValue(i, "debit")
+            newRow("credit") = GVJournalDet.GetRowCellValue(i, "credit")
+
+            TryCast(GCDraftJournal.DataSource, DataTable).Rows.Add(newRow)
+        Next
     End Sub
 
     Sub view_det()
-        Dim query As String = "SELECT a.id_acc_trans_adj_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_adj_det_note as note FROM tb_a_acc_trans_adj_det a INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
+        Dim query As String = "SELECT a.id_acc_trans_adj_det,a.id_acc,b.acc_name,b.acc_description
+,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit
+,a.acc_trans_adj_det_note as note 
+FROM tb_a_acc_trans_adj_det a 
+INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
+WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCJournalDet.DataSource = data
     End Sub
@@ -68,7 +143,15 @@
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
-        'validates
+        'validate
+        Dim dc_is_ok As Boolean = True
+        '
+        For i As Integer = 0 To GVDraftJournal.RowCount - 1
+            If GVDraftJournal.GetRowCellValue(i, "debit") > 0 And GVDraftJournal.GetRowCellValue(i, "credit") > 0 Then
+                dc_is_ok = False
+            End If
+        Next
+        '
         ValidateChildren()
         If id_trans = "-1" Then
             stopCustom("Please choose entry to adjust.")
@@ -78,11 +161,12 @@
             stopCustom("Please input debit/credit value.")
         ElseIf Not GVJournalDet.Columns("debit").SummaryItem.SummaryValue = GVJournalDet.Columns("credit").SummaryItem.SummaryValue Then
             stopCustom("Debit and credit must balance.")
+        ElseIf Not dc_is_ok Then
+            stopCustom("Please make sure only put value on debit or credit only")
         Else
             If id_trans_adj = "-1" Then
                 'new
-                Dim query As String = String.Format("INSERT INTO tb_a_acc_trans_adj(id_acc_trans,acc_trans_adj_number,date_created,id_user,acc_trans_adj_note) VALUES('{3}','{0}',NOW(),'{1}','{2}');SELECT LAST_INSERT_ID(); ", TENumber.Text, id_user, MENote.Text, id_trans)
-
+                Dim query As String = String.Format("INSERT INTO tb_a_acc_trans_adj(id_acc_trans,acc_trans_adj_number,date_created,id_user,acc_trans_adj_note,date_reffrence,id_report,report_mark_type,report_number) VALUES('{3}','{0}',NOW(),'{1}','{2}','{4}','{5}','{6}','{7}');SELECT LAST_INSERT_ID(); ", TENumber.Text, id_user, addSlashes(MENote.Text), id_trans, Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd"), id_report, report_mark_type, report_number)
                 id_trans_adj = execute_query(query, 0, True, "", "", "", "")
 
                 'entry detail
@@ -100,7 +184,7 @@
                 FormAccountingJournalAdj.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournalAdj.GVAccTrans, "id_acc_trans_adj", id_trans_adj)
                 increase_inc_acc("2")
                 'insert who prepared
-                insert_who_prepared("40", id_trans_adj, id_user)
+                submit_who_prepared("40", id_trans_adj, id_user)
                 Close()
             Else
                 'edit
@@ -158,6 +242,7 @@
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this entry ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             GVJournalDet.DeleteSelectedRows()
+            view_draft()
         End If
         GVJournalDet.RefreshData()
     End Sub
@@ -187,6 +272,7 @@
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_trans_adj
         FormReportMark.report_mark_type = "40"
+        FormReportMark.is_view = is_view
         FormReportMark.ShowDialog()
     End Sub
 
@@ -238,5 +324,47 @@
     Private Sub BPickJournal_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPickJournal.Click
         FormPopUpJournal.id_acc_trans = id_trans
         FormPopUpJournal.ShowDialog()
+    End Sub
+
+    Private Sub GVRevJournal_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRevJournal.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVDraftJournal_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDraftJournal.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVJournalDet_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVJournalDet.CellValueChanged
+        If e.Column.FieldName = "debit" Or e.Column.FieldName = "credit" Then
+            view_draft()
+        End If
+    End Sub
+
+    Private Sub BViewJournal_Click(sender As Object, e As EventArgs) Handles BViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=40 AND ad.id_report=" + id_trans_adj + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "40"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

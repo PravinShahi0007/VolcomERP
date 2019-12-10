@@ -8,9 +8,17 @@
     '
     Public is_need_bank_account As String = "-1"
     '
+    Public id_comp_group_add As String = "-1"
+
     Dim data_map As DataTable
 
     Private Sub FormMasterCompanySingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
+        If Not id_comp_group_add = "-1" Then
+            FormPopUpCompGroup.view_comp_group()
+
+            FormPopUpCompGroup.GVGroupComp.FocusedRowHandle = find_row(FormPopUpCompGroup.GVGroupComp, "id_comp_group", id_comp_group_add)
+        End If
+
         Dispose()
     End Sub
 
@@ -73,6 +81,22 @@
         LESOType.EditValue = Nothing
         LEWHType.EditValue = Nothing
 
+        'add contact group
+        If id_comp_group_add = "-1" Then
+            id_comp_group_add = If(id_company = "-1", "-1", execute_query("SELECT IFNULL((SELECT id_comp_group FROM tb_m_comp_group WHERE id_comp = " + id_company + "), -1) AS id_comp_group_add", 0, True, "", "", "", ""))
+        End If
+
+        If id_comp_group_add = "-1" Then
+            GroupControlStoreGroup.Visible = False
+
+            Size = New Size(Size.Width, Size.Height - 56)
+        Else
+            Dim query As String = "SELECT comp_group, description FROM tb_m_comp_group WHERE id_comp_group = " + id_comp_group_add
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TECompGroup.EditValue = data.Rows(0)("comp_group").ToString
+            TECompGroupDescription.EditValue = data.Rows(0)("description").ToString
+        End If
+
         If id_company = "-1" Then
             'new
             XTPSetup.PageVisible = False
@@ -82,6 +106,12 @@
             '
             BApproval.Visible = False
             BPrint.Visible = False
+
+            'add contact group
+            If Not id_comp_group_add = "-1" Then
+                LECompanyCategory.ItemIndex = LECompanyCategory.Properties.GetDataSourceRowIndex("id_comp_cat", "2")
+                LECompanyCategory.ReadOnly = True
+            End If
         Else
             'edit
             XTPLegal.PageVisible = True
@@ -233,6 +263,9 @@
 
             If is_active = "1" Or is_active = "2" Then
                 BApproval.Visible = False
+                If Not is_view = "1" Then
+                    BResetMark.Visible = True
+                End If
             Else
                 BApproval.Visible = True
                 '
@@ -515,6 +548,12 @@
                     FormMasterCompany.GVCompany.FocusedRowHandle = find_row(FormMasterCompany.GVCompany, "id_comp", id_baru)
                 End If
 
+                'add contact group
+                If Not id_comp_group_add = "-1" Then
+                    query = "UPDATE tb_m_comp_group SET id_comp = " + id_baru + " WHERE id_comp_group = " + id_comp_group_add
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
                 id_company = id_baru
                 infoCustom("Detail company saved.")
 
@@ -765,6 +804,8 @@
     End Sub
 
     Private Sub BGroupComp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BGroupComp.Click
+        FormPopUpCompGroup.Close()
+
         FormPopUpCompGroup.ShowDialog()
     End Sub
 
@@ -879,7 +920,7 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCLegal.DataSource = data
         GVLegal.BestFitColumns()
-        If GVLegal.RowCount > 0 And Not is_view = "1" Then
+        If GVLegal.RowCount > 0 And Not is_view = "1" And LEStatus.EditValue.ToString = "3" Then
             BDeleteLegal.Visible = True
         Else
             BDeleteLegal.Visible = False

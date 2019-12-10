@@ -16,11 +16,12 @@
                     Next
                     If is_already = False Then
                         Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
-                        newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo_det").ToString
+                        newRow("id_prod_order") = id_po
+                        newRow("id_report") = GVList.GetRowCellValue(i, "id_pn_fgpo").ToString
                         newRow("report_mark_type") = "199"
-                        newRow("number") = GVList.GetRowCellValue(i, "number").ToString
-                        newRow("description") = GVList.GetRowCellValue(i, "design_display_name").ToString
-                        newRow("code") = GVList.GetRowCellValue(i, "design_code").ToString
+                        newRow("report_number") = GVList.GetRowCellValue(i, "number").ToString
+                        newRow("info_design") = GVList.GetRowCellValue(i, "design_display_name").ToString
+                        newRow("qty") = GVList.GetRowCellValue(i, "qty")
                         newRow("value") = GVList.GetRowCellValue(i, "value") * -1
                         newRow("vat") = GVList.GetRowCellValue(i, "vat") * -1
                         newRow("inv_number") = GVList.GetRowCellValue(i, "inv_number").ToString
@@ -30,6 +31,7 @@
                 Catch ex As Exception
                     warningCustom(ex.ToString)
                 End Try
+                FormInvoiceFGPODP.SLEVendor.EditValue = GVList.GetRowCellValue(i, "id_comp").ToString
             Next
             Close()
         Else
@@ -51,14 +53,29 @@
     End Sub
 
     Sub load_dp()
-        Dim query As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
-,dsg.`design_code`,dsg.`design_display_name`
+        Dim query As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det,pnd.qty, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
+,dsg.`design_code`,dsg.`design_display_name`,wo.id_comp,wo.comp_name
 FROM `tb_pn_fgpo_det` pnd
 INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
+LEFT JOIN 
+(
+    SELECT c.`comp_name`,c.id_comp,wo.id_prod_order
+    FROM tb_prod_order_wo wo
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
+    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovhp.id_comp_contact
+    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.id_comp
+    WHERE wo.id_prod_order='" & id_po & "' AND wo.is_main_vendor=1
+)wo ON wo.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+    SELECT id_report FROM `tb_pn_fgpo_det` pnd
+    INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+    WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5 AND pnd.id_prod_order='" & id_po & "'
+)used ON used.id_report=pnd.id_pn_fgpo
 INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
+WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1' AND ISNULL(used.id_report)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
     End Sub

@@ -41,6 +41,7 @@ Partial Class FormSalesReturn
         Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNonList = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoCENonList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -103,7 +104,7 @@ Partial Class FormSalesReturn
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesReturn.SuspendLayout()
         Me.XTPSalesReturnList.SuspendLayout()
@@ -328,6 +329,14 @@ Partial Class FormSalesReturn
         Me.RepoCENonList.ValueChecked = "Yes"
         Me.RepoCENonList.ValueUnchecked = "No"
         '
+        'GridColumncombine_number
+        '
+        Me.GridColumncombine_number.Caption = "Combine#"
+        Me.GridColumncombine_number.FieldName = "combine_number"
+        Me.GridColumncombine_number.Name = "GridColumncombine_number"
+        Me.GridColumncombine_number.Visible = True
+        Me.GridColumncombine_number.VisibleIndex = 1
+        '
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -445,7 +454,7 @@ Partial Class FormSalesReturn
         Me.GroupControlSalesReturnOrder.Name = "GroupControlSalesReturnOrder"
         Me.GroupControlSalesReturnOrder.Size = New System.Drawing.Size(729, 253)
         Me.GroupControlSalesReturnOrder.TabIndex = 0
-        Me.GroupControlSalesReturnOrder.Text = "Return Order"
+        Me.GroupControlSalesReturnOrder.Text = "Order"
         '
         'GCSalesReturnOrder
         '
@@ -460,7 +469,7 @@ Partial Class FormSalesReturn
         '
         'GVSalesReturnOrder
         '
-        Me.GVSalesReturnOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnEstDate, Me.GridColumnDSalesTargetNote, Me.GridColumn1, Me.GridColumnTimeRemaining, Me.GridColumnReturnQty, Me.GridColumnOrderQty, Me.GridColumnReportStatus, Me.GridColumnCurrDate, Me.GridColumnPrepareStatus, Me.GridColumnSvcLevel, Me.GridColumnOLStoreOrder, Me.GridColumn3})
+        Me.GVSalesReturnOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnEstDate, Me.GridColumnDSalesTargetNote, Me.GridColumn1, Me.GridColumnTimeRemaining, Me.GridColumnReturnQty, Me.GridColumnOrderQty, Me.GridColumnReportStatus, Me.GridColumnCurrDate, Me.GridColumnPrepareStatus, Me.GridColumnSvcLevel, Me.GridColumnOLStoreOrder, Me.GridColumn3, Me.GridColumnorder_type})
         Me.GVSalesReturnOrder.GridControl = Me.GCSalesReturnOrder
         Me.GVSalesReturnOrder.Name = "GVSalesReturnOrder"
         Me.GVSalesReturnOrder.OptionsBehavior.ReadOnly = True
@@ -482,7 +491,7 @@ Partial Class FormSalesReturn
         Me.GridColumnTo.FieldName = "store_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 2
+        Me.GridColumnTo.VisibleIndex = 3
         '
         'GridColumnSalesTargetDate
         '
@@ -515,7 +524,7 @@ Partial Class FormSalesReturn
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "created_return", "{0:N0}")})
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 5
+        Me.GridColumn1.VisibleIndex = 6
         '
         'GridColumnTimeRemaining
         '
@@ -532,7 +541,7 @@ Partial Class FormSalesReturn
         Me.GridColumnReturnQty.Name = "GridColumnReturnQty"
         Me.GridColumnReturnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "return_qty", "{0:n2}")})
         Me.GridColumnReturnQty.Visible = True
-        Me.GridColumnReturnQty.VisibleIndex = 4
+        Me.GridColumnReturnQty.VisibleIndex = 5
         '
         'GridColumnOrderQty
         '
@@ -543,7 +552,7 @@ Partial Class FormSalesReturn
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:n2}")})
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 3
+        Me.GridColumnOrderQty.VisibleIndex = 4
         '
         'GridColumnReportStatus
         '
@@ -582,7 +591,7 @@ Partial Class FormSalesReturn
         Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
         Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
         Me.GridColumnOLStoreOrder.Visible = True
-        Me.GridColumnOLStoreOrder.VisibleIndex = 1
+        Me.GridColumnOLStoreOrder.VisibleIndex = 2
         '
         'GridColumn3
         '
@@ -925,13 +934,13 @@ Partial Class FormSalesReturn
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
         '
-        'GridColumncombine_number
+        'GridColumnorder_type
         '
-        Me.GridColumncombine_number.Caption = "Combine#"
-        Me.GridColumncombine_number.FieldName = "combine_number"
-        Me.GridColumncombine_number.Name = "GridColumncombine_number"
-        Me.GridColumncombine_number.Visible = True
-        Me.GridColumncombine_number.VisibleIndex = 1
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
         '
         'FormSalesReturn
         '
@@ -1062,4 +1071,5 @@ Partial Class FormSalesReturn
     Friend WithEvents GridColumnNonList As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoCENonList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumncombine_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

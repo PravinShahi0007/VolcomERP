@@ -11,7 +11,7 @@
 
 
     Private Sub FormProcessing_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If id_process = "1" Or id_process = "3" Then
+        If id_process = "1" Or id_process = "3" Or id_process = "5" Then
             'initiation datatable
             dtx.Columns.Add("id_product")
             dtx.Columns.Add("id_prod_order_det")
@@ -121,7 +121,7 @@
                 i = i - 1
                 j = j + 1
             End While
-        ElseIf id_process = "3" Then
+        ElseIf id_process = "3" Or id_process = "5" Then
             If is_old_design = "1" Then
                 Dim query As String = ""
                 query += "Select prod.id_product, pdo_det.id_prod_order_det, (prod.product_full_code) As `product_code`, "
@@ -205,6 +205,12 @@
                     infoCustom("Prepare order was created succesfully.")
                 Else
                     stopCustom("There are some problem with this process. These account are not successfully to create prepare order : " + System.Environment.NewLine + str_err + System.Environment.NewLine + "Please try again later !")
+                End If
+            ElseIf id_process = "5" Then
+                If FormProductionFinalClearDet.dt.Rows.Count > 0 Then
+                    FormProductionFinalClearDet.dt.Merge(dtx)
+                Else
+                    FormProductionFinalClearDet.dt = dtx
                 End If
             End If
             LabelControlPrecentage.Visible = False

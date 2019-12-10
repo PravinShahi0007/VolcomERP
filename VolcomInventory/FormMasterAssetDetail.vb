@@ -222,7 +222,7 @@
                                     WHERE id_asset='" & id_asset & "'"
 
             execute_non_query(query, True, "", "", "", "")
-            FormMasterAsset.load_asset()
+            FormMasterAsset.load_asset("2")
             FormMasterAsset.GVAsset.FocusedRowHandle = find_row(FormMasterAsset.GVAsset, "id_asset", id_asset)
             Close()
         End If

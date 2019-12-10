@@ -177,7 +177,7 @@
             Dim query As String = "select cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type "
             query += " From tb_m_comp_contact cc "
             query += " inner join tb_m_comp c On c.id_comp=cc.id_comp"
-            query += " where cc.is_default=1 and c.id_comp_cat='1' AND c.comp_number='" + TEVendor.Text + "'"
+            query += " where cc.is_default=1 and (c.id_comp_cat='1' OR c.id_comp_cat='8') AND c.comp_number='" + TEVendor.Text + "'"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
@@ -210,8 +210,8 @@
 
         If Not BGVItemList.RowCount > 0 Then
             warningCustom("Please choose the design first")
-        ElseIf id_comp_contact = "-1" Then
-            warningCustom("Please fill the vendor")
+            'ElseIf id_comp_contact = "-1" Then
+            '    warningCustom("Please fill the vendor")
         ElseIf TEEcop.EditValue = 0 Then
             warningCustom("Please put the cost")
         ElseIf TETodayKurs.EditValue = 0 Then
@@ -226,7 +226,12 @@
             Next
 
             If check = False Then
-                If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" And BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString = "" Then
+                Dim query_pd As String = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
+INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocusedRowCellValue("id_design").ToString & "' AND pd.is_pd='1'"
+                Dim data_pd As DataTable = execute_query(query_pd, -1, True, "", "", "", "")
+
+                If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" And data_pd.Rows.Count <= 0 Then
                     warningCustom("This design dont have PD created, please change the cost normally.")
                 Else
                     Dim check_rec_qc As String = "SELECT prod_det.id_prod_order_det,SUM(prod_rec_d.prod_order_rec_det_qty) AS receive_created_qty
@@ -284,12 +289,17 @@
                         id_cur_after = id_currency
                         kurs_after = decimalSQL(TETodayKurs.EditValue.ToString)
                         cop_after = decimalSQL(TEEcop.EditValue.ToString)
-                        id_contact_after = id_comp_contact
+
+                        If Not id_comp_contact = "-1" Then
+                            id_contact_after = "'" & id_comp_contact & "'"
+                        Else
+                            id_contact_after = "NULL"
+                        End If
                         add_cost_after = decimalSQL(TEAdditionalCost.EditValue.ToString)
 
                         Dim query As String = ""
                         query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES"
-                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_cur_before & "," & kurs_before & "," & cop_before & "," & id_contact_before & "," & add_cost_before & ",'" & id_cur_after & "','" & kurs_after & "','" & cop_after & "','" & id_contact_after & "','" & add_cost_after & "'); SELECT LAST_INSERT_ID(); "
+                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_cur_before & "," & kurs_before & "," & cop_before & "," & id_contact_before & "," & add_cost_before & ",'" & id_cur_after & "','" & kurs_after & "','" & cop_after & "', " & id_contact_after & " ,'" & add_cost_after & "'); SELECT LAST_INSERT_ID(); "
                         id_det = execute_query(query, 0, True, "", "", "", "")
 
                         'insert component
@@ -316,7 +326,7 @@
 
     Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
         FormPopUpContact.id_pop_up = "88"
-        FormPopUpContact.id_cat = 1
+        FormPopUpContact.id_cat = "1,8"
         FormPopUpContact.ShowDialog()
     End Sub
 

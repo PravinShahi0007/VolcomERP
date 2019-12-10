@@ -758,9 +758,9 @@ Partial Class FormSalesReturnDet
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl9.Location = New System.Drawing.Point(11, 13)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl9.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl9.TabIndex = 8900
-        Me.LabelControl9.Text = "Return Order"
+        Me.LabelControl9.Text = "Order"
         '
         'PanelControl3
         '

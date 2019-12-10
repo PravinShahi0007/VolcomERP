@@ -11,7 +11,7 @@
     End Sub
     '
     Sub load_payroll()
-        Dim query As String = "SELECT 'no' AS is_check, pr.*,emp.`employee_name`,type.payroll_type as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name, IFNULL((SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = pr.id_report_status), 'Not Submitted') AS report_status FROM tb_emp_payroll pr
+        Dim query As String = "SELECT 'no' AS is_check, pr.*,emp.`employee_name`,type.payroll_type as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name, IFNULL((SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = pr.id_report_status), 'Not Submitted') AS report_status, type.is_thr, type.is_dw FROM tb_emp_payroll pr
                                 INNER JOIn tb_emp_payroll_type type ON type.id_payroll_type=pr.id_payroll_type
                                 INNER JOIN tb_m_user usr ON usr.id_user=pr.id_user_upd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.id_employee
@@ -19,6 +19,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         '
         GCPayrollPeriode.DataSource = data
+        GVPayrollPeriode.BestFitColumns()
         '
         check_but()
     End Sub
@@ -80,6 +81,23 @@
             adjustment_deduction_column("adjustment")
             adjustment_deduction_column("deduction")
 
+            'check column
+            If GBBonusAdjustment.Columns.Count = 1 Then
+                GBBonusAdjustment.Visible = False
+                BBonusAdjustment.Visible = False
+            Else
+                GBBonusAdjustment.Visible = True
+                BBonusAdjustment.Visible = True
+            End If
+
+            If GBDeduction.Columns.Count = 1 Then
+                GBDeduction.Visible = False
+                BDeduction.Visible = False
+            Else
+                GBDeduction.Visible = True
+                BDeduction.Visible = True
+            End If
+
             'grand total dw
             If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
                 calculate_grandtotal_dw()
@@ -90,12 +108,21 @@
             'controls
             Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "'", 0, True, "", "", "", "")
 
+            Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
+            Dim is_dw As String = execute_query("SELECT is_dw FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
             If id_report_status = "0" Then
                 BGetEmployee.Enabled = True
                 BRemoveEmployee.Enabled = True
                 BMark.Enabled = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = True
                 BandedGridColumnCash.OptionsColumn.AllowEdit = True
+                If is_dw = "1" Then
+                    BandedGridColumnTotalSalaryTHR.OptionsColumn.AllowEdit = True
+                Else
+                    BandedGridColumnTotalSalaryTHR.OptionsColumn.AllowEdit = False
+                End If
                 'BReport.Enabled = False
                 BPrintSlip.Enabled = False
                 SBSendSlip.Enabled = False
@@ -111,6 +138,7 @@
                 BandedGridColumnActWorkdaysDW.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
+                BandedGridColumnTotalSalaryTHR.OptionsColumn.AllowEdit = False
                 'BReport.Enabled = True
                 BPrintSlip.Enabled = False
                 SBSendSlip.Enabled = False
@@ -127,16 +155,68 @@
             End If
 
             'grid
-            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
-                GBWorkingDays.Visible = True
+            If is_thr = "2" Then
+                If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
+                    GBWorkingDays.Visible = True
+                    GBSalary.Visible = True
+                    GBOvertime.Visible = True
+
+                    GBDW.Visible = False
+
+                    GBTHR.Visible = False
+
+                    BOvertime.Visible = True
+
+                    BandedGridColumnTotFixedSalary.Visible = False
+                    GridColumnHousingAllowance.Visible = True
+                    GridColumnVehicleAttndAllowance.Visible = True
+                    GridColumnTotTHP.Visible = True
+                ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
+                    GBWorkingDays.Visible = False
+                    GBSalary.Visible = False
+                    GBOvertime.Visible = True
+
+                    GBTHR.Visible = False
+
+                    GBDW.Visible = True
+
+                    BOvertime.Visible = True
+                End If
+
+                BBIBPJSKesehatan.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+                BBIBPJSTK.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+                BBIPajak.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+
+                BBonusAdjustment.Text = "Bonus / Adjustment"
+                BandedGridColumnTotalAdjustment.Caption = "Total Bonus / Adjustment"
+                GBBonusAdjustment.Caption = "Bonus / Adjustment"
+            Else
+                GBWorkingDays.Visible = False
                 GBSalary.Visible = True
+                GBOvertime.Visible = False
+
+                GBTHR.Visible = True
 
                 GBDW.Visible = False
-            ElseIf GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" Then
-                GBWorkingDays.Visible = False
-                GBSalary.Visible = False
 
-                GBDW.Visible = True
+                BOvertime.Visible = False
+
+                BandedGridColumnTotFixedSalary.Visible = True
+                GridColumnHousingAllowance.Visible = False
+                GridColumnVehicleAttndAllowance.Visible = False
+                GridColumnTotTHP.Visible = False
+
+                If is_dw = "1" Then
+                    GBSalary.Visible = False
+                End If
+
+                BBIBPJSKesehatan.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+                BBIBPJSTK.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+                BBIPajak.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+
+                BBonusAdjustment.Text = "Adjustment"
+                BandedGridColumnTotalAdjustment.Caption = "Adjustment"
+                GBBonusAdjustment.Caption = "Adjustment"
             End If
         End If
 
@@ -340,6 +420,14 @@
                 Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_cash='" & is_cash & "' WHERE id_payroll_det='" & id_det & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
             End If
+        ElseIf e.Column.FieldName.ToString = "total_salary_thr" Then
+            If Not e.Value.ToString = "" And GVPayroll.RowCount > 0 Then
+                Dim id_det As String = GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET total_salary_thr='" & Integer.Parse(e.Value.ToString) & "' WHERE id_payroll_det='" & id_det & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                load_payroll_detail()
+            End If
         End If
     End Sub
 
@@ -354,6 +442,44 @@
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         Dim data As DataTable = GCPayroll.DataSource
 
+        'alphabeth
+        Dim alphabet As String() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+
+        data.DefaultView.Sort = "departement ASC, departement_sub ASC"
+        data = data.DefaultView.ToTable
+
+        Dim iAlphabet As Integer = 0
+        Dim iInterger As Integer = 1
+
+        Dim last_departement As String = ""
+        Dim last_departement_sub As String = ""
+
+        For i = 0 To data.Rows.Count - 1
+            Dim curr_departement As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("departement").ToString, "\(([A-Z])\)", "").ToString()
+            Dim curr_departement_sub As String = System.Text.RegularExpressions.Regex.Replace(data.Rows(i)("departement_sub").ToString, "\(([A-Z])\)", "").ToString()
+
+            If i = 0 Then
+                last_departement = curr_departement
+                last_departement_sub = curr_departement_sub
+            End If
+
+            If Not last_departement = curr_departement Then
+                iAlphabet += 1
+                iInterger = 0
+            End If
+
+            If Not last_departement_sub = curr_departement_sub Then
+                iInterger += 1
+            End If
+
+            data.Rows(i)("departement") = curr_departement + " (" + alphabet(iAlphabet) + ")"
+            data.Rows(i)("departement_sub") = curr_departement_sub + " (" + alphabet(iAlphabet) + iInterger.ToString + ")"
+
+            last_departement = curr_departement
+            last_departement_sub = curr_departement_sub
+        Next
+
+        'report
         Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, 0, True, "", "", "", "")
 
         Dim already_office As Boolean = False
@@ -368,85 +494,52 @@
         Next
 
         'office
-        Dim data_payroll_1 As DataTable = data.Clone
+        Dim data_payroll_office As DataTable = data.Clone
 
         For j = 0 To data.Rows.Count - 1
             If data.Rows(j)("is_office_payroll").ToString = "1" Then
-                data_payroll_1.ImportRow(data.Rows(j))
+                data_payroll_office.ImportRow(data.Rows(j))
             End If
         Next
 
-        Dim report_office_1 As ReportPayrollAll = New ReportPayrollAll
-
-        report_office_1.PrintingSystem.ContinuousPageNumbering = False
-
-        report_office_1.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-        report_office_1.dt = data_payroll_1
-        report_office_1.last_alphabet = 0
-        report_office_1.id_pre = If(id_report_status = "6", "-1", "1")
-        report_office_1.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
-
-        report_office_1.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report_office_1.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report_office_1.XLLocation.Text = "Office"
-
-        report_office_1.CreateDocument()
-
         'store
-        Dim data_payroll_2 As DataTable = data.Clone
+        Dim data_payroll_store As DataTable = data.Clone
 
         For j = 0 To data.Rows.Count - 1
             If data.Rows(j)("is_office_payroll").ToString = "2" Then
-                data_payroll_2.ImportRow(data.Rows(j))
+                data_payroll_store.ImportRow(data.Rows(j))
             End If
         Next
 
-        Dim report_office_2 As ReportPayrollAll = New ReportPayrollAll
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
 
-        report_office_2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-        report_office_2.dt = data_payroll_2
-        report_office_2.last_alphabet = data_payroll_1.AsDataView.ToTable(True, "departement").Rows.Count
-        report_office_2.id_pre = If(id_report_status = "6", "-1", "1")
-        report_office_2.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+        Dim report As ReportPayrollAll = New ReportPayrollAll
 
-        report_office_2.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report_office_2.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report_office_2.XLLocation.Text = "Store"
+        report.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        report.id_pre = If(id_report_status = "6", "-1", "1")
+        report.type = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
+        report.dt_office = data_payroll_office
+        report.dt_store = data_payroll_store
 
-        report_office_2.CreateDocument()
+        report.XLPeriod.Text = Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report.XLType.Text = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
-        'combine
-        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
-
-        'report_office_1
-        If already_office Then
-            For i = 0 To report_office_1.Pages.Count - 1
-                list.Add(report_office_1.Pages(i))
-            Next
+        If is_thr = "1" Then
+            report.XLTitle.Text = "Detail THR"
+            report.XLPeriod.Text = "Period " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
         End If
 
-        'report_office_2
-        If already_store Then
-            For i = 0 To report_office_2.Pages.Count - 1
-                list.Add(report_office_2.Pages(i))
-            Next
+        If Not already_office Then
+            report.DetailReportOffice.Visible = False
         End If
 
-        If already_office Then
-            report_office_1.Pages.AddRange(list)
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report_office_1)
-
-            tool.ShowPreview()
+        If Not already_store Then
+            report.DetailReportStore.Visible = False
         End If
 
-        If already_store And Not already_office Then
-            report_office_2.Pages.AddRange(list)
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report_office_2)
-
-            tool.ShowPreview()
-        End If
+        tool.ShowPreview()
     End Sub
 
     Private Sub BBBcaFormat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBcaFormat.ItemClick
@@ -519,10 +612,13 @@
     End Sub
 
     Sub adjustment_deduction_column(type As String)
+        'type
+        Dim payroll_type As DataTable = execute_query("SELECT is_dw, is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, -1, True, "", "", "", "")
+
         'column
         Dim where_adj_c As String = ""
 
-        Dim query_adj_c As String = "SELECT cat.salary_" + type + "_cat, (SELECT MIN(use_dw) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_dw FROM tb_lookup_salary_" + type + "_cat AS cat"
+        Dim query_adj_c As String = "SELECT cat.salary_" + type + "_cat, (SELECT MIN(use_dw) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_dw, (SELECT MIN(use_thr) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_thr FROM tb_lookup_salary_" + type + "_cat AS cat"
 
         Dim data_adj_c As DataTable = execute_query(query_adj_c, -1, True, "", "", "", "")
 
@@ -533,7 +629,12 @@
             GVPayroll.Columns.Remove(GVPayroll.Columns(field_name))
 
             'dw column
-            If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "4" And data_adj_c.Rows(i)("use_dw").ToString = "2" Then
+            If payroll_type.Rows(0)("is_dw") = "1" And data_adj_c.Rows(i)("use_dw").ToString = "2" Then
+                Continue For
+            End If
+
+            'thr column
+            If payroll_type.Rows(0)("is_thr") = "1" And data_adj_c.Rows(i)("use_thr").ToString = "2" Then
                 Continue For
             End If
 
@@ -620,14 +721,14 @@
         End If
     End Sub
 
-    Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem5.ItemClick
+    Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIBPJSTK.ItemClick
         'bpjstk
         FormEmpPayrollReportBPJSTK.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
 
         FormEmpPayrollReportBPJSTK.ShowDialog()
     End Sub
 
-    Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
+    Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIBPJSKesehatan.ItemClick
         'bpjs kesehatan
         FormEmpPayrollReportBPJSKesehatan.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
 
@@ -686,6 +787,10 @@
                                 Dim employee_name As String = GVPayroll.GetRowCellValue(i, "employee_name").ToString
                                 Dim email_personal As String = GVPayroll.GetRowCellValue(i, "email_personal").ToString
 
+                                If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
+                                    period = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString.Replace(" Daily Worker", "") + " " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+                                End If
+
                                 Dim mem As New IO.MemoryStream()
 
                                 Dim report As ReportSalarySlip = New ReportSalarySlip
@@ -720,7 +825,7 @@
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Yang Terhormat Bapak/Ibu</p>
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>" + employee_name + "</p>
                                     <br>
-                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Bersama ini kami lampirkan slip gaji Anda untuk bulan <b>" + period + "</b>,  slip gaji Anda ini bersifat pribadi dan sangat rahasia.</p>
+                                    <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Bersama ini kami lampirkan slip gaji Anda untuk " + If(GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1", "", "bulan") + " <b>" + period + "</b>,  slip gaji Anda ini bersifat pribadi dan sangat rahasia.</p>
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Gunakan password Anda untuk melihat slip gaji tersebut.</p>
                                     <br>
                                     <p style='font: normal 10.00pt/14.25pt Arial; margin: 0;'>Pasword slip gaji Anda adalah ddMmmyyyy (contoh: 01Aug1995)</p>
@@ -845,7 +950,7 @@
         End If
     End Sub
 
-    Private Sub BarButtonItem6_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem6.ItemClick
+    Private Sub BarButtonItem6_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIPajak.ItemClick
         FormEmpPayrollReportPajak.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         FormEmpPayrollReportPajak.ShowDialog()
     End Sub

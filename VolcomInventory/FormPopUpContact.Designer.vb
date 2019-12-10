@@ -168,8 +168,6 @@ Partial Class FormPopUpContact
         Me.is_active.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.is_active.FieldName = "is_active"
         Me.is_active.Name = "is_active"
-        Me.is_active.Visible = True
-        Me.is_active.VisibleIndex = 3
         Me.is_active.Width = 52
         '
         'RepositoryItemCheckEdit1

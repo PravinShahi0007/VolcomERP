@@ -199,7 +199,7 @@
             Dim date_untilp As String = Date.Parse(date_until.ToString).ToString("yyyy-MM-dd")
             'add header
             query = "INSERT INTO tb_emp_assign_sch(assign_sch_number,assign_sch_date,id_departement,date_from,date_until,id_user_propose,id_report_status,note) 
-                    VALUES('" & header_number_emp("4") & "',NOW(),'" & id_departement_user & "','" & date_fromp & "','" & date_untilp & "','" & id_user & "',1,'" & MENote.Text & "'); SELECT LAST_INSERT_ID(); "
+                    VALUES('" & header_number_emp("4") & "',NOW(),'" & If(FormEmpAttnAssign.is_sales_dept = "1", "17", id_departement_user) & "','" & date_fromp & "','" & date_untilp & "','" & id_user & "',1,'" & MENote.Text & "'); SELECT LAST_INSERT_ID(); "
             id_emp_assign_sch = execute_query(query, 0, True, "", "", "", "")
             increase_inc_emp("4")
             'detail

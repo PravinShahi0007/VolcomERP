@@ -50,6 +50,11 @@ Partial Class FormItemDelDetail
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnITemName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdItemn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPurcStorage = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnQtyReq = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyDelivered = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyLimit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -89,6 +94,7 @@ Partial Class FormItemDelDetail
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDel.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
@@ -375,13 +381,14 @@ Partial Class FormItemDelDetail
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPurcStorage})
         Me.GCData.Size = New System.Drawing.Size(813, 297)
         Me.GCData.TabIndex = 16
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnStt, Me.GridColumn1})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumn9, Me.GridColumnQtyReq, Me.GridColumnQtyDelivered, Me.GridColumnQtyLimit, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnStt, Me.GridColumn1})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -396,7 +403,7 @@ Partial Class FormItemDelDetail
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 85
+        Me.GridColumnNo.Width = 34
         '
         'GridColumnITemName
         '
@@ -406,7 +413,7 @@ Partial Class FormItemDelDetail
         Me.GridColumnITemName.OptionsColumn.AllowEdit = False
         Me.GridColumnITemName.Visible = True
         Me.GridColumnITemName.VisibleIndex = 1
-        Me.GridColumnITemName.Width = 515
+        Me.GridColumnITemName.Width = 210
         '
         'GridColumnIdItemn
         '
@@ -415,8 +422,67 @@ Partial Class FormItemDelDetail
         Me.GridColumnIdItemn.Name = "GridColumnIdItemn"
         Me.GridColumnIdItemn.OptionsColumn.AllowEdit = False
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "From Purchasing Storage"
+        Me.GridColumn9.ColumnEdit = Me.RICEPurcStorage
+        Me.GridColumn9.FieldName = "is_store_request"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
+        '
+        'RICEPurcStorage
+        '
+        Me.RICEPurcStorage.AutoHeight = False
+        Me.RICEPurcStorage.Name = "RICEPurcStorage"
+        Me.RICEPurcStorage.ValueChecked = "yes"
+        Me.RICEPurcStorage.ValueUnchecked = "no"
+        '
+        'GridColumnQtyReq
+        '
+        Me.GridColumnQtyReq.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyReq.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyReq.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyReq.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyReq.Caption = "Requested Qty"
+        Me.GridColumnQtyReq.FieldName = "qty_request"
+        Me.GridColumnQtyReq.Name = "GridColumnQtyReq"
+        Me.GridColumnQtyReq.Visible = True
+        Me.GridColumnQtyReq.VisibleIndex = 4
+        Me.GridColumnQtyReq.Width = 105
+        '
+        'GridColumnQtyDelivered
+        '
+        Me.GridColumnQtyDelivered.Caption = "Delivered Qty"
+        Me.GridColumnQtyDelivered.FieldName = "qty_delivered"
+        Me.GridColumnQtyDelivered.Name = "GridColumnQtyDelivered"
+        Me.GridColumnQtyDelivered.Visible = True
+        Me.GridColumnQtyDelivered.VisibleIndex = 5
+        Me.GridColumnQtyDelivered.Width = 78
+        '
+        'GridColumnQtyLimit
+        '
+        Me.GridColumnQtyLimit.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyLimit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyLimit.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyLimit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyLimit.Caption = "Limit"
+        Me.GridColumnQtyLimit.FieldName = "qty_limit"
+        Me.GridColumnQtyLimit.Name = "GridColumnQtyLimit"
+        Me.GridColumnQtyLimit.Visible = True
+        Me.GridColumnQtyLimit.VisibleIndex = 7
+        Me.GridColumnQtyLimit.Width = 74
+        '
         'GridColumnQty
         '
+        Me.GridColumnQty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnQty.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumnQty.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQty.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Qty"
         Me.GridColumnQty.DisplayFormat.FormatString = "N2"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -424,8 +490,8 @@ Partial Class FormItemDelDetail
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 515
+        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.Width = 73
         '
         'GridColumnRemark
         '
@@ -433,8 +499,8 @@ Partial Class FormItemDelDetail
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 4
-        Me.GridColumnRemark.Width = 517
+        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.Width = 191
         '
         'GridColumnStt
         '
@@ -445,11 +511,16 @@ Partial Class FormItemDelDetail
         '
         'GridColumn1
         '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn1.Caption = "UOM"
         Me.GridColumn1.FieldName = "uom"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.Width = 30
         '
         'XTCDel
         '
@@ -623,6 +694,7 @@ Partial Class FormItemDelDetail
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPurcStorage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDel.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
@@ -682,4 +754,9 @@ Partial Class FormItemDelDetail
     Friend WithEvents GridColumnStoreCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStoreName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCombine As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyReq As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyLimit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyDelivered As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEPurcStorage As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

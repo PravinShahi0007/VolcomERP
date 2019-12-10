@@ -2,6 +2,15 @@
     Public id_payroll As String = "-1"
     Private Sub FormEmpPayrollAdjustment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
+        If is_thr = "1" Then
+            GridColumnTotDays.Caption = "Total Years"
+        Else
+            GridColumnTotDays.Caption = "Total Days"
+        End If
+
         load_adjustment()
     End Sub
     Sub load_adjustment()
@@ -32,7 +41,7 @@
             LEFT JOIN `tb_lookup_employee_status` sts_ori ON sts_ori.`id_employee_status`=emp.`id_employee_status`
             LEFT JOIN `tb_lookup_salary_adjustment` adj ON adj.`id_salary_adjustment`=pya.`id_salary_adj`
             LEFT JOIN tb_lookup_salary_adjustment_cat adjc ON adjc.id_salary_adjustment_cat = adj.id_salary_adjustment_cat
-            WHERE pya.`id_payroll`='" & id_payroll & "'
+            WHERE pya.`id_payroll`='" & id_payroll & "' AND pya.id_employee IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = '" & id_payroll & "')
             ORDER BY emp.id_employee_level ASC, emp.`employee_code` ASC, adj.id_salary_adjustment_cat ASC, adj.`id_salary_adjustment` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -116,70 +125,34 @@
             End If
         Next
 
-        'print office
-        Dim report1 As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
+        'report
+        Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
 
-        report1.PrintingSystem.ContinuousPageNumbering = False
+        Dim report As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
 
-        report1.type = "adjustment"
-        report1.id_payroll = id_payroll
-        report1.is_office_payroll = "1"
-        report1.id_pre = If(id_report_status = "6", "-1", "1")
+        report.type = "adjustment"
+        report.id_payroll = id_payroll
+        report.id_pre = If(id_report_status = "6", "-1", "1")
 
-        report1.XLTitle.Text = "Bonus / Adjustment"
-        report1.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report1.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report1.XLLocation.Text = "Office"
+        report.XLTitle.Text = If(is_thr = "1", "Adjustment", "Bonus / Adjustment")
+        report.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+        report.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
 
-        report1.CreateDocument()
-
-        'print store
-        Dim report2 As ReportEmpPayrollDeduction = New ReportEmpPayrollDeduction
-
-        report2.type = "adjustment"
-        report2.id_payroll = id_payroll
-        report2.is_office_payroll = "2"
-        report2.id_pre = If(id_report_status = "6", "-1", "1")
-
-        report2.XLTitle.Text = "Bonus / Adjustment"
-        report2.XLPeriod.Text = Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
-        report2.XLType.Text = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString
-        report2.XLLocation.Text = "Store"
-
-        report2.CreateDocument()
-
-        'combine
-        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
-
-        'report1
-        If already_office Then
-            For i = 0 To report1.Pages.Count - 1
-                list.Add(report1.Pages(i))
-            Next
+        If is_thr = "1" Then
+            report.XLPeriod.Text = "Period " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
         End If
 
-        'report2
-        If already_store Then
-            For i = 0 To report2.Pages.Count - 1
-                list.Add(report2.Pages(i))
-            Next
+        If Not already_office Then
+            report.DetailReportOffice.Visible = False
         End If
 
-        If already_office Then
-            report1.Pages.AddRange(list)
-
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report1)
-
-            tool.ShowPreview()
+        If Not already_store Then
+            report.DetailReportStore.Visible = False
         End If
 
-        If already_store And Not already_office Then
-            report2.Pages.AddRange(list)
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
-            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report2)
-
-            tool.ShowPreview()
-        End If
+        tool.ShowPreview()
     End Sub
 
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click

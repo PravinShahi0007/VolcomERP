@@ -9,11 +9,8 @@
     Sub viewOutlet()
         Dim query As String = "SELECT 0 AS `id_outlet`, 'All Outlet' AS `outlet`
         UNION
-        SELECT d.id_departement AS `id_outlet`, d.departement AS `outlet`
-        FROM tb_m_departement d 
-        INNER JOIN tb_store_conn sc ON sc.id_outlet = d.id_departement
-        WHERE d.is_store=1
-        ORDER BY id_outlet ASC "
+        SELECT sc.`id_outlet`, sc.outlet_name AS `outlet`
+        FROM tb_store_conn sc ORDER BY id_outlet ASC "
         viewSearchLookupQuery(SLEOutlet, query, "id_outlet", "outlet", "id_outlet")
     End Sub
 
@@ -34,9 +31,8 @@
         SplashScreenManager1.ShowWaitForm()
         Dim sal As New ClassSalesPOS
         sal.splash = SplashScreenManager1
-        Dim query As String = "SELECT sc.id_store_conn, sc.id_outlet, d.departement AS `outlet`, sc.host, sc.username, sc.pass, sc.db 
-        FROM tb_store_conn sc 
-        INNER JOIN tb_m_departement d ON d.id_departement = sc.id_outlet "
+        Dim query As String = "SELECT sc.id_store_conn, sc.id_outlet, sc.outlet_name AS `outlet`, sc.host, sc.username, sc.pass, sc.db 
+        FROM tb_store_conn sc "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             sal.syncOutlet(data.Rows(i)("id_outlet").ToString, data.Rows(i)("outlet").ToString, data.Rows(i)("host").ToString, data.Rows(i)("username").ToString, data.Rows(i)("pass").ToString, data.Rows(i)("db").ToString)
