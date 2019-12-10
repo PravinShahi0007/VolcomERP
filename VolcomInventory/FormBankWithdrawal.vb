@@ -125,15 +125,18 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
             where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS TYPE,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
+        Dim query As String = "SELECT 'no' AS is_check,'189' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS `type`,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
 ,det.amount AS total 
 ,IFNULL(payment.value,0) AS total_paid
 ,IFNULL(payment_pending.jml,0) AS total_pending
 ,(det.amount - IFNULL(payment.value,0)) AS balance
+,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
 FROM tb_pn_fgpo pn
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap
 INNER JOIN (
 	SELECT id_pn_fgpo,SUM(`value`+`vat`) AS amount FROM tb_pn_fgpo_det pnd 
 	GROUP BY pnd.`id_pn_fgpo`

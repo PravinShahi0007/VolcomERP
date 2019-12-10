@@ -405,6 +405,7 @@ Partial Class FormMain
         Me.NBAgingAR = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBReportBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSendEmailAcc = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFolluwUpAR = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
@@ -439,7 +440,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBFolluwUpAR = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2366,13 +2366,13 @@ Partial Class FormMain
         '
         'NBCloseFGPO
         '
-        Me.NBCloseFGPO.Caption = "Closing F.G. Purchase Order"
+        Me.NBCloseFGPO.Caption = "(Old) Closing FGPO"
         Me.NBCloseFGPO.Name = "NBCloseFGPO"
         Me.NBCloseFGPO.SmallImageIndex = 44
         '
         'NBCloseRecQC
         '
-        Me.NBCloseRecQC.Caption = "Closing Receiving"
+        Me.NBCloseRecQC.Caption = "Closing FGPO"
         Me.NBCloseRecQC.Name = "NBCloseRecQC"
         Me.NBCloseRecQC.SmallImage = CType(resources.GetObject("NBCloseRecQC.SmallImage"), System.Drawing.Image)
         '
@@ -3172,6 +3172,12 @@ Partial Class FormMain
         Me.NBSendEmailAcc.Name = "NBSendEmailAcc"
         Me.NBSendEmailAcc.SmallImage = CType(resources.GetObject("NBSendEmailAcc.SmallImage"), System.Drawing.Image)
         '
+        'NBFolluwUpAR
+        '
+        Me.NBFolluwUpAR.Caption = "Follow Up AR"
+        Me.NBFolluwUpAR.Name = "NBFolluwUpAR"
+        Me.NBFolluwUpAR.SmallImage = CType(resources.GetObject("NBFolluwUpAR.SmallImage"), System.Drawing.Image)
+        '
         'NBQC
         '
         Me.NBQC.Caption = "Quality Control"
@@ -3447,12 +3453,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBFolluwUpAR
-        '
-        Me.NBFolluwUpAR.Caption = "Follow Up AR"
-        Me.NBFolluwUpAR.Name = "NBFolluwUpAR"
-        Me.NBFolluwUpAR.SmallImage = CType(resources.GetObject("NBFolluwUpAR.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

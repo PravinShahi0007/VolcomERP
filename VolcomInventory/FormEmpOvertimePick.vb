@@ -118,7 +118,9 @@
         Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
         Dim ot_consumption As Decimal = 0.0
 
-        If FormEmpOvertimeDet.LUEOvertimeType.EditValue.ToString = "1" And TETotalHours.EditValue >= hours Then
+        Dim is_store As String = execute_query("SELECT is_store FROM tb_m_departement WHERE id_departement = " + FormEmpOvertimeDet.LEDepartement.EditValue.ToString, 0, True, "", "", "", "")
+
+        If FormEmpOvertimeDet.LUEOvertimeType.EditValue.ToString = "1" And is_store = "2" And TETotalHours.EditValue >= hours Then
             ot_consumption = get_opt_emp_field("ot_consumption")
         End If
 
@@ -134,8 +136,6 @@
         Dim date_to As Date = Date.Parse(DEOvertimeDateTo.EditValue.ToString)
         Dim time_from As DateTime = DateTime.Parse(TEOvertimeStart.EditValue.ToString)
         Dim time_to As DateTime = DateTime.Parse(TEOvertimeEnd.EditValue.ToString)
-
-        Dim is_store As String = execute_query("SELECT is_store FROM tb_m_departement WHERE id_departement = " + FormEmpOvertimeDet.LEDepartement.EditValue.ToString, 0, True, "", "", "", "")
 
         For i = 0 To GVList.RowCount - 1
             If GVList.IsValidRowHandle(i) Then
@@ -281,4 +281,16 @@
 
         Return whereNotInclude
     End Function
+
+    Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
+        For i = 0 To GVList.RowCount - 1
+            If GVList.IsValidRowHandle(i) Then
+                If CESelectAll.EditValue Then
+                    GVList.SetRowCellValue(i, "is_checked", "yes")
+                Else
+                    GVList.SetRowCellValue(i, "is_checked", "no")
+                End If
+            End If
+        Next
+    End Sub
 End Class
