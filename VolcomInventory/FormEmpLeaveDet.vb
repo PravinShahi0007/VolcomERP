@@ -351,20 +351,29 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim query As String = ""
         Dim problem As Boolean = False
+        Dim leave_type As String = LELeaveType.EditValue.ToString
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Lengkapi isian dengan lengkap !")
         ElseIf TERemainingLeaveAfter.EditValue < 0 Then
-            stopCustom("Sisa cuti tidak mencukupi.")
-        ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "1" Then
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Sisa cuti tidak mencukupi, apakah anda ingin mengajukan unpaid leave?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            'change to unpaid leave
+            If confirm = DialogResult.Yes Then
+                leave_type = "7"
+                TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
+            End If
+        ElseIf leave_type = "2" And LEFormDC.EditValue.ToString = "1" Then
             stopCustom("Sakit harus menggunakan form atau DC.")
-        ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) And LELeaveType.EditValue.ToString = "4" Then
+        ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) And leave_type = "4" Then
             stopCustom("Advance Leave sudah melebihi batas yang ditentukan.")
         Else
-            If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" And GVLeaveDet.RowCount > 1 Then
+            If leave_type = "2" And LEFormDC.EditValue.ToString = "2" And GVLeaveDet.RowCount > 1 Then
                 'lebih dari 1 hari sakit pakai form
                 stopCustom("Hanya dapat mengajukan sakit dengan form satu hari dalam satu bulan." & vbNewLine & "Ajukan surat keterangan sakit dari dokter (DC) untuk pengajuan sakit.")
                 problem = True
-            ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" Then
+            ElseIf leave_type = "2" And LEFormDC.EditValue.ToString = "2" Then
                 'check if sudah form sekali dalam sebulan.
                 Dim date_sick As String = Date.Parse(GVLeaveDet.GetRowCellValue(0, "datetime_start")).ToString("yyyy-MM-dd")
                 '
@@ -378,7 +387,7 @@
                 End If
             End If
 
-            If LELeaveType.EditValue.ToString = "6" Then
+            If leave_type = "6" Then
                 'check if sudah lebih dari 2 jam dalam sebulan.
                 Dim query_cek As String = "SELECT SUM(minutes_total) AS total_min FROM tb_emp_leave_det ld
                                         INNER JOIN tb_emp_leave l ON l.id_emp_leave=ld.id_emp_leave
@@ -404,7 +413,7 @@
             If problem = False Then
                 'add parent
                 Dim number As String = header_number_emp("1")
-                query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc,id_user_who_create) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & addSlashes(MELeavePurpose.Text) & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & LELeaveType.EditValue.ToString & "','" & LEFormDC.EditValue.ToString & "','" & id_user & "');SELECT LAST_INSERT_ID(); "
+                query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc,id_user_who_create) VALUES('" & number & "','" & id_employee & "',NOW()," + If(leave_type = "7", "0", "1") + ",'" & id_employee_change & "','" & addSlashes(MELeavePurpose.Text) & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & leave_type & "','" & LEFormDC.EditValue.ToString & "','" & id_user & "');SELECT LAST_INSERT_ID(); "
                 id_emp_leave = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_emp("1")
                 'add detail
@@ -422,7 +431,7 @@
                     query += "('" & id_emp_leave & "','" & GVLeaveDet.GetRowCellValue(i, "id_schedule").ToString & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_start").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_until").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & is_full_day & "','" & GVLeaveDet.GetRowCellValue(i, "minutes_total").ToString & "')"
                 Next
                 execute_non_query(query, True, "", "", "", "")
-                If LELeaveType.EditValue.ToString = "1" Then
+                If leave_type = "1" Then
                     'add usage
                     query = "INSERT INTO tb_emp_leave_usage(id_emp_leave,`type`,date_expired,qty) VALUES"
                     For i As Integer = 0 To GVLeaveUsage.RowCount - 1
