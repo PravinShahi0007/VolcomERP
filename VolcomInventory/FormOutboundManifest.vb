@@ -15,8 +15,8 @@
                 If del.checkUnpaidInvoice(id_comp_group) Then
                     stopCustom("Slips cannot be printed , because invoice has not been paid by " + GVManifest.GetRowCellValue(i, "comp_group").ToString)
                     Cursor = Cursors.Default
-                    Exit Sub
                     Close()
+                    Exit Sub
                 End If
             Next
         End If
