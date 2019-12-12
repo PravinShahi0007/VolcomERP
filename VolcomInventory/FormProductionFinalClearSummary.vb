@@ -33,6 +33,7 @@
         DEUpdatedDate.EditValue = Nothing
         id_report_status = "-1"
         TEReportStatus.EditValue = ""
+        MENote.EditValue = ""
 
         Dim data As DataTable = New DataTable
 
@@ -59,6 +60,7 @@
         SBReset.Enabled = False
         SBPrint.Enabled = False
         SBMark.Enabled = False
+        MENote.ReadOnly = False
     End Sub
 
     Sub load_form()
@@ -79,6 +81,7 @@
         DEUpdatedDate.EditValue = If(data.Rows(0)("updated_date").ToString = "", Nothing, data.Rows(0)("updated_date"))
         id_report_status = data.Rows(0)("id_report_status")
         TEReportStatus.EditValue = data.Rows(0)("report_status").ToString
+        MENote.EditValue = data.Rows(0)("note").ToString
 
         'detail
         Dim query_detail As String = "
@@ -118,6 +121,7 @@
             SBReset.Enabled = False
             SBPrint.Enabled = False
             SBMark.Enabled = False
+            MENote.ReadOnly = False
         Else
             SBAdd.Enabled = False
             SBRemove.Enabled = False
@@ -127,6 +131,7 @@
             SBReset.Enabled = True
             SBPrint.Enabled = False
             SBMark.Enabled = True
+            MENote.ReadOnly = True
         End If
 
         If id_report_status = "5" Or id_report_status = "6" Then
@@ -190,7 +195,7 @@
 
         'tb_prod_fc_sum
         If id_prod_fc_sum = "0" Then
-            query = "INSERT INTO tb_prod_fc_sum (created_date, created_by, id_report_status) VALUES (NOW(), " + id_user + ", " + id_report_status + "); SELECT LAST_INSERT_ID();"
+            query = "INSERT INTO tb_prod_fc_sum (created_date, created_by, id_report_status, note) VALUES (NOW(), " + id_user + ", " + id_report_status + ", '" + addSlashes(MENote.EditValue.ToString) + "'); SELECT LAST_INSERT_ID();"
 
             id_prod_fc_sum = execute_query(query, 0, True, "", "", "", "")
 
@@ -203,7 +208,7 @@
 
             execute_non_query(query, True, "", "", "", "")
         Else
-            query = "UPDATE tb_prod_fc_sum SET updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + id_report_status + " WHERE id_prod_fc_sum = " + id_prod_fc_sum
+            query = "UPDATE tb_prod_fc_sum SET updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + id_report_status + ", note = '" + addSlashes(MENote.EditValue.ToString) + "' WHERE id_prod_fc_sum = " + id_prod_fc_sum
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -364,6 +369,8 @@
             Report.id = id_prod_fc_sum
             Report.data = GCSummary.DataSource
             Report.id_pre = If(id_report_status = "6", "-1", "1")
+
+            Report.XLNote.Text = MENote.EditValue.ToString
 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
 
