@@ -5000,12 +5000,6 @@
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec "
 
-
-                'update
-                Dim query_complete As String = ""
-                query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
-                execute_non_query(query_complete, True, "", "", "", "")
-
                 'jika klop diinsert jurnal balik DP nya jika ada
                 Dim q_dp As String = "SELECT pnd.id_report,SUM(pnd.`value`) AS `value`, po.is_close_rec FROM tb_pn_det pnd
                                         INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
@@ -5046,6 +5040,11 @@
 
             query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            'update
+            Dim query_complete As String = ""
+            query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
+            execute_non_query(query_complete, True, "", "", "", "")
 
             'refresh view
             FormPurcReceiveDet.actionLoad()
