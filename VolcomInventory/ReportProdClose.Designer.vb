@@ -449,7 +449,7 @@ Partial Public Class ReportProdClose
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(634.0419!, 44.12501!)
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.StylePriority.UseTextAlignment = False
-        Me.XrLabel7.Text = "Closing QC FGPO"
+        Me.XrLabel7.Text = "Closing FGPO"
         Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel3

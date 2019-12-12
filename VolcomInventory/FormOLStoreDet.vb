@@ -16,7 +16,7 @@
         so.id_warehouse_contact_to, '0' AS `id_wh_drawer`, '' AS `comp`,
         so.id_store_contact_to,  '' AS `store`,
         so.sales_order_number,so.sales_order_ol_shop_number, so.sales_order_date, so.sales_order_ol_shop_date,
-        sod.id_product,'' AS `code`, '' AS `name`, '' AS `item_id`, '' AS `ol_store_id`, sod.sales_order_det_qty, 0 AS `id_design_cat`,sod.id_design_price, sod.design_price, CAST(0 AS DECIMAL(15,2)) AS `design_cop`,
+        sod.id_product,'' AS `code`, '' AS `name`, '' AS `item_id`, '' AS `ol_store_id`, sod.sales_order_det_qty, 0 AS `id_design_cat`,sod.id_design_price, sod.design_price, CAST(0 AS DECIMAL(15,2)) AS `design_cop`, sod.ol_store_sku,
         so.customer_name, so.shipping_name, so.shipping_address, so.shipping_phone, so.shipping_city, 
         so.shipping_post_code, so.shipping_region, so.payment_method, so.tracking_code, 0 AS `no`, '' AS `status`
         FROM tb_sales_order so
@@ -134,6 +134,7 @@
             Dim id_so_status As String = "6"
             Dim id_report_status As String = "1"
             Dim id_user_created As String = id_user
+            Dim ol_store_sku As String = addSlashes(GVDetail.GetRowCellValue(i, "ol_store_sku").ToString)
             Dim customer_name As String = addSlashes(GVDetail.GetRowCellValue(i, "customer_name").ToString)
             Dim shipping_name As String = addSlashes(GVDetail.GetRowCellValue(i, "shipping_name").ToString)
             Dim shipping_address = addSlashes(GVDetail.GetRowCellValue(i, "shipping_address").ToString)
@@ -177,9 +178,9 @@
             Dim sales_order_det_qty As String = decimalSQL(GVDetail.GetRowCellValue(i, "sales_order_det_qty").ToString)
             Dim sales_order_det_note As String = ""
             Dim query_det As String = "INSERT tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, 
-            item_id, ol_store_id, sales_order_det_qty, sales_order_det_note) 
+            item_id, ol_store_id, sales_order_det_qty, sales_order_det_note, ol_store_sku) 
             VALUES('" + id_order_last + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "',
-            '" + item_id + "', '" + ol_store_id + "', '" + sales_order_det_qty + "', '" + sales_order_det_note + "'); 
+            '" + item_id + "', '" + ol_store_id + "', '" + sales_order_det_qty + "', '" + sales_order_det_note + "', '" + ol_store_sku + "'); 
             INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
             VALUES('" + id_wh_drawer + "', 2, '" + id_product + "', '" + design_cop + "', 39, '" + id_order_last + "', '" + sales_order_det_qty + "', NOW(), '', 2); "
             execute_non_query(query_det, True, "", "", "", "")
