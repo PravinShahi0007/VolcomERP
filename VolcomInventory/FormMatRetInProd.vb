@@ -9,6 +9,7 @@
     Public id_report_status As String = ""
     Private Sub FormMatRetInProd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus() 'get report status
+        viewPLType()
         viewComp()
         '
         Try
@@ -21,6 +22,14 @@
         '
         actionLoad()
     End Sub
+
+    'View PL Type
+    Sub viewPLType()
+        Dim query As String = "SELECT id_pl_mat_type,pl_mat_type FROM tb_pl_mat_type a ORDER BY a.id_pl_mat_Type "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEPLType, query, 0, "pl_mat_type", "id_pl_mat_type")
+    End Sub
+
     Sub actionLoad()
         If action = "ins" Then
             TxtRetOutNumber.Text = header_number_mat("6")
@@ -31,11 +40,12 @@
             viewDetailReturn()
         ElseIf action = "upd" Then
             'Enable/Disable
+            LEPLType.Enabled = False
             BtnBrowsePO.Enabled = False
             GroupControlRet.Enabled = True
 
             'View data
-            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name as design_name,desg.design_code,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, 
+            Dim query As String = "SELECT a.id_report_status,a.id_pl_mat_type,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name as design_name,desg.design_code,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, 
             a.mat_prod_ret_in_number
             , drw.id_wh_drawer, rck.id_wh_rack, Loc.id_wh_locator, comp.id_comp 
             From tb_mat_prod_ret_in a 
@@ -59,7 +69,9 @@
                 SLEDrawer.EditValue = data.Rows(0)("id_wh_drawer").ToString
             Catch ex As Exception
             End Try
-
+            '
+            LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", data.Rows(0)("id_pl_mat_type").ToString)
+            '
             id_prod_order = data.Rows(0)("id_prod_order").ToString
             TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
@@ -213,6 +225,8 @@
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim mat_purc_ret_in_det_qty, mat_purc_ret_in_det_price As Decimal
             Dim id_pl_mrs_det, mat_purc_ret_in_det_note, id_wh_drawer As String
+            Dim id_pl_mat_Type As String = LEPLType.EditValue
+
             id_wh_drawer = ""
             Try
                 id_wh_drawer = SLEDrawer.EditValue.ToString
@@ -221,8 +235,8 @@
             If action = "ins" Then
                 'Try
                 'Main tbale
-                query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo,id_prod_order, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer) "
-                query += "VALUES('" + id_prod_order_wo + "','" + id_prod_order + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "');SELECT LAST_INSERT_ID() "
+                query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo,id_prod_order, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer,id_pl_mat_type) "
+                query += "VALUES('" + id_prod_order_wo + "','" + id_prod_order + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "','" & id_pl_mat_Type & "');SELECT LAST_INSERT_ID() "
                 id_mat_prod_ret_in = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_mat("6")
 
