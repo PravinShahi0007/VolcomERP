@@ -233,7 +233,7 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
             warningCustom("Please complete your detail input")
         Else
             If id_dn = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_debit_note(id_comp,id_dn_type,created_by,created_date,note,id_report_status) VALUES('" & id_comp & "','" & id_dn_type & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_debit_note(id_comp,id_dn_type,created_by,created_date,due_date,ref_date,note,id_report_status) VALUES('" & id_comp & "','" & id_dn_type & "','" & id_user & "',NOW(),'" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                 id_dn = execute_query(query, 0, True, "", "", "", "")
 
                 query = "CALL gen_number('" & id_dn & "','221')"
