@@ -28,6 +28,7 @@
 
     Private Sub FormProposeEmpSalaryDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_type()
+        view_category()
 
         form_load()
 
@@ -52,6 +53,14 @@
         "
 
         viewLookupQuery(LUEType, query, 0, "sal_pps_type", "id_sal_pps_type")
+    End Sub
+
+    Sub view_category()
+        Dim query As String = "
+            SELECT id_sal_pps_category, sal_pps_category FROM tb_lookup_employee_sal_pps_category
+        "
+
+        viewLookupQuery(LUECategory, query, 0, "sal_pps_category", "id_sal_pps_category")
     End Sub
 
     Sub form_load()
@@ -79,12 +88,13 @@
 
         'load detail
         Dim query_detail As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '-100.00%' AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
             LEFT JOIN tb_lookup_employee_level AS lv ON det.id_employee_level = lv.id_employee_level
             LEFT JOIN tb_lookup_employee_status AS sts ON det.id_employee_status = sts.id_employee_status
+            LEFT JOIN tb_m_employee_salary AS sal ON det.id_employee_salary = sal.id_employee_salary
             WHERE det.id_employee_sal_pps = " + id_employee_sal_pps + "
             ORDER BY det.id_employee_level ASC
         "
@@ -173,8 +183,9 @@
                 Dim allow_house As String = GVEmployee.GetRowCellValue(i, "allow_house").ToString
                 Dim allow_car As String = GVEmployee.GetRowCellValue(i, "allow_car").ToString
                 Dim id_employee_status_det As String = GVEmployee.GetRowCellValue(i, "id_employee_status_det").ToString
+                Dim id_employee_salary As String = GVEmployee.GetRowCellValue(i, "id_employee_salary").ToString
 
-                values += "(" + id_employee_sal_pps + ", " + id_employee + ", " + id_departement + ", '" + employee_position + "', " + id_employee_level + ", " + id_employee_status + ", " + basic_salary + ", " + allow_job + ", " + allow_meal + ", " + allow_trans + ", " + allow_house + ", " + allow_car + ", " + id_employee_status_det + "), "
+                values += "(" + id_employee_sal_pps + ", " + id_employee + ", " + id_departement + ", '" + employee_position + "', " + id_employee_level + ", " + id_employee_status + ", " + basic_salary + ", " + allow_job + ", " + allow_meal + ", " + allow_trans + ", " + allow_house + ", " + allow_car + ", " + id_employee_status_det + ", " + id_employee_salary + "), "
             End If
         Next
 
@@ -189,7 +200,11 @@
         execute_non_query("CALL gen_number(" + id_employee_sal_pps + ", 197)", True, "", "", "", "")
 
         If type = "submit" Then
-            submit_who_prepared("197", id_employee_sal_pps, id_user)
+            If LUECategory.EditValue.ToString = "1" Then
+                submit_who_prepared("197", id_employee_sal_pps, id_user)
+            ElseIf LUECategory.EditValue.ToString = "2" Then
+                submit_who_prepared("229", id_employee_sal_pps, id_user)
+            End If
         End If
 
         Cursor = Cursors.Default
@@ -335,12 +350,13 @@
     Private Sub LUEType_EditValueChanged(sender As Object, e As EventArgs) Handles LUEType.EditValueChanged
         'reset datasource
         Dim query As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '50.00%' AS fixed_salary, '50.00%' AS non_fixed_salary, id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, '-100.00%' AS increase, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
             LEFT JOIN tb_lookup_employee_level AS lv ON det.id_employee_level = lv.id_employee_level
             LEFT JOIN tb_lookup_employee_status AS sts ON det.id_employee_status = sts.id_employee_status
+            LEFT JOIN tb_m_employee_salary AS sal ON det.id_employee_salary = sal.id_employee_salary
             WHERE det.id_employee_sal_pps = -1
             ORDER BY det.id_employee_level ASC
         "
@@ -353,12 +369,21 @@
         If LUEType.EditValue.ToString = "1" Then
             GCBasicSalary.Caption = "Basic Salary"
 
-            GCJobAllowance.VisibleIndex = 6
-            GCMealAllowance.VisibleIndex = 7
-            GCTransportAllowance.VisibleIndex = 8
-            GCHouseAllowance.VisibleIndex = 9
-            GCAttendanceAllowance.VisibleIndex = 10
-            GCTotalSalary.VisibleIndex = 11
+            GCJobAllowance.VisibleIndex = 1
+            GCMealAllowance.VisibleIndex = 2
+            GCTransportAllowance.VisibleIndex = 3
+            GCHouseAllowance.VisibleIndex = 4
+            GCAttendanceAllowance.VisibleIndex = 5
+            GCTotalSalary.VisibleIndex = 6
+
+            GCBasicSalaryCurrent.Caption = "Basic Salary"
+
+            GCJobAllowanceCurrent.VisibleIndex = 1
+            GCMealAllowanceCurrent.VisibleIndex = 2
+            GCTransportAllowanceCurrent.VisibleIndex = 3
+            GCHouseAllowanceCurrent.VisibleIndex = 4
+            GCAttendanceAllowanceCurrent.VisibleIndex = 5
+            GCTotalSalaryCurrent.VisibleIndex = 6
 
             GBComposition.Visible = True
         ElseIf LUEType.EditValue.ToString = "2" Then
@@ -371,8 +396,19 @@
             GCAttendanceAllowance.VisibleIndex = -1
             GCTotalSalary.VisibleIndex = -1
 
+            GCBasicSalaryCurrent.Caption = "Daily Salary"
+
+            GCJobAllowanceCurrent.VisibleIndex = -1
+            GCMealAllowanceCurrent.VisibleIndex = -1
+            GCTransportAllowanceCurrent.VisibleIndex = -1
+            GCHouseAllowanceCurrent.VisibleIndex = -1
+            GCAttendanceAllowanceCurrent.VisibleIndex = -1
+            GCTotalSalaryCurrent.VisibleIndex = -1
+
             GBComposition.Visible = False
         End If
+
+        GVEmployee.BestFitColumns()
     End Sub
 
     Private Sub RepositoryItemCheckEdit_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit.Click
@@ -387,12 +423,17 @@
             Dim i As Integer = GVEmployee.GetFocusedDataSourceRowIndex()
 
             Try
+                'composition
                 Dim fixed_salary As Decimal = (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans")) / (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) * 100
                 Dim non_fixed_salary As Decimal = (GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) / (GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) * 100
-                Dim increase As Decimal = 0
 
                 GVEmployee.SetRowCellValue(i, "fixed_salary", Math.Round(fixed_salary, 2).ToString + "%")
                 GVEmployee.SetRowCellValue(i, "non_fixed_salary", Math.Round(non_fixed_salary, 2).ToString + "%")
+
+                'increase
+                Dim increase As Decimal = ((GVEmployee.GetRowCellValue(i, "basic_salary") + GVEmployee.GetRowCellValue(i, "allow_job") + GVEmployee.GetRowCellValue(i, "allow_meal") + GVEmployee.GetRowCellValue(i, "allow_trans") + GVEmployee.GetRowCellValue(i, "allow_house") + GVEmployee.GetRowCellValue(i, "allow_car")) - (GVEmployee.GetRowCellValue(i, "basic_salary_current") + GVEmployee.GetRowCellValue(i, "allow_job_current") + GVEmployee.GetRowCellValue(i, "allow_meal_current") + GVEmployee.GetRowCellValue(i, "allow_trans_current") + GVEmployee.GetRowCellValue(i, "allow_house_current") + GVEmployee.GetRowCellValue(i, "allow_car_current"))) / ((GVEmployee.GetRowCellValue(i, "basic_salary_current") + GVEmployee.GetRowCellValue(i, "allow_job_current") + GVEmployee.GetRowCellValue(i, "allow_meal_current") + GVEmployee.GetRowCellValue(i, "allow_trans_current") + GVEmployee.GetRowCellValue(i, "allow_house_current") + GVEmployee.GetRowCellValue(i, "allow_car_current"))) * 100
+
+                GVEmployee.SetRowCellValue(i, "increase", Math.Round(increase, 2).ToString + "%")
             Catch ex As Exception
             End Try
         End If
@@ -428,5 +469,25 @@
 
             edit.Properties.DataSource = clone
         End If
+    End Sub
+
+    Private Sub LUECategory_EditValueChanged(sender As Object, e As EventArgs) Handles LUECategory.EditValueChanged
+        If LUECategory.EditValue.ToString = "1" Then
+            GBSalary.Caption = "Salary"
+
+            GBSalaryCurrent.Visible = False
+            GBIncrease.Visible = False
+
+            GBContract.Visible = True
+        ElseIf LUECategory.EditValue.ToString = "2" Then
+            GBSalary.Caption = "Salary Propose"
+
+            GBSalaryCurrent.Visible = True
+            GBIncrease.Visible = True
+
+            GBContract.Visible = False
+        End If
+
+        GVEmployee.BestFitColumns()
     End Sub
 End Class
