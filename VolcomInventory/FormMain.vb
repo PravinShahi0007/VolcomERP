@@ -348,7 +348,7 @@ Public Class FormMain
         End If
 
         'hide all except print n close
-        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Then
+        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Or formName = "FormInvMat" Then
             RGAreaManage.Visible = False
         End If
 
@@ -7799,6 +7799,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormInvoiceTracking" Then
             print_raw(FormInvoiceTracking.GCUnpaid, "")
+        ElseIf formName = "FormInvMat" Then
+            FormInvMat.print_list()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8617,6 +8619,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStockQC" Then
             FormStockQC.Close()
             FormStockQC.Dispose()
+        ElseIf formName = "FormInvMat" Then
+            FormInvMat.Close()
+            FormInvMat.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -13842,6 +13847,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormFollowUpAR.Show()
             FormFollowUpAR.WindowState = FormWindowState.Maximized
             FormFollowUpAR.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBInvMat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvMat.LinkClicked
+        Try
+            FormInvMatDet.MdiParent = Me
+            FormInvMatDet.Show()
+            FormInvMatDet.WindowState = FormWindowState.Maximized
+            FormInvMatDet.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
