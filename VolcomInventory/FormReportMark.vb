@@ -537,7 +537,7 @@
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             query = String.Format("SELECT id_report_status, number AS report_number FROM tb_sample_po_mat WHERE id_sample_po_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_sal_pps WHERE id_employee_sal_pps = '{0}'", id_report)
         ElseIf report_mark_type = "200" Then
@@ -6423,7 +6423,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             'refresh view
             FormSampleExpenseDet.load_head()
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"

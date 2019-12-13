@@ -66,7 +66,7 @@
     Sub form_load()
         'load
         Dim query As String = "
-            SELECT sal.id_employee_sal_pps, sal.id_sal_pps_type, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date, sal.id_report_status, sal.number, sal.note, emp.employee_name AS created_by, DATE_FORMAT(sal.created_at, '%d %M %Y %H:%i:%s') AS created_at
+            SELECT sal.id_employee_sal_pps, sal.id_sal_pps_category, sal.id_sal_pps_type, DATE_FORMAT(sal.effective_date, '%d %M %Y') AS effective_date, sal.id_report_status, sal.number, sal.note, emp.employee_name AS created_by, DATE_FORMAT(sal.created_at, '%d %M %Y %H:%i:%s') AS created_at
             FROM tb_employee_sal_pps AS sal
             LEFT JOIN tb_m_employee AS emp ON sal.created_by = emp.id_employee
             WHERE sal.id_employee_sal_pps = " + id_employee_sal_pps + "
@@ -74,7 +74,7 @@
             UNION ALL
             
             #default value
-            SELECT -1 AS id_employee_sal_pps, 1 AS id_sal_pps_type, DATE_FORMAT(NOW(), '%d %M %Y') AS effective_date, -1 AS id_report_status, '[autogenerate]' AS number, '' AS note, (SELECT employee_name FROM tb_m_employee WHERE id_employee = " + id_employee_user + ") AS created_by, DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_at
+            SELECT -1 AS id_employee_sal_pps, 1 AS id_sal_pps_category, 1 AS id_sal_pps_type, DATE_FORMAT(NOW(), '%d %M %Y') AS effective_date, -1 AS id_report_status, '[autogenerate]' AS number, '' AS note, (SELECT employee_name FROM tb_m_employee WHERE id_employee = " + id_employee_user + ") AS created_by, DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_at
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -84,11 +84,12 @@
         DEEffectiveDate.EditValue = data.Rows(0)("effective_date")
         TECreatedBy.EditValue = data.Rows(0)("created_by").ToString
         DECreatedAt.EditValue = data.Rows(0)("created_at")
+        LUECategory.ItemIndex = LUECategory.Properties.GetDataSourceRowIndex("id_sal_pps_category", data.Rows(0)("id_sal_pps_category").ToString)
         LUEType.ItemIndex = LUEType.Properties.GetDataSourceRowIndex("id_sal_pps_type", data.Rows(0)("id_sal_pps_type").ToString)
 
         'load detail
         Dim query_detail As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '-100.00%' AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (sal.basic_salary + sal.allow_job + sal.allow_meal + sal.allow_trans + sal.allow_house + sal.allow_car)) / (sal.basic_salary + sal.allow_job + sal.allow_meal + sal.allow_trans + sal.allow_house + sal.allow_car) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
@@ -119,6 +120,7 @@
         If id_report_status = "0" Then
             SBMark.Enabled = False
             SBPrint.Enabled = False
+            SBAttachment.Enabled = False
         Else
             SBSubmit.Enabled = False
             SBSave.Enabled = False
@@ -130,6 +132,7 @@
             MENote.ReadOnly = True
             RITESalary.ReadOnly = True
             LUEType.ReadOnly = True
+            LUECategory.ReadOnly = True
 
             RemoveEmployeeToolStripMenuItem.Visible = False
 
@@ -143,6 +146,7 @@
         Dim query As String = ""
 
         'insert tb_employee_sal_pps
+        Dim id_sal_pps_category As String = LUECategory.EditValue.ToString
         Dim id_sal_pps_type As String = LUEType.EditValue.ToString
         Dim effective_date As String = DateTime.Parse(DEEffectiveDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim id_report_status As String = If(type = "submit", "1", "0")
@@ -150,14 +154,14 @@
 
         If id_employee_sal_pps = "-1" Then
             query = "
-                INSERT INTO tb_employee_sal_pps (id_sal_pps_type, effective_date, id_report_status, note, created_by, created_at) 
+                INSERT INTO tb_employee_sal_pps (id_sal_pps_category, id_sal_pps_type, effective_date, id_report_status, note, created_by, created_at) 
                 VALUES (" + id_sal_pps_type + ", '" + effective_date + "', " + id_report_status + ", '" + note + "', " + id_employee_user + ", NOW());
                 SELECT LAST_INSERT_ID();
             "
 
             id_employee_sal_pps = execute_query(query, 0, True, "", "", "", "")
         Else
-            query = "UPDATE tb_employee_sal_pps SET id_sal_pps_type = " + id_sal_pps_type + ", effective_date = '" + effective_date + "', id_report_status = " + id_report_status + ", note = '" + note + "' WHERE id_employee_sal_pps = " + id_employee_sal_pps + ""
+            query = "UPDATE tb_employee_sal_pps SET id_sal_pps_category = " + id_sal_pps_category + ", id_sal_pps_type = " + id_sal_pps_type + ", effective_date = '" + effective_date + "', id_report_status = " + id_report_status + ", note = '" + note + "' WHERE id_employee_sal_pps = " + id_employee_sal_pps + ""
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -192,7 +196,7 @@
         If Not values = "" Then
             values = values.Substring(0, values.Length - 2)
 
-            query = "INSERT INTO tb_employee_sal_pps_det (id_employee_sal_pps, id_employee, id_departement, employee_position, id_employee_level, id_employee_status, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, id_employee_status_det) VALUES " + values + ""
+            query = "INSERT INTO tb_employee_sal_pps_det (id_employee_sal_pps, id_employee, id_departement, employee_position, id_employee_level, id_employee_status, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, id_employee_status_det, id_employee_salary) VALUES " + values + ""
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -318,9 +322,11 @@
         report.data = GCEmployee.DataSource
         report.is_pre = If(id_report_status = "6", "-1", "1")
         report.type = LUEType.EditValue.ToString
+        report.category = LUECategory.EditValue.ToString
 
         report.XLNumber.Text = TENumber.Text
         report.XLEffectiveDate.Text = DEEffectiveDate.Text
+        report.XLType.Text = LUEType.Text
         report.XLNote.Text = MENote.Text
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
@@ -331,7 +337,7 @@
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
         Cursor = Cursors.WaitCursor
 
-        FormReportMark.report_mark_type = "197"
+        FormReportMark.report_mark_type = If(LUECategory.EditValue.ToString = "1", "197", "229")
         FormReportMark.id_report = id_employee_sal_pps
 
         FormReportMark.ShowDialog()
@@ -350,7 +356,7 @@
     Private Sub LUEType_EditValueChanged(sender As Object, e As EventArgs) Handles LUEType.EditValueChanged
         'reset datasource
         Dim query As String = "
-            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, '-100.00%' AS increase, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, det.employee_position, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, det.id_employee_salary, ROUND(sal.basic_salary, 0) AS basic_salary_current, ROUND(sal.allow_job, 0) AS allow_job_current, ROUND(sal.allow_meal, 0) AS allow_meal_current, ROUND(sal.allow_trans, 0) AS allow_trans_current, ROUND(sal.allow_house, 0) AS allow_house_current, ROUND(sal.allow_car, 0) AS allow_car_current, ROUND(det.basic_salary, 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, '-100.00%' AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det
             FROM tb_employee_sal_pps_det AS det
             LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
@@ -419,8 +425,8 @@
 
     Private Sub GVEmployee_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVEmployee.CellValueChanged
         If e.Column.FieldName.ToString = "basic_salary" Or e.Column.FieldName.ToString = "allow_job" Or e.Column.FieldName.ToString = "allow_meal" Or e.Column.FieldName.ToString = "allow_trans" Or e.Column.FieldName.ToString = "allow_house" Or e.Column.FieldName.ToString = "allow_car" Then
-            'calculate fixed & non-fixed salary
-            Dim i As Integer = GVEmployee.GetFocusedDataSourceRowIndex()
+            'calculate composition & increase
+            Dim i As Integer = e.RowHandle
 
             Try
                 'composition
@@ -489,5 +495,14 @@
         End If
 
         GVEmployee.BestFitColumns()
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id_employee_sal_pps
+        FormDocumentUpload.report_mark_type = If(LUECategory.EditValue.ToString = "1", "197", "229")
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -31,6 +31,7 @@ Partial Class FormProposeEmpSalaryDet
         Me.DEEffectiveDate = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
@@ -84,6 +85,8 @@ Partial Class FormProposeEmpSalaryDet
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LUECategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.LUEType = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.SBInsertEmployee = New DevExpress.XtraEditors.SimpleButton()
@@ -91,8 +94,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.LUECategory = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label7 = New System.Windows.Forms.Label()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,11 +113,11 @@ Partial Class FormProposeEmpSalaryDet
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LUECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LUECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -226,6 +227,7 @@ Partial Class FormProposeEmpSalaryDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBAttachment)
         Me.PanelControl3.Controls.Add(Me.SBPrint)
         Me.PanelControl3.Controls.Add(Me.SBClose)
         Me.PanelControl3.Controls.Add(Me.SBMark)
@@ -236,6 +238,18 @@ Partial Class FormProposeEmpSalaryDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1008, 48)
         Me.PanelControl3.TabIndex = 2
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.ImageIndex = 10
+        Me.SBAttachment.Location = New System.Drawing.Point(514, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(112, 44)
+        Me.SBAttachment.TabIndex = 115
+        Me.SBAttachment.TabStop = False
+        Me.SBAttachment.Text = "Attachment"
         '
         'SBPrint
         '
@@ -325,6 +339,18 @@ Partial Class FormProposeEmpSalaryDet
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVEmployee.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVEmployee.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVEmployee.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVEmployee.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVEmployee.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVEmployee.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVEmployee.AppearancePrint.GroupRow.Options.UseFont = True
         Me.GVEmployee.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
@@ -344,6 +370,7 @@ Partial Class FormProposeEmpSalaryDet
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GCBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GCJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GCMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GCTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GCHouseAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GCAttendanceAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary", Me.GCTotalSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary_current", Me.GCBasicSalaryCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job_current", Me.GCJobAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal_current", Me.GCMealAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans_current", Me.GCTransportAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house_current", Me.GCHouseAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car_current", Me.GCAttendanceAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_current", Me.GCTotalSalaryCurrent, "{0:N0}")})
+        Me.GVEmployee.LevelIndent = 0
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
@@ -780,6 +807,24 @@ Partial Class FormProposeEmpSalaryDet
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 61)
         Me.PanelControl2.TabIndex = 3
         '
+        'LUECategory
+        '
+        Me.LUECategory.Location = New System.Drawing.Point(105, 8)
+        Me.LUECategory.Name = "LUECategory"
+        Me.LUECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LUECategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_sal_pps_category", "", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sal_pps_category", "Category")})
+        Me.LUECategory.Size = New System.Drawing.Size(203, 20)
+        Me.LUECategory.TabIndex = 6
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(15, 11)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(52, 13)
+        Me.Label7.TabIndex = 5
+        Me.Label7.Text = "Category"
+        '
         'LUEType
         '
         Me.LUEType.Location = New System.Drawing.Point(105, 34)
@@ -846,24 +891,6 @@ Partial Class FormProposeEmpSalaryDet
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Note"
         '
-        'LUECategory
-        '
-        Me.LUECategory.Location = New System.Drawing.Point(105, 8)
-        Me.LUECategory.Name = "LUECategory"
-        Me.LUECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LUECategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_sal_pps_category", "", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sal_pps_category", "Category")})
-        Me.LUECategory.Size = New System.Drawing.Size(203, 20)
-        Me.LUECategory.TabIndex = 6
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(15, 11)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(52, 13)
-        Me.Label7.TabIndex = 5
-        Me.Label7.Text = "Category"
-        '
         'FormProposeEmpSalaryDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -900,12 +927,12 @@ Partial Class FormProposeEmpSalaryDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.LUECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LUECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -982,4 +1009,5 @@ Partial Class FormProposeEmpSalaryDet
     Friend WithEvents GCIdEmployeeSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents LUECategory As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label7 As Label
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
 End Class
