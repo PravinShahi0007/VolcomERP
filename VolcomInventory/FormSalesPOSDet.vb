@@ -1648,10 +1648,12 @@ Public Class FormSalesPOSDet
                     Exit Sub
                 End If
             ElseIf id_menu = "3" Then
-                Dim qgwp As String = "SELECT IFNULL(e.id_acc_ar,0) AS `id_acc_ar` FROM tb_m_comp_comm_extra e WHERE e.is_for_gwp=1 AND e.id_comp=" + id_comp + ""
+                Dim qgwp As String = "SELECT IFNULL(e.id_acc_ar,0) AS `id_acc_ar`, e.comp_commission FROM tb_m_comp_comm_extra e WHERE e.is_for_gwp=1 AND e.id_comp=" + id_comp + ""
                 Dim dgwp As DataTable = execute_query(qgwp, -1, True, "", "", "", "")
                 If dgwp.Rows.Count > 0 Then
                     id_acc_ar = dgwp.Rows(0)("id_acc_ar").ToString
+                    SPDiscount.EditValue = dgwp.Rows(0)("comp_commission")
+                    BtnSelectDiscount.Enabled = False
                 Else
                     id_acc_ar = "0"
                 End If
