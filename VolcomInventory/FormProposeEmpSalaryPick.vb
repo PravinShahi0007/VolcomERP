@@ -18,12 +18,21 @@
         End If
 
         Dim query As String = "
-            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status
+            SELECT emp.id_employee, employee_code, emp.employee_name, emp.id_departement, dp.departement, emp.employee_position, IFNULL(emp.id_employee_level, 0) AS id_employee_level, lv.employee_level, IFNULL(emp.id_employee_active, 0) AS id_employee_active, act.employee_active, IFNULL(emp.id_employee_status, 0) AS id_employee_status, sts.employee_status, sal.id_employee_salary, ROUND(emp.basic_salary) AS basic_salary_current, ROUND(emp.allow_job) AS allow_job_current, ROUND(emp.allow_meal) AS allow_meal_current, ROUND(emp.allow_trans) AS allow_trans_current, ROUND(emp.allow_house) AS allow_house_current, ROUND(emp.allow_car) AS allow_car_current
             FROM tb_m_employee AS emp
             LEFT JOIN tb_m_departement AS dp ON emp.id_departement = dp.id_departement
             LEFT JOIN tb_lookup_employee_level AS lv ON emp.id_employee_level = lv.id_employee_level
             LEFT JOIN tb_lookup_employee_active AS act ON emp.id_employee_active = act.id_employee_active
             LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
+            LEFT JOIN (
+                SELECT *
+                FROM (
+                    SELECT *
+                    FROM tb_m_employee_salary
+                    ORDER BY id_employee_salary DESC
+                ) AS tb
+                GROUP BY id_employee
+            ) AS sal ON emp.id_employee = sal.id_employee
             WHERE 1 = 1 " + where_not_include + " " + where_type + "
             ORDER BY emp.id_employee_level ASC
         "
@@ -68,8 +77,15 @@
                     Dim employee_level As String = GVEmployee.GetRowCellValue(selected_row, "employee_level").ToString
                     Dim id_employee_status As String = GVEmployee.GetRowCellValue(selected_row, "id_employee_status").ToString
                     Dim employee_status As String = GVEmployee.GetRowCellValue(selected_row, "employee_status").ToString
+                    Dim id_employee_salary As String = GVEmployee.GetRowCellValue(selected_row, "id_employee_salary").ToString
+                    Dim basic_salary_current As String = GVEmployee.GetRowCellValue(selected_row, "basic_salary_current")
+                    Dim allow_job_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_job_current")
+                    Dim allow_meal_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_meal_current")
+                    Dim allow_trans_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_trans_current")
+                    Dim allow_house_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_house_current")
+                    Dim allow_car_current As String = GVEmployee.GetRowCellValue(selected_row, "allow_car_current")
 
-                    data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, employee_position, id_employee_level, employee_level, id_employee_status, employee_status, 0, 0, 0, 0, 0, 0, "50.00%", "50.00%", 0)
+                    data.Rows.Add(id_employee, employee_code, employee_name, id_departement, departement, employee_position, id_employee_level, employee_level, id_employee_status, employee_status, id_employee_salary, basic_salary_current, allow_job_current, allow_meal_current, allow_trans_current, allow_house_current, allow_car_current, 0, 0, 0, 0, 0, 0, "-100.00%", "50.00%", "50.00%", 0)
                 End If
             Next
 

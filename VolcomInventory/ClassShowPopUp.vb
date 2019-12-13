@@ -288,7 +288,7 @@
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             FormSampleExpenseDet.Close()
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             FormProposeEmpSalaryDet.Close()
         ElseIf report_mark_type = "200" Then
@@ -1096,8 +1096,8 @@ GROUP BY rec.`id_prod_order`"
             'sample material purchase
             FormSampleExpenseDet.id_purc = id_report
             FormSampleExpenseDet.ShowDialog()
-        ElseIf report_mark_type = "197" Then
-            'sample material purchase
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
+            'propose employee salary
             FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
@@ -1999,7 +1999,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_payroll"
             field_number = "report_number"
             field_date = "NOW()"
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             table_name = "tb_employee_sal_pps"
             field_id = "id_employee_sal_pps"
