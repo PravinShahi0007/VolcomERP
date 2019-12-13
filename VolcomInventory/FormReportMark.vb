@@ -6646,7 +6646,6 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
             execute_non_query(query, True, "", "", "", "")
 
             If id_status_reportx = "6" Then
-                '
                 Dim dn_date As String = ""
                 Dim ref_date As String = ""
 
@@ -6662,7 +6661,6 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
                 Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                 Dim report_number As String = du.Rows(0)("report_number").ToString
-                '
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
@@ -6679,7 +6677,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                     FROM tb_debit_note_det dnd
                     INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
                     WHERE dnd.id_debit_note='" & id_report & "'
-                    UNION 
+                    UNION
                     -- lawannya DP
                     SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
                     ,CONCAT('KLAIM REJECT') AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref

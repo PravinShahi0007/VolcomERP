@@ -17,7 +17,7 @@
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'check 
         DEDateCreated.EditValue = Now
-        DEDateCreated.EditValue = Now
+        DERefDate.EditValue = Now
         DEDueDate.EditValue = Now
         '
         TETotal.EditValue = 0.00
