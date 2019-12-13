@@ -31,10 +31,18 @@ Partial Public Class ReportProposeEmpSalary
         Me.GCIdDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdEmployeeLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCBasicSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCJobAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCMealAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTransportAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCHouseAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCAttendanceAllowanceCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTotalSalaryCurrent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCBasicSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITESalary = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -47,52 +55,74 @@ Partial Public Class ReportProposeEmpSalary
         Me.GBComposition = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCFixedSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNonFixedSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBIncrease = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCIncrease = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBContract = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCContract = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemSearchLookUpEdit = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCContractAttachment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GCIdEmployeeSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.SubBand1 = New DevExpress.XtraReports.UI.SubBand()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLNumber = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XLEffectiveDate = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox2 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XLEffectiveDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XLNote = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITESalary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
-        Me.Detail.HeightF = 228.0!
+        Me.Detail.HeightF = 208.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.Detail.SubBands.AddRange(New DevExpress.XtraReports.UI.SubBand() {Me.SubBand1})
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.00001!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1069.0!, 208.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1075.0!, 208.0!)
         Me.WinControlContainer1.WinControl = Me.GCEmployee
         '
         'GCEmployee
         '
-        Me.GCEmployee.Location = New System.Drawing.Point(0, 121)
+        Me.GCEmployee.Location = New System.Drawing.Point(0, 133)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITESalary})
-        Me.GCEmployee.Size = New System.Drawing.Size(1026, 200)
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITESalary, Me.RepositoryItemCheckEdit, Me.RepositoryItemSearchLookUpEdit})
+        Me.GCEmployee.Size = New System.Drawing.Size(1032, 200)
         Me.GCEmployee.TabIndex = 3
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
@@ -107,49 +137,42 @@ Partial Public Class ReportProposeEmpSalary
         Me.GVEmployee.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVEmployee.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.FooterPanel.Options.UseForeColor = True
         Me.GVEmployee.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVEmployee.AppearancePrint.GroupFooter.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.GroupFooter.Options.UseForeColor = True
         Me.GVEmployee.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVEmployee.AppearancePrint.GroupRow.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.GroupRow.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.GroupRow.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.GroupRow.Options.UseForeColor = True
         Me.GVEmployee.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.GVEmployee.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.HeaderPanel.Options.UseForeColor = True
+        Me.GVEmployee.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVEmployee.AppearancePrint.Lines.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.Row.BackColor = System.Drawing.Color.White
         Me.GVEmployee.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.GVEmployee.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
         Me.GVEmployee.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVEmployee.AppearancePrint.Row.Options.UseFont = True
-        Me.GVEmployee.AppearancePrint.Row.Options.UseForeColor = True
-        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBSalary, Me.GBComposition})
+        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBSalaryCurrent, Me.GBSalary, Me.GBComposition, Me.GBIncrease, Me.GBContract})
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCEmployeeId, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCBasicSalary, Me.GCJobAllowance, Me.GCMealAllowance, Me.GCTransportAllowance, Me.GCHouseAllowance, Me.GCAttendanceAllowance, Me.GCTotalSalary, Me.GCFixedSalary, Me.GCNonFixedSalary})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCEmployeeId, Me.GCNIP, Me.GCName, Me.GCIdDepartement, Me.GCDepartement, Me.GCPosition, Me.GCIdEmployeeLevel, Me.GCLevel, Me.GCIdEmployeeStatus, Me.GCEmployeeStatus, Me.GCIdEmployeeSalary, Me.GCBasicSalaryCurrent, Me.GCJobAllowanceCurrent, Me.GCMealAllowanceCurrent, Me.GCTransportAllowanceCurrent, Me.GCHouseAllowanceCurrent, Me.GCAttendanceAllowanceCurrent, Me.GCTotalSalaryCurrent, Me.GCBasicSalary, Me.GCJobAllowance, Me.GCMealAllowance, Me.GCTransportAllowance, Me.GCHouseAllowance, Me.GCAttendanceAllowance, Me.GCTotalSalary, Me.GCFixedSalary, Me.GCNonFixedSalary, Me.GCIncrease, Me.GCContract, Me.GCContractAttachment})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
-        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GCBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GCJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GCMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GCTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GCHouseAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GCAttendanceAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary", Me.GCTotalSalary, "{0:N0}")})
+        Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GCBasicSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GCJobAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GCMealAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GCTransportAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", Me.GCHouseAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GCAttendanceAllowance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary", Me.GCTotalSalary, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary_current", Me.GCBasicSalaryCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job_current", Me.GCJobAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal_current", Me.GCMealAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans_current", Me.GCTransportAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house_current", Me.GCHouseAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car_current", Me.GCAttendanceAllowanceCurrent, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_current", Me.GCTotalSalaryCurrent, "{0:N0}")})
+        Me.GVEmployee.LevelIndent = 0
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
@@ -168,47 +191,56 @@ Partial Public Class ReportProposeEmpSalary
         Me.GBEmployee.Columns.Add(Me.GCIdDepartement)
         Me.GBEmployee.Columns.Add(Me.GCDepartement)
         Me.GBEmployee.Columns.Add(Me.GCPosition)
-        Me.GBEmployee.Columns.Add(Me.GCEmployeeStatus)
         Me.GBEmployee.Columns.Add(Me.GCIdEmployeeLevel)
         Me.GBEmployee.Columns.Add(Me.GCLevel)
         Me.GBEmployee.Columns.Add(Me.GCIdEmployeeStatus)
+        Me.GBEmployee.Columns.Add(Me.GCEmployeeStatus)
         Me.GBEmployee.Name = "GBEmployee"
         Me.GBEmployee.VisibleIndex = 0
-        Me.GBEmployee.Width = 425
+        Me.GBEmployee.Width = 510
         '
         'GCEmployeeId
         '
+        Me.GCEmployeeId.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCEmployeeId.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCEmployeeId.FieldName = "id_employee"
         Me.GCEmployeeId.Name = "GCEmployeeId"
         Me.GCEmployeeId.OptionsColumn.AllowEdit = False
         '
         'GCNIP
         '
+        Me.GCNIP.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCNIP.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCNIP.Caption = "NIP"
         Me.GCNIP.FieldName = "employee_code"
+        Me.GCNIP.MinWidth = 65
         Me.GCNIP.Name = "GCNIP"
         Me.GCNIP.OptionsColumn.AllowEdit = False
         Me.GCNIP.Visible = True
         '
         'GCName
         '
-        Me.GCName.AppearanceCell.Options.UseTextOptions = True
-        Me.GCName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCName.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCName.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCName.Caption = "Name"
         Me.GCName.FieldName = "employee_name"
-        Me.GCName.MinWidth = 175
+        Me.GCName.MinWidth = 195
         Me.GCName.Name = "GCName"
         Me.GCName.OptionsColumn.AllowEdit = False
         Me.GCName.Visible = True
-        Me.GCName.Width = 175
+        Me.GCName.Width = 195
         '
         'GCIdDepartement
         '
+        Me.GCIdDepartement.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCIdDepartement.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCIdDepartement.FieldName = "id_departement"
         Me.GCIdDepartement.Name = "GCIdDepartement"
         '
         'GCDepartement
         '
+        Me.GCDepartement.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCDepartement.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCDepartement.Caption = "Departement"
         Me.GCDepartement.FieldName = "departement"
         Me.GCDepartement.Name = "GCDepartement"
@@ -216,34 +248,27 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCPosition
         '
-        Me.GCPosition.AppearanceCell.Options.UseTextOptions = True
-        Me.GCPosition.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCPosition.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPosition.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCPosition.Caption = "Position"
         Me.GCPosition.FieldName = "employee_position"
+        Me.GCPosition.MinWidth = 150
         Me.GCPosition.Name = "GCPosition"
         Me.GCPosition.OptionsColumn.AllowEdit = False
         Me.GCPosition.Visible = True
-        '
-        'GCEmployeeStatus
-        '
-        Me.GCEmployeeStatus.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCEmployeeStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCEmployeeStatus.Caption = "Employee Status"
-        Me.GCEmployeeStatus.FieldName = "employee_status"
-        Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
-        Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
-        Me.GCEmployeeStatus.Visible = True
-        Me.GCEmployeeStatus.Width = 100
+        Me.GCPosition.Width = 150
         '
         'GCIdEmployeeLevel
         '
+        Me.GCIdEmployeeLevel.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCIdEmployeeLevel.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCIdEmployeeLevel.FieldName = "id_employee_level"
         Me.GCIdEmployeeLevel.Name = "GCIdEmployeeLevel"
         '
         'GCLevel
         '
-        Me.GCLevel.AppearanceCell.Options.UseTextOptions = True
-        Me.GCLevel.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCLevel.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCLevel.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCLevel.Caption = "Level"
         Me.GCLevel.FieldName = "employee_level"
         Me.GCLevel.Name = "GCLevel"
@@ -251,12 +276,139 @@ Partial Public Class ReportProposeEmpSalary
         '
         'GCIdEmployeeStatus
         '
+        Me.GCIdEmployeeStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCIdEmployeeStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
         Me.GCIdEmployeeStatus.Name = "GCIdEmployeeStatus"
         '
+        'GCEmployeeStatus
+        '
+        Me.GCEmployeeStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCEmployeeStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCEmployeeStatus.Caption = "Employee Status"
+        Me.GCEmployeeStatus.FieldName = "employee_status"
+        Me.GCEmployeeStatus.MinWidth = 60
+        Me.GCEmployeeStatus.Name = "GCEmployeeStatus"
+        Me.GCEmployeeStatus.OptionsColumn.AllowEdit = False
+        Me.GCEmployeeStatus.Visible = True
+        Me.GCEmployeeStatus.Width = 90
+        '
+        'GBSalaryCurrent
+        '
+        Me.GBSalaryCurrent.Caption = "Salary Current"
+        Me.GBSalaryCurrent.Columns.Add(Me.GCBasicSalaryCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCJobAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCMealAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCTransportAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCHouseAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCAttendanceAllowanceCurrent)
+        Me.GBSalaryCurrent.Columns.Add(Me.GCTotalSalaryCurrent)
+        Me.GBSalaryCurrent.Name = "GBSalaryCurrent"
+        Me.GBSalaryCurrent.VisibleIndex = 1
+        Me.GBSalaryCurrent.Width = 627
+        '
+        'GCBasicSalaryCurrent
+        '
+        Me.GCBasicSalaryCurrent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCBasicSalaryCurrent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCBasicSalaryCurrent.Caption = "Basic Salary"
+        Me.GCBasicSalaryCurrent.DisplayFormat.FormatString = "N0"
+        Me.GCBasicSalaryCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCBasicSalaryCurrent.FieldName = "basic_salary_current"
+        Me.GCBasicSalaryCurrent.Name = "GCBasicSalaryCurrent"
+        Me.GCBasicSalaryCurrent.OptionsColumn.AllowEdit = False
+        Me.GCBasicSalaryCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary_current", "{0:N0}")})
+        Me.GCBasicSalaryCurrent.Visible = True
+        '
+        'GCJobAllowanceCurrent
+        '
+        Me.GCJobAllowanceCurrent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCJobAllowanceCurrent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCJobAllowanceCurrent.Caption = "Job Allowance"
+        Me.GCJobAllowanceCurrent.DisplayFormat.FormatString = "N0"
+        Me.GCJobAllowanceCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCJobAllowanceCurrent.FieldName = "allow_job_current"
+        Me.GCJobAllowanceCurrent.Name = "GCJobAllowanceCurrent"
+        Me.GCJobAllowanceCurrent.OptionsColumn.AllowEdit = False
+        Me.GCJobAllowanceCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job_current", "{0:N0}")})
+        Me.GCJobAllowanceCurrent.Visible = True
+        Me.GCJobAllowanceCurrent.Width = 78
+        '
+        'GCMealAllowanceCurrent
+        '
+        Me.GCMealAllowanceCurrent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCMealAllowanceCurrent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCMealAllowanceCurrent.Caption = "Meal Allowance"
+        Me.GCMealAllowanceCurrent.DisplayFormat.FormatString = "N0"
+        Me.GCMealAllowanceCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCMealAllowanceCurrent.FieldName = "allow_meal_current"
+        Me.GCMealAllowanceCurrent.Name = "GCMealAllowanceCurrent"
+        Me.GCMealAllowanceCurrent.OptionsColumn.AllowEdit = False
+        Me.GCMealAllowanceCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal_current", "{0:N0}")})
+        Me.GCMealAllowanceCurrent.Visible = True
+        Me.GCMealAllowanceCurrent.Width = 83
+        '
+        'GCTransportAllowanceCurrent
+        '
+        Me.GCTransportAllowanceCurrent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCTransportAllowanceCurrent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCTransportAllowanceCurrent.Caption = "Transport Allowance"
+        Me.GCTransportAllowanceCurrent.DisplayFormat.FormatString = "N0"
+        Me.GCTransportAllowanceCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTransportAllowanceCurrent.FieldName = "allow_trans_current"
+        Me.GCTransportAllowanceCurrent.Name = "GCTransportAllowanceCurrent"
+        Me.GCTransportAllowanceCurrent.OptionsColumn.AllowEdit = False
+        Me.GCTransportAllowanceCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans_current", "{0:N0}")})
+        Me.GCTransportAllowanceCurrent.Visible = True
+        Me.GCTransportAllowanceCurrent.Width = 108
+        '
+        'GCHouseAllowanceCurrent
+        '
+        Me.GCHouseAllowanceCurrent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCHouseAllowanceCurrent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCHouseAllowanceCurrent.Caption = "House Allowance"
+        Me.GCHouseAllowanceCurrent.DisplayFormat.FormatString = "N0"
+        Me.GCHouseAllowanceCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCHouseAllowanceCurrent.FieldName = "allow_house_current"
+        Me.GCHouseAllowanceCurrent.Name = "GCHouseAllowanceCurrent"
+        Me.GCHouseAllowanceCurrent.OptionsColumn.AllowEdit = False
+        Me.GCHouseAllowanceCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house_current", "{0:N0}")})
+        Me.GCHouseAllowanceCurrent.Visible = True
+        Me.GCHouseAllowanceCurrent.Width = 91
+        '
+        'GCAttendanceAllowanceCurrent
+        '
+        Me.GCAttendanceAllowanceCurrent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAttendanceAllowanceCurrent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCAttendanceAllowanceCurrent.Caption = "Attendance Allowance"
+        Me.GCAttendanceAllowanceCurrent.DisplayFormat.FormatString = "N0"
+        Me.GCAttendanceAllowanceCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAttendanceAllowanceCurrent.FieldName = "allow_car_current"
+        Me.GCAttendanceAllowanceCurrent.Name = "GCAttendanceAllowanceCurrent"
+        Me.GCAttendanceAllowanceCurrent.OptionsColumn.AllowEdit = False
+        Me.GCAttendanceAllowanceCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car_current", "{0:N0}")})
+        Me.GCAttendanceAllowanceCurrent.Visible = True
+        Me.GCAttendanceAllowanceCurrent.Width = 117
+        '
+        'GCTotalSalaryCurrent
+        '
+        Me.GCTotalSalaryCurrent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCTotalSalaryCurrent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCTotalSalaryCurrent.Caption = "Total THP"
+        Me.GCTotalSalaryCurrent.DisplayFormat.FormatString = "N0"
+        Me.GCTotalSalaryCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalSalaryCurrent.FieldName = "total_salary_current"
+        Me.GCTotalSalaryCurrent.Name = "GCTotalSalaryCurrent"
+        Me.GCTotalSalaryCurrent.OptionsColumn.AllowEdit = False
+        Me.GCTotalSalaryCurrent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_current", "{0:N0}")})
+        Me.GCTotalSalaryCurrent.UnboundExpression = "[basic_salary_current] + [allow_job_current] + [allow_meal_current] + [allow_tran" &
+    "s_current] + [allow_house_current] + [allow_car_current]"
+        Me.GCTotalSalaryCurrent.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GCTotalSalaryCurrent.Visible = True
+        '
         'GBSalary
         '
-        Me.GBSalary.Caption = "Salary"
+        Me.GBSalary.Caption = "Salary Propose"
         Me.GBSalary.Columns.Add(Me.GCBasicSalary)
         Me.GBSalary.Columns.Add(Me.GCJobAllowance)
         Me.GBSalary.Columns.Add(Me.GCMealAllowance)
@@ -265,7 +417,7 @@ Partial Public Class ReportProposeEmpSalary
         Me.GBSalary.Columns.Add(Me.GCAttendanceAllowance)
         Me.GBSalary.Columns.Add(Me.GCTotalSalary)
         Me.GBSalary.Name = "GBSalary"
-        Me.GBSalary.VisibleIndex = 1
+        Me.GBSalary.VisibleIndex = 2
         Me.GBSalary.Width = 619
         '
         'GCBasicSalary
@@ -285,6 +437,13 @@ Partial Public Class ReportProposeEmpSalary
         'RITESalary
         '
         Me.RITESalary.AutoHeight = False
+        Me.RITESalary.DisplayFormat.FormatString = "N0"
+        Me.RITESalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITESalary.EditFormat.FormatString = "N0"
+        Me.RITESalary.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITESalary.Mask.EditMask = "N0"
+        Me.RITESalary.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITESalary.Mask.UseMaskAsDisplayFormat = True
         Me.RITESalary.Name = "RITESalary"
         '
         'GCJobAllowance
@@ -361,7 +520,7 @@ Partial Public Class ReportProposeEmpSalary
         '
         Me.GCTotalSalary.AppearanceHeader.Options.UseTextOptions = True
         Me.GCTotalSalary.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GCTotalSalary.Caption = "Total Salary"
+        Me.GCTotalSalary.Caption = "Total THP"
         Me.GCTotalSalary.DisplayFormat.FormatString = "N0"
         Me.GCTotalSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCTotalSalary.FieldName = "total_salary"
@@ -379,73 +538,193 @@ Partial Public Class ReportProposeEmpSalary
         Me.GBComposition.Columns.Add(Me.GCFixedSalary)
         Me.GBComposition.Columns.Add(Me.GCNonFixedSalary)
         Me.GBComposition.Name = "GBComposition"
-        Me.GBComposition.VisibleIndex = 2
-        Me.GBComposition.Width = 150
+        Me.GBComposition.Visible = False
+        Me.GBComposition.VisibleIndex = -1
+        Me.GBComposition.Width = 165
         '
         'GCFixedSalary
         '
-        Me.GCFixedSalary.AppearanceCell.Options.UseTextOptions = True
-        Me.GCFixedSalary.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCFixedSalary.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCFixedSalary.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCFixedSalary.Caption = "Fixed Salary"
         Me.GCFixedSalary.FieldName = "fixed_salary"
         Me.GCFixedSalary.Name = "GCFixedSalary"
+        Me.GCFixedSalary.OptionsColumn.AllowEdit = False
         Me.GCFixedSalary.Visible = True
         '
         'GCNonFixedSalary
         '
-        Me.GCNonFixedSalary.AppearanceCell.Options.UseTextOptions = True
-        Me.GCNonFixedSalary.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCNonFixedSalary.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCNonFixedSalary.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GCNonFixedSalary.Caption = "Non-fixed Salary"
         Me.GCNonFixedSalary.FieldName = "non_fixed_salary"
         Me.GCNonFixedSalary.Name = "GCNonFixedSalary"
+        Me.GCNonFixedSalary.OptionsColumn.AllowEdit = False
         Me.GCNonFixedSalary.Visible = True
+        Me.GCNonFixedSalary.Width = 90
+        '
+        'GBIncrease
+        '
+        Me.GBIncrease.Caption = "Increase"
+        Me.GBIncrease.Columns.Add(Me.GCIncrease)
+        Me.GBIncrease.Name = "GBIncrease"
+        Me.GBIncrease.VisibleIndex = 3
+        Me.GBIncrease.Width = 75
+        '
+        'GCIncrease
+        '
+        Me.GCIncrease.AppearanceCell.Options.UseTextOptions = True
+        Me.GCIncrease.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCIncrease.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCIncrease.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCIncrease.Caption = "Increase"
+        Me.GCIncrease.FieldName = "increase"
+        Me.GCIncrease.Name = "GCIncrease"
+        Me.GCIncrease.OptionsColumn.AllowEdit = False
+        Me.GCIncrease.Visible = True
+        '
+        'GBContract
+        '
+        Me.GBContract.Caption = "SK / Contract"
+        Me.GBContract.Columns.Add(Me.GCContract)
+        Me.GBContract.Columns.Add(Me.GCContractAttachment)
+        Me.GBContract.Name = "GBContract"
+        Me.GBContract.Visible = False
+        Me.GBContract.VisibleIndex = -1
+        Me.GBContract.Width = 325
+        '
+        'GCContract
+        '
+        Me.GCContract.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCContract.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCContract.Caption = "SK / Contract"
+        Me.GCContract.ColumnEdit = Me.RepositoryItemSearchLookUpEdit
+        Me.GCContract.FieldName = "id_employee_status_det"
+        Me.GCContract.Name = "GCContract"
+        Me.GCContract.Visible = True
+        Me.GCContract.Width = 250
+        '
+        'RepositoryItemSearchLookUpEdit
+        '
+        Me.RepositoryItemSearchLookUpEdit.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit.Name = "RepositoryItemSearchLookUpEdit"
+        Me.RepositoryItemSearchLookUpEdit.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_employee_status_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "id_employee"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "SK / Contract"
+        Me.GridColumn3.FieldName = "contract"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'GCContractAttachment
+        '
+        Me.GCContractAttachment.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCContractAttachment.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCContractAttachment.Caption = "Attactment"
+        Me.GCContractAttachment.ColumnEdit = Me.RepositoryItemCheckEdit
+        Me.GCContractAttachment.FieldName = "attachment"
+        Me.GCContractAttachment.Name = "GCContractAttachment"
+        Me.GCContractAttachment.Visible = True
+        '
+        'RepositoryItemCheckEdit
+        '
+        Me.RepositoryItemCheckEdit.AutoHeight = False
+        Me.RepositoryItemCheckEdit.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit.Name = "RepositoryItemCheckEdit"
+        Me.RepositoryItemCheckEdit.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit.PictureGrayed"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureUnchecked"), System.Drawing.Image)
+        '
+        'GCIdEmployeeSalary
+        '
+        Me.GCIdEmployeeSalary.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCIdEmployeeSalary.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCIdEmployeeSalary.FieldName = "id_employee_salary"
+        Me.GCIdEmployeeSalary.Name = "GCIdEmployeeSalary"
+        Me.GCIdEmployeeSalary.OptionsColumn.AllowEdit = False
+        '
+        'SubBand1
+        '
+        Me.SubBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel7, Me.XLNote})
+        Me.SubBand1.HeightF = 66.0!
+        Me.SubBand1.Name = "SubBand1"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 10.0!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(90.0!, 23.0!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.Text = "Note"
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(90.00012!, 10.0!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseTextAlignment = False
+        Me.XrLabel7.Text = ":"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLNote
+        '
+        Me.XLNote.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XLNote.LocationFloat = New DevExpress.Utils.PointFloat(105.0001!, 10.0!)
+        Me.XLNote.Name = "XLNote"
+        Me.XLNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLNote.SizeF = New System.Drawing.SizeF(970.0001!, 46.0!)
+        Me.XLNote.StylePriority.UseFont = False
+        Me.XLNote.StylePriority.UseTextAlignment = False
+        Me.XLNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLabel2, Me.XLNumber, Me.XrLine1})
-        Me.TopMargin.HeightF = 71.15001!
+        Me.TopMargin.HeightF = 50.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 12.75!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 20.00001!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(560.0001!, 23.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "Propose Employee Salary"
-        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
         'XLNumber
         '
         Me.XLNumber.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right
-        Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 10.75!, System.Drawing.FontStyle.Bold)
-        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(849.0001!, 20.00001!)
+        Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(925.0002!, 0!)
         Me.XLNumber.Name = "XLNumber"
         Me.XLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLNumber.SizeF = New System.Drawing.SizeF(220.0!, 23.0!)
+        Me.XLNumber.SizeF = New System.Drawing.SizeF(149.9998!, 23.0!)
         Me.XLNumber.StylePriority.UseFont = False
         Me.XLNumber.StylePriority.UseTextAlignment = False
         Me.XLNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        '
-        'XrLine1
-        '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 51.15001!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(1069.0!, 20.0!)
         '
         'BottomMargin
         '
@@ -458,9 +737,9 @@ Partial Public Class ReportProposeEmpSalary
         'XrPageInfo1
         '
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(919.0!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(925.0002!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -471,58 +750,148 @@ Partial Public Class ReportProposeEmpSalary
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLEffectiveDate, Me.XrLabel4, Me.XrLabel3})
-        Me.ReportHeader.HeightF = 23.41669!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrLabel5, Me.XrLabel2, Me.XrLabel1, Me.XrLabel3, Me.XrLabel4, Me.XLType, Me.XrPictureBox2, Me.XLTitle, Me.XrLine2, Me.XLEffectiveDate, Me.XLNumber})
+        Me.ReportHeader.HeightF = 98.99999!
         Me.ReportHeader.Name = "ReportHeader"
         '
-        'XLEffectiveDate
+        'XrLabel8
         '
-        Me.XLEffectiveDate.Font = New System.Drawing.Font("Tahoma", 8.75!)
-        Me.XLEffectiveDate.LocationFloat = New DevExpress.Utils.PointFloat(969.0!, 0.2083461!)
-        Me.XLEffectiveDate.Name = "XLEffectiveDate"
-        Me.XLEffectiveDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLEffectiveDate.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XLEffectiveDate.StylePriority.UseFont = False
-        Me.XLEffectiveDate.StylePriority.UseTextAlignment = False
-        Me.XLEffectiveDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XrLabel8.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right
+        Me.XrLabel8.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(815.0!, 0.00001589457!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(100.0004!, 23.0!)
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseTextAlignment = False
+        Me.XrLabel8.Text = "Number"
+        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel4
+        'XrLabel5
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(954.0!, 0.2083461!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = ":"
-        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XrLabel5.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(915.0003!, 0!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(9.999817!, 23.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = ":"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(915.0004!, 22.99997!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(10.0!, 23.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.StylePriority.UseTextAlignment = False
+        Me.XrLabel2.Text = ":"
+        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(914.9999!, 45.99991!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(10.0!, 23.0!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = ":"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 8.75!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(864.0001!, 0.4166921!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(815.0003!, 22.99997!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(90.0!, 23.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
-        Me.XrLabel3.Text = "Effective Date"
+        Me.XrLabel3.Text = "Type"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(815.0001!, 45.99997!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = "Effective Date"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLType
+        '
+        Me.XLType.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(925.0004!, 22.99997!)
+        Me.XLType.Name = "XLType"
+        Me.XLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLType.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XLType.StylePriority.UseFont = False
+        Me.XLType.StylePriority.UseTextAlignment = False
+        Me.XLType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'XrPictureBox2
+        '
+        Me.XrPictureBox2.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
+        Me.XrPictureBox2.Image = CType(resources.GetObject("XrPictureBox2.Image"), System.Drawing.Image)
+        Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 16.0!)
+        Me.XrPictureBox2.Name = "XrPictureBox2"
+        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
+        Me.XrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        '
+        'XLTitle
+        '
+        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(305.0001!, 16.0!)
+        Me.XLTitle.Multiline = True
+        Me.XLTitle.Name = "XLTitle"
+        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(465.0003!, 41.15001!)
+        Me.XLTitle.StylePriority.UseFont = False
+        Me.XLTitle.StylePriority.UseTextAlignment = False
+        Me.XLTitle.Text = "Propose Employee Salary"
+        Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XrLine2
+        '
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 73.99999!)
+        Me.XrLine2.Name = "XrLine2"
+        Me.XrLine2.SizeF = New System.Drawing.SizeF(1075.0!, 20.0!)
+        '
+        'XLEffectiveDate
+        '
+        Me.XLEffectiveDate.Font = New System.Drawing.Font("Tahoma", 8.75!)
+        Me.XLEffectiveDate.LocationFloat = New DevExpress.Utils.PointFloat(924.9999!, 45.99991!)
+        Me.XLEffectiveDate.Name = "XLEffectiveDate"
+        Me.XLEffectiveDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLEffectiveDate.SizeF = New System.Drawing.SizeF(150.0!, 22.99999!)
+        Me.XLEffectiveDate.StylePriority.UseFont = False
+        Me.XLEffectiveDate.StylePriority.UseTextAlignment = False
+        Me.XLEffectiveDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XLNote, Me.XrLabel7, Me.XrLabel6})
-        Me.ReportFooter.HeightF = 91.00006!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 56.00001!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(1069.0!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1075.0!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -540,47 +909,12 @@ Partial Public Class ReportProposeEmpSalary
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'XLNote
-        '
-        Me.XLNote.Font = New System.Drawing.Font("Tahoma", 8.75!)
-        Me.XLNote.LocationFloat = New DevExpress.Utils.PointFloat(105.0!, 0!)
-        Me.XLNote.Name = "XLNote"
-        Me.XLNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLNote.SizeF = New System.Drawing.SizeF(964.0001!, 46.0!)
-        Me.XLNote.StylePriority.UseFont = False
-        Me.XLNote.StylePriority.UseTextAlignment = False
-        Me.XLNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel7
-        '
-        Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 8.75!)
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(89.99999!, 0!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
-        Me.XrLabel7.StylePriority.UseFont = False
-        Me.XrLabel7.StylePriority.UseTextAlignment = False
-        Me.XrLabel7.Text = ":"
-        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 8.75!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(90.0!, 23.0!)
-        Me.XrLabel6.StylePriority.UseFont = False
-        Me.XrLabel6.StylePriority.UseTextAlignment = False
-        Me.XrLabel6.Text = "Note"
-        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
         'ReportProposeEmpSalary
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
         Me.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(50, 50, 71, 50)
+        Me.Margins = New System.Drawing.Printing.Margins(25, 69, 50, 50)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -589,6 +923,9 @@ Partial Public Class ReportProposeEmpSalary
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITESalary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -596,17 +933,9 @@ Partial Public Class ReportProposeEmpSalary
     Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
-    Friend WithEvents RITESalary As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents XLNumber As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
-    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XLEffectiveDate As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XLNote As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
@@ -614,7 +943,8 @@ Partial Public Class ReportProposeEmpSalary
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
+    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
+    Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GCEmployeeId As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCNIP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -626,7 +956,15 @@ Partial Public Class ReportProposeEmpSalary
     Friend WithEvents GCLevel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCIdEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCBasicSalaryCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCJobAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCMealAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCTransportAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCHouseAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCAttendanceAllowanceCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCTotalSalaryCurrent As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCBasicSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RITESalary As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GCJobAllowance As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCMealAllowance As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCTransportAllowance As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -635,7 +973,32 @@ Partial Public Class ReportProposeEmpSalary
     Friend WithEvents GCTotalSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCFixedSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCNonFixedSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCIncrease As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCContract As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemSearchLookUpEdit As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCContractAttachment As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemCheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GCIdEmployeeSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents XrPictureBox2 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XLTitle As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents SubBand1 As DevExpress.XtraReports.UI.SubBand
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents GBEmployee As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBSalaryCurrent As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBComposition As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBIncrease As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBContract As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents XLType As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
 End Class
