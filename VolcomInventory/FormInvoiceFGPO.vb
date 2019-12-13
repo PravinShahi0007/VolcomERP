@@ -30,9 +30,9 @@
     End Sub
 
     Sub load_vendor()
-        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name
+        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name,'0' AS id_comp
                                 UNION
-                                SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  ,c.id_comp
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 WHERE c.id_comp_cat='1' "
@@ -45,7 +45,7 @@
         If SLEVendorPayment.EditValue.ToString = "0" Then
             is_all_vendor = "1"
         Else
-            query_where = " AND c.id_comp = '" & SLEVendorPayment.EditValue.ToString & "'"
+            query_where = " AND c.id_comp = '" & SLEVendorPayment.Properties.View.GetFocusedRowCellValue("id_comp").ToString & "'"
         End If
         '
         If XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
