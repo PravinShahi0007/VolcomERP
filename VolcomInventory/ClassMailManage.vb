@@ -24,10 +24,10 @@
         m.report_mark_type, rmt.report_mark_type_name, 
         m.id_mail_status, ms.mail_status, m.mail_status_note, m.mail_subject, mto.`to`
         FROM tb_mail_manage m
-        INNER JOIN tb_m_user uc ON uc.id_user = m.created_by
-        INNER JOIN tb_m_employee ec ON ec.id_employee = uc.id_employee
-        INNER JOIN tb_m_user uu ON uu.id_user = m.updated_by
-        INNER JOIN tb_m_employee eu ON eu.id_employee = uu.id_employee
+        LEFT JOIN tb_m_user uc ON uc.id_user = m.created_by
+        LEFT JOIN tb_m_employee ec ON ec.id_employee = uc.id_employee
+        LEFT JOIN tb_m_user uu ON uu.id_user = m.updated_by
+        LEFT JOIN tb_m_employee eu ON eu.id_employee = uu.id_employee
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = m.report_mark_type
         INNER JOIN tb_lookup_mail_status ms ON ms.id_mail_status = m.id_mail_status
         LEFT JOIN (
@@ -73,7 +73,18 @@
         WHERE md.id_mail_manage=" + id_mail_manage + " "
         Dim id_trans As String = execute_query(query_get_id, 0, True, "", "", "", "")
 
-        If rmt = "230" Then
+        If rmt = "228" Then
+            Dim query As String = "SELECT  g.id_comp_group,g.description AS `group_store`
+            FROM tb_sales_pos sp 
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            INNER JOIN tb_m_comp_group g ON g.id_comp_group = c.id_comp_group
+            INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+            WHERE sp.id_sales_pos IN (" + id_trans + ") 
+            GROUP BY g.id_comp_group
+            ORDER BY g.id_comp_group ASC "
+            dt = execute_query(query, -1, True, "", "", "", "")
+        ElseIf rmt = "230" Then
             Dim query As String = "SELECT  g.id_comp_group,g.description AS `group_store`
             FROM tb_m_comp_group g
             WHERE g.id_comp_group IN (" + id_trans + "); "

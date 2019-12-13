@@ -268,6 +268,8 @@
         ElseIf action = "upd" Then
             '-- main view
             Dim mm As New ClassMailManage()
+            mm.id_mail_manage = id
+            mm.rmt = rmt
             Dim query As String = mm.queryMain("AND m.id_mail_manage='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtEmailNumber.Text = data.Rows(0)("number").ToString
@@ -383,6 +385,74 @@
                 Dim m As New ClassSendEmail()
                 Dim html As String = m.email_body_invoice_jatuh_tempo(ddet, title.ToUpper, total_amount)
                 WebBrowser1.DocumentText = html
+            ElseIf rmt = "228" Or rmt = "230" Then
+                '-- load member
+                Dim qf As String = "SELECT m.id_mail_manage_member AS `index`,m.`id_mail_manage_member`,m.`id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type,m.id_user, 0 AS `id_comp_contact`, 
+                e.employee_name AS `description`, m.mail_address AS `mail_address` 
+                FROM tb_mail_manage_member m
+                INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
+                INNER JOIN tb_m_user u ON u.id_user = m.id_user
+                INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+                WHERE m.id_mail_manage=" + id + " AND ISNULL(m.id_comp_contact)
+                UNION
+                SELECT m.id_mail_manage_member AS `index`,m.`id_mail_manage_member`,m.`id_mail_manage`,m.id_mail_member_type, mmt.mail_member_type, 0 AS `id_user`, m.id_comp_contact,
+                cc.contact_person AS `description`, cc.email AS `mail_address`
+                FROM tb_mail_manage_member m
+                INNER JOIN tb_lookup_mail_member_type mmt ON mmt.id_mail_member_type = m.id_mail_member_type
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+                WHERE m.id_mail_manage=" + id + " AND ISNULL(m.id_user)
+                ORDER BY id_mail_member_type ASC, `index` ASC "
+                Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+                GCMember.DataSource = df
+                GVMember.BestFitColumns()
+
+                '--- load data
+                Dim ddet As DataTable = mm.getDetailData()
+                GCDetail.DataSource = ddet
+                columnDetail()
+
+                '-- load 'from/to/cc & html preview
+                GVMember.ActiveFilterString = ""
+                For j As Integer = 0 To ((GVMember.RowCount - 1) - GetGroupRowCount(GVMember))
+                    Dim id_mail_member_type As String = GVMember.GetRowCellValue(j, "id_mail_member_type").ToString
+                    Dim mail_address As String = GVMember.GetRowCellValue(j, "mail_address").ToString
+
+                    If id_mail_member_type = "1" Then
+                        MEFrom.Text += mail_address + "; "
+                    ElseIf id_mail_member_type = "2" Then
+                        METo.Text += mail_address + "; "
+                    Else
+                        MECC.Text += mail_address + "; "
+                    End If
+                Next
+
+                Dim mail_subject As String = ""
+                Dim mail_title As String = ""
+                Dim mail_content As String = ""
+                Dim mail_content_to As String = ""
+                Dim query_opt_det As String = "SELECT 
+                CONCAT(e.employee_name, ' (',e.employee_position,')') AS `to_content_mail`,
+                o.mail_subject_release_del, o.mail_title_release_del, o.mail_content_release_del,
+                o.mail_subject_on_hold, o.mail_title_on_hold, o.mail_content_on_hold
+                FROM tb_opt o
+                INNER JOIN tb_m_employee e ON e.id_employee = o.id_emp_wh_manager "
+                Dim data_opt_det As DataTable = execute_query(query_opt_det, -1, True, "", "", "", "")
+                mail_content_to = data_opt_det.Rows(0)("to_content_mail").ToString
+                If rmt = "228" Then
+                    mail_subject = data_opt_det.Rows(0)("mail_subject_on_hold").ToString
+                    mail_title = data_opt_det.Rows(0)("mail_title_on_hold").ToString
+                    mail_content = data_opt_det.Rows(0)("mail_content_on_hold").ToString
+                    Dim m As New ClassSendEmail()
+                    Dim html As String = m.emailOnHold(mail_content_to, mail_content, ddet)
+                    WebBrowser1.DocumentText = html
+                ElseIf rmt = "230" Then
+                    mail_subject = data_opt_det.Rows(0)("mail_subject_release_del").ToString
+                    mail_title = data_opt_det.Rows(0)("mail_title_release_del").ToString
+                    mail_content = data_opt_det.Rows(0)("mail_content_release_del").ToString
+                    Dim m As New ClassSendEmail()
+                    Dim html As String = m.emailReleaseDel(mail_content_to, mail_content, ddet)
+                    WebBrowser1.DocumentText = html
+                End If
             End If
 
             '-- muncul dialog jika eror send
