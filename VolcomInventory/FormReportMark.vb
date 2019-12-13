@@ -5618,14 +5618,74 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 'close if complete rec
                 If FormBankDepositDet.type_rec = "1" Then
                     'INVOICE PENJUALAN
-                    Dim qjd_upd = "UPDATE tb_sales_pos pos
+                    Dim qjd_upd = "/*closing invoice*/
+                    UPDATE tb_sales_pos pos
                     INNER JOIN tb_rec_payment_det pyd ON pyd.`id_report`=pos.`id_sales_pos` AND pyd.`report_mark_type`=pos.`report_mark_type`
                     SET pos.`is_close_rec_payment`=1
                     WHERE pyd.`id_rec_payment`='" & id_report & "'
-                    AND pyd.`value`=balance_due AND pyd.`value` != 0 "
+                    AND pyd.`value`=balance_due AND pyd.`value` != 0;
+                    /*updayte eval AR*/
+                    UPDATE tb_ar_eval main
+                    INNER JOIN (
+	                    SELECT sp.id_sales_pos, rd.id_rec_payment
+	                    FROM tb_rec_payment_det rd
+	                    INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_report AND sp.is_close_rec_payment=1
+	                    WHERE rd.id_rec_payment=" + id_report + "
+                    ) src ON src.id_sales_pos = main.id_sales_pos
+                    SET main.is_paid=1, main.release_date=NOW(), main.id_rec_payment = src.id_rec_payment, main.is_active=2
+                    WHERE main.is_active=1; "
                     execute_non_query(qjd_upd, True, "", "", "", "")
-                End If
 
+                    '=== checking release hanya utk keperluan email
+                    'check apakah invoice yang di BBM ada di evaluasi ato tidak
+                    Try
+                        Dim query_in_evaluation As String = "SELECT rd.id_rec_payment_det, c.id_comp_group
+                        FROM tb_rec_payment_det rd
+                        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_report
+                        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+                        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+                        LEFT JOIN (
+	                        SELECT e.id_sales_pos, e.id_ar_eval
+	                        FROM tb_ar_eval e 
+	                        WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
+                        ) e ON e.id_sales_pos = rd.id_report
+                        WHERE rd.id_rec_payment=" + id_report + " AND !ISNULL(e.id_ar_eval) "
+                        Dim data_in_evaluation As DataTable = execute_query(query_in_evaluation, -1, True, "", "", "", "")
+                        If data_in_evaluation.Rows.Count > 0 Then
+                            'jika ada cek apakah  ada email release ato tidak
+                            Dim dtg As DataTable = data_in_evaluation.DefaultView.ToTable(True, "id_comp_group")
+                            Dim id_comp_group As String = ""
+                            For i As Integer = 0 To dtg.Rows.Count - 1
+                                If i > 0 Then
+                                    id_comp_group += ","
+                                End If
+                                id_comp_group += dtg.Rows(i)("id_comp_group").ToString
+                            Next
+
+                            Dim query_cek_email_release As String = "SELECT e.id_comp_group, IFNULL(ep.jum_not_paid,0) AS `jum_not_paid`
+                            FROM tb_ar_eval e
+                            LEFT JOIN (
+	                            SELECT e.id_comp_group,
+	                            COUNT(e.id_sales_pos) AS `jum_not_paid`
+	                            FROM tb_ar_eval e
+	                            WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
+	                            AND e.id_comp_group IN (" + id_comp_group + ") AND e.is_paid=2
+	                            GROUP BY e.id_comp_group
+                            ) ep ON ep.id_comp_group = e.id_comp_group
+                            WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
+                            AND e.id_comp_group IN (" + id_comp_group + ")
+                            GROUP BY e.id_comp_group
+                            HAVING jum_not_paid=0 "
+                            Dim data_cek_email_release As DataTable = execute_query(query_cek_email_release, -1, True, "", "", "", "")
+                            If data_cek_email_release.Rows.Count > 0 Then
+                                'jika ada yg dibayar semua maka kirim email
+                                MsgBox("email")
+                            End If
+                        End If
+                    Catch ex As Exception
+                        'log ar eval rilis
+                    End Try
+                End If
             End If
 
             'update
