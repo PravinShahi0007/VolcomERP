@@ -3,6 +3,10 @@
     Public action As String = "-1"
     Public id As String = "-1"
     Dim id_mail_status As String = "-1"
+    Dim mail_subject As String = ""
+    Dim mail_title As String = ""
+    Dim mail_content As String = ""
+    Dim mail_content_to As String = ""
 
     Private Sub FormMailManageDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -426,10 +430,6 @@
                     End If
                 Next
 
-                Dim mail_subject As String = ""
-                Dim mail_title As String = ""
-                Dim mail_content As String = ""
-                Dim mail_content_to As String = ""
                 Dim query_opt_det As String = "SELECT 
                 CONCAT(e.employee_name, ' (',e.employee_position,')') AS `to_content_mail`,
                 o.mail_subject_release_del, o.mail_title_release_del, o.mail_content_release_del,
@@ -649,11 +649,12 @@
         Dim sm As New ClassSendEmail()
         sm.id_report = id
         sm.report_mark_type = rmt
-        Dim id_sales_pos As String = getSavedInvoice()
-        sm.dt = dtLoadDetail(id_sales_pos)
+
 
         'jika ada parameter lain
-        If rmt = "226" Or "227" Then
+        If rmt = "226" Or rmt = "227" Then
+            Dim id_sales_pos As String = getSavedInvoice()
+            sm.dt = dtLoadDetail(id_sales_pos)
             Dim ttl As String = ""
             If rmt = "226" Then
                 ttl = "Email Pemberitahuan"
@@ -662,6 +663,15 @@
             End If
             sm.par1 = ttl.ToUpper
             sm.par2 = Double.Parse(GVDetail.Columns("amount").SummaryItem.SummaryValue.ToString).ToString("N2")
+        ElseIf rmt = "228" Or rmt = "230" Then
+            Dim mm As New ClassMailManage
+            mm.id_mail_manage = id
+            mm.rmt = rmt
+            sm.design_code = mail_title
+            sm.design = mail_subject
+            sm.comment_by = mail_content_to
+            sm.comment = mail_content
+            sm.dt = mm.getDetailData
         End If
 
         Try

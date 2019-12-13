@@ -1947,6 +1947,31 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
+        ElseIf report_mark_type = "228" Then
+            'send email
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", design_code)
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+            Dim query_send_to As String = "SELECT  m.id_mail_member_type,m.mail_address, IF(ISNULL(m.id_comp_contact), e.employee_name, cc.contact_person) AS `display_name`
+                    FROM tb_mail_manage_member m 
+                    LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = m.id_comp_contact
+                    LEFT JOIN tb_m_user u ON u.id_user = m.id_user
+                    LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee
+                    WHERE m.id_mail_manage=" + id_report + " AND m.id_mail_member_type>1 
+                    ORDER BY m.id_mail_member_type ASC,m.id_mail_manage_member ASC "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("mail_address").ToString, data_send_to.Rows(i)("display_name").ToString)
+                If data_send_to.Rows(i)("id_mail_member_type").ToString = "2" Then
+                    mail.To.Add(to_mail)
+                ElseIf data_send_to.Rows(i)("id_mail_member_type").ToString = "3" Then
+                    mail.CC.Add(to_mail)
+                End If
+            Next
+            mail.Subject = design
+            mail.IsBodyHtml = True
+            mail.Body = emailOnHold(comment_by, comment, dt)
+            client.Send(mail)
         ElseIf report_mark_type = "230" Then
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", design_code)
             Dim mail As MailMessage = New MailMessage()
