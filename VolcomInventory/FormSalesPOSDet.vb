@@ -1653,7 +1653,7 @@ Public Class FormSalesPOSDet
                 If dgwp.Rows.Count > 0 Then
                     id_acc_ar = dgwp.Rows(0)("id_acc_ar").ToString
                     SPDiscount.EditValue = dgwp.Rows(0)("comp_commission")
-                    SPDiscount.Enabled = False
+                    BtnSelectDiscount.Enabled = False
                 Else
                     id_acc_ar = "0"
                 End If
