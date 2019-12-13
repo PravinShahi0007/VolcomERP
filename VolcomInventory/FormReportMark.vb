@@ -537,7 +537,7 @@
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             query = String.Format("SELECT id_report_status, number AS report_number FROM tb_sample_po_mat WHERE id_sample_po_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_sal_pps WHERE id_employee_sal_pps = '{0}'", id_report)
         ElseIf report_mark_type = "200" Then
@@ -5000,12 +5000,6 @@
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec "
 
-
-                'update
-                Dim query_complete As String = ""
-                query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
-                execute_non_query(query_complete, True, "", "", "", "")
-
                 'jika klop diinsert jurnal balik DP nya jika ada
                 Dim q_dp As String = "SELECT pnd.id_report,SUM(pnd.`value`) AS `value`, po.is_close_rec FROM tb_pn_det pnd
                                         INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status='6' AND pn.id_pay_type='1'
@@ -5046,6 +5040,11 @@
 
             query = String.Format("UPDATE tb_purc_rec SET id_report_status='{0}' WHERE id_purc_rec ='{1}';", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            'update
+            Dim query_complete As String = ""
+            query_complete = "CALL update_stt_purc_order(" + FormPurcReceiveDet.id_purc_order + ");" 'jika sudah klop
+            execute_non_query(query_complete, True, "", "", "", "")
 
             'refresh view
             FormPurcReceiveDet.actionLoad()
@@ -6424,7 +6423,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             'refresh view
             FormSampleExpenseDet.load_head()
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"

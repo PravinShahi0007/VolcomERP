@@ -3,6 +3,13 @@
 
     Private Sub FormEmpPayrollDeduction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, 0, True, "", "", "", "")
+
+        If id_report_status = "0" Then
+            check_bpjs_kesehatan()
+        End If
+
         load_deduction()
     End Sub
 
@@ -261,5 +268,24 @@
 
             e.Cancel = True
         End If
+    End Sub
+
+    Sub check_bpjs_kesehatan()
+        Dim id_payroll_other As String = execute_query("
+            SELECT id_payroll FROM tb_emp_payroll 
+	        WHERE periode_start = (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")
+	        AND periode_end = (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")
+	        AND id_payroll_type = (IF((SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") = 1, 4, 1))
+        ", 0, True, "", "", "", "")
+
+        Dim data_move As DataTable = execute_query("
+            SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll = " + id_payroll + " AND id_employee IN (SELECT id_employee FROM tb_emp_payroll_deduction WHERE id_salary_deduction = 1 AND id_payroll = " + id_payroll_other + ")
+        ", -1, True, "", "", "", "")
+
+        For i = 0 To data_move.Rows.Count - 1
+            Dim query As String = "UPDATE tb_emp_payroll_deduction SET id_payroll = " + id_payroll + " WHERE id_salary_deduction = 1 AND id_employee = " + data_move.Rows(i)("id_employee").ToString + " AND id_payroll = " + id_payroll_other
+
+            execute_non_query(query, True, "", "", "", "")
+        Next
     End Sub
 End Class

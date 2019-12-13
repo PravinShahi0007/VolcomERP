@@ -1912,6 +1912,18 @@
     <Compile Include="FormHistoryProposeChanges.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvMat.Designer.vb">
+      <DependentUpon>FormInvMat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvMat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvMatDet.Designer.vb">
+      <DependentUpon>FormInvMatDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvMatDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormInvoiceFGPO.Designer.vb">
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
     </Compile>
@@ -8364,6 +8376,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistoryProposeChanges.resx">
       <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvMat.resx">
+      <DependentUpon>FormInvMat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvMatDet.resx">
+      <DependentUpon>FormInvMatDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPO.resx">
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>

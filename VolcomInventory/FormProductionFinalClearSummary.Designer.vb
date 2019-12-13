@@ -80,6 +80,9 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +105,9 @@ Partial Class FormProductionFinalClearSummary
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -332,7 +338,7 @@ Partial Class FormProductionFinalClearSummary
         Me.XtraTabControl.Location = New System.Drawing.Point(0, 71)
         Me.XtraTabControl.Name = "XtraTabControl"
         Me.XtraTabControl.SelectedTabPage = Me.XTPList
-        Me.XtraTabControl.Size = New System.Drawing.Size(1008, 609)
+        Me.XtraTabControl.Size = New System.Drawing.Size(1008, 525)
         Me.XtraTabControl.TabIndex = 3
         Me.XtraTabControl.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPSummary})
         '
@@ -341,7 +347,7 @@ Partial Class FormProductionFinalClearSummary
         Me.XTPList.Controls.Add(Me.GCList)
         Me.XTPList.Controls.Add(Me.PanelControl2)
         Me.XTPList.Name = "XTPList"
-        Me.XTPList.Size = New System.Drawing.Size(1002, 581)
+        Me.XTPList.Size = New System.Drawing.Size(1002, 497)
         Me.XTPList.Text = "List"
         '
         'GCList
@@ -350,7 +356,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GCList.Location = New System.Drawing.Point(0, 49)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(1002, 532)
+        Me.GCList.Size = New System.Drawing.Size(1002, 448)
         Me.GCList.TabIndex = 1
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -752,12 +758,41 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn15.Visible = True
         Me.GridColumn15.Width = 77
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.MENote)
+        Me.PanelControl4.Controls.Add(Me.Label6)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 596)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(1008, 84)
+        Me.PanelControl4.TabIndex = 23
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(12, 15)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(30, 13)
+        Me.Label6.TabIndex = 18
+        Me.Label6.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MENote.Location = New System.Drawing.Point(48, 13)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(948, 60)
+        Me.MENote.TabIndex = 19
+        '
         'FormProductionFinalClearSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.XtraTabControl)
+        Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
@@ -788,6 +823,10 @@ Partial Class FormProductionFinalClearSummary
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -852,4 +891,7 @@ Partial Class FormProductionFinalClearSummary
     Friend WithEvents SBReset As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnClaim As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents Label6 As Label
 End Class

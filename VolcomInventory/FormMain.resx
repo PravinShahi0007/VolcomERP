@@ -4913,7 +4913,7 @@
   <data name="NBDebitNote.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
+        DQAACw0B7QfALAAAAA90RVh0VGl0bGUAQm9vaztSZWFky8MmvQAAAGZJREFUOE+lkkEOgDAIBPsn3uFr
         fSAqkYN1Nummh6HJAsOlIzO3wNChSkSk4Hih3r36FTzvTA9jjwTnRA9TjgIHFNAllaPAAQV0SeUocEAB
         XVI5Chx+AmL5Jyp6mHq1W2UHDNfJcQFkR7DWidF8nwAAAABJRU5ErkJggg==
 </value>
@@ -5228,6 +5228,23 @@
         igkcIQ36WTq3A+EYj20683aURyj6qy1C86zO0GPDuRZ5jUdJRb0JW0EOoR0Bwe0UhS/A/N8JRXi5/lTt
         sCJQ1TjmqGuZRF2zFbWUmqYJ1GgnUK0dR5VG4azGgjONFlSqqVU9RaXKgtMXhl9SgXIK3SWbhZBjJThe
         ghMFy14uK3nD/h6QnxfMuqZly5fqAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="NBInvMat.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAIXRFWHRUaXRsZQBDb25kaXRp
+        b247R3JlYXRlclRoYW47UnVsZTsGKNrBAAACMElEQVQ4T6WTyW8ScRTHkba0+g951MR4MaZJb8YWJW41
+        bYhUCkJbIBqNpBv1VHs2HowUxbWLLOrJVBPl5qWNNQjDNgMtMzAsX9/7DXC2keTD7/GWz7xhMqbOx9yh
+        7whw/zHCZPYvJxOBlU/wr3yEP2TgW05ijllKYJaYWSQWEvAuxOGdj+FOcDvRkZj6fKEk2m38My36cj3c
+        Bs32s6Cfr8BJ5UCHUtEhMwc1EXNOrlDMtU7cbLXhvL/FggEh8MzHRZKLPHx6xIO1J5vIlzSURK4mzi6N
+        ZguOexs9wYA7+AGNRgtFpYYiNfzczcDuXcX50QCimztGXu6iQddbsAfescAiBM4HW6hTMk9FplCuoVLV
+        Efv8A8PWu7DZl/A1tWfUaSut3sSE701PYOF1OJmjooAamQJfuaxham4Np4Zd2EvLkIoqqloD4zOvWTAo
+        BLwOJ6WiBokEBireJ7/j3MVZjN0M4ltqF1kazhAVVcc1T7QnGJzwvUWZVs7kVfwhdlK/cGP6Ec6MuBDd
+        +EJPpI4sbZSmGiPT07jifsmCISHgdbgpnT8UnDw7idDjCLKFQ2Rok985yhPds1CuwzYd6QmGrnteIa/U
+        RQOjkCwnq9iX6Dex38kzHEu0zaXb6yw4LgRX3S/EPUs0lGUo5ivzmS1V6d4ZyhX4P6gKrI5wT2CxOp7F
+        bM4ILjvXiYiwM9apsAE1jzmeE2GMcnwrjAuTT+M8ywJ+IThg24kjwDNmE4D/AKa/gJ2UzM8HNBsAAAAA
+        SUVORK5CYII=
 </value>
   </data>
   <data name="NBFolluwUpAR.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
