@@ -2,6 +2,8 @@
     Public Shared report_mark_type As String = "-1"
     Public Shared id_report As String = "-1"
 
+    Private id_leave_type As String = "-1"
+
     Sub load_detail()
         Dim query As String = "SELECT formdc.form_dc,empl.emp_leave_number,empl.leave_purpose,lt.leave_type,empl.report_mark_type, empl.id_leave_type,
                                 emp.employee_name, emp.employee_code, emp.employee_position, dep.departement, 
@@ -42,12 +44,23 @@
             LRemainingAfter.Text = data.Rows(0)("leave_remaining").ToString & " jam"
         End If
         '
+        id_leave_type = data.Rows(0)("id_leave_type").ToString
         report_mark_type = data.Rows(0)("report_mark_type").ToString
     End Sub
     Private Sub ReportLeave_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         load_detail()
 
-        load_mark_horz_side(report_mark_type, id_report, "2", "1", XrTable1, "2")
+        If id_leave_type = "7" Then
+            Dim data As DataTable = execute_query("SELECT id_emp, id_report_status FROM tb_emp_leave WHERE id_emp_leave = " + id_report, 0, True, "", "", "", "")
+
+            If data.Rows(0)("id_report_status").ToString = "0" Then
+                pre_load_asg_horz(report_mark_type, data.Rows(0)("id_emp").ToString, XrTable1, "1")
+            Else
+                load_mark_horz_side(report_mark_type, id_report, "2", "1", XrTable1, "2")
+            End If
+        Else
+            load_mark_horz_side(report_mark_type, id_report, "2", "1", XrTable1, "2")
+        End If
 
         BSideRight.HeightF = BSideRight.HeightF + (25.0F * 4)
         BSideLeft.HeightF = BSideLeft.HeightF + (25.0F * 4)
