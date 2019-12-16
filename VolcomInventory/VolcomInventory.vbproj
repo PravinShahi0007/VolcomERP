@@ -276,6 +276,12 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="FormAREvalScheduke.Designer.vb">
+      <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvalScheduke.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankWithdrawalAdd.Designer.vb">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
     </Compile>
@@ -7506,6 +7512,9 @@
     <EmbeddedResource Include="barcodeaa.resx">
       <DependentUpon>barcodeaa.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvalScheduke.resx">
+      <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalAdd.resx">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
