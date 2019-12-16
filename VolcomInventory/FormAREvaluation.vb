@@ -47,4 +47,26 @@
         FormAREvaluationPickDate.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepoLinkInvoice_Click(sender As Object, e As EventArgs) Handles RepoLinkInvoice.Click
+        If GVInvoiceDetail.RowCount > 0 And GVInvoiceDetail.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim inv As New ClassShowPopUp()
+            inv.id_report = GVInvoiceDetail.GetFocusedRowCellValue("id_inv").ToString
+            inv.report_mark_type = GVInvoiceDetail.GetFocusedRowCellValue("inv_rmt").ToString
+            inv.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnBBM_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnBBM.ButtonClick
+        If GVInvoiceDetail.RowCount > 0 And GVInvoiceDetail.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormInvoiceTrackingBBM.Text = FormInvoiceTrackingBBM.Text + " " + GVInvoiceDetail.GetFocusedRowCellValue("inv_number").ToString
+            FormInvoiceTrackingBBM.rmt = GVInvoiceDetail.GetFocusedRowCellValue("inv_rmt").ToString
+            FormInvoiceTrackingBBM.id_report = GVInvoiceDetail.GetFocusedRowCellValue("id_inv").ToString
+            FormInvoiceTrackingBBM.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class

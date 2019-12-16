@@ -34,6 +34,7 @@ Partial Class FormAREvaluation
         Me.GridColumngroup_store = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumninv_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumninv_rmt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumninv_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpaid_status = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,7 +49,6 @@ Partial Class FormAREvaluation
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.RepoLinkInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,12 +57,12 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceDetail.SuspendLayout()
         CType(Me.GCInvoiceDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoiceDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPGroupStore.SuspendLayout()
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -177,6 +177,11 @@ Partial Class FormAREvaluation
         Me.GridColumninv_number.OptionsColumn.ReadOnly = True
         Me.GridColumninv_number.Visible = True
         Me.GridColumninv_number.VisibleIndex = 1
+        '
+        'RepoLinkInvoice
+        '
+        Me.RepoLinkInvoice.AutoHeight = False
+        Me.RepoLinkInvoice.Name = "RepoLinkInvoice"
         '
         'GridColumninv_rmt
         '
@@ -316,11 +321,6 @@ Partial Class FormAREvaluation
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
-        'RepoLinkInvoice
-        '
-        Me.RepoLinkInvoice.AutoHeight = False
-        Me.RepoLinkInvoice.Name = "RepoLinkInvoice"
-        '
         'FormAREvaluation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -341,12 +341,12 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceDetail.ResumeLayout(False)
         CType(Me.GCInvoiceDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoiceDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnBBM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPGroupStore.ResumeLayout(False)
         CType(Me.GCGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
