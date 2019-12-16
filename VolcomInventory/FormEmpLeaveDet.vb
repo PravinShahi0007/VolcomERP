@@ -716,13 +716,25 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        ReportEmpLeave.id_report = id_emp_leave
-        ReportEmpLeave.report_mark_type = report_mark_type
+        Dim data As DataTable = execute_query("SELECT id_report_status, id_leave_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave, -1, True, "", "", "", "")
 
-        Dim Report As New ReportEmpLeave()
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+        If data.Rows(0)("id_leave_type").ToString = "7" And data.Rows(0)("id_report_status").ToString = "0" Then
+            ReportMemoUnpaidLeave.id_report = id_emp_leave
+            ReportMemoUnpaidLeave.report_mark_type = report_mark_type
+
+            Dim Report As New ReportMemoUnpaidLeave()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        Else
+            ReportEmpLeave.id_report = id_emp_leave
+            ReportEmpLeave.report_mark_type = report_mark_type
+
+            Dim Report As New ReportEmpLeave()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
     End Sub
 
     Private Sub LEpayment_KeyDown(sender As Object, e As KeyEventArgs) Handles LELeaveType.KeyDown

@@ -4566,14 +4566,21 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
 
         Dim query As String = "
-            SELECT c.report_status_display, b.id_report_status, '' AS report_mark_note, 0 AS id_report_mark, c.report_status, a.id_user, e.employee_name, 2 AS mark, '00:00:00' AS date_time, '' AS report_mark_note, e.employee_position AS role, a.is_head_dept, a.is_asst_head_dept, a.is_sub_head
+            SELECT * FROM (
+            (SELECT c.report_status_display, 1 AS id_report_status, '' AS report_mark_note, 0 AS id_report_mark, c.report_status, 0 AS id_user, e.employee_name, 2 AS mark, '00:00:00' AS date_time, e.employee_position AS role, 2 AS is_head_dept, 2 AS is_asst_head_dept, 2 AS is_sub_head
+            FROM tb_m_employee AS e
+            LEFT JOIN tb_lookup_report_status c ON c.id_report_status = 1
+            WHERE e.id_employee = " + id_employee + ")
+            UNION
+            (SELECT c.report_status_display, b.id_report_status, '' AS report_mark_note, 0 AS id_report_mark, c.report_status, a.id_user, e.employee_name, 2 AS mark, '00:00:00' AS date_time, e.employee_position AS role, a.is_head_dept, a.is_asst_head_dept, a.is_sub_head
             FROM tb_mark_asg_user a 
             LEFT JOIN tb_mark_asg b ON a.id_mark_asg = b.id_mark_asg
             LEFT JOIN tb_lookup_report_status c ON b.id_report_status = c.id_report_status
             LEFT JOIN tb_m_user d ON a.id_user = d.id_user
             LEFT JOIN tb_m_employee e ON d.id_employee = e.id_employee
             WHERE b.report_mark_type = " + report_mark_type + " AND a.level = 1
-            ORDER BY b.id_report_status, a.id_mark_asg
+            ORDER BY b.id_report_status, a.id_mark_asg)) AS tb
+            ORDER BY id_report_status ASC
         "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -4588,9 +4595,9 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                     WHERE e.id_employee = " + id_employee + "
                 "
                 Dim data_head As DataTable = execute_query(query_head, -1, True, "", "", "", "")
-                data.Rows(i)("id_user") = data_head.Rows(i)("id_user")
-                data.Rows(i)("employee_name") = data_head.Rows(i)("employee_name").ToString
-                data.Rows(i)("role") = data_head.Rows(i)("role").ToString
+                data.Rows(i)("id_user") = data_head.Rows(0)("id_user")
+                data.Rows(i)("employee_name") = data_head.Rows(0)("employee_name").ToString
+                data.Rows(i)("role") = data_head.Rows(0)("role").ToString
             ElseIf data.Rows(i)("is_asst_head_dept").ToString = "1" Then
                 Dim query_head As String = "
                     SELECT d.id_user_asst_head AS id_user, eh.employee_name, eh.employee_position AS role
@@ -4601,9 +4608,9 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                     WHERE e.id_employee = " + id_employee + "
                 "
                 Dim data_head As DataTable = execute_query(query_head, -1, True, "", "", "", "")
-                data.Rows(i)("id_user") = data_head.Rows(i)("id_user")
-                data.Rows(i)("employee_name") = data_head.Rows(i)("employee_name").ToString
-                data.Rows(i)("role") = data_head.Rows(i)("role").ToString
+                data.Rows(i)("id_user") = data_head.Rows(0)("id_user")
+                data.Rows(i)("employee_name") = data_head.Rows(0)("employee_name").ToString
+                data.Rows(i)("role") = data_head.Rows(0)("role").ToString
             ElseIf data.Rows(i)("is_sub_head").ToString = "1" Then
                 Dim query_head As String = "
                     SELECT d.id_usr_head_sub_dept AS id_user, eh.employee_name, eh.employee_position AS role
@@ -4614,9 +4621,9 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
                     WHERE e.id_employee = " + id_employee + "
                 "
                 Dim data_head As DataTable = execute_query(query_head, -1, True, "", "", "", "")
-                data.Rows(i)("id_user") = data_head.Rows(i)("id_user")
-                data.Rows(i)("employee_name") = data_head.Rows(i)("employee_name").ToString
-                data.Rows(i)("role") = data_head.Rows(i)("role").ToString
+                data.Rows(i)("id_user") = data_head.Rows(0)("id_user")
+                data.Rows(i)("employee_name") = data_head.Rows(0)("employee_name").ToString
+                data.Rows(i)("role") = data_head.Rows(0)("role").ToString
             End If
         Next
 
