@@ -214,6 +214,7 @@
         'check
         Dim acc_selected = True
         Dim val_ok = True
+        Dim attachment = True
 
         If XTPWithdrawal.PageVisible Then
             For i = 0 To GVBankWithdrawal.RowCount - 1
@@ -237,6 +238,9 @@
             End If
         End If
 
+        'attachment
+        attachment = If(execute_query("SELECT COUNT(*) FROM tb_doc WHERE report_mark_type = 174 AND id_report = " + id_ca, 0, True, "", "", "", "") = "0", False, True)
+
         'save
         If acc_selected = False Then
             If XTPWithdrawal.PageVisible Then
@@ -254,6 +258,8 @@
             End If
 
             warningCustom("Please make sure your cash is balance")
+        ElseIf Not attachment Then
+            warningCustom("Please add attachment")
         Else
             Dim query As String = ""
 
@@ -528,5 +534,18 @@
 
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim is_view As String = execute_query("SELECT IF((SELECT COUNT(*) FROM tb_cash_advance_report WHERE id_cash_advance = " + id_ca + ") = 0, -1, 1) AS is_view", 0, True, "", "", "", "")
+
+        FormDocumentUpload.is_view = is_view
+        FormDocumentUpload.id_report = id_ca
+        FormDocumentUpload.report_mark_type = "174"
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
