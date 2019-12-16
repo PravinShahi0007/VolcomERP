@@ -2518,7 +2518,7 @@ Public Class FormImportExcel
                 End If
                 qry_det += "SELECT '" + data_temp.Rows(d)("Order Number").ToString + "' AS `order_number`,'" + data_temp.Rows(d)("Order Item Id").ToString + "' AS `item_id`,  '" + data_temp.Rows(d)("Zalora Id").ToString + "' AS `ol_store_id`, LEFT('" + data_temp.Rows(d)("Seller SKU").ToString + "',9) AS `design_code`, IF(" + size_check + "<'10',LPAD('" + data_temp.Rows(d)("Variation").ToString + "',2,'0'),IF('" + data_temp.Rows(d)("Variation").ToString + "'='One Size', 'ALL', REPLACE('" + data_temp.Rows(d)("Variation").ToString + "',' in',''))) AS `size`,
                 '" + DateTime.Parse(data_temp.Rows(d)("Created at").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "' AS `created_date_ol_store`, '" + addSlashes(data_temp.Rows(d)("Customer Name").ToString) + "' AS `customer_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Name").ToString) + "' AS `shipping_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Address").ToString) + "' AS `shipping_address`,
-                '" + addSlashes(data_temp.Rows(d)("Shipping Phone Number").ToString) + "' AS `shipping_phone`, '" + addSlashes(data_temp.Rows(d)("Shipping City").ToString) + "' AS `shipping_city`, '" + data_temp.Rows(d)("Shipping Postcode").ToString + "' AS `shipping_post_code`, '" + addSlashes(data_temp.Rows(d)("Shipping Region").ToString) + "' AS `shipping_region`,  '" + addSlashes(data_temp.Rows(d)("Payment Method").ToString) + "' AS `payment_method`,  '" + data_temp.Rows(d)("Tracking Code").ToString + "' AS `tracking_code`, '" + id_user + "' AS `id_user` "
+                '" + addSlashes(data_temp.Rows(d)("Shipping Phone Number").ToString) + "' AS `shipping_phone`, '" + addSlashes(data_temp.Rows(d)("Shipping City").ToString) + "' AS `shipping_city`, '" + data_temp.Rows(d)("Shipping Postcode").ToString + "' AS `shipping_post_code`, '" + addSlashes(data_temp.Rows(d)("Shipping Region").ToString) + "' AS `shipping_region`,  '" + addSlashes(data_temp.Rows(d)("Payment Method").ToString) + "' AS `payment_method`,  '" + data_temp.Rows(d)("Tracking Code").ToString + "' AS `tracking_code`,'" + data_temp.Rows(d)("Zalora SKU").ToString + "' AS `ol_store_sku`, '" + id_user + "' AS `id_user` "
             Next
             qry += qry_det + ") a ); ALTER TABLE tb_so_ol_store CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
             command.CommandText = qry
@@ -2557,7 +2557,29 @@ Public Class FormImportExcel
             connection.Close()
             connection.Dispose()
 
+            'pemenuhan stok (belum jadi)
+            'makeSafeGV(GVData)
+            'For d As Integer = 0 To data_prod.Rows.Count - 1
+            '    Dim qty As Decimal = data_prod.Rows(d)("available_qty")
+            '    Dim qty_fulfil As Decimal = 0
+            '    For r As Integer = 0 To GVData.RowCount - 1
+            '        If GVData.GetRowCellValue(r, "stock_availability").ToString = "NO STOCK" And GVData.GetRowCellValue(r, "id_product").ToString = data_prod.Rows(d)("id_product").ToString Then
+            '            GVData.SetRowCellValue(r, "stock_availability", "OK")
+            '            qty_fulfil += 1
+            '        End If
+            '        If qty_fulfil = qty Then
+            '            Exit For
+            '        End If
+            '    Next
+            'Next
 
+            'column position
+            GVData.Columns("Status").Caption = "Format Import"
+            GVData.Columns("Status").VisibleIndex = 0
+            GVData.Columns("Status").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            'GVData.Columns("stock_availability").Caption = "Stock Status"
+            'GVData.Columns("stock_availability").VisibleIndex = 2
+            'GVData.Columns("stock_availability").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
             'option
             GVData.OptionsView.ShowFooter = True
@@ -2962,7 +2984,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Or id_pop_up = "42" Or id_pop_up = "43" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -2981,6 +3003,20 @@ Public Class FormImportExcel
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.Salmon
+            End If
+        ElseIf id_pop_up = "41" Then
+            If e.Column.FieldName.ToString = "Status" Then
+                Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
+                If stt <> "OK" Then
+                    e.Appearance.BackColor = Color.Salmon
+                    e.Appearance.BackColor2 = Color.Salmon
+                End If
+            ElseIf e.Column.FieldName.ToString = "stock_availability" Then
+                Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("stock_availability")).ToString
+                If stt <> "OK" Then
+                    e.Appearance.BackColor = Color.Yellow
+                    e.Appearance.BackColor2 = Color.Yellow
+                End If
             End If
         End If
     End Sub
@@ -4746,6 +4782,7 @@ Public Class FormImportExcel
                             newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
                             newRow("design_price") = GVData.GetRowCellValue(i, "design_price")
                             newRow("design_cop") = GVData.GetRowCellValue(i, "design_cop")
+                            newRow("ol_store_sku") = GVData.GetRowCellValue(i, "ol_store_sku").ToString
                             newRow("customer_name") = GVData.GetRowCellValue(i, "customer_name").ToString
                             newRow("shipping_name") = GVData.GetRowCellValue(i, "shipping_name").ToString
                             newRow("shipping_address") = GVData.GetRowCellValue(i, "shipping_address").ToString

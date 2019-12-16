@@ -293,7 +293,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocus
                         If Not id_comp_contact = "-1" Then
                             id_contact_after = "'" & id_comp_contact & "'"
                         Else
-                            id_contact_after = "NULL"
+                            id_contact_after = "'0'"
                         End If
                         add_cost_after = decimalSQL(TEAdditionalCost.EditValue.ToString)
 

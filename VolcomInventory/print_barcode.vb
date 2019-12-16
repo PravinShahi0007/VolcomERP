@@ -22,7 +22,7 @@
         Dim com_print As System.Text.StringBuilder = New System.Text.StringBuilder
         com_print.AppendLine()
         com_print.AppendLine("<ESC>A")
-        com_print.AppendLine("<ESC>P02<ESC>H" & (add_sato_hpx + 570).ToString & "<ESC>V00" & (add_sato_vpx + 60).ToString & "<ESC>L0200<ESC>S" & season & "  " & country_orign & " " & class_ & "  " & color & "  " & size)
+        com_print.AppendLine("<ESC>P02<ESC>H" & (add_sato_hpx + 570).ToString & "<ESC>V00" & (add_sato_vpx + 60).ToString & "<ESC>L0200<ESC>S" & season & " " & country_orign & " " & class_ & " " & size)
         com_print.AppendLine("<ESC>P02<ESC>H" & (add_sato_hpx + 570).ToString & "<ESC>V00" & (add_sato_vpx + 80).ToString & "<ESC>L0200<ESC>S" & desc)
         com_print.AppendLine("<ESC>H" & (add_sato_hpx + 590).ToString & "<ESC>V0" & (add_sato_vpx + 100).ToString & "<ESC>D202120" & code)
         com_print.AppendLine("<ESC>P02<ESC>H" & (add_sato_hpx + 570).ToString & "<ESC>V0" & (add_sato_vpx + 240).ToString & "<ESC>L0200<ESC>S" & code)
@@ -47,7 +47,7 @@
         com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 258).ToString & "^A0N,23,24^FH\^FD" & code & "^FS")
         com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 288).ToString & "^A0N,14,14^FH\^FD" & type & "^FS")
         com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 71).ToString & "^A0N,14,14^FH\^FD" & desc & "^FS")
-        com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 53).ToString & "^A0N,14,14^FH\^FD" & season & "  " & country_orign & "  " & class_ & "  " & color & "  " & size & "^FS")
+        com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 53).ToString & "^A0N,14,14^FH\^FD" & season & " " & country_orign & " " & class_ & " " & size & "^FS")
         com_print.AppendLine("^PQ" & qty.ToString & ",0,1,Y^XZ")
         Dim output As String = com_print.ToString()
         Return output

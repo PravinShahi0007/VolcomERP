@@ -101,6 +101,7 @@ Partial Class FormPurcItemDet
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -841,11 +842,12 @@ Partial Class FormPurcItemDet
         '
         'GVHistory
         '
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn19, Me.GridColumn24, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
         Me.GVHistory.GridControl = Me.GCHistory
         Me.GVHistory.Name = "GVHistory"
         Me.GVHistory.OptionsBehavior.ReadOnly = True
         Me.GVHistory.OptionsCustomization.AllowSort = False
+        Me.GVHistory.OptionsView.ColumnAutoWidth = False
         Me.GVHistory.OptionsView.ShowGroupPanel = False
         '
         'GridColumn20
@@ -856,7 +858,7 @@ Partial Class FormPurcItemDet
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 2
+        Me.GridColumn20.VisibleIndex = 1
         '
         'GridColumn19
         '
@@ -866,7 +868,7 @@ Partial Class FormPurcItemDet
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 1
+        Me.GridColumn19.VisibleIndex = 2
         '
         'GridColumn21
         '
@@ -888,7 +890,7 @@ Partial Class FormPurcItemDet
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.OptionsColumn.ReadOnly = True
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 3
+        Me.GridColumn22.VisibleIndex = 4
         '
         'GridColumn23
         '
@@ -900,7 +902,15 @@ Partial Class FormPurcItemDet
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.OptionsColumn.ReadOnly = True
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 4
+        Me.GridColumn23.VisibleIndex = 5
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Item Detail"
+        Me.GridColumn24.FieldName = "item_detail"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 3
         '
         'FormPurcItemDet
         '
@@ -1039,4 +1049,5 @@ Partial Class FormPurcItemDet
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

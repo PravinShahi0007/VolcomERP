@@ -348,7 +348,7 @@ Public Class FormMain
         End If
 
         'hide all except print n close
-        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Then
+        If formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Or formName = "FormInvMat" Then
             RGAreaManage.Visible = False
         End If
 
@@ -1553,6 +1553,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
                 'propose summary
                 FormProductionFinalClearSummary.id_prod_fc_sum = "0"
+                FormProductionFinalClearSummary.is_vew = "0"
                 FormProductionFinalClearSummary.ShowDialog()
             End If
         ElseIf formName = "FormProductionAssembly" Then
@@ -2697,6 +2698,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 ElseIf FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 2 Then
                     'propose summary
                     FormProductionFinalClearSummary.id_prod_fc_sum = FormProductionFinalClear.GVSum.GetFocusedRowCellValue("id_prod_fc_sum").ToString
+                    FormProductionFinalClearSummary.is_vew = "0"
                     FormProductionFinalClearSummary.ShowDialog()
                 End If
             ElseIf formName = "FormProductionAssembly" Then
@@ -7797,6 +7799,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormInvoiceTracking" Then
             print_raw(FormInvoiceTracking.GCUnpaid, "")
+        ElseIf formName = "FormInvMat" Then
+            FormInvMat.print_list()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8612,6 +8616,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormInvoiceTracking" Then
             FormInvoiceTracking.Close()
             FormInvoiceTracking.Dispose()
+        ElseIf formName = "FormStockQC" Then
+            FormStockQC.Close()
+            FormStockQC.Dispose()
+        ElseIf formName = "FormInvMat" Then
+            FormInvMat.Close()
+            FormInvMat.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11833,8 +11843,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Dim confirm As DialogResult = XtraMessageBox.Show("Are you sure want to close application?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = DialogResult.Yes Then
             'log
-            Dim u As New ClassUser()
-            u.logLogin("2")
+            Try
+                Dim u As New ClassUser()
+                u.logLogin("2")
+            Catch ex As Exception
+            End Try
         Else
             e.Cancel = True
         End If
@@ -13823,6 +13836,39 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInvoiceTracking.Show()
             FormInvoiceTracking.WindowState = FormWindowState.Maximized
             FormInvoiceTracking.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBFolluwUpAR_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFolluwUpAR.LinkClicked
+        Try
+            FormFollowUpAR.MdiParent = Me
+            FormFollowUpAR.Show()
+            FormFollowUpAR.WindowState = FormWindowState.Maximized
+            FormFollowUpAR.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBInvMat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvMat.LinkClicked
+        Try
+            FormInvMatDet.MdiParent = Me
+            FormInvMatDet.Show()
+            FormInvMatDet.WindowState = FormWindowState.Maximized
+            FormInvMatDet.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAREvalSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAREvalSchedule.LinkClicked
+        Try
+            FormAREvalScheduke.MdiParent = Me
+            FormAREvalScheduke.Show()
+            FormAREvalScheduke.WindowState = FormWindowState.Maximized
+            FormAREvalScheduke.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

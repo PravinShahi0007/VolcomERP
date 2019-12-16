@@ -263,6 +263,9 @@
 
             If is_active = "1" Or is_active = "2" Then
                 BApproval.Visible = False
+                If Not is_view = "1" Then
+                    BResetMark.Visible = True
+                End If
             Else
                 BApproval.Visible = True
                 '

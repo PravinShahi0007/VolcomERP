@@ -24,6 +24,7 @@
             SBRemove.Enabled = True
             SBAdd.Enabled = True
             SBMark.Enabled = False
+            SBAttachment.Enabled = False
             SBClose.Enabled = True
             SBPrint.Enabled = False
             SBSave.Enabled = True
@@ -37,6 +38,7 @@
             SBRemove.Enabled = False
             SBAdd.Enabled = False
             SBMark.Enabled = True
+            SBAttachment.Enabled = True
             SBClose.Enabled = True
             SBPrint.Enabled = False
             SBSave.Enabled = False
@@ -72,6 +74,7 @@
         data.Columns.Add("id_departement", GetType(String))
         data.Columns.Add("id_departement_sub", GetType(String))
         data.Columns.Add("departement", GetType(String))
+        data.Columns.Add("departement_sub", GetType(String))
         data.Columns.Add("id_employee", GetType(String))
         data.Columns.Add("employee_code", GetType(String))
         data.Columns.Add("employee_name", GetType(String))
@@ -103,10 +106,11 @@
 
         'detail
         Dim query_det As String = "
-            SELECT bpjs_det.id_departement, bpjs_det.id_departement_sub, dep.departement, bpjs_det.id_employee, emp.employee_code, emp.employee_name, bpjs_det.employee_position, emp.employee_bpjs_kesehatan, DATE_FORMAT(emp.employee_dob, '%d %M %Y') AS employee_dob, bpjs_det.id_employee_status, sts.employee_status, bpjs_det.fixed_salary, bpjs_det.bpjs_kesehatan_contribution
+            SELECT bpjs_det.id_departement, bpjs_det.id_departement_sub, dep.departement, IF(bpjs_det.id_departement = 17, dep_sub.departement_sub, dep.departement) AS departement_sub, bpjs_det.id_employee, emp.employee_code, emp.employee_name, bpjs_det.employee_position, emp.employee_bpjs_kesehatan, DATE_FORMAT(emp.employee_dob, '%d %M %Y') AS employee_dob, bpjs_det.id_employee_status, sts.employee_status, bpjs_det.fixed_salary, bpjs_det.bpjs_kesehatan_contribution
             FROM tb_pay_bpjs_kesehatan_det AS bpjs_det
             LEFT JOIN tb_m_employee AS emp ON bpjs_det.id_employee = emp.id_employee
             LEFT JOIN tb_m_departement AS dep ON bpjs_det.id_departement = dep.id_departement
+            LEFT JOIN tb_m_departement_sub AS dep_sub ON bpjs_det.id_departement_sub = dep_sub.id_departement_sub
             LEFT JOIN tb_lookup_employee_status AS sts ON bpjs_det.id_employee_status = sts.id_employee_status
             WHERE bpjs_det.id_pay_bpjs_kesehatan = " + id + "
             ORDER BY dep.departement ASC, emp.id_employee_level ASC, emp.employee_code ASC
@@ -144,9 +148,10 @@
             End If
 
             Dim query As String = "
-                SELECT emp.id_departement, emp.id_departement_sub, dep.departement, emp.id_employee, emp.employee_code, emp.employee_name, emp.employee_position, emp.employee_bpjs_kesehatan, DATE_FORMAT(emp.employee_dob, '%d %M %Y') AS employee_dob, emp.id_employee_status, sts.employee_status, IF(emp.id_employee_status = 3, (emp.basic_salary * dep.total_workdays), (emp.basic_salary + emp.allow_job + emp.allow_meal + emp.allow_trans)) AS fixed_salary, CAST(IF((SELECT fixed_salary) < py.ump, (py.ump * 0.01), IF((SELECT fixed_salary) >= py.bpjs_max, py.bpjs_max * 0.01, (SELECT fixed_salary) * 0.01)) AS DECIMAL(13, 0)) AS bpjs_kesehatan_contribution
+                SELECT emp.id_departement, emp.id_departement_sub, dep.departement, IF(emp.id_departement = 17, dep_sub.departement_sub, dep.departement) AS departement_sub, emp.id_employee, emp.employee_code, emp.employee_name, emp.employee_position, emp.employee_bpjs_kesehatan, DATE_FORMAT(emp.employee_dob, '%d %M %Y') AS employee_dob, emp.id_employee_status, sts.employee_status, IF(emp.id_employee_status = 3, (emp.basic_salary * dep.total_workdays), (emp.basic_salary + emp.allow_job + emp.allow_meal + emp.allow_trans)) AS fixed_salary, CAST(IF((SELECT fixed_salary) < py.ump, (py.ump * 0.01), IF((SELECT fixed_salary) >= py.bpjs_max, py.bpjs_max * 0.01, (SELECT fixed_salary) * 0.01)) AS DECIMAL(13, 0)) AS bpjs_kesehatan_contribution
                 FROM tb_m_employee AS emp
                 LEFT JOIN tb_m_departement AS dep ON emp.id_departement = dep.id_departement
+                LEFT JOIN tb_m_departement_sub AS dep_sub ON emp.id_departement_sub = dep_sub.id_departement_sub
                 LEFT JOIN tb_lookup_employee_status AS sts ON emp.id_employee_status = sts.id_employee_status
                 LEFT JOIN tb_emp_payroll AS py ON py.id_payroll = " + SLUEPayroll.EditValue.ToString + "
                 WHERE emp.id_employee_active = 1 AND emp.is_bpjs_volcom = 1 AND emp.basic_salary > 0 " + where_dw + "
@@ -332,7 +337,9 @@
         'detail
         Dim data As DataTable = New DataTable
 
+        data.Columns.Add("id_departement", GetType(String))
         data.Columns.Add("departement", GetType(String))
+        data.Columns.Add("departement_sub", GetType(String))
         data.Columns.Add("no", GetType(Integer))
         data.Columns.Add("employee_name", GetType(String))
         data.Columns.Add("employee_bpjs_kesehatan", GetType(String))
@@ -346,6 +353,7 @@
         'departement
         Dim data_dept As DataTable = New DataTable
 
+        data_dept.Columns.Add("is_sub", GetType(Integer))
         data_dept.Columns.Add("no", GetType(Integer))
         data_dept.Columns.Add("departement", GetType(String))
         data_dept.Columns.Add("company_contribution", GetType(Decimal))
@@ -355,7 +363,9 @@
         For i = 0 To GVInput.RowCount - 1
             If GVInput.IsValidRowHandle(i) Then
                 'detail
+                Dim id_departement As String = GVInput.GetRowCellValue(i, "id_departement").ToString
                 Dim departement As String = GVInput.GetRowCellValue(i, "departement").ToString
+                Dim departement_sub As String = GVInput.GetRowCellValue(i, "departement_sub").ToString
                 Dim no As String = 0
                 Dim employee_name As String = GVInput.GetRowCellValue(i, "employee_name").ToString
                 Dim employee_bpjs_kesehatan As String = GVInput.GetRowCellValue(i, "employee_bpjs_kesehatan").ToString
@@ -366,33 +376,65 @@
                 Dim total_contribution As String = (GVInput.GetRowCellValue(i, "bpjs_kesehatan_contribution") * 100 * 0.04) + GVInput.GetRowCellValue(i, "bpjs_kesehatan_contribution")
                 Dim bpjs_class As String = If(GVInput.GetRowCellValue(i, "fixed_salary") > Decimal.Parse(bpjs_max_kelas_2), "I", "II")
 
-                data.Rows.Add(departement, no, employee_name, employee_bpjs_kesehatan, employee_dob, employee_salary, company_contribution, employee_contribution, total_contribution, bpjs_class)
+                data.Rows.Add(id_departement, departement, departement_sub, no, employee_name, employee_bpjs_kesehatan, employee_dob, employee_salary, company_contribution, employee_contribution, total_contribution, bpjs_class)
 
                 'departement
                 Dim index As Integer = -1
 
-                For j = 0 To data_dept.Rows.Count - 1
-                    If data_dept.Rows(j)("departement").ToString = GVInput.GetRowCellValue(i, "departement").ToString Then
-                        index = j
+                'skip sogo *remove if, if total all sogo include
+                If Not GVInput.GetRowCellValue(i, "id_departement").ToString = "17" Then
+                    For j = 0 To data_dept.Rows.Count - 1
+                        If data_dept.Rows(j)("departement").ToString = GVInput.GetRowCellValue(i, "departement").ToString Then
+                            index = j
 
-                        Exit For
+                            Exit For
+                        End If
+
+                        index = -1
+                    Next
+
+                    If index = -1 Then
+                        data_dept.Rows.Add(
+                            0,
+                            0,
+                            GVInput.GetRowCellValue(i, "departement").ToString,
+                            company_contribution,
+                            employee_contribution,
+                            total_contribution
+                        )
+                    Else
+                        data_dept.Rows(index)("company_contribution") = data_dept.Rows(index)("company_contribution") + company_contribution
+                        data_dept.Rows(index)("employee_contribution") = data_dept.Rows(index)("employee_contribution") + employee_contribution
+                        data_dept.Rows(index)("total_contribution") = data_dept.Rows(index)("total_contribution") + total_contribution
                     End If
+                End If
 
-                    index = -1
-                Next
+                'sogo
+                If GVInput.GetRowCellValue(i, "id_departement").ToString = "17" Then
+                    For j = 0 To data_dept.Rows.Count - 1
+                        If data_dept.Rows(j)("departement").ToString = GVInput.GetRowCellValue(i, "departement_sub").ToString Then
+                            index = j
 
-                If index = -1 Then
-                    data_dept.Rows.Add(
-                        0,
-                        GVInput.GetRowCellValue(i, "departement").ToString,
-                        company_contribution,
-                        employee_contribution,
-                        total_contribution
-                    )
-                Else
-                    data_dept.Rows(index)("company_contribution") = data_dept.Rows(index)("company_contribution") + company_contribution
-                    data_dept.Rows(index)("employee_contribution") = data_dept.Rows(index)("employee_contribution") + employee_contribution
-                    data_dept.Rows(index)("total_contribution") = data_dept.Rows(index)("total_contribution") + total_contribution
+                            Exit For
+                        End If
+
+                        index = -1
+                    Next
+
+                    If index = -1 Then
+                        data_dept.Rows.Add(
+                            1,
+                            Nothing,
+                            GVInput.GetRowCellValue(i, "departement_sub").ToString,
+                            company_contribution,
+                            employee_contribution,
+                            total_contribution
+                        )
+                    Else
+                        data_dept.Rows(index)("company_contribution") = data_dept.Rows(index)("company_contribution") + company_contribution
+                        data_dept.Rows(index)("employee_contribution") = data_dept.Rows(index)("employee_contribution") + employee_contribution
+                        data_dept.Rows(index)("total_contribution") = data_dept.Rows(index)("total_contribution") + total_contribution
+                    End If
                 End If
             End If
         Next
@@ -415,9 +457,16 @@
         GVAllDepartements.BestFitColumns()
 
         'numbering
+        Dim n As Integer = 1
+
         For i = 0 To GVAllDepartements.RowCount - 1
             If GVAllDepartements.IsValidRowHandle(i) Then
-                GVAllDepartements.SetRowCellValue(i, "no", i + 1)
+                '*uncomment if, if total all sogo include
+                'If GVAllDepartements.GetRowCellValue(i, "is_sub") = 0 Then
+                GVAllDepartements.SetRowCellValue(i, "no", n)
+
+                n = n + 1
+                'End If
             End If
         Next
     End Sub
@@ -469,6 +518,108 @@
             Else
                 e.Cancel = True
             End If
+        End If
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.report_mark_type = "223"
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Dim company_contribution As Integer = 0
+    Dim employee_contribution As Integer = 0
+    Dim total_contribution As Integer = 0
+
+    Private Sub GVAllDepartements_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVAllDepartements.CustomSummaryCalculate
+        Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
+
+        '*uncomment if, if total all sogo include
+        'If GVAllDepartements.GetRowCellValue(e.RowHandle, "is_sub") = 0 Then
+        If item.FieldName.ToString = "company_contribution" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    company_contribution = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    company_contribution += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = company_contribution
+            End Select
+        End If
+
+        If item.FieldName.ToString = "employee_contribution" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    employee_contribution = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    employee_contribution += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = employee_contribution
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_contribution" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    total_contribution = 0
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    total_contribution += e.FieldValue
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    e.TotalValue = total_contribution
+            End Select
+        End If
+        'End If
+    End Sub
+
+    Private Sub GVInput_CustomDrawGroupRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVInput.CustomDrawGroupRow
+        Dim info As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo = TryCast(e.Info, DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo)
+
+        If info.Column.FieldName = "departement_sub" And Not info.EditValue.ToString.Contains("SOGO") Then
+            info.GroupText = " "
+        End If
+    End Sub
+
+    Private Sub GVEmployee_CustomDrawGroupRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVEmployee.CustomDrawGroupRow
+        Dim info As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo = TryCast(e.Info, DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo)
+
+        If info.Column.FieldName = "departement_sub" And Not info.EditValue.ToString.Contains("SOGO") Then
+            info.GroupText = " "
+        End If
+    End Sub
+
+    Private Sub GVEmployee_CustomDrawRowFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVEmployee.CustomDrawRowFooter
+        e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
+
+        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
+
+        format.Alignment = StringAlignment.Near
+
+        If GVEmployee.GetGroupRowDisplayText(e.RowHandle).Contains("Group") Then
+            e.Graphics.DrawString("Grand Total: " + GVEmployee.GetGroupRowValue(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+        Else
+            If GVEmployee.GetGroupRowDisplayText(e.RowHandle).Contains("SOGO") Then
+                e.Graphics.DrawString("Total " + GVEmployee.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+            Else
+                If Not GVEmployee.GetGroupRowDisplayText(e.RowHandle).Contains("Sub") Then
+                    e.Graphics.DrawString("Total " + GVEmployee.GetGroupRowDisplayText(e.RowHandle), e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+                End If
+            End If
+        End If
+
+        e.Handled = True
+    End Sub
+
+    Private Sub GVEmployee_CustomDrawRowFooterCell(sender As Object, e As DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventArgs) Handles GVEmployee.CustomDrawRowFooterCell
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If view.GetGroupRowDisplayText(e.RowHandle).Contains("Departement Sub") And Not view.GetGroupRowValue(e.RowHandle).ToString.Contains("SOGO") Then
+            e.Appearance.ForeColor = Color.White
+            e.Handled = True
         End If
     End Sub
 End Class
