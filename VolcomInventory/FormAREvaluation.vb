@@ -18,6 +18,8 @@
     Private Sub BtnViewData_Click(sender As Object, e As EventArgs) Handles BtnViewData.Click
         If XTCData.SelectedTabPageIndex = 0 Then
             viewInvoiceDetail()
+        ElseIf XTCData.SelectedTabPageIndex = 1 Then
+            viewCompGroup()
         End If
     End Sub
 
@@ -39,6 +41,31 @@
         ORDER BY e.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoiceDetail.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewCompGroup()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT e.id_comp_group, cg.description AS `group_store`, 
+        COUNT(e.id_sales_pos) AS `inv`,
+        COUNT(sp.id_sales_pos), IFNULL(p.paid,0) AS `paid`
+        FROM tb_ar_eval e 
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = e.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        LEFT JOIN (
+	        SELECT e.id_comp_group, COUNT(e.id_sales_pos) AS `paid` FROM tb_ar_eval e 
+	        WHERE e.eval_date='2019-12-12 12:05:30' AND e.is_paid=1
+	        GROUP BY e.id_comp_group 
+        ) p ON e.id_comp_group = p.id_comp_group
+        WHERE e.eval_date='" + eval_date + "'
+        GROUP BY e.id_comp_group "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCGroup.DataSource = data
+        GVGroup.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 

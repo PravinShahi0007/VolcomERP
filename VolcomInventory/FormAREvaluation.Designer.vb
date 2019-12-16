@@ -48,7 +48,10 @@ Partial Class FormAREvaluation
         Me.GVGroup = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumninv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumnpaid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -283,8 +286,9 @@ Partial Class FormAREvaluation
         '
         'GVGroup
         '
-        Me.GVGroup.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GVGroup.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumninv, Me.GridColumnpaid, Me.GridColumndiff})
         Me.GVGroup.GridControl = Me.GCGroup
+        Me.GVGroup.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "inv", Me.GridColumninv, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "paid", Me.GridColumnpaid, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", Me.GridColumndiff, "{0:N0}")})
         Me.GVGroup.Name = "GVGroup"
         Me.GVGroup.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVGroup.OptionsView.ColumnAutoWidth = False
@@ -308,6 +312,17 @@ Partial Class FormAREvaluation
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
+        'GridColumninv
+        '
+        Me.GridColumninv.Caption = "Invoice Overdue"
+        Me.GridColumninv.DisplayFormat.FormatString = "N0"
+        Me.GridColumninv.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumninv.FieldName = "inv"
+        Me.GridColumninv.Name = "GridColumninv"
+        Me.GridColumninv.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "inv", "{0:N0}")})
+        Me.GridColumninv.Visible = True
+        Me.GridColumninv.VisibleIndex = 1
+        '
         'RepositoryItemButtonEdit1
         '
         Me.RepositoryItemButtonEdit1.AutoHeight = False
@@ -320,6 +335,30 @@ Partial Class FormAREvaluation
         Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "BBM", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'GridColumnpaid
+        '
+        Me.GridColumnpaid.Caption = "Paid"
+        Me.GridColumnpaid.DisplayFormat.FormatString = "N0"
+        Me.GridColumnpaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpaid.FieldName = "paid"
+        Me.GridColumnpaid.Name = "GridColumnpaid"
+        Me.GridColumnpaid.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "paid", "{0:N0}")})
+        Me.GridColumnpaid.Visible = True
+        Me.GridColumnpaid.VisibleIndex = 2
+        '
+        'GridColumndiff
+        '
+        Me.GridColumndiff.Caption = "Diff"
+        Me.GridColumndiff.DisplayFormat.FormatString = "N0"
+        Me.GridColumndiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff.FieldName = "diff"
+        Me.GridColumndiff.Name = "GridColumndiff"
+        Me.GridColumndiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N0}")})
+        Me.GridColumndiff.UnboundExpression = "[paid] - [inv]"
+        Me.GridColumndiff.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumndiff.Visible = True
+        Me.GridColumndiff.VisibleIndex = 3
         '
         'FormAREvaluation
         '
@@ -378,4 +417,7 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepoLinkInvoice As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumninv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpaid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiff As DevExpress.XtraGrid.Columns.GridColumn
 End Class
