@@ -136,12 +136,13 @@ WHERE id_status='2'"
 
     Sub load_history()
         Dim query As String = "
-            SELECT o.purc_order_number, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS vendor, DATE_FORMAT(o.date_created, '%d %M %Y') AS `date`, odet.qty, odet.value
+            SELECT o.purc_order_number,rd.item_detail, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS vendor, DATE_FORMAT(o.date_created, '%d %M %Y') AS `date`, odet.qty, odet.value
             FROM tb_purc_order_det AS odet
+            LEFT JOIN tb_purc_req_det rd ON rd.id_purc_req_det=odet.id_purc_req_det
             LEFT JOIN tb_purc_order AS o ON odet.id_purc_order = o.id_purc_order
             LEFT JOIN tb_m_comp_contact AS compc ON o.id_comp_contact = compc.id_comp_contact
             LEFT JOIN tb_m_comp AS comp ON compc.id_comp = comp.id_comp
-            WHERE o.id_report_status <> 5 AND odet.id_item = " +id_item+"
+            WHERE o.id_report_status <> 5 AND odet.id_item = " + id_item + "
         "
 
         GCHistory.DataSource = execute_query(query, -1, True, "", "", "", "")

@@ -42,7 +42,7 @@
         'load database
         If Not id = "0" Then
             Dim query_ot As String = "
-                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.id_departement, departement.departement, ot.number, LEFT(ot.memo_number, 3) AS memo_number, RIGHT(ot.memo_number, LENGTH(ot.memo_number) - 3) AS memo_number_format, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, ot.created_at
+                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, ot.id_departement, departement.departement, ot.number, ot.memo_number, ot.id_report_status, report_status.report_status, employee.employee_name AS created_by, ot.created_at
                 FROM tb_ot AS ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                 LEFT JOIN tb_m_departement AS departement ON ot.id_departement = departement.id_departement
@@ -60,7 +60,6 @@
             DECreatedAt.EditValue = data_ot.Rows(0)("created_at").ToString
             TEReportStatus.EditValue = data_ot.Rows(0)("report_status").ToString
             TEMemoNumber.EditValue = data_ot.Rows(0)("memo_number").ToString
-            TEMemoFormat.EditValue = data_ot.Rows(0)("memo_number_format").ToString
 
             ' load employee
             ' column
@@ -98,9 +97,9 @@
 
             LEDepartement.Properties.ReadOnly = True
 
-            TEMemoNumber.ReadOnly = True
+            CECompsumtion.ReadOnly = True
 
-            If PCMemoNumber.Visible Then
+            If PCMemoNumber.Visible And CECompsumtion.EditValue Then
                 BtnAttachment.Enabled = True
             Else
                 BtnAttachment.Enabled = False
@@ -134,7 +133,7 @@
             SBPrint.Enabled = False
             SBSave.Enabled = True
 
-            TEMemoNumber.ReadOnly = False
+            CECompsumtion.ReadOnly = False
 
             BtnAttachment.Enabled = False
 
@@ -214,12 +213,8 @@
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
-        TEMemoNumber_Validating(TEMemoNumber, New System.ComponentModel.CancelEventArgs)
-
         If GVEmployee.RowCount <= 0 Then
             errorCustom("No employee selected.")
-        ElseIf Not formIsValidInPanel(ErrorProvider, PCMemoNumber) Then
-            errorCustom("Please check your input.")
         Else
             Dim confirm As DialogResult
 
@@ -228,7 +223,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim query As String = ""
 
-                Dim memo_number As String = If(PCMemoNumber.Visible = True, TEMemoNumber.EditValue.ToString + TEMemoFormat.EditValue.ToString, "0")
+                Dim memo_number As String = If(PCMemoNumber.Visible = True And CECompsumtion.EditValue = True, TEMemoNumber.EditValue.ToString, "0")
 
                 query = "INSERT INTO tb_ot (id_ot_type, id_departement, memo_number, id_report_status, created_by, created_at) VALUES (" + LUEOvertimeType.EditValue.ToString + ", " + LEDepartement.EditValue.ToString + ", '" + addSlashes(memo_number) + "', 1, " + id_employee_user + ", NOW()); SELECT LAST_INSERT_ID();"
 
@@ -267,7 +262,7 @@
                 Dim is_user_head As Boolean = If(execute_query("SELECT id_user_head FROM tb_m_departement WHERE id_departement = " + LEDepartement.EditValue.ToString, 0, True, "", "", "", "") = id_user, True, False)
 
                 'approval
-                If PCMemoNumber.Visible Then
+                If PCMemoNumber.Visible And CECompsumtion.EditValue Then
                     'include memo
                     If LEDepartement.EditValue.ToString = "8" Or id_departement_user = "8" Then
                         'departement hrd
@@ -400,6 +395,8 @@
 
         data_gv.DefaultView.Sort = "ot_date ASC"
 
+        data_gv.DefaultView.RowFilter = "ot_consumption > 0"
+
         data_gv = data_gv.DefaultView.ToTable
 
         Dim j As Integer = 0
@@ -418,10 +415,10 @@
                     j = j + 1
                 Else
                     If j > 0 Then
-                        dt.Rows.Add(data_gv.Rows(i - 1)("ot_date").ToString, j, data_gv.Rows(i - 1)("ot_consumption") * j)
+                        dt.Rows.Add(data_gv.Rows(i - 1)("ot_date").ToString, j, ot_consumption * j)
                     End If
 
-                    j = 1
+                    j = 0
                 End If
 
                 total_person = total_person + 1
@@ -432,7 +429,7 @@
 
             'last loop
             If i = data_gv.Rows.Count - 1 And data_gv.Rows(i)("ot_consumption") > 0 Then
-                dt.Rows.Add(data_gv.Rows(i)("ot_date").ToString, j, data_gv.Rows(i)("ot_consumption") * j)
+                dt.Rows.Add(data_gv.Rows(i)("ot_date").ToString, j, ot_consumption * j)
             End If
         Next
 
@@ -443,7 +440,7 @@
         ReportMemo.id_pre = If(id_report_status = "6", "-1", "1")
         ReportMemo.dt = dt
 
-        ReportMemo.XrLabel2.Text = TEMemoNumber.EditValue.ToString + TEMemoFormat.EditValue.ToString
+        ReportMemo.XrLabel2.Text = TEMemoNumber.EditValue.ToString
         ReportMemo.XLTo.Text = data_employee.Rows(0)("employee_name").ToString
         ReportMemo.XLToPosition.Text = "- " + data_employee.Rows(0)("employee_position").ToString
 
@@ -500,7 +497,7 @@
             list.Add(ReportOvertime.Pages(i))
         Next
 
-        If PCMemoNumber.Visible = True Then
+        If PCMemoNumber.Visible = True And CECompsumtion.EditValue = True Then
             For i = 0 To ReportMemo.Pages.Count - 1
                 list.Add(ReportMemo.Pages(i))
             Next
@@ -558,10 +555,10 @@
 
     Sub generate_memo_format()
         Dim format As String = execute_query("
-            SELECT CONCAT('/INT/', (SELECT `code` FROM tb_ot_memo_number_dep WHERE id_departement = " + LEDepartement.EditValue.ToString + "), '-MM/', (SELECT `code` FROM tb_ot_memo_number_mon WHERE `month` = " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%M") + "), '/', " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%y") + ") AS `format`
+            SELECT CONCAT((SELECT LPAD((COUNT(*) + 1), 3, '0') FROM tb_ot WHERE id_departement = " + LEDepartement.EditValue.ToString + " AND memo_number <> 0 AND MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW())), '/INT/KMS/', (SELECT `code` FROM tb_ot_memo_number_dep WHERE id_departement = " + LEDepartement.EditValue.ToString + "), '-MM/', (SELECT `code` FROM tb_ot_memo_number_mon WHERE `month` = " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%M") + "), '/', " + DateTime.Parse(DECreatedAt.EditValue.ToString).ToString("%y") + ") AS `format`
         ", 0, True, "", "", "", "")
 
-        TEMemoFormat.EditValue = format
+        TEMemoNumber.EditValue = format
     End Sub
 
     Sub check_include_memo()
@@ -588,8 +585,16 @@
                 End If
             Catch ex As Exception
             End Try
+
+            If include_memo = False Then
+                CECompsumtion.EditValue = False
+            End If
         Else
             include_memo = If(execute_query("SELECT memo_number FROM tb_ot WHERE id_ot = " + id, 0, True, "", "", "", "") = "0", False, True)
+
+            If include_memo = True Then
+                CECompsumtion.EditValue = True
+            End If
         End If
 
         If include_memo Then
@@ -686,6 +691,9 @@
 
     Private Sub GVEmployee_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVEmployee.CellValueChanged
         If e.Column.FieldName.ToString = "ot_start_time" Or e.Column.FieldName.ToString = "ot_end_time" Or e.Column.FieldName.ToString = "ot_break" Then
+            Dim hours As Integer = get_opt_emp_field("ot_memo_employee")
+            Dim ot_consumption As Decimal = 0.0
+
             Dim ot_date As DateTime = GVEmployee.GetRowCellValue(e.RowHandle, "ot_date")
             Dim ot_start_time As DateTime = DateTime.Parse(DateTime.Parse(ot_date.ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVEmployee.GetRowCellValue(e.RowHandle, "ot_start_time").ToString).ToString("HH:mm:ss"))
             Dim ot_end_time As DateTime = DateTime.Parse(DateTime.Parse(ot_date.ToString).ToString("dd MMMM yyyy") + " " + DateTime.Parse(GVEmployee.GetRowCellValue(e.RowHandle, "ot_end_time").ToString).ToString("HH:mm:ss"))
@@ -713,7 +721,7 @@
                             errorCustom("Overtime at least " + ot_min_spv.ToString + " hours")
                         End If
                     Else
-                        If PCMemoNumber.Visible Then
+                        If PCMemoNumber.Visible And CECompsumtion.EditValue Then
                             If total < ot_memo_employee Then
                                 reload_values = True
 
@@ -757,6 +765,13 @@
                             End If
                         End If
                     End If
+
+                    'consumption
+                    If PCMemoNumber.Visible = True And total >= hours Then
+                        ot_consumption = get_opt_emp_field("ot_consumption")
+                    End If
+
+                    GVEmployee.SetRowCellValue(e.RowHandle, "ot_consumption", ot_consumption)
                 End If
             Else
                 GVEmployee.SetRowCellValue(e.RowHandle, "ot_total_hours", total)
@@ -916,17 +931,5 @@
             status = "2"
             message = ex.ToString()
         End Try
-    End Sub
-
-    Private Sub TEMemoNumber_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEMemoNumber.Validating
-        If PCMemoNumber.Visible = True Then
-            If TEMemoNumber.EditValue.ToString = "" Then
-                ErrorProvider.SetError(TEMemoNumber, "Can't be blank.")
-            Else
-                ErrorProvider.SetError(TEMemoNumber, "")
-            End If
-        Else
-            ErrorProvider.SetError(TEMemoNumber, "")
-        End If
     End Sub
 End Class

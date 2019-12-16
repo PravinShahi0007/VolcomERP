@@ -38,6 +38,7 @@ Public Class FormSalesPOSDet
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_inv")
     Public is_block_no_stock As String = get_setup_field("is_block_no_stock")
+    Public is_block_same_invoice As String = get_setup_field("is_block_same_invoice")
     Public is_use_unique_code As String = "2"
     Dim print_title As String = ""
 
@@ -48,6 +49,7 @@ Public Class FormSalesPOSDet
     Public id_acc_ar As String = "-1"
     Dim is_use_inv_mapping As String = get_setup_field("is_use_inv_mapping")
     Dim is_for_gwp As String = "2"
+    Public discard_transaction As Boolean = False
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -440,7 +442,6 @@ Public Class FormSalesPOSDet
             makeSafeGV(GVItemList)
         End If
 
-
         ValidateChildren()
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
@@ -527,6 +528,58 @@ Public Class FormSalesPOSDet
             If id_sales_pos_ref = "-1" Then
                 id_sales_pos_ref = "NULL "
             End If
+
+            'cek same invoice
+            If is_block_same_invoice = 1 And (id_menu = "1" Or id_menu = "4") Then
+                Cursor = Cursors.WaitCursor
+                Dim qry As String = ""
+                For f As Integer = 0 To GVItemList.RowCount - 1
+                    If f > 0 Then
+                        qry += "UNION ALL "
+                    End If
+                    qry += "SELECT " + id_store_contact_from + " AS `id_store_contact_from`," + id_comp_contact_bill + " AS `id_comp_contact_bill`," + GVItemList.GetRowCellValue(f, "id_product").ToString + " AS `id_product`," + GVItemList.GetRowCellValue(f, "sales_pos_det_qty").ToString + " AS `qty`, " + decimalSQL(GVItemList.GetRowCellValue(f, "design_price_retail").ToString) + " AS `design_price_retail`, '" + sales_pos_start_period + "' AS `sales_pos_start_period`, '" + sales_pos_end_period + "' AS `sales_pos_end_period`, " + id_memo_type + " AS `id_memo_type` "
+                Next
+
+                Dim qsi As String = "SELECT ga.`id_store_contact_from`,ga.`id_comp_contact_bill`,ga.`id_product`,ga.`qty`, ga.`design_price_retail`,
+                IFNULL(b.id_sales_pos,0) AS `id_sales_pos`,b.sales_pos_number, b.report_mark_type
+                FROM (
+	                SELECT a.`id_store_contact_from`,a.`id_comp_contact_bill`,a.`id_product`,SUM(a.`qty`) AS `qty`, a.`design_price_retail`, a.`sales_pos_start_period`, a.`sales_pos_end_period`, a.`id_memo_type`
+	                FROM (
+		                " + qry + "
+                    ) a
+	                GROUP BY a.id_product, a.design_price_retail
+                ) ga
+                LEFT JOIN (
+	                SELECT sp.id_sales_pos, sp.id_store_contact_from, sp.id_comp_contact_bill, sp.sales_pos_number, sp.report_mark_type, spd.id_product, SUM(spd.sales_pos_det_qty) AS `qty`, spd.design_price_retail
+	                FROM tb_sales_pos_det spd
+	                INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+	                WHERE sp.id_report_status!=5 AND sp.id_store_contact_from=" + id_store_contact_from + " 
+	                AND sp.sales_pos_start_period='" + sales_pos_start_period + "' AND sp.sales_pos_end_period='" + sales_pos_end_period + "' 
+	                AND sp.id_memo_type=" + id_memo_type + "
+	                GROUP BY sp.id_sales_pos, spd.id_product, spd.design_price_retail
+                ) b ON IFNULL(b.id_comp_contact_bill,0) = IFNULL(ga.id_comp_contact_bill,0) AND  b.id_product = ga.id_product AND b.design_price_retail = ga.design_price_retail "
+                Dim dsi As DataTable = execute_query(qsi, -1, True, "", "", "", "")
+                Dim dsi_filter As DataRow() = dsi.Select("[id_sales_pos]=0 ")
+                If dsi_filter.Length = 0 Then
+                    Cursor = Cursors.WaitCursor
+                    discard_transaction = False
+                    FormCustomDialog.LabelContent.Text = "This invoice is the same as transaction number : " + dsi.Rows(0)("sales_pos_number").ToString
+                    FormCustomDialog.id_report = dsi.Rows(0)("id_sales_pos").ToString
+                    FormCustomDialog.rmt = dsi.Rows(0)("report_mark_type").ToString
+                    FormCustomDialog.BtnOK.Text = "Continue"
+                    FormCustomDialog.BtnAction.Text = "View " + dsi.Rows(0)("sales_pos_number").ToString
+                    FormCustomDialog.ShowDialog()
+                    Cursor = Cursors.Default
+
+                    If discard_transaction Then
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+                End If
+
+                Cursor = Cursors.Default
+            End If
+
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -1595,10 +1648,12 @@ Public Class FormSalesPOSDet
                     Exit Sub
                 End If
             ElseIf id_menu = "3" Then
-                Dim qgwp As String = "SELECT IFNULL(e.id_acc_ar,0) AS `id_acc_ar` FROM tb_m_comp_comm_extra e WHERE e.is_for_gwp=1 AND e.id_comp=" + id_comp + ""
+                Dim qgwp As String = "SELECT IFNULL(e.id_acc_ar,0) AS `id_acc_ar`, e.comp_commission FROM tb_m_comp_comm_extra e WHERE e.is_for_gwp=1 AND e.id_comp=" + id_comp + ""
                 Dim dgwp As DataTable = execute_query(qgwp, -1, True, "", "", "", "")
                 If dgwp.Rows.Count > 0 Then
                     id_acc_ar = dgwp.Rows(0)("id_acc_ar").ToString
+                    SPDiscount.EditValue = dgwp.Rows(0)("comp_commission")
+                    BtnSelectDiscount.Enabled = False
                 Else
                     id_acc_ar = "0"
                 End If

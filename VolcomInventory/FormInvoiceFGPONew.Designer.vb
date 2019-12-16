@@ -37,10 +37,10 @@ Partial Class FormInvoiceFGPONew
         Me.PCPick = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPick = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,12 +56,11 @@ Partial Class FormInvoiceFGPONew
         Me.XTPReport = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCRec = New DevExpress.XtraGrid.GridControl()
+        Me.BGVRec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -71,8 +70,24 @@ Partial Class FormInvoiceFGPONew
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BLoadPO = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPayment = New DevExpress.XtraGrid.GridControl()
+        Me.GVPayment = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BLoadHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.SLETypeInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,8 +106,11 @@ Partial Class FormInvoiceFGPONew
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl2.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BGVRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPHistory.SuspendLayout()
+        CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -248,6 +266,18 @@ Partial Class FormInvoiceFGPONew
         Me.BPick.TabStop = False
         Me.BPick.Text = "Pick"
         '
+        'BPickAll
+        '
+        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPickAll.ImageIndex = 4
+        Me.BPickAll.ImageList = Me.LargeImageCollection
+        Me.BPickAll.Location = New System.Drawing.Point(769, 2)
+        Me.BPickAll.Name = "BPickAll"
+        Me.BPickAll.Size = New System.Drawing.Size(80, 36)
+        Me.BPickAll.TabIndex = 19
+        Me.BPickAll.TabStop = False
+        Me.BPickAll.Text = "Pick All"
+        '
         'PCSummary
         '
         Me.PCSummary.Controls.Add(Me.LabelControl1)
@@ -278,18 +308,6 @@ Partial Class FormInvoiceFGPONew
         Me.GVInvoice.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVInvoice.OptionsView.ShowFooter = True
         Me.GVInvoice.OptionsView.ShowGroupPanel = False
-        '
-        'BPickAll
-        '
-        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPickAll.ImageIndex = 4
-        Me.BPickAll.ImageList = Me.LargeImageCollection
-        Me.BPickAll.Location = New System.Drawing.Point(769, 2)
-        Me.BPickAll.Name = "BPickAll"
-        Me.BPickAll.Size = New System.Drawing.Size(80, 36)
-        Me.BPickAll.TabIndex = 19
-        Me.BPickAll.TabStop = False
-        Me.BPickAll.Text = "Pick All"
         '
         'GridColumnIdRec
         '
@@ -452,39 +470,30 @@ Partial Class FormInvoiceFGPONew
         '
         'XTPSummary
         '
-        Me.XTPSummary.Controls.Add(Me.GridControl1)
+        Me.XTPSummary.Controls.Add(Me.GCRec)
+        Me.XTPSummary.Controls.Add(Me.BLoadPO)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(822, 340)
         Me.XTPSummary.Text = "Summary"
         '
-        'XTPHistory
+        'GCRec
         '
-        Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.Size = New System.Drawing.Size(294, 272)
-        Me.XTPHistory.Text = "History"
+        Me.GCRec.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRec.Location = New System.Drawing.Point(0, 0)
+        Me.GCRec.MainView = Me.BGVRec
+        Me.GCRec.Name = "GCRec"
+        Me.GCRec.Size = New System.Drawing.Size(822, 306)
+        Me.GCRec.TabIndex = 0
+        Me.GCRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVRec})
         '
-        'GridControl1
+        'BGVRec
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.BandedGridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(822, 340)
-        Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1})
-        '
-        'BandedGridView1
-        '
-        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
-        Me.BandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13})
-        Me.BandedGridView1.GridControl = Me.GridControl1
-        Me.BandedGridView1.Name = "BandedGridView1"
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "GridBand1"
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
+        Me.BGVRec.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.BGVRec.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn13, Me.BandedGridColumn12, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11})
+        Me.BGVRec.GridControl = Me.GCRec
+        Me.BGVRec.Name = "BGVRec"
+        Me.BGVRec.OptionsView.ShowFooter = True
+        Me.BGVRec.OptionsView.ShowGroupPanel = False
         '
         'BandedGridColumn1
         '
@@ -494,75 +503,334 @@ Partial Class FormInvoiceFGPONew
         '
         'BandedGridColumn2
         '
-        Me.BandedGridColumn2.Caption = "FGPO Number"
+        Me.BandedGridColumn2.Caption = "Number"
+        Me.BandedGridColumn2.FieldName = "number"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.Visible = True
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "Date"
+        Me.BandedGridColumn12.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn12.FieldName = "created_date"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.Visible = True
+        Me.BandedGridColumn12.Width = 87
         '
         'BandedGridColumn3
         '
         Me.BandedGridColumn3.Caption = "Design Code"
+        Me.BandedGridColumn3.FieldName = "design_code"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.Visible = True
         '
         'BandedGridColumn4
         '
         Me.BandedGridColumn4.Caption = "Design"
+        Me.BandedGridColumn4.FieldName = "design_display_name"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.Visible = True
         '
         'BandedGridColumn5
         '
+        Me.BandedGridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn5.Caption = "Qty PO"
+        Me.BandedGridColumn5.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn5.FieldName = "qty_po"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", "{0:N0}")})
         Me.BandedGridColumn5.Visible = True
         '
         'BandedGridColumn6
         '
-        Me.BandedGridColumn6.Caption = "Qty Receiving (Normal)"
+        Me.BandedGridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn6.Caption = "Qty (Normal)"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn6.FieldName = "qty_rec"
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.BandedGridColumn6.Visible = True
         '
         'BandedGridColumn7
         '
-        Me.BandedGridColumn7.Caption = "Qty Receiving (Extra)"
+        Me.BandedGridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn7.Caption = "Qty (Extra)"
+        Me.BandedGridColumn7.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn7.FieldName = "qty_rec_extra"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_extra", "{0:N0}")})
         Me.BandedGridColumn7.Visible = True
         '
         'BandedGridColumn8
         '
-        Me.BandedGridColumn8.Caption = "Qty Receiving (Over Memo)"
+        Me.BandedGridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn8.Caption = "Qty (Over Memo)"
+        Me.BandedGridColumn8.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn8.FieldName = "qty_rec_over"
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_over", "{0:N0}")})
         Me.BandedGridColumn8.Visible = True
         '
         'BandedGridColumn9
         '
-        Me.BandedGridColumn9.Caption = "Qty Invoice (Normal)"
+        Me.BandedGridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.Caption = "Amount Normal"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn9.FieldName = "amount_rec"
         Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", "{0:N2}")})
         Me.BandedGridColumn9.Visible = True
         '
         'BandedGridColumn10
         '
-        Me.BandedGridColumn10.Caption = "Qty Invoice (Extra)"
+        Me.BandedGridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn10.Caption = "Amount Extra"
+        Me.BandedGridColumn10.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn10.FieldName = "amount_rec_extra"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec_extra", "{0:N2}")})
         Me.BandedGridColumn10.Visible = True
         '
         'BandedGridColumn11
         '
-        Me.BandedGridColumn11.Caption = "Qty Invoice (Over Memo)"
+        Me.BandedGridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn11.Caption = "Amount Over Memo"
+        Me.BandedGridColumn11.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn11.FieldName = "amount_rec_over"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec_over", "{0:N2}")})
         Me.BandedGridColumn11.Visible = True
         '
-        'BandedGridColumn12
+        'BLoadPO
         '
-        Me.BandedGridColumn12.Caption = "Total Qty Receiving"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
-        Me.BandedGridColumn12.Visible = True
+        Me.BLoadPO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BLoadPO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BLoadPO.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BLoadPO.Appearance.Options.UseBackColor = True
+        Me.BLoadPO.Appearance.Options.UseFont = True
+        Me.BLoadPO.Appearance.Options.UseForeColor = True
+        Me.BLoadPO.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BLoadPO.Location = New System.Drawing.Point(0, 306)
+        Me.BLoadPO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BLoadPO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BLoadPO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BLoadPO.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BLoadPO.Name = "BLoadPO"
+        Me.BLoadPO.Size = New System.Drawing.Size(822, 34)
+        Me.BLoadPO.TabIndex = 22
+        Me.BLoadPO.Text = "Load"
+        '
+        'XTPHistory
+        '
+        Me.XTPHistory.Controls.Add(Me.GCPayment)
+        Me.XTPHistory.Controls.Add(Me.BLoadHistory)
+        Me.XTPHistory.Name = "XTPHistory"
+        Me.XTPHistory.Size = New System.Drawing.Size(822, 340)
+        Me.XTPHistory.Text = "History"
+        '
+        'GCPayment
+        '
+        Me.GCPayment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPayment.Location = New System.Drawing.Point(0, 0)
+        Me.GCPayment.MainView = Me.GVPayment
+        Me.GCPayment.Name = "GCPayment"
+        Me.GCPayment.Size = New System.Drawing.Size(822, 306)
+        Me.GCPayment.TabIndex = 24
+        Me.GCPayment.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayment})
+        '
+        'GVPayment
+        '
+        Me.GVPayment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn14, Me.GridColumn21, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn20, Me.GridColumn18, Me.GridColumn19})
+        Me.GVPayment.GridControl = Me.GCPayment
+        Me.GVPayment.Name = "GVPayment"
+        Me.GVPayment.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID"
+        Me.GridColumn11.FieldName = "id_pn_fgpo"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Number"
+        Me.GridColumn14.FieldName = "number"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        Me.GridColumn14.Width = 233
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Reff"
+        Me.GridColumn21.FieldName = "reff"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 2
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Type"
+        Me.GridColumn15.FieldName = "type"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn15.Width = 233
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Date Created"
+        Me.GridColumn16.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn16.FieldName = "created_date"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 3
+        Me.GridColumn16.Width = 233
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Created By"
+        Me.GridColumn17.FieldName = "employee_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 4
+        Me.GridColumn17.Width = 233
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Qty"
+        Me.GridColumn20.DisplayFormat.FormatString = "N0"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "qty"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.Width = 118
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Value"
+        Me.GridColumn18.DisplayFormat.FormatString = "N2"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "value"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.Width = 290
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Vat"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "vat"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 7
+        Me.GridColumn19.Width = 292
+        '
+        'BLoadHistory
+        '
+        Me.BLoadHistory.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BLoadHistory.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BLoadHistory.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BLoadHistory.Appearance.Options.UseBackColor = True
+        Me.BLoadHistory.Appearance.Options.UseFont = True
+        Me.BLoadHistory.Appearance.Options.UseForeColor = True
+        Me.BLoadHistory.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BLoadHistory.Location = New System.Drawing.Point(0, 306)
+        Me.BLoadHistory.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BLoadHistory.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BLoadHistory.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BLoadHistory.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BLoadHistory.Name = "BLoadHistory"
+        Me.BLoadHistory.Size = New System.Drawing.Size(822, 34)
+        Me.BLoadHistory.TabIndex = 23
+        Me.BLoadHistory.Text = "Load"
         '
         'BandedGridColumn13
         '
-        Me.BandedGridColumn13.Caption = "Total Qty Invoice"
+        Me.BandedGridColumn13.Caption = "Type"
+        Me.BandedGridColumn13.FieldName = "type"
         Me.BandedGridColumn13.Name = "BandedGridColumn13"
         Me.BandedGridColumn13.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail FGPO"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn12)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn5)
+        Me.GridBand1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 462
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Qty"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 225
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Amount"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
         '
         'FormInvoiceFGPONew
         '
@@ -596,8 +864,11 @@ Partial Class FormInvoiceFGPONew
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl2.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BGVRec, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPHistory.ResumeLayout(False)
+        CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -638,9 +909,15 @@ Partial Class FormInvoiceFGPONew
     Friend WithEvents XtraTabControl2 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPHistory As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCRec As DevExpress.XtraGrid.GridControl
+    Friend WithEvents BLoadPO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BLoadHistory As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCPayment As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPayment As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BGVRec As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -652,6 +929,15 @@ Partial Class FormInvoiceFGPONew
     Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

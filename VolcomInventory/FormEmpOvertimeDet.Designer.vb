@@ -80,7 +80,7 @@ Partial Class FormEmpOvertimeDet
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.PCMemoNumber = New DevExpress.XtraEditors.PanelControl()
-        Me.TEMemoFormat = New DevExpress.XtraEditors.TextEdit()
+        Me.CECompsumtion = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMemoNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
@@ -117,7 +117,7 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl6.SuspendLayout()
         CType(Me.PCMemoNumber, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCMemoNumber.SuspendLayout()
-        CType(Me.TEMemoFormat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CECompsumtion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEMemoNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReportStatus.SuspendLayout()
@@ -755,7 +755,7 @@ Partial Class FormEmpOvertimeDet
         'PCMemoNumber
         '
         Me.PCMemoNumber.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCMemoNumber.Controls.Add(Me.TEMemoFormat)
+        Me.PCMemoNumber.Controls.Add(Me.CECompsumtion)
         Me.PCMemoNumber.Controls.Add(Me.LabelControl6)
         Me.PCMemoNumber.Controls.Add(Me.TEMemoNumber)
         Me.PCMemoNumber.Dock = System.Windows.Forms.DockStyle.Fill
@@ -764,19 +764,19 @@ Partial Class FormEmpOvertimeDet
         Me.PCMemoNumber.Size = New System.Drawing.Size(746, 47)
         Me.PCMemoNumber.TabIndex = 26
         '
-        'TEMemoFormat
+        'CECompsumtion
         '
-        Me.TEMemoFormat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEMemoFormat.Location = New System.Drawing.Point(548, 14)
-        Me.TEMemoFormat.Name = "TEMemoFormat"
-        Me.TEMemoFormat.Properties.ReadOnly = True
-        Me.TEMemoFormat.Size = New System.Drawing.Size(182, 20)
-        Me.TEMemoFormat.TabIndex = 2
+        Me.CECompsumtion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CECompsumtion.Location = New System.Drawing.Point(184, 14)
+        Me.CECompsumtion.Name = "CECompsumtion"
+        Me.CECompsumtion.Properties.Caption = "Include Conpsumption"
+        Me.CECompsumtion.Size = New System.Drawing.Size(126, 19)
+        Me.CECompsumtion.TabIndex = 3
         '
         'LabelControl6
         '
         Me.LabelControl6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl6.Location = New System.Drawing.Point(281, 17)
+        Me.LabelControl6.Location = New System.Drawing.Point(336, 17)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(133, 13)
         Me.LabelControl6.TabIndex = 0
@@ -786,12 +786,10 @@ Partial Class FormEmpOvertimeDet
         '
         Me.TEMemoNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEMemoNumber.EditValue = ""
-        Me.TEMemoNumber.Location = New System.Drawing.Point(425, 14)
+        Me.TEMemoNumber.Location = New System.Drawing.Point(480, 14)
         Me.TEMemoNumber.Name = "TEMemoNumber"
-        Me.TEMemoNumber.Properties.Mask.EditMask = "000"
-        Me.TEMemoNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
-        Me.TEMemoNumber.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEMemoNumber.Size = New System.Drawing.Size(100, 20)
+        Me.TEMemoNumber.Properties.ReadOnly = True
+        Me.TEMemoNumber.Size = New System.Drawing.Size(250, 20)
         Me.TEMemoNumber.TabIndex = 1
         '
         'PCReportStatus
@@ -871,7 +869,7 @@ Partial Class FormEmpOvertimeDet
         CType(Me.PCMemoNumber, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCMemoNumber.ResumeLayout(False)
         Me.PCMemoNumber.PerformLayout()
-        CType(Me.TEMemoFormat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CECompsumtion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEMemoNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCReportStatus.ResumeLayout(False)
@@ -934,7 +932,6 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCMemoNumber As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TEMemoFormat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEMemoNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DECreatedAt As DevExpress.XtraEditors.DateEdit
@@ -948,4 +945,5 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITETime As DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit
+    Friend WithEvents CECompsumtion As DevExpress.XtraEditors.CheckEdit
 End Class

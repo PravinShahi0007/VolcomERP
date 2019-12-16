@@ -29,9 +29,10 @@
         End If
 
         Dim query As String = "
-            SELECT 'no' AS is_check, e.id_departement, e.id_departement_sub, d.departement, e.id_employee, e.employee_code, e.employee_name, e.employee_position, e.employee_bpjs_kesehatan, DATE_FORMAT(e.employee_dob, '%d %M %Y') AS employee_dob, e.id_employee_status, sts.employee_status, IF(e.id_employee_status = 3, (e.basic_salary * d.total_workdays), (e.basic_salary + e.allow_job + e.allow_meal + e.allow_trans)) AS fixed_salary, CAST(IF((SELECT fixed_salary) < py.ump, (py.ump * 0.01), IF((SELECT fixed_salary) >= py.bpjs_max, py.bpjs_max * 0.01, (SELECT fixed_salary) * 0.01)) AS DECIMAL(13, 0)) AS bpjs_kesehatan_contribution
+            SELECT 'no' AS is_check, e.id_departement, e.id_departement_sub, d.departement, IF(d.id_departement = 17, ds.departement_sub, d.departement) AS departement_sub, e.id_employee, e.employee_code, e.employee_name, e.employee_position, e.employee_bpjs_kesehatan, DATE_FORMAT(e.employee_dob, '%d %M %Y') AS employee_dob, e.id_employee_status, sts.employee_status, IF(e.id_employee_status = 3, (e.basic_salary * d.total_workdays), (e.basic_salary + e.allow_job + e.allow_meal + e.allow_trans)) AS fixed_salary, CAST(IF((SELECT fixed_salary) < py.ump, (py.ump * 0.01), IF((SELECT fixed_salary) >= py.bpjs_max, py.bpjs_max * 0.01, (SELECT fixed_salary) * 0.01)) AS DECIMAL(13, 0)) AS bpjs_kesehatan_contribution
             FROM tb_m_employee AS e
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement
+            LEFT JOIN tb_m_departement_sub AS ds ON e.id_departement_sub = ds.id_departement_sub
             LEFT JOIN tb_lookup_employee_status AS sts ON e.id_employee_status = sts.id_employee_status
             LEFT JOIN tb_emp_payroll AS py ON py.id_payroll = " + FormEmpBPJSKesehatanDet.SLUEPayroll.EditValue.ToString + "
             WHERE e.id_employee_active = 1 AND e.is_bpjs_volcom = 1 AND e.basic_salary > 0 AND e.id_employee NOT IN (" + include + ") " + where_dw + "
@@ -61,6 +62,7 @@
                         GVEmployee.GetRowCellValue(i, "id_departement").ToString,
                         GVEmployee.GetRowCellValue(i, "id_departement_sub").ToString,
                         GVEmployee.GetRowCellValue(i, "departement").ToString,
+                        GVEmployee.GetRowCellValue(i, "departement_sub").ToString,
                         GVEmployee.GetRowCellValue(i, "id_employee").ToString,
                         GVEmployee.GetRowCellValue(i, "employee_code").ToString,
                         GVEmployee.GetRowCellValue(i, "employee_name").ToString,
@@ -81,8 +83,6 @@
         End If
 
         GVEmployee.ActiveFilterString = ""
-
-        GVEmployee.BestFitColumns()
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click

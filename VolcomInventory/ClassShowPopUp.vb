@@ -288,7 +288,7 @@
         ElseIf report_mark_type = "179" Then
             'sample material purchase
             FormSampleExpenseDet.Close()
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             FormProposeEmpSalaryDet.Close()
         ElseIf report_mark_type = "200" Then
@@ -320,6 +320,9 @@
         ElseIf report_mark_type = "223" Then
             'bpjs kesehatan
             FormEmpBPJSKesehatanDet.Close()
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            FormProductionFinalClearSummary.Close()
         End If
     End Sub
     Sub show()
@@ -1093,8 +1096,8 @@ GROUP BY rec.`id_prod_order`"
             'sample material purchase
             FormSampleExpenseDet.id_purc = id_report
             FormSampleExpenseDet.ShowDialog()
-        ElseIf report_mark_type = "197" Then
-            'sample material purchase
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
+            'propose employee salary
             FormProposeEmpSalaryDet.id_employee_sal_pps = id_report
             FormProposeEmpSalaryDet.is_duplicate = "-1"
             FormProposeEmpSalaryDet.ShowDialog()
@@ -1139,6 +1142,11 @@ GROUP BY rec.`id_prod_order`"
             FormEmpBPJSKesehatanDet.id = id_report
             FormEmpBPJSKesehatanDet.is_approve = "1"
             FormEmpBPJSKesehatanDet.ShowDialog()
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            FormProductionFinalClearSummary.id_prod_fc_sum = id_report
+            FormProductionFinalClearSummary.is_vew = "1"
+            FormProductionFinalClearSummary.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1921,8 +1929,8 @@ GROUP BY rec.`id_prod_order`"
             field_date = "created_date"
         ElseIf report_mark_type = "159" Then
             'item del
-            table_name = "tb_payment"
-            field_id = "id_payment"
+            table_name = "tb_pn"
+            field_id = "id_pn"
             field_number = "number"
             field_date = "date_created"
         ElseIf report_mark_type = "160" Or report_mark_type = "169" Then
@@ -1991,7 +1999,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_payroll"
             field_number = "report_number"
             field_date = "NOW()"
-        ElseIf report_mark_type = "197" Then
+        ElseIf report_mark_type = "197" Or report_mark_type = "229" Then
             'propose employee salary
             table_name = "tb_employee_sal_pps"
             field_id = "id_employee_sal_pps"
@@ -2068,6 +2076,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_pay_bpjs_kesehatan"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "222" Then
+            'summary qc report
+            table_name = "tb_prod_fc_sum"
+            field_id = "id_prod_fc_sum"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

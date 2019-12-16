@@ -30,9 +30,9 @@
     End Sub
 
     Sub load_vendor()
-        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name
+        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name,'0' AS id_comp
                                 UNION
-                                SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  ,c.id_comp
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 WHERE c.id_comp_cat='1' "
@@ -45,11 +45,25 @@
         If SLEVendorPayment.EditValue.ToString = "0" Then
             is_all_vendor = "1"
         Else
-            query_where = " AND c.id_comp = '" & SLEVendorPayment.EditValue.ToString & "'"
+            query_where = " AND c.id_comp = '" & SLEVendorPayment.Properties.View.GetFocusedRowCellValue("id_comp").ToString & "'"
         End If
         '
         If XTCInvoiceFGPO.SelectedTabPageIndex = 2 Then
-
+            'list payment
+            Dim query As String = "SELECT pn.*,pnt.pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE pnt.is_payment=1 " & query_where
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCPayment.DataSource = data
+            GVPayment.BestFitColumns()
         ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
             If XTCDP.SelectedTabPageIndex = 0 Then
                 'list DP
@@ -61,8 +75,9 @@ INNER JOIN (
 	SELECT id_pn_fgpo,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount FROM tb_pn_fgpo_det pnd 
 	GROUP BY pnd.`id_pn_fgpo`
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE 1=1 " & query_where
+WHERE pnt.is_payment=2 " & query_where
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDP.DataSource = data
                 GVDP.BestFitColumns()
@@ -83,11 +98,10 @@ WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & " GROUP 
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDPFGPO.DataSource = data
                 GVDPFGPO.BestFitColumns()
-                '
-                If SLEVendorPayment.EditValue.ToString = "0" Then
-                    PCDPFGPO.Visible = False
-                Else
+                If Not SLEVendorPayment.EditValue.ToString = "0" Then
                     PCDPFGPO.Visible = True
+                Else
+                    PCDPFGPO.Visible = False
                 End If
             End If
         End If
@@ -159,6 +173,11 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
 
     Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
         FormInvoiceFGPODP.id_invoice = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
+        FormInvoiceFGPODP.ShowDialog()
+    End Sub
+
+    Private Sub GVPayment_DoubleClick(sender As Object, e As EventArgs) Handles GVPayment.DoubleClick
+        FormInvoiceFGPODP.id_invoice = GVPayment.GetFocusedRowCellValue("id_pn_fgpo").ToString
         FormInvoiceFGPODP.ShowDialog()
     End Sub
 End Class
