@@ -13895,4 +13895,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
     End Sub
+
+    Private Sub NBAREvaluation_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAREvaluation.LinkClicked
+        Try
+            FormAREvaluation.MdiParent = Me
+            FormAREvaluation.Show()
+            FormAREvaluation.WindowState = FormWindowState.Maximized
+            FormAREvaluation.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
 End Class
