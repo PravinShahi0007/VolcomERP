@@ -19,12 +19,13 @@ Partial Class FormInvMat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XTCDP = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCMatInv = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListPackingList = New DevExpress.XtraTab.XtraTabPage()
         Me.BCreateBPB = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPL = New DevExpress.XtraGrid.GridControl()
         Me.GVPL = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,12 +71,12 @@ Partial Class FormInvMat
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.RICEList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        CType(Me.XTCDP, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCDP.SuspendLayout()
+        CType(Me.XTCMatInv, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCMatInv.SuspendLayout()
         Me.XTPListPackingList.SuspendLayout()
         CType(Me.GCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPL, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPListInvoice.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,19 +91,18 @@ Partial Class FormInvMat
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'XTCDP
+        'XTCMatInv
         '
-        Me.XTCDP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCDP.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCDP.Location = New System.Drawing.Point(0, 43)
-        Me.XTCDP.Name = "XTCDP"
-        Me.XTCDP.SelectedTabPage = Me.XTPListPackingList
-        Me.XTCDP.Size = New System.Drawing.Size(1052, 449)
-        Me.XTCDP.TabIndex = 1
-        Me.XTCDP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInvoice, Me.XTPListPackingList, Me.XTPListRetur})
+        Me.XTCMatInv.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCMatInv.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCMatInv.Location = New System.Drawing.Point(0, 43)
+        Me.XTCMatInv.Name = "XTCMatInv"
+        Me.XTCMatInv.SelectedTabPage = Me.XTPListPackingList
+        Me.XTCMatInv.Size = New System.Drawing.Size(1052, 449)
+        Me.XTCMatInv.TabIndex = 1
+        Me.XTCMatInv.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInvoice, Me.XTPListPackingList, Me.XTPListRetur})
         '
         'XTPListPackingList
         '
@@ -160,6 +160,13 @@ Partial Class FormInvMat
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
         Me.GridColumn6.Width = 51
+        '
+        'RICEList
+        '
+        Me.RICEList.AutoHeight = False
+        Me.RICEList.Name = "RICEList"
+        Me.RICEList.ValueChecked = "yes"
+        Me.RICEList.ValueUnchecked = "no"
         '
         'GridColumn7
         '
@@ -602,30 +609,24 @@ Partial Class FormInvMat
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'RICEList
-        '
-        Me.RICEList.AutoHeight = False
-        Me.RICEList.Name = "RICEList"
-        Me.RICEList.ValueChecked = "yes"
-        Me.RICEList.ValueUnchecked = "no"
-        '
         'FormInvMat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 492)
-        Me.Controls.Add(Me.XTCDP)
+        Me.Controls.Add(Me.XTCMatInv)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormInvMat"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Invoice Material"
-        CType(Me.XTCDP, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCDP.ResumeLayout(False)
+        CType(Me.XTCMatInv, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCMatInv.ResumeLayout(False)
         Me.XTPListPackingList.ResumeLayout(False)
         CType(Me.GCPL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPL, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPListInvoice.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -641,12 +642,11 @@ Partial Class FormInvMat
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents XTCDP As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCMatInv As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPListPackingList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPListInvoice As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl

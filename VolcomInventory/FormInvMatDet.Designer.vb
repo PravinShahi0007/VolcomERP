@@ -711,6 +711,7 @@ Partial Class FormInvMatDet
         Me.Controls.Add(Me.PanelControl8)
         Me.Controls.Add(Me.PanelControl7)
         Me.Controls.Add(Me.PanelControl2)
+        Me.MinimizeBox = False
         Me.Name = "FormInvMatDet"
         Me.Text = "Invoice Material"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
