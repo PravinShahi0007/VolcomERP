@@ -652,7 +652,10 @@
 
 
         'jika ada parameter lain
-        If rmt = "226" Or rmt = "227" Then
+        If rmt = "225" Then
+            Dim id_sales_pos As String = getSavedInvoice()
+            sm.dt = dtLoadDetail(id_sales_pos)
+        ElseIf rmt = "226" Or rmt = "227" Then
             Dim id_sales_pos As String = getSavedInvoice()
             sm.dt = dtLoadDetail(id_sales_pos)
             Dim ttl As String = ""
