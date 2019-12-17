@@ -73,6 +73,8 @@ Partial Class FormInvMatDet
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.TEVatPercent = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +110,7 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVatPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -432,6 +435,8 @@ Partial Class FormInvMatDet
         'PanelControl9
         '
         Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl9.Controls.Add(Me.TEVatPercent)
+        Me.PanelControl9.Controls.Add(Me.LabelControl22)
         Me.PanelControl9.Controls.Add(Me.TEGrandTotal)
         Me.PanelControl9.Controls.Add(Me.LabelControl8)
         Me.PanelControl9.Controls.Add(Me.TEVat)
@@ -470,7 +475,7 @@ Partial Class FormInvMatDet
         'TEVat
         '
         Me.TEVat.EditValue = ""
-        Me.TEVat.Location = New System.Drawing.Point(88, 34)
+        Me.TEVat.Location = New System.Drawing.Point(168, 34)
         Me.TEVat.Name = "TEVat"
         Me.TEVat.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TEVat.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -478,7 +483,7 @@ Partial Class FormInvMatDet
         Me.TEVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEVat.Properties.EditValueChangedDelay = 1
         Me.TEVat.Properties.ReadOnly = True
-        Me.TEVat.Size = New System.Drawing.Size(251, 20)
+        Me.TEVat.Size = New System.Drawing.Size(171, 20)
         Me.TEVat.TabIndex = 8908
         Me.TEVat.TabStop = False
         '
@@ -652,6 +657,30 @@ Partial Class FormInvMatDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
+        'TEVatPercent
+        '
+        Me.TEVatPercent.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.TEVatPercent.Location = New System.Drawing.Point(88, 34)
+        Me.TEVatPercent.Name = "TEVatPercent"
+        Me.TEVatPercent.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEVatPercent.Properties.Appearance.Options.UseFont = True
+        Me.TEVatPercent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TEVatPercent.Properties.EditValueChangedDelay = 50
+        Me.TEVatPercent.Properties.Mask.EditMask = "n2"
+        Me.TEVatPercent.Properties.Mask.SaveLiteral = False
+        Me.TEVatPercent.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEVatPercent.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.TEVatPercent.Size = New System.Drawing.Size(57, 20)
+        Me.TEVatPercent.TabIndex = 8911
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Location = New System.Drawing.Point(151, 37)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl22.TabIndex = 8912
+        Me.LabelControl22.Text = "%"
+        '
         'FormInvMatDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -664,6 +693,7 @@ Partial Class FormInvMatDet
         Me.MinimizeBox = False
         Me.Name = "FormInvMatDet"
         Me.Text = "Invoice Material"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -703,6 +733,7 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVatPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -759,4 +790,6 @@ Partial Class FormInvMatDet
     Friend WithEvents RITEDecimal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RICECheckReceive As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEVatPercent As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
 End Class
