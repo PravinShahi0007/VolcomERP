@@ -323,6 +323,9 @@
         ElseIf report_mark_type = "222" Then
             'summary qc report
             FormProductionFinalClearSummary.Close()
+        ElseIf report_mark_type = "231" Then
+            'invoice
+            FormInvMatDet.Close()
         End If
     End Sub
     Sub show()
@@ -1147,6 +1150,11 @@ GROUP BY rec.`id_prod_order`"
             FormProductionFinalClearSummary.id_prod_fc_sum = id_report
             FormProductionFinalClearSummary.is_vew = "1"
             FormProductionFinalClearSummary.ShowDialog()
+        ElseIf report_mark_type = "231" Then
+            'invoice
+            FormInvMatDet.id_inv = id_report
+            FormInvMatDet.is_view = "1"
+            FormInvMatDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2080,6 +2088,12 @@ GROUP BY rec.`id_prod_order`"
             'summary qc report
             table_name = "tb_prod_fc_sum"
             field_id = "id_prod_fc_sum"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "231" Then
+            'summary qc report
+            table_name = "tb_inv_mat"
+            field_id = "id_inv_mat"
             field_number = "number"
             field_date = "created_date"
         Else
