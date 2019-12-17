@@ -1,6 +1,8 @@
 ﻿Public Class FormInvMatDet
     Public id_inv As String = "-1"
     Public id_status As String = "1"
+
+    Public is_view As String = "-1"
     '
     Private Sub FormInvMatDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
@@ -209,5 +211,40 @@ VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString
                 Dim query As String = ""
             End If
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=231 AND ad.id_report=" + id_inv + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "231"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_inv
+        FormReportMark.ShowDialog()
     End Sub
 End Class
