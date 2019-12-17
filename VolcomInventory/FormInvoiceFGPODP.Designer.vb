@@ -143,16 +143,16 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl7.Controls.Add(Me.BtnCancel)
         Me.PanelControl7.Controls.Add(Me.BtnSave)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl7.Location = New System.Drawing.Point(0, 523)
+        Me.PanelControl7.Location = New System.Drawing.Point(0, 493)
         Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(940, 40)
+        Me.PanelControl7.Size = New System.Drawing.Size(924, 40)
         Me.PanelControl7.TabIndex = 3
         '
         'BtnViewJournal
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(608, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(592, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
         Me.BtnViewJournal.TabIndex = 20
@@ -164,7 +164,7 @@ Partial Class FormInvoiceFGPODP
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(713, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(697, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 17
@@ -188,7 +188,7 @@ Partial Class FormInvoiceFGPODP
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(788, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(772, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 18
@@ -200,7 +200,7 @@ Partial Class FormInvoiceFGPODP
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(863, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(847, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 36)
         Me.BtnSave.TabIndex = 16
@@ -214,7 +214,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(940, 96)
+        Me.PanelControl2.Size = New System.Drawing.Size(924, 96)
         Me.PanelControl2.TabIndex = 5
         '
         'PanelControl6
@@ -227,7 +227,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl6.Controls.Add(Me.DEDateCreated)
         Me.PanelControl6.Controls.Add(Me.LabelControl7)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl6.Location = New System.Drawing.Point(524, 2)
+        Me.PanelControl6.Location = New System.Drawing.Point(508, 2)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(414, 92)
         Me.PanelControl6.TabIndex = 166
@@ -416,9 +416,9 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl8.Controls.Add(Me.PanelControl9)
         Me.PanelControl8.Controls.Add(Me.PanelControl10)
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl8.Location = New System.Drawing.Point(0, 427)
+        Me.PanelControl8.Location = New System.Drawing.Point(0, 397)
         Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(940, 96)
+        Me.PanelControl8.Size = New System.Drawing.Size(924, 96)
         Me.PanelControl8.TabIndex = 6
         '
         'PanelControl9
@@ -431,7 +431,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl9.Controls.Add(Me.TETotal)
         Me.PanelControl9.Controls.Add(Me.LabelControl6)
         Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl9.Location = New System.Drawing.Point(589, 2)
+        Me.PanelControl9.Location = New System.Drawing.Point(573, 2)
         Me.PanelControl9.Name = "PanelControl9"
         Me.PanelControl9.Size = New System.Drawing.Size(349, 92)
         Me.PanelControl9.TabIndex = 166
@@ -541,7 +541,7 @@ Partial Class FormInvoiceFGPODP
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
-        Me.GCList.Size = New System.Drawing.Size(940, 331)
+        Me.GCList.Size = New System.Drawing.Size(924, 301)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -706,7 +706,7 @@ Partial Class FormInvoiceFGPODP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(940, 563)
+        Me.ClientSize = New System.Drawing.Size(924, 533)
         Me.Controls.Add(Me.GCList)
         Me.Controls.Add(Me.PanelControl8)
         Me.Controls.Add(Me.PanelControl2)

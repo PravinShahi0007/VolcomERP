@@ -4,9 +4,10 @@
 
     Private Sub FormInvoiceTrackingBBM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT r.id_rec_payment, r.date_created, r.date_received, r.number, r.value 
+        Dim query As String = "SELECT r.id_rec_payment, r.date_created, r.date_received, r.number, r.value, stt.report_status
         FROM tb_rec_payment r
         INNER JOIN tb_rec_payment_det rd ON rd.id_rec_payment=r.id_rec_payment
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
         WHERE rd.report_mark_type='" + rmt + "' AND rd.id_report=" + id_report + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data

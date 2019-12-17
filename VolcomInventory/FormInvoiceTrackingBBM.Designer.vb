@@ -30,6 +30,7 @@ Partial Class FormInvoiceTrackingBBM
         Me.GridColumndate_received = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvalue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,7 +79,7 @@ Partial Class FormInvoiceTrackingBBM
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_rec_payment, Me.GridColumndate_created, Me.GridColumndate_received, Me.GridColumnnumber, Me.GridColumnvalue})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_rec_payment, Me.GridColumndate_created, Me.GridColumndate_received, Me.GridColumnnumber, Me.GridColumnvalue, Me.GridColumnreport_status})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -132,6 +133,14 @@ Partial Class FormInvoiceTrackingBBM
         Me.GridColumnvalue.Visible = True
         Me.GridColumnvalue.VisibleIndex = 3
         '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 4
+        '
         'FormInvoiceTrackingBBM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -161,4 +170,5 @@ Partial Class FormInvoiceTrackingBBM
     Friend WithEvents GridColumndate_received As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnvalue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
 End Class
