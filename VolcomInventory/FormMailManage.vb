@@ -64,7 +64,7 @@
                 FROM tb_mail_manage_det md
                 INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
                 INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
-                WHERE m.report_mark_type=225
+                WHERE m.report_mark_type=225 AND m.id_mail_status!=4
                 GROUP BY md.id_report
             ) em ON em.id_report = sp.id_sales_pos "
         End If
