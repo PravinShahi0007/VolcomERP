@@ -294,6 +294,12 @@
     <Compile Include="FormAREvaluation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAREvaluationPickDate.Designer.vb">
+      <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvaluationPickDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankWithdrawalAdd.Designer.vb">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
     </Compile>
@@ -7536,6 +7542,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvalScheduleDet.resx">
       <DependentUpon>FormAREvalScheduleDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvaluation.resx">
+      <DependentUpon>FormAREvaluation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvaluationPickDate.resx">
+      <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalAdd.resx">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
