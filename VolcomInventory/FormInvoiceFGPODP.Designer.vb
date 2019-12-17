@@ -235,7 +235,7 @@ Partial Class FormInvoiceFGPODP
         'DERefDate
         '
         Me.DERefDate.EditValue = Nothing
-        Me.DERefDate.Location = New System.Drawing.Point(106, 64)
+        Me.DERefDate.Location = New System.Drawing.Point(106, 38)
         Me.DERefDate.Name = "DERefDate"
         Me.DERefDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DERefDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -247,7 +247,7 @@ Partial Class FormInvoiceFGPODP
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(12, 67)
+        Me.LabelControl10.Location = New System.Drawing.Point(12, 41)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(80, 13)
         Me.LabelControl10.TabIndex = 167
@@ -256,7 +256,7 @@ Partial Class FormInvoiceFGPODP
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(106, 38)
+        Me.DEDueDate.Location = New System.Drawing.Point(106, 64)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -268,7 +268,7 @@ Partial Class FormInvoiceFGPODP
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(12, 41)
+        Me.LabelControl9.Location = New System.Drawing.Point(9, 67)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(68, 13)
         Me.LabelControl9.TabIndex = 165
@@ -591,7 +591,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.OptionsColumn.AllowFocus = False
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 431
         '
         'GridColumnNumber
@@ -611,7 +611,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn11.FieldName = "inv_number"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.VisibleIndex = 1
         Me.GridColumn11.Width = 154
         '
         'GridColumnNote
@@ -638,7 +638,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn10.OptionsColumn.AllowFocus = False
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 92
         '
         'GridColumn8
@@ -667,7 +667,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnPayment.OptionsColumn.AllowFocus = False
         Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 3
+        Me.GridColumnPayment.VisibleIndex = 4
         Me.GridColumnPayment.Width = 162
         '
         'RITEDecimal
@@ -692,7 +692,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn9.OptionsColumn.AllowFocus = False
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat", "{0:N2}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
+        Me.GridColumn9.VisibleIndex = 5
         Me.GridColumn9.Width = 129
         '
         'RICECheckReceive

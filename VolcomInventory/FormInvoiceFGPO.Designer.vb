@@ -35,6 +35,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -66,6 +67,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -81,8 +83,8 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPPrePayment.SuspendLayout()
@@ -210,11 +212,12 @@ Partial Class FormInvoiceFGPO
         '
         'GVDP
         '
-        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn19, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn32, Me.GridColumn31, Me.GridColumn12, Me.GridColumn13})
+        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn19, Me.GridColumn21, Me.GridColumn22, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn32, Me.GridColumn31, Me.GridColumn12, Me.GridColumn13})
         Me.GVDP.GridControl = Me.GCDP
         Me.GVDP.Name = "GVDP"
         Me.GVDP.OptionsBehavior.Editable = False
         Me.GVDP.OptionsBehavior.ReadOnly = True
+        Me.GVDP.OptionsView.ShowFooter = True
         Me.GVDP.OptionsView.ShowGroupPanel = False
         '
         'GridColumn6
@@ -230,7 +233,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 82
+        Me.GridColumn7.Width = 72
         '
         'GridColumn8
         '
@@ -241,7 +244,18 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 88
+        Me.GridColumn8.Width = 78
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Payment Date"
+        Me.GridColumn19.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn19.FieldName = "due_date"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
+        Me.GridColumn19.Width = 76
         '
         'GridColumn9
         '
@@ -249,8 +263,8 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn9.FieldName = "employee_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
-        Me.GridColumn9.Width = 145
+        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.Width = 109
         '
         'GridColumn10
         '
@@ -258,8 +272,8 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn10.FieldName = "report_status"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 9
-        Me.GridColumn10.Width = 197
+        Me.GridColumn10.VisibleIndex = 11
+        Me.GridColumn10.Width = 174
         '
         'GridColumn11
         '
@@ -272,9 +286,10 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "amount"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 6
-        Me.GridColumn11.Width = 183
+        Me.GridColumn11.VisibleIndex = 8
+        Me.GridColumn11.Width = 139
         '
         'GridColumn32
         '
@@ -287,9 +302,10 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn32.FieldName = "amount_vat"
         Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_vat", "{0:N2}")})
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 7
-        Me.GridColumn32.Width = 59
+        Me.GridColumn32.VisibleIndex = 9
+        Me.GridColumn32.Width = 42
         '
         'GridColumn31
         '
@@ -302,9 +318,10 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn31.FieldName = "total_amount"
         Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N2}")})
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 8
-        Me.GridColumn31.Width = 59
+        Me.GridColumn31.VisibleIndex = 10
+        Me.GridColumn31.Width = 42
         '
         'GridColumn12
         '
@@ -313,7 +330,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 0
-        Me.GridColumn12.Width = 89
+        Me.GridColumn12.Width = 79
         '
         'GridColumn13
         '
@@ -322,7 +339,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 1
-        Me.GridColumn13.Width = 142
+        Me.GridColumn13.Width = 126
         '
         'XTPDPList
         '
@@ -557,6 +574,7 @@ Partial Class FormInvoiceFGPO
         Me.GVPayment.Name = "GVPayment"
         Me.GVPayment.OptionsBehavior.Editable = False
         Me.GVPayment.OptionsBehavior.ReadOnly = True
+        Me.GVPayment.OptionsView.ShowFooter = True
         Me.GVPayment.OptionsView.ShowGroupPanel = False
         '
         'GridColumn14
@@ -584,6 +602,17 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 3
         Me.GridColumn16.Width = 126
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Payment Date"
+        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn20.FieldName = "due_date"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 4
+        Me.GridColumn20.Width = 108
         '
         'GridColumn17
         '
@@ -614,6 +643,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn34.FieldName = "amount"
         Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 6
         Me.GridColumn34.Width = 271
@@ -629,6 +659,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn35.FieldName = "amount_vat"
         Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_vat", "{0:N2}")})
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 7
         Me.GridColumn35.Width = 87
@@ -644,6 +675,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn36.FieldName = "total_amount"
         Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N2}")})
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 8
         Me.GridColumn36.Width = 151
@@ -743,27 +775,23 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'GridColumn19
+        'GridColumn21
         '
-        Me.GridColumn19.Caption = "Payment Date"
-        Me.GridColumn19.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn19.FieldName = "due_date"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 4
-        Me.GridColumn19.Width = 87
+        Me.GridColumn21.Caption = "Invoice Number"
+        Me.GridColumn21.FieldName = "inv_number"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.Width = 100
         '
-        'GridColumn20
+        'GridColumn22
         '
-        Me.GridColumn20.Caption = "Payment Date"
-        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn20.FieldName = "due_date"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 4
-        Me.GridColumn20.Width = 108
+        Me.GridColumn22.Caption = "Refference"
+        Me.GridColumn22.FieldName = "report_number"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 94
         '
         'FormInvoiceFGPO
         '
@@ -871,4 +899,6 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
