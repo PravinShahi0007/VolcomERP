@@ -61,7 +61,6 @@ Partial Class FormInvMat
         Me.GCDPListFGPOVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPODesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDPListFGPOQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
         Me.BCreateBRP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -410,7 +409,7 @@ Partial Class FormInvMat
         '
         'GVRetur
         '
-        Me.GVRetur.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GridColumn22, Me.GCDPListFGPONumber, Me.GridColumn18, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
+        Me.GVRetur.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GridColumn22, Me.GCDPListFGPONumber, Me.GridColumn18, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOAmount})
         Me.GVRetur.GridControl = Me.GCRetur
         Me.GVRetur.Name = "GVRetur"
         Me.GVRetur.OptionsView.ShowGroupPanel = False
@@ -444,6 +443,7 @@ Partial Class FormInvMat
         'GridColumn22
         '
         Me.GridColumn22.Caption = "ID Retur"
+        Me.GridColumn22.FieldName = "id_mat_prod_ret_in"
         Me.GridColumn22.Name = "GridColumn22"
         '
         'GCDPListFGPONumber
@@ -459,6 +459,7 @@ Partial Class FormInvMat
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Return Number"
+        Me.GridColumn18.FieldName = "mat_prod_ret_in_number"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 3
@@ -500,26 +501,16 @@ Partial Class FormInvMat
         Me.GCDPListFGPOAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GCDPListFGPOAmount.AppearanceHeader.Options.UseTextOptions = True
         Me.GCDPListFGPOAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GCDPListFGPOAmount.Caption = "FGPO Amount"
+        Me.GCDPListFGPOAmount.Caption = "Amount"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatString = "N2"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCDPListFGPOAmount.FieldName = "po_amount"
+        Me.GCDPListFGPOAmount.FieldName = "amount"
         Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
         Me.GCDPListFGPOAmount.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
         Me.GCDPListFGPOAmount.Visible = True
         Me.GCDPListFGPOAmount.VisibleIndex = 6
         Me.GCDPListFGPOAmount.Width = 435
-        '
-        'GCDPListFGPOQty
-        '
-        Me.GCDPListFGPOQty.Caption = "Qty"
-        Me.GCDPListFGPOQty.DisplayFormat.FormatString = "N2"
-        Me.GCDPListFGPOQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCDPListFGPOQty.FieldName = "prod_order_qty"
-        Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
-        Me.GCDPListFGPOQty.OptionsColumn.AllowEdit = False
-        Me.GCDPListFGPOQty.Width = 49
         '
         'PCDPFGPO
         '
@@ -672,7 +663,6 @@ Partial Class FormInvMat
     Friend WithEvents GCDPListFGPOVendor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDPListFGPODesign As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDPListFGPOAmount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCDPListFGPOQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCDPFGPO As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCreateBRP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl

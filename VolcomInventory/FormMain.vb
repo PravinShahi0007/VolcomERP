@@ -13854,10 +13854,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
     Private Sub NBInvMat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvMat.LinkClicked
         Try
-            FormInvMatDet.MdiParent = Me
-            FormInvMatDet.Show()
-            FormInvMatDet.WindowState = FormWindowState.Maximized
-            FormInvMatDet.Focus()
+            FormInvMat.MdiParent = Me
+            FormInvMat.Show()
+            FormInvMat.WindowState = FormWindowState.Maximized
+            FormInvMat.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

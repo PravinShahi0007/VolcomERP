@@ -36,14 +36,18 @@
         End If
 
         If XTCMatInv.SelectedTabPageIndex = 0 Then
+            'list invoice
 
         ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
             'pl mrs
-            Dim query As String = "SELECT c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(pld.`pl_mrs_det_price`*pld.`pl_mrs_det_qty`) AS val,mrs.`id_prod_order`,po.`prod_order_number`
+            Dim query As String = "SELECT 'no' AS is_check,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(pld.`pl_mrs_det_price`*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
+,dsg.`design_display_name`
 FROM tb_pl_mrs_det pld
 INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
 INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=mrs.`id_prod_order`
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` AND pl.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 GROUP BY pl.`id_pl_mrs`"
@@ -52,10 +56,12 @@ GROUP BY pl.`id_pl_mrs`"
             GVPL.BestFitColumns()
         ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
             'retur
-            Dim query As String = "SELECT c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,ret.`id_mat_prod_ret_in`,ret.`mat_prod_ret_in_number`,SUM(retd.`mat_prod_ret_in_det_price`*retd.`mat_prod_ret_in_det_qty`) AS val,po.`id_prod_order`,po.`prod_order_number`
+            Dim query As String = "SELECT 'no' AS is_check,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,ret.`id_mat_prod_ret_in`,ret.`mat_prod_ret_in_number`,SUM(retd.`mat_prod_ret_in_det_price`*retd.`mat_prod_ret_in_det_qty`) AS amount,po.`id_prod_order`,po.`prod_order_number`
+,dsg.`design_display_name`
 FROM `tb_mat_prod_ret_in_det` retd
 INNER JOIN tb_mat_prod_ret_in ret ON ret.`id_mat_prod_ret_in`=retd.`id_mat_prod_ret_in`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=ret.`id_prod_order`
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ret.`id_comp_contact_from` AND ret.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 GROUP BY ret.`id_mat_prod_ret_in`"
@@ -63,7 +69,6 @@ GROUP BY ret.`id_mat_prod_ret_in`"
             GCRetur.DataSource = data
             GVRetur.BestFitColumns()
         End If
-
     End Sub
 
     Sub check_but()
@@ -101,6 +106,12 @@ GROUP BY c.`id_comp`"
     End Sub
 
     Private Sub BCreateBPB_Click(sender As Object, e As EventArgs) Handles BCreateBPB.Click
+        FormInvMatDet.id_inv = "-1"
+        FormInvMatDet.ShowDialog()
+    End Sub
 
+    Private Sub BCreateBRP_Click(sender As Object, e As EventArgs) Handles BCreateBRP.Click
+        FormInvMatDet.id_inv = "-1"
+        FormInvMatDet.ShowDialog()
     End Sub
 End Class
