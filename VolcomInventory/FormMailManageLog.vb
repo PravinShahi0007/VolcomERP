@@ -11,14 +11,19 @@
         FROM tb_mail_manage_log l
         INNER JOIN tb_mail_manage m ON m.id_mail_manage = l.id_mail_manage
         INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = l.id_mail_status
-        INNER JOIN tb_m_user u ON u.id_user = l.id_user
-        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+        LEFT JOIN tb_m_user u ON u.id_user = l.id_user
+        LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee
         WHERE l.id_mail_manage=" + id + "
         ORDER BY l.log_date DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
-        TxtEmailNo.Text = data.Rows(0)("number").ToString
+        Try
+            TxtEmailNo.Text = data.Rows(0)("number").ToString
+        Catch ex As Exception
+
+        End Try
+
         Cursor = Cursors.Default
     End Sub
 

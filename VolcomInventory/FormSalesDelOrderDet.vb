@@ -20,9 +20,12 @@ Public Class FormSalesDelOrderDet
     'Dim is_scan As Boolean = False
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_do")
+    Dim is_block_del_store As String = get_setup_field("is_block_del_store")
     Dim is_save_unreg_unique As String = "-1"
     Dim id_so_status As String = ""
     Dim id_commerce_type As String = "-1"
+    Dim id_comp_group As String = "-1"
+
 
 
     'var check qty
@@ -111,6 +114,7 @@ Public Class FormSalesDelOrderDet
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
             TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
             is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
+            id_comp_group = data.Rows(0)("id_comp_group").ToString
 
             'uniform
             Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
@@ -1246,6 +1250,14 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Sub getReport()
+        'cek boleh print ato tidak
+        Dim del As New ClassSalesDelOrder()
+        If is_block_del_store = "1" And del.checkUnpaidInvoice(id_comp_group) Then
+            stopCustom("Slips cannot be printed, because invoice has not been paid by group store")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
         If is_use_unique_code = "-1" Then
             GridColumnNo.VisibleIndex = 0
             GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"

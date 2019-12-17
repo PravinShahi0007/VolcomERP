@@ -61,9 +61,8 @@ Partial Class FormInvMat
         Me.GCDPListFGPOVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPODesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDPListFGPOQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
-        Me.BCreateDP = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCreateBRP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendorPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -410,7 +409,7 @@ Partial Class FormInvMat
         '
         'GVRetur
         '
-        Me.GVRetur.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GridColumn22, Me.GCDPListFGPONumber, Me.GridColumn18, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty})
+        Me.GVRetur.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GridColumn22, Me.GCDPListFGPONumber, Me.GridColumn18, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOAmount})
         Me.GVRetur.GridControl = Me.GCRetur
         Me.GVRetur.Name = "GVRetur"
         Me.GVRetur.OptionsView.ShowGroupPanel = False
@@ -444,6 +443,7 @@ Partial Class FormInvMat
         'GridColumn22
         '
         Me.GridColumn22.Caption = "ID Retur"
+        Me.GridColumn22.FieldName = "id_mat_prod_ret_in"
         Me.GridColumn22.Name = "GridColumn22"
         '
         'GCDPListFGPONumber
@@ -459,6 +459,7 @@ Partial Class FormInvMat
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Return Number"
+        Me.GridColumn18.FieldName = "mat_prod_ret_in_number"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 3
@@ -500,10 +501,10 @@ Partial Class FormInvMat
         Me.GCDPListFGPOAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GCDPListFGPOAmount.AppearanceHeader.Options.UseTextOptions = True
         Me.GCDPListFGPOAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GCDPListFGPOAmount.Caption = "FGPO Amount"
+        Me.GCDPListFGPOAmount.Caption = "Amount"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatString = "N2"
         Me.GCDPListFGPOAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCDPListFGPOAmount.FieldName = "po_amount"
+        Me.GCDPListFGPOAmount.FieldName = "amount"
         Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
         Me.GCDPListFGPOAmount.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
@@ -511,20 +512,10 @@ Partial Class FormInvMat
         Me.GCDPListFGPOAmount.VisibleIndex = 6
         Me.GCDPListFGPOAmount.Width = 435
         '
-        'GCDPListFGPOQty
-        '
-        Me.GCDPListFGPOQty.Caption = "Qty"
-        Me.GCDPListFGPOQty.DisplayFormat.FormatString = "N2"
-        Me.GCDPListFGPOQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCDPListFGPOQty.FieldName = "prod_order_qty"
-        Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
-        Me.GCDPListFGPOQty.OptionsColumn.AllowEdit = False
-        Me.GCDPListFGPOQty.Width = 49
-        '
         'PCDPFGPO
         '
         Me.PCDPFGPO.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCDPFGPO.Controls.Add(Me.BCreateDP)
+        Me.PCDPFGPO.Controls.Add(Me.BCreateBRP)
         Me.PCDPFGPO.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCDPFGPO.Location = New System.Drawing.Point(0, 382)
         Me.PCDPFGPO.Name = "PCDPFGPO"
@@ -532,24 +523,24 @@ Partial Class FormInvMat
         Me.PCDPFGPO.TabIndex = 2
         Me.PCDPFGPO.Visible = False
         '
-        'BCreateDP
+        'BCreateBRP
         '
-        Me.BCreateDP.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreateDP.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreateDP.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreateDP.Appearance.Options.UseBackColor = True
-        Me.BCreateDP.Appearance.Options.UseFont = True
-        Me.BCreateDP.Appearance.Options.UseForeColor = True
-        Me.BCreateDP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BCreateDP.Location = New System.Drawing.Point(0, 0)
-        Me.BCreateDP.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreateDP.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreateDP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreateDP.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreateDP.Name = "BCreateDP"
-        Me.BCreateDP.Size = New System.Drawing.Size(1046, 39)
-        Me.BCreateDP.TabIndex = 19
-        Me.BCreateDP.Text = "Create BRP"
+        Me.BCreateBRP.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateBRP.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateBRP.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateBRP.Appearance.Options.UseBackColor = True
+        Me.BCreateBRP.Appearance.Options.UseFont = True
+        Me.BCreateBRP.Appearance.Options.UseForeColor = True
+        Me.BCreateBRP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BCreateBRP.Location = New System.Drawing.Point(0, 0)
+        Me.BCreateBRP.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateBRP.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateBRP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateBRP.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateBRP.Name = "BCreateBRP"
+        Me.BCreateBRP.Size = New System.Drawing.Size(1046, 39)
+        Me.BCreateBRP.TabIndex = 19
+        Me.BCreateBRP.Text = "Create BRP"
         '
         'PanelControl1
         '
@@ -672,9 +663,8 @@ Partial Class FormInvMat
     Friend WithEvents GCDPListFGPOVendor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDPListFGPODesign As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDPListFGPOAmount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCDPListFGPOQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCDPFGPO As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BCreateDP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCreateBRP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEVendorPayment As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
