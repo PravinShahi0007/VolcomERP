@@ -374,6 +374,68 @@
         Dim problem As Boolean = False
         Dim check_input As Boolean = True
         Dim leave_type As String = LELeaveType.EditValue.ToString
+
+        'propose max
+        Dim max_propose As Integer = 2400
+        Dim check_max_propose As String = ""
+
+        If leave_type = "1" And Not is_hrd = "1" Then
+            Dim data_all As DataTable = CType(GCLeaveDet.DataSource, DataTable).Copy
+
+            'included month
+            Dim month_include As List(Of String) = New List(Of String)
+
+            For i = 0 To data_all.Rows.Count - 1
+                Dim month As String = "'" + Date.Parse(data_all.Rows(i)("datetime_start").ToString).ToString("yyyy-M") + "'"
+
+                If Not month_include.Contains(month) Then
+                    month_include.Add(month)
+                End If
+            Next
+
+            Dim query_check_max As String = "
+                SELECT ld.id_emp_leave_det, ld.id_schedule, ld.datetime_start, ld.datetime_until, IF(ld.is_full_day = 1, 'yes', 'no') AS is_full_day, ld.minutes_total, (ld.minutes_total / 60) AS hours_total
+                FROM tb_emp_leave_det AS ld
+                LEFT JOIN tb_emp_leave AS l ON ld.id_emp_leave = l.id_emp_leave
+                WHERE CONCAT(YEAR(datetime_start), '-', MONTH(datetime_start)) IN (" + String.Join(",", month_include) + ") AND l.id_emp = " + id_employee + " AND l.id_leave_type = " + leave_type + " AND id_report_status <> 5
+            "
+
+            data_all.Merge(execute_query(query_check_max, -1, True, "", "", "", ""))
+
+            'check
+            Dim total_minutes As DataTable = New DataTable
+
+            total_minutes.Columns.Add("date", GetType(String))
+            total_minutes.Columns.Add("total", GetType(Integer))
+
+            For i = 0 To data_all.Rows.Count - 1
+                Dim month As String = Date.Parse(data_all.Rows(i)("datetime_start").ToString).ToString("MMMM yyyy")
+                Dim minutes_total As Integer = data_all.Rows(i)("minutes_total")
+
+                Dim index As Integer = -1
+
+                For j = 0 To total_minutes.Rows.Count - 1
+                    If total_minutes.Rows(j)("date").ToString = month Then
+                        index = j
+
+                        Exit For
+                    End If
+                Next
+
+                If index = -1 Then
+                    total_minutes.Rows.Add(month, minutes_total)
+                Else
+                    total_minutes.Rows(index)("total") = total_minutes.Rows(index)("total") + minutes_total
+                End If
+            Next
+
+            For i = 0 To total_minutes.Rows.Count - 1
+                If total_minutes.Rows(i)("total") > max_propose Then
+                    check_max_propose += total_minutes.Rows(i)("date") + ", "
+                End If
+            Next
+        End If
+
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Lengkapi isian dengan lengkap !")
 
@@ -398,6 +460,12 @@
             check_input = False
         ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) And leave_type = "4" Then
             stopCustom("Advance Leave sudah melebihi batas yang ditentukan.")
+
+            check_input = False
+        ElseIf Not check_max_propose = "" Then
+            check_max_propose = check_max_propose.Substring(0, check_max_propose.Length - 2)
+
+            stopCustom("Cuti bulan " + check_max_propose + " anda sudah melebihi " + (max_propose / 60).ToString + " jam.")
 
             check_input = False
         Else
