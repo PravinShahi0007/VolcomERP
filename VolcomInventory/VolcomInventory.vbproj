@@ -838,6 +838,12 @@
     <Compile Include="FormDeliveryCargoDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDelManifest.Designer.vb">
+      <DependentUpon>FormDelManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelManifest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDepartementSub.Designer.vb">
       <DependentUpon>FormDepartementSub.vb</DependentUpon>
     </Compile>
@@ -7852,6 +7858,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeliveryCargoDet.resx">
       <DependentUpon>FormDeliveryCargoDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelManifest.resx">
+      <DependentUpon>FormDelManifest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDepartementSub.resx">
       <DependentUpon>FormDepartementSub.vb</DependentUpon>
