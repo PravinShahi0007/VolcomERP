@@ -28,7 +28,7 @@ GROUP BY po.`id_prod_order`"
     Sub fill_grid()
         If SLETypeInvoice.EditValue.ToString = "2" Then 'payment
             'search qty order - qty after paid
-            Dim query As String = "SELECT pod.`id_prod_order`,SUM(pod.`prod_order_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_po 
+            Dim query As String = "SELECT pod.`id_prod_order`,SUM(pod.`prod_order_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_po
 FROM tb_prod_order_det pod
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order` AND po.`id_report_status`=6
 LEFT JOIN 
@@ -46,7 +46,7 @@ HAVING qty_po > 0"
             If data.Rows(0)("qty_po") > 0 Then
                 Dim q_det As String = "-- normal
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining ,prc.prod_order_wo_det_price, prc.prod_order_wo_vat, prc.kurs
-,dsg.design_display_name
+,dsg.design_display_name,prc.id_comp
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -58,9 +58,12 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
+	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
 )prc ON prc.id_prod_order=rec.`id_prod_order`
@@ -91,6 +94,7 @@ HAVING qty_rec_remaining > 0"
                         'input ke grid
                         Dim newRow As DataRow = (TryCast(GCInvoice.DataSource, DataTable)).NewRow()
                         newRow("id_report") = dt_det.Rows(i)("id_prod_order_rec").ToString
+                        newRow("id_comp") = dt_det.Rows(i)("id_comp").ToString
                         newRow("report_mark_type") = "28"
                         newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                         newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
@@ -132,7 +136,7 @@ GROUP BY pod.`id_prod_order`"
             If data.Rows(0)("qty_po") > 0 Then
                 Dim q_det As String = "-- extra
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining,(prc.prod_order_wo_det_price * 0.5) AS prod_order_wo_det_price, (prc.prod_order_wo_vat * 0.5) AS prod_order_wo_vat, prc.kurs
-,dsg.design_display_name
+,dsg.design_display_name,prc.id_comp
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -144,9 +148,12 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
+	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
 )prc ON prc.id_prod_order=rec.`id_prod_order`
@@ -178,6 +185,7 @@ HAVING qty_rec_remaining > 0"
                         'input ke grid
                         Dim newRow As DataRow = (TryCast(GCInvoice.DataSource, DataTable)).NewRow()
                         newRow("id_report") = dt_det.Rows(i)("id_prod_order_rec").ToString
+                        newRow("id_comp") = dt_det.Rows(i)("id_comp").ToString
                         newRow("report_mark_type") = "28"
                         newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                         newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
@@ -204,7 +212,7 @@ HAVING qty_rec_remaining > 0"
         ElseIf SLETypeInvoice.EditValue.ToString = "4" Then 'over memo
             Dim q_det As String = "-- extra
 SELECT rec.`id_prod_order_rec`,rec.prod_order_rec_number,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty_rec_remaining, (prc.prod_order_wo_det_price) * (100-overd.discount/100) AS prod_order_wo_det_price, prc.prod_order_wo_vat * (100-overd.discount/100) AS prod_order_wo_vat, prc.kurs
-,dsg.design_display_name
+,dsg.design_display_name,prc.id_comp
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 LEFT JOIN
@@ -216,9 +224,12 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
+	SELECT wo.`id_prod_order`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 	WHERE wo.`is_main_vendor`=1 AND wo.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "'
 	GROUP BY wo.`id_prod_order`
 )prc ON prc.id_prod_order=rec.`id_prod_order`
@@ -240,6 +251,7 @@ HAVING qty_rec_remaining > 0"
                 '
                 Dim newRow As DataRow = (TryCast(GCInvoice.DataSource, DataTable)).NewRow()
                 newRow("id_report") = dt_det.Rows(i)("id_prod_order_rec").ToString
+                newRow("id_comp") = dt_det.Rows(i)("id_comp").ToString
                 newRow("report_mark_type") = "28"
                 newRow("report_number") = dt_det.Rows(i)("prod_order_rec_number").ToString
                 newRow("info_design") = dt_det.Rows(i)("design_display_name").ToString
@@ -277,6 +289,7 @@ HAVING qty_rec_remaining > 0"
             newRow("note") = ""
             TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
             FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
+            FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
             Close()
         Else
             warningCustom("No receiving")
@@ -292,7 +305,7 @@ HAVING qty_rec_remaining > 0"
 
     Sub view_det()
         Dim query As String = "
-Select pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note` 
+Select pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`value`,pnd.`vat`, pnd.`inv_number`, pnd.`note`, '' AS id_comp
 FROM tb_pn_fgpo_det pnd
 WHERE pnd.`id_pn_fgpo`='-1'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -324,6 +337,7 @@ WHERE pnd.`id_pn_fgpo`='-1'"
                 TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
             Next
             FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
+            FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
             Close()
         Else
             warningCustom("No receiving")

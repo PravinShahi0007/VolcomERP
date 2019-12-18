@@ -35,10 +35,10 @@
         If FormEmpSchedule.is_security = "1" And opt = "1" Then
             query += " WHERE emp.employee_position LIKE '%security%' AND emp.id_employee_active='1'"
         ElseIf opt = "2" Then
-            If FormEmpAttnAssign.is_sales_dept = "1" Then
-                query += " WHERE emp.id_departement='17' AND emp.id_employee_active='1'"
-            Else
-                query += " WHERE emp.id_departement='" & id_departement_user & "' AND emp.id_employee_active='1'"
+            query += " WHERE emp.id_departement='" & FormEmpAttnAssign.LEDeptSum.EditValue.ToString & "' AND emp.id_employee_active='1'"
+
+            If FormEmpAttnAssign.LEDeptSum.EditValue.ToString = "17" Then
+                query += " AND emp.id_departement_sub='" + FormEmpAttnAssign.LESubDeptSum.EditValue.ToString + "'"
             End If
         End If
 

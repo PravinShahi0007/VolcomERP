@@ -1786,6 +1786,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
                 FormCompanyEmailMappingDet.ShowDialog()
             End If
+        ElseIf formName = "FormAREvalScheduke" Then
+            FormAREvalScheduleDet.action = "ins"
+            FormAREvalScheduleDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2910,6 +2913,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormAccountingJournalAdj" Then
                 FormAccountingJournalAdjDet.id_trans_adj = FormAccountingJournalAdj.GVAccTrans.GetFocusedRowCellValue("id_acc_trans_adj").ToString
                 FormAccountingJournalAdjDet.ShowDialog()
+            ElseIf formName = "FormAREvalScheduke" Then
+                FormAREvalScheduleDet.id = FormAREvalScheduke.GVData.GetFocusedRowCellValue("id_ar_eval_setup_date").ToString
+                FormAREvalScheduleDet.action = "upd"
+                FormAREvalScheduleDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6206,6 +6213,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     End If
                 End If
             End If
+        ElseIf formName = "FormAREvalScheduke" Then
+            Dim id As String = FormAREvalScheduke.GVData.GetFocusedRowCellValue("id_ar_eval_setup_date").ToString
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query_del As String = "DELETE FROM tb_ar_eval_setup_date WHERE id_ar_eval_setup_date='" + id + "'"
+                execute_non_query(query_del, True, "", "", "", "")
+                FormAREvalScheduke.viewData()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7801,6 +7816,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormInvoiceTracking.GCUnpaid, "")
         ElseIf formName = "FormInvMat" Then
             FormInvMat.print_list()
+        ElseIf formName = "FormAREvalScheduke" Then
+            print_raw(FormAREvalScheduke.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8622,6 +8639,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormInvMat" Then
             FormInvMat.Close()
             FormInvMat.Dispose()
+        ElseIf formName = "FormAREvalScheduke" Then
+            FormAREvalScheduke.Close()
+            FormAREvalScheduke.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9495,6 +9515,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompanyEmailMapping.form_load()
         ElseIf formName = "FormInvoiceTracking" Then
             FormInvoiceTracking.viewData()
+        ElseIf formName = "FormAREvalScheduke" Then
+            FormAREvalScheduke.viewData()
+        ElseIf formName = "FormEmpAttnAssign" Then
+            FormEmpAttnAssign.load_attn()
         End If
     End Sub
     'Switch
@@ -13732,7 +13756,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.WaitCursor
         Try
             FormEmpAttnAssign.MdiParent = Me
-            FormEmpAttnAssign.is_sales_dept = "1"
+            FormEmpAttnAssign.is_user_mapping = "1"
             FormEmpAttnAssign.Show()
             FormEmpAttnAssign.WindowState = FormWindowState.Maximized
             FormEmpAttnAssign.Focus()
@@ -13858,6 +13882,28 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInvMat.Show()
             FormInvMat.WindowState = FormWindowState.Maximized
             FormInvMat.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAREvalSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAREvalSchedule.LinkClicked
+        Try
+            FormAREvalScheduke.MdiParent = Me
+            FormAREvalScheduke.Show()
+            FormAREvalScheduke.WindowState = FormWindowState.Maximized
+            FormAREvalScheduke.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBAREvaluation_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAREvaluation.LinkClicked
+        Try
+            FormAREvaluation.MdiParent = Me
+            FormAREvaluation.Show()
+            FormAREvaluation.WindowState = FormWindowState.Maximized
+            FormAREvaluation.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

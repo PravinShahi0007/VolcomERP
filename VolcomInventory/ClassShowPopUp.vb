@@ -2379,12 +2379,17 @@ GROUP BY rec.`id_prod_order`"
                         info_col = datax.Rows(0)("employee_name").ToString
                     End If
                 ElseIf report_mark_type = "100" Then
-                    query = "SELECT dep.`departement` FROM `tb_emp_assign_sch` sch
-                         INNER JOIN tb_m_departement dep ON dep.`id_departement`=sch.`id_departement`
+                    query = "SELECT sch.id_departement, dep.`departement`, dep_sub.departement_sub FROM `tb_emp_assign_sch` sch
+                         LEFT JOIN tb_m_departement dep ON dep.`id_departement`=sch.`id_departement`
+                         LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.`id_departement_sub`=sch.`id_departement_sub`
                          WHERE sch.`id_assign_sch`='" + id_report + "'"
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
-                        info_col = datax.Rows(0)("departement").ToString
+                        If datax.Rows(0)("id_departement").ToString = "17" Then
+                            info_col = datax.Rows(0)("departement_sub").ToString
+                        Else
+                            info_col = datax.Rows(0)("departement").ToString
+                        End If
                     End If
                 ElseIf report_mark_type = "103" Then
                     'combine delivery

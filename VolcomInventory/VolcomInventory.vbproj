@@ -276,6 +276,30 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="FormAREvalScheduke.Designer.vb">
+      <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvalScheduke.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAREvalScheduleDet.Designer.vb">
+      <DependentUpon>FormAREvalScheduleDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvalScheduleDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAREvaluation.Designer.vb">
+      <DependentUpon>FormAREvaluation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvaluation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAREvaluationPickDate.Designer.vb">
+      <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvaluationPickDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankWithdrawalAdd.Designer.vb">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
     </Compile>
@@ -1490,6 +1514,12 @@
       <DependentUpon>FormError.vb</DependentUpon>
     </Compile>
     <Compile Include="FormError.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEvaluation.Designer.vb">
+      <DependentUpon>FormEvaluation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEvaluation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGAdjReport.Designer.vb">
@@ -7506,6 +7536,18 @@
     <EmbeddedResource Include="barcodeaa.resx">
       <DependentUpon>barcodeaa.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvalScheduke.resx">
+      <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvalScheduleDet.resx">
+      <DependentUpon>FormAREvalScheduleDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvaluation.resx">
+      <DependentUpon>FormAREvaluation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvaluationPickDate.resx">
+      <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalAdd.resx">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
