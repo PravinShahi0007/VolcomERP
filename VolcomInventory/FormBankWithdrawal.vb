@@ -65,11 +65,10 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     End Sub
 
     Sub load_vendor_fgpo()
-        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
-                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='1' or c.id_comp_cat='1'"
-        viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
+                                WHERE c.id_comp_cat='1'"
+        viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_vendor_expense()
@@ -122,7 +121,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
         Dim where_string As String = ""
 
         If Not SLEFGPOVendor.EditValue.ToString = "0" Then
-            where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
+            where_string = " AND c.id_comp = " & SLEFGPOVendor.EditValue.ToString & " "
             BCreatePaymentFGPO.Visible = True
         Else
             BCreatePaymentFGPO.Visible = False

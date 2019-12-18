@@ -1494,8 +1494,8 @@ Partial Class FormBankWithdrawal
         '
         'GridColumn42
         '
-        Me.GridColumn42.Caption = "ID Comp Contact"
-        Me.GridColumn42.FieldName = "id_comp_contact"
+        Me.GridColumn42.Caption = "ID Comp "
+        Me.GridColumn42.FieldName = "id_comp"
         Me.GridColumn42.Name = "GridColumn42"
         '
         'GridColumn43
