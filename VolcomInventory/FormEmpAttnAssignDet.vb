@@ -5,6 +5,9 @@
     '
     Public is_view As String = "-1"
     Public id_departement As String = "-1"
+    Public id_departement_sub As String = "-1"
+
+    Private data_code As DataTable = New DataTable
     Private Sub FormEmpAttnAssignDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_emp_assign_sch = "-1" Then 'new
             Dim query As String = "SELECT emp.employee_name,emp.employee_code,dep.departement,emp.id_departement FROM tb_m_employee emp
@@ -14,8 +17,13 @@
             '
             TEEmpCode.Text = data.Rows(0)("employee_code").ToString
             TEEmpName.Text = data.Rows(0)("employee_name").ToString
-            TEDepartement.Text = data.Rows(0)("departement").ToString
-            id_departement = data.Rows(0)("id_departement").ToString
+            TEDepartement.Text = If(FormEmpAttnAssign.LEDeptSum.EditValue.ToString = "17", FormEmpAttnAssign.LEDeptSum.Text + " | " + FormEmpAttnAssign.LESubDeptSum.Text, FormEmpAttnAssign.LEDeptSum.Text)
+            id_departement = FormEmpAttnAssign.LEDeptSum.EditValue.ToString
+            id_departement_sub = ""
+            Try
+                id_departement_sub = FormEmpAttnAssign.LESubDeptSum.EditValue.ToString
+            Catch ex As Exception
+            End Try
 
             DEDate.EditValue = Now
             TENumber.Text = header_number_emp("4")
@@ -29,17 +37,19 @@
             '
             Dim query As String = "SELECT * FROM tb_emp_assign_sch sch
                                 LEFT JOIN tb_m_user usr ON usr.id_user=sch.id_user_propose
-                                INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-                                INNER JOIN tb_m_departement dep ON dep.id_departement=sch.id_departement
+                                LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+                                LEFT JOIN tb_m_departement dep ON dep.id_departement=sch.id_departement
+                                LEFT JOIN tb_m_departement_sub dep_sub ON dep_sub.id_departement_sub=sch.id_departement_sub
                                 WHERE sch.id_assign_sch='" & id_emp_assign_sch & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             DEDate.EditValue = data.Rows(0)("assign_sch_date")
             TENumber.Text = data.Rows(0)("assign_sch_number").ToString
-            TEDepartement.Text = data.Rows(0)("departement").ToString
+            TEDepartement.Text = If(data.Rows(0)("id_departement").ToString = "17", data.Rows(0)("departement").ToString + " | " + data.Rows(0)("departement_sub").ToString, data.Rows(0)("departement").ToString)
             TEEmpCode.Text = data.Rows(0)("employee_code").ToString
             TEEmpName.Text = data.Rows(0)("employee_name").ToString
             id_departement = data.Rows(0)("id_departement").ToString
+            id_departement_sub = data.Rows(0)("id_departement_sub").ToString
             '
             Dim string_date As String = ""
             Dim startP As Date = Date.Parse(data.Rows(0)("date_from").ToString)
@@ -163,7 +173,15 @@
             GVScheduleAfter.BestFitColumns()
             GVScheduleAfter.OptionsSelection.EnableAppearanceFocusedRow = False
             GVScheduleAfter.OptionsSelection.EnableAppearanceFocusedCell = False
+            MENote.ReadOnly = True
         End If
+
+        data_code = execute_query("
+            SELECT shift_code
+            FROM tb_emp_shift WHERE is_store = '1'
+            UNION
+            SELECT 'OFF' AS shift_code
+        ", -1, True, "", "", "", "")
     End Sub
 
     Function check_public_holiday(date_par As Date)
@@ -193,76 +211,98 @@
 
     Private Sub BPropose_Click(sender As Object, e As EventArgs) Handles BPropose.Click
         Cursor = Cursors.WaitCursor
-        If id_emp_assign_sch = "-1" Then 'new
-            Dim query As String = ""
-            Dim date_fromp As String = Date.Parse(date_from.ToString).ToString("yyyy-MM-dd")
-            Dim date_untilp As String = Date.Parse(date_until.ToString).ToString("yyyy-MM-dd")
-            'add header
-            query = "INSERT INTO tb_emp_assign_sch(assign_sch_number,assign_sch_date,id_departement,date_from,date_until,id_user_propose,id_report_status,note) 
-                    VALUES('" & header_number_emp("4") & "',NOW(),'" & If(FormEmpAttnAssign.is_sales_dept = "1", "17", id_departement_user) & "','" & date_fromp & "','" & date_untilp & "','" & id_user & "',1,'" & MENote.Text & "'); SELECT LAST_INSERT_ID(); "
-            id_emp_assign_sch = execute_query(query, 0, True, "", "", "", "")
-            increase_inc_emp("4")
-            'detail
-            query = ""
-            'detail before
-            For i As Integer = 0 To GVScheduleBefore.RowCount - 1
-                For j As Integer = 0 To GVScheduleBefore.Columns.Count - 1
-                    If Not (GVScheduleBefore.Columns(j).FieldName = "id_employee" Or GVScheduleBefore.Columns(j).FieldName = "employee_code" Or GVScheduleBefore.Columns(j).FieldName = "employee_name") Then
-                        Dim shift_code As String = GVScheduleBefore.GetRowCellValue(i, GVScheduleBefore.Columns(j).FieldName.ToString).ToString
-                        If Not shift_code = "" Then
-                            If shift_code = "OFF" Then
-                                query += "INSERT INTO tb_emp_assign_sch_det(id_emp_assign_sch,`type`,id_employee,`date`,id_schedule_type,note,shift_code)
+        'check empty
+        Dim check_blank As String = ""
+
+        For i As Integer = 0 To GVScheduleAfter.RowCount - 1
+            For j As Integer = 0 To GVScheduleAfter.Columns.Count - 1
+                If Not (GVScheduleAfter.Columns(j).FieldName = "id_employee" Or GVScheduleAfter.Columns(j).FieldName = "employee_code" Or GVScheduleAfter.Columns(j).FieldName = "employee_name") Then
+                    Dim shift_code As String = GVScheduleAfter.GetRowCellValue(i, GVScheduleAfter.Columns(j).FieldName.ToString).ToString
+
+                    If shift_code = "" Then
+                        check_blank = "Please do not leave shift code blank."
+                    End If
+                End If
+            Next
+        Next
+
+        If check_blank = "" Then
+            If id_emp_assign_sch = "-1" Then 'new
+                Dim query As String = ""
+                Dim date_fromp As String = Date.Parse(date_from.ToString).ToString("yyyy-MM-dd")
+                Dim date_untilp As String = Date.Parse(date_until.ToString).ToString("yyyy-MM-dd")
+                'add header
+                query = "INSERT INTO tb_emp_assign_sch(assign_sch_number,assign_sch_date,id_departement,id_departement_sub,date_from,date_until,id_user_propose,id_report_status,note) 
+                    VALUES('" & header_number_emp("4") & "',NOW(),'" & FormEmpAttnAssign.LEDeptSum.EditValue.ToString & "'," + If(FormEmpAttnAssign.LEDeptSum.EditValue.ToString = "17", "'" + FormEmpAttnAssign.LESubDeptSum.EditValue.ToString + "'", "NULL") + ",'" & date_fromp & "','" & date_untilp & "','" & id_user & "',1,'" & MENote.Text & "'); SELECT LAST_INSERT_ID(); "
+                id_emp_assign_sch = execute_query(query, 0, True, "", "", "", "")
+                increase_inc_emp("4")
+                'detail
+                query = ""
+                'detail before
+                For i As Integer = 0 To GVScheduleBefore.RowCount - 1
+                    For j As Integer = 0 To GVScheduleBefore.Columns.Count - 1
+                        If Not (GVScheduleBefore.Columns(j).FieldName = "id_employee" Or GVScheduleBefore.Columns(j).FieldName = "employee_code" Or GVScheduleBefore.Columns(j).FieldName = "employee_name") Then
+                            Dim shift_code As String = GVScheduleBefore.GetRowCellValue(i, GVScheduleBefore.Columns(j).FieldName.ToString).ToString
+                            If Not shift_code = "" Then
+                                If shift_code = "OFF" Then
+                                    query += "INSERT INTO tb_emp_assign_sch_det(id_emp_assign_sch,`type`,id_employee,`date`,id_schedule_type,note,shift_code)
                                     VALUES('" & id_emp_assign_sch & "','1','" & GVScheduleBefore.GetRowCellValue(i, "id_employee").ToString & "','" & GVScheduleBefore.Columns(j).FieldName.ToString & "','2','Day Off','OFF');"
+                                Else
+                                    query += "INSERT INTO tb_emp_assign_sch_det(id_emp_assign_sch,`type`,id_employee,`date`,`in`,`out`,in_tolerance,break_out,break_in,minutes_work,id_schedule_type,note,shift_code)
+                                    SELECT '" & id_emp_assign_sch & "' AS id_emp_assign_sch,'1' AS `type`,'" & GVScheduleBefore.GetRowCellValue(i, "id_employee").ToString & "' AS id_employee,'" & GVScheduleBefore.Columns(j).FieldName.ToString & "' AS `date`
+                                    ,s.start_work AS `in`,s.end_work AS `out`,s.late_start_tolerance AS `in_tolerance`
+                                    ,s.start_break AS break_out,s.end_break AS break_in
+                                    ,s.minutes_work,IF('" & shift_code & "'='OFF',2,1) AS id_schedule_type,s.shift_name AS note,s.shift_code
+                                    FROM tb_emp_shift s WHERE s.shift_code='" & shift_code & "' LIMIT 1;"
+                                End If
+                            End If
+                        End If
+                    Next
+                Next
+                'detail after
+                For i As Integer = 0 To GVScheduleAfter.RowCount - 1
+                    For j As Integer = 0 To GVScheduleAfter.Columns.Count - 1
+                        If Not (GVScheduleAfter.Columns(j).FieldName = "id_employee" Or GVScheduleAfter.Columns(j).FieldName = "employee_code" Or GVScheduleAfter.Columns(j).FieldName = "employee_name") Then
+                            Dim shift_code As String = GVScheduleAfter.GetRowCellValue(i, GVScheduleAfter.Columns(j).FieldName.ToString).ToString
+                            If shift_code = "" Or shift_code = "OFF" Then
+                                query += "INSERT INTO tb_emp_assign_sch_det(id_emp_assign_sch,`type`,id_employee,`date`,id_schedule_type,note,shift_code)
+                                    VALUES('" & id_emp_assign_sch & "','2','" & GVScheduleAfter.GetRowCellValue(i, "id_employee").ToString & "','" & GVScheduleAfter.Columns(j).FieldName.ToString & "','2','Day Off','OFF');"
                             Else
                                 query += "INSERT INTO tb_emp_assign_sch_det(id_emp_assign_sch,`type`,id_employee,`date`,`in`,`out`,in_tolerance,break_out,break_in,minutes_work,id_schedule_type,note,shift_code)
-                                    SELECT '" & id_emp_assign_sch & "' AS id_emp_assign_sch,'1' AS `type`,'" & GVScheduleBefore.GetRowCellValue(i, "id_employee").ToString & "' AS id_employee,'" & GVScheduleBefore.Columns(j).FieldName.ToString & "' AS `date`
+                                    SELECT '" & id_emp_assign_sch & "' AS id_emp_assign_sch,'2' AS `type`,'" & GVScheduleAfter.GetRowCellValue(i, "id_employee").ToString & "' AS id_employee,'" & GVScheduleAfter.Columns(j).FieldName.ToString & "' AS `date`
                                     ,s.start_work AS `in`,s.end_work AS `out`,s.late_start_tolerance AS `in_tolerance`
                                     ,s.start_break AS break_out,s.end_break AS break_in
                                     ,s.minutes_work,IF('" & shift_code & "'='OFF',2,1) AS id_schedule_type,s.shift_name AS note,s.shift_code
                                     FROM tb_emp_shift s WHERE s.shift_code='" & shift_code & "' LIMIT 1;"
                             End If
                         End If
-                    End If
+                    Next
                 Next
-            Next
-            'detail after
-            For i As Integer = 0 To GVScheduleAfter.RowCount - 1
-                For j As Integer = 0 To GVScheduleAfter.Columns.Count - 1
-                    If Not (GVScheduleAfter.Columns(j).FieldName = "id_employee" Or GVScheduleAfter.Columns(j).FieldName = "employee_code" Or GVScheduleAfter.Columns(j).FieldName = "employee_name") Then
-                        Dim shift_code As String = GVScheduleAfter.GetRowCellValue(i, GVScheduleAfter.Columns(j).FieldName.ToString).ToString
-                        If shift_code = "" Or shift_code = "OFF" Then
-                            query += "INSERT INTO tb_emp_assign_sch_det(id_emp_assign_sch,`type`,id_employee,`date`,id_schedule_type,note,shift_code)
-                                    VALUES('" & id_emp_assign_sch & "','2','" & GVScheduleAfter.GetRowCellValue(i, "id_employee").ToString & "','" & GVScheduleAfter.Columns(j).FieldName.ToString & "','2','Day Off','OFF');"
-                        Else
-                            query += "INSERT INTO tb_emp_assign_sch_det(id_emp_assign_sch,`type`,id_employee,`date`,`in`,`out`,in_tolerance,break_out,break_in,minutes_work,id_schedule_type,note,shift_code)
-                                    SELECT '" & id_emp_assign_sch & "' AS id_emp_assign_sch,'2' AS `type`,'" & GVScheduleAfter.GetRowCellValue(i, "id_employee").ToString & "' AS id_employee,'" & GVScheduleAfter.Columns(j).FieldName.ToString & "' AS `date`
-                                    ,s.start_work AS `in`,s.end_work AS `out`,s.late_start_tolerance AS `in_tolerance`
-                                    ,s.start_break AS break_out,s.end_break AS break_in
-                                    ,s.minutes_work,IF('" & shift_code & "'='OFF',2,1) AS id_schedule_type,s.shift_name AS note,s.shift_code
-                                    FROM tb_emp_shift s WHERE s.shift_code='" & shift_code & "' LIMIT 1;"
-                        End If
-                    End If
-                Next
-            Next
-            execute_non_query(query, True, "", "", "", "")
-            submit_who_prepared("100", id_emp_assign_sch, id_user)
-            infoCustom("Change schedule proposed. Waiting approval.")
-            FormEmpAttnAssign.load_attn()
-            Close()
+                execute_non_query(query, True, "", "", "", "")
+                submit_who_prepared("100", id_emp_assign_sch, id_user)
+                infoCustom("Change schedule proposed. Waiting approval.")
+                FormEmpAttnAssign.load_attn()
+                Close()
+            End If
+        Else
+            stopCustom(check_blank)
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         'check if not approved yet
-        Dim query As String = "SELECT * FROM tb_emp_assign_sch rm 
-                                LEFT JOIN
-                                (
-                                 SELECT rm.`id_report_mark`,rm.`id_report`,sch.`id_departement`,rm.`id_mark`,rm.`report_number` FROM tb_report_mark rm
-                                 INNER JOIN tb_emp_assign_sch sch ON sch.`id_assign_sch`=rm.`id_report`
-                                 WHERE rm.report_mark_type='100' AND rm.id_mark_asg='116' AND (rm.id_mark='2' OR rm.`id_mark`='3') AND sch.`id_departement`='" & id_departement & "' AND rm.id_report<'" & id_emp_assign_sch & "'
-                                 GROUP BY rm.`id_report`
-                                )st ON st.id_report=rm.`id_assign_sch`
-                                WHERE rm.`id_assign_sch`<'" & id_emp_assign_sch & "' AND rm.`id_departement`='" & id_departement & "' AND NOT (rm.id_report_status='5' OR rm.id_report_status='6')  AND ISNULL(st.id_report)"
+        Dim query As String = "
+            SELECT * FROM tb_emp_assign_sch rm 
+            LEFT JOIN
+            (
+                SELECT rm.`id_report_mark`,rm.`id_report`,sch.`id_departement`,rm.`id_mark`,rm.`report_number` FROM tb_report_mark rm
+                INNER JOIN tb_emp_assign_sch sch ON sch.`id_assign_sch`=rm.`id_report`
+                WHERE rm.report_mark_type='100' AND rm.id_mark_asg='116' AND (rm.id_mark='2' OR rm.`id_mark`='3') AND sch.`id_departement`='" & id_departement & If(id_departement_sub = "", " AND sch.`id_departement_sub` IS NULL", " AND sch.`id_departement_sub` = " & id_departement_sub) & "' AND rm.id_report<'" & id_emp_assign_sch & "'
+                GROUP BY rm.`id_report`
+            )st ON st.id_report=rm.`id_assign_sch`
+            WHERE rm.`id_assign_sch`<'" & id_emp_assign_sch & "' AND rm.`id_departement`='" & id_departement & If(id_departement_sub = "", " AND rm.`id_departement_sub` IS NULL", " AND rm.`id_departement_sub` = " & id_departement_sub) & "' AND NOT (rm.id_report_status='5' OR rm.id_report_status='6')  AND ISNULL(st.id_report)
+        "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             infoCustom("Please process proposed schdule before this.")
@@ -274,7 +314,21 @@
         End If
     End Sub
 
-    Private Sub PanelControl1_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl1.Paint
+    Private Sub GVScheduleAfter_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVScheduleAfter.CellValueChanged
+        If Not e.Value.ToString = "" Then
+            Dim already As Boolean = False
 
+            For i = 0 To data_code.Rows.Count - 1
+                If data_code.Rows(i)("shift_code").ToString = e.Value.ToString Then
+                    already = True
+                End If
+            Next
+
+            If Not already Then
+                warningCustom("Please make sure shift code is correct.")
+
+                GVScheduleAfter.SetRowCellValue(e.RowHandle, e.Column.FieldName, "")
+            End If
+        End If
     End Sub
 End Class

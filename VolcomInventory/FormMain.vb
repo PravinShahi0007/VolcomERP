@@ -9517,6 +9517,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInvoiceTracking.viewData()
         ElseIf formName = "FormAREvalScheduke" Then
             FormAREvalScheduke.viewData()
+        ElseIf formName = "FormEmpAttnAssign" Then
+            FormEmpAttnAssign.load_attn()
         End If
     End Sub
     'Switch
@@ -13754,7 +13756,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.WaitCursor
         Try
             FormEmpAttnAssign.MdiParent = Me
-            FormEmpAttnAssign.is_sales_dept = "1"
+            FormEmpAttnAssign.is_user_mapping = "1"
             FormEmpAttnAssign.Show()
             FormEmpAttnAssign.WindowState = FormWindowState.Maximized
             FormEmpAttnAssign.Focus()
