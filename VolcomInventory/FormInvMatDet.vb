@@ -4,7 +4,7 @@
 
     Public is_view As String = "-1"
     '
-    Private Sub FormInvMatDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub load_form()
         load_vendor()
         load_type()
 
@@ -102,6 +102,10 @@ WHERE inv.id_inv_mat='" & id_inv & "'"
                 BtnViewJournal.Visible = False
             End If
         End If
+    End Sub
+
+    Private Sub FormInvMatDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
 
     Sub load_type()
