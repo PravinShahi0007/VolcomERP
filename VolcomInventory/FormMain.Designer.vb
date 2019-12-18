@@ -405,6 +405,7 @@ Partial Class FormMain
         Me.NBAgingAR = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBReportBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSendEmailAcc = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInvMat = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBFolluwUpAR = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
@@ -440,7 +441,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBInvMat = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2984,7 +2984,7 @@ Partial Class FormMain
         '
         'NBBankWithdrawal
         '
-        Me.NBBankWithdrawal.Caption = "Bank Withdrawal"
+        Me.NBBankWithdrawal.Caption = "Bukti Bank Keluar"
         Me.NBBankWithdrawal.Name = "NBBankWithdrawal"
         Me.NBBankWithdrawal.SmallImage = CType(resources.GetObject("NBBankWithdrawal.SmallImage"), System.Drawing.Image)
         '
@@ -3172,6 +3172,12 @@ Partial Class FormMain
         Me.NBSendEmailAcc.Caption = "Send Email"
         Me.NBSendEmailAcc.Name = "NBSendEmailAcc"
         Me.NBSendEmailAcc.SmallImage = CType(resources.GetObject("NBSendEmailAcc.SmallImage"), System.Drawing.Image)
+        '
+        'NBInvMat
+        '
+        Me.NBInvMat.Caption = "Invoice Material"
+        Me.NBInvMat.Name = "NBInvMat"
+        Me.NBInvMat.SmallImage = CType(resources.GetObject("NBInvMat.SmallImage"), System.Drawing.Image)
         '
         'NBFolluwUpAR
         '
@@ -3454,12 +3460,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBInvMat
-        '
-        Me.NBInvMat.Caption = "Invoice Material"
-        Me.NBInvMat.Name = "NBInvMat"
-        Me.NBInvMat.SmallImage = CType(resources.GetObject("NBInvMat.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
