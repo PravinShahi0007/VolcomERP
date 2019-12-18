@@ -29,15 +29,22 @@
     End Sub
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
-        Dim q_where As String = ""
+        'check AR
+        Dim query_check As String = "SELECT IFNULL(id_acc_ar,0) AS id_acc_ar FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendorPayment.EditValue.ToString & "'"
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
+            warningCustom("This company AR account is not set.")
+        Else
+            Dim q_where As String = ""
 
-        If Not SLEVendorPayment.EditValue.ToString = "0" Then
-            q_where = " AND c.id_comp='" & SLEVendorPayment.EditValue.ToString & "' "
-        End If
+            If Not SLEVendorPayment.EditValue.ToString = "0" Then
+                q_where = " AND c.id_comp='" & SLEVendorPayment.EditValue.ToString & "' "
+            End If
 
-        If XTCMatInv.SelectedTabPageIndex = 0 Then
-            'list invoice
-            Dim query As String = "SELECT inv.id_inv_mat,inv.number, inv.id_comp,c.comp_number,c.comp_name,emp.employee_name,sts.report_status
+            If XTCMatInv.SelectedTabPageIndex = 0 Then
+                'list invoice
+                Dim query As String = "SELECT inv.id_inv_mat,inv.number, inv.id_comp,c.comp_number,c.comp_name,emp.employee_name,sts.report_status
 ,inv.created_date,inv.due_date,inv.ref_date
 ,SUM(invd.`value`) AS amount
 ,SUM(invd.`value`)*((inv.vat_percent)/100) AS amount_vat
@@ -50,13 +57,13 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=inv.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=invd.`id_prod_order`
 GROUP BY invd.`id_inv_mat`"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            '
-            GCInvoice.DataSource = data
-            GVInvoice.BestFitColumns()
-        ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
-            'pl mrs
-            Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(pld.`pl_mrs_det_price`*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                '
+                GCInvoice.DataSource = data
+                GVInvoice.BestFitColumns()
+            ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
+                'pl mrs
+                Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(pld.`pl_mrs_det_price`*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
 ,dsg.`design_display_name`
 FROM tb_pl_mrs_det pld
 INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
@@ -74,17 +81,17 @@ INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` 
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
 GROUP BY pl.`id_pl_mrs`"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCPL.DataSource = data
-            GVPL.BestFitColumns()
-            If SLEVendorPayment.EditValue.ToString = "0" Then
-                BCreateBPB.Visible = False
-            Else
-                BCreateBPB.Visible = True
-            End If
-        ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
-            'retur
-            Dim query As String = "SELECT 'no' AS is_check,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,ret.`id_mat_prod_ret_in`,ret.`mat_prod_ret_in_number`,SUM(retd.`mat_prod_ret_in_det_price`*retd.`mat_prod_ret_in_det_qty`) AS amount,po.`id_prod_order`,po.`prod_order_number`
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCPL.DataSource = data
+                GVPL.BestFitColumns()
+                If SLEVendorPayment.EditValue.ToString = "0" Then
+                    BCreateBPB.Visible = False
+                Else
+                    BCreateBPB.Visible = True
+                End If
+            ElseIf XTCMatInv.SelectedTabPageIndex = 1 Then
+                'retur
+                Dim query As String = "SELECT 'no' AS is_check,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,ret.`id_mat_prod_ret_in`,ret.`mat_prod_ret_in_number`,SUM(retd.`mat_prod_ret_in_det_price`*retd.`mat_prod_ret_in_det_qty`) AS amount,po.`id_prod_order`,po.`prod_order_number`
 ,dsg.`design_display_name`
 FROM `tb_mat_prod_ret_in_det` retd
 INNER JOIN tb_mat_prod_ret_in ret ON ret.`id_mat_prod_ret_in`=retd.`id_mat_prod_ret_in`
@@ -100,13 +107,14 @@ INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ret.`id_comp_contact_fro
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
 GROUP BY ret.`id_mat_prod_ret_in`"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCRetur.DataSource = data
-            GVRetur.BestFitColumns()
-            If SLEVendorPayment.EditValue.ToString = "0" Then
-                BCreateBRP.Visible = False
-            Else
-                BCreateBRP.Visible = True
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCRetur.DataSource = data
+                GVRetur.BestFitColumns()
+                If SLEVendorPayment.EditValue.ToString = "0" Then
+                    BCreateBRP.Visible = False
+                Else
+                    BCreateBRP.Visible = True
+                End If
             End If
         End If
     End Sub

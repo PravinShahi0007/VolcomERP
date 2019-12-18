@@ -6750,7 +6750,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
             query = String.Format("UPDATE tb_prod_fc_sum SET id_report_status='{0}' WHERE id_prod_fc_sum ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "231" Then
-            'Debit Note
+            'inv mat
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
@@ -6794,59 +6794,69 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                 'det journal
                 If id_type = "1" Then 'pl
                     Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
-                    -- klaim reject nya dulu
-                    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT acc_coa_claim FROM tb_opt_purchasing) AS `id_acc`, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
-                    ,CONCAT('KLAIM ',dnd.description,' - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
-                    FROM tb_debit_note_det dnd
-                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
-                    WHERE dnd.id_debit_note='" & id_report & "'
-                    UNION
-                    -- lawannya DP
-                    SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
-                    ,CONCAT('KLAIM REJECT') AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
-                    FROM tb_debit_note_det dnd
-                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
-                    INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp
-                    WHERE dnd.id_debit_note='" & id_report & "'
-                    GROUP BY dnd.id_debit_note "
+                    -- penjualan
+SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_jual_mat FROM tb_opt_accounting) AS `id_acc`, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`) AS DECIMAL(13,2)) AS `credit`
+,CONCAT('PENJUALAN MATERIAL') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+FROM `tb_inv_mat_det` invd
+INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+WHERE invd.`id_inv_mat`='" & id_report & "'
+UNION ALL
+-- hutang PPN
+SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`)*((inv.`vat_percent`)/(100)) AS DECIMAL(13,2)) AS `credit`
+,CONCAT('PENJUALAN MATERIAL') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+FROM `tb_inv_mat_det` invd
+INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+WHERE invd.`id_inv_mat`='" & id_report & "'
+UNION ALL
+-- AR
+SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`, 0 AS qty, CAST(SUM(invd.`value`)*((100+inv.`vat_percent`)/(100)) AS DECIMAL(13,2)) AS `debit`, 0 AS `credit`
+,CONCAT('PENJUALAN MATERIAL') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+FROM `tb_inv_mat_det` invd
+INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+INNER JOIN tb_m_comp c ON c.id_comp=inv.`id_comp`
+WHERE invd.`id_inv_mat`='" & id_report & "' "
                     execute_non_query(qjd, True, "", "", "", "")
                 ElseIf id_type = "2" Then 'ret
                     Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
-                    -- klaim late nya dulu
-                    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT acc_coa_claim FROM tb_opt_purchasing) AS `id_acc`, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
-                    ,CONCAT('KLAIM TERLAMBAT - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
-                    FROM tb_debit_note_det dnd
-                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
-                    WHERE dnd.id_debit_note='" & id_report & "'
-                    UNION 
-                    -- lawannya DP
-                    SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_dp AS `id_acc`, dnd.qty, SUM(CAST((dnd.claim_percent/100)*dnd.unit_price*dnd.qty AS DECIMAL(13,2))) AS `debit`, 0 AS `credit`
-                    ,CONCAT('KLAIM TERLAMBAT') AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
-                    FROM tb_debit_note_det dnd
-                    INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note
-                    INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp
-                    WHERE dnd.id_debit_note='" & id_report & "'
-                    GROUP BY dnd.id_debit_note "
+                    -- retur
+SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_retur_jual_mat FROM tb_opt_accounting) AS `id_acc`, 0 AS qty,  CAST(SUM(invd.`value`) AS DECIMAL(13,2)) AS `debit`,0 AS `credit`
+,CONCAT('RETUR PENJUALAN MATERIAL') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+FROM `tb_inv_mat_det` invd
+INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+WHERE invd.`id_inv_mat`='" & id_report & "'
+UNION ALL
+-- hutang PPN
+SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`, 0 AS qty, CAST(SUM(invd.`value`)*((inv.`vat_percent`)/(100)) AS DECIMAL(13,2)) AS `debit`,0 AS `credit`
+,CONCAT('RETUR PENJUALAN MATERIAL') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+FROM `tb_inv_mat_det` invd
+INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+WHERE invd.`id_inv_mat`='" & id_report & "'
+UNION ALL
+-- AR
+SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`, 0 AS qty,0 AS `debit`, CAST(SUM(invd.`value`)*((100+inv.`vat_percent`)/(100)) AS DECIMAL(13,2)) AS `credit`
+,CONCAT('RETUR PENJUALAN MATERIAL') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+FROM `tb_inv_mat_det` invd
+INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+INNER JOIN tb_m_comp c ON c.id_comp=inv.`id_comp`
+WHERE invd.`id_inv_mat`='" & id_report & "'"
                     execute_non_query(qjd, True, "", "", "", "")
                 End If
                 ' update status 
-                If FormDebitNoteDet.id_dn_type = "1" Then 'claim reject
-                    query = String.Format("UPDATE tb_debit_note_det dnd
-                                            INNER JOIN tb_prod_order po ON po.id_prod_order=dnd.id_report AND dnd.report_mark_type='22' 
-                                            SET is_claimed_reject='1'
-                                            WHERE dnd.id_debit_note='{0}'", id_report)
+                If id_type = "1" Then 'pl
+                    query = String.Format("UPDATE tb_pl_mrs pl 
+                                            SET is_invoice='1'
+                                            WHERE pl.id_pl_mrs='{0}'", id_report)
                     execute_non_query(query, True, "", "", "", "")
-                ElseIf FormDebitNoteDet.id_dn_type = "2" Then 'claim terlambat
-                    query = String.Format("UPDATE tb_debit_note_det dnd
-                                            INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=dnd.id_report AND dnd.report_mark_type='28' 
-                                            SET is_claimed_late='1'
-                                            WHERE dnd.id_debit_note='{0}'", id_report)
+                ElseIf id_type = "2" Then 'ret
+                    query = String.Format("UPDATE tb_mat_prod_ret_in ret
+                                            SET is_invoice='1'
+                                            WHERE ret.id_mat_prod_ret_in='{0}'", id_report)
                     execute_non_query(query, True, "", "", "", "")
                 End If
             End If
 
             'refresh view
-            FormDebitNoteDet.load_form()
+            FormInvMatDet.load_form()
         End If
 
         'adding lead time
