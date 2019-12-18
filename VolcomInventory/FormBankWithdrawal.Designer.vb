@@ -19,6 +19,7 @@ Partial Class FormBankWithdrawal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPOList = New DevExpress.XtraGrid.GridControl()
@@ -133,6 +134,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGPO = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -198,6 +201,7 @@ Partial Class FormBankWithdrawal
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPFGPO.SuspendLayout()
         CType(Me.GCFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEFGPOPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1288,6 +1292,7 @@ Partial Class FormBankWithdrawal
         '
         'GCFGPO
         '
+        Me.GCFGPO.ContextMenuStrip = Me.ViewMenu
         Me.GCFGPO.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCFGPO.Location = New System.Drawing.Point(0, 44)
         Me.GCFGPO.MainView = Me.GVFGPO
@@ -1297,11 +1302,24 @@ Partial Class FormBankWithdrawal
         Me.GCFGPO.TabIndex = 20
         Me.GCFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGPO})
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Report"
+        '
         'GVFGPO
         '
         Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn40, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn53, Me.GridColumn41, Me.GridColumn54, Me.GridColumn50, Me.GridColumn51})
         Me.GVFGPO.GridControl = Me.GCFGPO
         Me.GVFGPO.Name = "GVFGPO"
+        Me.GVFGPO.OptionsView.ShowFooter = True
         Me.GVFGPO.OptionsView.ShowGroupPanel = False
         '
         'GridColumn44
@@ -1392,6 +1410,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn49.Name = "GridColumn49"
         Me.GridColumn49.OptionsColumn.AllowEdit = False
         Me.GridColumn49.OptionsColumn.ReadOnly = True
+        Me.GridColumn49.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn49.Visible = True
         Me.GridColumn49.VisibleIndex = 4
         Me.GridColumn49.Width = 162
@@ -1403,6 +1422,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn53.FieldName = "total_paid"
         Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
         Me.GridColumn53.Visible = True
         Me.GridColumn53.VisibleIndex = 5
         Me.GridColumn53.Width = 150
@@ -1414,6 +1434,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn41.FieldName = "balance"
         Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
         Me.GridColumn41.Visible = True
         Me.GridColumn41.VisibleIndex = 6
         Me.GridColumn41.Width = 157
@@ -1579,6 +1600,7 @@ Partial Class FormBankWithdrawal
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPFGPO.ResumeLayout(False)
         CType(Me.GCFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEFGPOPayment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1727,4 +1749,6 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
 End Class

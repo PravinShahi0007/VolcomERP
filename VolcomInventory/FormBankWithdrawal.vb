@@ -449,4 +449,13 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         GVFGPO.ActiveFilterString = ""
     End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+        showpopup.report_mark_type = GVFGPO.GetFocusedRowCellValue("report_mark_type").ToString
+        showpopup.id_report = GVFGPO.GetFocusedRowCellValue("id_report").ToString
+        showpopup.show()
+        Cursor = Cursors.Default
+    End Sub
 End Class
