@@ -9517,6 +9517,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormInvoiceTracking.viewData()
         ElseIf formName = "FormAREvalScheduke" Then
             FormAREvalScheduke.viewData()
+        ElseIf formName = "FormEmpAttnAssign" Then
+            FormEmpAttnAssign.load_attn()
         End If
     End Sub
     'Switch
@@ -13754,7 +13756,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.WaitCursor
         Try
             FormEmpAttnAssign.MdiParent = Me
-            FormEmpAttnAssign.is_sales_dept = "1"
+            FormEmpAttnAssign.is_user_mapping = "1"
             FormEmpAttnAssign.Show()
             FormEmpAttnAssign.WindowState = FormWindowState.Maximized
             FormEmpAttnAssign.Focus()
@@ -13902,6 +13904,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAREvaluation.Show()
             FormAREvaluation.WindowState = FormWindowState.Maximized
             FormAREvaluation.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBDelManifest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDelManifest.LinkClicked
+        Try
+            FormDelManifest.MdiParent = Me
+            FormDelManifest.Show()
+            FormDelManifest.WindowState = FormWindowState.Maximized
+            FormDelManifest.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

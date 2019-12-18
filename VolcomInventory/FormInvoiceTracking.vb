@@ -102,7 +102,7 @@
             id_mail_warning_no,mail_warning_no, mail_warning_date, mail_warning_status,
             id_mail_notice_no,mail_notice_no, mail_notice_date, mail_notice_status,
             id_mail_invoice, mail_invoice_no, mail_invoice_date, mail_invoice_status,
-            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`
+            bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -118,6 +118,15 @@
 	            WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183)
 	            GROUP BY pyd.id_report, pyd.report_mark_type
             ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+            LEFT JOIN (
+                SELECT pyd.id_report, pyd.report_mark_type, 
+	            COUNT(py.id_rec_payment) AS `total_pending`,
+	            SUM(pyd.value) AS  `value`
+	            FROM tb_rec_payment_det pyd
+	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+	            WHERE py.`id_report_status`<5 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183)
+	            GROUP BY pyd.id_report, pyd.report_mark_type
+            ) pyd_op ON pyd_op.id_report = sp.id_sales_pos AND pyd_op.report_mark_type = sp.report_mark_type
             LEFT JOIN (
                 SELECT * FROM (
 	                SELECT m.id_mail_manage AS `id_mail_warning_no`, m.number AS `mail_warning_no`, 
