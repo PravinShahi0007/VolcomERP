@@ -669,9 +669,15 @@
     End Sub
 
     Sub change_payroll()
-        Dim id_payroll As String = execute_query("SELECT id_payroll FROM tb_emp_payroll WHERE id_payroll_type = 1 AND '" + Date.Parse(DESearch.EditValue.ToString).ToString("yyyy-MM-dd") + "' BETWEEN ot_periode_start AND ot_periode_end", 0, True, "", "", "", "")
+        Dim id_payroll As String = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE id_payroll_type = 1 AND DATE(NOW()) BETWEEN ot_periode_start AND ot_periode_end), 0)", 0, True, "", "", "", "")
 
-        SLUEPayroll.EditValue = id_payroll
+        If Not id_payroll = "0" Then
+            SLUEPayroll.EditValue = id_payroll
+        Else
+            SLUEPayroll.EditValue = Nothing
+
+            stopCustom("Please add payroll period.")
+        End If
     End Sub
 
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click

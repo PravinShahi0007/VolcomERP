@@ -17,6 +17,8 @@
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'check 
         DEDateCreated.EditValue = Now
+        DERefDate.EditValue = Now
+        DEDueDate.EditValue = Now
         '
         TETotal.EditValue = 0.00
         TEVat.EditValue = 0.00
@@ -32,6 +34,8 @@
                 BtnPrint.Visible = False
                 BtnViewJournal.Visible = False
                 BMark.Visible = False
+                DEDueDate.Properties.ReadOnly = False
+                DERefDate.Properties.ReadOnly = False
                 'new
                 'vendor 
                 SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
@@ -60,6 +64,8 @@
                 BtnPrint.Visible = True
                 BtnViewJournal.Visible = True
                 BMark.Visible = True
+                DEDueDate.Properties.ReadOnly = True
+                DERefDate.Properties.ReadOnly = True
 
                 Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
@@ -69,6 +75,9 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 If data.Rows.Count > 0 Then
                     TENumber.Text = data.Rows(0)("number").ToString
                     DEDateCreated.EditValue = data.Rows(0)("created_date")
+                    DEDueDate.EditValue = data.Rows(0)("due_date")
+                    DERefDate.EditValue = data.Rows(0)("ref_date")
+
                     SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
                     SLEPayType.EditValue = data.Rows(0)("type").ToString
                     '
@@ -81,6 +90,8 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 BtnPrint.Visible = False
                 BtnViewJournal.Visible = False
                 BMark.Visible = False
+                DEDueDate.Properties.ReadOnly = False
+                DERefDate.Properties.ReadOnly = False
 
                 'add detail vendor, PO, receiving
                 FormInvoiceFGPONew.ShowDialog()
@@ -113,6 +124,8 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 BtnPrint.Visible = True
                 BtnViewJournal.Visible = True
                 BMark.Visible = True
+                DEDueDate.Properties.ReadOnly = True
+                DERefDate.Properties.ReadOnly = True
 
                 Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
@@ -122,8 +135,12 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 If data.Rows.Count > 0 Then
                     TENumber.Text = data.Rows(0)("number").ToString
                     DEDateCreated.EditValue = data.Rows(0)("created_date")
+                    DEDueDate.EditValue = data.Rows(0)("due_date")
+                    DERefDate.EditValue = data.Rows(0)("ref_date")
+
                     SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
                     SLEPayType.EditValue = data.Rows(0)("type").ToString
+
                     '
                     MENote.Text = data.Rows(0)("note").ToString
                 End If
@@ -218,8 +235,8 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
                 If id_invoice = "-1" Then
                     'new
                     'header
-                    Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
-VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`,`due_date`,`ref_date`)
+VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
                     id_invoice = execute_query(query, 0, True, "", "", "", "")
                     'detail
                     query = ""
@@ -243,8 +260,8 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
                 If id_invoice = "-1" Then
                     'new
                     'header
-                    Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
-VALUES ('2','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`,`due_date`,`ref_date`)
+VALUES ('2','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
                     id_invoice = execute_query(query, 0, True, "", "", "", "")
                     'detail
                     query = ""
@@ -319,5 +336,9 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
             GVList.DeleteSelectedRows()
             calculate()
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class

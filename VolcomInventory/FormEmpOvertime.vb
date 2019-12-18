@@ -8,7 +8,7 @@
 
         form_load()
 
-        Dim data_date As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE DATE(NOW()) >= ot_periode_start AND DATE(NOW()) <= ot_periode_end AND id_payroll_type = 1", -1, True, "", "", "", "")
+        Dim data_date As DataTable = execute_query("(SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE DATE(NOW()) >= ot_periode_start AND DATE(NOW()) <= ot_periode_end AND id_payroll_type = 1) UNION (SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS periode_end FROM tb_emp_payroll WHERE id_payroll_type = 1 ORDER BY ot_periode_end DESC LIMIT 1)", -1, True, "", "", "", "")
 
         SLUEPayroll.EditValue = data_date.Rows(0)("id_payroll")
         DEStart.EditValue = data_date.Rows(0)("periode_start")

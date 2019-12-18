@@ -345,7 +345,7 @@ GROUP BY pl.`id_mat_purc_list`"
 
     Private Sub BSearchCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSearchCompTo.Click
         FormPopUpContact.id_pop_up = "14"
-        FormPopUpContact.id_cat = "1"
+        FormPopUpContact.id_cat = "1,8"
         FormPopUpContact.ShowDialog()
     End Sub
 
@@ -591,6 +591,11 @@ GROUP BY pl.`id_mat_purc_list`"
             ReportMatPurchase.dt = GCListPurchase.DataSource
             ReportMatPurchase.id_mat_purc = id_purc
             'ReportMatPurchase.is_pre = "1"
+
+            If Not check_print_report_status(id_report_status_g) Then
+                ReportMatPurchase.is_pre = "1"
+            End If
+
             Dim Report As New ReportMatPurchase()
             '
             GridColumnColor.Visible = False
@@ -713,7 +718,7 @@ GROUP BY pl.`id_mat_purc_list`"
             BPickPORev.Enabled = False
         End If
 
-        If check_print_report_status(id_report_status_g) Then
+        If check_allow_print(id_report_status_g, "13", id_purc) Then
             BPrint.Enabled = True
         Else
             BPrint.Enabled = False
