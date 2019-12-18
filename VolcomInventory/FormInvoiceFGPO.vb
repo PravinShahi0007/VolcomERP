@@ -30,13 +30,12 @@
     End Sub
 
     Sub load_vendor()
-        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name,'0' AS id_comp
+        Dim query As String = "SELECT 0 AS id_comp,'All' as comp_name
                                 UNION
-                                SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  ,c.id_comp
+                                SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
-                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 WHERE c.id_comp_cat='1' "
-        viewSearchLookupQuery(SLEVendorPayment, query, "id_comp_contact", "comp_name", "id_comp_contact")
+        viewSearchLookupQuery(SLEVendorPayment, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_list(ByVal is_filter_design As String)
