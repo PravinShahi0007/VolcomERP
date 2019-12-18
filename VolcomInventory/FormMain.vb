@@ -13908,4 +13908,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
     End Sub
+
+    Private Sub NBDelManifest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDelManifest.LinkClicked
+        Try
+            FormDelManifest.MdiParent = Me
+            FormDelManifest.Show()
+            FormDelManifest.WindowState = FormWindowState.Maximized
+            FormDelManifest.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
 End Class
