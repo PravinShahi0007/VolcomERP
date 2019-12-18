@@ -224,7 +224,7 @@ Partial Class FormBankWithdrawal
         Me.XTPPO.Controls.Add(Me.PanelControl1)
         Me.XTPPO.Name = "XTPPO"
         Me.XTPPO.Size = New System.Drawing.Size(1091, 485)
-        Me.XTPPO.Text = "PO List"
+        Me.XTPPO.Text = "PO Operational Goods"
         '
         'GCPOList
         '
@@ -324,7 +324,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 11
+        Me.GridColumnNote.VisibleIndex = 9
         '
         'GridColumn4
         '
@@ -354,7 +354,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 8
+        Me.GridColumn3.VisibleIndex = 6
         '
         'GridColumn24
         '
@@ -369,7 +369,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 9
+        Me.GridColumn24.VisibleIndex = 7
         Me.GridColumn24.Width = 113
         '
         'GridColumn23
@@ -385,7 +385,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 10
+        Me.GridColumn23.VisibleIndex = 8
         Me.GridColumn23.Width = 118
         '
         'GridColumn19
@@ -401,7 +401,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 14
+        Me.GridColumn19.VisibleIndex = 12
         '
         'GridColumn27
         '
@@ -416,7 +416,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 15
+        Me.GridColumn27.VisibleIndex = 13
         Me.GridColumn27.Width = 153
         '
         'GridColumn28
@@ -432,7 +432,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 16
+        Me.GridColumn28.VisibleIndex = 14
         '
         'GridColumnVendor
         '
@@ -462,7 +462,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 12
+        Me.GridColumn25.VisibleIndex = 10
         '
         'GridColumn26
         '
@@ -471,7 +471,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 13
+        Me.GridColumn26.VisibleIndex = 11
         '
         'GridColumn12
         '
@@ -482,7 +482,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 17
+        Me.GridColumn12.VisibleIndex = 15
         '
         'BCreatePO
         '
@@ -1284,7 +1284,7 @@ Partial Class FormBankWithdrawal
         Me.XTPFGPO.Controls.Add(Me.PanelControl6)
         Me.XTPFGPO.Name = "XTPFGPO"
         Me.XTPFGPO.Size = New System.Drawing.Size(1091, 485)
-        Me.XTPFGPO.Text = "F.G. PO"
+        Me.XTPFGPO.Text = "PO Finished Goods"
         '
         'GCFGPO
         '

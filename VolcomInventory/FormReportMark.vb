@@ -6396,11 +6396,11 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 'det journal
                 Dim qjd As String = ""
                 If pn_type = "1" Then 'dp
-                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                    qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
                                     SELECT * FROM
                                     (
                                         /* DP vendor */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_dp AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.value) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
                                         FROM tb_pn_fgpo_det pnd
                                         INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
@@ -6408,7 +6408,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                                         GROUP BY pn.id_pn_fgpo
                                         UNION ALL
                                         /* uang muka PPN WIP */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,(SELECT fgpo_vat_account FROM tb_opt_accounting LIMIT 1) AS `id_acc`, pn.id_comp,  0 AS `qty`,SUM(pnd.vat) AS `debit`,0 AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
                                         FROM tb_pn_fgpo_det pnd
                                         INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
@@ -6416,7 +6416,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                                         GROUP BY pn.id_pn_fgpo
                                         UNION ALL
                                         /* hutang dagang total */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(pnd.value + pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, pn.id_comp,  0 AS `qty`,0 AS `debit`,SUM(pnd.value + pnd.vat) AS `credit`,'' AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
                                         FROM tb_pn_fgpo_det pnd
                                         INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
@@ -6461,7 +6461,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                                         WHERE pnd.`id_pn_fgpo`='" & id_report & "' 
                                         UNION ALL
                                         /* Hutang Dagang */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF(SUM(pnd.vat+pnd.value)<0,SUM(-(pnd.vat+pnd.value)),0) AS `debit`,IF(SUM(pnd.vat+pnd.value)<0,0,SUM(pnd.vat+pnd.value)) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, NULL, NULL, NULL, comp.comp_number
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ap AS `id_acc`, 1 AS id_comp, pnd.`qty` AS `qty`,IF(SUM(pnd.vat+pnd.value)<0,SUM(-(pnd.vat+pnd.value)),0) AS `debit`,IF(SUM(pnd.vat+pnd.value)<0,0,SUM(pnd.vat+pnd.value)) AS `credit`,pnd.`info_design` AS `note`,199,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
                                         FROM `tb_pn_fgpo_det` pnd
                                         INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
                                         INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
