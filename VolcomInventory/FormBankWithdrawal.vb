@@ -123,38 +123,12 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_pn DESC"
 
         If Not SLEFGPOVendor.EditValue.ToString = "0" Then
             where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
+            BCreatePaymentFGPO.Visible = True
+        Else
+            BCreatePaymentFGPO.Visible = False
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,'189' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS `type`,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
-,det.amount AS total 
-,IFNULL(payment.value,0) AS total_paid
-,IFNULL(payment_pending.jml,0) AS total_pending
-,(det.amount - IFNULL(payment.value,0)) AS balance
-,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
-FROM tb_pn_fgpo pn
-INNER JOIN tb_m_comp cf ON cf.id_comp=1
-INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
-INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
-INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap
-INNER JOIN (
-	SELECT id_pn_fgpo,SUM(`value`+`vat`) AS amount FROM tb_pn_fgpo_det pnd 
-	GROUP BY pnd.`id_pn_fgpo`
-) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
-LEFT JOIN
-(
-	SELECT COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_pn_det` pyd
-	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='189'
-	GROUP BY pyd.id_report
-)payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
-LEFT JOIN
-(
-	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
-	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND py.report_mark_type='189'
-	GROUP BY pyd.id_report
-)payment ON payment.id_report=pn.id_pn_fgpo
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE pn.is_open=1 AND pn.id_report_status=6 " & where_string
+        Dim query As String = "CALL view_payment_fgpo('" & where_string & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCFGPO.DataSource = data
