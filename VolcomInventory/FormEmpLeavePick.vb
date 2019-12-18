@@ -23,6 +23,12 @@
             Luntil.Visible = False
         Else 'leave
             BPickAll.Visible = True
+
+            'min propose leave 1 week
+            If Not FormEmpLeaveDet.is_hrd = "1" And FormEmpLeaveDet.LELeaveType.EditValue.ToString = "1" Then
+                DEStart.Properties.MinValue = Now.Date.AddDays(7)
+                DEUntil.Properties.MinValue = Now.Date.AddDays(7)
+            End If
         End If
     End Sub
 
