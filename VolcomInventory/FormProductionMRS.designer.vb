@@ -24,8 +24,9 @@ Partial Class FormProductionMRS
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.EPProdOrderMRS = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancelReport = New DevExpress.XtraEditors.SimpleButton()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -126,6 +127,7 @@ Partial Class FormProductionMRS
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BCancelReport)
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Controls.Add(Me.BPrint)
@@ -137,16 +139,16 @@ Partial Class FormProductionMRS
         Me.GroupControl3.Size = New System.Drawing.Size(909, 38)
         Me.GroupControl3.TabIndex = 60
         '
-        'BtnAttachment
+        'BCancelReport
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.ImageList = Me.ImgBut
-        Me.BtnAttachment.Location = New System.Drawing.Point(520, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(115, 34)
-        Me.BtnAttachment.TabIndex = 16
-        Me.BtnAttachment.Text = "Attachment"
+        Me.BCancelReport.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelReport.ImageIndex = 1
+        Me.BCancelReport.ImageList = Me.ImgBut
+        Me.BCancelReport.Location = New System.Drawing.Point(105, 2)
+        Me.BCancelReport.Name = "BCancelReport"
+        Me.BCancelReport.Size = New System.Drawing.Size(85, 34)
+        Me.BCancelReport.TabIndex = 17
+        Me.BCancelReport.Text = "Cancel"
         '
         'ImgBut
         '
@@ -164,6 +166,17 @@ Partial Class FormProductionMRS
         Me.ImgBut.Images.SetKeyName(9, "18_24x24.png")
         Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
         Me.ImgBut.Images.SetKeyName(11, "document_32.png")
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.ImgBut
+        Me.BtnAttachment.Location = New System.Drawing.Point(520, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(115, 34)
+        Me.BtnAttachment.TabIndex = 16
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BMark
         '
@@ -849,4 +862,5 @@ Partial Class FormProductionMRS
     Public WithEvents ImgBut As DevExpress.Utils.ImageCollection
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BReqFrom As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCancelReport As DevExpress.XtraEditors.SimpleButton
 End Class
