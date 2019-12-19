@@ -438,49 +438,93 @@
 
         'continue days
         Dim max_continues As Integer = 5
-        Dim check_max_continues As String = ""
+        Dim check_max_continues As List(Of String) = New List(Of String)
 
         If leave_type = "1" And Not is_hrd = "1" Then
             Dim data_all As DataTable = CType(GCLeaveDet.DataSource, DataTable).Copy
 
-            'included days
-            Dim days_included As List(Of Date) = New List(Of Date)
+            'included months & days
+            Dim months_included As List(Of String) = New List(Of String)
 
             For i = 0 To data_all.Rows.Count - 1
-                Dim days As Date = Date.Parse(data_all.Rows(i)("datetime_start").ToString)
+                Dim months As String = Date.Parse(data_all.Rows(i)("datetime_start").ToString).ToString("yyyy-MM-01")
 
-                If Not days_included.Contains(days) Then
-                    days_included.Add(days)
+                Dim months_pre As String = Date.Parse(months).AddMonths(-1).ToString("yyyy-MM-01")
+                Dim months_nex As String = Date.Parse(months).AddMonths(1).ToString("yyyy-MM-01")
+
+                If Not months_included.Contains(months.Substring(0, months.Length - 3)) Then
+                    months_included.Add(months.Substring(0, months.Length - 3))
+                End If
+
+                If Not months_included.Contains(months_pre.Substring(0, months.Length - 3)) Then
+                    months_included.Add(months_pre.Substring(0, months.Length - 3))
+                End If
+
+                If Not months_included.Contains(months_nex.Substring(0, months.Length - 3)) Then
+                    months_included.Add(months_nex.Substring(0, months.Length - 3))
                 End If
             Next
 
-            Dim date_in As String = ""
+            'get schedule
+            Dim query_in As String = ""
 
-            For i = 0 To days_included.Count - 1
-                'before
-                Dim dayb_last As Date = days_included(i).AddDays(-max_continues)
+            For i = 0 To months_included.Count - 1
+                query_in += "sch.date LIKE '" + months_included(i) + "%' OR "
+            Next
 
-                For j = 1 To 100
-                    dayb_last = dayb_last.AddDays(1)
+            Dim query_schedule As String = "
+                SELECT sch.date, IF(lvd.id_schedule IS NULL, 0, 1) AS is_leave
+                FROM tb_emp_schedule AS sch
+                LEFT JOIN tb_emp_leave_det AS lvd ON sch.id_schedule = lvd.id_schedule
+                WHERE sch.id_schedule_type = 1 AND (" + query_in.Substring(0, query_in.Length - 4) + ") AND sch.id_employee = " + id_employee + "
+                ORDER BY sch.date ASC
+            "
 
-                    date_in += dayb_last.ToString("yyyy-MM-dd") + ", "
+            Dim data_sch As DataTable = execute_query(query_schedule, -1, True, "", "", "", "")
 
-                    If dayb_last = days_included(i) Then
-                        Exit For
+            'check match
+            For i = 0 To data_sch.Rows.Count - 1
+                For j = 0 To data_all.Rows.Count - 1
+                    If Date.Parse(data_sch.Rows(i)("date").ToString).ToString("yyyy-MM-dd") = Date.Parse(data_all.Rows(j)("datetime_start").ToString).ToString("yyyy-MM-dd") Then
+                        data_sch.Rows(i)("is_leave") = 1
                     End If
-                Next
-
-                'after
-                Dim dayb_current As Date = days_included(i)
-
-                For j = 1 To max_continues
-                    dayb_current = dayb_current.AddDays(1)
-
-                    date_in += dayb_current.ToString("yyyy-MM-dd") + ", "
                 Next
             Next
 
-            Console.WriteLine(date_in)
+            'check max continues
+            Dim curr_continues As Integer = 0
+
+            For i = 0 To data_sch.Rows.Count - 1
+                If data_sch.Rows(i)("is_leave") = 1 Then
+                    curr_continues = curr_continues + 1
+
+                    check_max_continues.Add(Date.Parse(data_sch.Rows(i)("date").ToString).ToString("dd MMMM yyyy"))
+                Else
+                    If curr_continues > max_continues Then
+                        'in propose
+                        Dim in_propose As Boolean = False
+
+                        For j = 0 To data_all.Rows.Count - 1
+                            If check_max_continues.Contains(Date.Parse(data_all.Rows(j)("datetime_start").ToString).ToString("dd MMMM yyyy")) Then
+                                in_propose = True
+                            End If
+                        Next
+
+                        If in_propose Then
+                            Exit For
+                        End If
+                    End If
+
+                    curr_continues = 0
+
+                    check_max_continues = New List(Of String)
+                End If
+
+            Next
+
+            If curr_continues <= max_continues Then
+                check_max_continues = New List(Of String)
+            End If
         End If
 
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
@@ -512,7 +556,11 @@
         ElseIf Not check_max_propose = "" Then
             check_max_propose = check_max_propose.Substring(0, check_max_propose.Length - 2)
 
-            stopCustom("Cuti bulan " + check_max_propose + " anda sudah melebihi " + (max_propose / 60).ToString + " jam.")
+            stopCustom("Cuti bulan " + check_max_propose + " anda melebihi " + (max_propose / 60).ToString + " jam. Hubungi HRD untuk mengajukan cuti lebih dari " + (max_propose / 60).ToString + " jam.")
+
+            check_input = False
+        ElseIf check_max_continues.Count > 0 Then
+            stopCustom("Maksimal cuti " + max_continues.ToString + " hari berturut-turut. Tanggal anda cuti dari " + check_max_continues(0) + " - " + check_max_continues(check_max_continues.Count - 1) + ". Hubungi HRD untuk mengajukan cuti lebih dari " + max_continues.ToString + " hari berturut-turut.")
 
             check_input = False
         Else
