@@ -213,6 +213,7 @@
     <Compile Include="ClassBudgetExpensePropose.vb" />
     <Compile Include="ClassBudgetExpenseRevision.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
+    <Compile Include="ClassDelayPayment.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />

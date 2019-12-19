@@ -25,4 +25,25 @@
     Private Sub FormDelayPayment_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
+    Sub viewData()
+        Cursor = Cursors.WaitCursor
+
+        'cond group
+        Dim cond As String = ""
+        If SLEStoreGroup.EditValue <> "0" Then
+            cond += "AND dp.id_comp_group='" + SLEStoreGroup.EditValue.ToString + "' "
+        End If
+
+        Dim dp As New ClassDelayPayment()
+        Dim query As String = dp.queryMain(cond, "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        viewData()
+    End Sub
 End Class
